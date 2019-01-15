@@ -122,7 +122,8 @@ class MockAccountService: AccountService {
         case "pastDue":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
-                                                                       pastDueAmount: 100))
+                                                                       pastDueAmount: 100,
+                                                                       dueByDate: tenDaysFromToday))
             return .just(accountDetail)
             
         case "pastDueEqual":

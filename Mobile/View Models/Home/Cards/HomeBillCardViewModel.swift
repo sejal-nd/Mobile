@@ -230,7 +230,7 @@ class HomeBillCardViewModel {
                 return .finaled
             }
             
-            if opco != .bge && (billingInfo.restorationAmount ?? 0) > 0 && accountDetail.isCutOutNonPay {
+            if opco != .bge && billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay {
                 return .restoreService
             }
             
@@ -238,41 +238,41 @@ class HomeBillCardViewModel {
                 return .eligibleForCutoff
             }
             
-            if (billingInfo.disconnectNoticeArrears ?? 0) > 0 && billingInfo.isDisconnectNotice {
+            if billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice {
                 return .avoidShutoff
             }
             
-            if opco != .bge && (billingInfo.amtDpaReinst ?? 0 > 0) {
+            if opco != .bge && billingInfo.amtDpaReinst > 0 {
                 return .catchUp
             }
             
-            if billingInfo.pastDueAmount ?? 0 > 0 {
+            if billingInfo.pastDueAmount > 0 {
                 return .pastDue
             }
             
-            if billingInfo.pendingPayments.first?.amount ?? 0 > 0 {
+            if billingInfo.pendingPayments.first?.amount > 0 {
                 return .paymentPending
             }
             
-            if billingInfo.netDueAmount ?? 0 > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
+            if billingInfo.netDueAmount > 0 && (accountDetail.isAutoPay || accountDetail.isBGEasy) {
                 return .billReadyAutoPay
             }
             
-            if billingInfo.scheduledPayment?.amount ?? 0 > 0 {
+            if billingInfo.scheduledPayment?.amount > 0 {
                 return .paymentScheduled
             }
             
-            if opco == .bge && (billingInfo.netDueAmount ?? 0) < 0 {
+            if opco == .bge && billingInfo.netDueAmount < 0 {
                 return .credit
             }
             
-            if billingInfo.netDueAmount ?? 0 > 0 {
+            if billingInfo.netDueAmount > 0 {
                 return .billReady
             }
             
             if let billDate = billingInfo.billDate,
                 let lastPaymentDate = billingInfo.lastPaymentDate,
-                billingInfo.lastPaymentAmount ?? 0 > 0,
+                billingInfo.lastPaymentAmount > 0,
                 billDate < lastPaymentDate {
                 return .billPaid
             }
@@ -366,8 +366,8 @@ class HomeBillCardViewModel {
         guard Environment.shared.opco == .bge else { return false }
         
         // Min/Max payment amount state takes precedence
-        guard accountDetail.billingInfo.netDueAmount ?? 0 >= accountDetail.minPaymentAmount(bankOrCard: .card) else { return false }
-        guard accountDetail.billingInfo.netDueAmount ?? 0 <= accountDetail.maxPaymentAmount(bankOrCard: .card) else { return false }
+        guard accountDetail.billingInfo.netDueAmount >= accountDetail.minPaymentAmount(bankOrCard: .card) else { return false }
+        guard accountDetail.billingInfo.netDueAmount <= accountDetail.maxPaymentAmount(bankOrCard: .card) else { return false }
         
         guard walletItem.cardIssuer == "Visa" else { return false }
         guard !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly else { return false }
@@ -613,8 +613,8 @@ class HomeBillCardViewModel {
     private(set) lazy var reinstatementFeeText: Driver<String?> = accountDetailDriver.map {
         guard let reinstateString = $0.billingInfo.atReinstateFee?.currencyString,
             Environment.shared.opco == .comEd &&
-                $0.billingInfo.amtDpaReinst ?? 0 > 0 &&
-                $0.billingInfo.atReinstateFee ?? 0 > 0 &&
+                $0.billingInfo.amtDpaReinst > 0 &&
+                $0.billingInfo.atReinstateFee > 0 &&
                 !$0.isLowIncome else {
                     return nil
         }
@@ -658,16 +658,8 @@ class HomeBillCardViewModel {
         guard let walletItem = walletItemOptional else { return nil }
         guard let paymentAmount = accountDetail.billingInfo.netDueAmount else { return nil }
         
-        let minPayment: Double
-        let maxPayment: Double
-        switch walletItem.bankOrCard {
-        case .bank:
-            minPayment = accountDetail.minPaymentAmount(bankOrCard: .bank)
-            maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .bank)
-        case .card:
-            minPayment = accountDetail.minPaymentAmount(bankOrCard: .card)
-            maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .card)
-        }
+        let minPayment = accountDetail.minPaymentAmount(bankOrCard: walletItem.bankOrCard)
+        let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: walletItem.bankOrCard)
         
         if paymentAmount < minPayment, let amountText = minPayment.currencyString {
             let minLocalizedText = NSLocalizedString("Minimum payment allowed is %@", comment: "")
@@ -713,22 +705,28 @@ class HomeBillCardViewModel {
             if showMinMaxPaymentAllowed {
                 return false
             }
-            if walletItem == nil {
+            
+            guard let walletItem = walletItem else {
                 return false
             }
-            if walletItem!.isExpired {
+            
+            if walletItem.isExpired {
                 return false
             }
-            if let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount,
-                accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
+            
+            let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: walletItem.bankOrCard)
+            if accountDetail.billingInfo.netDueAmount < minPaymentAmount && Environment.shared.opco != .bge {
                 return false
             }
-            if accountDetail.billingInfo.netDueAmount ?? 0 < 0 && Environment.shared.opco == .bge {
+            
+            if accountDetail.billingInfo.netDueAmount < 0 && Environment.shared.opco == .bge {
                 return false
             }
-            if walletItem?.cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly {
+            
+            if walletItem.cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly {
                 return false
             }
+            
             return true
         }
         .distinctUntilChanged()

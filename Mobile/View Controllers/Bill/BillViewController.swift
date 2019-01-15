@@ -30,28 +30,10 @@ class BillViewController: AccountPickerViewController {
 
 	@IBOutlet weak var paymentDetailsView: UIView!
 
-	// Restore Service
-	@IBOutlet weak var restoreServiceView: UIView!
-    @IBOutlet weak var restoreServiceLabel: UILabel!
-	@IBOutlet weak var restoreServiceAmountLabel: UILabel!
-    @IBOutlet weak var restoreServiceDateLabel: UILabel!
-
-	// Catch Up
-    @IBOutlet weak var catchUpView: UIView!
-    @IBOutlet weak var catchUpLabel: UILabel!
-    @IBOutlet weak var catchUpAmountLabel: UILabel!
-	@IBOutlet weak var catchUpDateLabel: UILabel!
-
 	// Catch Up Disclaimer
 	@IBOutlet weak var catchUpDisclaimerView: UIView!
 	@IBOutlet weak var catchUpDisclaimerLabel: UILabel!
-
-	// Avoid Shut-off
-	@IBOutlet weak var avoidShutoffView: UIView!
-	@IBOutlet weak var avoidShutoffLabel: UILabel!
-	@IBOutlet weak var avoidShutoffAmountLabel: UILabel!
-	@IBOutlet weak var avoidShutoffDateLabel: UILabel!
-
+    
 	// Past Due
     @IBOutlet weak var pastDueView: UIView!
     @IBOutlet weak var pastDueLabel: UILabel!
@@ -59,36 +41,20 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var pastDueDateLabel: UILabel!
 
 	// Payments
-	@IBOutlet weak var paymentStackView: UIStackView!
+	@IBOutlet weak var pendingPaymentView: UIView!
+    @IBOutlet weak var pendingPaymentLabel: UILabel!
+    @IBOutlet weak var pendingPaymentAmountLabel: UILabel!
 
 	// Remaining Balance Due
 	@IBOutlet weak var remainingBalanceDueView: UIView!
 	@IBOutlet weak var remainingBalanceDueLabel: UILabel!
 	@IBOutlet weak var remainingBalanceDueAmountLabel: UILabel!
-	@IBOutlet weak var remainingBalanceDueDateLabel: UILabel!
-
-	// Remaining Balance Past Due
-	@IBOutlet weak var remainingBalancePastDueView: UIView!
-    @IBOutlet weak var remainingBalancePastDueLabel: UILabel!
-    @IBOutlet weak var remainingBalancePastDueAmountLabel: UILabel!
-    @IBOutlet weak var remainingBalancePastDueDateLabel: UILabel!
 
     // Bill Issued
-    @IBOutlet weak var billIssuedView: UIView!
-    @IBOutlet weak var billIssuedLabel: UILabel!
-    @IBOutlet weak var billIssuedAmountLabel: UILabel!
-	@IBOutlet weak var billIssuedDateLabel: UILabel!
-
-    // Payment Received
-    @IBOutlet weak var paymentReceivedView: UIView!
-    @IBOutlet weak var paymentReceivedLabel: UILabel!
-	@IBOutlet weak var paymentReceivedAmountLabel: UILabel!
-	@IBOutlet weak var paymentReceivedDateLabel: UILabel!
-
-	// Credit
-	@IBOutlet weak var creditView: UIView!
-    @IBOutlet weak var creditLabel: UILabel!
-	@IBOutlet weak var creditAmountLabel: UILabel!
+    @IBOutlet weak var currentBillView: UIView!
+    @IBOutlet weak var currentBillLabel: UILabel!
+    @IBOutlet weak var currentBillAmountLabel: UILabel!
+	@IBOutlet weak var currentBillDateLabel: UILabel!
 
     @IBOutlet weak var billBreakdownButton: ButtonControl!
     @IBOutlet weak var billBreakdownImageView: UIImageView!
@@ -228,44 +194,20 @@ class BillViewController: AccountPickerViewController {
 
         // Set Fonts
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
-        restoreServiceLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        restoreServiceAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        restoreServiceDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
-        catchUpLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        catchUpAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        catchUpDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
+        
         catchUpDisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
-        avoidShutoffLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        avoidShutoffAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        avoidShutoffDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
+        
         pastDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         pastDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         pastDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
 
         remainingBalanceDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        remainingBalanceDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
-        remainingBalancePastDueLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        remainingBalancePastDueAmountLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        remainingBalancePastDueDateLabel.font = OpenSans.regular.of(textStyle: .caption2)
-
-        billIssuedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        billIssuedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        billIssuedDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
-        paymentReceivedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        paymentReceivedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        paymentReceivedDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
-        creditLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        creditAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-
+        
+        currentBillLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        currentBillAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        currentBillDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        
         billBreakdownLabel.font = OpenSans.semibold.of(textStyle: .title1)
         
         viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
@@ -387,24 +329,21 @@ class BillViewController: AccountPickerViewController {
         viewModel.shouldShowTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
         
-		viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).disposed(by: bag)
-        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(restoreServiceView.rx.alpha).disposed(by: bag)
-        viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).disposed(by: bag)
-        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpView.rx.alpha).disposed(by: bag)
+//        viewModel.shouldShowRestoreService.not().drive(restoreServiceView.rx.isHidden).disposed(by: bag)
+//        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(restoreServiceView.rx.alpha).disposed(by: bag)
+//        viewModel.shouldShowCatchUpAmount.not().drive(catchUpView.rx.isHidden).disposed(by: bag)
+//        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpView.rx.alpha).disposed(by: bag)
 		viewModel.shouldShowCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
-        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpDisclaimerView.rx.alpha).disposed(by: bag)
-		viewModel.shouldShowAvoidShutoff.not().drive(avoidShutoffView.rx.isHidden).disposed(by: bag)
-        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(avoidShutoffView.rx.alpha).disposed(by: bag)
-        viewModel.shouldShowPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
+//        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(catchUpDisclaimerView.rx.alpha).disposed(by: bag)
+//        viewModel.shouldShowAvoidShutoff.not().drive(avoidShutoffView.rx.isHidden).disposed(by: bag)
+        viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
         
-        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(pastDueView.rx.alpha).disposed(by: bag)
+//        viewModel.pendingPaymentAmountDueBoxesAlpha.drive(pastDueView.rx.alpha).disposed(by: bag)
 
-		viewModel.shouldShowPendingPayment.not().drive(paymentStackView.rx.isHidden).disposed(by: bag)
+		viewModel.shouldShowPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
 		viewModel.shouldShowRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
-		viewModel.shouldShowRemainingBalancePastDue.not().drive(remainingBalancePastDueView.rx.isHidden).disposed(by: bag)
-		viewModel.shouldShowBillIssued.not().drive(billIssuedView.rx.isHidden).disposed(by: bag)
-		viewModel.shouldShowPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
-		viewModel.shouldShowCredit.not().drive(creditView.rx.isHidden).disposed(by: bag)
+		viewModel.shouldShowBillIssued.not().drive(currentBillView.rx.isHidden).disposed(by: bag)
+//        viewModel.shouldShowPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
 
 		viewModel.shouldShowBillBreakdownButton.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
@@ -424,40 +363,23 @@ class BillViewController: AccountPickerViewController {
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.text).disposed(by: bag)
 
-		viewModel.restoreServiceAmountText.drive(restoreServiceAmountLabel.rx.text).disposed(by: bag)
-		viewModel.catchUpAmountText.drive(catchUpAmountLabel.rx.text).disposed(by: bag)
-		viewModel.catchUpDateText.drive(catchUpDateLabel.rx.text).disposed(by: bag)
+//        viewModel.restoreServiceAmountText.drive(restoreServiceAmountLabel.rx.text).disposed(by: bag)
+//        viewModel.catchUpAmountText.drive(catchUpAmountLabel.rx.text).disposed(by: bag)
+//        viewModel.catchUpDateText.drive(catchUpDateLabel.rx.text).disposed(by: bag)
         viewModel.catchUpDisclaimerText.drive(catchUpDisclaimerLabel.rx.text).disposed(by: bag)
-        avoidShutoffLabel.text = viewModel.avoidShutoffText
-        avoidShutoffLabel.accessibilityLabel = viewModel.avoidShutoffText
-		viewModel.avoidShutoffAmountText.drive(avoidShutoffAmountLabel.rx.text).disposed(by: bag)
-		viewModel.avoidShutoffDueDateText.drive(avoidShutoffDateLabel.rx.text).disposed(by: bag)
 		viewModel.pastDueAmountText.drive(pastDueAmountLabel.rx.text).disposed(by: bag)
 
-		viewModel.pendingPaymentAmounts
-			.map { $0.map { PendingPaymentView.create(withAmount: $0) } }
-			.drive(onNext: { [weak self] pendingPaymentViews in
-                guard let self = self else { return }
-                
-				self.paymentStackView.arrangedSubviews.forEach {
-					self.paymentStackView.removeArrangedSubview($0)
-					$0.removeFromSuperview()
-				}
-
-				pendingPaymentViews.forEach { self.paymentStackView.addArrangedSubview($0) }
-			})
-			.disposed(by: bag)
+		viewModel.pendingPaymentsTotalAmountText.drive(pendingPaymentAmountLabel.rx.text).disposed(by: bag)
 
 		remainingBalanceDueLabel.text = viewModel.remainingBalanceDueText
 		viewModel.remainingBalanceDueAmountText.drive(remainingBalanceDueAmountLabel.rx.text).disposed(by: bag)
-		viewModel.remainingBalanceDueDateText.drive(remainingBalanceDueDateLabel.rx.text).disposed(by: bag)
-		remainingBalancePastDueLabel.text = viewModel.remainingBalancePastDueText
-		viewModel.remainingBalancePastDueAmountText.drive(remainingBalancePastDueAmountLabel.rx.text).disposed(by: bag)
-		viewModel.billIssuedAmountText.drive(billIssuedAmountLabel.rx.text).disposed(by: bag)
-		viewModel.billIssuedDateText.drive(billIssuedDateLabel.rx.text).disposed(by: bag)
-		viewModel.paymentReceivedAmountText.drive(paymentReceivedAmountLabel.rx.text).disposed(by: bag)
-		viewModel.paymentReceivedDateText.drive(paymentReceivedDateLabel.rx.text).disposed(by: bag)
-		viewModel.creditAmountText.drive(creditAmountLabel.rx.text).disposed(by: bag)
+//        viewModel.remainingBalanceDueDateText.drive(remainingBalanceDueDateLabel.rx.text).disposed(by: bag)
+//        remainingBalancePastDueLabel.text = viewModel.remainingBalancePastDueText
+//        viewModel.remainingBalancePastDueAmountText.drive(remainingBalancePastDueAmountLabel.rx.text).disposed(by: bag)
+		viewModel.billIssuedAmountText.drive(currentBillAmountLabel.rx.text).disposed(by: bag)
+		viewModel.billIssuedDateText.drive(currentBillDateLabel.rx.text).disposed(by: bag)
+//        viewModel.paymentReceivedAmountText.drive(paymentReceivedAmountLabel.rx.text).disposed(by: bag)
+//        viewModel.paymentReceivedDateText.drive(paymentReceivedDateLabel.rx.text).disposed(by: bag)
 
         viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).disposed(by: bag)
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)

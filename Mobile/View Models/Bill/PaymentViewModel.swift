@@ -1101,7 +1101,7 @@ class PaymentViewModel {
     }
     
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
-        Environment.shared.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0 && self?.paymentId.value == nil
+        Environment.shared.opco != .bge && $0.billingInfo.pastDueAmount > 0 && self?.paymentId.value == nil
     }
     
     private(set) lazy var paymentDateString: Driver<String> = Driver
