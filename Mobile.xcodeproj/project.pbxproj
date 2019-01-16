@@ -193,9 +193,9 @@
 		351560CA210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CB210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CC210F61F3008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		351560CE210F8A56008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		351560CF210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		351560D0210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		351560CE210F8A56008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		351560CF210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		351560D0210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35277AFA2102325000411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFB2102325100411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
@@ -1256,15 +1256,6 @@
 		B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		B55736461E6742A6003B9369 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		B55736471E6742A6003B9369 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
-		B55A8B0C1F15644800F63AC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0B1F15644800F63AC3 /* CoreData.framework */; };
-		B55A8B0E1F15646E00F63AC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0D1F15646E00F63AC3 /* libz.tbd */; };
-		B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */; };
-		B55A8B151F1564D200F63AC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0B1F15644800F63AC3 /* CoreData.framework */; };
-		B55A8B161F1564DF00F63AC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0D1F15646E00F63AC3 /* libz.tbd */; };
-		B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */; };
-		B55A8B181F1564ED00F63AC3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0B1F15644800F63AC3 /* CoreData.framework */; };
-		B55A8B191F1564F900F63AC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0D1F15646E00F63AC3 /* libz.tbd */; };
-		B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B55A8B0F1F15647D00F63AC3 /* libsqlite3.tbd */; };
 		B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC361E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B55ABC371E537EAF00F9CD28 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
@@ -1344,13 +1335,6 @@
 		B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
-		B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */; };
-		B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC073B1E52A2BD00BBA4ED /* Security.framework */; };
-		B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */; };
-		B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC073B1E52A2BD00BBA4ED /* Security.framework */; };
-		B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */; };
-		B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC073B1E52A2BD00BBA4ED /* Security.framework */; };
-		B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07411E52A49900BBA4ED /* CoreLocation.framework */; };
 		B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
@@ -1552,9 +1536,6 @@
 		E83F027F1FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */; };
 		E83F02801FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */; };
 		E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */; };
-		E83F02831FB380700062A348 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F02821FB380700062A348 /* UserNotifications.framework */; };
-		E83F02841FB380770062A348 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F02821FB380700062A348 /* UserNotifications.framework */; };
-		E83F02851FB3807D0062A348 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E83F02821FB380700062A348 /* UserNotifications.framework */; };
 		E8400E621FE05E8B0064E242 /* AddBankFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E611FE05E8B0064E242 /* AddBankFormViewModelTests.swift */; };
 		E8400E641FE05ED70064E242 /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E631FE05ED70064E242 /* MockWalletService.swift */; };
 		E8400E651FE05EFD0064E242 /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
@@ -1731,21 +1712,6 @@
 		E887C9D91ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887C9D81ED5CBDB002433A3 /* AddCreditCardViewController.swift */; };
 		E887C9DA1ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887C9D81ED5CBDB002433A3 /* AddCreditCardViewController.swift */; };
 		E887C9DB1ED5CBDB002433A3 /* AddCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887C9D81ED5CBDB002433A3 /* AddCreditCardViewController.swift */; };
-		E887C9F61ED5D3E1002433A3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F51ED5D3E1002433A3 /* Accelerate.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887C9F81ED5D3EB002433A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887C9FA1ED5D3F1002433A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887C9FC1ED5D3F9002433A3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887C9FE1ED5D400002433A3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887C9FF1ED5D42F002433A3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F51ED5D3E1002433A3 /* Accelerate.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA001ED5D434002433A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA011ED5D43A002433A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA021ED5D440002433A3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA031ED5D448002433A3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA041ED5D45D002433A3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F51ED5D3E1002433A3 /* Accelerate.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA051ED5D463002433A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F71ED5D3EB002433A3 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA061ED5D469002433A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA071ED5D46F002433A3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9FB1ED5D3F9002433A3 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		E887CA081ED5D474002433A3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B8DA01F0D233E008B375D /* PaymentConfirmationViewController.swift */; };
 		E88B8DA21F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B8DA01F0D233E008B375D /* PaymentConfirmationViewController.swift */; };
 		E88B8DA31F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88B8DA01F0D233E008B375D /* PaymentConfirmationViewController.swift */; };
@@ -1929,11 +1895,6 @@
 		E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
 		E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
 		E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
-		E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
-		E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
-		E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEF7191E5670B1006804D4 /* LocalAuthentication.framework */; };
-		E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07411E52A49900BBA4ED /* CoreLocation.framework */; };
-		E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AC07411E52A49900BBA4ED /* CoreLocation.framework */; };
 		E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7281E5777BA006804D4 /* MoreViewController.swift */; };
 		E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7281E5777BA006804D4 /* MoreViewController.swift */; };
 		E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7281E5777BA006804D4 /* MoreViewController.swift */; };
@@ -3173,19 +3134,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E83F02831FB380700062A348 /* UserNotifications.framework in Frameworks */,
-				B55A8B101F15647D00F63AC3 /* libsqlite3.tbd in Frameworks */,
-				B55A8B0E1F15646E00F63AC3 /* libz.tbd in Frameworks */,
-				B5AC073A1E52A2B900BBA4ED /* SystemConfiguration.framework in Frameworks */,
-				B55A8B0C1F15644800F63AC3 /* CoreData.framework in Frameworks */,
-				E887C9FE1ED5D400002433A3 /* MobileCoreServices.framework in Frameworks */,
-				E887C9FC1ED5D3F9002433A3 /* CoreMedia.framework in Frameworks */,
-				E887C9FA1ED5D3F1002433A3 /* AudioToolbox.framework in Frameworks */,
-				E887C9F81ED5D3EB002433A3 /* AVFoundation.framework in Frameworks */,
-				E887C9F61ED5D3E1002433A3 /* Accelerate.framework in Frameworks */,
-				B5AC07421E52A49900BBA4ED /* CoreLocation.framework in Frameworks */,
-				E8EEF71A1E5670B1006804D4 /* LocalAuthentication.framework in Frameworks */,
-				B5AC073C1E52A2BD00BBA4ED /* Security.framework in Frameworks */,
 				39729688F2D41398227C1BBC /* Pods_BGEApp_BGE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3194,19 +3142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E83F02851FB3807D0062A348 /* UserNotifications.framework in Frameworks */,
-				B55A8B1A1F15650200F63AC3 /* libsqlite3.tbd in Frameworks */,
-				B55A8B191F1564F900F63AC3 /* libz.tbd in Frameworks */,
-				B5AC073F1E52A2E900BBA4ED /* SystemConfiguration.framework in Frameworks */,
-				B55A8B181F1564ED00F63AC3 /* CoreData.framework in Frameworks */,
-				E887CA081ED5D474002433A3 /* MobileCoreServices.framework in Frameworks */,
-				E887CA071ED5D46F002433A3 /* CoreMedia.framework in Frameworks */,
-				E887CA061ED5D469002433A3 /* AudioToolbox.framework in Frameworks */,
-				E887CA051ED5D463002433A3 /* AVFoundation.framework in Frameworks */,
-				E887CA041ED5D45D002433A3 /* Accelerate.framework in Frameworks */,
-				E8EEF7221E567941006804D4 /* CoreLocation.framework in Frameworks */,
-				E8EEF71C1E5670BE006804D4 /* LocalAuthentication.framework in Frameworks */,
-				B5AC07401E52A2ED00BBA4ED /* Security.framework in Frameworks */,
 				473B7EA0595B5A43C6069E1A /* Pods_PECOApp_PECO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3215,19 +3150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E83F02841FB380770062A348 /* UserNotifications.framework in Frameworks */,
-				B55A8B171F1564E500F63AC3 /* libsqlite3.tbd in Frameworks */,
-				B55A8B161F1564DF00F63AC3 /* libz.tbd in Frameworks */,
-				B5AC073D1E52A2DB00BBA4ED /* SystemConfiguration.framework in Frameworks */,
-				B55A8B151F1564D200F63AC3 /* CoreData.framework in Frameworks */,
-				E887CA031ED5D448002433A3 /* MobileCoreServices.framework in Frameworks */,
-				E887CA021ED5D440002433A3 /* CoreMedia.framework in Frameworks */,
-				E887CA011ED5D43A002433A3 /* AudioToolbox.framework in Frameworks */,
-				E887CA001ED5D434002433A3 /* AVFoundation.framework in Frameworks */,
-				E887C9FF1ED5D42F002433A3 /* Accelerate.framework in Frameworks */,
-				E8EEF7211E56793B006804D4 /* CoreLocation.framework in Frameworks */,
-				E8EEF71B1E5670B8006804D4 /* LocalAuthentication.framework in Frameworks */,
-				B5AC073E1E52A2E000BBA4ED /* Security.framework in Frameworks */,
 				AEF715A1622E0698A4B4FAF8 /* Pods_ComEdApp_ComEd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8173,7 +8095,7 @@
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
-				351560CE210F8A56008C24F1 /* BuildFile in Sources */,
+				351560CE210F8A56008C24F1 /* (null) in Sources */,
 				B5A16F381F0D44160016952C /* SpeedpayApi.swift in Sources */,
 				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				B092185020A24CA400695888 /* MockData.swift in Sources */,
@@ -8413,7 +8335,7 @@
 				E8F62B54200924410077B3DA /* WalletService.swift in Sources */,
 				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
 				E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */,
-				351560CF210F8D81008C24F1 /* BuildFile in Sources */,
+				351560CF210F8D81008C24F1 /* (null) in Sources */,
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */,
 				9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
@@ -8607,7 +8529,7 @@
 				E8F62C09200924570077B3DA /* WalletService.swift in Sources */,
 				E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */,
 				E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */,
-				351560D0210F8D81008C24F1 /* BuildFile in Sources */,
+				351560D0210F8D81008C24F1 /* (null) in Sources */,
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */,
 				9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
