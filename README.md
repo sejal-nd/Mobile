@@ -20,6 +20,8 @@ To support various development environments each Target has multiple schemes
 
 Third party libraries are managed using Cocoa Pods: https://github.com/CocoaPods/CocoaPods
 
+SimpleKeychain is the only dependency directly integrated into the project: This can be found under Mobile->Vendor
+
 **Libraries Used:**
 - RXSwift
 - RXCocoa
@@ -37,7 +39,6 @@ Third party libraries are managed using Cocoa Pods: https://github.com/CocoaPods
 - Charts
 - XLPagerTabStrip
 - CardIO
-- SimpleKeychain
 - GoogleAnalytics
 - Firebase
 - AppCenter
