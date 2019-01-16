@@ -52,7 +52,7 @@ final class AlertsStore {
             }
         }
         DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             NSKeyedArchiver.archiveRootObject(self.alerts, toFile: self.filePath)
         }
     }

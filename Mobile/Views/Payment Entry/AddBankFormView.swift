@@ -88,7 +88,7 @@ class AddBankFormView: UIView {
         saveToWalletLabel.font = SystemFont.regular.of(textStyle: .headline)
         byNotSavingLabel.textColor = .blackText
         byNotSavingLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        byNotSavingLabel.text = NSLocalizedString("By not saving this payment account, you will only be eligible to make an instant payment.", comment: "")
+        byNotSavingLabel.text = NSLocalizedString("By not saving this payment method, you will only be eligible to make an instant payment.", comment: "")
         
         nicknameTextField.textField.placeholder = Environment.shared.opco == .bge ? NSLocalizedString("Nickname*", comment: "") : NSLocalizedString("Nickname (Optional)", comment: "")
         nicknameTextField.textField.autocorrectionType = .no
@@ -96,7 +96,7 @@ class AddBankFormView: UIView {
         oneTouchPayDescriptionLabel.textColor = .blackText
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.text = NSLocalizedString("Default Payment Method", comment: "")
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         if Environment.shared.opco == .bge {
@@ -155,12 +155,12 @@ class AddBankFormView: UIView {
             .withLatestFrom(Driver.zip(viewModel.routingNumber.asDriver(), viewModel.routingNumberIsValid))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] _, valid in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !valid {
                     self.routingNumberTextField.setError(NSLocalizedString("Must be 9 digits", comment: ""))
                 } else {
                     self.viewModel.getBankName(onSuccess: { [weak self] in
-                        guard let `self` = self else { return }
+                        guard let self = self else { return }
                         self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
                     }, onError: { [weak self] in
                         self?.routingNumberTextField.setInfoMessage(nil)
@@ -185,7 +185,7 @@ class AddBankFormView: UIView {
         }).disposed(by: disposeBag)
         
         viewModel.confirmAccountNumberMatches.drive(onNext: { [weak self] matches in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if !self.viewModel.confirmAccountNumber.value.isEmpty {
                 if matches {
                     self.confirmAccountNumberTextField.setValidated(true, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))

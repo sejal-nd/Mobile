@@ -236,7 +236,7 @@ class AutoPayChangeBankViewController: UIViewController {
 	
 	func onTermsAndConditionsPress() {
 		let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
-		                                 url: URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
+		                                 url: URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!)
 		navigationController?.present(tacModal, animated: true, completion: nil)
 	}
 	
@@ -284,12 +284,12 @@ class AutoPayChangeBankViewController: UIViewController {
             .subscribe(
                 onNext: { [weak self] enrolled in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.changedBank()
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] error in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
                                                             message: error.localizedDescription, preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

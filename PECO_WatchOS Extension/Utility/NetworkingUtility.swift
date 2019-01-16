@@ -174,7 +174,7 @@ class NetworkingUtility {
                     
                     // Account list and Account Detail calls have completed
                     self?.group.notify(queue: .main) { [weak self] in
-                        guard let `self` = self else { return }
+                        guard let self = self else { return }
                         self.networkUtilityDelegates.forEach { $0.accountListAndAccountDetailsDidUpdate(accounts: self.accounts, accountDetail: self.accountDetails) }
                     }
                     
@@ -332,7 +332,7 @@ class NetworkingUtility {
         }
         let accountNumber = accountDetail.accountNumber
         
-        MCSUsageService().fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
+        MCSUsageService(useCache: false).fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
             // handle success
             aLog("Usage Data Fetched.")
             success(billForecastResult)

@@ -245,6 +245,7 @@ enum AnalyticsDimension: UInt {
     case hourlyPricingEnrollment = 9 // "enrolled" or "unenrolled"
     case bgeControlGroup = 10 // "true" or "false"
     case peakSmart = 11 // "true" or "false"
+    case paymentTempWalletItem = 13 // "true" or "false"
 }
 
 struct Analytics {
@@ -260,7 +261,9 @@ struct Analytics {
     }
     
     static func log(event: AnalyticsEvent, dimensions: [AnalyticsDimension: String] = [:]) {
-        dLog("Analytics: " + event.rawValue)
+        #if DEBUG
+        NSLog("📊 %@", event.rawValue)
+        #endif
         
         guard isAnalyticsEnabled else { return }
         

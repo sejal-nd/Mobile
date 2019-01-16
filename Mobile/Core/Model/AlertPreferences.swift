@@ -15,8 +15,10 @@ struct AlertPreferences {
     var billReady = false
     var paymentDue = false
     var paymentDueDaysBefore = 1
+    var paymentPosted = false
+    var paymentPastDue = false
     var budgetBilling = false // ComEd/PECO only
-//    var appointmentTracking = false
+    var appointmentTracking = false
     var forYourInfo = false
     
     init(alertPreferences: [AlertPreference]) {
@@ -35,10 +37,14 @@ struct AlertPreferences {
                 if let daysBefore = pref.daysPrior {
                     paymentDueDaysBefore = daysBefore
                 }
+            case "Payment Posted":
+                paymentPosted = true
+            case "Payment Past Due":
+                paymentPastDue = true
             case "Budget Billing":
                 budgetBilling = true
-//            case "Customer Appointments":
-//                appointmentTracking = true
+            case "Customer Appointments":
+                appointmentTracking = true
             case "News", "Marketing":
                 forYourInfo = true
             default:
@@ -54,8 +60,10 @@ struct AlertPreferences {
          billReady: Bool,
          paymentDue: Bool,
          paymentDueDaysBefore: Int,
+         paymentPosted: Bool,
+         paymentPastDue: Bool,
          budgetBilling: Bool,
-//         appointmentTracking: Bool,
+         appointmentTracking: Bool,
          forYourInfo: Bool) {
         self.outage = outage
         self.scheduledMaint = scheduledMaint
@@ -63,8 +71,10 @@ struct AlertPreferences {
         self.billReady = billReady
         self.paymentDue = paymentDue
         self.paymentDueDaysBefore = paymentDueDaysBefore
+        self.paymentPosted = paymentPosted
+        self.paymentPastDue = paymentPastDue
         self.budgetBilling = budgetBilling
-//        self.appointmentTracking = appointmentTracking
+        self.appointmentTracking = appointmentTracking
         self.forYourInfo = forYourInfo
     }
     
@@ -79,8 +89,10 @@ struct AlertPreferences {
             ["programName": "Severe Weather", "type": "push", "isActive": severeWeather],
             ["programName": billReadyProgramName, "type": "push", "isActive": billReady],
             ["programName": paymentDueProgramName, "type": "push", "isActive": paymentDue, "daysPrior": paymentDueDaysBefore],
+            ["programName": "Payment Posted", "type": "push", "isActive": paymentPosted],
+            ["programName": "Payment Past Due", "type": "push", "isActive": paymentPastDue],
             ["programName": "Budget Billing", "type": "push", "isActive": budgetBilling],
-//            ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
+            ["programName": "Customer Appointments", "type": "push", "isActive": appointmentTracking],
             ["programName": forYourInfoProgramName, "type": "push", "isActive": forYourInfo]
         ]
         return array
@@ -94,8 +106,10 @@ struct AlertPreferences {
             severeWeather != originalPrefs.severeWeather ||
             billReady != originalPrefs.billReady ||
             paymentDue != originalPrefs.paymentDue ||
+            paymentPosted != originalPrefs.paymentPosted ||
+            paymentPastDue != originalPrefs.paymentPastDue ||
             budgetBilling != originalPrefs.budgetBilling ||
-//            appointmentTracking != originalPrefs.appointmentTracking ||
+            appointmentTracking != originalPrefs.appointmentTracking ||
             forYourInfo != originalPrefs.forYourInfo
     }
 }

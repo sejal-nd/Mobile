@@ -41,7 +41,7 @@ class MyHomeProfileViewController: UIViewController {
     
     var accountDetail: AccountDetail!
     
-    private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(),
+    private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(useCache: false),
                                                         accountDetail: self.accountDetail,
                                                         saveAction: self.saveButton.rx.tap.asObservable())
     
@@ -149,7 +149,7 @@ class MyHomeProfileViewController: UIViewController {
         homeTypeButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.homeType.asDriver())
             .drive(onNext: { [weak self] homeType in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.homeSizeTextField.textField.resignFirstResponder()
                 
                 let selectedIndex: Int
@@ -172,7 +172,7 @@ class MyHomeProfileViewController: UIViewController {
         heatingFuelButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.heatType.asDriver())
             .drive(onNext: { [weak self] heatType in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.homeSizeTextField.textField.resignFirstResponder()
                 
                 let selectedIndex: Int
@@ -195,7 +195,7 @@ class MyHomeProfileViewController: UIViewController {
         numberOfAdultsButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.numberOfAdults.asDriver())
             .drive(onNext: { [weak self] numberOfAdults in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.homeSizeTextField.textField.resignFirstResponder()
                 
                 let selectedIndex: Int
@@ -218,7 +218,7 @@ class MyHomeProfileViewController: UIViewController {
         numberOfChildrenButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.numberOfChildren.asDriver())
             .drive(onNext: { [weak self] numberOfChildren in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.homeSizeTextField.textField.resignFirstResponder()
                 
                 let selectedIndex: Int
@@ -251,7 +251,7 @@ class MyHomeProfileViewController: UIViewController {
         NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] notification in
-                guard let `self` = self,
+                guard let self = self,
                     let endFrameRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
                         return
                 }
@@ -282,7 +282,7 @@ class MyHomeProfileViewController: UIViewController {
         
         viewModel.homeSizeError.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if self.homeSizeTextField.textField.hasText {
                     self.homeSizeTextField.setError($0)
                 } else {

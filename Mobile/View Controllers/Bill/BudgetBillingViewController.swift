@@ -199,7 +199,7 @@ class BudgetBillingViewController: UIViewController {
         bgeFooterView.isHidden = true
         gradientView.isHidden = true
         viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             
             if let footerText = self.viewModel.getFooterText() {
                 self.footerLabel.text = footerText
@@ -238,7 +238,7 @@ class BudgetBillingViewController: UIViewController {
                 }
             }
         }, onError: { [weak self] errMessage in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.scrollView.isHidden = true
             self.loadingIndicator.isHidden = true
             self.errorLabel.isHidden = false
@@ -295,7 +295,7 @@ class BudgetBillingViewController: UIViewController {
             viewModel.enroll(onSuccess: { [weak self] in
                 LoadingView.hide()
                 
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.delegate?.budgetBillingViewControllerDidEnroll(self, averageMonthlyBill: self.viewModel.averageMonthlyBill)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] errMessage in
@@ -315,22 +315,22 @@ class BudgetBillingViewController: UIViewController {
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
-                Analytics.log(event: .budgetBillUnEnrollCancel);}))
+                Analytics.log(event: .budgetBillUnEnrollCancel) }))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
                 Analytics.log(event: .budgetBillUnEnrollOK)
                 
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.viewModel.unenroll(onSuccess: { [weak self] in
                     LoadingView.hide()
                     
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.budgetBillingViewControllerDidUnenroll(self)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)

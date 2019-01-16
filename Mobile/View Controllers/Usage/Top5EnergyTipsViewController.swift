@@ -20,7 +20,7 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
     let disposeBag = DisposeBag()
     var accountDetail: AccountDetail!
     
-    private lazy var viewModel = Top5EnergyTipsViewModel(usageService: ServiceFactory.createUsageService(),
+    private lazy var viewModel = Top5EnergyTipsViewModel(usageService: ServiceFactory.createUsageService(useCache: false),
                                                          accountDetail: self.accountDetail)
     var energyTips = [EnergyTip]()
     
@@ -28,11 +28,11 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         super.viewDidLoad()
         
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
-        Analytics.log(event: .viewTopTips,
-                             dimensions: [.residentialAMI: residentialAMIString])
+        Analytics.log(event: .viewTopTips, dimensions: [.residentialAMI: residentialAMIString])
         
         tableView.backgroundColor = .primaryColor
         titleLabel.textColor = .blackText
+        errorLabel.textColor = .blackText
         xButton.tintColor = .actionBlue
         
         tableView.register(UINib(nibName: EnergyTipTableViewCell.className, bundle: nil),
@@ -54,7 +54,7 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         viewModel.energyTips
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.energyTips = $0
                 self.tableView.reloadData()
                 self.loadingIndicator.isHidden = true

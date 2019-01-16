@@ -2,15 +2,15 @@
 //  WalletTableViewCell.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 5/19/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Marc Shilling on 11/15/18.
+//  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
 
 class WalletTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var innerContentView: ButtonControl!
+    @IBOutlet weak var innerContentView: UIView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumberLabel: UILabel!
@@ -19,12 +19,13 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet private weak var bottomBarShadowView: UIView!
     @IBOutlet private weak var bottomBarView: UIView!
-    @IBOutlet weak var bottomBarLabel: UILabel!
     @IBOutlet weak var expiredView: UIView!
     @IBOutlet weak var expiredLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var gradientLayer = CAGradientLayer()
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -55,14 +56,14 @@ class WalletTableViewCell: UITableViewCell {
         
         bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
-        bottomBarLabel.textColor = .blackText
-        bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        
         expiredView.layer.borderWidth = 2
         expiredView.layer.borderColor = UIColor.errorRed.cgColor
         expiredLabel.textColor = .errorRed
-    }
         
+        editButton.accessibilityLabel = NSLocalizedString("Edit payment method", comment: "")
+        deleteButton.accessibilityLabel = NSLocalizedString("Delete payment method", comment: "")
+    }
+    
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         // disable highlight
     }
@@ -88,15 +89,12 @@ class WalletTableViewCell: UITableViewCell {
     
     
     func bindToWalletItem(_ walletItem: WalletItem, billingInfo: BillingInfo) {
-        
         var a11yLabel = ""
         
-        bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         switch Environment.shared.opco {
         case .comEd, .peco:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
                 a11yLabel = NSLocalizedString("Saved credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
@@ -105,7 +103,6 @@ class WalletTableViewCell: UITableViewCell {
         case .bge:
             if walletItem.bankOrCard == .card {
                 accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                bottomBarLabel.text = NSLocalizedString(billingInfo.convenienceFeeString(isComplete: false), comment: "")
                 a11yLabel = NSLocalizedString("Saved credit card", comment: "")
             } else {
                 accountImageView.image = #imageLiteral(resourceName: "opco_bank")
@@ -113,19 +110,9 @@ class WalletTableViewCell: UITableViewCell {
             }
         }
         
-        a11yLabel += NSLocalizedString(" button", comment: "")
-
         // Nickname
         if let nickname = walletItem.nickName {
-            let displayNickname: String
-            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
-                displayNickname = nickname == last4 ? "" : nickname
-            } else {
-                displayNickname = nickname
-            }
-            
-            nicknameLabel.text = displayNickname.uppercased()
+            nicknameLabel.text = nickname.uppercased()
             if Environment.shared.opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
@@ -166,17 +153,20 @@ class WalletTableViewCell: UITableViewCell {
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
         if walletItem.isDefault {
-            a11yLabel += NSLocalizedString(", Default payment account", comment: "")
+            a11yLabel += NSLocalizedString(", Default payment method", comment: "")
         }
         
         if walletItem.isExpired {
             a11yLabel += NSLocalizedString(", expired", comment: "")
         }
-        
-        innerContentView.accessibilityLabel = a11yLabel + ", \(bottomBarLabel.text!)"
+
+        innerContentView.accessibilityLabel = a11yLabel
+        innerContentView.isAccessibilityElement = true
+        self.accessibilityElements = [innerContentView, editButton, deleteButton]
         
         expiredView.isHidden = !walletItem.isExpired
         expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
     }
     
 }
+

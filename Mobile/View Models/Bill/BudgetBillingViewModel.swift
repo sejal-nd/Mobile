@@ -58,7 +58,7 @@ class BudgetBillingViewModel {
         billService.enrollBudgetBilling(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
                 if Environment.shared.opco != .bge {
                     self.alertsService.enrollBudgetBillingNotification(accountNumber: self.accountDetail.accountNumber)

@@ -6,14 +6,16 @@
 	<string></string>
 	<key>environment</key>
 	<string>PROD</string>
-	<key>appName</key>
-	<string>BGE</string>
 	<key>opco</key>
+	<string>BGE</string>
+	<key>appName</key>
 	<string>BGE</string>
 	<key>mcsInstanceName</key>
 	<string>Prod-bgeMBE</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
+	<key>paymentusUrl</key>
+	<string>PAYMENTUS_PROD_URL_GOES_HERE</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_prodbeta</string>
 	<key>gaTrackingId</key>

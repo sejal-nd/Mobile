@@ -27,15 +27,12 @@ class EditCreditCardViewController: UIViewController {
     @IBOutlet weak var innerContentViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var innerContentViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var bottomBarView: UIView!
-    @IBOutlet weak var bottomBarShadowView: UIView!
     
     @IBOutlet weak var creditImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
     @IBOutlet weak var oneTouchPayCardView: UIView!
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
-    @IBOutlet weak var convenienceFeeLabel: UILabel!
     @IBOutlet weak var expiredView: UIView!
     @IBOutlet weak var expiredLabel: UILabel!
     
@@ -108,6 +105,7 @@ class EditCreditCardViewController: UIViewController {
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         innerContentView.layer.cornerRadius = 15
+        innerContentView.layer.masksToBounds = true
         
         gradientView.layer.cornerRadius = 15
         gradientLayer.frame = gradientView.bounds
@@ -126,11 +124,6 @@ class EditCreditCardViewController: UIViewController {
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
-        bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        
-        convenienceFeeLabel.textColor = .blackText
-        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         expiredView.layer.borderWidth = 2
         expiredView.layer.borderColor = UIColor.errorRed.cgColor
@@ -189,53 +182,23 @@ class EditCreditCardViewController: UIViewController {
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayDescriptionLabel.text = viewModel.oneTouchDisplayString
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.text = NSLocalizedString("Default Payment Method", comment: "")
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         innerContentView.layoutIfNeeded()
-        
-        // Round only the top corners
         gradientLayer.frame = gradientView.frame
-        
-        let gradientPath = UIBezierPath(roundedRect:gradientLayer.bounds,
-                                        byRoundingCorners:[.topLeft, .topRight],
-                                        cornerRadii: CGSize(width: 15, height:  15))
-        let gradientMaskLayer = CAShapeLayer()
-        gradientMaskLayer.path = gradientPath.cgPath
-        gradientLayer.mask = gradientMaskLayer
-        
-        // Round only the bottom corners
-        let bottomBarPath = UIBezierPath(roundedRect:bottomBarView.bounds,
-                                         byRoundingCorners:[.bottomLeft, .bottomRight],
-                                         cornerRadii: CGSize(width: 15, height:  15))
-        let bottomBarMaskLayer = CAShapeLayer()
-        bottomBarMaskLayer.path = bottomBarPath.cgPath
-        bottomBarView.layer.mask = bottomBarMaskLayer
     }
     
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
-        
-        let opco = Environment.shared.opco
-        
         let walletItem = viewModel.walletItem!
         
         if let nickname = walletItem.nickName {
-            let displayNickname: String
-            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
-                displayNickname = nickname == String(last4) ? "" : nickname
-            } else {
-                displayNickname = nickname
-            }
-            
-            nicknameLabel.text = displayNickname.uppercased()
+            nicknameLabel.text = nickname.uppercased()
         } else {
-            nicknameLabel.text = nil
+            nicknameLabel.text = ""
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
@@ -256,18 +219,7 @@ class EditCreditCardViewController: UIViewController {
         
         creditImageView.image = #imageLiteral(resourceName: "opco_credit_card")
         creditImageView.isAccessibilityElement = true
-        
-        convenienceFeeLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
-        convenienceFeeLabel.textColor = .blackText
-        switch opco {
-        case .comEd, .peco:
-            convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFee!.currencyString! + " Convenience Fee", comment: "")
-            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
-        case .bge:            
-            convenienceFeeLabel.text = NSLocalizedString(viewModel.accountDetail.billingInfo.convenienceFeeString(isComplete: false), comment: "")
-            creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
-            break
-        }
+        creditImageView.accessibilityLabel = NSLocalizedString("Credit card", comment: "")
     }
     
     func bindViewModel() {
@@ -433,7 +385,7 @@ class EditCreditCardViewController: UIViewController {
         
         let handleSuccess = { [weak self] in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
             if self.shouldPopToRootOnSave {
                 if StormModeStatus.shared.isOn {
@@ -454,7 +406,7 @@ class EditCreditCardViewController: UIViewController {
         if cardDataEntered {
             let editCreditCard = { [weak self] (oneTouchPay: Bool) in
                 let editOneTouchPay = { [weak self] in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     if oneTouchPay {
                         self.viewModel.enableOneTouchPay(onSuccess: {
                             handleSuccess()
@@ -486,14 +438,14 @@ class EditCreditCardViewController: UIViewController {
             }
             
             if shouldShowOneTouchPayReplaceWarning {
-                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                     editCreditCard(true)
                 }))
                 present(alertVc, animated: true, completion: nil)
             } else if shouldShowOneTouchPayDisableWarning {
-                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment method? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
                     editCreditCard(false)
@@ -505,7 +457,7 @@ class EditCreditCardViewController: UIViewController {
         } else {
             let toggleOneTouchPay = { [weak self] in
                 LoadingView.show()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if self.viewModel.oneTouchPay.value {
                     self.viewModel.enableOneTouchPay(onSuccess: {
                         handleSuccess()
@@ -527,14 +479,14 @@ class EditCreditCardViewController: UIViewController {
             }
             
             if shouldShowOneTouchPayReplaceWarning {
-                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                     toggleOneTouchPay()
                 }))
                 present(alertVc, animated: true, completion: nil)
             } else if shouldShowOneTouchPayDisableWarning {
-                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
+                let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment method? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
                     toggleOneTouchPay()
@@ -555,7 +507,7 @@ class EditCreditCardViewController: UIViewController {
             LoadingView.show()
             self?.viewModel.deleteCreditCard(onSuccess: { [weak self] in
                 LoadingView.hide()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.delegate?.editCreditCardViewControllerDidEditAccount(self, message: NSLocalizedString("Card deleted", comment: ""))
                 if self.shouldPopToRootOnSave {
                     if StormModeStatus.shared.isOn {

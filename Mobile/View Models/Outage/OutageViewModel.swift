@@ -64,7 +64,7 @@ class OutageViewModel {
                 self?.currentOutageStatus = outageStatus
                 onSuccess()
             }, onError: { [weak self] error in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
@@ -148,12 +148,11 @@ class OutageViewModel {
     }
     
     var showReportStreetlightOutageButton: Bool {
-        return false
-//        switch Environment.shared.opco {
-//        case .comEd:
-//            return true
-//        case .bge, .peco:
-//            return false
-//        }
+        switch Environment.shared.opco {
+        case .comEd:
+            return true
+        case .bge, .peco:
+            return false
+        }
     }
 }

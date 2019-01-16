@@ -210,7 +210,7 @@ class OverrideViewController: UIViewController {
             .withLatestFrom(viewModel.selectedDate.startWith(Calendar.opCo.startOfDay(for: Date())))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 let backItem = UIBarButtonItem()
                 backItem.title = NSLocalizedString("Back", comment: "")
                 self.navigationItem.backBarButtonItem = backItem

@@ -32,6 +32,28 @@ protocol WalletService {
     func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult>
     
     
+    /// "Add" a wallet item to MCS - this should be called after
+    /// adding a wallet item through a third party (Paymentus) to trigger
+    /// the sending of a confirmation email
+    ///
+    /// - Parameters:
+    ///   - walletItem: the WalletItem that was added
+    ///
+    /// Void function because we do not rely on the response to this, we simply fire it
+    /// off and forget it
+    func addWalletItemMCS(_ walletItem: WalletItem)
+    
+    /// "Update" a wallet item to MCS - this should be called after
+    /// editing a wallet item through a third party (Paymentus) to trigger
+    /// the sending of a confirmation email
+    ///
+    /// - Parameters:
+    ///   - walletItem: the WalletItem that was added
+    ///
+    /// Void function because we do not rely on the response to this, we simply fire it
+    /// off and forget it
+    func updateWalletItemMCS(_ walletItem: WalletItem)
+    
     /// Update a credit card in the users wallet.
     ///
     /// - Parameters:
@@ -71,4 +93,25 @@ protocol WalletService {
     /// - Parameters:
     ///   - customerId: the customer number to disable one touch pay for
     func removeOneTouchPayItem(customerId: String) -> Observable<Void>
+    
+    /// Generates the encryption key to pass to the Paymentus iFrame
+    func fetchWalletEncryptionKey(customerId: String,
+                                  bankOrCard: BankOrCard,
+                                  temporary: Bool,
+                                  isWalletEmpty: Bool,
+                                  walletItemId: String?) -> Observable<String>
+}
+
+extension WalletService {
+    func fetchWalletEncryptionKey(customerId: String,
+                                  bankOrCard: BankOrCard,
+                                  temporary: Bool,
+                                  isWalletEmpty: Bool,
+                                  walletItemId: String? = nil) -> Observable<String> {
+        return fetchWalletEncryptionKey(customerId: customerId,
+                                        bankOrCard: bankOrCard,
+                                        temporary: temporary,
+                                        isWalletEmpty: isWalletEmpty,
+                                        walletItemId: walletItemId)
+    }
 }

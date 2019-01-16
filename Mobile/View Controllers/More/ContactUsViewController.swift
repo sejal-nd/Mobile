@@ -84,7 +84,7 @@ class ContactUsViewController: UIViewController {
     func onlineSetup() {
         submitFormButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 Analytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
                 

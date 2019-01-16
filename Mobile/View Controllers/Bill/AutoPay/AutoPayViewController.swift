@@ -169,12 +169,12 @@ class AutoPayViewController: UIViewController {
             .subscribe(
                 onNext: { [weak self] enrolled in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.autoPayViewController(self, enrolled: enrolled)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] error in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
                                                             message: error.localizedDescription, preferredStyle: .alert)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -335,10 +335,10 @@ class AutoPayViewController: UIViewController {
             .withLatestFrom(viewModel.routingNumberErrorText)
         
         routingNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver().drive(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.viewModel.routingNumber.value.count == 9 {
                 self.viewModel.getBankName(onSuccess: { [weak self] in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
                 }, onError: { [weak self] in
                     self?.routingNumberTextField.setInfoMessage(nil)
@@ -423,7 +423,7 @@ class AutoPayViewController: UIViewController {
     
     func onTermsAndConditionsPress() {
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
-                                      url: URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
+                                      url: URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
     

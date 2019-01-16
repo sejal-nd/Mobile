@@ -52,6 +52,11 @@ The build script already figures these values based on opco + configuration, but
 need to override the default behavior you can do so with these. However, it's recommended
 to just update the build script directly if it's a permanent change.
 
+--azuredevopstoken        - A token used by the eucoms-list-changes.sh script to access pull
+                            request and work item details to generate release notes. 
+                            See the EU-DevOps -> eucoms-list-changes repo for details
+--releasenotesprnumber    - The pull request number to generate release notes off of
+--releasenotescontent     - Alternative, a quick blurb to upload for release notes
 --bundle-suffix           - Appends to the end of bundle_name.opco if specified
 --bundle-name             - Specifies the base bundle_name. Defaults to either:
                             com.exelon.mobile
@@ -84,6 +89,9 @@ OPCO=
 PHASE=
 BUILD_BRANCH=
 OVERRIDE_MBE=
+AZURE_DEVOPS_TOKEN=
+RELEASE_NOTES_PR_NUMBER=
+RELEASE_NOTES_CONTENT=
 
 # Parse arguments.
 for i in "$@"; do
@@ -103,6 +111,9 @@ for i in "$@"; do
         --phase) PHASE="$2"; shift ;;
         --build-branch) BUILD_BRANCH="$2"; shift ;;
         --override-mbe) OVERRIDE_MBE="$2"; shift ;;
+        --azuredevopstoken) AZURE_DEVOPS_TOKEN="$2"; shift ;;
+        --releasenotesprnumber) RELEASE_NOTES_PR_NUMBER="$2"; shift ;;
+        --releasenotescontent) RELEASE_NOTES_CONTENT="$2"; shift ;;
     esac
     shift
 done
@@ -388,6 +399,28 @@ if [[ $target_phases = *"build"* ]]; then
     set +o pipefail
 
     if [[ $target_phases = *"distribute"* ]]; then
+
+        if [ -n "$AZURE_DEVOPS_TOKEN" ]; then
+            echo "Azure dev ops token has been specified"
+            
+            if [ -n "$RELEASE_NOTES_PR_NUMBER" ]; then
+                echo "Calling release notes script to generate release notes"
+                 # disable error propagation. we do not want to force the whole build script to fail if the rm fails
+                set +e
+                pushd ./tools/release_notes_script/
+                ./eucoms-list-changes.sh --target-project 'EU-mobile' --target-repo 'Exelon_Mobile_iOS' --target-repo-path '../../' --output txt --pull-request-number $RELEASE_NOTES_PR_NUMBER --token $AZURE_DEVOPS_TOKEN  --character-limit 4500
+                popd
+
+                set -e
+            fi
+
+        elif [ -n "$RELEASE_NOTES_CONTENT" ]; then
+            echo "Release note contents were manually defined on the command line, outputing to tools/release_notes_script/release_notes.txt"
+            echo "$RELEASE_NOTES_CONTENT" > "tools/release_notes_script/release_notes.txt"
+        else
+            echo "Skipping release notes generation"
+        fi
+
         # Push to App Center Distribute
         echo "--------------------------------- Uploading release  -------------------------------"
         if [ -n "$APP_CENTER_GROUP" ] && [ -n "$APP_CENTER_API_TOKEN" ]; then
@@ -396,7 +429,8 @@ if [[ $target_phases = *"build"* ]]; then
                 --app $target_app_center_app \
                 --token $APP_CENTER_API_TOKEN \
                 --file "build/output/$target_scheme/$target_scheme.ipa" \
-                --group "$APP_CENTER_GROUP"
+                --group "$APP_CENTER_GROUP" \
+                --release-notes-file "tools/release_notes_script/release_notes.txt"
 
             check_errs $? "App center distribution exited with a non-zero status"
 
@@ -470,7 +504,8 @@ appcenter distribute release \\
 --app \"$target_app_center_app\" \\
 --file \"build/output/$target_scheme/$target_scheme.ipa\" \\
 --token \$APP_CENTER_API_TOKEN \\
---group \"\$APP_CENTER_GROUP\"
+--group \"\$APP_CENTER_GROUP\" \\
+--release-notes-file \"tools/release_notes_script/release_notes.txt\"
 " > ./tools/app_center_push.sh
     fi 
 

@@ -13,7 +13,6 @@ class ViewBillViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    @IBOutlet weak var webContainerView: UIView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
 
@@ -50,11 +49,11 @@ class ViewBillViewController: UIViewController {
         let webView = WKWebView(frame: .zero , configuration: webConfiguration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
-        webContainerView.addSubview(webView)
-        webView.topAnchor.constraint(equalTo: webContainerView.topAnchor).isActive = true
-        webView.rightAnchor.constraint(equalTo: webContainerView.rightAnchor).isActive = true
-        webView.leftAnchor.constraint(equalTo: webContainerView.leftAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: webContainerView.bottomAnchor).isActive = true
+        view.addSubview(webView)
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         guard let pdfData = viewModel.pdfData, let baseUrl = URL(string: "https://www.google.com") else { return }
         webView.load(pdfData, mimeType: "application/pdf", characterEncodingName: "utf-8", baseURL: baseUrl)
@@ -70,10 +69,10 @@ class ViewBillViewController: UIViewController {
     func fetchBillPDFData() {
         loadingIndicator.isHidden = false
         viewModel.fetchBillPDFData(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.setupWKWebView()
         }, onError: { [weak self] errMessage in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.loadingIndicator.isHidden = true
             self.errorLabel.isHidden = false
         })

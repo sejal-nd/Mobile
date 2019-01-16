@@ -27,10 +27,8 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentType: String {
-        guard let paymentType = billingHistory.description else { return "" } //is supposed to be payment_method but that displays S or R so this was decided
-        
+        guard let paymentType = billingHistory.description else { return "" }
         return isSpeedpay ? "" : paymentType
-        
     }
     
     var paymentDate: String {
@@ -59,32 +57,27 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentStatus: String {
-        return billingHistory.status?.capitalized ?? ""
+        return billingHistory.statusString?.capitalized ?? ""
     }
     
     var confirmationNumber: String {
         return billingHistory.confirmationNumber ?? ""
     }
     
-    var isBGE: Bool {
-        return Environment.shared.opco == .bge
-    }
-    
     var isSpeedpay: Bool {
-        guard let paymentType = billingHistory.paymentType else { return false }
-        return paymentType == "SPEEDPAY"
-    }
-    
-    var isCSS: Bool {
-        return paymentType == "CSS"
+        return billingHistory.paymentType == "SPEEDPAY"
     }
     
     var paymentTypeLabel: String {
-        return isCSS ? NSLocalizedString("PaymentAccountNickname", comment: "") : NSLocalizedString("Payment Type", comment: "")
+        return paymentType == "CSS" ?
+            NSLocalizedString("PaymentAccountNickname", comment: "") :
+            NSLocalizedString("Payment Type", comment: "")
     }
     
     var paymentAmountLabel: String {
-        return isSpeedpay ? NSLocalizedString("Payment Amount", comment: "") : NSLocalizedString("Amount Paid", comment: "")
+        return isSpeedpay ?
+            NSLocalizedString("Payment Amount", comment: "") :
+            NSLocalizedString("Amount Paid", comment: "")
     }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(fetching.asDriver(),
@@ -97,7 +90,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     func fetchPaymentDetails(billingHistoryItem: BillingHistoryItem, onCompletion: @escaping () -> Void) {
-        if let paymentId = billingHistoryItem.paymentId, billingHistoryItem.encryptedPaymentId != nil {
+        if let paymentId = billingHistoryItem.paymentId {
             fetching.value = true
             paymentService.fetchPaymentDetails(accountNumber: AccountsStore.shared.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
                 self?.fetching.value = false

@@ -230,24 +230,13 @@ class StormModeHomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
             .disposed(by: disposeBag)
         
-        accountPickerViewControllerWillAppear.subscribe(onNext: { [weak self] state in
-            guard let self = self else { return }
-            switch(state) {
-            case .loadingAccounts:
-                self.outageStatusButton.isHidden = true
-                self.gasOnlyView.isHidden = true
-                self.finalPayView.isHidden = true
-                self.footerView.isHidden = true
-                self.noNetworkConnectionView.isHidden = true
-                self.setRefreshControlEnabled(enabled: false)
-            case .readyToFetchData:
-                if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
-                    self.getOutageStatus()
-                } else if self.viewModel.currentOutageStatus == nil {
-                    self.getOutageStatus()
-                }
-            }
-        }).disposed(by: disposeBag)
+        reportOutageButton.isHidden = true
+        outageStatusButton.isHidden = true
+        gasOnlyView.isHidden = true
+        finalPayView.isHidden = true
+        footerView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        setRefreshControlEnabled(enabled: false)
         
         viewModel.stormModeUpdate.asDriver().isNil().drive(onNext: { [weak self] noUpdate in
             self?.headerCaretImageView.isHidden = noUpdate
@@ -536,6 +525,8 @@ class StormModeHomeViewController: AccountPickerViewController {
 extension StormModeHomeViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        // unhide report outage button after accounts have loaded
+        reportOutageButton.isHidden = false
         getOutageStatus()
     }
     

@@ -22,15 +22,12 @@ class EditBankAccountViewController: UIViewController {
     
     @IBOutlet weak var innerContentView: UIView!
     @IBOutlet weak var gradientView: UIView!
-    @IBOutlet weak var bottomBarView: UIView!
-    @IBOutlet weak var bottomBarShadowView: UIView!
     
     @IBOutlet weak var bankImageView: UIImageView!
     @IBOutlet weak var accountIDLabel: UILabel!
     @IBOutlet weak var oneTouchPayCardView: UIView!
     @IBOutlet weak var oneTouchPayCardLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
-    @IBOutlet weak var bottomBarLabel: UILabel!
     
     @IBOutlet weak var oneTouchPayView: UIView!
     @IBOutlet weak var oneTouchPayDescriptionLabel: UILabel!
@@ -65,7 +62,7 @@ class EditBankAccountViewController: UIViewController {
         oneTouchPayDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         oneTouchPayDescriptionLabel.text = viewModel.getOneTouchDisplayString()
         oneTouchPayLabel.textColor = .blackText
-        oneTouchPayLabel.text = NSLocalizedString("Default Payment Account", comment: "")
+        oneTouchPayLabel.text = NSLocalizedString("Default Payment Method", comment: "")
         oneTouchPayLabel.font = SystemFont.regular.of(textStyle: .headline)
         nicknameLabel.textColor = .blackText
         nicknameLabel.font = OpenSans.semibold.of(textStyle: .footnote)
@@ -86,6 +83,7 @@ class EditBankAccountViewController: UIViewController {
         
         innerContentView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         innerContentView.layer.cornerRadius = 15
+        innerContentView.layer.masksToBounds = true
         
         gradientView.layer.cornerRadius = 15
         gradientLayer.frame = gradientView.bounds
@@ -94,14 +92,6 @@ class EditBankAccountViewController: UIViewController {
             UIColor(red: 238/255, green: 242/255, blue: 248/255, alpha: 1).cgColor
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
-        
-
-        
-        bottomBarShadowView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        bottomBarView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        
-        bottomBarLabel.textColor = .blackText
-        bottomBarLabel.font = OpenSans.regular.of(textStyle: .footnote)
     }
     
     func buildNavigationButtons() {
@@ -116,28 +106,9 @@ class EditBankAccountViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         innerContentView.layoutIfNeeded()
-        
-        // Round only the top corners
         gradientLayer.frame = gradientView.frame
-        
-        let gradientPath = UIBezierPath(roundedRect:gradientLayer.bounds,
-                                        byRoundingCorners:[.topLeft, .topRight],
-                                        cornerRadii: CGSize(width: 15, height:  15))
-        let gradientMaskLayer = CAShapeLayer()
-        gradientMaskLayer.path = gradientPath.cgPath
-        gradientLayer.mask = gradientMaskLayer
-        
-        // Round only the bottom corners
-        let bottomBarPath = UIBezierPath(roundedRect:bottomBarView.bounds,
-                                         byRoundingCorners:[.bottomLeft, .bottomRight],
-                                         cornerRadii: CGSize(width: 15, height:  15))
-        let bottomBarMaskLayer = CAShapeLayer()
-        bottomBarMaskLayer.path = bottomBarPath.cgPath
-        bottomBarView.layer.mask = bottomBarMaskLayer
     }
 
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     func bindWalletItemToViewElements() {
         let walletItem = viewModel.walletItem!
 
@@ -145,15 +116,7 @@ class EditBankAccountViewController: UIViewController {
         let opco = Environment.shared.opco
         
         if let nickname = walletItem.nickName {
-            let displayNickname: String
-            if Environment.shared.opco != .bge, let maskedNumber = walletItem.maskedWalletItemAccountNumber {
-                let last4 = maskedNumber[maskedNumber.index(maskedNumber.endIndex, offsetBy: -4)...]
-                displayNickname = nickname == String(last4) ? "" : nickname
-            } else {
-                displayNickname = nickname
-            }
-            
-            nicknameLabel.text = displayNickname.uppercased()
+            nicknameLabel.text = nickname.uppercased()
             if opco == .bge {
                 if walletItem.bankOrCard == .bank {
                     if let bankAccountType = walletItem.bankAccountType {
@@ -181,7 +144,6 @@ class EditBankAccountViewController: UIViewController {
             accountIDLabel.text = ""
         }
         
-        bottomBarLabel.text = NSLocalizedString("No Fee Applied", comment: "") // Default display
         bankImageView.isAccessibilityElement = true
         bankImageView.accessibilityLabel = NSLocalizedString("Bank account", comment: "")
 
@@ -200,12 +162,10 @@ class EditBankAccountViewController: UIViewController {
         
     }
 
-    
     @IBAction func onDeletePress(_ sender: Any) {
         deleteBankAccount()
     }
     
-    ///
     @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
@@ -228,11 +188,11 @@ class EditBankAccountViewController: UIViewController {
         
         let saveBankAccountChanges = { [weak self] (oneTouchPay: Bool) in
             LoadingView.show()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if oneTouchPay {
                 self.viewModel.enableOneTouchPay(onSuccess: { [weak self] in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
                     if self.shouldPopToRootOnSave {
                         if StormModeStatus.shared.isOn {
@@ -257,7 +217,7 @@ class EditBankAccountViewController: UIViewController {
             } else {
                 self.viewModel.deleteOneTouchPay(onSuccess: { [weak self] in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Changes saved", comment: ""))
                     if self.shouldPopToRootOnSave {
                         if StormModeStatus.shared.isOn {
@@ -283,14 +243,14 @@ class EditBankAccountViewController: UIViewController {
         }
         
         if shouldShowOneTouchPayReplaceWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(true)
             }))
             present(alertVc, animated: true, completion: nil)
         } else if shouldShowOneTouchPayDisableWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment account? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to turn off your default payment method? You will no longer be able to pay from the Home screen.", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .default, handler: { _ in
                 saveBankAccountChanges(false)
@@ -306,7 +266,7 @@ class EditBankAccountViewController: UIViewController {
         var messageString = NSLocalizedString("Are you sure you want to delete this Bank Account? Note: If you proceed, all payments scheduled for today's date will still be processed. Pending payments for future dates using this account will be cancelled and you will need to reschedule your payment with another bank account.", comment: "")
         
         if Environment.shared.opco == .bge {
-            messageString = NSLocalizedString("Deleting this payment account will also delete all the pending payments associated with this payment account. Please tap 'Delete' to delete this payment account.", comment: "")
+            messageString = NSLocalizedString("Deleting this payment method will also delete all the pending payments associated with this payment method. Please tap 'Delete' to delete this payment method.", comment: "")
         }
         
         let alertController = UIAlertController(title: NSLocalizedString("Delete Bank Account", comment: ""), message: messageString, preferredStyle: .alert)
@@ -316,7 +276,7 @@ class EditBankAccountViewController: UIViewController {
             LoadingView.show()
             self?.viewModel.deleteBankAccount(onSuccess: { [weak self] in
                 LoadingView.hide()
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.delegate?.editBankAccountViewControllerDidEditAccount(self, message: NSLocalizedString("Bank Account deleted", comment: ""))
                 if self.shouldPopToRootOnSave {
                     if StormModeStatus.shared.isOn {

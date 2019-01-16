@@ -1,5 +1,5 @@
 //
-//  weatherAPI.swift
+//  WeatherApi.swift
 //  Mobile
 //
 //  Created by Jeremy Kliphouse on 7/17/17.
@@ -74,8 +74,6 @@ struct WeatherItem {
     }
 }
 
-
-//TODO: when swift is refactorable make this more readable 
 enum WeatherIconNames: String, CaseIterable {
     case hot = "hot"
     case cold = "cold"
@@ -117,7 +115,7 @@ enum WeatherIconNames: String, CaseIterable {
     case unknown = "unknown"
 }
 
-struct WeatherAPI: WeatherService {
+struct WeatherApi: WeatherService {
     
     let geoCoder = CLGeocoder()
     
@@ -141,26 +139,28 @@ struct WeatherAPI: WeatherService {
             .flatMap { urlString -> Observable<WeatherItem> in
                 let requestId = ShortUUIDGenerator.getUUID(length: 8)
                 let method = HttpMethod.get
-                APILog(requestId: requestId, method: method, message: "REQUEST")
+                APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .request, message: nil)
                 
                 var urlRequest = URLRequest(url: URL(string: urlString)!)
                 urlRequest.httpMethod = method.rawValue
                 
-                return URLSession.shared.rx.dataResponse(request: urlRequest)
-                    .do(onNext: { data in
-                        let resBodyString = String(data: data, encoding: .utf8) ?? "No Response Data"
-                        APILog(requestId: requestId, method: method, message: "RESPONSE - BODY: \(resBodyString)")
-                    }, onError: { error in
+                return URLSession.shared.rx.dataResponse(request: urlRequest, onCanceled: {
+                    APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .canceled, message: nil)
+                })
+                    .do(onError: { error in
                         let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                        APILog(requestId: requestId, method: method, message: "ERROR - \(serviceError.errorDescription ?? "")")
+                        APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .error, message: serviceError.errorDescription)
                     })
                     .map { data -> WeatherItem in
                         guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
                             let dict = json as? [String: Any],
                             let weatherItem = WeatherItem(json: dict) else {
-                                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                                let error = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                                APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .error, message: error.errorDescription)
+                                throw error
                         }
                         
+                        APILog(WeatherApi.self, requestId: requestId, path: urlString, method: method, logType: .response, message: "SUCCESS")
                         return weatherItem
                 }
         }
@@ -170,13 +170,6 @@ struct WeatherAPI: WeatherService {
         let lat = String(format: "%.3f", coordinate.latitude)
         let lon = String(format: "%.3f", coordinate.longitude)
         return baseUrl + "points/\(lat),\(lon)/forecast/hourly"
-        
     }
     
-}
-
-fileprivate func APILog(requestId: String, method: HttpMethod, message: String) {
-    #if DEBUG
-        NSLog("[WeatherApi][%@] %@ %@", requestId, method.rawValue, message)
-    #endif
 }

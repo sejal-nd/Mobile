@@ -16,8 +16,6 @@ class UsageViewModel {
     private let accountService: AccountService
     private let usageService: UsageService
     
-    private var billAnalysisCache = BillAnalysisCache()
-    
     // MARK: - Init
     
     required init(authService: AuthenticationService, accountService: AccountService, usageService: UsageService) {
@@ -36,7 +34,7 @@ class UsageViewModel {
     
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchAllDataTrigger
         // Clear cache on refresh or account switch
-        .do(onNext: { [weak self] in self?.billAnalysisCache.clear() })
+        .do(onNext: { [weak self] in self?.usageService.clearCache() })
         .toAsyncRequest { [weak self] in
             self?.authService.getMaintenanceMode() ?? .empty()
     }
@@ -51,17 +49,11 @@ class UsageViewModel {
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
-        .toAsyncRequest { [unowned self] (accountDetail, yearsIndex, electricGasIndex) in
+        .toAsyncRequest { [weak self] (accountDetail, yearsIndex, electricGasIndex) in
+            guard let self = self else { return .empty() }
+            
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasIndex)
-            
-            // Pull from cache if possible
-            if let cachedData = self.billAnalysisCache[accountDetail.accountNumber,
-                                                       accountDetail.premiseNumber!,
-                                                       yearsIndex == 0,
-                                                       isGas] {
-                return Observable.just(cachedData)
-            }
             
             let billComparison = self.usageService
                 .fetchBillComparison(accountNumber: accountDetail.accountNumber,
@@ -74,18 +66,12 @@ class UsageViewModel {
                 billForecast = self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                                    premiseNumber: accountDetail.premiseNumber!)
                     .map { $0 }
-                    .catchError { _ in .just(nil) }
+                    .catchErrorJustReturn(nil)
             } else {
                 billForecast = .just(nil)
             }
             
             return Observable.zip(billComparison, billForecast)
-                .do(onNext: { [weak self] in
-                    self?.billAnalysisCache[accountDetail.accountNumber,
-                                            accountDetail.premiseNumber!,
-                                            yearsIndex == 0,
-                                            isGas] = $0
-                })
     }
     
     // MARK: - Convenience Properties
@@ -1096,34 +1082,6 @@ class UsageViewModel {
         }
         // Default to electric
         return false
-    }
-    
-    private struct BillAnalysisCache {
-        private var cache = [String: [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]]()
-        
-        mutating func clear() {
-            cache.removeAll()
-        }
-        
-        subscript(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> (BillComparison, BillForecastResult?)? {
-            get {
-                return cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas]
-            } set {
-                if cache[accountNumber] == nil {
-                    cache[accountNumber] = [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]()
-                }
-                
-                if cache[accountNumber]?[premiseNumber] == nil {
-                    cache[accountNumber]?[premiseNumber] = [Bool: [Bool: (BillComparison, BillForecastResult?)]]()
-                }
-                
-                if cache[accountNumber]?[premiseNumber]?[yearAgo] == nil {
-                    cache[accountNumber]?[premiseNumber]?[yearAgo] = [Bool: (BillComparison, BillForecastResult?)]()
-                }
-                
-                cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
-            }
-        }
     }
 }
 

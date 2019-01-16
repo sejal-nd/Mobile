@@ -49,7 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService(),
+                                  usageService: ServiceFactory.createUsageService(useCache: true),
+                                  projectedBillUsageService: ServiceFactory.createUsageService(useCache: false),
                                   authService: ServiceFactory.createAuthenticationService(),
                                   outageService: ServiceFactory.createOutageService(),
                                   alertsService: ServiceFactory.createAlertsService(),
@@ -71,23 +72,7 @@ class HomeViewController: AccountPickerViewController {
             .drive(backgroundTopConstraint.rx.constant)
             .disposed(by: bag)
         
-        accountPickerViewControllerWillAppear
-            .withLatestFrom(viewModel.accountDetailEvents.map { $0 }.startWith(nil)) { ($0, $1) }
-            .subscribe(onNext: { [weak self] state, accountDetailEvent in
-                guard let `self` = self else { return }
-                switch(state) {
-                case .loadingAccounts:
-                    self.setRefreshControlEnabled(enabled: false)
-                case .readyToFetchData:
-                    self.setRefreshControlEnabled(enabled: true)
-                    if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
-                        self.viewModel.fetchData.onNext(.switchAccount)
-                    } else if accountDetailEvent?.element == nil {
-                        self.viewModel.fetchData.onNext(.switchAccount)
-                    }
-                }
-            })
-            .disposed(by: bag)
+        setRefreshControlEnabled(enabled: false)
         
         viewModel.accountDetailEvents.elements()
             .take(1)
@@ -447,7 +432,7 @@ class HomeViewController: AccountPickerViewController {
         
         billCardView.pushedViewControllers
             .drive(onNext: { [weak self] viewController in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 if let vc = viewController as? WalletViewController {
                     vc.didUpdate
@@ -639,11 +624,12 @@ class HomeViewController: AccountPickerViewController {
             break
         }
     }
-    
 }
 
 extension HomeViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        // enable refresh control once accounts list loads
+        setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(.switchAccount)
     }
 }

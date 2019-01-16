@@ -163,7 +163,7 @@ class SmartEnergyRewardsView: UIView {
         viewModel.bar2A11yLabel.drive(bar2ContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.bar3A11yLabel.drive(bar3ContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.latest3EventsThisSeason.asObservable().subscribe(onNext: { [weak self] latest3Events in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if latest3Events.count == 3 {
                 self.barGraphStackView.accessibilityElements = [self.bar1ContainerButton, self.bar2ContainerButton, self.bar3ContainerButton]
             } else if latest3Events.count == 2 {

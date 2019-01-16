@@ -185,13 +185,13 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
         } else if let accountNumber = selectedOutageStatus.accountNumber {
             LoadingView.show()
             viewModel.fetchOutageStatus(overrideAccountNumber: accountNumber, onSuccess: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 LoadingView.hide()
                 if self.viewModel.selectedOutageStatus != nil {
                     self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
                 }
             }, onError: { [weak self] errTitle, errMessage in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 LoadingView.hide()
                 
                 let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)

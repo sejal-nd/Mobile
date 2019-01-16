@@ -126,7 +126,7 @@ class GSTouchesShowingController {
 
 class GSTouchImageViewQueue {
     
-    var backingArray = Array<UIImageView>();
+    var backingArray = [UIImageView]()
     
     convenience init(touchesCount: Int) {
         self.init()

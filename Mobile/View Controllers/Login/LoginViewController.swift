@@ -169,8 +169,8 @@ class LoginViewController: UIViewController {
         
         // Reset the view for when user pops back from ChangePasswordViewController
         signInButton.reset()
-        signInButton.accessibilityLabel = "Sign In";
-        signInButton.accessibilityViewIsModal = false;
+        signInButton.accessibilityLabel = "Sign In"
+        signInButton.accessibilityViewIsModal = false
         passwordTextField.textField.text = ""
         passwordTextField.textField.sendActions(for: .editingChanged)
     }
@@ -201,8 +201,8 @@ class LoginViewController: UIViewController {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        signInButton.accessibilityLabel = "Loading";
-        signInButton.accessibilityViewIsModal = true;
+        signInButton.accessibilityLabel = "Loading"
+        signInButton.accessibilityViewIsModal = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
@@ -273,8 +273,8 @@ class LoginViewController: UIViewController {
             guard let self = self else { return }
             self.navigationController?.view.isUserInteractionEnabled = true
             self.signInButton.reset()
-            self.signInButton.accessibilityLabel = "Sign In";
-            self.signInButton.accessibilityViewIsModal = false;
+            self.signInButton.accessibilityLabel = "Sign In"
+            self.signInButton.accessibilityViewIsModal = false
 
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -352,8 +352,8 @@ class LoginViewController: UIViewController {
     
     func showErrorAlertWith(title: String?, message: String) {
         signInButton.reset()
-        signInButton.accessibilityLabel = "Sign In";
-        signInButton.accessibilityViewIsModal = false;
+        signInButton.accessibilityLabel = "Sign In"
+        signInButton.accessibilityViewIsModal = false
         
         let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -433,7 +433,7 @@ class LoginViewController: UIViewController {
         }, onMaintenanceMode: { [weak self] in
             self?.navigationController?.view.isUserInteractionEnabled = true
             let ad = UIApplication.shared.delegate as! AppDelegate
-            ad.showMaintenanceMode()
+            ad.showMaintenanceMode($0)
         }, onError: { errorMessage in
             onCompletion()
         })
@@ -447,7 +447,7 @@ class LoginViewController: UIViewController {
     }
     
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
-        return a + (b - a) * t;
+        return a + (b - a) * t
     }
     
     

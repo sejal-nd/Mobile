@@ -14,7 +14,7 @@ import RxCocoa
 // Expiration month* / Expiration year*
 // CVV* / Zip*
 // Nickname (optional)
-// Default payment account
+// Default payment method
 
 class AddCardFormViewModel {
     
@@ -51,7 +51,7 @@ class AddCardFormViewModel {
     private(set) lazy var cardNumberHasText: Driver<Bool> = self.cardNumber.asDriver().map { !$0.isEmpty }
     
     private(set) lazy var cardNumberIsValid: Driver<Bool> = self.cardNumber.asDriver().map { [weak self] in
-        guard let `self` = self else { return false }
+        guard let self = self else { return false }
         return self.firstNumberCheck(cardNumber: $0) && self.luhnCheck(cardNumber: $0)
     }
     
@@ -121,7 +121,7 @@ class AddCardFormViewModel {
         }
         
         // Check for duplicate nickname
-        guard let `self` = self else { return nil }
+        guard let self = self else { return nil }
         let isDuplicate = self.nicknamesInWallet.map { $0.lowercased() }.contains($0.lowercased())
         if isDuplicate {
             return NSLocalizedString("This nickname is already in use", comment: "")
@@ -137,12 +137,12 @@ class AddCardFormViewModel {
         for (idx, element) in reversedCharacters.enumerated() {
             guard let digit = Int(element) else { return false }
             if (idx % 2 == 0) {
-                evenSum += digit;
+                evenSum += digit
             } else {
-                oddSum += digit / 5 + (2 * digit) % 10;
+                oddSum += digit / 5 + (2 * digit) % 10
             }
         }
-        return (oddSum + evenSum) % 10 == 0;
+        return (oddSum + evenSum) % 10 == 0
     }
     
     private func firstNumberCheck(cardNumber: String) -> Bool {

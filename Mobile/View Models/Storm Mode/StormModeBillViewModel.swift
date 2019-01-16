@@ -62,6 +62,10 @@ class StormModeBillViewModel {
         .filter(!)
         .map(to: ())
     
+    private(set) lazy var isSwitchingAccounts: Driver<Bool> = switchAccountTracker
+        .asDriver()
+        .distinctUntilChanged()
+    
     private(set) lazy var showButtonStack: Driver<Bool> = Observable
         .combineLatest(switchAccountTracker.asObservable(),
                        accountDetailEvents)

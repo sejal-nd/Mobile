@@ -53,11 +53,11 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     func checkForMaintenanceMode(){
-        viewModel.checkForMaintenance(onSuccess: { [weak self] isMaintenance in
-            if isMaintenance {
+        viewModel.checkForMaintenance(onSuccess: { [weak self] maintenanceInfo in
+            if maintenanceInfo.allStatus {
                 self?.navigationController?.view.isUserInteractionEnabled = true
                 let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode()
+                ad.showMaintenanceMode(maintenanceInfo)
             }
         }, onError: { [weak self] errorMessage in
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
@@ -117,7 +117,7 @@ class RegistrationValidateAccountViewController: UIViewController {
 			accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
 				.withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
 				.drive(onNext: { [weak self] accountNumber, hasTenDigits in
-					guard let `self` = self else { return }
+					guard let self = self else { return }
 					if !accountNumber.isEmpty && !hasTenDigits {
 						self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
 					}
@@ -144,7 +144,7 @@ class RegistrationValidateAccountViewController: UIViewController {
 		phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
 			.withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
 			.drive(onNext: { [weak self] phoneNumber, hasTenDigits in
-				guard let `self` = self else { return }
+				guard let self = self else { return }
 				if !phoneNumber.isEmpty && !hasTenDigits {
 					self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
 				}
@@ -174,7 +174,7 @@ class RegistrationValidateAccountViewController: UIViewController {
 		ssNumberNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
 			.withLatestFrom(Driver.zip(viewModel.identifierNumber.asDriver(), viewModel.identifierHasFourDigits, viewModel.identifierIsNumeric))
 			.drive(onNext: { [weak self] identifierNumber, hasFourDigits, isNumeric in
-				guard let `self` = self else { return }
+				guard let self = self else { return }
 				if !identifierNumber.isEmpty {
 					if !hasFourDigits {
 						self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))

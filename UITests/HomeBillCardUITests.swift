@@ -16,19 +16,19 @@ class HomeBillCardUITests: ExelonUITestCase {
 
         checkExistenceOfElement(.staticText, "$200.00")
         
-        tapButton(buttonText: "Set a default payment account")
+        tapButton(buttonText: "Set a default payment method")
         
         XCTAssertTrue(app.navigationBars["My Wallet"].waitForExistence(timeout: 3))
         tapButton(buttonText: "Back")
         
         let slideToPayControl = app.scrollViews.otherElements["Slide to pay today"]
-        XCTAssertFalse(slideToPayControl.isEnabled, "Slide to pay should be disabled when no default payment account")
+        XCTAssertFalse(slideToPayControl.isEnabled, "Slide to pay should be disabled when no default payment method")
     }
     
     func testDefaultPaymentSetWithBill() {
         doLogin(username: "billCardWithDefaultPayment")
 
-        XCTAssertFalse(buttonElement(withText: "Set a default payment account").exists, "Set payment account button should be hidden when one is already set")
+        XCTAssertFalse(buttonElement(withText: "Set a default payment method").exists, "Set payment method button should be hidden when one is already set")
 
         checkExistenceOfElements([
             (.staticText, "$200.00"),
@@ -60,7 +60,7 @@ class HomeBillCardUITests: ExelonUITestCase {
         checkExistenceOfElements([
             (.staticText, "Your bill is past due."),
             (.staticText, "$200.00"),
-            (.staticText, "Amount due immediately")
+            (.staticText, "Total amount due immediately")
         ])
     }
     
@@ -74,7 +74,7 @@ class HomeBillCardUITests: ExelonUITestCase {
         checkExistenceOfElements([
             (.staticText, dueMessage),
             (.staticText, "$350.00"),
-            (.staticText, "Amount due in 10 days")
+            (.staticText, "Total amount due in 10 days")
         ])
     }
     
@@ -94,7 +94,7 @@ class HomeBillCardUITests: ExelonUITestCase {
     func testMaintModeHomeBillCard() {
         doLogin(username: "maintNotHome")
         
-        checkExistenceOfElement(.staticText, "Billing is currently unavailable due to scheduled maintenance.")
+        checkExistenceOfElement(.staticText, "Billing is currently unavailable due to maintenance.")
     }
     
     func testMaintModeHome() {
@@ -102,8 +102,8 @@ class HomeBillCardUITests: ExelonUITestCase {
 
         checkExistenceOfElements([
             (.button, "Reload"),
-            (.staticText, "Scheduled Maintenance"),
-            (.staticText, "Home is currently unavailable due to\nscheduled maintenance.")
+            (.staticText, "Maintenance"),
+            (.staticText, "Home is currently unavailable due to maintenance.")
         ])
     }
     

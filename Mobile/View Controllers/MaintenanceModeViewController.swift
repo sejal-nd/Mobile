@@ -16,7 +16,10 @@ class MaintenanceModeViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    let viewModel = MaintenanceModeViewModel(authService: ServiceFactory.createAuthenticationService())
+    var maintenance: Maintenance?
+    
+    private lazy var viewModel = MaintenanceModeViewModel(authService: ServiceFactory.createAuthenticationService(),
+                                                          maintenance: maintenance)
     
     @IBOutlet weak var reloadButton: ButtonControl!
     @IBOutlet weak var reloadLabel: UILabel!
@@ -42,14 +45,14 @@ class MaintenanceModeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         maintenanceModeBody.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        maintenanceModeBody.layer.cornerRadius = 2
+        maintenanceModeBody.layer.cornerRadius = 10
         
-        headerLabel.text = viewModel.getHeaderLabelText()
+        headerLabel.text = viewModel.headerLabelText
         headerLabel.textColor = .deepGray
         headerLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
         bodyLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        bodyLabel.attributedText = viewModel.getLabelBody()
+        bodyLabel.attributedText = viewModel.labelBody
         
         bodyLabel.textColor = .blackText
         bodyLabel.textContainerInset = .zero
@@ -62,14 +65,9 @@ class MaintenanceModeViewController: UIViewController {
         BGEInquiriesLabel.tintColor = .actionBlue
         BGEInquiriesLabel.attributedText = viewModel.bgeInquiriesLabelText
         
-        BGEStackView.isHidden = !viewModel.isBGE() // Color of the phone numbers
+        BGEStackView.isHidden = !viewModel.showBGEStackView // Color of the phone numbers
         
         view.backgroundColor = .primaryColor
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +86,7 @@ class MaintenanceModeViewController: UIViewController {
     }
     
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
-        return a + (b - a) * t;
+        return a + (b - a) * t
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -97,19 +95,22 @@ class MaintenanceModeViewController: UIViewController {
     
     func onReloadPress() {
         LoadingView.show()
-        viewModel.doReload(onSuccess: { isMaintenance in
+        viewModel.doReload(onSuccess: { [weak self] isMaintenance in
             LoadingView.hide()
+            guard let self = self else { return }
             self.presentingViewController?.view.isUserInteractionEnabled = true
             if !isMaintenance{
                 self.presentingViewController?.dismiss(animated: true, completion: {
                     print("Dismissed MM")
                 })
+            } else {
+                self.headerLabel.text = self.viewModel.headerLabelText
             }
-        }, onError: { errorMessage in
+        }, onError: { [weak self] errorMessage in
             LoadingView.hide()
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
 }
