@@ -9,7 +9,6 @@
 import Foundation
 #if os(iOS)
 import Reachability
-import SimpleKeychain
 #endif
 import RxSwift
 import WatchKit

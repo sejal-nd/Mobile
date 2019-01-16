@@ -193,9 +193,9 @@
 		351560CA210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CB210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CC210F61F3008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		351560CE210F8A56008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		351560CF210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		351560D0210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		351560CE210F8A56008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		351560CF210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		351560D0210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		35277AFA2102325000411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFB2102325100411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
@@ -910,6 +910,12 @@
 		9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
+		9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEB21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
@@ -2754,6 +2760,8 @@
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
+		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
 		9C7E5A52212DFF0D00F78479 /* OutageStatusInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageStatusInitExtensions.swift; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
@@ -4365,6 +4373,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */,
+				9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */,
+			);
+			path = A0SimpleKeychain;
+			sourceTree = "<group>";
+		};
 		B0030D062097BC5500327A3D /* MaintenanceModeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5130,6 +5147,7 @@
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
 				356C7F8021909997003E8A90 /* KeychainUtility.swift */,
 			);
@@ -6178,7 +6196,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6200,7 +6217,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6232,7 +6248,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6254,7 +6269,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6308,7 +6322,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6331,7 +6344,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6364,7 +6376,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6387,7 +6398,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6574,7 +6584,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6597,7 +6606,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6669,7 +6677,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6692,7 +6699,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6747,7 +6753,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6770,7 +6775,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6849,7 +6853,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6871,7 +6874,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -6903,7 +6905,6 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -6926,7 +6927,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -7316,6 +7316,7 @@
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
 				8218988E1F2A30C00077D7A1 /* Binders.swift in Sources */,
+				9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
@@ -7760,6 +7761,7 @@
 				2F5C81FC1F1D5C4B005B35FA /* WeatherAPI.swift in Sources */,
 				B0882CAF210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BF216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
+				9C74CDEB21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
 				82AC2A251FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -8055,6 +8057,7 @@
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
+				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				E841F3B31F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				B092184420A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
@@ -8188,11 +8191,12 @@
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
-				351560CE210F8A56008C24F1 /* (null) in Sources */,
+				351560CE210F8A56008C24F1 /* BuildFile in Sources */,
 				B5A16F381F0D44160016952C /* SpeedpayApi.swift in Sources */,
 				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				B092185020A24CA400695888 /* MockData.swift in Sources */,
 				82AC2A271FAB736600EACB3B /* PeakRewardsService.swift in Sources */,
+				9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */,
@@ -8427,9 +8431,10 @@
 				E8F62B54200924410077B3DA /* WalletService.swift in Sources */,
 				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
 				E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */,
-				351560CF210F8D81008C24F1 /* (null) in Sources */,
+				351560CF210F8D81008C24F1 /* BuildFile in Sources */,
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */,
+				9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				B092185120A24CA400695888 /* MockData.swift in Sources */,
 				E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */,
@@ -8620,9 +8625,10 @@
 				E8F62C09200924570077B3DA /* WalletService.swift in Sources */,
 				E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */,
 				E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */,
-				351560D0210F8D81008C24F1 /* (null) in Sources */,
+				351560D0210F8D81008C24F1 /* BuildFile in Sources */,
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */,
+				9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				B092185220A24CA400695888 /* MockData.swift in Sources */,
 				E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */,
