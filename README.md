@@ -18,11 +18,12 @@ To support various development environments each Target has multiple schemes
 
 ## Third Party Libraries
 
-Third party libraries are managed using Cocoa Pods: https://github.com/CocoaPods/CocoaPods
+Third party libraries are primarily managed using Cocoa Pods (https://github.com/CocoaPods/CocoaPods), in the event that a library needs modification it is integrated directly into the project (Mobile/Vender...)
 
-SimpleKeychain is the only dependency directly integrated into the project: This can be found under Mobile->Vendor
+**Libraries Integrated Directly:**
+- SimpleKeychain
 
-**Libraries Used:**
+**Libraries Managed By Cocoa Pods:**
 - RXSwift
 - RXCocoa
 - RXGesture
