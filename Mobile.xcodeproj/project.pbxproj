@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = B58B5B611E516EEE0051FD5F /* Build configuration list for PBXAggregateTarget "BGE Environment Switch" */;
 			buildPhases = (
-				B58B5B6A1E51728B0051FD5F /* ShellScript */,
+				B58B5B6A1E51728B0051FD5F /* Run Script */,
 			);
 			dependencies = (
 			);
@@ -907,18 +907,18 @@
 		9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
-		9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
-		9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
-		9C74CDEB21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
-		9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
-		9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
-		9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C72424921E5061500E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		9C72424A21E5061600E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		9C72424B21E5061600E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		9C72424C21E5061800E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		9C72424D21E5061900E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
 		9C72424E21E5061900E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
+		9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEB21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
@@ -2721,15 +2721,15 @@
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
+		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
+		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SaveToWallet.swift"; sourceTree = "<group>"; };
+		9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+PaymentusErrors.swift"; sourceTree = "<group>"; };
 		9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		A1023EE69855C3B6A4E574E5 /* Pods-BGEApp-BGE.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		A8E654E4706B92DF0A22BFAB /* Pods-ComEdApp-ComEdUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
 		AAC0B730E787F1CC86670155 /* Pods-BGEApp-BGE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.release.xcconfig"; sourceTree = "<group>"; };
 		AD0FCFB55A57BACE4C5EDDD8 /* Pods-ComEdApp-ComEdUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.staging.xcconfig"; sourceTree = "<group>"; };
-		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
-		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+SaveToWallet.swift"; sourceTree = "<group>"; };
-		9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+PaymentusErrors.swift"; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
 		B017488D2135D19B0039D0C6 /* Storm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storm.storyboard; sourceTree = "<group>"; };
@@ -6503,13 +6503,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B58B5B6A1E51728B0051FD5F /* ShellScript */ = {
+		B58B5B6A1E51728B0051FD5F /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
