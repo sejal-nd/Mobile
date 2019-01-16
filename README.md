@@ -1,9 +1,15 @@
 # Exelon Mobile iOS Application
 
+## Installation
+**Requirements**
+- Xcode: 10.1
+- Cocoa Pods: 1.5.3
+After a fresh `git clone` from the "Exelon_Mobile_iOS" repository, open a terminal at the root project folder and run `pod install`.  Following this open the project workspace named: "Mobile.xcworkspace", the project is now open and working.
+
 ## Targets
 
 The project is configured such that Each Operating Company (OpCo) has its own
-XCode target, and therefore a separate product. Source code that is shared between
+Xcode target, and therefore a separate product. Source code that is shared between
 OpCos is included in all targets. Source code that is OpCo specific is only
 included in the specific target for that OpCo.
 
