@@ -193,9 +193,9 @@
 		351560CA210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CB210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CC210F61F3008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		351560CE210F8A56008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		351560CF210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		351560D0210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		351560CE210F8A56008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		351560CF210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		351560D0210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35277AFA2102325000411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFB2102325100411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
@@ -8188,7 +8188,7 @@
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
-				351560CE210F8A56008C24F1 /* BuildFile in Sources */,
+				351560CE210F8A56008C24F1 /* (null) in Sources */,
 				B5A16F381F0D44160016952C /* SpeedpayApi.swift in Sources */,
 				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				B092185020A24CA400695888 /* MockData.swift in Sources */,
@@ -8427,7 +8427,7 @@
 				E8F62B54200924410077B3DA /* WalletService.swift in Sources */,
 				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
 				E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */,
-				351560CF210F8D81008C24F1 /* BuildFile in Sources */,
+				351560CF210F8D81008C24F1 /* (null) in Sources */,
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */,
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -8620,7 +8620,7 @@
 				E8F62C09200924570077B3DA /* WalletService.swift in Sources */,
 				E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */,
 				E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */,
-				351560D0210F8D81008C24F1 /* BuildFile in Sources */,
+				351560D0210F8D81008C24F1 /* (null) in Sources */,
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
 				E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */,
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
