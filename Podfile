@@ -18,7 +18,6 @@ def iOS_pods
   pod 'RxGesture', '2.0.1'
   pod 'XLPagerTabStrip', '8.1.1'
   pod 'CardIO', '5.4.1'
-  pod 'GoogleToolboxForMac', '2.2.0'
   pod 'GoogleAnalytics', '3.17.0'
   pod 'Firebase/Core', '5.15.0'
   pod 'AppCenter', '1.12'
