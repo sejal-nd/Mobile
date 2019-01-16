@@ -1,16 +1,13 @@
-Exelon Mobile iOS Application
+# Exelon Mobile iOS Application
 
-
-Targets
-------------
+## Targets
 
 The project is configured such that Each Operating Company (OpCo) has its own
-XCode target, and therefore a seperate product. Source code that is shared between
+XCode target, and therefore a separate product. Source code that is shared between
 OpCos is included in all targets. Source code that is OpCo specific is only
 included in the specific target for that OpCo.
 
-Schemes
-----------------
+## Schemes
 
 To support various development environments each Target has multiple schemes
 - Development
@@ -19,16 +16,28 @@ To support various development environments each Target has multiple schemes
 - Production
 - Automation
 
-Third Party Libraries
-----------------------
+## Third Party Libraries
 
-Third party libraries are managed using Carthage: https://github.com/Carthage/Carthage
+Third party libraries are managed using Cocoa Pods: https://github.com/CocoaPods/CocoaPods
 
-Libraries Used:
+**Libraries Used:**
 - RXSwift
 - RXCocoa
+- RXGesture
+- RXSwiftExt
+- RXTest
+- ModelMapper
 - JVFloatLabeledTextField
 - ToastSwift
 - Zxcvbn
 - Lottie
-- HockeySDK
+- JVFloatLabeledTextField
+- ReachabilitySwift
+- PDTSimpleCalendar
+- Charts
+- XLPagerTabStrip
+- CardIO
+- SimpleKeychain
+- GoogleAnalytics
+- Firebase
+- AppCenter
