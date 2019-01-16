@@ -6512,6 +6512,7 @@
 			);
 			name = "Run Script";
 			outputPaths = (
+				"${PROJECT_DIR}/${PROJECT_NAME}/Configuration/environment.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6525,6 +6526,7 @@
 			inputPaths = (
 			);
 			outputPaths = (
+				"${PROJECT_DIR}/${PROJECT_NAME}/Configuration/environment.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6538,6 +6540,7 @@
 			inputPaths = (
 			);
 			outputPaths = (
+				"${PROJECT_DIR}/${PROJECT_NAME}/Configuration/environment.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
