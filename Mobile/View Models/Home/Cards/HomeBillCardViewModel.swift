@@ -250,7 +250,7 @@ class HomeBillCardViewModel {
                 return .pastDue
             }
             
-            if billingInfo.pendingPayments.first?.amount > 0 {
+            if billingInfo.pendingPaymentsTotal > 0 {
                 return .paymentPending
             }
             
@@ -402,9 +402,9 @@ class HomeBillCardViewModel {
             let text: String
             switch Environment.shared.opco {
             case .bge:
-                text = NSLocalizedString("Your payment is processing", comment: "")
+                text = NSLocalizedString("You have processing payments", comment: "")
             case .comEd, .peco:
-                text = NSLocalizedString("Your payment is pending", comment: "")
+                text = NSLocalizedString("You have pending payments", comment: "")
             }
             return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .title1),
                                                                  .foregroundColor: textColor])
@@ -424,6 +424,7 @@ class HomeBillCardViewModel {
     
     private(set) lazy var headerText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
     { accountDetail, billState in
+        let billingInfo = accountDetail.billingInfo
         let isMultiPremise = AccountsStore.shared.currentAccount.isMultipremise
         
         let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
@@ -440,14 +441,13 @@ class HomeBillCardViewModel {
                                       attributes: attributes)
         case .pastDue:
             let string: String
-            switch (isMultiPremise,
-                    accountDetail.billingInfo.netDueAmount == accountDetail.billingInfo.pastDueAmount) {
+            switch (isMultiPremise, billingInfo.netDueAmount == billingInfo.pastDueAmount) {
             case (false, false):
-                guard let amount = accountDetail.billingInfo.pastDueAmount?.currencyString else { return nil }
+                guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
                 let format = "%@ of the total is due immediately."
                 string = String.localizedStringWithFormat(format, amount)
             case (true, false):
-                guard let amount = accountDetail.billingInfo.pastDueAmount?.currencyString else { return nil }
+                guard let amount = billingInfo.pastDueAmount?.currencyString else { return nil }
                 let format = "%@ of the total is due immediately for your multi-premise account."
                 string = String.localizedStringWithFormat(format, amount)
             case (false, true):
@@ -458,18 +458,24 @@ class HomeBillCardViewModel {
             
             return NSAttributedString(string: string, attributes: attributes)
         case .catchUp:
-            guard let amountString = accountDetail.billingInfo.amtDpaReinst?.currencyString,
-                let dueByDate = accountDetail.billingInfo.dueByDate else {
+            guard let amountString = billingInfo.amtDpaReinst?.currencyString,
+                let dueByDate = billingInfo.dueByDate else {
                     return nil
             }
             
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
             
             let string: String
-            if days > 0 {
+            switch (days > 0, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
+            case (true, true):
+                let format = "The total amount is due in %d day%@ to catch up on your DPA."
+                string = String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+            case (true, false):
                 let format = "%@ of the total is due in %d day%@ to catch up on your DPA."
                 string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-            } else {
+            case (false, true):
+                string = NSLocalizedString("The total amount must be paid immediately to catch up on your DPA.", comment: "")
+            case (false, false):
                 let format = "%@ of the total must be paid immediately to catch up on your DPA."
                 string = String.localizedStringWithFormat(format, amountString)
             }
@@ -549,7 +555,7 @@ class HomeBillCardViewModel {
         case .billPaid:
             return $0.billingInfo.lastPaymentAmount?.currencyString
         case .paymentPending:
-            return $0.billingInfo.pendingPayments.last?.amount.currencyString
+            return $0.billingInfo.pendingPaymentsTotal.currencyString
         default:
             return $0.billingInfo.netDueAmount?.currencyString
         }
@@ -564,7 +570,22 @@ class HomeBillCardViewModel {
             [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed,
              .font: OpenSans.semibold.of(textStyle: .subheadline)]
         
-        let countdownText: () -> NSAttributedString? = {
+        switch billState {
+        case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff:
+            if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
+                return NSAttributedString(string: NSLocalizedString("Total Amount Due Immediately", comment: ""),
+                                          attributes: redAttributes)
+            } else {
+                return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
+                                          attributes: grayAttributes)
+            }
+        case .catchUp:
+            return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
+                                      attributes: grayAttributes)
+        case .credit:
+            return NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""),
+                                      attributes: grayAttributes)
+        default:
             guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
             let calendar = Calendar.opCo
             
@@ -584,29 +605,6 @@ class HomeBillCardViewModel {
                 return NSAttributedString(string: String(format: localizedText, dueByDate.mmDdYyyyString),
                                           attributes: grayAttributes)
             }
-        }
-        
-        switch billState {
-        case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff:
-            if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
-                return NSAttributedString(string: NSLocalizedString("Total Amount Due Immediately", comment: ""),
-                                          attributes: redAttributes)
-            } else {
-                return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
-                                          attributes: grayAttributes)
-            }
-        case .catchUp:
-            if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.amtDpaReinst {
-                return countdownText()
-            } else {
-                return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
-                                          attributes: grayAttributes)
-            }
-        case .credit:
-            return NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""),
-                                      attributes: grayAttributes)
-        default:
-            return countdownText()
         }
     }
     
@@ -661,12 +659,12 @@ class HomeBillCardViewModel {
         let minPayment = accountDetail.minPaymentAmount(bankOrCard: walletItem.bankOrCard)
         let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: walletItem.bankOrCard)
         
-        if paymentAmount < minPayment, let amountText = minPayment.currencyString {
+        if paymentAmount < minPayment {
             let minLocalizedText = NSLocalizedString("Minimum payment allowed is %@", comment: "")
-            return String(format: minLocalizedText, amountText)
-        } else if paymentAmount > maxPayment, let amountText = maxPayment.currencyString {
+            return String(format: minLocalizedText, minPayment.currencyString)
+        } else if paymentAmount > maxPayment {
             let maxLocalizedText = NSLocalizedString("Maximum payment allowed is %@", comment: "")
-            return String(format: maxLocalizedText, amountText)
+            return String(format: maxLocalizedText, maxPayment.currencyString)
         } else {
             return nil
         }

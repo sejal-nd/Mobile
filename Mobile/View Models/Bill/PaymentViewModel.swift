@@ -750,18 +750,18 @@ class PaymentViewModel {
                 if Environment.shared.opco == .bge {
                     // BGE BANK
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 } else {
                     // COMED/PECO BANK
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > amountDue {
                         return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 }
             } else if cardWorkflow {
@@ -770,18 +770,18 @@ class PaymentViewModel {
                 if Environment.shared.opco == .bge {
                     // BGE CREDIT CARD
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 } else {
                     // COMED/PECO CREDIT CARD
                     if paymentAmount < minPayment {
-                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > amountDue {
                         return NSLocalizedString("Payment must be less than or equal to total amount due", comment: "")
                     } else if paymentAmount > maxPayment {
-                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString!)", comment: "")
+                        return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 }
             }
@@ -884,7 +884,7 @@ class PaymentViewModel {
             if Environment.shared.opco == .bge {
                 return NSLocalizedString(self.accountDetail.value.billingInfo.convenienceFeeString(isComplete: true), comment: "")
             } else {
-                return String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), self.convenienceFee.currencyString!)
+                return String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), self.convenienceFee.currencyString)
             }
         }
         return ""
@@ -898,7 +898,7 @@ class PaymentViewModel {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else if cardWorkflow {
                 return String(format: NSLocalizedString("Your payment includes a %@ convenience fee.", comment: ""),
-                              Environment.shared.opco == .bge && !accountDetail.isResidential ? self.convenienceFee.percentString! : self.convenienceFee.currencyString!)
+                              Environment.shared.opco == .bge && !accountDetail.isResidential ? self.convenienceFee.percentString! : self.convenienceFee.currencyString)
             }
             return ""
     }

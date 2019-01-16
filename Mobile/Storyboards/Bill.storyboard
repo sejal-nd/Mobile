@@ -1415,7 +1415,7 @@
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbU-cg-kpT">
                                                                                         <rect key="frame" x="48" y="0.0" width="291" height="62.5"/>
                                                                                         <subviews>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="This is a warning message for the customer." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUM-6w-0Ba">
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" text="This is a warning message for the customer." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUM-6w-0Ba">
                                                                                                 <rect key="frame" x="14" y="12" width="263" height="38.5"/>
                                                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1427,6 +1427,7 @@
                                                                                             <constraint firstAttribute="bottom" secondItem="LUM-6w-0Ba" secondAttribute="bottom" priority="999" constant="12" id="65g-vf-QT6"/>
                                                                                             <constraint firstItem="LUM-6w-0Ba" firstAttribute="top" secondItem="JbU-cg-kpT" secondAttribute="top" priority="999" constant="12" id="WXn-77-x7L"/>
                                                                                             <constraint firstItem="LUM-6w-0Ba" firstAttribute="leading" secondItem="JbU-cg-kpT" secondAttribute="leading" constant="14" id="Zap-z7-AP6"/>
+                                                                                            <constraint firstItem="LUM-6w-0Ba" firstAttribute="centerY" secondItem="JbU-cg-kpT" secondAttribute="centerY" id="jIq-MX-gXn"/>
                                                                                             <constraint firstAttribute="trailing" secondItem="LUM-6w-0Ba" secondAttribute="trailing" constant="14" id="oOF-iv-3vm"/>
                                                                                         </constraints>
                                                                                     </view>
@@ -1439,6 +1440,7 @@
                                                                             <constraint firstItem="IKh-wV-SYZ" firstAttribute="top" secondItem="ICw-AX-5ip" secondAttribute="top" id="Ba4-CY-KKn"/>
                                                                             <constraint firstAttribute="bottom" secondItem="IKh-wV-SYZ" secondAttribute="bottom" priority="999" id="Hac-zO-0FK"/>
                                                                             <constraint firstItem="IKh-wV-SYZ" firstAttribute="leading" secondItem="ICw-AX-5ip" secondAttribute="leading" id="Y0i-5f-Sxp"/>
+                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="62" id="jR5-co-WOw"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <outlet property="animationView" destination="4fe-xL-vCG" id="NNp-6a-5A2"/>
@@ -1551,7 +1553,7 @@
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="998" text="$##.##" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drK-cK-IdM">
                                                                                                                 <rect key="frame" x="230" y="10" width="55" height="22"/>
                                                                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
-                                                                                                                <color key="textColor" red="0.0" green="0.47843137254901957" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                                 <nil key="highlightedColor"/>
                                                                                                             </label>
                                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-pk-SUP">
@@ -1589,7 +1591,7 @@
                                                                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7f-vh-v1t">
                                                                                                                 <rect key="frame" x="18" y="0.0" width="267" height="51"/>
                                                                                                                 <subviews>
-                                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-i1-pIu">
+                                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pending Payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgk-i1-pIu">
                                                                                                                         <rect key="frame" x="0.0" y="0.0" width="212.5" height="51"/>
                                                                                                                         <fontDescription key="fontDescription" name="OpenSansLight-Italic" family="Open Sans" pointSize="14"/>
                                                                                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

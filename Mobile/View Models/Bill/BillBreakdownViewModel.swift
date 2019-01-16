@@ -22,9 +22,9 @@ class BillBreakdownViewModel {
     var deliveryCharges: Double { return accountDetail.billingInfo.deliveryCharges ?? 0 }
     private var totalCharges: Double { return supplyCharges + taxesAndFees + deliveryCharges }
 
-    var supplyChargesString: String { return supplyCharges.currencyString ?? "$0.00" }
-    var taxesAndFeesString: String { return taxesAndFees.currencyString ?? "$0.00" }
-    var deliveryChargesString: String { return deliveryCharges.currencyString ?? "$0.00" }
-    var totalChargesString: String { return totalCharges.currencyString ?? "$0.00" }
+    var supplyChargesString: String { return supplyCharges.currencyString }
+    var taxesAndFeesString: String { return taxesAndFees.currencyString }
+    var deliveryChargesString: String { return deliveryCharges.currencyString }
+    var totalChargesString: String { return totalCharges.currencyString }
     
 }

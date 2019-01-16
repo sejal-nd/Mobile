@@ -433,14 +433,18 @@ struct BillingInfo: Mappable {
         
     }
     
+    var pendingPaymentsTotal: Double {
+        return pendingPayments.map(\.amount).reduce(0, +)
+    }
+    
     func convenienceFeeString(isComplete: Bool) -> String {
         var convenienceFeeStr = ""
         if isComplete {
             convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         } else {
             convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         }
         return convenienceFeeStr
     }

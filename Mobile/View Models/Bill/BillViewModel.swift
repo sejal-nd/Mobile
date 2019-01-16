@@ -113,30 +113,16 @@ class BillViewModel {
         return Driver.zip(self.shouldShowRestoreService, self.shouldShowAvoidShutoff, showCatchup) { !$0 && !$1 && $2 }
     }()
     
-    private(set) lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = Driver.zip(self.currentAccountDetail, self.shouldShowCatchUpAmount)
+    private(set) lazy var shouldShowCatchUpDisclaimer: Driver<Bool> = Driver.zip(currentAccountDetail, shouldShowCatchUpAmount)
     { !$0.isLowIncome && $1 && Environment.shared.opco == .comEd }
     
-    private(set) lazy var showPastDue: Driver<Bool> = self.currentAccountDetail
+    private(set) lazy var showPastDue: Driver<Bool> = currentAccountDetail
         .map { accountDetail -> Bool in
-            // Restore Service
-            if accountDetail.billingInfo.restorationAmount > 0 &&
-                accountDetail.isCutOutNonPay &&
-                Environment.shared.opco != .bge {
-                return false
-            }
-            
-            // Avoid Shutoff
-            if accountDetail.billingInfo.disconnectNoticeArrears > 0 && accountDetail.billingInfo.isDisconnectNotice {
-                return false
-            }
-            
-            // Catch Up
-            if accountDetail.billingInfo.amtDpaReinst > 0 {
-                return false
-            }
-            
-            return accountDetail.billingInfo.pastDueAmount > 0
+            let pastDueAmount = accountDetail.billingInfo.pastDueAmount ?? accountDetail.billingInfo.amtDpaReinst
+            return pastDueAmount > 0 && pastDueAmount < accountDetail.billingInfo.netDueAmount
     }
+    
+    private(set) lazy var showCurrentBill: Driver<Bool> = showPastDue
     
     private(set) lazy var shouldShowTopContent: Driver<Bool> = Driver
         .combineLatest(self.switchAccountsTracker.asDriver(),
@@ -145,18 +131,13 @@ class BillViewModel {
         .startWith(false)
     
     private(set) lazy var shouldShowPendingPayment: Driver<Bool> = self.currentAccountDetail.map {
-        $0.billingInfo.pendingPayments.first?.amount > 0
+        !$0.billingInfo.pendingPayments.isEmpty
     }
     
     private(set) lazy var shouldShowRemainingBalanceDue: Driver<Bool> = self.currentAccountDetail.map {
         return $0.billingInfo.pendingPayments.first?.amount > 0 &&
             $0.billingInfo.remainingBalanceDue > 0  &&
             Environment.shared.opco != .bge
-    }
-    
-    private(set) lazy var shouldShowBillIssued: Driver<Bool> = self.currentAccountDetail.map { _ in
-        //TODO: Bill Issued
-        false
     }
     
     private(set) lazy var shouldShowPaymentReceived: Driver<Bool> = self.currentAccountDetail.map {
@@ -194,6 +175,8 @@ class BillViewModel {
     private(set) lazy var shouldEnableMakeAPaymentButton: Driver<Bool> = self.currentAccountDetail.map {
         $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge
     }
+    
+    private(set) lazy var showPaymentStatusText = paymentStatusText.isNil().not()
     
     private(set) lazy var shouldShowAutoPay: Driver<Bool> = self.currentAccountDetail.map {
         $0.isAutoPay || $0.isBGEasy || $0.isAutoPayEligible
@@ -252,13 +235,21 @@ class BillViewModel {
             let amtDpaReinst = billingInfo.amtDpaReinst,
             Environment.shared.opco != .bge && amtDpaReinst > 0 {
             let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+            let amountString = amtDpaReinst.currencyString
             
-            if days > 0 {
+            let string: String
+            switch (days > 0, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
+            case (true, true):
+                let format = "The total amount is due in %d day%@ to catch up on your DPA."
+                return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+            case (true, false):
                 let format = "%@ of the total is due in %d day%@ to catch up on your DPA."
-                return String.localizedStringWithFormat(format, amtDpaReinst.currencyString ?? "--", days, days == 1 ? "": "s")
-            } else {
+                return String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            case (false, true):
+                return NSLocalizedString("The total amount must be paid immediately to catch up on your DPA.", comment: "")
+            case (false, false):
                 let format = "%@ of the total must be paid immediately to catch up on your DPA."
-                return String.localizedStringWithFormat(format, amtDpaReinst.currencyString ?? "--")
+                return String.localizedStringWithFormat(format, amountString)
             }
         }
         
@@ -281,31 +272,34 @@ class BillViewModel {
         
         switch Environment.shared.opco {
         case .bge: // BGE should display the negative value if there is a credit
-            return netDueAmount.currencyString ?? "--"
+            return netDueAmount.currencyString
         case .comEd, .peco:
-            return max(netDueAmount, 0).currencyString ?? "--"
+            return max(netDueAmount, 0).currencyString
         }
     }
     
-    private(set) lazy var totalAmountDescriptionText: Driver<String> = self.currentAccountDetail.map {
+    private(set) lazy var totalAmountDescriptionText: Driver<NSAttributedString> = self.currentAccountDetail.map {
         let billingInfo = $0.billingInfo
+        var attributes: [NSAttributedString.Key: Any] = [.font: OpenSans.regular.of(textStyle: .footnote),
+                                                         .foregroundColor: UIColor.blackText]
+        let string: String
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
-                return NSLocalizedString("Total Amount Due Immediately", comment: "")
+                string = NSLocalizedString("Total Amount Due Immediately", comment: "")
+                attributes = [.font: OpenSans.semibold.of(textStyle: .footnote),
+                              .foregroundColor: UIColor.errorRed]
             } else {
-                return NSLocalizedString("Total Amount Due", comment: "")
+                string = NSLocalizedString("Total Amount Due", comment: "")
             }
         } else if billingInfo.amtDpaReinst > 0 {
-            if billingInfo.amtDpaReinst == billingInfo.netDueAmount {
-                return NSLocalizedString("Total Amount Due Immediately", comment: "")
-            } else {
-                return NSLocalizedString("Total Amount Due", comment: "")
-            }
+            string = NSLocalizedString("Total Amount Due", comment: "")
         } else if Environment.shared.opco == .bge && billingInfo.netDueAmount < 0 {
-            return NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+            string = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+        } else {
+            string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
         }
         
-        return String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
+        return NSAttributedString(string: string, attributes: attributes)
     }
     
     //MARK: - Restore Service
@@ -329,15 +323,58 @@ class BillViewModel {
     }
     
     //MARK: - Past Due
+    private(set) lazy var pastDueText: Driver<String> = currentAccountDetail
+        .map { accountDetail in
+            if Environment.shared.opco != .bge && accountDetail.billingInfo.amtDpaReinst > 0 {
+                return NSLocalizedString("Catch Up on Agreement Amount", comment: "")
+            } else {
+                return NSLocalizedString("Past Due Amount", comment: "")
+            }
+    }
+    
     private(set) lazy var pastDueAmountText: Driver<String> = self.currentAccountDetail.map {
-        $0.billingInfo.pastDueAmount?.currencyString ?? "--"
+        if Environment.shared.opco != .bge && $0.billingInfo.amtDpaReinst > 0 {
+            return $0.billingInfo.amtDpaReinst?.currencyString ?? "--"
+        } else {
+            return $0.billingInfo.pastDueAmount?.currencyString ?? "--"
+        }
+    }
+    
+    private(set) lazy var pastDueDateText: Driver<NSAttributedString> = currentAccountDetail
+        .map { accountDetail in
+            if let date = accountDetail.billingInfo.dueByDate,
+                accountDetail.billingInfo.amtDpaReinst > 0 {
+                let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
+                return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
+                                                                       .font: OpenSans.regular.of(textStyle: .footnote)])
+            } else {
+                let string = NSLocalizedString("Due Immediately", comment: "")
+                return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
+                                                                       .font: OpenSans.regular.of(textStyle: .footnote)])
+            }
+    }
+    
+    //MARK: - Current Bill
+    private(set) lazy var currentBillAmountText: Driver<String> = currentAccountDetail.map {
+        $0.billingInfo.currentDueAmount?.currencyString ?? "--"
+    }
+    
+    private(set) lazy var currentBillDateText: Driver<String> = currentAccountDetail.map {
+        $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
     }
     
     //MARK: - Pending Payments
+    let pendingPaymentsText: String = {
+        switch Environment.shared.opco {
+        case .bge:
+            return NSLocalizedString("Payments Processing", comment: "")
+        case .comEd, .peco:
+            return NSLocalizedString("Pending Payments", comment: "")
+        }
+    }()
+    
     private(set) lazy var pendingPaymentsTotalAmountText: Driver<String> = currentAccountDetail.map {
-        $0.billingInfo.pendingPayments
-            .map { $0.amount }
-            .reduce(0, +).currencyString ?? "--"
+        (-$0.billingInfo.pendingPaymentsTotal).currencyString
     }
     
     //MARK: - Remaining Balance Due
@@ -350,27 +387,18 @@ class BillViewModel {
         }
     }
     
-    private(set) lazy var remainingBalanceDueAmountText: Driver<String> = self.currentAccountDetail.map {
-        if $0.billingInfo.pendingPayments.first?.amount == $0.billingInfo.netDueAmount {
-            return 0.currencyString ?? "--"
-        } else {
-            return $0.billingInfo.remainingBalanceDue?.currencyString ?? "--"
-        }
-    }
+//    private(set) lazy var remainingBalanceDueAmountText: Driver<String> = self.currentAccountDetail.map {
+//        if $0.billingInfo.pendingPayments.last?.amount == $0.billingInfo.netDueAmount {
+//            return 0.currencyString
+//        } else {
+//            return $0.billingInfo.remainingBalanceDue?.currencyString ?? "--"
+//        }
+//    }
     
     private(set) lazy var remainingBalanceDueDateText: Driver<String> = self.currentAccountDetail.map {
         guard let dateString = $0.billingInfo.dueByDate?.mmDdYyyyString else { return "--" }
         let localizedText = NSLocalizedString("Due by %@", comment: "")
         return String(format: localizedText, dateString)
-    }
-    
-    //MARK: - Bill Issued
-    private(set) lazy var billIssuedAmountText: Driver<String?> = self.currentAccountDetail.map { _ in
-        nil //TODO: Bill Issued
-    }
-    
-    private(set) lazy var billIssuedDateText: Driver<String?> = self.currentAccountDetail.map { _ in
-        nil //TODO: Bill Issued
     }
     
     //MARK: - Payment Received
@@ -387,7 +415,7 @@ class BillViewModel {
     //MARK: - Credit
     private(set) lazy var creditAmountText: Driver<String> = self.currentAccountDetail.map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
-        return abs(netDueAmount).currencyString ?? "--"
+        return abs(netDueAmount).currencyString
     }
     
     //MARK: - Payment Status
@@ -396,27 +424,16 @@ class BillViewModel {
             return NSLocalizedString("You are enrolled in BGEasy", comment: "")
         } else if accountDetail.isAutoPay {
             return NSLocalizedString("You are enrolled in AutoPay", comment: "")
-        } else if let pendingPaymentAmount = accountDetail.billingInfo.pendingPayments.first?.amount, let amountString = pendingPaymentAmount.currencyString, pendingPaymentAmount > 0 {
-            let localizedText: String
-            switch Environment.shared.opco {
-            case .bge:
-                localizedText = NSLocalizedString("You have a payment of %@ processing", comment: "")
-            case .comEd, .peco:
-                localizedText = NSLocalizedString("You have a pending payment of %@", comment: "")
-            }
-            return String(format: localizedText, amountString)
         } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
             let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
-            let amountString = scheduledPaymentAmount.currencyString,
             scheduledPaymentAmount > 0 {
-            return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), amountString, scheduledPaymentDate.mmDdYyyyString)
+            return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString)
         } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
             let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
-            let amountString = lastPaymentAmount.currencyString,
             lastPaymentAmount > 0,
             let billDate = accountDetail.billingInfo.billDate,
             billDate < lastPaymentDate {
-            return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), amountString, lastPaymentDate.mmDdYyyyString)
+            return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), lastPaymentAmount.currencyString, lastPaymentDate.mmDdYyyyString)
         }
         return nil
     }
@@ -437,12 +454,12 @@ class BillViewModel {
                     "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
             } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
                 let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
-                let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
+                scheduledPaymentAmount > 0 {
                 let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
                     "To avoid a duplicate payment, please review your payment activity before proceeding. Would " +
                     "you like to continue making an additional payment?", comment: ""),
-                                               amountString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
+                                               scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
             }
             return (nil, nil, accountDetail)
     }
@@ -452,8 +469,7 @@ class BillViewModel {
         
         if $0.isAutoPay {
             return .autoPay
-        } else if $0.billingInfo.scheduledPayment?.amount > 0 &&
-            $0.billingInfo.pendingPayments.first?.amount ?? 0 <= 0 {
+        } else if $0.billingInfo.scheduledPayment?.amount > 0 {
             return .activity
         }
         

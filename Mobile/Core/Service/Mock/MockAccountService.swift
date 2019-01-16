@@ -122,8 +122,9 @@ class MockAccountService: AccountService {
         case "pastDue":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
-                                                                       pastDueAmount: 100,
-                                                                       dueByDate: tenDaysFromToday))
+                                                                       pastDueAmount: 140,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       currentDueAmount: 60))
             return .just(accountDetail)
             
         case "pastDueEqual":
@@ -136,7 +137,8 @@ class MockAccountService: AccountService {
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        restorationAmount: 200,
-                                                                       dueByDate: tenDaysFromToday),
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       currentDueAmount: 150),
                                               isCutOutNonPay: true)
             return .just(accountDetail)
             
@@ -154,7 +156,8 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 100,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 100,
-                                                                       isDisconnectNotice: true),
+                                                                       isDisconnectNotice: true,
+                                                                       currentDueAmount: 100),
                                               isCutOutDispatched: true)
             return .just(accountDetail)
             
@@ -163,7 +166,8 @@ class MockAccountService: AccountService {
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
-                                                                       isDisconnectNotice: true))
+                                                                       isDisconnectNotice: true,
+                                                                       currentDueAmount: 150))
             return .just(accountDetail)
             
         case "avoidShutoffEqual":
@@ -180,7 +184,8 @@ class MockAccountService: AccountService {
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        amtDpaReinst: 200,
                                                                        dueByDate: tenDaysFromToday,
-                                                                       atReinstateFee: 5),
+                                                                       atReinstateFee: 5,
+                                                                       currentDueAmount: 150),
                                               isLowIncome: false)
             return .just(accountDetail)
             
@@ -198,6 +203,16 @@ class MockAccountService: AccountService {
                                               billingInfo: BillingInfo(netDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        pendingPayments: [PaymentItem(amount: 200,
+                                                                                                     status: .pending)]))
+            return .just(accountDetail)
+            
+        case "paymentsPending":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 300,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       pendingPayments: [PaymentItem(amount: 250,
+                                                                                                     status: .pending),
+                                                                                         PaymentItem(amount: 50,
                                                                                                      status: .pending)]))
             return .just(accountDetail)
             

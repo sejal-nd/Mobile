@@ -102,12 +102,12 @@ class StormModeBillViewModel {
                     "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
             } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
                 let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
-                let amountString = scheduledPaymentAmount.currencyString, scheduledPaymentAmount > 0 {
+                scheduledPaymentAmount > 0 {
                 let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
                     "To avoid a duplicate payment, please review your payment activity before proceeding. Would " +
                     "you like to continue making an additional payment?", comment: ""),
-                                               amountString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
+                                               scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
             }
             return (nil, nil, accountDetail)
     }
