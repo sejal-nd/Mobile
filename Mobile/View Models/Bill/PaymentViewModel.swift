@@ -811,10 +811,8 @@ class PaymentViewModel {
         
         let billingInfo = accountDetail.value.billingInfo
         
-        // If they have an amtDpaReinst, they shouldn't have a pastDueAmount, and vice versa.
-        // amtDpaReinst is to "catch up" as pastDueAmount is to all other precarious bill situations.
         guard let netDueAmount = billingInfo.netDueAmount,
-            let pastDueAmount = billingInfo.pastDueAmount ?? billingInfo.amtDpaReinst,
+            let pastDueAmount = billingInfo.pastDueAmount,
             pastDueAmount > 0 else {
             return []
         }
@@ -853,7 +851,7 @@ class PaymentViewModel {
             
             precariousAmounts.append((arrears, NSLocalizedString("Turn-Off Notice Amount", comment: "")))
         } else if let amtDpaReinst = billingInfo.amtDpaReinst, amtDpaReinst > 0 && Environment.shared.opco != .bge {
-            guard amtDpaReinst != netDueAmount else {
+            guard pastDueAmount != netDueAmount || amtDpaReinst != netDueAmount else {
                 return []
             }
             

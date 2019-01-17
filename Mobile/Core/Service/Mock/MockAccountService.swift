@@ -78,7 +78,7 @@ class MockAccountService: AccountService {
         case "scheduledPayment":
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 82,
                                                                                               dueByDate: tenDaysFromToday,
-                                                                                              scheduledPayment: PaymentItem(amount: 82)))
+                                                                                              scheduledPayment: PaymentItem(amount: 82, date: tenDaysFromToday)))
             return .just(accountDetail)
             
         case "autoPay":
@@ -100,8 +100,10 @@ class MockAccountService: AccountService {
             let now = Date()
             let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: now)
             let accountDetail = AccountDetail(accountNumber: "1234",
-                                              billingInfo: BillingInfo(lastPaymentAmount: 200,
+                                              billingInfo: BillingInfo(netDueAmount: 0,
+                                                                       lastPaymentAmount: 200,
                                                                        lastPaymentDate: now,
+                                                                       dueByDate: now,
                                                                        billDate: yesterday))
             return .just(accountDetail)
             
@@ -136,6 +138,7 @@ class MockAccountService: AccountService {
         case "restoreService":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
                                                                        restorationAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        currentDueAmount: 150),
@@ -145,6 +148,7 @@ class MockAccountService: AccountService {
         case "restoreServiceEqual":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
                                                                        restorationAmount: 350,
                                                                        dueByDate: tenDaysFromToday),
                                               isCutOutNonPay: true)
@@ -164,6 +168,7 @@ class MockAccountService: AccountService {
         case "avoidShutoff":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
                                                                        isDisconnectNotice: true,
@@ -182,6 +187,7 @@ class MockAccountService: AccountService {
         case "catchUp":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
                                                                        amtDpaReinst: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        atReinstateFee: 5,
@@ -192,6 +198,7 @@ class MockAccountService: AccountService {
         case "catchUpEqual":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
                                                                        amtDpaReinst: 350,
                                                                        dueByDate: tenDaysFromToday,
                                                                        atReinstateFee: 5),
@@ -201,8 +208,9 @@ class MockAccountService: AccountService {
         case "paymentPending":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       remainingBalanceDue: 100,
                                                                        dueByDate: tenDaysFromToday,
-                                                                       pendingPayments: [PaymentItem(amount: 200,
+                                                                       pendingPayments: [PaymentItem(amount: 100,
                                                                                                      status: .pending)]))
             return .just(accountDetail)
             
