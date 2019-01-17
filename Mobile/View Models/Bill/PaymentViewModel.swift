@@ -1102,7 +1102,7 @@ class PaymentViewModel {
             
             let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
             if let dueDate = accountDetail.billingInfo.dueByDate {
-                if dueDate < startOfTodayDate {
+                if dueDate <= startOfTodayDate {
                     return true
                 }
             }
@@ -1112,7 +1112,22 @@ class PaymentViewModel {
     }
     
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
-        Environment.shared.opco != .bge && $0.billingInfo.pastDueAmount ?? 0 > 0 && self?.paymentId.value == nil
+        if Environment.shared.opco == .bge || self?.paymentId.value != nil {
+            return false
+        }
+        
+        guard let pastDueAmount = $0.billingInfo.pastDueAmount,
+            let netDueAmount = $0.billingInfo.netDueAmount,
+            let dueDate = $0.billingInfo.dueByDate else {
+                return false
+        }
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+        if pastDueAmount > 0 && pastDueAmount != netDueAmount && dueDate > startOfTodayDate {
+            // Past due amount but with a new bill allows user to future date, so we should hide
+            return false
+        }
+
+        return pastDueAmount > 0
     }
     
     private(set) lazy var paymentDateString: Driver<String> = Driver

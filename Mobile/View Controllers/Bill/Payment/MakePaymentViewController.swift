@@ -427,6 +427,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowSelectPaymentAmount.drive(onNext: { [weak self] shouldShow in
             guard let self = self else { return }
             self.selectPaymentAmountStack.isHidden = !shouldShow
+            self.paymentAmountTextField.isHidden = shouldShow
             
             self.paymentAmountsStack.arrangedSubviews.forEach {
                 self.paymentAmountsStack.removeArrangedSubview($0)
