@@ -65,7 +65,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
+--phase                   - cocoapods, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 --override-mbe            - Override the default MBE for testing or staging builds only 
                           - Options: ${stagingMBEs[*]}
 "
@@ -162,7 +162,7 @@ elif [ -z "$OPCO" ]; then
     exit 1
 fi
 
-target_phases="carthage, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
+target_phases="cocoapods, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -343,11 +343,11 @@ if xcodebuild -version | grep -q 9.4.1; then
     touch Mobile/Configuration/environment_preprocess.h
 fi
 
-# Restore Carthage Packages
-if [[ $target_phases = *"carthage"* ]]; then 
-    # carthage update --platform iOS --project-directory $PROJECT_DIR
-    carthage update --platform iOS --project-directory $PROJECT_DIR --cache-builds
-    check_errs $? "Carthage update exited with a non-zero status"
+# Restore cocoapods Packages
+if [[ $target_phases = *"cocoapods"* ]]; then 
+    # cocoapods update --platform iOS --project-directory $PROJECT_DIR
+    pod install
+    check_errs $? "Cocoapods install exited with a non-zero status"
 fi
 
 if [[ $target_phases = *"unitTest"* ]]; then
