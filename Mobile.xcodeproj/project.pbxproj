@@ -1285,6 +1285,7 @@
 		B0E9EFFF21EE458F0086A82A /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
 		B0E9F00021EE458F0086A82A /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
 		B0E9F00121EE458F0086A82A /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
+		B0E9F00421F28ADB0086A82A /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
 		B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */; };
 		B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */; };
 		B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA71BE2090FF7C002A2B45 /* ShortcutItem.swift */; };
@@ -6990,6 +6991,7 @@
 				9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */,
 				356C7F8521909EB3003E8A90 /* Maintenance.swift in Sources */,
 				356C7F8821909F46003E8A90 /* AuthenticationService.swift in Sources */,
+				B0E9F00421F28ADB0086A82A /* SequenceForEach.swift in Sources */,
 				356C7F8921909F6F003E8A90 /* Premise.swift in Sources */,
 				356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */,
 				356C7F982190A2D1003E8A90 /* BillComparison.swift in Sources */,

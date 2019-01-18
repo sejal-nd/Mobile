@@ -337,33 +337,33 @@ class BillViewController: AccountPickerViewController {
 	}
 
 	func bindViewHiding() {
-        viewModel.shouldShowAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowAlertBanner.filter { $0 }.map(to: ())
+        viewModel.showAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
+        viewModel.showAlertBanner.filter { $0 }.map(to: ())
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 
-        viewModel.shouldShowAmountDueTooltip.not().drive(questionMarkButton.rx.isHidden).disposed(by: bag)
+        viewModel.showAmountDueTooltip.not().drive(questionMarkButton.rx.isHidden).disposed(by: bag)
         
-        viewModel.shouldShowTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
-        viewModel.shouldShowTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
+        viewModel.showTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
+        viewModel.showTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
         
-		viewModel.shouldShowCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
+		viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
         viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
         viewModel.showCurrentBill.not().drive(currentBillView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
         
-		viewModel.shouldShowPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
-		viewModel.shouldShowRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
+		viewModel.showPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
+		viewModel.showRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
 
-		viewModel.shouldShowBillBreakdownButton.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
+		viewModel.showBillBreakdownButton.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
-		viewModel.shouldEnableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
-		viewModel.shouldEnableMakeAPaymentButton.drive(billPaidView.rx.isHidden).disposed(by: bag)
+		viewModel.enableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
+		viewModel.enableMakeAPaymentButton.drive(billPaidView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
 
-        viewModel.shouldShowAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
-		viewModel.shouldShowPaperless.not().drive(paperlessButton.rx.isHidden).disposed(by: bag)
-		viewModel.shouldShowBudget.not().drive(budgetButton.rx.isHidden).disposed(by: bag)
+        viewModel.showAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
+		viewModel.showPaperless.not().drive(paperlessButton.rx.isHidden).disposed(by: bag)
+		viewModel.showBudget.not().drive(budgetButton.rx.isHidden).disposed(by: bag)
 	}
 
     func bindViewContent() {
@@ -523,7 +523,7 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         let shortcutReady = Observable.zip(viewModel.makePaymentScheduledPaymentAlertInfo,
-                                           viewModel.shouldEnableMakeAPaymentButton.asObservable())
+                                           viewModel.enableMakeAPaymentButton.asObservable())
             .filter { [weak self] in $1 && self?.shortcutItem == .payBill }
             .map { $0.0 }
         
