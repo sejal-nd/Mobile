@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-import ToastSwiftFramework
+import Toast_Swift
 
 class MaintenanceModeViewController: UIViewController {
     

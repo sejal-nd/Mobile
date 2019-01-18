@@ -8,7 +8,7 @@
 
 import RxSwift
 import RxCocoa
-import Zxcvbn
+import zxcvbn_ios
 
 fileprivate let kMaxUsernameChars = 255
 

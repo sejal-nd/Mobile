@@ -6,6 +6,8 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
+
 private extension Date {
     var apiString: String {
         return DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: self)

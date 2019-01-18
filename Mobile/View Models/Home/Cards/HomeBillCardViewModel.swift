@@ -697,11 +697,8 @@ class HomeBillCardViewModel {
     
     private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
         { accountDetail, walletItem, showMinMaxPaymentAllowed in
+            guard let walletItem = walletItem else { return false }
             if showMinMaxPaymentAllowed {
-                return false
-            }
-            
-            guard let walletItem = walletItem else {
                 return false
             }
             
@@ -710,7 +707,7 @@ class HomeBillCardViewModel {
             }
             
             let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: walletItem.bankOrCard)
-            if accountDetail.billingInfo.netDueAmount < minPaymentAmount && Environment.shared.opco != .bge {
+            if accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
                 return false
             }
             

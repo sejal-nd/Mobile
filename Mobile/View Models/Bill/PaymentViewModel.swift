@@ -789,11 +789,24 @@ class PaymentViewModel {
         }
     }()
     
-    var showSelectPaymentAmount: Bool {
-        //TODO: Remove when BGE gets paymentus
-        guard Environment.shared.opco != .bge else { return false }
+    private(set) lazy var shouldShowSelectPaymentAmount: Driver<Bool> = self.selectedWalletItem.asDriver().map { [weak self] in
+        guard Environment.shared.opco != .bge else { return false } //TODO: Remove when BGE gets paymentus
+        guard let self = self else { return false }
+        guard let bankOrCard = $0?.bankOrCard else { return false }
         
-        return !paymentAmounts.isEmpty
+        if self.paymentAmounts.isEmpty {
+            return false
+        }
+        
+        let min = self.accountDetail.value.minPaymentAmount(bankOrCard: bankOrCard)
+        let max = self.accountDetail.value.maxPaymentAmount(bankOrCard: bankOrCard)
+        for paymentAmount in self.paymentAmounts {
+            guard let amount = paymentAmount.0 else { continue }
+            if amount < min || amount > max {
+                return false
+            }
+        }
+        return true
     }
     
     /**
@@ -1089,7 +1102,7 @@ class PaymentViewModel {
             
             let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
             if let dueDate = accountDetail.billingInfo.dueByDate {
-                if dueDate < startOfTodayDate {
+                if dueDate <= startOfTodayDate {
                     return true
                 }
             }
@@ -1099,7 +1112,22 @@ class PaymentViewModel {
     }
     
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
-        Environment.shared.opco != .bge && $0.billingInfo.pastDueAmount > 0 && self?.paymentId.value == nil
+        if Environment.shared.opco == .bge || self?.paymentId.value != nil {
+            return false
+        }
+        
+        guard let pastDueAmount = $0.billingInfo.pastDueAmount,
+            let netDueAmount = $0.billingInfo.netDueAmount,
+            let dueDate = $0.billingInfo.dueByDate else {
+                return false
+        }
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+        if pastDueAmount > 0 && pastDueAmount != netDueAmount && dueDate > startOfTodayDate {
+            // Past due amount but with a new bill allows user to future date, so we should hide
+            return false
+        }
+
+        return pastDueAmount > 0
     }
     
     private(set) lazy var paymentDateString: Driver<String> = Driver

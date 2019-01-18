@@ -6,7 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ContactUsViewModel {
     let opco = Environment.shared.opco
