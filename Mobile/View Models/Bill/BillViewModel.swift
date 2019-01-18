@@ -193,25 +193,57 @@ class BillViewModel {
         
         // Finaled
         if billingInfo.pastDueAmount > 0 && accountDetail.isFinaled {
-            return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been finaled and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
+            if billingInfo.pastDueAmount == billingInfo.netDueAmount {
+                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been finaled and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
+            } else {
+                return String.localizedStringWithFormat("%@ is past due and must be paid immediately. Your account has been finaled and is no longer connected to your premise address.", billingInfo.pastDueAmount?.currencyString ?? "--")
+            }
         }
         
         // Restore Service
-        if accountDetail.billingInfo.restorationAmount > 0 &&
+        if let restorationAmount = accountDetail.billingInfo.restorationAmount,
+            restorationAmount > 0 &&
             accountDetail.isCutOutNonPay &&
             Environment.shared.opco != .bge {
-            return String.localizedStringWithFormat("%@ of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.", billingInfo.restorationAmount?.currencyString ?? "--")
+            if restorationAmount == billingInfo.netDueAmount {
+                return NSLocalizedString("The total amount must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.", comment: "")
+            } else {
+                return String.localizedStringWithFormat("%@ of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.", restorationAmount.currencyString)
+            }
         }
         
         // Avoid Shutoff
-        if accountDetail.billingInfo.disconnectNoticeArrears > 0 && accountDetail.billingInfo.isDisconnectNotice {
-            let amountText = billingInfo.disconnectNoticeArrears?.currencyString ?? "--"
+        if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && billingInfo.isDisconnectNotice {
+            let amountString = arrears.currencyString
+            var days = 0
+            if let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
+                accountDetail.billingInfo.turnOffNoticeDueDate {
+                days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+            }
             
-            //TODO: - Softened language for extended disconnect date
-            if accountDetail.isCutOutDispatched {
-                return String.localizedStringWithFormat("%@ of the total must be paid immediately to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment.", amountText)
-            } else {
-                return String.localizedStringWithFormat("%@ of the total must be paid immediately to avoid shutoff.", amountText)
+            switch (Environment.shared.opco, days > 0, accountDetail.isCutOutDispatched, arrears == billingInfo.netDueAmount) {
+            case (.bge, true, true, true):
+                let format = "The total amount must be paid in %d day%@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
+                return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+            case (.bge, true, true, false):
+                let format = "%@ of the total must be paid in %d day%@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
+                return String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            case (.bge, true, false, true):
+                let format = "The total amount is due in %d day%@ to avoid shutoff."
+                return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+            case (.bge, true, false, false):
+                let format = "%@ of the total is due in %d day%@ to avoid shutoff."
+                return String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            case (_, _, true, true):
+                return NSLocalizedString("The total amount must be paid immediately to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment.", comment: "")
+            case (_, _, true, false):
+                let format = "%@ of the total must be paid immediately to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
+                return String.localizedStringWithFormat(format, amountString)
+            case (_, _, false, true):
+                return NSLocalizedString("The total amount must be paid immediately to avoid shutoff.", comment: "")
+            case (_, _, false, false):
+                let format = "%@ of the total must be paid immediately to avoid shutoff."
+                return String.localizedStringWithFormat(format, amountString)
             }
         }
         
@@ -300,7 +332,9 @@ class BillViewModel {
     //MARK: - Past Due
     private(set) lazy var pastDueText: Driver<String> = currentAccountDetail
         .map { accountDetail in
-            if Environment.shared.opco != .bge && accountDetail.billingInfo.amtDpaReinst > 0 {
+            let billingInfo = accountDetail.billingInfo
+            if Environment.shared.opco != .bge && billingInfo.amtDpaReinst > 0 &&
+                billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 return NSLocalizedString("Catch Up on Agreement Amount", comment: "")
             } else {
                 return NSLocalizedString("Past Due Amount", comment: "")
@@ -308,7 +342,8 @@ class BillViewModel {
     }
     
     private(set) lazy var pastDueAmountText: Driver<String> = self.currentAccountDetail.map {
-        if Environment.shared.opco != .bge && $0.billingInfo.amtDpaReinst > 0 {
+        if Environment.shared.opco != .bge && $0.billingInfo.amtDpaReinst > 0 &&
+            $0.billingInfo.amtDpaReinst == $0.billingInfo.pastDueAmount {
             return $0.billingInfo.amtDpaReinst?.currencyString ?? "--"
         } else {
             return $0.billingInfo.pastDueAmount?.currencyString ?? "--"

@@ -494,39 +494,39 @@ class HomeBillCardViewModel {
                 return nil
             }
             
-            switch Environment.shared.opco {
-            case .bge:
-                guard let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
-                    accountDetail.billingInfo.turnOffNoticeDueDate ??
-                    accountDetail.billingInfo.dueByDate else {
-                        return nil
-                }
-                
-                let days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-                
-                let string: String
-                switch (days > 0, isMultiPremise) {
-                case (true, true):
-                    let format = "%@ of the total is due in %d day%@ to avoid shutoff for your multi-premise account."
-                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-                case (true, false):
-                    let format = "%@ of the total is due in %d day%@ to avoid shutoff."
-                    string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-                case (false, true):
-                    let format = "%@ of the total must be paid immediately to avoid shutoff for your multi-premise account."
-                    string = String.localizedStringWithFormat(format, amountString)
-                case (false, false):
-                    let format = "%@ of the total must be paid immediately to avoid shutoff."
-                    string = String.localizedStringWithFormat(format, amountString)
-                }
-                
-                return NSAttributedString(string: string, attributes: attributes)
-                
-            case .comEd, .peco:
-                let localizedText = NSLocalizedString("%@ of the total must be paid immediately to avoid shutoff.", comment: "")
-                let string = String.localizedStringWithFormat(localizedText, amountString)
-                return NSAttributedString(string: string, attributes: attributes)
+            var days = 0
+            if let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
+                accountDetail.billingInfo.turnOffNoticeDueDate {
+                days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
             }
+            
+            let string: String
+            switch (Environment.shared.opco, days > 0, isMultiPremise, billingInfo.disconnectNoticeArrears == billingInfo.netDueAmount) {
+            case (.bge, true, true, true):
+                let format = "The total amount is due in %d day%@ to avoid shutoff for your multi-premise account."
+                string = String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+            case (.bge, true, true, false):
+                let format = "%@ of the total is due in %d day%@ to avoid shutoff for your multi-premise account."
+                string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            case (.bge, true, false, true):
+                let format = "The total amount is due in %d day%@ to avoid shutoff."
+                string = String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+            case (.bge, true, false, false):
+                let format = "%@ of the total is due in %d day%@ to avoid shutoff."
+                string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+            case (.bge, false, true, true):
+                string = NSLocalizedString("The total amount must be paid immediately to avoid shutoff for your multi-premise account.", comment: "")
+            case (.bge, false, true, false):
+                let format = "%@ of the total must be paid immediately to avoid shutoff for your multi-premise account."
+                string = String.localizedStringWithFormat(format, amountString)
+            case (_, _, _, true):
+                string = NSLocalizedString("The total amount must be paid immediately to avoid shutoff.", comment: "")
+            case (_, _, _, false):
+                let format = "%@ of the total must be paid immediately to avoid shutoff."
+                string = String.localizedStringWithFormat(format, amountString)
+            }
+            
+            return NSAttributedString(string: string, attributes: attributes)
         case .finaled:
             guard let amountString = accountDetail.billingInfo.netDueAmount?.currencyString else {
                 return nil
@@ -571,7 +571,7 @@ class HomeBillCardViewModel {
              .font: OpenSans.semibold.of(textStyle: .subheadline)]
         
         switch billState {
-        case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff:
+        case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff, .catchUp:
             if let netDueAmount = accountDetail.billingInfo.netDueAmount, netDueAmount == accountDetail.billingInfo.pastDueAmount {
                 return NSAttributedString(string: NSLocalizedString("Total Amount Due Immediately", comment: ""),
                                           attributes: redAttributes)
@@ -579,9 +579,6 @@ class HomeBillCardViewModel {
                 return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
                                           attributes: grayAttributes)
             }
-        case .catchUp:
-            return NSAttributedString(string: NSLocalizedString("Total Amount Due", comment: ""),
-                                      attributes: grayAttributes)
         case .credit:
             return NSAttributedString(string: NSLocalizedString("No Amount Due", comment: ""),
                                       attributes: grayAttributes)
