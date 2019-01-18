@@ -345,7 +345,7 @@ fi
 
 # Restore cocoapods Packages
 if [[ $target_phases = *"cocoapods"* ]]; then 
-    # cocoapods update --platform iOS --project-directory $PROJECT_DIR
+    pod repo update
     pod install
     check_errs $? "Cocoapods install exited with a non-zero status"
 fi
