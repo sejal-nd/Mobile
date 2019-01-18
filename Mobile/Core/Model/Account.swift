@@ -168,17 +168,25 @@ struct AccountDetail: Mappable {
         zipCode = map.optionalFrom("zipCode")
     }
     
+    /* TODO: When BGE is on Paymentus, move these 2 functions into BillingInfo, and
+     * make minPaymentAmount, maxPaymentAmount, minPaymentAmountACH, maxPaymentAmountACH
+     * private lets to enforce the use of only these functions. We can't do that currently
+     * because our switch in maxPaymentAmount() relies on isResidential
+     */
     func minPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        switch bankOrCard {
-        case .bank:
-            if let minPaymentAmount = billingInfo.minPaymentAmountACH {
-                return minPaymentAmount
-            }
-        case .card:
-            if let minPaymentAmount = billingInfo.minPaymentAmount {
-                return minPaymentAmount
-            }
-        }
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let minPaymentAmount = billingInfo.minPaymentAmountACH {
+         return minPaymentAmount
+         }
+         case .card:
+         if let minPaymentAmount = billingInfo.minPaymentAmount {
+         return minPaymentAmount
+         }
+         }
+         */
         
         //TODO: Just return 5 once BGE switches to Paymentus
         switch Environment.shared.opco {
@@ -190,17 +198,19 @@ struct AccountDetail: Mappable {
     }
     
     func maxPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        switch bankOrCard {
-        case .bank:
-            if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
-                return maxPaymentAmount
-            }
-        case .card:
-            if let maxPaymentAmount = billingInfo.maxPaymentAmount {
-                return maxPaymentAmount
-            }
-        }
-        
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
+         return maxPaymentAmount
+         }
+         case .card:
+         if let maxPaymentAmount = billingInfo.maxPaymentAmount {
+         return maxPaymentAmount
+         }
+         }
+         */
         
         //: TODO - Simplify this switch to just bankOrCard when BGE switches to Paymentus
         switch (bankOrCard, Environment.shared.opco, isResidential) {

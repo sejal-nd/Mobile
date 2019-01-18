@@ -929,6 +929,8 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
     
+    /* TODO!! Uncomment these tests during epay R2 when the values will come from accountDetail.BillingInfo again
+     
     // Test paymentAmountErrorMessage for BGE bank accounts when the min/max values are defined in accountDetail
     // Min/max values are set below/above the hardcoded fallback values to test that those values are not used when being overridden in accountDetail
     func testPaymentAmountErrorMessageBGEBankFromAccountDetail() {
@@ -1078,6 +1080,7 @@ class PaymentViewModelTests: XCTestCase {
             }).disposed(by: disposeBag)
         }
     }
+    */
     
     // Test paymentAmountErrorMessage for BGE bank accounts when using the hardcoded min/max values
     func testPaymentAmountErrorMessageBGEBankHardcoded() {
