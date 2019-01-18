@@ -6,6 +6,8 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
+
 final class Version: Equatable, Comparable, CustomStringConvertible {
     let major: Int
     let minor: Int

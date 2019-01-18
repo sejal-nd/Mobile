@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import JVFloatLabeledText
+import JVFloatLabeledTextField
 import RxSwift
 import RxCocoa
 

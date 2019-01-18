@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import ToastSwiftFramework
+import Toast_Swift
 import Firebase
 import AppCenter
 import AppCenterCrashes
 import RxSwift
 import UserNotifications
+import PDTSimpleCalendar
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
