@@ -253,7 +253,7 @@ class HomeBillCardViewModel {
                 return .billReadyAutoPay
             }
             
-            if billingInfo.scheduledPayment?.amount > 0 {
+            if recentPayments.scheduledPayment?.amount > 0 {
                 return .paymentScheduled
             }
             
@@ -547,13 +547,13 @@ class HomeBillCardViewModel {
     }
     
     private(set) lazy var amountText: Driver<String?> = Driver
-        .combineLatest(billState, accountDetailDriver, recentPaymentsDriver)
-        .map { billState, accountDetail, recentPayments in
+        .combineLatest(billState, accountDetailDriver)
+        .map { billState, accountDetail in
             switch billState {
             case .billPaid:
                 return accountDetail.billingInfo.lastPaymentAmount?.currencyString
             case .paymentPending:
-                return recentPayments.pendingPayments.last?.amount.currencyString
+                return accountDetail.billingInfo.pendingPayments.last?.amount.currencyString
             default:
                 return accountDetail.billingInfo.netDueAmount?.currencyString
             }

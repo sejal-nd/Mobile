@@ -10,17 +10,13 @@ import Foundation
 import Mapper
 
 struct RecentPayments: Mappable {
-    
     let scheduledPayment: PaymentItem?
-    let pendingPayments: [PaymentItem]
     
     init(map: Mapper) throws {
         let paymentDicts: [NSDictionary] = try map.from("BillingInfo.payments")
         let paymentItems = paymentDicts.compactMap(PaymentItem.from)
         
         scheduledPayment = paymentItems.filter { $0.status == .scheduled }.last
-        pendingPayments = paymentItems
-            .filter { $0.status == .pending || $0.status == .processing }
     }
     
 }

@@ -425,24 +425,25 @@ class BillViewModel {
     }
     
     //MARK: - Payment Status
-    private(set) lazy var paymentStatusText: Driver<String?> = currentAccountDetail.map { accountDetail in
-        if Environment.shared.opco == .bge && accountDetail.isBGEasy {
-            return NSLocalizedString("You are enrolled in BGEasy", comment: "")
-        } else if accountDetail.isAutoPay {
-            return NSLocalizedString("You are enrolled in AutoPay", comment: "")
-        } else if let scheduledPaymentAmount = accountDetail.billingInfo.scheduledPayment?.amount,
-            let scheduledPaymentDate = accountDetail.billingInfo.scheduledPayment?.date,
-            scheduledPaymentAmount > 0 {
-            return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString)
-        } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
-            let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
-            lastPaymentAmount > 0,
-            let billDate = accountDetail.billingInfo.billDate,
-            billDate < lastPaymentDate {
-            return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), lastPaymentAmount.currencyString, lastPaymentDate.mmDdYyyyString)
-        }
-        
-        return nil
+    private(set) lazy var paymentStatusText: Driver<String?> = data
+        .map { accountDetail, payments in
+            if Environment.shared.opco == .bge && accountDetail.isBGEasy {
+                return NSLocalizedString("You are enrolled in BGEasy", comment: "")
+            } else if accountDetail.isAutoPay {
+                return NSLocalizedString("You are enrolled in AutoPay", comment: "")
+            } else if let scheduledPaymentAmount = payments.scheduledPayment?.amount,
+                let scheduledPaymentDate = payments.scheduledPayment?.date,
+                scheduledPaymentAmount > 0 {
+                return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString)
+            } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
+                let lastPaymentDate = accountDetail.billingInfo.lastPaymentDate,
+                lastPaymentAmount > 0,
+                let billDate = accountDetail.billingInfo.billDate,
+                billDate < lastPaymentDate {
+                return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), lastPaymentAmount.currencyString, lastPaymentDate.mmDdYyyyString)
+            }
+            
+            return nil
         }
         .asDriver(onErrorDriveWith: .empty())
     

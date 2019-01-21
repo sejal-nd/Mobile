@@ -353,10 +353,6 @@ class MockAccountService: AccountService {
         case "scheduledPayment", "autoPayScheduled":
             let recentPayments = RecentPayments(scheduledPayment: PaymentItem(amount: 82))
             return .just(recentPayments)
-        case "paymentPending":
-            let recentPayments = RecentPayments(pendingPayments: [PaymentItem(amount: 200,
-                                                                              status: .pending)])
-            return .just(recentPayments)
         default:
             guard let accountIndex = mockAccounts.firstIndex(where: { $0.accountNumber == accountNumber}) else {
                 return .error(ServiceError(serviceMessage: "No account detail found for the provided account."))
