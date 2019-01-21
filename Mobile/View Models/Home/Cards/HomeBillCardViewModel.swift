@@ -226,7 +226,7 @@ class HomeBillCardViewModel {
                 return .billPaidIntermediate
             }
             
-            if accountDetail.isFinaled {
+            if accountDetail.isFinaled && billingInfo.pastDueAmount > 0 {
                 return .finaled
             }
             
