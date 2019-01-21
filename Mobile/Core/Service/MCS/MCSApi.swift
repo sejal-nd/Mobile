@@ -18,8 +18,12 @@ import WatchKit
 class MCSApi {
 
     static let shared = MCSApi()
-
-    static let API_VERSION: String = "v5"
+    
+    enum PathPrefix: String {
+        case anon = "anon_v5"
+        case auth = "auth_v5"
+        case none
+    }
     
     private let TIMEOUT = 120.0
 
@@ -61,8 +65,8 @@ class MCSApi {
     ///
     /// - Parameters:
     ///   - path: the relative path of the resource
-    func get(anon: Bool = false, path: String, logResponseBody: Bool = true) -> Observable<Any> {
-        return call(anon: anon, path: path, method: .get, logResponseBody: logResponseBody)
+    func get(pathPrefix: PathPrefix, path: String, logResponseBody: Bool = true) -> Observable<Any> {
+        return call(pathPrefix: pathPrefix, path: path, method: .get, logResponseBody: logResponseBody)
     }
 
 
@@ -71,8 +75,8 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to post
-    func post(anon: Bool = false, path: String, params: [String:Any]?, logResponseBody: Bool = true) -> Observable<Any> {
-        return call(anon: anon, path: path, params: params, method: .post, logResponseBody: logResponseBody)
+    func post(pathPrefix: PathPrefix, path: String, params: [String:Any]?, logResponseBody: Bool = true) -> Observable<Any> {
+        return call(pathPrefix: pathPrefix, path: path, params: params, method: .post, logResponseBody: logResponseBody)
     }
 
 
@@ -81,8 +85,8 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to post
-    func put(anon: Bool = false, path: String, params: [String:Any]?, logResponseBody: Bool = true) -> Observable<Any> {
-        return call(anon: anon, path: path, params: params, method: .put, logResponseBody: logResponseBody)
+    func put(pathPrefix: PathPrefix, path: String, params: [String:Any]?, logResponseBody: Bool = true) -> Observable<Any> {
+        return call(pathPrefix: pathPrefix, path: path, params: params, method: .put, logResponseBody: logResponseBody)
     }
 
 
@@ -91,8 +95,8 @@ class MCSApi {
     /// - Parameters:
     ///   - path: the relative path of the resource
     ///   - params: the body parameters to send
-    func delete(anon: Bool = false, path: String, params: [String:Any]?, logResponseBody: Bool = true) -> Observable<Any> {
-        return call(anon: anon, path: path, params: params, method: .delete, logResponseBody: logResponseBody)
+    func delete(pathPrefix: PathPrefix, path: String, params: [String:Any]?, logResponseBody: Bool = true) -> Observable<Any> {
+        return call(pathPrefix: pathPrefix, path: path, params: params, method: .delete, logResponseBody: logResponseBody)
     }
 
     #if os(iOS)
@@ -186,16 +190,19 @@ class MCSApi {
     ///   - params: the body parameters to supply.
     ///   - method: the method to apply (POST/PUT/GET/DELETE)
     ///   - completion: the block to execute on completion.
-    func call(anon: Bool, path: String, params: [String: Any]? = nil, method: HttpMethod, logResponseBody: Bool) -> Observable<Any> {
+    func call(pathPrefix: PathPrefix, path: String, params: [String: Any]? = nil, method: HttpMethod, logResponseBody: Bool) -> Observable<Any> {
         
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         
-        var authPath: String
-        if anon {
+        var fullPath: String
+        switch pathPrefix {
+        case .anon:
             let opCoString = Environment.shared.opco.displayString.uppercased()
-            authPath = "anon_\(MCSApi.API_VERSION)/\(opCoString)/\(path)"
-        } else {
-            authPath = "auth_\(MCSApi.API_VERSION)/\(path)"
+            fullPath = "\(pathPrefix.rawValue)/\(opCoString)/\(path)"
+        case .auth:
+            fullPath = "\(pathPrefix.rawValue)/\(path)"
+        case .none:
+            fullPath = path
         }
         
         #if os(iOS)
@@ -205,19 +212,19 @@ class MCSApi {
         switch(networkStatus) {
         case .none:
             let serviceError = ServiceError(serviceCode: ServiceErrorCode.noNetworkConnection.rawValue)
-            APILog(MCSApi.self, requestId: requestId, path: authPath, method: method, logType: .error, message: serviceError.errorDescription)
+            APILog(MCSApi.self, requestId: requestId, path: fullPath, method: method, logType: .error, message: serviceError.errorDescription)
             return .error(serviceError)
         case .wifi, .cellular:
-            return performCall(anon: anon, requestId: requestId, path: authPath, params: params, method: method, logResponseBody: logResponseBody)
+            return performCall(requestId: requestId, path: fullPath, params: params, method: method, logResponseBody: logResponseBody)
         }
         #elseif os(watchOS)
         accessToken = tokenKeychain["authToken"]
         
-        return performCall(anon: anon, requestId: requestId, path: authPath, params: params, method: method, logResponseBody: logResponseBody)
+        return performCall(requestId: requestId, path: fullPath, params: params, method: method, logResponseBody: logResponseBody)
         #endif
     }
     
-    private func performCall(anon: Bool, requestId: String, path: String, params: [String: Any]? = nil, method: HttpMethod, logResponseBody: Bool) -> Observable<Any> {
+    private func performCall(requestId: String, path: String, params: [String: Any]? = nil, method: HttpMethod, logResponseBody: Bool) -> Observable<Any> {
         var requestBody: Data?
         var bodyString: String?
         if let params = params, let jsonData = try? JSONSerialization.data(withJSONObject: params) {
