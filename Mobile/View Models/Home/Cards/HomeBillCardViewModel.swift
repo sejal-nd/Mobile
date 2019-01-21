@@ -234,11 +234,11 @@ class HomeBillCardViewModel {
                 return .restoreService
             }
             
-            if accountDetail.isCutOutDispatched {
+            if billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutDispatched {
                 return .eligibleForCutoff
             }
             
-            if billingInfo.disconnectNoticeArrears > 0 && billingInfo.isDisconnectNotice {
+            if billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued {
                 return .avoidShutoff
             }
             

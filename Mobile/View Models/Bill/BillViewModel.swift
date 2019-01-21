@@ -213,7 +213,7 @@ class BillViewModel {
         }
         
         // Avoid Shutoff
-        if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && billingInfo.isDisconnectNotice {
+        if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && (accountDetail.isCutOutIssued || accountDetail.isCutOutDispatched) {
             let amountString = arrears.currencyString
             var days = 0
             if let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??

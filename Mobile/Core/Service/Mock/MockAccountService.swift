@@ -163,7 +163,6 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 100,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 100,
-                                                                       isDisconnectNotice: true,
                                                                        currentDueAmount: 100),
                                               isCutOutDispatched: true)
             return .just(accountDetail)
@@ -174,8 +173,8 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 100,
-                                                                       isDisconnectNotice: true,
-                                                                       currentDueAmount: 150))
+                                                                       currentDueAmount: 150),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoffExtended":
@@ -184,9 +183,9 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 100,
-                                                                       isDisconnectNotice: true,
                                                                        currentDueAmount: 150,
-                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday))
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoffPastEqual":
@@ -195,8 +194,8 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
-                                                                       isDisconnectNotice: true,
-                                                                       currentDueAmount: 150))
+                                                                       currentDueAmount: 150),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoffPastEqualExtended":
@@ -205,9 +204,9 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
-                                                                       isDisconnectNotice: true,
                                                                        currentDueAmount: 150,
-                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday))
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoffPastNetEqual":
@@ -215,8 +214,8 @@ class MockAccountService: AccountService {
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        pastDueAmount: 350,
                                                                        dueByDate: tenDaysFromToday,
-                                                                       disconnectNoticeArrears: 200,
-                                                                       isDisconnectNotice: true))
+                                                                       disconnectNoticeArrears: 200),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoffPastNetEqualExtended":
@@ -225,8 +224,8 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 350,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 200,
-                                                                       isDisconnectNotice: true,
-                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday))
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoffAllEqual":
@@ -234,8 +233,8 @@ class MockAccountService: AccountService {
                                               billingInfo: BillingInfo(netDueAmount: 350,
                                                                        pastDueAmount: 350,
                                                                        dueByDate: tenDaysFromToday,
-                                                                       disconnectNoticeArrears: 350,
-                                                                       isDisconnectNotice: true))
+                                                                       disconnectNoticeArrears: 350),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoffAllEqualExtended":
@@ -244,8 +243,8 @@ class MockAccountService: AccountService {
                                                                        pastDueAmount: 350,
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 350,
-                                                                       isDisconnectNotice: true,
-                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday))
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         // Catch Up
