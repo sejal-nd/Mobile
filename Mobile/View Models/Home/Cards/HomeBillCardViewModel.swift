@@ -528,7 +528,7 @@ class HomeBillCardViewModel {
             
             return NSAttributedString(string: string, attributes: attributes)
         case .finaled:
-            guard let amountString = accountDetail.billingInfo.netDueAmount?.currencyString else {
+            guard let amountString = accountDetail.billingInfo.pastDueAmount?.currencyString else {
                 return nil
             }
             

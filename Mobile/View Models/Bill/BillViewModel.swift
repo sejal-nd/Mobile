@@ -114,7 +114,7 @@ class BillViewModel {
         .startWith(false)
     
     private(set) lazy var showPendingPayment: Driver<Bool> = currentAccountDetail.map {
-        !$0.billingInfo.pendingPayments.isEmpty
+        $0.billingInfo.pendingPaymentsTotal > 0
     }
     
     private(set) lazy var showRemainingBalanceDue: Driver<Bool> = currentAccountDetail.map {
