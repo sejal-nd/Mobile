@@ -12,7 +12,7 @@ import RxSwift
 struct MCSAccountService: AccountService {
     
     func fetchAccounts() -> Observable<[Account]> {
-        return MCSApi.shared.get(path: "accounts")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts")
             .map { accounts in
                 let accountArray = (accounts as! [[String: Any]])
                     .compactMap { Account.from($0 as NSDictionary) }
@@ -39,7 +39,7 @@ struct MCSAccountService: AccountService {
     }
     
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return MCSApi.shared.get(path: "accounts/\(account.accountNumber)")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(account.accountNumber)")
             .map { json in
                 guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -53,18 +53,18 @@ struct MCSAccountService: AccountService {
     func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
         let valueString = "0\(selectedIndex + 1)"
         let params = ["release_info_value": valueString]
-        return MCSApi.shared.put(path: "accounts/\(account.accountNumber)/preferences/release", params: params)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/preferences/release", params: params)
             .mapTo(())
     }
     
     func setDefaultAccount(account: Account) -> Observable<Void> {
-        return MCSApi.shared.put(path: "accounts/\(account.accountNumber)/default", params: nil)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/default", params: nil)
             .mapTo(())
     }
     #endif
     
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
-        return MCSApi.shared.get(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata")
             .map { json in
                 guard let dict = json as? NSDictionary, let ssoData = SSOData.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)

@@ -18,7 +18,7 @@ class MCSAppointmentService: AppointmentService {
             "end_date": future.yyyyMMddString
         ]
         
-        return MCSApi.shared.post(path: "accounts/\(accountNumber)/premises/\(premiseNumber)/appointments/query", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/appointments/query", params: params)
             .map { json in
                 guard let array = json as? [NSDictionary] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
