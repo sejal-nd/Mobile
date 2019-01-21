@@ -6,7 +6,7 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension NSObject {
     @nonobjc public class var className: String {

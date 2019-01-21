@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ToastSwiftFramework
+import Toast_Swift
 
 class RegistrationSecurityQuestionListViewController: UITableViewController {
     

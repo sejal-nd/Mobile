@@ -77,6 +77,8 @@ extension AccountDetail {
          isBGEasy: Bool = false,
          isAutoPayEligible: Bool = false,
          isCutOutNonPay: Bool = false,
+         isCutOutIssued: Bool = false,
+         isCutOutDispatched: Bool = false,
          isLowIncome: Bool = false,
          flagFinaled: Bool = false,
          isAMIAccount: Bool = false,
@@ -120,6 +122,8 @@ extension AccountDetail {
         map["isBGEasy"] = isBGEasy
         map["isAutoPayEligible"] = isAutoPayEligible
         map["isCutOutNonPay"] = isCutOutNonPay
+        map["isCutOutDispatched"] = isCutOutDispatched
+        map["isCutOutIssued"] = isCutOutIssued
         map["isLowIncome"] = isLowIncome
         map["flagFinaled"] = flagFinaled
         map["isAMIAccount"] = isAMIAccount

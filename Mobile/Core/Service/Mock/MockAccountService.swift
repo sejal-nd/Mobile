@@ -80,7 +80,7 @@ class MockAccountService: AccountService {
         case "scheduledPayment":
             let accountDetail = AccountDetail(accountNumber: "1234", billingInfo: BillingInfo(netDueAmount: 82,
                                                                                               dueByDate: tenDaysFromToday,
-                                                                                              scheduledPayment: PaymentItem(amount: 82)))
+                                                                                              scheduledPayment: PaymentItem(amount: 82, date: tenDaysFromToday)))
             return .just(accountDetail)
             
         case "autoPay":
@@ -102,8 +102,10 @@ class MockAccountService: AccountService {
             let now = Date()
             let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: now)
             let accountDetail = AccountDetail(accountNumber: "1234",
-                                              billingInfo: BillingInfo(lastPaymentAmount: 200,
+                                              billingInfo: BillingInfo(netDueAmount: 0,
+                                                                       lastPaymentAmount: 200,
                                                                        lastPaymentDate: now,
+                                                                       dueByDate: now,
                                                                        billDate: yesterday))
             return .just(accountDetail)
             
@@ -114,32 +116,177 @@ class MockAccountService: AccountService {
             let accountDetail = AccountDetail(accountNumber: "1234")
             return .just(accountDetail)
             
+        // Past Due
+        case "finaled":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       pastDueAmount: 200),
+                                              flagFinaled: true)
+            return .just(accountDetail)
+            
         case "pastDue":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       pastDueAmount: 140,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       currentDueAmount: 60))
+            return .just(accountDetail)
+            
+        case "pastDueEqual":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
                                                                        pastDueAmount: 200))
             return .just(accountDetail)
             
+        // Resotre Service
         case "restoreService":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
                                                                        restorationAmount: 200,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       currentDueAmount: 150),
+                                              isCutOutNonPay: true)
+            return .just(accountDetail)
+            
+        case "restoreServiceEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
+                                                                       restorationAmount: 350,
                                                                        dueByDate: tenDaysFromToday),
                                               isCutOutNonPay: true)
+            return .just(accountDetail)
+            
+        // Avoid Shutoff
+        case "eligibleForCutoff":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       pastDueAmount: 100,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 100,
+                                                                       currentDueAmount: 100),
+                                              isCutOutDispatched: true)
             return .just(accountDetail)
             
         case "avoidShutoff":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
                                                                        dueByDate: tenDaysFromToday,
-                                                                       disconnectNoticeArrears: 200,
-                                                                       isDisconnectNotice: true))
+                                                                       disconnectNoticeArrears: 100,
+                                                                       currentDueAmount: 150),
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
+        case "avoidShutoffExtended":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 100,
+                                                                       currentDueAmount: 150,
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
+            return .just(accountDetail)
+            
+        case "avoidShutoffPastEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 200,
+                                                                       currentDueAmount: 150),
+                                              isCutOutIssued: true)
+            return .just(accountDetail)
+            
+        case "avoidShutoffPastEqualExtended":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 200,
+                                                                       currentDueAmount: 150,
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
+            return .just(accountDetail)
+            
+        case "avoidShutoffPastNetEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 200),
+                                              isCutOutIssued: true)
+            return .just(accountDetail)
+            
+        case "avoidShutoffPastNetEqualExtended":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 200,
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
+            return .just(accountDetail)
+            
+        case "avoidShutoffAllEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 350),
+                                              isCutOutIssued: true)
+            return .just(accountDetail)
+            
+        case "avoidShutoffAllEqualExtended":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       disconnectNoticeArrears: 350,
+                                                                       turnOffNoticeExtendedDueDate: tenDaysFromToday),
+                                              isCutOutIssued: true)
+            return .just(accountDetail)
+            
+        // Catch Up
         case "catchUp":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
+                                                                       amtDpaReinst: 100,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       atReinstateFee: 5,
+                                                                       currentDueAmount: 150),
+                                              isLowIncome: false)
+            return .just(accountDetail)
+            
+        case "catchUpPastEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 200,
                                                                        amtDpaReinst: 200,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       atReinstateFee: 5,
+                                                                       currentDueAmount: 150),
+                                              isLowIncome: false)
+            return .just(accountDetail)
+            
+        case "catchUpPastNetEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
+                                                                       amtDpaReinst: 200,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       atReinstateFee: 5),
+                                              isLowIncome: false)
+            return .just(accountDetail)
+            
+        case "catchUpAllEqual":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 350,
+                                                                       pastDueAmount: 350,
+                                                                       amtDpaReinst: 350,
                                                                        dueByDate: tenDaysFromToday,
                                                                        atReinstateFee: 5),
                                               isLowIncome: false)
@@ -148,8 +295,19 @@ class MockAccountService: AccountService {
         case "paymentPending":
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 200,
+                                                                       remainingBalanceDue: 100,
                                                                        dueByDate: tenDaysFromToday,
-                                                                       pendingPayments: [PaymentItem(amount: 200,
+                                                                       pendingPayments: [PaymentItem(amount: 100,
+                                                                                                     status: .pending)]))
+            return .just(accountDetail)
+            
+        case "paymentsPending":
+            let accountDetail = AccountDetail(accountNumber: "1234",
+                                              billingInfo: BillingInfo(netDueAmount: 300,
+                                                                       dueByDate: tenDaysFromToday,
+                                                                       pendingPayments: [PaymentItem(amount: 250,
+                                                                                                     status: .pending),
+                                                                                         PaymentItem(amount: 50,
                                                                                                      status: .pending)]))
             return .just(accountDetail)
             

@@ -12,7 +12,7 @@ import RxSwift
 class MCSPaymentService: PaymentService {
 
     func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo> {
-        return MCSApi.shared.get(path: "accounts/\(accountNumber)/payments/recurring")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/recurring")
             .map { json in
                 guard let dict = json as? NSDictionary, let autoPayInfo = BGEAutoPayInfo.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -53,9 +53,9 @@ class MCSPaymentService: PaymentService {
         params["auto_pay_request_type"] = isUpdate ? "Update" : "Start"
         let observable: Observable<Any>
         if isUpdate {
-            observable = MCSApi.shared.put(path: path, params: params)
+            observable = MCSApi.shared.put(pathPrefix: .auth, path: path, params: params)
         } else { // Start
-            observable = MCSApi.shared.post(path: path, params: params)
+            observable = MCSApi.shared.post(pathPrefix: .auth, path: path, params: params)
         }
         
         return observable.mapTo(())
@@ -65,7 +65,7 @@ class MCSPaymentService: PaymentService {
     }
     
     func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
-        return MCSApi.shared.post(path: "accounts/\(accountNumber)/payments/recurring/delete", params: nil)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/recurring/delete", params: nil)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.accountDetailUpdated.onNext(())
@@ -94,9 +94,9 @@ class MCSPaymentService: PaymentService {
 
         let observable: Observable<Any>
         if isUpdate {
-            observable = MCSApi.shared.put(path: path, params: params)
+            observable = MCSApi.shared.put(pathPrefix: .auth, path: path, params: params)
         } else {
-            observable = MCSApi.shared.post(path: path, params: params)
+            observable = MCSApi.shared.post(pathPrefix: .auth, path: path, params: params)
         }
         
         return observable.mapTo(())
@@ -109,7 +109,7 @@ class MCSPaymentService: PaymentService {
 
         let params: [String: Any] = ["reason": reason, "comments": ""]
 
-        return MCSApi.shared.post(path: "accounts/\(accountNumber)/payments/recurring/delete", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/recurring/delete", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.accountDetailUpdated.onNext(())
@@ -156,7 +156,7 @@ class MCSPaymentService: PaymentService {
                                              "zip_code": creditCard.postalCode,
                                              "cvv": creditCard.securityCode]
                     
-                return MCSApi.shared.post(path: "accounts/\(accountNumber)/payments/schedule", params: params)
+                return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
                     .map { json in
                         guard let dict = json as? NSDictionary,
                             let confirmation = dict["confirmationNumber"] as? String else {
@@ -174,7 +174,7 @@ class MCSPaymentService: PaymentService {
     }
     
     private func schedulePaymentInternal(accountNumber: String, params: [String: Any]) -> Observable<String> {
-        return MCSApi.shared.post(path: "accounts/\(accountNumber)/payments/schedule", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
             .map { json -> String in
                 guard let dict = json as? NSDictionary,
                     let confirmation = dict["confirmationNumber"] as? String else {
@@ -206,7 +206,7 @@ class MCSPaymentService: PaymentService {
     }
     
     func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
-        return MCSApi.shared.get(path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)")
             .map { json in
                 guard let dict = json as? NSDictionary,
                     let paymentDetail = PaymentDetail.from(dict) else {
@@ -239,7 +239,7 @@ class MCSPaymentService: PaymentService {
     }
     
     private func updatePaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
-        return MCSApi.shared.put(path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
@@ -283,7 +283,7 @@ class MCSPaymentService: PaymentService {
     }
     
     private func cancelPaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
-        return MCSApi.shared.post(path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)

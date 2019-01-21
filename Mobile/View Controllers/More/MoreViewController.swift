@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import StoreKit
-import ToastSwiftFramework
+import Toast_Swift
 
 class MoreViewController: UIViewController {
     

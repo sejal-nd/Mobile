@@ -275,7 +275,7 @@ class HomeUsageCardViewModel {
         let dateString = "\(compared.startDate.fullMonthAndDayString) to \(compared.endDate.fullMonthAndDayString)"
         
         let localizedString = NSLocalizedString("Total bill: %@. Usage: %d %@", comment: "")
-        let detailString = String(format: localizedString, compared.charges.currencyString!, Int(compared.usage), $0.meterUnit)
+        let detailString = String(format: localizedString, compared.charges.currencyString, Int(compared.usage), $0.meterUnit)
         
         return "\(dateString). \(detailString)"
     }
@@ -286,7 +286,7 @@ class HomeUsageCardViewModel {
         let dateString = "\(reference.startDate.fullMonthAndDayString) to \(reference.endDate.fullMonthAndDayString)"
         
         let localizedString = NSLocalizedString("Total bill: %@. Usage: %d %@", comment: "")
-        let detailString = String(format: localizedString, reference.charges.currencyString!, Int(reference.usage), $0.meterUnit)
+        let detailString = String(format: localizedString, reference.charges.currencyString, Int(reference.usage), $0.meterUnit)
         
         return "\(dateString). \(detailString)"
     }
@@ -325,11 +325,11 @@ class HomeUsageCardViewModel {
             guard let self = self else { return nil }
             if selectionStates[1].value { // Previous
                 if let compared = billComparison.compared {
-                    return compared.charges.currencyString!
+                    return compared.charges.currencyString
                 }
             } else if selectionStates[2].value { // Current
                 if let reference = billComparison.reference {
-                    return reference.charges.currencyString!
+                    return reference.charges.currencyString
                 }
             }
             return nil

@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 import SafariServices
 
 class UsageViewController: AccountPickerViewController {

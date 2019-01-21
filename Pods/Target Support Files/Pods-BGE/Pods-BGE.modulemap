@@ -1,6 +1,0 @@
-framework module Pods_BGE {
-  umbrella header "Pods-BGE-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -72,7 +72,7 @@ class SmartEnergyRewardsViewModel {
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
-        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString)
         return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
@@ -138,7 +138,7 @@ class SmartEnergyRewardsViewModel {
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
-        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString)
         return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
@@ -146,11 +146,11 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var bar3DollarLabelText: Driver<String?> = self.latest3EventsThisSeason.map {
         if $0.count == 3 {
-            return $0[2].savingDollar.currencyString!
+            return $0[2].savingDollar.currencyString
         } else if $0.count == 2 {
-            return $0[1].savingDollar.currencyString!
+            return $0[1].savingDollar.currencyString
         } else if $0.count == 1 {
-            return $0[0].savingDollar.currencyString!
+            return $0[0].savingDollar.currencyString
         }
         return nil
     }
@@ -212,7 +212,7 @@ class SmartEnergyRewardsViewModel {
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
-        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString)
         return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
@@ -263,7 +263,7 @@ class SmartEnergyRewardsViewModel {
             guard let self = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
-            return event.savingDollar.currencyString!
+            return event.savingDollar.currencyString
         }
     
     
