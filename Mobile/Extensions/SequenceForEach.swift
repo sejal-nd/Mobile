@@ -16,4 +16,12 @@ extension Sequence {
         try forEach(body)
         return self
     }
+    
+    func map<T>(_ keyPath: KeyPath<Element, T>) -> [T] {
+        return map { $0[keyPath: keyPath] }
+    }
+    
+    func compactMap<T>(_ keyPath: KeyPath<Element, T?>) -> [T] {
+        return compactMap { $0[keyPath: keyPath] }
+    }
 }

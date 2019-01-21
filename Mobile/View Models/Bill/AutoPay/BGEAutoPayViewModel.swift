@@ -203,10 +203,8 @@ class BGEAutoPayViewModel {
                 let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: .bank)
                 let maxPaymentAmount = accountDetail.maxPaymentAmount(bankOrCard: .bank)
                 if let amountDouble = Double(amountNotToExceedDouble()) {
-                    if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount,
-                        let minString = minPaymentAmount.currencyString,
-                        let maxString = maxPaymentAmount.currencyString {
-                        return NSLocalizedString("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between \(minString) and \(maxString)", comment: "")
+                    if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount {
+                        return String.localizedStringWithFormat("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between %@ and %@", minPaymentAmount.currencyString, maxPaymentAmount.currencyString)
                     }
                 }
             }
@@ -275,7 +273,7 @@ class BGEAutoPayViewModel {
             if intVal == 0 {
                 amountNotToExceed.value = "$0.00"
             } else {
-                amountNotToExceed.value = (intVal / 100).currencyString!
+                amountNotToExceed.value = (intVal / 100).currencyString
             }
         }
     }

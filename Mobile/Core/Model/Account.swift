@@ -77,7 +77,6 @@ struct AccountDetail: Mappable {
     let isSupplier: Bool
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
-    let isBGEControlGroup: Bool
     let isPTSAccount: Bool // ComEd only - Peak Time Savings enrollment status
     let isSERAccount: Bool // BGE only - Smart Energy Rewards enrollment status
 
@@ -94,6 +93,8 @@ struct AccountDetail: Mappable {
 	let isBGEasy: Bool
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
+    let isCutOutIssued: Bool
+    let isCutOutDispatched: Bool
     let isLowIncome: Bool
     let isFinaled: Bool
 	
@@ -116,11 +117,6 @@ struct AccountDetail: Mappable {
         try billingInfo = map.from("BillingInfo")
         
         try serInfo = map.from("SERInfo")
-        if let controlGroupFlag = serInfo.controlGroupFlag, controlGroupFlag.uppercased() == "CONTROL" {
-            isBGEControlGroup = true
-        } else {
-            isBGEControlGroup = false
-        }
         isPTSAccount = map.optionalFrom("isPTSAccount") ?? false
         
         premiseInfo = map.optionalFrom("PremiseInfo") ?? []
@@ -155,7 +151,9 @@ struct AccountDetail: Mappable {
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
-		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutDispatched = map.optionalFrom("isCutOutDispatched") ?? false
+        isCutOutIssued = map.optionalFrom("isCutOutIssued") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
 		
@@ -166,6 +164,10 @@ struct AccountDetail: Mappable {
         
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
+    }
+    
+    var isBGEControlGroup: Bool {
+        return serInfo.controlGroupFlag?.uppercased() == "CONTROL"
     }
     
     /* TODO: When BGE is on Paymentus, move these 2 functions into BillingInfo, and
@@ -443,14 +445,18 @@ struct BillingInfo: Mappable {
         
     }
     
+    var pendingPaymentsTotal: Double {
+        return pendingPayments.map(\.amount).reduce(0, +)
+    }
+    
     func convenienceFeeString(isComplete: Bool) -> String {
         var convenienceFeeStr = ""
         if isComplete {
             convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         } else {
             convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         }
         return convenienceFeeStr
     }

@@ -32,9 +32,7 @@ class PendingPaymentView: UIView {
         }
 		
 		textLabel.font = OpenSans.italic.of(textStyle: .subheadline)
-        if let currencyStr = amount.currencyString {
-            amountLabel.text = "-\(currencyStr)" // EM1-1802: Show pending/received/processing payments as negative
-        }
+        amountLabel.text = "-\(amount.currencyString)" // EM1-1802: Show pending/received/processing payments as negative
         amountLabel.font = OpenSans.semiboldItalic.of(textStyle: .headline)
     }
 
