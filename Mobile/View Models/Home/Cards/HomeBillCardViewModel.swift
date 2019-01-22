@@ -234,12 +234,12 @@ class HomeBillCardViewModel {
                 return .restoreService
             }
             
-            if billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutDispatched {
-                return .eligibleForCutoff
-            }
-            
-            if billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued {
-                return .avoidShutoff
+            if billingInfo.disconnectNoticeArrears > 0 {
+                if accountDetail.isCutOutIssued || accountDetail.isCutOutDispatched {
+                    return .eligibleForCutoff
+                } else {
+                    return .avoidShutoff
+                }
             }
             
             if opco != .bge && billingInfo.amtDpaReinst > 0 {
