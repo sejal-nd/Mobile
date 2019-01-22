@@ -65,7 +65,6 @@ class BillViewModelContentTests: BillViewModelTests {
         let isCutOutNonPay = [true, false, false, false, false]
         
         let disconnectNoticeArrears: [Double?] = [nil, nil, 4, 6, nil]
-        let isCutOutIssued = [false, false, true, true, false]
 
         let dueByDate: [Date?] = [nil, nil, "02/12/2018", "02/12/2018", nil]
             .map {
@@ -101,8 +100,7 @@ class BillViewModelContentTests: BillViewModelTests {
                                           turnOffNoticeDueDate: turnOffNoticeDueDate[i])
             
             return AccountDetail(billingInfo: billingInfo,
-                                 isCutOutNonPay: isCutOutNonPay[i],
-                                 isCutOutIssued: isCutOutIssued[i])
+                                 isCutOutNonPay: isCutOutNonPay[i])
         }
         
         let observer = scheduler.createObserver(String?.self)
