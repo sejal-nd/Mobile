@@ -853,7 +853,7 @@ class PaymentViewModel {
             }
             
             precariousAmounts.append((restorationAmount, NSLocalizedString("Restoration Amount", comment: "")))
-        } else if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && (accountDetail.value.isCutOutIssued || accountDetail.value.isCutOutDispatched) {
+        } else if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 {
             guard pastDueAmount != netDueAmount || arrears != netDueAmount else {
                 return []
             }

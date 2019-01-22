@@ -102,10 +102,14 @@ class BillViewModel {
     private(set) lazy var showPastDue: Driver<Bool> = currentAccountDetail
         .map { accountDetail -> Bool in
             let pastDueAmount = accountDetail.billingInfo.pastDueAmount
-            return pastDueAmount > 0 && pastDueAmount < accountDetail.billingInfo.netDueAmount
+            return pastDueAmount > 0 && pastDueAmount != accountDetail.billingInfo.netDueAmount
     }
     
-    private(set) lazy var showCurrentBill: Driver<Bool> = showPastDue
+    private(set) lazy var showCurrentBill: Driver<Bool> = currentAccountDetail
+        .map { accountDetail -> Bool in
+            let currentDueAmount = accountDetail.billingInfo.currentDueAmount
+            return currentDueAmount > 0 && currentDueAmount != accountDetail.billingInfo.netDueAmount
+    }
     
     private(set) lazy var showTopContent: Driver<Bool> = Driver
         .combineLatest(self.switchAccountsTracker.asDriver(),
@@ -118,9 +122,7 @@ class BillViewModel {
     }
     
     private(set) lazy var showRemainingBalanceDue: Driver<Bool> = currentAccountDetail.map {
-        return $0.billingInfo.pendingPaymentsTotal > 0 &&
-            $0.billingInfo.remainingBalanceDue > 0  &&
-            Environment.shared.opco != .bge
+        $0.billingInfo.pendingPaymentsTotal > 0 && $0.billingInfo.remainingBalanceDue > 0
     }
     
     private(set) lazy var showPaymentReceived: Driver<Bool> = currentAccountDetail.map {
@@ -132,9 +134,7 @@ class BillViewModel {
         return netDueAmount < 0 && Environment.shared.opco == .bge
     }
     
-    private(set) lazy var showAmountDueTooltip: Driver<Bool> = currentAccountDetail.map {
-        $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.shared.opco == .peco
-    }
+    let showAmountDueTooltip = Environment.shared.opco == .peco
     
     private(set) lazy var showBillBreakdownButton: Driver<Bool> = currentAccountDetail
         .map { accountDetail in
@@ -213,7 +213,7 @@ class BillViewModel {
         }
         
         // Avoid Shutoff
-        if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 && (accountDetail.isCutOutIssued || accountDetail.isCutOutDispatched) {
+        if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 {
             let amountString = arrears.currencyString
             var days = 0
             if let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
@@ -221,7 +221,7 @@ class BillViewModel {
                 days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
             }
             
-            switch (Environment.shared.opco, days > 0, accountDetail.isCutOutDispatched, arrears == billingInfo.netDueAmount) {
+            switch (Environment.shared.opco, days > 0, (accountDetail.isCutOutIssued || accountDetail.isCutOutDispatched), arrears == billingInfo.netDueAmount) {
             case (.bge, true, true, true):
                 let format = "The total amount must be paid in %d day%@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
                 return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
@@ -316,6 +316,8 @@ class BillViewModel {
             string = NSLocalizedString("Total Amount Due", comment: "")
         } else if Environment.shared.opco == .bge && billingInfo.netDueAmount < 0 {
             string = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+        } else if billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 {
+            string = NSLocalizedString("Total Amount Due", comment: "")
         } else {
             string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
         }
@@ -352,8 +354,11 @@ class BillViewModel {
     
     private(set) lazy var pastDueDateText: Driver<NSAttributedString> = currentAccountDetail
         .map { accountDetail in
-            if let date = accountDetail.billingInfo.dueByDate,
-                accountDetail.billingInfo.amtDpaReinst > 0 {
+            let billingInfo = accountDetail.billingInfo
+            if let date = billingInfo.dueByDate,
+                Environment.shared.opco != .bge &&
+                billingInfo.amtDpaReinst > 0 &&
+                billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
                                                                        .font: OpenSans.regular.of(textStyle: .footnote)])

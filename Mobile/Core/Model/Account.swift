@@ -38,7 +38,7 @@ struct Account: Mappable, Equatable, Hashable {
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         
-        currentPremise = isMultipremise ? premises[0] : nil 
+        currentPremise = premises.first
     }
     
     var isMultipremise: Bool{

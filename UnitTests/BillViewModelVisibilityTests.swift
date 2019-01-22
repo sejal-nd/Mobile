@@ -110,7 +110,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedPastDueValues = [false, false, false, false, true]
+        let expectedPastDueValues = [false, true, false, false, true]
         XCTAssertRecordedElements(observer.events, expectedPastDueValues)
     }
     
@@ -183,7 +183,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [Environment.shared.opco != .bge, false, false, false]
+        let expectedValues = [true, false, false, false]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.showRemainingBalanceDue.drive(observer).disposed(by: disposeBag)
@@ -251,27 +251,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showAmountDueTooltip` value after switching
     // through different accounts.
     func testShowAmountDueTooltip() {
-        
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(pastDueAmount: -3)),
-            AccountDetail(billingInfo: BillingInfo(pastDueAmount: 4))
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let expectedValues = [Environment.shared.opco == .peco, false]
-        
-        let observer = scheduler.createObserver(Bool.self)
-        viewModel.showAmountDueTooltip.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertEqual(viewModel.showAmountDueTooltip, Environment.shared.opco == .peco)
     }
     
     // Tests changes in the `showBillBreakdownButton` value after switching
