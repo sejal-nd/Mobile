@@ -350,8 +350,11 @@ class BillViewModel {
     
     private(set) lazy var pastDueDateText: Driver<NSAttributedString> = currentAccountDetail
         .map { accountDetail in
-            if let date = accountDetail.billingInfo.dueByDate,
-                accountDetail.billingInfo.amtDpaReinst > 0 {
+            let billingInfo = accountDetail.billingInfo
+            if let date = billingInfo.dueByDate,
+                Environment.shared.opco != .bge &&
+                billingInfo.amtDpaReinst > 0 &&
+                billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
                                                                        .font: OpenSans.regular.of(textStyle: .footnote)])
