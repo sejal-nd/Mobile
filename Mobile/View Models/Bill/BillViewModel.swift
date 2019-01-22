@@ -102,10 +102,14 @@ class BillViewModel {
     private(set) lazy var showPastDue: Driver<Bool> = currentAccountDetail
         .map { accountDetail -> Bool in
             let pastDueAmount = accountDetail.billingInfo.pastDueAmount
-            return pastDueAmount > 0 && pastDueAmount < accountDetail.billingInfo.netDueAmount
+            return pastDueAmount > 0 && pastDueAmount != accountDetail.billingInfo.netDueAmount
     }
     
-    private(set) lazy var showCurrentBill: Driver<Bool> = showPastDue
+    private(set) lazy var showCurrentBill: Driver<Bool> = currentAccountDetail
+        .map { accountDetail -> Bool in
+            let currentDueAmount = accountDetail.billingInfo.currentDueAmount
+            return currentDueAmount > 0 && currentDueAmount != accountDetail.billingInfo.netDueAmount
+    }
     
     private(set) lazy var showTopContent: Driver<Bool> = Driver
         .combineLatest(self.switchAccountsTracker.asDriver(),
