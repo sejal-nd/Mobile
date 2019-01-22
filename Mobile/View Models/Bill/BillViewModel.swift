@@ -118,9 +118,7 @@ class BillViewModel {
     }
     
     private(set) lazy var showRemainingBalanceDue: Driver<Bool> = currentAccountDetail.map {
-        return $0.billingInfo.pendingPaymentsTotal > 0 &&
-            $0.billingInfo.remainingBalanceDue > 0  &&
-            Environment.shared.opco != .bge
+        $0.billingInfo.pendingPaymentsTotal > 0 && $0.billingInfo.remainingBalanceDue > 0
     }
     
     private(set) lazy var showPaymentReceived: Driver<Bool> = currentAccountDetail.map {
@@ -132,9 +130,7 @@ class BillViewModel {
         return netDueAmount < 0 && Environment.shared.opco == .bge
     }
     
-    private(set) lazy var showAmountDueTooltip: Driver<Bool> = currentAccountDetail.map {
-        $0.billingInfo.pastDueAmount ?? 0 <= 0 && Environment.shared.opco == .peco
-    }
+    let showAmountDueTooltip = Environment.shared.opco == .peco
     
     private(set) lazy var showBillBreakdownButton: Driver<Bool> = currentAccountDetail
         .map { accountDetail in
@@ -316,6 +312,8 @@ class BillViewModel {
             string = NSLocalizedString("Total Amount Due", comment: "")
         } else if Environment.shared.opco == .bge && billingInfo.netDueAmount < 0 {
             string = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+        } else if billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 {
+            string = NSLocalizedString("Total Amount Due", comment: "")
         } else {
             string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
         }
