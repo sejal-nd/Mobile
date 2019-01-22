@@ -66,7 +66,7 @@ class PaymentViewModel {
         self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
 
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentAmount = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
+        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? accountDetail.billingInfo.netDueAmount ?? 0)
     }
     
     // MARK: - Service Calls
