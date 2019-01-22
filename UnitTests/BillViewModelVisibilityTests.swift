@@ -183,7 +183,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [Environment.shared.opco != .bge, false, false, false]
+        let expectedValues = [true, false, false, false]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.showRemainingBalanceDue.drive(observer).disposed(by: disposeBag)
