@@ -164,7 +164,7 @@ class MockAccountService: AccountService {
                                                                        dueByDate: tenDaysFromToday,
                                                                        disconnectNoticeArrears: 100,
                                                                        currentDueAmount: 100),
-                                              isCutOutDispatched: true)
+                                              isCutOutIssued: true)
             return .just(accountDetail)
             
         case "avoidShutoff":
