@@ -1088,6 +1088,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1136"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odm-YU-txp">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1136"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ME5-VD-Sqx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1136"/>
                                 <subviews>
@@ -1689,7 +1693,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="fGw-aR-bhJ" firstAttribute="leading" secondItem="Uxy-Fn-nRi" secondAttribute="leading" id="mBn-ZR-mK1"/>
                                             <constraint firstAttribute="trailing" secondItem="fGw-aR-bhJ" secondAttribute="trailing" id="pWn-dl-vJN"/>
@@ -1698,6 +1702,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Uxy-Fn-nRi" secondAttribute="bottom" id="2wy-bf-Y1h"/>
                                     <constraint firstItem="Uxy-Fn-nRi" firstAttribute="centerX" secondItem="ME5-VD-Sqx" secondAttribute="centerX" id="NWY-Gr-ODz"/>
@@ -1709,6 +1714,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="odm-YU-txp" secondAttribute="trailing" id="1a5-Aw-5n7"/>
+                            <constraint firstAttribute="bottom" secondItem="odm-YU-txp" secondAttribute="bottom" id="2mt-S4-Itm"/>
+                            <constraint firstItem="odm-YU-txp" firstAttribute="top" secondItem="MWO-WR-HlH" secondAttribute="top" id="6aD-79-h9I"/>
+                            <constraint firstItem="odm-YU-txp" firstAttribute="leading" secondItem="MWO-WR-HlH" secondAttribute="leading" id="HZn-Bk-16a"/>
                             <constraint firstItem="ME5-VD-Sqx" firstAttribute="top" secondItem="G9O-F4-LJA" secondAttribute="bottom" id="Ja1-te-MjW"/>
                             <constraint firstAttribute="trailing" secondItem="ME5-VD-Sqx" secondAttribute="trailing" id="KtZ-Es-6hv"/>
                             <constraint firstAttribute="bottom" secondItem="ME5-VD-Sqx" secondAttribute="bottom" id="eu5-Tz-ROs"/>
@@ -1738,6 +1747,7 @@
                         <outlet property="dueDateValueLabel" destination="dGZ-V6-Dcy" id="zIL-wf-0ds"/>
                         <outlet property="footerLabel" destination="rvz-X1-cJC" id="Z4n-Uc-r4R"/>
                         <outlet property="footerView" destination="WVL-IY-sFI" id="TX1-hd-bPp"/>
+                        <outlet property="gradientView" destination="odm-YU-txp" id="V8J-fW-Tqu"/>
                         <outlet property="overpayingSwitch" destination="frS-t3-CxY" id="8KT-rX-FO7"/>
                         <outlet property="overpayingSwitchLabel" destination="IUx-Sw-DZr" id="ZsY-BP-53h"/>
                         <outlet property="overpayingSwitchView" destination="c9M-pG-8mP" id="XfX-LR-TKo"/>
@@ -1753,7 +1763,6 @@
                         <outlet property="paymentDateValueLabel" destination="drC-TL-5GD" id="VHC-6g-aae"/>
                         <outlet property="receiptView" destination="3Je-Nk-xBx" id="bBS-FD-7Rp"/>
                         <outlet property="scrollView" destination="ME5-VD-Sqx" id="mTJ-yj-F3N"/>
-                        <outlet property="scrollViewContentView" destination="Uxy-Fn-nRi" id="019-d8-aKW"/>
                         <outlet property="termsConditionsButton" destination="Hyo-W8-y4V" id="aJg-mY-Egr"/>
                         <outlet property="termsConditionsButtonLabel" destination="ffz-iA-WfL" id="tiW-00-FfM"/>
                         <outlet property="termsConditionsSwitch" destination="S8z-9E-ed6" id="Z4c-ny-V5W"/>
