@@ -81,14 +81,14 @@ class UsageInterfaceController: WKInterfaceController {
 
                 // Spent so far cost
                 if isModeledForOpower, let toDateCost = billForecast.toDateCost {
-                    mainSpentSoFarValueLabel.setText("\(toDateCost.currencyString ?? "")")
+                    mainSpentSoFarValueLabel.setText("\(toDateCost.currencyString)")
                 } else if let toDateUsage = billForecast.toDateUsage {
                     mainSpentSoFarValueLabel.setText("\(Int(toDateUsage)) \(billForecast.meterUnit)")
                 }
                 
                 // Projected Bill Cost
                 if isModeledForOpower, let projectedBillCost = billForecast.projectedCost {
-                    mainprojectedBillValueLabel.setText("\(projectedBillCost.currencyString ?? "--")")
+                    mainprojectedBillValueLabel.setText("\(projectedBillCost.currencyString)")
                 } else if let projectedUsage = billForecast.projectedUsage {
                     mainprojectedBillValueLabel.setText("\(Int(projectedUsage)) \(billForecast.meterUnit)")
                 }
@@ -108,7 +108,7 @@ class UsageInterfaceController: WKInterfaceController {
                     let progress = toDateCost / projectedCost
                     setImageForProgress(progress.isNaN ? 0.0 : progress) // handle division by 0
                     
-                    mainTitleLabel.setText("\((toDateCost).currencyString ?? "")")
+                    mainTitleLabel.setText("\(toDateCost.currencyString)")
                 } else if let toDateUsage = billForecast.toDateUsage, let projectedUsage = billForecast.projectedUsage {
                     
                     // Set Image

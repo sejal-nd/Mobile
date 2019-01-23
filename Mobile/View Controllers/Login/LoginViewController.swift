@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ToastSwiftFramework
+import Toast_Swift
 
 class LoginViewController: UIViewController {
     
@@ -433,7 +433,7 @@ class LoginViewController: UIViewController {
         }, onMaintenanceMode: { [weak self] in
             self?.navigationController?.view.isUserInteractionEnabled = true
             let ad = UIApplication.shared.delegate as! AppDelegate
-            ad.showMaintenanceMode()
+            ad.showMaintenanceMode($0)
         }, onError: { errorMessage in
             onCompletion()
         })

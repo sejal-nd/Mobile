@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class StormModeBillViewController: AccountPickerViewController {
     
@@ -39,24 +40,6 @@ class StormModeBillViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        accountPickerViewControllerWillAppear
-            .withLatestFrom(viewModel.accountDetailEvents.map { $0 }.startWith(nil)) { ($0, $1) }
-            .subscribe(onNext: { [weak self] state, accountDetailEvent in
-                guard let this = self else { return }
-                switch(state) {
-                case .loadingAccounts:
-                    this.setRefreshControlEnabled(enabled: false)
-                case .readyToFetchData:
-                    this.setRefreshControlEnabled(enabled: true)
-                    if AccountsStore.shared.currentAccount != this.accountPicker.currentAccount {
-                        this.viewModel.fetchData.onNext(.switchAccount)
-                    } else if accountDetailEvent?.element == nil {
-                        this.viewModel.fetchData.onNext(.switchAccount)
-                    }
-                }
-            })
-            .disposed(by: disposeBag)
-        
         billCardView = HomeBillCardView.create(withViewModel: viewModel.billCardViewModel)
         contentStack.insertArrangedSubview(billCardView, at: 0)
         
@@ -75,8 +58,6 @@ class StormModeBillViewController: AccountPickerViewController {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in self?.killRefresh() })
             .disposed(by: disposeBag)
-        
-        viewModel.fetchData.onNext(.switchAccount)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +97,10 @@ class StormModeBillViewController: AccountPickerViewController {
     func bindViewStates() {
         viewModel.didFinishRefresh
             .drive(onNext: { [weak self] in self?.refreshControl?.endRefreshing() })
+            .disposed(by: disposeBag)
+        
+        viewModel.isSwitchingAccounts
+            .drive(onNext: { [weak self] in self?.setRefreshControlEnabled(enabled: !$0) })
             .disposed(by: disposeBag)
         
         viewModel.showButtonStack.not().drive(buttonStack.rx.isHidden).disposed(by: disposeBag)

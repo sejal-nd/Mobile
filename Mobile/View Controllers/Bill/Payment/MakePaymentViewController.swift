@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import AVFoundation
+import PDTSimpleCalendar
 import UIKit
 
 class MakePaymentViewController: UIViewController {
@@ -269,10 +270,13 @@ class MakePaymentViewController: UIViewController {
         bindViewContent()
         bindButtonTaps()
         
-        paymentAmountTextField.textField.text = viewModel.showSelectPaymentAmount ?
-            0.0.currencyString :
-            viewModel.paymentAmount.value.currencyString
-        
+        viewModel.shouldShowSelectPaymentAmount.asObservable().single().subscribe(onNext: { [weak self] shouldShow in
+            guard let self = self else { return }
+            self.paymentAmountTextField.textField.text = shouldShow ?
+                0.0.currencyString :
+                self.viewModel.paymentAmount.value.currencyString
+        }).disposed(by: disposeBag)
+
         fetchData()
     }
     
@@ -420,52 +424,58 @@ class MakePaymentViewController: UIViewController {
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
         
-        // Select Payment Amount
-        selectPaymentAmountStack.isHidden = !viewModel.showSelectPaymentAmount
-        
-        paymentAmountsStack.arrangedSubviews.forEach {
-            paymentAmountsStack.removeArrangedSubview($0)
-            $0.removeFromSuperview()
-        }
-        
-        let radioControls = viewModel.paymentAmounts.map { (amount, subtitle) -> RadioSelectControl in
-            let title = amount?.currencyString ?? NSLocalizedString("Other", comment: "")
-            return RadioSelectControl.create(withTitle: title, subtitle: subtitle, showSeparator: true)
-        }
-        
-        let radioPress = { [weak self] (control: RadioSelectControl, amount: Double?) -> () in
+        // Select Payment Amount - Radio Button Selection View
+        viewModel.shouldShowSelectPaymentAmount.drive(onNext: { [weak self] shouldShow in
             guard let self = self else { return }
+            self.selectPaymentAmountStack.isHidden = !shouldShow
+            self.paymentAmountTextField.isHidden = shouldShow
             
-            // Only set and animate `isHidden` if the value should change.
-            // Otherwise we get weird animation queue issues 🤷‍♂️
-            let shouldHide = control != radioControls.last
-            if shouldHide != self.paymentAmountTextField.isHidden {
-                UIView.animate(withDuration: 0.2) {
-                    self.paymentAmountTextField.isHidden = shouldHide
+            self.paymentAmountsStack.arrangedSubviews.forEach {
+                self.paymentAmountsStack.removeArrangedSubview($0)
+                $0.removeFromSuperview()
+            }
+            
+            if shouldShow {
+                let radioControls = self.viewModel.paymentAmounts.map { (amount, subtitle) -> RadioSelectControl in
+                    let title = amount?.currencyString ?? NSLocalizedString("Other", comment: "")
+                    return RadioSelectControl.create(withTitle: title, subtitle: subtitle, showSeparator: true)
+                }
+                
+                let radioPress = { [weak self] (control: RadioSelectControl, amount: Double?) -> () in
+                    guard let self = self else { return }
+                    
+                    // Only set and animate `isHidden` if the value should change.
+                    // Otherwise we get weird animation queue issues 🤷‍♂️
+                    let shouldHide = control != radioControls.last
+                    if shouldHide != self.paymentAmountTextField.isHidden {
+                        UIView.animate(withDuration: 0.2) {
+                            self.paymentAmountTextField.isHidden = shouldHide
+                        }
+                    }
+                    
+                    radioControls.forEach { $0.isSelected = $0 == control }
+                    
+                    if let amount = amount {
+                        self.paymentAmountTextField.textField.resignFirstResponder()
+                        self.viewModel.paymentAmount.value = amount
+                    } else {
+                        self.paymentAmountTextField.textField.becomeFirstResponder()
+                    }
+                }
+                
+                zip(radioControls, self.viewModel.paymentAmounts.map { $0.0 }).forEach { control, amount in
+                    control.rx.touchUpInside.asDriver()
+                        .drive(onNext: { radioPress(control, amount) })
+                        .disposed(by: control.bag)
+                    
+                    self.paymentAmountsStack.addArrangedSubview(control)
+                }
+                
+                if let firstControl = radioControls.first, let firstAmount = self.viewModel.paymentAmounts.first?.0 {
+                    radioPress(firstControl, firstAmount)
                 }
             }
-            
-            radioControls.forEach { $0.isSelected = $0 == control }
-            
-            if let amount = amount {
-                self.paymentAmountTextField.textField.resignFirstResponder()
-                self.viewModel.paymentAmount.value = amount
-            } else {
-                self.paymentAmountTextField.textField.becomeFirstResponder()
-            }
-        }
-        
-        zip(radioControls, viewModel.paymentAmounts.map { $0.0 }).forEach { control, amount in
-            control.rx.touchUpInside.asDriver()
-                .drive(onNext: { radioPress(control, amount) })
-                .disposed(by: control.bag)
-            
-            paymentAmountsStack.addArrangedSubview(control)
-        }
-        
-        if let firstControl = radioControls.first, let firstAmount = viewModel.paymentAmounts.first?.0 {
-            radioPress(firstControl, firstAmount)
-        }
+        }).disposed(by: disposeBag)
         
         // Payment Amount Text Field
         viewModel.paymentAmountFeeLabelText.asDriver()
@@ -851,6 +861,7 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
         viewModel.newlyAddedWalletItem.value = walletItem
         fetchData()
         if !walletItem.isTemporary {
+            Analytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
             let toastMessage = walletItem.bankOrCard == .bank ?
                 NSLocalizedString("Bank account added", comment: "") :
                 NSLocalizedString("Card added", comment: "")

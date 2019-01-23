@@ -46,18 +46,18 @@ class MCSRegistrationService: RegistrationService {
             params["account_num"] = accountNum
         }
         
-        return MCSApi.shared.post(anon: true, path: "registration", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration", params: params)
             .mapTo(())
     }
     
     func checkForDuplicateAccount(_ username: String) -> Observable<Void> {
         let params = ["username": username] as [String : Any]
-        return MCSApi.shared.post(anon: true, path: "registration/duplicate", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/duplicate", params: params)
             .mapTo(())
     }
     
     func loadSecretQuestions() -> Observable<[String]> {
-        return MCSApi.shared.get(anon: true, path: "registration/questions")
+        return MCSApi.shared.get(pathPrefix: .anon, path: "registration/questions")
             .map { json in
                 guard let questions = json as? [String] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -77,7 +77,7 @@ class MCSRegistrationService: RegistrationService {
             params["account_num"] = accountNum
         }
         
-        return MCSApi.shared.post(anon: true, path: "registration/validate", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/validate", params: params)
             .map { json in
                 guard let dict = json as? [String : Any] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -89,19 +89,19 @@ class MCSRegistrationService: RegistrationService {
     
     func resendConfirmationEmail(_ username: String) -> Observable<Void> {
         let params = ["username": username] as [String: Any]
-        return MCSApi.shared.post(anon: true, path: "registration/confirmation", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/confirmation", params: params)
             .mapTo(())
     }
 
     func validateConfirmationEmail(_ guid: String) -> Observable<Void> {
         let params = ["guid": guid] as [String: Any]
-        return MCSApi.shared.put(anon: true, path: "registration/confirmation", params: params)
+        return MCSApi.shared.put(pathPrefix: .anon, path: "registration/confirmation", params: params)
             .mapTo(())
     }
     
     func recoverPassword(_ username: String) -> Observable<Void> {
         let params = ["username": username] as [String: Any]
-        return MCSApi.shared.post(anon: true, path: "recover/password", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "recover/password", params: params)
             .mapTo(())
     }
 }

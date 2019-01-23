@@ -6,6 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import UIKit
+
 extension UIView {
     func addDashedBorder(color: UIColor) {
         let borderColor = color.cgColor

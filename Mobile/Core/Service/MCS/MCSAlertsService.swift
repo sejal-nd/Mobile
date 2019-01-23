@@ -22,12 +22,12 @@ struct MCSAlertsService: AlertsService {
             "setDefaults": firstLogin
         ]
         
-        return MCSApi.shared.post(path: "noti/registration", params: params)
+        return MCSApi.shared.post(pathPrefix: .none, path: "noti/registration", params: params)
             .mapTo(())
     }
 
     func fetchAlertPreferences(accountNumber: String) -> Observable<AlertPreferences> {
-        return MCSApi.shared.get(path: "accounts/\(accountNumber)/alerts/preferences/push")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/alerts/preferences/push")
             .map { json in
                 guard let responseObj = json as? NSDictionary,
                     let prefsDictArray = responseObj["alertPreferences"] as? [NSDictionary] else {
@@ -41,18 +41,18 @@ struct MCSAlertsService: AlertsService {
     
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
         let params = ["alertPreferences": alertPreferences.createAlertPreferencesJSONArray()]
-        return MCSApi.shared.put(path: "accounts/\(accountNumber)/alerts/preferences", params: params)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/alerts/preferences", params: params)
             .mapTo(())
     }
     
     func enrollBudgetBillingNotification(accountNumber: String) -> Observable<Void> {
         let params = ["alertPreferences": [["programName": "Budget Billing", "type": "push", "isActive": true]]]
-        return MCSApi.shared.put(path: "accounts/\(accountNumber)/alerts/preferences", params: params)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/alerts/preferences", params: params)
             .mapTo(())
     }
     
     func fetchAlertLanguage(accountNumber: String) -> Observable<String> {
-        return MCSApi.shared.get(path: "accounts/\(accountNumber)/alerts/accounts")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/alerts/accounts")
             .map { json in
                 guard let responseObj = json as? NSDictionary, let language = responseObj["language"] as? String else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -64,7 +64,7 @@ struct MCSAlertsService: AlertsService {
     
     func setAlertLanguage(accountNumber: String, english: Bool) -> Observable<Void> {
         let params = ["language": english ? "English" : "Spanish"]
-        return MCSApi.shared.put(path: "accounts/\(accountNumber)/alerts/accounts", params: params)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/alerts/accounts", params: params)
             .mapTo(())
     }
     
@@ -110,25 +110,23 @@ struct MCSAlertsService: AlertsService {
         let requestId = ShortUUIDGenerator.getUUID(length: 8)
         APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .request, message: nil)
         
-        return URLSession.shared.rx.dataResponse(request: request)
-            .do(onNext: { data in
-                let responseString = String(data: data, encoding: .utf8) ?? ""
-                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: responseString)
-            }, onError: { error in
+        return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
+            APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .canceled, message: nil)
+        })
+            .do(onError: { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                 APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: serviceError.errorDescription)
             })
             .map { data in
                 guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                    let dictData = parsedData as? [String: Any] else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                guard let d = dictData["d"] as? [String: Any],
+                    let dictData = parsedData as? [String: Any],
+                    let d = dictData["d"] as? [String: Any],
                     let results = d["results"] as? [NSDictionary] else {
+                        APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: String(data: data, encoding: .utf8))
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 
+                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: String(data: data, encoding: .utf8))
                 return results.compactMap(OpcoUpdate.from)
         }
         

@@ -38,39 +38,13 @@ class AlertsViewController: AccountPickerViewController {
         
         tableView.backgroundColor = .white
         tableView.separatorColor = .accentGray
-        
-        accountPicker.isHidden = Environment.shared.opco == .bge
+        tableView.isHidden = true
     
         styleViews()
         bindViewModel()
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
-        accountPickerViewControllerWillAppear
-            .subscribe(onNext: { [weak self] state in
-                guard let self = self else { return }
-                
-                switch(state) {
-                case .loadingAccounts:
-                    self.tableView.isHidden = true
-                case .readyToFetchData:
-                    self.tableView.isHidden = false
-                    
-                    if AccountsStore.shared.accounts.count == 1 {
-                        self.accountPicker.isHidden = true
-                    }
-                    
-                    self.viewModel.fetchAlertsFromDisk()
-                    
-                    // Don't push straight to prefs for ComEd/PECO multi-account users
-                    if self.shortcutToPrefs && (Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1) {
-                        self.performSegue(withIdentifier: "preferencesSegue", sender: nil)
-                    }
-                    
-                    self.shortcutToPrefs = false
-                }
-            })
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,6 +102,23 @@ class AlertsViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
     }
     
+    private func loadAlerts() {
+        tableView.isHidden = false
+        
+        if AccountsStore.shared.accounts.count == 1 || Environment.shared.opco == .bge {
+            accountPicker.isHidden = true
+        }
+        
+        viewModel.fetchAlertsFromDisk()
+        
+        // Don't push straight to prefs for ComEd/PECO multi-account users
+        if shortcutToPrefs && (Environment.shared.opco == .bge || AccountsStore.shared.accounts.count == 1) {
+            performSegue(withIdentifier: "preferencesSegue", sender: nil)
+        }
+        
+        shortcutToPrefs = false
+    }
+    
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
         Analytics.log(event: .alertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
@@ -178,7 +169,7 @@ extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
 extension AlertsViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        viewModel.fetchAlertsFromDisk()
+        loadAlerts()
     }
     
 }

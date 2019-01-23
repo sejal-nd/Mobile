@@ -38,7 +38,7 @@ struct Account: Mappable, Equatable, Hashable {
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         
-        currentPremise = isMultipremise ? premises[0] : nil 
+        currentPremise = premises.first
     }
     
     var isMultipremise: Bool{
@@ -77,7 +77,6 @@ struct AccountDetail: Mappable {
     let isSupplier: Bool
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
-    let isBGEControlGroup: Bool
     let isPTSAccount: Bool // ComEd only - Peak Time Savings enrollment status
     let isSERAccount: Bool // BGE only - Smart Energy Rewards enrollment status
 
@@ -94,6 +93,8 @@ struct AccountDetail: Mappable {
 	let isBGEasy: Bool
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
+    let isCutOutIssued: Bool
+    let isCutOutDispatched: Bool
     let isLowIncome: Bool
     let isFinaled: Bool
 	
@@ -116,11 +117,6 @@ struct AccountDetail: Mappable {
         try billingInfo = map.from("BillingInfo")
         
         try serInfo = map.from("SERInfo")
-        if let controlGroupFlag = serInfo.controlGroupFlag, controlGroupFlag.uppercased() == "CONTROL" {
-            isBGEControlGroup = true
-        } else {
-            isBGEControlGroup = false
-        }
         isPTSAccount = map.optionalFrom("isPTSAccount") ?? false
         
         premiseInfo = map.optionalFrom("PremiseInfo") ?? []
@@ -155,7 +151,9 @@ struct AccountDetail: Mappable {
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
-		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutDispatched = map.optionalFrom("isCutOutDispatched") ?? false
+        isCutOutIssued = map.optionalFrom("isCutOutIssued") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
 		
@@ -168,17 +166,29 @@ struct AccountDetail: Mappable {
         zipCode = map.optionalFrom("zipCode")
     }
     
+    var isBGEControlGroup: Bool {
+        return serInfo.controlGroupFlag?.uppercased() == "CONTROL"
+    }
+    
+    /* TODO: When BGE is on Paymentus, move these 2 functions into BillingInfo, and
+     * make minPaymentAmount, maxPaymentAmount, minPaymentAmountACH, maxPaymentAmountACH
+     * private lets to enforce the use of only these functions. We can't do that currently
+     * because our switch in maxPaymentAmount() relies on isResidential
+     */
     func minPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        switch bankOrCard {
-        case .bank:
-            if let minPaymentAmount = billingInfo.minPaymentAmountACH {
-                return minPaymentAmount
-            }
-        case .card:
-            if let minPaymentAmount = billingInfo.minPaymentAmount {
-                return minPaymentAmount
-            }
-        }
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let minPaymentAmount = billingInfo.minPaymentAmountACH {
+         return minPaymentAmount
+         }
+         case .card:
+         if let minPaymentAmount = billingInfo.minPaymentAmount {
+         return minPaymentAmount
+         }
+         }
+         */
         
         //TODO: Just return 5 once BGE switches to Paymentus
         switch Environment.shared.opco {
@@ -190,17 +200,19 @@ struct AccountDetail: Mappable {
     }
     
     func maxPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        switch bankOrCard {
-        case .bank:
-            if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
-                return maxPaymentAmount
-            }
-        case .card:
-            if let maxPaymentAmount = billingInfo.maxPaymentAmount {
-                return maxPaymentAmount
-            }
-        }
-        
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
+         return maxPaymentAmount
+         }
+         case .card:
+         if let maxPaymentAmount = billingInfo.maxPaymentAmount {
+         return maxPaymentAmount
+         }
+         }
+         */
         
         //: TODO - Simplify this switch to just bankOrCard when BGE switches to Paymentus
         switch (bankOrCard, Environment.shared.opco, isResidential) {
@@ -433,14 +445,18 @@ struct BillingInfo: Mappable {
         
     }
     
+    var pendingPaymentsTotal: Double {
+        return pendingPayments.map(\.amount).reduce(0, +)
+    }
+    
     func convenienceFeeString(isComplete: Bool) -> String {
         var convenienceFeeStr = ""
         if isComplete {
             convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         } else {
             convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         }
         return convenienceFeeStr
     }
