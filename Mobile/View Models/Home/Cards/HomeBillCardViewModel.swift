@@ -235,7 +235,7 @@ class HomeBillCardViewModel {
             }
             
             if billingInfo.disconnectNoticeArrears > 0 {
-                if accountDetail.isCutOutIssued || accountDetail.isCutOutDispatched {
+                if accountDetail.isCutOutIssued {
                     return .eligibleForCutoff
                 } else {
                     return .avoidShutoff

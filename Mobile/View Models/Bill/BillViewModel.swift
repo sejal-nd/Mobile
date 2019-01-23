@@ -219,7 +219,7 @@ class BillViewModel {
             let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date())) ?? 0
             let dateString = date?.mmDdYyyyString ?? "--"
             
-            switch (days > 0, (accountDetail.isCutOutIssued || accountDetail.isCutOutDispatched), arrears == billingInfo.netDueAmount) {
+            switch (days > 0, accountDetail.isCutOutIssued, arrears == billingInfo.netDueAmount) {
             case (true, true, true):
                 let format = "The total amount must be paid by %@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
                 return String.localizedStringWithFormat(format, dateString)
