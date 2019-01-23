@@ -482,7 +482,7 @@ class HomeBillCardViewModel {
             
             return NSAttributedString(string: string, attributes: attributes)
         case .restoreService:
-            guard let amountString = accountDetail.billingInfo.restorationAmount?.currencyString else {
+            guard let amountString = billingInfo.restorationAmount?.currencyString else {
                 return nil
             }
             
@@ -490,45 +490,43 @@ class HomeBillCardViewModel {
             let string = String.localizedStringWithFormat(localizedText, amountString)
             return NSAttributedString(string: string, attributes: attributes)
         case .avoidShutoff, .eligibleForCutoff:
-            guard let amountString = accountDetail.billingInfo.disconnectNoticeArrears?.currencyString else {
+            guard let amountString = billingInfo.disconnectNoticeArrears?.currencyString else {
                 return nil
             }
             
-            var days = 0
-            if let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
-                accountDetail.billingInfo.turnOffNoticeDueDate {
-                days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-            }
+            let date = billingInfo.turnOffNoticeExtendedDueDate ?? billingInfo.turnOffNoticeDueDate
+            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date())) ?? 0
+            let dateString = date?.mmDdYyyyString ?? "--"
             
             let string: String
-            switch (Environment.shared.opco, days > 0, isMultiPremise, billingInfo.disconnectNoticeArrears == billingInfo.netDueAmount) {
-            case (.bge, true, true, true):
-                let format = "The total amount is due in %d day%@ to avoid shutoff for your multi-premise account."
-                string = String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
-            case (.bge, true, true, false):
-                let format = "%@ of the total is due in %d day%@ to avoid shutoff for your multi-premise account."
-                string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-            case (.bge, true, false, true):
-                let format = "The total amount is due in %d day%@ to avoid shutoff."
-                string = String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
-            case (.bge, true, false, false):
-                let format = "%@ of the total is due in %d day%@ to avoid shutoff."
-                string = String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-            case (.bge, false, true, true):
+            switch (days > 0, isMultiPremise, billingInfo.disconnectNoticeArrears == billingInfo.netDueAmount) {
+            case (true, true, true):
+                let format = "The total amount must be paid by %@ to avoid shutoff for your multi-premise account."
+                string = String.localizedStringWithFormat(format, dateString)
+            case (true, true, false):
+                let format = "%@ of the total must be paid by %@ to avoid shutoff for your multi-premise account."
+                string = String.localizedStringWithFormat(format, amountString, dateString)
+            case (true, false, true):
+                let format = "The total amount must be paid by %@ to avoid shutoff."
+                string = String.localizedStringWithFormat(format, dateString)
+            case (true, false, false):
+                let format = "%@ of the total must be paid by %@ to avoid shutoff."
+                string = String.localizedStringWithFormat(format, amountString, dateString)
+            case (false, true, true):
                 string = NSLocalizedString("The total amount must be paid immediately to avoid shutoff for your multi-premise account.", comment: "")
-            case (.bge, false, true, false):
+            case (false, true, false):
                 let format = "%@ of the total must be paid immediately to avoid shutoff for your multi-premise account."
                 string = String.localizedStringWithFormat(format, amountString)
-            case (_, _, _, true):
+            case (false, false, true):
                 string = NSLocalizedString("The total amount must be paid immediately to avoid shutoff.", comment: "")
-            case (_, _, _, false):
+            case (false, false, false):
                 let format = "%@ of the total must be paid immediately to avoid shutoff."
                 string = String.localizedStringWithFormat(format, amountString)
             }
             
             return NSAttributedString(string: string, attributes: attributes)
         case .finaled:
-            guard let amountString = accountDetail.billingInfo.pastDueAmount?.currencyString else {
+            guard let amountString = billingInfo.pastDueAmount?.currencyString else {
                 return nil
             }
             

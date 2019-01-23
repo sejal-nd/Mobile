@@ -215,33 +215,31 @@ class BillViewModel {
         // Avoid Shutoff
         if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 {
             let amountString = arrears.currencyString
-            var days = 0
-            if let date = accountDetail.billingInfo.turnOffNoticeExtendedDueDate ??
-                accountDetail.billingInfo.turnOffNoticeDueDate {
-                days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
-            }
+            let date = billingInfo.turnOffNoticeExtendedDueDate ?? billingInfo.turnOffNoticeDueDate
+            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date())) ?? 0
+            let dateString = date?.mmDdYyyyString ?? "--"
             
-            switch (Environment.shared.opco, days > 0, accountDetail.isCutOutIssued, arrears == billingInfo.netDueAmount) {
-            case (.bge, true, true, true):
-                let format = "The total amount must be paid in %d day%@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
-                return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
-            case (.bge, true, true, false):
-                let format = "%@ of the total must be paid in %d day%@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
-                return String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-            case (.bge, true, false, true):
-                let format = "The total amount is due in %d day%@ to avoid shutoff."
-                return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
-            case (.bge, true, false, false):
-                let format = "%@ of the total is due in %d day%@ to avoid shutoff."
-                return String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
-            case (_, _, true, true):
+            switch (days > 0, accountDetail.isCutOutIssued, arrears == billingInfo.netDueAmount) {
+            case (true, true, true):
+                let format = "The total amount must be paid by %@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
+                return String.localizedStringWithFormat(format, dateString)
+            case (true, true, false):
+                let format = "%@ of the total must be paid by %@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
+                return String.localizedStringWithFormat(format, amountString, dateString)
+            case (true, false, true):
+                let format = "The total amount must be paid by %@ to avoid shutoff."
+                return String.localizedStringWithFormat(format, dateString)
+            case (true, false, false):
+                let format = "%@ of the total must be paid by %@ to avoid shutoff."
+                return String.localizedStringWithFormat(format, amountString, dateString)
+            case (false, true, true):
                 return NSLocalizedString("The total amount must be paid immediately to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment.", comment: "")
-            case (_, _, true, false):
+            case (false, true, false):
                 let format = "%@ of the total must be paid immediately to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
                 return String.localizedStringWithFormat(format, amountString)
-            case (_, _, false, true):
+            case (false, false, true):
                 return NSLocalizedString("The total amount must be paid immediately to avoid shutoff.", comment: "")
-            case (_, _, false, false):
+            case (false, false, false):
                 let format = "%@ of the total must be paid immediately to avoid shutoff."
                 return String.localizedStringWithFormat(format, amountString)
             }
