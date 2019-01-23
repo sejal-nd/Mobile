@@ -84,7 +84,7 @@ class ReviewPaymentViewController: UIViewController {
         navigationItem.rightBarButtonItem = submitButton
         viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-//        gradientLayer.frame = gradientView.bounds
+        gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.softGray.cgColor,
             UIColor.white.cgColor,
