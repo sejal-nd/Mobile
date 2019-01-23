@@ -221,7 +221,7 @@ class BillViewModel {
                 days = date.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
             }
             
-            switch (Environment.shared.opco, days > 0, (accountDetail.isCutOutIssued || accountDetail.isCutOutDispatched), arrears == billingInfo.netDueAmount) {
+            switch (Environment.shared.opco, days > 0, accountDetail.isCutOutIssued, arrears == billingInfo.netDueAmount) {
             case (.bge, true, true, true):
                 let format = "The total amount must be paid in %d day%@ to avoid shutoff. We cannot guarantee your service will not be shut off the same day as the payment."
                 return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
