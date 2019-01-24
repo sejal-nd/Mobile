@@ -29,9 +29,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var maintenanceModeBody: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyLabel: DataDetectorTextView!
-    @IBOutlet weak var footerDividerView: UIView!
-    @IBOutlet weak var footerTextView: UITextView!
-    @IBOutlet weak var BGEInquiriesLabel: DataDetectorTextView!
+    @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,14 +58,11 @@ class MaintenanceModeViewController: UIViewController {
         bodyLabel.textContainer.lineFragmentPadding = 0
         bodyLabel.tintColor = .actionBlue // Color of the phone numbers
         
-        BGEInquiriesLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        BGEInquiriesLabel.textContainerInset = .zero
-        BGEInquiriesLabel.textContainer.lineFragmentPadding = 0
-        BGEInquiriesLabel.tintColor = .actionBlue
-        BGEInquiriesLabel.attributedText = viewModel.bgeInquiriesLabelText
-        
-        footerDividerView.isHidden = !viewModel.showFooterText
-        footerTextView.isHidden = !viewModel.showFooterText
+        footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
+        footerTextView.textContainerInset = .zero
+        footerTextView.textContainer.lineFragmentPadding = 0
+        footerTextView.tintColor = .actionBlue
+        footerTextView.attributedText = viewModel.footerLabelText
         
         view.backgroundColor = .primaryColor
     }
