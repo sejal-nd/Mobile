@@ -39,11 +39,11 @@ class MaintenanceModeViewModel{
         case .comEd:
             phone1 = "1-800-334-7661"
             phone2 = "\n1-800-334-7661" // Included the line break in the second number so the range(of:) method could find it, and bold it. Not hacky at all 👀
-            localizedString = String.localizedStringWithFormat("If you see downed power lines, %@ and then call ComEd at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call%@ M-F 7AM to 7PM\n\n", leaveAreaString, phone1, phone2)
+            localizedString = String.localizedStringWithFormat("If you see downed power lines, %@ and then call ComEd at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call%@ M-F 7AM to 7PM", leaveAreaString, phone1, phone2)
         case .peco:
             phone1 = "1-800-841-4141"
             phone2 = "1-800-494-4000"
-            localizedString = String.localizedStringWithFormat("If you smell natural gas or see downed power lines, %@ and then call PECO at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n%@ M-F 7AM to 7PM\n\n", leaveAreaString, phone1, phone2)
+            localizedString = String.localizedStringWithFormat("If you smell natural gas or see downed power lines, %@ and then call PECO at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n%@ M-F 7AM to 7PM", leaveAreaString, phone1, phone2)
         }
         
         let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
@@ -62,7 +62,7 @@ class MaintenanceModeViewModel{
         return attrString
     }()
     
-    let showBGEStackView = Environment.shared.opco == .bge
+    let showFooterText = Environment.shared.opco == .bge
     
     func doReload(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
         authService.getMaintenanceMode()
