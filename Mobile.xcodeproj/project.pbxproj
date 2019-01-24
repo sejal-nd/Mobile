@@ -352,6 +352,9 @@
 		35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
 		35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
+		35B6A4DD21FA200100A4F6FA /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6A4DC21FA200100A4F6FA /* SnapshotHelper.swift */; };
+		35B6A4DE21FA200100A4F6FA /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6A4DC21FA200100A4F6FA /* SnapshotHelper.swift */; };
+		35B6A4DF21FA200100A4F6FA /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6A4DC21FA200100A4F6FA /* SnapshotHelper.swift */; };
 		35E7C79C21907EA400BA13C6 /* PECO_WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO_WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -2445,6 +2448,7 @@
 		35AE569C214AD98500F633D0 /* ellipses_loading_white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ellipses_loading_white.json; sourceTree = "<group>"; };
 		35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCorners.swift; sourceTree = "<group>"; };
 		35AFB42A20C82DA0000312B9 /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
+		35B6A4DC21FA200100A4F6FA /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		35CE69D421122F50007EB844 /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		35CE69D521122F50007EB844 /* PECO-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-TEST.entitlements"; sourceTree = "<group>"; };
 		35CE69D621122F50007EB844 /* ComEd-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-TEST.entitlements"; sourceTree = "<group>"; };
@@ -3199,6 +3203,7 @@
 		087630DF1E72F5D000FA7020 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
+				35B6A4DC21FA200100A4F6FA /* SnapshotHelper.swift */,
 				0EF60FB320EE78F6006ABC18 /* GSTouchesShowing */,
 				087630E21E72F5D000FA7020 /* Info.plist */,
 				9C287E1D2034BFED00D0D029 /* BillUITests.swift */,
@@ -6828,6 +6833,7 @@
 				82DFBEFD200FC5C100CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539E200943E100883CEA /* UserDefaultKeys.swift in Sources */,
 				351560CA210F61F2008C24F1 /* Environment.swift in Sources */,
+				35B6A4DD21FA200100A4F6FA /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8225,6 +8231,7 @@
 				82DFBEFE200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539F200943E100883CEA /* UserDefaultKeys.swift in Sources */,
 				351560CB210F61F2008C24F1 /* Environment.swift in Sources */,
+				35B6A4DE21FA200100A4F6FA /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8247,6 +8254,7 @@
 				82DFBEFF200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F353A0200943E200883CEA /* UserDefaultKeys.swift in Sources */,
 				351560CC210F61F3008C24F1 /* Environment.swift in Sources */,
+				35B6A4DF21FA200100A4F6FA /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
