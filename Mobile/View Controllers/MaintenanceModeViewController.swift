@@ -42,7 +42,7 @@ class MaintenanceModeViewController: UIViewController {
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         reloadButton.rx.touchUpInside.asDriver()
-            .drive(onNext: onReloadPress)
+            .drive(onNext: { [weak self] in self?.onReloadPress() })
             .disposed(by: disposeBag)
         
         maintenanceModeBody.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
