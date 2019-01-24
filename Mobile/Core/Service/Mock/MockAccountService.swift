@@ -41,7 +41,7 @@ class MockAccountService: AccountService {
     
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
-        let tenDaysFromToday = Calendar.opCo.startOfDay(for: Date()).addingTimeInterval(864_000)
+        let tenDaysFromToday = Calendar.opCo.startOfDay(for: .now).addingTimeInterval(864_000)
         switch loggedInUsername {
         case "billCardNoDefaultPayment", "billCardWithDefaultPayment":
             let accountDetail = AccountDetail(accountNumber: "1234",
@@ -97,7 +97,7 @@ class MockAccountService: AccountService {
             return .just(accountDetail)
             
         case "thankYouForPayment":
-            let now = Date()
+            let now = Date.now
             let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: now)
             let accountDetail = AccountDetail(accountNumber: "1234",
                                               billingInfo: BillingInfo(netDueAmount: 0,
@@ -109,7 +109,7 @@ class MockAccountService: AccountService {
             
         case "thankYouForPaymentOTP":
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = PaymentDetails(amount: 234,
-                                                                                             date: Date().addingTimeInterval(-3600),
+                                                                                             date: Date.now.addingTimeInterval(-3600),
                                                                                              confirmationNumber: "123456")
             let accountDetail = AccountDetail(accountNumber: "1234")
             return .just(accountDetail)

@@ -96,7 +96,7 @@ class AddCardFormViewModel {
     private(set) lazy var expYearIsNotInPast: Driver<Bool> = self.expYear.asDriver().map {
         guard let enteredDate = DateFormatter.yyyyFormatter.date(from: $0) else { return false }
         let enteredYear = Calendar.opCo.component(.year, from: enteredDate)
-        let todayYear = Calendar.opCo.component(.year, from: Date())
+        let todayYear = Calendar.opCo.component(.year, from: .now)
         
         return enteredYear >= todayYear
     }

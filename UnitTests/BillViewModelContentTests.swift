@@ -431,7 +431,7 @@ class BillViewModelContentTests: BillViewModelTests {
             PaymentItem(amount: 4, date: earlyDate, status: .scheduled),
             PaymentItem(amount: -68.04, date: earlyDate, status: .scheduled),
             PaymentItem(amount: 0, date: nil, status: .pending),
-            PaymentItem(amount: -52, date: Date(), status: .pending),
+            PaymentItem(amount: -52, date: .now, status: .pending),
             PaymentItem(amount: -52, date: nil, status: .pending),
             PaymentItem(amount: -52, date: nil, status: .pending)
         ]

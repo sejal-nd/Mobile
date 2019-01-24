@@ -95,7 +95,7 @@ struct MockUsageService: UsageService {
         dateFormatter.calendar = .opCo
         dateFormatter.timeZone = .opCo
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let today = Date()
+        let today = Date.now
         let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
         let threeDaysOut = Calendar.opCo.date(byAdding: .day, value: 3, to: today)!
         let sixDaysOut = Calendar.opCo.date(byAdding: .day, value: 6, to: today)!

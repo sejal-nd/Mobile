@@ -996,6 +996,15 @@
 		B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
 		B0472B2A2111011F0048C1A7 /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
 		B0472B2B2111011F0048C1A7 /* UsageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0472B282111011F0048C1A7 /* UsageViewController.swift */; };
+		B04DDF5B21FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF5C21FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF5D21FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF5E21FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF5F21FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF6021FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF6121FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF6221FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF6321FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
 		B05D84B321877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		B05D84B421877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		B05D84B521877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
@@ -2735,6 +2744,7 @@
 		B0336FE521751FB700751430 /* MCSAppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSAppointmentService.swift; sourceTree = "<group>"; };
 		B0336FE921762FB400751430 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
+		B04DDF5A21FA800C00594ACF /* Date+Now.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Now.swift"; sourceTree = "<group>"; };
 		B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureCellButton.swift; sourceTree = "<group>"; };
 		B05D84B62187803000F15A9F /* DisclosureCellButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisclosureCellButton.xib; sourceTree = "<group>"; };
 		B05E9D12217F688A0003FAB8 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
@@ -4636,6 +4646,7 @@
 				B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */,
 				B0336FE921762FB400751430 /* EventStore.swift */,
 				356C7F7E21909976003E8A90 /* WatchSessionManager.swift */,
+				B04DDF5A21FA800C00594ACF /* Date+Now.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6819,6 +6830,7 @@
 				B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8720DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A6200D014000883CEA /* MoreUITests.swift in Sources */,
+				B04DDF6121FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F353B6200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B5E20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				0EF60FC620EE78F7006ABC18 /* GSTouchesShowingController.swift in Sources */,
@@ -7051,6 +7063,7 @@
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				82AC2A1A1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
+				B04DDF5B21FA800C00594ACF /* Date+Now.swift in Sources */,
 				54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				E83F02751FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
@@ -7572,6 +7585,7 @@
 				E8C6F2A31F1FD37800C4644C /* AddCardFormViewModel.swift in Sources */,
 				35A6C6D0211C8F0500C2A58F /* TitleTableViewCell.swift in Sources */,
 				E88B8DA31F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
+				B04DDF5D21FA800C00594ACF /* Date+Now.swift in Sources */,
 				54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				35A6C6E2211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
 				82BE05811ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
@@ -7790,6 +7804,7 @@
 				82AC2A1B1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
+				B04DDF5C21FA800C00594ACF /* Date+Now.swift in Sources */,
 				82A18E561EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E83F02761FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
 				82A18E631EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
@@ -8082,6 +8097,7 @@
 				E835D1D11FB63288008CE250 /* PushNotification.swift in Sources */,
 				829E058E1FA7929500697633 /* Fillable.swift in Sources */,
 				B574BAFA1E786473001E8A44 /* MockOutageService.swift in Sources */,
+				B04DDF5E21FA800C00594ACF /* Date+Now.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
 				E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */,
@@ -8216,6 +8232,7 @@
 				B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8820DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
+				B04DDF6221FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				0EF60FC720EE78F7006ABC18 /* GSTouchesShowingController.swift in Sources */,
@@ -8238,6 +8255,7 @@
 				B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8920DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A8200D014000883CEA /* MoreUITests.swift in Sources */,
+				B04DDF6321FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F353B8200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				0EF60FC820EE78F7006ABC18 /* GSTouchesShowingController.swift in Sources */,
@@ -8319,6 +8337,7 @@
 				E8F62B65200924410077B3DA /* AlertsStore.swift in Sources */,
 				E8F62B66200924410077B3DA /* PushNotification.swift in Sources */,
 				E8F62B67200924410077B3DA /* Fillable.swift in Sources */,
+				B04DDF5F21FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F62B68200924410077B3DA /* MockOutageService.swift in Sources */,
 				E8F62B69200924410077B3DA /* AuthTokenParser.swift in Sources */,
 				E8F62B6A200924410077B3DA /* CreditCard.swift in Sources */,
@@ -8512,6 +8531,7 @@
 				E8F62C1A200924570077B3DA /* AlertsStore.swift in Sources */,
 				E8F62C1B200924570077B3DA /* PushNotification.swift in Sources */,
 				E8F62C1C200924570077B3DA /* Fillable.swift in Sources */,
+				B04DDF6021FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F62C1D200924570077B3DA /* MockOutageService.swift in Sources */,
 				E8F62C1E200924570077B3DA /* AuthTokenParser.swift in Sources */,
 				E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */,

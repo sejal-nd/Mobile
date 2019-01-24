@@ -300,7 +300,7 @@ class PaymentViewModelTests: XCTestCase {
         
         AccountsStore.shared.customerIdentifier = "123"
         viewModel.paymentId.value = "123"
-        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
         let expect = expectation(description: "async")
         viewModel.cancelPayment(onSuccess: {
             expect.fulfill()
@@ -321,7 +321,7 @@ class PaymentViewModelTests: XCTestCase {
         
         AccountsStore.shared.customerIdentifier = "123"
         viewModel.paymentId.value = "123"
-        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
         viewModel.selectedWalletItem.value = WalletItem()
         let expect = expectation(description: "async")
         viewModel.modifyPayment(onSuccess: {
@@ -1623,7 +1623,7 @@ class PaymentViewModelTests: XCTestCase {
             
             var dateComps = DateComponents()
             dateComps.day = -1
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
             let dueByDate = Calendar.opCo.date(byAdding: dateComps, to: startOfTodayDate)
             viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(dueByDate: dueByDate))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in

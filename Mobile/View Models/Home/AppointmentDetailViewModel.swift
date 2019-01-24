@@ -149,7 +149,7 @@ class AppointmentDetailViewModel {
         //event.url Coordinate with web for URLs and deep linking
         
         var alarms = [EKAlarm]()
-        let now = Date()
+        let now = Date.now
         if let alarmTime1 = Calendar.opCo.date(byAdding: DateComponents(day: -1), to: appointment.startDate), alarmTime1 > now {
             alarms.append(EKAlarm(absoluteDate: alarmTime1))
         }

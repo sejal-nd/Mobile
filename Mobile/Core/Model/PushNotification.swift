@@ -22,7 +22,7 @@ class PushNotification: NSObject, NSCoding {
     var message: String?
     var date: Date
     
-    init(accountNumbers: [String], title: String?, message: String?, date: Date = Date()) {
+    init(accountNumbers: [String], title: String?, message: String?, date: Date = .now) {
         self.accountNumbers = accountNumbers
         self.title = title
         self.message = message

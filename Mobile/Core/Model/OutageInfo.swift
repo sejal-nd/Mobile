@@ -47,7 +47,7 @@ struct OutageInfo {
          comment: String?=nil) {
         self.accountNumber = accountNumber
         self.locationId = locationId
-        self.reportedTime = Date()
+        self.reportedTime = .now
         self.issue = issue
         self.phoneNumber = phoneNumber
         self.phoneExtension = phoneExtension
@@ -68,7 +68,7 @@ struct ReportedOutageResult: Mappable {
         do {
             reportedTime = try map.from("reportedTime", transformation: DateParser().extractDate)
         } catch {
-            reportedTime = Date()
+            reportedTime = .now
         }
     }
 }

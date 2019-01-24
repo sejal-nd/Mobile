@@ -90,7 +90,7 @@ class OutageViewModelTests: XCTestCase {
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
-        let testEtr = Date()
+        let testEtr = Date.now
         let testEtrString = DateFormatter.outageOpcoDateFormatter.string(from: testEtr)
         
         let expect = expectation(description: "Test report outage expectation")
@@ -167,7 +167,7 @@ class OutageViewModelTests: XCTestCase {
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
-        let testDate = Date()
+        let testDate = Date.now
         let testDateString = DateFormatter.outageOpcoDateFormatter.string(from: testDate)
         
         let expect = expectation(description: "Test report outage expectation")

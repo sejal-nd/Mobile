@@ -67,7 +67,7 @@ class PaymentUITests: ExelonUITestCase {
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
-        let dateText = dateString(from: Date())
+        let dateText = dateString(from: .now)
 
         tapButton(buttonText: dateText)
         checkExistenceOfElement(.navigationBar, "Select Payment Date")
@@ -137,7 +137,7 @@ class PaymentUITests: ExelonUITestCase {
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
-        tapButton(buttonText: dateString(from: Date()))
+        tapButton(buttonText: dateString(from: .now))
         XCTAssertTrue(app.navigationBars["Select Payment Date"].waitForExistence(timeout: 2))
     }
     
@@ -185,7 +185,7 @@ class PaymentUITests: ExelonUITestCase {
             ])
         tapButton(buttonText: "Close")
         
-        tapButton(buttonText: dateString(from: Date()))
+        tapButton(buttonText: dateString(from: .now))
         checkExistenceOfElement(.navigationBar, "Select Payment Date")
     }
     
@@ -255,7 +255,7 @@ class PaymentUITests: ExelonUITestCase {
         XCTAssertTrue(nextButton.isEnabled)
         nextButton.tap()
 
-        let dateText = dateString(from: Date())
+        let dateText = dateString(from: .now)
 
         XCTAssertTrue(app.scrollViews.otherElements["Bank account, Test Nickname, Account number ending in, 1234"].exists)
 
@@ -332,7 +332,7 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "Overpaying"),
             (.staticText, "$100.00"),
             (.staticText, "Payment Date"),
-            (.staticText, dateString(from: Date())),
+            (.staticText, dateString(from: .now)),
             (.staticText, "Payment Amount"),
             (.staticText, "$300.00"),
         ])

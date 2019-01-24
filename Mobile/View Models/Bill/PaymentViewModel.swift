@@ -63,7 +63,7 @@ class PaymentViewModel {
             self.allowCancel.value = billingHistoryItem.flagAllowDeletes
         }
         
-        self.paymentDate = Variable(Date()) // May be updated later...see computeDefaultPaymentDate()
+        self.paymentDate = Variable(.now) // May be updated later...see computeDefaultPaymentDate()
 
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
         paymentAmount = Variable(billingHistoryItem?.amountPaid ?? accountDetail.billingInfo.netDueAmount ?? 0)
@@ -90,7 +90,7 @@ class PaymentViewModel {
     }
     
     func computeDefaultPaymentDate() {
-        let now = Date()
+        let now = Date.now
         
         switch Environment.shared.opco {
         case .comEd, .peco:
@@ -99,14 +99,14 @@ class PaymentViewModel {
             let startOfTodayDate = Calendar.opCo.startOfDay(for: now)
             let tomorrow =  Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             
-            if Calendar.opCo.component(.hour, from: Date()) >= 20 &&
+            if Calendar.opCo.component(.hour, from: .now) >= 20 &&
                 !accountDetail.value.isActiveSeverance {
                 self.paymentDate.value = tomorrow
             }
             
             let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value)
             if !accountDetail.value.isActiveSeverance && !isFixedPaymentDate {
-                self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
+                self.paymentDate.value = Calendar.opCo.component(.hour, from: .now) < 20 ? now: tomorrow
             } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
                 if dueDate >= now && !isFixedPaymentDate {
                     self.paymentDate.value = dueDate
@@ -212,7 +212,7 @@ class PaymentViewModel {
                 let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
                 var paymentDate = self.paymentDate.value
                 if isFixed {
-                    paymentDate = Date()
+                    paymentDate = .now
                 }
                 
                 let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
@@ -272,7 +272,7 @@ class PaymentViewModel {
                 self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
                     guard let self = self else { return }
                     
-                    let paymentDate = isFixed ? Date() : self.paymentDate.value
+                    let paymentDate = isFixed ? .now : self.paymentDate.value
                     let maskedAccountNumber = String(self.addBankFormViewModel.accountNumber.value.suffix(4))
                     
                     let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
@@ -326,7 +326,7 @@ class PaymentViewModel {
             self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
                 guard let self = self else { return }
                 
-                let paymentDate = isFixed ? Date() : self.paymentDate.value
+                let paymentDate = isFixed ? .now : self.paymentDate.value
                 
                 self.paymentService.scheduleBGEOneTimeCardPayment(accountNumber: self.accountDetail.value.accountNumber,
                                                                   paymentAmount: self.paymentAmount.value,
@@ -358,7 +358,7 @@ class PaymentViewModel {
                     self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
                         guard let self = self else { return }
                         
-                        let paymentDate = isFixed ? Date() : self.paymentDate.value
+                        let paymentDate = isFixed ? .now : self.paymentDate.value
                         let maskedAccountNumber = String(self.addCardFormViewModel.cardNumber.value.suffix(4))
                         
                         let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
@@ -429,7 +429,7 @@ class PaymentViewModel {
         self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
             guard let self = self else { return }
             let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-            let paymentDate = isFixed ? Date() : self.paymentDate.value
+            let paymentDate = isFixed ? .now : self.paymentDate.value
             
             let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
                                   existingAccount: true,
@@ -1100,7 +1100,7 @@ class PaymentViewModel {
                 return true
             }
             
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
             if let dueDate = accountDetail.billingInfo.dueByDate {
                 if dueDate <= startOfTodayDate {
                     return true
@@ -1121,7 +1121,7 @@ class PaymentViewModel {
             let dueDate = $0.billingInfo.dueByDate else {
                 return false
         }
-        let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
         if pastDueAmount > 0 && pastDueAmount != netDueAmount && dueDate > startOfTodayDate {
             // Past due amount but with a new bill allows user to future date, so we should hide
             return false
@@ -1137,8 +1137,8 @@ class PaymentViewModel {
                 if let paymentDate = $2?.paymentDate, Environment.shared.opco != .bge {
                     return paymentDate.mmDdYyyyString
                 }
-                let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
-                if Environment.shared.opco == .bge && Calendar.opCo.component(.hour, from: Date()) >= 20 {
+                let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
+                if Environment.shared.opco == .bge && Calendar.opCo.component(.hour, from: .now) >= 20 {
                     return Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
                 }
                 return startOfTodayDate.mmDdYyyyString

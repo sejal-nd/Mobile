@@ -250,7 +250,7 @@ extension BillingInfo: JSONEncodable {
 
 extension PaymentItem: JSONEncodable {
     
-    init(amount: Double, date: Date? = Date(), status: PaymentStatus = .scheduled) {
+    init(amount: Double, date: Date? = .now, status: PaymentStatus = .scheduled) {
         
         if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
@@ -365,7 +365,7 @@ extension SERInfo: JSONEncodable {
 extension SERResult: JSONEncodable {
     init(actualKWH: Double = 0,
          baselineKWH: Double = 0,
-         eventStart: Date = Date(),
+         eventStart: Date = .now,
          eventEnd: Date? = nil,
          savingDollar: Double = 0,
          savingKWH: Double = 0) {

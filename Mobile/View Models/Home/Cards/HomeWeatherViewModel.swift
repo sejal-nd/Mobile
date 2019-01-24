@@ -47,7 +47,7 @@ class HomeWeatherViewModel {
 //        .map { "\($0)" }
         .mapTo(())
         .startWith(())
-        .map { Date().localizedGreeting }
+        .map { Date.now.localizedGreeting }
         .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     

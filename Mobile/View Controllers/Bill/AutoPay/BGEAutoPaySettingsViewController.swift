@@ -83,8 +83,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
     @IBOutlet var numberOfPaymentsRadioControlsSet = [UIControl]()
 
     //
-    let now = Calendar.current.startOfDay(for: Date())
-    let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: Date()))
+    let now = Calendar.current.startOfDay(for: .now)
+    let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: .now))
     
     var numberOfDaysBefore: [String]!
 

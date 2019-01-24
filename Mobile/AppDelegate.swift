@@ -152,7 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
-                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
+                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
             }
         } else {
             // App was in the foreground when notification received - do nothing

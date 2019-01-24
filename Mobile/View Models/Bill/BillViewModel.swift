@@ -216,7 +216,7 @@ class BillViewModel {
         if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 {
             let amountString = arrears.currencyString
             let date = billingInfo.turnOffNoticeExtendedDueDate ?? billingInfo.turnOffNoticeDueDate
-            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date())) ?? 0
+            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now)) ?? 0
             let dateString = date?.mmDdYyyyString ?? "--"
             
             switch (days > 0, accountDetail.isCutOutIssued, arrears == billingInfo.netDueAmount) {
@@ -249,7 +249,7 @@ class BillViewModel {
         if let dueByDate = billingInfo.dueByDate,
             let amtDpaReinst = billingInfo.amtDpaReinst,
             Environment.shared.opco != .bge && amtDpaReinst > 0 {
-            let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+            let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now))
             let amountString = amtDpaReinst.currencyString
             
             let string: String

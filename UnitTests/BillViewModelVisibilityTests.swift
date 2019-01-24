@@ -144,7 +144,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testShowPendingPayment() {
         
         let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: .now, status: .pending)])),
             AccountDetail()
         ]
         
@@ -171,9 +171,9 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         let accountDetail: [AccountDetail] = [
             AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3,
-                                                   pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+                                                   pendingPayments: [PaymentItem(amount: 5, date: .now, status: .pending)])),
             AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3)),
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: .now, status: .pending)])),
             AccountDetail()
         ]
         
