@@ -16,7 +16,7 @@ class HomeBillCardViewModel {
     
     let fetchDataMMEvents: Observable<Event<Maintenance>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
-    let recentPaymentsEvents: Observable<Event<RecentPayments>>
+    let scheduledPaymentEvents: Observable<Event<PaymentItem?>>
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let authService: AuthenticationService
@@ -42,7 +42,7 @@ class HomeBillCardViewModel {
     required init(fetchData: Observable<FetchingAccountState>,
                   fetchDataMMEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
-                  recentPaymentsEvents: Observable<Event<RecentPayments>>,
+                  scheduledPaymentEvents: Observable<Event<PaymentItem?>>,
                   walletService: WalletService,
                   paymentService: PaymentService,
                   authService: AuthenticationService,
@@ -51,7 +51,7 @@ class HomeBillCardViewModel {
         self.fetchData = fetchData
         self.fetchDataMMEvents = fetchDataMMEvents
         self.accountDetailEvents = accountDetailEvents
-        self.recentPaymentsEvents = recentPaymentsEvents
+        self.scheduledPaymentEvents = scheduledPaymentEvents
         self.walletService = walletService
         self.paymentService = paymentService
         self.authService = authService
@@ -169,7 +169,7 @@ class HomeBillCardViewModel {
     //MARK: - Loaded States
     
     private lazy var accountDetailDriver: Driver<AccountDetail> = accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
-    private lazy var recentPaymentsDriver: Driver<RecentPayments> = recentPaymentsEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private lazy var scheduledPaymentDriver: Driver<PaymentItem?> = scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())
     private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
@@ -182,7 +182,7 @@ class HomeBillCardViewModel {
     private(set) lazy var showErrorState: Driver<Bool> = Observable
         .combineLatest(accountDetailEvents,
                        walletItemEvents,
-                       recentPaymentsEvents,
+                       scheduledPaymentEvents,
                        showMaintenanceModeState.asObservable())
         { ($0.error != nil || $1.error != nil || $2.error != nil) && !$3 }
         .startWith(false)
@@ -212,8 +212,8 @@ class HomeBillCardViewModel {
     }
     
     private lazy var billState: Driver<BillState> = Observable
-        .combineLatest(accountDetailEvents.elements(), recentPaymentsEvents.elements(), walletItem)
-        .map { accountDetail, recentPayments, walletItem -> BillState in
+        .combineLatest(accountDetailEvents.elements(), scheduledPaymentEvents.elements(), walletItem)
+        .map { accountDetail, scheduledPayment, walletItem -> BillState in
             let billingInfo = accountDetail.billingInfo
             let opco = Environment.shared.opco
             
@@ -253,7 +253,7 @@ class HomeBillCardViewModel {
                 return .billReadyAutoPay
             }
             
-            if recentPayments.scheduledPayment?.amount > 0 {
+            if scheduledPayment?.amount > 0 {
                 return .paymentScheduled
             }
             
@@ -734,10 +734,10 @@ class HomeBillCardViewModel {
     private(set) lazy var amountFont: Driver<UIFont> = billState
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
-    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = Driver.combineLatest(accountDetailDriver, recentPaymentsDriver)
-        .map { accountDetail, recentPayments in
-            if let paymentAmountText = recentPayments.scheduledPayment?.amount.currencyString,
-                let paymentDateText = recentPayments.scheduledPayment?.date?.mmDdYyyyString {
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
+        .map { accountDetail, scheduledPayment in
+            if let paymentAmountText = scheduledPayment?.amount.currencyString,
+                let paymentDateText = scheduledPayment?.date?.mmDdYyyyString {
                 return String.localizedStringWithFormat("You have an automatic payment of %@ for %@.",
                                                         paymentAmountText,
                                                         paymentDateText)
@@ -748,9 +748,9 @@ class HomeBillCardViewModel {
             }
     }
     
-    private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = recentPaymentsDriver.map {
-        guard let paymentAmountText = $0.scheduledPayment?.amount.currencyString else { return nil }
-        guard let paymentDateText = $0.scheduledPayment?.date?.mmDdYyyyString else { return nil }
+    private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = scheduledPaymentDriver.map {
+        guard let paymentAmountText = $0?.amount.currencyString else { return nil }
+        guard let paymentDateText = $0?.date?.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
         return String(format: localizedText, paymentAmountText, paymentDateText)
     }

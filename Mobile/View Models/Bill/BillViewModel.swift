@@ -53,16 +53,16 @@ class BillViewModel {
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     
-    private(set) lazy var dataEvents: Observable<Event<(AccountDetail, RecentPayments)>> = maintenanceModeEvents
+    private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
         .filter { !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
-            }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, RecentPayments)> in
+            }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
                 guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
                 let accountDetail = self.accountService.fetchAccountDetail(account: account)
-                let recentPayments = self.accountService.fetchRecentPayments(accountNumber: account.accountNumber)
-                return Observable.zip(accountDetail, recentPayments)
+                let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
+                return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
@@ -85,7 +85,7 @@ class BillViewModel {
         .map { $0.0 }
         .asDriver(onErrorDriveWith: Driver.empty())
     
-    private(set) lazy var recentPayments: Driver<RecentPayments> = data
+    private(set) lazy var scheduledPayment: Driver<PaymentItem?> = data
         .map { $0.1 }
         .asDriver(onErrorDriveWith: Driver.empty())
 	
@@ -429,13 +429,13 @@ class BillViewModel {
     
     //MARK: - Payment Status
     private(set) lazy var paymentStatusText: Driver<String?> = data
-        .map { accountDetail, payments in
+        .map { accountDetail, scheduledPayment in
             if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return NSLocalizedString("You are enrolled in BGEasy", comment: "")
             } else if accountDetail.isAutoPay {
                 return NSLocalizedString("You are enrolled in AutoPay", comment: "")
-            } else if let scheduledPaymentAmount = payments.scheduledPayment?.amount,
-                let scheduledPaymentDate = payments.scheduledPayment?.date,
+            } else if let scheduledPaymentAmount = scheduledPayment?.amount,
+                let scheduledPaymentDate = scheduledPayment?.date,
                 scheduledPaymentAmount > 0 {
                 return String(format: NSLocalizedString("Thank you for scheduling your %@ payment for %@", comment: ""), scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString)
             } else if let lastPaymentAmount = accountDetail.billingInfo.lastPaymentAmount,
@@ -451,7 +451,7 @@ class BillViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = data
-        .map { accountDetail, payments in
+        .map { accountDetail, scheduledPayment in
             if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
@@ -464,8 +464,8 @@ class BillViewModel {
                     "activity before proceeding. Would you like to continue making an additional payment?\n\nNote: " +
                     "If you recently enrolled in AutoPay and you have not yet received a new bill, you will need " +
                     "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
-            } else if let scheduledPaymentAmount = payments.scheduledPayment?.amount,
-                let scheduledPaymentDate = payments.scheduledPayment?.date,
+            } else if let scheduledPaymentAmount = scheduledPayment?.amount,
+                let scheduledPaymentDate = scheduledPayment?.date,
                 scheduledPaymentAmount > 0 {
                 let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
@@ -477,12 +477,12 @@ class BillViewModel {
     }
     
     private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = data
-        .map { accountDetail, payments in
+        .map { accountDetail, scheduledPayment in
             guard !accountDetail.isBGEasy else { return .nowhere }
             
             if accountDetail.isAutoPay {
                 return .autoPay
-            } else if payments.scheduledPayment?.amount > 0 {
+            } else if scheduledPayment?.amount > 0 {
                 return .activity
             }
             

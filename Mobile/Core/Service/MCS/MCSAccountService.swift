@@ -40,15 +40,15 @@ struct MCSAccountService: AccountService {
     
     #if os(iOS)
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return fetchAccountDetail(account: account, payments: false, programs: false)
+        return fetchAccountDetail(account: account, payments: false, programs: false, budgetBilling: false)
     }
     #elseif os(watchOS)
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        return fetchAccountDetail(account: account, payments: true, programs: false)
+        return fetchAccountDetail(account: account, payments: true, programs: false, budgetBilling: false)
     }
     #endif
     
-    private func fetchAccountDetail(account: Account, payments: Bool, programs: Bool) -> Observable<AccountDetail> {
+    private func fetchAccountDetail(account: Account, payments: Bool, programs: Bool, budgetBilling: Bool) -> Observable<AccountDetail> {
         var path = "accounts/\(account.accountNumber)"
         
         var queryItems = [(String, String)]()
@@ -58,6 +58,10 @@ struct MCSAccountService: AccountService {
         
         if !programs {
             queryItems.append(("programs", "false"))
+        }
+        
+        if !budgetBilling {
+            queryItems.append(("budgetBilling", "false"))
         }
         
         let queryString = queryItems
@@ -102,16 +106,27 @@ struct MCSAccountService: AccountService {
         }
     }
     
-    func fetchRecentPayments(accountNumber: String) -> Observable<RecentPayments> {
+    func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments")
             .map { json in
                 guard let dict = json as? NSDictionary,
-                    let payments = RecentPayments.from(dict) else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                    let billingInfo = dict["BillingInfo"] as? NSDictionary,
+                    let payments = billingInfo["payments"] as? [NSDictionary] else {
+                    return []
                 }
-                
-                return payments
-        }
+                let paymentItems = payments.compactMap(PaymentItem.from).filter { $0.status == .scheduled }
+                return paymentItems
+            }
+            .catchError { error in
+                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.fnNotFound.rawValue {
+                    return Observable.just([])
+                } else if (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) && serviceError.serviceCode ==  ServiceErrorCode.failed.rawValue {
+                    return Observable.just([])
+                } else {
+                    throw serviceError
+                }
+            }
     }
     
     func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {
@@ -127,9 +142,15 @@ struct MCSAccountService: AccountService {
                         let serResults = SERResult.from(array) else {
                             throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
-                    
                     return serResults
-            }
+                }.catchError { error in
+                    let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                    if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.functionalError.rawValue {
+                        return Observable.just([])
+                    } else {
+                        throw serviceError
+                    }
+                }
         }
     }
 }

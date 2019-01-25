@@ -47,7 +47,7 @@ protocol AccountService {
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData>
     
     /// Gets recent scheduled, processing, and pending payments
-    func fetchRecentPayments(accountNumber: String) -> Observable<RecentPayments>
+    func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]>
     
     /// Gets SER event results
     func fetchSERResults(accountNumber: String) -> Observable<[SERResult]>

@@ -9,18 +9,6 @@
 import Foundation
 import Mapper
 
-struct RecentPayments: Mappable {
-    let scheduledPayment: PaymentItem?
-    
-    init(map: Mapper) throws {
-        let paymentDicts: [NSDictionary] = try map.from("BillingInfo.payments")
-        let paymentItems = paymentDicts.compactMap(PaymentItem.from)
-        
-        scheduledPayment = paymentItems.filter { $0.status == .scheduled }.last
-    }
-    
-}
-
 struct PaymentItem: Mappable {
     
     enum PaymentStatus: String {

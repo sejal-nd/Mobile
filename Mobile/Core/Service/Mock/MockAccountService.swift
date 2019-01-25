@@ -24,7 +24,7 @@ class MockAccountService: AccountService {
         AccountDetail.from(["accountNumber": "9836621902", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
     ]
     
-    var mockRecentPayments: [RecentPayments] = []
+    var mockScheduledPayments: [PaymentItem?] = []
     
     func fetchAccounts() -> Observable<[Account]> {
         var accounts = mockAccounts
@@ -347,22 +347,22 @@ class MockAccountService: AccountService {
         return .just(ssoData)
     }
     
-    func fetchRecentPayments(accountNumber: String) -> Observable<RecentPayments> {
+    func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         switch loggedInUsername {
         case "scheduledPayment", "autoPayScheduled":
-            let recentPayments = RecentPayments(scheduledPayment: PaymentItem(amount: 82))
-            return .just(recentPayments)
+            let scheduledPayments = [PaymentItem(amount: 82)]
+            return .just(scheduledPayments)
         default:
             guard let accountIndex = mockAccounts.firstIndex(where: { $0.accountNumber == accountNumber}) else {
                 return .error(ServiceError(serviceMessage: "No account detail found for the provided account."))
             }
             
-            guard mockRecentPayments.count >= accountIndex + 1 else {
-                return .just(RecentPayments())
+            guard mockScheduledPayments.count >= accountIndex + 1, mockScheduledPayments[accountIndex] != nil else {
+                return .just([])
             }
             
-            return .just(mockRecentPayments[accountIndex])
+            return .just([mockScheduledPayments[accountIndex]!])
         }
     }
     

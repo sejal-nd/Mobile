@@ -37,7 +37,7 @@ class StormModeBillViewModel {
         HomeBillCardViewModel(fetchData: fetchDataObservable,
                               fetchDataMMEvents: fetchDataObservable.mapTo(Maintenance.from([:])!).materialize(),
                               accountDetailEvents: accountDetailEvents,
-                              recentPaymentsEvents: recentPaymentsEvents,
+                              scheduledPaymentEvents: scheduledPaymentEvents,
                               walletService: walletService,
                               paymentService: paymentService,
                               authService: authService,
@@ -58,7 +58,7 @@ class StormModeBillViewModel {
                 return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
     
-    private(set) lazy var recentPaymentsEvents: Observable<Event<RecentPayments>> = fetchData
+    private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = fetchData
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
             switch state {
@@ -69,11 +69,11 @@ class StormModeBillViewModel {
             }
             }, requestSelector: { [weak self] _ in
                 guard let this = self else { return .empty() }
-                return this.accountService.fetchRecentPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+                return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
         })
     
     private lazy var accountDetail = accountDetailEvents.elements()
-    private lazy var recentPayments = recentPaymentsEvents.elements()
+    private lazy var scheduledPayment = scheduledPaymentEvents.elements()
     
     private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
         .asDriver()
@@ -101,7 +101,7 @@ class StormModeBillViewModel {
     private lazy var accountDetailNoNetwork: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    private lazy var recentPaymentsNoNetwork: Observable<Bool> = recentPaymentsEvents
+    private lazy var recentPaymentsNoNetwork: Observable<Bool> = scheduledPaymentEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
     private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = Observable
@@ -111,8 +111,8 @@ class StormModeBillViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = Observable
-        .combineLatest(accountDetail, recentPayments)
-        .map { accountDetail, payments in
+        .combineLatest(accountDetail, scheduledPayment)
+        .map { accountDetail, scheduledPayment in
             if Environment.shared.opco == .bge && accountDetail.isBGEasy {
                 return (NSLocalizedString("Existing Automatic Payment", comment: ""), NSLocalizedString("You are already " +
                     "enrolled in our BGEasy direct debit payment option. BGEasy withdrawals process on the due date " +
@@ -125,8 +125,8 @@ class StormModeBillViewModel {
                     "activity before proceeding. Would you like to continue making an additional payment?\n\nNote: " +
                     "If you recently enrolled in AutoPay and you have not yet received a new bill, you will need " +
                     "to submit a payment for your current bill if you have not already done so.", comment: ""), accountDetail)
-            } else if let scheduledPaymentAmount = payments.scheduledPayment?.amount,
-                let scheduledPaymentDate = payments.scheduledPayment?.date,
+            } else if let scheduledPaymentAmount = scheduledPayment?.amount,
+                let scheduledPaymentDate = scheduledPayment?.date,
                 scheduledPaymentAmount > 0 {
                 let localizedTitle = NSLocalizedString("Existing Scheduled Payment", comment: "")
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
