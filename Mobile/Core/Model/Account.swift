@@ -38,7 +38,7 @@ struct Account: Mappable, Equatable, Hashable {
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         
-        currentPremise = isMultipremise ? premises[0] : nil
+        currentPremise = premises.first
     }
     
     var isMultipremise: Bool{
@@ -94,7 +94,6 @@ struct AccountDetail: Mappable {
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
     let isCutOutIssued: Bool
-    let isCutOutDispatched: Bool
     let isLowIncome: Bool
     let isFinaled: Bool
 	
@@ -152,7 +151,6 @@ struct AccountDetail: Mappable {
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
         isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
-        isCutOutDispatched = map.optionalFrom("isCutOutDispatched") ?? false
         isCutOutIssued = map.optionalFrom("isCutOutIssued") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false

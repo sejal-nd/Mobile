@@ -342,7 +342,7 @@ class BillViewController: AccountPickerViewController {
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 
-        viewModel.showAmountDueTooltip.not().drive(questionMarkButton.rx.isHidden).disposed(by: bag)
+        questionMarkButton.isHidden = !viewModel.showAmountDueTooltip
         
         viewModel.showTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
         viewModel.showTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)

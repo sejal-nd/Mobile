@@ -757,13 +757,6 @@
 		82A18F091EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
 		82A18F0A1EBD12D600BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
 		82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F071EBD12D600BE9F21 /* Control.swift */; };
-		82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
-		82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
-		82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
-		82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
-		82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
-		82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
-		82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */; };
 		82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -1984,7 +1977,6 @@
 		E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
 		E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
 		E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
-		E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
 		E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */; };
 		E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		E8F62B5D200924410077B3DA /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
@@ -2110,7 +2102,6 @@
 		E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
 		E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */; };
 		E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A16F341F0D44110016952C /* SpeedpayApi.swift */; };
-		E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */; };
 		E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */; };
 		E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		E8F62C12200924570077B3DA /* BiometricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7151E566FD8006804D4 /* BiometricsService.swift */; };
@@ -2678,8 +2669,6 @@
 		82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
 		82A18F031EBD11A000BE9F21 /* ButtonControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonControl.swift; sourceTree = "<group>"; };
 		82A18F071EBD12D600BE9F21 /* Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
-		82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingPaymentView.swift; sourceTree = "<group>"; };
-		82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PendingPaymentView.xib; sourceTree = "<group>"; };
 		82A18F171EC0E83800BE9F21 /* NibViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViews.swift; sourceTree = "<group>"; };
 		82AC2A101FAA691000EACB3B /* PeakRewards.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PeakRewards.storyboard; sourceTree = "<group>"; };
 		82AC2A151FAB5C3900EACB3B /* PeakRewardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewController.swift; sourceTree = "<group>"; };
@@ -4001,7 +3990,6 @@
 			isa = PBXGroup;
 			children = (
 				54DF4BD81EE9CB39008CF7AD /* Registration */,
-				82A18F0C1EC0C71D00BE9F21 /* Bill */,
 				82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */,
 			);
 			path = "Listable Views";
@@ -4057,15 +4045,6 @@
 				82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */,
 			);
 			path = DisclosureButton;
-			sourceTree = "<group>";
-		};
-		82A18F0C1EC0C71D00BE9F21 /* Bill */ = {
-			isa = PBXGroup;
-			children = (
-				82A18F0D1EC0C96100BE9F21 /* PendingPaymentView.swift */,
-				82A18F121EC0CB3E00BE9F21 /* PendingPaymentView.xib */,
-			);
-			path = Bill;
 			sourceTree = "<group>";
 		};
 		82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */ = {
@@ -5740,7 +5719,6 @@
 				B0DB274E215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
 				35ACCB4320EA590D0022907F /* HomeOutageCardView.xib in Resources */,
 				35A6C6FA2121D64100C2A58F /* ToggleTableViewCell.xib in Resources */,
-				82A18F131EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B5D415781F3A6C6300AC32B2 /* GoogleService-Info_bge.plist in Resources */,
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
@@ -5867,7 +5845,6 @@
 				B0DB2750215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
 				35A6C7032121DAF100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				35ACCB4D20EA7AC00022907F /* HomeOutageCardView.xib in Resources */,
-				82A18F151EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */,
 				B0030D0E2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
@@ -5996,7 +5973,6 @@
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
 				35A6C7042121DAF100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				35ACCB4C20EA7ABF0022907F /* HomeOutageCardView.xib in Resources */,
-				82A18F141EC0CB3E00BE9F21 /* PendingPaymentView.xib in Resources */,
 				B0030D0D2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
@@ -7196,7 +7172,6 @@
 				B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */,
-				82A18F0E1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				2249C037216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
 				826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
@@ -7577,7 +7552,6 @@
 				E89983E31F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34F20D9442400E81303 /* HomeCard.swift in Sources */,
-				82A18F101EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
@@ -7950,7 +7924,6 @@
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34E20D9442400E81303 /* HomeCard.swift in Sources */,
-				82A18F0F1EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
@@ -8117,7 +8090,6 @@
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
 				351560CE210F8A56008C24F1 /* BuildFile in Sources */,
 				B5A16F381F0D44160016952C /* SpeedpayApi.swift in Sources */,
-				82A18F111EC0C96100BE9F21 /* PendingPaymentView.swift in Sources */,
 				B092185020A24CA400695888 /* MockData.swift in Sources */,
 				82AC2A271FAB736600EACB3B /* PeakRewardsService.swift in Sources */,
 				9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */,
@@ -8359,7 +8331,6 @@
 				E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */,
 				351560CF210F8D81008C24F1 /* BuildFile in Sources */,
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
-				E8F62B59200924410077B3DA /* PendingPaymentView.swift in Sources */,
 				9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				B092185120A24CA400695888 /* MockData.swift in Sources */,
@@ -8555,7 +8526,6 @@
 				E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */,
 				351560D0210F8D81008C24F1 /* BuildFile in Sources */,
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
-				E8F62C0E200924570077B3DA /* PendingPaymentView.swift in Sources */,
 				9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				B092185220A24CA400695888 /* MockData.swift in Sources */,

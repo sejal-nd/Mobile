@@ -15,7 +15,7 @@ class ReviewPaymentViewController: UIViewController {
     var viewModel: PaymentViewModel! // Passed from MakePaymentViewController
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollViewContentView: UIView!
+    @IBOutlet weak var gradientView: UIView!
     var gradientLayer = CAGradientLayer()
     
     @IBOutlet weak var activeSeveranceLabel: UILabel!
@@ -84,12 +84,13 @@ class ReviewPaymentViewController: UIViewController {
         navigationItem.rightBarButtonItem = submitButton
         viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        gradientLayer.frame = scrollViewContentView.bounds
+        gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.softGray.cgColor,
             UIColor.white.cgColor,
         ]
-        scrollViewContentView.layer.insertSublayer(gradientLayer, at: 0)
+
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -194,12 +195,11 @@ class ReviewPaymentViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        gradientLayer.frame = scrollViewContentView.bounds
+        gradientLayer.frame = gradientView.bounds
     }
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = scrollViewContentView.bounds
+        gradientLayer.frame = gradientView.bounds
     }
     
     func bindViewHiding() {
