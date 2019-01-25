@@ -144,17 +144,13 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testShowPendingPayment() {
         
         let accountDetail: [AccountDetail] = [
-            AccountDetail(),
+            AccountDetail(billingInfo: BillingInfo(pendingPayments:[PaymentItem(amount: 5, date: Date(), status: .pending)])),
             AccountDetail()
         ]
         
         let switchAccountEventTimes = Array(0..<accountDetail.count)
         
         accountService.mockAccountDetails = accountDetail
-        accountService.mockRecentPayments = [
-            RecentPayments(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)]),
-            RecentPayments()
-        ]
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -173,21 +169,15 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testShowRemainingBalanceDue() {
         
         let accountDetail: [AccountDetail] = [
+            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3, pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
             AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3)),
-            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3)),
-            AccountDetail(billingInfo: BillingInfo()),
+            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
             AccountDetail()
         ]
         
         let switchAccountEventTimes = Array(0..<accountDetail.count)
         
         accountService.mockAccountDetails = accountDetail
-        accountService.mockRecentPayments = [
-            RecentPayments(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)]),
-            RecentPayments(),
-            RecentPayments(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)]),
-            RecentPayments()
-        ]
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
