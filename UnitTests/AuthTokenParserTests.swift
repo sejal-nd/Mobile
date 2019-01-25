@@ -46,8 +46,6 @@ class AuthTokenParserTests: XCTestCase {
             default:
                 XCTFail("Unable to correctly parse a 'failure' response value - result should be success-false")
             }
-            
-            print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
         } catch let err as NSError {
             XCTFail("Unable to parse " + err.localizedDescription)
         }
@@ -64,8 +62,6 @@ class AuthTokenParserTests: XCTestCase {
             default:
                 XCTFail("Unable to correctly parse a 'failure' response value - result should be success-false")
             }
-            
-            print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
         } catch let err as NSError {
             XCTFail("Unable to parse " + err.localizedDescription)
         }
@@ -82,8 +78,6 @@ class AuthTokenParserTests: XCTestCase {
             default:
                 XCTFail("Unable to correctly parse a 'success' response value - result should be success-true")
             }
-            
-            print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
         } catch let err as NSError {
             XCTFail("Unable to parse " + err.localizedDescription)
         }
@@ -100,8 +94,6 @@ class AuthTokenParserTests: XCTestCase {
             default:
                 break
             }
-            
-            print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
         } catch let err as NSError {
             XCTFail("Unable to parse " + err.localizedDescription)
         }
@@ -118,8 +110,6 @@ class AuthTokenParserTests: XCTestCase {
             default:
                 break
             }
-            
-            print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) ?? "No Response Data")
         } catch let err as NSError {
             XCTFail("Unable to parse " + err.localizedDescription)
         }

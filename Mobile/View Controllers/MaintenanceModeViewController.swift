@@ -98,7 +98,7 @@ class MaintenanceModeViewController: UIViewController {
             self.presentingViewController?.view.isUserInteractionEnabled = true
             if !isMaintenance{
                 self.presentingViewController?.dismiss(animated: true, completion: {
-                    print("Dismissed MM")
+                    dLog("Dismissed MM")
                 })
             } else {
                 self.headerLabel.text = self.viewModel.headerLabelText
