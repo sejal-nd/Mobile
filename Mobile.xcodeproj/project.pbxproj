@@ -193,6 +193,12 @@
 		351560CE210F8A56008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		351560CF210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		351560D0210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		3525887621FA57A400C5492D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525887421FA579F00C5492D /* ScreenshotUITests.swift */; };
+		3525887721FA57A400C5492D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525887421FA579F00C5492D /* ScreenshotUITests.swift */; };
+		3525887821FA57A500C5492D /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3525887421FA579F00C5492D /* ScreenshotUITests.swift */; };
+		3525887921FA5B5600C5492D /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		3525887A21FA5B5700C5492D /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		3525887B21FA5B5700C5492D /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		35277AFA2102325000411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFB2102325100411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
@@ -2403,6 +2409,7 @@
 		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryTableViewCell.swift; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillingHistoryTableViewCell.xib; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		3525887421FA579F00C5492D /* ScreenshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotUITests.swift; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
@@ -3216,6 +3223,7 @@
 				E8F353B5200D19E100883CEA /* UITestExtensions.swift */,
 				B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */,
 				0E863D8520DD4703004D77EC /* TestHelper.swift */,
+				3525887421FA579F00C5492D /* ScreenshotUITests.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -6819,6 +6827,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF60FBA20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
+				3525887821FA57A500C5492D /* ScreenshotUITests.swift in Sources */,
+				3525887921FA5B5600C5492D /* StormModeStatus.swift in Sources */,
 				0EF60FC020EE78F7006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */,
 				B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
@@ -8217,6 +8227,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF60FBB20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
+				3525887721FA57A400C5492D /* ScreenshotUITests.swift in Sources */,
+				3525887A21FA5B5700C5492D /* StormModeStatus.swift in Sources */,
 				0EF60FC120EE78F7006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */,
 				B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
@@ -8240,6 +8252,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF60FBC20EE78F7006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
+				3525887621FA57A400C5492D /* ScreenshotUITests.swift in Sources */,
+				3525887B21FA5B5700C5492D /* StormModeStatus.swift in Sources */,
 				0EF60FC220EE78F7006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */,
 				B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,

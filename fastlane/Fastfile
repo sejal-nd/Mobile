@@ -18,7 +18,22 @@ default_platform(:ios)
 platform :ios do
   desc "Generate new localized screenshots"
   lane :screenshots do
-    capture_screenshots(workspace: "Mobile.xcworkspace", scheme: "BGE-AUT-UITest")
-    frame_screenshots(white: true)
+    capture_screenshots(workspace: "Mobile.xcworkspace", scheme: ENV["SCHEME"])
+    build_ios_app(
+      silent: true,
+      clean: true,
+      skip_build_archive: true,
+      archive_path: "./",
+      output_directory: "/xcArchive", # Destination directory. Defaults to current directory.
+      output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
+      sdk: "iOS 10.0"        # use SDK as the name or path of the base SDK when building the project.
+    )
+    deliver(
+      ipa: "./xcArchive", # Same as output directory above
+      submit_for_review: false,
+      force: false,
+      metadata_path: "./metadata",
+      screenshot_path: "./screenshots"
+    )
   end
 end

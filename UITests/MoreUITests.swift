@@ -16,7 +16,7 @@ class MoreUITests: ExelonUITestCase {
         super.setUp()
         doLogin(username: "valid@test.com")
         selectTab(tabName: "More")
-        
+
         continueAfterFailure = false
     }
     

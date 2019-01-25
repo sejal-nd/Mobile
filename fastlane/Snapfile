@@ -2,12 +2,9 @@
 
 # A list of devices you want to take the screenshots from
 devices([
-  "iPhone 8",
   "iPhone 8 Plus",
-  "iPhone SE",
-  "iPhone X",
-  "iPad Pro (12.9-inch)",
-  "iPad Pro (9.7-inch)"
+  "iPhone XS Max",
+  "iPad Pro (12.9-inch)"
   ])
 
 languages([
@@ -15,7 +12,7 @@ languages([
 ])
 
 # The name of the scheme which contains the UI Tests
-scheme("BGE-AUT-UITest")
+scheme(ENV["SCHEME"])
 
 # Where should the resulting screenshots be stored?
 output_directory("./screenshots")
