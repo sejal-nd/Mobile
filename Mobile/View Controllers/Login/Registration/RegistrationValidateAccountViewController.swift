@@ -45,25 +45,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         prepareTextFieldsForInput()
         
-        checkForMaintenanceMode()
+        viewModel.checkForMaintenance()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         Analytics.log(event: .registerOffer)
-    }
-    
-    func checkForMaintenanceMode(){
-        viewModel.checkForMaintenance(onSuccess: { [weak self] maintenanceInfo in
-            if maintenanceInfo.allStatus {
-                self?.navigationController?.view.isUserInteractionEnabled = true
-                let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode(maintenanceInfo)
-            }
-        }, onError: { [weak self] errorMessage in
-            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self?.present(alertController, animated: true, completion: nil)
-        })
     }
     
     /// Helpers

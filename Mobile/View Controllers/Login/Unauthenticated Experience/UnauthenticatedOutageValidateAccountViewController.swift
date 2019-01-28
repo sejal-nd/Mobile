@@ -99,11 +99,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         navigationItem.rightBarButtonItem = nil
         
         viewModel.checkForMaintenance(
-            onAll: { [weak self] in
-                self?.navigationController?.view.isUserInteractionEnabled = true
-                let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode($0)
-            }, onOutage: { [weak self] _ in
+            onOutageOnly: { [weak self] _ in
                 self?.loadingIndicator.isHidden = true
                 self?.maintenanceModeView.isHidden = false
                 self?.scrollView.isHidden = true
@@ -115,7 +111,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
                 self?.scrollView.isHidden = false
                 self?.footerView.isHidden = false
                 self?.navigationItem.rightBarButtonItem = self?.submitButton
-        })
+            })
     }
     
     override func viewWillAppear(_ animated: Bool) {

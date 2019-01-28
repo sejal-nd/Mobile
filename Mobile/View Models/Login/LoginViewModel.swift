@@ -95,7 +95,7 @@ class LoginViewModel {
     }
 
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode()
+        authService.getMaintenanceMode(postNotification: false)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenance in
                 completion(maintenance.stormModeStatus)
@@ -135,19 +135,13 @@ class LoginViewModel {
         biometricsEnabled.value = false
     }
 
-    func checkForMaintenance(onSuccess: @escaping () -> Void,
-                             onMaintenanceMode: @escaping (Maintenance) -> Void,
-                             onError: @escaping (String) -> Void) {
+    func checkForMaintenance(onCompletion: @escaping () -> Void) {
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenanceInfo in
-                if maintenanceInfo.allStatus {
-                    onMaintenanceMode(maintenanceInfo)
-                } else {
-                    onSuccess()
-                }
-            }, onError: { error in
-                onError(error.localizedDescription)
+            .subscribe(onNext: { _ in
+                onCompletion()
+            }, onError: { _ in
+                onCompletion()
             }).disposed(by: disposeBag)
     }
 

@@ -43,7 +43,7 @@ class StormModeHomeViewModel {
             // Start polling immediately
             .startWith(())
             .toAsyncRequest { [weak self] in
-                self?.authService.getMaintenanceMode() ?? .empty()
+                self?.authService.getMaintenanceMode(postNotification: false) ?? .empty()
             }
             // Ignore errors and positive storm mode responses
             .elements()
@@ -58,7 +58,6 @@ class StormModeHomeViewModel {
     func fetchData(onSuccess: @escaping () -> Void,
                    onError: @escaping (ServiceError) -> Void) {
         // Unsubscribe before starting a new request to prevent race condition when quickly swiping through accounts
-//        currentGetMaintenanceModeStatusDisposable?.dispose()
         currentGetOutageStatusDisposable?.dispose()
         
         getOutageStatus(onSuccess: onSuccess, onError: onError)

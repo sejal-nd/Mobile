@@ -223,14 +223,11 @@ class RegistrationViewModel {
 		}
     }()
 	
-    func checkForMaintenance(onSuccess: @escaping (Maintenance) -> Void, onError: @escaping (String) -> Void) {
-        authenticationService.getMaintenanceMode()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenanceInfo in
-                onSuccess(maintenanceInfo)
-            }, onError: { error in
-                _ = error as! ServiceError
-            }).disposed(by: disposeBag)
+    func checkForMaintenance() {
+        authenticationService
+            .getMaintenanceMode()
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 	
 	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver().map { [weak self] text -> Bool in

@@ -30,7 +30,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyLabel: DataDetectorTextView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,7 +96,7 @@ class MaintenanceModeViewController: UIViewController {
             LoadingView.hide()
             guard let self = self else { return }
             self.presentingViewController?.view.isUserInteractionEnabled = true
-            if !isMaintenance{
+            if !isMaintenance {
                 self.presentingViewController?.dismiss(animated: true, completion: {
                     dLog("Dismissed MM")
                 })
