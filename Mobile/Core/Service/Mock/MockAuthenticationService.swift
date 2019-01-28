@@ -61,6 +61,8 @@ struct MockAuthenticationService: AuthenticationService {
             return .just(Maintenance(home: false, bill: true, outage: true, alert: true))
         case "maintError":
             return .error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
+        case "storm":
+            return .just(Maintenance(all: false, home: false, bill: false, outage: false, alert: false, usage: false, storm: true))
         default:
             return .just(Maintenance())
         }

@@ -16,24 +16,51 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Generate new localized screenshots"
+  desc "Generate new localized screenshots -> Increment version number -> setup certs + profiles -> Create IPA -> Upload to App Store"
   lane :screenshots do
-    capture_screenshots(workspace: "Mobile.xcworkspace", scheme: ENV["SCHEME"])
-    build_ios_app(
-      silent: true,
-      clean: true,
-      skip_build_archive: true,
-      archive_path: "./",
-      output_directory: "/xcArchive", # Destination directory. Defaults to current directory.
-      output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
-      sdk: "iOS 10.0"        # use SDK as the name or path of the base SDK when building the project.
+    get_certificates(           # invokes cert
+      username: "jerlandson5205@gmail.com",
+      team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
+      output_path: "./fastlane/certs"
     )
+    get_provisioning_profile(   # invokes sigh
+      username: "jerlandson5205@gmail.com",
+      team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
+      app_identifier: ENV["APP_IDENTIFIER"],
+      output_path: "./fastlane/provisioningProfiles"
+    )
+    capture_screenshots(
+      workspace: "Mobile.xcworkspace",
+      scheme: ENV["SCREENSHOT_SCHEME"],
+      output_directory: "./fastlane/screenshots"
+    )
+    # increment_version_number
+    # build_ios_app(
+    #   scheme: ENV["RELEASE_SCHEME"],
+    #   silent: false,
+    #   clean: true,
+    #   include_bitcode: true,
+    #   skip_build_archive: true,
+    #   export_method: "app-store",
+    #   # export_options: {
+    #   #   provisioningProfiles: {
+    #   #     "com.exelon.mobile.bge.develop" => "Exelon Wildcard Dev Profile",
+    #   #     "com.exelon.mobile.comed.develop" => "Exelon Wildcard Dev Profile",
+    #   #     "com.exelon.mobile.peco.develop" => "Exelon Wildcard Dev Profile"
+    #   #   }
+    #   # },
+    #   archive_path: ENV["ARCHIVE_PATH"],
+    #   output_directory: "./fastlane/IPA", # Destination directory. Defaults to current directory.
+    #   output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
+    #   sdk: "iOS 10.0"        # use SDK as the name or path of the base SDK when building the project.
+    # )
     deliver(
-      ipa: "./xcArchive", # Same as output directory above
+      app_identifier: ENV["APP_IDENTIFIER"],
+      ipa: "./fastlane/IPA/mobile.ipa", # Same as output directory above
       submit_for_review: false,
       force: false,
-      metadata_path: "./metadata",
-      screenshot_path: "./screenshots"
+      # metadata_path: ENV["METADATA_PATH"],
+      screenshot_path: "./fastlane/screenshots"
     )
   end
 end

@@ -8922,7 +8922,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.prodbeta;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -8949,7 +8949,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.prodbeta;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -8978,7 +8978,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.prodbeta;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9293,7 +9293,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9318,7 +9318,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9345,7 +9345,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10020,7 +10020,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				INFOPLIST_FILE = "PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -10060,7 +10060,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-watchOS\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				INFOPLIST_FILE = "PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
@@ -10096,7 +10096,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				INFOPLIST_FILE = "PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
@@ -10132,7 +10132,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				INFOPLIST_FILE = "PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
@@ -10168,7 +10168,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				INFOPLIST_FILE = "PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
@@ -10204,7 +10204,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				INFOPLIST_FILE = "PECO_WatchOS Extension/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_FAST_MATH = YES;
@@ -10307,7 +10307,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.testing;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
@@ -10335,7 +10335,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.testing;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10364,7 +10364,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.testing;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10742,7 +10742,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10769,7 +10769,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10870,7 +10870,7 @@
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.bge.staging;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				INFOPLIST_FILE = "Mobile/BGE-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
@@ -10898,7 +10898,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10925,7 +10925,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco.staging;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10952,7 +10952,7 @@
 				COMPRESS_PNG_FILES = YES;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.exelon.mobile.peco;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				INFOPLIST_FILE = "Mobile/Peco-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -10977,7 +10977,7 @@
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -11004,7 +11004,7 @@
 				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				ENABLE_BITCODE = NO;
 				EXM_BUNDLE_ID = com.exelon.mobile.comed.staging;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -11031,7 +11031,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_BUNDLE_ID = com.iphoneproduction.exelon;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				INFOPLIST_FILE = "Mobile/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";

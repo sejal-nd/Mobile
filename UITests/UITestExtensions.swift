@@ -28,4 +28,29 @@ extension XCUIElement {
         self.typeText(deleteString)
         self.typeText(text)
     }
+    
+    func clearText(_ text: String) {
+        if self.elementType != XCUIElement.ElementType.textField && self.elementType != XCUIElement.ElementType.secureTextField {
+            XCTFail("Tried to clear and enter text into a non string value")
+            return
+        }
+        
+        self.tap()
+        
+        let characters = Array(text)
+        let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: characters.count)
+        
+        self.typeText(deleteString)
+    }
+    
+    func enterText(_ text: String) {
+        if self.elementType != XCUIElement.ElementType.textField && self.elementType != XCUIElement.ElementType.secureTextField {
+            XCTFail("Tried to clear and enter text into a non string value")
+            return
+        }
+        
+        self.tap()
+        
+        self.typeText(text)
+    }
 }

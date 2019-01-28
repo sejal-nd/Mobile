@@ -12,9 +12,11 @@ import LocalAuthentication
 
 class ScreenshotUITests: ExelonUITestCase {
     
+    private let username = "valid@test.com"  // todo replace with Sam's app store account mock
+    
     override func setUp() {
         super.setUp()
-        doLogin(username: "valid@test.com") // todo replace with Sam's app store account mock
+        doLogin(username: username)
         
         setupSnapshot(app)
         
@@ -42,31 +44,38 @@ class ScreenshotUITests: ExelonUITestCase {
         snapshot("3-Usage")
         XCTAssertTrue(usageTab.isSelected)
         
-        // todo navigate to storm mode screen
-        
-        // **idea**
+        // Storm Mode
         let moreTab = app.tabBars.buttons["More"]
         moreTab.tap()
         XCTAssertTrue(moreTab.isSelected)
-        
+
         tapButton(buttonText: "Sign Out")
-        
+
         let alert = app.alerts["Sign Out"]
         XCTAssertTrue(alert.waitForExistence(timeout: 5))
         XCTAssertTrue(alert.buttons["No"].exists)
         XCTAssertTrue(alert.buttons["Yes"].exists)
-        
+
         // Test "Yes" tap
         alert.buttons["Yes"].tap()
         XCTAssertFalse(alert.exists)
+
+        // Sign In
+        let signInButton = buttonElement(withText: "Sign In", timeout: 5)
+        XCTAssertTrue(signInButton.exists)
+        signInButton.tap()
         
-        XCTAssertTrue(app.buttons["Sign In"].waitForExistence(timeout: 5))
-
-        // switch status bool
-        StormModeStatus.shared.isOn = true // switch
-
-        doLogin(username: "valid@test.com")
-
+        let elementsQuery = app.scrollViews.otherElements
+        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
+        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
+        usernameEmailAddressTextField.clearText(username)//.clearAndEnterText("storm")
+        usernameEmailAddressTextField.enterText("storm")
+        
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        passwordSecureTextField.clearAndEnterText("Password1")
+        ACTLabel.labelStep("Signing in...")
+        tapButton(buttonText: "Sign In")
+        
         snapshot("4-StormMode")
     }
         

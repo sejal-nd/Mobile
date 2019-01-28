@@ -20,7 +20,7 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane ios screenshots
 ```
-Generate new localized screenshots
+Generate new localized screenshots -> Increment version number -> setup certs + profiles -> Create IPA -> Upload to App Store
 
 ----
 
