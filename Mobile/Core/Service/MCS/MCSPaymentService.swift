@@ -166,7 +166,7 @@ class MCSPaymentService: PaymentService {
                         return confirmation
                     }
                     .do(onNext: { _ in
-                        RxNotifications.shared.accountDetailUpdated.onNext(())
+                        RxNotifications.shared.recentPaymentsUpdated.onNext(())
                         AppRating.logRatingEvent()
                     })
         }
@@ -200,7 +200,7 @@ class MCSPaymentService: PaymentService {
                 }
             }
             .do(onNext: { _ in
-                RxNotifications.shared.accountDetailUpdated.onNext(())
+                RxNotifications.shared.recentPaymentsUpdated.onNext(())
                 AppRating.logRatingEvent()
             })
     }
@@ -258,7 +258,7 @@ class MCSPaymentService: PaymentService {
                 }
             }
             .do(onNext: {
-                RxNotifications.shared.accountDetailUpdated.onNext(())
+                RxNotifications.shared.recentPaymentsUpdated.onNext(())
                 AppRating.logRatingEvent()
             })
     }
@@ -302,7 +302,7 @@ class MCSPaymentService: PaymentService {
                 }
             }
             .do(onNext: {
-                RxNotifications.shared.accountDetailUpdated.onNext(())
+                RxNotifications.shared.recentPaymentsUpdated.onNext(())
                 AppRating.logRatingEvent()
             })
     }

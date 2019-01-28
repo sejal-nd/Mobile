@@ -47,9 +47,9 @@ class BillViewModelContentTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let observer = scheduler.createObserver(Event<AccountDetail>.self)
+        let observer = scheduler.createObserver(Event<(AccountDetail, PaymentItem?)>.self)
         
-        viewModel.accountDetailEvents.subscribe(observer).disposed(by: disposeBag)
+        viewModel.dataEvents.subscribe(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
@@ -269,9 +269,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `paymentReceivedAmountText` value after switching
@@ -463,23 +461,26 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let range: CountableRange<Int> = 0..<isBGEasy.count
         accountService.mockAccountDetails = range.map { i -> AccountDetail in
-            var scheduledPayment: PaymentItem? = nil
             var pendingPayments = [PaymentItem]()
-            if paymentItems[i].status == .scheduled {
-                scheduledPayment = paymentItems[i]
-            } else {
+            if paymentItems[i].status == .pending {
                 pendingPayments.append(paymentItems[i])
             }
             
             let billingInfo = BillingInfo(lastPaymentAmount: lastPaymentAmounts[i],
                                           lastPaymentDate: lastPaymentDates[i],
                                           billDate: billDates[i],
-                                          scheduledPayment: scheduledPayment,
                                           pendingPayments: pendingPayments)
             
             return AccountDetail(billingInfo: billingInfo,
                                  isAutoPay: isAutoPay[i],
                                  isBGEasy: isBGEasy[i])
+        }
+        
+        accountService.mockScheduledPayments = range.map { i -> PaymentItem?  in
+            if paymentItems[i].status == .scheduled {
+                return paymentItems[i]
+            }
+            return nil
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -532,18 +533,18 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         
         let range: CountableRange<Int> = 0..<isBGEasy.count
         accountService.mockAccountDetails = range.map { i -> AccountDetail in
-            var scheduledPayment: PaymentItem? = nil
+            return AccountDetail(billingInfo: BillingInfo(),
+                                 isAutoPay: isAutoPay[i],
+                                 isBGEasy: isBGEasy[i])
+        }
+        
+        accountService.mockScheduledPayments = range.map { i -> PaymentItem? in
             if let scheduledPaymentAmount = scheduledPaymentAmounts[i] {
-                scheduledPayment = PaymentItem(amount: scheduledPaymentAmount,
+                return PaymentItem(amount: scheduledPaymentAmount,
                                                date: scheduledPaymentDate,
                                                status: .scheduled)
             }
-            
-            let billingInfo = BillingInfo(scheduledPayment: scheduledPayment)
-            
-            return AccountDetail(billingInfo: billingInfo,
-                                 isAutoPay: isAutoPay[i],
-                                 isBGEasy: isBGEasy[i])
+            return nil
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -594,9 +595,16 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         
         let range: CountableRange<Int> = 0..<expectedValues.count
         accountService.mockAccountDetails = range.map { i -> AccountDetail in
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: paymentItems[i]),
+            AccountDetail(billingInfo: BillingInfo(pendingPayments: paymentItems[i].filter({ $0.status == .pending })),
                           isAutoPay: isAutoPay[i],
                           isBGEasy: isBGEasy[i])
+        }
+        accountService.mockScheduledPayments = range.map { i -> PaymentItem? in
+            let paymentArray = paymentItems[i].filter({ $0.status == .scheduled })
+            if let lastScheduled = paymentArray.last {
+                return lastScheduled
+            }
+            return nil
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
