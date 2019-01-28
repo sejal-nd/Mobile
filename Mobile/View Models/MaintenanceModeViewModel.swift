@@ -33,24 +33,45 @@ class MaintenanceModeViewModel{
         switch Environment.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
-            let phone2 = "1-877-778-2222"
-            phoneNumbers = [phone1, phone2]
-            localizedString = String.localizedStringWithFormat("If you smell natural gas or see downed power lines, %@ and then call BGE at %@\n\nIf your power is out, call %@\n\nRepresentatives are available 24 hours a day, 7 days a week.", leaveAreaString, phone1, phone2)
+            let phone2 = "1-877-778-7798"
+            let phone3 = "1-877-778-2222"
+            phoneNumbers = [phone1, phone2, phone3]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas, %@ and call BGE at %@ or %@\n
+                If your power is out or for downed or sparking power lines, please call %@ or %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+            , leaveAreaString, phone1, phone2, phone1, phone3)
         case .comEd:
             let phone = "1-800-334-7661"
             phoneNumbers = [phone]
-            localizedString = String.localizedStringWithFormat("If you see downed power lines, %@ and then call ComEd at %@\n\nRepresentatives are available 24 hours a day, 7 days a week.", leaveAreaString, phone)
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you see downed power lines, %@ and then call ComEd at %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+            , leaveAreaString, phone)
         case .peco:
             let phone = "1-800-841-4141"
             phoneNumbers = [phone]
-            localizedString = String.localizedStringWithFormat("If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n\nRepresentatives are available 24 hours a day, 7 days a week.", leaveAreaString, phone)
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+            , leaveAreaString, phone)
         }
         
         let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
         
         for phone in phoneNumbers {
-            emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone))
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+                }
         }
         
         return emergencyAttrString
@@ -67,7 +88,7 @@ class MaintenanceModeViewModel{
             phoneString = "1-800-494-4000"
         }
         
-        let localizedString = String(format: NSLocalizedString("For all other inquiries, please call %@ M-F 7AM to 7PM", comment: ""), phoneString)
+        let localizedString = String.localizedStringWithFormat("For all other inquiries, please call %@ M-F 7AM to 7PM", phoneString)
         let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phoneString))
         return attrString
