@@ -27,7 +27,6 @@ class LoginViewModelTests: XCTestCase {
         }, onRegistrationNotComplete: {
             XCTFail("Unexpected onRegistrationNotComplete response")
         }, onError: { title, message in
-            print(message)
             XCTFail("Unexpected failure response")
         })
         

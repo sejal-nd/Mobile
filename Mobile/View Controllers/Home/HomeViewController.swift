@@ -474,7 +474,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: usageCardView.disposeBag)
         
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
+            .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 Analytics.log(event: .allSavingsSmartEnergy)
@@ -600,8 +600,8 @@ class HomeViewController: AccountPickerViewController {
                 .disposed(by: vc.disposeBag)
         case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
-        case let (vc as TotalSavingsViewController, accountDetail as AccountDetail):
-            vc.eventResults = accountDetail.serInfo.eventResults
+        case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
+            vc.eventResults = eventResults
         case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
             vc.opcoUpdate = update
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):

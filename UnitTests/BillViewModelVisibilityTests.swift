@@ -161,8 +161,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `showRemainingBalanceDue` value after switching
@@ -190,8 +189,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `showPaymentReceived` value after switching

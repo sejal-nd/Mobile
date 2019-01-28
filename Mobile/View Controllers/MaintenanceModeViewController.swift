@@ -29,8 +29,7 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var maintenanceModeBody: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyLabel: DataDetectorTextView!
-    @IBOutlet weak var BGEStackView: UIStackView!
-    @IBOutlet weak var BGEInquiriesLabel: DataDetectorTextView!
+    @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +40,7 @@ class MaintenanceModeViewController: UIViewController {
         reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
         
         reloadButton.rx.touchUpInside.asDriver()
-            .drive(onNext: onReloadPress)
+            .drive(onNext: { [weak self] in self?.onReloadPress() })
             .disposed(by: disposeBag)
         
         maintenanceModeBody.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
@@ -59,13 +58,11 @@ class MaintenanceModeViewController: UIViewController {
         bodyLabel.textContainer.lineFragmentPadding = 0
         bodyLabel.tintColor = .actionBlue // Color of the phone numbers
         
-        BGEInquiriesLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        BGEInquiriesLabel.textContainerInset = .zero
-        BGEInquiriesLabel.textContainer.lineFragmentPadding = 0
-        BGEInquiriesLabel.tintColor = .actionBlue
-        BGEInquiriesLabel.attributedText = viewModel.bgeInquiriesLabelText
-        
-        BGEStackView.isHidden = !viewModel.showBGEStackView // Color of the phone numbers
+        footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
+        footerTextView.textContainerInset = .zero
+        footerTextView.textContainer.lineFragmentPadding = 0
+        footerTextView.tintColor = .actionBlue
+        footerTextView.attributedText = viewModel.footerLabelText
         
         view.backgroundColor = .primaryColor
     }
@@ -101,7 +98,7 @@ class MaintenanceModeViewController: UIViewController {
             self.presentingViewController?.view.isUserInteractionEnabled = true
             if !isMaintenance{
                 self.presentingViewController?.dismiss(animated: true, completion: {
-                    print("Dismissed MM")
+                    dLog("Dismissed MM")
                 })
             } else {
                 self.headerLabel.text = self.viewModel.headerLabelText

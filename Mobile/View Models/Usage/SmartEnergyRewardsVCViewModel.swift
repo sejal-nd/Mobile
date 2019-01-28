@@ -14,9 +14,21 @@ class SmartEnergyRewardsVCViewModel {
     let disposeBag = DisposeBag()
     
     let accountDetail: AccountDetail
+    let eventResults: Observable<[SERResult]>
     
-    required init(accountDetail: AccountDetail) {
+    let smartEnergyRewardsViewModel: SmartEnergyRewardsViewModel
+    
+    required init(accountService: AccountService, accountDetail: AccountDetail, eventResults: [SERResult]?) {
         self.accountDetail = accountDetail
+        if let eventResults = eventResults {
+            self.eventResults = Observable.just(eventResults).share(replay: 1)
+        } else {
+            self.eventResults = accountService.fetchSERResults(accountNumber: accountDetail.accountNumber)
+                .map { Array($0.reversed()) }
+                .share(replay: 1)
+        }
+        
+        smartEnergyRewardsViewModel = SmartEnergyRewardsViewModel(eventResults: self.eventResults)
     }
     
     var shouldShowSmartEnergyRewards: Bool {
@@ -26,27 +38,29 @@ class SmartEnergyRewardsVCViewModel {
         return false
     }
     
-    var shouldShowSmartEnergyRewardsContent: Bool {
-        let events = accountDetail.serInfo.eventResults
-        return events.count > 0
-    }
+    private(set) lazy var shouldShowSmartEnergyRewardsContent = eventResults
+        .map { !$0.isEmpty }
+        .asDriver(onErrorDriveWith: .empty())
     
-    var smartEnergyRewardsSeasonLabelText: String? {
-        let events = accountDetail.serInfo.eventResults
-        if let mostRecentEvent = events.last {
-            let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
-            return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
+    private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = eventResults
+        .map { eventResults in
+            if let mostRecentEvent = eventResults.last {
+                let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
+                return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
+            }
+            return nil
         }
-        return nil
-    }
+        .asDriver(onErrorDriveWith: .empty())
     
-    var smartEnergyRewardsFooterText: String {
-        if accountDetail.serInfo.eventResults.count > 0 {
-            return NSLocalizedString("You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
+    private(set) lazy var smartEnergyRewardsFooterText: Driver<String> = eventResults
+        .map { eventResults in
+            if !eventResults.isEmpty {
+                return NSLocalizedString("You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
+            } else {
+                let programName = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") : NSLocalizedString("Smart Energy Rewards", comment: "")
+                return NSLocalizedString("As a \(programName) customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent \(programName) season will display here once available.", comment: "")
+            }
         }
-        
-        let programName = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") : NSLocalizedString("Smart Energy Rewards", comment: "")
-        return NSLocalizedString("As a \(programName) customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent \(programName) season will display here once available.", comment: "")
-    }
+        .asDriver(onErrorDriveWith: .empty())
     
 }
