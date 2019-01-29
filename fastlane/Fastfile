@@ -14,9 +14,8 @@
 # update_fastlane
 
 default_platform(:ios)
-
+  desc "Generate new localized screenshots -> Increment version number -> setup certs + profiles -> Create IPA -> Upload dSYMs -> Upload to App Store"
 platform :ios do
-  desc "Generate new localized screenshots -> Increment version number -> setup certs + profiles -> Create IPA -> Upload to App Store"
   lane :uploadBuild do
     update_fastlane
 
@@ -31,40 +30,50 @@ platform :ios do
       app_identifier: ENV["APP_IDENTIFIER"],
       output_path: "./fastlane/provisioningProfiles"
     )
+
     capture_screenshots(
       workspace: "Mobile.xcworkspace",
       scheme: ENV["SCREENSHOT_SCHEME"],
       output_directory: "./fastlane/screenshots"
     )
-    # increment_version_number
-    # build_ios_app(
-    #   scheme: ENV["RELEASE_SCHEME"],
-    #   silent: false,
-    #   clean: true,
-    #   include_bitcode: true,
-    #   skip_build_archive: true,
-    #   export_method: "app-store",
-    #   # export_options: {
-    #   #   provisioningProfiles: {
-    #   #     "com.exelon.mobile.bge.develop" => "Exelon Wildcard Dev Profile",
-    #   #     "com.exelon.mobile.comed.develop" => "Exelon Wildcard Dev Profile",
-    #   #     "com.exelon.mobile.peco.develop" => "Exelon Wildcard Dev Profile"
-    #   #   }
-    #   # },
-    #   archive_path: ENV["ARCHIVE_PATH"],
-    #   output_directory: "./fastlane/IPA", # Destination directory. Defaults to current directory.
-    #   output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
-    #   sdk: "iOS 10.0"        # use SDK as the name or path of the base SDK when building the project.
-    # )
-    # deliver(
-    #   app_identifier: ENV["APP_IDENTIFIER"],
-    #   ipa: "./fastlane/IPA/mobile.ipa", # Same as output directory above
-    #   username: "jerlandson5205@gmail.com",
-    #   submit_for_review: false,
-    #   force: false,
-    #   # metadata_path: ENV["METADATA_PATH"],
-    #   screenshot_path: "./fastlane/screenshots"
-    # )
+
+    increment_build_number # automatically increment by one
+    increment_version_number
+
+    build_ios_app(
+      scheme: ENV["RELEASE_SCHEME"],
+      silent: false,
+      clean: true,
+      include_bitcode: true,
+      skip_build_archive: true,
+      export_method: "app-store",
+      archive_path: ENV["ARCHIVE_PATH"],
+      output_directory: "./fastlane/IPA", # Destination directory. Defaults to current directory.
+      output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
+      sdk: "iOS 10.0"        # use SDK as the name or path of the base SDK when building the project.
+    )
+
+    # Upload generated dSYMs
+    unzip(file: "mobile.app.dSYM.zip",
+      destination_path: "./fastlane/IPA/mobile.app.dSYM.zip"
+    )
+    appcenter_upload(
+      api_token: ENV["TEST_APPCENTER_API_TOKEN"],
+      owner_name: "Exelon-Digital-Projects",
+      app_name: ENV["APPCENTER_APP_NAME"],
+      upload_dsym_only: true,
+      dsym: "./fastlane/IPA/mobile.app.dSYM"
+    )
+
+    deliver(
+      app_identifier: ENV["APP_IDENTIFIER"],
+      ipa: "./fastlane/IPA/mobile.ipa", # Same as output directory above
+      username: "jerlandson5205@gmail.com",
+      submit_for_review: false,
+      force: false,
+      # metadata_path: ENV["METADATA_PATH"],
+      screenshot_path: "./fastlane/screenshots"
+    )
 
     clean_build_artifacts
   end
@@ -74,19 +83,26 @@ platform :ios do
   desc "Refresh DSYMS"
 
 	lane :refresh_dsyms do
-
-		download_dsyms(version: "latest", app_identifier: ENV["app_identifier"]) # Download dSYM files from iTC
-		unzip(file: Actions.lane_context[SharedValues::DSYM_PATHS][0], destination_path: "./" + ENV["app_identifier"] + ".dSYM")
-
-		clean_build_artifacts
-
+    # Download dSYM files from iTC
+		download_dsyms(
+      version: "latest",
+      username: "jerlandson5205@gmail.com",
+      team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
+      app_identifier: ENV["APP_IDENTIFIER"],
+      output_directory: "./fastlane/downloaded_dSYMs"
+    )
+		unzip(
+      file: Actions.lane_context[SharedValues::DSYM_PATHS][0],
+      destination_path: "./fastlane/downloaded_dSYMs/mobile.app.dSYM.zip"
+    )
 		appcenter_upload(
 			api_token: ENV["TEST_APPCENTER_API_TOKEN"],
-			owner_name: ENV["TEST_APPCENTER_OWNER_NAME"],
-			app_name: ENV["TEST_APPCENTER_APP_NAME"],
+			owner_name: "Exelon-Digital-Projects",
+			app_name: ENV["APPCENTER_APP_NAME"],
 			upload_dsym_only: true,
-			dsym: "./" + ENV["app_identifier"] + ".dSYM"
+			dsym: "./fastlane/downloaded_dSYMs/" + ENV["APP_IDENTIFIER"] + ".dSYM"
 		)
-		clean_build_artifacts # cleans up artifacts
+
+		clean_build_artifacts
 	end
 end
