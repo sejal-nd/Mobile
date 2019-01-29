@@ -31,16 +31,19 @@ class AccountPicker: UIView {
         get { return AccountsStore.shared.accounts }
     }
     
-    var currentAccount: Account! {
+    var currentIndex: Int! {
         didSet {
-            AccountsStore.shared.currentAccount = currentAccount
-            let index = accounts.index(of: currentAccount) ?? 0
-            leftButton.isEnabled = index > 0
-            rightButton.isEnabled = index < accounts.count - 1
+            AccountsStore.shared.currentIndex = currentIndex
+            leftButton.isEnabled = currentIndex > 0
+            rightButton.isEnabled = currentIndex < accounts.count - 1
             pageControl.numberOfPages = accounts.count
-            pageControl.currentPage = index
+            pageControl.currentPage = currentIndex
             delegate?.accountPickerDidChangeAccount(self)
         }
+    }
+    
+    var currentAccount: Account {
+        return accounts[currentIndex]
     }
     
     private var isMultiPremise: Bool {
@@ -207,7 +210,7 @@ class AccountPicker: UIView {
         if loadedAccounts { return } // Prevent calling this multiple times
         loadedAccounts = true
 
-        currentAccount = AccountsStore.shared.currentAccount ?? accounts[0]
+        currentIndex = AccountsStore.shared.currentIndex ?? 0
         var pagedAccounts: [Account] = accounts
 
         if accounts.count > 1 && accounts.count <= maxAccounts {
@@ -365,11 +368,11 @@ class AccountPicker: UIView {
     
     @objc func onPageControlTap(sender: UIPageControl) {
         scrollView.scrollRectToVisible(CGRect(x: scrollView.frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: scrollView.frame.size.width, height: intrinsicContentSize.height), animated: true)
-        currentAccount = accounts[pageControl.currentPage]
+        currentIndex = pageControl.currentPage
     }
     
     func updateCurrentAccount() {
-        currentAccount = AccountsStore.shared.currentAccount
+        currentIndex = AccountsStore.shared.currentIndex
         if pageViews.count > 0 {
             if let index = accounts.index(where: { $0 == currentAccount}) {
                 pageControl.currentPage = index
@@ -426,7 +429,7 @@ class AccountPicker: UIView {
 
 extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
-        currentAccount = account
+        currentIndex = accounts.index(of: account)
         
         updateAdvancedAccountPicker(account)
         
@@ -440,7 +443,7 @@ extension AccountPicker: UIScrollViewDelegate {
         let currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
 
         if currentPage != pageControl.currentPage {
-            currentAccount = accounts[currentPage]
+            currentIndex = currentPage
         }
     }
 

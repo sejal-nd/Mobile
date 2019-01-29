@@ -59,7 +59,8 @@ class BillViewModel {
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
             }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
-                guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
+                guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
+                let account = AccountsStore.shared.currentAccount
                 let accountDetail = self.accountService.fetchAccountDetail(account: account)
                 let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
                 return Observable.zip(accountDetail, scheduledPayment)

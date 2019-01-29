@@ -1,0 +1,369 @@
+{
+    "default": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardNoDefaultPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardWithDefaultPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardWithDefaultCcPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardWithExpiredDefaultPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "minPaymentAmount": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 0.001,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "maxPaymentAmount": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 100000000,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "cashOnly": {
+        "accountNumber": "1234567890",
+        "isCashOnly": true,
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "scheduledPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 82,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "autoPay": {
+        "accountNumber": "1234567890",
+        "isAutoPay": true,
+        "BillingInfo": {
+            "netDueAmount": 82,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "autoPayScheduled": {
+        "accountNumber": "1234567890",
+        "isAutoPay": true,
+        "BillingInfo": {
+            "netDueAmount": 82,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "thankYouForPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 0,
+            "lastPaymentAmount": 200,
+            "lastPaymentDate": "2019-01-01T00:00:00",
+            "dueByDate": "2019-01-01T00:00:00",
+            "billDate": "2018-12-31T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "paymentPending": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "remainingBalanceDue": 100,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "paymentsPending": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 300,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "credit": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": -350.34
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "finaled": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 200
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "pastDue": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 140,
+            "dueByDate": "2019-01-11T00:00:00",
+            "currentDueAmount": 60
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "pastDueEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "restoreService": {
+        "accountNumber": "1234567890",
+        "isCutOutNonPay": true,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "restorationAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "currentDueAmount": 150
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "restoreServiceEqual": {
+        "accountNumber": "1234567890",
+        "isCutOutNonPay": true,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "restorationAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "eligibleForCutoff": {
+        "accountNumber": "1234567890",
+        "isCutOutIssued": true,
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 100,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 100,
+            "currentDueAmount": 100
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoff": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 100,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 100,
+            "currentDueAmount": 100
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 100,
+            "currentDueAmount": 150,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastEqualExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200,
+            "currentDueAmount": 150,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastNetEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastNetEqualExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffAllEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 350
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffAllEqualExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 350,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUp": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "amtDpaReinst": 100,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 5,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUpPastEqual": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "amtDpaReinst": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 5,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUpPastNetEqual": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "amtDpaReinst": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 5,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUpAllEqual": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "amtDpaReinst": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 5,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "error": {
+        "code": "TC-UNKNOWN",
+        "description": "This is a test error"
+    }
+}

@@ -44,6 +44,7 @@ class BillViewModelContentTests: BillViewModelTests {
         let switchAccountEventTimes = Array(0..<accountDetail.count)
         
         accountService.mockAccountDetails = accountDetail
+        accountService.mockUser = MockUser(globalKey: .maintAll)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         

@@ -190,9 +190,9 @@
 		351560CA210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CB210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		351560CC210F61F3008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		351560CE210F8A56008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		351560CF210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		351560D0210F8D81008C24F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		351560CE210F8A56008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		351560CF210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		351560D0210F8D81008C24F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		35277AFA2102325000411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFB2102325100411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
@@ -1005,6 +1005,30 @@
 		B04DDF6121FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
 		B04DDF6221FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
 		B04DDF6321FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
+		B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
+		B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
+		B04DDF7821FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
+		B04DDF7921FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
+		B04DDF7A21FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
+		B04DDF7C2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B04DDF7D2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B04DDF7E2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B04DDF7F2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B04DDF802200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B04DDF812200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B04DDF842200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B04DDF852200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B04DDF862200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B04DDF872200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B04DDF882200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B04DDF892200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B04DDF902200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
 		B05D84B321877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		B05D84B421877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		B05D84B521877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
@@ -2759,6 +2783,10 @@
 		B0336FE921762FB400751430 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
 		B04DDF5A21FA800C00594ACF /* Date+Now.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Now.swift"; sourceTree = "<group>"; };
+		B04DDF7421FFB0A700594ACF /* MockUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
+		B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockJSONManager.swift; sourceTree = "<group>"; };
+		B04DDF832200D47A00594ACF /* account_details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = account_details.json; sourceTree = "<group>"; };
+		B04DDF8A2200DBEC00594ACF /* accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = accounts.json; sourceTree = "<group>"; };
 		B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureCellButton.swift; sourceTree = "<group>"; };
 		B05D84B62187803000F15A9F /* DisclosureCellButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisclosureCellButton.xib; sourceTree = "<group>"; };
 		B05E9D12217F688A0003FAB8 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
@@ -4335,6 +4363,15 @@
 			path = "Storm Mode";
 			sourceTree = "<group>";
 		};
+		B04DDF822200D44800594ACF /* Mock JSON */ = {
+			isa = PBXGroup;
+			children = (
+				B04DDF8A2200DBEC00594ACF /* accounts.json */,
+				B04DDF832200D47A00594ACF /* account_details.json */,
+			);
+			path = "Mock JSON";
+			sourceTree = "<group>";
+		};
 		B05D84B121877FD900F15A9F /* DisclosureCellButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -4455,6 +4492,8 @@
 		B54846921E6F4FD7008CE1B1 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				B04DDF7421FFB0A700594ACF /* MockUser.swift */,
+				B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */,
 				B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */,
 				B574BADE1E7837A6001E8A44 /* MockAccountService.swift */,
 				B574BAF61E786473001E8A44 /* MockOutageService.swift */,
@@ -4595,6 +4634,7 @@
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B04DDF822200D44800594ACF /* Mock JSON */,
 				384F86A11F310B8600A85557 /* TermPolicies.html */,
 				E844077B1F16CFB400CB9707 /* XML */,
 				E800431B1E65FF4D005CF531 /* Fonts */,
@@ -5605,6 +5645,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04DDF872200D47A00594ACF /* account_details.json in Resources */,
+				B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6017,9 +6059,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
+				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6027,6 +6071,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04DDF882200D47A00594ACF /* account_details.json in Resources */,
+				B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6035,6 +6081,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04DDF892200D47A00594ACF /* account_details.json in Resources */,
+				B04DDF902200DBEC00594ACF /* accounts.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6044,9 +6092,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
+				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6055,9 +6105,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
+				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7005,6 +7057,7 @@
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				82A18E681EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */,
 				E801BAD51E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				E8FF08631F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				E840BD3F1EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
@@ -7139,6 +7192,7 @@
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
+				B04DDF7C2200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E89C162A1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82EAB3341F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
@@ -7568,6 +7622,7 @@
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
+				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
 				E87C413B1FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */,
 				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
@@ -7599,6 +7654,7 @@
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				44A373441F211522005E227B /* TemplateCardView.swift in Sources */,
 				B07D247D20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
+				B04DDF7E2200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
@@ -7750,6 +7806,7 @@
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
+				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
 				E803A0011EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
@@ -7884,6 +7941,7 @@
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
+				B04DDF7D2200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3351F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
@@ -8103,7 +8161,7 @@
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
-				351560CE210F8A56008C24F1 /* BuildFile in Sources */,
+				351560CE210F8A56008C24F1 /* (null) in Sources */,
 				B5A16F381F0D44160016952C /* SpeedpayApi.swift in Sources */,
 				B092185020A24CA400695888 /* MockData.swift in Sources */,
 				82AC2A271FAB736600EACB3B /* PeakRewardsService.swift in Sources */,
@@ -8128,6 +8186,7 @@
 				B04DDF5E21FA800C00594ACF /* Date+Now.swift in Sources */,
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
+				B04DDF7821FFB0A800594ACF /* MockUser.swift in Sources */,
 				E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				0E7E16352191E75800A3748A /* WatchSessionManager.swift in Sources */,
 				E8264EF5200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
@@ -8139,6 +8198,7 @@
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				9C72424B21E5061600E5946B /* WeatherApi.swift in Sources */,
+				B04DDF7F2200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B067E0A72045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
@@ -8347,7 +8407,7 @@
 				E8F62B54200924410077B3DA /* WalletService.swift in Sources */,
 				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
 				E8F62B57200924410077B3DA /* OutageViewModel.swift in Sources */,
-				351560CF210F8D81008C24F1 /* BuildFile in Sources */,
+				351560CF210F8D81008C24F1 /* (null) in Sources */,
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
 				9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -8370,6 +8430,7 @@
 				B04DDF5F21FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F62B68200924410077B3DA /* MockOutageService.swift in Sources */,
 				E8F62B69200924410077B3DA /* AuthTokenParser.swift in Sources */,
+				B04DDF7921FFB0A800594ACF /* MockUser.swift in Sources */,
 				E8F62B6A200924410077B3DA /* CreditCard.swift in Sources */,
 				0E7E16362191E75800A3748A /* WatchSessionManager.swift in Sources */,
 				E8F62B6B200924410077B3DA /* BillForecast.swift in Sources */,
@@ -8381,6 +8442,7 @@
 				B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */,
 				9C72424A21E5061600E5946B /* WeatherApi.swift in Sources */,
+				B04DDF802200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
 				823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
@@ -8543,7 +8605,7 @@
 				E8F62C09200924570077B3DA /* WalletService.swift in Sources */,
 				E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */,
 				E8F62C0C200924570077B3DA /* OutageViewModel.swift in Sources */,
-				351560D0210F8D81008C24F1 /* BuildFile in Sources */,
+				351560D0210F8D81008C24F1 /* (null) in Sources */,
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
 				9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -8566,6 +8628,7 @@
 				B04DDF6021FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F62C1D200924570077B3DA /* MockOutageService.swift in Sources */,
 				E8F62C1E200924570077B3DA /* AuthTokenParser.swift in Sources */,
+				B04DDF7A21FFB0A800594ACF /* MockUser.swift in Sources */,
 				E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */,
 				0E7E16372191E75900A3748A /* WatchSessionManager.swift in Sources */,
 				E8F62C20200924570077B3DA /* BillForecast.swift in Sources */,
@@ -8577,6 +8640,7 @@
 				B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */,
 				9C72424921E5061500E5946B /* WeatherApi.swift in Sources */,
+				B04DDF812200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,

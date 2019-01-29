@@ -12,11 +12,11 @@ import RxSwift
 struct MockAuthenticationService: AuthenticationService {
     
     let invalidUsername = "invalid@test.com"
-    let validPassword = "Password1"
+    let invalidPassword = "invalid"
     
     func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
-        if username != invalidUsername && password == validPassword {
-            MockData.shared.username = username
+        if username != invalidUsername && password != invalidPassword {
+            MockUser.current = MockUser(username: username)
             return .just(ProfileStatus())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnPwdInvalid.rawValue, serviceMessage: "Invalid credentials"))
@@ -36,7 +36,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
-        if currentPassword == validPassword {
+        if currentPassword != invalidPassword {
             return .just(())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password"))
@@ -44,7 +44,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePasswordAnon(username: String,currentPassword: String, newPassword: String) -> Observable<Void> {
-        if currentPassword == validPassword {
+        if currentPassword != invalidPassword {
             return .just(())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password"))

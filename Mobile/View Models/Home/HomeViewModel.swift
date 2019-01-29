@@ -120,6 +120,7 @@ class HomeViewModel {
     
     // Awful maintenance mode check
     private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = fetchData
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
             switch state {
@@ -131,6 +132,7 @@ class HomeViewModel {
             }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
             return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
@@ -140,6 +142,7 @@ class HomeViewModel {
             })
     
     private lazy var recentPaymentsUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.recentPaymentsUpdated
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTracker: billTracker) { [weak self] _ in
             self?.authService.getMaintenanceMode() ?? .empty()
         }

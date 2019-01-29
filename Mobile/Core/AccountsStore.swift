@@ -12,7 +12,7 @@ final class AccountsStore {
     static let shared = AccountsStore()
     
     var accounts: [Account]!
-    var currentAccount: Account!
+    var currentIndex: Int!
     var customerIdentifier: String!
     
     // Private init protects against another instance being accidentally instantiated
@@ -22,4 +22,9 @@ final class AccountsStore {
             customerIdentifier = customerId
         }
     }
+    
+    var currentAccount: Account {
+        return accounts[currentIndex]
+    }
+    
 }

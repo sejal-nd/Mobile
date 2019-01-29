@@ -125,7 +125,7 @@ struct MCSAuthenticationService : AuthenticationService {
     func logout() {
         MCSApi.shared.logout()
         AccountsStore.shared.accounts = nil
-        AccountsStore.shared.currentAccount = nil
+        AccountsStore.shared.currentIndex = nil
         AccountsStore.shared.customerIdentifier = nil
         StormModeStatus.shared.isOn = false
     }

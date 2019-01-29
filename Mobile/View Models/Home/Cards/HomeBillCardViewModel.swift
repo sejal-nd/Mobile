@@ -82,6 +82,7 @@ class HomeBillCardViewModel {
     
     // Awful maintenance mode check
     private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTracker: { [weak self] _ in self?.fetchTracker(forState: .switchAccount) },
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
