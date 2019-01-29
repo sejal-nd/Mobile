@@ -90,7 +90,13 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: disposeBag)
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.updateContent(outageJustReported: true) })
@@ -151,12 +157,7 @@ class OutageViewController: AccountPickerViewController {
         super.viewDidLayoutSubviews()
         loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.size.height / 2
     }
-    
-    @objc func killRefresh() -> Void {
-        refreshControl?.endRefreshing()
-        scrollView!.alwaysBounceVertical = false
-    }
-    
+
     func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
