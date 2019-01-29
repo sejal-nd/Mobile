@@ -54,15 +54,15 @@ class BillViewModel {
     
     
     private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) || !($0.element?.billStatus ?? false) }
+        .filter { !($0.element?.allStatus ?? false) && !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
-            }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
-                guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
-                let accountDetail = self.accountService.fetchAccountDetail(account: account)
-                let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
-                return Observable.zip(accountDetail, scheduledPayment)
+        }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
+            guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
+            let accountDetail = self.accountService.fetchAccountDetail(account: account)
+            let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
+            return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     

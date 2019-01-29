@@ -251,30 +251,30 @@ class OutageViewController: AccountPickerViewController {
             }
             
             self?.shortcutItem = .none
-            }, onError: { [weak self] serviceError in
-                self?.shortcutItem = .none
-                UIAccessibility.post(notification: .screenChanged, argument: nil)
-                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                    self?.scrollView?.isHidden = true
-                    self?.noNetworkConnectionView.isHidden = false
-                } else {
-                    self?.scrollView?.isHidden = false
-                    self?.noNetworkConnectionView.isHidden = true
-                }
-                self?.loadingView.isHidden = true
-                self?.setRefreshControlEnabled(enabled: true)
-                
-                self?.errorLabel.isHidden = false
-                self?.maintenanceModeView.isHidden = true
-            }, onMaintenance: { [weak self] in
-                self?.shortcutItem = .none
-                UIAccessibility.post(notification: .screenChanged, argument: nil)
-                self?.maintenanceModeView.isHidden = false
+        }, onError: { [weak self] serviceError in
+            self?.shortcutItem = .none
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
+            if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                 self?.scrollView?.isHidden = true
+                self?.noNetworkConnectionView.isHidden = false
+            } else {
+                self?.scrollView?.isHidden = false
                 self?.noNetworkConnectionView.isHidden = true
-                self?.loadingView.isHidden = true
-                self?.setRefreshControlEnabled(enabled: true)
-                self?.errorLabel.isHidden = true
+            }
+            self?.loadingView.isHidden = true
+            self?.setRefreshControlEnabled(enabled: true)
+            
+            self?.errorLabel.isHidden = false
+            self?.maintenanceModeView.isHidden = true
+        }, onMaintenance: { [weak self] in
+            self?.shortcutItem = .none
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
+            self?.maintenanceModeView.isHidden = false
+            self?.scrollView?.isHidden = true
+            self?.noNetworkConnectionView.isHidden = true
+            self?.loadingView.isHidden = true
+            self?.setRefreshControlEnabled(enabled: true)
+            self?.errorLabel.isHidden = true
         })
     }
     
