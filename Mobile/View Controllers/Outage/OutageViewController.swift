@@ -307,20 +307,20 @@ class OutageViewController: AccountPickerViewController {
             self.gasOnlyView.isHidden = true
             self.finaledNoPayView.isHidden = true
             self.maintenanceModeView.isHidden = true
-            }, onMaintenance: { [weak self] in
-                guard let self = self else { return }
-                self.refreshControl?.endRefreshing()
-                self.loadingView.isHidden = true
-                self.maintenanceModeView.isHidden = false
-                self.scrollView?.isHidden = true
-                self.noNetworkConnectionView.isHidden = true
-                self.errorLabel.isHidden = true
-                
-                // Hide everything else
-                self.accountContentView.isHidden = true
-                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
-                self.gasOnlyView.isHidden = true
-                self.finaledNoPayView.isHidden = true
+        }, onMaintenance: { [weak self] in
+            guard let self = self else { return }
+            self.refreshControl?.endRefreshing()
+            self.loadingView.isHidden = true
+            self.maintenanceModeView.isHidden = false
+            self.scrollView?.isHidden = true
+            self.noNetworkConnectionView.isHidden = true
+            self.errorLabel.isHidden = true
+            
+            // Hide everything else
+            self.accountContentView.isHidden = true
+            self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            self.gasOnlyView.isHidden = true
+            self.finaledNoPayView.isHidden = true
         })
     }
     

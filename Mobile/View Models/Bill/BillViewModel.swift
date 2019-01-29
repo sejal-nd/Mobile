@@ -54,7 +54,7 @@ class BillViewModel {
     
     
     private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
-        .filter { !($0.element?.billStatus ?? false) }
+        .filter { !($0.element?.allStatus ?? false) || !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)

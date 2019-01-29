@@ -148,7 +148,7 @@ class HomeViewModel {
         .merge(fetchDataMMEvents, accountDetailUpdatedMMEvents)
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
-        .filter { !($0.element?.homeStatus ?? false) }
+        .filter { !($0.element?.allStatus ?? false) || !($0.element?.homeStatus ?? false) }
         .withLatestFrom(fetchTrigger)
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
@@ -166,7 +166,10 @@ class HomeViewModel {
     
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = Observable
         .merge(fetchDataMMEvents, recentPaymentsUpdatedMMEvents)
-        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .filter {
+            guard let maint = $0.element else { return false }
+            return !maint.allStatus && !maint.billStatus && !maint.homeStatus
+        }
         .withLatestFrom(fetchTrigger)
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
@@ -203,7 +206,7 @@ class HomeViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = maintenanceModeEvents
-        .filter { !($0.element?.homeStatus ?? false) }
+        .filter { !($0.element?.allStatus ?? false) || !($0.element?.homeStatus ?? false) }
         .toAsyncRequest { [weak self] _ in
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)
