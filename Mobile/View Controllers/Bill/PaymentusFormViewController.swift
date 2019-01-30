@@ -192,7 +192,7 @@ class PaymentusFormViewController: UIViewController {
 
 extension PaymentusFormViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("Received postMessage: \(message.body)")
+        dLog("Received postMessage: \(message.body)")
         if let bodyString = message.body as? String {
             if bodyString.contains("frameHeight") { return } // Ignore the frameHeight message
             

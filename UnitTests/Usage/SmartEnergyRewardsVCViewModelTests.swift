@@ -7,55 +7,70 @@
 //
 
 import XCTest
+import RxSwift
 
 class SmartEnergyRewardsVCViewModelTests: XCTestCase {
     
+    let disposeBag = DisposeBag()
+    
     func testShouldShowSmartEnergyRewards() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
         XCTAssert(!viewModel.shouldShowSmartEnergyRewards)
         
-        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(isPTSAccount: true))
-        XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
-                       Environment.shared.opco != .peco)
+        var accountDetail = AccountDetail(isPTSAccount: true)
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: accountDetail, eventResults: [])
+        XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards, Environment.shared.opco != .peco)
         
-        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")]))
-        XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
-                       Environment.shared.opco != .peco)
+        accountDetail = AccountDetail(premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")])
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: accountDetail, eventResults: [])
+        XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards, Environment.shared.opco != .peco)
         
-        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(isPTSAccount: true,
-                                                                premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")]))
-        XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards,
-                       Environment.shared.opco != .peco)
-        
+        accountDetail = AccountDetail(isPTSAccount: true, premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")])
+            viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: accountDetail, eventResults: [])
+        XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards, Environment.shared.opco != .peco)
     }
     
     func testShouldShowSmartEnergyRewardsContent() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
-        XCTAssert(!viewModel.shouldShowSmartEnergyRewardsContent)
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
+        viewModel.shouldShowSmartEnergyRewardsContent.asObservable().single().subscribe(onNext: { shouldShow in
+            XCTAssertFalse(shouldShow)
+        }).disposed(by: disposeBag)
         
-        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult()])))
-        XCTAssert(viewModel.shouldShowSmartEnergyRewardsContent)
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [SERResult()])
+        viewModel.shouldShowSmartEnergyRewardsContent.asObservable().single().subscribe(onNext: { shouldShow in
+            XCTAssert(shouldShow)
+        }).disposed(by: disposeBag)
     }
     
     func testSmartEnergyRewardsSeasonLabelText() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
-        XCTAssertNil(viewModel.smartEnergyRewardsSeasonLabelText)
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
+        viewModel.smartEnergyRewardsSeasonLabelText.asObservable().single().subscribe(onNext: { text in
+            XCTAssertNil(text)
+        }).disposed(by: disposeBag)
         
-        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])))
-                
-        XCTAssertEqual(viewModel.smartEnergyRewardsSeasonLabelText, "Summer 2018")
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])
+        
+        viewModel.smartEnergyRewardsSeasonLabelText.asObservable().single().subscribe(onNext: { text in
+            XCTAssertEqual(text, "Summer 2018")
+        }).disposed(by: disposeBag)
     }
     
     func testSmartEnergyRewardsFooterText() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail(serInfo: SERInfo(eventResults: [SERResult()])))
-        XCTAssertEqual(viewModel.smartEnergyRewardsFooterText, "You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.")
-        
-        viewModel = SmartEnergyRewardsVCViewModel(accountDetail: AccountDetail())
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [SERResult()])
+        viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
+            XCTAssertEqual(text, "You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.")
+        }).disposed(by: disposeBag)
+
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
         switch Environment.shared.opco {
         case .comEd:
-            XCTAssertEqual(viewModel.smartEnergyRewardsFooterText, "As a Peak Time Savings customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent Peak Time Savings season will display here once available.")
+            viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
+                XCTAssertEqual(text, "As a Peak Time Savings customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent Peak Time Savings season will display here once available.")
+            }).disposed(by: disposeBag)
         case .bge, .peco:
-            XCTAssertEqual(viewModel.smartEnergyRewardsFooterText, "As a Smart Energy Rewards customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent Smart Energy Rewards season will display here once available.")
+            viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
+                XCTAssertEqual(text, "As a Smart Energy Rewards customer, you can earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use. Your savings information for the most recent Smart Energy Rewards season will display here once available.")
+            }).disposed(by: disposeBag)
         }
     }
 }

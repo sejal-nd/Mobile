@@ -297,6 +297,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 while let presentedVC = topmostVC.presentedViewController {
                     topmostVC = presentedVC
                 }
+                if topmostVC is MaintenanceModeViewController { return } // Don't present again
                 
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
                 let vc = maintenanceStoryboard.instantiateInitialViewController() as! MaintenanceModeViewController

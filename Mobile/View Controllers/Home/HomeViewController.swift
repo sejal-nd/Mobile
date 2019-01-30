@@ -93,7 +93,13 @@ class HomeViewController: AccountPickerViewController {
         styleViews()
         bindLoadingStates()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: bag)
     }
     
     func viewSetup() {
@@ -474,7 +480,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: usageCardView.disposeBag)
         
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
+            .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 Analytics.log(event: .allSavingsSmartEnergy)
@@ -537,12 +543,7 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: outageCardView.bag)
     }
-    
-    @objc func killRefresh() -> Void {
-        self.refreshControl?.endRefreshing()
-        self.scrollView!.alwaysBounceVertical = true
-    }
-    
+        
     @objc func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             scrollView!.alwaysBounceVertical = true
@@ -600,8 +601,8 @@ class HomeViewController: AccountPickerViewController {
                 .disposed(by: vc.disposeBag)
         case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
-        case let (vc as TotalSavingsViewController, accountDetail as AccountDetail):
-            vc.eventResults = accountDetail.serInfo.eventResults
+        case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
+            vc.eventResults = eventResults
         case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
             vc.opcoUpdate = update
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):

@@ -144,7 +144,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testShowPendingPayment() {
         
         let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+            AccountDetail(billingInfo: BillingInfo(pendingPayments:[PaymentItem(amount: 5, date: Date(), status: .pending)])),
             AccountDetail()
         ]
         
@@ -161,8 +161,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `showRemainingBalanceDue` value after switching
@@ -170,8 +169,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     func testShowRemainingBalanceDue() {
         
         let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3,
-                                                   pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
+            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3, pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
             AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3)),
             AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: Date(), status: .pending)])),
             AccountDetail()
@@ -190,8 +188,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `showPaymentReceived` value after switching

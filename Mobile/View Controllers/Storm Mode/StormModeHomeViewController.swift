@@ -463,12 +463,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    @objc private func killRefresh() -> Void {
-        refreshControl?.endRefreshing()
-        scrollView!.alwaysBounceVertical = false
-    }
-    
-    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

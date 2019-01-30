@@ -38,11 +38,17 @@ protocol AccountService {
     ///   - account: the account to set as default
     func setDefaultAccount(account: Account) -> Observable<Void>
     #endif
-
+    
     /// Gets single sign-on info so that we can display the logged-in user's usage web view
     ///
     /// - Parameters:
     ///   - accountNumber: the account to fetch SSOData for
     ///   - premiseNumber: the premiseNumber to fetch SSOData for
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData>
+    
+    /// Gets recent scheduled, processing, and pending payments
+    func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]>
+    
+    /// Gets SER event results
+    func fetchSERResults(accountNumber: String) -> Observable<[SERResult]>
 }

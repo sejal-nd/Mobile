@@ -94,7 +94,6 @@ struct AccountDetail: Mappable {
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
     let isCutOutIssued: Bool
-    let isCutOutDispatched: Bool
     let isLowIncome: Bool
     let isFinaled: Bool
 	
@@ -152,7 +151,6 @@ struct AccountDetail: Mappable {
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
         isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
-        isCutOutDispatched = map.optionalFrom("isCutOutDispatched") ?? false
         isCutOutIssued = map.optionalFrom("isCutOutIssued") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
@@ -265,53 +263,6 @@ struct SERInfo: Mappable {
     }
 }
 
-struct SERResult: Mappable, Equatable {
-    let actualKWH: Double
-    let baselineKWH: Double
-    let eventStart: Date
-    let eventEnd: Date
-    let savingDollar: Double
-    let savingKWH: Double
-    
-    init(map: Mapper) throws {
-        try eventStart = map.from("eventStart", transformation: DateParser().extractDate)
-        try eventEnd = map.from("eventEnd", transformation: DateParser().extractDate)
-        
-        if let actualString: String = map.optionalFrom("actualKWH"), let doubleVal = Double(actualString) {
-            actualKWH = doubleVal
-        } else {
-            actualKWH = 0
-        }
-        
-        if let baselineString: String = map.optionalFrom("baselineKWH"), let doubleVal = Double(baselineString) {
-            baselineKWH = doubleVal
-        } else {
-            baselineKWH = 0
-        }
-
-        if let savingDollarString: String = map.optionalFrom("savingDollar"), let doubleVal = Double(savingDollarString) {
-            savingDollar = doubleVal
-        } else {
-            savingDollar = 0
-        }
-        
-        if let savingKWHString: String = map.optionalFrom("savingKWH"), let doubleVal = Double(savingKWHString) {
-            savingKWH = doubleVal
-        } else {
-            savingKWH = 0
-        }
-    }
-
-    static func ==(lhs: SERResult, rhs: SERResult) -> Bool {
-        return lhs.actualKWH == rhs.actualKWH &&
-            lhs.baselineKWH == rhs.baselineKWH &&
-            lhs.eventStart == rhs.eventStart &&
-            lhs.eventEnd == rhs.eventEnd &&
-            lhs.savingDollar == rhs.savingDollar &&
-            lhs.savingKWH == rhs.savingKWH
-    }
-}
-
 struct CustomerInfo: Mappable {
     
     let emailAddress: String?
@@ -324,49 +275,6 @@ struct CustomerInfo: Mappable {
         number = map.optionalFrom("number")
         firstName = map.optionalFrom("firstName")
         nameCompressed = map.optionalFrom("nameCompressed")
-    }
-}
-
-struct PaymentItem: Mappable {
-    
-    enum PaymentStatus: String {
-        case scheduled = "scheduled"
-        case pending = "pending"
-        case processing = "processing"
-    }
-    
-    let amount: Double
-    let date: Date?
-    let status: PaymentStatus
-    
-    init(map: Mapper) throws {
-        amount = try map.from("paymentAmount")
-        
-        status = try map.from("status") {
-            guard let statusString = $0 as? String else {
-                throw MapperError.convertibleError(value: $0, type: PaymentStatus.self)
-            }
-            
-            let statusStr: String
-            if statusString.lowercased() == "processed" {
-                statusStr = "processing"
-            } else {
-                statusStr = statusString
-            }
-            
-            guard let status = PaymentStatus(rawValue: statusStr.lowercased()) else {
-                throw MapperError.convertibleError(value: statusString, type: PaymentStatus.self)
-            }
-            return status
-        }
-        
-        date = map.optionalFrom("paymentDate", transformation: DateParser().extractDate)
-        
-        // Scheduled payments require dates
-        guard status != .scheduled || date != nil else {
-            throw MapperError.convertibleError(value: "paymentDate", type: PaymentStatus.self)
-        }
-        
     }
 }
 
@@ -436,9 +344,9 @@ struct BillingInfo: Mappable {
             }
             return array
         }
-        
+
         let paymentItems = paymentDicts?.compactMap(PaymentItem.from)
-        
+
         scheduledPayment = paymentItems?.filter { $0.status == .scheduled }.last
         pendingPayments = paymentItems?
             .filter { $0.status == .pending || $0.status == .processing } ?? []
