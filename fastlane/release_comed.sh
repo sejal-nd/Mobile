@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+FASTLANE_PASSWORD=$1
+
 cd ./_Exelon_Mobile_iOS/fastlane/
 mv ../.././build/drop/build/xcarchive/COMED-RELEASE.xcarchive .
 
