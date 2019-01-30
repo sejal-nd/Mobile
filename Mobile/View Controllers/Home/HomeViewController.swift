@@ -93,7 +93,13 @@ class HomeViewController: AccountPickerViewController {
         styleViews()
         bindLoadingStates()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: bag)
     }
     
     func viewSetup() {
@@ -537,12 +543,7 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: outageCardView.bag)
     }
-    
-    @objc func killRefresh() -> Void {
-        self.refreshControl?.endRefreshing()
-        self.scrollView!.alwaysBounceVertical = true
-    }
-    
+        
     @objc func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             scrollView!.alwaysBounceVertical = true

@@ -114,7 +114,13 @@ class BillViewController: AccountPickerViewController {
         bindButtonTaps()
         configureAccessibility()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: bag)
 
         NotificationCenter.default.rx.notification(.didSelectEnrollInAutoPay, object: nil)
         .subscribe(onNext: { [weak self] notification in
@@ -166,12 +172,7 @@ class BillViewController: AccountPickerViewController {
     @objc func onPullToRefresh() {
         viewModel.fetchAccountDetail(isRefresh: true)
     }
-    
-    @objc func killRefresh() -> Void {
-        self.refreshControl?.endRefreshing()
-        self.scrollView!.alwaysBounceVertical = false
-    }
-    
+        
     func styleViews() {
         view.backgroundColor = .primaryColorAccountPicker
         contentView.backgroundColor = .primaryColorAccountPicker

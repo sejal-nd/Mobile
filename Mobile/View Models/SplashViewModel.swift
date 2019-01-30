@@ -40,7 +40,7 @@ class SplashViewModel{
     }
     
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode()
+        authService.getMaintenanceMode(postNotification: false)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenance in
                 completion(maintenance.stormModeStatus)

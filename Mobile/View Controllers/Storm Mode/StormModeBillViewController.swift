@@ -56,7 +56,10 @@ class StormModeBillViewController: AccountPickerViewController {
         
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
             .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in self?.killRefresh() })
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
             .disposed(by: disposeBag)
     }
     
@@ -87,11 +90,6 @@ class StormModeBillViewController: AccountPickerViewController {
     
     @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(.refresh)
-    }
-    
-    func killRefresh() -> Void {
-        refreshControl?.endRefreshing()
-        scrollView!.alwaysBounceVertical = false
     }
     
     func bindViewStates() {
