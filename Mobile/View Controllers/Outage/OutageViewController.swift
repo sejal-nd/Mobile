@@ -68,18 +68,16 @@ class OutageViewController: AccountPickerViewController {
         
         outageStatusButton.delegate = self
         
-        footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
-        footerTextView.text = viewModel.footerTextViewText
+        footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
         gasOnlyTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        gasOnlyTextView.font = OpenSans.regular.of(textStyle: .subheadline)
         gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .actionBlue
-        gasOnlyTextView.text = viewModel.gasOnlyMessage
+        gasOnlyTextView.attributedText = viewModel.gasOnlyMessage
         
         finaledNoPayTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         finaledNoPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
