@@ -88,6 +88,13 @@
         "CustomerInfo": {},
         "SERInfo": {}
     },
+    "bgEasy": {
+        "accountNumber": "1234567890",
+        "isBGEasy": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
     "autoPayScheduled": {
         "accountNumber": "1234567890",
         "isAutoPay": true,
@@ -95,6 +102,49 @@
             "netDueAmount": 82,
             "dueByDate": "2019-01-11T00:00:00"
         },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "autoPayEligible": {
+        "accountNumber": "1234567890",
+        "isAutoPayEligible": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "budgetBill": {
+        "accountNumber": "1234567890",
+        "isBudgetBill": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "budgetBillEligible": {
+        "accountNumber": "1234567890",
+        "isBudgetBillEligible": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "eBill": {
+        "accountNumber": "1234567890",
+        "isEBillEnrollment": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "eBillEligible": {
+        "accountNumber": "1234567890",
+        "isEBillEligible": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "finaledStatus": {
+        "accountNumber": "1234567890",
+        "isEBillEligible": true,
+        "status": "finaled",
+        "BillingInfo": {},
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -361,6 +411,142 @@
         },
         "CustomerInfo": {},
         "SERInfo": {}
+    },
+    "noForecastComparedHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "comparedEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "noForecastReferenceHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "referenceEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedCost": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedUsage": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avgTemp": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "invalidServiceType": {
+        "accountNumber": "1234567890",
+        "serviceType": "fjdkslaj",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "finaledResidential": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 200
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "bgeControlGroup": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "fjdkslaj",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
+    },
+    "gasOnly": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "GAS",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
+    },
+    "electricOnly": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "ELECTRIC",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
+    },
+    "gasAndElectric": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "GAS/ELECTRIC",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
     },
     "error": {
         "code": "TC-UNKNOWN",

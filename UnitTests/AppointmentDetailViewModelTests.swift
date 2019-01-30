@@ -124,7 +124,9 @@ class AppointmentDetailViewModelTests: XCTestCase {
     }
     
     func testCalendarEvent() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "0", address: "123 Main Street", premises: [], currentPremise: nil, status: nil, isLinked: false, isDefault: false, isFinaled: false, isResidential: true, serviceType: nil)
+        AccountsStore.shared.accounts = [Account(accountNumber: "0", address: "123 Main Street", premises: [], currentPremise: nil, status: nil, isLinked: false, isDefault: false, isFinaled: false, isResidential: true, serviceType: nil)]
+        AccountsStore.shared.currentIndex = 0
+        
         let today2 = Calendar.opCo.date(bySettingHour: 14, minute: 0, second: 0, of: .now)!
         let today3 = Calendar.opCo.date(bySettingHour: 15, minute: 0, second: 0, of: .now)!
         viewModel.appointment = Appointment(id: "0", startDate: today2, stopDate: today3, status: .scheduled)

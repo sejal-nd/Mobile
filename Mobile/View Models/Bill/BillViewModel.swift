@@ -41,11 +41,10 @@ class BillViewModel {
         self.authService = authService
     }
     
-    private lazy var fetchTrigger = Observable.merge(self.fetchAccountDetail,
-                                                     RxNotifications.shared.accountDetailUpdated
-                                                        .mapTo(FetchingAccountState.switchAccount),
-                                                     RxNotifications.shared.recentPaymentsUpdated
-                                                        .mapTo(FetchingAccountState.switchAccount))
+    private lazy var fetchTrigger = Observable
+        .merge(fetchAccountDetail,
+               RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount),
+               RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchTrigger

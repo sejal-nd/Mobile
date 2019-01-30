@@ -12,30 +12,13 @@ import RxTest
 
 class BillViewModelVisibilityTests: BillViewModelTests {
     
-    let alertBannerTestAccountDetails: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(restorationAmount: 32), isCutOutNonPay: true),
-            AccountDetail(billingInfo: BillingInfo(pastDueAmount: 32,
-                                                   pastDueRemaining: 89,
-                                                   disconnectNoticeArrears: 43),
-                          isCutOutNonPay: true,
-                          isCutOutIssued: true),
-            AccountDetail(billingInfo: BillingInfo(restorationAmount: 32, amtDpaReinst: 42)),
-            AccountDetail(billingInfo: BillingInfo(restorationAmount: 32, amtDpaReinst: 42),
-                          isLowIncome: true),
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: 42, pastDueAmount: 32))
-        ]
-    
     // Tests changes in the `showLoadedState` value after switching
     // through different accounts.
     func testShowLoadedState() {
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(),
-            AccountDetail(accountNumber: "failure"),
-            AccountDetail()
-        ]
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
+        MockUser.current = MockUser(globalKeys: .default, .error, .default)
+        MockAccountService.loadAccountsSync()
         
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -51,9 +34,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showAlertBanner` value after switching
     // through different accounts.
     func testShowAlertBanner() {
-        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        MockUser.current = MockUser(globalKeys: .restoreService, .avoidShutoff, .default, .catchUp, .pastDue)
+        MockAccountService.loadAccountsSync()
         
-        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -78,9 +62,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showCatchUpDisclaimer` value after switching
     // through different accounts.
     func testShowCatchUpDisclaimer() {
-        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        MockUser.current = MockUser(globalKeys: .restoreService, .avoidShutoff, .default, .catchUp, .pastDue)
+        MockAccountService.loadAccountsSync()
         
-        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -98,9 +83,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showPastDue` value after switching
     // through different accounts.
     func testShowPastDue() {
-        let switchAccountEventTimes = Array(0..<alertBannerTestAccountDetails.count)
+        MockUser.current = MockUser(globalKeys: .restoreService, .avoidShutoff, .default, .catchUp, .pastDue)
+        MockAccountService.loadAccountsSync()
         
-        accountService.mockAccountDetails = alertBannerTestAccountDetails
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -117,14 +103,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showTopContent` value after switching
     // through different accounts.
     func testShowTopContent() {
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(),
-            AccountDetail(accountNumber: "failure")
-        ]
+        MockUser.current = MockUser(globalKeys: .default, .error)
+        MockAccountService.loadAccountsSync()
         
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -142,15 +124,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showPendingPayment` value after switching
     // through different accounts.
     func testShowPendingPayment() {
+        MockUser.current = MockUser(globalKeys: .paymentPending, .default)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: .now, status: .pending)])),
-            AccountDetail()
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -167,22 +144,14 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showRemainingBalanceDue` value after switching
     // through different accounts.
     func testShowRemainingBalanceDue() {
+        MockUser.current = MockUser(globalKeys: .paymentPending, .default)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3,
-                                                   pendingPayments: [PaymentItem(amount: 5, date: .now, status: .pending)])),
-            AccountDetail(billingInfo: BillingInfo(remainingBalanceDue: 3)),
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: [PaymentItem(amount: 5, date: .now, status: .pending)])),
-            AccountDetail()
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [true, false, false, false]
+        let expectedValues = [true, false]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.showRemainingBalanceDue.drive(observer).disposed(by: disposeBag)
@@ -195,21 +164,14 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showPaymentReceived` value after switching
     // through different accounts.
     func testShowPaymentReceived() {
+        MockUser.current = MockUser(globalKeys: .thankYouForPayment, .default)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: 0, lastPaymentAmount: 3)),
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: 0, lastPaymentAmount: 0)),
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: 8, lastPaymentAmount: 5)),
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: 8, lastPaymentAmount: 0))
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [true, false, false, false]
+        let expectedValues = [true, false]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.showPaymentReceived.drive(observer).disposed(by: disposeBag)
@@ -223,15 +185,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showCredit` value after switching
     // through different accounts.
     func testShowCredit() {
+        MockUser.current = MockUser(globalKeys: .credit, .default)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: -3)),
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: 4))
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -255,26 +212,14 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showBillBreakdownButton` value after switching
     // through different accounts.
     func testShowBillBreakdownButton() {
+        MockUser.current = MockUser(globalKeys: .default, .bgeControlGroup, .finaledResidential, .invalidServiceType, .gasOnly, .electricOnly, .gasAndElectric)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(),
-            AccountDetail(serviceType: "123"),
-            AccountDetail(premiseNumber: "123", serviceType: ""),
-            AccountDetail(premiseNumber: "123", serviceType: "", serInfo: SERInfo(controlGroupFlag: "CONTROL"),  isResidential: true),
-            AccountDetail(premiseNumber: "123", serviceType: "", flagFinaled: true, isResidential: true),
-            AccountDetail(premiseNumber: "123", serviceType: "fdasfds", isResidential: true),
-            AccountDetail(premiseNumber: "123", serviceType: "GAS", isResidential: true),
-            AccountDetail(premiseNumber: "123", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(premiseNumber: "123", serviceType: "GAS/ELECTRIC", isResidential: true)
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [false, false, false, false, false, false, true, true, true]
+        let expectedValues = [false, false, false, false, true, true, true]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.showBillBreakdownButton.drive(observer).disposed(by: disposeBag)
@@ -289,17 +234,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showAutoPay` value after switching
     // through different accounts.
     func testShowAutoPay() {
+        MockUser.current = MockUser(globalKeys: .autoPay, .bgEasy, .autoPayEligible, .default)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(isAutoPay: true),
-            AccountDetail(isBGEasy: true),
-            AccountDetail(isAutoPayEligible: true),
-            AccountDetail()
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -317,15 +255,10 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `enableMakeAPaymentButton` value after switching
     // through different accounts.
     func testEnableMakeAPaymentButton() {
+        MockUser.current = MockUser(globalKeys: .billCardNoDefaultPayment, .default)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(billingInfo: BillingInfo(netDueAmount: 4)),
-            AccountDetail()
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -344,26 +277,14 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showPaperless` value after switching
     // through different accounts.
     func testShowPaperless() {
-        let isResidential = [false, true, true, true, true]
-        let isEBillEligible = [false, false, true, false, false]
-        let isEBillEnrollment = [false, true, false, false, false]
-        let status = [nil, nil, nil, "finaled", nil]
+        MockUser.current = MockUser(globalKeys: .default, .eBill, .eBillEligible, .finaledStatus, .default)
+        MockAccountService.loadAccountsSync()
+        
         let expectedValues = [
-            Environment.shared.opco != .bge,
-            true,
-            true,
-            false,
-            false
+            Environment.shared.opco != .bge, true, true, false, false
         ]
         
-        let switchAccountEventTimes = Array(0..<expectedValues.count)
-        
-        accountService.mockAccountDetails = (0..<expectedValues.count).map {
-            AccountDetail(isEBillEnrollment: isEBillEnrollment[$0],
-                          isEBillEligible: isEBillEligible[$0],
-                          status: status[$0],
-                          isResidential: isResidential[$0])
-        }
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -372,28 +293,20 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `showBudget` value after switching
     // through different accounts.
     func testShowBudget() {
+        MockUser.current = MockUser(globalKeys: .budgetBill, .budgetBillEligible, .default)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(isBudgetBill: true, isBudgetBillEligible: true),
-            AccountDetail(isBudgetBill: true, isBudgetBillEligible: false),
-            AccountDetail(isBudgetBill: false, isBudgetBillEligible: true),
-            AccountDetail(isBudgetBill: false, isBudgetBillEligible: false)
-        ]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [true, true, true, Environment.shared.opco == .bge]
+        let expectedValues = [true, true, Environment.shared.opco == .bge]
         
         let observer = scheduler.createObserver(Bool.self)
         viewModel.showBudget.drive(observer).disposed(by: disposeBag)

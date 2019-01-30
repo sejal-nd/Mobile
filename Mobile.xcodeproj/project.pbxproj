@@ -1011,9 +1011,6 @@
 		B04DDF7821FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
 		B04DDF7921FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
 		B04DDF7A21FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
-		B04DDF7C2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
-		B04DDF7D2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
-		B04DDF7E2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
 		B04DDF7F2200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
 		B04DDF802200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
 		B04DDF812200A3E000594ACF /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
@@ -1267,6 +1264,15 @@
 		B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
+		B0D84D4222023FD800C70A6F /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B0D84D4422023FD900C70A6F /* MockJSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */; };
+		B0D84D46220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B0D84D47220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B0D84D48220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B0D84D49220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B0D84D4A220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B0D84D4B220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2851,6 +2857,7 @@
 		B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
 		B0B0840E217111CE00B1C632 /* appointment_tracker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointment_tracker.json; sourceTree = "<group>"; };
 		B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentusFormViewController.swift; sourceTree = "<group>"; };
+		B0D84D45220244E000C70A6F /* payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payments.json; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -4368,6 +4375,7 @@
 			children = (
 				B04DDF8A2200DBEC00594ACF /* accounts.json */,
 				B04DDF832200D47A00594ACF /* account_details.json */,
+				B0D84D45220244E000C70A6F /* payments.json */,
 			);
 			path = "Mock JSON";
 			sourceTree = "<group>";
@@ -5647,6 +5655,7 @@
 			files = (
 				B04DDF872200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */,
+				B0D84D49220244E000C70A6F /* payments.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6063,6 +6072,7 @@
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B0D84D46220244E000C70A6F /* payments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6073,6 +6083,7 @@
 			files = (
 				B04DDF882200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */,
+				B0D84D4A220244E000C70A6F /* payments.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6083,6 +6094,7 @@
 			files = (
 				B04DDF892200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF902200DBEC00594ACF /* accounts.json in Resources */,
+				B0D84D4B220244E000C70A6F /* payments.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6096,6 +6108,7 @@
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B0D84D47220244E000C70A6F /* payments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6109,6 +6122,7 @@
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B0D84D48220244E000C70A6F /* payments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7192,7 +7206,7 @@
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
-				B04DDF7C2200A3E000594ACF /* MockJSONManager.swift in Sources */,
+				B0D84D4422023FD900C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162A1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				82EAB3341F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
@@ -7654,7 +7668,7 @@
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				44A373441F211522005E227B /* TemplateCardView.swift in Sources */,
 				B07D247D20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
-				B04DDF7E2200A3E000594ACF /* MockJSONManager.swift in Sources */,
+				B0D84D4222023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */,
 				E863346D1E5F6A320091E6FE /* FloatLabelTextField.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
@@ -7941,7 +7955,7 @@
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
-				B04DDF7D2200A3E000594ACF /* MockJSONManager.swift in Sources */,
+				B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3351F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,

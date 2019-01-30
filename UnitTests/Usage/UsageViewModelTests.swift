@@ -43,7 +43,8 @@ class UsageViewModelTests: XCTestCase {
     // MARK: No Data Bar Drivers
 
     func testNoDataBarDateLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "referenceEndDate")
+        AccountsStore.shared.accounts = [Account(accountNumber: "referenceEndDate")]
+        AccountsStore.shared.currentIndex = 0
         accountService.mockAccounts = [AccountsStore.shared.currentAccount]
         accountService.mockAccountDetails = [AccountDetail(accountNumber: "referenceEndDate", premiseNumber: "1", isResidential: true)]
         
@@ -84,6 +85,8 @@ class UsageViewModelTests: XCTestCase {
             AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
             AccountDetail(accountNumber: "test-noForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
         ]
+        
+        
         accountService.mockAccounts = testAccounts
         accountService.mockAccountDetails = testAccountDetails
         
@@ -92,7 +95,7 @@ class UsageViewModelTests: XCTestCase {
         viewModel.previousBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5)]).subscribe(onNext: {
-            AccountsStore.shared.currentAccount = testAccounts[$0]
+            AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -109,9 +112,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testPreviousBarDollarLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "test-noForecast-comparedHighest")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", isResidential: true)]
+        MockUser.current = MockUser(globalKey: .noForecastComparedHighest)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -126,9 +128,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testPreviousBarDateLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "comparedEndDate")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "comparedEndDate", premiseNumber: "1", isResidential: true)]
+        MockUser.current = MockUser(globalKey: .comparedEndDate)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -175,7 +176,7 @@ class UsageViewModelTests: XCTestCase {
         viewModel.currentBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5)]).subscribe(onNext: {
-            AccountsStore.shared.currentAccount = testAccounts[$0]
+            AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -192,9 +193,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testCurrentBarDollarLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "test-noForecast-referenceHighest")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-noForecast-referenceHighest", premiseNumber: "1", isResidential: true)]
+        MockUser.current = MockUser(globalKey: .noForecastReferenceHighest)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -209,9 +209,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testCurrentBarDateLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "referenceEndDate")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "referenceEndDate", premiseNumber: "1", isResidential: true)]
+        MockUser.current = MockUser(globalKey: .referenceEndDate)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -234,9 +233,8 @@ class UsageViewModelTests: XCTestCase {
     // MARK: Projection Bar Drivers
     
     func testProjectedCost() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "test-projectedCost")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-projectedCost", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true)]
+        MockUser.current = MockUser(globalKey: .projectedCost)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(Double?.self)
         
@@ -261,9 +259,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectedUsage() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "test-projectedUsage")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-projectedUsage", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true)]
+        MockUser.current = MockUser(globalKey: .projectedUsage)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(Double?.self)
         
@@ -315,7 +312,7 @@ class UsageViewModelTests: XCTestCase {
         viewModel.projectedBarHeightConstraintValue.drive(observer).disposed(by: disposeBag)
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3)]).subscribe(onNext: {
-            AccountsStore.shared.currentAccount = testAccounts[$0]
+            AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -346,7 +343,7 @@ class UsageViewModelTests: XCTestCase {
         viewModel.projectedBarDollarLabelText.drive(observer).disposed(by: disposeBag)
         
         scheduler.createHotObservable([next(0, 0), next(1, 1)]).subscribe(onNext: {
-            AccountsStore.shared.currentAccount = testAccounts[$0]
+            AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -359,9 +356,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectedBarDateLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "test-projectedDate")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-projectedDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true)]
+        MockUser.current = MockUser(globalKey: .projectedDate)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -407,7 +403,7 @@ class UsageViewModelTests: XCTestCase {
             if $0 % 2 != 0 {
                 self.viewModel.electricGasSelectedSegmentIndex.value = 1
             }
-            AccountsStore.shared.currentAccount = testAccounts[$0 % 2]
+            AccountsStore.shared.currentIndex = $0 % 2
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -441,7 +437,7 @@ class UsageViewModelTests: XCTestCase {
             if $0 % 2 != 0 {
                 self.viewModel.electricGasSelectedSegmentIndex.value = 1
             }
-            AccountsStore.shared.currentAccount = testAccounts[$0 % 2]
+            AccountsStore.shared.currentIndex = $0 % 2
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -466,7 +462,7 @@ class UsageViewModelTests: XCTestCase {
             AccountDetail(accountNumber: "comparedReferenceStartEndDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
             AccountDetail(accountNumber: "forecastStartEndDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
         ]
-        AccountsStore.shared.currentAccount = testAccounts[0]
+        AccountsStore.shared.currentIndex = 0
         accountService.mockAccounts = testAccounts
         accountService.mockAccountDetails = testAccountDetails
         
@@ -476,10 +472,11 @@ class UsageViewModelTests: XCTestCase {
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5), next(6, 6)]).subscribe(onNext: {
             if $0 <= 3 {
-                AccountsStore.shared.currentAccount = testAccounts[0]
+                AccountsStore.shared.currentIndex = 0
             } else {
-                AccountsStore.shared.currentAccount = testAccounts[1]
+                AccountsStore.shared.currentIndex = 1
             }
+            
             if $0 == 0 || $0 == 1 {
                 self.viewModel.setBarSelected(tag: 0)
                 if $0 == 1 {
@@ -514,9 +511,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testBarDescriptionAvgTempLabelText() {
-        AccountsStore.shared.currentAccount = Account(accountNumber: "test-avgTemp")
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "test-avgTemp", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isResidential: true)]
+        MockUser.current = MockUser(globalKey: .avgTemp)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -558,7 +554,7 @@ class UsageViewModelTests: XCTestCase {
         viewModel.billPeriodArrowImage.drive(observer).disposed(by: disposeBag)
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
-            AccountsStore.shared.currentAccount = testAccounts[$0]
+            AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -590,7 +586,7 @@ class UsageViewModelTests: XCTestCase {
         viewModel.weatherArrowImage.drive(observer).disposed(by: disposeBag)
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
-            AccountsStore.shared.currentAccount = testAccounts[$0]
+            AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -622,7 +618,7 @@ class UsageViewModelTests: XCTestCase {
         viewModel.otherArrowImage.drive(observer).disposed(by: disposeBag)
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
-            AccountsStore.shared.currentAccount = testAccounts[$0]
+            AccountsStore.shared.currentIndex = $0
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)
         scheduler.start()
@@ -659,24 +655,24 @@ class UsageViewModelTests: XCTestCase {
         
         scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5), next(6, 6)]).subscribe(onNext: {
             if $0 == 0 {
-                AccountsStore.shared.currentAccount = testAccounts[0]
+                AccountsStore.shared.currentIndex = 0
             } else if $0 == 1 {
-                AccountsStore.shared.currentAccount = testAccounts[1]
+                AccountsStore.shared.currentIndex = 1
             } else if $0 == 2 {
-                AccountsStore.shared.currentAccount = testAccounts[1]
+                AccountsStore.shared.currentIndex = 1
                 self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
             } else if $0 == 3 {
                 self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
-                AccountsStore.shared.currentAccount = testAccounts[2]
+                AccountsStore.shared.currentIndex = 2
             } else if $0 == 4 {
                 self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-                AccountsStore.shared.currentAccount = testAccounts[2]
+                AccountsStore.shared.currentIndex = 2
             } else if $0 == 5 {
                 self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
-                AccountsStore.shared.currentAccount = testAccounts[3]
+                AccountsStore.shared.currentIndex = 3
             } else if $0 == 6 {
                 self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-                AccountsStore.shared.currentAccount = testAccounts[3]
+                AccountsStore.shared.currentIndex = 3
             }
             self.viewModel.fetchAllData()
         }).disposed(by: disposeBag)

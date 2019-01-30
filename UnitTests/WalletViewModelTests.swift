@@ -21,7 +21,8 @@ class WalletViewModelTests: XCTestCase {
     }
     
     func testFetchingWalletItems() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         let scheduler = TestScheduler(initialClock: 0)
         let events: [Recorded<Event<Void>>] = [next(2, ())]

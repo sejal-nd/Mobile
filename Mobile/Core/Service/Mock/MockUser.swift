@@ -22,12 +22,14 @@ struct MockUser {
     /// Initializes a mock user with a single account according to the provided keys
     init(accountsKey: MockDataKey = .default,
          accountDetailsKey: MockDataKey = .default,
+         paymentsKey: MockDataKey = .default,
          outageStatusKey: MockDataKey = .default,
          billComparisonKey: MockDataKey = .default,
          billForecastKey: MockDataKey = .default,
          maintenanceKey: MockDataKey = .default) {
         let account = MockAccount(accountsKey: accountsKey,
                                   accountDetailsKey: accountDetailsKey,
+                                  paymentsKey: accountDetailsKey,
                                   outageStatusKey: outageStatusKey,
                                   billComparisonKey: billComparisonKey,
                                   billForecastKey: billForecastKey,
@@ -36,13 +38,13 @@ struct MockUser {
     }
     
     /// Initializes a mock user with a single account, applying the global key to every service
-    init(globalKey key: MockDataKey) {
+    init(globalKey key: MockDataKey = .default) {
         let account = MockAccount(globalKey: key)
         accounts = [account]
     }
     
     /// Initializes a mock user with a list of accounts, applying the global keys to every service per account
-    init(globalKeys keys: [MockDataKey] = [.default]) {
+    init(globalKeys keys: MockDataKey...) {
         accounts = keys.map(MockAccount.init)
     }
     
@@ -60,6 +62,7 @@ struct MockUser {
 struct MockAccount {
     let accountsKey: String
     let accountDetailsKey: String
+    let paymentsKey: String
     let outageStatusKey: String
     let billComparisonKey: String
     let billForecastKey: String
@@ -67,12 +70,14 @@ struct MockAccount {
     
     init(accountsKey: MockDataKey = .default,
          accountDetailsKey: MockDataKey = .default,
+         paymentsKey: MockDataKey = .default,
          outageStatusKey: MockDataKey = .default,
          billComparisonKey: MockDataKey = .default,
          billForecastKey: MockDataKey = .default,
          maintenanceKey: MockDataKey = .default) {
         self.accountsKey = accountsKey.rawValue
         self.accountDetailsKey = accountDetailsKey.rawValue
+        self.paymentsKey = paymentsKey.rawValue
         self.outageStatusKey = outageStatusKey.rawValue
         self.billComparisonKey = billComparisonKey.rawValue
         self.billForecastKey = billForecastKey.rawValue
@@ -82,6 +87,7 @@ struct MockAccount {
     init(globalKey key: MockDataKey = .default) {
         self.init(accountsKey: key,
                   accountDetailsKey: key,
+                  paymentsKey: key,
                   outageStatusKey: key,
                   billComparisonKey: key,
                   billForecastKey: key,
@@ -107,12 +113,24 @@ enum MockDataKey: String {
     case cashOnly
     case scheduledPayment
     case autoPay
+    case autoPayEligible
+    case bgEasy
+    case budgetBill
+    case budgetBillEligible
+    case eBill
+    case eBillEligible
+    case finaledStatus
     case thankYouForPayment
     case thankYouForPaymentOTP
     case paymentPending
     case paymentsPending
     case credit
     case billNotReady
+    case bgeControlGroup
+    case finaledResidential
+    case invalidServiceType
+    case electricOnly
+    case gasAndElectric
     
     // Precarious
     case finaled
@@ -177,13 +195,7 @@ enum MockDataKey: String {
     case maintNotHome
     case maintError
     
-    // Errors
-    case accountDetailError
-    case outageStatusError
-    case billComparisonError
-    case billForecastError
-    case allUsageError
-    
-    // Default
+    // General
+    case error
     case `default`
 }

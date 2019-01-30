@@ -15,15 +15,10 @@ class BillViewModelContentTests: BillViewModelTests {
     // Tests changes in the `accountDetailError` value after switching
     // through different accounts.
     func testAccountDetailError() {
-        let accountDetail: [AccountDetail] = [
-            AccountDetail(),
-            AccountDetail(accountNumber: "failure"),
-            AccountDetail()
-        ]
+        MockUser.current = MockUser(globalKeys: .default, .error, .default)
+        MockAccountService.loadAccountsSync()
         
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -37,14 +32,10 @@ class BillViewModelContentTests: BillViewModelTests {
     }
     
     func testMaintenanceMode() {
-        MockData.shared.username = "maintAllTabs"
+        MockUser.current = MockUser(globalKey: .maintAll)
+        MockAccountService.loadAccountsSync()
         
-        let accountDetail = [AccountDetail()]
-        
-        let switchAccountEventTimes = Array(0..<accountDetail.count)
-        
-        accountService.mockAccountDetails = accountDetail
-        accountService.mockUser = MockUser(globalKey: .maintAll)
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
@@ -55,54 +46,25 @@ class BillViewModelContentTests: BillViewModelTests {
         scheduler.start()
         
         XCTAssert(observer.events.isEmpty)
-        
-        MockData.shared.username = ""
     }
     
     // Tests changes in the `alertBannerText` value.
     func testAlertBannerText() {
-        let restorationAmount: [Double?] = [9, nil, nil, nil, nil]
-        let amtDpaReinst: [Double?] = [nil, nil, nil, nil, nil]
-        let isCutOutNonPay = [true, false, false, false, false]
+        // TODO: - Revisit this with more possibilities
+        MockUser.current = MockUser(globalKeys: .restoreService, .catchUp, .avoidShutoff, .avoidShutoffExtended, .default)
+        MockAccountService.loadAccountsSync()
         
-        let disconnectNoticeArrears: [Double?] = [nil, nil, 4, 6, nil]
-
-        let dueByDate: [Date?] = [nil, nil, "02/12/2018", "02/12/2018", nil]
-            .map {
-                guard let string = $0 else { return nil }
-                return DateFormatter.mmDdYyyyFormatter.date(from: string)
-        }
-        let turnOffNoticeExtendedDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", nil, "02/12/2018"]
-            .map {
-                guard let string = $0 else { return nil }
-                return DateFormatter.mmDdYyyyFormatter.date(from: string)
-        }
-        
-        let turnOffNoticeDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", "02/10/2018", "02/12/2018"]
-            .map { DateFormatter.mmDdYyyyFormatter.date(from: $0) }
+        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         let expectedValues: [String?] = [
-            Environment.shared.opco == .bge ? nil : "$9.00 of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.",
+            Environment.shared.opco == .bge ? nil : "$200.00 of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.",
             nil,
-            "$4.00 of the total must be paid immediately to avoid shutoff.",
-            "$6.00 of the total must be paid immediately to avoid shutoff.",
+            "$100.00 of the total must be paid immediately to avoid shutoff.",
+            "$100.00 of the total must be paid by 01/11/2019 to avoid shutoff.",
             nil
         ]
         
-        let switchAccountEventTimes = Array(0..<expectedValues.count)
         simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        accountService.mockAccountDetails = (0..<expectedValues.count).map { i -> AccountDetail in
-            let billingInfo = BillingInfo(restorationAmount: restorationAmount[i],
-                                          amtDpaReinst: amtDpaReinst[i],
-                                          dueByDate: dueByDate[i],
-                                          disconnectNoticeArrears: disconnectNoticeArrears[i],
-                                          turnOffNoticeExtendedDueDate: turnOffNoticeExtendedDueDate[i],
-                                          turnOffNoticeDueDate: turnOffNoticeDueDate[i])
-            
-            return AccountDetail(billingInfo: billingInfo,
-                                 isCutOutNonPay: isCutOutNonPay[i])
-        }
         
         let observer = scheduler.createObserver(String?.self)
         viewModel.alertBannerText.drive(observer).disposed(by: disposeBag)

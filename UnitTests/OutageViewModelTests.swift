@@ -18,7 +18,8 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusSuccess() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         viewModel.getOutageStatus(onSuccess: {
             asyncExpectation.fulfill()
@@ -34,7 +35,8 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusFailureFinaled() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "80000000000", "address": "573 Elm Street"]))
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "80000000000", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
 
         viewModel.getOutageStatus(onSuccess: {
             XCTAssert(self.viewModel.currentOutageStatus!.flagFinaled, "Account was not filed.")
@@ -51,7 +53,8 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusFailureNoPay() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "70000000000", "address": "573 Elm Street"]))
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "70000000000", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         viewModel.getOutageStatus(onSuccess: {
             XCTAssert(self.viewModel.currentOutageStatus!.flagNoPay)
@@ -68,7 +71,8 @@ class OutageViewModelTests: XCTestCase {
     func testGetOutageStatusFailureNoService() {
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
         
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "60000000000", "address": "573 Elm Street"]))
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "60000000000", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         viewModel.getOutageStatus(onSuccess: {
             XCTAssert(self.viewModel.currentOutageStatus!.flagNonService)
@@ -84,7 +88,8 @@ class OutageViewModelTests: XCTestCase {
     
     
     func testEstimatedRestorationDateStringReportedOutage() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         let mockOutageService = MockOutageService()
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
@@ -107,7 +112,8 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testReportedOutage() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         let expect = expectation(description: "Test report outage expectation")
         let mockOutageService = MockOutageService()
@@ -127,7 +133,8 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testEstimatedRestorationDateStringCurrentOutage() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "9836621902", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "9836621902", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         let testEtrStringBge = "04/10/2017 03:45 AM"
         let testEtrStringComed = "03:45 AM on 4/10/2017"
@@ -155,13 +162,15 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testOutageReportedDateStringNotReported() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         XCTAssert(self.viewModel.outageReportedDateString == "Reported", "Received \(self.viewModel.outageReportedDateString) instead of \"Reported\"")
     }
     
     func testOutageReportedDateStringReported() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         let mockOutageService = MockOutageService()
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
@@ -185,7 +194,8 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testFooterTextViewText() {
-            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
             
             switch Environment.shared.opco {
             case .bge:
@@ -197,7 +207,8 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testGasOnlyMessage() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         switch Environment.shared.opco {
         case .bge:
@@ -209,7 +220,8 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testAccountFinaled() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "75395146464", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "75395146464", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         viewModel.getOutageStatus(onSuccess: {
             let expectedString: String
@@ -225,7 +237,8 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testAccountNonPay() {
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "3216544560", "address": "573 Elm Street"])!
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "3216544560", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         
         viewModel.getOutageStatus(onSuccess: {
             let expectedString: String

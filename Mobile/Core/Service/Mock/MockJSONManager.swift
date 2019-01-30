@@ -9,21 +9,21 @@
 import Foundation
 import Mapper
 
-typealias JSON = [String: Any]
+typealias JSONObject = [String: Any]
+typealias JSONArray = [Any]
 
 class MockJSONManager {
     
     static let shared = MockJSONManager()
     
-    var loadedFilesCache = [File: JSON]()
+    var loadedFilesCache = [File: JSONObject]()
     
     private init() {}
     
-    func jsonObject(fromFile file: File, key: String) throws -> JSON {
-        let json: JSON
+    func jsonObject(fromFile file: File) throws -> JSONObject {
         // Don't pull from the file if we already have the JSON in memory
         if let loadedJson = loadedFilesCache[file] {
-            json = loadedJson
+            return loadedJson
         } else {
             guard let url = Bundle.main.url(forResource: file.rawValue, withExtension: "json") else {
                 throw ServiceError.parsing
@@ -31,25 +31,45 @@ class MockJSONManager {
             
             do {
                 let data = try Data(contentsOf: url)
-                guard let jsonFromFile = try JSONSerialization.jsonObject(with: data) as? JSON else {
+                guard let jsonFromFile = try JSONSerialization.jsonObject(with: data) as? JSONObject else {
                     throw ServiceError.parsing
                 }
                 
-                json = jsonFromFile
                 loadedFilesCache[file] = jsonFromFile
+                return jsonFromFile
             } catch let error as ServiceError {
                 throw error
             } catch {
                 throw ServiceError(cause: error)
             }
         }
+    }
+    
+    func jsonObject(fromFile file: File, key: String) throws -> JSONObject {
+        let json = try jsonObject(fromFile: file)
         
         // Every JSON file should have a `default` object to fall back on
-        guard let jsonObject = (json[key] ?? json[MockDataKey.default.rawValue]) as? JSON else {
+        guard let jsonObject = (json[key] ?? json[MockDataKey.default.rawValue]) as? JSONObject else {
             throw ServiceError.parsing
         }
         
         return jsonObject
+    }
+    
+    func jsonArray(fromFile file: File, key: String) throws -> JSONArray {
+        let json = try jsonObject(fromFile: file)
+        
+        let object = json[key] ?? json[MockDataKey.default.rawValue]
+        
+        // Every JSON file should have a `default` object to fall back on
+        if let jsonArray = object as? JSONArray {
+            return jsonArray
+        } else if let jsonObject = object as? JSONObject {
+            throw ServiceError.from(jsonObject as NSDictionary) ?? ServiceError.parsing
+        } else {
+            throw ServiceError.parsing
+        }
+        
     }
     
     func mappableObject<Value: Mappable>(fromFile file: File, key: String) throws -> Value {
@@ -64,8 +84,19 @@ class MockJSONManager {
         }
     }
     
+    func mappableArray<Value: Mappable>(fromFile file: File, key: String) throws -> [Value] {
+        let json = try jsonArray(fromFile: file, key: key) as NSArray
+        
+        if let array = Value.from(json) {
+            return array
+        } else {
+            throw ServiceError.parsing
+        }
+    }
+    
     enum File: String {
         case accounts = "accounts"
         case accountDetails = "account_details"
+        case payments = "payments"
     }
 }

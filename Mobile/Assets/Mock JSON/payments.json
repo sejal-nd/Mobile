@@ -1,0 +1,17 @@
+{
+    "default": [],
+    "scheduledPayment": [
+        {
+            "amount": 82
+        }
+    ],
+    "autoPayScheduled": [
+        {
+            "amount": 82
+        }
+    ],
+    "error": {
+        "code": "TC-UNKNOWN",
+        "description": "This is a test error"
+    }
+}
