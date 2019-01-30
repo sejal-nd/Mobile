@@ -189,11 +189,11 @@ class OutageViewModelTests: XCTestCase {
             
             switch Environment.shared.opco {
             case .bge:
-                return XCTAssert(self.viewModel.footerTextViewText == "To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", "BGE footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")
+                return XCTAssert(self.viewModel.footerTextViewText.string == "To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", "BGE footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")
             case .comEd:
-                return XCTAssert(self.viewModel.footerTextViewText == "To report a downed or sparking power line, please call 1-800-334-7661", "ComEd footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")
+                return XCTAssert(self.viewModel.footerTextViewText.string == "To report a downed or sparking power line, please call 1-800-334-7661", "ComEd footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")
             case .peco:
-                return XCTAssert(self.viewModel.footerTextViewText == "To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", "PECO footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")}
+                return XCTAssert(self.viewModel.footerTextViewText.string == "To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", "PECO footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")}
     }
     
     func testGasOnlyMessage() {
@@ -201,11 +201,11 @@ class OutageViewModelTests: XCTestCase {
         
         switch Environment.shared.opco {
         case .bge:
-            return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", "BGE Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")
+            return XCTAssert(self.viewModel.gasOnlyMessage.string == "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", "BGE Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")
         case .peco:
-            return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", "PECO Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")
+            return XCTAssert(self.viewModel.gasOnlyMessage.string == "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", "PECO Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")
         default:
-            return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.", "Default Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")}
+            return XCTAssert(self.viewModel.gasOnlyMessage.string == "We currently do not allow reporting of gas issues online but want to hear from you right away.", "Default Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")}
     }
     
     func testAccountFinaled() {

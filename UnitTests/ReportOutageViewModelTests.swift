@@ -47,7 +47,7 @@ class ReportOutageViewModelTests: XCTestCase {
         case .peco:
             expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
-        XCTAssert(expectedString == viewModel.footerTextViewText, "Expected \"\(expectedString)\", got \"\(viewModel.footerTextViewText)\"")
+        XCTAssert(expectedString == viewModel.footerTextViewText.string, "Expected \"\(expectedString)\", got \"\(viewModel.footerTextViewText)\"")
     }
     
     func testReportOutageSuccess() {
