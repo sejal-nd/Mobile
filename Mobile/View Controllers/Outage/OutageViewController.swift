@@ -90,7 +90,13 @@ class OutageViewController: AccountPickerViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: disposeBag)
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.updateContent(outageJustReported: true) })
@@ -151,12 +157,7 @@ class OutageViewController: AccountPickerViewController {
         super.viewDidLayoutSubviews()
         loadingBackgroundView.layer.cornerRadius = loadingBackgroundView.frame.size.height / 2
     }
-    
-    @objc func killRefresh() -> Void {
-        refreshControl?.endRefreshing()
-        scrollView!.alwaysBounceVertical = false
-    }
-    
+
     func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             refreshControl = UIRefreshControl()
@@ -251,30 +252,30 @@ class OutageViewController: AccountPickerViewController {
             }
             
             self?.shortcutItem = .none
-            }, onError: { [weak self] serviceError in
-                self?.shortcutItem = .none
-                UIAccessibility.post(notification: .screenChanged, argument: nil)
-                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                    self?.scrollView?.isHidden = true
-                    self?.noNetworkConnectionView.isHidden = false
-                } else {
-                    self?.scrollView?.isHidden = false
-                    self?.noNetworkConnectionView.isHidden = true
-                }
-                self?.loadingView.isHidden = true
-                self?.setRefreshControlEnabled(enabled: true)
-                
-                self?.errorLabel.isHidden = false
-                self?.maintenanceModeView.isHidden = true
-            }, onMaintenance: { [weak self] in
-                self?.shortcutItem = .none
-                UIAccessibility.post(notification: .screenChanged, argument: nil)
-                self?.maintenanceModeView.isHidden = false
+        }, onError: { [weak self] serviceError in
+            self?.shortcutItem = .none
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
+            if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                 self?.scrollView?.isHidden = true
+                self?.noNetworkConnectionView.isHidden = false
+            } else {
+                self?.scrollView?.isHidden = false
                 self?.noNetworkConnectionView.isHidden = true
-                self?.loadingView.isHidden = true
-                self?.setRefreshControlEnabled(enabled: true)
-                self?.errorLabel.isHidden = true
+            }
+            self?.loadingView.isHidden = true
+            self?.setRefreshControlEnabled(enabled: true)
+            
+            self?.errorLabel.isHidden = false
+            self?.maintenanceModeView.isHidden = true
+        }, onMaintenance: { [weak self] in
+            self?.shortcutItem = .none
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
+            self?.maintenanceModeView.isHidden = false
+            self?.scrollView?.isHidden = true
+            self?.noNetworkConnectionView.isHidden = true
+            self?.loadingView.isHidden = true
+            self?.setRefreshControlEnabled(enabled: true)
+            self?.errorLabel.isHidden = true
         })
     }
     
@@ -307,20 +308,20 @@ class OutageViewController: AccountPickerViewController {
             self.gasOnlyView.isHidden = true
             self.finaledNoPayView.isHidden = true
             self.maintenanceModeView.isHidden = true
-            }, onMaintenance: { [weak self] in
-                guard let self = self else { return }
-                self.refreshControl?.endRefreshing()
-                self.loadingView.isHidden = true
-                self.maintenanceModeView.isHidden = false
-                self.scrollView?.isHidden = true
-                self.noNetworkConnectionView.isHidden = true
-                self.errorLabel.isHidden = true
-                
-                // Hide everything else
-                self.accountContentView.isHidden = true
-                self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
-                self.gasOnlyView.isHidden = true
-                self.finaledNoPayView.isHidden = true
+        }, onMaintenance: { [weak self] in
+            guard let self = self else { return }
+            self.refreshControl?.endRefreshing()
+            self.loadingView.isHidden = true
+            self.maintenanceModeView.isHidden = false
+            self.scrollView?.isHidden = true
+            self.noNetworkConnectionView.isHidden = true
+            self.errorLabel.isHidden = true
+            
+            // Hide everything else
+            self.accountContentView.isHidden = true
+            self.gasOnlyTextViewBottomSpaceConstraint.isActive = false
+            self.gasOnlyView.isHidden = true
+            self.finaledNoPayView.isHidden = true
         })
     }
     

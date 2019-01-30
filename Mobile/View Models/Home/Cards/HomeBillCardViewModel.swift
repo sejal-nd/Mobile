@@ -88,7 +88,10 @@ class HomeBillCardViewModel {
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(fetchDataMMEvents, defaultWalletItemUpdatedMMEvents)
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = maintenanceModeEvents
-        .filter { !($0.element?.billStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .filter {
+            guard let maint = $0.element else { return false }
+            return !maint.allStatus && !maint.billStatus && !maint.homeStatus
+        }
         .withLatestFrom(fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0) },
                         requestSelector: { [weak self] _ in

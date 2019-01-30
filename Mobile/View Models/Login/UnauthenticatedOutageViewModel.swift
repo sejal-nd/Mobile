@@ -167,18 +167,18 @@ class UnauthenticatedOutageViewModel {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
 
-    func checkForMaintenance(onAll: @escaping (Maintenance) -> Void, onOutage: @escaping (Maintenance) -> Void, onNeither: @escaping () -> Void) {
+    func checkForMaintenance(onOutageOnly: @escaping (Maintenance) -> Void, onNeither: @escaping () -> Void) {
         authService.getMaintenanceMode()
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { maintenanceInfo in
-                    if maintenanceInfo.allStatus {
-                        onAll(maintenanceInfo)
-                    } else if maintenanceInfo.outageStatus {
-                        onOutage(maintenanceInfo)
-                    } else {
-                        onNeither()
-                    }
-                }, onError: { _ in onNeither() })
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { maintenanceInfo in
+                if !maintenanceInfo.allStatus && maintenanceInfo.outageStatus {
+                    onOutageOnly(maintenanceInfo)
+                } else {
+                    onNeither()
+                }
+            }, onError: { _ in
+                onNeither()
+            })
             .disposed(by: disposeBag)
     }
 }

@@ -43,13 +43,15 @@ class OutageViewModel {
         
         currentGetMaintenanceModeStatusDisposable = authService.getMaintenanceMode()
             .subscribe(onNext: { [weak self] status in
-                if status.outageStatus {
+                if status.allStatus {
+                    onError(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
+                } else if status.outageStatus {
                     onMaintenance()
                 } else {
                     self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
                 }
-                }, onError: { [weak self] _ in
-                    self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
+            }, onError: { [weak self] _ in
+                self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
             })
     }
     

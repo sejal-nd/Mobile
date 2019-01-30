@@ -95,7 +95,7 @@ class MaintenanceModeViewModel{
     }()
     
     func doReload(onSuccess: @escaping (Bool) -> Void, onError: @escaping (String) -> Void) {
-        authService.getMaintenanceMode()
+        authService.getMaintenanceMode(postNotification: false)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] maintenanceInfo in
                 self?.maintenance = maintenanceInfo

@@ -62,7 +62,10 @@ class HomeUsageCardViewModel {
         .distinctUntilChanged()
     
     private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = maintenanceModeEvents
-        .filter { !($0.element?.homeStatus ?? false) && !($0.element?.usageStatus ?? false) }
+        .filter {
+            guard let maint = $0.element else { return false }
+            return !maint.allStatus && !maint.usageStatus && !maint.homeStatus
+        }
         .withLatestFrom(fetchData)
         .toAsyncRequest(activityTracker: { [weak self] fetchingState in
             self?.fetchTracker(forState: fetchingState)
