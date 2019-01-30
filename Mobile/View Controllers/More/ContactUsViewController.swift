@@ -19,6 +19,12 @@ class ContactUsViewController: UIViewController {
     
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+    @IBOutlet weak var bgeOnlyStackView: UIStackView!
+    @IBOutlet weak var bgeGasNumber1TextView: DataDetectorTextView!
+    @IBOutlet weak var bgeGasNumber2TextView: DataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber1TextView: DataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber2TextView: DataDetectorTextView!
+    
     
     @IBOutlet weak var submitFormButton: UIButton!
     @IBOutlet weak var onlineDescriptionLabel: UILabel!
@@ -77,6 +83,24 @@ class ContactUsViewController: UIViewController {
         emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         emergencyNumberTextView.linkTapDelegate = self
         
+        if Environment.shared.opco == .bge {
+            emergencyNumberTextView.isHidden = true
+        } else {
+            bgeOnlyStackView.isHidden = true
+        }
+        bgeGasNumber1TextView.textContainerInset = .zero
+        bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgeGasNumber1TextView.linkTapDelegate = self
+        bgeGasNumber2TextView.textContainerInset = .zero
+        bgeGasNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgeGasNumber2TextView.linkTapDelegate = self
+        bgePowerLineNumber1TextView.textContainerInset = .zero
+        bgePowerLineNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgePowerLineNumber1TextView.linkTapDelegate = self
+        bgePowerLineNumber2TextView.textContainerInset = .zero
+        bgePowerLineNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgePowerLineNumber2TextView.linkTapDelegate = self
+
         emergencyDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
     }
