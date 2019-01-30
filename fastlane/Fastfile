@@ -20,12 +20,12 @@ platform :ios do
     update_fastlane
 
     get_certificates(           # invokes cert
-      username: "jerlandson5205@gmail.com",
+      username: "exelonutilitiesapplieid@exeloncorp.com",
       team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
       output_path: "./fastlane/certs"
     )
     get_provisioning_profile(   # invokes sigh
-      username: "jerlandson5205@gmail.com",
+      username: "exelonutilitiesapplieid@exeloncorp.com",
       team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
       app_identifier: ENV["APP_IDENTIFIER"],
       output_path: "./fastlane/provisioningProfiles"
@@ -36,13 +36,10 @@ platform :ios do
       scheme: ENV["SCREENSHOT_SCHEME"],
       output_directory: "./fastlane/screenshots"
     )
-
-    increment_build_number # automatically increment by one
-    increment_version_number
-
+    
     build_ios_app(
       scheme: ENV["RELEASE_SCHEME"],
-      silent: false,
+      silent: true,
       clean: true,
       include_bitcode: true,
       skip_build_archive: true,
@@ -68,7 +65,7 @@ platform :ios do
     deliver(
       app_identifier: ENV["APP_IDENTIFIER"],
       ipa: "./fastlane/IPA/mobile.ipa", # Same as output directory above
-      username: "jerlandson5205@gmail.com",
+      username: "exelonutilitiesapplieid@exeloncorp.com",
       submit_for_review: false,
       force: false,
       # metadata_path: ENV["METADATA_PATH"],
@@ -86,7 +83,7 @@ platform :ios do
     # Download dSYM files from iTC
 		download_dsyms(
       version: "latest",
-      username: "jerlandson5205@gmail.com",
+      username: "exelonutilitiesapplieid@exeloncorp.com",
       team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
       app_identifier: ENV["APP_IDENTIFIER"],
       output_directory: "./fastlane/downloaded_dSYMs"
