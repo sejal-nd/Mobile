@@ -21,7 +21,6 @@ class MaintenanceModeView: UIView {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var infoTextContainerView: UIView!
     @IBOutlet weak var infoTextView: DataDetectorTextView!
-    @IBOutlet weak var textViewSeperationConstraint: NSLayoutConstraint!
     
     let disposeBag = DisposeBag()
 
@@ -47,12 +46,6 @@ class MaintenanceModeView: UIView {
     
     @IBInspectable var showInfoText: Bool = false {
         didSet {
-            if showInfoText {
-                textViewSeperationConstraint.isActive = true
-            } else {
-                textViewSeperationConstraint.isActive = false
-            }
-
             infoTextContainerView.isHidden = !showInfoText
         }
     }
