@@ -674,10 +674,9 @@ class HomeBillCardViewModel {
             var convenienceFeeString: String? = nil
             switch (accountDetail.isResidential, walletItem.bankOrCard, Environment.shared.opco) {
             case (_, .card, .peco):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
-                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
+                fallthrough
             case (_, .card, .comEd):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Paymentus, our payment partner.", comment: "")
                 convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
             case (true, .card, .bge):
                 localizedText = NSLocalizedString("A %@ convenience fee will be applied.", comment: "")

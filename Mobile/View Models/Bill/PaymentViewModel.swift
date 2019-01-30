@@ -895,7 +895,7 @@ class PaymentViewModel {
             if Environment.shared.opco == .bge {
                 return NSLocalizedString(self.accountDetail.value.billingInfo.convenienceFeeString(isComplete: true), comment: "")
             } else {
-                return String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), self.convenienceFee.currencyString)
+                return String.localizedStringWithFormat("A %@ convenience fee will be applied by Paymentus, our payment partner.", self.convenienceFee.currencyString)
             }
         }
         return ""
