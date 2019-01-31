@@ -33,6 +33,19 @@ class ContactUsViewModel {
         return emergencyAttrString
     }
     
+    var bgeGasNumber1: String {
+        return "1-800-685-0123"
+    }
+    var bgeGasNumber2: String {
+        return "1-877-778-7798"
+    }
+    var bgePowerLineNumber1: String {
+        return "1-800-685-0123"
+    }
+    var bgePowerLineNumber2: String {
+        return "1-877-778-2222"
+    }
+    
     var onlineFormUrl: URL {
         let urlString: String
         switch Environment.shared.opco {
