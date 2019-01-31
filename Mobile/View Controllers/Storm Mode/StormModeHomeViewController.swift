@@ -308,6 +308,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         performSegue(withIdentifier: "BillSegue", sender: nil)
     }
     
+    @IBAction func onPhoneNumberPress(_ sender: ButtonControl) {
+        let phone = viewModel.footerPhoneLabelText
+        if let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
+            Analytics.log(event: .outageAuthEmergencyCall)
+            UIApplication.shared.open(url)
+        }
+    }
+    
     // MARK: - Helper
     
     private func stormModeDidEnd() {
@@ -499,17 +507,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-    }
-    
-    @IBAction func onPhoneNumberPress(_ sender: ButtonControl) {
-        var phoneStr: String?
-
-        phoneStr = viewModel.footerPhoneLabelText
-        
-        if let phone = phoneStr, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
-            Analytics.log(event: .outageAuthEmergencyCall)
-            UIApplication.shared.open(url)
-        }
     }
     
 }
