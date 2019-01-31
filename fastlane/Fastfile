@@ -19,18 +19,6 @@ platform :ios do
   lane :uploadBuild do
     update_fastlane
 
-    get_certificates(           # invokes cert
-      username: "exelonutilitiesappleid@exeloncorp.com",
-      team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
-      output_path: "./fastlane/certs"
-    )
-    get_provisioning_profile(   # invokes sigh
-      username: "exelonutilitiesappleid@exeloncorp.com",
-      team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
-      app_identifier: ENV["APP_IDENTIFIER"],
-      output_path: "./fastlane/provisioningProfiles"
-    )
-
     capture_screenshots(
       workspace: "Mobile.xcworkspace",
       scheme: ENV["SCREENSHOT_SCHEME"],
