@@ -17,7 +17,7 @@
     "billCardWithDefaultPayment": {
         "accountNumber": "1234567890",
         "BillingInfo": {
-            "netDueAmount": 200,
+            "netDueAmount": 5000,
             "dueByDate": "2019-01-11T00:00:00"
         },
         "CustomerInfo": {},
@@ -26,7 +26,7 @@
     "billCardWithDefaultCcPayment": {
         "accountNumber": "1234567890",
         "BillingInfo": {
-            "netDueAmount": 200,
+            "netDueAmount": 435.323,
             "dueByDate": "2019-01-11T00:00:00"
         },
         "CustomerInfo": {},
@@ -37,6 +37,14 @@
         "BillingInfo": {
             "netDueAmount": 200,
             "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billNoDueDate": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -165,7 +173,13 @@
         "BillingInfo": {
             "netDueAmount": 200,
             "remainingBalanceDue": 100,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "payments": [
+                {
+                    "paymentAmount": 100,
+                    "status": "pending"
+                }
+            ]
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -174,7 +188,17 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 300,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "payments": [
+                {
+                    "paymentAmount": 200,
+                    "status": "pending"
+                },
+                {
+                    "paymentAmount": 100,
+                    "status": "pending"
+                }
+            ]
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -205,7 +229,6 @@
             "dueByDate": "2019-01-11T00:00:00",
             "currentDueAmount": 60
         },
-        "flagFinaled": true,
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -216,7 +239,6 @@
             "pastDueAmount": 200,
             "dueByDate": "2019-01-11T00:00:00"
         },
-        "flagFinaled": true,
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -230,7 +252,6 @@
             "dueByDate": "2019-01-11T00:00:00",
             "currentDueAmount": 150
         },
-        "flagFinaled": true,
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -243,7 +264,6 @@
             "restorationAmount": 350,
             "dueByDate": "2019-01-11T00:00:00"
         },
-        "flagFinaled": true,
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -378,7 +398,7 @@
             "pastDueAmount": 200,
             "amtDpaReinst": 200,
             "dueByDate": "2019-01-11T00:00:00",
-            "atReinstateFee": 5,
+            "atReinstateFee": 7.5,
             "currentDueAmount": 150
         },
         "CustomerInfo": {},
@@ -392,7 +412,7 @@
             "pastDueAmount": 350,
             "amtDpaReinst": 200,
             "dueByDate": "2019-01-11T00:00:00",
-            "atReinstateFee": 5,
+            "atReinstateFee": 7.45,
             "currentDueAmount": 150
         },
         "CustomerInfo": {},
@@ -548,8 +568,18 @@
             "controlGroupFlag": "CONTROL"
         }
     },
+    "billBreakdown": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "supplyCharges": 42,
+            "taxesAndFees": 13,
+            "deliveryCharges": 38
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
     "error": {
         "code": "TC-UNKNOWN",
-        "description": "This is a test error"
+        "description": "Account detail fetch failed."
     }
 }

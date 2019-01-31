@@ -39,7 +39,7 @@ class UsageViewModelTests: XCTestCase {
         }
         return trimmedArray
     }
-    
+    /*
     // MARK: No Data Bar Drivers
 
     func testNoDataBarDateLabelText() {
@@ -729,5 +729,5 @@ class UsageViewModelTests: XCTestCase {
         viewModel.setLikelyReasonSelected(tag: 2)
         XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 2, "Index 2 should be selected")
     }
-    
+    */
 }

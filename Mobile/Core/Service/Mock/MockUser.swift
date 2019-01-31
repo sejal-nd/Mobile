@@ -10,7 +10,8 @@ fileprivate let keyDefault = "default"
 fileprivate let keyError = "error"
 
 struct MockUser {
-    static var current = MockUser()
+    static var current = MockUser.default
+    static let `default` = MockUser()
     
     let accounts: [MockAccount]
     
@@ -108,6 +109,7 @@ enum MockDataKey: String {
     case billCardWithDefaultPayment
     case billCardWithDefaultCcPayment
     case billCardWithExpiredDefaultPayment
+    case billNoDueDate
     case minPaymentAmount
     case maxPaymentAmount
     case cashOnly
@@ -131,6 +133,7 @@ enum MockDataKey: String {
     case invalidServiceType
     case electricOnly
     case gasAndElectric
+    case billBreakdown
     
     // Precarious
     case finaled
@@ -193,7 +196,6 @@ enum MockDataKey: String {
     case maintAll
     case maintAllTabs
     case maintNotHome
-    case maintError
     
     // General
     case error

@@ -11,21 +11,6 @@ import RxSwift
 
 class MockAccountService: AccountService {
     
-//    var mockAccounts: [Account] = [
-//        Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!,
-//        Account.from(["accountNumber": "9836621902", "address": "E. Fort Ave, Ste. 200"])!,
-//        Account(accountNumber: "4234332133",
-//                address: "E. Fort Ave, Ste. 201",
-//                premises: ["1", "2", "3"].map { Premise(premiseNumber: $0, addressLine: [$0]) },
-//                currentPremise: Premise(premiseNumber: "1"))
-//    ]
-//    var mockAccountDetails: [AccountDetail] = [
-//        AccountDetail.from(["accountNumber": "1234567890", "premiseNumber": "4783934345", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
-//        AccountDetail.from(["accountNumber": "9836621902", "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])!,
-//    ]
-    
-    var mockScheduledPayments: [PaymentItem?] = []
-    
     func fetchAccounts() -> Observable<[Account]> {
         do {
             let accounts: [Account] = try MockUser.current.accounts

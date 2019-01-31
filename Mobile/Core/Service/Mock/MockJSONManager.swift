@@ -16,6 +16,7 @@ class MockJSONManager {
     
     static let shared = MockJSONManager()
     
+    let bundle = Bundle(for: MockJSONManager.self)
     var loadedFilesCache = [File: JSONObject]()
     
     private init() {}
@@ -25,12 +26,12 @@ class MockJSONManager {
         if let loadedJson = loadedFilesCache[file] {
             return loadedJson
         } else {
-            guard let url = Bundle.main.url(forResource: file.rawValue, withExtension: "json") else {
+            guard let filePath = bundle.path(forResource: file.rawValue, ofType: "json") else {
                 throw ServiceError.parsing
             }
             
             do {
-                let data = try Data(contentsOf: url)
+                let data = try Data(contentsOf: URL(fileURLWithPath: filePath), options: .mappedIfSafe)
                 guard let jsonFromFile = try JSONSerialization.jsonObject(with: data) as? JSONObject else {
                     throw ServiceError.parsing
                 }
@@ -98,5 +99,6 @@ class MockJSONManager {
         case accounts = "accounts"
         case accountDetails = "account_details"
         case payments = "payments"
+        case maintenance = "maintenance"
     }
 }

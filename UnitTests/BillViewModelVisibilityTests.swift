@@ -54,7 +54,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
             return newArray
         }
         
-        let expectedAlertBannerEvents = [Environment.shared.opco != .bge, true, false, false, true]
+        let expectedAlertBannerEvents = [true, true, false, true, true]
         
         XCTAssertRecordedElements(events, expectedAlertBannerEvents)
     }
@@ -96,7 +96,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedPastDueValues = [false, true, false, false, true]
+        let expectedPastDueValues = [true, true, false, true, true]
         XCTAssertRecordedElements(observer.events, expectedPastDueValues)
     }
     

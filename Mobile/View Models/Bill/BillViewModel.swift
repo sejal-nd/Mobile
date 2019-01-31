@@ -421,12 +421,6 @@ class BillViewModel {
         }
     }
     
-    //MARK: - Credit
-    private(set) lazy var creditAmountText: Driver<String> = currentAccountDetail.map {
-        guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
-        return abs(netDueAmount).currencyString
-    }
-    
     //MARK: - Payment Status
     private(set) lazy var paymentStatusText: Driver<String?> = data
         .map { accountDetail, scheduledPayment in
@@ -524,14 +518,6 @@ class BillViewModel {
     
     private(set) lazy var paperlessButtonText: Driver<NSAttributedString?> = currentAccountDetail
         .map { accountDetail in
-            if !accountDetail.isResidential && (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) {
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
-            }
-            
-            if accountDetail.isEBillEnrollment {
-                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
-                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
-            }
             switch accountDetail.eBillEnrollStatus {
             case .canEnroll:
                 return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))

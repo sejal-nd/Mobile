@@ -1154,12 +1154,6 @@
 		B092184620A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184720A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B092184820A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
-		B092184D20A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
-		B092184E20A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
-		B092184F20A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
-		B092185020A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
-		B092185120A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
-		B092185220A24CA400695888 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184C20A24CA400695888 /* MockData.swift */; };
 		B094A34D20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
 		B094A34E20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
 		B094A34F20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
@@ -1276,6 +1270,18 @@
 		B0D84D49220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		B0D84D4A220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		B0D84D4B220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B0D84D502203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B0D84D512203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B0D84D522203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B0D84D532203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B0D84D592203794000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
+		B0D84D5A2203794000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
+		B0D84D5B2203794000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
+		B0D84D5C220382EE00C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
+		B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
+		B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -2827,7 +2833,6 @@
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
-		B092184C20A24CA400695888 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		B094A34C20D9442400E81303 /* HomeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCard.swift; sourceTree = "<group>"; };
 		B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditEmptyCell.swift; sourceTree = "<group>"; };
 		B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditRestoreDefaultCell.swift; sourceTree = "<group>"; };
@@ -2862,6 +2867,8 @@
 		B0B0840E217111CE00B1C632 /* appointment_tracker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointment_tracker.json; sourceTree = "<group>"; };
 		B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentusFormViewController.swift; sourceTree = "<group>"; };
 		B0D84D45220244E000C70A6F /* payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payments.json; sourceTree = "<group>"; };
+		B0D84D4D2203523D00C70A6F /* maintenance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maintenance.json; sourceTree = "<group>"; };
+		B0D84D582203794000C70A6F /* MockAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppState.swift; sourceTree = "<group>"; };
 		B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesNotificationsSettingsCell.swift; sourceTree = "<group>"; };
 		B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertPreferencesNotificationsSettingsCell.xib; sourceTree = "<group>"; };
 		B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -4380,6 +4387,7 @@
 			children = (
 				B04DDF8A2200DBEC00594ACF /* accounts.json */,
 				B04DDF832200D47A00594ACF /* account_details.json */,
+				B0D84D4D2203523D00C70A6F /* maintenance.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
 			);
 			path = "Mock JSON";
@@ -4506,6 +4514,7 @@
 			isa = PBXGroup;
 			children = (
 				B04DDF7421FFB0A700594ACF /* MockUser.swift */,
+				B0D84D582203794000C70A6F /* MockAppState.swift */,
 				B04DDF7B2200A3E000594ACF /* MockJSONManager.swift */,
 				B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */,
 				B574BADE1E7837A6001E8A44 /* MockAccountService.swift */,
@@ -4517,7 +4526,6 @@
 				E84705EC202514CB00A749A3 /* MockUsageService.swift */,
 				E84705F62025160F00A749A3 /* MockRegistrationService.swift */,
 				B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */,
-				B092184C20A24CA400695888 /* MockData.swift */,
 				B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */,
 			);
 			path = Mock;
@@ -5661,6 +5669,7 @@
 				B04DDF872200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D49220244E000C70A6F /* payments.json in Resources */,
+				B0D84D512203523D00C70A6F /* maintenance.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6075,6 +6084,7 @@
 				B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
@@ -6089,6 +6099,7 @@
 				B04DDF882200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D4A220244E000C70A6F /* payments.json in Resources */,
+				B0D84D522203523D00C70A6F /* maintenance.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6100,6 +6111,7 @@
 				B04DDF892200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF902200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D4B220244E000C70A6F /* payments.json in Resources */,
+				B0D84D532203523D00C70A6F /* maintenance.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6111,6 +6123,7 @@
 				B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
+				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
@@ -6125,6 +6138,7 @@
 				B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
+				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
@@ -7085,6 +7099,7 @@
 				B0DB2760215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				826DCCF21F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
+				B0D84D5C220382EE00C70A6F /* MockAppState.swift in Sources */,
 				82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				B0472B292111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E83F026B1FB0B5850062A348 /* AlertsService.swift in Sources */,
@@ -7187,7 +7202,6 @@
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
-				B092184D20A24CA400695888 /* MockData.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
@@ -7558,7 +7572,6 @@
 				E87926DC1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
-				B092184F20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B085C44920FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE11E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -7722,6 +7735,7 @@
 				B0B083AA216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				9CCE3E4821B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				35A6C6D8211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
+				B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
 				829D396E203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
@@ -7836,6 +7850,7 @@
 				82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				82DE610B1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				E83F026C1FB0B5850062A348 /* AlertsService.swift in Sources */,
+				B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */,
 				B0472B2A2111011F0048C1A7 /* UsageViewController.swift in Sources */,
 				E80CBD101F98EC930039D9E7 /* SSOData.swift in Sources */,
 				E8EDC54B1F3506F2006DD927 /* MinimumVersion.swift in Sources */,
@@ -7937,7 +7952,6 @@
 				E87926DB1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
-				B092184E20A24CA400695888 /* MockData.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -8184,7 +8198,6 @@
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				E895E9B11EBB84B4003B38A1 /* OutageViewModel.swift in Sources */,
 				B5A16F381F0D44160016952C /* SpeedpayApi.swift in Sources */,
-				B092185020A24CA400695888 /* MockData.swift in Sources */,
 				82AC2A271FAB736600EACB3B /* PeakRewardsService.swift in Sources */,
 				9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -8227,6 +8240,7 @@
 				2249C03D216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				82B20A35203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
 				824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				B0D84D592203794000C70A6F /* MockAppState.swift in Sources */,
 				B0649A62214834380041B299 /* StormModeStatus.swift in Sources */,
 				E881B1561F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				387E5C4A1F1FCDB800D6710D /* Percentage.swift in Sources */,
@@ -8432,7 +8446,6 @@
 				E8F62B58200924410077B3DA /* SpeedpayApi.swift in Sources */,
 				9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
-				B092185120A24CA400695888 /* MockData.swift in Sources */,
 				E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */,
 				224EFF24216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */,
@@ -8471,6 +8484,7 @@
 				2249C03E216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A82045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
 				82B20A36203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
+				B0D84D5A2203794000C70A6F /* MockAppState.swift in Sources */,
 				B0649A63214834380041B299 /* StormModeStatus.swift in Sources */,
 				E8F62B72200924410077B3DA /* TemplateCardViewModel.swift in Sources */,
 				E8F62B73200924410077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,
@@ -8630,7 +8644,6 @@
 				E8F62C0D200924570077B3DA /* SpeedpayApi.swift in Sources */,
 				9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
-				B092185220A24CA400695888 /* MockData.swift in Sources */,
 				E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */,
 				224EFF25216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */,
@@ -8669,6 +8682,7 @@
 				2249C03F216C5F9D00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A92045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
 				82B20A37203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
+				B0D84D5B2203794000C70A6F /* MockAppState.swift in Sources */,
 				B0649A64214834380041B299 /* StormModeStatus.swift in Sources */,
 				E8F62C27200924570077B3DA /* TemplateCardViewModel.swift in Sources */,
 				E8F62C28200924570077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,

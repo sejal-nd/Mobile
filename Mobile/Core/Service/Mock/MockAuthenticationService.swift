@@ -52,17 +52,13 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance> {
-        switch MockData.shared.username {
-        case "maintAll":
-            return .just(Maintenance(all: true))
-        case "maintAllTabs":
-            return .just(Maintenance(home: true, bill: true, outage: true, alert: true))
-        case "maintNotHome":
-            return .just(Maintenance(home: false, bill: true, outage: true, alert: true))
-        case "maintError":
-            return .error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
-        default:
-            return .just(Maintenance())
+        let key = MockAppState.current.maintenanceKey
+        
+        do {
+            let maintenance: Maintenance = try MockJSONManager.shared.mappableObject(fromFile: .maintenance, key: key)
+            return .just(maintenance)
+        } catch {
+            return .error(error)
         }
     }
     
