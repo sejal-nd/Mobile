@@ -93,7 +93,7 @@ class ContactUsViewController: UIViewController {
         bgeGasNumber1TextView.textContainer.lineFragmentPadding = 0
         bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
-        bgeGasNumber1TextView.text = viewModel.bgeGasNumber2
+        bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
         bgeGasNumber2TextView.textContainerInset = .zero
         bgeGasNumber2TextView.textContainer.lineFragmentPadding = 0
         bgeGasNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
