@@ -285,8 +285,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
         
         NotificationCenter.default.rx.notification(.didTapOnPushNotification, object: nil)
-            .asObservable()
-            .subscribe(onNext: { [weak self] _ in
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
                 self?.navigateToAlerts()
             })
             .disposed(by: disposeBag)
@@ -593,6 +593,19 @@ class StormModeHomeViewController: AccountPickerViewController {
         return .lightContent
     }
     
+    func navigateToAlertPreferences() {
+        let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
+        let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
+        
+        guard let navCtl = navigationController,
+            let moreVC = moreStoryboard.instantiateInitialViewController() as? MoreViewController,
+            let alertsVC = alertsStoryboard.instantiateInitialViewController() as? AlertsViewController
+            else { return }
+        
+        moreVC.shouldHideNavigationBar = false
+        alertsVC.shortcutToPrefs = true
+        navCtl.viewControllers = [self, moreVC, alertsVC]
+    }
 }
 
 // MARK: - Delegate Actions
