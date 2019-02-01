@@ -39,7 +39,9 @@ extension UIAlertController {
         case ServiceErrorCode.duplicatePayment.rawValue:
             title = NSLocalizedString("Duplicate Payment", comment: "")
             message = String.localizedStringWithFormat("Recent transaction blocked due to duplicate payment. Matching amount using the same %@ was submitted within the last 24 hours.", walletItem.bankOrCard == .bank ? "bank account" : "card")
-        case ServiceErrorCode.paymentAccountVelocity.rawValue:
+        case ServiceErrorCode.paymentAccountVelocityBank.rawValue:
+            fallthrough
+        case ServiceErrorCode.paymentAccountVelocityCard.rawValue:
             title = NSLocalizedString("Please select another payment method", comment: "")
             message = NSLocalizedString("Electronic payments with this payment method are not available at this time due to overuse.", comment: "")
         case ServiceErrorCode.utilityAccountVelocity.rawValue:
