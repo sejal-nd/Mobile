@@ -63,13 +63,6 @@ class AccountPicker: UIView {
     var advancedAccountButton: UIButton?
     
     @IBInspectable var tintWhite: Bool = false
-    @IBInspectable var stormMode: Bool = false {
-        didSet {
-            if stormMode {
-                backgroundColor = UIColor.black.withAlphaComponent(0.1)
-            }
-        }
-    }
     
     @IBInspectable var showShadow: Bool = true {
         didSet {
@@ -184,7 +177,8 @@ class AccountPicker: UIView {
             backgroundColor = .white
             shadowView.backgroundColor = .white
         }
-        if stormMode {
+        
+        if StormModeStatus.shared.isOn {
             backgroundColor = UIColor.black.withAlphaComponent(0.1)
         }
     }

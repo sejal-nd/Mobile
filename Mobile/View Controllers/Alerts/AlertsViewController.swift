@@ -31,11 +31,6 @@ class AlertsViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if StormModeStatus.shared.isOn {
-            accountPicker.stormMode = true
-        }
-        
         tableView.backgroundColor = .white
         tableView.separatorColor = .accentGray
         tableView.isHidden = true
@@ -75,6 +70,10 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     private func styleViews() {
+        if StormModeStatus.shared.isOn {
+            view.backgroundColor = .stormModeBlack
+        }
+        
         preferencesButtonLabel.textColor = .actionBlue
         preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
