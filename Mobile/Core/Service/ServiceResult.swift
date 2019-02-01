@@ -50,7 +50,8 @@ enum ServiceErrorCode : String {
     case blockedUtilityAccount = "accountNumber.Suspended"
     case blockedPaymentType = "paymentMethodType.blocked"
     case duplicatePayment = "xmlPayment.duplicate"
-    case paymentAccountVelocity = "pmBankAccount.tooManyPerPaymentMethodType"
+    case paymentAccountVelocityBank = "pmBankAccount.tooManyPerPaymentMethodType"
+    case paymentAccountVelocityCard = "pmCreditCardNumber.tooManyPerPaymentMethodType"
     case utilityAccountVelocity = "accountNumber.tooManyPerPaymentType"
 }
 
