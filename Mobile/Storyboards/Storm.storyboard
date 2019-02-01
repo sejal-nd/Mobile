@@ -762,7 +762,6 @@
                         <outlet property="noNetworkConnectionView" destination="Ybl-Tq-eQ9" id="gyD-vP-Xso"/>
                         <outlet property="outageMapButton" destination="ppN-GH-pbu" id="hzL-14-m3K"/>
                         <outlet property="outageSectionContainer" destination="Qb4-c4-RF1" id="ENw-fx-BY0"/>
-                        <outlet property="outageSectionStack" destination="RMM-Ni-nT7" id="U0X-wj-rSk"/>
                         <outlet property="outageStatusButton" destination="gMu-am-j3r" id="NdO-h4-f9X"/>
                         <outlet property="phone1Button" destination="qs2-gi-ckF" id="qGg-2k-LBb"/>
                         <outlet property="phone1Label" destination="Zn2-sZ-b8R" id="IWc-fn-Y7y"/>

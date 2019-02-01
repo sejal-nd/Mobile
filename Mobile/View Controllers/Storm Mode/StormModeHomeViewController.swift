@@ -179,7 +179,6 @@ class StormModeHomeViewController: AccountPickerViewController {
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     @IBOutlet private weak var outageSectionContainer: UIView!
-    @IBOutlet private weak var outageSectionStack: UIStackView!
     @IBOutlet private weak var reportOutageButton: DisclosureCellButton!
     @IBOutlet private weak var outageMapButton: DisclosureCellButton! {
         didSet {
@@ -254,7 +253,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         configureGasOnlyText()
         
         // Events
-        
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.updateContent(outageJustReported: true) })
             .disposed(by: disposeBag)
@@ -264,7 +262,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
             .disposed(by: disposeBag)
         
-        reportOutageButton.isHidden = true
+        outageSectionContainer.isHidden = true
         outageStatusButton.isHidden = true
         gasOnlyView.isHidden = true
         finalPayView.isHidden = true
@@ -428,7 +426,7 @@ class StormModeHomeViewController: AccountPickerViewController {
     private func getOutageStatus(didPullToRefresh: Bool = false) {
         if !didPullToRefresh {
             loadingContentView.isHidden = false
-            outageSectionStack.isHidden = true
+            outageSectionContainer.isHidden = true
             outageStatusButton.isHidden = true
             footerStackView.isHidden = true
             noNetworkConnectionView.isHidden = true
@@ -448,7 +446,6 @@ class StormModeHomeViewController: AccountPickerViewController {
 
             UIAccessibility.post(notification: .screenChanged, argument: nil)
             self.outageSectionContainer.isHidden = false
-            self.outageSectionStack.isHidden = false
             self.noNetworkConnectionView.isHidden = true
             self.scrollView?.isHidden = false
             self.loadingView.isHidden = true
@@ -500,12 +497,10 @@ class StormModeHomeViewController: AccountPickerViewController {
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             outageSectionContainer.isHidden = true
-            outageSectionStack.isHidden = true
         } else {
             gasOnlyView.isHidden = true
             footerStackView.isHidden = false
             outageSectionContainer.isHidden = false
-            outageSectionStack.isHidden = false
             loadingContentView.isHidden = false
             outageStatusButton.onLottieAnimation?.animationProgress = 0.0
             outageStatusButton.onLottieAnimation?.play()
@@ -605,8 +600,6 @@ class StormModeHomeViewController: AccountPickerViewController {
 extension StormModeHomeViewController: AccountPickerDelegate {
     
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        // unhide report outage button after accounts have loaded
-        reportOutageButton.isHidden = false
         getOutageStatus()
     }
     
