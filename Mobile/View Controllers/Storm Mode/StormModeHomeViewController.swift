@@ -58,26 +58,53 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     @IBOutlet private weak var headerCaretImageView: UIImageView!
     
-    @IBOutlet private weak var footerView: UIView!
-    @IBOutlet private weak var footerLabel: UILabel! {
-        didSet {
-            footerLabel.text = viewModel.footerLabelText
-        }
-    }
     
-    @IBOutlet private weak var footerPhoneButton: ButtonControl! {
+    @IBOutlet weak var footerStackView: UIStackView!
+    @IBOutlet weak var contactGroup1StackView: UIStackView!
+    @IBOutlet weak var group1Label: UILabel! {
         didSet {
-            footerPhoneButton.roundCorners(.allCorners, radius: 4)
-            footerPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            footerPhoneButton.accessibilityLabel = viewModel.footerPhoneLabelText
+            group1Label.font = OpenSans.regular.of(textStyle: .subheadline)
         }
     }
-    
-    @IBOutlet private weak var footerPhoneLabel: UILabel! {
+    @IBOutlet weak var phone1Button: ButtonControl! {
         didSet {
-            footerPhoneLabel.text = viewModel.footerPhoneLabelText
+            phone1Button.roundCorners(.allCorners, radius: 4)
+            phone1Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         }
     }
+    @IBOutlet weak var phone1Label: UILabel!
+    @IBOutlet weak var phone2Button: ButtonControl! {
+        didSet {
+            phone2Button.roundCorners(.allCorners, radius: 4)
+            phone2Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            phone2Button.isHidden = Environment.shared.opco != .bge
+        }
+    }
+    @IBOutlet weak var phone2Label: UILabel!
+    @IBOutlet weak var contactGroup2StackView: UIStackView! {
+        didSet {
+            contactGroup2StackView.isHidden = Environment.shared.opco != .bge
+        }
+    }
+    @IBOutlet weak var group2Label: UILabel! {
+        didSet {
+            group2Label.font = OpenSans.regular.of(textStyle: .subheadline)
+        }
+    }
+    @IBOutlet weak var phone3Button: ButtonControl! {
+        didSet {
+            phone3Button.roundCorners(.allCorners, radius: 4)
+            phone3Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        }
+    }
+    @IBOutlet weak var phone3Label: UILabel!
+    @IBOutlet weak var phone4Button: ButtonControl! {
+        didSet {
+            phone4Button.roundCorners(.allCorners, radius: 4)
+            phone4Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        }
+    }
+    @IBOutlet weak var phone4Label: UILabel!
     
     @IBOutlet private weak var gasOnlyView: UIView!
     @IBOutlet private weak var gasOnlyTitleLabel: UILabel! {
@@ -93,20 +120,24 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet private weak var gasOnlyPhoneButton: ButtonControl! {
+    @IBOutlet private weak var gasOnlyPhone1Button: ButtonControl! {
         didSet {
-            gasOnlyPhoneButton.roundCorners(.allCorners, radius: 4)
-            gasOnlyPhoneButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            gasOnlyPhoneButton.isHidden = Environment.shared.opco == .comEd
-            gasOnlyPhoneButton.accessibilityLabel = viewModel.footerPhoneLabelText
+            gasOnlyPhone1Button.roundCorners(.allCorners, radius: 4)
+            gasOnlyPhone1Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            gasOnlyPhone1Button.isHidden = Environment.shared.opco == .comEd
         }
     }
+    @IBOutlet private weak var gasOnlyPhone1Label: UILabel!
     
-    @IBOutlet private weak var gasOnlyPhoneLabel: UILabel! {
+    @IBOutlet private weak var gasOnlyPhone2Button: ButtonControl! {
         didSet {
-            gasOnlyPhoneLabel.text = viewModel.footerPhoneLabelText
+            gasOnlyPhone2Button.roundCorners(.allCorners, radius: 4)
+            gasOnlyPhone2Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            gasOnlyPhone2Button.isHidden = Environment.shared.opco != .bge
         }
     }
+    @IBOutlet private weak var gasOnlyPhone2Label: UILabel!
+    
     
     @IBOutlet private weak var finalPayView: UIView!
     @IBOutlet private weak var finalPayTitleLabel: UILabel! {
@@ -219,6 +250,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         viewModel.getStormModeUpdate()
         
+        configureContactText()
+        configureGasOnlyText()
+        
         // Events
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
@@ -234,7 +268,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         outageStatusButton.isHidden = true
         gasOnlyView.isHidden = true
         finalPayView.isHidden = true
-        footerView.isHidden = true
+        footerStackView.isHidden = true
         noNetworkConnectionView.isHidden = true
         setRefreshControlEnabled(enabled: false)
         
@@ -309,14 +343,69 @@ class StormModeHomeViewController: AccountPickerViewController {
     }
     
     @IBAction func onPhoneNumberPress(_ sender: ButtonControl) {
-        let phone = viewModel.footerPhoneLabelText
-        if let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
+        let phone: String?
+        switch sender {
+        case phone1Button:
+            phone = phone1Label.text
+        case phone2Button:
+            phone = phone2Label.text
+        case phone3Button:
+            phone = phone3Label.text
+        case phone4Button:
+            phone = phone4Label.text
+        case gasOnlyPhone1Button:
+            phone = gasOnlyPhone1Label.text
+        case gasOnlyPhone2Button:
+            phone = gasOnlyPhone2Label.text
+        default:
+            phone = nil // Won't happen
+        }
+        
+        if let phone = phone, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
             Analytics.log(event: .outageAuthEmergencyCall)
             UIApplication.shared.open(url)
         }
     }
     
     // MARK: - Helper
+    
+    private func configureContactText() {
+        switch Environment.shared.opco {
+        case .bge:
+            group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
+            group2Label.text = NSLocalizedString("For downed or sparking power lines, please call", comment: "")
+            phone1Label.text = "1-800-685-0123"
+            phone2Label.text = "1-800-778-7798"
+            phone3Label.text = "1-800-685-0123"
+            phone4Label.text = "1-877-778-2222"
+        case .comEd:
+            group1Label.text = NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
+            phone1Label.text = "1-800-334-7661"
+        case .peco:
+            group1Label.text = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call", comment: "")
+            phone1Label.text = "1-800-841-4141"
+        }
+        
+        phone1Button.accessibilityLabel = phone1Label.text
+        phone2Button.accessibilityLabel = phone2Label.text
+        phone3Button.accessibilityLabel = phone3Label.text
+        phone4Button.accessibilityLabel = phone4Label.text
+    }
+    
+    private func configureGasOnlyText() {
+        switch Environment.shared.opco {
+        case .bge:
+            gasOnlyPhone1Label.text = "1-800-685-0123"
+            gasOnlyPhone2Label.text = "1-800-778-7798"
+        case .comEd:
+            gasOnlyPhone1Label.text = ""
+        case .peco:
+            gasOnlyPhone1Label.text = "1-800-841-4141"
+        }
+        
+        gasOnlyPhone1Button.accessibilityLabel = gasOnlyPhone1Label.text
+        gasOnlyPhone2Button.accessibilityLabel = gasOnlyPhone2Label.text
+    }
     
     private func stormModeDidEnd() {
         let yesAction = UIAlertAction(title: NSLocalizedString("Exit Storm Mode", comment: ""), style: .default)
@@ -341,7 +430,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             loadingContentView.isHidden = false
             outageSectionStack.isHidden = true
             outageStatusButton.isHidden = true
-            footerView.isHidden = true
+            footerStackView.isHidden = true
             noNetworkConnectionView.isHidden = true
             gasOnlyView.isHidden = true
             finalPayView.isHidden = true
@@ -366,32 +455,32 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.finalPayTitleLabel.isHidden = false
             self.setRefreshControlEnabled(enabled: true)
             self.updateContent(outageJustReported: false)
-            }, onError: { [weak self] serviceError in
-                guard let self = self else { return }
-                
-                if didPullToRefresh {
-                    self.refreshControl?.endRefreshing()
-                }
-                
-                UIAccessibility.post(notification: .screenChanged, argument: nil)
-                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                    self.scrollView?.isHidden = true
-                    self.noNetworkConnectionView.isHidden = false
-                } else {
-                    self.scrollView?.isHidden = false
-                    self.noNetworkConnectionView.isHidden = true
-                }
-                
-                self.loadingContentView.isHidden = true
-                self.finalPayView.isHidden = false
-                self.finalPayTitleLabel.isHidden = true
-                self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-                self.finalPayButtonContainer.isHidden = true
-                self.outageSectionContainer.isHidden = true
-                self.footerView.isHidden = false
-                self.loadingView.isHidden = true
-                self.setRefreshControlEnabled(enabled: true)
-            })
+        }, onError: { [weak self] serviceError in
+            guard let self = self else { return }
+            
+            if didPullToRefresh {
+                self.refreshControl?.endRefreshing()
+            }
+            
+            UIAccessibility.post(notification: .screenChanged, argument: nil)
+            if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                self.scrollView?.isHidden = true
+                self.noNetworkConnectionView.isHidden = false
+            } else {
+                self.scrollView?.isHidden = false
+                self.noNetworkConnectionView.isHidden = true
+            }
+            
+            self.loadingContentView.isHidden = true
+            self.finalPayView.isHidden = false
+            self.finalPayTitleLabel.isHidden = true
+            self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+            self.finalPayButtonContainer.isHidden = true
+            self.outageSectionContainer.isHidden = true
+            self.footerStackView.isHidden = false
+            self.loadingView.isHidden = true
+            self.setRefreshControlEnabled(enabled: true)
+        })
     }
     
     private func returnToMainApp() {
@@ -407,14 +496,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         // Show/hide the top level container views
         if currentOutageStatus.flagGasOnly {
             gasOnlyView.isHidden = false
-            footerView.isHidden = true
+            footerStackView.isHidden = true
             loadingContentView.isHidden = true
             outageStatusButton.isHidden = true
             outageSectionContainer.isHidden = true
             outageSectionStack.isHidden = true
         } else {
             gasOnlyView.isHidden = true
-            footerView.isHidden = false
+            footerStackView.isHidden = false
             outageSectionContainer.isHidden = false
             outageSectionStack.isHidden = false
             loadingContentView.isHidden = false
