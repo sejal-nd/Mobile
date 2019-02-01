@@ -393,10 +393,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
-            let storyboardName = StormModeStatus.shared.isOn ? "Storm" : "Main"
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+            let storyboardName = "Main"
             if let root = window.rootViewController, let _ = root.presentedViewController {
-                root.dismiss(animated: false) {
+                root.dismiss(animated: false) { [weak window] in
+                    guard let window = window else { return }
                     let mainStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
@@ -407,6 +408,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let newTabBarController = mainStoryboard.instantiateInitialViewController()
                 window.rootViewController = newTabBarController
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
+            }
+        } else if StormModeStatus.shared.isOn && shortcutItem == .alertPreferences {
+            let storyboard = UIStoryboard(name: "Storm", bundle: nil)
+            let navCtl = storyboard.instantiateInitialViewController() as! UINavigationController
+            window.rootViewController = navCtl
+            if let stormHomeVC = navCtl.viewControllers.first as? StormModeHomeViewController {
+                stormHomeVC.navigateToAlertPreferences()
             }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem

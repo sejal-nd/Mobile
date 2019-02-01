@@ -129,9 +129,16 @@ class AppointmentDetailViewModel {
                 .attributedString(textAlignment: .center,
                                   otherAttributes: standardAttributes)
         case .canceled:
-            return NSLocalizedString("Your appointment has been canceled. We apologize for the inconvenience. Please contact us to reschedule.", comment: "")
-                .attributedString(textAlignment: .center,
-                                  otherAttributes: standardAttributes)
+            let boldText = appointment.startDate.dayMonthDayString
+            let regularText = String.localizedStringWithFormat(
+                """
+                Your appointment scheduled for %@ has been canceled.\n
+                We apologize for the inconvenience. Please contact us to reschedule.
+                """
+            , boldText)
+            let attributedText = NSMutableAttributedString(attributedString: regularText.attributedString(textAlignment: .center, otherAttributes: standardAttributes))
+            attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
+            return attributedText
         }
     }
     
