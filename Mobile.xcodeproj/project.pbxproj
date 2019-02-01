@@ -1282,6 +1282,7 @@
 		B0D84D5C220382EE00C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
 		B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
 		B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
+		B0D84D602204987800C70A6F /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
 		B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
 		B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */; };
@@ -6964,6 +6965,7 @@
 				356C7F8721909EFC003E8A90 /* UserDefaultKeys.swift in Sources */,
 				B08BBFC921C8539000A899FC /* SERResult.swift in Sources */,
 				35E7C8072190805C00BA13C6 /* OutageInterfaceController.swift in Sources */,
+				B0D84D602204987800C70A6F /* Date+Now.swift in Sources */,
 				356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */,
 				9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */,
 				35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */,

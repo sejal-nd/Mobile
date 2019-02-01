@@ -30,8 +30,8 @@ struct AccountsManager {
                 return
             }
             
-            if AccountsStore.shared.currentAccount == nil {
-                AccountsStore.shared.currentAccount = firstAccount
+            if AccountsStore.shared.currentIndex == nil {
+                AccountsStore.shared.currentIndex = 0
             }
             
             NotificationCenter.default.post(name: Notification.Name.defaultAccountSet, object: firstAccount)
@@ -52,14 +52,15 @@ struct AccountsManager {
     public func fetchAccountDetails(success: @escaping (AccountDetail) -> Void, noAuthToken: @escaping (ServiceError) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Account Details...")
         
-        guard KeychainUtility.shared[keychainKeys.authToken] != nil, let currentAccount = AccountsStore.shared.currentAccount else {
+        guard KeychainUtility.shared[keychainKeys.authToken] != nil,
+            let _ = AccountsStore.shared.currentIndex else {
             aLog("Could not find auth token in Accounts Manager Fetch Account Details.")
             noAuthToken(Errors.noAuthTokenFound)
             return
         }
         
         let accountService = MCSAccountService()
-        accountService.fetchAccountDetail(account: currentAccount)
+        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
             .subscribe(onNext: { accountDetail in
                 // handle success
                 aLog("Account Details Fetched.")
