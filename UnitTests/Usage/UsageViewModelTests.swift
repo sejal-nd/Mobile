@@ -39,14 +39,12 @@ class UsageViewModelTests: XCTestCase {
         }
         return trimmedArray
     }
-    /*
+    
     // MARK: No Data Bar Drivers
 
     func testNoDataBarDateLabelText() {
-        AccountsStore.shared.accounts = [Account(accountNumber: "referenceEndDate")]
-        AccountsStore.shared.currentIndex = 0
-        accountService.mockAccounts = [AccountsStore.shared.currentAccount]
-        accountService.mockAccountDetails = [AccountDetail(accountNumber: "referenceEndDate", premiseNumber: "1", isResidential: true)]
+        MockUser.current = MockUser(globalKey: .referenceEndDate)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -63,32 +61,19 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "JUL 01"), next(1, "2016")])
+        XCTAssertRecordedElements(trimmedEvents, ["JUL 01", "2016"])
     }
     
     // MARK: Previous Bar Drivers... PREVIOUS = COMPARED
     
     func testPreviousBarHeightConstraintValue() {
-        let testAccounts = [
-            Account(accountNumber: "testComparedMinHeight"),
-            Account(accountNumber: "test-hasForecast-comparedHighest"),
-            Account(accountNumber: "test-hasForecast-referenceHighest"),
-            Account(accountNumber: "test-hasForecast-forecastHighest"),
-            Account(accountNumber: "test-noForecast-comparedHighest"),
-            Account(accountNumber: "test-noForecast-referenceHighest"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "testComparedMinHeight", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-forecastHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-noForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-        ]
-        
-        
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .comparedMinHeight,
+                                    .hasForecastComparedHighest,
+                                    .hasForecastReferenceHighest,
+                                    .hasForecastForecastHighest,
+                                    .noForecastComparedHighest,
+                                    .noForecastReferenceHighest)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(CGFloat.self)
         
@@ -101,14 +86,14 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, 3.0),
-            next(1, 134.0),
-            next(2, CGFloat(134.0 * (200 / 220))),
-            next(3, CGFloat(134.0 * (200 / 230))),
-            next(4, 134.0),
-            next(5, CGFloat(134.0 * (200 / 220))),
-        ])
+        XCTAssertRecordedElements(trimmedEvents, [
+            3.0,
+            134.0,
+            CGFloat(134.0 * (200 / 220)),
+            CGFloat(134.0 * (200 / 230)),
+            134.0,
+            CGFloat(134.0 * (200 / 220))
+            ])
     }
     
     func testPreviousBarDollarLabelText() {
@@ -152,24 +137,13 @@ class UsageViewModelTests: XCTestCase {
     // MARK: Current Bar Drivers...CURRENT = REFERENCE
     
     func testCurrentBarHeightConstraintValue() {
-        let testAccounts = [
-            Account(accountNumber: "testReferenceMinHeight"),
-            Account(accountNumber: "test-hasForecast-comparedHighest"),
-            Account(accountNumber: "test-hasForecast-referenceHighest"),
-            Account(accountNumber: "test-hasForecast-forecastHighest"),
-            Account(accountNumber: "test-noForecast-comparedHighest"),
-            Account(accountNumber: "test-noForecast-referenceHighest"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "testReferenceMinHeight", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-forecastHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-noForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .referenceMinHeight,
+                                    .hasForecastComparedHighest,
+                                    .hasForecastReferenceHighest,
+                                    .hasForecastForecastHighest,
+                                    .noForecastComparedHighest,
+                                    .noForecastReferenceHighest)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(CGFloat.self)
         
@@ -292,20 +266,11 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectedBarHeightConstraintValue() {
-        let testAccounts = [
-            Account(accountNumber: "test-noForecast-comparedHighest"),
-            Account(accountNumber: "test-hasForecast-forecastHighest"),
-            Account(accountNumber: "test-hasForecast-referenceHighest"),
-            Account(accountNumber: "test-hasForecast-comparedHighest"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-noForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-forecastHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-referenceHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-hasForecast-comparedHighest", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .noForecastComparedHighest,
+                                    .hasForecastForecastHighest,
+                                    .hasForecastReferenceHighest,
+                                    .hasForecastComparedHighest)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(CGFloat.self)
         
@@ -327,16 +292,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectedBarDollarLabelText() {
-        let testAccounts = [
-            Account(accountNumber: "test-projectedCostAndUsage"),
-            Account(accountNumber: "test-projectedCostAndUsageOpower"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-projectedCostAndUsage", premiseNumber: "1", serviceType: "ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-projectedCostAndUsageOpower", premiseNumber: "1", serviceType: "ELECTRIC", isModeledForOpower: true, isAMIAccount: true, isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .projectedCostAndUsage, .projectedCostAndUsageOpower)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -384,16 +341,8 @@ class UsageViewModelTests: XCTestCase {
     // MARK: Projection Not Available Bar Drivers
     
     func testShowProjectionNotAvailableBar() {
-        let testAccounts = [
-            Account(accountNumber: "test-projection-lessThan7"),
-            Account(accountNumber: "test-projection-moreThan7"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-projection-lessThan7", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-projection-moreThan7", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .projectionLessThan7, .projectionMoreThan7)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(Bool.self)
         
@@ -418,16 +367,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectionNotAvailableDaysRemainingText() {
-        let testAccounts = [
-            Account(accountNumber: "test-projection-sixDaysOut"),
-            Account(accountNumber: "test-projection-threeDaysOut"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-projection-sixDaysOut", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "test-projection-threeDaysOut", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .projectionSixDaysOut, .projectionThreeDaysOut)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -454,17 +395,8 @@ class UsageViewModelTests: XCTestCase {
     // MARK: Bar Description Box Drivers
     
     func testBarDescriptionDateLabelText() {
-        let testAccounts = [
-            Account(accountNumber: "comparedReferenceStartEndDate"),
-            Account(accountNumber: "forecastStartEndDate"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "comparedReferenceStartEndDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
-            AccountDetail(accountNumber: "forecastStartEndDate", premiseNumber: "1", serviceType: "GAS/ELECTRIC", isAMIAccount: true, isResidential: true),
-        ]
-        AccountsStore.shared.currentIndex = 0
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .comparedReferenceStartEndDate, .forecastStartEndDate)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -536,18 +468,8 @@ class UsageViewModelTests: XCTestCase {
     // MARK: Up/Down Arrow Image Drivers
     
     func testBillPeriodArrowImage() {
-        let testAccounts = [
-            Account(accountNumber: "test-billPeriod-zeroCostDifference"),
-            Account(accountNumber: "test-billPeriod-positiveCostDifference"),
-            Account(accountNumber: "test-billPeriod-negativeCostDifference"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-billPeriod-zeroCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-billPeriod-positiveCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-billPeriod-negativeCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .zeroCostDifference, .positiveCostDifference, .negativeCostDifference)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(UIImage?.self)
         
@@ -568,18 +490,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testWeatherArrowImage() {
-        let testAccounts = [
-            Account(accountNumber: "test-weather-zeroCostDifference"),
-            Account(accountNumber: "test-weather-positiveCostDifference"),
-            Account(accountNumber: "test-weather-negativeCostDifference"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-weather-zeroCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-weather-positiveCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-weather-negativeCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .zeroCostDifference, .positiveCostDifference, .negativeCostDifference)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(UIImage?.self)
         
@@ -600,18 +512,8 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testOtherArrowImage() {
-        let testAccounts = [
-            Account(accountNumber: "test-other-zeroCostDifference"),
-            Account(accountNumber: "test-other-positiveCostDifference"),
-            Account(accountNumber: "test-other-negativeCostDifference"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-other-zeroCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-other-positiveCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-other-negativeCostDifference", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .zeroCostDifference, .positiveCostDifference, .negativeCostDifference)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(UIImage?.self)
         
@@ -634,20 +536,8 @@ class UsageViewModelTests: XCTestCase {
     // MARK: Likely Reasons Drivers
     
     func testLikelyReasonsLabelText() {
-        let testAccounts = [
-            Account(accountNumber: "test-likelyReasons-noData"),
-            Account(accountNumber: "test-likelyReasons-aboutSame"),
-            Account(accountNumber: "test-likelyReasons-greater"),
-            Account(accountNumber: "test-likelyReasons-less"),
-        ]
-        let testAccountDetails = [
-            AccountDetail(accountNumber: "test-likelyReasons-noData", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-likelyReasons-aboutSame", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-likelyReasons-greater", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true),
-            AccountDetail(accountNumber: "test-likelyReasons-less", premiseNumber: "1", serviceType: "ELECTRIC", isResidential: true)
-        ]
-        accountService.mockAccounts = testAccounts
-        accountService.mockAccountDetails = testAccountDetails
+        MockUser.current = MockUser(globalKeys: .likelyReasonsNoData, .likelyReasonsAboutSame, .likelyReasonsGreater, .likelyReasonsLess)
+        MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
         
@@ -729,5 +619,5 @@ class UsageViewModelTests: XCTestCase {
         viewModel.setLikelyReasonSelected(tag: 2)
         XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 2, "Index 2 should be selected")
     }
-    */
+    
 }

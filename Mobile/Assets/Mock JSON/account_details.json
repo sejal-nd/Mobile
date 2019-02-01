@@ -433,23 +433,7 @@
         "CustomerInfo": {},
         "SERInfo": {}
     },
-    "noForecastComparedHighest": {
-        "accountNumber": "1234567890",
-        "premiseNumber": "1",
-        "isResidential": true,
-        "BillingInfo": {},
-        "CustomerInfo": {},
-        "SERInfo": {}
-    },
     "comparedEndDate": {
-        "accountNumber": "1234567890",
-        "premiseNumber": "1",
-        "isResidential": true,
-        "BillingInfo": {},
-        "CustomerInfo": {},
-        "SERInfo": {}
-    },
-    "noForecastReferenceHighest": {
         "accountNumber": "1234567890",
         "premiseNumber": "1",
         "isResidential": true,
@@ -460,6 +444,7 @@
     "referenceEndDate": {
         "accountNumber": "1234567890",
         "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
         "isResidential": true,
         "BillingInfo": {},
         "CustomerInfo": {},
@@ -576,6 +561,215 @@
             "taxesAndFees": 13,
             "deliveryCharges": 38
         },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "comparedMinHeight": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "referenceMinHeight": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "hasForecastComparedHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "hasForecastReferenceHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "hasForecastForecastHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "noForecastComparedHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "noForecastReferenceHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedCostAndUsage": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedCostAndUsageOpower": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionLessThan7": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionMoreThan7": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionSixDaysOut": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionThreeDaysOut": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "comparedReferenceStartEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "forecastStartEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "zeroCostDifference": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "positiveCostDifference": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "negativeCostDifference": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsNoData": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsAboutSame": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsGreater": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsLess": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
         "CustomerInfo": {},
         "SERInfo": {}
     },

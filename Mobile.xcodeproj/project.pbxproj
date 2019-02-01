@@ -1104,6 +1104,18 @@
 		B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
 		B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */; };
+		B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E17A02204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E17A12204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E17A22204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17A72204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17A82204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17A92204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
 		B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
@@ -2824,6 +2836,8 @@
 		B07D247220C590AB00BD22EB /* HomeWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		B07D247620C590BE00BD22EB /* HomeWeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
+		B07E179C2204E8F900B6E3C7 /* bill_comparison.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_comparison.json; sourceTree = "<group>"; };
+		B07E17A32204F6E800B6E3C7 /* bill_forecast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_forecast.json; sourceTree = "<group>"; };
 		B085C44220FD2C5500CE0893 /* ConversationalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationalButton.swift; sourceTree = "<group>"; };
 		B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedOutagesStore.swift; sourceTree = "<group>"; };
 		B0882C992108FD9600EB756B /* UsageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModelTests.swift; sourceTree = "<group>"; };
@@ -4388,6 +4402,8 @@
 			children = (
 				B04DDF8A2200DBEC00594ACF /* accounts.json */,
 				B04DDF832200D47A00594ACF /* account_details.json */,
+				B07E179C2204E8F900B6E3C7 /* bill_comparison.json */,
+				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
 			);
@@ -5671,7 +5687,9 @@
 				B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D49220244E000C70A6F /* payments.json in Resources */,
 				B0D84D512203523D00C70A6F /* maintenance.json in Resources */,
+				B07E17A72204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
+				B07E17A02204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6085,11 +6103,13 @@
 				B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
+				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6101,7 +6121,9 @@
 				B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D4A220244E000C70A6F /* payments.json in Resources */,
 				B0D84D522203523D00C70A6F /* maintenance.json in Resources */,
+				B07E17A82204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
+				B07E17A12204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6113,7 +6135,9 @@
 				B04DDF902200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D4B220244E000C70A6F /* payments.json in Resources */,
 				B0D84D532203523D00C70A6F /* maintenance.json in Resources */,
+				B07E17A92204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
+				B07E17A22204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6124,11 +6148,13 @@
 				B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
+				B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
+				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6139,11 +6165,13 @@
 				B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
+				B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
+				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

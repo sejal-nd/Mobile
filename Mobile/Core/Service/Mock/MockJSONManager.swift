@@ -98,6 +98,8 @@ class MockJSONManager {
     enum File: String {
         case accounts = "accounts"
         case accountDetails = "account_details"
+        case billComparison = "bill_comparison"
+        case billForecast = "bill_forecast"
         case payments = "payments"
         case maintenance = "maintenance"
     }

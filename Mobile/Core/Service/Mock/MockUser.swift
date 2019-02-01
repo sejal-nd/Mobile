@@ -175,7 +175,7 @@ enum MockDataKey: String {
     case projectionLessThan7
     case projectionMoreThan7
     case projectionSixDaysOut
-    case projectionthreeDaysOut
+    case projectionThreeDaysOut
     case hasForecastReferenceHighest
     case hasForecastComparedHighest
     case hasForecastForecastHighest
