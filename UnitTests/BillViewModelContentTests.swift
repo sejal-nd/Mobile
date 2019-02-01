@@ -61,7 +61,7 @@ class BillViewModelContentTests: BillViewModelTests {
         // Catch Up and Restore Service don't apply to BGE, but the mock accounts still have past due amounts.
         let expectedValues: [String?] = [
             Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$200.00 of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.",
-            Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "",
+            Environment.shared.opco == .bge ? "$200.00 of the total is due immediately." : "$100.00 of the total must be paid by 01/11/2019 to catch up on your DPA.",
             "$100.00 of the total must be paid immediately to avoid shutoff.",
             "$100.00 of the total must be paid by 01/09/2019 to avoid shutoff.",
             nil
@@ -115,7 +115,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let expectedValues: [String] = [
             "Total Amount Due Immediately",
-            Environment.shared.opco == .bge ? "No Amount Due - Credit Balance" : "Total Amount Due By 01/11/2019",
+            Environment.shared.opco == .bge ? "No Amount Due - Credit Balance" : "Total Amount Due By --",
             "Total Amount Due By 01/11/2019",
             "Total Amount Due By --"
         ]
@@ -329,7 +329,7 @@ You have a payment of $82.00 scheduled for 01/11/2019. To avoid a duplicate paym
 """
         
         let expectedValues: [(String?, String?)] = [
-            ("Existing Automatic Payment", Environment.shared.opco == .bge ? bgEasyText : autoPayText),
+            Environment.shared.opco == .bge ? ("Existing Automatic Payment", bgEasyText) : (nil, nil),
             ("Existing Automatic Payment", autoPayText),
             ("Existing Scheduled Payment", scheduledPaymentText),
             (nil, nil),
@@ -347,9 +347,9 @@ You have a payment of $82.00 scheduled for 01/11/2019. To avoid a duplicate paym
         
         let observedEqualsExpected = !zip(observer.events, expectedEvents)
             .map {
-                let condition = $0.0.value.element!.0 == $0.1.value.element!.0 &&
+                let isEqual = $0.0.value.element!.0 == $0.1.value.element!.0 &&
                     $0.0.value.element!.1 == $0.1.value.element!.1
-                return condition
+                return isEqual
             }
             .contains(false)
         

@@ -151,6 +151,7 @@
     "finaledStatus": {
         "accountNumber": "1234567890",
         "isEBillEligible": true,
+        "isResidential": true,
         "status": "finaled",
         "BillingInfo": {},
         "CustomerInfo": {},

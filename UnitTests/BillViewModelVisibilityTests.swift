@@ -75,9 +75,8 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedCatchUpDisclaimerValues = [false, false, Environment.shared.opco == .comEd, false, false]
-        let expectedCatchUpDisclaimerEvents = zip(switchAccountEventTimes, expectedCatchUpDisclaimerValues).map(next)
-        XCTAssertEqual(observer.events, expectedCatchUpDisclaimerEvents)
+        let expectedValues = [false, false, false, Environment.shared.opco == .comEd, false]
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `showPastDue` value after switching
@@ -277,11 +276,11 @@ class BillViewModelVisibilityTests: BillViewModelTests {
     // Tests changes in the `showPaperless` value after switching
     // through different accounts.
     func testShowPaperless() {
-        MockUser.current = MockUser(globalKeys: .default, .eBill, .eBillEligible, .finaledStatus, .default)
+        MockUser.current = MockUser(globalKeys: .default, .eBill, .eBillEligible, .finaledStatus)
         MockAccountService.loadAccountsSync()
         
         let expectedValues = [
-            Environment.shared.opco != .bge, true, true, false, false
+            Environment.shared.opco != .bge, true, true, false
         ]
         
         let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)

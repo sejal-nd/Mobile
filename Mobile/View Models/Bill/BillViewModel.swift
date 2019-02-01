@@ -264,11 +264,11 @@ class BillViewModel {
             let string: String
             switch (days > 0, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
             case (true, true):
-                let format = "The total amount is due in %d day%@ to catch up on your DPA."
-                return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+                let format = "The total amount must be paid by %@ to catch up on your DPA."
+                return String.localizedStringWithFormat(format, dueByDate.mmDdYyyyString)
             case (true, false):
-                let format = "%@ of the total is due in %d day%@ to catch up on your DPA."
-                return String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                let format = "%@ of the total must be paid by %@ to catch up on your DPA."
+                return String.localizedStringWithFormat(format, amountString, dueByDate.mmDdYyyyString)
             case (false, true):
                 return NSLocalizedString("The total amount must be paid immediately to catch up on your DPA.", comment: "")
             case (false, false):
