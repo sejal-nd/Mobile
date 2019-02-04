@@ -106,7 +106,7 @@
             },
             "toDateUsage": 100,
             "toDateCost": 20,
-            "projectedUsage": 500,
+            "projectedUsage": 182,
             "projectedCost": 182
         },
         {
@@ -115,7 +115,7 @@
             },
             "toDateUsage": 100,
             "toDateCost": 20,
-            "projectedUsage": 500,
+            "projectedUsage": 230,
             "projectedCost": 230
         }
     ],

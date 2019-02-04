@@ -33,7 +33,7 @@
             "charges": 0,
             "usage": 0,
             "startDate": "2017-08-01",
-            "endDate": "2017-09-01",
+            "endDate": "2017-08-01",
             "averageTemperature": 72
         }
     },
@@ -52,11 +52,11 @@
             "charges": 0,
             "usage": 0,
             "startDate": "2017-08-01",
-            "endDate": "2017-09-01",
+            "endDate": "2017-08-01",
             "averageTemperature": 72
         }
     },
-    "testReferenceMinHeight": {
+    "referenceMinHeight": {
         "meterUnit": "KWH",
         "currencySymbol": "$",
         "temperatureUnit": "FAHRENHEIT",
@@ -75,7 +75,7 @@
             "averageTemperature": 72
         }
     },
-    "testComparedMinHeight": {
+    "comparedMinHeight": {
         "meterUnit": "KWH",
         "currencySymbol": "$",
         "temperatureUnit": "FAHRENHEIT",
@@ -346,14 +346,14 @@
         "currencySymbol": "$",
         "temperatureUnit": "FAHRENHEIT",
         "reference": {
-            "charges": 220,
+            "charges": 200,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",
             "averageTemperature": 72
         },
         "compared": {
-            "charges": 200,
+            "charges": 220,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",
@@ -421,15 +421,15 @@
         "analysisResults": [
             {
                 "analysisName": "NUM_DAYS",
-                "constDifferenceExplained": 0
+                "costDifferenceExplained": 0
             },
             {
                 "analysisName": "WEATHER",
-                "constDifferenceExplained": 0
+                "costDifferenceExplained": 0
             },
             {
                 "analysisName": "OTHER",
-                "constDifferenceExplained": 0
+                "costDifferenceExplained": 0
             }
         ],
         "meterUnit": "KWH",
@@ -454,15 +454,15 @@
         "analysisResults": [
             {
                 "analysisName": "NUM_DAYS",
-                "constDifferenceExplained": 10
+                "costDifferenceExplained": 10
             },
             {
                 "analysisName": "WEATHER",
-                "constDifferenceExplained": 10
+                "costDifferenceExplained": 10
             },
             {
                 "analysisName": "OTHER",
-                "constDifferenceExplained": 10
+                "costDifferenceExplained": 10
             }
         ],
         "meterUnit": "KWH",
@@ -487,15 +487,15 @@
         "analysisResults": [
             {
                 "analysisName": "NUM_DAYS",
-                "constDifferenceExplained": -10
+                "costDifferenceExplained": -10
             },
             {
                 "analysisName": "WEATHER",
-                "constDifferenceExplained": -10
+                "costDifferenceExplained": -10
             },
             {
                 "analysisName": "OTHER",
-                "constDifferenceExplained": -10
+                "costDifferenceExplained": -10
             }
         ],
         "meterUnit": "KWH",
@@ -526,14 +526,14 @@
         "currencySymbol": "$",
         "temperatureUnit": "FAHRENHEIT",
         "reference": {
-            "charges": 0,
+            "charges": 300,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",
             "averageTemperature": 300
         },
         "compared": {
-            "charges": 0,
+            "charges": 300,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",
@@ -545,14 +545,14 @@
         "currencySymbol": "$",
         "temperatureUnit": "FAHRENHEIT",
         "reference": {
-            "charges": 0,
+            "charges": 300,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",
             "averageTemperature": 300
         },
         "compared": {
-            "charges": 0,
+            "charges": 200,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",
@@ -564,14 +564,14 @@
         "currencySymbol": "$",
         "temperatureUnit": "FAHRENHEIT",
         "reference": {
-            "charges": 0,
+            "charges": 200,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",
             "averageTemperature": 200
         },
         "compared": {
-            "charges": 0,
+            "charges": 300,
             "usage": 0,
             "startDate": "2017-08-01",
             "endDate": "2017-09-01",

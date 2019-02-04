@@ -109,7 +109,7 @@ class UsageViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         scheduler.start()
         
-        XCTAssertEqual(observer.events, [next(0, "$220.00")])
+        XCTAssertRecordedElements(observer.events, ["$220.00"])
     }
     
     func testPreviousBarDateLabelText() {
@@ -131,7 +131,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")])
+        XCTAssertRecordedElements(trimmedEvents, ["AUG 01", "2017"])
     }
     
     // MARK: Current Bar Drivers...CURRENT = REFERENCE
@@ -156,13 +156,13 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, 3.0),
-            next(1, CGFloat(134.0 * (200 / 220))),
-            next(2, 134.0),
-            next(3, CGFloat(134.0 * (220 / 230))),
-            next(4, CGFloat(134.0 * (200 / 220))),
-            next(5, 134.0),
+        XCTAssertRecordedElements(trimmedEvents, [
+            3.0,
+            CGFloat(134.0 * (200 / 220)),
+            134.0,
+            CGFloat(134.0 * (220 / 230)),
+            CGFloat(134.0 * (200 / 220)),
+            134.0,
         ])
     }
     
@@ -179,7 +179,7 @@ class UsageViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         scheduler.start()
         
-        XCTAssertEqual(observer.events, [next(0, "$220.00")])
+        XCTAssertRecordedElements(observer.events, ["$220.00"])
     }
     
     func testCurrentBarDateLabelText() {
@@ -201,7 +201,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")])
+        XCTAssertRecordedElements(trimmedEvents, ["AUG 01", "2017"])
     }
     
     // MARK: Projection Bar Drivers
@@ -226,9 +226,9 @@ class UsageViewModelTests: XCTestCase {
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)])
+            XCTAssertRecordedElements(trimmedEvents, [230, 182])
         } else {
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)])
+            XCTAssertRecordedElements(trimmedEvents, [230, 230])
         }
     }
     
@@ -252,9 +252,9 @@ class UsageViewModelTests: XCTestCase {
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)])
+            XCTAssertRecordedElements(trimmedEvents, [230, 182])
         } else {
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)])
+            XCTAssertRecordedElements(trimmedEvents, [230, 230])
         }
     }
     
@@ -283,11 +283,11 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, 0.0),
-            next(1, 134.0),
-            next(2, CGFloat(134.0 * (150 / 220))),
-            next(3, CGFloat(134.0 * (150 / 220))),
+        XCTAssertRecordedElements(trimmedEvents, [
+            0.0,
+            134.0,
+            CGFloat(134.0 * (150 / 220)),
+            CGFloat(134.0 * (150 / 220)),
         ])
     }
     
@@ -306,10 +306,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, "500 kWh"),
-            next(1, "$220.00"),
-        ])
+        XCTAssertRecordedElements(trimmedEvents, ["500 kWh", "$220.00"])
     }
     
     func testProjectedBarDateLabelText() {
@@ -332,9 +329,9 @@ class UsageViewModelTests: XCTestCase {
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "JUL 03")])
+            XCTAssertRecordedElements(trimmedEvents, ["AUG 13", "JUL 03"])
         } else {
-            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "AUG 13")])
+            XCTAssertRecordedElements(trimmedEvents, ["AUG 13", "AUG 13"])
         }
     }
     
@@ -358,12 +355,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, true),
-            next(1, false),
-            next(2, true),
-            next(3, false),
-        ])
+        XCTAssertRecordedElements(trimmedEvents, [true, false, true, false])
     }
     
     func testProjectionNotAvailableDaysRemainingText() {
@@ -384,11 +376,11 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, "1 day"),
-            next(1, "4 days"),
-            next(2, "1 day"),
-            next(3, "4 days"),
+        XCTAssertRecordedElements(trimmedEvents, [
+            "1 day",
+            "4 days",
+            "1 day",
+            "4 days",
         ])
     }
     
@@ -431,15 +423,15 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, "Previous Bill"), // Test case: No Data bar selected, Previous Bill selected
-            next(1, "Last Year"), // Test case: No Data bar selected, Last Year selected
-            next(2, "Aug 01, 2018 - Aug 31, 2018"), // Test case: Previous bar selected
-            next(3, "Sep 02, 2018 - Oct 01, 2018"), // Test case: Current bar selected
-            next(4, "May 23, 2018 - Jun 24, 2018"),  // Test case: Projected bar selected (electric)
-            next(5, "May 23, 2018 - Jun 24, 2018"),  // Test case: Projected bar selected (gas)
-            next(6, "Projection Not Available") // Test case: Projection not available selected
-        ])
+        XCTAssertRecordedElements(trimmedEvents, [
+            "Previous Bill", // Test case: No Data bar selected, Previous Bill selected
+            "Last Year", // Test case: No Data bar selected, Last Year selected
+            "Aug 01, 2018 - Aug 31, 2018", // Test case: Previous bar selected
+            "Sep 02, 2018 - Oct 01, 2018", // Test case: Current bar selected
+            "May 23, 2018 - Jun 24, 2018",  // Test case: Projected bar selected (electric)
+            "May 23, 2018 - Jun 24, 2018",  // Test case: Projected bar selected (gas)
+            "Projection Not Available" // Test case: Projection not available selected
+            ])
     }
     
     func testBarDescriptionAvgTempLabelText() {
@@ -462,7 +454,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "Avg. Temp 89° F"), next(1, "Avg. Temp 62° F")])
+        XCTAssertRecordedElements(trimmedEvents, ["Avg. Temp 89° F", "Avg. Temp 62° F"])
     }
     
     // MARK: Up/Down Arrow Image Drivers
@@ -482,11 +474,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, #imageLiteral(resourceName: "no_change_icon")),
-            next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
-            next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
-        ])
+        XCTAssertRecordedElements(trimmedEvents, [#imageLiteral(resourceName: "no_change_icon"), #imageLiteral(resourceName: "ic_billanalysis_positive"), #imageLiteral(resourceName: "ic_billanalysis_negative")])
     }
     
     func testWeatherArrowImage() {
@@ -504,11 +492,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, #imageLiteral(resourceName: "no_change_icon")),
-            next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
-            next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
-        ])
+        XCTAssertRecordedElements(trimmedEvents, [#imageLiteral(resourceName: "no_change_icon"), #imageLiteral(resourceName: "ic_billanalysis_positive"), #imageLiteral(resourceName: "ic_billanalysis_negative")])
     }
     
     func testOtherArrowImage() {
@@ -526,11 +510,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, #imageLiteral(resourceName: "no_change_icon")),
-            next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
-            next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
-        ])
+        XCTAssertRecordedElements(trimmedEvents, [#imageLiteral(resourceName: "no_change_icon"), #imageLiteral(resourceName: "ic_billanalysis_positive"), #imageLiteral(resourceName: "ic_billanalysis_negative")])
     }
     
     // MARK: Likely Reasons Drivers
@@ -569,15 +549,15 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [
-            next(0, "Data not available to explain likely reasons for changes in your electric charges."),
-            next(1, "Likely reasons your electric charges are about the same as your previous bill."),
-            next(2, "Likely reasons your electric charges are about the same as last year."),
-            next(3, "Likely reasons your electric charges are about $100.00 more than your previous bill."),
-            next(4, "Likely reasons your electric charges are about $100.00 more than last year."),
-            next(5, "Likely reasons your electric charges are about $100.00 less than your previous bill."),
-            next(6, "Likely reasons your electric charges are about $100.00 less than last year."),
-        ])
+        XCTAssertRecordedElements(trimmedEvents, [
+            "Data not available to explain likely reasons for changes in your electric charges.",
+            "Likely reasons your electric charges are about the same as your previous bill.",
+            "Likely reasons your electric charges are about the same as last year.",
+            "Likely reasons your electric charges are about $100.00 more than your previous bill.",
+            "Likely reasons your electric charges are about $100.00 more than last year.",
+            "Likely reasons your electric charges are about $100.00 less than your previous bill.",
+            "Likely reasons your electric charges are about $100.00 less than last year."
+            ])
     }
     
     func testLikelyReasonsDescriptionTitleText() {

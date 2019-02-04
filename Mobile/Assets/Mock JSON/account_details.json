@@ -437,6 +437,7 @@
         "accountNumber": "1234567890",
         "premiseNumber": "1",
         "isResidential": true,
+        "serviceType": "GAS/ELECTRIC",
         "BillingInfo": {},
         "CustomerInfo": {},
         "SERInfo": {}
@@ -644,6 +645,7 @@
         "accountNumber": "1234567890",
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
+        "isModeledForOpower": true,
         "isResidential": true,
         "isAMIAccount": true,
         "BillingInfo": {},
