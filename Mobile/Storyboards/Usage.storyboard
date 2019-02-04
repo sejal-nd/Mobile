@@ -726,7 +726,7 @@
         <!--Usage-->
         <scene sceneID="HqV-bn-ZSj">
             <objects>
-                <viewController id="bLA-dG-dNI" customClass="UsageWebViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="bLA-dG-dNI" customClass="UsageWebViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ONQ-AV-DZu"/>
                         <viewControllerLayoutGuide type="bottom" id="bxi-he-wME"/>
@@ -773,7 +773,7 @@
         <!--Top5 Energy Tips View Controller-->
         <scene sceneID="W1V-WD-N6y">
             <objects>
-                <viewController id="4fv-o4-vaR" customClass="Top5EnergyTipsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="4fv-o4-vaR" customClass="Top5EnergyTipsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ozz-tg-E4j"/>
                         <viewControllerLayoutGuide type="bottom" id="QTH-h4-E4X"/>
@@ -865,7 +865,7 @@
         <!--My Home Profile-->
         <scene sceneID="FCw-Xu-wrg">
             <objects>
-                <viewController id="Hz7-8N-if4" customClass="MyHomeProfileViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Hz7-8N-if4" customClass="MyHomeProfileViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6b7-jB-ein"/>
                         <viewControllerLayoutGuide type="bottom" id="cok-Mw-WK9"/>
@@ -1062,7 +1062,7 @@
         <!--Hourly Pricing-->
         <scene sceneID="mJJ-3u-zYV">
             <objects>
-                <viewController storyboardIdentifier="hourlyPricingViewController" id="kgB-m9-rwa" customClass="HourlyPricingViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="hourlyPricingViewController" hidesBottomBarWhenPushed="YES" id="kgB-m9-rwa" customClass="HourlyPricingViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Ur-aI-6WR"/>
                         <viewControllerLayoutGuide type="bottom" id="bQF-l0-4m2"/>
