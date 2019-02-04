@@ -57,7 +57,6 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         footerView.backgroundColor = .softGray
-        footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
@@ -128,7 +127,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         viewModel.accountNumberTextFieldEnabled.drive(accountNumberTextField.rx.isEnabled).disposed(by: disposeBag)
         viewModel.accountNumberTextFieldEnabled.not().drive(accountNumberTooltipButton.rx.isHidden).disposed(by: disposeBag)
         
-        footerTextView.text = viewModel.footerText
+        footerTextView.attributedText = viewModel.footerTextViewText
     }
     
     func bindValidation() {

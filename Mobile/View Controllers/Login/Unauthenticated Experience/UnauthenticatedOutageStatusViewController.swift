@@ -47,11 +47,10 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
             reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
         }
         
-        footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
-        footerTextView.text = viewModel.footerText
+        footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
         RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
