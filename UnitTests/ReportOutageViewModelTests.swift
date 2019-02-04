@@ -41,7 +41,7 @@ class ReportOutageViewModelTests: XCTestCase {
         let expectedString: String
         switch Environment.shared.opco {
         case .bge:
-            expectedString = NSLocalizedString("If you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-800-778-7798\n\nFor downed or sparking power lines, please call 1-800-685-0123 or 1-877-778-2222", comment: "")
+            expectedString = NSLocalizedString("If you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-877-778-7798\n\nFor downed or sparking power lines, please call 1-800-685-0123 or 1-877-778-2222", comment: "")
         case .comEd:
             expectedString = NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
         case .peco:

@@ -119,7 +119,7 @@ class NoNetworkConnectionView: UIView {
             group1Label.text = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
             group2Label.text = NSLocalizedString("For downed or sparking power lines, please call", comment: "")
             phone1Label.text = "1-800-685-0123"
-            phone2Label.text = "1-800-778-7798"
+            phone2Label.text = "1-877-778-7798"
             phone3Label.text = "1-800-685-0123"
             phone4Label.text = "1-877-778-2222"
         case .comEd:
