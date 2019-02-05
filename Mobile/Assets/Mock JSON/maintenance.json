@@ -29,6 +29,9 @@
             "usage": true
         }
     },
+    "stormMode": {
+        "storm": true
+    },
     "error": {
         "code": "TC-UNKNOWN",
         "description": "This is a test error"

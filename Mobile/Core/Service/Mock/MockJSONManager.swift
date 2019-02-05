@@ -103,6 +103,7 @@ final class MockJSONManager {
         case payments = "payments"
         case maintenance = "maintenance"
         case weather = "weather"
+        case opcoUpdates = "opco_updates"
     }
 }
 
