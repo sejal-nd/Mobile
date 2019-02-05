@@ -167,10 +167,14 @@ enum MockDataKey: String {
     case likelyReasonsGreater
     case likelyReasonsLess
     
-    // Maintenance
+    // App State
     case maintAll
     case maintAllTabs
+    case maintAllTabsIOS
     case maintNotHome
+    case maintNotHomeIOS
+    case stormMode
+    case urgentBanner
     
     // General
     case screenshots

@@ -1149,6 +1149,12 @@
 		B07E17EB2209F0CA00B6E3C7 /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
 		B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
+		B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
+		B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
+		B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
+		B07E17F2220A2EAF00B6E3C7 /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
+		B07E17F3220A2EAF00B6E3C7 /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
+		B07E17F4220A2EAF00B6E3C7 /* opco_updates.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */; };
 		B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
@@ -2866,6 +2872,7 @@
 		B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherItem.swift; sourceTree = "<group>"; };
 		B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherService.swift; sourceTree = "<group>"; };
 		B07E17C42209DB1C00B6E3C7 /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
+		B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = opco_updates.json; sourceTree = "<group>"; };
 		B085C44220FD2C5500CE0893 /* ConversationalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationalButton.swift; sourceTree = "<group>"; };
 		B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedOutagesStore.swift; sourceTree = "<group>"; };
 		B0882C992108FD9600EB756B /* UsageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModelTests.swift; sourceTree = "<group>"; };
@@ -4434,6 +4441,7 @@
 				B07E179C2204E8F900B6E3C7 /* bill_comparison.json */,
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
+				B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
 				B07E17C42209DB1C00B6E3C7 /* weather.json */,
 			);
@@ -5813,6 +5821,7 @@
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E8EDC5361F32403A006DD927 /* speedpay_errors.xml in Resources */,
+				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
@@ -5946,6 +5955,7 @@
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
+				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
@@ -6079,6 +6089,7 @@
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
+				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -6160,6 +6171,7 @@
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
 				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
+				B07E17F2220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6197,6 +6209,7 @@
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
 				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
+				B07E17F3220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6216,6 +6229,7 @@
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
 				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
+				B07E17F4220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

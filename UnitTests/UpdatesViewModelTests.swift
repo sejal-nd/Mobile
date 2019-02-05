@@ -37,7 +37,7 @@ class UpdatesViewModelTests: XCTestCase {
     }
     
     func testFetchDataErrors() {
-        alertsService.updatesShouldSucceed = false
+        MockAppState.current = MockAppState(opCoUpdatesKey: .error)
         viewModel.fetchData()
         
         let expect1 = expectation(description: "wait for callbacks")
@@ -45,12 +45,12 @@ class UpdatesViewModelTests: XCTestCase {
             XCTAssertNil(self.viewModel.currentOpcoUpdates.value, "currentOpcoUpdates should be nil")
             XCTAssertFalse(self.viewModel.isFetchingUpdates.value, "isFetchingUpdates should be false")
             XCTAssert(self.viewModel.isUpdatesError.value, "isUpdatesError should be true")
-            self.alertsService.updatesShouldSucceed = true
+            MockAppState.current = .default
             expect1.fulfill()
         }
         
         waitForExpectations(timeout: 2) { error in
-            self.alertsService.updatesShouldSucceed = true
+            MockAppState.current = .default
             XCTAssertNil(error, "timeout")
         }
 
