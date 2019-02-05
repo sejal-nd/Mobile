@@ -12,38 +12,63 @@ import Foundation
 class MockOutageService: OutageService {
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
-        var accountNum = account.accountNumber
+        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].outageStatusKey
         
-        if accountNum == "80000000000" {
+        switch key {
+        case MockDataKey.finaled.rawValue:
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue))
-        }
-        else if accountNum == "70000000000" {
+        case MockDataKey.noPay.rawValue:
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNoPay.rawValue))
-        }
-        else if accountNum == "60000000000" {
+        case MockDataKey.outageNonServiceAgreement.rawValue:
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue))
+        default:
+            return .error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
         }
-        else {
-            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
-            if loggedInUsername == "outageTestPowerOn" {
-                accountNum = "1234567890"
-            } else if loggedInUsername == "outageTestPowerOut" {
-                accountNum = "9836621902"
-            } else if loggedInUsername == "outageTestGasOnly" {
-                accountNum = "5591032201"
-            } else if loggedInUsername == "outageTestFinaled" {
-                accountNum = "75395146464"
-            } else if loggedInUsername == "outageTestNoPay" {
-                accountNum = "5591032203"
-            } else if loggedInUsername == "outageTestReport" {
-                accountNum = "7003238921"
-            } else if loggedInUsername == "outageTestError" {
-                return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
-            }
-            
-            let outageStatus = getOutageStatus(accountNumber: accountNum)
-            return .just(outageStatus)
-        }
+        
+        
+//        var accountNum = account.accountNumber
+//
+//        if accountNum == "80000000000" {
+//            return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue))
+//        }
+//        else if accountNum == "70000000000" {
+//            return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNoPay.rawValue))
+//        }
+//        else if accountNum == "60000000000" {
+//            return .error(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue))
+//        }
+//        else {
+//            let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+//            if loggedInUsername == "outageTestPowerOn" {
+//                accountNum = "1234567890"
+//            } else if loggedInUsername == "outageTestPowerOut" {
+//                accountNum = "9836621902"
+//            } else if loggedInUsername == "outageTestGasOnly" {
+//                accountNum = "5591032201"
+//            } else if loggedInUsername == "outageTestFinaled" {
+//                accountNum = "75395146464"
+//            } else if loggedInUsername == "outageTestNoPay" {
+//                accountNum = "5591032203"
+//            } else if loggedInUsername == "outageTestReport" {
+//                accountNum = "7003238921"
+//            } else if loggedInUsername == "outageTestError" {
+//                return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
+//            }
+//
+//            let outageStatus = getOutageStatus(accountNumber: accountNum)
+//            return .just(outageStatus)
+//        }
+        
+        let dict: [AnyHashable: Any] = [
+            "flagGasOnly": false,
+            "contactHomeNumber": "5555555555",
+            "outageReported": "test power on message",
+            "status": "NOT ACTIVE",
+            "smartMeterStatus": false,
+            "flagFinaled": false,
+            "flagNoPay": false,
+        ]
+        return Observable.just(OutageStatus.from(NSDictionary(dictionary: dict))!)
         
     }
     

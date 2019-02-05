@@ -16,11 +16,10 @@ class OutageViewModelTests: XCTestCase {
     }
         
     func testGetOutageStatusSuccess() {
+        MockUser.current = MockUser()
+        MockAccountService.loadAccountsSync()
+        
         let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
-        
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
-        
         viewModel.getOutageStatus(onSuccess: {
             asyncExpectation.fulfill()
         }, onError: { _ in
@@ -33,13 +32,12 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testGetOutageStatusFailureFinaled() {
-        let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
-        
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "80000000000", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
+        MockUser.current = MockUser(globalKey: .finaled)
+        MockAccountService.loadAccountsSync()
 
+        let asyncExpectation = expectation(description: "testGetOutageStatusFailureFinaled")
         viewModel.getOutageStatus(onSuccess: {
-            XCTAssert(self.viewModel.currentOutageStatus!.flagFinaled, "Account was not filed.")
+            XCTAssert(self.viewModel.currentOutageStatus!.flagFinaled, "Account is not finaled")
             asyncExpectation.fulfill()
         }, onError: { _ in
             XCTFail("Unexpected failure response")
@@ -51,13 +49,12 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testGetOutageStatusFailureNoPay() {
-        let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
+        MockUser.current = MockUser(globalKey: .noPay)
+        MockAccountService.loadAccountsSync()
         
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "70000000000", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
-        
+        let asyncExpectation = expectation(description: "testGetOutageStatusFailureNoPay")
         viewModel.getOutageStatus(onSuccess: {
-            XCTAssert(self.viewModel.currentOutageStatus!.flagNoPay)
+            XCTAssert(self.viewModel.currentOutageStatus!.flagNoPay, "Account is not a cut for non-pay account")
             asyncExpectation.fulfill()
         }, onError: { _ in
             XCTFail("Unexpected failure response")
@@ -69,13 +66,12 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testGetOutageStatusFailureNoService() {
-        let asyncExpectation = expectation(description: "testGetOutageStatusSuccess")
+        MockUser.current = MockUser(globalKey: .outageNonServiceAgreement)
+        MockAccountService.loadAccountsSync()
         
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "60000000000", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
-        
+        let asyncExpectation = expectation(description: "testGetOutageStatusFailureNoService")
         viewModel.getOutageStatus(onSuccess: {
-            XCTAssert(self.viewModel.currentOutageStatus!.flagNonService)
+            XCTAssert(self.viewModel.currentOutageStatus!.flagNonService, "Account is not a non-service agreement account")
             asyncExpectation.fulfill()
         }, onError: { _ in
             XCTFail("Unexpected failure response")

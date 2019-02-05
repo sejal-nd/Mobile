@@ -156,11 +156,12 @@ enum MockDataKey: String {
     case catchUpAllEqual
     
     // Outage
-    case powerOn
-    case powerOut
+    //case powerOn
+    //case powerOut
     case gasOnly
     case noPay
-    case reportOutage
+    //case reportOutage
+    case outageNonServiceAgreement
     
     // Usage
     case referenceEndDate

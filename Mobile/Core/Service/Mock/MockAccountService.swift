@@ -47,9 +47,10 @@ class MockAccountService: AccountService {
         let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].accountDetailsKey
         
         if key == MockDataKey.thankYouForPaymentOTP.rawValue {
-            RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = PaymentDetails(amount: 234,
-                                                                                             date: Date.now.addingTimeInterval(-3600),
-                                                                                             confirmationNumber: "123456")
+            RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] =
+                PaymentDetails(amount: 234,
+                               date: Date.now.addingTimeInterval(-3600),
+                               confirmationNumber: "123456")
         }
         
         do {
