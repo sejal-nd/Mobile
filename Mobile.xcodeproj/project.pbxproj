@@ -933,12 +933,6 @@
 		9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
-		9C9C2D0B2209F6190047F771 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C2D072209F60F0047F771 /* outage.json */; };
-		9C9C2D0C2209F6190047F771 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C2D072209F60F0047F771 /* outage.json */; };
-		9C9C2D0D2209F61A0047F771 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C2D072209F60F0047F771 /* outage.json */; };
-		9C9C2D0E2209F61B0047F771 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C2D072209F60F0047F771 /* outage.json */; };
-		9C9C2D0F2209F61B0047F771 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C2D072209F60F0047F771 /* outage.json */; };
-		9C9C2D102209F61B0047F771 /* outage.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C2D072209F60F0047F771 /* outage.json */; };
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
@@ -2799,7 +2793,6 @@
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
-		9C9C2D072209F60F0047F771 /* outage.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = outage.json; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -4413,7 +4406,6 @@
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
-				9C9C2D072209F60F0047F771 /* outage.json */,
 			);
 			path = "Mock JSON";
 			sourceTree = "<group>";
@@ -5691,7 +5683,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C9C2D0E2209F61B0047F771 /* outage.json in Resources */,
 				B04DDF872200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D49220244E000C70A6F /* payments.json in Resources */,
@@ -6112,7 +6103,6 @@
 				B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
-				9C9C2D0B2209F6190047F771 /* outage.json in Resources */,
 				B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
@@ -6127,7 +6117,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C9C2D0F2209F61B0047F771 /* outage.json in Resources */,
 				B04DDF882200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D4A220244E000C70A6F /* payments.json in Resources */,
@@ -6142,7 +6131,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C9C2D102209F61B0047F771 /* outage.json in Resources */,
 				B04DDF892200D47A00594ACF /* account_details.json in Resources */,
 				B04DDF902200DBEC00594ACF /* accounts.json in Resources */,
 				B0D84D4B220244E000C70A6F /* payments.json in Resources */,
@@ -6160,7 +6148,6 @@
 				B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
-				9C9C2D0C2209F6190047F771 /* outage.json in Resources */,
 				B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
@@ -6178,7 +6165,6 @@
 				B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
-				9C9C2D0D2209F61A0047F771 /* outage.json in Resources */,
 				B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
