@@ -14,15 +14,12 @@ class MockOutageService: OutageService {
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
         let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].outageStatusKey
         
-        switch key {
-        case MockDataKey.finaled.rawValue:
+        if key == MockDataKey.finaled.rawValue {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue))
-        case MockDataKey.noPay.rawValue:
+        } else if key == MockDataKey.noPay.rawValue {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNoPay.rawValue))
-        case MockDataKey.outageNonServiceAgreement.rawValue:
+        } else if key == MockDataKey.outageNonServiceAgreement.rawValue {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue))
-        default:
-            return .error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
         }
         
         
@@ -59,16 +56,22 @@ class MockOutageService: OutageService {
 //            return .just(outageStatus)
 //        }
         
-        let dict: [AnyHashable: Any] = [
-            "flagGasOnly": false,
-            "contactHomeNumber": "5555555555",
-            "outageReported": "test power on message",
-            "status": "NOT ACTIVE",
-            "smartMeterStatus": false,
-            "flagFinaled": false,
-            "flagNoPay": false,
-        ]
-        return Observable.just(OutageStatus.from(NSDictionary(dictionary: dict))!)
+//        let dict: [AnyHashable: Any] = [
+//            "flagGasOnly": false,
+//            "contactHomeNumber": "5555555555",
+//            "outageReported": "test power on message",
+//            "status": "NOT ACTIVE",
+//            "smartMeterStatus": false,
+//            "flagFinaled": false,
+//            "flagNoPay": false,
+//        ]
+//        return Observable.just(OutageStatus.from(NSDictionary(dictionary: dict))!)
+        do {
+            let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outage, key: key)
+            return .just(outageStatus)
+        } catch {
+            return .error(error)
+        }
         
     }
     

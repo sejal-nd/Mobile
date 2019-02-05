@@ -102,5 +102,6 @@ class MockJSONManager {
         case billForecast = "bill_forecast"
         case payments = "payments"
         case maintenance = "maintenance"
+        case outage = "outage"
     }
 }

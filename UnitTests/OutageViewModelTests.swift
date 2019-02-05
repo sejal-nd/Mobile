@@ -84,8 +84,8 @@ class OutageViewModelTests: XCTestCase {
     
     
     func testEstimatedRestorationDateStringReportedOutage() {
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
+        MockUser.current = MockUser(globalKey: .default)
+        MockAccountService.loadAccountsSync()
         
         let mockOutageService = MockOutageService()
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
@@ -94,10 +94,10 @@ class OutageViewModelTests: XCTestCase {
         let testEtr = Date.now
         let testEtrString = DateFormatter.outageOpcoDateFormatter.string(from: testEtr)
         
-        let expect = expectation(description: "Test report outage expectation")
+        let asyncExpectation = expectation(description: "testEstimatedRestorationDateStringReportedOutage")
         reportViewModel.reportOutage(onSuccess: {
-            XCTAssert(self.viewModel.outageReportedDateString == "Reported \(testEtrString)", "Expected Reported \(testEtrString), got \(self.viewModel.outageReportedDateString)")
-            expect.fulfill()
+            XCTAssertEqual(self.viewModel.outageReportedDateString, "Reported \(testEtrString)")
+            asyncExpectation.fulfill()
         }, onError: {_ in
             XCTFail("Unexpected failure response")
         })
@@ -108,17 +108,17 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testReportedOutage() {
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "123456", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
+        MockUser.current = MockUser(globalKey: .default)
+        MockAccountService.loadAccountsSync()
         
-        let expect = expectation(description: "Test report outage expectation")
         let mockOutageService = MockOutageService()
         viewModel = OutageViewModel(accountService: MockAccountService(), outageService: mockOutageService, authService: MockAuthenticationService())
         let reportViewModel = ReportOutageViewModel(outageService: mockOutageService)
         
+        let asyncExpectation = expectation(description: "testReportedOutage")
         reportViewModel.reportOutage(onSuccess: {
             XCTAssertNotNil(self.viewModel.reportedOutage, "Expected a Reported Outage Result.")
-            expect.fulfill()
+            asyncExpectation.fulfill()
         }, onError: {_ in
             XCTFail("Unexpected failure response")
         })
@@ -129,30 +129,29 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testEstimatedRestorationDateStringCurrentOutage() {
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "9836621902", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
+        MockUser.current = MockUser(globalKey: .default)
+        MockAccountService.loadAccountsSync()
         
         let testEtrStringBge = "04/10/2017 03:45 AM"
         let testEtrStringComed = "03:45 AM on 4/10/2017"
         let testEtrStringPeco = "3:45 AM EDT on 4/10/2017"
         
-        let expect = expectation(description: "Test Outage status expectation")
+        let asyncExpectation = expectation(description: "testEstimatedRestorationDateStringCurrentOutage")
         viewModel.getOutageStatus(onSuccess: {
-            if (Environment.shared.opco == .bge){
-            XCTAssert(self.viewModel.estimatedRestorationDateString == testEtrStringBge, "Expected \(testEtrStringBge), received \(self.viewModel.estimatedRestorationDateString)")
-                expect.fulfill()}
-            else if (Environment.shared.opco == .comEd){
-                XCTAssert(self.viewModel.estimatedRestorationDateString == testEtrStringComed, "Expected \(testEtrStringComed), received \(self.viewModel.estimatedRestorationDateString)")
-                expect.fulfill()
+            switch Environment.shared.opco {
+            case .bge:
+                XCTAssertEqual(self.viewModel.estimatedRestorationDateString, testEtrStringBge)
+            case .comEd:
+                XCTAssertEqual(self.viewModel.estimatedRestorationDateString, testEtrStringComed)
+            case .peco:
+                XCTAssertEqual(self.viewModel.estimatedRestorationDateString, testEtrStringPeco)
             }
-            else if (Environment.shared.opco == .peco){
-                XCTAssert(self.viewModel.estimatedRestorationDateString == testEtrStringPeco, "Expected \(testEtrStringPeco), received \(self.viewModel.estimatedRestorationDateString)")
-                expect.fulfill()
-            }
-        }, onError: {_ in
-            XCTAssertNil("Unexpected failure response")
+            asyncExpectation.fulfill()
+        }, onError: { _ in
+            XCTFail("Unexpected failure response")
         })
-        waitForExpectations(timeout: 5) { (error) in
+        
+        waitForExpectations(timeout: 5) { error in
             XCTAssertNil(error, "timeout")
         }
     }
