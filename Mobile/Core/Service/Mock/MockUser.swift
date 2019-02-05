@@ -11,9 +11,13 @@ fileprivate let keyError = "error"
 
 struct MockUser {
     static var current = MockUser.default
-    static let `default` = MockUser()
+    static let `default` = MockUser(globalKeys: .default)
     
     let accounts: [MockAccount]
+    
+    var currentAccount: MockAccount {
+        return accounts[AccountsStore.shared.currentIndex]
+    }
     
     /// Initializes a mock user with a list of accounts
     init(accounts: [MockAccount]) {
@@ -21,26 +25,8 @@ struct MockUser {
     }
     
     /// Initializes a mock user with a single account according to the provided keys
-    init(accountsKey: MockDataKey = .default,
-         accountDetailsKey: MockDataKey = .default,
-         paymentsKey: MockDataKey = .default,
-         outageStatusKey: MockDataKey = .default,
-         billComparisonKey: MockDataKey = .default,
-         billForecastKey: MockDataKey = .default,
-         maintenanceKey: MockDataKey = .default) {
-        let account = MockAccount(accountsKey: accountsKey,
-                                  accountDetailsKey: accountDetailsKey,
-                                  paymentsKey: accountDetailsKey,
-                                  outageStatusKey: outageStatusKey,
-                                  billComparisonKey: billComparisonKey,
-                                  billForecastKey: billForecastKey,
-                                  maintenanceKey: maintenanceKey)
-        accounts = [account]
-    }
-    
-    /// Initializes a mock user with a single account, applying the global key to every service
-    init(globalKey key: MockDataKey = .default) {
-        let account = MockAccount(globalKey: key)
+    init(dataKeys: [MockJSONManager.File: MockDataKey]) {
+        let account = MockAccount(dataKeys: dataKeys)
         accounts = [account]
     }
     
@@ -54,45 +40,34 @@ struct MockUser {
     /// Used for UI tests where only a username string is entered via the sign in workflow.
     init(username: String) {
         let key = MockDataKey(rawValue: username) ?? .default
+        
         let account = MockAccount(globalKey: key)
-        accounts = [account]
+        switch key {
+        case .screenshots:
+            accounts = [MockAccount](repeating: account, count: 3)
+        default:
+            accounts = [account]
+        }
     }
     
 }
 
 struct MockAccount {
-    let accountsKey: String
-    let accountDetailsKey: String
-    let paymentsKey: String
-    let outageStatusKey: String
-    let billComparisonKey: String
-    let billForecastKey: String
-    let maintenanceKey: String
+    static let `default` = MockAccount(globalKey: .default)
     
-    init(accountsKey: MockDataKey = .default,
-         accountDetailsKey: MockDataKey = .default,
-         paymentsKey: MockDataKey = .default,
-         outageStatusKey: MockDataKey = .default,
-         billComparisonKey: MockDataKey = .default,
-         billForecastKey: MockDataKey = .default,
-         maintenanceKey: MockDataKey = .default) {
-        self.accountsKey = accountsKey.rawValue
-        self.accountDetailsKey = accountDetailsKey.rawValue
-        self.paymentsKey = paymentsKey.rawValue
-        self.outageStatusKey = outageStatusKey.rawValue
-        self.billComparisonKey = billComparisonKey.rawValue
-        self.billForecastKey = billForecastKey.rawValue
-        self.maintenanceKey = maintenanceKey.rawValue
+    private let dataKeys: [MockJSONManager.File: MockDataKey]
+    
+    func dataKey(forFile file: MockJSONManager.File) -> MockDataKey {
+        return dataKeys[file] ?? .default
     }
     
-    init(globalKey key: MockDataKey = .default) {
-        self.init(accountsKey: key,
-                  accountDetailsKey: key,
-                  paymentsKey: key,
-                  outageStatusKey: key,
-                  billComparisonKey: key,
-                  billForecastKey: key,
-                  maintenanceKey: key)
+    init(dataKeys: [MockJSONManager.File: MockDataKey]) {
+        self.dataKeys = dataKeys
+    }
+    
+    init(globalKey key: MockDataKey) {
+        let pairs = MockJSONManager.File.allCases.map { ($0, key) }
+        dataKeys = Dictionary(uniqueKeysWithValues: pairs)
     }
     
     /// Used for UI tests where only a username String is provided
@@ -100,7 +75,6 @@ struct MockAccount {
         let key = MockDataKey(rawValue: username) ?? .default
         self.init(globalKey: key)
     }
-    
 }
 
 enum MockDataKey: String {
@@ -198,6 +172,7 @@ enum MockDataKey: String {
     case maintNotHome
     
     // General
+    case screenshots
     case error
     case `default`
 }

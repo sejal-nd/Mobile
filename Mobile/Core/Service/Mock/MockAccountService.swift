@@ -14,8 +14,7 @@ class MockAccountService: AccountService {
     func fetchAccounts() -> Observable<[Account]> {
         do {
             let accounts: [Account] = try MockUser.current.accounts
-                .map(\.accountsKey)
-                .map { try MockJSONManager.shared.mappableObject(fromFile: .accounts, key: $0) }
+                .map { try MockJSONManager.shared.mappableObject(fromFile: .accounts, key: $0.dataKey(forFile: .accounts)) }
             
             AccountsStore.shared.accounts = accounts
             AccountsStore.shared.currentIndex = 0
@@ -31,8 +30,7 @@ class MockAccountService: AccountService {
     static func loadAccountsSync() {
         do {
             let accounts: [Account] = try MockUser.current.accounts
-                .map(\.accountsKey)
-                .map { try MockJSONManager.shared.mappableObject(fromFile: .accounts, key: $0) }
+                .map { try MockJSONManager.shared.mappableObject(fromFile: .accounts, key: $0.dataKey(forFile: .accounts)) }
             
             AccountsStore.shared.accounts = accounts
             AccountsStore.shared.currentIndex = 0
@@ -44,9 +42,9 @@ class MockAccountService: AccountService {
     }
     
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].accountDetailsKey
+        let key = MockUser.current.currentAccount.dataKey(forFile: .accountDetails)
         
-        if key == MockDataKey.thankYouForPaymentOTP.rawValue {
+        if key == MockDataKey.thankYouForPaymentOTP {
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = PaymentDetails(amount: 234,
                                                                                              date: Date.now.addingTimeInterval(-3600),
                                                                                              confirmationNumber: "123456")
@@ -74,7 +72,7 @@ class MockAccountService: AccountService {
     }
     
     func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].accountDetailsKey
+        let key = MockUser.current.currentAccount.dataKey(forFile: .payments)
         
         do {
             let payments: [PaymentItem] = try MockJSONManager.shared.mappableArray(fromFile: .payments, key: key)

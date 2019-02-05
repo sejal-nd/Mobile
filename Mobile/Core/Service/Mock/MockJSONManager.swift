@@ -46,21 +46,21 @@ class MockJSONManager {
         }
     }
     
-    func jsonObject(fromFile file: File, key: String) throws -> JSONObject {
+    func jsonObject(fromFile file: File, key: MockDataKey) throws -> JSONObject {
         let json = try jsonObject(fromFile: file)
         
         // Every JSON file should have a `default` object to fall back on
-        guard let jsonObject = (json[key] ?? json[MockDataKey.default.rawValue]) as? JSONObject else {
+        guard let jsonObject = (json[key.rawValue] ?? json[MockDataKey.default.rawValue]) as? JSONObject else {
             throw ServiceError.parsing
         }
         
         return jsonObject
     }
     
-    func jsonArray(fromFile file: File, key: String) throws -> JSONArray {
+    func jsonArray(fromFile file: File, key: MockDataKey) throws -> JSONArray {
         let json = try jsonObject(fromFile: file)
         
-        let object = json[key] ?? json[MockDataKey.default.rawValue]
+        let object = json[key.rawValue] ?? json[MockDataKey.default.rawValue]
         
         // Every JSON file should have a `default` object to fall back on
         if let jsonArray = object as? JSONArray {
@@ -73,7 +73,7 @@ class MockJSONManager {
         
     }
     
-    func mappableObject<Value: Mappable>(fromFile file: File, key: String) throws -> Value {
+    func mappableObject<Value: Mappable>(fromFile file: File, key: MockDataKey) throws -> Value {
         let json = try jsonObject(fromFile: file, key: key) as NSDictionary
         
         if let object = Value.from(json) {
@@ -85,7 +85,7 @@ class MockJSONManager {
         }
     }
     
-    func mappableArray<Value: Mappable>(fromFile file: File, key: String) throws -> [Value] {
+    func mappableArray<Value: Mappable>(fromFile file: File, key: MockDataKey) throws -> [Value] {
         let json = try jsonArray(fromFile: file, key: key) as NSArray
         
         if let array = Value.from(json) {
@@ -95,12 +95,13 @@ class MockJSONManager {
         }
     }
     
-    enum File: String {
+    enum File: String, CaseIterable {
         case accounts = "accounts"
         case accountDetails = "account_details"
         case billComparison = "bill_comparison"
         case billForecast = "bill_forecast"
         case payments = "payments"
         case maintenance = "maintenance"
+        case weather = "weather"
     }
 }

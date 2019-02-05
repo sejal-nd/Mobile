@@ -903,12 +903,12 @@
 		9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
-		9C72424921E5061500E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
-		9C72424A21E5061600E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
-		9C72424B21E5061600E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
-		9C72424C21E5061800E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
-		9C72424D21E5061900E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
-		9C72424E21E5061900E5946B /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */; };
+		9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		9C72424C21E5061800E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		9C72424D21E5061900E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
+		9C72424E21E5061900E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C74CDE921EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C74CDEB21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
@@ -1020,15 +1020,9 @@
 		B04DDF842200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
 		B04DDF852200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
 		B04DDF862200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
-		B04DDF872200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
-		B04DDF882200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
-		B04DDF892200D47A00594ACF /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
 		B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
 		B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
 		B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
-		B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
-		B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
-		B04DDF902200DBEC00594ACF /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
 		B05D84B321877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		B05D84B421877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		B05D84B521877FEB00F15A9F /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
@@ -1107,15 +1101,51 @@
 		B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
 		B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
 		B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
-		B07E17A02204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
-		B07E17A12204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
-		B07E17A22204E8F900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
 		B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
 		B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
 		B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
-		B07E17A72204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
-		B07E17A82204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
-		B07E17A92204F6E900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
+		B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
+		B07E17B52208F5C200B6E3C7 /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
+		B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
+		B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
+		B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */; };
+		B07E17BE2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
+		B07E17BF2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
+		B07E17C02208F6F100B6E3C7 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
+		B07E17C12208F6F100B6E3C7 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
+		B07E17C22208F6F100B6E3C7 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
+		B07E17C32208F6F100B6E3C7 /* MockWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */; };
+		B07E17C62209DB1C00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
+		B07E17C72209DB1C00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
+		B07E17C82209DB1C00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
+		B07E17D32209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
+		B07E17D42209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
+		B07E17D52209EFE000B6E3C7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
+		B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
+		B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B07E17DA2209F0C900B6E3C7 /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B07E17DB2209F0C900B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17DD2209F0C900B6E3C7 /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
+		B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B07E17E22209F0CA00B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17E42209F0CA00B6E3C7 /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
+		B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF8A2200DBEC00594ACF /* accounts.json */; };
+		B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */ = {isa = PBXBuildFile; fileRef = B04DDF832200D47A00594ACF /* account_details.json */; };
+		B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E179C2204E8F900B6E3C7 /* bill_comparison.json */; };
+		B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17A32204F6E800B6E3C7 /* bill_forecast.json */; };
+		B07E17EB2209F0CA00B6E3C7 /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
+		B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
+		B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
 		B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
 		B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44220FD2C5500CE0893 /* ConversationalButton.swift */; };
@@ -1279,15 +1309,9 @@
 		B0D84D46220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		B0D84D47220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		B0D84D48220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
-		B0D84D49220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
-		B0D84D4A220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
-		B0D84D4B220244E000C70A6F /* payments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D45220244E000C70A6F /* payments.json */; };
 		B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
 		B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
 		B0D84D502203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
-		B0D84D512203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
-		B0D84D522203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
-		B0D84D532203523D00C70A6F /* maintenance.json in Resources */ = {isa = PBXBuildFile; fileRef = B0D84D4D2203523D00C70A6F /* maintenance.json */; };
 		B0D84D592203794000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
 		B0D84D5A2203794000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
 		B0D84D5B2203794000C70A6F /* MockAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D84D582203794000C70A6F /* MockAppState.swift */; };
@@ -1626,9 +1650,6 @@
 		E8400E621FE05E8B0064E242 /* AddBankFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E611FE05E8B0064E242 /* AddBankFormViewModelTests.swift */; };
 		E8400E641FE05ED70064E242 /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E631FE05ED70064E242 /* MockWalletService.swift */; };
 		E8400E651FE05EFD0064E242 /* MockPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821898951F3279AB0077D7A1 /* MockPaymentService.swift */; };
-		E8400E661FE05F060064E242 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
-		E8400E671FE05F060064E242 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
-		E8400E681FE05F070064E242 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E631FE05ED70064E242 /* MockWalletService.swift */; };
 		E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E631FE05ED70064E242 /* MockWalletService.swift */; };
 		E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8400E631FE05ED70064E242 /* MockWalletService.swift */; };
@@ -2466,7 +2487,7 @@
 		2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPremiseAddressView.swift; sourceTree = "<group>"; };
 		2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiPremiseAddressView.xib; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
-		2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherApi.swift; sourceTree = "<group>"; };
+		2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovWeatherService.swift; sourceTree = "<group>"; };
 		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
 		2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchSlider.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -2838,6 +2859,9 @@
 		B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeatherViewModel.swift; sourceTree = "<group>"; };
 		B07E179C2204E8F900B6E3C7 /* bill_comparison.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_comparison.json; sourceTree = "<group>"; };
 		B07E17A32204F6E800B6E3C7 /* bill_forecast.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_forecast.json; sourceTree = "<group>"; };
+		B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherItem.swift; sourceTree = "<group>"; };
+		B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherService.swift; sourceTree = "<group>"; };
+		B07E17C42209DB1C00B6E3C7 /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
 		B085C44220FD2C5500CE0893 /* ConversationalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationalButton.swift; sourceTree = "<group>"; };
 		B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportedOutagesStore.swift; sourceTree = "<group>"; };
 		B0882C992108FD9600EB756B /* UsageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModelTests.swift; sourceTree = "<group>"; };
@@ -4406,6 +4430,7 @@
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
+				B07E17C42209DB1C00B6E3C7 /* weather.json */,
 			);
 			path = "Mock JSON";
 			sourceTree = "<group>";
@@ -4544,6 +4569,7 @@
 				E84705F62025160F00A749A3 /* MockRegistrationService.swift */,
 				B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */,
 				B0B083A7216F9DC100B1C632 /* MockAppointmentService.swift */,
+				B07E17BD2208F6F100B6E3C7 /* MockWeatherService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -4766,7 +4792,7 @@
 				B5AC06E91E52755800BBA4ED /* ServiceResult.swift */,
 				E89C16291F87D6AE0023DC02 /* UsageService.swift */,
 				54EDD2D91ECE236000CAB8A6 /* WalletService.swift */,
-				2F5C81F91F1D4B1B005B35FA /* WeatherApi.swift */,
+				2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */,
 				2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */,
 				82AC2A191FAB667700EACB3B /* PeakRewardsService.swift */,
 				B0B083A0216F9D5C00B1C632 /* AppointmentService.swift */,
@@ -4810,6 +4836,7 @@
 				B0B08399216F970700B1C632 /* Appointment.swift */,
 				B08BBFBA21C8284A00A899FC /* Payments.swift */,
 				B08BBFC221C8539000A899FC /* SERResult.swift */,
+				B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5683,13 +5710,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B04DDF872200D47A00594ACF /* account_details.json in Resources */,
-				B04DDF8E2200DBEC00594ACF /* accounts.json in Resources */,
-				B0D84D49220244E000C70A6F /* payments.json in Resources */,
-				B0D84D512203523D00C70A6F /* maintenance.json in Resources */,
-				B07E17A72204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
-				B07E17A02204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5729,6 +5750,7 @@
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed.json in Resources */,
+				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
@@ -5773,6 +5795,7 @@
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
@@ -5800,12 +5823,14 @@
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
 				E873DA781EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
+				B07E17EB2209F0CA00B6E3C7 /* maintenance.json in Resources */,
 				356C7FAA2190D940003E8A90 /* environment.plist in Resources */,
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				E8B8C8481F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
+				B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				0EF60FD020EE7AE7006ABC18 /* Assets.xcassets in Resources */,
@@ -5818,6 +5843,7 @@
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */,
+				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
 				E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
@@ -5831,7 +5857,9 @@
 				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
+				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
 				6A4FD91EB0591B1C2C63040C /* otp_step2.json in Resources */,
+				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
 				6A4FD8F40311B79006BEA4D7 /* otps3_img_0.png in Resources */,
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				6A4FDCC9FBA97FEF77672BED /* otps3_img_1.png in Resources */,
@@ -5855,6 +5883,7 @@
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
+				B07E17DB2209F0C900B6E3C7 /* bill_comparison.json in Resources */,
 				B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
@@ -5899,6 +5928,7 @@
 				385AF2281F27915A001E3619 /* img_1.png in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
+				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
@@ -5926,12 +5956,14 @@
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				B07E17DD2209F0C900B6E3C7 /* maintenance.json in Resources */,
 				356C7FAC2190D940003E8A90 /* environment.plist in Resources */,
 				E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA7A1EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
+				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B8C84A1F9E3590005828B0 /* SmartEnergyRewardsView.xib in Resources */,
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
@@ -5944,6 +5976,7 @@
 				B0030D0E2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
 				01F612231F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
+				B07E17DA2209F0C900B6E3C7 /* account_details.json in Resources */,
 				35AE569F214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				B59EFAA31F72E67F001490A1 /* FloatLabelTextView.xib in Resources */,
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
@@ -5957,7 +5990,9 @@
 				35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */,
+				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
 				6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */,
+				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				6A4FDEB37967D5B806CE00FC /* otps3_img_1.png in Resources */,
@@ -5981,6 +6016,7 @@
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				B0DB2764215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
+				B07E17E22209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
@@ -6025,6 +6061,7 @@
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
+				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
 				385AF2271F27915A001E3619 /* img_1.png in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
@@ -6052,12 +6089,14 @@
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
+				B07E17E42209F0CA00B6E3C7 /* maintenance.json in Resources */,
 				356C7FAB2190D940003E8A90 /* environment.plist in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
+				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				E8B8C8491F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
@@ -6070,6 +6109,7 @@
 				35ACCB4C20EA7ABF0022907F /* HomeOutageCardView.xib in Resources */,
 				B0030D0D2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
+				B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				01F612221F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				B59EFAA21F72E67E001490A1 /* FloatLabelTextView.xib in Resources */,
@@ -6083,7 +6123,9 @@
 				6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
+				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				6A4FD8AE71A963B756050DD9 /* otp_step2.json in Resources */,
+				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
 				6A4FD323AF99726FB2158A2E /* otps3_img_0.png in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				6A4FDF0D523DED06D1465E99 /* otps3_img_1.png in Resources */,
@@ -6104,6 +6146,7 @@
 				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */,
+				B07E17C62209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -6117,13 +6160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B04DDF882200D47A00594ACF /* account_details.json in Resources */,
-				B04DDF8F2200DBEC00594ACF /* accounts.json in Resources */,
-				B0D84D4A220244E000C70A6F /* payments.json in Resources */,
-				B0D84D522203523D00C70A6F /* maintenance.json in Resources */,
-				B07E17A82204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
-				B07E17A12204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6131,13 +6168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B04DDF892200D47A00594ACF /* account_details.json in Resources */,
-				B04DDF902200DBEC00594ACF /* accounts.json in Resources */,
-				B0D84D4B220244E000C70A6F /* payments.json in Resources */,
-				B0D84D532203523D00C70A6F /* maintenance.json in Resources */,
-				B07E17A92204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
-				B07E17A22204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6149,6 +6180,7 @@
 				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
 				B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */,
+				B07E17C72209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -6166,6 +6198,7 @@
 				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
 				B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */,
+				B07E17C82209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -7188,7 +7221,7 @@
 				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF55982170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
-				9C72424C21E5061800E5946B /* WeatherApi.swift in Sources */,
+				9C72424C21E5061800E5946B /* GovWeatherService.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				E8EC6F331E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
 				B0B0839A216F970800B1C632 /* Appointment.swift in Sources */,
@@ -7198,6 +7231,7 @@
 				2F86FB791F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift in Sources */,
 				B54F0FF61E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
 				2FA5D85F1F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
+				B07E17BE2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				2FA5D8641F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				82AC2A1A1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				E8CA07F41E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
@@ -7235,6 +7269,7 @@
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
+				B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02701FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
@@ -7270,7 +7305,6 @@
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				54618B261EE05FE000119FFD /* EditBankAccountViewController.swift in Sources */,
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
-				E8400E661FE05F060064E242 /* MockAuthenticationService.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				E8EEF7291E5777BA006804D4 /* MoreViewController.swift in Sources */,
@@ -7362,6 +7396,7 @@
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
+				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
 				B08BBFC321C8539000A899FC /* SERResult.swift in Sources */,
@@ -7574,10 +7609,11 @@
 				E83F02771FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				548288E11ED87CCD002E8DDC /* EditBankAccountViewModel.swift in Sources */,
+				B07E17C02208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				B0DB2759215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				35277AFF2102686100411297 /* UsageTool.swift in Sources */,
 				E8EC6F351E804FF70050E3B6 /* DataDetectorTextView.swift in Sources */,
-				9C72424E21E5061900E5946B /* WeatherApi.swift in Sources */,
+				9C72424E21E5061900E5946B /* GovWeatherService.swift in Sources */,
 				9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
@@ -7637,7 +7673,6 @@
 				9C7E5A55212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
-				E8400E681FE05F070064E242 /* MockAuthenticationService.swift in Sources */,
 				B0B083A3216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
@@ -7758,6 +7793,7 @@
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399371F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
+				B07E17B52208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E971EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				54AE06B71ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
@@ -7797,6 +7833,7 @@
 				B0E9EFFD21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
+				B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 				6A4FDD3ABED114C309AF6B3D /* TutorialModalViewController.swift in Sources */,
@@ -7939,7 +7976,7 @@
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
-				9C72424D21E5061900E5946B /* WeatherApi.swift in Sources */,
+				9C72424D21E5061900E5946B /* GovWeatherService.swift in Sources */,
 				B0B0839B216F970800B1C632 /* Appointment.swift in Sources */,
 				824A966A1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
@@ -7949,6 +7986,7 @@
 				2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
+				B07E17BF2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				82AC2A1B1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				E87C32101E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				54EDD2D61ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
@@ -7986,6 +8024,7 @@
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
+				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02711FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
@@ -8018,7 +8057,6 @@
 				9C7E5A54212DFF0D00F78479 /* OutageStatusInitExtensions.swift in Sources */,
 				E80D2E2D1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6C1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
-				E8400E671FE05F060064E242 /* MockAuthenticationService.swift in Sources */,
 				B0B083A2216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
@@ -8113,6 +8151,7 @@
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,
+				B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
@@ -8193,6 +8232,7 @@
 				E876A85E1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82119FE6203F57D800A56FEE /* MyHomeProfileTests.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
+				B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F51EEB1ECA40AF0080AB3E /* PaperlessEBillViewModel.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -8223,6 +8263,7 @@
 				B548468E1E688744008CE1B1 /* MCSResponseParser.swift in Sources */,
 				E83F027D1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				357757512113611000E73542 /* DateParserTests.swift in Sources */,
+				B07E17C12208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				E8C6F2A51F1FEB7300C4644C /* AddBankFormViewModel.swift in Sources */,
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
@@ -8234,6 +8275,7 @@
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */,
 				224EFF23216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
+				B07E17D32209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
 				8286F1A02044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */,
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
@@ -8261,7 +8303,7 @@
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
-				9C72424B21E5061600E5946B /* WeatherApi.swift in Sources */,
+				9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */,
 				B04DDF7F2200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
@@ -8437,6 +8479,7 @@
 				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
 				E8F62B3A200924410077B3DA /* WalletViewModel.swift in Sources */,
 				82119FE3203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
+				B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */,
 				E8F62B3D200924410077B3DA /* PaperlessEBillViewModel.swift in Sources */,
 				E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */,
@@ -8467,6 +8510,7 @@
 				E8F62B4F200924410077B3DA /* BillBreakdownViewModelTests.swift in Sources */,
 				E8F62B50200924410077B3DA /* AddCreditCardViewModel.swift in Sources */,
 				E8F62B51200924410077B3DA /* MCSResponseParser.swift in Sources */,
+				B07E17C22208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */,
 				357757522113611000E73542 /* DateParserTests.swift in Sources */,
 				E8F62B53200924410077B3DA /* AddBankFormViewModel.swift in Sources */,
@@ -8478,6 +8522,7 @@
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */,
 				224EFF24216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
+				B07E17D42209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */,
 				E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */,
 				E8F62B5D200924410077B3DA /* BiometricsService.swift in Sources */,
 				E8F62B5E200924410077B3DA /* UserDefaultKeys.swift in Sources */,
@@ -8505,7 +8550,7 @@
 				9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */,
-				9C72424A21E5061600E5946B /* WeatherApi.swift in Sources */,
+				9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */,
 				B04DDF802200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
 				823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
@@ -8635,6 +8680,7 @@
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
 				E8F62BEF200924570077B3DA /* WalletViewModel.swift in Sources */,
 				82119FE4203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
+				B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */,
 				E8F62BF2200924570077B3DA /* PaperlessEBillViewModel.swift in Sources */,
 				E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */,
@@ -8665,6 +8711,7 @@
 				E8F62C04200924570077B3DA /* BillBreakdownViewModelTests.swift in Sources */,
 				E8F62C05200924570077B3DA /* AddCreditCardViewModel.swift in Sources */,
 				E8F62C06200924570077B3DA /* MCSResponseParser.swift in Sources */,
+				B07E17C32208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */,
 				357757532113611000E73542 /* DateParserTests.swift in Sources */,
 				E8F62C08200924570077B3DA /* AddBankFormViewModel.swift in Sources */,
@@ -8676,6 +8723,7 @@
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */,
 				224EFF25216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
+				B07E17D52209EFE000B6E3C7 /* ServiceFactory.swift in Sources */,
 				E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */,
 				E8F62C12200924570077B3DA /* BiometricsService.swift in Sources */,
 				E8F62C13200924570077B3DA /* UserDefaultKeys.swift in Sources */,
@@ -8703,7 +8751,7 @@
 				9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */,
-				9C72424921E5061500E5946B /* WeatherApi.swift in Sources */,
+				9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */,
 				B04DDF812200A3E000594ACF /* MockJSONManager.swift in Sources */,
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,

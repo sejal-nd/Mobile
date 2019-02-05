@@ -16,7 +16,7 @@ struct MockUsageService: UsageService {
     func clearCache() { }
     
     func fetchBillComparison(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> Observable<BillComparison> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].billComparisonKey
+        let key = MockUser.current.currentAccount.dataKey(forFile: .billComparison)
         
         do {
             let billComparison: BillComparison = try MockJSONManager.shared.mappableObject(fromFile: .billComparison, key: key)
@@ -27,7 +27,7 @@ struct MockUsageService: UsageService {
     }
     
     func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<BillForecastResult> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].billForecastKey
+        let key = MockUser.current.currentAccount.dataKey(forFile: .billForecast)
         
         do {
             guard let json = try MockJSONManager.shared.jsonArray(fromFile: .billForecast, key: key) as? [[String: Any]] else {

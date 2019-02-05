@@ -82,7 +82,12 @@ struct ServiceFactory {
     }
 
     static func createWeatherService() -> WeatherService {
-        return WeatherApi()
+        switch Environment.shared.environmentName {
+        case .aut:
+            return MockWeatherService()
+        default:
+            return GovWeatherService()
+        }
     }
 
     static func createUsageService(useCache: Bool) -> UsageService {
