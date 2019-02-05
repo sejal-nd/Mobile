@@ -12,11 +12,15 @@ struct MockAppState {
     static var current = MockAppState()
     static let `default` = MockAppState()
     
-    let maintenanceKey: String
+    let maintenanceKey: MockDataKey
+    let opCoUpdatesKey: MockDataKey
     let hasNetworkConnection: Bool
     
-    init(maintenanceKey: MockDataKey = .default, hasNetworkConnection: Bool = true) {
-        self.maintenanceKey = maintenanceKey.rawValue
+    init(maintenanceKey: MockDataKey = .default,
+         opCoUpdatesKey: MockDataKey = .default,
+         hasNetworkConnection: Bool = true) {
+        self.maintenanceKey = maintenanceKey
+        self.opCoUpdatesKey = opCoUpdatesKey
         self.hasNetworkConnection = hasNetworkConnection
     }
 }

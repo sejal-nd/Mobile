@@ -43,7 +43,7 @@ class UsageViewModelTests: XCTestCase {
     // MARK: No Data Bar Drivers
 
     func testNoDataBarDateLabelText() {
-        MockUser.current = MockUser(globalKey: .referenceEndDate)
+        MockUser.current = MockUser(globalKeys: .referenceEndDate)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
@@ -97,7 +97,7 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testPreviousBarDollarLabelText() {
-        MockUser.current = MockUser(globalKey: .noForecastComparedHighest)
+        MockUser.current = MockUser(globalKeys: .noForecastComparedHighest)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
@@ -113,7 +113,7 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testPreviousBarDateLabelText() {
-        MockUser.current = MockUser(globalKey: .comparedEndDate)
+        MockUser.current = MockUser(globalKeys: .comparedEndDate)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
@@ -167,7 +167,7 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testCurrentBarDollarLabelText() {
-        MockUser.current = MockUser(globalKey: .noForecastReferenceHighest)
+        MockUser.current = MockUser(globalKeys: .noForecastReferenceHighest)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
@@ -183,7 +183,7 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testCurrentBarDateLabelText() {
-        MockUser.current = MockUser(globalKey: .referenceEndDate)
+        MockUser.current = MockUser(globalKeys: .referenceEndDate)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
@@ -207,7 +207,7 @@ class UsageViewModelTests: XCTestCase {
     // MARK: Projection Bar Drivers
     
     func testProjectedCost() {
-        MockUser.current = MockUser(globalKey: .projectedCost)
+        MockUser.current = MockUser(globalKeys: .projectedCost)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(Double?.self)
@@ -233,7 +233,7 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectedUsage() {
-        MockUser.current = MockUser(globalKey: .projectedUsage)
+        MockUser.current = MockUser(globalKeys: .projectedUsage)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(Double?.self)
@@ -310,7 +310,7 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testProjectedBarDateLabelText() {
-        MockUser.current = MockUser(globalKey: .projectedDate)
+        MockUser.current = MockUser(globalKeys: .projectedDate)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)
@@ -435,7 +435,7 @@ class UsageViewModelTests: XCTestCase {
     }
     
     func testBarDescriptionAvgTempLabelText() {
-        MockUser.current = MockUser(globalKey: .avgTemp)
+        MockUser.current = MockUser(globalKeys: .avgTemp)
         MockAccountService.loadAccountsSync()
         
         let observer = scheduler.createObserver(String?.self)

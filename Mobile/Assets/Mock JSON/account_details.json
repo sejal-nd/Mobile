@@ -5,6 +5,19 @@
         "CustomerInfo": {},
         "SERInfo": {}
     },
+    "screenshots": {
+        "accountNumber": "7989123445",
+        "premiseNumber": "1",
+        "isAutoPayEligible": true,
+        "isResidential": true,
+        "serviceType": "GAS/ELECTRIC",
+        "BillingInfo": {
+            "netDueAmount": 137,
+            "dueByDate": "2019-01-14T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
     "billCardNoDefaultPayment": {
         "accountNumber": "1234567890",
         "BillingInfo": {

@@ -1,5 +1,8 @@
 {
     "default": {
         "accountNumber": "1234567890"
+    },
+    "screenshots": {
+        "accountNumber": "7989123445"
     }
 }

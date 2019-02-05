@@ -16,27 +16,21 @@ struct MockUsageService: UsageService {
     func clearCache() { }
     
     func fetchBillComparison(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> Observable<BillComparison> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].billComparisonKey
-        
-        do {
-            let billComparison: BillComparison = try MockJSONManager.shared.mappableObject(fromFile: .billComparison, key: key)
-            return .just(billComparison)
-        } catch {
-            return .error(error)
-        }
+        let dataFile = MockJSONManager.File.billComparison
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
     func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<BillForecastResult> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].billForecastKey
-        
-        do {
-            guard let json = try MockJSONManager.shared.jsonArray(fromFile: .billForecast, key: key) as? [[String: Any]] else {
-                throw ServiceError.parsing
-            }
-            
-            return .just(try BillForecastResult(dictionaries: json))
-        } catch {
-            return .error(error)
+        let dataFile = MockJSONManager.File.billComparison
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.jsonArray(fromFile: .billForecast, key: key)
+            .map { array in
+                guard let jsonArray = array as? [[String: Any]] else {
+                    throw ServiceError.parsing
+                }
+                
+                return try BillForecastResult(dictionaries: jsonArray)
         }
     }
     
