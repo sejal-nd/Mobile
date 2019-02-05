@@ -45,7 +45,7 @@ class MockAccountService: AccountService {
         let dataFile = MockJSONManager.File.accountDetails
         let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
         
-        if key == MockDataKey.thankYouForPaymentOTP.rawValue {
+        if key == .thankYouForPaymentOTP {
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] =
                 PaymentDetails(amount: 234,
                                date: Date.now.addingTimeInterval(-3600),

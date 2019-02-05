@@ -67,6 +67,11 @@ class ReportedOutagesStore {
         }
     }
     
+    func clearStore() {
+        reportsCache.removeAll()
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.reportedOutagesDictionary)
+    }
+    
     private func removeReport(forAccountNumber accountNumber: String) {
         reportsCache.removeValue(forKey: accountNumber)
         var reportDictionary = [String: Any]()

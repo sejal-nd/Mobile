@@ -12,14 +12,14 @@ import Foundation
 class MockOutageService: OutageService {
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].outageStatusKey
+        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].dataKey(forFile: .outage)
         
-        if key == MockDataKey.finaled.rawValue {
-            return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue))
-        } else if key == MockDataKey.noPay.rawValue {
-            return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNoPay.rawValue))
-        } else if key == MockDataKey.outageNonServiceAgreement.rawValue {
-            return .error(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue))
+        if key == .finaled {
+            return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue))
+        } else if key == .noPay {
+            return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNoPay.rawValue))
+        } else if key == .outageNonServiceAgreement {
+            return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue))
         }
         
         
@@ -68,9 +68,9 @@ class MockOutageService: OutageService {
 //        return Observable.just(OutageStatus.from(NSDictionary(dictionary: dict))!)
         do {
             let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outage, key: key)
-            return .just(outageStatus)
+            return Observable.just(outageStatus)
         } catch {
-            return .error(error)
+            return Observable.error(error)
         }
         
     }
@@ -202,11 +202,11 @@ class MockOutageService: OutageService {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         if loggedInUsername == "outageTestPowerOn" { // UI testing
             ReportedOutagesStore.shared["outageTestPowerOn"] = ReportedOutageResult.from(NSDictionary())
-            return Observable.just(()).delay(2, scheduler: MainScheduler.instance)
+            return Observable.just(())
         }
         if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
             ReportedOutagesStore.shared[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
-            return Observable.just(()).delay(2, scheduler: MainScheduler.instance)
+            return Observable.just(())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Invalid Account"))
         }
@@ -228,7 +228,7 @@ class MockOutageService: OutageService {
         if outageInfo.accountNumber != "5591032201" && outageInfo.accountNumber != "5591032202" {
             let reportedOutageResult = ReportedOutageResult.from(NSDictionary())!
             ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutageResult
-            return Observable.just(reportedOutageResult).delay(2, scheduler: MainScheduler.instance)
+            return Observable.just(reportedOutageResult)
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Invalid Account"))
         }
