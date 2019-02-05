@@ -1119,9 +1119,6 @@
 		B07E17C62209DB1C00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
 		B07E17C72209DB1C00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
 		B07E17C82209DB1C00B6E3C7 /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = B07E17C42209DB1C00B6E3C7 /* weather.json */; };
-		B07E17D32209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
-		B07E17D42209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
-		B07E17D52209EFE000B6E3C7 /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55ABC341E537EAF00F9CD28 /* ServiceFactory.swift */; };
 		B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
@@ -8275,7 +8272,6 @@
 				E895E9AD1EBB8473003B38A1 /* AuthTokenResponse.swift in Sources */,
 				E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */,
 				224EFF23216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
-				B07E17D32209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
 				8286F1A02044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */,
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
@@ -8522,7 +8518,6 @@
 				B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8F62B5B200924410077B3DA /* PeakRewardsService.swift in Sources */,
 				224EFF24216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
-				B07E17D42209EFDE00B6E3C7 /* ServiceFactory.swift in Sources */,
 				E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */,
 				E8F62B5D200924410077B3DA /* BiometricsService.swift in Sources */,
 				E8F62B5E200924410077B3DA /* UserDefaultKeys.swift in Sources */,
@@ -8723,7 +8718,6 @@
 				B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8F62C10200924570077B3DA /* PeakRewardsService.swift in Sources */,
 				224EFF25216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
-				B07E17D52209EFE000B6E3C7 /* ServiceFactory.swift in Sources */,
 				E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */,
 				E8F62C12200924570077B3DA /* BiometricsService.swift in Sources */,
 				E8F62C13200924570077B3DA /* UserDefaultKeys.swift in Sources */,
