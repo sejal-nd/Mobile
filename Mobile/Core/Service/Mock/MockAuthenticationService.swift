@@ -52,14 +52,9 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance> {
+        let dataFile = MockJSONManager.File.maintenance
         let key = MockAppState.current.maintenanceKey
-        
-        do {
-            let maintenance: Maintenance = try MockJSONManager.shared.mappableObject(fromFile: .maintenance, key: key)
-            return .just(maintenance)
-        } catch {
-            return .error(error)
-        }
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
     func getMinimumVersion() -> Observable<MinimumVersion> {

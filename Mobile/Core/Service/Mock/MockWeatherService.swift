@@ -11,13 +11,8 @@ import RxSwift
 
 class MockWeatherService: WeatherService {
     func fetchWeather(address: String) -> Observable<WeatherItem> {
-        let key = MockUser.current.currentAccount.dataKey(forFile: .weather)
-        
-        do {
-            let weatherItem: WeatherItem = try MockJSONManager.shared.mappableObject(fromFile: .weather, key: key)
-            return .just(weatherItem)
-        } catch {
-            return .error(error)
-        }
+        let dataFile = MockJSONManager.File.weather
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
 }

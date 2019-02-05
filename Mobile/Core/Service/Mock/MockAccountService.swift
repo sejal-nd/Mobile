@@ -42,7 +42,8 @@ class MockAccountService: AccountService {
     }
     
     func fetchAccountDetail(account: Account) -> Observable<AccountDetail> {
-        let key = MockUser.current.currentAccount.dataKey(forFile: .accountDetails)
+        let dataFile = MockJSONManager.File.accountDetails
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
         
         if key == MockDataKey.thankYouForPaymentOTP {
             RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = PaymentDetails(amount: 234,
@@ -50,12 +51,7 @@ class MockAccountService: AccountService {
                                                                                              confirmationNumber: "123456")
         }
         
-        do {
-            let accountDetail: AccountDetail = try MockJSONManager.shared.mappableObject(fromFile: .accountDetails, key: key)
-            return .just(accountDetail)
-        } catch {
-            return .error(error)
-        }
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
     func updatePECOReleaseOfInfoPreference(account: Account, selectedIndex: Int) -> Observable<Void> {
@@ -72,14 +68,9 @@ class MockAccountService: AccountService {
     }
     
     func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
-        let key = MockUser.current.currentAccount.dataKey(forFile: .payments)
-        
-        do {
-            let payments: [PaymentItem] = try MockJSONManager.shared.mappableArray(fromFile: .payments, key: key)
-            return .just(payments)
-        } catch {
-            return .error(error)
-        }
+        let dataFile = MockJSONManager.File.payments
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableArray(fromFile: dataFile, key: key)
     }
     
     func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {

@@ -12,7 +12,7 @@ import Mapper
 typealias JSONObject = [String: Any]
 typealias JSONArray = [Any]
 
-class MockJSONManager {
+final class MockJSONManager {
     
     static let shared = MockJSONManager()
     
@@ -21,7 +21,7 @@ class MockJSONManager {
     
     private init() {}
     
-    func jsonObject(fromFile file: File) throws -> JSONObject {
+    private func jsonObject(fromFile file: File) throws -> JSONObject {
         // Don't pull from the file if we already have the JSON in memory
         if let loadedJson = loadedFilesCache[file] {
             return loadedJson
@@ -103,5 +103,48 @@ class MockJSONManager {
         case payments = "payments"
         case maintenance = "maintenance"
         case weather = "weather"
+    }
+}
+
+import RxSwift
+
+extension MockJSONManager: ReactiveCompatible {}
+
+extension Reactive where Base: MockJSONManager {
+    
+    func jsonObject(fromFile file: MockJSONManager.File, key: MockDataKey) -> Observable<JSONObject> {
+        do {
+            let json = try base.jsonObject(fromFile: file, key: key)
+            return .just(json)
+        } catch {
+            return .error(error)
+        }
+    }
+    
+    func jsonArray(fromFile file: MockJSONManager.File, key: MockDataKey) -> Observable<JSONArray> {
+        do {
+            let json = try base.jsonArray(fromFile: file, key: key)
+            return .just(json)
+        } catch {
+            return .error(error)
+        }
+    }
+    
+    func mappableObject<Value: Mappable>(fromFile file: MockJSONManager.File, key: MockDataKey) -> Observable<Value> {
+        do {
+            let value: Value = try base.mappableObject(fromFile: file, key: key)
+            return .just(value)
+        } catch {
+            return .error(error)
+        }
+    }
+    
+    func mappableArray<Value: Mappable>(fromFile file: MockJSONManager.File, key: MockDataKey) -> Observable<[Value]> {
+        do {
+            let values: [Value] = try base.mappableArray(fromFile: file, key: key)
+            return .just(values)
+        } catch {
+            return .error(error)
+        }
     }
 }
