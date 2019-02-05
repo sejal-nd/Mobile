@@ -22,33 +22,33 @@
         "analysisResults": [
             {
                 "analysisName": "NUM_DAYS",
-                "costDifferenceExplained": 9.6
+                "costDifferenceExplained": -9.6
             },
             {
                 "analysisName": "WEATHER",
-                "costDifferenceExplained": 9.6
+                "costDifferenceExplained": -9.6
             },
             {
                 "analysisName": "OTHER",
-                "costDifferenceExplained": 9.6
+                "costDifferenceExplained": -9.6
             }
         ],
         "meterUnit": "KWH",
         "currencySymbol": "$",
         "temperatureUnit": "FAHRENHEIT",
         "reference": {
-            "charges": 82,
-            "usage": 238.7,
+            "charges": 55.2,
+            "usage": 207.9,
             "startDate": "2019-04-26",
-            "endDate": "2019-05-27",
+            "endDate": "2019-05-23",
             "averageTemperature": 65
         },
         "compared": {
-            "charges": 55.2,
-            "usage": 200.2,
-            "startDate": "2019-03-29",
+            "charges": 82,
+            "usage": 238.7,
+            "startDate": "2019-03-25",
             "endDate": "2019-04-25",
-            "averageTemperature": 70
+            "averageTemperature": 50
         }
     },
     "referenceEndDate": {
