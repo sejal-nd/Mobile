@@ -134,8 +134,9 @@ enum MockDataKey: String {
     case noPay
     //case outagePowerOn
     case outagePowerOut
-    //case reportOutage 
+    case reportOutageError
     case outageNonServiceAgreement
+    case outageSmartMeter
     
     // Usage
     case referenceEndDate

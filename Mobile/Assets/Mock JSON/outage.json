@@ -1,9 +1,0 @@
-{
-    "default": {
-        "status": "NOT ACTIVE",
-    },
-    "outagePowerOut": {
-        "status": "ACTIVE",
-        "ETR": "2017-04-10T03:45:00-05:00"
-    }
-}

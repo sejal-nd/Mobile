@@ -1,0 +1,15 @@
+{
+    "default": {
+        "accountNumber": "1234567890",
+        "status": "NOT ACTIVE",
+        "smartMeterStatus": false
+    },
+    "outagePowerOut": {
+        "status": "ACTIVE",
+        "ETR": "2017-04-10T03:45:00-05:00"
+    },
+    "outageSmartMeter": {
+        "status": "NOT ACTIVE",
+        "smartMeterStatus": true
+    }
+}

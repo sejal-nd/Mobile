@@ -1,0 +1,8 @@
+{
+    "default": {
+        "preCheckSuccess": true,
+        "pingResult": true,
+        "voltageResult": true,
+        "voltageReads": "proper"
+    }
+}
