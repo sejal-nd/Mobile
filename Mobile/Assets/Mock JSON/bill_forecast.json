@@ -19,6 +19,30 @@
             "projectedCost": 100
         }
     ],
+    "screenshots": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 45,
+            "projectedUsage": 500,
+            "projectedCost": 60,
+            "billingEndDate": "2019-06-19",
+            "currencySymbol": "$"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 45,
+            "projectedUsage": 500,
+            "projectedCost": 60,
+            "billingEndDate": "2019-06-19",
+            "currencySymbol": "$"
+        }
+    ],
     "hasForecastComparedHighest": [
         {
             "utilityAccountDTO": {
