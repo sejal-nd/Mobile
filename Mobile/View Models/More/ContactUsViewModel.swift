@@ -167,7 +167,7 @@ class ContactUsViewModel {
         switch opco {
         case .bge: return nil
         case .peco: return nil
-        case .comEd: return "https://www.instagram.com/commonwealthedison/"
+        case .comEd: return "https://www.instagram.com/ComEd/"
         }
     }
     
