@@ -346,7 +346,7 @@
                                                                     <constraint firstAttribute="height" constant="60" id="R3F-PS-9RU"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Report Streetlight Outage"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Report Street Light Outage"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="onViewStreetlightOutageMapPress" destination="WUY-4d-zPg" eventType="touchUpInside" id="9Km-cT-PUN"/>
