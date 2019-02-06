@@ -116,7 +116,7 @@ class OutageViewModel {
         switch Environment.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
-            let phone2 = "1-800-778-7798"
+            let phone2 = "1-877-778-7798"
             let phone3 = "1-877-778-2222"
             phoneNumbers = [phone1, phone2, phone3]
             localizedString = String.localizedStringWithFormat(
@@ -152,7 +152,7 @@ class OutageViewModel {
         switch Environment.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"
-            let phone2 = "1-800-778-7798"
+            let phone2 = "1-877-778-7798"
             phoneNumbers = [phone1, phone2]
             localizedString = String.localizedStringWithFormat(
                 """

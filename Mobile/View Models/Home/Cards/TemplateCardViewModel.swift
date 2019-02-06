@@ -75,7 +75,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("PECO Has Ways to Save", comment: "")
+                    return NSLocalizedString("PECO Marketplace", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
@@ -110,7 +110,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Get cash back with PECO rebates on high-efficiency appliances & HVAC equipment.", comment: "")
+                    return NSLocalizedString("Get instant discounts on energy-saving products. Free shipping on orders over $49.", comment: "")
                 } else {
                     return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings.", comment: "")
                 }
@@ -152,7 +152,12 @@ class TemplateCardViewModel {
         .map { accountDetail -> String? in
             switch Environment.shared.opco {
             case .peco:
-                return NSLocalizedString("Get started today", comment: "")
+                if accountDetail.isResidential {
+                    return NSLocalizedString("Shop Now", comment: "")
+                } else {
+                    return NSLocalizedString("Get started today", comment: "")
+                }
+                
             case .bge:
                 if accountDetail.isResidential {
                     switch accountDetail.peakRewards {
@@ -183,7 +188,11 @@ class TemplateCardViewModel {
         .map { accountDetail -> String? in
             switch Environment.shared.opco {
             case .peco:
-                return "https://www.peco.com/smartideas"
+                if accountDetail.isResidential {
+                    return "https://www.pecomarketplace.com"
+                } else {
+                    return "https://www.peco.com/smartideas"
+                }
             case .bge:
                 if accountDetail.isResidential, let peakRewards = accountDetail.peakRewards {
                     switch peakRewards {

@@ -190,7 +190,7 @@ class OutageViewModelTests: XCTestCase {
         let expectedString: String
         switch Environment.shared.opco {
         case .bge:
-            expectedString = "If you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-800-778-7798\n\nFor downed or sparking power lines, please call 1-800-685-0123 or 1-877-778-2222"
+            expectedString = "If you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-877-778-7798\n\nFor downed or sparking power lines, please call 1-800-685-0123 or 1-877-778-2222"
         case .comEd:
             expectedString = "To report a downed or sparking power line, please call 1-800-334-7661"
         case .peco:
@@ -206,7 +206,7 @@ class OutageViewModelTests: XCTestCase {
         let expectedString: String
         switch Environment.shared.opco {
         case .bge:
-            expectedString = "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nIf you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-800-778-7798."
+            expectedString = "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nIf you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-877-778-7798."
         case .peco:
             expectedString = "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141."
         case .comEd:

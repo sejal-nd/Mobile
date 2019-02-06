@@ -28,8 +28,8 @@ class MaintenanceModeViewModel{
     let labelBody: NSAttributedString = {
         let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
         var localizedString: String
-        
         let phoneNumbers: [String]
+        
         switch Environment.shared.opco {
         case .bge:
             let phone1 = "1-800-685-0123"

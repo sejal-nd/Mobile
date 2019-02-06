@@ -47,10 +47,11 @@ enum ServiceErrorCode : String {
     
     // Paymentus Errors
     case blockedPaymentMethod = "xmlPayment.declined"
-    case blockedUtilityAccount = "accountNumber.Suspended"
+    case blockedUtilityAccount = "accountNumber.suspended"
     case blockedPaymentType = "paymentMethodType.blocked"
     case duplicatePayment = "xmlPayment.duplicate"
-    case paymentAccountVelocity = "pmBankAccount.tooManyPerPaymentMethodType"
+    case paymentAccountVelocityBank = "pmBankAccount.tooManyPerPaymentMethodType"
+    case paymentAccountVelocityCard = "pmCreditCardNumber.tooManyPerPaymentMethodType"
     case utilityAccountVelocity = "accountNumber.tooManyPerPaymentType"
 }
 

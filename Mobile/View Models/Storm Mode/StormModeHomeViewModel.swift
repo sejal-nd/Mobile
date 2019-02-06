@@ -129,35 +129,23 @@ class StormModeHomeViewModel {
         
         return NSLocalizedString("Reported", comment: "")
     }
-    
-    var footerLabelText: String {
-        switch Environment.shared.opco {
-        case .bge, .peco:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call", comment: "")
-        case .comEd:
-            return NSLocalizedString("To report a downed or sparking power line, please call", comment: "")
-        }
-    }
-    
-    var footerPhoneLabelText: String {
-        switch Environment.shared.opco {
-        case .bge:
-            return "1-800-685-0123"
-        case .comEd:
-            return "1-800-334-7661"
-        case .peco:
-            return "1-800-841-4141"
-        }
-    }
-    
+        
     var gasOnlyMessage: String {
+        let firstLine = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
+        let secondLine: String?
         switch Environment.shared.opco {
         case .bge:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call", comment: "")
+            secondLine = NSLocalizedString("If you smell natural gas, leave the area immediately and call", comment: "")
         case .peco:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call", comment: "")
+            secondLine = NSLocalizedString("To issue a Gas Emergency Order, please call", comment: "")
         case .comEd:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
+            secondLine = nil
+        }
+        
+        if let secondLine = secondLine {
+            return firstLine + "\n\n" + secondLine
+        } else {
+            return firstLine
         }
     }
     

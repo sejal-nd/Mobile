@@ -138,7 +138,7 @@ class HomeAppointmentCardViewModel {
                     .attributedString(textAlignment: .center,
                                       otherAttributes: standardAttributes)
             case .canceled:
-                return NSLocalizedString("Your appointment has been canceled due to inclement weather.", comment: "")
+                return NSLocalizedString("Your appointment has been canceled.", comment: "")
                     .attributedString(textAlignment: .center,
                                       otherAttributes: standardAttributes)
             }

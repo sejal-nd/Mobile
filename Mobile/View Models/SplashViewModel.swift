@@ -62,25 +62,54 @@ class SplashViewModel{
     }
     
     var errorLabelText: NSAttributedString? {
+        let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
         var localizedString: String
+        let phoneNumbers: [String]
         
         switch Environment.shared.opco {
         case .bge:
-            localizedString = NSLocalizedString("If you smell natural gas or see downed power lines, leave the area immediately, and then call BGE at 1-800-685-0123.\n\n" +
-                "If your power is out, please call 1-877-778-2222 to report your outage.", comment: "")
+            let phone1 = "1-800-685-0123"
+            let phone2 = "1-877-778-7798"
+            let phone3 = "1-877-778-2222"
+            phoneNumbers = [phone1, phone2, phone3]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas, %@ and call %@ or %@.\n
+                If your power is out or for downed or sparking power lines, please call %@ or %@.
+                """
+            , leaveAreaString, phone1, phone2, phone1, phone3)
         case .comEd:
-            localizedString = NSLocalizedString("If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661.\n\n" +
-                "If your power is out, please call 1-800-334-7661 to report your outage.", comment: "")
+            let phone = "1-800-334-7661"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you see downed power lines, %@ and then call ComEd at %@.\n
+                If your power is out, please call %@ to report your outage.
+                """
+            , leaveAreaString, phone, phone)
         case .peco:
-            localizedString = NSLocalizedString("If you smell natural gas or see downed power lines, leave the area immediately, and then call PECO at 1-800-841-4141.\n\n" +
-                "If your power is out, please call 1-800-841-4141 to report your outage.", comment: "")
+            let phone = "1-800-841-4141"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas or see downed power lines, %@ and then call PECO at %@.\n
+                If your power is out, please call %@ to report your outage.
+                """
+            , leaveAreaString, phone, phone)
         }
         
-        let attributedString = NSMutableAttributedString(string: localizedString)
-        attributedString.addAttribute(.foregroundColor, value: UIColor.blackText, range: NSMakeRange(0, localizedString.count))
-        attributedString.addAttribute(.font, value: OpenSans.regular.of(size: 12), range: NSMakeRange(0, localizedString.count))
-        attributedString.addAttribute(.font, value: OpenSans.bold.of(size: 12), range: (localizedString as NSString).range(of: "leave the area immediately"))
-        return attributedString
+        let attrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
+        attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
+        
+        for phone in phoneNumbers {
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    attrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+            }
+        }
+        
+        return attrString
     }
     
 }

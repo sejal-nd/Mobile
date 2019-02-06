@@ -262,6 +262,8 @@ class HomeBillCardView: UIView {
         autoPayImageView.image = #imageLiteral(resourceName: "ic_autopay_sm.pdf")
         
         billNotReadyImageView.image = #imageLiteral(resourceName: "ic_home_billnotready_sm.pdf")
+        
+        errorTitleLabel.textColor = .white
     }
     
     private func bindViewModel() {
