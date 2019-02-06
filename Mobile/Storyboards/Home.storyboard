@@ -349,30 +349,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dne-fe-jfO">
-                                        <rect key="frame" x="30" y="211.5" width="315" height="244.5"/>
+                                        <rect key="frame" x="0.0" y="211.5" width="375" height="244.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_white" translatesAutoresizingMaskIntoConstraints="NO" id="Y9g-FB-sR2">
-                                                <rect key="frame" x="95" y="0.0" width="125" height="126"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="126"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCs-Dw-hwS">
-                                                <rect key="frame" x="80.5" y="160" width="154.5" height="25"/>
+                                                <rect key="frame" x="110.5" y="160" width="154.5" height="25"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-Kv-blo">
-                                                <rect key="frame" x="0.0" y="187" width="315" height="57.5"/>
+                                                <rect key="frame" x="29" y="187" width="317" height="57.5"/>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="fV3-Kv-blo" secondAttribute="trailing" id="4sh-zn-tjc"/>
+                                            <constraint firstAttribute="trailing" secondItem="fV3-Kv-blo" secondAttribute="trailing" constant="29" id="4sh-zn-tjc"/>
                                             <constraint firstItem="cCs-Dw-hwS" firstAttribute="centerX" secondItem="dne-fe-jfO" secondAttribute="centerX" id="C0T-Z6-JoP"/>
                                             <constraint firstItem="Y9g-FB-sR2" firstAttribute="centerX" secondItem="dne-fe-jfO" secondAttribute="centerX" id="Xb0-uf-kCz"/>
                                             <constraint firstAttribute="bottom" secondItem="fV3-Kv-blo" secondAttribute="bottom" id="ZnI-8f-iSF"/>
-                                            <constraint firstItem="fV3-Kv-blo" firstAttribute="leading" secondItem="dne-fe-jfO" secondAttribute="leading" id="a9c-Hj-0xt"/>
+                                            <constraint firstItem="fV3-Kv-blo" firstAttribute="leading" secondItem="dne-fe-jfO" secondAttribute="leading" constant="29" id="a9c-Hj-0xt"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="fd4-4J-QWg"/>
                                             <constraint firstItem="cCs-Dw-hwS" firstAttribute="top" secondItem="Y9g-FB-sR2" secondAttribute="bottom" constant="34" id="fjf-Qq-IzQ"/>
                                             <constraint firstItem="fV3-Kv-blo" firstAttribute="top" secondItem="cCs-Dw-hwS" secondAttribute="bottom" constant="2" id="gZH-Dq-Lwh"/>
                                             <constraint firstItem="Y9g-FB-sR2" firstAttribute="top" secondItem="dne-fe-jfO" secondAttribute="top" id="j1F-tu-o8O"/>
@@ -383,8 +384,8 @@
                                 <constraints>
                                     <constraint firstItem="dne-fe-jfO" firstAttribute="centerX" secondItem="ErJ-ar-hFE" secondAttribute="centerX" id="4Qz-6S-kkd"/>
                                     <constraint firstItem="dne-fe-jfO" firstAttribute="centerY" secondItem="ErJ-ar-hFE" secondAttribute="centerY" id="CC9-Py-4Lh"/>
-                                    <constraint firstItem="dne-fe-jfO" firstAttribute="leading" secondItem="ErJ-ar-hFE" secondAttribute="leading" constant="30" id="KLb-qJ-4Qu"/>
-                                    <constraint firstAttribute="trailing" secondItem="dne-fe-jfO" secondAttribute="trailing" constant="30" id="lK3-sX-x9M"/>
+                                    <constraint firstItem="dne-fe-jfO" firstAttribute="leading" secondItem="ErJ-ar-hFE" secondAttribute="leading" priority="999" id="KLb-qJ-4Qu"/>
+                                    <constraint firstAttribute="trailing" secondItem="dne-fe-jfO" secondAttribute="trailing" priority="999" id="lK3-sX-x9M"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzY-0e-rXR">
