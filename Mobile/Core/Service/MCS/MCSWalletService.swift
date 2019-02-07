@@ -182,7 +182,7 @@ class MCSWalletService: WalletService {
     func addWalletItemMCS(_ walletItem: WalletItem) {
         let params: [String: Any] = ["account_number": AccountsStore.shared.currentAccount.accountNumber,
                                      "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
-                                     "payment_category_type": walletItem.bankOrCard == .bank ? "Checking" : "Credit"]
+                                     "payment_category_type": walletItem.bankOrCard == .bank ? "check" : "credit"]
         
         /* We don't dispose this observable because we want the request to live on
          * even after we've popped the PaymentusFormViewController */
@@ -192,7 +192,7 @@ class MCSWalletService: WalletService {
     func updateWalletItemMCS(_ walletItem: WalletItem) {
         let params: [String: Any] = ["account_number": AccountsStore.shared.currentAccount.accountNumber,
                                      "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
-                                     "payment_category_type": walletItem.bankOrCard == .bank ? "Checking" : "Credit"]
+                                     "payment_category_type": walletItem.bankOrCard == .bank ? "check" : "credit"]
         
         /* We don't dispose this observable because we want the request to live on
          * even after we've popped the PaymentusFormViewController */
@@ -257,12 +257,13 @@ class MCSWalletService: WalletService {
     
     func deletePaymentMethod(walletItem : WalletItem) -> Observable<Void> {
         var params = ["account_number": AccountsStore.shared.accounts[0].accountNumber,
+                      "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
                       "wallet_item_id": walletItem.walletItemID ?? ""] as [String: Any]
         
         let opCo = Environment.shared.opco
         if opCo == .comEd || opCo == .peco {
             params["biller_id"] = "\(opCo.rawValue)Registered"
-            params["payment_category_type"] = walletItem.paymentCategoryType?.rawValue
+            params["payment_category_type"] = walletItem.bankOrCard == .bank ? "check" : "credit"
         }
         
         return MCSApi.shared.post(pathPrefix: .auth, path: "wallet/delete", params: params)
