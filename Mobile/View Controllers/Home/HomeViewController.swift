@@ -594,7 +594,6 @@ class HomeViewController: AccountPickerViewController {
             self?.contentStackView.isHidden = showAcctDisallow
             self?.weatherView.isHidden = showAcctDisallow || update != nil
             self?.importantUpdateView?.isHidden = showAcctDisallow
-            self?.scrollView?.isScrollEnabled = !showAcctDisallow
         }).disposed(by:bag)
         
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)

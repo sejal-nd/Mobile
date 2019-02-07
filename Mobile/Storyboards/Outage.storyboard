@@ -485,13 +485,16 @@
                                                 </constraints>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-H1-J9Q">
-                                                <rect key="frame" x="146" y="455.5" width="83.5" height="20.5"/>
+                                                <rect key="frame" x="29" y="455.5" width="317" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="782-tw-fFD"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mp-H2-KBj">
-                                                <rect key="frame" x="0.0" y="343.5" width="375" height="244.5"/>
+                                                <rect key="frame" x="0.0" y="337" width="375" height="244.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="T01-wC-F6N">
                                                         <rect key="frame" x="125" y="0.0" width="125" height="126"/>
@@ -528,9 +531,9 @@
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="2vO-Zj-K8m"/>
                                             <constraint firstAttribute="bottom" secondItem="NzH-9I-b9u" secondAttribute="bottom" id="6LF-5K-16F"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="71k-D6-8tq"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lL0-H1-J9Q" secondAttribute="trailing" constant="29" id="7Fw-pZ-4rP"/>
+                                            <constraint firstAttribute="trailing" secondItem="lL0-H1-J9Q" secondAttribute="trailing" priority="999" constant="29" id="7Fw-pZ-4rP"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="C9H-TB-fPo"/>
-                                            <constraint firstItem="lL0-H1-J9Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4LE-Ih-Txu" secondAttribute="leading" constant="29" id="GRK-en-gko"/>
+                                            <constraint firstItem="lL0-H1-J9Q" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" constant="29" id="GRK-en-gko"/>
                                             <constraint firstAttribute="trailing" secondItem="H0L-QG-hAo" secondAttribute="trailing" priority="999" id="I2D-Oy-CUP"/>
                                             <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" id="LrU-ih-gyC"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="LwI-um-wff"/>
@@ -549,7 +552,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="2Mp-H2-KBj" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" id="9zl-4D-8y9"/>
+                                    <constraint firstItem="2Mp-H2-KBj" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" constant="-6.5" id="9zl-4D-8y9"/>
                                     <constraint firstItem="lL0-H1-J9Q" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="EEz-Ld-jI2"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="leading" secondItem="qSc-mq-7Vd" secondAttribute="leading" id="GaG-cN-W3a"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="JTc-xg-NWS"/>
