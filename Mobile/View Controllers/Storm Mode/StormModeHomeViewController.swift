@@ -170,6 +170,8 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet private weak var accountDisallowView: UIView!
+    
     /// This houses both the outage status button and the loading view for the button
     @IBOutlet private weak var loadingContentView: UIView!
     @IBOutlet private weak var loadingView: UIView!
@@ -266,6 +268,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         outageStatusButton.isHidden = true
         gasOnlyView.isHidden = true
         finalPayView.isHidden = true
+        accountDisallowView.isHidden = true
         footerStackView.isHidden = true
         noNetworkConnectionView.isHidden = true
         setRefreshControlEnabled(enabled: false)
@@ -431,7 +434,9 @@ class StormModeHomeViewController: AccountPickerViewController {
             footerStackView.isHidden = true
             noNetworkConnectionView.isHidden = true
             gasOnlyView.isHidden = true
+            billButton.isHidden = false
             finalPayView.isHidden = true
+            accountDisallowView.isHidden = true
             loadingView.isHidden = false
             scrollView?.isHidden = false
             setRefreshControlEnabled(enabled: false)
@@ -468,11 +473,21 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
             
+            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                self.accountDisallowView.isHidden = false
+                self.finalPayView.isHidden = true
+                self.billButton.isHidden = true
+            } else {
+                self.accountDisallowView.isHidden = true
+                self.finalPayView.isHidden = false
+                self.finalPayTitleLabel.isHidden = true
+                self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+                self.billButton.isHidden = false
+            }
+            
             self.loadingContentView.isHidden = true
-            self.finalPayView.isHidden = false
-            self.finalPayTitleLabel.isHidden = true
-            self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
             self.finalPayButtonContainer.isHidden = true
+            
             self.outageSectionContainer.isHidden = true
             self.footerStackView.isHidden = false
             self.loadingView.isHidden = true

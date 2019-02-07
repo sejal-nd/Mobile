@@ -16,6 +16,9 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Storm Mode Home View Controller-->
@@ -48,7 +51,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1780"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wuk-bq-YQH" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1942.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2241.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="jT6-gQ-uaJ" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -60,10 +63,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ss6-yc-QSz">
-                                                <rect key="frame" x="0.0" y="114" width="375" height="1798.5"/>
+                                                <rect key="frame" x="0.0" y="114" width="375" height="2097.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yN3-T0-vmG">
-                                                        <rect key="frame" x="16" y="0.0" width="343" height="1451"/>
+                                                        <rect key="frame" x="16" y="0.0" width="343" height="1750"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V0G-ut-vCb">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="217"/>
@@ -241,25 +244,25 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAz-Ed-8Hy">
-                                                                <rect key="frame" x="0.0" y="519" width="343" height="317.5"/>
+                                                                <rect key="frame" x="0.0" y="519" width="343" height="320.5"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_gasonly_sm" translatesAutoresizingMaskIntoConstraints="NO" id="qfu-kV-Gsd">
                                                                         <rect key="frame" x="109" y="40" width="125" height="126"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Only Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zga-Xw-UzD">
-                                                                        <rect key="frame" x="75.5" y="182" width="192" height="29"/>
+                                                                        <rect key="frame" x="75.5" y="182" width="192" height="32"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To report a gas emergency, please call" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXp-va-glw">
-                                                                        <rect key="frame" x="24" y="221" width="295" height="16.5"/>
+                                                                        <rect key="frame" x="24" y="224" width="295" height="16.5"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PAO-sG-Pe1">
-                                                                        <rect key="frame" x="14" y="243.5" width="315.5" height="50"/>
+                                                                        <rect key="frame" x="14" y="246.5" width="315.5" height="50"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zmp-tK-dsg" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="114" height="50"/>
@@ -333,7 +336,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zn1-ma-BGR">
-                                                                <rect key="frame" x="0.0" y="836.5" width="343" height="445"/>
+                                                                <rect key="frame" x="0.0" y="839.5" width="343" height="445"/>
                                                                 <subviews>
                                                                     <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-fW-6tb">
                                                                         <rect key="frame" x="16" y="40" width="311" height="381"/>
@@ -417,8 +420,39 @@
                                                                     <constraint firstItem="uvz-fW-6tb" firstAttribute="leading" secondItem="Zn1-ma-BGR" secondAttribute="leading" constant="16" id="egf-zT-Igk"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZK-Qj-nty">
+                                                                <rect key="frame" x="0.0" y="1284.5" width="343" height="296"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_white" translatesAutoresizingMaskIntoConstraints="NO" id="Wmr-91-FL5">
+                                                                        <rect key="frame" x="109" y="40" width="125" height="126"/>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NvR-aO-qep">
+                                                                        <rect key="frame" x="100" y="200" width="143.5" height="21"/>
+                                                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7a-O2-3Un">
+                                                                        <rect key="frame" x="29" y="223" width="285" height="49"/>
+                                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="p7a-O2-3Un" firstAttribute="leading" secondItem="yZK-Qj-nty" secondAttribute="leading" constant="29" id="9sm-Pz-7WH"/>
+                                                                    <constraint firstItem="p7a-O2-3Un" firstAttribute="top" secondItem="NvR-aO-qep" secondAttribute="bottom" constant="2" id="Dl1-Ph-uTE"/>
+                                                                    <constraint firstItem="Wmr-91-FL5" firstAttribute="top" secondItem="yZK-Qj-nty" secondAttribute="top" constant="40" id="LfQ-Ik-IMZ"/>
+                                                                    <constraint firstItem="Wmr-91-FL5" firstAttribute="centerX" secondItem="yZK-Qj-nty" secondAttribute="centerX" id="ZBS-qW-4i4"/>
+                                                                    <constraint firstItem="NvR-aO-qep" firstAttribute="centerX" secondItem="yZK-Qj-nty" secondAttribute="centerX" id="cBm-FK-DYE"/>
+                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="mOa-xS-w8Y"/>
+                                                                    <constraint firstItem="NvR-aO-qep" firstAttribute="top" secondItem="Wmr-91-FL5" secondAttribute="bottom" constant="34" id="mXm-Bc-YbT"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="p7a-O2-3Un" secondAttribute="trailing" constant="29" id="qhR-C4-NX8"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="p7a-O2-3Un" secondAttribute="bottom" constant="24" id="y0l-b4-ty4"/>
+                                                                </constraints>
+                                                            </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dac-m1-b9K">
-                                                                <rect key="frame" x="14" y="1281.5" width="315" height="169.5"/>
+                                                                <rect key="frame" x="14" y="1580.5" width="315" height="169.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zpj-y6-qJF">
                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="88"/>
@@ -577,7 +611,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qb4-c4-RF1">
-                                                        <rect key="frame" x="0.0" y="1451" width="375" height="150.5"/>
+                                                        <rect key="frame" x="0.0" y="1750" width="375" height="150.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RMM-Ni-nT7">
                                                                 <rect key="frame" x="0.0" y="30" width="375" height="120.5"/>
@@ -625,7 +659,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKH-lk-Akg">
-                                                        <rect key="frame" x="0.0" y="1601.5" width="375" height="77"/>
+                                                        <rect key="frame" x="0.0" y="1900.5" width="375" height="77"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8th-HX-9aw" userLabel="Separator">
                                                                 <rect key="frame" x="20" y="76.5" width="355" height="0.5"/>
@@ -653,11 +687,11 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="e2m-ev-jHd" customClass="DisclosureCellButton" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="1678.5" width="375" height="60"/>
+                                                        <rect key="frame" x="0.0" y="1977.5" width="375" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="XfI-7E-3vd" customClass="DisclosureCellButton" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="1738.5" width="375" height="60"/>
+                                                        <rect key="frame" x="0.0" y="2037.5" width="375" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
@@ -725,6 +759,7 @@
                     <navigationItem key="navigationItem" id="KQk-NQ-VCi"/>
                     <size key="freeformSize" width="375" height="1800"/>
                     <connections>
+                        <outlet property="accountDisallowView" destination="yZK-Qj-nty" id="OFR-96-5WT"/>
                         <outlet property="accountPicker" destination="jT6-gQ-uaJ" id="7Jw-sY-ym9"/>
                         <outlet property="billButton" destination="e2m-ev-jHd" id="aHH-tO-WT9"/>
                         <outlet property="contactGroup1StackView" destination="zpj-y6-qJF" id="f9b-l5-VXe"/>
@@ -971,6 +1006,7 @@
     <resources>
         <image name="ic_caret_white" width="8" height="13"/>
         <image name="ic_gasonly_sm" width="125" height="126"/>
+        <image name="ic_lock_white" width="125" height="126"/>
         <image name="ic_nooutage_sm" width="125" height="126"/>
         <image name="ic_storm" width="60" height="66"/>
     </resources>
