@@ -30,6 +30,7 @@ class UsageViewController: AccountPickerViewController {
             mainErrorLabel.textColor = .blackText
         }
     }
+    @IBOutlet weak var accountDisallowView: UIView!
     
     @IBOutlet private weak var segmentControl: BillAnalysisSegmentedControl! {
         didSet {
@@ -359,6 +360,10 @@ class UsageViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.showMainErrorState() })
             .disposed(by: disposeBag)
         
+        viewModel.showAccountDisallowState
+            .drive(onNext: { [weak self] in self?.showAccountDisallowState() })
+            .disposed(by: disposeBag)
+        
         viewModel.showNoNetworkState
             .drive(onNext: { [weak self] in self?.showNoNetworkState() })
             .disposed(by: disposeBag)
@@ -571,6 +576,7 @@ class UsageViewController: AccountPickerViewController {
         unavailableView.isHidden = true
         contentStack.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         showBillComparisonLoadingState()
@@ -582,6 +588,7 @@ class UsageViewController: AccountPickerViewController {
         unavailableView.isHidden = true
         contentStack.isHidden = false
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
     }
@@ -592,6 +599,7 @@ class UsageViewController: AccountPickerViewController {
         unavailableView.isHidden = false
         contentStack.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
     }
@@ -602,6 +610,18 @@ class UsageViewController: AccountPickerViewController {
         unavailableView.isHidden = true
         contentStack.isHidden = true
         mainErrorView.isHidden = false
+        accountDisallowView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showAccountDisallowState() {
+        scrollView?.isHidden = false
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        mainErrorView.isHidden = true
+        accountDisallowView.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
     }
@@ -612,6 +632,7 @@ class UsageViewController: AccountPickerViewController {
         unavailableView.isHidden = true
         contentStack.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = false
         maintenanceModeView.isHidden = true
     }
@@ -622,6 +643,7 @@ class UsageViewController: AccountPickerViewController {
         unavailableView.isHidden = true
         contentStack.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = false
     }
