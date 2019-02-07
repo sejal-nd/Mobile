@@ -69,12 +69,6 @@ protocol PaymentService {
     ///   - payment: the payment to schedule
     func schedulePayment(payment: Payment) -> Observable<String>
     
-    /// Schedule a payment
-    ///
-    /// - Parameters:
-    ///   - creditCard: the card details
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String>
-    
     /// Gets full details of an one time payment transaction
     ///
     /// - Parameters:

@@ -36,11 +36,6 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
     
-    let addBankFormViewModel: AddBankFormViewModel!
-    let addCardFormViewModel: AddCardFormViewModel!
-    let inlineCard = Variable(false)
-    let inlineBank = Variable(false)
-    
     var oneTouchPayItem: WalletItem?
     
     let paymentDetail = Variable<PaymentDetail?>(nil)
@@ -50,12 +45,10 @@ class PaymentViewModel {
     
     var confirmationNumber: String?
     
-    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
+    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
-        self.addBankFormViewModel = addBankFormViewModel
-        self.addCardFormViewModel = addCardFormViewModel
         self.paymentDetail.value = paymentDetail
         if let billingHistoryItem = billingHistoryItem {
             self.paymentId.value = billingHistoryItem.paymentId
@@ -76,10 +69,6 @@ class PaymentViewModel {
             .map { walletItems in
                 self.walletItems.value = walletItems
                 self.oneTouchPayItem = walletItems.first(where: { $0.isDefault == true })
-                
-                let nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
-                self.addBankFormViewModel.nicknamesInWallet = nicknamesInWallet
-                self.addCardFormViewModel.nicknamesInWallet = nicknamesInWallet
             }
     }
     
@@ -104,7 +93,7 @@ class PaymentViewModel {
                 self.paymentDate.value = tomorrow
             }
             
-            let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value)
+            let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, allowEdits: allowEdits.value)
             if !accountDetail.value.isActiveSeverance && !isFixedPaymentDate {
                 self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
             } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
@@ -201,219 +190,39 @@ class PaymentViewModel {
             }).disposed(by: disposeBag)
     }
     
-    func schedulePayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        if inlineBank.value {
-            scheduleInlineBankPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
-        } else if inlineCard.value {
-            scheduleInlineCardPayment(onDuplicate: onDuplicate, onSuccess: onSuccess, onError: onError)
-        } else { // Existing wallet item
-            self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                guard let self = self else { return }
-                let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-                var paymentDate = self.paymentDate.value
-                if isFixed {
-                    paymentDate = Date()
-                }
-                
-                let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                      existingAccount: !self.selectedWalletItem.value!.isTemporary,
-                                      saveAccount: false,
-                                      maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                                      paymentAmount: self.paymentAmount.value,
-                                      paymentType: paymentType,
-                                      paymentDate: paymentDate,
-                                      walletId: AccountsStore.shared.customerIdentifier,
-                                      walletItemId: self.selectedWalletItem.value!.walletItemID!,
-                                      cvv: self.cvv.value)
-                
-                self.paymentService.schedulePayment(payment: payment)
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { [weak self] confirmationNumber in
-                        self?.confirmationNumber = confirmationNumber
-                        onSuccess()
-                    }, onError: { err in
-                        onError(err as! ServiceError)
-                    }).disposed(by: self.disposeBag)
-            }).disposed(by: disposeBag)
-        }
-    }
-    
-    private func scheduleInlineBankPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        var accountType: String?
-        if Environment.shared.opco == .bge {
-            accountType = addBankFormViewModel.selectedSegmentIndex.value == 0 ? "checking" : "saving"
-        }
-        let accountName: String? = addBankFormViewModel.accountHolderName.value.isEmpty ? nil : addBankFormViewModel.accountHolderName.value
-        let nickname: String? = addBankFormViewModel.nickname.value.isEmpty ? nil : addBankFormViewModel.nickname.value
-        
-        let bankAccount = BankAccount(bankAccountNumber: addBankFormViewModel.accountNumber.value,
-                                      routingNumber: addBankFormViewModel.routingNumber.value,
-                                      accountNickname: nickname,
-                                      accountType: accountType,
-                                      accountName: accountName,
-                                      oneTimeUse: !addBankFormViewModel.saveToWallet.value)
-        
-        walletService
-            .addBankAccount(bankAccount, forCustomerNumber: AccountsStore.shared.customerIdentifier)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] walletItemResult in
-                guard let self = self else { return }
-                
-                let otp = self.addBankFormViewModel.oneTouchPay.value
-                
-                if self.addBankFormViewModel.saveToWallet.value {
-                    Analytics.log(event: .eCheckAddNewWallet, dimensions: [.otpEnabled: otp ? "enabled" : "disabled"])
-                }
-                
-                if otp {
-                    self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
-                }
-                
-                self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                    guard let self = self else { return }
-                    
-                    let paymentDate = isFixed ? Date() : self.paymentDate.value
-                    let maskedAccountNumber = String(self.addBankFormViewModel.accountNumber.value.suffix(4))
-                    
-                    let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                          existingAccount: false,
-                                          saveAccount: self.addBankFormViewModel.saveToWallet.value,
-                                          maskedWalletAccountNumber: maskedAccountNumber,
-                                          paymentAmount: self.paymentAmount.value,
-                                          paymentType: .check,
-                                          paymentDate: paymentDate,
-                                          walletId: AccountsStore.shared.customerIdentifier,
-                                          walletItemId: walletItemResult.walletItemId,
-                                          cvv: nil)
-                    
-                    self.paymentService.schedulePayment(payment: payment)
-                        .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { [weak self] confirmationNumber in
-                            self?.confirmationNumber = confirmationNumber
-                            onSuccess()
-                        }, onError: { [weak self] err in
-                            guard let self = self else { return }
-                            if !self.addBankFormViewModel.saveToWallet.value {
-                                // Rollback the wallet add
-                                self.walletService.deletePaymentMethod(walletItem: WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
-                                    .subscribe()
-                                    .disposed(by: self.disposeBag)
-                            }
-                            onError(err as! ServiceError)
-                        }).disposed(by: self.disposeBag)
-                }).disposed(by: self.disposeBag)
-            }, onError: { (error: Error) in
-                let serviceError = error as! ServiceError
-                if serviceError.serviceCode == ServiceErrorCode.dupPaymentAccount.rawValue {
-                    onDuplicate(NSLocalizedString("Duplicate Bank Account", comment: ""), error.localizedDescription)
-                } else {
-                    onError(error as! ServiceError)
-                }
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func scheduleInlineCardPayment(onDuplicate: @escaping (String, String) -> Void, onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        let card = CreditCard(cardNumber: addCardFormViewModel.cardNumber.value,
-                              securityCode: addCardFormViewModel.cvv.value,
-                              cardHolderName: addCardFormViewModel.nameOnCard.value,
-                              expirationMonth: addCardFormViewModel.expMonth.value,
-                              expirationYear: addCardFormViewModel.expYear.value,
-                              postalCode: addCardFormViewModel.zipCode.value,
-                              nickname: addCardFormViewModel.nickname.value)
-        
-        if Environment.shared.opco == .bge && !addCardFormViewModel.saveToWallet.value {
-            self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                guard let self = self else { return }
-                
-                let paymentDate = isFixed ? Date() : self.paymentDate.value
-                
-                self.paymentService.scheduleBGEOneTimeCardPayment(accountNumber: self.accountDetail.value.accountNumber,
-                                                                  paymentAmount: self.paymentAmount.value,
-                                                                  paymentDate: paymentDate,
-                                                                  creditCard: card)
-                    .observeOn(MainScheduler.instance)
-                    .subscribe(onNext: { [weak self] confirmationNumber in
-                        self?.confirmationNumber = confirmationNumber
-                        onSuccess()
-                    }, onError: { err in
-                        onError(err as! ServiceError)
-                    }).disposed(by: self.disposeBag)
-            }).disposed(by: self.disposeBag)
+    func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
+                         onSuccess: @escaping () -> Void,
+                         onError: @escaping (ServiceError) -> Void) {
+        self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
+            guard let self = self else { return }
+            let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
+            var paymentDate = self.paymentDate.value
+            if isFixed {
+                paymentDate = Date()
+            }
             
-        } else {
-            walletService
-                .addCreditCard(card, forCustomerNumber: AccountsStore.shared.customerIdentifier)
+            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
+                                  existingAccount: !self.selectedWalletItem.value!.isTemporary,
+                                  saveAccount: false,
+                                  maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
+                                  paymentAmount: self.paymentAmount.value,
+                                  paymentType: paymentType,
+                                  paymentDate: paymentDate,
+                                  walletId: AccountsStore.shared.customerIdentifier,
+                                  walletItemId: self.selectedWalletItem.value!.walletItemID!,
+                                  cvv: self.cvv.value)
+            
+            self.paymentService.schedulePayment(payment: payment)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] walletItemResult in
-                    guard let self = self else { return }
-                    
-                    let otp = self.addCardFormViewModel.oneTouchPay.value
-                    Analytics.log(event: .cardAddNewWallet, dimensions: [.otpEnabled: otp ? "enabled" : "disabled"])
-                    
-                    if otp {
-                        self.enableOneTouchPay(walletItemID: walletItemResult.walletItemId, onSuccess: nil, onError: nil)
-                    }
-                    
-                    self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-                        guard let self = self else { return }
-                        
-                        let paymentDate = isFixed ? Date() : self.paymentDate.value
-                        let maskedAccountNumber = String(self.addCardFormViewModel.cardNumber.value.suffix(4))
-                        
-                        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                              existingAccount: false,
-                                              saveAccount: self.addCardFormViewModel.saveToWallet.value,
-                                              maskedWalletAccountNumber: maskedAccountNumber,
-                                              paymentAmount: self.paymentAmount.value,
-                                              paymentType: .credit,
-                                              paymentDate: paymentDate,
-                                              walletId: AccountsStore.shared.customerIdentifier,
-                                              walletItemId: walletItemResult.walletItemId,
-                                              cvv: self.addCardFormViewModel.cvv.value)
-                        
-                        self.paymentService.schedulePayment(payment: payment)
-                            .observeOn(MainScheduler.instance)
-                            .subscribe(onNext: { [weak self] confirmationNumber in
-                                self?.confirmationNumber = confirmationNumber
-                                onSuccess()
-                            }, onError: { [weak self] err in
-                                guard let self = self else { return }
-                                if !self.addCardFormViewModel.saveToWallet.value {
-                                    // Rollback the wallet add
-                                    self.walletService.deletePaymentMethod(walletItem: WalletItem.from(["walletItemID": walletItemResult.walletItemId])!)
-                                        .subscribe()
-                                        .disposed(by: self.disposeBag)
-                                }
-                                onError(err as! ServiceError)
-                            }).disposed(by: self.disposeBag)
-                    }).disposed(by: self.disposeBag)
-                    
-                }, onError: { error in
-                    let serviceError = error as! ServiceError
-                    if serviceError.serviceCode == ServiceErrorCode.dupPaymentAccount.rawValue {
-                        onDuplicate(NSLocalizedString("Duplicate Card", comment: ""), error.localizedDescription)
-                    } else {
-                        onError(error as! ServiceError)
-                    }
-                })
-                .disposed(by: disposeBag)
-        }
+                .subscribe(onNext: { [weak self] confirmationNumber in
+                    self?.confirmationNumber = confirmationNumber
+                    onSuccess()
+                }, onError: { err in
+                    onError(err as! ServiceError)
+                }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
     }
-    
-    func enableOneTouchPay(walletItemID: String, onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
-        walletService.setOneTouchPayItem(walletItemId: walletItemID,
-                                         walletId: nil,
-                                         customerId: AccountsStore.shared.customerIdentifier)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                onSuccess?()
-            }, onError: { err in
-                onError?(err.localizedDescription)
-            })
-            .disposed(by: disposeBag)
-    }
-    
+        
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, paymentDetail: paymentDetail.value!)
             .observeOn(MainScheduler.instance)
@@ -457,158 +266,14 @@ class PaymentViewModel {
     private(set) lazy var paymentAmountString = paymentAmount.asDriver()
         .map { $0.currencyString }
     
-    private(set) lazy var bankWorkflow: Driver<Bool> = Driver.combineLatest(self.selectedWalletItem.asDriver(), self.inlineBank.asDriver(), self.inlineCard.asDriver())
-    {
-        if $2 {
-            return false
-        }
-        if $1 {
-            return true
-        }
+    private(set) lazy var bankWorkflow: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         guard let walletItem = $0 else { return false }
         return walletItem.bankOrCard == .bank
     }
     
-    private(set) lazy var cardWorkflow: Driver<Bool> = Driver.combineLatest(self.selectedWalletItem.asDriver(), self.inlineCard.asDriver(), self.inlineBank.asDriver())
-    {
-        if $2 {
-            return false
-        }
-        if $1 {
-            return true
-        }
+    private(set) lazy var cardWorkflow: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         guard let walletItem = $0 else { return false }
         return walletItem.bankOrCard == .card
-    }
-    
-    // MARK: - Inline Bank Validation
-    
-    private(set) lazy var saveToWalletBankFormValidBGE: Driver<Bool> = Driver
-        .combineLatest([addBankFormViewModel.accountHolderNameHasText,
-                        addBankFormViewModel.accountHolderNameIsValid,
-                        addBankFormViewModel.routingNumberIsValid,
-                        addBankFormViewModel.accountNumberHasText,
-                        addBankFormViewModel.accountNumberIsValid,
-                        addBankFormViewModel.confirmAccountNumberMatches,
-                        addBankFormViewModel.nicknameHasText,
-                        addBankFormViewModel.nicknameErrorString.map{ $0 == nil }])
-        { !$0.contains(false) }
-    
-    private(set) lazy var saveToWalletBankFormValidComEdPECO: Driver<Bool> = Driver
-        .combineLatest([addBankFormViewModel.routingNumberIsValid,
-                        addBankFormViewModel.accountNumberHasText,
-                        addBankFormViewModel.accountNumberIsValid,
-                        addBankFormViewModel.confirmAccountNumberMatches,
-                        addBankFormViewModel.nicknameErrorString.map{ $0 == nil }])
-    { !$0.contains(false) }
-    
-    private(set) lazy var noSaveToWalletBankFormValidBGE: Driver<Bool> = Driver
-        .combineLatest([addBankFormViewModel.accountHolderNameHasText,
-                        addBankFormViewModel.accountHolderNameIsValid,
-                        addBankFormViewModel.routingNumberIsValid,
-                        addBankFormViewModel.accountNumberHasText,
-                        addBankFormViewModel.accountNumberIsValid,
-                        addBankFormViewModel.confirmAccountNumberMatches])
-        { !$0.contains(false) }
-    
-    private(set) lazy var noSaveToWalletBankFormValidComEdPECO: Driver<Bool> = Driver
-        .combineLatest([addBankFormViewModel.routingNumberIsValid,
-                        addBankFormViewModel.accountNumberHasText,
-                        addBankFormViewModel.accountNumberIsValid,
-                        addBankFormViewModel.confirmAccountNumberMatches])
-    { !$0.contains(false) }
-    
-    // MARK: - Inline Card Validation
-    
-    private(set) lazy var bgeCommercialUserEnteringVisa: Driver<Bool> = Driver
-        .combineLatest(addCardFormViewModel.cardNumber.asDriver(),
-                       accountDetail.asDriver())
-        {
-            if Environment.shared.opco == .bge && !$1.isResidential {
-                return $0.first == "4"
-            } else {
-                return false
-            }
-    }
-    
-    private(set) lazy var saveToWalletCardFormValidBGE: Driver<Bool> = Driver
-        .combineLatest([addCardFormViewModel.nameOnCardHasText,
-                        addCardFormViewModel.cardNumberHasText,
-                        addCardFormViewModel.cardNumberIsValid,
-                        bgeCommercialUserEnteringVisa.map(!),
-                        addCardFormViewModel.expMonthIs2Digits,
-                        addCardFormViewModel.expMonthIsValidMonth,
-                        addCardFormViewModel.expYearIs4Digits,
-                        addCardFormViewModel.expYearIsNotInPast,
-                        addCardFormViewModel.cvvIsCorrectLength,
-                        addCardFormViewModel.zipCodeIs5Digits,
-                        addCardFormViewModel.nicknameHasText,
-                        addCardFormViewModel.nicknameErrorString.map{ $0 == nil }])
-        .map { !$0.contains(false) }
-        .asDriver(onErrorJustReturn: false)
-    
-    private(set) lazy var saveToWalletCardFormValidComEdPECO: Driver<Bool> = Driver
-        .combineLatest([addCardFormViewModel.cardNumberHasText,
-                        addCardFormViewModel.cardNumberIsValid,
-                        addCardFormViewModel.expMonthIs2Digits,
-                        addCardFormViewModel.expMonthIsValidMonth,
-                        addCardFormViewModel.expYearIs4Digits,
-                        addCardFormViewModel.expYearIsNotInPast,
-                        addCardFormViewModel.cvvIsCorrectLength,
-                        addCardFormViewModel.zipCodeIs5Digits,
-                        addCardFormViewModel.nicknameErrorString.map{ $0 == nil }])
-        { !$0.contains(false) }
-    
-    private(set) lazy var noSaveToWalletCardFormValidBGE: Driver<Bool> = Driver
-        .combineLatest([addCardFormViewModel.nameOnCardHasText,
-                        addCardFormViewModel.cardNumberHasText,
-                        addCardFormViewModel.cardNumberIsValid,
-                        bgeCommercialUserEnteringVisa.map(!),
-                        addCardFormViewModel.expMonthIs2Digits,
-                        addCardFormViewModel.expMonthIsValidMonth,
-                        addCardFormViewModel.expYearIs4Digits,
-                        addCardFormViewModel.expYearIsNotInPast,
-                        addCardFormViewModel.cvvIsCorrectLength,
-                        addCardFormViewModel.zipCodeIs5Digits])
-        { !$0.contains(false) }
-    
-    private(set) lazy var noSaveToWalletCardFormValidComEdPECO: Driver<Bool> = Driver
-        .combineLatest([addCardFormViewModel.cardNumberHasText,
-                        addCardFormViewModel.cardNumberIsValid,
-                        addCardFormViewModel.expMonthIs2Digits,
-                        addCardFormViewModel.expMonthIsValidMonth,
-                        addCardFormViewModel.expYearIs4Digits,
-                        addCardFormViewModel.expYearIsNotInPast,
-                        addCardFormViewModel.cvvIsCorrectLength,
-                        addCardFormViewModel.zipCodeIs5Digits])
-    { !$0.contains(false) }
-    
-    private(set) lazy var inlineBankValid: Driver<Bool> = Driver
-        .combineLatest(addBankFormViewModel.saveToWallet.asDriver(),
-                       saveToWalletBankFormValidBGE,
-                       saveToWalletBankFormValidComEdPECO,
-                       noSaveToWalletBankFormValidBGE,
-                       noSaveToWalletBankFormValidComEdPECO)
-    {
-        if $0 { // Save to wallet
-            return Environment.shared.opco == .bge ? $1 : $2
-        } else { // No save
-            return Environment.shared.opco == .bge ? $3 : $4
-        }
-    }
-    
-    private(set) lazy var inlineCardValid: Driver<Bool> = Driver
-        .combineLatest(addCardFormViewModel.saveToWallet.asDriver(),
-                       saveToWalletCardFormValidBGE,
-                       saveToWalletCardFormValidComEdPECO,
-                       noSaveToWalletCardFormValidBGE,
-                       noSaveToWalletCardFormValidComEdPECO)
-        {
-        if $0 { // Save to wallet
-            return Environment.shared.opco == .bge ? $1 : $2
-        } else { // No save
-            return Environment.shared.opco == .bge ? $3 : $4
-        }
     }
     
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
@@ -619,50 +284,25 @@ class PaymentViewModel {
     // MARK: - Make Payment Drivers
     
     private(set) lazy var makePaymentNextButtonEnabled: Driver<Bool> = Driver
-        .combineLatest(inlineBank.asDriver(),
-                       inlineBankValid,
-                       inlineCard.asDriver(),
-                       inlineCardValid,
-                       selectedWalletItem.asDriver(),
+        .combineLatest(selectedWalletItem.asDriver(),
                        paymentFieldsValid,
                        cvvIsCorrectLength)
-    { (inlineBank, inlineBankValid, inlineCard, inlineCardValid, selectedWalletItem, paymentFieldsValid, cvvIsCorrectLength) in
-        if inlineBank {
-            return inlineBankValid && paymentFieldsValid
-        } else if inlineCard {
-            return inlineCardValid && paymentFieldsValid
-        } else {
-            if Environment.shared.opco == .bge {
-                if let walletItem = selectedWalletItem {
-                    if walletItem.bankOrCard == .card {
-                        return paymentFieldsValid && cvvIsCorrectLength
-                    } else {
-                        return paymentFieldsValid
-                    }
+    { (selectedWalletItem, paymentFieldsValid, cvvIsCorrectLength) in
+        if Environment.shared.opco == .bge {
+            if let walletItem = selectedWalletItem {
+                if walletItem.bankOrCard == .card {
+                    return paymentFieldsValid && cvvIsCorrectLength
                 } else {
-                    return false
+                    return paymentFieldsValid
                 }
             } else {
-                return selectedWalletItem != nil && paymentFieldsValid
+                return false
             }
+        } else {
+            return selectedWalletItem != nil && paymentFieldsValid
         }
     }
-    
-    private(set) lazy var oneTouchPayDescriptionLabelText: Driver<String> = self.walletItems.asDriver().map { [weak self] _ in
-        if let item = self?.oneTouchPayItem {
-            switch item.bankOrCard {
-            case .bank:
-                    return String(format: NSLocalizedString("You are currently using bank account %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
-            case .card:
-                    return String(format: NSLocalizedString("You are currently using card %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
-            }
-        }
-        return NSLocalizedString("Set this payment method as default to easily pay from the Home and Bill screens.", comment: "")
-    }
-
-    private(set) lazy var shouldShowInlinePaymentDivider: Driver<Bool> = Driver.combineLatest(self.inlineBank.asDriver(), self.inlineCard.asDriver())
-    { $0 || $1 }
-    
+        
     private(set) lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isCashOnly }
     
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
@@ -682,14 +322,9 @@ class PaymentViewModel {
         .map { !$0 && !$1 }
     
     private(set) lazy var shouldShowPaymentAccountView: Driver<Bool> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
-                                                                                            self.inlineBank.asDriver(),
-                                                                                            self.inlineCard.asDriver(),
                                                                                             self.wouldBeSelectedWalletItemIsExpired.asDriver())
     {
-        if $1 || $2 {
-            return false
-        }
-        if $3 {
+        if $1 {
             return true
         }
         return $0 != nil
@@ -722,12 +357,12 @@ class PaymentViewModel {
         }
     }
     
-    private(set) lazy var shouldShowCvvTextField: Driver<Bool> = Driver.combineLatest(self.cardWorkflow, self.inlineCard.asDriver(), self.allowEdits.asDriver())
+    private(set) lazy var shouldShowCvvTextField: Driver<Bool> = Driver.combineLatest(self.cardWorkflow, self.allowEdits.asDriver())
     {
-        if !$2 {
+        if !$1 {
             return false
         }
-        if Environment.shared.opco == .bge && $0 && !$1 {
+        if Environment.shared.opco == .bge && $0 {
             return true
         }
         return false
@@ -736,10 +371,8 @@ class PaymentViewModel {
     private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.count == 3 || $0.count == 4 }
     
     private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = Driver.combineLatest(self.hasWalletItems,
-                                                                                                self.inlineBank.asDriver(),
-                                                                                                self.inlineCard.asDriver(),
                                                                                                 self.allowEdits.asDriver())
-    { ($0 || $1 || $2) && $3 }
+    { $0 && $1 }
     
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         return Driver.combineLatest(bankWorkflow, cardWorkflow, accountDetail.asDriver(), paymentAmount.asDriver(), amountDue.asDriver())
@@ -914,113 +547,54 @@ class PaymentViewModel {
             return ""
     }
     
-    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver(), self.paymentId.asDriver())
-    { $0 || $1 || $2 || $3 != nil }
+    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.paymentId.asDriver())
+    { $0 || $1 != nil }
     
-    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.inlineBank.asDriver(), self.inlineCard.asDriver(), self.shouldShowContent)
-    { ($0 || $1 || $2) && $3 }
+    private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
+    { $0 && $1 }
     
-    private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = Driver
-        .combineLatest(selectedWalletItem.asDriver(), inlineBank.asDriver(), inlineCard.asDriver())
-        {
-            if $1 {
-                return #imageLiteral(resourceName: "opco_bank_mini")
-            } else if $2 {
-                return #imageLiteral(resourceName: "opco_credit_card_mini")
-            } else {
-                guard let walletItem: WalletItem = $0 else { return nil }
-                if walletItem.bankOrCard == .bank {
-                    return #imageLiteral(resourceName: "opco_bank_mini")
-                } else {
-                    return #imageLiteral(resourceName: "opco_credit_card_mini")
-                }
-            }
+    private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return nil }
+        if walletItem.bankOrCard == .bank {
+            return #imageLiteral(resourceName: "opco_bank_mini")
+        } else {
+            return #imageLiteral(resourceName: "opco_credit_card_mini")
+        }
     }
     
-    private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = Driver
-        .combineLatest(selectedWalletItem.asDriver(),
-                       inlineBank.asDriver(),
-                       addBankFormViewModel.accountNumber.asDriver(),
-                       inlineCard.asDriver(),
-                       addCardFormViewModel.cardNumber.asDriver())
-        {
-            if $1 && $2.count >= 4 {
-                return "**** \($2[$2.index($2.endIndex, offsetBy: -4)...])"
-            } else if $3 && $4.count >= 4 {
-                return "**** \($4[$4.index($4.endIndex, offsetBy: -4)...])"
-            } else {
-                guard let walletItem: WalletItem = $0 else { return "" }
-                return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
-            }
+    private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
+        guard let walletItem: WalletItem = $0 else { return "" }
+        return "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
     }
     
-    private(set) lazy var selectedWalletItemNickname: Driver<String?> = Driver
-        .combineLatest(selectedWalletItem.asDriver(),
-                       inlineBank.asDriver(),
-                       addBankFormViewModel.nickname.asDriver(),
-                       inlineCard.asDriver(),
-                       addCardFormViewModel.nickname.asDriver())
-        {
-            if $1 {
-                return $2
-            } else if $3 {
-                return $4
-            } else {
-                guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
-                return nickname
-            }
+    private(set) lazy var selectedWalletItemNickname: Driver<String?> = selectedWalletItem.asDriver().map {
+        guard let walletItem = $0, let nickname = walletItem.nickName else { return nil }
+        return nickname
     }
     
     private(set) lazy var showSelectedWalletItemNickname: Driver<Bool> = selectedWalletItemNickname.isNil().not()
     
-    private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = Driver
-        .combineLatest(selectedWalletItem.asDriver(),
-                       inlineBank.asDriver(),
-                       addBankFormViewModel.accountNumber.asDriver(),
-                       addBankFormViewModel.nickname.asDriver(),
-                       inlineCard.asDriver(),
-                       addCardFormViewModel.cardNumber.asDriver(),
-                       addCardFormViewModel.nickname.asDriver(),
-                       wouldBeSelectedWalletItemIsExpired.asDriver())
-        {
-            if $7 {
-                return NSLocalizedString("Select Payment Method", comment: "")
-            }
-            
-            var a11yLabel = ""
-            
-            if $1 {
-                a11yLabel = NSLocalizedString("Bank account", comment: "")
-                if !$3.isEmpty {
-                    a11yLabel += ", \($3)"
-                }
-                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($2.suffix(4)))
-            } else if $4 {
-                a11yLabel = NSLocalizedString("Credit card", comment: "")
-                if !$6.isEmpty {
-                    a11yLabel += ", \($6)"
-                }
-                a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), String($5.suffix(4)))
-            } else {
-                if let walletItem: WalletItem = $0 {
-                    if walletItem.bankOrCard == .bank {
-                        a11yLabel = NSLocalizedString("Bank account", comment: "")
-                    } else {
-                        a11yLabel = NSLocalizedString("Credit card", comment: "")
-                    }
-                    
-                    if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-                        a11yLabel += ", \(nicknameText)"
-                    }
-                    
-                    if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-                        a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
-                    }
-                }
-                
-            }
-            
-            return a11yLabel
+    private(set) lazy var selectedWalletItemA11yLabel: Driver<String> =
+        Driver.combineLatest(selectedWalletItem.asDriver(),
+                             wouldBeSelectedWalletItemIsExpired.asDriver()) {
+        guard let walletItem: WalletItem = $0 else { return "" }
+        if $1 {
+            return NSLocalizedString("Select Payment Method", comment: "")
+        }
+        
+        var a11yLabel = walletItem.bankOrCard == .bank ?
+            NSLocalizedString("Bank account", comment: "") :
+            NSLocalizedString("Credit card", comment: "")
+
+        if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
+            a11yLabel += ", \(nicknameText)"
+        }
+        
+        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
+            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
+        }
+        
+        return a11yLabel
     }
     
     var convenienceFee: Double {
@@ -1043,27 +617,21 @@ class PaymentViewModel {
     private(set) lazy var shouldShowAddBankAccount: Driver<Bool> = Driver
         .combineLatest(isCashOnlyUser,
                        hasWalletItems,
-                       inlineBank.asDriver(),
-                       inlineCard.asDriver(),
                        allowEdits.asDriver())
-        { !$0 && !$1 && !$2 && !$3 && $4 }
+        { !$0 && !$1 && $2 }
     
     private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = Driver
         .combineLatest(hasWalletItems,
-                       inlineBank.asDriver(),
-                       inlineCard.asDriver(),
                        allowEdits.asDriver())
-        { !$0 && !$1 && !$2 && $3 }
+        { !$0 && $1 }
     
     private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
         .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)
         { $0 || $1 }
     
-    private(set) lazy var walletFooterLabelText: Driver<String> = Driver
-        .combineLatest(hasWalletItems, inlineCard.asDriver(), inlineBank.asDriver())
-    {
+    private(set) lazy var walletFooterLabelText: Driver<String> = hasWalletItems.asDriver().map {
         if Environment.shared.opco == .bge {
-            if $0 || $2 {
+            if $0 {
                 return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
             } else {
                 return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
@@ -1076,23 +644,17 @@ class PaymentViewModel {
     private(set) lazy var isFixedPaymentDate: Driver<Bool> = Driver
         .combineLatest(accountDetail.asDriver(),
                        cardWorkflow,
-                       inlineCard.asDriver(),
-                       addBankFormViewModel.saveToWallet.asDriver(),
-                       addCardFormViewModel.saveToWallet.asDriver(),
                        allowEdits.asDriver())
-        { [weak self] (accountDetail, cardWorkflow, inlineCard, saveBank, saveCard, allowEdits) in
+        { [weak self] (accountDetail, cardWorkflow, allowEdits) in
             guard let self = self else { return false }
             return self.fixedPaymentDateLogic(accountDetail: accountDetail,
                                               cardWorkflow: cardWorkflow,
-                                          inlineCard: inlineCard,
-                                          saveBank: saveBank,
-                                          saveCard: saveCard,
-                                          allowEdits: allowEdits)
+                                              allowEdits: allowEdits)
     }
     
-    private func fixedPaymentDateLogic(accountDetail: AccountDetail, cardWorkflow: Bool, inlineCard: Bool, saveBank: Bool, saveCard: Bool, allowEdits: Bool) -> Bool {
+    private func fixedPaymentDateLogic(accountDetail: AccountDetail, cardWorkflow: Bool, allowEdits: Bool) -> Bool {
         if Environment.shared.opco == .bge {
-            if (inlineCard && !saveCard) || accountDetail.isActiveSeverance || !allowEdits {
+            if accountDetail.isActiveSeverance || !allowEdits {
                 return true
             }
         } else {
@@ -1107,7 +669,6 @@ class PaymentViewModel {
                 }
             }
         }
-        
         return false
     }
     

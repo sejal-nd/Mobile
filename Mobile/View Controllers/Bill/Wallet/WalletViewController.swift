@@ -214,47 +214,30 @@ class WalletViewController: UIViewController {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                if Environment.shared.opco == .bge {
-                    self.performSegue(withIdentifier: "addBankAccountSegue", sender: self)
-                } else {
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-                    paymentusVC.delegate = self
-                    paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }
+                let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+                paymentusVC.delegate = self
+                paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
+                self.navigationController?.pushViewController(paymentusVC, animated: true)
             }).disposed(by: disposeBag)
 
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                if Environment.shared.opco == .bge {
-                    self.performSegue(withIdentifier: "addCreditCardSegue", sender: self)
-                } else {
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-                    paymentusVC.delegate = self
-                    paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }
+                let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+                paymentusVC.delegate = self
+                paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
+                self.navigationController?.pushViewController(paymentusVC, animated: true)
             }).disposed(by: disposeBag)
     }
 
     @objc func onEditWalletItemPress(sender: UIButton) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
-            if Environment.shared.opco == .bge {
-                selectedWalletItem = walletItems[sender.tag]
-                if selectedWalletItem!.bankOrCard == .card {
-                    performSegue(withIdentifier: "editCreditCardSegue", sender: self)
-                } else {
-                    performSegue(withIdentifier: "editBankAccountSegue", sender: self)
-                }
-            } else { // Paymentus iFrame
-                selectedWalletItem = walletItems[sender.tag]
-                let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, temporary: false, walletItemId: selectedWalletItem!.walletItemID)
-                paymentusVC.delegate = self
-                paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
-                paymentusVC.editingDefaultItem = selectedWalletItem!.isDefault
-                self.navigationController?.pushViewController(paymentusVC, animated: true)
-            }
+            selectedWalletItem = walletItems[sender.tag]
+            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, temporary: false, walletItemId: selectedWalletItem!.walletItemID)
+            paymentusVC.delegate = self
+            paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
+            paymentusVC.editingDefaultItem = selectedWalletItem!.isDefault
+            self.navigationController?.pushViewController(paymentusVC, animated: true)
         }
     }
 
@@ -302,43 +285,6 @@ class WalletViewController: UIViewController {
                 })
             }))
             present(alertController, animated: true, completion: nil)
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        let oneTouchPayItem = viewModel.walletItems.value?.first(where: { $0.isDefault == true })
-
-        if let vc = segue.destination as? AddBankAccountViewController {
-            vc.accountDetail = viewModel.accountDetail
-            vc.oneTouchPayItem = oneTouchPayItem
-            if let walletItems = viewModel.walletItems.value {
-                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
-            }
-            vc.delegate = self
-            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
-            vc.shouldSetOneTouchPayByDefault = shouldSetOneTouchPayByDefault
-        } else if let vc = segue.destination as? AddCreditCardViewController {
-            vc.accountDetail = viewModel.accountDetail
-            vc.oneTouchPayItem = oneTouchPayItem
-            if let walletItems = viewModel.walletItems.value {
-                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
-            }
-            vc.delegate = self
-            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
-            vc.shouldSetOneTouchPayByDefault = shouldSetOneTouchPayByDefault
-        } else if let vc = segue.destination as? EditBankAccountViewController {
-            vc.viewModel.accountDetail = viewModel.accountDetail
-            vc.viewModel.walletItem = selectedWalletItem
-            vc.viewModel.oneTouchPayItem = oneTouchPayItem
-            vc.delegate = self
-            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
-        } else if let vc = segue.destination as? EditCreditCardViewController {
-            vc.viewModel.accountDetail = viewModel.accountDetail
-            vc.viewModel.walletItem = selectedWalletItem
-            vc.viewModel.oneTouchPayItem = oneTouchPayItem
-            vc.delegate = self
-            vc.shouldPopToRootOnSave = shouldPopToRootOnSave
         }
     }
 
@@ -405,39 +351,6 @@ extension WalletViewController: UITableViewDataSource {
         cell.oneTouchPayView.isHidden = !walletItem.isDefault
 
         return cell
-    }
-
-}
-
-extension WalletViewController: AddBankAccountViewControllerDelegate {
-
-    func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
-        didChangeAccount(toastMessage: NSLocalizedString("Bank account added", comment: ""))
-        Analytics.log(event: .addWalletComplete)
-    }
-
-}
-
-extension WalletViewController: EditBankAccountViewControllerDelegate {
-
-    func editBankAccountViewControllerDidEditAccount(_ editBankAccountViewController: EditBankAccountViewController, message: String) {
-        didChangeAccount(toastMessage: message)
-    }
-
-}
-
-extension WalletViewController: AddCreditCardViewControllerDelegate {
-
-    func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
-        didChangeAccount(toastMessage: NSLocalizedString("Card added", comment: ""))
-        Analytics.log(event: .addWalletComplete)
-    }
-}
-
-extension WalletViewController: EditCreditCardViewControllerDelegate {
-
-    func editCreditCardViewControllerDidEditAccount(_ editCreditCardViewController: EditCreditCardViewController, message: String) {
-        didChangeAccount(toastMessage: message)
     }
 
 }

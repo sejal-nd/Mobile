@@ -807,12 +807,7 @@ class HomeBillCardViewModel {
     }
     
     var paymentTACUrl: URL {
-        switch Environment.shared.opco {
-        case .bge:
-            return URL(string: "https://www.speedpay.com/terms/")!
-        case .comEd, .peco:
-            return URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
-        }
+        return URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
     }
     
     var errorPhoneNumber: String {

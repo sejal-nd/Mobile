@@ -348,8 +348,7 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func onTermsConditionsPress() {
-        let url = Environment.shared.opco == .bge ? URL(string: "https://www.speedpay.com/terms/")! :
-            URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
+        let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }

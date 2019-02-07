@@ -47,26 +47,6 @@ struct MockWalletService: WalletService {
         return .error(ServiceError(serviceCode: ""))
     }
     
-    func addBankAccount(_ bankAccount : BankAccount,
-                        forCustomerNumber: String) -> Observable<WalletItemResult> {
-        if forCustomerNumber == "13" { // Simulate duplicate payment
-            return .error(ServiceError(serviceCode: ServiceErrorCode.dupPaymentAccount.rawValue))
-        } else {
-            let walletResult = WalletItemResult(responseCode: 1, statusMessage: "pretty good", walletItemId: "123")
-            return .just(walletResult)
-        }
-    }
-    
-    func addCreditCard(_ creditCard: CreditCard,
-                       forCustomerNumber: String) -> Observable<WalletItemResult> {
-        if forCustomerNumber == "13" { // Simulate duplicate payment
-            return .error(ServiceError(serviceCode: ServiceErrorCode.dupPaymentAccount.rawValue))
-        } else {
-            let walletResult = WalletItemResult(responseCode: 1, statusMessage: "pretty good", walletItemId: "123")
-            return .just(walletResult)
-        }
-    }
-    
     func addWalletItemMCS(_ walletItem: WalletItem) {
         // Do nothing - we never handle for the response of this
     }
@@ -75,29 +55,10 @@ struct MockWalletService: WalletService {
         // Do nothing - we never handle for the response of this
     }
 
-    func updateCreditCard(walletItemID: String,
-                          customerNumber: String,
-                          expirationMonth: String,
-                          expirationYear: String,
-                          securityCode: String,
-                          postalCode: String) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: ""))
-    }
-
     func deletePaymentMethod(walletItem : WalletItem) -> Observable<Void> {
         return Observable.just(()).delay(1, scheduler: MainScheduler.instance)
     }
 
-    func setOneTouchPayItem(walletItemId: String,
-                            walletId: String?,
-                            customerId: String) -> Observable<Void> {
-        return .just(())
-    }
-    
-    func removeOneTouchPayItem(customerId: String) -> Observable<Void> {
-        return .just(())
-    }
-    
     func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, temporary: Bool, walletItemId: String? = nil) -> Observable<String> {
         return .just("")
     }
