@@ -72,9 +72,9 @@ class WalletViewModelTests: XCTestCase {
         let expectedStr: String
         switch Environment.shared.opco {
         case .bge:
-            expectedStr = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.  Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
+            expectedStr = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
         case .comEd, .peco:
-            expectedStr = NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.  Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
+            expectedStr = NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
         }
         XCTAssert(viewModel.footerLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.footerLabelText)\"")
     }
