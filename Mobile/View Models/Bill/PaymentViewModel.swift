@@ -423,7 +423,6 @@ class PaymentViewModel {
     }()
     
     private(set) lazy var shouldShowSelectPaymentAmount: Driver<Bool> = self.selectedWalletItem.asDriver().map { [weak self] in
-        guard Environment.shared.opco != .bge else { return false } //TODO: Remove when BGE gets paymentus
         guard let self = self else { return false }
         guard let bankOrCard = $0?.bankOrCard else { return false }
         
@@ -451,10 +450,7 @@ class PaymentViewModel {
      
      In these cases we don't give the user multiple payment amount options, just the text field.
     */
-    lazy var paymentAmounts: [(Double?, String)] = {
-        //TODO: Remove when BGE gets paymentus
-        guard Environment.shared.opco != .bge else { return [] }
-        
+    lazy var paymentAmounts: [(Double?, String)] = {        
         let billingInfo = accountDetail.value.billingInfo
         
         guard let netDueAmount = billingInfo.netDueAmount,
