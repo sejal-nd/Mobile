@@ -90,6 +90,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var genericErrorView: UIView!
     @IBOutlet weak var genericErrorLabel: UILabel!
+    @IBOutlet weak var accountDisallowView: UIView!
     
     private let cornerRadius: CGFloat = 4.0
     
@@ -276,6 +277,14 @@ class BillViewController: AccountPickerViewController {
         errorView.isHidden = false
         bottomStackContainerView.isHidden = true
         maintenanceModeView.isHidden = true
+        
+        if error?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+            genericErrorView.isHidden = true
+            accountDisallowView.isHidden = false
+        } else {
+            genericErrorView.isHidden = false
+            accountDisallowView.isHidden = true
+        }
         
         enableRefresh()
     }

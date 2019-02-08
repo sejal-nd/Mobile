@@ -12,6 +12,9 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Advanced Account Picker Scene-->
@@ -482,11 +485,45 @@
                                                 </constraints>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL0-H1-J9Q">
-                                                <rect key="frame" x="146" y="455.5" width="83.5" height="20.5"/>
+                                                <rect key="frame" x="29" y="455.5" width="317" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="782-tw-fFD"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mp-H2-KBj">
+                                                <rect key="frame" x="0.0" y="337" width="375" height="244.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="T01-wC-F6N">
+                                                        <rect key="frame" x="125" y="0.0" width="125" height="126"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFu-V4-SGd">
+                                                        <rect key="frame" x="110.5" y="160" width="154.5" height="25"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
+                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra8-i7-Ddl">
+                                                        <rect key="frame" x="29" y="187" width="317" height="57.5"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="ra8-i7-Ddl" firstAttribute="leading" secondItem="2Mp-H2-KBj" secondAttribute="leading" constant="29" id="UXA-i4-iJw"/>
+                                                    <constraint firstItem="ra8-i7-Ddl" firstAttribute="top" secondItem="nFu-V4-SGd" secondAttribute="bottom" constant="2" id="cAQ-wk-XiN"/>
+                                                    <constraint firstItem="T01-wC-F6N" firstAttribute="centerX" secondItem="2Mp-H2-KBj" secondAttribute="centerX" id="cB9-cF-DTb"/>
+                                                    <constraint firstItem="T01-wC-F6N" firstAttribute="top" secondItem="2Mp-H2-KBj" secondAttribute="top" id="dvg-vx-dxf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ra8-i7-Ddl" secondAttribute="bottom" id="gW0-Oe-Wqk"/>
+                                                    <constraint firstItem="nFu-V4-SGd" firstAttribute="centerX" secondItem="2Mp-H2-KBj" secondAttribute="centerX" id="jSe-dA-Vu8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ra8-i7-Ddl" secondAttribute="trailing" constant="29" id="kwW-Ph-WcE"/>
+                                                    <constraint firstItem="nFu-V4-SGd" firstAttribute="top" secondItem="T01-wC-F6N" secondAttribute="bottom" constant="34" id="nIx-Hl-9QH"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="tWZ-cz-8Bf"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -494,9 +531,9 @@
                                             <constraint firstItem="FN2-AG-tRU" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="2vO-Zj-K8m"/>
                                             <constraint firstAttribute="bottom" secondItem="NzH-9I-b9u" secondAttribute="bottom" id="6LF-5K-16F"/>
                                             <constraint firstItem="H0L-QG-hAo" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="71k-D6-8tq"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lL0-H1-J9Q" secondAttribute="trailing" constant="29" id="7Fw-pZ-4rP"/>
+                                            <constraint firstAttribute="trailing" secondItem="lL0-H1-J9Q" secondAttribute="trailing" priority="999" constant="29" id="7Fw-pZ-4rP"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" id="C9H-TB-fPo"/>
-                                            <constraint firstItem="lL0-H1-J9Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4LE-Ih-Txu" secondAttribute="leading" constant="29" id="GRK-en-gko"/>
+                                            <constraint firstItem="lL0-H1-J9Q" firstAttribute="leading" secondItem="4LE-Ih-Txu" secondAttribute="leading" priority="999" constant="29" id="GRK-en-gko"/>
                                             <constraint firstAttribute="trailing" secondItem="H0L-QG-hAo" secondAttribute="trailing" priority="999" id="I2D-Oy-CUP"/>
                                             <constraint firstAttribute="trailing" secondItem="FN2-AG-tRU" secondAttribute="trailing" id="LrU-ih-gyC"/>
                                             <constraint firstItem="0lx-Wl-bvy" firstAttribute="centerX" secondItem="4LE-Ih-Txu" secondAttribute="centerX" id="LwI-um-wff"/>
@@ -515,13 +552,17 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="2Mp-H2-KBj" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" constant="-6.5" id="9zl-4D-8y9"/>
                                     <constraint firstItem="lL0-H1-J9Q" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="EEz-Ld-jI2"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="leading" secondItem="qSc-mq-7Vd" secondAttribute="leading" id="GaG-cN-W3a"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="JTc-xg-NWS"/>
+                                    <constraint firstItem="2Mp-H2-KBj" firstAttribute="leading" secondItem="qSc-mq-7Vd" secondAttribute="leading" priority="999" id="Mz8-Gg-S1J"/>
                                     <constraint firstAttribute="bottom" secondItem="4LE-Ih-Txu" secondAttribute="bottom" id="Qxc-Q6-KYP"/>
                                     <constraint firstItem="lL0-H1-J9Q" firstAttribute="centerY" secondItem="qSc-mq-7Vd" secondAttribute="centerY" id="WlI-FY-Qjx"/>
+                                    <constraint firstItem="2Mp-H2-KBj" firstAttribute="centerX" secondItem="qSc-mq-7Vd" secondAttribute="centerX" id="Y7O-fC-SaQ"/>
                                     <constraint firstItem="4LE-Ih-Txu" firstAttribute="top" secondItem="qSc-mq-7Vd" secondAttribute="top" id="Zdg-5w-9y3"/>
                                     <constraint firstAttribute="trailing" secondItem="4LE-Ih-Txu" secondAttribute="trailing" id="mIU-TM-htn"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Mp-H2-KBj" secondAttribute="trailing" priority="999" id="t7P-Cd-ibe"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ZA-lk-6E2" customClass="MaintenanceModeView" customModule="BGE" customModuleProvider="target">
@@ -565,6 +606,7 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="accountContentView" destination="0lx-Wl-bvy" id="XUH-hT-UpN"/>
+                        <outlet property="accountDisallowView" destination="2Mp-H2-KBj" id="8co-eC-0FR"/>
                         <outlet property="accountPicker" destination="FN2-AG-tRU" id="ZSm-UC-wdN"/>
                         <outlet property="backgroundScrollConstraint" destination="cBH-ug-cqL" id="urv-Cs-dDK"/>
                         <outlet property="errorLabel" destination="lL0-H1-J9Q" id="uZU-GT-HuL"/>
@@ -1083,6 +1125,7 @@
         <image name="gasonly_graphic" width="125" height="126"/>
         <image name="ic_check_meterping" width="18" height="14"/>
         <image name="ic_graycircle" width="30" height="30"/>
+        <image name="ic_lock_opco" width="125" height="126"/>
         <image name="ic_nooutage" width="125" height="126"/>
         <image name="icon_slash_check" width="20" height="20"/>
     </resources>

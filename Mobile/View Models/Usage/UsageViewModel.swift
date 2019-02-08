@@ -124,6 +124,7 @@ class UsageViewModel {
     // MARK: - Main States
     
     private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
+                                                                     showAccountDisallowState,
                                                                      showNoNetworkState,
                                                                      showMaintenanceModeState,
                                                                      showBillComparisonContents,
@@ -133,6 +134,14 @@ class UsageViewModel {
     private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
         .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
+        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    
+    private(set) lazy var showAccountDisallowState: Driver<Void> = accountDetailEvents
+        .filter { $0.error != nil }
+        .filter { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     

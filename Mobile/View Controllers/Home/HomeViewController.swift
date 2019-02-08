@@ -22,6 +22,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var accountDisallowView: UIView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var mainStackView: UIStackView!
@@ -192,11 +193,11 @@ class HomeViewController: AccountPickerViewController {
         viewModel.importantUpdate
             .filter { $0 == nil }
             .drive(onNext: { [weak self] _ in
-                guard let this = self else { return }
-                this.weatherView.isHidden = false
-                this.topPersonalizeButton?.isHidden = false
-                this.importantUpdateView?.removeFromSuperview()
-                this.importantUpdateView = nil
+                guard let self = self else { return }
+                self.weatherView.isHidden = false
+                self.topPersonalizeButton?.isHidden = false
+                self.importantUpdateView?.removeFromSuperview()
+                self.importantUpdateView = nil
             })
             .disposed(by: bag)
         
@@ -205,15 +206,15 @@ class HomeViewController: AccountPickerViewController {
         viewModel.importantUpdate
             .filter { $0 != nil }
             .drive(onNext: { [weak self] update in
-                guard let this = self, let update = update else { return }
-                this.weatherView.isHidden = true
-                this.topPersonalizeButton?.isHidden = true
+                guard let self = self, let update = update else { return }
+                self.weatherView.isHidden = true
+                self.topPersonalizeButton?.isHidden = true
                 
-                if let importantUpdateView = this.importantUpdateView {
+                if let importantUpdateView = self.importantUpdateView {
                     importantUpdateView.configure(withUpdate: update)
                 } else {
                     let importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                    this.mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
+                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
                     importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
@@ -221,7 +222,7 @@ class HomeViewController: AccountPickerViewController {
                         })
                         .disposed(by: importantUpdateView.disposeBag)
                     
-                    this.importantUpdateView = importantUpdateView
+                    self.importantUpdateView = importantUpdateView
                 }
             })
             .disposed(by: bag)
@@ -581,8 +582,19 @@ class HomeViewController: AccountPickerViewController {
         viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         
         Driver.combineLatest(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
-        { $0 || $1 }
+            { $0 || $1 }
             .drive(scrollView!.rx.isHidden).disposed(by: bag)
+        
+        /* Unlike the no network view, we can't simply hide the entire scrollView for FN-ACCT-DISALLOW
+         * (because multi-account users need to be able to switch accounts). This creates some weirdness
+         * because weatherView and importantUpdateView live outside of the scrollView, but this driver
+         * handles all of that. */
+        Driver.combineLatest(viewModel.showAccountDisallowState, viewModel.importantUpdate).drive(onNext: { [weak self] (showAcctDisallow, update) in
+            self?.accountDisallowView.isHidden = !showAcctDisallow
+            self?.contentStackView.isHidden = showAcctDisallow
+            self?.weatherView.isHidden = showAcctDisallow || update != nil
+            self?.importantUpdateView?.isHidden = showAcctDisallow
+        }).disposed(by:bag)
         
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
             .mapTo(FetchingAccountState.switchAccount)
