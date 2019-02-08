@@ -190,8 +190,19 @@ class HomeViewModel {
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> =  Driver
+    private lazy var accountDetailAccountDisallow: Observable<Bool> = accountDetailEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
+    
+    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = Driver
         .combineLatest(accountDetailNoNetworkConnection.asDriver(onErrorDriveWith: .empty()),
+                       showMaintenanceModeState,
+                       accountDetailTracker.asDriver())
+        { $0 && !$1 && !$2 }
+        .startWith(false)
+        .distinctUntilChanged()
+    
+    private(set) lazy var showAccountDisallowState: Driver<Bool> = Driver
+        .combineLatest(accountDetailAccountDisallow.asDriver(onErrorDriveWith: .empty()),
                        showMaintenanceModeState,
                        accountDetailTracker.asDriver())
         { $0 && !$1 && !$2 }
@@ -214,6 +225,7 @@ class HomeViewModel {
                 .catchError { _ in .just(nil) }
         }
         .elements()
+        .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var appointmentEvents = accountDetailEvents
