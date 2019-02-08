@@ -349,7 +349,7 @@ class PaymentViewModelTests: XCTestCase {
         // BGE commercial user test - VISA cards should be ignored
         if Environment.shared.opco == .bge {
             viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-            viewModel.walletItems.value = [WalletItem(cardIssuer: "Visa", bankOrCard: .card)]
+            viewModel.walletItems.value = [WalletItem(paymentMethodType: .visa, bankOrCard: .card)]
             viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
                 XCTAssertFalse(hasWalletItems, "hasWalletItems should be false for a BGE commercial user with only Visa cards")
             }).disposed(by: disposeBag)

@@ -41,10 +41,7 @@ class MCSWalletService: WalletService {
                         case (.bank, .bank):
                             fallthrough
                         case (.card, .card):
-                            guard let aCreated = a.dateCreated, let bCreated = b.dateCreated else {
-                                return true
-                            }
-                            return aCreated >= bCreated
+                            return true
                         }
                 }
                 

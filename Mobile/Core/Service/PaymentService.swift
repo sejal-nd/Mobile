@@ -45,13 +45,13 @@ protocol PaymentService {
     /// - Parameters:
     ///   - accountNumber: The account to enroll
     ///   - nameOfAccount: The name on the bank account
-    ///   - bankAccountType: Checking/Saving
+    ///   - bankAccountType: "checking" or "saving"
     ///   - routingNumber: The routing number of the bank account
     ///   - bankAccountNumber: The account number for the bank account
     ///   - isUpdate: Denotes whether the account is a change, or new
     func enrollInAutoPay(accountNumber: String,
                          nameOfAccount: String,
-                         bankAccountType: BankAccountType,
+                         bankAccountType: String,
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void>

@@ -110,30 +110,8 @@ class WalletTableViewCell: UITableViewCell {
             }
         }
         
-        // Nickname
-        if let nickname = walletItem.nickName {
-            nicknameLabel.text = nickname.uppercased()
-            if Environment.shared.opco == .bge {
-                if walletItem.bankOrCard == .bank {
-                    if let bankAccountType = walletItem.bankAccountType {
-                        if bankAccountType.rawValue.uppercased() == "SAVING"{
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, SAVINGS", nickname),comment: "")
-                        } else {
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, CHECKING", nickname),comment: "")
-                        }
-                    }
-                }
-            }
-        } else {
-            nicknameLabel.text = ""
-            if Environment.shared.opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = bankAccountType.rawValue.uppercased()
-                }
-            }
-        }
-        
-        if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
+        nicknameLabel.text = walletItem.nickName?.uppercased()
+        if let nicknameText = nicknameLabel.text {
             a11yLabel += ", \(nicknameText)"
         }
         

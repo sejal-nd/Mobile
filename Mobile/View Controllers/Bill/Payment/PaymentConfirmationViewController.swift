@@ -114,8 +114,7 @@ class PaymentConfirmationViewController: UIViewController {
         viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).disposed(by: disposeBag)
         
         // Confirmation Number
-        //TODO: remove the opco check when BGE moves to paymentus
-        if let confirmationNumber = viewModel.confirmationNumber, Environment.shared.opco != .bge {
+        if let confirmationNumber = viewModel.confirmationNumber {
             confirmationNumberValueLabel.text = confirmationNumber
             confirmationNumberDivider.isHidden = false
             confirmationNumberView.isHidden = false

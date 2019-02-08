@@ -9,6 +9,11 @@
 import Foundation
 import Mapper
 
+enum PaymentType: String {
+    case check = "Check"
+    case credit = "Card"
+}
+
 struct Payment {
     let accountNumber: String
     let existingAccount: Bool

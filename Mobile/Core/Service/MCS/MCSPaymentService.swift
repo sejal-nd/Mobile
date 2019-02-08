@@ -74,7 +74,7 @@ class MCSPaymentService: PaymentService {
 
     func enrollInAutoPay(accountNumber: String,
                          nameOfAccount: String,
-                         bankAccountType: BankAccountType,
+                         bankAccountType: String,
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void> {
@@ -84,7 +84,7 @@ class MCSPaymentService: PaymentService {
         let params: [String: Any] = [
             "bank_details": [
                 "name_on_account": nameOfAccount,
-                "bank_account_type": bankAccountType.rawValue,
+                "bank_account_type": bankAccountType,
                 "routing_number": routingNumber,
                 "bank_name": "N/A",
                 "bank_account_number": bankAccountNumber,

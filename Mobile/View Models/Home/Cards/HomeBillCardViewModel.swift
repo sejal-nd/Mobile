@@ -362,17 +362,17 @@ class HomeBillCardViewModel {
                        walletItemDriver)
         { enableOneTouchSlider, showOneTouchPaySlider, accountDetail, walletItem in
             guard let walletItem = walletItem else { return false }
-        guard showOneTouchPaySlider && !enableOneTouchSlider else { return false }
-        guard Environment.shared.opco == .bge else { return false }
-        
-        // Min/Max payment amount state takes precedence
-        guard accountDetail.billingInfo.netDueAmount >= accountDetail.minPaymentAmount(bankOrCard: .card) else { return false }
-        guard accountDetail.billingInfo.netDueAmount <= accountDetail.maxPaymentAmount(bankOrCard: .card) else { return false }
-        
-        guard walletItem.cardIssuer == "Visa" else { return false }
-        guard !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly else { return false }
-        
-        return true
+            guard showOneTouchPaySlider && !enableOneTouchSlider else { return false }
+            guard Environment.shared.opco == .bge else { return false }
+            
+            // Min/Max payment amount state takes precedence
+            guard accountDetail.billingInfo.netDueAmount >= accountDetail.minPaymentAmount(bankOrCard: .card) else { return false }
+            guard accountDetail.billingInfo.netDueAmount <= accountDetail.maxPaymentAmount(bankOrCard: .card) else { return false }
+            
+            guard walletItem.paymentMethodType == .visa else { return false }
+            guard !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly else { return false }
+            
+            return true
         }
         .distinctUntilChanged()
     
@@ -713,7 +713,11 @@ class HomeBillCardViewModel {
                 return false
             }
             
-            if walletItem.cardIssuer == "Visa", Environment.shared.opco == .bge, !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly {
+            if Environment.shared.opco == .bge &&
+                walletItem.paymentMethodType == .visa &&
+                !accountDetail.isResidential &&
+                !accountDetail.isActiveSeverance &&
+                !accountDetail.isCashOnly {
                 return false
             }
             

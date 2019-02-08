@@ -33,7 +33,7 @@ class MockPaymentService: PaymentService {
     
     func enrollInAutoPay(accountNumber: String,
                          nameOfAccount: String,
-                         bankAccountType: BankAccountType,
+                         bankAccountType: String,
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void> {

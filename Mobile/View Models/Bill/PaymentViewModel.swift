@@ -137,14 +137,14 @@ class PaymentViewModel {
                                 if let otpItem = self.oneTouchPayItem {
                                     if otpItem.bankOrCard == .bank {
                                         self.selectedWalletItem.value = otpItem
-                                    } else if let cardIssuer = otpItem.cardIssuer, cardIssuer != "Visa" {
+                                    } else if otpItem.paymentMethodType != .visa {
                                         self.selectedWalletItem.value = otpItem
                                     }
                                 } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
                                     for item in walletItems {
                                         if item.bankOrCard == .bank {
                                             self.selectedWalletItem.value = item
-                                        } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                                        } else if item.paymentMethodType != .visa {
                                             self.selectedWalletItem.value = item
                                             break
                                         }
@@ -344,7 +344,7 @@ class PaymentViewModel {
             for item in walletItems {
                 if item.bankOrCard == .bank {
                     return true
-                } else if let cardIssuer = item.cardIssuer, cardIssuer != "Visa" {
+                } else if item.paymentMethodType != .visa {
                     return true
                 }
             }

@@ -22,7 +22,7 @@ class AutoPayViewModel {
     
     let accountDetail: AccountDetail
     
-    let bankAccountType = Variable<BankAccountType>(.checking)
+    let checkingSavingsSegmentedControlIndex = Variable(0)
     let nameOnAccount = Variable("")
     let routingNumber = Variable("")
     let accountNumber = Variable("")
@@ -44,12 +44,13 @@ class AutoPayViewModel {
     }
     
     func submit() -> Observable<Bool> {
+        let bankAccountType = checkingSavingsSegmentedControlIndex.value == 0 ? "checking" : "saving"
         switch enrollmentStatus.value {
         case .enrolling:
             Analytics.log(event: .autoPayEnrollSubmit)
             return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
                                                   nameOfAccount: nameOnAccount.value,
-                                                  bankAccountType: bankAccountType.value,
+                                                  bankAccountType: bankAccountType,
                                                   routingNumber: routingNumber.value,
                                                   bankAccountNumber: accountNumber.value,
                                                   isUpdate: false).map { _ in true }
@@ -60,7 +61,7 @@ class AutoPayViewModel {
         case .isEnrolled:
             return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
                                                   nameOfAccount: nameOnAccount.value,
-                                                  bankAccountType: bankAccountType.value,
+                                                  bankAccountType: bankAccountType,
                                                   routingNumber: routingNumber.value,
                                                   bankAccountNumber: accountNumber.value,
                                                   isUpdate: true).map { _ in true }
