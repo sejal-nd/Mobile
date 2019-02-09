@@ -14,7 +14,7 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "scheduledPayment")
         selectTab(tabName: "Bill")
 
-        let buttonText = "Thank you for scheduling your $82.00 payment for \(dateString(from: .now))"
+        let buttonText = "Thank you for scheduling your $82.00 payment for 01/11/2019"
         checkExistenceOfElement(.button, buttonText)
     }
     
@@ -22,7 +22,7 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "thankYouForPayment")
         selectTab(tabName: "Bill")
 
-        let buttonText = "Thank you for $200.00 payment on \(dateString(from: .now))"
+        let buttonText = "Thank you for $200.00 payment on 01/01/2019"
         checkExistenceOfElement(.button, buttonText)
     }
     

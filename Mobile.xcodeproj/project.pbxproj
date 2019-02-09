@@ -187,9 +187,6 @@
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		315FF3E02BAB0CC702262FE6 /* Pods_BGEApp_BGEUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */; };
-		351560CA210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		351560CB210F61F2008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		351560CC210F61F3008C24F1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
 		35277AFA2102325000411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFB2102325100411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
@@ -1011,9 +1008,6 @@
 		B04DDF5E21FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
 		B04DDF5F21FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
 		B04DDF6021FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
-		B04DDF6121FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
-		B04DDF6221FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
-		B04DDF6321FA800C00594ACF /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
 		B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
 		B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
 		B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF7421FFB0A700594ACF /* MockUser.swift */; };
@@ -7026,7 +7020,6 @@
 				B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8720DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A6200D014000883CEA /* MoreUITests.swift in Sources */,
-				B04DDF6121FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F353B6200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B5E20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				0EF60FC620EE78F7006ABC18 /* GSTouchesShowingController.swift in Sources */,
@@ -7035,7 +7028,6 @@
 				9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */,
 				82DFBEFD200FC5C100CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539E200943E100883CEA /* UserDefaultKeys.swift in Sources */,
-				351560CA210F61F2008C24F1 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8454,7 +8446,6 @@
 				B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8820DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A7200D014000883CEA /* MoreUITests.swift in Sources */,
-				B04DDF6221FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F353B7200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				0EF60FC720EE78F7006ABC18 /* GSTouchesShowingController.swift in Sources */,
@@ -8463,7 +8454,6 @@
 				9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */,
 				82DFBEFE200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F3539F200943E100883CEA /* UserDefaultKeys.swift in Sources */,
-				351560CB210F61F2008C24F1 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8477,7 +8467,6 @@
 				B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */,
 				0E863D8920DD4992004D77EC /* TestHelper.swift in Sources */,
 				E8F353A8200D014000883CEA /* MoreUITests.swift in Sources */,
-				B04DDF6321FA800C00594ACF /* Date+Now.swift in Sources */,
 				E8F353B8200D19E100883CEA /* UITestExtensions.swift in Sources */,
 				E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */,
 				0EF60FC820EE78F7006ABC18 /* GSTouchesShowingController.swift in Sources */,
@@ -8486,7 +8475,6 @@
 				9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */,
 				82DFBEFF200FC5C200CC6A5F /* OutageUITests.swift in Sources */,
 				E8F353A0200943E200883CEA /* UserDefaultKeys.swift in Sources */,
-				351560CC210F61F3008C24F1 /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

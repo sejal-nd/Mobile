@@ -67,9 +67,7 @@ class PaymentUITests: ExelonUITestCase {
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
-        let dateText = dateString(from: .now)
-
-        tapButton(buttonText: dateText)
+        tapButton(buttonText: "01/01/2019")
         checkExistenceOfElement(.navigationBar, "Select Payment Date")
         tapButton(buttonText: "Back")
     }
@@ -137,7 +135,7 @@ class PaymentUITests: ExelonUITestCase {
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
 
-        tapButton(buttonText: dateString(from: .now))
+        tapButton(buttonText: "01/01/2019")
         XCTAssertTrue(app.navigationBars["Select Payment Date"].waitForExistence(timeout: 2))
     }
     
@@ -185,7 +183,7 @@ class PaymentUITests: ExelonUITestCase {
             ])
         tapButton(buttonText: "Close")
         
-        tapButton(buttonText: dateString(from: .now))
+        tapButton(buttonText: "01/01/2019")
         checkExistenceOfElement(.navigationBar, "Select Payment Date")
     }
     
@@ -254,9 +252,7 @@ class PaymentUITests: ExelonUITestCase {
         sleep(1) // Button becomes enabled asynchronously
         XCTAssertTrue(nextButton.isEnabled)
         nextButton.tap()
-
-        let dateText = dateString(from: .now)
-
+        
         XCTAssertTrue(app.scrollViews.otherElements["Bank account, Test Nickname, Account number ending in, 1234"].exists)
 
         checkExistenceOfElements([
@@ -268,7 +264,7 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "Payment Date"),
             (.staticText, "Total Payment"),
             (.staticText, "$200.00"),
-            (.staticText, dateText)
+            (.staticText, "01/01/2019")
         ])
         
         let submitButton = app.navigationBars.buttons["Submit"]
@@ -300,7 +296,7 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, thankyouText),
             (.staticText, "Payment Confirmation"),
             (.staticText, "Payment Date"),
-            (.staticText, dateText),
+            (.staticText, "01/01/2019"),
             (.staticText, "Amount Paid"),
             (.staticText, "$200.00"),
         ])
@@ -332,7 +328,7 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "Overpaying"),
             (.staticText, "$100.00"),
             (.staticText, "Payment Date"),
-            (.staticText, dateString(from: .now)),
+            (.staticText, "01/01/2019"),
             (.staticText, "Payment Amount"),
             (.staticText, "$300.00"),
         ])
