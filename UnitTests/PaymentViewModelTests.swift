@@ -90,41 +90,6 @@ class PaymentViewModelTests: XCTestCase {
         }
     }
     
-    func testFetchDataBGECommercial() {
-        if Environment.shared.opco == .bge { // BGE only test
-            let accountDetail = AccountDetail(isResidential: false)
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-            
-            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234"])
-            let expect1 = expectation(description: "async")
-            viewModel.fetchData(onSuccess: {
-                XCTAssertNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be nil because OTP item is Visa card")
-                expect1.fulfill()
-            }, onError: {
-                XCTFail("unexpected error response")
-            })
-
-            waitForExpectations(timeout: 3) { err in
-                XCTAssertNil(err, "timeout")
-            }
-            
-            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
-            viewModel.selectedWalletItem.value = nil // Reset
-            let expect2 = expectation(description: "async")
-            viewModel.fetchData(onSuccess: {
-                XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be defaulted to the first non-Visa item")
-                XCTAssert(self.viewModel.selectedWalletItem.value!.nickName == "Test Nickname 2")
-                expect2.fulfill()
-            }, onError: {
-                XCTFail("unexpected error response")
-            })
-            
-            waitForExpectations(timeout: 3) { err in
-                XCTAssertNil(err, "timeout")
-            }
-        }
-    }
-    
     func testFetchDataCashOnly() {
         let accountDetail = AccountDetail(isCashOnly: true, isResidential: true)
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
@@ -276,26 +241,10 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertFalse(enabled, "Next button should not be enabled initially")
         }).disposed(by: disposeBag)
         
-        if Environment.shared.opco == .bge {
-            // Card
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.cvv.value = "123"
-            viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
-                XCTAssert(enabled, "Next button should be enabled for this test case")
-            }).disposed(by: disposeBag)
-            
-            // Bank
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-            viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
-                XCTAssert(enabled, "Next button should be enabled for this test case")
-            }).disposed(by: disposeBag)
-        } else {
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-            viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
-                XCTAssert(enabled, "Next button should be enabled for this test case")
-            }).disposed(by: disposeBag)
-        }
-        
+        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
+        viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
+            XCTAssert(enabled, "Next button should be enabled for this test case")
+        }).disposed(by: disposeBag)
     }
     
     func testShouldShowNextButton() {
@@ -346,20 +295,6 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssert(hasWalletItems, "hasWalletItems should be true for a cash only user with a credit card")
         }).disposed(by: disposeBag)
         
-        // BGE commercial user test - VISA cards should be ignored
-        if Environment.shared.opco == .bge {
-            viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-            viewModel.walletItems.value = [WalletItem(paymentMethodType: .visa, bankOrCard: .card)]
-            viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
-                XCTAssertFalse(hasWalletItems, "hasWalletItems should be false for a BGE commercial user with only Visa cards")
-            }).disposed(by: disposeBag)
-            
-            viewModel.walletItems.value!.append(WalletItem(bankOrCard: .bank))
-            viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
-                XCTAssert(hasWalletItems, "hasWalletItems should be true for a BGE commercial user with a bank account")
-            }).disposed(by: disposeBag)
-        }
-        
         // Normal test case
         viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
         viewModel.walletItems.value = []
@@ -369,42 +304,6 @@ class PaymentViewModelTests: XCTestCase {
         viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card)]
         viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
             XCTAssert(hasWalletItems, "hasWalletItems should be true for a normal scenario with wallet items")
-        }).disposed(by: disposeBag)
-    }
-    
-    func testShouldShowCvvTextField() {
-        if Environment.shared.opco == .bge {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-        
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.shouldShowCvvTextField.asObservable().take(1).subscribe(onNext: { shouldShow in
-                XCTAssert(shouldShow, "shouldShowCvvTextField should be true for a BGE user who selected a wallet item and who is not modifying a payment")
-            }).disposed(by: disposeBag)
-        }
-    }
-    
-    func testCvvIsCorrectLength() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-        
-        viewModel.cvvIsCorrectLength.asObservable().take(1).subscribe(onNext: { correct in
-            XCTAssertFalse(correct, "cvvIsCorrectLength should be false initially")
-        }).disposed(by: disposeBag)
-        
-        viewModel.cvv.value = "123"
-        viewModel.cvvIsCorrectLength.asObservable().take(1).subscribe(onNext: { correct in
-            XCTAssert(correct, "cvvIsCorrectLength should be true for CVV \"123\"")
-        }).disposed(by: disposeBag)
-        
-        viewModel.cvv.value = "1234"
-        viewModel.cvvIsCorrectLength.asObservable().take(1).subscribe(onNext: { correct in
-            XCTAssert(correct, "cvvIsCorrectLength should be true for CVV \"1234\"")
-        }).disposed(by: disposeBag)
-        
-        viewModel.cvv.value = "12345"
-        viewModel.cvvIsCorrectLength.asObservable().take(1).subscribe(onNext: { correct in
-            XCTAssertFalse(correct, "cvvIsCorrectLength should be false for CVV \"12345\"")
         }).disposed(by: disposeBag)
     }
     

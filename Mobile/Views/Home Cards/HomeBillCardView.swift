@@ -75,9 +75,7 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var oneTouchSliderContainer: UIView!
     @IBOutlet private weak var oneTouchSlider: OneTouchSlider!
-    @IBOutlet private weak var commercialBgeOtpVisaLabelContainer: UIView!
-    @IBOutlet private weak var commericalBgeOtpVisaLabel: UILabel!
-    
+
     @IBOutlet private weak var scheduledPaymentContainer: UIView!
     @IBOutlet private weak var scheduledPaymentBox: UIView!
     @IBOutlet private weak var scheduledImageView: UIImageView!
@@ -175,8 +173,6 @@ class HomeBillCardView: UIView {
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        commericalBgeOtpVisaLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        
         walletItemInfoBox.layer.cornerRadius = 6
         walletItemInfoBox.backgroundColor = .softGray
         
@@ -233,7 +229,6 @@ class HomeBillCardView: UIView {
         bankCreditCardNumberLabel.textColor = .white
         minimumPaymentLabel.textColor = .white
         convenienceFeeLabel.textColor = .white
-        commericalBgeOtpVisaLabel.textColor = .white
         oneTouchPayTCButtonLabel.textColor = .white
         billNotReadyLabel.textColor = .white
         errorLabel.textColor = .white
@@ -330,7 +325,6 @@ class HomeBillCardView: UIView {
         viewModel.showConvenienceFee.not().drive(convenienceFeeLabel.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showCommercialBgeOtpVisaLabel.not().drive(commercialBgeOtpVisaLabelContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPay.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)

@@ -101,7 +101,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     init(walletItemID: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
-         paymentMethodType: PaymentMethodType? = .ach,
+         paymentMethodType: PaymentMethodType? = nil,
          bankName: String? = "M&T Bank",
          expirationDate: String? = "01/2100",
          isDefault: Bool = false,
@@ -112,7 +112,13 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["walletItemID"] = walletItemID
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
-        map["paymentMethodType"] = paymentMethodType?.rawValue
+        if let pmt = paymentMethodType {
+            map["paymentMethodType"] = pmt.rawValue
+        } else {
+            map["paymentMethodType"] = bankOrCard == .bank ?
+                PaymentMethodType.ach.rawValue :
+                PaymentMethodType.visa.rawValue
+        }
         map["bankName"] = bankName
         map["expirationDate"] = expirationDate
         map["isDefault"] = isDefault

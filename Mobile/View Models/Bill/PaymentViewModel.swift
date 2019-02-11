@@ -44,7 +44,11 @@ class PaymentViewModel {
     
     var confirmationNumber: String?
     
-    init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
+    init(walletService: WalletService,
+         paymentService: PaymentService,
+         accountDetail: AccountDetail,
+         paymentDetail: PaymentDetail?,
+         billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
@@ -72,9 +76,11 @@ class PaymentViewModel {
     }
     
     func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
-        return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId).map { paymentDetail in
-            self.paymentDetail.value = paymentDetail
-        }
+        return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber,
+                                                  paymentId: paymentId)
+            .map { paymentDetail in
+                self.paymentDetail.value = paymentDetail
+            }
     }
     
     func computeDefaultPaymentDate() {
@@ -92,7 +98,9 @@ class PaymentViewModel {
                 self.paymentDate.value = tomorrow
             }
             
-            let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, allowEdits: allowEdits.value)
+            let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value,
+                                                           cardWorkflow: false,
+                                                           allowEdits: allowEdits.value)
             if !accountDetail.value.isActiveSeverance && !isFixedPaymentDate {
                 self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
             } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
@@ -131,27 +139,8 @@ class PaymentViewModel {
                                 }
                             }
                         } else {
-                            if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
-                                // Default to One Touch Pay item IF it's not a VISA credit card
-                                if let otpItem = self.oneTouchPayItem {
-                                    if otpItem.bankOrCard == .bank {
-                                        self.selectedWalletItem.value = otpItem
-                                    } else if otpItem.paymentMethodType != .visa {
-                                        self.selectedWalletItem.value = otpItem
-                                    }
-                                } else if walletItems.count > 0 { // If no OTP item, default to first non-VISA wallet item
-                                    for item in walletItems {
-                                        if item.bankOrCard == .bank {
-                                            self.selectedWalletItem.value = item
-                                        } else if item.paymentMethodType != .visa {
-                                            self.selectedWalletItem.value = item
-                                            break
-                                        }
-                                    }
-                                }
-                            } else if self.accountDetail.value.isCashOnly {
-                                // Default to One Touch Pay item IF it's a credit card
-                                if let otpItem = self.oneTouchPayItem {
+                            if self.accountDetail.value.isCashOnly {
+                                if let otpItem = self.oneTouchPayItem { // Default to OTP item IF it's a credit card
                                     if otpItem.bankOrCard == .card {
                                         self.selectedWalletItem.value = otpItem
                                     }
@@ -164,8 +153,7 @@ class PaymentViewModel {
                                     }
                                 }
                             } else {
-                                // Default to One Touch Pay item
-                                if let otpItem = self.oneTouchPayItem {
+                                if let otpItem = self.oneTouchPayItem { // Default to One Touch Pay item
                                     self.selectedWalletItem.value = otpItem
                                 } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
                                     self.selectedWalletItem.value = walletItems[0]
@@ -222,7 +210,9 @@ class PaymentViewModel {
     }
         
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber, paymentId: paymentId.value!, paymentDetail: paymentDetail.value!)
+        paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
+                                     paymentId: paymentId.value!,
+                                     paymentDetail: paymentDetail.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -288,62 +278,62 @@ class PaymentViewModel {
     
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
     
-    private(set) lazy var isBGECommercialUser: Driver<Bool> = self.accountDetail.asDriver().map {
-        Environment.shared.opco == .bge && !$0.isResidential
-    }
-    
-    private(set) lazy var shouldShowNextButton: Driver<Bool> = Driver.combineLatest(self.paymentId.asDriver(), self.allowEdits.asDriver()).map {
-        if $0 != nil {
-            return $1
-        }
-        return true
-    }
-    
-    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetching.asDriver(), self.isError.asDriver())
-        .map { !$0 && !$1 }
-    
-    private(set) lazy var shouldShowPaymentAccountView: Driver<Bool> = Driver.combineLatest(self.selectedWalletItem.asDriver(),
-                                                                                            self.wouldBeSelectedWalletItemIsExpired.asDriver())
-    {
-        if $1 {
+    private(set) lazy var shouldShowNextButton: Driver<Bool> =
+        Driver.combineLatest(self.paymentId.asDriver(),
+                             self.allowEdits.asDriver())
+        {
+            if $0 != nil {
+                return $1
+            }
             return true
         }
-        return $0 != nil
-    }
     
-    private(set) lazy var hasWalletItems: Driver<Bool> = Driver.combineLatest(self.walletItems.asDriver(), self.isCashOnlyUser, self.isBGECommercialUser)
-    {
-        guard let walletItems: [WalletItem] = $0 else { return false }
-        if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
-            for item in walletItems {
-                if item.bankOrCard == .card {
-                    return true
-                }
-            }
-            return false
-        } else if $2 { // If BGE Commercial user, ignore VISA credit cards
-            for item in walletItems {
-                if item.bankOrCard == .bank {
-                    return true
-                } else if item.paymentMethodType != .visa {
-                    return true
-                }
-            }
-            return false
-        } else {
-            if let tempItem = self.newlyAddedWalletItem.value {
+    private(set) lazy var shouldShowContent: Driver<Bool> =
+        Driver.combineLatest(self.isFetching.asDriver(),
+                             self.isError.asDriver())
+        { !$0 && !$1 }
+    
+    private(set) lazy var shouldShowPaymentAccountView: Driver<Bool> =
+        Driver.combineLatest(self.selectedWalletItem.asDriver(),
+                             self.wouldBeSelectedWalletItemIsExpired.asDriver())
+        {
+            if $1 {
                 return true
             }
-            return walletItems.count > 0
+            return $0 != nil
         }
-    }
     
-    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = Driver.combineLatest(self.hasWalletItems,
-                                                                                                self.allowEdits.asDriver())
-    { $0 && $1 }
+    private(set) lazy var hasWalletItems: Driver<Bool> =
+        Driver.combineLatest(self.walletItems.asDriver(),
+                             self.isCashOnlyUser)
+        {
+            guard let walletItems: [WalletItem] = $0 else { return false }
+            if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
+                for item in walletItems {
+                    if item.bankOrCard == .card {
+                        return true
+                    }
+                }
+                return false
+            } else {
+                if let tempItem = self.newlyAddedWalletItem.value {
+                    return true
+                }
+                return walletItems.count > 0
+            }
+        }
+    
+    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> =
+        Driver.combineLatest(self.hasWalletItems,
+                             self.allowEdits.asDriver())
+        { $0 && $1 }
     
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
-        return Driver.combineLatest(bankWorkflow, cardWorkflow, accountDetail.asDriver(), paymentAmount.asDriver(), amountDue.asDriver())
+        return Driver.combineLatest(bankWorkflow,
+                                    cardWorkflow,
+                                    accountDetail.asDriver(),
+                                    paymentAmount.asDriver(),
+                                    amountDue.asDriver())
         { (bankWorkflow, cardWorkflow, accountDetail, paymentAmount, amountDue) -> String? in
             if bankWorkflow {
                 let minPayment = accountDetail.minPaymentAmount(bankOrCard: .bank)

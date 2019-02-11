@@ -79,11 +79,13 @@ class HomeBillCardViewModel {
         .merge(fetchData, RxNotifications.shared.defaultWalletItemUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
-    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
+    private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> =
+        RxNotifications.shared.defaultWalletItemUpdated
         .toAsyncRequest(activityTracker: { [weak self] _ in self?.fetchTracker(forState: .switchAccount) },
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
-    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable.merge(fetchDataMMEvents, defaultWalletItemUpdatedMMEvents)
+    private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> =
+        Observable.merge(fetchDataMMEvents, defaultWalletItemUpdatedMMEvents)
     
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = maintenanceModeEvents
         .filter {
@@ -140,7 +142,9 @@ class HomeBillCardViewModel {
                         requestSelector: { [unowned self] payment in
                             self.paymentService.schedulePayment(payment: payment)
                                 .do(onNext: { confirmationNumber in
-                                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount, date: payment.paymentDate, confirmationNumber: confirmationNumber)
+                                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount,
+                                                                        date: payment.paymentDate,
+                                                                        confirmationNumber: confirmationNumber)
                                     RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
                                 })
                                 .mapTo(())
@@ -148,8 +152,12 @@ class HomeBillCardViewModel {
     
     //MARK: - Loaded States
     
-    private lazy var accountDetailDriver: Driver<AccountDetail> = accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
-    private lazy var scheduledPaymentDriver: Driver<PaymentItem?> = scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())
+    private lazy var accountDetailDriver: Driver<AccountDetail> =
+        accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var scheduledPaymentDriver: Driver<PaymentItem?> =
+        scheduledPaymentEvents.elements().asDriver(onErrorDriveWith: .empty())
+    
     private lazy var walletItemDriver: Driver<WalletItem?> = walletItem.asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showLoadingState: Driver<Bool> = switchAccountFetchTracker.asDriver()
@@ -178,8 +186,9 @@ class HomeBillCardViewModel {
     // MARK: - Title States
     
     enum BillState {
-        case restoreService, catchUp, avoidShutoff, pastDue, finaled, eligibleForCutoff, billReady, billReadyAutoPay, billPaid, billPaidIntermediate, credit,
-        paymentPending, billNotReady, paymentScheduled
+        case restoreService, catchUp, avoidShutoff, pastDue, finaled,
+        eligibleForCutoff, billReady, billReadyAutoPay, billPaid,
+        billPaidIntermediate, credit, paymentPending, billNotReady, paymentScheduled
         
         var isPrecariousBillSituation: Bool {
             switch self {
@@ -273,11 +282,15 @@ class HomeBillCardViewModel {
     
     private(set) lazy var showPaymentPendingIcon: Driver<Bool> = billState.map { $0 == .paymentPending }
     
-    private(set) lazy var showBillPaidIcon: Driver<Bool> = billState.map { $0 == .billPaid || $0 == .billPaidIntermediate }
+    private(set) lazy var showBillPaidIcon: Driver<Bool> = billState.map {
+        $0 == .billPaid || $0 == .billPaidIntermediate
+    }
     
     private(set) lazy var showPaymentDescription: Driver<Bool> = paymentDescriptionText.isNil().not()
     
-    private(set) lazy var showSlideToPayConfirmationDetailLabel: Driver<Bool> = billState.map { $0 == .billPaidIntermediate }
+    private(set) lazy var showSlideToPayConfirmationDetailLabel: Driver<Bool> = billState.map {
+        $0 == .billPaidIntermediate
+    }
     
     private(set) lazy var showAmount: Driver<Bool> = billState.map { $0 != .billPaidIntermediate }
     
@@ -330,28 +343,7 @@ class HomeBillCardViewModel {
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
                                                                                      accountDetailDriver)
     { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly }
-        .distinctUntilChanged()
-    
-    private(set) lazy var showCommercialBgeOtpVisaLabel: Driver<Bool> = Driver
-        .combineLatest(enableOneTouchSlider,
-                       showOneTouchPaySlider,
-                       accountDetailDriver,
-                       walletItemDriver)
-        { enableOneTouchSlider, showOneTouchPaySlider, accountDetail, walletItem in
-            guard let walletItem = walletItem else { return false }
-            guard showOneTouchPaySlider && !enableOneTouchSlider else { return false }
-            guard Environment.shared.opco == .bge else { return false }
-            
-            // Min/Max payment amount state takes precedence
-            guard accountDetail.billingInfo.netDueAmount >= accountDetail.minPaymentAmount(bankOrCard: .card) else { return false }
-            guard accountDetail.billingInfo.netDueAmount <= accountDetail.maxPaymentAmount(bankOrCard: .card) else { return false }
-            
-            guard walletItem.paymentMethodType == .visa else { return false }
-            guard !accountDetail.isResidential && !accountDetail.isActiveSeverance && !accountDetail.isCashOnly else { return false }
-            
-            return true
-        }
-        .distinctUntilChanged()
+    .distinctUntilChanged()
     
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
     
@@ -359,36 +351,36 @@ class HomeBillCardViewModel {
         $0 == .billReadyAutoPay
     }
     
-    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> = Driver.combineLatest(showOneTouchPaySlider,
-                                                                                       showCommercialBgeOtpVisaLabel,
-                                                                                       showMinMaxPaymentAllowed)
-    { $0 && !$1 && !$2 }
+    private(set) lazy var showOneTouchPayTCButton: Driver<Bool> =
+        Driver.combineLatest(showOneTouchPaySlider,
+                             showMinMaxPaymentAllowed)
+        { $0 && !$1 }
         .distinctUntilChanged()
     
-    
     // MARK: - View States
-    private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> = Driver.combineLatest(billState, accountDetailDriver)
-    { (billState, accountDetail) in
-        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
-        switch billState {
-        case .billPaid, .billPaidIntermediate:
-            let text = NSLocalizedString("Thank you for your payment", comment: "")
-            return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .title1),
-                                                                 .foregroundColor: textColor])
-        case .paymentPending:
-            let text: String
-            switch Environment.shared.opco {
-            case .bge:
-                text = NSLocalizedString("You have processing payments", comment: "")
-            case .comEd, .peco:
-                text = NSLocalizedString("You have pending payments", comment: "")
+    private(set) lazy var paymentDescriptionText: Driver<NSAttributedString?> =
+        Driver.combineLatest(billState, accountDetailDriver)
+        { (billState, accountDetail) in
+            let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
+            switch billState {
+            case .billPaid, .billPaidIntermediate:
+                let text = NSLocalizedString("Thank you for your payment", comment: "")
+                return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .title1),
+                                                                     .foregroundColor: textColor])
+            case .paymentPending:
+                let text: String
+                switch Environment.shared.opco {
+                case .bge:
+                    text = NSLocalizedString("You have processing payments", comment: "")
+                case .comEd, .peco:
+                    text = NSLocalizedString("You have pending payments", comment: "")
+                }
+                return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .title1),
+                                                                     .foregroundColor: textColor])
+            default:
+                return nil
             }
-            return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .title1),
-                                                                 .foregroundColor: textColor])
-        default:
-            return nil
         }
-    }
     
     private(set) lazy var showAlertAnimation: Driver<Bool> = billState.map {
         return $0.isPrecariousBillSituation
@@ -670,7 +662,8 @@ class HomeBillCardViewModel {
             
     }
     
-    private(set) lazy var enableOneTouchSlider: Driver<Bool> = Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
+    private(set) lazy var enableOneTouchSlider: Driver<Bool> =
+        Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
         { accountDetail, walletItem, showMinMaxPaymentAllowed in
             guard let walletItem = walletItem else { return false }
             if showMinMaxPaymentAllowed {
@@ -687,14 +680,6 @@ class HomeBillCardViewModel {
             }
             
             if accountDetail.billingInfo.netDueAmount < 0 && Environment.shared.opco == .bge {
-                return false
-            }
-            
-            if Environment.shared.opco == .bge &&
-                walletItem.paymentMethodType == .visa &&
-                !accountDetail.isResidential &&
-                !accountDetail.isActiveSeverance &&
-                !accountDetail.isCashOnly {
                 return false
             }
             
@@ -717,7 +702,8 @@ class HomeBillCardViewModel {
     private(set) lazy var amountFont: Driver<UIFont> = billState
         .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
     
-    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> = Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
+    private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
+        Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
         .map { accountDetail, scheduledPayment in
             if let paymentAmountText = scheduledPayment?.amount.currencyString,
                 let paymentDateText = scheduledPayment?.date?.mmDdYyyyString {
@@ -729,7 +715,7 @@ class HomeBillCardViewModel {
             } else {
                 return NSLocalizedString("You are enrolled in AutoPay." , comment: "")
             }
-    }
+        }
     
     private(set) lazy var thankYouForSchedulingButtonText: Driver<String?> = scheduledPaymentDriver.map {
         guard let paymentAmountText = $0?.amount.currencyString else { return nil }
@@ -803,8 +789,3 @@ class HomeBillCardViewModel {
     }
     
 }
-
-
-
-
-
