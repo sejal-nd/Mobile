@@ -24,7 +24,6 @@ class PaymentViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedWalletItem = Variable<WalletItem?>(nil)
-    let newlyAddedWalletItem = Variable<WalletItem?>(nil) // Set if the user adds a new item from the Paymentus iFrame in this workflow
     let wouldBeSelectedWalletItemIsExpired = Variable(false)
     
     let amountDue: Variable<Double>
@@ -83,35 +82,7 @@ class PaymentViewModel {
             }
     }
     
-    func computeDefaultPaymentDate() {
-        let now = Date()
-        
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            paymentDate.value = now
-        case .bge:
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: now)
-            let tomorrow =  Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!
-            
-            if Calendar.opCo.component(.hour, from: Date()) >= 20 &&
-                !accountDetail.value.isActiveSeverance {
-                self.paymentDate.value = tomorrow
-            }
-            
-            let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value,
-                                                           cardWorkflow: false,
-                                                           allowEdits: allowEdits.value)
-            if !accountDetail.value.isActiveSeverance && !isFixedPaymentDate {
-                self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
-            } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
-                if dueDate >= now && !isFixedPaymentDate {
-                    self.paymentDate.value = dueDate
-                }
-            }
-        }
-    }
-    
-    func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?) {
+    func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
         var observables = [fetchWalletItems()]
         
         if let paymentId = paymentId.value, paymentDetail.value == nil {
@@ -125,11 +96,11 @@ class PaymentViewModel {
                 guard let self = self else { return }
                 self.isFetching.value = false
                 
-                self.computeDefaultPaymentDate()
+                guard let walletItems = self.walletItems.value else { return }
                 
-                if let walletItems = self.walletItems.value {
-                    if self.selectedWalletItem.value == nil { // Initial wallet item selection logic
-                        if let paymentDetail = self.paymentDetail.value, self.paymentId.value != nil { // Modifiying Payment
+                if initialFetch {
+                    if self.paymentId.value != nil { // Modifiying Payment
+                        if let paymentDetail = self.paymentDetail.value {
                             self.paymentAmount.value = paymentDetail.paymentAmount
                             self.paymentDate.value = paymentDetail.paymentDate!
                             for item in walletItems {
@@ -138,37 +109,36 @@ class PaymentViewModel {
                                     break
                                 }
                             }
-                        } else {
-                            if self.accountDetail.value.isCashOnly {
-                                if let otpItem = self.oneTouchPayItem { // Default to OTP item IF it's a credit card
-                                    if otpItem.bankOrCard == .card {
-                                        self.selectedWalletItem.value = otpItem
-                                    }
-                                } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
-                                    for item in walletItems {
-                                        if item.bankOrCard == .card {
-                                            self.selectedWalletItem.value = item
-                                            break
-                                        }
-                                    }
-                                }
-                            } else {
-                                if let otpItem = self.oneTouchPayItem { // Default to One Touch Pay item
+                        }
+                    } else {
+                        if self.accountDetail.value.isCashOnly {
+                            if let otpItem = self.oneTouchPayItem { // Default to OTP item IF it's a credit card
+                                if otpItem.bankOrCard == .card {
                                     self.selectedWalletItem.value = otpItem
-                                } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
-                                    self.selectedWalletItem.value = walletItems[0]
+                                }
+                            } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
+                                for item in walletItems {
+                                    if item.bankOrCard == .card {
+                                        self.selectedWalletItem.value = item
+                                        break
+                                    }
                                 }
                             }
-                        }
-                        if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
-                            self.selectedWalletItem.value = nil
-                            self.wouldBeSelectedWalletItemIsExpired.value = true
+                        } else {
+                            if let otpItem = self.oneTouchPayItem { // Default to One Touch Pay item
+                                self.selectedWalletItem.value = otpItem
+                            } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
+                                self.selectedWalletItem.value = walletItems[0]
+                            }
                         }
                     }
                 }
-                if self.newlyAddedWalletItem.value != nil {
-                    self.selectedWalletItem.value = self.newlyAddedWalletItem.value
+                
+                if let walletItem = self.selectedWalletItem.value, walletItem.isExpired {
+                    self.selectedWalletItem.value = nil
+                    self.wouldBeSelectedWalletItemIsExpired.value = true
                 }
+                
                 onSuccess?()
             }, onError: { [weak self] _ in
                 self?.isFetching.value = false
@@ -305,7 +275,8 @@ class PaymentViewModel {
     
     private(set) lazy var hasWalletItems: Driver<Bool> =
         Driver.combineLatest(self.walletItems.asDriver(),
-                             self.isCashOnlyUser)
+                             self.isCashOnlyUser,
+                             self.selectedWalletItem.asDriver())
         {
             guard let walletItems: [WalletItem] = $0 else { return false }
             if $1 { // If only bank accounts, treat cash only user as if they have no wallet items
@@ -314,9 +285,12 @@ class PaymentViewModel {
                         return true
                     }
                 }
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary, selectedWalletItem.bankOrCard == .card {
+                    return true
+                }
                 return false
             } else {
-                if let tempItem = self.newlyAddedWalletItem.value {
+                if let selectedWalletItem = $2, selectedWalletItem.isTemporary {
                     return true
                 }
                 return walletItems.count > 0
@@ -596,33 +570,28 @@ class PaymentViewModel {
     }
     
     private(set) lazy var isFixedPaymentDate: Driver<Bool> = Driver
-        .combineLatest(accountDetail.asDriver(),
-                       cardWorkflow,
-                       allowEdits.asDriver())
-        { [weak self] (accountDetail, cardWorkflow, allowEdits) in
+        .combineLatest(accountDetail.asDriver(), allowEdits.asDriver())
+        { [weak self] (accountDetail, allowEdits) in
             guard let self = self else { return false }
-            return self.fixedPaymentDateLogic(accountDetail: accountDetail,
-                                              cardWorkflow: cardWorkflow,
-                                              allowEdits: allowEdits)
-    }
+            return self.fixedPaymentDateLogic(accountDetail: accountDetail, allowEdits: allowEdits)
+        }
     
-    private func fixedPaymentDateLogic(accountDetail: AccountDetail, cardWorkflow: Bool, allowEdits: Bool) -> Bool {
-        if Environment.shared.opco == .bge {
-            if accountDetail.isActiveSeverance || !allowEdits {
+    private func fixedPaymentDateLogic(accountDetail: AccountDetail, allowEdits: Bool) -> Bool {
+        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+            return true
+        }
+        
+        if !allowEdits {
+            return true
+        }
+        
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+        if let dueDate = accountDetail.billingInfo.dueByDate {
+            if dueDate <= startOfTodayDate {
                 return true
-            }
-        } else {
-            if !allowEdits {
-                return true
-            }
-            
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
-            if let dueDate = accountDetail.billingInfo.dueByDate {
-                if dueDate <= startOfTodayDate {
-                    return true
-                }
             }
         }
+
         return false
     }
     
@@ -659,7 +628,7 @@ class PaymentViewModel {
                 return startOfTodayDate.mmDdYyyyString
             }
             return $0.mmDdYyyyString
-    }
+        }
     
     private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
         .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
@@ -668,7 +637,7 @@ class PaymentViewModel {
                 return $1
             }
             return false
-    }
+        }
     
     // MARK: - Review Payment Drivers
     
@@ -690,7 +659,7 @@ class PaymentViewModel {
                 return false
             }
             return true
-    }
+        }
     
     private(set) lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = cardWorkflow
     
@@ -701,7 +670,6 @@ class PaymentViewModel {
         case .comEd, .peco:
             return Driver.just(false)
         }
-        
     }()
     
     private(set) lazy var isOverpayingCard: Driver<Bool> = Driver.combineLatest(isOverpaying, cardWorkflow) { $0 && $1 }

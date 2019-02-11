@@ -230,7 +230,7 @@ class MakePaymentViewController: UIViewController {
                 self.viewModel.paymentAmount.value.currencyString
         }).disposed(by: disposeBag)
 
-        fetchData()
+        fetchData(initialFetch: true)
     }
     
     deinit {
@@ -243,8 +243,8 @@ class MakePaymentViewController: UIViewController {
         navigationController?.setColoredNavBar()
     }
     
-    func fetchData() {
-        viewModel.fetchData(onSuccess: { [weak self] in
+    func fetchData(initialFetch: Bool) {
+        viewModel.fetchData(initialFetch: initialFetch, onSuccess: { [weak self] in
             guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] in
@@ -431,8 +431,12 @@ class MakePaymentViewController: UIViewController {
             self.view.endEditing(true)
             let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
-            miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
-            miniWalletVC.viewModel.temporaryItem.value = self.viewModel.newlyAddedWalletItem.value
+            if let selectedItem = self.viewModel.selectedWalletItem.value {
+                miniWalletVC.viewModel.selectedItem.value = selectedItem
+                if selectedItem.isTemporary {
+                     miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                }
+            }
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
@@ -629,10 +633,6 @@ extension MakePaymentViewController: UITextFieldDelegate {
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
-        if let newlyAddedItem = viewModel.newlyAddedWalletItem.value, newlyAddedItem.isTemporary, newlyAddedItem != walletItem {
-            // Clear temp item if user unselected it
-            viewModel.newlyAddedWalletItem.value = nil
-        }
         viewModel.selectedWalletItem.value = walletItem
     }
     
@@ -642,8 +642,8 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
-        viewModel.newlyAddedWalletItem.value = walletItem
-        fetchData()
+        viewModel.selectedWalletItem.value = walletItem
+        fetchData(initialFetch: false)
         if !walletItem.isTemporary {
             Analytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
             let toastMessage = walletItem.bankOrCard == .bank ?
