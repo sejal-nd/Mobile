@@ -22,13 +22,7 @@ class MockOutageService: OutageService {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnNonService.rawValue))
         }
         
-        do {
-            let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: key)
-            return .just(outageStatus)
-        } catch {
-            return .error(error)
-        }
-        
+        return MockJSONManager.shared.rx.mappableObject(fromFile: .outageStatus, key: key)
         
 //        var accountNum = account.accountNumber
 //

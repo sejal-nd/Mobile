@@ -10,6 +10,11 @@ import XCTest
 import AppCenterXCUITestExtensions
 
 class PaymentUITests: ExelonUITestCase {
+    
+    override func setUp() {
+        super.setUp()
+        launchApp()
+    }
    
     // MARK: MakePaymentViewController Layout Tests
     
@@ -57,7 +62,7 @@ class PaymentUITests: ExelonUITestCase {
 
         checkExistenceOfElements([
             (.staticText, "Total Amount Due"),
-            (.staticText, "$200.00"),
+            (.staticText, "$5,000.00"),
             (.staticText, "No convenience fee will be applied."),
             (.staticText, "Due Date"),
             (.staticText, "Payment Date"),
@@ -65,7 +70,7 @@ class PaymentUITests: ExelonUITestCase {
         ])
 
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
-        XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
+        XCTAssertEqual(paymentAmountTextField.value as? String, "$5,000.00", "Payment amount value entry should default to the amount due")
 
         tapButton(buttonText: "01/01/2019")
         checkExistenceOfElement(.navigationBar, "Select Payment Date")
@@ -259,11 +264,11 @@ class PaymentUITests: ExelonUITestCase {
             (.navigationBar, "Review Payment"),
             (.staticText, "Payment Method"),
             (.staticText, "Total Amount Due"),
-            (.staticText, "$200.00"),
+            (.staticText, "$5,000.00"),
             (.staticText, "Due Date"),
             (.staticText, "Payment Date"),
             (.staticText, "Total Payment"),
-            (.staticText, "$200.00"),
+            (.staticText, "$5,000.00"),
             (.staticText, "01/01/2019")
         ])
         
@@ -298,7 +303,7 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "Payment Date"),
             (.staticText, "01/01/2019"),
             (.staticText, "Amount Paid"),
-            (.staticText, "$200.00"),
+            (.staticText, "$5,000.00"),
         ])
 
         tapButton(buttonText: "Close")
@@ -315,7 +320,7 @@ class PaymentUITests: ExelonUITestCase {
         tapButton(buttonText: "Make a Payment")
 
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
-        paymentAmountTextField.clearAndEnterText("30000")
+        paymentAmountTextField.clearAndEnterText("510000")
 
         app.navigationBars.buttons["Next"].tap()
 
@@ -323,14 +328,14 @@ class PaymentUITests: ExelonUITestCase {
             (.navigationBar, "Review Payment"),
             (.staticText, "You are scheduling a payment that may result in overpaying your total amount due."),
             (.staticText, "Total Amount Due"),
-            (.staticText, "$200.00"),
+            (.staticText, "$5,000.00"),
             (.staticText, "Due Date"),
             (.staticText, "Overpaying"),
             (.staticText, "$100.00"),
             (.staticText, "Payment Date"),
             (.staticText, "01/01/2019"),
             (.staticText, "Payment Amount"),
-            (.staticText, "$300.00"),
+            (.staticText, "$5,100.00"),
         ])
 
         let overpaySwitch = element(ofType: .switch, withText: "Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.")

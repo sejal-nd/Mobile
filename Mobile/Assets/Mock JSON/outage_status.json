@@ -2,14 +2,22 @@
     "default": {
         "accountNumber": "1234567890",
         "status": "NOT ACTIVE",
-        "smartMeterStatus": false
+        "smartMeterStatus": false,
+        "outageReported": "test power on message",
+        "contactHomeNumber": "5555550123"
     },
     "outagePowerOut": {
         "status": "ACTIVE",
-        "ETR": "2017-04-10T03:45:00-05:00"
+        "ETR": "2017-04-10T03:45:00-05:00",
+        "outageReported": "test power out message"
     },
     "outageSmartMeter": {
         "status": "NOT ACTIVE",
         "smartMeterStatus": true
+    },
+    "gasOnly": {
+        "status": "NOT ACTIVE",
+        "smartMeterStatus": true,
+        "flagGasOnly": true
     }
 }

@@ -132,13 +132,12 @@ struct MCSAuthenticationService : AuthenticationService {
     
     func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance> {
         return MCSApi.shared.get(pathPrefix: .anon, path: "config/maintenance")
-            .map { json in
-                let maint = Maintenance.from(json as! NSDictionary)!
+            .map { Maintenance.from($0 as! NSDictionary)! }
+            .do(onNext: { maint in
                 if maint.allStatus && postNotification {
                     NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
                 }
-                return maint
-            }
+            })
     }
     
     func getMinimumVersion() -> Observable<MinimumVersion> {

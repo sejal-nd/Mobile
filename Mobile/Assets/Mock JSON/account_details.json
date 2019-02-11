@@ -25,7 +25,10 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 200,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "convenienceFee": 5,
+            "feeCommercial": 4,
+            "feeResidential": 3
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -34,7 +37,10 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 5000,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "convenienceFee": 5,
+            "feeCommercial": 4,
+            "feeResidential": 3
         },
         "CustomerInfo": {},
         "SERInfo": {}

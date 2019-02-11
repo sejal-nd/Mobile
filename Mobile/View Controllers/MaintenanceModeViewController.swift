@@ -52,6 +52,7 @@ class MaintenanceModeViewController: UIViewController {
         
         bodyLabel.font = OpenSans.regular.of(textStyle: .footnote)
         bodyLabel.attributedText = viewModel.labelBody
+        bodyLabel.accessibilityLabel = viewModel.labelBody.string
         
         bodyLabel.textColor = .blackText
         bodyLabel.textContainerInset = .zero

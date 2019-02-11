@@ -10,6 +10,11 @@ import XCTest
 import AppCenterXCUITestExtensions
 class BillUITests: ExelonUITestCase {
     
+    override func setUp() {
+        super.setUp()
+        launchApp()
+    }
+    
     func testScheduledPayment() {
         doLogin(username: "scheduledPayment")
         selectTab(tabName: "Bill")
@@ -31,9 +36,9 @@ class BillUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
 
         checkExistenceOfElements([
-            (.staticText, "Amount Past Due"),
-            (.staticText, "Total Amount Due Immediately"),
+            (.staticText, "$140.00 of the total is due immediately."),
             (.staticText, "$200.00"),
+            (.staticText, "Past Due Amount"),
             (.staticText, "Due Immediately")
         ])
     }
@@ -42,18 +47,12 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "avoidShutoff")
         selectTab(tabName: "Bill")
         
-        if appOpCo == .bge {
-            checkExistenceOfElements([
-                (.staticText, "Amount Due to Avoid Service Interruption"),
-                (.staticText, "$200.00")
+        checkExistenceOfElements([
+            (.staticText, "$100.00 of the total must be paid immediately to avoid shut-off."),
+            (.staticText, "$350.00"),
+            (.staticText, "Past Due Amount"),
+            (.staticText, "Due Immediately")
             ])
-        } else {
-            checkExistenceOfElements([
-                (.staticText, "Payment due to avoid shut-off is $200.00 due immediately."),
-                (.staticText, "Amount Due to Avoid shut-off"),
-                (.staticText, "Due Immediately")
-            ])
-        }
     }
     
     func testPaymentPending() {
@@ -61,23 +60,12 @@ class BillUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
 
         let paymentText = appOpCo == .bge
-            ? "Payment Processing"
-            : "Pending Payment"
+            ? "Payments Processing"
+            : "Pending Payments"
 
         checkExistenceOfElements([
-            (.staticText, "-$200.00"),
+            (.staticText, "-$100.00"),
             (.staticText, paymentText)
-        ])
-    }
-    
-    func testMaintModeBill() {
-        doLogin(username: "maintNotHome")
-        selectTab(tabName: "Bill")
-
-        checkExistenceOfElements([
-            (.button, "Reload"),
-            (.staticText, "Maintenance"),
-            (.staticText, "Billing is currently unavailable due to maintenance.")
         ])
     }
     

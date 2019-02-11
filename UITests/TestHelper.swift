@@ -33,13 +33,16 @@ class ExelonUITestCase: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
     }
     
     override func tearDown() {
         ACTLabel.labelStep("Tearing down")
 
         super.tearDown()
+    }
+    
+    func launchApp() {
+        ACTLaunch.launch(app)
     }
     
     func handleTermsFirstLaunch() {
