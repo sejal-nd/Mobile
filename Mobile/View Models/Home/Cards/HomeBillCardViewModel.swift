@@ -21,8 +21,6 @@ class HomeBillCardViewModel {
     private let paymentService: PaymentService
     private let authService: AuthenticationService
     
-    let cvv2 = Variable<String?>(nil)
-    
     let submitOneTouchPay = PublishSubject<Void>()
     
     let fetchData: Observable<FetchingAccountState>
@@ -108,9 +106,8 @@ class HomeBillCardViewModel {
     
     private(set) lazy var oneTouchPayResult: Observable<Event<Void>> = submitOneTouchPay.asObservable()
         .withLatestFrom(Observable.combineLatest(accountDetailEvents.elements(),
-                                                 walletItem.unwrap(),
-                                                 cvv2.asObservable()))
-        .do(onNext: { _, walletItem, _ in
+                                                 walletItem.unwrap()))
+        .do(onNext: { _, walletItem in
             switch walletItem.bankOrCard {
             case .bank:
                 Analytics.log(event: .oneTouchBankOffer)
@@ -118,7 +115,7 @@ class HomeBillCardViewModel {
                 Analytics.log(event: .oneTouchCardOffer)
             }
         })
-        .map { accountDetail, walletItem, cvv2 in
+        .map { accountDetail, walletItem in
             let startOfToday = Calendar.opCo.startOfDay(for: Date())
             let paymentDate: Date
             if Environment.shared.opco == .bge &&
@@ -137,8 +134,7 @@ class HomeBillCardViewModel {
                            paymentType: (walletItem.bankOrCard == .bank) ? .check : .credit,
                            paymentDate: paymentDate,
                            walletId: AccountsStore.shared.customerIdentifier,
-                           walletItemId: walletItem.walletItemID!,
-                           cvv: cvv2)
+                           walletItemId: walletItem.walletItemID!)
         }
         .toAsyncRequest(activityTracker: paymentTracker,
                         requestSelector: { [unowned self] payment in
@@ -149,25 +145,6 @@ class HomeBillCardViewModel {
                                 })
                                 .mapTo(())
         })
-    
-    private(set) lazy var promptForCVV: Driver<Bool> = {
-        if Environment.shared.opco != .bge {
-            return Driver.just(false)
-        } else {
-            return walletItemDriver.map {
-                guard let walletItem = $0 else { return false }
-                switch walletItem.bankOrCard {
-                case .bank:
-                    return false
-                case .card:
-                    return true
-                }
-            }
-        }
-    }()
-    
-    private(set) lazy var cvvIsValid: Driver<Bool> = cvv2.asDriver()
-        .map { 3...4 ~= ($0?.count ?? 0) }
     
     //MARK: - Loaded States
     

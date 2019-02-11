@@ -117,25 +117,19 @@ class MCSPaymentService: PaymentService {
     }
 
     func schedulePayment(payment: Payment) -> Observable<String> {
-        
         let opCo = Environment.shared.opco
-    
-        var params: [String: Any] = ["masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
-                                    "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
-                                    "payment_category_type": payment.paymentType.rawValue,
-                                    "payment_date": payment.paymentDate.paymentFormatString,
-                                    "wallet_id" : payment.walletId,
-                                    "wallet_item_id" : payment.walletItemId,
-                                    "is_existing_account": payment.existingAccount,
-                                    "is_save_account": payment.saveAccount]
-        
-        switch opCo {
-        case .comEd, .peco:
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-            params["auth_sess_token"] = ""
-        case .bge:
-            params["cvv"] = payment.cvv
-        }
+        let params: [String: Any] = [
+            "masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
+            "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
+            "payment_category_type": payment.paymentType.rawValue,
+            "payment_date": payment.paymentDate.paymentFormatString,
+            "wallet_id" : payment.walletId,
+            "wallet_item_id" : payment.walletItemId,
+            "is_existing_account": payment.existingAccount,
+            "is_save_account": payment.saveAccount,
+            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
+            "auth_sess_token": "" // Still needed?
+        ]
         
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(payment.accountNumber)/payments/schedule", params: params)
             .map { json -> String in
@@ -162,23 +156,19 @@ class MCSPaymentService: PaymentService {
     }
     
     func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
-        var params: [String: Any] = ["masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
-                                     "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
-                                     "payment_category_type": payment.paymentType.rawValue,
-                                     "payment_date": payment.paymentDate.paymentFormatString,
-                                     "payment_id": paymentId,
-                                     "wallet_id" : payment.walletId,
-                                     "wallet_item_id" : payment.walletItemId,
-                                     "is_existing_account": payment.existingAccount]
-        
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
-            params["auth_sess_token"] = ""
-        case .bge:
-            params["cvv"] = payment.cvv
-        }
-        
+        let opCo = Environment.shared.opco
+        let params: [String: Any] = [
+            "masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
+            "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
+            "payment_category_type": payment.paymentType.rawValue,
+            "payment_date": payment.paymentDate.paymentFormatString,
+            "payment_id": paymentId,
+            "wallet_id" : payment.walletId,
+            "wallet_item_id" : payment.walletItemId,
+            "is_existing_account": payment.existingAccount,
+            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
+            "auth_sess_token": "" // Still needed?
+        ]
         return updatePaymentInternal(accountNumber: payment.accountNumber, paymentId: paymentId, params: params)
     }
     
@@ -193,20 +183,14 @@ class MCSPaymentService: PaymentService {
     
     func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void> {
         let opCo = Environment.shared.opco
-        var params: [String: Any] = ["payment_id": paymentId,
-                                     "payment_amount": String.init(format: "%.02f", paymentDetail.paymentAmount),
-                                     "wallet_item_id" : paymentDetail.walletItemId ?? ""]
-        
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-            // Artifacts from Fiserv: seems like we need to keep sending the keys though
-            params["cancel_payment_method"] = ""
-            params["auth_sess_token"] = ""
-        case .bge:
-            break
-        }
-        
+        let params: [String: Any] = [
+            "payment_id": paymentId,
+            "payment_amount": String.init(format: "%.02f", paymentDetail.paymentAmount),
+            "wallet_item_id" : paymentDetail.walletItemId ?? "",
+            "cancel_payment_method": "", // Needed?
+            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
+            "auth_sess_token": "" // Still needed?
+        ]
         return cancelPaymentInternal(accountNumber: accountNumber, paymentId: paymentId, params: params)
     }
     

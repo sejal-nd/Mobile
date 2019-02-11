@@ -24,7 +24,6 @@ struct Payment {
     let paymentDate: Date
     let walletId: String
     let walletItemId: String
-    let cvv: String?
 }
 
 struct PaymentDetail: Mappable {

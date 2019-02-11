@@ -113,8 +113,6 @@ class HomeBillCardView: UIView {
         }
     }
     
-    var cvvValidationDisposable: Disposable?
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         styleViews()
@@ -372,8 +370,6 @@ class HomeBillCardView: UIView {
         
         // Actions
         oneTouchSlider.didFinishSwipe
-            .withLatestFrom(viewModel.promptForCVV)
-            .filter(!)
             .map(to: ())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
@@ -470,56 +466,6 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = oneTouchSlider.didFinishSwipe
-        .withLatestFrom(self.viewModel.promptForCVV)
-        .asObservable()
-        .filter { $0 }
-        .flatMap { [weak self] _ -> Observable<UIViewController> in
-            Observable<UIViewController>.create { [weak self] observer in
-                guard let self = self else {
-                    observer.onCompleted()
-                    return Disposables.create()
-                }
-                
-                let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
-                                                        message: NSLocalizedString("Enter your 3 or 4 digit security code to complete your payment.", comment: ""),
-                                                        preferredStyle: .alert)
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: .default) { [weak self] _ in
-                    self?.cvvValidationDisposable?.dispose()
-                    self?.oneTouchSlider.reset(animated: true)
-                    observer.onCompleted()
-                }
-                
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.cvvValidationDisposable?.dispose()
-                    let textField = alertController.textFields![0]
-                    let alertController2 = self.oneTouchBGELegalAlert(observer: observer)
-                    observer.onNext(alertController2)
-                })
-                
-                alertController.addTextField { [weak self] in
-                    $0.isSecureTextEntry = true
-                    $0.keyboardType = .numberPad
-                    $0.delegate = self
-                }
-                
-                self.cvvValidationDisposable = self.viewModel.cvvIsValid.drive(okAction.rx.isEnabled)
-                
-                alertController.addAction(cancelAction)
-                alertController.addAction(okAction)
-                
-                observer.onNext(alertController)
-                
-                return Disposables.create()
-                }
-                .do(onCompleted: { [weak self] in
-                    self?.viewModel.cvv2.value = nil
-                })
-        }
-        .asDriver(onErrorDriveWith: .empty())
-    
     private lazy var tooltipModal: Driver<UIViewController> = self.dueDateTooltip.rx.tap.asDriver()
         .map {
             let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
@@ -562,7 +508,6 @@ class HomeBillCardView: UIView {
         .merge(tooltipModal,
                paymentTACModal,
                oneTouchPayErrorAlert,
-               oneTouchSliderCVV2Alert,
                tutorialViewController,
                bgeasyViewController,
                autoPayAlert)
@@ -624,22 +569,4 @@ class HomeBillCardView: UIView {
                                                                                          addOTPViewController,
                                                                                          billingHistoryViewController,
                                                                                          autoPayViewController)
-
-    deinit {
-        cvvValidationDisposable?.dispose()
-    }
-}
-
-extension HomeBillCardView: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        let characterSet = CharacterSet(charactersIn: string)
-        
-        if CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4 {
-            viewModel.cvv2.value = newString
-            return true
-        } else {
-            return false
-        }
-    }
 }

@@ -178,11 +178,6 @@ class PaymentUITests: ExelonUITestCase {
         let paymentAmountTextField = element(ofType: .textField, withText: "Payment Amount, required")
         XCTAssertEqual(paymentAmountTextField.value as? String, "$200.00", "Payment amount value entry should default to the amount due")
         
-        tapButton(buttonText: "Tool tip")
-        checkExistenceOfElements([
-            (.image, "cvv_info"),
-            (.staticText, "Your security code is usually a 3 or 4 digit number found on your card.")
-            ])
         tapButton(buttonText: "Close")
         
         tapButton(buttonText: dateString(from: Date()))

@@ -34,10 +34,6 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
     @IBOutlet weak var fixedPaymentAccountNicknameLabel: UILabel!
     
-    @IBOutlet weak var cvvView: UIView!
-    @IBOutlet weak var cvvTextField: FloatLabelTextField!
-    @IBOutlet weak var cvvTooltipButton: UIButton!
-    
     @IBOutlet weak var amountDueView: UIView! // Contains amountDueTextLabel and amountDueValueLabel
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
@@ -145,26 +141,6 @@ class MakePaymentViewController: UIViewController {
         paymentAccountAccountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
         paymentAccountNicknameLabel.textColor = .middleGray
         paymentAccountNicknameLabel.font = SystemFont.medium.of(textStyle: .footnote)
-        
-        cvvTextField.textField.placeholder = NSLocalizedString("CVV2*", comment: "")
-        cvvTextField.textField.delegate = self
-        cvvTextField.setKeyboardType(.numberPad)
-        cvvTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-            .withLatestFrom(Driver.zip(viewModel.cvv.asDriver(), viewModel.cvvIsCorrectLength))
-            .drive(onNext: { [weak self] (cvv, cvvIsCorrectLength) in
-                if !cvv.isEmpty && !cvvIsCorrectLength {
-                    self?.cvvTextField.setError(NSLocalizedString("Must be 3 or 4 digits", comment: ""))
-                }
-                self?.accessibilityErrorLabel()
-            }).disposed(by: disposeBag)
-        
-        cvvTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
-            .drive(onNext: { [weak self] _ in
-                self?.cvvTextField.setError(nil)
-                self?.accessibilityErrorLabel()
-            }).disposed(by: disposeBag)
-        
-        cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueTextLabel.textColor = .deepGray
@@ -295,9 +271,6 @@ class MakePaymentViewController: UIViewController {
         viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
         viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
-        // CVV (BGE credit card only)
-        viewModel.shouldShowCvvTextField.map(!).drive(cvvView.rx.isHidden).disposed(by: disposeBag)
-        
         // Payment Amount Text Field
         viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
         
@@ -350,9 +323,6 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemNickname.drive(fixedPaymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
         viewModel.showSelectedWalletItemNickname.not().drive(fixedPaymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(fixedPaymentAccountView.rx.accessibilityLabel).disposed(by: disposeBag)
-        
-        // CVV (BGE credit card only)
-        cvvTextField.textField.rx.text.orEmpty.bind(to: viewModel.cvv).disposed(by: disposeBag)
         
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
@@ -538,12 +508,7 @@ class MakePaymentViewController: UIViewController {
     }
     
     private func accessibilityErrorLabel() {
-        var message = ""
-        
-        // Payment Fields
-        message += cvvTextField.getError()
-        message += paymentAmountTextField.getError()
-        
+        let message = paymentAmountTextField.getError()
         if message.isEmpty {
             nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
         } else {
@@ -605,21 +570,7 @@ class MakePaymentViewController: UIViewController {
             vc.viewModel = viewModel
         }
     }
-    
-    @IBAction func onCVVTooltipPress() {
-        let messageText: String
-        switch Environment.shared.opco {
-        case .bge:
-            messageText = NSLocalizedString("Your security code is usually a 3 or 4 digit number found on your card.", comment: "")
-        case .comEd, .peco:
-            messageText = NSLocalizedString("Your security code is usually a 3 digit number found on the back of your card.", comment: "")
-        }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What's a CVV?", comment: ""),
-                                                image: #imageLiteral(resourceName: "cvv_info"),
-                                                description: messageText)
-        navigationController?.present(infoModal, animated: true, completion: nil)
-    }
-    
+        
     // Prevents status bar color flash when pushed
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

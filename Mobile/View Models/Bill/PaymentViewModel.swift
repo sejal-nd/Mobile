@@ -26,7 +26,6 @@ class PaymentViewModel {
     let selectedWalletItem = Variable<WalletItem?>(nil)
     let newlyAddedWalletItem = Variable<WalletItem?>(nil) // Set if the user adds a new item from the Paymentus iFrame in this workflow
     let wouldBeSelectedWalletItemIsExpired = Variable(false)
-    let cvv = Variable("")
     
     let amountDue: Variable<Double>
     let paymentAmount: Variable<Double>
@@ -209,8 +208,7 @@ class PaymentViewModel {
                                   paymentType: paymentType,
                                   paymentDate: paymentDate,
                                   walletId: AccountsStore.shared.customerIdentifier,
-                                  walletItemId: self.selectedWalletItem.value!.walletItemID!,
-                                  cvv: self.cvv.value)
+                                  walletItemId: self.selectedWalletItem.value!.walletItemID!)
             
             self.paymentService.schedulePayment(payment: payment)
                 .observeOn(MainScheduler.instance)
@@ -248,8 +246,7 @@ class PaymentViewModel {
                                   paymentType: paymentType,
                                   paymentDate: paymentDate,
                                   walletId: AccountsStore.shared.customerIdentifier,
-                                  walletItemId: self.selectedWalletItem.value!.walletItemID!,
-                                  cvv: self.cvv.value)
+                                  walletItemId: self.selectedWalletItem.value!.walletItemID!)
             
             self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
                 .observeOn(MainScheduler.instance)
@@ -277,31 +274,15 @@ class PaymentViewModel {
     }
     
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
-        .combineLatest(shouldShowContent,
-                       paymentAmountErrorMessage)
-        { $0 && $1 == nil }
+        .combineLatest(shouldShowContent, paymentAmountErrorMessage) {
+            return $0 && $1 == nil
+        }
     
     // MARK: - Make Payment Drivers
-    
     private(set) lazy var makePaymentNextButtonEnabled: Driver<Bool> = Driver
-        .combineLatest(selectedWalletItem.asDriver(),
-                       paymentFieldsValid,
-                       cvvIsCorrectLength)
-    { (selectedWalletItem, paymentFieldsValid, cvvIsCorrectLength) in
-        if Environment.shared.opco == .bge {
-            if let walletItem = selectedWalletItem {
-                if walletItem.bankOrCard == .card {
-                    return paymentFieldsValid && cvvIsCorrectLength
-                } else {
-                    return paymentFieldsValid
-                }
-            } else {
-                return false
-            }
-        } else {
-            return selectedWalletItem != nil && paymentFieldsValid
+        .combineLatest(selectedWalletItem.asDriver(), paymentFieldsValid) {
+            return $0 != nil && $1
         }
-    }
         
     private(set) lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isCashOnly }
     
@@ -356,19 +337,6 @@ class PaymentViewModel {
             return walletItems.count > 0
         }
     }
-    
-    private(set) lazy var shouldShowCvvTextField: Driver<Bool> = Driver.combineLatest(self.cardWorkflow, self.allowEdits.asDriver())
-    {
-        if !$1 {
-            return false
-        }
-        if Environment.shared.opco == .bge && $0 {
-            return true
-        }
-        return false
-    }
-    
-    private(set) lazy var cvvIsCorrectLength: Driver<Bool> = self.cvv.asDriver().map { $0.count == 3 || $0.count == 4 }
     
     private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = Driver.combineLatest(self.hasWalletItems,
                                                                                                 self.allowEdits.asDriver())
