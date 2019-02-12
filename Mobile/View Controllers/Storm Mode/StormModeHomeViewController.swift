@@ -40,7 +40,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
             headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
-            headerContentView.accessibilityLabel = NSLocalizedString("Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to beter serve you.", comment: "")
+            headerContentView.accessibilityLabel = NSLocalizedString("Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you.", comment: "")
         }
     }
     
@@ -286,7 +286,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         
         viewModel.stormModeUpdate.asDriver().isNil().drive(onNext: { [weak self] noUpdate in
             self?.headerCaretImageView.isHidden = noUpdate
-            self?.headerContentView.accessibilityTraits = noUpdate ? [.none] : [.button]
+            self?.headerContentView.accessibilityTraits = noUpdate ? .staticText : .button
         }).disposed(by: disposeBag)
         
         Driver.merge(reportOutageButton.rx.touchUpInside.asDriver().map(to: "ReportOutageSegue"),

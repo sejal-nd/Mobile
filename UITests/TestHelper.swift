@@ -88,7 +88,12 @@ class ExelonUITestCase: XCTestCase {
         ACTLabel.labelStep("Signing in...")
         tapButton(buttonText: "Sign In")
     
-        XCTAssertTrue(tabButtonElement(withText: "Home").exists)
+        if app.launchArguments.contains("stormMode") {
+            checkExistenceOfElement(.staticText, "Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you.")
+        } else {
+            XCTAssertTrue(tabButtonElement(withText: "Home").exists)
+        }
+        
         ACTLabel.labelStep("Signed in")
     }
 }
