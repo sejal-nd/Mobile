@@ -181,6 +181,11 @@ class MockOutageService: OutageService {
     
     func reportOutage(outageInfo: OutageInfo) -> Observable<Void> {
         let key = MockUser.current.currentAccount.dataKey(forFile: .reportOutage)
+        
+        if key == .reportOutageError {
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Invalid Account"))
+        }
+        
         return MockJSONManager.shared.rx.mappableObject(fromFile: .reportOutage, key: key)
             .do(onNext: { (result: ReportedOutageResult) in
                 ReportedOutagesStore.shared[key.rawValue] = result
