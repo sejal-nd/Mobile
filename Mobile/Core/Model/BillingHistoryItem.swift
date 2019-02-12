@@ -89,7 +89,7 @@ struct BillingHistoryItem: Mappable {
                 return false
             }
             
-            return date >= Calendar.opCo.startOfDay(for: Date())
+            return date >= Calendar.opCo.startOfDay(for: .now)
         }
     }
 

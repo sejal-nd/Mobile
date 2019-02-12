@@ -11,6 +11,11 @@ import AppCenterXCUITestExtensions
 
 class HomeBillCardUITests: ExelonUITestCase {
     
+    override func setUp() {
+        super.setUp()
+        launchApp()
+    }
+    
     func testNoDefaultPaymentSetWithBill() {
         doLogin(username: "billCardNoDefaultPayment")
 
@@ -31,7 +36,7 @@ class HomeBillCardUITests: ExelonUITestCase {
         XCTAssertFalse(buttonElement(withText: "Set a default payment method").exists, "Set payment method button should be hidden when one is already set")
 
         checkExistenceOfElements([
-            (.staticText, "$200.00"),
+            (.staticText, "$5,000.00"),
             (.button, "Bank account, Account ending in 1234")
         ])
 
@@ -42,7 +47,7 @@ class HomeBillCardUITests: ExelonUITestCase {
         doLogin(username: "scheduledPayment")
 
         tapButton(buttonText: "Thank you for scheduling your $82.00 payment")
-        XCTAssertTrue(app.navigationBars["Activity"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.navigationBars["Payment Activity"].waitForExistence(timeout: 3))
     }
     
     func testThankYouForPayment() {
@@ -58,23 +63,19 @@ class HomeBillCardUITests: ExelonUITestCase {
         doLogin(username: "pastDue")
 
         checkExistenceOfElements([
-            (.staticText, "Your bill is past due."),
+            (.staticText, "$140.00 of the total is due immediately."),
             (.staticText, "$200.00"),
-            (.staticText, "Total amount due immediately")
+            (.staticText, "Total Amount Due")
         ])
     }
     
     func testAvoidShutoff() {
         doLogin(username: "avoidShutoff")
 
-        let dueMessage = appOpCo == .bge
-            ? "$200.00 is due in 10 days to avoid service interruption."
-            : "$200.00 is due immediately to avoid shutoff."
-
         checkExistenceOfElements([
-            (.staticText, dueMessage),
+            (.staticText, "$100.00 of the total must be paid immediately to avoid shutoff."),
             (.staticText, "$350.00"),
-            (.staticText, "Total amount due in 10 days")
+            (.staticText, "Total Amount Due")
         ])
     }
     
@@ -82,28 +83,12 @@ class HomeBillCardUITests: ExelonUITestCase {
         doLogin(username: "paymentPending")
 
         let paymentMessage = appOpCo == .bge
-            ? "Your payment is processing"
-            : "Your payment is pending"
+            ? "You have processing payments"
+            : "You have pending payments"
 
         checkExistenceOfElements([
             (.staticText, paymentMessage),
-            (.staticText, "$200.00")
-        ])
-    }
-    
-    func testMaintModeHomeBillCard() {
-        doLogin(username: "maintNotHome")
-        
-        checkExistenceOfElement(.staticText, "Billing is currently unavailable due to maintenance.")
-    }
-    
-    func testMaintModeHome() {
-        doLogin(username: "maintAllTabs")
-
-        checkExistenceOfElements([
-            (.button, "Reload"),
-            (.staticText, "Maintenance"),
-            (.staticText, "Home is currently unavailable due to maintenance.")
+            (.staticText, "$100.00")
         ])
     }
     

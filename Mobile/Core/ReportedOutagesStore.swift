@@ -22,7 +22,7 @@ class ReportedOutagesStore {
     subscript(accountNumber: String) -> ReportedOutageResult? {
         get {
             if let report = reportsCache[accountNumber] {
-                if report.reportedTime.addingTimeInterval(reportTimeLimit) > Date() {
+                if report.reportedTime.addingTimeInterval(reportTimeLimit) > .now {
                     return report
                 } else {
                     removeReport(forAccountNumber: accountNumber)
@@ -32,7 +32,7 @@ class ReportedOutagesStore {
                 let reportNSDictionary = reportDictionary[accountNumber] as? NSDictionary,
                 let report = ReportedOutageResult.from(reportNSDictionary) {
                 
-                if report.reportedTime.addingTimeInterval(reportTimeLimit) > Date() {
+                if report.reportedTime.addingTimeInterval(reportTimeLimit) > .now {
                     reportsCache[accountNumber] = report
                     return report
                 } else {
@@ -65,6 +65,11 @@ class ReportedOutagesStore {
             }
             
         }
+    }
+    
+    func clearStore() {
+        reportsCache.removeAll()
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.reportedOutagesDictionary)
     }
     
     private func removeReport(forAccountNumber accountNumber: String) {

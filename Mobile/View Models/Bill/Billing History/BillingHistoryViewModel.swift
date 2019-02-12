@@ -22,7 +22,7 @@ class BillingHistoryViewModel {
     }
     
     func getBillingHistory(success: @escaping (BillingHistory) -> Void, failure: @escaping (Error) -> Void) {
-        let now = Date()
+        let now = Date.now
         let lastYear = Calendar.opCo.date(byAdding: .month, value: monthsBackward, to: now)!
         let theFuture = Calendar.opCo.date(byAdding: .month, value: monthsforward, to: now)!
         billService.fetchBillingHistory(accountNumber: AccountsStore.shared.currentAccount.accountNumber, startDate: lastYear, endDate: theFuture)

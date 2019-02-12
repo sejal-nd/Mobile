@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Mapper
 
 // MARK: - ServiceErrorCode
 
@@ -68,8 +69,16 @@ struct ServiceError : Error {
         self.serviceMessage = serviceMessage
         self.cause = cause
     }
+    
+    static let parsing = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
 }
 
+extension ServiceError: Mappable {
+    init(map: Mapper) throws {
+        serviceCode = try map.from("code")
+        serviceMessage = map.optionalFrom("description")
+    }
+}
 
 // MARK: - ServiceError -> LocalizedError
 

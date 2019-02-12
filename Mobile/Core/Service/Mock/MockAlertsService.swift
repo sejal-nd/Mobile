@@ -49,14 +49,9 @@ class MockAlertsService: AlertsService {
         return .just(())
     }
     
-    var updatesShouldSucceed = true
-    
     func fetchOpcoUpdates(bannerOnly: Bool = false, stormOnly: Bool = false) -> Observable<[OpcoUpdate]> {
-        if updatesShouldSucceed {
-            let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
-            return .just(opcoUpdates)
-        } else {
-            return .error(ServiceError(serviceMessage: "Mock Error"))
-        }
+        let dataFile = MockJSONManager.File.opcoUpdates
+        let key = MockAppState.current.opCoUpdatesKey
+        return MockJSONManager.shared.rx.mappableArray(fromFile: dataFile, key: key)
     }
 }

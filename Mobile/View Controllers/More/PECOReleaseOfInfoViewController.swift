@@ -79,7 +79,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
         
         LoadingView.show()
         Analytics.log(event: .releaseInfoSubmit)
-        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount!, selectedIndex: rowToIntMapping)
+        accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
@@ -127,7 +127,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
                 .disposed(by: self.disposeBag)
         }
         
-        if AccountsStore.shared.currentAccount == nil {
+        if AccountsStore.shared.currentIndex == nil {
             accountService.fetchAccounts()
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] _ in

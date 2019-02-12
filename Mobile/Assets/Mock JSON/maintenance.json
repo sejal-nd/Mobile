@@ -1,0 +1,39 @@
+{
+    "default": {},
+    "maintAll": {
+        "all": true
+    },
+    "maintAllTabs": {
+        "home": true,
+        "bill": true,
+        "outage": true,
+        "usage": true
+    },
+    "maintAllTabsIOS": {
+        "ios": {
+            "home": true,
+            "bill": true,
+            "outage": true,
+            "usage": true
+        }
+    },
+    "maintNotHome": {
+        "bill": true,
+        "outage": true,
+        "usage": true
+    },
+    "maintNotHomeIOS": {
+        "ios": {
+            "bill": true,
+            "outage": true,
+            "usage": true
+        }
+    },
+    "stormMode": {
+        "storm": true
+    },
+    "error": {
+        "code": "TC-UNKNOWN",
+        "description": "This is a test error"
+    }
+}

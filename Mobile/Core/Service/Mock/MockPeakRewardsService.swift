@@ -30,10 +30,10 @@ class MockPeakRewardsService: PeakRewardsService {
         if accountNumber.contains("NoOverrides") {
             return .just([])
         } else if accountNumber.contains("ScheduledOverride") {
-            let stop = Calendar.current.date(byAdding: .hour, value: 5, to: Date())
-            return .just([PeakRewardsOverride(serialNumber: "123", status: .scheduled, start: Date(), stop: stop)])
+            let stop = Calendar.current.date(byAdding: .hour, value: 5, to: .now)
+            return .just([PeakRewardsOverride(serialNumber: "123", status: .scheduled, start: .now, stop: stop)])
         } else if accountNumber == "programCardsDataActiveOverride" || accountNumber == "programCardsDataInactiveProgram" {
-            return .just([PeakRewardsOverride(serialNumber: "123", status: .active, start: Date())])
+            return .just([PeakRewardsOverride(serialNumber: "123", status: .active, start: .now)])
         } else {
             return .just([PeakRewardsOverride()])
         }

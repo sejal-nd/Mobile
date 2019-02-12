@@ -41,11 +41,10 @@ class BillViewModel {
         self.authService = authService
     }
     
-    private lazy var fetchTrigger = Observable.merge(self.fetchAccountDetail,
-                                                     RxNotifications.shared.accountDetailUpdated
-                                                        .mapTo(FetchingAccountState.switchAccount),
-                                                     RxNotifications.shared.recentPaymentsUpdated
-                                                        .mapTo(FetchingAccountState.switchAccount))
+    private lazy var fetchTrigger = Observable
+        .merge(fetchAccountDetail,
+               RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount),
+               RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchTrigger
@@ -58,11 +57,12 @@ class BillViewModel {
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
-        }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
-            guard let self = self, let account = AccountsStore.shared.currentAccount else { return .empty() }
-            let accountDetail = self.accountService.fetchAccountDetail(account: account)
-            let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
-            return Observable.zip(accountDetail, scheduledPayment)
+            }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
+                guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
+                let account = AccountsStore.shared.currentAccount
+                let accountDetail = self.accountService.fetchAccountDetail(account: account)
+                let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
+                return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
@@ -225,7 +225,7 @@ class BillViewModel {
         if let arrears = billingInfo.disconnectNoticeArrears, arrears > 0 {
             let amountString = arrears.currencyString
             let date = billingInfo.turnOffNoticeExtendedDueDate ?? billingInfo.turnOffNoticeDueDate
-            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date())) ?? 0
+            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now)) ?? 0
             let dateString = date?.mmDdYyyyString ?? "--"
             
             switch (days > 0, accountDetail.isCutOutIssued, arrears == billingInfo.netDueAmount) {
@@ -258,17 +258,17 @@ class BillViewModel {
         if let dueByDate = billingInfo.dueByDate,
             let amtDpaReinst = billingInfo.amtDpaReinst,
             Environment.shared.opco != .bge && amtDpaReinst > 0 {
-            let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+            let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now))
             let amountString = amtDpaReinst.currencyString
             
             let string: String
             switch (days > 0, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
             case (true, true):
-                let format = "The total amount is due in %d day%@ to catch up on your DPA."
-                return String.localizedStringWithFormat(format, days, days == 1 ? "": "s")
+                let format = "The total amount must be paid by %@ to catch up on your DPA."
+                return String.localizedStringWithFormat(format, dueByDate.mmDdYyyyString)
             case (true, false):
-                let format = "%@ of the total is due in %d day%@ to catch up on your DPA."
-                return String.localizedStringWithFormat(format, amountString, days, days == 1 ? "": "s")
+                let format = "%@ of the total must be paid by %@ to catch up on your DPA."
+                return String.localizedStringWithFormat(format, amountString, dueByDate.mmDdYyyyString)
             case (false, true):
                 return NSLocalizedString("The total amount must be paid immediately to catch up on your DPA.", comment: "")
             case (false, false):
@@ -421,12 +421,6 @@ class BillViewModel {
         }
     }
     
-    //MARK: - Credit
-    private(set) lazy var creditAmountText: Driver<String> = currentAccountDetail.map {
-        guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
-        return abs(netDueAmount).currencyString
-    }
-    
     //MARK: - Payment Status
     private(set) lazy var paymentStatusText: Driver<String?> = data
         .map { accountDetail, scheduledPayment in
@@ -524,14 +518,6 @@ class BillViewModel {
     
     private(set) lazy var paperlessButtonText: Driver<NSAttributedString?> = currentAccountDetail
         .map { accountDetail in
-            if !accountDetail.isResidential && (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) {
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
-            }
-            
-            if accountDetail.isEBillEnrollment {
-                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
-                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
-            }
             switch accountDetail.eBillEnrollStatus {
             case .canEnroll:
                 return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))

@@ -10,12 +10,16 @@ import Foundation
 import AppCenterXCUITestExtensions
 import XCTest
 
-internal var appOpCo: OpCo {
-    let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
-    let options: [OpCo] = [.bge, .comEd, .peco]
-
-    return options.lazy.filter({ appName.contains($0.displayString) }).first ?? .bge
+enum OpCo: String {
+    case bge = "BGEUITests-Runner"
+    case comEd = "ComEdUITests-Runner"
+    case peco = "PECOUITests-Runner"
 }
+
+let appOpCo: OpCo = {
+    let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
+    return OpCo(rawValue: appName)!
+}()
 
 class ExelonUITestCase: XCTestCase {
     
@@ -29,13 +33,16 @@ class ExelonUITestCase: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
     }
     
     override func tearDown() {
         ACTLabel.labelStep("Tearing down")
 
         super.tearDown()
+    }
+    
+    func launchApp() {
+        ACTLaunch.launch(app)
     }
     
     func handleTermsFirstLaunch() {
@@ -88,15 +95,6 @@ class ExelonUITestCase: XCTestCase {
 
 // MARK: - Helpers
 extension ExelonUITestCase {
-
-    func dateString(from date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.calendar = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-
-        return dateFormatter.string(from: date)
-    }
 
     func selectTab(tabName: String) {
         ACTLabel.labelStep("Pre-select tab \(tabName)")

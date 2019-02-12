@@ -88,26 +88,29 @@ class AccountPickerViewController: UIViewController {
             .distinctUntilChanged()
             .drive(onNext: { [weak self] pickerVisible in
                 guard let self = self else { return }
-                if let currentAccount = AccountsStore.shared.currentAccount { // Don't show if accounts not loaded
-                    self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
-                    self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
-                    if currentAccount.address?.isEmpty ?? true {
-                        self.accountNumberLabel.text = currentAccount.accountNumber
-                        self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
-                    } else {
-                        self.accountNumberLabel.text = currentAccount.address!
-                        self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), currentAccount.address!)
-                    }
-                    self.setNeedsStatusBarAppearanceUpdate()
-                    
-                    // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar
-                    UIView.animate(withDuration: 0.1, animations: {
-                        self.innerView.alpha = pickerVisible ? 0 : 1
-                    })
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -self.minimizedPickerHeight : 0)
-                    })
+                guard AccountsStore.shared.currentIndex != nil else { // Don't show if accounts not loaded
+                    return
                 }
+                
+                let currentAccount = AccountsStore.shared.currentAccount
+                self.iconView.image = currentAccount.isResidential ? #imageLiteral(resourceName: "ic_residential_mini") : #imageLiteral(resourceName: "ic_commercial_mini")
+                self.iconView.accessibilityLabel = currentAccount.isResidential ? NSLocalizedString("Residential account", comment: "") : NSLocalizedString("Commercial account", comment: "")
+                if currentAccount.address?.isEmpty ?? true {
+                    self.accountNumberLabel.text = currentAccount.accountNumber
+                    self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), currentAccount.accountNumber)
+                } else {
+                    self.accountNumberLabel.text = currentAccount.address!
+                    self.accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Street address %@", comment: ""), currentAccount.address!)
+                }
+                self.setNeedsStatusBarAppearanceUpdate()
+                
+                // 2 separate animations here so that the icon/text are completely transparent by the time they animate under the status bar
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.innerView.alpha = pickerVisible ? 0 : 1
+                })
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.containerView.frame.origin = CGPoint(x: 0, y: pickerVisible ? -self.minimizedPickerHeight : 0)
+                })
             })
             .disposed(by: disposeBag)
     }
@@ -115,12 +118,12 @@ class AccountPickerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let currentAccount = AccountsStore.shared.currentAccount
-        if currentAccount == nil {
+        if AccountsStore.shared.currentIndex == nil {
             fetchAccounts()
         } else {
+            let currentAccount = AccountsStore.shared.currentAccount
             accountPicker.loadAccounts()
-            if currentAccount != accountPicker.currentAccount || currentAccount?.currentPremise != accountPicker.currentAccount.currentPremise {
+            if currentAccount != accountPicker.currentAccount || currentAccount.currentPremise != accountPicker.currentAccount.currentPremise {
                 accountPicker.updateCurrentAccount()
             }
         }

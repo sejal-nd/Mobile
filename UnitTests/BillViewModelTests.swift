@@ -32,9 +32,10 @@ class BillViewModelTests: XCTestCase {
             Account.from(["accountNumber": "5591032206", "address": "7705 Presidents Street"])!
         ]
         
-        AccountsStore.shared.currentAccount = mockAccounts[0]
+        AccountsStore.shared.accounts = mockAccounts
+        AccountsStore.shared.currentIndex = 0
+        
         accountService = MockAccountService()
-        accountService.mockAccounts = mockAccounts
         viewModel = BillViewModel(accountService: accountService, authService: MockAuthenticationService())
         scheduler = TestScheduler(initialClock: 0)
     }
@@ -46,11 +47,13 @@ class BillViewModelTests: XCTestCase {
     }
     
     func simulateAccountSwitches(at times: [Int]) {
-        let events: [Recorded<Event<Account>>] = zip(times, accountService.mockAccounts).map(next)
+        let events: [Recorded<Event<Int>>] = zip(times, Array(0..<AccountsStore.shared.accounts.count))
+            .map(next)
+        
         let accountSwitches = scheduler.createHotObservable(events)
         accountSwitches
             .do(onNext: {
-                AccountsStore.shared.currentAccount = $0
+                AccountsStore.shared.currentIndex = $0
             })
             .map { _ in FetchingAccountState.switchAccount }
             .bind(to: viewModel.fetchAccountDetail)

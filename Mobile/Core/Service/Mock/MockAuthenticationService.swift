@@ -12,11 +12,11 @@ import RxSwift
 struct MockAuthenticationService: AuthenticationService {
     
     let invalidUsername = "invalid@test.com"
-    let validPassword = "Password1"
+    let invalidPassword = "invalid"
     
     func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
-        if username != invalidUsername && password == validPassword {
-            MockData.shared.username = username
+        if username != invalidUsername && password != invalidPassword {
+            MockUser.current = MockUser(username: username)
             return .just(ProfileStatus())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnPwdInvalid.rawValue, serviceMessage: "Invalid credentials"))
@@ -36,7 +36,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
-        if currentPassword == validPassword {
+        if currentPassword != invalidPassword {
             return .just(())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password"))
@@ -44,7 +44,7 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func changePasswordAnon(username: String,currentPassword: String, newPassword: String) -> Observable<Void> {
-        if currentPassword == validPassword {
+        if currentPassword != invalidPassword {
             return .just(())
         } else {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fNPwdNoMatch.rawValue, serviceMessage: "Invalid current password"))
@@ -52,18 +52,14 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance> {
-        switch MockData.shared.username {
-        case "maintAll":
-            return .just(Maintenance(all: true))
-        case "maintAllTabs":
-            return .just(Maintenance(home: true, bill: true, outage: true, alert: true))
-        case "maintNotHome":
-            return .just(Maintenance(home: false, bill: true, outage: true, alert: true))
-        case "maintError":
-            return .error(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
-        default:
-            return .just(Maintenance())
-        }
+        let dataFile = MockJSONManager.File.maintenance
+        let key = MockAppState.current.maintenanceKey
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
+            .do(onNext: { maintenance in
+                if maintenance.allStatus {
+                    NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
+                }
+            })
     }
     
     func getMinimumVersion() -> Observable<MinimumVersion> {

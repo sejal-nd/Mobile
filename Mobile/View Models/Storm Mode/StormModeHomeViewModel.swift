@@ -104,7 +104,7 @@ class StormModeHomeViewModel {
     }
     
     var reportedOutage: ReportedOutageResult? {
-        guard AccountsStore.shared.currentAccount != nil else { return nil }
+        guard AccountsStore.shared.currentIndex != nil else { return nil }
         return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
