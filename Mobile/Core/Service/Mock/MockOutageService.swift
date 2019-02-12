@@ -12,7 +12,7 @@ import Foundation
 class MockOutageService: OutageService {
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].dataKey(forFile: .outageStatus)
+        let key = MockUser.current.currentAccount.dataKey(forFile: .outageStatus)
         
         if key == .finaled {
             return .error(ServiceError(serviceCode: ServiceErrorCode.fnAccountFinaled.rawValue))
@@ -26,22 +26,26 @@ class MockOutageService: OutageService {
     }
     
     func pingMeter(account: Account) -> Observable<MeterPingInfo> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].dataKey(forFile: .meterPingInfo)
+        let key = MockUser.current.currentAccount.dataKey(forFile: .meterPingInfo)
         return MockJSONManager.shared.rx.mappableObject(fromFile: .meterPingInfo, key: key)
     }
     
     func reportOutage(outageInfo: OutageInfo) -> Observable<Void> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].dataKey(forFile: .outageStatus)
+        let key = MockUser.current.currentAccount.dataKey(forFile: .reportOutage)
         if key == .reportOutageError {
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Mock Error"))
         }
         
-        ReportedOutagesStore.shared[outageInfo.accountNumber] = ReportedOutageResult.from(NSDictionary())
-        return .just(())
+        return MockJSONManager.shared.rx.mappableObject(fromFile: .reportOutage, key: key)
+            .do(onNext: { (result: ReportedOutageResult) in
+                ReportedOutagesStore.shared[key.rawValue] = result
+            })
+            .mapTo(())
     }
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
-        return ReportedOutagesStore.shared[accountNumber]
+        let key = MockUser.current.currentAccount.dataKey(forFile: .reportOutage)
+        return ReportedOutagesStore.shared[key.rawValue]
     }
     
     func fetchOutageStatusAnon(phoneNumber: String?, accountNumber: String?) -> Observable<[OutageStatus]> {
