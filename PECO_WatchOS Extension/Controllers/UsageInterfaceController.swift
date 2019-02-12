@@ -218,8 +218,8 @@ class UsageInterfaceController: WKInterfaceController {
         accountTitleLabel.setText(nil)
         
         // Populate Account Info
-        if let selectedAccount = AccountsStore.shared.currentAccount {
-            updateAccountInformation(selectedAccount)
+        if let _ = AccountsStore.shared.currentIndex {
+            updateAccountInformation(AccountsStore.shared.currentAccount)
         }
         
         // Set Delegate

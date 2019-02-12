@@ -35,7 +35,11 @@ class HomeWeatherViewModel {
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = accountDetailEvents.elements()
         .map { [weak self] in
-            AccountsStore.shared.currentAccount?.currentPremise?.zipCode ?? $0.zipCode ?? self?.defaultZip
+            guard AccountsStore.shared.currentIndex != nil else {
+                return nil
+            }
+            
+            return AccountsStore.shared.currentAccount.currentPremise?.zipCode ?? $0.zipCode ?? self?.defaultZip
         }
         .unwrap()
         .toAsyncRequest { [weak self] in
@@ -47,7 +51,7 @@ class HomeWeatherViewModel {
 //        .map { "\($0)" }
         .mapTo(())
         .startWith(())
-        .map { Date().localizedGreeting }
+        .map { Date.now.localizedGreeting }
         .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     

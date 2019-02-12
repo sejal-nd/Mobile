@@ -213,7 +213,7 @@ class SplashViewController: UIViewController{
         }
     }
     
-    func handleOutOfDate(){
+    func handleOutOfDate() {
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
             UIApplication.shared.openUrlIfCan(Environment.shared.opco.appStoreLink)

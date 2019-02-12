@@ -16,7 +16,7 @@ class MockAppointmentService: AppointmentService {
         let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
         
         let noon = Calendar.opCo.date(byAdding: DateComponents(hour: 12),
-                                      to: Calendar.opCo.startOfDay(for: Date()))!
+                                      to: Calendar.opCo.startOfDay(for: .now))!
         let one = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: noon)!
         
         let appointments: [Appointment]

@@ -41,7 +41,7 @@ class RecentPaymentsStore {
     subscript(account: Account) -> PaymentDetails? {
         get {
             if let paymentDetails = paymentDetailsCache[account.accountNumber] {
-                if paymentDetails.date.addingTimeInterval(paymentTimeLimit) > Date() {
+                if paymentDetails.date.addingTimeInterval(paymentTimeLimit) > .now {
                     return paymentDetails
                 } else {
                     removePaymentDetails(forAccount: account)
@@ -51,7 +51,7 @@ class RecentPaymentsStore {
                 let paymentDictionary = paymentDetailsDictionary[account.accountNumber] as? NSDictionary,
                 let paymentDetails = PaymentDetails.from(paymentDictionary) {
                 
-                if paymentDetails.date.addingTimeInterval(paymentTimeLimit) > Date() {
+                if paymentDetails.date.addingTimeInterval(paymentTimeLimit) > .now {
                     paymentDetailsCache[account.accountNumber] = paymentDetails
                     return paymentDetails
                 } else {

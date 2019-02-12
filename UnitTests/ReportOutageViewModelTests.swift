@@ -22,18 +22,14 @@ class ReportOutageViewModelTests: XCTestCase {
         viewModel.phoneNumber.value = "410-123-4567"
         viewModel.reportFormHidden.value = false
         viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
-            if !enabled {
-                XCTFail("Submit button should be enabled")
-            }
+            XCTAssertTrue(enabled, "Submit button should be enabled")
         }).disposed(by: disposeBag)
     }
     
     func testSubmitButtonDisabled() {
         viewModel.phoneNumber.value = ""
         viewModel.submitEnabled.asObservable().single().subscribe(onNext: { enabled in
-            if enabled {
-                XCTFail("Submit button should be disabled")
-            }
+            XCTAssertFalse(enabled, "Submit button should be disabled")
         }).disposed(by: disposeBag)
     }
     
@@ -47,81 +43,79 @@ class ReportOutageViewModelTests: XCTestCase {
         case .peco:
             expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
-        
-        XCTAssertEqual(expectedString, viewModel.footerTextViewText.string, "Expected \"\(expectedString)\", got \"\(viewModel.footerTextViewText.string)\"")
+        XCTAssertEqual(expectedString, viewModel.footerTextViewText.string)
     }
     
     func testReportOutageSuccess() {
-        let asyncExpectation = expectation(description: "testReportOutageSuccess")
-        
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
+        MockUser.current = MockUser.default
+        MockAccountService.loadAccountsSync()
         
         viewModel.reportOutage(onSuccess: { 
-            asyncExpectation.fulfill()
+            // Pass
         }, onError: { error in
             XCTFail("Unexpected failure response")
         })
-        
-        waitForExpectations(timeout: 5) { error in
-            XCTAssertNil(error, "timeout")
-        }
     }
     
     func testReportOutageError() {
-        let asyncExpectation = expectation(description: "testReportOutageError")
-        
-        // The mock outage service is configured to throw an error for account number "5591032201"
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "5591032201", "address": "573 Elm Street"]))
+        MockUser.current = MockUser(globalKeys: .reportOutageError)
+        MockAccountService.loadAccountsSync()
         
         viewModel.reportOutage(onSuccess: {
             XCTFail("Unexpected success response")
         }, onError: { error in
-            asyncExpectation.fulfill()
+            // Pass
         })
-        
-        waitForExpectations(timeout: 5) { error in
-            XCTAssertNil(error, "timeout")
-        }
     }
     
     func testReportOutageAnonSuccess() {
-        let asyncExpectation = expectation(description: "testReportOutageSuccess")
+        MockUser.current = MockUser.default
+        MockAccountService.loadAccountsSync()
         
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
-        viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890"])!
+        do {
+            let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .default)
+            viewModel.outageStatus = outageStatus
+        } catch {
+            XCTFail()
+        }
+        
         viewModel.reportOutageAnon(onSuccess: { result in
-            asyncExpectation.fulfill()
+            // Pass
         }, onError: { error in
             XCTFail("Unexpected failure response")
         })
-        
-        waitForExpectations(timeout: 5) { error in
-            XCTAssertNil(error, "timeout")
-        }
     }
     
     func testReportOutageAnonError() {
-        let asyncExpectation = expectation(description: "testReportOutageError")
+        MockUser.current = MockUser(globalKeys: .reportOutageError)
+        MockAccountService.loadAccountsSync()
         
-        // The mock outage service is configured to throw an error for account number "5591032201"
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "5591032201", "address": "573 Elm Street"]))
-        viewModel.outageStatus = OutageStatus.from(["accountNumber": "5591032201"])!
+        do {
+            let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .default)
+            viewModel.outageStatus = outageStatus
+        } catch {
+            XCTFail()
+        }
+        
         viewModel.reportOutageAnon(onSuccess: { result in
             XCTFail("Unexpected success response")
         }, onError: { error in
-            asyncExpectation.fulfill()
+            // Pass
         })
-        
-        waitForExpectations(timeout: 5) { error in
-            XCTAssertNil(error, "timeout")
-        }
     }
     
     func testShouldPingMeterActiveOutage() {
         if Environment.shared.opco != .comEd {
             XCTAssertFalse(viewModel.shouldPingMeter)
         } else {
-            viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890", "status": "ACTIVE", "smartMeterStatus": true])!
+            MockUser.current = MockUser(globalKeys: .outagePowerOut)
+            MockAccountService.loadAccountsSync()
+            do {
+                let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .outagePowerOut)
+                viewModel.outageStatus = outageStatus
+            } catch {
+                XCTFail()
+            }
             XCTAssertFalse(viewModel.shouldPingMeter)
         }
     }
@@ -130,7 +124,14 @@ class ReportOutageViewModelTests: XCTestCase {
         if Environment.shared.opco != .comEd {
             XCTAssertFalse(viewModel.shouldPingMeter)
         } else {
-            viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890", "status": "NOT ACTIVE", "smartMeterStatus": false])!
+            MockUser.current = MockUser(globalKeys: .default)
+            MockAccountService.loadAccountsSync()
+            do {
+                let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .default)
+                viewModel.outageStatus = outageStatus
+            } catch {
+                XCTFail()
+            }
             XCTAssertFalse(viewModel.shouldPingMeter)
         }
     }
@@ -139,13 +140,21 @@ class ReportOutageViewModelTests: XCTestCase {
         if Environment.shared.opco != .comEd {
             XCTAssertFalse(viewModel.shouldPingMeter)
         } else {
-            viewModel.outageStatus = OutageStatus.from(["accountNumber": "1234567890", "status": "NOT ACTIVE", "smartMeterStatus": true])!
+            MockUser.current = MockUser(globalKeys: .outageSmartMeter)
+            MockAccountService.loadAccountsSync()
+            do {
+                let outageStatus: OutageStatus = try MockJSONManager.shared.mappableObject(fromFile: .outageStatus, key: .outageSmartMeter)
+                viewModel.outageStatus = outageStatus
+            } catch {
+                XCTFail()
+            }
             XCTAssertTrue(viewModel.shouldPingMeter)
         }
     }
     
     func testMeterPingSuccess() {
-        AccountsStore.shared.currentAccount = Account.from(NSDictionary(dictionary: ["accountNumber": "1234567890", "address": "573 Elm Street"]))
+        MockUser.current = MockUser.default
+        MockAccountService.loadAccountsSync()
         viewModel.meterPingGetStatus(onComplete: { meterPingInfo in
             XCTAssertTrue(meterPingInfo.pingResult)
             XCTAssertTrue(meterPingInfo.voltageResult)

@@ -82,6 +82,7 @@ class HomeBillCardViewModel {
     
     // Awful maintenance mode check
     private lazy var defaultWalletItemUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.defaultWalletItemUpdated
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTracker: { [weak self] _ in self?.fetchTracker(forState: .switchAccount) },
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
@@ -119,14 +120,14 @@ class HomeBillCardViewModel {
             }
         })
         .map { accountDetail, walletItem, cvv2 in
-            let startOfToday = Calendar.opCo.startOfDay(for: Date())
+            let startOfToday = Calendar.opCo.startOfDay(for: .now)
             let paymentDate: Date
             if Environment.shared.opco == .bge &&
-                Calendar.opCo.component(.hour, from: Date()) >= 20,
+                Calendar.opCo.component(.hour, from: .now) >= 20,
                 let tomorrow = Calendar.opCo.date(byAdding: .day, value: 1, to: startOfToday) {
                 paymentDate = tomorrow
             } else {
-                paymentDate = Date()
+                paymentDate = .now
             }
             
             return Payment(accountNumber: accountDetail.accountNumber,
@@ -463,7 +464,7 @@ class HomeBillCardViewModel {
                     return nil
             }
             
-            let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date()))
+            let days = dueByDate.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now))
             
             let string: String
             switch (days > 0, billingInfo.amtDpaReinst == billingInfo.netDueAmount) {
@@ -495,7 +496,7 @@ class HomeBillCardViewModel {
             }
             
             let date = billingInfo.turnOffNoticeExtendedDueDate ?? billingInfo.turnOffNoticeDueDate
-            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: Date())) ?? 0
+            let days = date?.interval(ofComponent: .day, fromDate: Calendar.opCo.startOfDay(for: .now)) ?? 0
             let dateString = date?.mmDdYyyyString ?? "--"
             
             let string: String
@@ -585,7 +586,7 @@ class HomeBillCardViewModel {
             guard let dueByDate = accountDetail.billingInfo.dueByDate else { return nil }
             let calendar = Calendar.opCo
             
-            let date1 = calendar.startOfDay(for: Date())
+            let date1 = calendar.startOfDay(for: .now)
             let date2 = calendar.startOfDay(for: dueByDate)
             
             guard let days = calendar.dateComponents([.day], from: date1, to: date2).day else {

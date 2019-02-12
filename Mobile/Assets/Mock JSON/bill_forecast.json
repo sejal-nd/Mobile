@@ -1,0 +1,348 @@
+{
+    "default": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100
+        }
+    ],
+    "screenshots": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 45,
+            "projectedUsage": 500,
+            "projectedCost": 60,
+            "billingEndDate": "2019-06-19",
+            "currencySymbol": "$"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 45,
+            "projectedUsage": 500,
+            "projectedCost": 60,
+            "billingEndDate": "2019-06-19",
+            "currencySymbol": "$"
+        }
+    ],
+    "hasForecastComparedHighest": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 150
+        }
+    ],
+    "hasForecastReferenceHighest": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 150
+        }
+    ],
+    "hasForecastForecastHighest": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 230
+        }
+    ],
+    "projectedCost": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 182
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 230
+        }
+    ],
+    "projectedUsage": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 182,
+            "projectedCost": 182
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 230,
+            "projectedCost": 230
+        }
+    ],
+    "projectedDate": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingEndDate": "2019-07-03"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingEndDate": "2019-08-13"
+        }
+    ],
+    "projectedCostAndUsage": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 220
+        }
+    ],
+    "projectedCostAndUsageOpower": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 220
+        }
+    ],
+    "projectionLessThan7": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-02"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-02"
+        }
+    ],
+    "projectionMoreThan7": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-15"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-15"
+        }
+    ],
+    "projectionSixDaysOut": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-07"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-07"
+        }
+    ],
+    "projectionThreeDaysOut": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-04"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2019-01-04"
+        }
+    ],
+    "comparedReferenceStartEndDate": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2018-05-23",
+            "billingEndDate": "2018-06-24"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2018-05-23",
+            "billingEndDate": "2018-06-24"
+        }
+    ],
+    "forecastStartEndDate": [
+        {
+            "utilityAccountDTO": {
+                "meterType": "GAS"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2018-05-23",
+            "billingEndDate": "2018-06-24"
+        },
+        {
+            "utilityAccountDTO": {
+                "meterType": "ELEC"
+            },
+            "toDateUsage": 100,
+            "toDateCost": 20,
+            "projectedUsage": 500,
+            "projectedCost": 100,
+            "billingStartDate": "2018-05-23",
+            "billingEndDate": "2018-06-24"
+        }
+    ],
+    "error": {
+        "code": "TC-UNKNOWN",
+        "description": "Bill Forecast fetch failed."
+    }
+}

@@ -28,7 +28,8 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234"])
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234", "address": "573 Elm Street"])!]
+        AccountsStore.shared.currentIndex = 0
         let expect = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
             XCTAssertFalse(self.viewModel.isFetching.value)
@@ -58,7 +59,8 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "13"])!] // Will trigger no OTP item from fetchWalletItems mock
+        AccountsStore.shared.currentIndex = 0
         let expect = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
             XCTAssertFalse(self.viewModel.isFetching.value)
@@ -111,7 +113,9 @@ class PaymentViewModelTests: XCTestCase {
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
-            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234"])
+            AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234", "address": "573 Elm Street"])!,
+                                             Account.from(["accountNumber": "13"])!]
+            AccountsStore.shared.currentIndex = 0
             let expect1 = expectation(description: "async")
             viewModel.fetchData(onSuccess: {
                 XCTAssertNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should be nil because OTP item is Visa card")
@@ -124,7 +128,7 @@ class PaymentViewModelTests: XCTestCase {
                 XCTAssertNil(err, "timeout")
             }
             
-            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+            AccountsStore.shared.currentIndex = 1 // Will trigger no OTP item from fetchWalletItems mock
             viewModel.selectedWalletItem.value = nil // Reset
             let expect2 = expectation(description: "async")
             viewModel.fetchData(onSuccess: {
@@ -147,7 +151,8 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234"])
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234"])!]
+        AccountsStore.shared.currentIndex = 0
         let expect1 = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
             XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should not be nil because OTP item is credit card")
@@ -161,7 +166,9 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertNil(err, "timeout")
         }
 
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "13"]) // Will trigger no OTP item from fetchWalletItems mock
+        AccountsStore.shared.accounts = [Account.from(["accountNumber": "13"])!] // Will trigger no OTP item from fetchWalletItems mock
+        AccountsStore.shared.currentIndex = 0
+        
         viewModel.selectedWalletItem.value = nil // Reset
         let expect2 = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
@@ -300,7 +307,7 @@ class PaymentViewModelTests: XCTestCase {
         
         AccountsStore.shared.customerIdentifier = "123"
         viewModel.paymentId.value = "123"
-        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
         let expect = expectation(description: "async")
         viewModel.cancelPayment(onSuccess: {
             expect.fulfill()
@@ -321,7 +328,7 @@ class PaymentViewModelTests: XCTestCase {
         
         AccountsStore.shared.customerIdentifier = "123"
         viewModel.paymentId.value = "123"
-        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: Date())
+        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
         viewModel.selectedWalletItem.value = WalletItem()
         let expect = expectation(description: "async")
         viewModel.modifyPayment(onSuccess: {
@@ -1623,7 +1630,7 @@ class PaymentViewModelTests: XCTestCase {
             
             var dateComps = DateComponents()
             dateComps.day = -1
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: Date())
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
             let dueByDate = Calendar.opCo.date(byAdding: dateComps, to: startOfTodayDate)
             viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(dueByDate: dueByDate))
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in

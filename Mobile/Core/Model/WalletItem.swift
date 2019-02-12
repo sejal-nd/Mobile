@@ -60,7 +60,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         } else if let exp = expirationDate {
             let monthYearSet = Set<Calendar.Component>(arrayLiteral: .month, .year)
             let expComponents = Calendar.gmt.dateComponents(monthYearSet, from: exp)
-            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: Date())
+            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: .now)
             guard let expMonth = expComponents.month, let expYear = expComponents.year,
                 let todayMonth = todayComponents.month, let todayYear = todayComponents.year else {
                 return false

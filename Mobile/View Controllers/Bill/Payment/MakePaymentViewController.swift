@@ -879,10 +879,10 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
-        let today = Calendar.opCo.startOfDay(for: Date())
+        let today = Calendar.opCo.startOfDay(for: .now)
         if Environment.shared.opco == .bge {
             let minDate: Date
-            if Calendar.opCo.component(.hour, from: Date()) >= 20 {
+            if Calendar.opCo.component(.hour, from: .now) >= 20 {
                 minDate = Calendar.opCo.date(byAdding: .day, value: 1, to: today)!
             } else {
                 minDate = today
@@ -920,7 +920,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return }
-        viewModel.paymentDate.value = Calendar.opCo.isDateInToday(opCoTimeDate) ? Date() : opCoTimeDate
+        viewModel.paymentDate.value = opCoTimeDate.isInToday(calendar: .opCo) ? .now : opCoTimeDate
     }
 }
 
