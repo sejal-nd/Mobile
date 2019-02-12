@@ -40,11 +40,11 @@ struct MockWalletService: WalletService {
             ]
         }
 
-        return Observable.just(walletItems).delay(1, scheduler: MainScheduler.instance)
+        return .just(walletItems)
     }
     
     func fetchBankName(routingNumber: String) -> Observable<String> {
-        return .error(ServiceError(serviceCode: ""))
+        return .just("M&T Bank")
     }
     
     func addWalletItemMCS(_ walletItem: WalletItem) {
@@ -56,10 +56,13 @@ struct MockWalletService: WalletService {
     }
 
     func deletePaymentMethod(walletItem : WalletItem) -> Observable<Void> {
-        return Observable.just(()).delay(1, scheduler: MainScheduler.instance)
+        return .just(())
     }
 
-    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, temporary: Bool, walletItemId: String? = nil) -> Observable<String> {
+    func fetchWalletEncryptionKey(customerId: String,
+                                  bankOrCard: BankOrCard,
+                                  temporary: Bool,
+                                  walletItemId: String? = nil) -> Observable<String> {
         return .just("")
     }
 }
