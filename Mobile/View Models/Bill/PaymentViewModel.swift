@@ -150,32 +150,25 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
                          onError: @escaping (ServiceError) -> Void) {
-        self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-            guard let self = self else { return }
-            let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-            var paymentDate = self.paymentDate.value
-            if isFixed {
-                paymentDate = .now
-            }
-
-            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                  existingAccount: !self.selectedWalletItem.value!.isTemporary,
-                                  maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                                  paymentAmount: self.paymentAmount.value,
-                                  paymentType: paymentType,
-                                  paymentDate: paymentDate,
-                                  walletId: AccountsStore.shared.customerIdentifier,
-                                  walletItemId: self.selectedWalletItem.value!.walletItemID!)
-
-            self.paymentService.schedulePayment(payment: payment)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] confirmationNumber in
-                    self?.confirmationNumber = confirmationNumber
-                    onSuccess()
-                }, onError: { err in
-                    onError(err as! ServiceError)
-                }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
+        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
+        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
+                              existingAccount: !self.selectedWalletItem.value!.isTemporary,
+                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
+                              paymentAmount: self.paymentAmount.value,
+                              paymentType: paymentType,
+                              paymentDate: self.paymentDate.value,
+                              walletId: AccountsStore.shared.customerIdentifier,
+                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
+        
+        self.paymentService.schedulePayment(payment: payment)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] confirmationNumber in
+                self?.confirmationNumber = confirmationNumber
+                onSuccess()
+            }, onError: { err in
+                onError(err as! ServiceError)
+            })
+            .disposed(by: self.disposeBag)
     }
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -192,28 +185,24 @@ class PaymentViewModel {
     }
 
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        self.isFixedPaymentDate.asObservable().single().subscribe(onNext: { [weak self] isFixed in
-            guard let self = self else { return }
-            let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-            let paymentDate = isFixed ? .now : self.paymentDate.value
+        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
+        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
+                              existingAccount: true,
+                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
+                              paymentAmount: self.paymentAmount.value,
+                              paymentType: paymentType,
+                              paymentDate: self.paymentDate.value,
+                              walletId: AccountsStore.shared.customerIdentifier,
+                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
 
-            let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                                  existingAccount: true,
-                                  maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                                  paymentAmount: self.paymentAmount.value,
-                                  paymentType: paymentType,
-                                  paymentDate: paymentDate,
-                                  walletId: AccountsStore.shared.customerIdentifier,
-                                  walletItemId: self.selectedWalletItem.value!.walletItemID!)
-
-            self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { _ in
-                    onSuccess()
-                }, onError: { err in
-                    onError(err as! ServiceError)
-                }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
+        self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err as! ServiceError)
+            })
+            .disposed(by: self.disposeBag)
     }
 
     // MARK: - Shared Drivers
@@ -534,21 +523,19 @@ class PaymentViewModel {
         }
     }
 
-    private(set) lazy var amountDueCurrencyString: Driver<String?> = amountDue.asDriver().map { $0.currencyString }
+    private(set) lazy var amountDueCurrencyString: Driver<String?> = amountDue.asDriver()
+        .map { $0.currencyString }
 
     private(set) lazy var dueDate: Driver<String?> = accountDetail.asDriver().map {
         $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
     }
 
     private(set) lazy var shouldShowAddBankAccount: Driver<Bool> = Driver
-        .combineLatest(isCashOnlyUser,
-                       hasWalletItems,
-                       allowEdits.asDriver())
+        .combineLatest(isCashOnlyUser, hasWalletItems, allowEdits.asDriver())
         { !$0 && !$1 && $2 }
 
     private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = Driver
-        .combineLatest(hasWalletItems,
-                       allowEdits.asDriver())
+        .combineLatest(hasWalletItems, allowEdits.asDriver())
         { !$0 && $1 }
 
     private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
@@ -571,27 +558,23 @@ class PaymentViewModel {
         .combineLatest(accountDetail.asDriver(), allowEdits.asDriver())
         { [weak self] (accountDetail, allowEdits) in
             guard let self = self else { return false }
-            return self.fixedPaymentDateLogic(accountDetail: accountDetail, allowEdits: allowEdits)
-        }
-
-    private func fixedPaymentDateLogic(accountDetail: AccountDetail, allowEdits: Bool) -> Bool {
-        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
-            return true
-        }
-
-        if !allowEdits {
-            return true
-        }
-
-        let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
-        if let dueDate = accountDetail.billingInfo.dueByDate {
-            if dueDate <= startOfTodayDate {
+            if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
                 return true
             }
+            
+            if !allowEdits {
+                return true
+            }
+            
+            let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
+            if let dueDate = accountDetail.billingInfo.dueByDate {
+                if dueDate <= startOfTodayDate {
+                    return true
+                }
+            }
+            
+            return false
         }
-
-        return false
-    }
 
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
         if Environment.shared.opco == .bge || self?.paymentId.value != nil {
@@ -612,21 +595,8 @@ class PaymentViewModel {
         return pastDueAmount > 0
     }
 
-    private(set) lazy var paymentDateString: Driver<String> = Driver
-        .combineLatest(paymentDate.asDriver(), isFixedPaymentDate, paymentDetail.asDriver())
-        .map {
-            if $1 {
-                if let paymentDate = $2?.paymentDate, Environment.shared.opco != .bge {
-                    return paymentDate.mmDdYyyyString
-                }
-                let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
-                if Environment.shared.opco == .bge && Calendar.opCo.component(.hour, from: .now) >= 20 {
-                    return Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!.mmDdYyyyString
-                }
-                return startOfTodayDate.mmDdYyyyString
-            }
-            return $0.mmDdYyyyString
-        }
+    private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
+        .map { $0.mmDdYyyyString }
 
     private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
         .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
@@ -640,20 +610,19 @@ class PaymentViewModel {
     // MARK: - Review Payment Drivers
 
     private(set) lazy var reviewPaymentSubmitButtonEnabled: Driver<Bool> = Driver
-        .combineLatest(shouldShowTermsConditionsSwitchView,
-                       termsConditionsSwitchValue.asDriver(),
+        .combineLatest(termsConditionsSwitchValue.asDriver(),
                        isOverpaying,
                        overpayingSwitchValue.asDriver(),
                        isActiveSeveranceUser,
                        activeSeveranceSwitchValue.asDriver())
         {
-            if $0 && !$1 {
+            if !$0 {
                 return false
             }
-            if $2 && !$3 {
+            if $1 && !$2 {
                 return false
             }
-            if $4 && !$5 {
+            if $3 && !$4 {
                 return false
             }
             return true
@@ -677,14 +646,6 @@ class PaymentViewModel {
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
         .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
         { ($1 - $0).currencyString }
-
-    private(set) lazy var shouldShowTermsConditionsSwitchView: Driver<Bool> = cardWorkflow.map {
-        if Environment.shared.opco == .bge { // On BGE, Speedpay is only for credit cards
-            return $0
-        } else { // On ComEd/PECO, it's always shown for the terms and conditions agreement
-            return true
-        }
-    }
 
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
 
@@ -725,15 +686,8 @@ class PaymentViewModel {
             }
     }
 
-    private(set) lazy var reviewPaymentFooterLabelText: Driver<String?> = cardWorkflow.map {
-        if Environment.shared.opco == .bge {
-            if $0 {
-                return NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: "")
-            }
-            return nil
-        } else {
-            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
-        }
+    var reviewPaymentFooterLabelText: String {
+        return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: "")
     }
 
     // MARK: - Payment Confirmation

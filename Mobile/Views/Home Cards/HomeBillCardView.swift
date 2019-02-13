@@ -414,34 +414,15 @@ class HomeBillCardView: UIView {
             return ($0, $1)
         }
         .map { [weak self] error, walletItem in
-            if Environment.shared.opco == .bge {
-                let errMessage = error.localizedDescription
-                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
-                
-                // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
-                // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
-                if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
-                        action -> Void in
-                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
-                    }))
-                } else {
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                }
-                
-                return alert
-            } else {
-                return UIAlertController.paymentusErrorAlertController(
-                    forError: error as! ServiceError,
-                    walletItem: walletItem!,
-                    callHandler: { _ in
-                        if let phone = self?.viewModel.errorPhoneNumber {
-                            UIApplication.shared.openPhoneNumberIfCan(phone)
-                        }
+            return UIAlertController.paymentusErrorAlertController(
+                forError: error as! ServiceError,
+                walletItem: walletItem!,
+                callHandler: { _ in
+                    if let phone = self?.viewModel.errorPhoneNumber {
+                        UIApplication.shared.openPhoneNumberIfCan(phone)
                     }
-                )
-            }
+                }
+            )
         }
         .asDriver(onErrorDriveWith: .empty())
     
