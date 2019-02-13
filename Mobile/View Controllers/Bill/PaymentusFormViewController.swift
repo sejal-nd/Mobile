@@ -253,17 +253,15 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                                                 bankOrCard: bankOrCard,
                                                 isTemporary: temporary)
                     
-                    if !temporary {
-                        if walletItemId != nil {
+                    if walletItemId != nil { // Editing Payment Method
+                        if !temporary {
                             walletService.updateWalletItemMCS(walletItem)
-                        } else {
+                        }
+                        delegate?.didEditWalletItem()
+                    } else { // Adding Payment Method
+                        if !temporary {
                             walletService.addWalletItemMCS(walletItem)
                         }
-                    }
-                    
-                    if walletItemId != nil {
-                        delegate?.didEditWalletItem()
-                    } else {
                         delegate?.didAddWalletItem(walletItem)
                     }
                     
