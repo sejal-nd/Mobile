@@ -185,6 +185,12 @@ enum MockDataKey: String {
     case multiApptChanges
     case apptFailure
     case apptNone
+    case apptDateNumberSt
+    case apptDateNumberNd
+    case apptDateNumberRd
+    case apptDateNumberTh
+    case apptHalfHourRoundUp
+    case apptHalfHourRoundDown
     
     // App State
     case maintAll

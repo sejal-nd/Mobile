@@ -1372,6 +1372,9 @@
 		B0EE78F42214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F52214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F62214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F72214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F82214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F92214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B01F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B11F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
@@ -6200,6 +6203,7 @@
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48011220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
+				B0EE78F72214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
 				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F2220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
@@ -6242,6 +6246,7 @@
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48012220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
+				B0EE78F82214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
 				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F3220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
@@ -6264,6 +6269,7 @@
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48013220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
+				B0EE78F92214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
 				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F4220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
