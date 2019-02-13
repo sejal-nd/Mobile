@@ -126,7 +126,6 @@ class MCSPaymentService: PaymentService {
             "wallet_id" : payment.walletId,
             "wallet_item_id" : payment.walletItemId,
             "is_existing_account": payment.existingAccount,
-            "is_save_account": payment.saveAccount,
             "biller_id": "\(opCo.rawValue)Registered", // Still needed?
             "auth_sess_token": "" // Still needed?
         ]

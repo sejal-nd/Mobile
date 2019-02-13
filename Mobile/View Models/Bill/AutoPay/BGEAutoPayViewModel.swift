@@ -200,8 +200,8 @@ class BGEAutoPayViewModel {
             if amountNotToExceed.value.isEmpty {
                 return defaultString
             } else {
-                let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: .bank)
-                let maxPaymentAmount = accountDetail.maxPaymentAmount(bankOrCard: .bank)
+                let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount()
+                let maxPaymentAmount = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if let amountDouble = Double(amountNotToExceedDouble()) {
                     if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount {
                         return String.localizedStringWithFormat("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between %@ and %@", minPaymentAmount.currencyString, maxPaymentAmount.currencyString)

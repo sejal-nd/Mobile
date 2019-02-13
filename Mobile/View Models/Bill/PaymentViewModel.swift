@@ -160,7 +160,6 @@ class PaymentViewModel {
 
             let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
                                   existingAccount: !self.selectedWalletItem.value!.isTemporary,
-                                  saveAccount: false,
                                   maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
                                   paymentAmount: self.paymentAmount.value,
                                   paymentType: paymentType,
@@ -200,7 +199,6 @@ class PaymentViewModel {
 
             let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
                                   existingAccount: true,
-                                  saveAccount: false,
                                   maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
                                   paymentAmount: self.paymentAmount.value,
                                   paymentType: paymentType,
@@ -310,8 +308,8 @@ class PaymentViewModel {
                                     amountDue.asDriver())
         { (bankWorkflow, cardWorkflow, accountDetail, paymentAmount, amountDue) -> String? in
             if bankWorkflow {
-                let minPayment = accountDetail.minPaymentAmount(bankOrCard: .bank)
-                let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .bank)
+                let minPayment = accountDetail.billingInfo.minPaymentAmount()
+                let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if Environment.shared.opco == .bge {
                     // BGE BANK
                     if paymentAmount < minPayment {
@@ -330,8 +328,8 @@ class PaymentViewModel {
                     }
                 }
             } else if cardWorkflow {
-                let minPayment = accountDetail.minPaymentAmount(bankOrCard: .card)
-                let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: .card)
+                let minPayment = accountDetail.billingInfo.minPaymentAmount()
+                let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
                 if Environment.shared.opco == .bge {
                     // BGE CREDIT CARD
                     if paymentAmount < minPayment {
@@ -362,8 +360,8 @@ class PaymentViewModel {
             return false
         }
 
-        let min = self.accountDetail.value.minPaymentAmount(bankOrCard: bankOrCard)
-        let max = self.accountDetail.value.maxPaymentAmount(bankOrCard: bankOrCard)
+        let min = self.accountDetail.value.billingInfo.minPaymentAmount()
+        let max = self.accountDetail.value.billingInfo.maxPaymentAmount(bankOrCard: bankOrCard)
         for paymentAmount in self.paymentAmounts {
             guard let amount = paymentAmount.0 else { continue }
             if amount < min || amount > max {

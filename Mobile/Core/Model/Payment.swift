@@ -17,7 +17,6 @@ enum PaymentType: String {
 struct Payment {
     let accountNumber: String
     let existingAccount: Bool
-    let saveAccount: Bool
     let maskedWalletAccountNumber: String
     let paymentAmount: Double
     let paymentType: PaymentType

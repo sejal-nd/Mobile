@@ -130,7 +130,6 @@ class HomeBillCardViewModel {
 
             return Payment(accountNumber: accountDetail.accountNumber,
                            existingAccount: true,
-                           saveAccount: true,
                            maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
                            paymentAmount: accountDetail.billingInfo.netDueAmount!,
                            paymentType: (walletItem.bankOrCard == .bank) ? .check : .credit,
@@ -621,8 +620,8 @@ class HomeBillCardViewModel {
         guard let walletItem = walletItemOptional else { return nil }
         guard let paymentAmount = accountDetail.billingInfo.netDueAmount else { return nil }
 
-        let minPayment = accountDetail.minPaymentAmount(bankOrCard: walletItem.bankOrCard)
-        let maxPayment = accountDetail.maxPaymentAmount(bankOrCard: walletItem.bankOrCard)
+        let minPayment = accountDetail.billingInfo.minPaymentAmount()
+        let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: walletItem.bankOrCard)
 
         if paymentAmount < minPayment {
             let minLocalizedText = NSLocalizedString("Minimum payment allowed is %@", comment: "")
@@ -674,7 +673,7 @@ class HomeBillCardViewModel {
                 return false
             }
 
-            let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: walletItem.bankOrCard)
+            let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount()
             if accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
                 return false
             }
