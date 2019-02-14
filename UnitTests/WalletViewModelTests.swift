@@ -19,23 +19,7 @@ class WalletViewModelTests: XCTestCase {
         
         viewModel = WalletViewModel(walletService: MockWalletService())
     }
-    
-    func testFetchingWalletItems() {
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
         
-        let scheduler = TestScheduler(initialClock: 0)
-        let events: [Recorded<Event<Void>>] = [next(2, ())]
-        let fetch = scheduler.createHotObservable(events)
-        fetch.bind(to: viewModel.fetchWalletItems).disposed(by: disposeBag)
-        
-        scheduler.start()
-        viewModel.isFetchingWalletItems.asObservable().take(1).subscribe(onNext: { isFetching in
-            XCTAssert(isFetching, "isFetchingWalletItems should be true right after triggering fetch")
-        }).disposed(by: disposeBag)
-
-    }
-    
     func testShouldShowEmptyState() {
         viewModel.walletItems.value = []
         viewModel.shouldShowEmptyState.asObservable().take(1).subscribe(onNext: { shouldShow in

@@ -11,36 +11,41 @@ import RxSwift
 
 struct MockWalletService: WalletService {
     func fetchWalletItems() -> Observable<[WalletItem]> {
-        var walletItems: [WalletItem]
-        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
-        if loggedInUsername == "billCardNoDefaultPayment" {
-            walletItems = []
-        } else if loggedInUsername == "billCardWithDefaultPayment" {
-            walletItems = [
-                WalletItem(nickName: "Test Nickname", isDefault: true),
-                WalletItem(nickName: "Expired Card", isDefault: false, bankOrCard: .card)
-            ]
-        } else if loggedInUsername == "billCardWithExpiredDefaultPayment" {
-            walletItems = [
-                WalletItem(nickName: "Expired Card", expirationDate: "01/2018", isDefault: true, bankOrCard: .card)
-            ]
-        }else if loggedInUsername == "billCardWithDefaultCcPayment" {
-            walletItems = [
-                WalletItem(nickName: "Test Nickname", isDefault: true,  bankOrCard: .card),
-            ]
-        } else if AccountsStore.shared.currentAccount.accountNumber == "13" { // Set this to test no OTP items
-            walletItems = [
-                WalletItem(nickName: "Test Nickname", bankOrCard: .card),
-                WalletItem(nickName: "Test Nickname 2", bankOrCard: .card)
-            ]
-        } else {
-            walletItems = [
-                WalletItem(nickName: "Test Nickname"),
-                WalletItem(nickName: "Test Nickname 2", isDefault: true,  bankOrCard: .card)
-            ]
-        }
-
-        return .just(walletItems)
+        let key = MockUser.current.currentAccount.dataKey(forFile: .wallet)
+        return MockJSONManager.shared.rx.mappableArray(fromFile: .wallet, key: key)
+        
+        
+        
+//        var walletItems: [WalletItem]
+//        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+//        if loggedInUsername == "billCardNoDefaultPayment" {
+//            walletItems = []
+//        } else if loggedInUsername == "billCardWithDefaultPayment" {
+//            walletItems = [
+//                WalletItem(nickName: "Test Nickname", isDefault: true),
+//                WalletItem(nickName: "Expired Card", isDefault: false, bankOrCard: .card)
+//            ]
+//        } else if loggedInUsername == "billCardWithExpiredDefaultPayment" {
+//            walletItems = [
+//                WalletItem(nickName: "Expired Card", expirationDate: "01/2018", isDefault: true, bankOrCard: .card)
+//            ]
+//        }else if loggedInUsername == "billCardWithDefaultCcPayment" {
+//            walletItems = [
+//                WalletItem(nickName: "Test Nickname", isDefault: true,  bankOrCard: .card),
+//            ]
+//        } else if AccountsStore.shared.currentAccount.accountNumber == "13" { // Set this to test no OTP items
+//            walletItems = [
+//                WalletItem(nickName: "Test Nickname", bankOrCard: .card),
+//                WalletItem(nickName: "Test Nickname 2", bankOrCard: .card)
+//            ]
+//        } else {
+//            walletItems = [
+//                WalletItem(nickName: "Test Nickname"),
+//                WalletItem(nickName: "Test Nickname 2", isDefault: true,  bankOrCard: .card)
+//            ]
+//        }
+//
+//        return .just(walletItems)
     }
     
     func fetchBankName(routingNumber: String) -> Observable<String> {

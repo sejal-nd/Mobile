@@ -109,6 +109,9 @@ enum MockDataKey: String {
     case gasAndElectric
     case billBreakdown
     
+    // Wallet/Payment
+    case twoCardsNoDefault
+    
     // Precarious
     case finaled
     case pastDue
@@ -132,7 +135,6 @@ enum MockDataKey: String {
     // Outage
     case gasOnly
     case noPay
-    //case outagePowerOn
     case outagePowerOut
     case reportOutageError
     case outageNonServiceAgreement

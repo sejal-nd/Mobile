@@ -863,6 +863,15 @@
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
+		9C46B12B221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
+		9C46B12C221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
+		9C46B12D221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
+		9C46B12E2216141C00A5D537 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9C46B12F2216141D00A5D537 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9C46B1302216141D00A5D537 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9C46B1312216142000A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
+		9C46B1322216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
+		9C46B1332216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
@@ -912,9 +921,6 @@
 		9CC48018220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CC48019220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CC4801A220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
@@ -2733,6 +2739,7 @@
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
+		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecastInitExtensions.swift; sourceTree = "<group>"; };
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -4348,6 +4355,7 @@
 				B0EE78E9221353E600F53C56 /* report_outage.json */,
 				B07E17C42209DB1C00B6E3C7 /* weather.json */,
 				9CC48017220A442900393CC7 /* meter_ping_info.json */,
+				9C46B12A221613FB00A5D537 /* wallet.json */,
 			);
 			path = "Mock JSON";
 			sourceTree = "<group>";
@@ -5570,7 +5578,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5617,6 +5624,7 @@
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
+				9C46B1302216141D00A5D537 /* meter_ping_info.json in Resources */,
 				826DCCFE1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -5728,6 +5736,7 @@
 				6A4FD21BE1692C3726A5C3FF /* otp_step3.json in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				6A4FDD311DA8303DC8CAE88C /* otps4_img_0.png in Resources */,
+				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
 				6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */,
 				6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */,
 				6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */,
@@ -5751,6 +5760,7 @@
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */,
+				9C46B12E2216141C00A5D537 /* meter_ping_info.json in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
@@ -5862,6 +5872,7 @@
 				6A4FDCF675D261AB6008C079 /* otp_step3.json in Resources */,
 				82AC2A131FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				6A4FDA9B436AAD428A74A239 /* otps4_img_0.png in Resources */,
+				9C46B12D221613FB00A5D537 /* wallet.json in Resources */,
 				6A4FD1C7B14B360F2F2C3C51 /* otps4_img_1.png in Resources */,
 				6A4FD4F95BC9EC785486FD59 /* otp_step4.json in Resources */,
 				6A4FDF7B7B5896327BB37392 /* TutorialModal.xib in Resources */,
@@ -5885,6 +5896,7 @@
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
+				9C46B12F2216141D00A5D537 /* meter_ping_info.json in Resources */,
 				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
 				B0DB275B215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -5996,6 +6008,7 @@
 				6A4FD451E3D8B0019DD36819 /* otp_step3.json in Resources */,
 				82AC2A121FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				6A4FD710BA920728F2923F06 /* otps4_img_0.png in Resources */,
+				9C46B12C221613FB00A5D537 /* wallet.json in Resources */,
 				6A4FDD8981BBF03EF9D907AD /* otps4_img_1.png in Resources */,
 				6A4FD65B35FE264A4969DE47 /* otp_step4.json in Resources */,
 				6A4FD129D861EF2367762387 /* TutorialModal.xib in Resources */,
@@ -6018,6 +6031,7 @@
 				9CC48011220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
+				9C46B1312216142000A5D537 /* wallet.json in Resources */,
 				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F2220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				9CC48018220A442900393CC7 /* meter_ping_info.json in Resources */,
@@ -6028,7 +6042,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6037,7 +6050,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6058,6 +6070,7 @@
 				9CC48012220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
+				9C46B1322216142100A5D537 /* wallet.json in Resources */,
 				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F3220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				9CC48019220A442900393CC7 /* meter_ping_info.json in Resources */,
@@ -6080,6 +6093,7 @@
 				9CC48013220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
+				9C46B1332216142100A5D537 /* wallet.json in Resources */,
 				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F4220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				9CC4801A220A442900393CC7 /* meter_ping_info.json in Resources */,

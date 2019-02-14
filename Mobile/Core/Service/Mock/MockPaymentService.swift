@@ -45,7 +45,7 @@ class MockPaymentService: PaymentService {
     }
     
     func schedulePayment(payment: Payment) -> Observable<String> {
-        return Observable.just("123456").delay(2, scheduler: MainScheduler.instance)
+        return .just("123456")
     }
     
     func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
