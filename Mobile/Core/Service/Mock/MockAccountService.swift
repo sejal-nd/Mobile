@@ -64,8 +64,9 @@ class MockAccountService: AccountService {
     }
     
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
-        let ssoData = SSOData.from(["utilityCustomerId": "1234", "ssoPostURL": "https://google.com", "relayState": "https://google.com", "samlResponse": "test"])!
-        return .just(ssoData)
+        let dataFile = MockJSONManager.File.ssoData
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
     func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
