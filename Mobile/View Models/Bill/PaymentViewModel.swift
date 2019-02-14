@@ -34,8 +34,6 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
 
-    var oneTouchPayItem: WalletItem?
-
     let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
     let allowEdits = Variable(true)
@@ -70,7 +68,6 @@ class PaymentViewModel {
         return walletService.fetchWalletItems()
             .map { walletItems in
                 self.walletItems.value = walletItems
-                self.oneTouchPayItem = walletItems.first(where: { $0.isDefault == true })
             }
     }
 
@@ -97,38 +94,30 @@ class PaymentViewModel {
                 self.isFetching.value = false
 
                 guard let walletItems = self.walletItems.value else { return }
+                let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
                     if self.paymentId.value != nil { // Modifiying Payment
                         if let paymentDetail = self.paymentDetail.value {
                             self.paymentAmount.value = paymentDetail.paymentAmount
                             self.paymentDate.value = paymentDetail.paymentDate!
-                            for item in walletItems {
-                                if item.walletItemID == paymentDetail.walletItemId {
-                                    self.selectedWalletItem.value = item
-                                    break
-                                }
+                            if let matchingItem = walletItems.first(where: { $0.walletItemID == paymentDetail.walletItemId }) {
+                                self.selectedWalletItem.value = matchingItem
                             }
                         }
                     } else {
                         if self.accountDetail.value.isCashOnly {
-                            if let otpItem = self.oneTouchPayItem { // Default to OTP item IF it's a credit card
-                                if otpItem.bankOrCard == .card {
-                                    self.selectedWalletItem.value = otpItem
-                                }
-                            } else if walletItems.count > 0 { // If no OTP item, default to first card wallet item
-                                for item in walletItems {
-                                    if item.bankOrCard == .card {
-                                        self.selectedWalletItem.value = item
-                                        break
-                                    }
-                                }
+                            if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
+                                self.selectedWalletItem.value = defaultWalletItem!
+                            } else if let firstCard = walletItems.first(where: { $0.bankOrCard == .card }) {
+                                // If no default item, choose the first credit card
+                                self.selectedWalletItem.value = firstCard
                             }
                         } else {
-                            if let otpItem = self.oneTouchPayItem { // Default to One Touch Pay item
-                                self.selectedWalletItem.value = otpItem
-                            } else if walletItems.count > 0 { // If no OTP item, default to first wallet item
-                                self.selectedWalletItem.value = walletItems[0]
+                            if defaultWalletItem != nil { // Choose the default item
+                                self.selectedWalletItem.value = defaultWalletItem!
+                            } else if walletItems.count > 0 { // If no default item, choose the first item
+                                self.selectedWalletItem.value = walletItems.first
                             }
                         }
                     }
