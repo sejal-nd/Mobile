@@ -88,7 +88,12 @@ class ExelonUITestCase: XCTestCase {
         ACTLabel.labelStep("Signing in...")
         tapButton(buttonText: "Sign In")
     
-        XCTAssertTrue(tabButtonElement(withText: "Home").exists)
+        if app.launchArguments.contains("stormMode") {
+            checkExistenceOfElement(.staticText, "Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you.")
+        } else {
+            XCTAssertTrue(tabButtonElement(withText: "Home").exists)
+        }
+        
         ACTLabel.labelStep("Signed in")
     }
 }
@@ -119,14 +124,48 @@ extension ExelonUITestCase {
         table.swipeUp() // In case the last cell becomes visible but we're looking for another element inside or the footer view
     }
 
-    func checkExistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)], timeout: TimeInterval = 3) {
+    func checkExistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)],
+                                  timeout: TimeInterval = 3,
+                                  file: StaticString = #file,
+                                  line: UInt = #line) {
         for (type, text) in typesAndTexts {
-            checkExistenceOfElement(type, text, timeout: timeout)
+            checkExistenceOfElement(type, text, timeout: timeout, file: file, line: line)
         }
     }
 
-    func checkExistenceOfElement(_ type: XCUIElement.ElementType, _ text: String, timeout: TimeInterval = 3) {
-        XCTAssertTrue(element(ofType: type, withText: text, timeout: timeout).exists, "Element with text \"\(text)\" could not be found.")
+    func checkExistenceOfElement(_ type: XCUIElement.ElementType,
+                                 _ text: String,
+                                 timeout: TimeInterval = 3,
+                                 file: StaticString = #file,
+                                 line: UInt = #line) {
+        XCTAssertTrue(
+            element(ofType: type, withText: text, timeout: timeout).exists,
+            "Element with text \"\(text)\" could not be found.",
+            file: file,
+            line: line
+        )
+    }
+    
+    func checkNonexistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)],
+                                     timeout: TimeInterval = 3,
+                                     file: StaticString = #file,
+                                     line: UInt = #line) {
+        for (type, text) in typesAndTexts {
+            checkNonexistenceOfElement(type, text, timeout: timeout, file: file, line: line)
+        }
+    }
+    
+    func checkNonexistenceOfElement(_ type: XCUIElement.ElementType,
+                                    _ text: String,
+                                    timeout: TimeInterval = 3,
+                                    file: StaticString = #file,
+                                    line: UInt = #line) {
+        XCTAssertTrue(
+            !element(ofType: type, withText: text, timeout: timeout).exists,
+            "Element with text \"\(text)\" could not be found.",
+            file: file,
+            line: line
+        )
     }
 
     func tabButtonElement(withText text: String, timeout: TimeInterval = 5) -> XCUIElement {
