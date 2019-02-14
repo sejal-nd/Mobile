@@ -108,6 +108,7 @@ final class MockJSONManager {
         case weather = "weather"
         case opcoUpdates = "opco_updates"
         case ssoData = "sso_data"
+        case energyTips = "energy_tips"
     }
 }
 

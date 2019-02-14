@@ -1185,6 +1185,12 @@
 		B08956F52215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
 		B08956F62215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
 		B08956F72215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B08956F92215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08956FA2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08956FB2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08956FC2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08956FD2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08956FE2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -2893,6 +2899,7 @@
 		B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageToolTopCardView.swift; sourceTree = "<group>"; };
 		B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageToolTopCardView.xib; sourceTree = "<group>"; };
 		B08956F12215C27100A97965 /* sso_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sso_data.json; sourceTree = "<group>"; };
+		B08956F82215D11B00A97965 /* energy_tips.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = energy_tips.json; sourceTree = "<group>"; };
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
@@ -4458,6 +4465,7 @@
 				B04DDF832200D47A00594ACF /* account_details.json */,
 				B07E179C2204E8F900B6E3C7 /* bill_comparison.json */,
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
+				B08956F82215D11B00A97965 /* energy_tips.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
 				B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
@@ -5744,6 +5752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */,
+				B08956FC2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
 				B08956F52215C27100A97965 /* sso_data.json in Resources */,
 			);
@@ -5834,6 +5843,7 @@
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
@@ -5971,6 +5981,7 @@
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				B08956FB2215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */,
@@ -6108,6 +6119,7 @@
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
 				385AF2271F27915A001E3619 /* img_1.png in Resources */,
+				B08956FA2215D11B00A97965 /* energy_tips.json in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
 				B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */,
@@ -6212,6 +6224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */,
+				B08956FD2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
 				B08956F62215C27100A97965 /* sso_data.json in Resources */,
 			);
@@ -6222,6 +6235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */,
+				B08956FE2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
 				B08956F72215C27100A97965 /* sso_data.json in Resources */,
 			);

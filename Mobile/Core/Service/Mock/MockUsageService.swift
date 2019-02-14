@@ -22,9 +22,9 @@ struct MockUsageService: UsageService {
     }
     
     func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<BillForecastResult> {
-        let dataFile = MockJSONManager.File.billComparison
+        let dataFile = MockJSONManager.File.billForecast
         let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
-        return MockJSONManager.shared.rx.jsonArray(fromFile: .billForecast, key: key)
+        return MockJSONManager.shared.rx.jsonArray(fromFile: dataFile, key: key)
             .map { array in
                 guard let jsonArray = array as? [[String: Any]] else {
                     throw ServiceError.parsing
@@ -57,16 +57,9 @@ struct MockUsageService: UsageService {
     }
     
     func fetchEnergyTips(accountNumber: String, premiseNumber: String) -> Observable<[EnergyTip]> {
-        switch accountNumber {
-        case "8":
-            let tips = Array(1...8).map { EnergyTip(title: "title \($0)", body: "body \($0)") }
-            return .just(tips)
-        case "3":
-            let tips = Array(1...3).map { EnergyTip(title: "title \($0)", body: "body \($0)") }
-            return .just(tips)
-        default:
-            return .error(ServiceError(serviceMessage: "fetch failed"))
-        }
+        let dataFile = MockJSONManager.File.energyTips
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableArray(fromFile: dataFile, key: key)
     }
     
     func fetchEnergyTipByName(accountNumber: String, premiseNumber: String, tipName: String) -> Observable<EnergyTip> {

@@ -168,6 +168,10 @@ enum MockDataKey: String {
     case likelyReasonsGreater
     case likelyReasonsLess
     
+    case energyTipsNone
+    case energyTips3
+    case energyTips7
+    
     // App State
     case maintAll
     case maintAllTabs
