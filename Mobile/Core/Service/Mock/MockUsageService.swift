@@ -35,17 +35,9 @@ struct MockUsageService: UsageService {
     }
     
     func fetchHomeProfile(accountNumber: String, premiseNumber: String) -> Observable<HomeProfile> {
-        switch accountNumber {
-        case "0":
-            let homeProfile = HomeProfile(numberOfChildren: 4,
-                                          numberOfAdults: 2,
-                                          squareFeet: 3000,
-                                          heatType: .electric,
-                                          homeType: .singleFamily)
-            return .just(homeProfile)
-        default:
-            return .error(ServiceError(serviceMessage: "fetch failed"))
-        }
+        let dataFile = MockJSONManager.File.homeProfile
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
     func updateHomeProfile(accountNumber: String, premiseNumber: String, homeProfile: HomeProfile) -> Observable<Void> {
