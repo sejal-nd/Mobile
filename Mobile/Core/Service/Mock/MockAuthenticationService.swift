@@ -71,37 +71,12 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
-        var maskedUsernames = [ForgotUsernameMasked]()
-        let usernames = [
-            NSDictionary(dictionary: [
-                "email": "userna**********",
-                "question": "What is your mother's maiden name?",
-                "question_id": 1
-                ]),
-//                NSDictionary(dictionary: [
-//                    "email": "m**********g@mindgrub.com",
-//                    "question": "What is your mother's maiden name?",
-//                    "question_id": 4
-//                ]),
-//                NSDictionary(dictionary: [
-//                    "email": "m**********g@icloud.com",
-//                    "question": "What street did you grow up on?",
-//                    "question_id": 3
-//                ])
-        ]
-        for user in usernames {
-            if let mockModel = ForgotUsernameMasked.from(user) {
-                maskedUsernames.append(mockModel)
-            }
-        }
-        
         if identifier == "0000" {
             return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNotFound.rawValue))
                 .delay(1, scheduler: MainScheduler.instance)
-        } else {
-            return Observable.just(maskedUsernames)
-                .delay(1, scheduler: MainScheduler.instance)
         }
+        
+        return MockJSONManager.shared.rx.mappableArray(fromFile: .recoverUsername, key: .default)
     }
     
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String) -> Observable<String> {

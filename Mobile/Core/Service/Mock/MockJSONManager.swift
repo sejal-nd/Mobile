@@ -110,6 +110,7 @@ final class MockJSONManager {
         case ssoData = "sso_data"
         case energyTips = "energy_tips"
         case homeProfile = "home_profile"
+        case recoverUsername = "recover_username"
     }
 }
 

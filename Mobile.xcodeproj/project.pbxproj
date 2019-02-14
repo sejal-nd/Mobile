@@ -1197,6 +1197,12 @@
 		B08957032215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		B08957042215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		B08957052215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B08957072215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B08957082215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B08957092215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089570A2215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089570B2215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089570C2215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -2907,6 +2913,7 @@
 		B08956F12215C27100A97965 /* sso_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sso_data.json; sourceTree = "<group>"; };
 		B08956F82215D11B00A97965 /* energy_tips.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = energy_tips.json; sourceTree = "<group>"; };
 		B08956FF2215F6DB00A97965 /* home_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_profile.json; sourceTree = "<group>"; };
+		B08957062215FE7800A97965 /* recover_username.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recover_username.json; sourceTree = "<group>"; };
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
@@ -4477,6 +4484,7 @@
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
 				B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
+				B08957062215FE7800A97965 /* recover_username.json */,
 				B0EE78E9221353E600F53C56 /* report_outage.json */,
 				B08956F12215C27100A97965 /* sso_data.json */,
 				B07E17C42209DB1C00B6E3C7 /* weather.json */,
@@ -5759,6 +5767,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B089570A2215FE7900A97965 /* recover_username.json in Resources */,
 				9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */,
 				B08956FC2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
@@ -5873,6 +5882,7 @@
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
 				82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */,
+				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
@@ -6012,6 +6022,7 @@
 				E8EDC53A1F32405D006DD927 /* speedpay_errors.xml in Resources */,
 				82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
+				B08957092215FE7900A97965 /* recover_username.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -6151,6 +6162,7 @@
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
 				E8EDC5381F324054006DD927 /* speedpay_errors.xml in Resources */,
+				B08957082215FE7900A97965 /* recover_username.json in Resources */,
 				441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -6235,6 +6247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B089570B2215FE7900A97965 /* recover_username.json in Resources */,
 				9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */,
 				B08956FD2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
@@ -6247,6 +6260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B089570C2215FE7900A97965 /* recover_username.json in Resources */,
 				9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */,
 				B08956FE2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
