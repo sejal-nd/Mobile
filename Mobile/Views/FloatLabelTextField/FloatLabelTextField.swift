@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import JVFloatLabeledText
+import JVFloatLabeledTextField
 import RxSwift
 import RxCocoa
 
@@ -62,7 +62,7 @@ class FloatLabelTextField: UIView {
         textField.floatingLabelTextColor = .primaryColorDark
         textField.floatingLabelActiveTextColor = .primaryColorDark
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if !self.errorState {
                 self.bottomColorBar.backgroundColor = .primaryColor
                 self.bottomColorBar.isHidden = false
@@ -70,7 +70,7 @@ class FloatLabelTextField: UIView {
             self.textFieldIsFocused = true
         }).disposed(by: disposeBag)
         textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if !self.errorState {
                 if self.textField.hasText {
                     self.bottomColorBar.backgroundColor = .accentGray

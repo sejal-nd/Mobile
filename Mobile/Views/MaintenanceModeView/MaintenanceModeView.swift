@@ -21,7 +21,6 @@ class MaintenanceModeView: UIView {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var infoTextContainerView: UIView!
     @IBOutlet weak var infoTextView: DataDetectorTextView!
-    @IBOutlet weak var textViewSeperationConstraint: NSLayoutConstraint!
     
     let disposeBag = DisposeBag()
 
@@ -47,20 +46,13 @@ class MaintenanceModeView: UIView {
     
     @IBInspectable var showInfoText: Bool = false {
         didSet {
-            if showInfoText {
-                textViewSeperationConstraint.isActive = true
-            } else {
-                textViewSeperationConstraint.isActive = false
-            }
-
             infoTextContainerView.isHidden = !showInfoText
         }
     }
     
     @IBInspectable var sectionName: String = "" {
         didSet {
-            let localizedText = NSLocalizedString("%@ is currently unavailable due to\nscheduled maintenance.", comment: "")
-            detailLabel.text = String(format: localizedText, sectionName)
+            detailLabel.text = String.localizedStringWithFormat("%@ is currently unavailable due to maintenance.", sectionName)
         }
     }
     
@@ -97,34 +89,57 @@ class MaintenanceModeView: UIView {
         detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         infoTextContainerView.layer.cornerRadius = 8.0
         infoTextContainerView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
+        infoTextView.tintColor = .actionBlue
     }
-    
+        
     let infoText: NSAttributedString = {
         let leaveAreaString = NSLocalizedString("leave the area immediately", comment: "")
-        let emergencyAttrString: NSMutableAttributedString
         var localizedString: String
         
-        let phone1: String
-        let phone2: String
+        let phoneNumbers: [String]
         switch Environment.shared.opco {
         case .bge:
-            phone1 = "1-800-685-0123"
-            phone2 = "1-877-778-2222"
-            localizedString = String(format: NSLocalizedString("If you smell natural gas or see downed power lines, %@ and then call BGE at %@\n\nIf your power is out, call %@", comment: ""), leaveAreaString, phone1, phone2)
+            let phone1 = "1-800-685-0123"
+            let phone2 = "1-877-778-7798"
+            let phone3 = "1-877-778-2222"
+            phoneNumbers = [phone1, phone2, phone3]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas, %@ and call BGE at %@ or %@\n
+                If your power is out or for downed or sparking power lines, please call %@ or %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+                , leaveAreaString, phone1, phone2, phone1, phone3)
         case .comEd:
-            phone1 = "1-800-334-7661"
-            phone2 = "\n1-800-334-7661" // Included the line break in the second number so the range(of:) method could find it, and bold it. Not hacky at all 👀
-            localizedString = String(format: NSLocalizedString("If you see downed power lines, %@ and then call ComEd at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call%@ M-F 7AM to 7PM", comment: ""), leaveAreaString, phone1, phone2)
+            let phone = "1-800-334-7661"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you see downed power lines, %@ and then call ComEd at %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+                , leaveAreaString, phone)
         case .peco:
-            phone1 = "1-800-841-4141"
-            phone2 = "1-800-494-4000"
-            localizedString = String(format: NSLocalizedString("If you smell natural gas or see downed power lines, %@ and then call PECO at %@ Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n%@ M-F 7AM to 7PM", comment: ""), leaveAreaString, phone1, phone2)
+            let phone = "1-800-841-4141"
+            phoneNumbers = [phone]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas or see downed power lines, %@ and then call PECO at %@\n
+                Representatives are available 24 hours a day, 7 days a week.
+                """
+                , leaveAreaString, phone)
         }
         
-        emergencyAttrString = NSMutableAttributedString(string: localizedString)
+        let emergencyAttrString = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
         emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: leaveAreaString))
-        emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone1))
-        emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: (localizedString as NSString).range(of: phone2))
+        
+        for phone in phoneNumbers {
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    emergencyAttrString.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+            }
+        }
         
         return emergencyAttrString
     }()

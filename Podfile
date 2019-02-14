@@ -1,75 +1,110 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+inhibit_all_warnings! # ignore all warnings from all pods
 
-target 'BGE' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for BGE
-
-  target 'BGEUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'BGEUnitTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+def shared_pods # Shared in both iOS and WatchOS
+  pod 'RxSwift', '4.3.1'
+  pod 'ModelMapper', '9.0.0'
 end
 
-target 'ComEd' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for ComEd
-
-  target 'ComEdUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'ComEdUnitTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+def iOS_pods
+  pod 'lottie-ios', '2.0.3'
+  pod 'JVFloatLabeledTextField', '1.2.1'
+  pod 'Toast-Swift', '4.0.0'
+  pod 'zxcvbn-ios', '1.0.4'
+  pod 'ReachabilitySwift', '4.2.1'
+  pod 'RxSwiftExt', '3.3.0'
+  pod 'RxSwiftExt/RxCocoa', '3.3.0'
+  pod 'PDTSimpleCalendar', '0.9.1'
+  pod 'Charts', '3.2.0'
+  pod 'RxGesture', '2.0.1'
+  pod 'XLPagerTabStrip', '8.1.1'
+  pod 'CardIO', '5.4.1'
+  pod 'GoogleAnalytics', '3.17.0'
+  pod 'Firebase/Core', '5.15.0'
+  pod 'AppCenter', '1.12'
 end
 
-target 'PECO' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+def iOS_UnitTestPods
+  pod 'RxTest', '4.3.1'
+end
 
-  # Pods for PECO
+def iOS_UITestPods
+  pod 'AppCenterXCUITestExtensions', '1.0'
+end
 
-  target 'PECOUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+abstract_target 'BGEApp' do
+    platform :ios, '10.0'
+    use_frameworks!
 
-  target 'PECOUnitTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+    iOS_pods
+    shared_pods
 
+    target 'BGE' do
+    end
+
+    target 'BGEUnitTests' do
+        iOS_UnitTestPods
+    end
+
+    target 'BGEUITests' do
+        iOS_UITestPods
+    end
+end
+
+abstract_target 'ComEdApp' do
+    platform :ios, '10.0'
+    use_frameworks!
+
+    iOS_pods
+    shared_pods
+
+    target 'ComEd' do
+    end
+
+    target 'ComEdUnitTests' do
+        iOS_UnitTestPods
+    end
+
+    target 'ComEdUITests' do
+        iOS_UITestPods
+    end
+end
+
+abstract_target 'PECOApp' do
+    platform :ios, '10.0'
+    use_frameworks!
+
+    iOS_pods
+    shared_pods
+
+    target 'PECO' do
+    end
+
+    target 'PECOUnitTests' do
+        iOS_UnitTestPods
+    end
+
+    target 'PECOUITests' do
+        iOS_UITestPods
+    end
 end
 
 target 'PECO_WatchOS' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  platform :watchos, '4.0'
   use_frameworks!
-
-  # Pods for PECO_WatchOS
-
 end
 
 target 'PECO_WatchOS Extension' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  platform :watchos, '4.0'
   use_frameworks!
 
-  pod 'RxSwift',    '4.3.0'
-  pod "ModelMapper",    '9.0.0'
+  shared_pods
+end
 
-  # Pods for PECO_WatchOS Extension
-
+# Removes the project warning after a `pod install`
+post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+        if config.name == 'Release'
+            config.build_settings['SWIFT_COMPILATION_MODE'] = 'wholemodule'
+        end
+    end
 end

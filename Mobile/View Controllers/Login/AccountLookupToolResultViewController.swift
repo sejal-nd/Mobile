@@ -6,6 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import UIKit
+
 protocol AccountLookupToolResultViewControllerDelegate: class {
     func accountLookupToolDidSelectAccount(accountNumber: String, phoneNumber: String)
 }

@@ -75,7 +75,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("PECO Has Ways to Save", comment: "")
+                    return NSLocalizedString("PECO Marketplace", comment: "")
                 } else {
                     return NSLocalizedString("Reduce Your Business’s Energy Costs", comment: "")
                 }
@@ -110,7 +110,7 @@ class TemplateCardViewModel {
             switch Environment.shared.opco {
             case .peco:
                 if accountDetail.isResidential {
-                    return NSLocalizedString("Get cash back with PECO rebates on high-efficiency appliances & HVAC equipment.", comment: "")
+                    return NSLocalizedString("Get instant discounts on energy-saving products. Free shipping on orders over $49.", comment: "")
                 } else {
                     return NSLocalizedString("PECO can help you get on the fast track to substantial energy & cost savings.", comment: "")
                 }
@@ -152,7 +152,12 @@ class TemplateCardViewModel {
         .map { accountDetail -> String? in
             switch Environment.shared.opco {
             case .peco:
-                return NSLocalizedString("Get started today", comment: "")
+                if accountDetail.isResidential {
+                    return NSLocalizedString("Shop Now", comment: "")
+                } else {
+                    return NSLocalizedString("Get started today", comment: "")
+                }
+                
             case .bge:
                 if accountDetail.isResidential {
                     switch accountDetail.peakRewards {
@@ -183,7 +188,11 @@ class TemplateCardViewModel {
         .map { accountDetail -> String? in
             switch Environment.shared.opco {
             case .peco:
-                return NSLocalizedString("http://www.peco.com/smartideas", comment: "")
+                if accountDetail.isResidential {
+                    return "https://www.pecomarketplace.com"
+                } else {
+                    return "https://www.peco.com/smartideas"
+                }
             case .bge:
                 if accountDetail.isResidential, let peakRewards = accountDetail.peakRewards {
                     switch peakRewards {
@@ -192,19 +201,18 @@ class TemplateCardViewModel {
                     case "ECOBEE WIFI":
                         return nil
                     default:
-                        return NSLocalizedString("https://bgesavings.com/enroll", comment: "")
+                        return "https://bgesavings.com/enroll"
                     }
                 } else {
-                    return NSLocalizedString("http://bgesmartenergy.com/business", comment: "")
+                    return "https://bgesmartenergy.com/business"
                 }
             case .comEd:
                 if accountDetail.isResidential {
                     return accountDetail.isHourlyPricing ?
-                        String(format: NSLocalizedString("http://rrtp.comed.com/rrtpmobile/servlet?type=home&account=%@", comment: ""),
-                               accountDetail.accountNumber) :
-                        NSLocalizedString("https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app", comment: "")
+                        String(format: "https://hourlypricing.comed.com/rrtpmobile/servlet?type=home&account=%@", accountDetail.accountNumber) :
+                        "https://www.comedmarketplace.com/?utm_source=ComEd+mobile&utm_medium=referral&utm_campaign=mobile+app"
                 } else {
-                    return NSLocalizedString("http://comed.com/BusinessSavings", comment: "")
+                    return "http://comed.com/BusinessSavings"
                 }
             }
         }

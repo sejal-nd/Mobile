@@ -41,13 +41,14 @@ class ReportOutageViewModelTests: XCTestCase {
         let expectedString: String
         switch Environment.shared.opco {
         case .bge:
-            expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
+            expectedString = NSLocalizedString("If you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-877-778-7798\n\nFor downed or sparking power lines, please call 1-800-685-0123 or 1-877-778-2222", comment: "")
         case .comEd:
             expectedString = NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
         case .peco:
             expectedString = NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
         }
-        XCTAssert(expectedString == viewModel.footerTextViewText, "Expected \"\(expectedString)\", got \"\(viewModel.footerTextViewText)\"")
+        
+        XCTAssertEqual(expectedString, viewModel.footerTextViewText.string, "Expected \"\(expectedString)\", got \"\(viewModel.footerTextViewText.string)\"")
     }
     
     func testReportOutageSuccess() {

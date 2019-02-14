@@ -30,20 +30,45 @@ class ReportOutageViewModel {
     private(set) lazy var submitEnabled: Driver<Bool> = Driver.combineLatest(self.reportFormHidden.asDriver(),
                                                                              self.phoneNumber.asDriver())
     { [weak self] in
-        guard let `self` = self else { return false }
+        guard let self = self else { return false }
         let digitsOnlyString = self.extractDigitsFrom($1)
         return !$0 && digitsOnlyString.count == 10
     }
     
-    var footerTextViewText: String {
+    var footerTextViewText: NSAttributedString {
+        var localizedString: String
+        let phoneNumbers: [String]
         switch Environment.shared.opco {
         case .bge:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
+            let phone1 = "1-800-685-0123"
+            let phone2 = "1-877-778-7798"
+            let phone3 = "1-877-778-2222"
+            phoneNumbers = [phone1, phone2, phone3]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas, leave the area immediately and call %@ or %@\n
+                For downed or sparking power lines, please call %@ or %@
+                """
+                , phone1, phone2, phone1, phone3)
         case .comEd:
-            return NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
+            let phone1 = "1-800-334-7661"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
         case .peco:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
+            let phone1 = "1-800-841-4141"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
         }
+        
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
+        for phone in phoneNumbers {
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+            }
+        }
+        return attributedText
     }
     
     lazy var shouldPingMeter: Bool = {

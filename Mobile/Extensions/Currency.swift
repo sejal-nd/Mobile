@@ -20,7 +20,7 @@ extension NumberFormatter {
 }
 
 extension Double {
-    @nonobjc var currencyString: String? {
-        return NumberFormatter.currencyFormatter.string(from: NSNumber(value: self))
+    @nonobjc var currencyString: String {
+        return NumberFormatter.currencyFormatter.string(from: NSNumber(value: self)) ?? "--"
     }
 }

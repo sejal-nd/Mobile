@@ -38,7 +38,7 @@ class AdjustThermostatViewModel {
     
     private lazy var currentSettingsEvents: Observable<Event<SmartThermostatDeviceSettings>> = self.loadInitialData
         .flatMapLatest { [weak self] _ -> Observable<Event<SmartThermostatDeviceSettings>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             return self.peakRewardsService.fetchDeviceSettings(accountNumber: self.accountDetail.accountNumber,
                                                                premiseNumber: self.premiseNumber,
                                                                device: self.device)
@@ -82,7 +82,7 @@ class AdjustThermostatViewModel {
         .do(onNext: { Analytics.log(event: .adjustThermSave) })
         .withLatestFrom(self.updatedSettings)
         .flatMapLatest { [weak self] updatedSettings -> Observable<Event<Void>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             return self.peakRewardsService.updateDeviceSettings(forDevice: self.device,
                                                                 accountNumber: self.accountDetail.accountNumber,
                                                                 premiseNumber: self.premiseNumber,

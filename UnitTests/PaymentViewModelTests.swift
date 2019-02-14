@@ -43,8 +43,6 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
@@ -75,8 +73,6 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
@@ -95,14 +91,12 @@ class PaymentViewModelTests: XCTestCase {
         viewModel.paymentId.value = "1"
         let expect = expectation(description: "async")
         viewModel.fetchData(onSuccess: {
-            XCTAssert(self.viewModel.paymentAmount.value == "$100.00", "Expected \"$100.00\", got \"\(self.viewModel.paymentAmount.value)\")")
+            XCTAssert(self.viewModel.paymentAmount.value == 100.00, "Expected \"100.00\", got \"\(self.viewModel.paymentAmount.value)\")")
             XCTAssert(self.viewModel.paymentDate.value == Date(timeIntervalSince1970: 13), "paymentDate should have been updated from the paymentDetail")
             XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to the matching walletId from the paymentDetail")
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
 
         waitForExpectations(timeout: 3) { err in
@@ -124,8 +118,6 @@ class PaymentViewModelTests: XCTestCase {
                 expect1.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
-            }, onFiservCutoff: {
-                XCTFail("unexpected fiserv cutoff")
             })
 
             waitForExpectations(timeout: 3) { err in
@@ -141,8 +133,6 @@ class PaymentViewModelTests: XCTestCase {
                 expect2.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
-            }, onFiservCutoff: {
-                XCTFail("unexpected fiserv cutoff")
             })
             
             waitForExpectations(timeout: 3) { err in
@@ -165,8 +155,6 @@ class PaymentViewModelTests: XCTestCase {
             expect1.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         waitForExpectations(timeout: 3) { err in
@@ -182,8 +170,6 @@ class PaymentViewModelTests: XCTestCase {
             expect2.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        }, onFiservCutoff: {
-            XCTFail("unexpected fiserv cutoff")
         })
         
         waitForExpectations(timeout: 3) { err in
@@ -696,7 +682,7 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        viewModel.paymentAmount.value = "100"
+        viewModel.paymentAmount.value = 100
         viewModel.paymentFieldsValid.asObservable().take(1).subscribe(onNext: { valid in
             XCTAssert(valid, "paymentFieldsValid should be valid for this test case")
         }).disposed(by: disposeBag)
@@ -715,7 +701,7 @@ class PaymentViewModelTests: XCTestCase {
         
         // Inline bank
         viewModel.inlineBank.value = true
-        viewModel.paymentAmount.value = "100"
+        viewModel.paymentAmount.value = 100
         if Environment.shared.opco == .bge {
             addBankFormViewModel.accountHolderName.value = "Test"
             addBankFormViewModel.routingNumber.value = "123456789"
@@ -813,17 +799,17 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "Payment account view should not be shown by default")
+            XCTAssertFalse(shouldShow, "Payment method view should not be shown by default")
         }).disposed(by: disposeBag)
         
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssert(shouldShow, "Payment account view should be shown after a wallet item is selected")
+            XCTAssert(shouldShow, "Payment method view should be shown after a wallet item is selected")
         }).disposed(by: disposeBag)
         
         viewModel.inlineCard.value = true
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "Payment account view should not be shown if entering an inline card or bank")
+            XCTAssertFalse(shouldShow, "Payment method view should not be shown if entering an inline card or bank")
         }).disposed(by: disposeBag)
     }
     
@@ -943,6 +929,8 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
     
+    /* TODO!! Uncomment these tests during epay R2 when the values will come from accountDetail.BillingInfo again
+     
     // Test paymentAmountErrorMessage for BGE bank accounts when the min/max values are defined in accountDetail
     // Min/max values are set below/above the hardcoded fallback values to test that those values are not used when being overridden in accountDetail
     func testPaymentAmountErrorMessageBGEBankFromAccountDetail() {
@@ -955,22 +943,22 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineBank.value = true
-            viewModel.paymentAmount.value = "0.0009"
+            viewModel.paymentAmount.value = 0.0009
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "1600000"
+            viewModel.paymentAmount.value = 1600000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "0.001"
+            viewModel.paymentAmount.value = 0.001
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "1500000"
+            viewModel.paymentAmount.value = 1500000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
@@ -989,29 +977,29 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineBank.value = true
-            viewModel.paymentAmount.value = "2"
+            viewModel.paymentAmount.value = 2
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "11000"
+            viewModel.paymentAmount.value = 11000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "3"
+            viewModel.paymentAmount.value = 3
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "10000"
+            viewModel.paymentAmount.value = 10000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
             
             // Test overpayment
             viewModel.amountDue.value = 800
-            viewModel.paymentAmount.value = "900"
+            viewModel.paymentAmount.value = 900
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when overpaying")
             }).disposed(by: disposeBag)
@@ -1030,22 +1018,22 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineCard.value = true
-            viewModel.paymentAmount.value = "0.0009"
+            viewModel.paymentAmount.value = 0.0009
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "31000"
+            viewModel.paymentAmount.value = 31000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "0.001"
+            viewModel.paymentAmount.value = 0.001
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "30000"
+            viewModel.paymentAmount.value = 30000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
@@ -1064,34 +1052,35 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineCard.value = true
-            viewModel.paymentAmount.value = "2"
+            viewModel.paymentAmount.value = 2
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "7000"
+            viewModel.paymentAmount.value = 7000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "3"
+            viewModel.paymentAmount.value = 3
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "6000"
+            viewModel.paymentAmount.value = 6000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
             
             // Test overpayment
             viewModel.amountDue.value = 800
-            viewModel.paymentAmount.value = "900"
+            viewModel.paymentAmount.value = 900
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when overpaying")
             }).disposed(by: disposeBag)
         }
     }
+    */
     
     // Test paymentAmountErrorMessage for BGE bank accounts when using the hardcoded min/max values
     func testPaymentAmountErrorMessageBGEBankHardcoded() {
@@ -1102,37 +1091,37 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineBank.value = true
-            viewModel.paymentAmount.value = "0"
+            viewModel.paymentAmount.value = 0
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
             // Commercial max
-            viewModel.paymentAmount.value = "1000000"
+            viewModel.paymentAmount.value = 1000000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "0.01"
+            viewModel.paymentAmount.value = 0.01
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
             // Commercial max
-            viewModel.paymentAmount.value = "999999.99"
+            viewModel.paymentAmount.value = 999999.99
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
             
             // Residential max
             viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-            viewModel.paymentAmount.value = "100000"
+            viewModel.paymentAmount.value = 100000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
             // Residential max
-            viewModel.paymentAmount.value = "99999.99"
+            viewModel.paymentAmount.value = 99999.99
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
@@ -1148,29 +1137,29 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineBank.value = true
-            viewModel.paymentAmount.value = "4"
+            viewModel.paymentAmount.value = 4
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "100000"
+            viewModel.paymentAmount.value = 200000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "5"
+            viewModel.paymentAmount.value = 5
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "90000"
+            viewModel.paymentAmount.value = 100000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
             
             // Test overpayment
             viewModel.amountDue.value = 800
-            viewModel.paymentAmount.value = "900"
+            viewModel.paymentAmount.value = 900
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when overpaying")
             }).disposed(by: disposeBag)
@@ -1186,37 +1175,37 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineCard.value = true
-            viewModel.paymentAmount.value = "0.009"
+            viewModel.paymentAmount.value = 0.009
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
             // Commercial max
-            viewModel.paymentAmount.value = "26000"
+            viewModel.paymentAmount.value = 26000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "0.01"
+            viewModel.paymentAmount.value = 0.01
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
             // Commercial max
-            viewModel.paymentAmount.value = "25000"
+            viewModel.paymentAmount.value = 25000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
             
             // Residential max
             viewModel.accountDetail.value = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
-            viewModel.paymentAmount.value = "700"
+            viewModel.paymentAmount.value = 700
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
             // Residential max
-            viewModel.paymentAmount.value = "600"
+            viewModel.paymentAmount.value = 600
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
@@ -1232,29 +1221,29 @@ class PaymentViewModelTests: XCTestCase {
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
             viewModel.inlineCard.value = true
-            viewModel.paymentAmount.value = "4"
+            viewModel.paymentAmount.value = 4
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is below minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "6000"
+            viewModel.paymentAmount.value = 6000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when payment is above maximum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "5"
+            viewModel.paymentAmount.value = 5
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches minimum")
             }).disposed(by: disposeBag)
             
-            viewModel.paymentAmount.value = "5000"
+            viewModel.paymentAmount.value = 5000
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNil(err, "paymentAmountErrorMessage should be nil when payment matches maximum")
             }).disposed(by: disposeBag)
             
             // Test overpayment
             viewModel.amountDue.value = 800
-            viewModel.paymentAmount.value = "900"
+            viewModel.paymentAmount.value = 900
             viewModel.paymentAmountErrorMessage.asObservable().take(1).subscribe(onNext: { err in
                 XCTAssertNotNil(err, "paymentAmountErrorMessage should not be nil when overpaying")
             }).disposed(by: disposeBag)
@@ -1315,7 +1304,7 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = true
             viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("A $2.00 convenience fee will be applied by Bill Matrix, our payment partner.", comment: "")
+                let expectedFeeString = NSLocalizedString("A $2.00 convenience fee will be applied by Paymentus, our payment partner.", comment: "")
                 XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText ?? "nil")\"")
             }).disposed(by: disposeBag)
         }
@@ -1509,14 +1498,6 @@ class PaymentViewModelTests: XCTestCase {
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
             XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
         }).disposed(by: disposeBag)
-        
-        // ComEd/PECO specific test because by default they set nickname to last 4 digits, so we ignore those nicknames
-        if Environment.shared.opco != .bge {
-            viewModel.selectedWalletItem.value = WalletItem(nickName: "1234")
-            viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
-                XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
-            }).disposed(by: disposeBag)
-        }
     }
     
     func testConvenienceFee() {
@@ -1529,9 +1510,7 @@ class PaymentViewModelTests: XCTestCase {
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
-            viewModel.convenienceFee.asObservable().take(1).subscribe(onNext: { fee in
-                XCTAssert(fee == 2, "Expected fee = 2, got fee = \(fee)")
-            }).disposed(by: disposeBag)
+            XCTAssert(viewModel.convenienceFee == 2, "Expected fee = 2, got fee = \(viewModel.convenienceFee)")
             
             // BGE Commercial
             accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
@@ -1539,9 +1518,7 @@ class PaymentViewModelTests: XCTestCase {
                                                 "SERInfo": [:]])!
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
-            viewModel.convenienceFee.asObservable().take(1).subscribe(onNext: { fee in
-                XCTAssert(fee == 5, "Expected fee = 5, got fee = \(fee)")
-            }).disposed(by: disposeBag)
+            XCTAssert(viewModel.convenienceFee == 5, "Expected fee = 5, got fee = \(viewModel.convenienceFee)")
         } else {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
                                                     "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
@@ -1550,9 +1527,7 @@ class PaymentViewModelTests: XCTestCase {
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
-            viewModel.convenienceFee.asObservable().take(1).subscribe(onNext: { fee in
-                XCTAssert(fee == 2, "Expected fee = 2, got fee = \(fee)")
-            }).disposed(by: disposeBag)
+            XCTAssert(viewModel.convenienceFee == 2, "Expected fee = 2, got fee = \(viewModel.convenienceFee)")
         }
     }
     
@@ -1640,42 +1615,10 @@ class PaymentViewModelTests: XCTestCase {
             addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
             
-            viewModel.inlineCard.value = true
-            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
-                XCTAssert(fixed, "Inline card should have a fixed payment date")
-            }).disposed(by: disposeBag)
-            
-            viewModel.inlineCard.value = false
-            viewModel.addBankFormViewModel.saveToWallet.value = false
-            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
-                XCTAssert(fixed, "Not saving a bank account should have a fixed payment date")
-            }).disposed(by: disposeBag)
-            
             viewModel.addBankFormViewModel.saveToWallet.value = true
             viewModel.allowEdits.value = false
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "allowEdits = false should have a fixed payment date")
-            }).disposed(by: disposeBag)
-            
-            viewModel.allowEdits.value = true
-            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(pastDueAmount: 50))
-            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
-                XCTAssert(fixed, "user with a past due amount should have a fixed payment date")
-            }).disposed(by: disposeBag)
-            
-            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(restorationAmount: 50))
-            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
-                XCTAssert(fixed, "user with a restoration amount should have a fixed payment date")
-            }).disposed(by: disposeBag)
-            
-            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(amtDpaReinst: 50))
-            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
-                XCTAssert(fixed, "user with amtDpaReinst > 0 should have a fixed payment date")
-            }).disposed(by: disposeBag)
-            
-            viewModel.accountDetail.value = AccountDetail(isCutOutNonPay: true)
-            viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
-                XCTAssert(fixed, "user cut for non payment should have a fixed payment date")
             }).disposed(by: disposeBag)
             
             var dateComps = DateComponents()
@@ -1697,7 +1640,7 @@ class PaymentViewModelTests: XCTestCase {
         
         if Environment.shared.opco == .bge { // Overpayment is a BGE only concept
             viewModel.amountDue.value = 100
-            viewModel.paymentAmount.value = "200"
+            viewModel.paymentAmount.value = 200
             viewModel.isOverpaying.asObservable().take(1).subscribe(onNext: { overpaying in
                 XCTAssert(overpaying, "isOverpaying should be true when amount due = $100 and payment amount = $200")
             }).disposed(by: disposeBag)
@@ -1714,12 +1657,12 @@ class PaymentViewModelTests: XCTestCase {
         addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
         
-        viewModel.paymentAmount.value = "200"
+        viewModel.paymentAmount.value = 200
         viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssert(str == "$0.00", "Expected $0.00, got \(str ?? "nil")")
         }).disposed(by: disposeBag)
         
-        viewModel.paymentAmount.value = "213.88"
+        viewModel.paymentAmount.value = 213.88
         viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssert(str == "$13.88", "Expected $13.88, got \(str ?? "nil")")
         }).disposed(by: disposeBag)
@@ -1822,29 +1765,13 @@ class PaymentViewModelTests: XCTestCase {
             
             viewModel.inlineCard.value = true
             viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssert(text == NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""),
-                          "Got unexpected string")
+                XCTAssertEqual(text, NSLocalizedString("You hereby authorize a payment debit entry to your Credit/Debit/Share Draft account. You understand that if the payment under this authorization is returned or otherwise dishonored, you will promptly remit the payment due plus any fees due under your account.", comment: ""))
             }).disposed(by: disposeBag)
         } else {
             viewModel.reviewPaymentFooterLabelText.asObservable().take(1).subscribe(onNext: { text in
-                XCTAssert(text == NSLocalizedString("You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""),
-                          "Got unexpected string")
+                XCTAssertEqual(text, NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""))
             }).disposed(by: disposeBag)
         }
-    }
-    
-    func testFormatPaymentAmount() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        addBankFormViewModel = AddBankFormViewModel(walletService: MockWalletService())
-        addCardFormViewModel = AddCardFormViewModel(walletService: MockWalletService())
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, addBankFormViewModel: addBankFormViewModel, addCardFormViewModel: addCardFormViewModel, paymentDetail: nil, billingHistoryItem: nil)
-        
-        viewModel.formatPaymentAmount()
-        XCTAssert(viewModel.paymentAmount.value == "$0.00", "Expected $0.00, got \(viewModel.paymentAmount.value)")
-        
-        viewModel.paymentAmount.value = "100000"
-        viewModel.formatPaymentAmount()
-        XCTAssert(viewModel.paymentAmount.value == "$1,000.00", "Expected $1,000.00, got \(viewModel.paymentAmount.value)")
     }
     
 }

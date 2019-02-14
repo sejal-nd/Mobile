@@ -38,7 +38,7 @@ struct Account: Mappable, Equatable, Hashable {
         
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
         
-        currentPremise = isMultipremise ? premises[0] : nil 
+        currentPremise = premises.first
     }
     
     var isMultipremise: Bool{
@@ -77,7 +77,6 @@ struct AccountDetail: Mappable {
     let isSupplier: Bool
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
-    let isBGEControlGroup: Bool
     let isPTSAccount: Bool // ComEd only - Peak Time Savings enrollment status
     let isSERAccount: Bool // BGE only - Smart Energy Rewards enrollment status
 
@@ -94,6 +93,7 @@ struct AccountDetail: Mappable {
 	let isBGEasy: Bool
 	let isAutoPayEligible: Bool
     let isCutOutNonPay: Bool
+    let isCutOutIssued: Bool
     let isLowIncome: Bool
     let isFinaled: Bool
 	
@@ -116,11 +116,6 @@ struct AccountDetail: Mappable {
         try billingInfo = map.from("BillingInfo")
         
         try serInfo = map.from("SERInfo")
-        if let controlGroupFlag = serInfo.controlGroupFlag, controlGroupFlag.uppercased() == "CONTROL" {
-            isBGEControlGroup = true
-        } else {
-            isBGEControlGroup = false
-        }
         isPTSAccount = map.optionalFrom("isPTSAccount") ?? false
         
         premiseInfo = map.optionalFrom("PremiseInfo") ?? []
@@ -155,7 +150,8 @@ struct AccountDetail: Mappable {
 		isAutoPay = map.optionalFrom("isAutoPay") ?? false
         isBGEasy = map.optionalFrom("isBGEasy") ?? false
 		isAutoPayEligible = map.optionalFrom("isAutoPayEligible") ?? false
-		isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutNonPay = map.optionalFrom("isCutOutNonPay") ?? false
+        isCutOutIssued = map.optionalFrom("isCutOutIssued") ?? false
         isLowIncome = map.optionalFrom("isLowIncome") ?? false
         isFinaled = map.optionalFrom("flagFinaled") ?? false
 		
@@ -168,18 +164,31 @@ struct AccountDetail: Mappable {
         zipCode = map.optionalFrom("zipCode")
     }
     
+    var isBGEControlGroup: Bool {
+        return serInfo.controlGroupFlag?.uppercased() == "CONTROL"
+    }
+    
+    /* TODO: When BGE is on Paymentus, move these 2 functions into BillingInfo, and
+     * make minPaymentAmount, maxPaymentAmount, minPaymentAmountACH, maxPaymentAmountACH
+     * private lets to enforce the use of only these functions. We can't do that currently
+     * because our switch in maxPaymentAmount() relies on isResidential
+     */
     func minPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        switch bankOrCard {
-        case .bank:
-            if let minPaymentAmount = billingInfo.minPaymentAmountACH {
-                return minPaymentAmount
-            }
-        case .card:
-            if let minPaymentAmount = billingInfo.minPaymentAmount {
-                return minPaymentAmount
-            }
-        }
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let minPaymentAmount = billingInfo.minPaymentAmountACH {
+         return minPaymentAmount
+         }
+         case .card:
+         if let minPaymentAmount = billingInfo.minPaymentAmount {
+         return minPaymentAmount
+         }
+         }
+         */
         
+        //TODO: Just return 5 once BGE switches to Paymentus
         switch Environment.shared.opco {
         case .bge:
             return 0.01
@@ -189,29 +198,33 @@ struct AccountDetail: Mappable {
     }
     
     func maxPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        switch bankOrCard {
-        case .bank:
-            if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
-                return maxPaymentAmount
-            }
-        case .card:
-            if let maxPaymentAmount = billingInfo.maxPaymentAmount {
-                return maxPaymentAmount
-            }
-        }
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
+         return maxPaymentAmount
+         }
+         case .card:
+         if let maxPaymentAmount = billingInfo.maxPaymentAmount {
+         return maxPaymentAmount
+         }
+         }
+         */
         
-        
+        //: TODO - Simplify this switch to just bankOrCard when BGE switches to Paymentus
         switch (bankOrCard, Environment.shared.opco, isResidential) {
         case (.bank, .bge, true):
             return 99_999.99
         case (.bank, .bge, false):
             return 999_999.99
-        case (.bank, _, _):
-            return 90000
         case (.card, .bge, true):
             return 600
         case (.card, .bge, false):
             return 25000
+            
+        case (.bank, _, _):
+            return 100_000
         case (.card, _, _):
             return 5000
         }
@@ -250,53 +263,6 @@ struct SERInfo: Mappable {
     }
 }
 
-struct SERResult: Mappable, Equatable {
-    let actualKWH: Double
-    let baselineKWH: Double
-    let eventStart: Date
-    let eventEnd: Date
-    let savingDollar: Double
-    let savingKWH: Double
-    
-    init(map: Mapper) throws {
-        try eventStart = map.from("eventStart", transformation: DateParser().extractDate)
-        try eventEnd = map.from("eventEnd", transformation: DateParser().extractDate)
-        
-        if let actualString: String = map.optionalFrom("actualKWH"), let doubleVal = Double(actualString) {
-            actualKWH = doubleVal
-        } else {
-            actualKWH = 0
-        }
-        
-        if let baselineString: String = map.optionalFrom("baselineKWH"), let doubleVal = Double(baselineString) {
-            baselineKWH = doubleVal
-        } else {
-            baselineKWH = 0
-        }
-
-        if let savingDollarString: String = map.optionalFrom("savingDollar"), let doubleVal = Double(savingDollarString) {
-            savingDollar = doubleVal
-        } else {
-            savingDollar = 0
-        }
-        
-        if let savingKWHString: String = map.optionalFrom("savingKWH"), let doubleVal = Double(savingKWHString) {
-            savingKWH = doubleVal
-        } else {
-            savingKWH = 0
-        }
-    }
-
-    static func ==(lhs: SERResult, rhs: SERResult) -> Bool {
-        return lhs.actualKWH == rhs.actualKWH &&
-            lhs.baselineKWH == rhs.baselineKWH &&
-            lhs.eventStart == rhs.eventStart &&
-            lhs.eventEnd == rhs.eventEnd &&
-            lhs.savingDollar == rhs.savingDollar &&
-            lhs.savingKWH == rhs.savingKWH
-    }
-}
-
 struct CustomerInfo: Mappable {
     
     let emailAddress: String?
@@ -309,49 +275,6 @@ struct CustomerInfo: Mappable {
         number = map.optionalFrom("number")
         firstName = map.optionalFrom("firstName")
         nameCompressed = map.optionalFrom("nameCompressed")
-    }
-}
-
-struct PaymentItem: Mappable {
-    
-    enum PaymentStatus: String {
-        case scheduled = "scheduled"
-        case pending = "pending"
-        case processing = "processing"
-    }
-    
-    let amount: Double
-    let date: Date?
-    let status: PaymentStatus
-    
-    init(map: Mapper) throws {
-        amount = try map.from("paymentAmount")
-        
-        status = try map.from("status") {
-            guard let statusString = $0 as? String else {
-                throw MapperError.convertibleError(value: $0, type: PaymentStatus.self)
-            }
-            
-            let statusStr: String
-            if statusString.lowercased() == "processed" {
-                statusStr = "processing"
-            } else {
-                statusStr = statusString
-            }
-            
-            guard let status = PaymentStatus(rawValue: statusStr.lowercased()) else {
-                throw MapperError.convertibleError(value: statusString, type: PaymentStatus.self)
-            }
-            return status
-        }
-        
-        date = map.optionalFrom("paymentDate", transformation: DateParser().extractDate)
-        
-        // Scheduled payments require dates
-        guard status != .scheduled || date != nil else {
-            throw MapperError.convertibleError(value: "paymentDate", type: PaymentStatus.self)
-        }
-        
     }
 }
 
@@ -421,23 +344,27 @@ struct BillingInfo: Mappable {
             }
             return array
         }
-        
+
         let paymentItems = paymentDicts?.compactMap(PaymentItem.from)
-        
+
         scheduledPayment = paymentItems?.filter { $0.status == .scheduled }.last
         pendingPayments = paymentItems?
             .filter { $0.status == .pending || $0.status == .processing } ?? []
         
     }
     
+    var pendingPaymentsTotal: Double {
+        return pendingPayments.map(\.amount).reduce(0, +)
+    }
+    
     func convenienceFeeString(isComplete: Bool) -> String {
         var convenienceFeeStr = ""
         if isComplete {
             convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         } else {
             convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
-                                      residentialFee!.currencyString!, commercialFee!.percentString!)
+                                      residentialFee!.currencyString, commercialFee!.percentString!)
         }
         return convenienceFeeStr
     }

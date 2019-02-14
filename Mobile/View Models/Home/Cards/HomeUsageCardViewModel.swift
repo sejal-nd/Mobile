@@ -15,6 +15,7 @@ class HomeUsageCardViewModel {
     
     private let maintenanceModeEvents: Observable<Event<Maintenance>>
     let accountDetailEvents: Observable<Event<AccountDetail>>
+    private let accountService: AccountService
     private let usageService: UsageService
     
     private let fetchData: Observable<FetchingAccountState>
@@ -42,12 +43,14 @@ class HomeUsageCardViewModel {
     required init(fetchData: Observable<FetchingAccountState>,
                   maintenanceModeEvents: Observable<Event<Maintenance>>,
                   accountDetailEvents: Observable<Event<AccountDetail>>,
+                  accountService: AccountService,
                   usageService: UsageService,
                   refreshFetchTracker: ActivityTracker,
                   switchAccountFetchTracker: ActivityTracker) {
         self.fetchData = fetchData
         self.maintenanceModeEvents = maintenanceModeEvents
         self.accountDetailEvents = accountDetailEvents
+        self.accountService = accountService
         self.usageService = usageService
         self.refreshFetchTracker = refreshFetchTracker
         self.switchAccountFetchTracker = switchAccountFetchTracker
@@ -58,10 +61,28 @@ class HomeUsageCardViewModel {
         .startWith(true)
         .distinctUntilChanged()
     
+    private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = maintenanceModeEvents
+        .filter {
+            guard let maint = $0.element else { return false }
+            return !maint.allStatus && !maint.usageStatus && !maint.homeStatus
+        }
+        .withLatestFrom(fetchData)
+        .toAsyncRequest(activityTracker: { [weak self] fetchingState in
+            self?.fetchTracker(forState: fetchingState)
+            }, requestSelector: { [weak self] _ in
+                self?.accountService
+                    .fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber) ?? .empty()
+        })
+    
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = accountDetailEvents.elements()
+    private(set) lazy var accountDetailChanged = Observable
+        .combineLatest(accountDetailEvents, serResultEvents)
+        .filter { $0.element != nil && $1.element != nil }
+        .map { accountDetailEvent, _ in accountDetailEvent }
+        .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
+        .elements()
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
         .filter { $0.isEligibleForUsageData && !$1 }
         .map { accountDetail, _ in accountDetail }
@@ -113,16 +134,29 @@ class HomeUsageCardViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { accountDetail, isMaintenanceMode in
+    private(set) lazy var showErrorState: Driver<Void> = Observable
+        .combineLatest(accountDetailEvents, serResultEvents)
+        .filter { $0.error != nil || $1.error != nil }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    let errorLabelText: String = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+    
+    private(set) lazy var showUnavailableState: Driver<Void> = Observable
+        .combineLatest(accountDetailEvents, serResultEvents)
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .filter { accountDetailEvent, eventResultsEvent, isMaintenanceMode in
+            guard let accountDetail = accountDetailEvent.element,
+                let eventResults = eventResultsEvent.element else {
+                    return false
+            }
+            
             if isMaintenanceMode {
                 return false
             }
             
             if accountDetail.isBGEControlGroup {
-                return !accountDetail.isSERAccount ||
-                    accountDetail.serInfo.eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
+                return !accountDetail.isSERAccount || eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
             }
             
             return !accountDetail.isEligibleForUsageData
@@ -140,26 +174,28 @@ class HomeUsageCardViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyRewards: Driver<Void> = accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { accountDetail, isMaintenanceMode in
+    private(set) lazy var showSmartEnergyRewards: Driver<Void> = Observable
+        .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, eventResults, isMaintenanceMode in
             !isMaintenanceMode &&
                 accountDetail.isBGEControlGroup &&
                 accountDetail.isSERAccount &&
-                !accountDetail.serInfo.eventResults.isEmpty
+                !eventResults.isEmpty
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = self.accountDetailEvents.elements()
-        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { accountDetail, isMaintenanceMode in
+    private(set) lazy var showSmartEnergyEmptyState: Driver<Void> = Observable
+        .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
+        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, eventResults, isMaintenanceMode in
             if isMaintenanceMode {
                 return false
             }
             
             if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return accountDetail.serInfo.eventResults.isEmpty
+                return eventResults.isEmpty
             }
             
             return false
@@ -242,7 +278,7 @@ class HomeUsageCardViewModel {
         let dateString = "\(compared.startDate.fullMonthAndDayString) to \(compared.endDate.fullMonthAndDayString)"
         
         let localizedString = NSLocalizedString("Total bill: %@. Usage: %d %@", comment: "")
-        let detailString = String(format: localizedString, compared.charges.currencyString!, Int(compared.usage), $0.meterUnit)
+        let detailString = String(format: localizedString, compared.charges.currencyString, Int(compared.usage), $0.meterUnit)
         
         return "\(dateString). \(detailString)"
     }
@@ -253,7 +289,7 @@ class HomeUsageCardViewModel {
         let dateString = "\(reference.startDate.fullMonthAndDayString) to \(reference.endDate.fullMonthAndDayString)"
         
         let localizedString = NSLocalizedString("Total bill: %@. Usage: %d %@", comment: "")
-        let detailString = String(format: localizedString, reference.charges.currencyString!, Int(reference.usage), $0.meterUnit)
+        let detailString = String(format: localizedString, reference.charges.currencyString, Int(reference.usage), $0.meterUnit)
         
         return "\(dateString). \(detailString)"
     }
@@ -262,7 +298,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionDateLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[0].value { // No data
                 return NSLocalizedString("Previous Bill - Not enough data available.", comment: "")
             } else if selectionStates[1].value { // Previous
@@ -279,7 +315,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionTotalBillTitleLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[0].value {
                 return nil
             } else {
@@ -289,14 +325,14 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionTotalBillValueLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[1].value { // Previous
                 if let compared = billComparison.compared {
-                    return compared.charges.currencyString!
+                    return compared.charges.currencyString
                 }
             } else if selectionStates[2].value { // Current
                 if let reference = billComparison.reference {
-                    return reference.charges.currencyString!
+                    return reference.charges.currencyString
                 }
             }
             return nil
@@ -304,7 +340,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionUsageTitleLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[0].value {
                 return nil
             } else {
@@ -314,7 +350,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var barDescriptionUsageValueLabelText: Driver<String?> =
         Driver.combineLatest(self.billComparisonDriver, self.barGraphSelectionStates.asDriver()) { [weak self] billComparison, selectionStates in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             if selectionStates[1].value { // Previous
                 if let compared = billComparison.compared {
                     return "\(Int(compared.usage)) \(billComparison.meterUnit)"
@@ -339,14 +375,15 @@ class HomeUsageCardViewModel {
     
     // MARK: Smart Energy Rewards
     
-    private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.accountDetailDriver.map {
-        let events = $0.serInfo.eventResults
-        if let mostRecentEvent = events.last {
-            let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
-            return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
+    private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = self.serResultEvents.elements()
+        .map { eventResults in
+            if let mostRecentEvent = eventResults.last {
+                let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
+                return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
+            }
+            return nil
         }
-        return nil
-    }
+        .asDriver(onErrorDriveWith: .empty())
 
     // MARK: Bill Comparison Empty State
     

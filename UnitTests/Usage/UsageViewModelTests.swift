@@ -62,7 +62,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "JUL 01"), next(1, "2016")]);
+        XCTAssertEqual(trimmedEvents, [next(0, "JUL 01"), next(1, "2016")])
     }
     
     // MARK: Previous Bar Drivers... PREVIOUS = COMPARED
@@ -105,7 +105,7 @@ class UsageViewModelTests: XCTestCase {
             next(3, CGFloat(134.0 * (200 / 230))),
             next(4, 134.0),
             next(5, CGFloat(134.0 * (200 / 220))),
-        ]);
+        ])
     }
     
     func testPreviousBarDollarLabelText() {
@@ -122,7 +122,7 @@ class UsageViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         scheduler.start()
         
-        XCTAssertEqual(observer.events, [next(0, "$220.00")]);
+        XCTAssertEqual(observer.events, [next(0, "$220.00")])
     }
     
     func testPreviousBarDateLabelText() {
@@ -145,7 +145,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")]);
+        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")])
     }
     
     // MARK: Current Bar Drivers...CURRENT = REFERENCE
@@ -188,7 +188,7 @@ class UsageViewModelTests: XCTestCase {
             next(3, CGFloat(134.0 * (220 / 230))),
             next(4, CGFloat(134.0 * (200 / 220))),
             next(5, 134.0),
-        ]);
+        ])
     }
     
     func testCurrentBarDollarLabelText() {
@@ -205,7 +205,7 @@ class UsageViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
         scheduler.start()
         
-        XCTAssertEqual(observer.events, [next(0, "$220.00")]);
+        XCTAssertEqual(observer.events, [next(0, "$220.00")])
     }
     
     func testCurrentBarDateLabelText() {
@@ -228,7 +228,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")]);
+        XCTAssertEqual(trimmedEvents, [next(0, "AUG 01"), next(1, "2017")])
     }
     
     // MARK: Projection Bar Drivers
@@ -254,9 +254,9 @@ class UsageViewModelTests: XCTestCase {
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)]);
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)])
         } else {
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)]);
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)])
         }
     }
     
@@ -281,9 +281,9 @@ class UsageViewModelTests: XCTestCase {
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)]);
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 182)])
         } else {
-            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)]);
+            XCTAssertEqual(trimmedEvents, [next(0, 230), next(1, 230)])
         }
     }
     
@@ -326,7 +326,7 @@ class UsageViewModelTests: XCTestCase {
             next(1, 134.0),
             next(2, CGFloat(134.0 * (150 / 220))),
             next(3, CGFloat(134.0 * (150 / 220))),
-        ]);
+        ])
     }
     
     func testProjectedBarDollarLabelText() {
@@ -355,7 +355,7 @@ class UsageViewModelTests: XCTestCase {
         XCTAssertEqual(trimmedEvents, [
             next(0, "500 kWh"),
             next(1, "$220.00"),
-        ]);
+        ])
     }
     
     func testProjectedBarDateLabelText() {
@@ -379,9 +379,9 @@ class UsageViewModelTests: XCTestCase {
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
         if Environment.shared.opco != .comEd { // ComEd is electric only
-            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "JUL 03")]);
+            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "JUL 03")])
         } else {
-            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "AUG 13")]);
+            XCTAssertEqual(trimmedEvents, [next(0, "AUG 13"), next(1, "AUG 13")])
         }
     }
     
@@ -418,7 +418,7 @@ class UsageViewModelTests: XCTestCase {
             next(1, false),
             next(2, true),
             next(3, false),
-        ]);
+        ])
     }
     
     func testProjectionNotAvailableDaysRemainingText() {
@@ -452,7 +452,7 @@ class UsageViewModelTests: XCTestCase {
             next(1, "4 days"),
             next(2, "1 day"),
             next(3, "4 days"),
-        ]);
+        ])
     }
     
     // MARK: Bar Description Box Drivers
@@ -510,7 +510,7 @@ class UsageViewModelTests: XCTestCase {
             next(4, "May 23, 2018 - Jun 24, 2018"),  // Test case: Projected bar selected (electric)
             next(5, "May 23, 2018 - Jun 24, 2018"),  // Test case: Projected bar selected (gas)
             next(6, "Projection Not Available") // Test case: Projection not available selected
-        ]);
+        ])
     }
     
     func testBarDescriptionAvgTempLabelText() {
@@ -534,7 +534,7 @@ class UsageViewModelTests: XCTestCase {
         scheduler.start()
         
         let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertEqual(trimmedEvents, [next(0, "Avg. Temp 89° F"), next(1, "Avg. Temp 62° F")]);
+        XCTAssertEqual(trimmedEvents, [next(0, "Avg. Temp 89° F"), next(1, "Avg. Temp 62° F")])
     }
     
     // MARK: Up/Down Arrow Image Drivers
@@ -568,7 +568,7 @@ class UsageViewModelTests: XCTestCase {
             next(0, #imageLiteral(resourceName: "no_change_icon")),
             next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
             next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
-        ]);
+        ])
     }
     
     func testWeatherArrowImage() {
@@ -600,7 +600,7 @@ class UsageViewModelTests: XCTestCase {
             next(0, #imageLiteral(resourceName: "no_change_icon")),
             next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
             next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
-        ]);
+        ])
     }
     
     func testOtherArrowImage() {
@@ -632,7 +632,7 @@ class UsageViewModelTests: XCTestCase {
             next(0, #imageLiteral(resourceName: "no_change_icon")),
             next(1, #imageLiteral(resourceName: "ic_billanalysis_positive")),
             next(2, #imageLiteral(resourceName: "ic_billanalysis_negative")),
-        ]);
+        ])
     }
     
     // MARK: Likely Reasons Drivers
@@ -691,7 +691,7 @@ class UsageViewModelTests: XCTestCase {
             next(4, "Likely reasons your electric charges are about $100.00 more than last year."),
             next(5, "Likely reasons your electric charges are about $100.00 less than your previous bill."),
             next(6, "Likely reasons your electric charges are about $100.00 less than last year."),
-        ]);
+        ])
     }
     
     func testLikelyReasonsDescriptionTitleText() {

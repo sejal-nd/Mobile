@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ToastSwiftFramework
+import Toast_Swift
 import Mapper
 
 
@@ -99,7 +99,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         var title = ""
         
         viewModel.loadSecurityQuestions(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.viewModel.isPaperlessEbillEligible {
                 self.loadAccounts()
             } else {
@@ -122,7 +122,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         var title = ""
         
         viewModel.loadAccounts(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             let opco = Environment.shared.opco
             
             if (opco == .peco || opco == .comEd) && self.viewModel.accountType.value == "commercial" {
@@ -274,7 +274,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     func setupValidation() {
         viewModel.question1Selected
             .drive(onNext: { [weak self] valid in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.question1ContentLabel.isHidden = !valid
                 self.question1ContentLabel.text = self.viewModel.securityQuestion1.value
                 
@@ -283,7 +283,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
 
         viewModel.question2Selected
             .drive(onNext: { [weak self] valid in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.question2ContentLabel.isHidden = !valid
                 self.question2ContentLabel.text = self.viewModel.securityQuestion2.value
                 
@@ -292,7 +292,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.question3Selected
             .drive(onNext: { [weak self] valid in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.question3ContentLabel.isHidden = !valid
                 self.question3ContentLabel.text = self.viewModel.securityQuestion3.value
                 
@@ -306,7 +306,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         
         viewModel.securityQuestionChanged
             .drive(onNext: { [weak self] valid in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 switch (self.viewModel.selectedQuestionRow) {
                 case 1:
                     self.question1AnswerTextField.textField.text = ""
@@ -371,7 +371,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         LoadingView.show()
         
         viewModel.registerUser(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             LoadingView.hide()
 
             if self.viewModel.hasStrongPassword {

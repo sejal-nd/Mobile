@@ -25,7 +25,7 @@ class OutageMapViewController: UIViewController {
         let url: URL
         let a11yLabel: String
         if hasPressedStreetlightOutageMapButton {
-            title = NSLocalizedString("Streetlight Map", comment: "")
+            title = NSLocalizedString("Street Light Map", comment: "")
             url = URL(string: "https://comed.streetlightoutages.com")!
             a11yLabel = NSLocalizedString("This is an outage map showing the street lights that are currently experiencing an outage.", comment: "")
         } else {

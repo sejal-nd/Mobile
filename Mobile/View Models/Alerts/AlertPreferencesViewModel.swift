@@ -20,6 +20,7 @@ class AlertPreferencesViewModel {
     var accountDetail: AccountDetail! // Passed from AlertsViewController
     
     var sections: [(String, [AlertPreferencesOptions])] = []
+    var shownSections = Set<Int>() // Set of section numbers that should be expanded
     
     // Notification Preferences
     let outage = Variable(false)
@@ -28,8 +29,10 @@ class AlertPreferencesViewModel {
     let billReady = Variable(false)
     let paymentDue = Variable(false)
     let paymentDueDaysBefore = Variable(1)
+    let paymentPosted = Variable(false)
+    let paymentPastDue = Variable(false)
     let budgetBilling = Variable(false)
-//    let appointmentTracking = Variable(false)
+    let appointmentTracking = Variable(false)
     let forYourInfo = Variable(false)
     let english = Variable(true) // Language selection. False = Spanish
     
@@ -50,6 +53,14 @@ class AlertPreferencesViewModel {
         self.alertsService = alertsService
         self.billService = billService
         self.accountService = accountService
+    }
+    
+    func toggleSectionVisibility(_ section: Int) {
+        if !shownSections.contains(section) {
+            shownSections.insert(section)
+        } else {
+            shownSections.remove(section)
+        }
     }
     
     // MARK: Web Services
@@ -75,9 +86,9 @@ class AlertPreferencesViewModel {
                         (NSLocalizedString("Billing", comment: ""),
                          [.billIsReady]),
                         (NSLocalizedString("Payment", comment: ""),
-                         [.paymentDueReminder]),
-//                        (NSLocalizedString("Customer Appointments", comment: ""),
-//                         [.appointmentTracking]),
+                         [.paymentDueReminder, .paymentPosted, .paymentPastDue]),
+                        (NSLocalizedString("Customer Appointments", comment: ""),
+                         [.appointmentTracking]),
                         (NSLocalizedString("News", comment: ""),
                          [.forYourInformation])
                     ]
@@ -91,13 +102,13 @@ class AlertPreferencesViewModel {
                                               [.billIsReady]))
                     }
                     
-                    var paymentOptions = [AlertPreferencesOptions.paymentDueReminder]
+                    var paymentOptions: [AlertPreferencesOptions] = [.paymentDueReminder, .paymentPosted, .paymentPastDue]
                     if self.accountDetail.isBudgetBillEnrollment {
                         paymentOptions.append(.budgetBillingReview)
                     }
                     
                     self.sections.append((NSLocalizedString("Payment", comment: ""), paymentOptions))
-//                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
+                    self.sections.append((NSLocalizedString("Customer Appointments", comment: ""), [.appointmentTracking]))
                     self.sections.append((NSLocalizedString("News", comment: ""), [.forYourInformation]))
                 }
                 
@@ -132,8 +143,10 @@ class AlertPreferencesViewModel {
                 self.initialBillReadyValue = alertPrefs.billReady
                 self.paymentDue.value = alertPrefs.paymentDue
                 self.paymentDueDaysBefore.value = alertPrefs.paymentDueDaysBefore
+                self.paymentPosted.value = alertPrefs.paymentPosted
+                self.paymentPastDue.value = alertPrefs.paymentPastDue
                 self.budgetBilling.value = alertPrefs.budgetBilling
-//                self.appointmentTracking.value = alertPrefs.appointmentTracking
+                self.appointmentTracking.value = alertPrefs.appointmentTracking
                 self.forYourInfo.value = alertPrefs.forYourInfo
             })
             .mapTo(())
@@ -174,24 +187,28 @@ class AlertPreferencesViewModel {
         { $0 != $1.paymentDueDaysBefore }
     
     private lazy var booleanPrefsChanged = Observable
-        .combineLatest(outage.asObservable(),
+        .combineLatest([outage.asObservable(),
                        scheduledMaint.asObservable(),
                        severeWeather.asObservable(),
                        billReady.asObservable(),
                        paymentDue.asObservable(),
+                       paymentPosted.asObservable(),
+                       paymentPastDue.asObservable(),
                        budgetBilling.asObservable(),
-//                       appointmentTracking.asObservable(),
-                       forYourInfo.asObservable())
-        .map {
-            AlertPreferences(outage: $0.0,
-                             scheduledMaint: $0.1,
-                             severeWeather: $0.2,
-                             billReady: $0.3,
-                             paymentDue: $0.4,
+                       appointmentTracking.asObservable(),
+                       forYourInfo.asObservable()])
+        .map { prefs in
+            AlertPreferences(outage: prefs[0],
+                             scheduledMaint: prefs[1],
+                             severeWeather: prefs[2],
+                             billReady: prefs[3],
+                             paymentDue: prefs[4],
                              paymentDueDaysBefore: 0,
-                             budgetBilling: $0.5,
-//                             appointmentTracking: $0.6,
-                             forYourInfo: $0.6)
+                             paymentPosted: prefs[5],
+                             paymentPastDue: prefs[6],
+                             budgetBilling: prefs[7],
+                             appointmentTracking: prefs[8],
+                             forYourInfo: prefs[9])
         }
         .withLatestFrom(alertPrefs.asObservable().unwrap())
         { $0.isDifferent(fromOriginal: $1) }
@@ -212,8 +229,10 @@ class AlertPreferencesViewModel {
                                                 billReady: billReady.value,
                                                 paymentDue: paymentDue.value,
                                                 paymentDueDaysBefore: paymentDueDaysBefore.value,
+                                                paymentPosted: paymentPosted.value,
+                                                paymentPastDue: paymentPastDue.value,
                                                 budgetBilling: budgetBilling.value,
-//                                                appointmentTracking: appointmentTracking.value,
+                                                appointmentTracking: appointmentTracking.value,
                                                 forYourInfo: forYourInfo.value)
         return alertsService
             .setAlertPreferences(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
@@ -267,88 +286,15 @@ class AlertPreferencesViewModel {
         }
     }
     
-    // MARK: Detail Label Strings
-    
-    var outageDetailLabelText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("Receive updates on unplanned outages due to storms.", comment: "")
-        case .comEd:
-            return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.\n\nNOTE: Outage Notifications will be provided by ComEd on a 24/7 basis. You may be updated with outage information during the overnight hours or over holidays where applicable.", comment: "")
-        case .peco:
-            return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.", comment: "")
-        }
-    }
-    
-    var scheduledMaintDetailLabelText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("From time to time, BGE must temporarily stop service in order to perform system maintenance or repairs. BGE typically informs customers of planned outages in their area by letter, however, in emergency situations we can inform customers by push notification. Planned outage information will also be available on the planned outages web page on BGE.com.", comment: "")
-        case .comEd, .peco:
-            return nil
-        }
-    }
-    
-    var severeWeatherDetailLabelText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("BGE may choose to contact you if a severe-impact storm, such as a hurricane or blizzard, is imminent in our service area to encourage you to prepare for potential outages.", comment: "")
-        case .comEd:
-            return NSLocalizedString("Receive an alert about weather conditions that could potentially impact ComEd service in your area.", comment: "")
-        case .peco:
-            return NSLocalizedString("Receive an alert about weather conditions that could potentially impact PECO service in your area.", comment: "")
-        }
-    }
-    
-    var billReadyDetailLabelText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and amount due.", comment: "")
-        case .comEd, .peco:
-            return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
-        }
-    }
-    
-    var paymentDueDetailLabelText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("Choose to receive an alert 1 to 14 days before your payment due date. Customers are responsible for payment for the total amount due on their account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
-        case .comEd, .peco:
-            return NSLocalizedString("Receive an alert 1 to 7 days before your payment due date. If enrolled in AutoPay, the alert will notify you of when a payment will be deducted from your bank account.\n\nNOTE: You are responsible for payment of the total amount due on your account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
-        }
-    }
-    
-    var budgetBillingDetailLabelText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return nil
-        case .comEd:
-            return NSLocalizedString("Your monthly Budget Bill Payment may be adjusted every six months to keep your account current with your actual electricity usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
-        case .peco:
-            return NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
-        }
-    }
-    
-    var forYourInfoDetailLabelText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("Occasionally, BGE may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
-        case .comEd:
-            return NSLocalizedString("Occasionally, ComEd may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
-        case .peco:
-            return NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
-        }
-    }
-    
     enum AlertPreferencesOptions {
         // Outage
         case outage, scheduledMaintenanceOutage, severeWeather
         // Billing
         case billIsReady
         // Payment
-        case paymentDueReminder, budgetBillingReview
+        case paymentDueReminder, paymentPosted, paymentPastDue, budgetBillingReview
         // Customer Appointments
-//        case appointmentTracking
+        case appointmentTracking
         // News
         case forYourInformation
         
@@ -364,10 +310,14 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Bill is Ready", comment: "")
             case .paymentDueReminder:
                 return NSLocalizedString("Payment Due Reminder", comment: "")
+            case .paymentPosted:
+                return NSLocalizedString("Payment Posted", comment: "")
+            case .paymentPastDue:
+                return NSLocalizedString("Payment Past Due", comment: "")
             case .budgetBillingReview:
                 return NSLocalizedString("Budget Billing Review", comment: "")
-//            case .appointmentTracking:
-//                return NSLocalizedString("Appointment Tracking", comment: "")
+            case .appointmentTracking:
+                return NSLocalizedString("Appointment Tracking", comment: "")
             case .forYourInformation:
                 return NSLocalizedString("For Your Information", comment: "")
             }
@@ -385,8 +335,11 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Receive updates on outages affecting your account, including emergent (storm, accidental) outages and planned outages.", comment: "")
                 
             // Scheduled Maintenance Outage
-            case (.scheduledMaintenanceOutage, _):
+            case (.scheduledMaintenanceOutage, .bge):
                 return NSLocalizedString("From time to time, BGE must temporarily stop service in order to perform system maintenance or repairs. BGE typically informs customers of planned outages in their area by letter, however, in emergency situations we can inform customers by push notification. Planned outage information will also be available on the planned outages web page on BGE.com.", comment: "")
+            case (.scheduledMaintenanceOutage, .comEd): fallthrough
+            case (.scheduledMaintenanceOutage, .peco):
+                return ""
                 
             // Severe Weather
             case (.severeWeather, .bge):
@@ -398,7 +351,7 @@ class AlertPreferencesViewModel {
                 
             // Bill is Ready
             case (.billIsReady, .bge):
-                return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and amount due.", comment: "")
+                return NSLocalizedString("Receive an alert when your bill is ready to be viewed online. This alert will contain the bill due date and total amount due.", comment: "")
             case (.billIsReady, .comEd): fallthrough
             case (.billIsReady, .peco):
                 return NSLocalizedString("Receive an alert when your monthly bill is ready to be viewed online. By choosing to receive this notification, you will no longer receive a paper bill through the mail.", comment: "")
@@ -410,6 +363,14 @@ class AlertPreferencesViewModel {
             case (.paymentDueReminder, .peco):
                 return NSLocalizedString("Receive an alert 1 to 7 days before your payment due date. If enrolled in AutoPay, the alert will notify you of when a payment will be deducted from your bank account.\n\nNOTE: You are responsible for payment of the total amount due on your account. Failure to receive this reminder for any reason, such as technical issues, does not extend or release the payment due date.", comment: "")
                 
+            // Payment Posted
+            case (.paymentPosted, _):
+                return NSLocalizedString("Receive a confirmation when your payment has posted to your account. We will include the date and the amount of the posting, as well as your updated total account balance.", comment: "")
+                
+            // Payment Past Due
+            case (.paymentPastDue, _):
+                return NSLocalizedString("Receive a friendly reminder 1 day after your due date when you are late in making a payment.", comment: "")
+                
             // Budget Billing Review
             case (.budgetBillingReview, .bge):
                 return ""
@@ -419,8 +380,8 @@ class AlertPreferencesViewModel {
                 return NSLocalizedString("Your monthly Budget Bill payment may be adjusted every four months to keep your account current with your actual energy usage. Receive a notification when there is an adjustment made to your budget bill plan.", comment: "")
                 
             // Appointment Tracking
-//            case (.appointmentTracking, _):
-//                return NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
+            case (.appointmentTracking, _):
+                return NSLocalizedString("Receive notifications such as confirmations, reminders, and relevant status updates for your scheduled service appointment.", comment: "")
                 
             // For Your Information
             case (.forYourInformation, .bge):

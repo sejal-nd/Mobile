@@ -6,14 +6,16 @@
 	<string>UA-130168632-1</string>
 	<key>environment</key>
 	<string>STAGE</string>
-	<key>appName</key>
-	<string>PECO_STAGE</string>
 	<key>opco</key>
 	<string>PECO</string>
+	<key>appName</key>
+	<string>PECO_STAGE</string>
 	<key>mcsInstanceName</key>
 	<string>stageMain</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
+	<key>paymentusUrl</key>
+	<string>https://peco-uat.paymentus.io/xotp/pm/peco</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_staging</string>
 	<key>gaTrackingId</key>

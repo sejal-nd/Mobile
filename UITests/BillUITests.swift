@@ -76,59 +76,50 @@ class BillUITests: ExelonUITestCase {
 
         checkExistenceOfElements([
             (.button, "Reload"),
-            (.staticText, "Scheduled Maintenance"),
-            (.staticText, "Billing is currently unavailable due to\nscheduled maintenance.")
+            (.staticText, "Maintenance"),
+            (.staticText, "Billing is currently unavailable due to maintenance.")
         ])
     }
     
     func testExpiredCc() {
         let alertsQuery = app.alerts
-        var predicate: NSPredicate
         doLogin(username: "billCardWithExpiredDefaultPayment")
         selectTab(tabName: "Bill")
         
         //Check for expired card warning
         tapButton(buttonText: "My Wallet")
-        let alert = alertsQuery.staticTexts["Please update your Wallet as one or more of your saved payment accounts have expired."]
+        let alert = alertsQuery.staticTexts["Please update your Wallet as one or more of your saved payment methods have expired."]
         XCTAssertTrue(alert.waitForExistence(timeout: 2))
         let okButton = alertsQuery.buttons["OK"]
         okButton.tap()
         
-        //Check for "Expired" label on the button
+        // TODO - Remove this `if` when BGE goes to Paymentus
         if appOpCo == .bge {
-            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, EXPIRED CARD, Account number ending in, 1 2 3 4, Default payment account, expired, Fees: $0.00 Residential | 0% Business'")
-        } else {
-            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, EXPIRED CARD, Account number ending in, 1 2 3 4, Default payment account, expired, $0.00 Convenience Fee'")
+            let expiredCardCell = app.tables.cells.containing(NSPredicate(format: "label CONTAINS 'Saved credit card, EXPIRED CARD, Account number ending in, 1 2 3 4, Default payment method, expired'"))
+            let editButton = expiredCardCell.buttons["Edit payment method"]
+            
+            editButton.tap()
+            
+            checkExistenceOfElement(.staticText, "Expired")
+            let cancelButton = app.navigationBars["Edit Card"].buttons["Cancel"]
+            cancelButton.tap()
         }
-        let expiredCardButton = app.tables.cells.buttons.element(matching: predicate)
-
-        expiredCardButton.tap()
-
-        checkExistenceOfElement(.staticText, "Expired")
-        let cancelButton = app.navigationBars["Edit Card"].buttons["Cancel"]
-        cancelButton.tap()
     }
     
+    // TODO - Remove this test when BGE goes to Paymentus
     func testCvvText() {
-        var predicate: NSPredicate
-        let elementsQuery = app.scrollViews.otherElements
-        doLogin(username: "billCardWithDefaultCcPayment")
-        selectTab(tabName: "Bill")
-        
-        tapButton(buttonText: "My Wallet")
-        
         if appOpCo == .bge {
-            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, TEST NICKNAME, Account number ending in, 1 2 3 4, Default payment account, Fees: $0.00 Residential | 0% Business'")
-            let expiredCardButton = app.tables.cells.buttons.element(matching: predicate)
-            expiredCardButton.tap()
+            let elementsQuery = app.scrollViews.otherElements
+            doLogin(username: "billCardWithDefaultCcPayment")
+            selectTab(tabName: "Bill")
+            
+            tapButton(buttonText: "My Wallet")
+            
+            let cell = app.tables.cells.containing(NSPredicate(format: "label CONTAINS 'Saved credit card, TEST NICKNAME, Account number ending in, 1 2 3 4, Default payment method'"))
+            let editButton = cell.buttons["Edit payment method"]
+            editButton.tap()
             elementsQuery.buttons["Tool tip"].tap()
             checkExistenceOfElement(.staticText, "Your security code is usually a 3 or 4 digit number found on your card.")
-        } else {
-            predicate = NSPredicate(format: "label CONTAINS 'Saved credit card button, TEST NICKNAME, Account number ending in, 1 2 3 4, Default payment account, $0.00 Convenience Fee'")
-            let expiredCardButton = app.tables.cells.buttons.element(matching: predicate)
-            expiredCardButton.tap()
-            elementsQuery.buttons["Tool tip"].tap()
-            checkExistenceOfElement(.staticText, "Your security code is usually a 3 digit number found on the back of your card.")
         }
     }
 }

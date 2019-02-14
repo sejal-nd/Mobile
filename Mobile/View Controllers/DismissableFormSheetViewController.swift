@@ -32,7 +32,7 @@ class DismissableFormSheetViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         // If we want to customize the cornerRadius:
-        //self.view.superview?.layer.cornerRadius = 30;
+        //self.view.superview?.layer.cornerRadius = 30
     }
     
     override func viewWillDisappear(_ animated: Bool) {

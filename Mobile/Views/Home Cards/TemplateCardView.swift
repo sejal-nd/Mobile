@@ -15,6 +15,7 @@ import SafariServices
 class TemplateCardView: UIView {
     
     var bag = DisposeBag()
+    
     @IBOutlet private weak var clippingView: UIView!
     @IBOutlet private weak var contentView: UIStackView!
     @IBOutlet private weak var imageView: UIImageView!
@@ -24,6 +25,7 @@ class TemplateCardView: UIView {
     @IBOutlet private weak var callToActionLabel: UILabel!
     
     @IBOutlet private weak var errorStack: UIStackView!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorLabel: UILabel!
     
     @IBOutlet private weak var loadingView: UIView!
@@ -52,6 +54,9 @@ class TemplateCardView: UIView {
         
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorLabel.textAlignment = .center
+        
+        errorTitleLabel.textColor = .blackText
+        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
     }
     
     private func bindViewModel() {

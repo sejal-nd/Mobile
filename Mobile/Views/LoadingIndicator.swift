@@ -31,9 +31,9 @@ class LoadingIndicator: UIView {
             addSubview(lottieAnimationView)
             
             //make accessibility label for loading animation - and make it the only thing tappable
-            lottieAnimationView.isAccessibilityElement = true;
-            lottieAnimationView.accessibilityLabel = "Loading";
-            lottieAnimationView.accessibilityViewIsModal = true;
+            lottieAnimationView.isAccessibilityElement = true
+            lottieAnimationView.accessibilityLabel = "Loading"
+            lottieAnimationView.accessibilityViewIsModal = true
         }
     }
     
@@ -70,12 +70,12 @@ class LoadingIndicator: UIView {
     override var isHidden: Bool {
         didSet {
             if isHidden {
-                lottieAnimationView?.accessibilityViewIsModal = false;
-                lottieAnimationView?.isAccessibilityElement = false;
+                lottieAnimationView?.accessibilityViewIsModal = false
+                lottieAnimationView?.isAccessibilityElement = false
                 lottieAnimationView?.pause()
             } else {
-                lottieAnimationView?.accessibilityViewIsModal = true;
-                lottieAnimationView?.isAccessibilityElement = true;
+                lottieAnimationView?.accessibilityViewIsModal = true
+                lottieAnimationView?.isAccessibilityElement = true
                 lottieAnimationView?.play()
             }
         }

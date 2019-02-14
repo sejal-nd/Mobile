@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import JVFloatLabeledText
+import JVFloatLabeledTextField
 
 class InsetJVFloatLabeledTextField: JVFloatLabeledTextField {
     

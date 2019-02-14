@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class AdjustThermostatViewController: UIViewController {
     
@@ -190,8 +191,7 @@ class AdjustThermostatViewController: UIViewController {
         // Bind to view model
         permanentHoldSwitch.rx.isOn.distinctUntilChanged()
             .do(onNext: {
-                let pageView: AnalyticsEvent = $0 ? .permanentHoldOn : .permanentHoldOff
-                Analytics.log(event: pageView)
+                Analytics.log(event: $0 ? .permanentHoldOn : .permanentHoldOff)
             })
             .bind(to: viewModel.hold)
             .disposed(by: disposeBag)
@@ -200,16 +200,14 @@ class AdjustThermostatViewController: UIViewController {
             .distinctUntilChanged()
             .map { SmartThermostatMode.allValues[$0] }
             .do(onNext: {
-                let pageView: AnalyticsEvent
                 switch $0 {
                 case .cool:
-                    pageView = .systemCool
+                    Analytics.log(event: .systemCool)
                 case .heat:
-                    pageView = .systemHeat
+                    Analytics.log(event: .systemHeat)
                 case .off:
-                    pageView = .systemOff
+                    Analytics.log(event: .systemOff)
                 }
-                Analytics.log(event: pageView)
             })
             .bind(to: viewModel.mode)
             .disposed(by: disposeBag)
@@ -218,16 +216,14 @@ class AdjustThermostatViewController: UIViewController {
             .distinctUntilChanged()
             .map { SmartThermostatFan.allValues[$0] }
             .do(onNext: {
-                let pageView: AnalyticsEvent
                 switch $0 {
                 case .auto:
-                    pageView = .fanAuto
+                    Analytics.log(event: .fanAuto)
                 case .circulate:
-                    pageView = .fanCirculate
+                    Analytics.log(event: .fanCirculate)
                 case .on:
-                    pageView = .fanOn
+                    Analytics.log(event: .fanOn)
                 }
-                Analytics.log(event: pageView)
             })
             .bind(to: viewModel.fan)
             .disposed(by: disposeBag)

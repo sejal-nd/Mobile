@@ -35,7 +35,10 @@ class HomeOutageCardViewModel {
     // MARK: - Retrieve Outage Status
     
     private lazy var outageStatusEvents: Observable<Event<OutageStatus>> = self.maintenanceModeEvents
-        .filter { !($0.element?.outageStatus ?? false) && !($0.element?.homeStatus ?? false) }
+        .filter {
+            guard let maint = $0.element else { return false }
+            return !maint.allStatus && !maint.outageStatus && !maint.homeStatus
+        }
         .withLatestFrom(self.fetchDataObservable)
         .toAsyncRequest(activityTracker: { [weak self] in self?.fetchTracker(forState: $0 )},
                         requestSelector: { [unowned self] _ in self.retrieveOutageStatus() })

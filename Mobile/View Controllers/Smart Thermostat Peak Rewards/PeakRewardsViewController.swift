@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
@@ -134,7 +135,7 @@ class PeakRewardsViewController: UIViewController {
         
         viewModel.programCardsData
             .drive(onNext: { [weak self] programCardsData in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.programCardStack.arrangedSubviews
                     .dropFirst() // Don't remove the header label from the stack
                     .forEach {
@@ -178,7 +179,7 @@ class PeakRewardsViewController: UIViewController {
             .map(OverrideViewModel.init)
             .map(OverrideViewController.init)
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 $0.viewModel.saveSuccess
                     .asDriver(onErrorDriveWith: .empty())
                     .delay(0.5)
@@ -208,7 +209,7 @@ class PeakRewardsViewController: UIViewController {
             .map(AdjustThermostatViewModel.init)
             .map(AdjustThermostatViewController.init)
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 $0.viewModel.saveSuccess
                     .asDriver(onErrorDriveWith: .empty())
                     .delay(0.5)
@@ -234,7 +235,7 @@ class PeakRewardsViewController: UIViewController {
             .map(SmartThermostatScheduleViewModel.init)
             .map(SmartThermostatScheduleViewController.init)
             .drive(onNext: { [weak self] vc in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 vc.saveSuccess.bind(to: self.viewModel.deviceScheduleChanged).disposed(by: vc.disposeBag)
                 vc.saveSuccess.asDriver(onErrorDriveWith: .empty())
                     .delay(0.5)

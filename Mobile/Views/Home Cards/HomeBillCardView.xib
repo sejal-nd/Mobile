@@ -20,29 +20,29 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomeBillCardView" customModule="BGE" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="380" height="1783"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="1707"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BpD-K7-0gF">
-                    <rect key="frame" x="0.0" y="0.0" width="380" height="1783"/>
+                    <rect key="frame" x="0.0" y="0.0" width="380" height="1707"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="phq-2D-OwT">
-                            <rect key="frame" x="0.0" y="0.0" width="380" height="1783"/>
+                            <rect key="frame" x="0.0" y="0.0" width="380" height="1707"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TP9-ke-nUB">
-                                    <rect key="frame" x="0.0" y="0.0" width="380" height="1663"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="380" height="1587"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VyQ-uF-pu2" userLabel="Info Stack">
-                                            <rect key="frame" x="0.0" y="0.0" width="380" height="1104.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="380" height="1015.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="B0Z-Cn-oGM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="380" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="380" height="49"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wc6-Be-zAw">
-                                                            <rect key="frame" x="47.5" y="10" width="285.5" height="30"/>
+                                                            <rect key="frame" x="47.5" y="10" width="285.5" height="29"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q87-G5-Xb8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="29"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <bool key="isElement" value="YES"/>
@@ -54,7 +54,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="$---.-- is due in -- days to catch up on your DPA agreement." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1O-fE-NA6">
-                                                                    <rect key="frame" x="34" y="0.0" width="251.5" height="30"/>
+                                                                    <rect key="frame" x="34" y="0.0" width="251.5" height="29"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zI5-4X-5zB">
-                                                    <rect key="frame" x="190" y="50" width="0.0" height="30"/>
+                                                    <rect key="frame" x="190" y="49" width="0.0" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" id="gfr-qV-4Ot"/>
@@ -80,7 +80,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89L-lP-FW8">
-                                                    <rect key="frame" x="165" y="80" width="50" height="61"/>
+                                                    <rect key="frame" x="165" y="79" width="50" height="61"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_pending" translatesAutoresizingMaskIntoConstraints="NO" id="fzD-Mm-dsN">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="51"/>
@@ -95,7 +95,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mM5-q1-nIy">
-                                                    <rect key="frame" x="165" y="141" width="50" height="60"/>
+                                                    <rect key="frame" x="165" y="140" width="50" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_confirmation" translatesAutoresizingMaskIntoConstraints="NO" id="ddg-ci-PCE">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="51"/>
@@ -110,22 +110,22 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your payment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yr-2r-HzF">
-                                                    <rect key="frame" x="71" y="201" width="238.5" height="25"/>
+                                                    <rect key="frame" x="71" y="200" width="238.5" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" text="$270.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGy-c0-9Sp">
-                                                    <rect key="frame" x="121" y="226" width="138.5" height="43"/>
+                                                    <rect key="frame" x="121" y="200" width="138.5" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                     <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XC7-uc-Qn4">
-                                                    <rect key="frame" x="131" y="269" width="118.5" height="22"/>
+                                                    <rect key="frame" x="131" y="243" width="118.5" height="16.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" usesAttributedText="YES" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsu-VT-VAy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="93.5" height="22"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="93.5" height="16.5"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="Due in 13 days">
                                                                     <attributes>
@@ -136,13 +136,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70d-sW-2bl">
-                                                            <rect key="frame" x="101.5" y="0.0" width="17" height="22"/>
+                                                            <rect key="frame" x="101.5" y="0.0" width="17" height="16.5"/>
                                                             <state key="normal" image="ic_question"/>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h66-Bh-Kjm">
-                                                    <rect key="frame" x="33" y="291" width="314.5" height="66.5"/>
+                                                    <rect key="frame" x="33" y="259.5" width="314.5" height="66.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $11.81 fee on your next bill." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIp-lU-S5u">
                                                             <rect key="frame" x="0.0" y="17" width="314.5" height="49.5"/>
@@ -160,25 +160,26 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="reR-f0-WTz">
-                                                    <rect key="frame" x="34" y="357.5" width="312.5" height="31"/>
+                                                    <rect key="frame" x="82" y="326" width="216" height="36.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="It may take 24 hours for your payment status to update." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAR-Ze-cHl">
-                                                            <rect key="frame" x="0.0" y="8" width="312.5" height="23"/>
-                                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                            <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" text="Your confirmation number is 123456" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="o7H-8G-37K">
+                                                            <rect key="frame" x="0.0" y="6" width="216" height="30.5"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" red="0.45230081469207406" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="fAR-Ze-cHl" firstAttribute="top" secondItem="reR-f0-WTz" secondAttribute="top" constant="8" id="3YH-KJ-Yer"/>
-                                                        <constraint firstAttribute="trailing" secondItem="fAR-Ze-cHl" secondAttribute="trailing" id="H29-xV-abc"/>
-                                                        <constraint firstAttribute="bottom" secondItem="fAR-Ze-cHl" secondAttribute="bottom" id="s1o-EY-6sh"/>
-                                                        <constraint firstItem="fAR-Ze-cHl" firstAttribute="leading" secondItem="reR-f0-WTz" secondAttribute="leading" id="w8R-Iy-fCO"/>
+                                                        <constraint firstAttribute="trailing" secondItem="o7H-8G-37K" secondAttribute="trailing" id="ATi-T6-SoM"/>
+                                                        <constraint firstAttribute="bottom" secondItem="o7H-8G-37K" secondAttribute="bottom" id="Shj-pe-PGV"/>
+                                                        <constraint firstItem="o7H-8G-37K" firstAttribute="top" secondItem="reR-f0-WTz" secondAttribute="top" constant="6" id="W3p-vb-dtd"/>
+                                                        <constraint firstItem="o7H-8G-37K" firstAttribute="leading" secondItem="reR-f0-WTz" secondAttribute="leading" id="aQA-ns-NEL"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bze-LB-krX">
-                                                    <rect key="frame" x="0.0" y="388.5" width="380" height="92"/>
+                                                    <rect key="frame" x="0.0" y="362.5" width="380" height="92"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4t-Gt-nTe">
                                                             <rect key="frame" x="14" y="18" width="352" height="74"/>
@@ -218,7 +219,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEU-Px-oC1">
-                                                    <rect key="frame" x="0.0" y="480.5" width="380" height="92"/>
+                                                    <rect key="frame" x="0.0" y="454.5" width="380" height="92"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtW-r9-UnL">
                                                             <rect key="frame" x="14" y="18" width="352" height="74"/>
@@ -258,13 +259,13 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvQ-3M-MrA">
-                                                    <rect key="frame" x="0.0" y="572.5" width="380" height="185"/>
+                                                    <rect key="frame" x="0.0" y="546.5" width="380" height="177.5"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKf-0T-ool">
-                                                            <rect key="frame" x="14" y="18" width="352" height="151"/>
+                                                            <rect key="frame" x="14" y="18" width="352" height="143.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jMZ-j4-C59">
-                                                                    <rect key="frame" x="7" y="12" width="338" height="127"/>
+                                                                    <rect key="frame" x="7" y="12" width="338" height="119.5"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gA-6f-vmQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                             <rect key="frame" x="80" y="0.0" width="178" height="36"/>
@@ -320,10 +321,10 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </view>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTc-qG-fne" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="69" y="50" width="200" height="34"/>
+                                                                            <rect key="frame" x="70.5" y="50" width="197.5" height="26.5"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Set a default payment account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-ey-17o">
-                                                                                    <rect key="frame" x="10" y="6" width="180" height="22"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Set a default payment method" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpe-ey-17o">
+                                                                                    <rect key="frame" x="10" y="6" width="177.5" height="14.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                                                     <color key="textColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -346,8 +347,8 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </view>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="A $2.35 convenience fee will be applied by Bill Matrix, our payment partner." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URg-hW-5L8">
-                                                                            <rect key="frame" x="4.5" y="98" width="329.5" height="29"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="A $2.35 convenience fee will be applied by Paymentus, our payment partner." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URg-hW-5L8">
+                                                                            <rect key="frame" x="1" y="90.5" width="336" height="29"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -373,7 +374,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="har-lF-GNF">
-                                                    <rect key="frame" x="69" y="757.5" width="242" height="68"/>
+                                                    <rect key="frame" x="69" y="724" width="242" height="68"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" text="Minimum payment allowed is $5.00." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frg-BE-BO9">
                                                             <rect key="frame" x="0.0" y="36" width="242" height="17"/>
@@ -391,10 +392,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygv-AU-pzi">
-                                                    <rect key="frame" x="70" y="825.5" width="240" height="50"/>
+                                                    <rect key="frame" x="70" y="792" width="240" height="10"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lai-wo-Cje">
-                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="0.0"/>
                                                             <state key="normal" title="View Tutorial"/>
                                                         </button>
                                                     </subviews>
@@ -407,7 +408,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3N-2i-LNu">
-                                                    <rect key="frame" x="16" y="875.5" width="348" height="50"/>
+                                                    <rect key="frame" x="16" y="802" width="348" height="50"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="Myo-nz-bzd" customClass="OneTouchSlider" customModule="BGE" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="348" height="50"/>
@@ -423,10 +424,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-ep-YjG">
-                                                    <rect key="frame" x="21.5" y="925.5" width="337" height="50"/>
+                                                    <rect key="frame" x="21.5" y="852" width="337" height="34.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" text="Business customers cannot use VISA to make a payment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jP5-dl-VPV">
-                                                            <rect key="frame" x="0.0" y="10" width="337" height="30"/>
+                                                            <rect key="frame" x="0.0" y="10" width="337" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -441,7 +442,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9h-HI-p4C" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="21" y="975.5" width="338" height="57"/>
+                                                    <rect key="frame" x="21" y="886.5" width="338" height="57"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" text="Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms &amp; Conditions." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTQ-3f-TRE">
                                                             <rect key="frame" x="0.0" y="14" width="338" height="43"/>
@@ -462,7 +463,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NA8-a2-QcR">
-                                                    <rect key="frame" x="190" y="1032.5" width="0.0" height="22"/>
+                                                    <rect key="frame" x="190" y="943.5" width="0.0" height="22"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" id="4DJ-ss-Tzb"/>
@@ -470,7 +471,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tn-BX-f7p" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="1054.5" width="380" height="50"/>
+                                                    <rect key="frame" x="0.0" y="965.5" width="380" height="50"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g07-Vd-Vel">
                                                             <rect key="frame" x="0.0" y="0.0" width="380" height="1"/>
@@ -530,7 +531,7 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ah8-rf-Pem" userLabel="Not Ready Stack">
-                                            <rect key="frame" x="0.0" y="1104.5" width="380" height="222"/>
+                                            <rect key="frame" x="0.0" y="1015.5" width="380" height="222"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsN-kq-Kkp">
                                                     <rect key="frame" x="74.5" y="0.0" width="231" height="49"/>
@@ -569,7 +570,7 @@
                                             </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="l3W-ve-hSw" userLabel="Network Error Stack">
-                                            <rect key="frame" x="0.0" y="1326.5" width="380" height="131"/>
+                                            <rect key="frame" x="0.0" y="1237.5" width="380" height="144"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmn-39-3xN">
                                                     <rect key="frame" x="74.5" y="0.0" width="231" height="20"/>
@@ -578,24 +579,37 @@
                                                         <constraint firstAttribute="height" priority="999" constant="20" id="9Ac-uP-y2E"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_bill_error" translatesAutoresizingMaskIntoConstraints="NO" id="yor-xy-dbb">
-                                                    <rect key="frame" x="167" y="20" width="46" height="29"/>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZA-Mj-oju">
-                                                    <rect key="frame" x="74.5" y="49" width="231" height="11"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvF-yP-WEe">
+                                                    <rect key="frame" x="179" y="20" width="22.5" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4g-HR-HHL">
+                                                    <rect key="frame" x="74.5" y="20" width="231" height="12"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" priority="999" constant="11" id="Dmx-0X-Ldm"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="12" id="wEa-Id-ka2"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_bill_error" translatesAutoresizingMaskIntoConstraints="NO" id="yor-xy-dbb">
+                                                    <rect key="frame" x="167" y="32" width="46" height="29"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZA-Mj-oju">
+                                                    <rect key="frame" x="74.5" y="61" width="231" height="12"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" priority="999" constant="12" id="Dmx-0X-Ldm"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jY-VN-6pr">
-                                                    <rect key="frame" x="46" y="60" width="288" height="43"/>
+                                                    <rect key="frame" x="46" y="73" width="288" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2da-LD-Rhq">
-                                                    <rect key="frame" x="74.5" y="103" width="231" height="28"/>
+                                                    <rect key="frame" x="74.5" y="116" width="231" height="28"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" priority="999" constant="28" id="bCL-4j-PuL"/>
@@ -603,17 +617,17 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="9jY-VN-6pr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l3W-ve-hSw" secondAttribute="leading" constant="31" id="AaZ-Zn-rG1"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9jY-VN-6pr" secondAttribute="trailing" constant="31" id="RBV-OL-1kj"/>
+                                                <constraint firstItem="9jY-VN-6pr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l3W-ve-hSw" secondAttribute="leading" constant="21" id="AaZ-Zn-rG1"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9jY-VN-6pr" secondAttribute="trailing" constant="21" id="RBV-OL-1kj"/>
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="2uB-Gf-NCG">
-                                            <rect key="frame" x="0.0" y="1457.5" width="380" height="205.5"/>
+                                            <rect key="frame" x="0.0" y="1381.5" width="380" height="205.5"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="hKJ-Ib-Me0">
                                                     <rect key="frame" x="150" y="29" width="80" height="81"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Billing is currently unavailable due to scheduled maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isc-pd-1gW">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Billing is currently unavailable due to maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isc-pd-1gW">
                                                     <rect key="frame" x="34" y="130" width="312.5" height="49.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -634,7 +648,7 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IzW-kD-DYx">
-                                    <rect key="frame" x="0.0" y="1663" width="380" height="120"/>
+                                    <rect key="frame" x="0.0" y="1587" width="380" height="120"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="pzs-VW-CpA" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="160" y="54" width="60" height="12"/>
@@ -694,6 +708,7 @@
                 <outlet property="dueDateTooltip" destination="70d-sW-2bl" id="69g-7l-Bqj"/>
                 <outlet property="errorLabel" destination="9jY-VN-6pr" id="LEb-d4-Lpu"/>
                 <outlet property="errorStack" destination="l3W-ve-hSw" id="tZl-QT-Pl1"/>
+                <outlet property="errorTitleLabel" destination="FvF-yP-WEe" id="9kw-dR-GZt"/>
                 <outlet property="expiredLabel" destination="AGf-rO-cXW" id="0q2-83-2sr"/>
                 <outlet property="headerAlertAnimationContainer" destination="Q87-G5-Xb8" id="cVP-ey-wp9"/>
                 <outlet property="headerLabel" destination="X1O-fE-NA6" id="U2E-aa-Pyu"/>
@@ -721,8 +736,8 @@
                 <outlet property="scheduledImageView" destination="Nzb-Wa-fMH" id="4Jg-oo-wCt"/>
                 <outlet property="scheduledPaymentBox" destination="T4t-Gt-nTe" id="nPv-hv-3Ne"/>
                 <outlet property="scheduledPaymentContainer" destination="Bze-LB-krX" id="lS4-8M-jHe"/>
-                <outlet property="slideToPay24DisclaimerContainer" destination="reR-f0-WTz" id="hqm-c5-gfU"/>
-                <outlet property="slideToPay24DisclaimerLabel" destination="fAR-Ze-cHl" id="xYX-hA-a1R"/>
+                <outlet property="slideToPayConfirmationDetailContainer" destination="reR-f0-WTz" id="hqm-c5-gfU"/>
+                <outlet property="slideToPayConfirmationDetailLabel" destination="o7H-8G-37K" id="WAF-9P-nog"/>
                 <outlet property="thankYouForSchedulingButton" destination="VW4-Rb-zng" id="lSE-8a-Fl2"/>
                 <outlet property="topSpacerHeight" destination="uh6-Ji-aZe" id="Eox-ad-EOH"/>
                 <outlet property="viewBillButton" destination="6tn-BX-f7p" id="iHP-Rc-VhB"/>
@@ -730,7 +745,7 @@
                 <outlet property="walletItemInfoBox" destination="qKf-0T-ool" id="bGr-Yx-gjX"/>
                 <outlet property="walletItemInfoContainer" destination="jvQ-3M-MrA" id="9Ll-OU-vyT"/>
             </connections>
-            <point key="canvasLocation" x="-156.80000000000001" y="757.87106446776613"/>
+            <point key="canvasLocation" x="-156.80000000000001" y="711.99400299850083"/>
         </view>
     </objects>
     <resources>

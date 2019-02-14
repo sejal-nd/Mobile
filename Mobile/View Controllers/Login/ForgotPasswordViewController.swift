@@ -94,18 +94,18 @@ class ForgotPasswordViewController: UIViewController {
         LoadingView.show()
         viewModel.submitForgotPassword(onSuccess: { [weak self] in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
             self.navigationController?.popViewController(animated: true)
         }, onProfileNotFound: { [weak self] error in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
             self.accessibilityErrorLabel()
             
         }, onError: { [weak self] errorMessage in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)

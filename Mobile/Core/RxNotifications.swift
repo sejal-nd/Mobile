@@ -12,6 +12,7 @@ struct RxNotifications {
     static let shared = RxNotifications()
     
     let accountDetailUpdated = PublishSubject<Void>()
+    let recentPaymentsUpdated = PublishSubject<Void>()
     let defaultWalletItemUpdated = PublishSubject<Void>()
     let outageReported = PublishSubject<Void>()
     let configureQuickActions = PublishSubject<Bool>()

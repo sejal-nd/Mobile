@@ -47,9 +47,9 @@ class BillViewModelContentTests: BillViewModelTests {
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let observer = scheduler.createObserver(Event<AccountDetail>.self)
+        let observer = scheduler.createObserver(Event<(AccountDetail, PaymentItem?)>.self)
         
-        viewModel.accountDetailEvents.subscribe(observer).disposed(by: disposeBag)
+        viewModel.dataEvents.subscribe(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
@@ -60,14 +60,11 @@ class BillViewModelContentTests: BillViewModelTests {
     
     // Tests changes in the `alertBannerText` value.
     func testAlertBannerText() {
-        let opco = Environment.shared.opco
-        
         let restorationAmount: [Double?] = [9, nil, nil, nil, nil]
         let amtDpaReinst: [Double?] = [nil, nil, nil, nil, nil]
         let isCutOutNonPay = [true, false, false, false, false]
         
         let disconnectNoticeArrears: [Double?] = [nil, nil, 4, 6, nil]
-        let isDisconnectNotice = [false, false, true, true, false]
 
         let dueByDate: [Date?] = [nil, nil, "02/12/2018", "02/12/2018", nil]
             .map {
@@ -83,13 +80,11 @@ class BillViewModelContentTests: BillViewModelTests {
         let turnOffNoticeDueDate: [Date?] = ["02/12/2018", "02/12/2018", "02/12/2018", "02/10/2018", "02/12/2018"]
             .map { DateFormatter.mmDdYyyyFormatter.date(from: $0) }
         
-        let comEdPecoAvoidShutoffText1 = "Payment due to avoid shutoff is $4.00 due immediately."
-        let comEdPecoAvoidShutoffText2 = "Payment due to avoid shutoff is $6.00 due immediately."
         let expectedValues: [String?] = [
-            "Your service is off due to non-payment.",
+            Environment.shared.opco == .bge ? nil : "$9.00 of the total must be paid immediately to restore service. We cannot guarantee that your service will be reconnected same day.",
             nil,
-            opco == .bge ? "A payment of $4.00 is due by 02/12/2018" : comEdPecoAvoidShutoffText1,
-            opco == .bge ? "Payment due to avoid service interruption is $6.00 due 02/10/2018." : comEdPecoAvoidShutoffText2,
+            "$4.00 of the total must be paid immediately to avoid shutoff.",
+            "$6.00 of the total must be paid immediately to avoid shutoff.",
             nil
         ]
         
@@ -101,7 +96,6 @@ class BillViewModelContentTests: BillViewModelTests {
                                           amtDpaReinst: amtDpaReinst[i],
                                           dueByDate: dueByDate[i],
                                           disconnectNoticeArrears: disconnectNoticeArrears[i],
-                                          isDisconnectNotice: isDisconnectNotice[i],
                                           turnOffNoticeExtendedDueDate: turnOffNoticeExtendedDueDate[i],
                                           turnOffNoticeDueDate: turnOffNoticeDueDate[i])
             
@@ -114,9 +108,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `totalAmountText` value after switching
@@ -158,7 +150,7 @@ class BillViewModelContentTests: BillViewModelTests {
     func testTotalAmountDescriptionText() {
 
         let totalAmounts: [Double?] = [4, -5000, 435.323, 68.04, nil]
-        let pastDueAmounts: [Double?] = [4, 26.32, nil, 0, nil]
+        let pastDueAmounts: [Double?] = [4, nil, nil, 0, nil]
 
         let dueByDates: [Date?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
             .map {
@@ -183,95 +175,11 @@ class BillViewModelContentTests: BillViewModelTests {
         simulateAccountSwitches(at: switchAccountEventTimes)
         
         let observer = scheduler.createObserver(String.self)
-        viewModel.totalAmountDescriptionText.drive(observer).disposed(by: disposeBag)
+        viewModel.totalAmountDescriptionText.map(\.string).drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests changes in the `restoreServiceAmountText` value after switching
-    // through different accounts.
-    func testRestoreServiceAmountText() {
-        let restorationAmounts: [Double?] = [4, 5000, 435.323, -68.04, nil]
-        let expectedValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--"]
-        
-        let switchAccountEventTimes = Array(0..<restorationAmounts.count)
-        
-        accountService.mockAccountDetails = restorationAmounts.map {
-            AccountDetail(billingInfo: BillingInfo(restorationAmount: $0))
-        }
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.restoreServiceAmountText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests changes in the `catchUpAmountText` value after switching
-    // through different accounts.
-    func testCatchUpAmountText() {
-        let amtDpaReinsts: [Double?] = [4, 5000, 435.323, -68.04, nil]
-        let expectedValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--"]
-        
-        let switchAccountEventTimes = Array(0..<amtDpaReinsts.count)
-        
-        accountService.mockAccountDetails = amtDpaReinsts.map {
-            AccountDetail(billingInfo: BillingInfo(amtDpaReinst: $0))
-        }
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.catchUpAmountText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests changes in the `catchUpDateText` value after switching
-    // through different accounts.
-    func testCatchUpDateText() {
-        let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
-        let dueByDates: [Date?] = dateStrings
-            .map {
-                guard let string = $0 else { return nil }
-                return DateFormatter.mmDdYyyyFormatter.date(from: string)
-        }
-        
-        let expectedValues: [String] = ["Due by 02/12/2018",
-                                        "Due by 03/14/2018",
-                                        "Due by 12/16/2018",
-                                        "Due by ",
-                                        "Due by 06/12/2018"]
-        
-        let switchAccountEventTimes = Array(0..<dueByDates.count)
-        
-        accountService.mockAccountDetails = dueByDates.map {
-            AccountDetail(billingInfo: BillingInfo(dueByDate: $0))
-        }
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.catchUpDateText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `catchUpDisclaimerText` value after switching
@@ -294,100 +202,6 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let observer = scheduler.createObserver(String.self)
         viewModel.catchUpDisclaimerText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests the `avoidShutoffText` value, which is only dependent on OpCo.
-    func testAvoidShutoffText() {
-        let expectedText: String
-        switch Environment.shared.opco {
-        case .bge:
-            expectedText = NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-        case .comEd, .peco:
-            expectedText = NSLocalizedString("Amount Due to Avoid Shutoff", comment: "")
-        }
-        
-        XCTAssertEqual(expectedText, viewModel.avoidShutoffText)
-    }
-    
-    // Tests the `avoidShutoffA11yText` value, which is only dependent on OpCo.
-    func testAvoidShutoffA11yText() {
-        let expectedText: String
-        switch Environment.shared.opco {
-        case .bge:
-            expectedText = NSLocalizedString("Amount Due to Avoid Service Interruption", comment: "")
-        case .comEd, .peco:
-            expectedText = NSLocalizedString("Amount Due to Avoid shut-off", comment: "")
-        }
-        
-        XCTAssertEqual(expectedText, viewModel.avoidShutoffA11yText)
-    }
-    
-    // Tests changes in the `avoidShutoffAmountText` value after switching
-    // through different accounts.
-    func testAvoidShutoffAmountText() {
-        let disconnectNoticeArrears: [Double?] = [4, 5000, 435.323, -68.04, nil]
-        let expectedValues: [String] = ["$4.00", "$5,000.00", "$435.32", "-$68.04", "--"]
-        
-        let switchAccountEventTimes = Array(0..<disconnectNoticeArrears.count)
-        
-        accountService.mockAccountDetails = disconnectNoticeArrears.map {
-            AccountDetail(billingInfo: BillingInfo(disconnectNoticeArrears: $0))
-        }
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.avoidShutoffAmountText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests changes in the `avoidShutoffDueDateText` value after switching
-    // through different accounts.
-    func testAvoidShutoffDueDateText() {
-        let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
-        let dueByDates: [Date?] = dateStrings
-            .map {
-                guard let string = $0 else { return nil }
-                return DateFormatter.mmDdYyyyFormatter.date(from: string)
-        }
-        
-        let expectedValues: [String]
-        switch Environment.shared.opco {
-        case .bge:
-            expectedValues = ["Due by 02/12/2018",
-                              "Due by 03/14/2018",
-                              "Due by 12/16/2018",
-                              "Due by --",
-                              "Due by 06/12/2018"]
-        case .comEd, .peco:
-            expectedValues = ["Due Immediately",
-                              "Due Immediately",
-                              "Due Immediately",
-                              "Due Immediately",
-                              "Due Immediately"]
-        }
-        
-        let switchAccountEventTimes = Array(0..<dueByDates.count)
-        
-        accountService.mockAccountDetails = dueByDates.map {
-            AccountDetail(billingInfo: BillingInfo(dueByDate: $0))
-        }
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.avoidShutoffDueDateText.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
@@ -420,52 +234,10 @@ class BillViewModelContentTests: BillViewModelTests {
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
-    // Tests the `pendingPaymentAmounts` value.
-    func testPendingPaymentAmounts() {
-        let paymentItems = [PaymentItem(amount: 4, status: .scheduled),
-                            PaymentItem(amount: 5000, status: .pending),
-                            PaymentItem(amount: 435.323, status: .scheduled),
-                            PaymentItem(amount: -68.04, status: .pending)]
-        let expectedValues = [[5000.0]]
-        
-        let switchAccountEventTimes = [0]
-        
-        accountService.mockAccountDetails = [AccountDetail(billingInfo: BillingInfo(pendingPayments: paymentItems))]
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver([Double].self)
-        viewModel.pendingPaymentAmounts.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        for (index, expectedEvent) in expectedEvents.enumerated() {
-            guard let expectedElement = expectedEvent.value.element,
-                let observedElement = observer.events[index].value.element else {
-                    XCTFail("No valid element at the given index")
-                    break
-            }
-            XCTAssertTrue(expectedElement.elementsEqual(observedElement))
-        }
-        
-        // May be able to replace the above loop with this line when Swift 4.1 is released
-        // (conditional protocol conformance, equatable arrays)
-        //        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
     // Tests the `remainingBalanceDueText` value, which is only dependent on OpCo.
     func testRemainingBalanceDueText() {
-        let expectedText: String?
-        switch Environment.shared.opco {
-        case .bge:
-            expectedText = nil
-        case .comEd, .peco:
-            expectedText = NSLocalizedString("Remaining Balance Due", comment: "")
-        }
-        
-        XCTAssertEqual(expectedText, viewModel.remainingBalanceDueText)
+        XCTAssertEqual(NSLocalizedString("Remaining Balance Due", comment: ""),
+                       viewModel.remainingBalanceDueText)
     }
     
     // Tests changes in the `remainingBalanceDueAmountText` value after switching
@@ -497,90 +269,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests changes in the `remainingBalanceDueDateText` value after switching
-    // through different accounts.
-    func testRemainingBalanceDueDateText() {
-        let dateStrings: [String?] = ["02/12/2018", "03/14/2018", "12/16/2018", nil, "06/12/2018"]
-        let dueByDates: [Date?] = dateStrings
-            .map {
-                guard let string = $0 else { return nil }
-                return DateFormatter.mmDdYyyyFormatter.date(from: string)
-        }
-        
-        let expectedValues = ["Due by 02/12/2018",
-                              "Due by 03/14/2018",
-                              "Due by 12/16/2018",
-                              "--",
-                              "Due by 06/12/2018"]
-        
-        let switchAccountEventTimes = Array(0..<dueByDates.count)
-        
-        accountService.mockAccountDetails = dueByDates.map {
-            AccountDetail(billingInfo: BillingInfo(dueByDate: $0))
-        }
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.remainingBalanceDueDateText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
-    // Tests the `remainingBalancePastDueText` value, which is only dependent on OpCo.
-    func testRemainingBalancePastDueText() {
-        let expectedText: String?
-        switch Environment.shared.opco {
-        case .bge:
-            expectedText = nil
-        case .comEd, .peco:
-            expectedText = NSLocalizedString("Remaining Past Balance Due ", comment: "")
-        }
-        
-        XCTAssertEqual(expectedText, viewModel.remainingBalancePastDueText)
-    }
-    
-    // Tests changes in the `billIssuedAmountText` value after switching
-    // through different accounts.
-    func testBillIssuedAmountText() {
-        let switchAccountEventTimes = [0]
-        
-        accountService.mockAccountDetails = [AccountDetail()]
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String?.self)
-        viewModel.billIssuedAmountText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        XCTAssert(!observer.events.map { $0.value.element! == nil }.contains(false))
-    }
-    
-    // Tests changes in the `billIssuedDateText` value after switching
-    // through different accounts.
-    func testBillIssuedDateText() {
-        let switchAccountEventTimes = [0]
-        
-        accountService.mockAccountDetails = [AccountDetail()]
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String?.self)
-        viewModel.billIssuedDateText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        XCTAssert(!observer.events.map { $0.value.element! == nil }.contains(false))
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `paymentReceivedAmountText` value after switching
@@ -749,20 +438,17 @@ class BillViewModelContentTests: BillViewModelTests {
         let billDates: [Date?] = [nil, nil, nil, nil, earlyDate, lateDate, nil, nil, nil]
         
         let firstExpectedValue: String
-        let thirdExpectedValue: String
         switch Environment.shared.opco {
         case .bge:
             firstExpectedValue = "You are enrolled in BGEasy"
-            thirdExpectedValue = "You have a payment of $435.32 processing"
         case .comEd, .peco:
             firstExpectedValue = "You are enrolled in AutoPay"
-            thirdExpectedValue = "You have a pending payment of $435.32"
         }
         
         let expectedValues: [String?] = [
             firstExpectedValue,
             "You are enrolled in AutoPay",
-            thirdExpectedValue,
+            nil,
             "Thank you for scheduling your $4.00 payment for 02/12/2015",
             "Thank you for $585.00 payment on 02/12/2017",
             nil,
@@ -775,23 +461,26 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let range: CountableRange<Int> = 0..<isBGEasy.count
         accountService.mockAccountDetails = range.map { i -> AccountDetail in
-            var scheduledPayment: PaymentItem? = nil
             var pendingPayments = [PaymentItem]()
-            if paymentItems[i].status == .scheduled {
-                scheduledPayment = paymentItems[i]
-            } else {
+            if paymentItems[i].status == .pending {
                 pendingPayments.append(paymentItems[i])
             }
             
             let billingInfo = BillingInfo(lastPaymentAmount: lastPaymentAmounts[i],
                                           lastPaymentDate: lastPaymentDates[i],
                                           billDate: billDates[i],
-                                          scheduledPayment: scheduledPayment,
                                           pendingPayments: pendingPayments)
             
             return AccountDetail(billingInfo: billingInfo,
                                  isAutoPay: isAutoPay[i],
                                  isBGEasy: isBGEasy[i])
+        }
+        
+        accountService.mockScheduledPayments = range.map { i -> PaymentItem?  in
+            if paymentItems[i].status == .scheduled {
+                return paymentItems[i]
+            }
+            return nil
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -844,18 +533,18 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         
         let range: CountableRange<Int> = 0..<isBGEasy.count
         accountService.mockAccountDetails = range.map { i -> AccountDetail in
-            var scheduledPayment: PaymentItem? = nil
+            return AccountDetail(billingInfo: BillingInfo(),
+                                 isAutoPay: isAutoPay[i],
+                                 isBGEasy: isBGEasy[i])
+        }
+        
+        accountService.mockScheduledPayments = range.map { i -> PaymentItem? in
             if let scheduledPaymentAmount = scheduledPaymentAmounts[i] {
-                scheduledPayment = PaymentItem(amount: scheduledPaymentAmount,
+                return PaymentItem(amount: scheduledPaymentAmount,
                                                date: scheduledPaymentDate,
                                                status: .scheduled)
             }
-            
-            let billingInfo = BillingInfo(scheduledPayment: scheduledPayment)
-            
-            return AccountDetail(billingInfo: billingInfo,
-                                 isAutoPay: isAutoPay[i],
-                                 isBGEasy: isBGEasy[i])
+            return nil
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -897,7 +586,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
             .autoPay,
             .activity,
             .activity,
-            .nowhere,
+            .activity,
             .nowhere,
             .nowhere
         ]
@@ -906,9 +595,16 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         
         let range: CountableRange<Int> = 0..<expectedValues.count
         accountService.mockAccountDetails = range.map { i -> AccountDetail in
-            AccountDetail(billingInfo: BillingInfo(pendingPayments: paymentItems[i]),
+            AccountDetail(billingInfo: BillingInfo(pendingPayments: paymentItems[i].filter({ $0.status == .pending })),
                           isAutoPay: isAutoPay[i],
                           isBGEasy: isBGEasy[i])
+        }
+        accountService.mockScheduledPayments = range.map { i -> PaymentItem? in
+            let paymentArray = paymentItems[i].filter({ $0.status == .scheduled })
+            if let lastScheduled = paymentArray.last {
+                return lastScheduled
+            }
+            return nil
         }
         
         simulateAccountSwitches(at: switchAccountEventTimes)
@@ -918,9 +614,7 @@ You have a payment of $50.55 scheduled for 08/23/2018. To avoid a duplicate paym
         
         scheduler.start()
         
-        let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
-        
-        XCTAssertEqual(observer.events, expectedEvents)
+        XCTAssertRecordedElements(observer.events, expectedValues)
     }
     
     // Tests changes in the `autoPayButtonText` value after switching

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
-import JVFloatLabeledText
+import JVFloatLabeledTextField
 
 class BorderedFloatLabeledTextView: JVFloatLabeledTextView {
     

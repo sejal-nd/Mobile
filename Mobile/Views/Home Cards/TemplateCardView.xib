@@ -133,19 +133,33 @@
                                                 <constraint firstAttribute="width" id="mBP-Z8-ncW"/>
                                             </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_error_opcocard" translatesAutoresizingMaskIntoConstraints="NO" id="3Fo-vZ-ejd">
-                                            <rect key="frame" x="204" y="20" width="31" height="31"/>
-                                        </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DL-xb-T2W">
-                                            <rect key="frame" x="219.5" y="51" width="0.0" height="9"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Tools and Programs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0A-ns-AWf">
+                                            <rect key="frame" x="143.5" y="20" width="152" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbf-rr-JSh">
+                                            <rect key="frame" x="219.5" y="40.5" width="0.0" height="12"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" priority="999" constant="9" id="rfV-bQ-mJj"/>
+                                                <constraint firstAttribute="width" id="aK9-s0-ifV"/>
+                                                <constraint firstAttribute="height" priority="999" constant="12" id="hwE-TV-F52"/>
+                                            </constraints>
+                                        </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_home_error_opcocard" translatesAutoresizingMaskIntoConstraints="NO" id="3Fo-vZ-ejd">
+                                            <rect key="frame" x="204" y="52.5" width="31" height="31"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DL-xb-T2W">
+                                            <rect key="frame" x="219.5" y="83.5" width="0.0" height="12"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="999" constant="12" id="rfV-bQ-mJj"/>
                                                 <constraint firstAttribute="width" id="zri-8G-wKk"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rkb-6R-CGx">
-                                            <rect key="frame" x="21" y="60" width="397" height="122"/>
+                                            <rect key="frame" x="33.5" y="95.5" width="372.5" height="86.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -160,8 +174,8 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Rkb-6R-CGx" firstAttribute="leading" secondItem="5xi-8p-qxx" secondAttribute="leading" constant="21" id="4Da-bW-JbM"/>
-                                        <constraint firstAttribute="trailing" secondItem="Rkb-6R-CGx" secondAttribute="trailing" constant="21" id="deF-Gk-A7B"/>
+                                        <constraint firstItem="Rkb-6R-CGx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5xi-8p-qxx" secondAttribute="leading" constant="21" id="4Da-bW-JbM"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rkb-6R-CGx" secondAttribute="trailing" constant="21" id="deF-Gk-A7B"/>
                                     </constraints>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqL-ok-ke4">
@@ -208,6 +222,7 @@
                 <outlet property="contentView" destination="gEK-2F-6Zv" id="Ept-Zk-eJk"/>
                 <outlet property="errorLabel" destination="Rkb-6R-CGx" id="8CV-iw-41W"/>
                 <outlet property="errorStack" destination="5xi-8p-qxx" id="sok-0K-I6y"/>
+                <outlet property="errorTitleLabel" destination="V0A-ns-AWf" id="DLE-nh-Jag"/>
                 <outlet property="imageView" destination="NHJ-XG-xSz" id="ngC-cR-hmA"/>
                 <outlet property="loadingView" destination="CqL-ok-ke4" id="16D-61-ssZ"/>
                 <outlet property="titleLabel" destination="Hhm-qC-Elk" id="wra-cn-TCU"/>

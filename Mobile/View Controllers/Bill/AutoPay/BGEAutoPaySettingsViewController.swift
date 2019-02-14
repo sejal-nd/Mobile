@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-
+import PDTSimpleCalendar
 
 class BGEAutoPaySettingsViewController: UIViewController {
     
@@ -116,7 +116,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         amountNotToExceedTextField.textField.rx.controlEvent(.editingChanged)
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if let text = self.amountNotToExceedTextField.textField.text {
                     if !text.isEmpty {
                         self.viewModel.userDidChangeSettings.value = true
@@ -127,7 +127,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         numberOfPaymentsTextField.textField.rx.controlEvent(.editingChanged)
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if let text = self.numberOfPaymentsTextField.textField.text {
                     if !text.isEmpty {
                         self.viewModel.userDidChangeSettings.value = true
@@ -617,7 +617,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         view.endEditing(true)
         // Delay here fixes a bug when button is tapped with keyboard up
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == "0" ?
                 0 : (Int(self.viewModel.numberOfDaysBeforeDueDate.value)! - 1)
             PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
@@ -625,7 +625,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                             selectedIndex: selectedIndex,
                             onDone: { [weak self] value, index in
                                 DispatchQueue.main.async { [weak self] in
-                                    guard let `self` = self else { return }
+                                    guard let self = self else { return }
                                     let day = index + 1
                                     self.viewModel.userDidChangeSettings.value = true
                                     self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"

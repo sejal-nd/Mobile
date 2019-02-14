@@ -61,7 +61,7 @@ class LoginViewModel {
         authService.login(username: username.value, password: password.value, stayLoggedIn:keepMeSignedIn.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] profileStatus in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.isLoggingIn = false
                 let tempPassword = profileStatus.tempPassword
                 if tempPassword {
@@ -95,7 +95,7 @@ class LoginViewModel {
     }
 
     func checkStormMode(completion: @escaping (Bool) -> ()) {
-        authService.getMaintenanceMode()
+        authService.getMaintenanceMode(postNotification: false)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { maintenance in
                 completion(maintenance.stormModeStatus)
@@ -135,19 +135,13 @@ class LoginViewModel {
         biometricsEnabled.value = false
     }
 
-    func checkForMaintenance(onSuccess: @escaping () -> Void,
-                             onMaintenanceMode: @escaping () -> Void,
-                             onError: @escaping (String) -> Void) {
+    func checkForMaintenance(onCompletion: @escaping () -> Void) {
         authService.getMaintenanceMode()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { maintenanceInfo in
-                if maintenanceInfo.allStatus {
-                    onMaintenanceMode()
-                } else {
-                    onSuccess()
-                }
-            }, onError: { error in
-                onError(error.localizedDescription)
+            .subscribe(onNext: { _ in
+                onCompletion()
+            }, onError: { _ in
+                onCompletion()
             }).disposed(by: disposeBag)
     }
 

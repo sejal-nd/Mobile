@@ -49,7 +49,7 @@ class SpeedpayErrorMapper : NSObject, XMLParserDelegate {
         
         let error = items.filter {
             message.uppercased().contains($0.id) && (context == nil || $0.context == context)
-        }.first;
+        }.first
         
         guard let err = error else {
             if context != nil {

@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import ToastSwiftFramework
+import Toast_Swift
 import Firebase
 import AppCenter
 import AppCenterCrashes
 import RxSwift
 import UserNotifications
+import PDTSimpleCalendar
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -65,7 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showMaintenanceMode), name: .didMaintenanceModeTurnOn, object: nil)
+        
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .subscribe(onNext: { [weak self] _ in
+                self?.showMaintenanceMode(nil)
+            })
+            .disposed(by: disposeBag)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(showIOSVersionWarning), name: .shouldShowIOSVersionWarning, object: nil)
         
         // If app was cold-launched from a push notification
@@ -89,16 +96,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .disposed(by: disposeBag)
         
         return true
-    }
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        checkAndLoginOnWatch()
-    }
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        logoutOfWatch()
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        logoutOfWatch()
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -291,7 +288,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureQuickActions(isAuthenticated: false)
     }
     
-    @objc func showMaintenanceMode(){
+    func showMaintenanceMode(_ maintenanceInfo: Maintenance?) {
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
             
@@ -300,9 +297,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 while let presentedVC = topmostVC.presentedViewController {
                     topmostVC = presentedVC
                 }
+                if topmostVC is MaintenanceModeViewController { return } // Don't present again
                 
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
-                let vc = maintenanceStoryboard.instantiateInitialViewController()!
+                let vc = maintenanceStoryboard.instantiateInitialViewController() as! MaintenanceModeViewController
+                vc.maintenance = maintenanceInfo
+                
                 topmostVC.present(vc, animated: true, completion: nil)
             }
         }
@@ -349,25 +349,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func resetNavigation(sendToLogin: Bool = false) {
-        LoadingView.hide() // Just in case we left one stranded
-        
-        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
-        let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
-        let vcArray = sendToLogin ? [landing, login] : [landing]
-        
-        window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
-        
-        if let rootNav = window?.rootViewController as? UINavigationController {
-            rootNav.setViewControllers(vcArray, animated: false)
-            rootNav.view.isUserInteractionEnabled = true // If 401 occured during Login, we need to re-enable
-        } else {
-            let rootNav = loginStoryboard.instantiateInitialViewController() as! UINavigationController
-            rootNav.setViewControllers(vcArray, animated: false)
-            window?.rootViewController = rootNav
+        DispatchQueue.main.async {
+            LoadingView.hide() // Just in case we left one stranded
+            
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+            let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+            let vcArray = sendToLogin ? [landing, login] : [landing]
+            
+            self.window?.rootViewController?.dismiss(animated: false, completion: nil) // Dismiss the "Main" app (or the registration confirmation modal)
+            
+            if let rootNav = self.window?.rootViewController as? UINavigationController {
+                rootNav.setViewControllers(vcArray, animated: false)
+                rootNav.view.isUserInteractionEnabled = true // If 401 occured during Login, we need to re-enable
+            } else {
+                let rootNav = loginStoryboard.instantiateInitialViewController() as! UINavigationController
+                rootNav.setViewControllers(vcArray, animated: false)
+                self.window?.rootViewController = rootNav
+            }
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.inMainApp)
         }
-        
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.inMainApp)
     }
     
     func printFonts() {
@@ -391,10 +393,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
-            let storyboardName = StormModeStatus.shared.isOn ? "Storm" : "Main"
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+            let storyboardName = "Main"
             if let root = window.rootViewController, let _ = root.presentedViewController {
-                root.dismiss(animated: false) {
+                root.dismiss(animated: false) { [weak window] in
+                    guard let window = window else { return }
                     let mainStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
@@ -405,6 +408,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let newTabBarController = mainStoryboard.instantiateInitialViewController()
                 window.rootViewController = newTabBarController
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
+            }
+        } else if StormModeStatus.shared.isOn && shortcutItem == .alertPreferences {
+            let storyboard = UIStoryboard(name: "Storm", bundle: nil)
+            let navCtl = storyboard.instantiateInitialViewController() as! UINavigationController
+            window.rootViewController = navCtl
+            if let stormHomeVC = navCtl.viewControllers.first as? StormModeHomeViewController {
+                stormHomeVC.navigateToAlertPreferences()
             }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem
@@ -487,6 +497,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        checkAndLoginOnWatch()
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        logoutOfWatch()
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        logoutOfWatch()
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

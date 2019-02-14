@@ -55,7 +55,7 @@ protocol AuthenticationService {
     func changePasswordAnon(username: String, currentPassword: String, newPassword: String) -> Observable<Void>
     #endif
     
-    func getMaintenanceMode() -> Observable<Maintenance>
+    func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance>
     
     func getMinimumVersion() -> Observable<MinimumVersion>
     
@@ -96,4 +96,10 @@ protocol AuthenticationService {
     ///   - username: the username associated with the account.
     func recoverPassword(username: String) -> Observable<Void>
     #endif
+}
+
+extension AuthenticationService {
+    func getMaintenanceMode(postNotification: Bool = true) -> Observable<Maintenance> {
+        return getMaintenanceMode(postNotification: postNotification)
+    }
 }

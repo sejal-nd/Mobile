@@ -9,6 +9,8 @@
 import RxSwift
 import RxCocoa
 import AVFoundation
+import PDTSimpleCalendar
+import UIKit
 
 class MakePaymentViewController: UIViewController {
     
@@ -27,7 +29,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
     
     @IBOutlet weak var paymentAccountView: UIView! // Contains paymentAccountLabel and paymentAccountButton
-    @IBOutlet weak var paymentAccountLabel: UILabel! // Label that says "Payment Account" above the button
+    @IBOutlet weak var paymentAccountLabel: UILabel! // Label that says "Payment Method" above the button
     @IBOutlet weak var paymentAccountButton: ButtonControl!
     @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
@@ -47,6 +49,9 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var amountDueValueLabel: UILabel!
     
     @IBOutlet weak var paymentAmountView: UIView! // Contains paymentAmountFeeLabel and paymentAmountTextField
+    @IBOutlet private weak var selectPaymentAmountStack: UIStackView!
+    @IBOutlet private weak var selectPaymentAmountLabel: UILabel!
+    @IBOutlet private weak var paymentAmountsStack: UIStackView!
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
@@ -65,19 +70,15 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
-    @IBOutlet weak var addBankAccountView: UIView!
-    @IBOutlet weak var addBankAccountFeeLabel: UILabel!
+    @IBOutlet weak var addPaymentMethodView: UIView!
+    @IBOutlet weak var addPaymentMethodLabel: UILabel!
     @IBOutlet weak var addBankAccountButton: ButtonControl!
-    
-    @IBOutlet weak var addCreditCardView: UIView!
-    @IBOutlet weak var addCreditCardFeeLabel: UILabel!
+    @IBOutlet weak var addBankAccountLabel: UILabel!
     @IBOutlet weak var addCreditCardButton: ButtonControl!
+    @IBOutlet weak var addCreditCardLabel: UILabel!
     
-    @IBOutlet weak var deletePaymentButton: ButtonControl!
-    @IBOutlet weak var deletePaymentLabel: UILabel!
-    
-    @IBOutlet weak var billMatrixView: UIView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
+    @IBOutlet weak var cancelPaymentButton: ButtonControl!
+    @IBOutlet weak var cancelPaymentLabel: UILabel!
     
     @IBOutlet weak var walletFooterSpacerView: UIView! // Only used for spacing when footerView is hidden
     @IBOutlet weak var walletFooterView: UIView!
@@ -155,7 +156,7 @@ class MakePaymentViewController: UIViewController {
         bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
         bankAccountsUnavailableLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
 
-        paymentAccountLabel.text = NSLocalizedString("Payment Account", comment: "")
+        paymentAccountLabel.text = NSLocalizedString("Payment Method", comment: "")
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
@@ -187,11 +188,14 @@ class MakePaymentViewController: UIViewController {
         
         cvvTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        amountDueTextLabel.text = NSLocalizedString("Amount Due", comment: "")
+        amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountDueValueLabel.textColor = .blackText
         amountDueValueLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        
+        selectPaymentAmountLabel.textColor = .blackText
+        selectPaymentAmountLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
         paymentAmountFeeLabel.textColor = .blackText
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -223,35 +227,29 @@ class MakePaymentViewController: UIViewController {
         paymentDateFixedDatePastDueLabel.textColor = .blackText
         paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        addBankAccountFeeLabel.textColor = .blackText
-        addBankAccountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        addBankAccountFeeLabel.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+        addPaymentMethodLabel.textColor = .deepGray
+        addPaymentMethodLabel.font = OpenSans.semibold.of(textStyle: .title2)
+        addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
+
         addBankAccountButton.layer.cornerRadius = 10
         addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
-        addCreditCardFeeLabel.textColor = .blackText
-        addCreditCardFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A %@ convenience fee will be applied by Bill Matrix, our payment partner.", comment: ""), accountDetail.billingInfo.convenienceFee!.currencyString!)
-            break
-        case .bge:
-            addCreditCardFeeLabel.text = String(format: NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.", comment: ""), accountDetail.billingInfo.residentialFee!.currencyString!, accountDetail.billingInfo.commercialFee!.percentString!)
-            break
-        }
+        addBankAccountLabel.font = SystemFont.medium.of(textStyle: .title1)
+        
         addCreditCardButton.layer.cornerRadius = 10
         addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         
-        deletePaymentButton.accessibilityLabel = NSLocalizedString("Delete payment", comment: "")
-        deletePaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
-        deletePaymentLabel.textColor = .actionBlue
+        addCreditCardLabel.font = SystemFont.medium.of(textStyle: .title1)
         
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
+        let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
+        cancelPaymentButton.accessibilityLabel = cancelPaymentText
+        cancelPaymentLabel.text = cancelPaymentText
+        cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        cancelPaymentLabel.textColor = .actionBlue
         
         walletFooterView.backgroundColor = .softGray
         walletFooterLabel.textColor = .deepGray
@@ -271,23 +269,15 @@ class MakePaymentViewController: UIViewController {
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
-
-        viewModel.formatPaymentAmount() // Initial formatting
         
-        viewModel.fetchData(onSuccess: { [weak self] in
+        viewModel.shouldShowSelectPaymentAmount.asObservable().single().subscribe(onNext: { [weak self] shouldShow in
             guard let self = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
-            }, onError: { [weak self] in
-                guard let self = self else { return }
-                UIAccessibility.post(notification: .screenChanged, argument: self.view)
-            }, onFiservCutoff: { [weak self] in
-                guard let self = self else { return }
-                let alert = UIAlertController.fiservCutoffAlert { [weak self] _ in
-                    self?.navigationController?.popViewController(animated: true)
-                }
-                
-                self.present(alert, animated: true, completion: nil)
-        })
+            self.paymentAmountTextField.textField.text = shouldShow ?
+                0.0.currencyString :
+                self.viewModel.paymentAmount.value.currencyString
+        }).disposed(by: disposeBag)
+
+        fetchData()
     }
     
     deinit {
@@ -298,6 +288,16 @@ class MakePaymentViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setColoredNavBar()
+    }
+    
+    func fetchData() {
+        viewModel.fetchData(onSuccess: { [weak self] in
+            guard let self = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+        }, onError: { [weak self] in
+            guard let self = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+        })
     }
     
     func configureCardIO() {
@@ -348,7 +348,7 @@ class MakePaymentViewController: UIViewController {
         // Cash Only Bank Accounts Unavailable Label
         viewModel.isCashOnlyUser.map(!).drive(bankAccountsUnavailableLabel.rx.isHidden).disposed(by: disposeBag)
         
-        // Payment Account
+        // Payment Method
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
@@ -367,29 +367,34 @@ class MakePaymentViewController: UIViewController {
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFixedPaymentDate.drive(paymentDateButtonView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFixedPaymentDate.map(!).drive(paymentDateFixedDateLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isFixedPaymentDatePastDue.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPastDueLabel.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Add bank/credit card empty wallet state
-        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddPaymentMethodView.map(!).drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardButton.rx.isHidden).disposed(by: disposeBag)
         
-        // Delete Payment
-        viewModel.shouldShowDeletePaymentButton.map(!).drive(deletePaymentButton.rx.isHidden).disposed(by: disposeBag)
-        
-        // Bill Matrix
-        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
-        
-        // Wallet empty state info footer
-        viewModel.shouldShowWalletFooterView.map(!).drive(walletFooterView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowWalletFooterView.drive(walletFooterSpacerView.rx.isHidden).disposed(by: disposeBag)
+        // Cancel Payment
+        viewModel.shouldShowCancelPaymentButton.map(!).drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
-            self?.stickyPaymentFooterView.isHidden = !shouldShow
+            if Environment.shared.opco != .bge && self?.billingHistoryItem != nil {
+                // ePay R1 ComEd/PECO modify tweaks
+                self?.stickyPaymentFooterView.isHidden = true
+            } else {
+                self?.stickyPaymentFooterView.isHidden = !shouldShow
+            }
             
             // Needed for correct sizing
             self?.stickyPaymentFooterStackView.setNeedsLayout()
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
+        
+        if Environment.shared.opco != .bge && billingHistoryItem != nil {
+            // ePay R1 ComEd/PECO modify tweaks
+            amountDueView.isHidden = true
+            dueDateView.isHidden = true
+        }
     }
     
     func bindViewContent() {
@@ -419,17 +424,84 @@ class MakePaymentViewController: UIViewController {
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
         
+        // Select Payment Amount - Radio Button Selection View
+        viewModel.shouldShowSelectPaymentAmount.drive(onNext: { [weak self] shouldShow in
+            guard let self = self else { return }
+            self.selectPaymentAmountStack.isHidden = !shouldShow
+            self.paymentAmountTextField.isHidden = shouldShow
+            
+            self.paymentAmountsStack.arrangedSubviews.forEach {
+                self.paymentAmountsStack.removeArrangedSubview($0)
+                $0.removeFromSuperview()
+            }
+            
+            if shouldShow {
+                let radioControls = self.viewModel.paymentAmounts.map { (amount, subtitle) -> RadioSelectControl in
+                    let title = amount?.currencyString ?? NSLocalizedString("Other", comment: "")
+                    return RadioSelectControl.create(withTitle: title, subtitle: subtitle, showSeparator: true)
+                }
+                
+                let radioPress = { [weak self] (control: RadioSelectControl, amount: Double?) -> () in
+                    guard let self = self else { return }
+                    
+                    // Only set and animate `isHidden` if the value should change.
+                    // Otherwise we get weird animation queue issues 🤷‍♂️
+                    let shouldHide = control != radioControls.last
+                    if shouldHide != self.paymentAmountTextField.isHidden {
+                        UIView.animate(withDuration: 0.2) {
+                            self.paymentAmountTextField.isHidden = shouldHide
+                        }
+                    }
+                    
+                    radioControls.forEach { $0.isSelected = $0 == control }
+                    
+                    if let amount = amount {
+                        self.paymentAmountTextField.textField.resignFirstResponder()
+                        self.viewModel.paymentAmount.value = amount
+                    } else {
+                        self.paymentAmountTextField.textField.becomeFirstResponder()
+                    }
+                }
+                
+                zip(radioControls, self.viewModel.paymentAmounts.map { $0.0 }).forEach { control, amount in
+                    control.rx.touchUpInside.asDriver()
+                        .drive(onNext: { radioPress(control, amount) })
+                        .disposed(by: control.bag)
+                    
+                    self.paymentAmountsStack.addArrangedSubview(control)
+                }
+                
+                if let firstControl = radioControls.first, let firstAmount = self.viewModel.paymentAmounts.first?.0 {
+                    radioPress(firstControl, firstAmount)
+                }
+            }
+        }).disposed(by: disposeBag)
+        
         // Payment Amount Text Field
-        viewModel.paymentAmountFeeLabelText.asDriver().drive(paymentAmountFeeLabel.rx.text).disposed(by: disposeBag)
-        viewModel.paymentAmount.asDriver().drive(paymentAmountTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
-        paymentAmountTextField.textField.rx.text.orEmpty.bind(to: viewModel.paymentAmount).disposed(by: disposeBag)
-        paymentAmountTextField.textField.rx.controlEvent(.editingChanged).asDriver()
-            .drive(onNext: { [weak self] in
-                self?.viewModel.formatPaymentAmount()
-            }).disposed(by: disposeBag)
+        viewModel.paymentAmountFeeLabelText.asDriver()
+            .drive(paymentAmountFeeLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        paymentAmountTextField.textField.rx.text.orEmpty.asObservable()
+            .skip(1)
+            .subscribe(onNext: { [weak self] entry in
+                guard let self = self else { return }
+                
+                let amount: Double
+                let textStr = String(entry.filter { "0123456789".contains($0) })
+                if let intVal = Double(textStr) {
+                    amount = intVal / 100
+                } else {
+                    amount = 0
+                }
+                
+                self.paymentAmountTextField.textField.text = amount.currencyString
+                self.viewModel.paymentAmount.value = amount
+            })
+            .disposed(by: disposeBag)
         
         // Fixed Payment Amount - if allowEdits is false
-        viewModel.paymentAmount.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentAmountString.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Due Date
         viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).disposed(by: disposeBag)
@@ -452,11 +524,12 @@ class MakePaymentViewController: UIViewController {
     
     func bindButtonTaps() {
         paymentAccountButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.view.endEditing(true)
             let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
             miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
             miniWalletVC.viewModel.selectedItem.value = self.viewModel.selectedWalletItem.value
+            miniWalletVC.viewModel.temporaryItem.value = self.viewModel.newlyAddedWalletItem.value
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.sentFromPayment = true
             miniWalletVC.delegate = self
@@ -478,7 +551,7 @@ class MakePaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         paymentDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.view.endEditing(true)
             
             let calendarVC = PDTSimpleCalendarViewController()
@@ -490,23 +563,52 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
         
+
+        
         addBankAccountButton.rx.touchUpInside
             .do(onNext: { Analytics.log(event: .addBankNewWallet) })
-            .map { _ in true }
-            .bind(to: viewModel.inlineBank).disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                if Environment.shared.opco == .bge {
+                    self.viewModel.inlineBank.value = true
+                } else {
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                        guard let self = self else { return }
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+                        paymentusVC.delegate = self
+                        self.navigationController?.pushViewController(paymentusVC, animated: true)
+                    }, dontSaveHandler: { [weak self] _ in
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
+                        paymentusVC.delegate = self
+                        self?.navigationController?.pushViewController(paymentusVC, animated: true)
+                    })
+                    self.present(actionSheet, animated: true, completion: nil)
+                }
+            }).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside
             .do(onNext: { Analytics.log(event: .addCardNewWallet) })
-            .map { _ in true }
-            .bind(to: viewModel.inlineCard)
-            .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                if Environment.shared.opco == .bge {
+                    self.viewModel.inlineCard.value = true
+                } else {
+                    let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                        guard let self = self else { return }
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+                        paymentusVC.delegate = self
+                        self.navigationController?.pushViewController(paymentusVC, animated: true)
+                    }, dontSaveHandler: { [weak self] _ in
+                        let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
+                        paymentusVC.delegate = self
+                        self?.navigationController?.pushViewController(paymentusVC, animated: true)
+                    })
+                    self.present(actionSheet, animated: true, completion: nil)
+                }
+            }).disposed(by: disposeBag)
         
-        deletePaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
+        cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onDeletePaymentPress()
-        }).disposed(by: disposeBag)
-        
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onPrivacyPolicyPress()
         }).disposed(by: disposeBag)
     }
     
@@ -612,10 +714,10 @@ class MakePaymentViewController: UIViewController {
         }
         
         if shouldShowOneTouchPayWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
             }))
             present(alertVc, animated: true, completion: nil)
@@ -624,21 +726,20 @@ class MakePaymentViewController: UIViewController {
         }
     }
     
-    func onPrivacyPolicyPress() {
-        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
-        navigationController?.present(tacModal, animated: true, completion: nil)
-    }
-    
     func onDeletePaymentPress() {
-        let confirmAlert = UIAlertController(title: NSLocalizedString("Delete Scheduled Payment", comment: ""), message: NSLocalizedString("Are you sure you want to delete this scheduled payment?", comment: ""), preferredStyle: .alert)
-        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
+        let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
+        let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
+        let alertConfirm = NSLocalizedString("Yes", comment: "")
+        let alertDeny = NSLocalizedString("No", comment: "")
+        
+        let confirmAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: alertDeny, style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: alertConfirm, style: .destructive, handler: { [weak self] _ in
             LoadingView.show()
             self?.viewModel.cancelPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
 
-                guard let `self` = self, let navigationController = self.navigationController else { return }
+                guard let self = self, let navigationController = self.navigationController else { return }
                 // Always pop back to the root billing history screen here (because MoreBillingHistoryViewController does not refetch data)
                 for vc in navigationController.viewControllers {
                     guard let dest = vc as? BillingHistoryViewController else {
@@ -657,22 +758,6 @@ class MakePaymentViewController: UIViewController {
             })
         }))
         present(confirmAlert, animated: true, completion: nil)
-    }
-    
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -699,8 +784,26 @@ class MakePaymentViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
+    // MARK: - ScrollView
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
+    }
+    
 }
+
+// MARK: - UITextFieldDelegate
 
 extension MakePaymentViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -730,9 +833,15 @@ extension MakePaymentViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - MiniWalletViewControllerDelegate
+
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
+        if let newlyAddedItem = viewModel.newlyAddedWalletItem.value, newlyAddedItem.isTemporary, newlyAddedItem != walletItem {
+            // Clear temp item if user unselected it
+            viewModel.newlyAddedWalletItem.value = nil
+        }
         viewModel.selectedWalletItem.value = walletItem
     }
     
@@ -744,6 +853,26 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
         viewModel.inlineCard.value = true
     }
 }
+
+// MARK: - PaymentusFormViewControllerDelegate
+
+extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
+    func didAddWalletItem(_ walletItem: WalletItem) {
+        viewModel.newlyAddedWalletItem.value = walletItem
+        fetchData()
+        if !walletItem.isTemporary {
+            Analytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
+            let toastMessage = walletItem.bankOrCard == .bank ?
+                NSLocalizedString("Bank account added", comment: "") :
+                NSLocalizedString("Card added", comment: "")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.view.showToast(toastMessage)
+            })
+        }
+    }
+}
+
+// MARK: - PDTSimpleCalendarViewDelegate
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
@@ -780,18 +909,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                var cutoffDate: Date
-                if let cutoff = viewModel.fiservCutoffDate.value {
-                    cutoffDate = min(startOfDueDate, cutoff)
-                } else {
-                    cutoffDate = dueDate
-                }
-                if Environment.shared.opco == .peco {
-                    let isInWorkdaysArray = viewModel.workdayArray.contains(opCoTimeDate)
-                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate && isInWorkdaysArray
-                } else {
-                    return opCoTimeDate >= today && opCoTimeDate <= cutoffDate
-                }
+                return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
             }
         }
         
@@ -806,6 +924,8 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     }
 }
 
+// MARK: - AddBankFormViewDelegate
+
 extension MakePaymentViewController: AddBankFormViewDelegate {
     func addBankFormViewDidTapRoutingNumberTooltip(_ addBankFormView: AddBankFormView) {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Routing Number", comment: ""), image: #imageLiteral(resourceName: "routing_number_info"), description: NSLocalizedString("This number is used to identify your banking institution. You can find your bank’s nine-digit routing number on the bottom of your paper check.", comment: ""))
@@ -817,6 +937,8 @@ extension MakePaymentViewController: AddBankFormViewDelegate {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }
+
+// MARK: - AddCardFormViewDelegate
 
 extension MakePaymentViewController: AddCardFormViewDelegate {
     func addCardFormViewDidTapCardIOButton(_ addCardFormView: AddCardFormView) {
@@ -850,6 +972,8 @@ extension MakePaymentViewController: AddCardFormViewDelegate {
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 }
+
+// MARK: - CardIOPaymentViewControllerDelegate
 
 extension MakePaymentViewController: CardIOPaymentViewControllerDelegate {
     func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {

@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 protocol BGEAutoPayViewControllerDelegate: class {
     func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String)
@@ -92,7 +93,7 @@ class BGEAutoPayViewController: UIViewController {
         
         enrolledPaymentAccountLabel.textColor = .deepGray
         enrolledPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Account:", comment: "")
+        enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Method:", comment: "")
         
         bankAccountButton.backgroundColorOnPress = .softGray
         bankAccountButton.layer.cornerRadius = 10
@@ -122,10 +123,10 @@ class BGEAutoPayViewController: UIViewController {
         accessibilitySetup()
     
         viewModel.getAutoPayInfo(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
         
@@ -228,13 +229,13 @@ class BGEAutoPayViewController: UIViewController {
                     Analytics.log(event: .autoPayModifySettingCompleteNew)
                 }
                 
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
                 self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)
@@ -246,13 +247,13 @@ class BGEAutoPayViewController: UIViewController {
                     LoadingView.hide()
                     Analytics.log(event: .autoPayModifySettingComplete)
                     
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)
@@ -263,13 +264,13 @@ class BGEAutoPayViewController: UIViewController {
                     LoadingView.hide()
                     Analytics.log(event: .autoPayUnenrollComplete)
                     
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)

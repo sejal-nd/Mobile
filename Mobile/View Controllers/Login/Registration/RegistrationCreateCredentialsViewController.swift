@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ToastSwiftFramework
+import Toast_Swift
 
 class RegistrationCreateCredentialsViewController: UIViewController {
 
@@ -161,7 +161,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         }).disposed(by: self.disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.createUsernameTextField.errorState {
                 self.createUsernameTextField.setError(nil)
             }
@@ -204,7 +204,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 // If we displayed an inline error, clear it when user edits the text
                 if self.createUsernameTextField.errorState {
                     self.createUsernameTextField.setError(nil)
@@ -220,7 +220,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.scrollView.setContentOffset(self.createPasswordContainerView.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = false
@@ -229,7 +229,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createPasswordTextField.textField.rx.text.orEmpty.asDriver()
             .drive(onNext: { [weak self] text in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 let score = self.viewModel.getPasswordScore()
                 self.passwordStrengthMeterView.setScore(score)
                 
@@ -247,7 +247,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         
         createPasswordTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.view.layoutIfNeeded()
                 UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = true
@@ -323,7 +323,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         viewModel.confirmPasswordMatches.drive(onNext: { [weak self] matches in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.confirmPasswordTextField.textField.hasText {
                 if matches {
                     self.confirmPasswordTextField.setValidated(matches, accessibilityLabel: NSLocalizedString("Fields match", comment: ""))

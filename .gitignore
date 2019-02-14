@@ -4,11 +4,11 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
-## Build generated
+# Build generated
 build/
 DerivedData/
 
-## Various settings
+# Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -19,14 +19,14 @@ DerivedData/
 !default.perspectivev3
 xcuserdata/
 
-## Other
+# Other
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
 Mobile/Configuration/environment_preprocess.h
 Mobile/Configuration/environment.plist
 
-## Obj-C/Swift specific
+# Obj-C/Swift specific
 *.hmap
 *.ipa
 *.dSYM.zip
@@ -37,20 +37,10 @@ Mobile/Configuration/environment.plist
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-# Pods/
+Pods/
 
-# Carthage
-#
-Carthage/Checkouts
-!Carthage/Build
-!Carthage/Build/iOS/*.dSYM
-Carthage/Build/Mac
-Carthage/Build/tvOS
-Carthage/Build/watchOS
-Carthage/Build/iOS/*.bcsymbolmap
-Carthage/Build/*.version
-Carthage/Build/.DS_Store
+# Add this line if you want to avoid checking in source code from the Xcode workspace
+*.xcworkspace
 
 # fastlane
 #
@@ -58,7 +48,6 @@ Carthage/Build/.DS_Store
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
-
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
@@ -68,7 +57,6 @@ fastlane/test_output
 #
 # After new code Injection tools there's a generated folder /iOSInjectionProject
 # https://github.com/johnno1962/injectionforxcode
-
 iOSInjectionProject/
 
 # AppCode files

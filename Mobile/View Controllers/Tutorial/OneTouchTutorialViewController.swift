@@ -13,18 +13,18 @@ class OneTouchTutorialViewController: TutorialModalViewController {
     init() {
         let slides = [
             (
-                NSLocalizedString("Set Up Default Payment Account", comment: ""),
-                NSLocalizedString("You can easily pay your bill in full from the Home screen by setting a payment account as default.", comment: ""),
+                NSLocalizedString("Set Up Default Payment Method", comment: ""),
+                NSLocalizedString("You can easily pay your bill in full from the Home screen by setting a payment method as default.", comment: ""),
                 "otp_step1"
             ),
             (
                 NSLocalizedString("Tap On My Wallet", comment: ""),
-                NSLocalizedString("Navigate to the Bill screen and tap \"My Wallet.\" You can also tap the \"Set a default payment account\" button on Home.", comment: ""),
+                NSLocalizedString("Navigate to the Bill screen and tap \"My Wallet.\" You can also tap the \"Set a default payment method\" button on Home.", comment: ""),
                 "otp_step2"
             ),
             (
                 NSLocalizedString("Turn On The Default Toggle", comment: ""),
-                NSLocalizedString("Create or edit a payment account and turn on the \"Default Payment Account\" toggle.", comment: ""),
+                NSLocalizedString("Create or edit a payment method and turn on the \"Default Payment Method\" toggle.", comment: ""),
                 "otp_step3")
             ,
             (

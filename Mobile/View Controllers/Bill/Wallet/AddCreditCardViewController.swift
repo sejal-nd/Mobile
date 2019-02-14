@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import AVFoundation
 
+
 protocol AddCreditCardViewControllerDelegate: class {
     func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController)
 }
@@ -94,7 +95,7 @@ class AddCreditCardViewController: UIViewController {
             }, onSuccess: { walletItemResult in
                 let completion = {
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.delegate?.addCreditCardViewControllerDidAddAccount(self)
                     if self.shouldPopToRootOnSave {
                         if StormModeStatus.shared.isOn {
@@ -121,7 +122,6 @@ class AddCreditCardViewController: UIViewController {
                 }
             }, onError: { errMessage in
                 LoadingView.hide()
-                // Error message comes from Fiserv
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self?.present(alertVc, animated: true, completion: nil)
@@ -129,7 +129,7 @@ class AddCreditCardViewController: UIViewController {
         }
         
         if shouldShowOneTouchPayWarning {
-            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Account", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment account?", comment: ""), preferredStyle: .alert)
+            let alertVc = UIAlertController(title: NSLocalizedString("Default Payment Method", comment: ""), message: NSLocalizedString("Are you sure you want to replace your default payment method?", comment: ""), preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: { _ in
                 addCreditCard(true)

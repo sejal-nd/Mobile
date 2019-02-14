@@ -135,7 +135,7 @@ class SmartThermostatScheduleViewController: UIViewController {
     func bindActions() {
         timeButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 PickerView.showTimePicker(withTitle: NSLocalizedString("Select Time", comment: ""),
                                           selectedTime: self.viewModel.periodInfo.startTime,
                                           minTime: self.viewModel.minTime,

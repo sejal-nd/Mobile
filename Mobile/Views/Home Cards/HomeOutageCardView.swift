@@ -44,6 +44,7 @@ class HomeOutageCardView: UIView {
     
     // Generic Error View
     @IBOutlet private weak var errorView: UIStackView!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorLabel: UILabel!
     
     // Loading View
@@ -102,6 +103,9 @@ class HomeOutageCardView: UIView {
         
         // Generic Error View
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
+        
+        errorTitleLabel.textColor = .blackText
+        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
     }
     
     private func showLoadingState() {

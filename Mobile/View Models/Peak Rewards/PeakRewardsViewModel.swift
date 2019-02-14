@@ -41,7 +41,7 @@ class PeakRewardsViewModel {
     //MARK: - Web Requests
     private lazy var peakRewardsSummaryEvents: Observable<Event<PeakRewardsSummary>> = self.loadInitialData
         .flatMapLatest { [weak self] _ -> Observable<Event<PeakRewardsSummary>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             return self.peakRewardsService
                 .fetchPeakRewardsSummary(accountNumber: self.accountDetail.accountNumber,
                                          premiseNumber: self.premiseNumber)
@@ -54,7 +54,7 @@ class PeakRewardsViewModel {
     private(set) lazy var peakRewardsOverridesEvents: Observable<Event<[PeakRewardsOverride]>> = Observable
         .merge(self.loadInitialData, self.overridesUpdated)
         .flatMapLatest { [weak self] _ -> Observable<Event<[PeakRewardsOverride]>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             return self.peakRewardsService
                 .fetchPeakRewardsOverrides(accountNumber: self.accountDetail.accountNumber,
                                            premiseNumber: self.premiseNumber)
@@ -83,7 +83,7 @@ class PeakRewardsViewModel {
     private lazy var deviceScheduleEvents: Observable<Event<SmartThermostatDeviceSchedule?>> = Observable
         .merge(self.selectedDevice.asObservable(), self.deviceScheduleChanged.withLatestFrom(self.selectedDevice.asObservable()))
         .flatMapLatest { [weak self] device -> Observable<Event<SmartThermostatDeviceSchedule?>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             guard device.isSmartThermostat else {
                 return Observable.just(Event<SmartThermostatDeviceSchedule?>.next(nil))
             }

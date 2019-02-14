@@ -11,42 +11,25 @@ import RxCocoa
 
 class SmartEnergyRewardsViewModel {
     
-    let disposeBag = DisposeBag()
-    
-    let accountDetailDriver: Driver<AccountDetail> // Passed from HomeUsageCardView
+    private let eventResults: Observable<[SERResult]> // Passed from HomeUsageCardView
 
     let barGraphSelectionStates = Variable([Variable(false), Variable(false), Variable(true)])
     
-    required init(accountDetailDriver: Driver<AccountDetail>) {
-        self.accountDetailDriver = accountDetailDriver
+    required init(eventResults: Observable<[SERResult]>) {
+        self.eventResults = eventResults
     }
     
-    private(set) lazy var latest3EventsThisSeason: Driver<[SERResult]> = self.accountDetailDriver.map {
-        let eventResults = $0.serInfo.eventResults
-        if eventResults.isEmpty { return [] }
-        
-        let newestFirst = Array(eventResults.reversed()) // Sort them so the newest event is first
-        
-        let first3Events: [SERResult]
-        if newestFirst.count >= 3 {
-            first3Events = Array(newestFirst[0..<3])
-        } else {
-            first3Events = newestFirst
+    private(set) lazy var latest3EventsThisSeason: Driver<[SERResult]> = eventResults
+        .map { eventResults in
+            guard let latestEvent = eventResults.last else { return [] }
+            
+            let latestEventYear = Calendar.opCo.component(.year, from: latestEvent.eventStart)
+            
+            return eventResults
+                .suffix(3)
+                .filter { Calendar.opCo.component(.year, from: $0.eventStart) == latestEventYear }
         }
-        
-        let latestEvent = first3Events[0]
-        let latestEventYear = Calendar.opCo.component(.year, from: latestEvent.eventStart)
-        
-        var arrayToReturn = [SERResult]()
-        for event in first3Events {
-            let year = Calendar.opCo.component(.year, from: event.eventStart)
-            if year == latestEventYear {
-                arrayToReturn.append(event)
-            }
-        }
-        
-        return Array(arrayToReturn.reversed()) // Sort back so that the oldest event is first (as the graph displays)
-    }
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var numBarsToShow: Driver<Int> = self.latest3EventsThisSeason.map { $0.count }
     private(set) lazy var shouldShowBar1: Driver<Bool> = self.numBarsToShow.map { $0 == 3 }
@@ -89,7 +72,7 @@ class SmartEnergyRewardsViewModel {
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
-        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString)
         return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
@@ -155,7 +138,7 @@ class SmartEnergyRewardsViewModel {
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
-        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString)
         return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
@@ -163,11 +146,11 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var bar3DollarLabelText: Driver<String?> = self.latest3EventsThisSeason.map {
         if $0.count == 3 {
-            return $0[2].savingDollar.currencyString!
+            return $0[2].savingDollar.currencyString
         } else if $0.count == 2 {
-            return $0[1].savingDollar.currencyString!
+            return $0[1].savingDollar.currencyString
         } else if $0.count == 1 {
-            return $0[0].savingDollar.currencyString!
+            return $0[0].savingDollar.currencyString
         }
         return nil
     }
@@ -229,7 +212,7 @@ class SmartEnergyRewardsViewModel {
         let typicalUseString = String(format: NSLocalizedString("Typical use: %.1f kWh", comment: ""), event.baselineKWH)
         let actualUseString = String(format: NSLocalizedString("Actual use: %.1f kWh", comment: ""), event.actualKWH)
         let energySavingsString = String(format: NSLocalizedString("Energy savings: %.1f kWh", comment: ""), event.savingKWH)
-        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString!)
+        let billCreditString = String(format: NSLocalizedString("Bill credit: %@", comment: ""), event.savingDollar.currencyString)
         return String(format: "%@. %@. %@. %@. %@. %@", dateString, timeString, typicalUseString, actualUseString, energySavingsString, billCreditString)
     }
     
@@ -237,7 +220,7 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var barDescriptionDateLabelText: Driver<String?> =
         Driver.combineLatest(self.barGraphSelectionStates.asDriver(), self.latest3EventsThisSeason) { [weak self] selectionStates, latest3Events in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
             return event.eventStart.fullMonthDayAndYearString
@@ -245,7 +228,7 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var barDescriptionPeakHoursLabelText: Driver<String?> =
         Driver.combineLatest(self.barGraphSelectionStates.asDriver(), self.latest3EventsThisSeason) { [weak self] selectionStates, latest3Events in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
             return String(format: NSLocalizedString("Peak Hours: %@", comment: ""), "\(event.eventStart.hourAmPmString) - \(event.eventEnd.hourAmPmString)")
@@ -253,7 +236,7 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var barDescriptionTypicalUseValueLabelText: Driver<String?> =
         Driver.combineLatest(self.barGraphSelectionStates.asDriver(), self.latest3EventsThisSeason) { [weak self] selectionStates, latest3Events in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
             return String(format: "%.1f kWh", event.baselineKWH)
@@ -261,7 +244,7 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var barDescriptionActualUseValueLabelText: Driver<String?> =
         Driver.combineLatest(self.barGraphSelectionStates.asDriver(), self.latest3EventsThisSeason) { [weak self] selectionStates, latest3Events in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
             return String(format: "%.1f kWh", event.actualKWH)
@@ -269,7 +252,7 @@ class SmartEnergyRewardsViewModel {
 
     private(set) lazy var barDescriptionEnergySavingsValueLabelText: Driver<String?> =
         Driver.combineLatest(self.barGraphSelectionStates.asDriver(), self.latest3EventsThisSeason) { [weak self] selectionStates, latest3Events in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
             return String(format: "%.1f kWh", event.savingKWH)
@@ -277,10 +260,10 @@ class SmartEnergyRewardsViewModel {
     
     private(set) lazy var barDescriptionBillCreditValueLabelText: Driver<String?> =
         Driver.combineLatest(self.barGraphSelectionStates.asDriver(), self.latest3EventsThisSeason) { [weak self] selectionStates, latest3Events in
-            guard let `self` = self else { return nil }
+            guard let self = self else { return nil }
             guard !latest3Events.isEmpty else { return nil }
             let event = self.eventFor(selectionStates: selectionStates, latest3Events: latest3Events)
-            return event.savingDollar.currencyString!
+            return event.savingDollar.currencyString
         }
     
     

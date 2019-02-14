@@ -15,7 +15,7 @@ class ReviewPaymentViewController: UIViewController {
     var viewModel: PaymentViewModel! // Passed from MakePaymentViewController
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollViewContentView: UIView!
+    @IBOutlet weak var gradientView: UIView!
     var gradientLayer = CAGradientLayer()
     
     @IBOutlet weak var activeSeveranceLabel: UILabel!
@@ -70,9 +70,6 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var activeSeveranceSwitch: Switch!
     @IBOutlet weak var activeSeveranceSwitchLabel: UILabel!
     
-    @IBOutlet weak var billMatrixView: UIView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
-    
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
@@ -87,12 +84,13 @@ class ReviewPaymentViewController: UIViewController {
         navigationItem.rightBarButtonItem = submitButton
         viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        gradientLayer.frame = scrollViewContentView.bounds
+        gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.softGray.cgColor,
             UIColor.white.cgColor,
         ]
-        scrollViewContentView.layer.insertSublayer(gradientLayer, at: 0)
+
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -101,11 +99,11 @@ class ReviewPaymentViewController: UIViewController {
         
         overpaymentLabel.textColor = .blackText
         overpaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your amount due.", comment: "")
+        overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
         paymentAccountTextLabel.textColor = .deepGray
-        paymentAccountTextLabel.text = NSLocalizedString("Payment Account", comment: "")
+        paymentAccountTextLabel.text = NSLocalizedString("Payment Method", comment: "")
         paymentAccountMaskedAccountNumberLabel.textColor = .blackText
         paymentAccountNicknameLabel.textColor = .middleGray
         
@@ -114,7 +112,7 @@ class ReviewPaymentViewController: UIViewController {
         
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountDueTextLabel.text = NSLocalizedString("Amount Due", comment: "")
+        amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueValueLabel.textColor = .deepGray
         amountDueValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         dueDateTextLabel.textColor = .deepGray
@@ -172,9 +170,6 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsSwitchLabel.isAccessibilityElement = false
         termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
-        
         overpayingSwitchLabel.textColor = .deepGray
         overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
@@ -200,12 +195,11 @@ class ReviewPaymentViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        gradientLayer.frame = scrollViewContentView.bounds
+        gradientLayer.frame = gradientView.bounds
     }
     
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = scrollViewContentView.bounds
+        gradientLayer.frame = gradientView.bounds
     }
     
     func bindViewHiding() {
@@ -217,11 +211,10 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).disposed(by: disposeBag)
-        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
     }
     
     func bindViewContent() {
-        // Payment Account
+        // Payment Method
         viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
         viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
@@ -234,7 +227,7 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.dueDate.asDriver().drive(dueDateValueLabel.rx.text).disposed(by: disposeBag)
         
         // Payment Amount
-        viewModel.paymentAmountDisplayString.asDriver().drive(paymentAmountValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentAmountString.asDriver().drive(paymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Overpaying
         viewModel.overpayingValueDisplayString.drive(cardOverpayingValueLabel.rx.text).disposed(by: disposeBag)
@@ -263,106 +256,101 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onTermsConditionsPress()
         }).disposed(by: disposeBag)
-        
-        privacyPolicyButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onPrivacyPolicyPress()
-        }).disposed(by: disposeBag)
     }
     
     @objc func onSubmitPress() {
         LoadingView.show()
         
-        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
+        if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .eCheckSubmit)
+                Analytics.log(event: .eCheckSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
             case .card:
-                Analytics.log(event: .cardSubmit)
+                Analytics.log(event: .cardSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
             }
         }
         
-        let handleError = { [weak self] (errMessage: String) in
+        let handleError = { [weak self] (err: ServiceError) in
+            guard let self = self else { return }
             LoadingView.hide()
-            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-            
-            // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
-            // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
-            if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
-                    action -> Void in
-                    UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
-                }))
+            if Environment.shared.opco == .bge {
+                let errMessage = err.localizedDescription
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                
+                // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+                // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+                if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
+                        action -> Void in
+                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
+                    }))
+                } else {
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                }
+                self.present(alertVc, animated: true, completion: nil)
             } else {
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
+                    forError: err,
+                    walletItem: self.viewModel.selectedWalletItem.value!,
+                    callHandler: { _ in
+                        UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
+                    }
+                )
+                self.present(paymentusAlertVC, animated: true, completion: nil)
             }
-            self?.present(alertVc, animated: true, completion: nil)
         }
         
         if viewModel.paymentId.value != nil { // Modify
             viewModel.modifyPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-            }, onError: { errMessage in
-                handleError(errMessage)
+            }, onError: { error in
+                handleError(error)
             })
         } else { // Schedule
-            viewModel.checkForCutoff(onShouldReject: { [weak self] in
-                guard let self = self else { return }
+            viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
                 LoadingView.hide()
-                self.present(UIAlertController.fiservCutoffAlert(), animated: true, completion: nil)
-            }, onShouldContinue: { [weak self] in
-                self?.viewModel.schedulePayment(onDuplicate: { [weak self] (errTitle, errMessage) in
-                    LoadingView.hide()
-                    let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self?.present(alertVc, animated: true, completion: nil)
-                }, onSuccess: { [weak self] in
-                    LoadingView.hide()
-                    
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                        let pageView: AnalyticsEvent
-                        switch bankOrCard {
-                        case .bank:
-                            pageView = .eCheckComplete
-                        case .card:
-                            pageView = .cardComplete
-                        }
-                        
-                        Analytics.log(event: pageView)
+                let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
+            }, onSuccess: { [weak self] in
+                LoadingView.hide()
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                    switch bankOrCard {
+                    case .bank:
+                        Analytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                    case .card:
+                        Analytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                     }
-                    
-                    self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-                }, onError: { [weak self] error in
-                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard {
-                        let pageView: AnalyticsEvent
-                        switch bankOrCard {
-                        case .bank:
-                            pageView = .eCheckError
-                        case .card:
-                            pageView = .cardError
-                        }
-                        
-                        Analytics.log(event: pageView,
-                                      dimensions: [.errorCode: error.serviceCode])
+                }
+                
+                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+            }, onError: { [weak self] error in
+                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                    switch bankOrCard {
+                    case .bank:
+                        Analytics.log(event: .eCheckError, dimensions: [
+                            .errorCode: error.serviceCode,
+                            .paymentTempWalletItem: temp ? "true" : "false"
+                        ])
+                    case .card:
+                        Analytics.log(event: .cardError, dimensions: [
+                            .errorCode: error.serviceCode,
+                            .paymentTempWalletItem: temp ? "true" : "false"
+                        ])
                     }
-                    handleError(error.localizedDescription)
-                })
+                }
+                
+                handleError(error)
             })
         }
-
     }
     
     func onTermsConditionsPress() {
         let url = Environment.shared.opco == .bge ? URL(string: "https://www.speedpay.com/terms/")! :
-            URL(string:"https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!
+            URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
-        navigationController?.present(tacModal, animated: true, completion: nil)
-    }
-    
-    func onPrivacyPolicyPress() {
-        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
     

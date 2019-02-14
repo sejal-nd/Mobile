@@ -19,6 +19,7 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     @IBOutlet private weak var pickerButtonStack: UIStackView!
     @IBOutlet private weak var pickerLabel: UILabel!
     @IBOutlet weak var pickerButton: UIButton!
+    @IBOutlet private weak var separatorView: UIView!
     
     @IBOutlet weak var toggle: Switch!
 
@@ -34,10 +35,12 @@ class AlertPreferencesTableViewCell: UITableViewCell {
         pickerButton.titleLabel?.font = SystemFont.regular.of(textStyle: .headline)
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        contentView.backgroundColor = .softGray
     }
     
     func configure(withPreferenceOption option: AlertPreferencesViewModel.AlertPreferencesOptions,
-                   pickerButtonText: Driver<String>? = nil) {
+                   pickerButtonText: Driver<String>? = nil,
+                   isLastItem: Bool) {
         nameLabel.text = option.titleText
         detailLabel.text = option.detailText
         toggle.accessibilityLabel = option.titleText
@@ -53,6 +56,7 @@ class AlertPreferencesTableViewCell: UITableViewCell {
         
         
         pickerButtonStack.isHidden = pickerButtonText == nil
+        separatorView.isHidden = isLastItem
     }
     
     override func prepareForReuse() {

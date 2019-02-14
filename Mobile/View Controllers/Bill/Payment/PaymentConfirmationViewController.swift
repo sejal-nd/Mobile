@@ -21,14 +21,15 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var paymentDateValueLabel: UILabel!
     @IBOutlet weak var amountPaidTextLabel: UILabel!
     @IBOutlet weak var amountPaidValueLabel: UILabel!
+    @IBOutlet weak var confirmationNumberDivider: UIView!
+    @IBOutlet weak var confirmationNumberView: UIView!
+    @IBOutlet weak var confirmationNumberTextLabel: UILabel!
+    @IBOutlet weak var confirmationNumberValueLabel: UITextView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     
     @IBOutlet weak var autoPayView: UIView!
     @IBOutlet weak var autoPayLabel: UILabel!
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
-    
-    @IBOutlet weak var billMatrixView: UIView!
-    @IBOutlet weak var privacyPolicyButton: UIButton!
     
     @IBOutlet weak var bgeFooterView: UIView!
     @IBOutlet weak var bgeFooterLabel: UILabel!
@@ -74,14 +75,16 @@ class PaymentConfirmationViewController: UIViewController {
         amountPaidTextLabel.text = NSLocalizedString("Amount Paid", comment: "")
         amountPaidValueLabel.textColor = .blackText
         amountPaidValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberTextLabel.textColor = .blackText
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
+        confirmationNumberValueLabel.textColor = .blackText
+        confirmationNumberValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         autoPayLabel.textColor = .deepGray
         autoPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
         autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
         enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        
-        privacyPolicyButton.setTitleColor(.actionBlue, for: .normal)
-        privacyPolicyButton.setTitle(NSLocalizedString("Privacy Policy", comment: ""), for: .normal)
         
         if Environment.shared.opco == .bge {
             bgeFooterView.backgroundColor = .softGray
@@ -99,7 +102,6 @@ class PaymentConfirmationViewController: UIViewController {
     }
     
     func bindViewHiding() {
-        billMatrixView.isHidden = !viewModel.shouldShowBillMatrixView
         viewModel.shouldShowAutoPayEnrollButton.map(!).drive(autoPayView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowConvenienceFeeLabel.map(!).drive(convenienceFeeLabel.rx.isHidden).disposed(by: disposeBag)
     }
@@ -110,6 +112,17 @@ class PaymentConfirmationViewController: UIViewController {
         
         // Total Payment
         viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).disposed(by: disposeBag)
+        
+        // Confirmation Number
+        //TODO: remove the opco check when BGE moves to paymentus
+        if let confirmationNumber = viewModel.confirmationNumber, Environment.shared.opco != .bge {
+            confirmationNumberValueLabel.text = confirmationNumber
+            confirmationNumberDivider.isHidden = false
+            confirmationNumberView.isHidden = false
+        } else {
+            confirmationNumberDivider.isHidden = true
+            confirmationNumberView.isHidden = true
+        }
         
         // Conv. Fee Label
         viewModel.paymentAmountFeeFooterLabelText.asDriver().drive(convenienceFeeLabel.rx.text).disposed(by: disposeBag)
@@ -164,12 +177,6 @@ class PaymentConfirmationViewController: UIViewController {
                 break
             }
         }
-    }
-    
-    @IBAction func onPrivacyPolicyPress(_ sender: Any) {
-        let tacModal = WebViewController(title: NSLocalizedString("Privacy Policy", comment: ""),
-                                         url: URL(string:"https://webpayments.billmatrix.com/HTML/privacy_notice_en-us.html")!)
-        present(tacModal, animated: true, completion: nil)
     }
     
 }

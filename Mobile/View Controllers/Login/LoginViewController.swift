@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import ToastSwiftFramework
+import Toast_Swift
 
 class LoginViewController: UIViewController {
     
@@ -93,8 +93,9 @@ class LoginViewController: UIViewController {
         // Two-way data binding for the username/password fields
         viewModel.username.asDriver().drive(usernameTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
         viewModel.password.asDriver().drive(passwordTextField.textField.rx.text.orEmpty).disposed(by: disposeBag)
-        viewModel.password.asDriver().drive(onNext: { [weak self] (password) in
+        viewModel.password.asDriver().drive(onNext: { [weak self] password in
             guard let self = self else { return }
+            if password.isEmpty { return } // This driver fires upon maintenance mode dismissal, where we don't want this stuff to happen
             if let autofilledPw = self.viewModel.biometricsAutofilledPassword, password != autofilledPw {
                 // The password field was successfully auto-filled from biometrics, but then the user manually changed it,
                 // presumably because the password has been changed and is now different than what's stored in the keychain.
@@ -134,8 +135,8 @@ class LoginViewController: UIViewController {
         keepMeSignedInLabel.isAccessibilityElement = false
         keepMeSignedInSwitch.isAccessibilityElement = true
         keepMeSignedInSwitch.accessibilityLabel = keepMeSignedInLabel.text
-
-        checkForMaintenanceMode(onCompletion: { [weak self] in
+        
+        viewModel.checkForMaintenance(onCompletion: { [weak self] in
             if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) {
                 UserDefaults.standard.removeObject(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) // Clear once consumed
                 LoadingView.show()
@@ -169,8 +170,8 @@ class LoginViewController: UIViewController {
         
         // Reset the view for when user pops back from ChangePasswordViewController
         signInButton.reset()
-        signInButton.accessibilityLabel = "Sign In";
-        signInButton.accessibilityViewIsModal = false;
+        signInButton.accessibilityLabel = "Sign In"
+        signInButton.accessibilityViewIsModal = false
         passwordTextField.textField.text = ""
         passwordTextField.textField.sendActions(for: .editingChanged)
     }
@@ -201,8 +202,8 @@ class LoginViewController: UIViewController {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        signInButton.accessibilityLabel = "Loading";
-        signInButton.accessibilityViewIsModal = true;
+        signInButton.accessibilityLabel = "Loading"
+        signInButton.accessibilityViewIsModal = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Loading", comment: ""))
@@ -273,8 +274,8 @@ class LoginViewController: UIViewController {
             guard let self = self else { return }
             self.navigationController?.view.isUserInteractionEnabled = true
             self.signInButton.reset()
-            self.signInButton.accessibilityLabel = "Sign In";
-            self.signInButton.accessibilityViewIsModal = false;
+            self.signInButton.accessibilityLabel = "Sign In"
+            self.signInButton.accessibilityViewIsModal = false
 
             let alertVC = UIAlertController(title: NSLocalizedString("Sign In Error", comment: ""), message: NSLocalizedString("The registration process has not been completed. You must click the link in the activation email to complete the process. Would you like the activation email resent?", comment: ""), preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
@@ -352,8 +353,8 @@ class LoginViewController: UIViewController {
     
     func showErrorAlertWith(title: String?, message: String) {
         signInButton.reset()
-        signInButton.accessibilityLabel = "Sign In";
-        signInButton.accessibilityViewIsModal = false;
+        signInButton.accessibilityLabel = "Sign In"
+        signInButton.accessibilityViewIsModal = false
         
         let errorAlert = UIAlertController(title: title != nil ? title : NSLocalizedString("Sign In Error", comment: ""), message: message, preferredStyle: .alert)
         errorAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -385,7 +386,7 @@ class LoginViewController: UIViewController {
         }, onDidNotLoad:  { [weak self] in
             self?.biometricButton.isEnabled = true
             self?.navigationController?.view.isUserInteractionEnabled = true
-            }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
+        }, onSuccess: { [weak self] (loggedInWithTempPassword: Bool, isStormMode: Bool) in // Face/Touch ID and subsequent login successful
             UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Complete", comment: ""))
             guard let self = self else { return }
             self.signInButton.setSuccess(animationCompletion: { [weak self] in
@@ -427,19 +428,6 @@ class LoginViewController: UIViewController {
         scrollView.scrollIndicatorInsets = .zero
     }
     
-    func checkForMaintenanceMode(onCompletion: @escaping () -> Void) {
-        viewModel.checkForMaintenance(onSuccess: {
-            onCompletion()
-        }, onMaintenanceMode: { [weak self] in
-            self?.navigationController?.view.isUserInteractionEnabled = true
-            let ad = UIApplication.shared.delegate as! AppDelegate
-            ad.showMaintenanceMode()
-        }, onError: { errorMessage in
-            onCompletion()
-        })
-    }
-    
-    
     // MARK: - Other
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -447,7 +435,7 @@ class LoginViewController: UIViewController {
     }
     
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
-        return a + (b - a) * t;
+        return a + (b - a) * t
     }
     
     

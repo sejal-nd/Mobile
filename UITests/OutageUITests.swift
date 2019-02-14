@@ -76,7 +76,7 @@ class OutageUITests: ExelonUITestCase {
 
         checkExistenceOfElements([
             (.button, "Reload"),
-            (.staticText, "Scheduled Maintenance"),
+            (.staticText, "Maintenance"),
             (.staticText, "Outage is currently unavailable due to")
         ])
 

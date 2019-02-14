@@ -246,7 +246,7 @@ extension BillInterfaceController: NetworkingDelegate {
             switch state {
             case .restoreService(let restoreAmount, let dpaReinstAmount):
                 restoreServiceGroup.setHidden(false)
-                restoreServiceAmountLabel.setText(restoreAmount.currencyString ?? "--")
+                restoreServiceAmountLabel.setText(restoreAmount.currencyString)
 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
@@ -254,35 +254,35 @@ extension BillInterfaceController: NetworkingDelegate {
                 if dpaReinstAmount > 0 {
                     billAlertLabel.setText("Your service is off due to non-payment.")
                 } else {
-                    billAlertLabel.setText("\(restoreAmount.currencyString ?? "--") is due immediately to restore service.")
+                    billAlertLabel.setText("\(restoreAmount.currencyString) is due immediately to restore service.")
                 }
                 
                 // Past Due
-                amountPastDueLabel.setText(restoreAmount.currencyString ?? "--")
+                amountPastDueLabel.setText(restoreAmount.currencyString)
             case .avoidShutoff(let amount):
                 avoidShutoffGroup.setHidden(false)
-                avoidShutoffAmountLabel.setText(amount.currencyString ?? "--")
+                avoidShutoffAmountLabel.setText(amount.currencyString)
                 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(amount.currencyString ?? "--") is due immediately to avoid shutoff.")
+                billAlertLabel.setText("\(amount.currencyString) is due immediately to avoid shutoff.")
                 
                 // Past Due
-                amountPastDueLabel.setText(amount.currencyString ?? "--")
+                amountPastDueLabel.setText(amount.currencyString)
             case .catchUp(let amount, let date):
                 catchUpOnAgreementGroup.setHidden(false)
-                catchUpOnAgreementAmountLabel.setText(amount.currencyString ?? "--")
+                catchUpOnAgreementAmountLabel.setText(amount.currencyString)
                 catchUpOnAgreementDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(amount.currencyString ?? "--") is due \(date.dueBy().string) to catch up on your DPA.")
+                billAlertLabel.setText("\(amount.currencyString) is due \(date.dueBy().string) to catch up on your DPA.")
                 
                 // Past Due
-                amountPastDueLabel.setText(amount.currencyString ?? "--")
+                amountPastDueLabel.setText(amount.currencyString)
             case .pastDue(let pastDueAmount, let netDueAmount, let remainingBalanceDue):
                 amountPastDueGroup.setHidden(false)
-                amountPastDueLabel.setText(pastDueAmount.currencyString ?? "--")
+                amountPastDueLabel.setText(pastDueAmount.currencyString)
 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
@@ -290,7 +290,7 @@ extension BillInterfaceController: NetworkingDelegate {
                 if netDueAmount == pastDueAmount, remainingBalanceDue <= 0 {
                     billAlertLabel.setText("Your bill is past due.")
                 } else {
-                    billAlertLabel.setText("\(pastDueAmount.currencyString ?? "--") is due immediately.")
+                    billAlertLabel.setText("\(pastDueAmount.currencyString) is due immediately.")
                 }
             case .billReady(let amount, let date):
                 billAmountGroup.setHidden(false)
@@ -298,10 +298,10 @@ extension BillInterfaceController: NetworkingDelegate {
                 // Add Colored Dollar Sign if there is a precarious bill state
                 if billStates.contains(where: { $0.isPrecariousBillSituation }) {
                     // White
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1)))
+                    billAmountTitleLabel.setAttributedText((amount.currencyString).textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1)))
                 } else {
                     // Blue
-                    billAmountTitleLabel.setAttributedText((amount.currencyString ?? "--").textWithColorAndFontInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), font: UIFont.preferredFont(forTextStyle: .title1)))
+                    billAmountTitleLabel.setAttributedText((amount.currencyString).textWithColorAndFontInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), font: UIFont.preferredFont(forTextStyle: .title1)))
                 }
                 
                 let text = "Amount due \(date.dueBy().string)"
@@ -320,23 +320,23 @@ extension BillInterfaceController: NetworkingDelegate {
                 autoPayScheduledPaymentDetailLabel.setText("You are enrolled in Autopay")
             case .billPaid(let amount):
                 billPaidGroup.setHidden(false)
-                billPaidAmountLabel.setText(amount.currencyString ?? "--")
+                billPaidAmountLabel.setText(amount.currencyString)
                 
                 billAmountGroup.setHidden(true)
             case .remainingBalance(let remainingBalanceAmount):
                 remainingBalanceGroup.setHidden(false)
-                remainingBalanaceAmountLabel.setText(remainingBalanceAmount.currencyString ?? "--")
+                remainingBalanaceAmountLabel.setText(remainingBalanceAmount.currencyString)
                 
                 // Alert Banner
                 billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(remainingBalanceAmount.currencyString ?? "--") is due immediately.")
+                billAlertLabel.setText("\(remainingBalanceAmount.currencyString) is due immediately.")
             case .paymentPending(let amount):
                 pendingPaymentGroup.setHidden(false)
                 
                 let italicHeadlineFont =
                     UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline).italic()
                 let fontAttribute = [NSAttributedString.Key.font : italicHeadlineFont]
-                let attributedString = NSAttributedString(string: "-\(amount.currencyString ?? "--")", attributes: fontAttribute)
+                let attributedString = NSAttributedString(string: "-\(amount.currencyString)", attributes: fontAttribute)
                 pendingPaymentAmountLabel.setAttributedText(attributedString)
                 let italicFootnoteFont =
                     UIFont.preferredFont(forTextStyle: UIFont.TextStyle.footnote).italic()
@@ -353,14 +353,14 @@ extension BillInterfaceController: NetworkingDelegate {
             case .paymentScheduled(let scheduledPayment):
                 autoPayScheduledPaymentGroup.setHidden(false)
                 autoPayScheduledPaymentImage.setImageNamed(AppImage.scheduledPayment.name)
-                autoPayScheduledPaymentDetailLabel.setText("Thank you for scheduling your \(scheduledPayment.amount.currencyString ?? "--") payment for \(scheduledPayment.date?.mmDdYyyyString ?? "--")")
+                autoPayScheduledPaymentDetailLabel.setText("Thank you for scheduling your \(scheduledPayment.amount.currencyString) payment for \(scheduledPayment.date?.mmDdYyyyString ?? "--")")
                 
                 billAmountGroup.setHidden(true)
             case .mostRecent(let amount, let date):
                 guard billStates.contains(where: { $0.shouldShowRecentBill }) else { continue }
                 
                 mostRecentBillGroup.setHidden(false)
-                mostRecentBillAmountLabel.setText(amount.currencyString ?? "--")
+                mostRecentBillAmountLabel.setText(amount.currencyString)
                 mostRecentBillDueDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
             }
         }

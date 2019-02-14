@@ -8,7 +8,7 @@
 
 import RxSwift
 import RxCocoa
-import Zxcvbn
+import zxcvbn_ios
 
 class ChangePasswordViewModel {
     let disposeBag = DisposeBag()
@@ -131,7 +131,7 @@ class ChangePasswordViewModel {
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     
                     if self.biometricsService.isBiometricsEnabled() {
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
@@ -161,7 +161,7 @@ class ChangePasswordViewModel {
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
                         self.biometricsService.setStoredPassword(password: self.newPassword.value)
                     }

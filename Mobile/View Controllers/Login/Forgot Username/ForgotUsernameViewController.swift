@@ -55,7 +55,7 @@ class ForgotUsernameViewController: UIViewController {
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
             .drive(onNext: { [weak self] phoneNumber, hasTenDigits in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !phoneNumber.isEmpty {
                     if !hasTenDigits {
                         self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
@@ -81,7 +81,7 @@ class ForgotUsernameViewController: UIViewController {
         identifierTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.identifierNumber.asDriver(), viewModel.identifierHasFourDigits, viewModel.identifierIsNumeric))
             .drive(onNext: { [weak self] identifierNumber, hasFourDigits, isNumeric in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !identifierNumber.isEmpty {
                     if !hasFourDigits {
                         self.identifierTextField?.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
@@ -110,7 +110,7 @@ class ForgotUsernameViewController: UIViewController {
         accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
             .drive(onNext: { [weak self] accountNumber, hasTenDigits in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !accountNumber.isEmpty {
                     if !hasTenDigits {
                         self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))

@@ -7,11 +7,14 @@
 //
 
 import RxSwift
-import RxSwiftExt
 
 extension ObservableType {
-    public func isNil<T>() -> Observable<Bool> where E == Optional<T> {
+    func isNil<T>() -> Observable<Bool> where E == Optional<T> {
         return map { $0 == nil }
+    }
+    
+    func map<T>(_ keyPath: KeyPath<Self.E, T>) -> Observable<T> {
+        return map { $0[keyPath: keyPath] }
     }
     
     func toAsyncRequest<T>(activityTracker: ActivityTracker? = nil,
@@ -52,7 +55,11 @@ extension ObservableType where E: Sequence {
 import RxCocoa
 
 extension SharedSequenceConvertibleType {
-    public func isNil<T>() -> SharedSequence<SharingStrategy, Bool> where E == Optional<T> {
+    func isNil<T>() -> SharedSequence<SharingStrategy, Bool> where E == Optional<T> {
         return map { $0 == nil }
+    }
+    
+    func map<T>(_ keyPath: KeyPath<Self.E, T>) -> SharedSequence<SharingStrategy, T> {
+        return map { $0[keyPath: keyPath] }
     }
 }

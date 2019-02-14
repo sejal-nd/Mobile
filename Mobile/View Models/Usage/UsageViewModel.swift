@@ -16,8 +16,6 @@ class UsageViewModel {
     private let accountService: AccountService
     private let usageService: UsageService
     
-    private var billAnalysisCache = BillAnalysisCache()
-    
     // MARK: - Init
     
     required init(authService: AuthenticationService, accountService: AccountService, usageService: UsageService) {
@@ -36,13 +34,13 @@ class UsageViewModel {
     
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = fetchAllDataTrigger
         // Clear cache on refresh or account switch
-        .do(onNext: { [weak self] in self?.billAnalysisCache.clear() })
+        .do(onNext: { [weak self] in self?.usageService.clearCache() })
         .toAsyncRequest { [weak self] in
             self?.authService.getMaintenanceMode() ?? .empty()
     }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
-        .filter { !($0.element?.usageStatus ?? false) }
+        .filter { !($0.element?.allStatus ?? false) && !($0.element?.usageStatus ?? false) }
         .toAsyncRequest { [weak self] _ in
             self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
     }
@@ -51,17 +49,11 @@ class UsageViewModel {
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
                        lastYearPreviousBillSelectedSegmentIndex.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
-        .toAsyncRequest { [unowned self] (accountDetail, yearsIndex, electricGasIndex) in
+        .toAsyncRequest { [weak self] (accountDetail, yearsIndex, electricGasIndex) in
+            guard let self = self else { return .empty() }
+            
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasIndex)
-            
-            // Pull from cache if possible
-            if let cachedData = self.billAnalysisCache[accountDetail.accountNumber,
-                                                       accountDetail.premiseNumber!,
-                                                       yearsIndex == 0,
-                                                       isGas] {
-                return Observable.just(cachedData)
-            }
             
             let billComparison = self.usageService
                 .fetchBillComparison(accountNumber: accountDetail.accountNumber,
@@ -74,18 +66,12 @@ class UsageViewModel {
                 billForecast = self.usageService.fetchBillForecast(accountNumber: accountDetail.accountNumber,
                                                                    premiseNumber: accountDetail.premiseNumber!)
                     .map { $0 }
-                    .catchError { _ in .just(nil) }
+                    .catchErrorJustReturn(nil)
             } else {
                 billForecast = .just(nil)
             }
             
             return Observable.zip(billComparison, billForecast)
-                .do(onNext: { [weak self] in
-                    self?.billAnalysisCache[accountDetail.accountNumber,
-                                            accountDetail.premiseNumber!,
-                                            yearsIndex == 0,
-                                            isGas] = $0
-                })
     }
     
     // MARK: - Convenience Properties
@@ -509,10 +495,10 @@ class UsageViewModel {
         let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
         if compared.charges < 0 {
             let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: billCreditString, abs(compared.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: billCreditString, abs(compared.charges).currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
         } else {
             let localizedString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: localizedString, compared.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: localizedString, compared.charges.currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
         }
         
         return "\(dateString). \(tempString). \(detailString)"
@@ -533,10 +519,10 @@ class UsageViewModel {
         let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
         if reference.charges < 0 {
             let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: billCreditString, abs(reference.charges).currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
         } else {
             let localizedString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: localizedString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: localizedString, reference.charges.currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
         }
         
         return "\(dateString). \(tempString). \(detailString)"
@@ -571,11 +557,11 @@ class UsageViewModel {
                 if isGas {
                     if let projectedCost = billForecast.gas?.projectedCost,
                         let toDateCost = billForecast.gas?.toDateCost {
-                        detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                        detailString = String(format: localizedString, projectedCost.currencyString, toDateCost.currencyString)
                     }
                 } else if let projectedCost = billForecast.electric?.projectedCost,
                     let toDateCost = billForecast.electric?.toDateCost {
-                    detailString = String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                    detailString = String(format: localizedString, projectedCost.currencyString, toDateCost.currencyString)
                 }
             } else {
                 let localizedString = NSLocalizedString("You are projected to use around %d %@. You've used about %d %@ so far this bill period. " +
@@ -720,9 +706,9 @@ class UsageViewModel {
                     let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
                     if compared.charges < 0 {
                         let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                        return String(format: billCreditString, abs(compared.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: billCreditString, abs(compared.charges).currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                     } else {
-                        return String(format: localizedPrevCurrString, compared.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: localizedPrevCurrString, compared.charges.currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                     }
                 }
             case .current:
@@ -731,9 +717,9 @@ class UsageViewModel {
                     let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
                     if reference.charges < 0 {
                         let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                        return String(format: billCreditString, abs(reference.charges).currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: billCreditString, abs(reference.charges).currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                     } else {
-                        return String(format: localizedPrevCurrString, reference.charges.currencyString!, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: localizedPrevCurrString, reference.charges.currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
                     }
                 }
             case .projected:
@@ -742,12 +728,12 @@ class UsageViewModel {
                         "This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: "")
                     if let gasForecast = billForecast?.gas, isGas {
                         if let projectedCost = gasForecast.projectedCost, let toDateCost = gasForecast.toDateCost {
-                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                            return String(format: localizedString, projectedCost.currencyString, toDateCost.currencyString)
                         }
                     }
                     if let elecForecast = billForecast?.electric, !isGas {
                         if let projectedCost = elecForecast.projectedCost, let toDateCost = elecForecast.toDateCost {
-                            return String(format: localizedString, projectedCost.currencyString!, toDateCost.currencyString!)
+                            return String(format: localizedString, projectedCost.currencyString, toDateCost.currencyString)
                         }
                     }
                 } else {
@@ -832,7 +818,7 @@ class UsageViewModel {
         } else {
             return NSLocalizedString("Bill period. You spent about the same based on the number of days in your billing period.", comment: "")
         }
-        return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, gasOrElectricityString, billPeriodDiff)
+        return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString, gasOrElectricityString, billPeriodDiff)
     }
     
     private(set) lazy var weatherA11yLabel: Driver<String?> = Driver.combineLatest(accountDetail,
@@ -858,7 +844,7 @@ class UsageViewModel {
         } else {
             return NSLocalizedString("Weather. You spent about the same based on weather conditions.", comment: "")
         }
-        return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, gasOrElectricityString)
+        return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString, gasOrElectricityString)
     }
     
     private(set) lazy var otherA11yLabel: Driver<String?> = Driver.combineLatest(accountDetail,
@@ -889,7 +875,7 @@ class UsageViewModel {
             return NSLocalizedString("Other. You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
                 "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
         }
-        return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, gasOrElectricityString)
+        return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString, gasOrElectricityString)
     }
     
     // MARK: Likely Reasons Drivers
@@ -925,18 +911,18 @@ class UsageViewModel {
                 if currentCharges > prevCharges {
                     if lastYearPreviousBillSelectedSegmentIndex == 0 { // Last Year
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than last year.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
                     } else { // Previous Bill
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than your previous bill.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
                     }
                 } else {
                     if lastYearPreviousBillSelectedSegmentIndex == 0 { // Last Year
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than last year.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
                     } else { // Previous Bill
                         let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than your previous bill.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString!)
+                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
                     }
                 }
             }
@@ -979,7 +965,7 @@ class UsageViewModel {
                 } else {
                     return NSLocalizedString("You spent about the same based on the number of days in your billing period.", comment: "")
                 }
-                return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString!, gasOrElectricityString, billPeriodDiff)
+                return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString, gasOrElectricityString, billPeriodDiff)
             case .weather:
                 var localizedString: String!
                 if billComparison.weatherCostDifference >= 1 {
@@ -989,7 +975,7 @@ class UsageViewModel {
                 } else {
                     return NSLocalizedString("You spent about the same based on weather conditions.", comment: "")
                 }
-                return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString!, gasOrElectricityString)
+                return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString, gasOrElectricityString)
             case .other:
                 var localizedString: String!
                 if billComparison.otherCostDifference >= 1 {
@@ -1004,7 +990,7 @@ class UsageViewModel {
                     return NSLocalizedString("You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
                         "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
                 }
-                return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString!, gasOrElectricityString)
+                return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString, gasOrElectricityString)
             }
     }
     
@@ -1096,34 +1082,6 @@ class UsageViewModel {
         }
         // Default to electric
         return false
-    }
-    
-    private struct BillAnalysisCache {
-        private var cache = [String: [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]]()
-        
-        mutating func clear() {
-            cache.removeAll()
-        }
-        
-        subscript(accountNumber: String, premiseNumber: String, yearAgo: Bool, gas: Bool) -> (BillComparison, BillForecastResult?)? {
-            get {
-                return cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas]
-            } set {
-                if cache[accountNumber] == nil {
-                    cache[accountNumber] = [String: [Bool: [Bool: (BillComparison, BillForecastResult?)]]]()
-                }
-                
-                if cache[accountNumber]?[premiseNumber] == nil {
-                    cache[accountNumber]?[premiseNumber] = [Bool: [Bool: (BillComparison, BillForecastResult?)]]()
-                }
-                
-                if cache[accountNumber]?[premiseNumber]?[yearAgo] == nil {
-                    cache[accountNumber]?[premiseNumber]?[yearAgo] = [Bool: (BillComparison, BillForecastResult?)]()
-                }
-                
-                cache[accountNumber]?[premiseNumber]?[yearAgo]?[gas] = newValue
-            }
-        }
     }
 }
 

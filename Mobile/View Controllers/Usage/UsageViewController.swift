@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 import SafariServices
 
 class UsageViewController: AccountPickerViewController {
@@ -170,7 +171,7 @@ class UsageViewController: AccountPickerViewController {
     
     let viewModel = UsageViewModel(authService: ServiceFactory.createAuthenticationService(),
                                    accountService: ServiceFactory.createAccountService(),
-                                   usageService: ServiceFactory.createUsageService())
+                                   usageService: ServiceFactory.createUsageService(useCache: true))
     
     var initialSelection: (barSelection: UsageViewModel.BarGraphSelection, isGas: Bool, isPreviousBill: Bool)?
     
@@ -182,6 +183,7 @@ class UsageViewController: AccountPickerViewController {
         // Setup Account Picker
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        setRefreshControlEnabled(enabled: false)
         
         scrollView?.rx.contentOffset.asDriver()
             .map { min(0, $0.y) }
@@ -201,20 +203,6 @@ class UsageViewController: AccountPickerViewController {
         styleBarGraph()
         bindViewModel()
         dropdownView.configure(withViewModel: viewModel)
-        
-        accountPickerViewControllerWillAppear
-            .subscribe(onNext: { [weak self] state in
-                guard let this = self else { return }
-                switch(state) {
-                case .loadingAccounts:
-                    this.setRefreshControlEnabled(enabled: false)
-                case .readyToFetchData:
-                    if AccountsStore.shared.currentAccount != this.accountPicker.currentAccount {
-                        this.viewModel.fetchAllData()
-                    }
-                }
-            })
-            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -791,8 +779,6 @@ class UsageViewController: AccountPickerViewController {
                 .disposed(by: vc.disposeBag)
         case let vc as HourlyPricingViewController:
             vc.accountDetail = accountDetail
-        case let vc as TotalSavingsViewController:
-            vc.eventResults = accountDetail.serInfo.eventResults
         case let vc as PeakRewardsViewController:
             vc.accountDetail = accountDetail
         default:

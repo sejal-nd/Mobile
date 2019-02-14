@@ -39,7 +39,7 @@ class ForgotUsernameResultViewController: UIViewController {
         
         answerSecurityQuestionButton.isEnabled = viewModel.maskedUsernames.count <= 1
         tableView.rx.itemSelected.asDriver().drive(onNext: { [weak self] indexPath in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.viewModel.maskedUsernames.count > 1 {
                 self.viewModel.selectedUsernameIndex = indexPath.row
                 self.answerSecurityQuestionButton.isEnabled = true

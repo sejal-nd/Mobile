@@ -6,14 +6,16 @@
 	<string>UA-130226978-1</string>
 	<key>environment</key>
 	<string>PROD</string>
-	<key>appName</key>
-	<string>PECO</string>
 	<key>opco</key>
+	<string>PECO</string>
+	<key>appName</key>
 	<string>PECO</string>
 	<key>mcsInstanceName</key>
 	<string>Prod-pecoMBE</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
+	<key>paymentusUrl</key>
+	<string>https://ipn2.paymentus.com/xotp/pm/peco</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_prodbeta</string>
 	<key>gaTrackingId</key>

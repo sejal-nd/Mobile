@@ -1,6 +1,0 @@
-framework module Pods_PECOUITests {
-  umbrella header "Pods-PECOUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

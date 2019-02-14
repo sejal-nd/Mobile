@@ -17,6 +17,6 @@
 "FN-ACCT-NOTFOUND" = "The information entered does not match our records. Please try again.";
 "FN-NOT-FOUND" = "The information entered does not match our records. Please try again.";
 "FN-ACCT-PROTECTED" = "Your account is password protected and cannot be accessed through this app.";
-"DUPLICATE_PAYMENT_ACCOUNT" = "A payment account saved in your Wallet matches this payment account.";
+"DUPLICATE_PAYMENT_ACCOUNT" = "A payment method saved in your Wallet matches this payment method.";
 "TC-UNKNOWN" = "We’re sorry, we could not process your request at this time. Please try again later or contact our Customer Care Center for assistance.";
 "EXPIRED-TEMP-PASSWORD" = "Your temporary password has expired. Please request a new temporary password.";

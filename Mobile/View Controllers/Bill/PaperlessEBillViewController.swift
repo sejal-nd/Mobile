@@ -80,7 +80,7 @@ class PaperlessEBillViewController: UIViewController {
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] accountDetails -> () in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 self.enrollAllAccountsSwitch.isEnabled = true
                 self.detailsLoadingActivityView.isHidden = true
@@ -215,7 +215,7 @@ class PaperlessEBillViewController: UIViewController {
         LoadingView.show()
         viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
         }, onError: { [weak self] errMessage in
