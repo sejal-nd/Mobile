@@ -20,8 +20,8 @@ class MCSApi {
     static let shared = MCSApi()
     
     enum PathPrefix: String {
-        case anon = "anon_v7"
-        case auth = "auth_v7"
+        case anon = "anon_v6"
+        case auth = "auth_v6"
         case none
     }
     
