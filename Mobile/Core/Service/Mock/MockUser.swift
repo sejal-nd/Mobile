@@ -167,6 +167,9 @@ enum MockDataKey: String {
     case likelyReasonsAboutSame
     case likelyReasonsGreater
     case likelyReasonsLess
+    case pts
+    case serEnrolled
+    case ptsAndSerEnrolled
     
     case energyTipsNone
     case energyTips3

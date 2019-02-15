@@ -21,12 +21,15 @@ class Top5EnergyTipsTests: XCTestCase {
     }
     
     func testSuccessCutoff() {
-        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: AccountDetail(accountNumber: "8", premiseNumber: ""))
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
+        
+        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: .default)
         
         let expectedValues = [[
-            EnergyTip(title: "title 1", body: "body 1"),
-            EnergyTip(title: "title 2", body: "body 2"),
-            EnergyTip(title: "title 3", body: "body 3"),
+            EnergyTip(title: "short title", body: "short body"),
+            EnergyTip(title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit eros quis nisi rhoncus luctus. Nullam suscipit velit a hendrerit.", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit orci at sapien tempus malesuada. In sagittis nibh eu sapien volutpat facilisis. Duis volutpat mauris in sem mattis dignissim. Nullam eget venenatis quam. Nullam sodales id nisi euismod scelerisque. Maecenas ultricies malesuada fermentum. Donec ut commodo urna, eget accumsan ex. Vivamus non congue lacus."),
+            EnergyTip(title: "Bold Italic", body: "This body has html formatting. This sentence is bold. This sentence is italic."),
             EnergyTip(title: "title 4", body: "body 4"),
             EnergyTip(title: "title 5", body: "body 5")
             ]]
@@ -43,7 +46,10 @@ class Top5EnergyTipsTests: XCTestCase {
     }
     
     func testSuccessLessThan5() {
-        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: AccountDetail(accountNumber: "3", premiseNumber: ""))
+        MockUser.current = MockUser(globalKeys: .energyTips3)
+        MockAccountService.loadAccountsSync()
+        
+        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: .default)
         
         let expectedValues = [[
             EnergyTip(title: "title 1", body: "body 1"),
@@ -63,7 +69,10 @@ class Top5EnergyTipsTests: XCTestCase {
     }
     
     func testFailure() {
-        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+        MockUser.current = MockUser(globalKeys: .error)
+        MockAccountService.loadAccountsSync()
+        
+        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: .default)
         
         let expectedValues = ["fetch failed"]
         

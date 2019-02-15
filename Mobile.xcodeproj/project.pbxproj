@@ -1233,6 +1233,9 @@
 		B089573E22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
 		B089573F22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
 		B089574022175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B08957422217701D00A97965 /* UnitTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08957412217701D00A97965 /* UnitTestExtensions.swift */; };
+		B08957432217701D00A97965 /* UnitTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08957412217701D00A97965 /* UnitTestExtensions.swift */; };
+		B08957442217701D00A97965 /* UnitTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08957412217701D00A97965 /* UnitTestExtensions.swift */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -2949,6 +2952,7 @@
 		B089572C2217596400A97965 /* billing_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = billing_history.json; sourceTree = "<group>"; };
 		B089573322175BFD00A97965 /* budget_billing_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = budget_billing_info.json; sourceTree = "<group>"; };
 		B089573A22175FDC00A97965 /* alert_preferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_preferences.json; sourceTree = "<group>"; };
+		B08957412217701D00A97965 /* UnitTestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestExtensions.swift; sourceTree = "<group>"; };
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
@@ -5019,6 +5023,7 @@
 				829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */,
 				B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */,
 				B092184220A2400800695888 /* MaintenanceInitExtensions.swift */,
+				B08957412217701D00A97965 /* UnitTestExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -8561,6 +8566,7 @@
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E84705F0202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
+				B08957422217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				E83F026E1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0A830902146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				E8EFFE261FD739B000DBAE40 /* AlertsViewModelTests.swift in Sources */,
@@ -8806,6 +8812,7 @@
 				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62BB3200924410077B3DA /* Date.swift in Sources */,
 				E84705F1202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				B08957432217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				E8F62BB4200924410077B3DA /* MiniWalletViewModel.swift in Sources */,
 				B0A830912146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				E8F62BB5200924410077B3DA /* AlertsService.swift in Sources */,
@@ -9005,6 +9012,7 @@
 				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62C68200924570077B3DA /* Date.swift in Sources */,
 				E84705F2202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				B08957442217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				E8F62C69200924570077B3DA /* MiniWalletViewModel.swift in Sources */,
 				B0A830922146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				E8F62C6A200924570077B3DA /* AlertsService.swift in Sources */,

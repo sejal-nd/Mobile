@@ -1,6 +1,7 @@
 {
     "default": {
         "accountNumber": "1234567890",
+        "premiseNumber": "1",
         "BillingInfo": {},
         "CustomerInfo": {},
         "SERInfo": {}
@@ -794,6 +795,40 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "pts": {
+        "accountNumber": "1234567890",
+        "isPTSAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "serEnrolled": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "PremiseInfo": [
+            {
+                "premiseNumber": "1",
+                "smartEnergyRewards": "ENROLLED"
+            }
+        ],
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "ptsAndSerEnrolled": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isPTSAccount": true,
+        "PremiseInfo": [
+            {
+                "premiseNumber": "1",
+                "smartEnergyRewards": "ENROLLED"
+            }
+        ],
         "BillingInfo": {},
         "CustomerInfo": {},
         "SERInfo": {}
