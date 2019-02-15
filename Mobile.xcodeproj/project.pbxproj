@@ -940,9 +940,6 @@
 		9CC48018220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CC48019220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CC4801A220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
@@ -1182,27 +1179,30 @@
 		B08956F22215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
 		B08956F32215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
 		B08956F42215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
-		B08956F52215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
-		B08956F62215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
-		B08956F72215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
 		B08956F92215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
 		B08956FA2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
 		B08956FB2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
-		B08956FC2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
-		B08956FD2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
-		B08956FE2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
 		B08957002215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		B08957012215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		B08957022215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
-		B08957032215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
-		B08957042215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
-		B08957052215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
 		B08957072215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
 		B08957082215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
 		B08957092215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
-		B089570A2215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
-		B089570B2215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
-		B089570C2215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089570E22173CD300A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B089570F22173CD400A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B089571022173CD400A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B089571122173CE300A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B089571222173CE400A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B089571322173CE500A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B089571422173CEF00A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089571522173CF000A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089571622173CF000A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089571822173CFA00A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B089571922173CFB00A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B089571A22173CFC00A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B089571B22173D0900A97965 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		B089571C22173D0A00A97965 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		B089571D22173D0A00A97965 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -5767,12 +5767,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B089570A2215FE7900A97965 /* recover_username.json in Resources */,
-				9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */,
-				B08956FC2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
-				B08956F52215C27100A97965 /* sso_data.json in Resources */,
-				B08957032215F6DC00A97965 /* home_profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5924,6 +5919,7 @@
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
 				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
+				B089571D22173D0A00A97965 /* meter_ping_info.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
@@ -6064,6 +6060,7 @@
 				6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */,
 				35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */,
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
+				B089571B22173D0900A97965 /* meter_ping_info.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */,
 				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
@@ -6204,6 +6201,7 @@
 				6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */,
 				6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */,
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
+				B089571C22173D0A00A97965 /* meter_ping_info.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
@@ -6227,14 +6225,18 @@
 			files = (
 				B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
+				B089571022173CD400A97965 /* home_profile.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				B089571A22173CFC00A97965 /* sso_data.json in Resources */,
 				B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C62209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78ED221353E700F53C56 /* report_outage.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
+				B089571122173CE300A97965 /* energy_tips.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48011220A142900393CC7 /* outage_status.json in Resources */,
+				B089571622173CF000A97965 /* recover_username.json in Resources */,
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
 				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
@@ -6247,12 +6249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B089570B2215FE7900A97965 /* recover_username.json in Resources */,
-				9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */,
-				B08956FD2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
-				B08956F62215C27100A97965 /* sso_data.json in Resources */,
-				B08957042215F6DC00A97965 /* home_profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6260,12 +6257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B089570C2215FE7900A97965 /* recover_username.json in Resources */,
-				9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */,
-				B08956FE2215D11B00A97965 /* energy_tips.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
-				B08956F72215C27100A97965 /* sso_data.json in Resources */,
-				B08957052215F6DC00A97965 /* home_profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6275,14 +6267,18 @@
 			files = (
 				B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
+				B089570F22173CD400A97965 /* home_profile.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
+				B089571922173CFB00A97965 /* sso_data.json in Resources */,
 				B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C72209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78EE221353E700F53C56 /* report_outage.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
+				B089571222173CE400A97965 /* energy_tips.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48012220A142900393CC7 /* outage_status.json in Resources */,
+				B089571522173CF000A97965 /* recover_username.json in Resources */,
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
 				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
@@ -6297,14 +6293,18 @@
 			files = (
 				B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
+				B089570E22173CD300A97965 /* home_profile.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
+				B089571822173CFA00A97965 /* sso_data.json in Resources */,
 				B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C82209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78EF221353E700F53C56 /* report_outage.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
+				B089571322173CE500A97965 /* energy_tips.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48013220A142900393CC7 /* outage_status.json in Resources */,
+				B089571422173CEF00A97965 /* recover_username.json in Resources */,
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
 				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
