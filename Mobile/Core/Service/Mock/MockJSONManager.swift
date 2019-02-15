@@ -114,6 +114,7 @@ final class MockJSONManager {
         case accountLookup = "account_lookup"
         case billPdf = "bill_pdf"
         case billingHistory = "billing_history"
+        case budgetBillingInfo = "budget_billing_info"
     }
 }
 

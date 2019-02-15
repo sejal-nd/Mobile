@@ -1221,6 +1221,12 @@
 		B08957302217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
 		B08957312217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
 		B08957322217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
+		B089573422175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573522175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573622175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573722175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573822175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573922175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -2935,6 +2941,7 @@
 		B089571E2217455200A97965 /* account_lookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = account_lookup.json; sourceTree = "<group>"; };
 		B08957252217496D00A97965 /* bill_pdf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_pdf.json; sourceTree = "<group>"; };
 		B089572C2217596400A97965 /* billing_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = billing_history.json; sourceTree = "<group>"; };
+		B089573322175BFD00A97965 /* budget_billing_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = budget_billing_info.json; sourceTree = "<group>"; };
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
@@ -4503,6 +4510,7 @@
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
 				B08957252217496D00A97965 /* bill_pdf.json */,
 				B089572C2217596400A97965 /* billing_history.json */,
+				B089573322175BFD00A97965 /* budget_billing_info.json */,
 				B08956F82215D11B00A97965 /* energy_tips.json */,
 				B08956FF2215F6DB00A97965 /* home_profile.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
@@ -5948,6 +5956,7 @@
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				B089571D22173D0A00A97965 /* meter_ping_info.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */,
+				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
 				6A4FD91EB0591B1C2C63040C /* otp_step2.json in Resources */,
@@ -6092,6 +6101,7 @@
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				B089571B22173D0900A97965 /* meter_ping_info.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
+				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
 				6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */,
 				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
 				6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */,
@@ -6236,6 +6246,7 @@
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
 				B089571C22173D0A00A97965 /* meter_ping_info.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */,
+				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				6A4FD8AE71A963B756050DD9 /* otp_step2.json in Resources */,
@@ -6265,6 +6276,7 @@
 				B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C62209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78ED221353E700F53C56 /* report_outage.json in Resources */,
+				B089573722175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
 				B08957222217455200A97965 /* account_lookup.json in Resources */,
 				B089571122173CE300A97965 /* energy_tips.json in Resources */,
@@ -6310,6 +6322,7 @@
 				B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C72209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78EE221353E700F53C56 /* report_outage.json in Resources */,
+				B089573822175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
 				B08957232217455200A97965 /* account_lookup.json in Resources */,
 				B089571222173CE400A97965 /* energy_tips.json in Resources */,
@@ -6339,6 +6352,7 @@
 				B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C82209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78EF221353E700F53C56 /* report_outage.json in Resources */,
+				B089573922175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
 				B08957242217455200A97965 /* account_lookup.json in Resources */,
 				B089571322173CE500A97965 /* energy_tips.json in Resources */,

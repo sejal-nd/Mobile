@@ -26,10 +26,11 @@ class MockBillService: BillService {
     func fetchBudgetBillingInfo(accountNumber: String) -> Observable<BudgetBillingInfo> {
         if accountNumber == "0000" {
             return .error(ServiceError(serviceMessage: "Mock Error"))
-        } else {
-            let info = BudgetBillingInfo.from(["enrolled": true, "averageMonthlyBill": 120])!
-            return .just(info)
         }
+        
+        let dataFile = MockJSONManager.File.budgetBillingInfo
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
 
     func enrollBudgetBilling(accountNumber: String) -> Observable<Void> {
