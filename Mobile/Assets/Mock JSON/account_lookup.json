@@ -1,0 +1,25 @@
+{
+    "default": [
+        {
+            "AccountNumber": "1234567890",
+            "StreetNumber": "1268",
+            "ApartmentUnitNumber": "12B"
+        },
+        {
+            "AccountNumber": "9876543219",
+            "StreetNumber": "6789",
+            "ApartmentUnitNumber": "99A"
+        },
+        {
+            "AccountNumber": "1111111111",
+            "StreetNumber": "999"
+        }
+    ],
+    "acctLookup1": [
+        {
+            "AccountNumber": "1234567890",
+            "StreetNumber": "1268",
+            "ApartmentUnitNumber": "12B"
+        }
+    ]
+}

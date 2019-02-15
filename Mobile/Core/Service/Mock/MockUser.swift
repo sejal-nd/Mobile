@@ -172,7 +172,7 @@ enum MockDataKey: String {
     case energyTips3
     case energyTips7
     
-    // App State
+    // Anon
     case maintAll
     case maintAllTabs
     case maintAllTabsIOS
@@ -180,6 +180,7 @@ enum MockDataKey: String {
     case maintNotHomeIOS
     case stormMode
     case urgentBanner
+    case acctLookup1
     
     // General
     case screenshots
