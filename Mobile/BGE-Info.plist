@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.0</string>
+	<string>1.6.0</string>
 	<key>CFBundleVersion</key>
 	<string>20180206</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -27,6 +27,19 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>exeloncorp.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This allows BGE to save appointment events in your calendar.</string>
 	<key>NSCameraUsageDescription</key>
@@ -70,19 +83,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>exeloncorp.com</key>
-            <dict>
-                <key>NSExceptionRequiresForwardSecrecy</key>
-                <false/>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-            </dict>
-        </dict>
-    </dict>
+	</array>
 </dict>
 </plist>
