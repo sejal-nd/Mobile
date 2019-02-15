@@ -1227,6 +1227,12 @@
 		B089573722175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
 		B089573822175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
 		B089573922175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573B22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573C22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573D22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573E22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573F22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089574022175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -2942,6 +2948,7 @@
 		B08957252217496D00A97965 /* bill_pdf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_pdf.json; sourceTree = "<group>"; };
 		B089572C2217596400A97965 /* billing_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = billing_history.json; sourceTree = "<group>"; };
 		B089573322175BFD00A97965 /* budget_billing_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = budget_billing_info.json; sourceTree = "<group>"; };
+		B089573A22175FDC00A97965 /* alert_preferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_preferences.json; sourceTree = "<group>"; };
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
@@ -4506,6 +4513,7 @@
 				B04DDF8A2200DBEC00594ACF /* accounts.json */,
 				B04DDF832200D47A00594ACF /* account_details.json */,
 				B089571E2217455200A97965 /* account_lookup.json */,
+				B089573A22175FDC00A97965 /* alert_preferences.json */,
 				B07E179C2204E8F900B6E3C7 /* bill_comparison.json */,
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
 				B08957252217496D00A97965 /* bill_pdf.json */,
@@ -5873,6 +5881,7 @@
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
 				01F612251F1E404F00A4F9DA /* AddBankFormView.xib in Resources */,
+				B089573B22175FDC00A97965 /* alert_preferences.json in Resources */,
 				01F612211F1E401900A4F9DA /* AddCardFormView.xib in Resources */,
 				35A6C6E0211CC11E00C2A58F /* Updates.storyboard in Resources */,
 				B0882CB4210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
@@ -6018,6 +6027,7 @@
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82A18ED11EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
+				B089573D22175FDC00A97965 /* alert_preferences.json in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				35A6C6E4211CC17100C2A58F /* Updates.storyboard in Resources */,
@@ -6163,6 +6173,7 @@
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
+				B089573C22175FDC00A97965 /* alert_preferences.json in Resources */,
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
@@ -6282,6 +6293,7 @@
 				B089571122173CE300A97965 /* energy_tips.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B089573E22175FDC00A97965 /* alert_preferences.json in Resources */,
 				B08957302217596400A97965 /* billing_history.json in Resources */,
 				9CC48011220A142900393CC7 /* outage_status.json in Resources */,
 				B089571622173CF000A97965 /* recover_username.json in Resources */,
@@ -6328,6 +6340,7 @@
 				B089571222173CE400A97965 /* energy_tips.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B089573F22175FDC00A97965 /* alert_preferences.json in Resources */,
 				B08957312217596400A97965 /* billing_history.json in Resources */,
 				9CC48012220A142900393CC7 /* outage_status.json in Resources */,
 				B089571522173CF000A97965 /* recover_username.json in Resources */,
@@ -6358,6 +6371,7 @@
 				B089571322173CE500A97965 /* energy_tips.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B089574022175FDC00A97965 /* alert_preferences.json in Resources */,
 				B08957322217596400A97965 /* billing_history.json in Resources */,
 				9CC48013220A142900393CC7 /* outage_status.json in Resources */,
 				B089571422173CEF00A97965 /* recover_username.json in Resources */,
