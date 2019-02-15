@@ -345,8 +345,7 @@ class AccountPicker: UIView {
     }
     
     @objc func onAdvancedAccountButtonPress() {
-        let storyboard = UIStoryboard(name: "Outage", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
+        if let vc = Bundle.main.loadNibNamed(AdvancedAccountPickerViewController.className, owner: nil, options: nil)?.first as? AdvancedAccountPickerViewController {
             vc.delegate = self
             vc.accounts = accounts
             if let parentVc = parentViewController {

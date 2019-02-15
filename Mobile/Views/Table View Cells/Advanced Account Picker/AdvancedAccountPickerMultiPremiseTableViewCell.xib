@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdvancedAccountPickerMultiPremiseTableViewCell" rowHeight="125" id="hLW-lx-Kha" userLabel="AdvancedAccountPickerMultiPremiseTableViewCell" customClass="AdvancedAccountPickerMultiPremiseTableViewCell" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hLW-lx-Kha" id="tYy-US-nFo">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="iaL-aZ-one">
+                        <rect key="frame" x="17" y="9" width="65" height="43"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="8Ta-uZ-IEt">
+                                <rect key="frame" x="0.0" y="13.5" width="19" height="16"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6RF-Io-bZK">
+                                <rect key="frame" x="22" y="0.0" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="43" id="CZk-4g-u6c"/>
+                                    <constraint firstAttribute="width" constant="43" id="ROG-JB-PGd"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="yyM-2W-dga">
+                        <rect key="frame" x="89" y="10.5" width="215.5" height="40.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="630-vv-IVC">
+                                <rect key="frame" x="0.0" y="0.0" width="215.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOj-UJ-s3e">
+                                <rect key="frame" x="0.0" y="23.5" width="215.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0s5-oC-fQj">
+                        <rect key="frame" x="311.5" y="22" width="46.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dBo-Vk-yZg">
+                        <rect key="frame" x="67" y="69" width="291" height="45.5"/>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dBo-Vk-yZg" firstAttribute="top" secondItem="iaL-aZ-one" secondAttribute="bottom" constant="17" id="6x7-hU-yUV"/>
+                    <constraint firstItem="yyM-2W-dga" firstAttribute="leading" secondItem="iaL-aZ-one" secondAttribute="trailing" constant="7" id="CU7-by-dIr"/>
+                    <constraint firstItem="iaL-aZ-one" firstAttribute="top" secondItem="tYy-US-nFo" secondAttribute="top" constant="9" id="Ldj-3R-lrd"/>
+                    <constraint firstItem="dBo-Vk-yZg" firstAttribute="leading" secondItem="tYy-US-nFo" secondAttribute="leading" constant="67" id="PHa-eW-NOG"/>
+                    <constraint firstItem="iaL-aZ-one" firstAttribute="leading" secondItem="tYy-US-nFo" secondAttribute="leading" constant="17" id="PWS-Kc-TZ0"/>
+                    <constraint firstAttribute="trailing" secondItem="0s5-oC-fQj" secondAttribute="trailing" constant="17" id="dO0-O8-vly"/>
+                    <constraint firstItem="0s5-oC-fQj" firstAttribute="leading" secondItem="yyM-2W-dga" secondAttribute="trailing" constant="7" id="fm4-bt-j78"/>
+                    <constraint firstItem="0s5-oC-fQj" firstAttribute="centerY" secondItem="iaL-aZ-one" secondAttribute="centerY" id="lzd-LE-2WU"/>
+                    <constraint firstAttribute="bottom" secondItem="dBo-Vk-yZg" secondAttribute="bottom" constant="10" id="sXl-JK-3Rm"/>
+                    <constraint firstItem="yyM-2W-dga" firstAttribute="centerY" secondItem="iaL-aZ-one" secondAttribute="centerY" id="vdw-pi-xp8"/>
+                    <constraint firstAttribute="trailing" secondItem="dBo-Vk-yZg" secondAttribute="trailing" constant="17" id="wHe-FH-hZT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="accountImageView" destination="6RF-Io-bZK" id="k8P-Gt-ARm"/>
+                <outlet property="accountNumber" destination="630-vv-IVC" id="ZI2-M7-Y84"/>
+                <outlet property="accountStatusLabel" destination="0s5-oC-fQj" id="OLj-y5-t23"/>
+                <outlet property="addressLabel" destination="aOj-UJ-s3e" id="Cin-NH-egz"/>
+                <outlet property="checkMarkImageView" destination="8Ta-uZ-IEt" id="ENL-Ro-vdb"/>
+                <outlet property="premiseAddressStackView" destination="dBo-Vk-yZg" id="hUl-H2-Qft"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_check_outage" width="19" height="16"/>
+    </resources>
+</document>
