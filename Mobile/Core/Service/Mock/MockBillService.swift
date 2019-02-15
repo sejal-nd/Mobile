@@ -17,7 +17,9 @@ class MockBillService: BillService {
     ///   - startDate: the start date of the desired history
     ///   - endDate: the end date of the desired history
     func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) -> Observable<BillingHistory> {
-        return .just(BillingHistory.from(["billing_and_payment_history": []])!)
+        let dataFile = MockJSONManager.File.billingHistory
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
 
 
