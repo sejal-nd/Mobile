@@ -13,19 +13,32 @@ protocol AdvancedAccountPickerViewControllerDelegate: class {
 }
 
 class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
-    
     weak var delegate: AdvancedAccountPickerViewControllerDelegate?
-
-    @IBOutlet weak var tableView: UITableView!
     
     var accounts: [Account]!
-    
     var zPositionForWindow:CGFloat = 0.0
-    
     var accountIndexToEditPremise = -1
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tableView = UITableView().usingAutoLayout()
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+        
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         title = NSLocalizedString("Accounts", comment: "")
         hidesBottomBarWhenPushed = true

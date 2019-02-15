@@ -345,16 +345,15 @@ class AccountPicker: UIView {
     }
     
     @objc func onAdvancedAccountButtonPress() {
-        if let vc = Bundle.main.loadNibNamed(AdvancedAccountPickerViewController.className, owner: nil, options: nil)?.first as? AdvancedAccountPickerViewController {
-            vc.delegate = self
-            vc.accounts = accounts
-            if let parentVc = parentViewController {
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    vc.modalPresentationStyle = .formSheet
-                    parentVc.present(vc, animated: true, completion: nil)
-                } else {
-                    parentVc.navigationController?.pushViewController(vc, animated: true)
-                }
+        let vc = AdvancedAccountPickerViewController()
+        vc.delegate = self
+        vc.accounts = accounts
+        if let parentVc = parentViewController {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                vc.modalPresentationStyle = .formSheet
+                parentVc.present(vc, animated: true, completion: nil)
+            } else {
+                parentVc.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
