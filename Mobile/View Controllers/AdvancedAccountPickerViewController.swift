@@ -1,5 +1,5 @@
 //
-//  AccountListViewController.swift
+//  AdvancedAccountPickerViewController.swift
 //  Mobile
 //
 //  Created by Wesley Weitzel on 4/24/17.
@@ -13,29 +13,49 @@ protocol AdvancedAccountPickerViewControllerDelegate: class {
 }
 
 class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
-    
     weak var delegate: AdvancedAccountPickerViewControllerDelegate?
-
-    @IBOutlet weak var tableView: UITableView!
     
     var accounts: [Account]!
-    
     var zPositionForWindow:CGFloat = 0.0
-    
     var accountIndexToEditPremise = -1
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Make the currently selected account the first item in list
-        let index = AccountsStore.shared.accounts.index(of: AccountsStore.shared.currentAccount)
-        let currentAccount = accounts.remove(at: index!)
-        accounts.insert(currentAccount, at: 0)
+        let tableView = UITableView().usingAutoLayout()
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
         
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        title = NSLocalizedString("Accounts", comment: "")
+        hidesBottomBarWhenPushed = true
+        
+        let nib1 = UINib(nibName: AdvancedAccountPickerTableViewCell.className, bundle: nil)
+        let nib2 = UINib(nibName: AdvancedAccountPickerMultiPremiseTableViewCell.className, bundle: nil)
+        tableView.register(nib1, forCellReuseIdentifier: AdvancedAccountPickerTableViewCell.className)
+        tableView.register(nib2, forCellReuseIdentifier: AdvancedAccountPickerMultiPremiseTableViewCell.className)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Make the currently selected account the first item in list
+        let currentAccount = accounts.remove(at: AccountsStore.shared.currentIndex)
+        accounts.insert(currentAccount, at: 0)
+        
         if StormModeStatus.shared.isOn {
             navigationController?.setColoredNavBar()
         } else {
@@ -96,28 +116,27 @@ extension AdvancedAccountPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let account = accounts[indexPath.row]
-        
-        if account.isMultipremise {
-            return 125
-        } else {
-            return 64
-        }
+        return 64
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        let account = accounts[indexPath.row]
+        if account.isMultipremise {
+            return UITableView.automaticDimension
+        } else {
+            return 64
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let account = accounts[indexPath.row]
         
         if account.isMultipremise {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewMultPremiseCell", for: indexPath) as! MultiPremiseTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AdvancedAccountPickerMultiPremiseTableViewCell", for: indexPath) as! AdvancedAccountPickerMultiPremiseTableViewCell
             cell.configureCellWith(account: account)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AdvancedAccountPickerTableViewCell", for: indexPath) as! AdvancedAccountPickerTableViewCell
             cell.configure(withAccount: account)
             return cell
         }

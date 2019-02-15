@@ -1,5 +1,5 @@
 //
-//  MultiPremiseTableViewCell.swift
+//  AdvancedAccountPickerMultiPremiseTableViewCell.swift
 //  Mobile
 //
 //  Created by Wesley Weitzel on 4/28/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MultiPremiseTableViewCell: UITableViewCell {
+class AdvancedAccountPickerMultiPremiseTableViewCell: UITableViewCell {
 
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
