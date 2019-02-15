@@ -1209,6 +1209,12 @@
 		B08957222217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
 		B08957232217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
 		B08957242217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
+		B08957262217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B08957272217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B08957282217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B08957292217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B089572A2217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B089572B2217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -2921,6 +2927,7 @@
 		B08956FF2215F6DB00A97965 /* home_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_profile.json; sourceTree = "<group>"; };
 		B08957062215FE7800A97965 /* recover_username.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recover_username.json; sourceTree = "<group>"; };
 		B089571E2217455200A97965 /* account_lookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = account_lookup.json; sourceTree = "<group>"; };
+		B08957252217496D00A97965 /* bill_pdf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_pdf.json; sourceTree = "<group>"; };
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
 		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
@@ -4487,6 +4494,7 @@
 				B089571E2217455200A97965 /* account_lookup.json */,
 				B07E179C2204E8F900B6E3C7 /* bill_comparison.json */,
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
+				B08957252217496D00A97965 /* bill_pdf.json */,
 				B08956F82215D11B00A97965 /* energy_tips.json */,
 				B08956FF2215F6DB00A97965 /* home_profile.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
@@ -5881,6 +5889,7 @@
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
+				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
@@ -6023,6 +6032,7 @@
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
+				B08957282217496D00A97965 /* bill_pdf.json in Resources */,
 				35A6C6D6211C8F1300C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				E8EDC53A1F32405D006DD927 /* speedpay_errors.xml in Resources */,
@@ -6165,6 +6175,7 @@
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
+				B08957272217496D00A97965 /* bill_pdf.json in Resources */,
 				35A6C6D5211C8F1200C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
@@ -6238,6 +6249,7 @@
 				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
 				B089571022173CD400A97965 /* home_profile.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				B08957292217496D00A97965 /* bill_pdf.json in Resources */,
 				B089571A22173CFC00A97965 /* sso_data.json in Resources */,
 				B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C62209DB1C00B6E3C7 /* weather.json in Resources */,
@@ -6281,6 +6293,7 @@
 				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
 				B089570F22173CD400A97965 /* home_profile.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
+				B089572A2217496D00A97965 /* bill_pdf.json in Resources */,
 				B089571922173CFB00A97965 /* sso_data.json in Resources */,
 				B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C72209DB1C00B6E3C7 /* weather.json in Resources */,
@@ -6308,6 +6321,7 @@
 				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
 				B089570E22173CD300A97965 /* home_profile.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
+				B089572B2217496D00A97965 /* bill_pdf.json in Resources */,
 				B089571822173CFA00A97965 /* sso_data.json in Resources */,
 				B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C82209DB1C00B6E3C7 /* weather.json in Resources */,

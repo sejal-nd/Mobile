@@ -112,6 +112,7 @@ final class MockJSONManager {
         case homeProfile = "home_profile"
         case recoverUsername = "recover_username"
         case accountLookup = "account_lookup"
+        case billPdf = "bill_pdf"
     }
 }
 

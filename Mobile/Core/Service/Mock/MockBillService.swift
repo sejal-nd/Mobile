@@ -63,6 +63,15 @@ class MockBillService: BillService {
     }
     
     func fetchBillPdf(accountNumber: String, billDate: Date) -> Observable<String> {
-        return .error(ServiceError(serviceMessage: "Mock Error"))
+        let dataFile = MockJSONManager.File.billPdf
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.jsonObject(fromFile: dataFile, key: key)
+            .map { json in
+                guard let pdfString = json["billImageData"] as? String else {
+                    throw ServiceError(serviceMessage: "Mock Error")
+                }
+                
+                return pdfString
+        }
     }
 }
