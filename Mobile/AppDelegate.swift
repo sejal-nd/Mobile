@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set mock maintenance mode state based on launch argument
         if let key = processInfo.arguments.lazy.compactMap(MockDataKey.init).first,
             processInfo.arguments.contains("UITest") {
-
             MockAppState.current = MockAppState(maintenanceKey: key)
         }
         

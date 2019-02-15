@@ -53,7 +53,7 @@ class MockOutageService: OutageService {
     }
     
     func reportOutageAnon(outageInfo: OutageInfo) -> Observable<ReportedOutageResult> {
-        let key = MockUser.current.accounts[AccountsStore.shared.currentIndex].dataKey(forFile: .outageStatus)
+        let key = MockUser.current.currentAccount.dataKey(forFile: .outageStatus)
         if key == .reportOutageError {
             return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue, serviceMessage: "Mock Error"))
         }

@@ -1366,6 +1366,15 @@
 		B0EE78ED221353E700F53C56 /* report_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78E9221353E600F53C56 /* report_outage.json */; };
 		B0EE78EE221353E700F53C56 /* report_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78E9221353E600F53C56 /* report_outage.json */; };
 		B0EE78EF221353E700F53C56 /* report_outage.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78E9221353E600F53C56 /* report_outage.json */; };
+		B0EE78F12214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F22214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F32214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F42214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F52214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F62214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F72214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F82214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
+		B0EE78F92214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B01F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
 		B52CA0B11F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
@@ -2937,6 +2946,7 @@
 		B0EE78E122120E4F00F53C56 /* MaintenanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceUITests.swift; sourceTree = "<group>"; };
 		B0EE78E522132B2000F53C56 /* ScreenshotsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsUITests.swift; sourceTree = "<group>"; };
 		B0EE78E9221353E600F53C56 /* report_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = report_outage.json; sourceTree = "<group>"; };
+		B0EE78F02214766600F53C56 /* appointments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointments.json; sourceTree = "<group>"; };
 		B118428B41821733972CF125 /* Pods-PECO_WatchOS.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.testing.xcconfig"; sourceTree = "<group>"; };
 		B1C82778F4B29F83D5A54EE7 /* Pods-BGEApp-BGEUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
 		B3F0A0B0AA306013338624F6 /* Pods-PECO_WatchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
@@ -4449,6 +4459,7 @@
 				9CC48010220A142900393CC7 /* outage_status.json */,
 				B04DDF8A2200DBEC00594ACF /* accounts.json */,
 				B04DDF832200D47A00594ACF /* account_details.json */,
+				B0EE78F02214766600F53C56 /* appointments.json */,
 				B07E179C2204E8F900B6E3C7 /* bill_comparison.json */,
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
@@ -5736,6 +5747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */,
+				B0EE78F42214766700F53C56 /* appointments.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5880,6 +5892,7 @@
 				359BB27F2148517F00FBAD83 /* sm_outage_loading.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				6A4FD7DC1371BC6129CC594F /* otps1_img_0.png in Resources */,
+				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
 				6A4FD375948286D6F4A38198 /* otps1_img_1.png in Resources */,
 				6A4FDC511CBF8CE0C50F4E71 /* otp_step1.json in Resources */,
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
@@ -6016,6 +6029,7 @@
 				E893993B1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				6A4FD2D560C81F27B81D2748 /* otps1_img_0.png in Resources */,
 				6A4FD6EF9B7917482EF511D8 /* otps1_img_1.png in Resources */,
+				B0EE78F32214766700F53C56 /* appointments.json in Resources */,
 				6A4FD41C5B2744DEBEF4D69E /* otp_step1.json in Resources */,
 				6A4FDDD10550ECC33F36ECCD /* otps2_img_0.png in Resources */,
 				6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */,
@@ -6152,6 +6166,7 @@
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
 				E893993A1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				6A4FD9B658A06B0878472526 /* otps1_img_0.png in Resources */,
+				B0EE78F22214766700F53C56 /* appointments.json in Resources */,
 				6A4FD4A0E10A729FE6FD4B09 /* otps1_img_1.png in Resources */,
 				6A4FD7193000B9082AA1B6E3 /* otp_step1.json in Resources */,
 				6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */,
@@ -6188,6 +6203,7 @@
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48011220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
+				B0EE78F72214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
 				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F2220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
@@ -6200,6 +6216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */,
+				B0EE78F52214766700F53C56 /* appointments.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6209,6 +6226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */,
+				B0EE78F62214766700F53C56 /* appointments.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6228,6 +6246,7 @@
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48012220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
+				B0EE78F82214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
 				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F3220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
@@ -6250,6 +6269,7 @@
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				9CC48013220A142900393CC7 /* outage_status.json in Resources */,
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
+				B0EE78F92214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
 				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F4220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
