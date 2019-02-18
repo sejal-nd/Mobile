@@ -62,6 +62,8 @@ class MCSWalletService: WalletService {
     }
     
     func addWalletItemMCS(_ walletItem: WalletItem) {
+        if Environment.shared.opco == .bge { return } // ComEd/PECO only
+        
         let params: [String: Any] = [
             "account_number": AccountsStore.shared.currentAccount.accountNumber,
             "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
@@ -74,6 +76,8 @@ class MCSWalletService: WalletService {
     }
     
     func updateWalletItemMCS(_ walletItem: WalletItem) {
+        if Environment.shared.opco == .bge { return } // ComEd/PECO only
+        
         let params: [String: Any] = [
             "account_number": AccountsStore.shared.currentAccount.accountNumber,
             "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
