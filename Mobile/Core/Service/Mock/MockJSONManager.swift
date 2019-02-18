@@ -107,6 +107,7 @@ final class MockJSONManager {
         case meterPingInfo = "meter_ping_info"
         case weather = "weather"
         case opcoUpdates = "opco_updates"
+        case appointments = "appointments"
         case ssoData = "sso_data"
         case energyTips = "energy_tips"
         case homeProfile = "home_profile"

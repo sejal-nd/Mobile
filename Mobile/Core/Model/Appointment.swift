@@ -35,16 +35,4 @@ struct Appointment: Mappable, Equatable {
             return status
         }
     }
-    
-    init(id: String, startDate: Date, stopDate: Date, status: Status) {
-        assert(Environment.shared.environmentName == .aut, "init only available for tests")
-        
-        var map = [String: Any]()
-        map["id"] = id
-        map["startDate"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: startDate)
-        map["stopDate"] = DateFormatter.yyyyMMddTHHmmssZFormatter.string(from: stopDate)
-        map["status"] = status.rawValue
-        
-        self = Appointment.from(map as NSDictionary)!
-    }
 }

@@ -345,17 +345,15 @@ class AccountPicker: UIView {
     }
     
     @objc func onAdvancedAccountButtonPress() {
-        let storyboard = UIStoryboard(name: "Outage", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "advancedAccountPicker") as? AdvancedAccountPickerViewController {
-            vc.delegate = self
-            vc.accounts = accounts
-            if let parentVc = parentViewController {
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    vc.modalPresentationStyle = .formSheet
-                    parentVc.present(vc, animated: true, completion: nil)
-                } else {
-                    parentVc.navigationController?.pushViewController(vc, animated: true)
-                }
+        let vc = AdvancedAccountPickerViewController()
+        vc.delegate = self
+        vc.accounts = accounts
+        if let parentVc = parentViewController {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                vc.modalPresentationStyle = .formSheet
+                parentVc.present(vc, animated: true, completion: nil)
+            } else {
+                parentVc.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
