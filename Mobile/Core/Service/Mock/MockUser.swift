@@ -218,6 +218,7 @@ enum MockDataKey: String {
     
     // General
     case screenshots
+    case residential
     case error
     case `default`
 }

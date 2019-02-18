@@ -16,8 +16,8 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
     }
     
     func testShouldEnrollPaperlessEBill() {
