@@ -872,12 +872,12 @@
 		9C46B1312216142000A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B1322216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B1332216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
-		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
-		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
-		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C46B13A2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */; };
 		9C46B13B2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */; };
 		9C46B13C2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */; };
+		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
+		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
+		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
@@ -1350,9 +1350,6 @@
 		B0EE78F12214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F22214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F32214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B0EE78F42214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B0EE78F52214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B0EE78F62214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F72214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F82214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F92214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -2752,8 +2749,8 @@
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
-		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedAccountPickerMultiPremiseTableViewCell.xib; sourceTree = "<group>"; };
+		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecastInitExtensions.swift; sourceTree = "<group>"; };
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -3348,8 +3345,6 @@
 		2F3FA63E1F06F10700A1F4BF /* MultiPremiseAddressView */ = {
 			isa = PBXGroup;
 			children = (
-				2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */,
-				2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */,
 			);
 			path = MultiPremiseAddressView;
 			sourceTree = "<group>";
@@ -5596,8 +5591,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CC4801B220A442900393CC7 /* meter_ping_info.json in Resources */,
-				B0EE78F42214766700F53C56 /* appointments.json in Resources */,
 				0EF60FCD20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6069,8 +6062,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CC4801C220A442900393CC7 /* meter_ping_info.json in Resources */,
-				B0EE78F52214766700F53C56 /* appointments.json in Resources */,
 				0EF60FCE20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6079,8 +6070,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CC4801D220A442900393CC7 /* meter_ping_info.json in Resources */,
-				B0EE78F62214766700F53C56 /* appointments.json in Resources */,
 				0EF60FCF20EE7918006ABC18 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
