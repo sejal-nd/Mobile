@@ -1,6 +1,7 @@
 {
     "default": {
         "accountNumber": "1234567890",
+        "premiseNumber": "1",
         "BillingInfo": {},
         "CustomerInfo": {},
         "SERInfo": {}

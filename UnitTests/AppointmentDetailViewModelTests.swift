@@ -12,130 +12,140 @@ import EventKit
 
 class AppointmentDetailViewModelTests: XCTestCase {
     
-    let viewModel = AppointmentDetailViewModel(appointment: Appointment(id: "0", startDate: .now, stopDate: .now, status: .scheduled)) // Don't worry about this appointment, we'll override in every test
+    let viewModel = AppointmentDetailViewModel(appointment: getAppointment(forKey: .apptToday)) // Don't worry about this appointment, we'll override in every test
     let disposeBag = DisposeBag()
     
     func testTabTitle() {
-        let st = Calendar.opCo.date(from: DateComponents(year: 2018, month: 10, day: 31))!
-        viewModel.appointment = Appointment(id: "0", startDate: st, stopDate: .now, status: .scheduled)
-        XCTAssertEqual(viewModel.tabTitle, "Oct 31st")
-        
-        let nd = Calendar.opCo.date(from: DateComponents(year: 2018, month: 8, day: 2))!
-        viewModel.appointment = Appointment(id: "0", startDate: nd, stopDate: .now, status: .scheduled)
-        XCTAssertEqual(viewModel.tabTitle, "Aug 2nd")
-        
-        let rd = Calendar.opCo.date(from: DateComponents(year: 2018, month: 1, day: 3))!
-        viewModel.appointment = Appointment(id: "0", startDate: rd, stopDate: .now, status: .scheduled)
-        XCTAssertEqual(viewModel.tabTitle, "Jan 3rd")
-        
-        let th = Calendar.opCo.date(from: DateComponents(year: 2018, month: 3, day: 4))!
-        viewModel.appointment = Appointment(id: "0", startDate: th, stopDate: .now, status: .scheduled)
-        XCTAssertEqual(viewModel.tabTitle, "Mar 4th")
+        let expectedTabTitles = ["Oct 31st", "Aug 2nd", "Jan 3rd", "Mar 4th"]
+        let appointments = getAppointments(forKeys: .apptDateNumberSt, .apptDateNumberNd, .apptDateNumberRd, .apptDateNumberTh)
+        for (appointment, expectedTabTitle) in zip(appointments, expectedTabTitles) {
+            viewModel.appointment = appointment
+            XCTAssertEqual(viewModel.tabTitle, expectedTabTitle)
+        }
     }
     
     func testShowProgressView() {
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .scheduled)
-        XCTAssertTrue(viewModel.showProgressView)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .enRoute)
-        XCTAssertTrue(viewModel.showProgressView)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .inProgress)
-        XCTAssertTrue(viewModel.showProgressView)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .complete)
-        XCTAssertTrue(viewModel.showProgressView)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .canceled)
-        XCTAssertFalse(viewModel.showProgressView)
+        let expectedValues = [true, true, true, true, false]
+        let appointments = getAppointments(forKeys: .apptScheduled, .apptEnRoute, .apptInProgress, .apptComplete, .apptCanceled)
+        for (appointment, expectedValue) in zip(appointments, expectedValues) {
+            viewModel.appointment = appointment
+            XCTAssertEqual(viewModel.showProgressView, expectedValue)
+        }
     }
     
     func testShowAdjustAlertPreferences() {
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .scheduled)
-        XCTAssertTrue(viewModel.showAdjustAlertPreferences)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .enRoute)
-        XCTAssertTrue(viewModel.showAdjustAlertPreferences)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .inProgress)
-        XCTAssertTrue(viewModel.showAdjustAlertPreferences)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .complete)
-        XCTAssertFalse(viewModel.showAdjustAlertPreferences)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .canceled)
-        XCTAssertFalse(viewModel.showAdjustAlertPreferences)
+        let expectedValues = [true, true, true, false, false]
+        let appointments = getAppointments(forKeys: .apptScheduled, .apptEnRoute, .apptInProgress, .apptComplete, .apptCanceled)
+        for (appointment, expectedValue) in zip(appointments, expectedValues) {
+            viewModel.appointment = appointment
+            XCTAssertEqual(viewModel.showAdjustAlertPreferences, expectedValue)
+        }
     }
     
     func testShowCalendarButton() {
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .scheduled)
-        XCTAssertTrue(viewModel.showCalendarButton)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .enRoute)
-        XCTAssertFalse(viewModel.showCalendarButton)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .inProgress)
-        XCTAssertFalse(viewModel.showCalendarButton)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .complete)
-        XCTAssertFalse(viewModel.showCalendarButton)
-        
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .canceled)
-        XCTAssertFalse(viewModel.showCalendarButton)
+        let expectedValues = [true, false, false, false, false]
+        let appointments = getAppointments(forKeys: .apptScheduled, .apptEnRoute, .apptInProgress, .apptComplete, .apptCanceled)
+        for (appointment, expectedValue) in zip(appointments, expectedValues) {
+            viewModel.appointment = appointment
+            XCTAssertEqual(viewModel.showCalendarButton, expectedValue)
+        }
     }
     
     // Only testing the actual string, ignoring attributed values
     func testAppointmentDescriptionText() {
         // Scheduled today
-        let today2 = Calendar.opCo.date(bySettingHour: 14, minute: 0, second: 0, of: .now)!
-        let today3 = Calendar.opCo.date(bySettingHour: 15, minute: 0, second: 0, of: .now)!
-        viewModel.appointment = Appointment(id: "0", startDate: today2, stopDate: today3, status: .scheduled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is today between 2PM - 3PM.", comment: ""))
+        viewModel.appointment = getAppointment(forKey: .apptToday)
+        var expectedDescription: String
+        switch Environment.shared.opco {
+        case .bge, .peco:
+            expectedDescription = "Your appointment is today between 12PM - 1PM."
+        case .comEd:
+            expectedDescription = "Your appointment is today between 11AM - 12PM."
+        }
+        
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
         
         // Scheduled tomorrow (also tests half hour round ups)
-        let tomorrow = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: .now)!
-        let tomorrow230 = Calendar.opCo.date(bySettingHour: 14, minute: 30, second: 0, of: tomorrow)!
-        let tomorrow330 = Calendar.opCo.date(bySettingHour: 15, minute: 30, second: 0, of: tomorrow)!
-        viewModel.appointment = Appointment(id: "0", startDate: tomorrow230, stopDate: tomorrow330, status: .scheduled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is tomorrow between 3PM - 4PM.", comment: ""))
+        viewModel.appointment = getAppointment(forKey: .apptHalfHourRoundUp)
+        switch Environment.shared.opco {
+        case .bge, .peco:
+            expectedDescription = "Your appointment is tomorrow between 1PM - 2PM."
+        case .comEd:
+            expectedDescription = "Your appointment is tomorrow between 12PM - 1PM."
+        }
+        
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
         
         // Scheduled beyond tomorrow (also tests half hour round downs)
-        let superFutureDate = Calendar.opCo.date(from: DateComponents(year: 2100, month: 10, day: 31))! // So we never have to worry about tests going out of date
-        let future9 = Calendar.opCo.date(bySettingHour: 9, minute: 15, second: 0, of: superFutureDate)!
-        let future11 = Calendar.opCo.date(bySettingHour: 11, minute: 15, second: 0, of: superFutureDate)!
-        viewModel.appointment = Appointment(id: "0", startDate: future9, stopDate: future11, status: .scheduled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is scheduled for Sunday, Oct 31st between 9AM - 11AM.", comment: ""))
+        viewModel.appointment = getAppointment(forKey: .apptHalfHourRoundDown)
+        switch Environment.shared.opco {
+        case .bge, .peco:
+            expectedDescription = "Your appointment is scheduled for Sunday, Jan 13th between 9AM - 11AM."
+        case .comEd:
+            expectedDescription = "Your appointment is scheduled for Sunday, Jan 13th between 8AM - 10AM."
+        }
+        
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
         
         // En Route
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .enRoute)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your technician is on their way for your appointment today.", comment: ""))
+        viewModel.appointment = getAppointment(forKey: .apptEnRoute)
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your technician is on their way for your appointment today.")
         
         // In Progress
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: today3, status: .inProgress)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is in progress. Estimated time of completion is 3PM.", comment: ""))
+        viewModel.appointment = getAppointment(forKey: .apptInProgress)
+        switch Environment.shared.opco {
+        case .bge, .peco:
+            expectedDescription = "Your appointment is in progress. Estimated time of completion is 1PM."
+        case .comEd:
+            expectedDescription = "Your appointment is in progress. Estimated time of completion is 12PM."
+        }
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, expectedDescription)
         
         // Complete
-        viewModel.appointment = Appointment(id: "0", startDate: .now, stopDate: .now, status: .complete)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is complete. Please call for further assistance.", comment: ""))
+        viewModel.appointment = getAppointment(forKey: .apptComplete)
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment is complete. Please call for further assistance.")
         
         // Canceled
-        viewModel.appointment = Appointment(id: "0", startDate: future9, stopDate: future11, status: .canceled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment scheduled for Sunday, Oct 31st has been canceled.\n\nWe apologize for the inconvenience. Please contact us to reschedule.", comment: ""))
+        viewModel.appointment = getAppointment(forKey: .apptCanceled)
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, "Your appointment scheduled for Tuesday, Jan 1st has been canceled.\n\nWe apologize for the inconvenience. Please contact us to reschedule.")
     }
     
     func testCalendarEvent() {
-        AccountsStore.shared.accounts = [Account(accountNumber: "0", address: "123 Main Street", premises: [], currentPremise: nil, status: nil, isLinked: false, isDefault: false, isFinaled: false, isResidential: true, serviceType: nil)]
+        AccountsStore.shared.accounts = [Account(accountNumber: "0", address: "123 Main Street", isResidential: true)]
         AccountsStore.shared.currentIndex = 0
         
-        let today2 = Calendar.opCo.date(bySettingHour: 14, minute: 0, second: 0, of: .now)!
-        let today3 = Calendar.opCo.date(bySettingHour: 15, minute: 0, second: 0, of: .now)!
-        viewModel.appointment = Appointment(id: "0", startDate: today2, stopDate: today3, status: .scheduled)
+        // Using gmt time zone to generate expected dates instead of `opCo`, which will be different for ComEd
+        let expectedStartDate = Calendar.gmt.date(bySettingHour: 17, minute: 0, second: 0, of: .now)!
+        let expectedStopDate = Calendar.gmt.date(bySettingHour: 18, minute: 0, second: 0, of: .now)!
+        
+        viewModel.appointment = getAppointments(forKeys: .apptToday).first!
         
         let calEvent = viewModel.calendarEvent
         XCTAssertEqual(calEvent.title, String.localizedStringWithFormat("My %@ appointment", Environment.shared.opco.displayString))
-        XCTAssertEqual(calEvent.startDate, today2)
-        XCTAssertEqual(calEvent.endDate, today3)
+        XCTAssertEqual(calEvent.startDate, expectedStartDate)
+        XCTAssertEqual(calEvent.endDate, expectedStopDate)
         XCTAssertEqual(calEvent.location, "123 Main Street")
     }
     
+}
+
+fileprivate func getAppointments(forKeys keys: MockDataKey..., file: StaticString = #file, line: UInt = #line) -> [Appointment] {
+    do {
+        return try keys.map {
+            let appointments = try MockJSONManager.shared.mappableArray(fromFile: .appointments, key: $0) as [Appointment]
+            guard let appointment = appointments.first else {
+                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue,
+                                   serviceMessage: "failed to grab appointments for key \($0.rawValue)")
+            }
+            
+            return appointment
+        }
+    } catch {
+        XCTFail("Error: \(error.localizedDescription)", file: file, line: line)
+        return []
+    }
+}
+
+fileprivate func getAppointment(forKey key: MockDataKey, file: StaticString = #file, line: UInt = #line) -> Appointment {
+    return getAppointments(forKeys: key).first!
 }

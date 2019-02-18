@@ -6,9 +6,6 @@
 //  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
-fileprivate let keyDefault = "default"
-fileprivate let keyError = "error"
-
 struct MockUser {
     static var current = MockUser.default
     static let `default` = MockUser(globalKeys: .default)
@@ -169,6 +166,33 @@ enum MockDataKey: String {
     case likelyReasonsAboutSame
     case likelyReasonsGreater
     case likelyReasonsLess
+    
+    // Appointments
+    case apptToday
+    case apptTomorrow
+    case apptScheduled
+    case apptEnRoute
+    case apptInProgress
+    case apptComplete
+    case apptCanceled
+    case apptMultiple
+    // Changing response during polling
+    case apptInProgressThenComplete // Changes the appt status after the first fetch
+    case apptReschedule // Reschedules the appt after the first fetch
+    case apptWillChange
+    case apptAdd // Starts with 2 appts, then adds 1 more after the first fetch
+    case apptRemove // Starts with 2 appts, then removes 1 after the first fetch
+    case apptRemoveAll // Starts with 1 appt, then removes it after the first fetch
+    case apptWillMultiChange
+    case multiApptChanges
+    case apptFailure
+    case apptNone
+    case apptDateNumberSt
+    case apptDateNumberNd
+    case apptDateNumberRd
+    case apptDateNumberTh
+    case apptHalfHourRoundUp
+    case apptHalfHourRoundDown
     
     // App State
     case maintAll
