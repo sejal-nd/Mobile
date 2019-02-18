@@ -199,6 +199,13 @@ enum MockDataKey: String {
     case apptHalfHourRoundUp
     case apptHalfHourRoundDown
     
+    // Peak Rewards
+    case peakRewardsActiveProgram
+    case peakRewardsInactiveProgram
+    case peakRewardsActiveOverride
+    case peakRewardsNoOverrides
+    case peakRewardsScheduledOverride
+    
     // Anon
     case maintAll
     case maintAllTabs

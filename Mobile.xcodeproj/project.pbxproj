@@ -1363,6 +1363,18 @@
 		B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
+		B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FE221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FF221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B12600221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12604221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12605221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12606221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12607221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
 		B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
@@ -1429,9 +1441,6 @@
 		B0EE78F12214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F22214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F32214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B0EE78F42214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B0EE78F52214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B0EE78F62214766700F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F72214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F82214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F92214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
@@ -3001,6 +3010,8 @@
 		B0B0840121710D1500B1C632 /* Appt_Complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Complete.json; sourceTree = "<group>"; };
 		B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
 		B0B0840E217111CE00B1C632 /* appointment_tracker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointment_tracker.json; sourceTree = "<group>"; };
+		B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = peak_rewards_summary.json; sourceTree = "<group>"; };
+		B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = peak_rewards_overrides.json; sourceTree = "<group>"; };
 		B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentusFormViewController.swift; sourceTree = "<group>"; };
 		B0D84D45220244E000C70A6F /* payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payments.json; sourceTree = "<group>"; };
 		B0D84D4D2203523D00C70A6F /* maintenance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maintenance.json; sourceTree = "<group>"; };
@@ -4541,6 +4552,8 @@
 				B08956F12215C27100A97965 /* sso_data.json */,
 				B07E17C42209DB1C00B6E3C7 /* weather.json */,
 				9CC48017220A442900393CC7 /* meter_ping_info.json */,
+				B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */,
+				B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */,
 			);
 			path = "Mock JSON";
 			sourceTree = "<group>";
@@ -5876,6 +5889,7 @@
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				9C46B13A2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
+				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
@@ -5925,6 +5939,7 @@
 				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E8EDC5361F32403A006DD927 /* speedpay_errors.xml in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
@@ -6024,6 +6039,7 @@
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B0728E4B215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				9C46B13C2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
+				B0B12604221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
@@ -6073,6 +6089,7 @@
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
@@ -6172,6 +6189,7 @@
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				9C46B13B2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
+				B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
@@ -6221,6 +6239,7 @@
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -6309,10 +6328,12 @@
 				B089573722175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
 				B08957222217455200A97965 /* account_lookup.json in Resources */,
+				B0B125FE221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				B089571122173CE300A97965 /* energy_tips.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B089573E22175FDC00A97965 /* alert_preferences.json in Resources */,
+				B0B12605221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B08957302217596400A97965 /* billing_history.json in Resources */,
 				9CC48011220A142900393CC7 /* outage_status.json in Resources */,
 				B089571622173CF000A97965 /* recover_username.json in Resources */,
@@ -6357,10 +6378,12 @@
 				B089573822175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
 				B08957232217455200A97965 /* account_lookup.json in Resources */,
+				B0B125FF221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				B089571222173CE400A97965 /* energy_tips.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B089573F22175FDC00A97965 /* alert_preferences.json in Resources */,
+				B0B12606221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B08957312217596400A97965 /* billing_history.json in Resources */,
 				9CC48012220A142900393CC7 /* outage_status.json in Resources */,
 				B089571522173CF000A97965 /* recover_username.json in Resources */,
@@ -6389,10 +6412,12 @@
 				B089573922175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
 				B08957242217455200A97965 /* account_lookup.json in Resources */,
+				B0B12600221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				B089571322173CE500A97965 /* energy_tips.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				B089574022175FDC00A97965 /* alert_preferences.json in Resources */,
+				B0B12607221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B08957322217596400A97965 /* billing_history.json in Resources */,
 				9CC48013220A142900393CC7 /* outage_status.json in Resources */,
 				B089571422173CEF00A97965 /* recover_username.json in Resources */,

@@ -117,6 +117,8 @@ final class MockJSONManager {
         case billingHistory = "billing_history"
         case budgetBillingInfo = "budget_billing_info"
         case alertPreferences = "alert_preferences"
+        case peakRewardsSummary = "peak_rewards_summary"
+        case peakRewardsOverrides = "peak_rewards_overrides"
     }
 }
 

@@ -37,7 +37,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             
             let expect = expectation(description: "callback")
             viewModel.fetchData(onCompletion: {
@@ -60,7 +60,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             
             let expect = expectation(description: "callback")
             viewModel.fetchData(onCompletion: {
@@ -89,7 +89,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                               billService: MockBillService(),
                                               accountService: MockAccountService())
-        viewModel.accountDetail = AccountDetail()
+        viewModel.accountDetail = .default
         
         let expect = expectation(description: "callback")
         viewModel.saveChanges(onSuccess: { 
@@ -108,7 +108,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             viewModel.initialEnglishValue = false
             viewModel.english.value = true
             
@@ -130,7 +130,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             viewModel.initialBillReadyValue = false
             viewModel.billReady.value = true
             
