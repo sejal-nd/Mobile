@@ -31,11 +31,9 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedValues = [[PeakRewardsOverride()]]
-        XCTAssertEqual(observer.events.count, expectedValues.count)
-        XCTAssert(!zip(observer.events, expectedValues)
-            .map { $0.0.value.element! == $0.1 }
-            .contains(false))
+        let expectedOverrides: [PeakRewardsOverride] = try! MockJSONManager.shared
+            .mappableArray(fromFile: .peakRewardsOverrides, key: .default)
+        XCTAssertRecordedElements(observer.events, [expectedOverrides])
     }
     
     func testDevices() {
@@ -54,11 +52,9 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedValues = [[SmartThermostatDevice(), SmartThermostatDevice()]]
-        XCTAssertEqual(observer.events.count, expectedValues.count)
-        XCTAssert(!zip(observer.events, expectedValues)
-            .map { $0.0.value.element! == $0.1 }
-            .contains(false))
+        let expectedSummary: PeakRewardsSummary = try! MockJSONManager.shared
+            .mappableObject(fromFile: .peakRewardsSummary, key: .default)
+        XCTAssertRecordedElements(observer.events, [expectedSummary.devices])
     }
     
     func testSelectedDevice() {
@@ -81,8 +77,9 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedElements = [SmartThermostatDevice](repeating: SmartThermostatDevice(), count: 2)
-        XCTAssertRecordedElements(observer.events, expectedElements)
+        let expectedSummary: PeakRewardsSummary = try! MockJSONManager.shared
+            .mappableObject(fromFile: .peakRewardsSummary, key: .default)
+        XCTAssertRecordedElements(observer.events, expectedSummary.devices)
     }
     
     func testDeviceButtonText() {
