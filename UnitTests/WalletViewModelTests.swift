@@ -46,10 +46,10 @@ class WalletViewModelTests: XCTestCase {
     
     func testAddBankDisabled() {
         viewModel.walletItems.value = []
-        viewModel.accountDetail = AccountDetail()
+        viewModel.accountDetail = AccountDetail.default
         XCTAssertFalse(viewModel.addBankDisabled, "addBankDisabled should be false for non-cash only users")
 
-        viewModel.accountDetail = AccountDetail(isCashOnly: true)
+        viewModel.accountDetail = AccountDetail.fromMockJson(forKey: .cashOnly)
         XCTAssert(viewModel.addBankDisabled, "addBankDisabled should be true for cash only users")
     }
         

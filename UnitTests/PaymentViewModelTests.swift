@@ -23,7 +23,7 @@ class PaymentViewModelTests: XCTestCase {
         MockUser.current = MockUser.default
         MockAccountService.loadAccountsSync()
         
-        let accountDetail = AccountDetail(isResidential: true)
+        let accountDetail = AccountDetail.fromMockJson(forKey: .residential)
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
         viewModel.fetchData(initialFetch: true, onSuccess: {
@@ -41,7 +41,7 @@ class PaymentViewModelTests: XCTestCase {
         MockUser.current = MockUser.default
         MockAccountService.loadAccountsSync()
         
-        let accountDetail = AccountDetail(isResidential: true)
+        let accountDetail = AccountDetail.fromMockJson(forKey: .residential)
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
         viewModel.paymentId.value = "1"
 
@@ -59,7 +59,7 @@ class PaymentViewModelTests: XCTestCase {
         MockUser.current = MockUser.default
         MockAccountService.loadAccountsSync()
         
-        let accountDetail = AccountDetail(isCashOnly: true, isResidential: true)
+        let accountDetail = AccountDetail.fromMockJson(forKey: .cashOnly)
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
         viewModel.fetchData(initialFetch: true, onSuccess: {
@@ -95,7 +95,7 @@ class PaymentViewModelTests: XCTestCase {
         MockUser.current = MockUser.default
         MockAccountService.loadAccountsSync()
         
-        let accountDetail = AccountDetail()
+        let accountDetail = AccountDetail.default
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.schedulePayment(onDuplicate: { (title, message) in
@@ -111,7 +111,7 @@ class PaymentViewModelTests: XCTestCase {
         MockUser.current = MockUser.default
         MockAccountService.loadAccountsSync()
         
-        let accountDetail = AccountDetail()
+        let accountDetail = AccountDetail.default
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
         viewModel.paymentId.value = "123"
         viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
@@ -126,7 +126,7 @@ class PaymentViewModelTests: XCTestCase {
         MockUser.current = MockUser.default
         MockAccountService.loadAccountsSync()
         
-        let accountDetail = AccountDetail()
+        let accountDetail = AccountDetail.default
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
         viewModel.paymentId.value = "123"
         viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
@@ -844,12 +844,12 @@ class PaymentViewModelTests: XCTestCase {
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
             viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
-            viewModel.accountDetail.value = AccountDetail(activeSeverance: true)
+            viewModel.accountDetail.value = AccountDetail.fromMockJson(forKey: .activeSeverance)
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "Active severance user should have a fixed payment date")
             }).disposed(by: disposeBag)
 
-            viewModel.accountDetail.value = AccountDetail()
+            viewModel.accountDetail.value = AccountDetail.default
             viewModel.allowEdits.value = false
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "allowEdits = false should have a fixed payment date")
@@ -863,11 +863,7 @@ class PaymentViewModelTests: XCTestCase {
                 XCTAssert(fixed, "allowEdits = false should have a fixed payment date")
             }).disposed(by: disposeBag)
 
-            var dateComps = DateComponents()
-            dateComps.day = -1
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
-            let dueByDate = Calendar.opCo.date(byAdding: dateComps, to: startOfTodayDate)
-            viewModel.accountDetail.value = AccountDetail(billingInfo: BillingInfo(dueByDate: dueByDate))
+            viewModel.accountDetail.value = AccountDetail.fromMockJson(forKey: .dueDatePassed)
             viewModel.isFixedPaymentDate.asObservable().take(1).subscribe(onNext: { fixed in
                 XCTAssert(fixed, "A due date in the past should have a fixed payment date")
             }).disposed(by: disposeBag)

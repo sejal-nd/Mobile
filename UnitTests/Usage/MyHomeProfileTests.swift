@@ -19,6 +19,7 @@ class MyHomeProfileTests: XCTestCase {
     override func setUp() {
         super.setUp()
         scheduler = TestScheduler(initialClock: 0)
+        MockAccountService.loadAccountsSync()
     }
     
     func bind<T>(entries: [T], toVariable variable: Variable<T>, startTime: Int = 0, interval: Int = 1) {
@@ -35,8 +36,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testInitialHomeProfile() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "0",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         let observer = scheduler.createObserver(HomeProfile.self)
@@ -61,8 +61,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testUpdatedHomeProfile() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [4], toVariable: viewModel.numberOfChildren, startTime: 1)
@@ -116,8 +115,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testHomeSizeError() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [nil, "fds", "49", "50", "1000001", "1000000"],
@@ -147,8 +145,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testEnableSave() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "0",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [4], toVariable: viewModel.numberOfChildren, startTime: 1)
@@ -184,8 +181,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testSaveSuccess() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "0",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [5], toVariable: viewModel.numberOfChildren, startTime: 1)
@@ -206,8 +202,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testSaveErrors() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "0",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [5], toVariable: viewModel.numberOfChildren, startTime: 1)
@@ -231,8 +226,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testSaveA11yLabel() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         scheduler.createHotObservable([next(1, HomeType.multiFamily)])
@@ -276,8 +270,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testHomeTypeA11y() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [nil, .multiFamily, .singleFamily],
@@ -304,8 +297,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testHeatingFuelA11y() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [nil, .naturalGas, .electric, .other, HeatType.none],
@@ -334,8 +326,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testNumberOfAdultsA11y() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [2, 3], toVariable: viewModel.numberOfAdults, startTime: 1)
@@ -358,8 +349,7 @@ class MyHomeProfileTests: XCTestCase {
     
     func testNumberOfChildrenA11y() {
         let viewModel = MyHomeProfileViewModel(usageService: MockUsageService(),
-                                               accountDetail: AccountDetail(accountNumber: "",
-                                                                            premiseNumber: ""),
+                                               accountDetail: .default,
                                                saveAction: saveAction)
         
         bind(entries: [2, 3], toVariable: viewModel.numberOfChildren, startTime: 1)

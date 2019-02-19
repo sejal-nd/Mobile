@@ -109,6 +109,17 @@ final class MockJSONManager {
         case opcoUpdates = "opco_updates"
         case wallet = "wallet"
         case appointments = "appointments"
+        case ssoData = "sso_data"
+        case energyTips = "energy_tips"
+        case homeProfile = "home_profile"
+        case recoverUsername = "recover_username"
+        case accountLookup = "account_lookup"
+        case billPdf = "bill_pdf"
+        case billingHistory = "billing_history"
+        case budgetBillingInfo = "budget_billing_info"
+        case alertPreferences = "alert_preferences"
+        case peakRewardsSummary = "peak_rewards_summary"
+        case peakRewardsOverrides = "peak_rewards_overrides"
     }
 }
 

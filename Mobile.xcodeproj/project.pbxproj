@@ -616,12 +616,6 @@
 		8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
-		829D396C203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */; };
-		829D396D203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */; };
-		829D396E203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */; };
-		829D396F203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */; };
-		829D3970203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */; };
-		829D3971203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */; };
 		829D3977203F1EA2008D7BAE /* Top5EnergyTipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */; };
 		829D3978203F1EA2008D7BAE /* Top5EnergyTipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */; };
 		829D3979203F1EA2008D7BAE /* Top5EnergyTipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */; };
@@ -866,9 +860,6 @@
 		9C46B12B221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12C221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12D221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
-		9C46B12E2216141C00A5D537 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9C46B12F2216141D00A5D537 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9C46B1302216141D00A5D537 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9C46B1312216142000A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B1322216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B1332216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
@@ -878,12 +869,6 @@
 		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
-		9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
-		9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
-		9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
-		9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
-		9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
-		9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */; };
 		9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
@@ -921,9 +906,6 @@
 		9CC48011220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48012220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48013220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
-		9CC48018220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC48019220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
-		9CC4801A220A442900393CC7 /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
 		9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */; };
@@ -937,6 +919,12 @@
 		9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */; };
 		9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9CFC82E1221C78C700B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9CFC82E2221C78C700B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
+		9CFC82E3221C78C800B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		AEF715A1622E0698A4B4FAF8 /* Pods_ComEdApp_ComEd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD79CAFE843705C9795521E /* Pods_ComEdApp_ComEd.framework */; };
 		B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
 		B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0030D072097BC8300327A3D /* MaintenanceModeView.swift */; };
@@ -1025,12 +1013,6 @@
 		B067E0A72045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		B067E0A82045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		B067E0A92045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
-		B067E0AB2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
-		B067E0AC2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
-		B067E0AD2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
-		B067E0AE2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
-		B067E0AF2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
-		B067E0B02045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */; };
 		B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
 		B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
 		B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5520D2E99300930589 /* HomeEditCardCell.swift */; };
@@ -1160,6 +1142,63 @@
 		B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
 		B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
 		B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */; };
+		B08956F22215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B08956F32215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B08956F42215C27100A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B08956F92215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08956FA2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08956FB2215D11B00A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B08957002215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B08957012215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B08957022215F6DC00A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B08957072215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B08957082215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B08957092215FE7900A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089570E22173CD300A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B089570F22173CD400A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B089571022173CD400A97965 /* home_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956FF2215F6DB00A97965 /* home_profile.json */; };
+		B089571122173CE300A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B089571222173CE400A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B089571322173CE500A97965 /* energy_tips.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F82215D11B00A97965 /* energy_tips.json */; };
+		B089571422173CEF00A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089571522173CF000A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089571622173CF000A97965 /* recover_username.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957062215FE7800A97965 /* recover_username.json */; };
+		B089571822173CFA00A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B089571922173CFB00A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B089571A22173CFC00A97965 /* sso_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B08956F12215C27100A97965 /* sso_data.json */; };
+		B089571F2217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
+		B08957202217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
+		B08957212217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
+		B08957222217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
+		B08957232217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
+		B08957242217455200A97965 /* account_lookup.json in Resources */ = {isa = PBXBuildFile; fileRef = B089571E2217455200A97965 /* account_lookup.json */; };
+		B08957262217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B08957272217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B08957282217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B08957292217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B089572A2217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B089572B2217496D00A97965 /* bill_pdf.json in Resources */ = {isa = PBXBuildFile; fileRef = B08957252217496D00A97965 /* bill_pdf.json */; };
+		B089572D2217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
+		B089572E2217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
+		B089572F2217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
+		B08957302217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
+		B08957312217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
+		B08957322217596400A97965 /* billing_history.json in Resources */ = {isa = PBXBuildFile; fileRef = B089572C2217596400A97965 /* billing_history.json */; };
+		B089573422175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573522175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573622175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573722175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573822175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573922175BFE00A97965 /* budget_billing_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573322175BFD00A97965 /* budget_billing_info.json */; };
+		B089573B22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573C22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573D22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573E22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089573F22175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B089574022175FDC00A97965 /* alert_preferences.json in Resources */ = {isa = PBXBuildFile; fileRef = B089573A22175FDC00A97965 /* alert_preferences.json */; };
+		B08957422217701D00A97965 /* UnitTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08957412217701D00A97965 /* UnitTestExtensions.swift */; };
+		B08957432217701D00A97965 /* UnitTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08957412217701D00A97965 /* UnitTestExtensions.swift */; };
+		B08957442217701D00A97965 /* UnitTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08957412217701D00A97965 /* UnitTestExtensions.swift */; };
 		B08BBFBB21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBC21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
 		B08BBFBD21C8284A00A899FC /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
@@ -1174,12 +1213,6 @@
 		B08BBFC721C8539000A899FC /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFC221C8539000A899FC /* SERResult.swift */; };
 		B08BBFC821C8539000A899FC /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFC221C8539000A899FC /* SERResult.swift */; };
 		B08BBFC921C8539000A899FC /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFC221C8539000A899FC /* SERResult.swift */; };
-		B092184320A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
-		B092184420A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
-		B092184520A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
-		B092184620A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
-		B092184720A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
-		B092184820A2400800695888 /* MaintenanceInitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092184220A2400800695888 /* MaintenanceInitExtensions.swift */; };
 		B094A34D20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
 		B094A34E20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
 		B094A34F20D9442400E81303 /* HomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B094A34C20D9442400E81303 /* HomeCard.swift */; };
@@ -1284,6 +1317,18 @@
 		B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
+		B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FE221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B125FF221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B12600221B080400AF4DC4 /* peak_rewards_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */; };
+		B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12604221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12605221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12606221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0B12607221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
 		B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
@@ -2663,7 +2708,6 @@
 		8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsVCViewModelTests.swift; sourceTree = "<group>"; };
 		8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
-		829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageInitExtensions.swift; sourceTree = "<group>"; };
 		829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsTests.swift; sourceTree = "<group>"; };
 		829E058A1FA7928E00697633 /* Fillable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fillable.swift; sourceTree = "<group>"; };
 		82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillCommercialViewController.swift; sourceTree = "<group>"; };
@@ -2751,7 +2795,6 @@
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedAccountPickerMultiPremiseTableViewCell.xib; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
-		9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecastInitExtensions.swift; sourceTree = "<group>"; };
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -2792,7 +2835,6 @@
 		B0649A5E214834380041B299 /* StormModeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeStatus.swift; sourceTree = "<group>"; };
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPeakRewardsService.swift; sourceTree = "<group>"; };
-		B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsInitExtensions.swift; sourceTree = "<group>"; };
 		B068DB5520D2E99300930589 /* HomeEditCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditCardCell.swift; sourceTree = "<group>"; };
 		B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditFlowLayout.swift; sourceTree = "<group>"; };
 		B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -2819,9 +2861,18 @@
 		B0882CA5210B926B00EB756B /* UsageToolCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageToolCardView.xib; sourceTree = "<group>"; };
 		B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageToolTopCardView.swift; sourceTree = "<group>"; };
 		B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageToolTopCardView.xib; sourceTree = "<group>"; };
+		B08956F12215C27100A97965 /* sso_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sso_data.json; sourceTree = "<group>"; };
+		B08956F82215D11B00A97965 /* energy_tips.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = energy_tips.json; sourceTree = "<group>"; };
+		B08956FF2215F6DB00A97965 /* home_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_profile.json; sourceTree = "<group>"; };
+		B08957062215FE7800A97965 /* recover_username.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recover_username.json; sourceTree = "<group>"; };
+		B089571E2217455200A97965 /* account_lookup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = account_lookup.json; sourceTree = "<group>"; };
+		B08957252217496D00A97965 /* bill_pdf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bill_pdf.json; sourceTree = "<group>"; };
+		B089572C2217596400A97965 /* billing_history.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = billing_history.json; sourceTree = "<group>"; };
+		B089573322175BFD00A97965 /* budget_billing_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = budget_billing_info.json; sourceTree = "<group>"; };
+		B089573A22175FDC00A97965 /* alert_preferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = alert_preferences.json; sourceTree = "<group>"; };
+		B08957412217701D00A97965 /* UnitTestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestExtensions.swift; sourceTree = "<group>"; };
 		B08BBFBA21C8284A00A899FC /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		B08BBFC221C8539000A899FC /* SERResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERResult.swift; sourceTree = "<group>"; };
-		B092184220A2400800695888 /* MaintenanceInitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceInitExtensions.swift; sourceTree = "<group>"; };
 		B094A34C20D9442400E81303 /* HomeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCard.swift; sourceTree = "<group>"; };
 		B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditEmptyCell.swift; sourceTree = "<group>"; };
 		B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditRestoreDefaultCell.swift; sourceTree = "<group>"; };
@@ -2854,6 +2905,8 @@
 		B0B0840121710D1500B1C632 /* Appt_Complete.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Appt_Complete.json; sourceTree = "<group>"; };
 		B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModel.swift; sourceTree = "<group>"; };
 		B0B0840E217111CE00B1C632 /* appointment_tracker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointment_tracker.json; sourceTree = "<group>"; };
+		B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = peak_rewards_summary.json; sourceTree = "<group>"; };
+		B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = peak_rewards_overrides.json; sourceTree = "<group>"; };
 		B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentusFormViewController.swift; sourceTree = "<group>"; };
 		B0D84D45220244E000C70A6F /* payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payments.json; sourceTree = "<group>"; };
 		B0D84D4D2203523D00C70A6F /* maintenance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maintenance.json; sourceTree = "<group>"; };
@@ -4359,16 +4412,27 @@
 				9CC48010220A142900393CC7 /* outage_status.json */,
 				B04DDF8A2200DBEC00594ACF /* accounts.json */,
 				B04DDF832200D47A00594ACF /* account_details.json */,
+				B089571E2217455200A97965 /* account_lookup.json */,
+				B089573A22175FDC00A97965 /* alert_preferences.json */,
 				B0EE78F02214766600F53C56 /* appointments.json */,
 				B07E179C2204E8F900B6E3C7 /* bill_comparison.json */,
 				B07E17A32204F6E800B6E3C7 /* bill_forecast.json */,
+				B08957252217496D00A97965 /* bill_pdf.json */,
+				B089572C2217596400A97965 /* billing_history.json */,
+				B089573322175BFD00A97965 /* budget_billing_info.json */,
+				B08956F82215D11B00A97965 /* energy_tips.json */,
+				B08956FF2215F6DB00A97965 /* home_profile.json */,
 				B0D84D4D2203523D00C70A6F /* maintenance.json */,
 				B07E17EE220A2EAE00B6E3C7 /* opco_updates.json */,
 				B0D84D45220244E000C70A6F /* payments.json */,
+				B08957062215FE7800A97965 /* recover_username.json */,
 				B0EE78E9221353E600F53C56 /* report_outage.json */,
+				B08956F12215C27100A97965 /* sso_data.json */,
 				B07E17C42209DB1C00B6E3C7 /* weather.json */,
 				9CC48017220A442900393CC7 /* meter_ping_info.json */,
 				9C46B12A221613FB00A5D537 /* wallet.json */,
+				B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */,
+				B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */,
 			);
 			path = "Mock JSON";
 			sourceTree = "<group>";
@@ -4842,10 +4906,7 @@
 			isa = PBXGroup;
 			children = (
 				823AA54A20100352009CAEF0 /* AccountDetailInitExtensions.swift */,
-				9C4C95CB203E2C960079BDF0 /* BillForecastInitExtensions.swift */,
-				829D396B203F1D3E008D7BAE /* UsageInitExtensions.swift */,
-				B067E0AA2045FD0B001C1271 /* PeakRewardsInitExtensions.swift */,
-				B092184220A2400800695888 /* MaintenanceInitExtensions.swift */,
+				B08957412217701D00A97965 /* UnitTestExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5633,11 +5694,11 @@
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B0B083FB21710CDB00B1C632 /* Appt_Confirmed.json in Resources */,
 				B07E17E92209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
+				B089571F2217455200A97965 /* account_lookup.json in Resources */,
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
-				9C46B1302216141D00A5D537 /* meter_ping_info.json in Resources */,
 				826DCCFE1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -5647,6 +5708,7 @@
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				9C46B13A2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
+				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
@@ -5665,6 +5727,7 @@
 				385AF2231F27915A001E3619 /* img_0.png in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
+				B089573B22175FDC00A97965 /* alert_preferences.json in Resources */,
 				35A6C6E0211CC11E00C2A58F /* Updates.storyboard in Resources */,
 				B0882CB4210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
@@ -5674,12 +5737,14 @@
 				359BB2792148349200FBAD83 /* outage.json in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432C1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895771E8AACFF009485E3 /* loading_blue.json in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
@@ -5690,14 +5755,19 @@
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
+				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
+				9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
 				82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */,
+				B089572D2217596400A97965 /* billing_history.json in Resources */,
+				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
@@ -5740,7 +5810,9 @@
 				6A4FDC511CBF8CE0C50F4E71 /* otp_step1.json in Resources */,
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
 				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
+				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */,
+				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
 				6A4FD91EB0591B1C2C63040C /* otp_step2.json in Resources */,
@@ -5770,12 +5842,12 @@
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B07E17DB2209F0C900B6E3C7 /* bill_comparison.json in Resources */,
+				B08957212217455200A97965 /* account_lookup.json in Resources */,
 				B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */,
-				9C46B12E2216141C00A5D537 /* meter_ping_info.json in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
@@ -5784,6 +5856,7 @@
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B0728E4B215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				9C46B13C2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
+				B0B12604221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				B5D415821F3A6E9000AC32B2 /* GoogleService-Info_peco.plist in Resources */,
@@ -5803,6 +5876,7 @@
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82A18ED11EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
+				B089573D22175FDC00A97965 /* alert_preferences.json in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
 				35A6C6E4211CC17100C2A58F /* Updates.storyboard in Resources */,
@@ -5813,12 +5887,14 @@
 				9C97DB1D20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				0D79C6C71F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				B08957022215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B0840421710D1500B1C632 /* Appt_otw.json in Resources */,
 				385AF2281F27915A001E3619 /* img_1.png in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
+				B08956FB2215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */,
@@ -5830,13 +5906,18 @@
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
+				B08957282217496D00A97965 /* bill_pdf.json in Resources */,
+				9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */,
 				35A6C6D6211C8F1300C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
+				B089572F2217596400A97965 /* billing_history.json in Resources */,
+				B08957092215FE7900A97965 /* recover_username.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -5878,7 +5959,9 @@
 				6A4FDDD10550ECC33F36ECCD /* otps2_img_0.png in Resources */,
 				6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */,
 				35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */,
+				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
+				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
 				6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */,
 				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
 				6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */,
@@ -5908,12 +5991,12 @@
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				B0DB2764215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
 				B07E17E22209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
+				B08957202217455200A97965 /* account_lookup.json in Resources */,
 				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
-				9C46B12F2216141D00A5D537 /* meter_ping_info.json in Resources */,
 				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
 				B0DB275B215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -5922,6 +6005,7 @@
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				9C46B13B2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
+				B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
@@ -5941,6 +6025,7 @@
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
+				B089573C22175FDC00A97965 /* alert_preferences.json in Resources */,
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
 				E857C5231F26A268002A8E94 /* TemplateCardView.xib in Resources */,
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
@@ -5951,12 +6036,14 @@
 				359BB2812148518C00FBAD83 /* sm_outage_loading.json in Resources */,
 				9C97DB1C20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				E800432D1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
+				B08957012215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083F021710C8900B1C632 /* Appt_otw.json in Resources */,
 				E80043421E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
 				385AF2271F27915A001E3619 /* img_1.png in Resources */,
+				B08956FA2215D11B00A97965 /* energy_tips.json in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
 				B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */,
@@ -5968,13 +6055,18 @@
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
+				B08957272217496D00A97965 /* bill_pdf.json in Resources */,
+				9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */,
 				35A6C6D5211C8F1200C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
+				B089572E2217596400A97965 /* billing_history.json in Resources */,
+				B08957082215FE7900A97965 /* recover_username.json in Resources */,
 				441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
@@ -6016,7 +6108,9 @@
 				6A4FD7193000B9082AA1B6E3 /* otp_step1.json in Resources */,
 				6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */,
 				6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */,
+				B08956F32215C27100A97965 /* sso_data.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */,
+				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				6A4FD8AE71A963B756050DD9 /* otp_step2.json in Resources */,
@@ -6040,21 +6134,32 @@
 			files = (
 				B0882CB7210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8B2200DBEC00594ACF /* accounts.json in Resources */,
+				B089571022173CD400A97965 /* home_profile.json in Resources */,
 				B574BAD21E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				B08957292217496D00A97965 /* bill_pdf.json in Resources */,
+				B089571A22173CFC00A97965 /* sso_data.json in Resources */,
 				B07E17A42204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C62209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78ED221353E700F53C56 /* report_outage.json in Resources */,
+				B089573722175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
+				B08957222217455200A97965 /* account_lookup.json in Resources */,
+				B0B125FE221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				9CFC82E1221C78C700B23D1F /* meter_ping_info.json in Resources */,
+				B089571122173CE300A97965 /* energy_tips.json in Resources */,
 				82AEF2E71F618F560057E7ED /* Settings.bundle in Resources */,
 				B0882CA9210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B089573E22175FDC00A97965 /* alert_preferences.json in Resources */,
+				B0B12605221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
+				B08957302217596400A97965 /* billing_history.json in Resources */,
 				9CC48011220A142900393CC7 /* outage_status.json in Resources */,
+				B089571622173CF000A97965 /* recover_username.json in Resources */,
 				B0D84D46220244E000C70A6F /* payments.json in Resources */,
 				B0EE78F72214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF842200D47A00594ACF /* account_details.json in Resources */,
 				9C46B1312216142000A5D537 /* wallet.json in Resources */,
 				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F2220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
-				9CC48018220A442900393CC7 /* meter_ping_info.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6080,21 +6185,32 @@
 			files = (
 				B0882CB8210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8C2200DBEC00594ACF /* accounts.json in Resources */,
+				B089570F22173CD400A97965 /* home_profile.json in Resources */,
 				E8F62BD9200924410077B3DA /* ErrorMessages.strings in Resources */,
+				B089572A2217496D00A97965 /* bill_pdf.json in Resources */,
+				B089571922173CFB00A97965 /* sso_data.json in Resources */,
 				B07E17A52204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C72209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78EE221353E700F53C56 /* report_outage.json in Resources */,
+				B089573822175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
+				B08957232217455200A97965 /* account_lookup.json in Resources */,
+				B0B125FF221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				9CFC82E2221C78C700B23D1F /* meter_ping_info.json in Resources */,
+				B089571222173CE400A97965 /* energy_tips.json in Resources */,
 				E8F62BDA200924410077B3DA /* Settings.bundle in Resources */,
 				B0882CAA210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B089573F22175FDC00A97965 /* alert_preferences.json in Resources */,
+				B0B12606221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
+				B08957312217596400A97965 /* billing_history.json in Resources */,
 				9CC48012220A142900393CC7 /* outage_status.json in Resources */,
+				B089571522173CF000A97965 /* recover_username.json in Resources */,
 				B0D84D47220244E000C70A6F /* payments.json in Resources */,
 				B0EE78F82214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF852200D47A00594ACF /* account_details.json in Resources */,
 				9C46B1322216142100A5D537 /* wallet.json in Resources */,
 				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F3220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
-				9CC48019220A442900393CC7 /* meter_ping_info.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6104,21 +6220,32 @@
 			files = (
 				B0882CB9210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B04DDF8D2200DBEC00594ACF /* accounts.json in Resources */,
+				B089570E22173CD300A97965 /* home_profile.json in Resources */,
 				E8F62C8E200924570077B3DA /* ErrorMessages.strings in Resources */,
+				B089572B2217496D00A97965 /* bill_pdf.json in Resources */,
+				B089571822173CFA00A97965 /* sso_data.json in Resources */,
 				B07E17A62204F6E900B6E3C7 /* bill_forecast.json in Resources */,
 				B07E17C82209DB1C00B6E3C7 /* weather.json in Resources */,
 				B0EE78EF221353E700F53C56 /* report_outage.json in Resources */,
+				B089573922175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
+				B08957242217455200A97965 /* account_lookup.json in Resources */,
+				B0B12600221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				9CFC82E3221C78C800B23D1F /* meter_ping_info.json in Resources */,
+				B089571322173CE500A97965 /* energy_tips.json in Resources */,
 				E8F62C8F200924570077B3DA /* Settings.bundle in Resources */,
 				B0882CAB210B926B00EB756B /* UsageToolCardView.xib in Resources */,
+				B089574022175FDC00A97965 /* alert_preferences.json in Resources */,
+				B0B12607221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
+				B08957322217596400A97965 /* billing_history.json in Resources */,
 				9CC48013220A142900393CC7 /* outage_status.json in Resources */,
+				B089571422173CEF00A97965 /* recover_username.json in Resources */,
 				B0D84D48220244E000C70A6F /* payments.json in Resources */,
 				B0EE78F92214CA9200F53C56 /* appointments.json in Resources */,
 				B04DDF862200D47A00594ACF /* account_details.json in Resources */,
 				9C46B1332216142100A5D537 /* wallet.json in Resources */,
 				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F4220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
-				9CC4801A220A442900393CC7 /* meter_ping_info.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6155,7 +6282,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6194,7 +6321,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1F320E9F488F4AF612BF5C4D /* [CP] Embed Pods Frameworks */ = {
@@ -6205,7 +6332,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6244,7 +6371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		21FCC9D56DC0C626A725A88B /* [CP] Check Pods Manifest.lock */ = {
@@ -6277,7 +6404,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6318,7 +6445,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		406C7655A7FF0BC739C0F4EB /* [CP] Embed Pods Frameworks */ = {
@@ -6329,7 +6456,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6370,7 +6497,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		41DEF2587A5D2CF44ABDBFD5 /* [CP] Check Pods Manifest.lock */ = {
@@ -6535,7 +6662,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6576,7 +6703,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B58B5B6A1E51728B0051FD5F /* Run Script */ = {
@@ -6630,7 +6757,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6671,7 +6798,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B94B53A494B834F78A5C29C7 /* [CP] Check Pods Manifest.lock */ = {
@@ -6704,7 +6831,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6745,7 +6872,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D78727F1DC655E92E060260C /* [CP] Check Pods Manifest.lock */ = {
@@ -6778,7 +6905,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -6791,7 +6918,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */ = {
@@ -6802,7 +6929,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6841,7 +6968,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9CBF2ECCE98E33F8775740D /* [CP] Embed Pods Frameworks */ = {
@@ -6852,7 +6979,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6893,7 +7020,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -7046,7 +7173,6 @@
 				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
-				9C4C95CC203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				352CB2072140448C00DAF045 /* UINavigationController+Style.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
@@ -7221,7 +7347,6 @@
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				823694311FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
-				B067E0AB2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
@@ -7284,7 +7409,6 @@
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */,
-				B092184320A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				2F036CF01F1EA7D5000DECBE /* WeatherService.swift in Sources */,
@@ -7330,7 +7454,6 @@
 				B0B083A8216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				B574BAD91E78360D001E8A44 /* AccountService.swift in Sources */,
 				82A18F181EC0E83800BE9F21 /* NibViews.swift in Sources */,
-				829D396C203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
 				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
@@ -7403,7 +7526,6 @@
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
-				9C4C95CE203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				B0A8308321419C6300EC3F21 /* UINavigationController+Style.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				B01748992135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -7571,7 +7693,6 @@
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
 				823694331FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */,
-				B067E0AD2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				35277B03210794B400411297 /* UnavailableView.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
@@ -7635,7 +7756,6 @@
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				E841F3B41F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
-				B092184520A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
 				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				44A373441F211522005E227B /* TemplateCardView.swift in Sources */,
@@ -7689,7 +7809,6 @@
 				B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
-				829D396E203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
@@ -7769,7 +7888,6 @@
 				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
-				9C4C95CD203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				B0A8308221419C6200EC3F21 /* UINavigationController+Style.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				B01748982135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -7940,7 +8058,6 @@
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				823694321FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */,
-				B067E0AC2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				54C1DF071F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				35277B02210794B400411297 /* UnavailableView.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
@@ -8003,7 +8120,6 @@
 				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				E841F3B31F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
-				B092184420A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
 				82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				2F036CF11F1EA7D5000DECBE /* WeatherService.swift in Sources */,
@@ -8054,7 +8170,6 @@
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
-				829D396D203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
 				82A18F191EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01C1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
@@ -8092,8 +8207,6 @@
 			files = (
 				B0B083C0216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
-				B092184620A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
-				9C4C95CF203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				E86414F61F1038CA00DA859A /* Premise.swift in Sources */,
 				B0E9EFFE21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
@@ -8221,7 +8334,6 @@
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */,
-				B067E0AE2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8039FF81EFB041D004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A261FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -8230,7 +8342,6 @@
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				B52CA0B21F311524002B5674 /* Analytics.swift in Sources */,
 				B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */,
-				829D396F203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
 				E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
@@ -8250,6 +8361,7 @@
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E84705F0202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				E803A0071EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
+				B08957422217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				E83F026E1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0A830902146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				E8EFFE261FD739B000DBAE40 /* AlertsViewModelTests.swift in Sources */,
@@ -8328,8 +8440,6 @@
 			files = (
 				B0B083C1216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8F62B35200924410077B3DA /* BillService.swift in Sources */,
-				B092184720A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
-				9C4C95D0203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				35A6C6EE211DEB5600C2A58F /* UpdatesViewModel.swift in Sources */,
 				B0E9EFFF21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E8F62B36200924410077B3DA /* Premise.swift in Sources */,
@@ -8458,7 +8568,6 @@
 				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */,
 				B011C0BC20F5063B00C900BE /* RecentPaymentsStore.swift in Sources */,
-				B067E0AF2045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62B9A200924410077B3DA /* RegistrationService.swift in Sources */,
 				B05E9D17217F688A0003FAB8 /* Application.swift in Sources */,
@@ -8467,7 +8576,6 @@
 				E8F62B9F200924410077B3DA /* ActivityTracker.swift in Sources */,
 				E8F62BA0200924410077B3DA /* Analytics.swift in Sources */,
 				B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */,
-				829D3970203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
 				E8F62BA1200924410077B3DA /* BillingHistoryItem.swift in Sources */,
 				E8F62BA3200924410077B3DA /* NibViews.swift in Sources */,
 				E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
@@ -8486,6 +8594,7 @@
 				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62BB3200924410077B3DA /* Date.swift in Sources */,
 				E84705F1202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				B08957432217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				E8F62BB4200924410077B3DA /* MiniWalletViewModel.swift in Sources */,
 				B0A830912146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				E8F62BB5200924410077B3DA /* AlertsService.swift in Sources */,
@@ -8518,8 +8627,6 @@
 			files = (
 				B0B083C2216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8F62BEA200924570077B3DA /* BillService.swift in Sources */,
-				B092184820A2400800695888 /* MaintenanceInitExtensions.swift in Sources */,
-				9C4C95D1203E2C960079BDF0 /* BillForecastInitExtensions.swift in Sources */,
 				35A6C6EF211DEB5600C2A58F /* UpdatesViewModel.swift in Sources */,
 				B0E9F00021EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E8F62BEB200924570077B3DA /* Premise.swift in Sources */,
@@ -8648,7 +8755,6 @@
 				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */,
 				B011C0BD20F5063C00C900BE /* RecentPaymentsStore.swift in Sources */,
-				B067E0B02045FD0B001C1271 /* PeakRewardsInitExtensions.swift in Sources */,
 				E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62C4F200924570077B3DA /* RegistrationService.swift in Sources */,
 				B05E9D18217F688A0003FAB8 /* Application.swift in Sources */,
@@ -8657,7 +8763,6 @@
 				E8F62C54200924570077B3DA /* ActivityTracker.swift in Sources */,
 				E8F62C55200924570077B3DA /* Analytics.swift in Sources */,
 				B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */,
-				829D3971203F1D3E008D7BAE /* UsageInitExtensions.swift in Sources */,
 				E8F62C56200924570077B3DA /* BillingHistoryItem.swift in Sources */,
 				E8F62C58200924570077B3DA /* NibViews.swift in Sources */,
 				E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
@@ -8676,6 +8781,7 @@
 				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62C68200924570077B3DA /* Date.swift in Sources */,
 				E84705F2202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				B08957442217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				E8F62C69200924570077B3DA /* MiniWalletViewModel.swift in Sources */,
 				B0A830922146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				E8F62C6A200924570077B3DA /* AlertsService.swift in Sources */,
@@ -9314,7 +9420,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SHOWTOUCHES";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
