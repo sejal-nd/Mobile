@@ -31,9 +31,7 @@ struct Maintenance: Mappable {
         //stormModeStatus = true // Force Storm Mode
         //stormModeStatus = Int.random(in: 1...5) != 1 // 1 in 5 chance to test exiting Storm Mode
         
-        allMessage = nil
-        //allMessage = map.optionalFrom("allMessage")
-        //allMessage = Bool.random() ? nil : "how now brown cow"
+        allMessage = map.optionalFrom("ios.message") ?? map.optionalFrom("message")
     }
     
 }
