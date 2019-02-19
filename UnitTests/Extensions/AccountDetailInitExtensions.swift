@@ -18,35 +18,6 @@ private extension Date {
     }
 }
 
-extension Account {
-    init(accountNumber: String = "1234",
-        address: String? = "E. Fort Ave, Ste. 200",
-        premises: [Premise] = [],
-        currentPremise: Premise? = nil,
-        status: String? = nil,
-        isLinked: Bool = false,
-        isDefault: Bool = false,
-        isFinaled: Bool = false,
-        isResidential: Bool = false,
-        serviceType: String? = nil) {
-        
-        assert(Environment.shared.environmentName == .aut, "init only available for tests")
-        
-        var map = [String: Any]()
-        map["accountNumber"] = accountNumber
-        map["address"] = address
-        map["PremiseInfo"] = premises.map { $0.toJSON() }
-        map["status"] = status
-        map["isLinkedProfile"] = isLinked
-        map["isDefaultProfile"] = isDefault
-        map["flagFinaled"] = isFinaled
-        map["isResidential"] = isResidential
-        map["serviceType"] = serviceType
-        
-        self = Account.from(map as NSDictionary)!
-    }
-}
-
 extension AccountDetail {
     
     init(accountNumber: String = "1234",

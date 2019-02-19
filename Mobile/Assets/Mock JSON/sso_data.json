@@ -1,0 +1,8 @@
+{
+    "default": {
+        "utilityCustomerId": "1234",
+        "ssoPostURL": "https://google.com",
+        "relayState": "https://google.com",
+        "samlResponse": "test"
+    }
+}

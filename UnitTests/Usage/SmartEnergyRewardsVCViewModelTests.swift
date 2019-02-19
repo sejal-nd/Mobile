@@ -14,41 +14,44 @@ class SmartEnergyRewardsVCViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testShouldShowSmartEnergyRewards() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: .default, eventResults: [])
         XCTAssert(!viewModel.shouldShowSmartEnergyRewards)
         
-        var accountDetail = AccountDetail(isPTSAccount: true)
-        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: accountDetail, eventResults: [])
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(),
+                                                  accountDetail: .fromMockJson(forKey: .pts),
+                                                  eventResults: [])
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards, Environment.shared.opco != .peco)
         
-        accountDetail = AccountDetail(premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")])
-        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: accountDetail, eventResults: [])
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(),
+                                                  accountDetail: .fromMockJson(forKey: .serEnrolled),
+                                                  eventResults: [])
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards, Environment.shared.opco != .peco)
         
-        accountDetail = AccountDetail(isPTSAccount: true, premiseInfo: [Premise(smartEnergyRewards: "ENROLLED")])
-            viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: accountDetail, eventResults: [])
+            viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(),
+                                                      accountDetail: .fromMockJson(forKey: .ptsAndSerEnrolled),
+                                                      eventResults: [])
         XCTAssertEqual(viewModel.shouldShowSmartEnergyRewards, Environment.shared.opco != .peco)
     }
     
     func testShouldShowSmartEnergyRewardsContent() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: .default, eventResults: [])
         viewModel.shouldShowSmartEnergyRewardsContent.asObservable().single().subscribe(onNext: { shouldShow in
             XCTAssertFalse(shouldShow)
         }).disposed(by: disposeBag)
         
-        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [SERResult()])
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: .default, eventResults: [SERResult()])
         viewModel.shouldShowSmartEnergyRewardsContent.asObservable().single().subscribe(onNext: { shouldShow in
             XCTAssert(shouldShow)
         }).disposed(by: disposeBag)
     }
     
     func testSmartEnergyRewardsSeasonLabelText() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: .default, eventResults: [])
         viewModel.smartEnergyRewardsSeasonLabelText.asObservable().single().subscribe(onNext: { text in
             XCTAssertNil(text)
         }).disposed(by: disposeBag)
         
-        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: .default, eventResults: [SERResult(eventStart: DateFormatter.mmDdYyyyFormatter.date(from: "05/23/2018")!)])
         
         viewModel.smartEnergyRewardsSeasonLabelText.asObservable().single().subscribe(onNext: { text in
             XCTAssertEqual(text, "Summer 2018")
@@ -56,12 +59,12 @@ class SmartEnergyRewardsVCViewModelTests: XCTestCase {
     }
     
     func testSmartEnergyRewardsFooterText() {
-        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [SERResult()])
+        var viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: .default, eventResults: [SERResult()])
         viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in
             XCTAssertEqual(text, "You earn bill credits for every kWh you save. We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.")
         }).disposed(by: disposeBag)
 
-        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: AccountDetail(), eventResults: [])
+        viewModel = SmartEnergyRewardsVCViewModel(accountService: MockAccountService(), accountDetail: .default, eventResults: [])
         switch Environment.shared.opco {
         case .comEd:
             viewModel.smartEnergyRewardsFooterText.asObservable().single().subscribe(onNext: { text in

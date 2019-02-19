@@ -111,8 +111,8 @@ class AppointmentDetailViewModelTests: XCTestCase {
     }
     
     func testCalendarEvent() {
-        AccountsStore.shared.accounts = [Account(accountNumber: "0", address: "123 Main Street", isResidential: true)]
-        AccountsStore.shared.currentIndex = 0
+        MockUser.current = MockUser(globalKeys: .residential)
+        MockAccountService.loadAccountsSync()
         
         // Using gmt time zone to generate expected dates instead of `opCo`, which will be different for ComEd
         let expectedStartDate = Calendar.gmt.date(bySettingHour: 17, minute: 0, second: 0, of: .now)!

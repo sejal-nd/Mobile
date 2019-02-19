@@ -71,37 +71,12 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func recoverMaskedUsername(phone: String, identifier: String?, accountNumber: String?) -> Observable<[ForgotUsernameMasked]> {
-        var maskedUsernames = [ForgotUsernameMasked]()
-        let usernames = [
-            NSDictionary(dictionary: [
-                "email": "userna**********",
-                "question": "What is your mother's maiden name?",
-                "question_id": 1
-                ]),
-//                NSDictionary(dictionary: [
-//                    "email": "m**********g@mindgrub.com",
-//                    "question": "What is your mother's maiden name?",
-//                    "question_id": 4
-//                ]),
-//                NSDictionary(dictionary: [
-//                    "email": "m**********g@icloud.com",
-//                    "question": "What street did you grow up on?",
-//                    "question_id": 3
-//                ])
-        ]
-        for user in usernames {
-            if let mockModel = ForgotUsernameMasked.from(user) {
-                maskedUsernames.append(mockModel)
-            }
-        }
-        
         if identifier == "0000" {
             return Observable.error(ServiceError(serviceCode: ServiceErrorCode.fnAccountNotFound.rawValue))
                 .delay(1, scheduler: MainScheduler.instance)
-        } else {
-            return Observable.just(maskedUsernames)
-                .delay(1, scheduler: MainScheduler.instance)
         }
+        
+        return MockJSONManager.shared.rx.mappableArray(fromFile: .recoverUsername, key: .default)
     }
     
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String) -> Observable<String> {
@@ -115,46 +90,17 @@ struct MockAuthenticationService: AuthenticationService {
     }
     
     func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]> {
-        if identifier == "0000" {
-            return Observable.error(ServiceError(serviceMessage: "No accounts found"))
-                .delay(1, scheduler: MainScheduler.instance)
-        } else if identifier == "1111" {
-            var accountResults = [AccountLookupResult]()
-            accountResults.append(AccountLookupResult.from(
-                NSDictionary(dictionary: [
-                    "AccountNumber": "1234567890",
-                    "StreetNumber": "1268",
-                    "ApartmentUnitNumber": "12B"
-                    ])
-                )!)
-            return Observable.just(accountResults)
-                .delay(1, scheduler: MainScheduler.instance)
-        } else {
-            var accountResults = [AccountLookupResult]()
-            let accounts = [
-                NSDictionary(dictionary: [
-                    "AccountNumber": "1234567890",
-                    "StreetNumber": "1268",
-                    "ApartmentUnitNumber": "12B"
-                    ]),
-                NSDictionary(dictionary: [
-                    "AccountNumber": "9876543219",
-                    "StreetNumber": "6789",
-                    "ApartmentUnitNumber": "99A"
-                    ]),
-                NSDictionary(dictionary: [
-                    "AccountNumber": "1111111111",
-                    "StreetNumber": "999",
-                    ])
-            ]
-            for account in accounts {
-                if let mockModel = AccountLookupResult.from(account) {
-                    accountResults.append(mockModel)
-                }
-            }
-            return Observable.just(accountResults)
-                .delay(1, scheduler: MainScheduler.instance)
+        let key: MockDataKey
+        switch identifier {
+        case "0000":
+            return .error(ServiceError(serviceMessage: "No accounts found"))
+        case "1111":
+            key = .acctLookup1
+        default:
+            key = .default
         }
+        
+        return MockJSONManager.shared.rx.mappableArray(fromFile: .accountLookup, key: key)
     }
     
     func recoverPassword(username: String) -> Observable<Void> {

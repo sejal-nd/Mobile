@@ -1,0 +1,37 @@
+{
+    "default": {
+        "alertPreferences": [
+            {
+                "programName": "Outage Notifications"
+            },
+            {
+                "programName": "Planned Outage"
+            },
+            {
+                "programName": "Severe Weather"
+            },
+            {
+                "programName": "Paperless Billing"
+            },
+            {
+                "programName": "Payment Reminder",
+                "daysPrior": 99
+            },
+            {
+                "programName": "Payment Posted"
+            },
+            {
+                "programName": "Payment Past Due"
+            },
+            {
+                "programName": "Budget Billing"
+            },
+            {
+                "programName": "Customer Appointments"
+            },
+            {
+                "programName": "News"
+            }
+        ]
+    }
+}

@@ -17,17 +17,20 @@ class MockBillService: BillService {
     ///   - startDate: the start date of the desired history
     ///   - endDate: the end date of the desired history
     func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) -> Observable<BillingHistory> {
-        return .just(BillingHistory.from(["billing_and_payment_history": []])!)
+        let dataFile = MockJSONManager.File.billingHistory
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
 
 
     func fetchBudgetBillingInfo(accountNumber: String) -> Observable<BudgetBillingInfo> {
         if accountNumber == "0000" {
             return .error(ServiceError(serviceMessage: "Mock Error"))
-        } else {
-            let info = BudgetBillingInfo.from(["enrolled": true, "averageMonthlyBill": 120])!
-            return .just(info)
         }
+        
+        let dataFile = MockJSONManager.File.budgetBillingInfo
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
 
     func enrollBudgetBilling(accountNumber: String) -> Observable<Void> {
@@ -63,6 +66,15 @@ class MockBillService: BillService {
     }
     
     func fetchBillPdf(accountNumber: String, billDate: Date) -> Observable<String> {
-        return .error(ServiceError(serviceMessage: "Mock Error"))
+        let dataFile = MockJSONManager.File.billPdf
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.jsonObject(fromFile: dataFile, key: key)
+            .map { json in
+                guard let pdfString = json["billImageData"] as? String else {
+                    throw ServiceError(serviceMessage: "Mock Error")
+                }
+                
+                return pdfString
+        }
     }
 }

@@ -164,6 +164,13 @@ enum MockDataKey: String {
     case likelyReasonsAboutSame
     case likelyReasonsGreater
     case likelyReasonsLess
+    case pts
+    case serEnrolled
+    case ptsAndSerEnrolled
+    
+    case energyTipsNone
+    case energyTips3
+    case energyTips7
     
     // Appointments
     case apptToday
@@ -192,7 +199,14 @@ enum MockDataKey: String {
     case apptHalfHourRoundUp
     case apptHalfHourRoundDown
     
-    // App State
+    // Peak Rewards
+    case peakRewardsActiveProgram
+    case peakRewardsInactiveProgram
+    case peakRewardsActiveOverride
+    case peakRewardsNoOverrides
+    case peakRewardsScheduledOverride
+    
+    // Anon
     case maintAll
     case maintAllTabs
     case maintAllTabsIOS
@@ -200,9 +214,11 @@ enum MockDataKey: String {
     case maintNotHomeIOS
     case stormMode
     case urgentBanner
+    case acctLookup1
     
     // General
     case screenshots
+    case residential
     case error
     case `default`
 }
