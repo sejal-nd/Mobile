@@ -19,23 +19,7 @@ class WalletViewModelTests: XCTestCase {
         
         viewModel = WalletViewModel(walletService: MockWalletService())
     }
-    
-    func testFetchingWalletItems() {
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!]
-        AccountsStore.shared.currentIndex = 0
         
-        let scheduler = TestScheduler(initialClock: 0)
-        let events: [Recorded<Event<Void>>] = [next(2, ())]
-        let fetch = scheduler.createHotObservable(events)
-        fetch.bind(to: viewModel.fetchWalletItems).disposed(by: disposeBag)
-        
-        scheduler.start()
-        viewModel.isFetchingWalletItems.asObservable().take(1).subscribe(onNext: { isFetching in
-            XCTAssert(isFetching, "isFetchingWalletItems should be true right after triggering fetch")
-        }).disposed(by: disposeBag)
-
-    }
-    
     func testShouldShowEmptyState() {
         viewModel.walletItems.value = []
         viewModel.shouldShowEmptyState.asObservable().take(1).subscribe(onNext: { shouldShow in
@@ -62,22 +46,15 @@ class WalletViewModelTests: XCTestCase {
     
     func testAddBankDisabled() {
         viewModel.walletItems.value = []
-        viewModel.accountDetail = AccountDetail()
+        viewModel.accountDetail = AccountDetail.default
         XCTAssertFalse(viewModel.addBankDisabled, "addBankDisabled should be false for non-cash only users")
 
-        viewModel.accountDetail = AccountDetail(isCashOnly: true)
+        viewModel.accountDetail = AccountDetail.fromMockJson(forKey: .cashOnly)
         XCTAssert(viewModel.addBankDisabled, "addBankDisabled should be true for cash only users")
     }
         
     func testFooterLabelText() {
-        let expectedStr: String
-        switch Environment.shared.opco {
-        case .bge:
-            expectedStr = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
-        case .comEd, .peco:
-            expectedStr = NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
-        }
-        XCTAssert(viewModel.footerLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.footerLabelText)\"")
+        XCTAssertEqual(viewModel.footerLabelText, NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: ""))
     }
     
 }

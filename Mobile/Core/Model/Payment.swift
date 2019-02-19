@@ -9,17 +9,20 @@
 import Foundation
 import Mapper
 
+enum PaymentType: String {
+    case check = "Check"
+    case credit = "Card"
+}
+
 struct Payment {
     let accountNumber: String
     let existingAccount: Bool
-    let saveAccount: Bool
     let maskedWalletAccountNumber: String
     let paymentAmount: Double
     let paymentType: PaymentType
     let paymentDate: Date
     let walletId: String
     let walletItemId: String
-    let cvv: String?
 }
 
 struct PaymentDetail: Mappable {

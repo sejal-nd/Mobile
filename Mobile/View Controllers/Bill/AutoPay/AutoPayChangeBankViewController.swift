@@ -103,15 +103,11 @@ class AutoPayChangeBankViewController: UIViewController {
 	}
 	
 	private func bindViews() {
-		
-		checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
-		
-		checkingSavingsSegmentedControl.selectedIndex.asObservable()
-			.map { selectedIndex -> BankAccountType in
-				selectedIndex == 0 ? .checking: .savings
-			}
-			.bind(to: viewModel.bankAccountType)
-			.disposed(by: bag)
+        checkingSavingsSegmentedControl.items = [
+            NSLocalizedString("Checking", comment: ""),
+            NSLocalizedString("Savings", comment: "")
+        ]
+        checkingSavingsSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.checkingSavingsSegmentedControlIndex).disposed(by: bag)
 		
 		tacButton.rx.tap.asDriver()
 			.drive(onNext: onTermsAndConditionsPress)

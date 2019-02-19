@@ -74,7 +74,7 @@ class MCSPaymentService: PaymentService {
 
     func enrollInAutoPay(accountNumber: String,
                          nameOfAccount: String,
-                         bankAccountType: BankAccountType,
+                         bankAccountType: String,
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void> {
@@ -84,7 +84,7 @@ class MCSPaymentService: PaymentService {
         let params: [String: Any] = [
             "bank_details": [
                 "name_on_account": nameOfAccount,
-                "bank_account_type": bankAccountType.rawValue,
+                "bank_account_type": bankAccountType,
                 "routing_number": routingNumber,
                 "bank_name": "N/A",
                 "bank_account_number": bankAccountNumber,
@@ -117,87 +117,25 @@ class MCSPaymentService: PaymentService {
     }
 
     func schedulePayment(payment: Payment) -> Observable<String> {
-        
         let opCo = Environment.shared.opco
-    
-        var params: [String: Any] = ["masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
-                                    "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
-                                    "payment_category_type": payment.paymentType.rawValue,
-                                    "payment_date": payment.paymentDate.paymentFormatString,
-                                    "wallet_id" : payment.walletId,
-                                    "wallet_item_id" : payment.walletItemId,
-                                    "is_existing_account": payment.existingAccount,
-                                    "is_save_account": payment.saveAccount]
+        let params: [String: Any] = [
+            "masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
+            "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
+            "payment_category_type": payment.paymentType.rawValue,
+            "payment_date": payment.paymentDate.paymentFormatString,
+            "wallet_id" : payment.walletId,
+            "wallet_item_id" : payment.walletItemId,
+            "is_existing_account": payment.existingAccount,
+            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
+            "auth_sess_token": "" // Still needed?
+        ]
         
-        switch opCo {
-        case .comEd, .peco:
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-            params["auth_sess_token"] = ""
-        case .bge:
-            params["cvv"] = payment.cvv
-        }
-        
-        return schedulePaymentInternal(accountNumber: payment.accountNumber, params: params)
-    }
-    
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
-        return SpeedpayApi().fetchTokenizedCardNumber(cardNumber: creditCard.cardNumber)
-            .flatMap { tokenizedCardNumber -> Observable<String> in
-                let parsed = DateFormatter.MMyyyyFormatter.date(from: creditCard.expirationMonth + creditCard.expirationYear)!
-                
-                let params: [String: Any] = ["is_existing_account": false,
-                                             "is_save_account": false,
-                                             "payment_amount": String.init(format: "%.02f", paymentAmount),
-                                             "payment_category_type": "Card",
-                                             "payment_date": paymentDate.paymentFormatString,
-                                             "account_holder_name": creditCard.cardHolderName!,
-                                             "bank_account_number": tokenizedCardNumber,
-                                             "expiration_date": parsed.paymentFormatString,
-                                             "zip_code": creditCard.postalCode,
-                                             "cvv": creditCard.securityCode]
-                    
-                return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
-                    .map { json in
-                        guard let dict = json as? NSDictionary,
-                            let confirmation = dict["confirmationNumber"] as? String else {
-                                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                        }
-                        
-                        return confirmation
-                    }
-                    .do(onNext: { _ in
-                        RxNotifications.shared.recentPaymentsUpdated.onNext(())
-                        AppRating.logRatingEvent()
-                    })
-        }
-
-    }
-    
-    private func schedulePaymentInternal(accountNumber: String, params: [String: Any]) -> Observable<String> {
-        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(payment.accountNumber)/payments/schedule", params: params)
             .map { json -> String in
-                guard let dict = json as? NSDictionary,
-                    let confirmation = dict["confirmationNumber"] as? String else {
+                guard let dict = json as? NSDictionary, let confirmation = dict["confirmationNumber"] as? String else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
-                
                 return confirmation
-            }
-            .catchError { error in
-                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                if Environment.shared.opco == .bge {
-                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                        throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
-                    } else {
-                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                            throw serviceError
-                        } else {
-                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
-                        }
-                    }
-                } else { // Paymentus Error Handling
-                    throw serviceError
-                }
             }
             .do(onNext: { _ in
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())
@@ -212,51 +150,30 @@ class MCSPaymentService: PaymentService {
                     let paymentDetail = PaymentDetail.from(dict) else {
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
-                
                 return paymentDetail
-        }
+            }
     }
     
     func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
-        var params: [String: Any] = ["masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
-                                     "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
-                                     "payment_category_type": payment.paymentType.rawValue,
-                                     "payment_date": payment.paymentDate.paymentFormatString,
-                                     "payment_id": paymentId,
-                                     "wallet_id" : payment.walletId,
-                                     "wallet_item_id" : payment.walletItemId,
-                                     "is_existing_account": payment.existingAccount]
-        
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
-            params["auth_sess_token"] = ""
-        case .bge:
-            params["cvv"] = payment.cvv
-        }
-        
+        let opCo = Environment.shared.opco
+        let params: [String: Any] = [
+            "masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
+            "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
+            "payment_category_type": payment.paymentType.rawValue,
+            "payment_date": payment.paymentDate.paymentFormatString,
+            "payment_id": paymentId,
+            "wallet_id" : payment.walletId,
+            "wallet_item_id" : payment.walletItemId,
+            "is_existing_account": payment.existingAccount,
+            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
+            "auth_sess_token": "" // Still needed?
+        ]
         return updatePaymentInternal(accountNumber: payment.accountNumber, paymentId: paymentId, params: params)
     }
     
     private func updatePaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
-            .catchError { error in
-                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                if Environment.shared.opco == .bge {
-                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                        throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
-                    } else {
-                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                            throw serviceError
-                        } else {
-                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
-                        }
-                    }
-                } else { // Paymentus error handling
-                    throw serviceError
-                }
-            }
             .do(onNext: {
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())
                 AppRating.logRatingEvent()
@@ -265,42 +182,20 @@ class MCSPaymentService: PaymentService {
     
     func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void> {
         let opCo = Environment.shared.opco
-        var params: [String: Any] = ["payment_id": paymentId,
-                                     "payment_amount": String.init(format: "%.02f", paymentDetail.paymentAmount),
-                                     "wallet_item_id" : paymentDetail.walletItemId ?? ""]
-        
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-            // Artifacts from Fiserv: seems like we need to keep sending the keys though
-            params["cancel_payment_method"] = ""
-            params["auth_sess_token"] = ""
-        case .bge:
-            break
-        }
-        
+        let params: [String: Any] = [
+            "payment_id": paymentId,
+            "payment_amount": String.init(format: "%.02f", paymentDetail.paymentAmount),
+            "wallet_item_id" : paymentDetail.walletItemId ?? "",
+            "cancel_payment_method": "", // Needed?
+            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
+            "auth_sess_token": "" // Still needed?
+        ]
         return cancelPaymentInternal(accountNumber: accountNumber, paymentId: paymentId, params: params)
     }
     
     private func cancelPaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
-            .catchError { error in
-                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                if Environment.shared.opco == .bge {
-                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
-                        throw ServiceError(serviceCode: speedpayError.id, serviceMessage: speedpayError.text)
-                    } else {
-                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                            throw serviceError
-                        } else {
-                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
-                        }
-                    }
-                } else { // Paymentus Error Handling
-                    throw serviceError
-                }
-            }
             .do(onNext: {
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())
                 AppRating.logRatingEvent()

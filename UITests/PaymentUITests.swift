@@ -10,14 +10,14 @@ import XCTest
 import AppCenterXCUITestExtensions
 
 class PaymentUITests: ExelonUITestCase {
-    
+
     override func setUp() {
         super.setUp()
         launchApp()
     }
-   
+
     // MARK: MakePaymentViewController Layout Tests
-    
+
     func testLayoutNoPaymentMethods() {
         doLogin(username: "billCardNoDefaultPayment")
         selectTab(tabName: "Bill")
@@ -34,28 +34,20 @@ class PaymentUITests: ExelonUITestCase {
             (.button, "Add bank account"),
             (.button, "Add credit/debit card")
         ])
-        
-        if appOpCo == .bge {
-            checkExistenceOfElements([
-                (.staticText, "We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.")
-            ])
-        } else {
-            checkExistenceOfElements([
-                (.staticText, "All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.")
-            ])
-        }
+
+        checkExistenceOfElement(.staticText, "All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.")
     }
-    
+
     func testLayoutExistingWalletItems() {
         doLogin(username: "billCardWithDefaultPayment")
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
-        
+
         let nextButton = buttonElement(withText: "Next")
         sleep(1) // Button becomes enabled asynchronously
         XCTAssertTrue(nextButton.isEnabled, "Next button should be immediately enabled in this scenario")
         checkExistenceOfElement(.staticText, "Payment Method")
-        
+
         tapButton(buttonText: "Bank account, Test Nickname, Account number ending in, 1234")
         checkExistenceOfElement(.navigationBar, "Select Payment Method")
         tapButton(buttonText: "Back")
@@ -76,7 +68,7 @@ class PaymentUITests: ExelonUITestCase {
         checkExistenceOfElement(.navigationBar, "Select Payment Date")
         tapButton(buttonText: "Back")
     }
-    
+
     func testPaymentusActionSheetEmptyWallet() {
         guard appOpCo != .bge else {
             return
@@ -85,17 +77,17 @@ class PaymentUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
         tapButton(buttonText: "Add bank account")
-        
+
         checkExistenceOfElements([
             (.sheet, "Add Bank Account"),
             (.button, "Save to My Wallet"),
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
         ])
-        
+
         tapButton(buttonText: "Cancel")
         tapButton(buttonText: "Add credit/debit card")
-        
+
         checkExistenceOfElements([
             (.sheet, "Add Credit/Debit Card"),
             (.button, "Save to My Wallet"),
@@ -103,7 +95,7 @@ class PaymentUITests: ExelonUITestCase {
             (.button, "Cancel")
         ])
     }
-    
+
     func testPaymentusActionSheetMiniWallet() {
         guard appOpCo != .bge else {
             return
@@ -113,7 +105,7 @@ class PaymentUITests: ExelonUITestCase {
         tapButton(buttonText: "Make a Payment")
         tapButton(buttonText: "Bank account, Test Nickname, Account number ending in, 1234")
         checkExistenceOfElement(.navigationBar, "Select Payment Method")
-        
+
         tapButton(buttonText: "Add Bank Account")
         checkExistenceOfElements([
             (.sheet, "Add Bank Account"),
@@ -121,7 +113,7 @@ class PaymentUITests: ExelonUITestCase {
             (.button, "Don't Save to My Wallet"),
             (.button, "Cancel")
         ])
-        
+
         tapButton(buttonText: "Cancel")
         tapButton(buttonText: "Add Credit/Debit Card")
         checkExistenceOfElements([
@@ -131,9 +123,9 @@ class PaymentUITests: ExelonUITestCase {
             (.button, "Cancel")
         ])
     }
-    
+
     // MARK: Schedule Payments
-    
+
     func testMakePaymentExistingWalletItem() {
         doLogin(username: "billCardWithDefaultPayment")
         selectTab(tabName: "Bill")
@@ -142,7 +134,7 @@ class PaymentUITests: ExelonUITestCase {
         sleep(1) // Button becomes enabled asynchronously
         XCTAssertTrue(nextButton.isEnabled)
         nextButton.tap()
-        
+
         XCTAssertTrue(app.scrollViews.otherElements["Bank account, Test Nickname, Account number ending in, 1234"].exists)
 
         checkExistenceOfElements([
@@ -156,7 +148,7 @@ class PaymentUITests: ExelonUITestCase {
             (.staticText, "$5,000.00"),
             (.staticText, "01/01/2019")
         ])
-        
+
         let submitButton = app.navigationBars.buttons["Submit"]
         if appOpCo == .bge {
             XCTAssertTrue(submitButton.isEnabled, "BGE does not need to agree to terms so submit should be immediately enabled")
@@ -168,10 +160,10 @@ class PaymentUITests: ExelonUITestCase {
             checkExistenceOfElement(.staticText, "Terms and Conditions")
 
             tapButton(buttonText: "Close")
-        
+
             let termsSwitch = element(ofType: .switch, withText: "Yes, I have read, understand, and agree to the terms and conditions provided below:")
             XCTAssertEqual(termsSwitch.value as? String, "0", "Terms switch should be OFF by default")
-            
+
             XCTAssertFalse(submitButton.isEnabled, "ComEd/PECO needs to agree to terms first so submit should be initially disabled")
             termsSwitch.tap()
             XCTAssertTrue(submitButton.isEnabled)
@@ -192,10 +184,10 @@ class PaymentUITests: ExelonUITestCase {
         ])
 
         tapButton(buttonText: "Close")
-        
+
         XCTAssertTrue(app.tabBars.buttons["Bill"].waitForExistence(timeout: 2), "Should be back on the bill tab after closing")
     }
-    
+
     func testMakePaymentBGEOverpaying() {
         guard appOpCo == .bge else {
             return
@@ -234,7 +226,7 @@ class PaymentUITests: ExelonUITestCase {
 
         checkExistenceOfElement(.staticText, "Payment Confirmation")
     }
-    
+
     func testBGEInlineBankPayment() {
         guard appOpCo == .bge else {
             return
@@ -259,7 +251,7 @@ class PaymentUITests: ExelonUITestCase {
 
         checkExistenceOfElement(.navigationBar, "Review Payment")
     }
-    
+
     func testBGEInlineCardPayment() {
         guard appOpCo == .bge else {
             return
@@ -297,7 +289,7 @@ class PaymentUITests: ExelonUITestCase {
 
         checkExistenceOfElement(.staticText, "Payment Confirmation")
     }
-    
+
     func testComEdPECOTempPaymentusBankPayment() {
         guard appOpCo != .bge else {
             return
@@ -306,10 +298,10 @@ class PaymentUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
         tapButton(buttonText: "Add bank account")
-        
+
         // TODO - Add bank, Make Payment
     }
-    
+
     func testComEdPECOTempPaymentusCardPayment() {
         guard appOpCo != .bge else {
             return
@@ -318,8 +310,7 @@ class PaymentUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
         tapButton(buttonText: "Make a Payment")
         tapButton(buttonText: "Add credit/debit card")
-        
+
         // TODO - Add card, Make Payment
     }
 }
-

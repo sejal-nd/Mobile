@@ -168,68 +168,6 @@ struct AccountDetail: Mappable {
         return serInfo.controlGroupFlag?.uppercased() == "CONTROL"
     }
     
-    /* TODO: When BGE is on Paymentus, move these 2 functions into BillingInfo, and
-     * make minPaymentAmount, maxPaymentAmount, minPaymentAmountACH, maxPaymentAmountACH
-     * private lets to enforce the use of only these functions. We can't do that currently
-     * because our switch in maxPaymentAmount() relies on isResidential
-     */
-    func minPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        // Task 86747 - Use only hardcoded amounts until epay R2
-        /*
-         switch bankOrCard {
-         case .bank:
-         if let minPaymentAmount = billingInfo.minPaymentAmountACH {
-         return minPaymentAmount
-         }
-         case .card:
-         if let minPaymentAmount = billingInfo.minPaymentAmount {
-         return minPaymentAmount
-         }
-         }
-         */
-        
-        //TODO: Just return 5 once BGE switches to Paymentus
-        switch Environment.shared.opco {
-        case .bge:
-            return 0.01
-        case .comEd, .peco:
-            return 5
-        }
-    }
-    
-    func maxPaymentAmount(bankOrCard: BankOrCard) -> Double {
-        // Task 86747 - Use only hardcoded amounts until epay R2
-        /*
-         switch bankOrCard {
-         case .bank:
-         if let maxPaymentAmount = billingInfo.maxPaymentAmountACH {
-         return maxPaymentAmount
-         }
-         case .card:
-         if let maxPaymentAmount = billingInfo.maxPaymentAmount {
-         return maxPaymentAmount
-         }
-         }
-         */
-        
-        //: TODO - Simplify this switch to just bankOrCard when BGE switches to Paymentus
-        switch (bankOrCard, Environment.shared.opco, isResidential) {
-        case (.bank, .bge, true):
-            return 99_999.99
-        case (.bank, .bge, false):
-            return 999_999.99
-        case (.card, .bge, true):
-            return 600
-        case (.card, .bge, false):
-            return 25000
-            
-        case (.bank, _, _):
-            return 100_000
-        case (.card, _, _):
-            return 5000
-        }
-    }
-	
     var eBillEnrollStatus: EBillEnrollStatus {
 		switch (isEBillEnrollment, isEBillEligible, status?.lowercased() == "finaled") {
 		case (true, _, _):
@@ -295,10 +233,6 @@ struct BillingInfo: Mappable {
     let scheduledPayment: PaymentItem?
     let pendingPayments: [PaymentItem]
     let atReinstateFee: Double?
-    let minPaymentAmount: Double?
-    let maxPaymentAmount: Double?
-    let minPaymentAmountACH: Double?
-    let maxPaymentAmountACH: Double?
     let currentDueAmount: Double?
     let residentialFee: Double? // BGE uses this and
     let commercialFee: Double? // this
@@ -308,6 +242,12 @@ struct BillingInfo: Mappable {
     let deliveryCharges: Double?
     let supplyCharges: Double?
     let taxesAndFees: Double?
+    
+    // These are all private because minPaymentAmount/maxPaymentAmount functions should be used instead:
+    private let _minPaymentAmount: Double?
+    private let _maxPaymentAmount: Double?
+    private let _minPaymentAmountACH: Double?
+    private let _maxPaymentAmountACH: Double?
 
     init(map: Mapper) throws {
 		netDueAmount = map.optionalFrom("netDueAmount")
@@ -323,10 +263,10 @@ struct BillingInfo: Mappable {
         isDisconnectNotice = map.optionalFrom("isDisconnectNotice") ?? false
         billDate = map.optionalFrom("billDate", transformation: DateParser().extractDate)
         atReinstateFee = map.optionalFrom("atReinstateFee")
-        minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
-        maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
-        minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
-        maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
+        _minPaymentAmount = map.optionalFrom("minimumPaymentAmount")
+        _maxPaymentAmount = map.optionalFrom("maximumPaymentAmount")
+        _minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
+        _maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
         currentDueAmount = map.optionalFrom("currentDueAmount")
         convenienceFee = map.optionalFrom("convenienceFee")
         residentialFee = map.optionalFrom("feeResidential")
@@ -360,13 +300,55 @@ struct BillingInfo: Mappable {
     func convenienceFeeString(isComplete: Bool) -> String {
         var convenienceFeeStr = ""
         if isComplete {
-            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. Residential accounts: %@. Business accounts: %@.",
-                                      residentialFee!.currencyString, commercialFee!.percentString!)
+            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. " +
+                "Residential accounts: %@. Business accounts: %@.", residentialFee!.currencyString,
+                commercialFee!.percentString!)
         } else {
             convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
-                                      residentialFee!.currencyString, commercialFee!.percentString!)
+                residentialFee!.currencyString, commercialFee!.percentString!)
         }
         return convenienceFeeStr
+    }
+    
+    func minPaymentAmount() -> Double {
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let minPaymentAmount = _minPaymentAmountACH {
+         return minPaymentAmount
+         }
+         case .card:
+         if let minPaymentAmount = _minPaymentAmount {
+         return minPaymentAmount
+         }
+         }
+         */
+        
+        return 5
+    }
+    
+    func maxPaymentAmount(bankOrCard: BankOrCard) -> Double {
+        // Task 86747 - Use only hardcoded amounts until epay R2
+        /*
+         switch bankOrCard {
+         case .bank:
+         if let maxPaymentAmount = _maxPaymentAmountACH {
+         return maxPaymentAmount
+         }
+         case .card:
+         if let maxPaymentAmount = _maxPaymentAmount {
+         return maxPaymentAmount
+         }
+         }
+         */
+        
+        switch bankOrCard {
+        case .bank:
+            return 100_000
+        case .card:
+            return 5000
+        }
     }
 }
 

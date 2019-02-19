@@ -6,6 +6,14 @@
         "CustomerInfo": {},
         "SERInfo": {}
     },
+    "residential": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
     "screenshots": {
         "accountNumber": "7989123445",
         "premiseNumber": "1",
@@ -94,6 +102,7 @@
     "cashOnly": {
         "accountNumber": "1234567890",
         "isCashOnly": true,
+        "isResidential": true,
         "BillingInfo": {
             "netDueAmount": 200,
             "dueByDate": "2019-01-11T00:00:00"
@@ -830,6 +839,25 @@
             }
         ],
         "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "activeSeverance": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "activeSeverance": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "dueDatePassed": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "lastPaymentAmount": 200,
+            "lastPaymentDate": "2018-11-31T00:00:00",
+            "dueByDate": "2018-12-31T00:00:00",
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },

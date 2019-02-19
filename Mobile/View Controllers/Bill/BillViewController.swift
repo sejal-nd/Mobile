@@ -548,7 +548,7 @@ class BillViewController: AccountPickerViewController {
                 let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let self = self else { return }
-                    let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                    let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
                     paymentVc.accountDetail = accountDetail
                     self.navigationController?.pushViewController(paymentVc, animated: true)
                 }

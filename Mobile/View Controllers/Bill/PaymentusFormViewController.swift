@@ -10,6 +10,19 @@ import UIKit
 import WebKit
 import RxSwift
 
+// The postMessage event sends pmDetails.Type as one of these
+fileprivate enum PaymentusPaymentMethodType: String {
+    case checking = "CHQ"
+    case saving = "SAV"
+    case visa = "VISA"
+    case mastercard = "MC"
+    case amex = "AMEX"
+    case discover = "DISC"
+    case visaDebit = "VISA_DEBIT"
+    case mastercardDebit = "MC_DEBIT"
+    //case pinlessDebit = "PD" // Paymentus documentation includes this, but I'm unsure know what it is
+}
+
 protocol PaymentusFormViewControllerDelegate: class {
     func didEditWalletItem()
     func didAddWalletItem(_ walletItem: WalletItem)
@@ -213,19 +226,42 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         nickname = pmDetailsJson["ProfileDescription"] as? String
                     }
                     
-                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard, isTemporary: temporary)
-                    
-                    if !temporary {
-                        if walletItemId != nil {
-                            walletService.updateWalletItemMCS(walletItem)
-                        } else {
-                            walletService.addWalletItemMCS(walletItem)
+                    // Map the Paymentus returned "Type" to our PaymentMethodTypes for correct icon display
+                    let paymentMethodType: PaymentMethodType
+                    if let type = pmDetailsJson["Type"] as? PaymentusPaymentMethodType {
+                        switch type {
+                        case .checking, .saving:
+                            paymentMethodType = .ach
+                        case .visa, .visaDebit:
+                            paymentMethodType = .visa
+                        case .mastercard, .mastercardDebit:
+                            paymentMethodType = .mastercard
+                        case .amex:
+                            paymentMethodType = .amex
+                        case .discover:
+                            paymentMethodType = .discover
                         }
+                    } else {
+                        paymentMethodType = .ach
                     }
                     
-                    if walletItemId != nil {
+                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String,
+                                                maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String,
+                                                nickName: nickname,
+                                                paymentMethodType: paymentMethodType,
+                                                isDefault: didSetDefault,
+                                                bankOrCard: bankOrCard,
+                                                isTemporary: temporary)
+                    
+                    if walletItemId != nil { // Editing Payment Method
+                        if !temporary {
+                            walletService.updateWalletItemMCS(walletItem)
+                        }
                         delegate?.didEditWalletItem()
-                    } else {
+                    } else { // Adding Payment Method
+                        if !temporary {
+                            walletService.addWalletItemMCS(walletItem)
+                        }
                         delegate?.didAddWalletItem(walletItem)
                     }
                     

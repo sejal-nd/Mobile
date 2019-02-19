@@ -213,7 +213,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func showModifyScheduledItem(billingItem: BillingHistoryItem) {
-        let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+        let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
         paymentVc.accountDetail = accountDetail
         paymentVc.billingHistoryItem = billingItem
         if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
