@@ -35,15 +35,7 @@ class PaymentUITests: ExelonUITestCase {
             (.button, "Add credit/debit card")
         ])
 
-        if appOpCo == .bge {
-            checkExistenceOfElements([
-                (.staticText, "We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.")
-            ])
-        } else {
-            checkExistenceOfElements([
-                (.staticText, "All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.")
-            ])
-        }
+        checkExistenceOfElement(.staticText, "All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.")
     }
 
     func testLayoutExistingWalletItems() {

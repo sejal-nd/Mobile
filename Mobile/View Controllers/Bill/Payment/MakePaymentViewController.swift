@@ -415,7 +415,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Wallet Footer Label
-        viewModel.walletFooterLabelText.drive(walletFooterLabel.rx.text).disposed(by: disposeBag)
+        walletFooterLabel.text = viewModel.walletFooterLabelText
         
         // Sticky Footer Payment View
         viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0 ?? "--") }

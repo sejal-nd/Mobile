@@ -531,16 +531,8 @@ class PaymentViewModel {
         .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)
         { $0 || $1 }
 
-    private(set) lazy var walletFooterLabelText: Driver<String> = hasWalletItems.asDriver().map {
-        if Environment.shared.opco == .bge {
-            if $0 {
-                return NSLocalizedString("Any payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
-            } else {
-                return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.\n\nAny payment made for less than the total amount due or after the indicated due date may result in your service being disconnected. Payments may take up to two business days to reflect on your account.", comment: "")
-            }
-        } else {
-            return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
-        }
+    var walletFooterLabelText: String {
+        return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
     }
 
     private(set) lazy var isFixedPaymentDate: Driver<Bool> = Driver
