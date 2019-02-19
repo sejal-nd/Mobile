@@ -46,7 +46,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
-    private let paymentCategoryType: PaymentCategoryType? // private because only bankOrCard should be used
     let paymentMethodType: PaymentMethodType? // ACH, VISA, Mastercard, etc
     let bankName: String?
     let expirationDate: Date?
@@ -79,9 +78,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
             nickName = nil
         }
         
-        paymentCategoryType = map.optionalFrom("paymentCategoryType")
-        if let type = paymentCategoryType {
-            switch type {
+        if let paymentCategoryType: PaymentCategoryType = map.optionalFrom("paymentCategoryType") {
+            switch paymentCategoryType {
             case .credit, .debit:
                 bankOrCard = .card
             case .check, .saving:
