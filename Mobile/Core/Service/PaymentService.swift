@@ -29,9 +29,6 @@ protocol PaymentService {
                             amountType: AmountType,
                             amountThreshold: String,
                             paymentDaysBeforeDue: String,
-                            effectivePeriod: EffectivePeriod,
-                            effectiveEndDate: Date?,
-                            effectiveNumPayments: String,
                             isUpdate: Bool) -> Observable<Void>
     
     /// Unenroll in AutoPay (BGE only)

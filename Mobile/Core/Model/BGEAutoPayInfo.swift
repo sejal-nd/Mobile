@@ -13,12 +13,6 @@ enum AmountType: String {
     case amountDue = "amount due"
 }
 
-enum EffectivePeriod: String {
-    case untilCanceled = "untilCanceled"
-    case endDate = "endDate"
-    case maxPayments = "maxPayments"
-}
-
 private func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
@@ -35,10 +29,6 @@ struct BGEAutoPayInfo: Mappable {
     let amountType: AmountType?
     let amountThreshold: String?
     let paymentDaysBeforeDue: String?
-    let effectivePeriod: EffectivePeriod?
-    let effectiveEndDate: Date?
-    let effectiveNumPayments: String?
-    let numberOfPaymentsScheduled: String?
     
     init(map: Mapper) throws {
         walletItemId = map.optionalFrom("wallet_item_id")
@@ -47,9 +37,5 @@ struct BGEAutoPayInfo: Mappable {
         amountType = map.optionalFrom("amount_type")
         amountThreshold = map.optionalFrom("amount_threshold")
         paymentDaysBeforeDue = map.optionalFrom("payment_days_before_due")
-        effectivePeriod = map.optionalFrom("effective_period")
-        effectiveEndDate = map.optionalFrom("effective_end_date", transformation: DateParser().extractDate)
-        effectiveNumPayments = map.optionalFrom("effective_number_of_payments")
-        numberOfPaymentsScheduled = map.optionalFrom("no_of_payments_scheduled")
     }
 }

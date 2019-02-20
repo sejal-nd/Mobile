@@ -11,7 +11,9 @@ import Foundation
 
 class MockPaymentService: PaymentService {
     func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+        let dataFile = MockJSONManager.File.autoPayInfo
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
     func enrollInAutoPayBGE(accountNumber: String,
@@ -19,9 +21,6 @@ class MockPaymentService: PaymentService {
                             amountType: AmountType,
                             amountThreshold: String,
                             paymentDaysBeforeDue: String,
-                            effectivePeriod: EffectivePeriod,
-                            effectiveEndDate: Date?,
-                            effectiveNumPayments: String,
                             isUpdate: Bool) -> Observable<Void> {
         return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }

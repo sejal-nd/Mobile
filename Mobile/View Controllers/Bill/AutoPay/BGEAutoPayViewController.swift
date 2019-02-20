@@ -37,8 +37,6 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBOutlet weak var topSpacerView: UIView!
     
-    @IBOutlet weak var expirationLabel: UILabel!
-    
     @IBOutlet weak var selectBankAccountLabel: UILabel!
     
     @IBOutlet weak var bankAccountContainerStack: UIStackView!
@@ -84,8 +82,6 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
         learnMoreButtonLabel.numberOfLines = 0
-        
-        expirationLabel.textColor = .blackText
         
         selectBankAccountLabel.textColor = .blackText
         selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .headline)
@@ -195,9 +191,6 @@ class BGEAutoPayViewController: UIViewController {
         
         viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowSettingsButton.map(!).drive(settingsButtonView.rx.isHidden).disposed(by: disposeBag)
-        
-        viewModel.expiredReason.asDriver().drive(expirationLabel.rx.text).disposed(by: disposeBag)
-        viewModel.shouldShowExpiredReason.map(!).drive(expirationLabel.rx.isHidden).disposed(by: disposeBag)
     }
     
     @objc func onCancelPress() {

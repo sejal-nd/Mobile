@@ -32,7 +32,6 @@ class BGEAutoPayViewModel {
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
     let enrollSwitchValue: Variable<Bool>
     let selectedWalletItem = Variable<WalletItem?>(nil)
-    let expiredReason = Variable<String?>(nil)
     
     // --- Settings --- //
     var userDidChangeSettings = Variable(false)
@@ -40,14 +39,11 @@ class BGEAutoPayViewModel {
     
     let amountToPay = Variable<AmountType>(.amountDue)
     let whenToPay = Variable<PaymentDateType>(.onDueDate)
-    let howLongForAutoPay = Variable<EffectivePeriod>(.untilCanceled)
     
     let amountNotToExceed = Variable("")
     let numberOfPayments = Variable("")
     
     var numberOfDaysBeforeDueDate = Variable("0")
-    
-    var autoPayUntilDate = Variable<Date?>(nil)
     // ---------------- //
 
     required init(paymentService: PaymentService, accountDetail: AccountDetail) {
@@ -71,46 +67,23 @@ class BGEAutoPayViewModel {
                 self.isFetchingAutoPayInfo.value = false
                 self.isError.value = false
                 
-                // Expired accounts
-                var isExpired = false
-                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments,
-                    let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled,
-                    Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
-                    isExpired = true
-                    let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire after %d payments.", comment: "")
-                    self.expiredReason.value = String(format: localizedString, Int(effectiveNumberOfPayments)!)
-                } else if let effectiveEndDate = autoPayInfo.effectiveEndDate, effectiveEndDate < .now {
-                    isExpired = true
-                    let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire on %@.", comment: "")
-                    self.expiredReason.value = String(format: localizedString, effectiveEndDate.mmDdYyyyString)
-                } else {
-                    self.expiredReason.value = nil
+                // Sync up our view model with the existing AutoPay settings
+                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
+                    self.selectedWalletItem.value = WalletItem.from(["walletItemID": walletItemId, "maskedWalletItemAccountNumber": masked4, "nickName": nickname])
                 }
                 
-                if !isExpired { // Sync up our view model with the existing AutoPay settings
-                    if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
-                        self.selectedWalletItem.value = WalletItem.from(["walletItemID": walletItemId, "maskedWalletItemAccountNumber": masked4, "nickName": nickname])
-                    }
-                    if let amountType = autoPayInfo.amountType {
-                        self.amountToPay.value = amountType
-                    }
-                    if let amountThreshold = autoPayInfo.amountThreshold {
-                        self.amountNotToExceed.value = amountThreshold
-                        self.formatAmountNotToExceed()
-                    }
-                    if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
-                        self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
-                        self.whenToPay.value = paymentDaysBeforeDue == "0" ? .onDueDate : .beforeDueDate
-                    }
-                    if let effectivePeriod = autoPayInfo.effectivePeriod {
-                        self.howLongForAutoPay.value = effectivePeriod
-                    }
-                    if let effectiveEndDate = autoPayInfo.effectiveEndDate {
-                        self.autoPayUntilDate.value = effectiveEndDate
-                    }
-                    if let effectiveNumPayments = autoPayInfo.effectiveNumPayments {
-                        self.numberOfPayments.value = effectiveNumPayments
-                    }
+                if let amountType = autoPayInfo.amountType {
+                    self.amountToPay.value = amountType
+                }
+                
+                if let amountThreshold = autoPayInfo.amountThreshold {
+                    self.amountNotToExceed.value = amountThreshold
+                    self.formatAmountNotToExceed()
+                }
+                
+                if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
+                    self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
+                    self.whenToPay.value = paymentDaysBeforeDue == "0" ? .onDueDate : .beforeDueDate
                 }
                 
                 onSuccess?()
@@ -130,9 +103,6 @@ class BGEAutoPayViewModel {
                                           amountType: amountToPay.value,
                                           amountThreshold: amountNotToExceedDouble(),
                                           paymentDaysBeforeDue: daysBefore,
-                                          effectivePeriod: howLongForAutoPay.value,
-                                          effectiveEndDate: autoPayUntilDate.value,
-                                          effectiveNumPayments: numberOfPayments.value,
                                           isUpdate: update)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
@@ -209,15 +179,11 @@ class BGEAutoPayViewModel {
                 }
             }
         }
+        
         if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == "0" {
             return defaultString
         }
-        if howLongForAutoPay.value == .maxPayments && numberOfPayments.value.isEmpty {
-            return defaultString
-        }
-        if howLongForAutoPay.value == .endDate && autoPayUntilDate.value == nil {
-            return defaultString
-        }
+        
         return nil
     }
     
@@ -264,8 +230,6 @@ class BGEAutoPayViewModel {
         
         return a11yLabel
     }
-    
-    private(set) lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
     
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })

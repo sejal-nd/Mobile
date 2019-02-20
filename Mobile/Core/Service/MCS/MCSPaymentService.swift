@@ -27,27 +27,18 @@ class MCSPaymentService: PaymentService {
                             amountType: AmountType,
                             amountThreshold: String,
                             paymentDaysBeforeDue: String,
-                            effectivePeriod: EffectivePeriod,
-                            effectiveEndDate: Date?,
-                            effectiveNumPayments: String,
                             isUpdate: Bool) -> Observable<Void> {
         let path = "accounts/\(accountNumber)/payments/recurring"
 
         var params = ["amount_type": amountType.rawValue,
                       "payment_date_type": "before due",
-                      "payment_days_before_due": paymentDaysBeforeDue,
-                      "effective_period": effectivePeriod.rawValue]
+                      "payment_days_before_due": paymentDaysBeforeDue]
 
         if let walletId = walletItemId {
             params["wallet_item_id"] = walletId
         }
         if amountType == .upToAmount {
             params["amount_threshold"] = amountThreshold
-        }
-        if effectivePeriod == .endDate {
-            params["effective_end_date"] = effectiveEndDate!.apiFormatString
-        } else if effectivePeriod == .maxPayments {
-            params["effective_number_of_payments"] = effectiveNumPayments
         }
 
         params["auto_pay_request_type"] = isUpdate ? "Update" : "Start"

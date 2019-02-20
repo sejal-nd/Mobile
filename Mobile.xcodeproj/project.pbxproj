@@ -947,6 +947,12 @@
 		B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
 		B017489B2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
 		B017489C2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */; };
+		B01FF0AF221DFC77008CA222 /* autopay_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B01FF0AE221DFC77008CA222 /* autopay_info.json */; };
+		B01FF0B0221DFC77008CA222 /* autopay_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B01FF0AE221DFC77008CA222 /* autopay_info.json */; };
+		B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B01FF0AE221DFC77008CA222 /* autopay_info.json */; };
+		B01FF0B2221DFC77008CA222 /* autopay_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B01FF0AE221DFC77008CA222 /* autopay_info.json */; };
+		B01FF0B3221DFC77008CA222 /* autopay_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B01FF0AE221DFC77008CA222 /* autopay_info.json */; };
+		B01FF0B4221DFC77008CA222 /* autopay_info.json in Resources */ = {isa = PBXBuildFile; fileRef = B01FF0AE221DFC77008CA222 /* autopay_info.json */; };
 		B0336FE621751FB700751430 /* MCSAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE521751FB700751430 /* MCSAppointmentService.swift */; };
 		B0336FE721751FB700751430 /* MCSAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE521751FB700751430 /* MCSAppointmentService.swift */; };
 		B0336FE821751FB700751430 /* MCSAppointmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0336FE521751FB700751430 /* MCSAppointmentService.swift */; };
@@ -2821,6 +2827,7 @@
 		B017488D2135D19B0039D0C6 /* Storm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storm.storyboard; sourceTree = "<group>"; };
 		B01748912135D2C50039D0C6 /* StormModeHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewController.swift; sourceTree = "<group>"; };
 		B01748962135D3740039D0C6 /* StormModeHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeHomeViewModel.swift; sourceTree = "<group>"; };
+		B01FF0AE221DFC77008CA222 /* autopay_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = autopay_info.json; sourceTree = "<group>"; };
 		B0336FE521751FB700751430 /* MCSAppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSAppointmentService.swift; sourceTree = "<group>"; };
 		B0336FE921762FB400751430 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
@@ -4433,6 +4440,7 @@
 				9C46B12A221613FB00A5D537 /* wallet.json */,
 				B0B125FA221B080400AF4DC4 /* peak_rewards_summary.json */,
 				B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */,
+				B01FF0AE221DFC77008CA222 /* autopay_info.json */,
 			);
 			path = "Mock JSON";
 			sourceTree = "<group>";
@@ -5715,6 +5723,7 @@
 				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
+				B01FF0AF221DFC77008CA222 /* autopay_info.json in Resources */,
 				E80043321E65FF70005CF531 /* OpenSans-Italic.ttf in Resources */,
 				B0882CA6210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043291E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
@@ -5864,6 +5873,7 @@
 				2F5A3F8C1EFDEB0A00B9E49E /* BillingHistoryTableViewCell.xib in Resources */,
 				359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */,
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
+				B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */,
 				385AF2251F27915A001E3619 /* img_0.png in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -6013,6 +6023,7 @@
 				B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
 				385AF21E1F278F06001E3619 /* uu_otp.json in Resources */,
+				B01FF0B0221DFC77008CA222 /* autopay_info.json in Resources */,
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				385AF2241F27915A001E3619 /* img_0.png in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
@@ -6144,6 +6155,7 @@
 				B089573722175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4E2203523D00C70A6F /* maintenance.json in Resources */,
 				B08957222217455200A97965 /* account_lookup.json in Resources */,
+				B01FF0B2221DFC77008CA222 /* autopay_info.json in Resources */,
 				B0B125FE221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				9CFC82E1221C78C700B23D1F /* meter_ping_info.json in Resources */,
 				B089571122173CE300A97965 /* energy_tips.json in Resources */,
@@ -6195,6 +6207,7 @@
 				B089573822175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D4F2203523D00C70A6F /* maintenance.json in Resources */,
 				B08957232217455200A97965 /* account_lookup.json in Resources */,
+				B01FF0B3221DFC77008CA222 /* autopay_info.json in Resources */,
 				B0B125FF221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				9CFC82E2221C78C700B23D1F /* meter_ping_info.json in Resources */,
 				B089571222173CE400A97965 /* energy_tips.json in Resources */,
@@ -6230,6 +6243,7 @@
 				B089573922175BFE00A97965 /* budget_billing_info.json in Resources */,
 				B0D84D502203523D00C70A6F /* maintenance.json in Resources */,
 				B08957242217455200A97965 /* account_lookup.json in Resources */,
+				B01FF0B4221DFC77008CA222 /* autopay_info.json in Resources */,
 				B0B12600221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				9CFC82E3221C78C800B23D1F /* meter_ping_info.json in Resources */,
 				B089571322173CE500A97965 /* energy_tips.json in Resources */,
