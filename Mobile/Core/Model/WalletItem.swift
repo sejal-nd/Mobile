@@ -95,7 +95,16 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
         return false
     }
-    var bankOrCard: BankOrCard = .bank
+    
+    var bankOrCard: BankOrCard {
+        switch paymentCategoryType {
+        case .credit, .debit:
+            return .card
+        case .check, .saving:
+            return .bank
+        }
+    }
+    
     var isTemporary: Bool // Indicates payment method NOT saved to wallet
     
     init(map: Mapper) throws {
@@ -108,13 +117,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
         
         try paymentCategoryType = map.from("paymentCategoryType")
-        switch paymentCategoryType {
-        case .credit, .debit:
-            bankOrCard = .card
-        case .check, .saving:
-            bankOrCard = .bank
-        }
-        
         try paymentMethodType = map.from("paymentMethodType")
         bankName = map.optionalFrom("bankName")
         expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
@@ -151,7 +153,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["isDefault"] = isDefault
         
         self = WalletItem.from(map as NSDictionary)!
-        self.bankOrCard = bankOrCard
         self.isTemporary = isTemporary
     }
     
