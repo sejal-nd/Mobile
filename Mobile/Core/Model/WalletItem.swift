@@ -9,11 +9,24 @@
 import Foundation
 import Mapper
 
-private enum PaymentCategoryType: String {
+enum PaymentCategoryType: String {
     case check = "CHECK"
     case saving = "SAVING"
     case credit = "CREDIT"
     case debit = "DEBIT"
+    
+    var displayString: String {
+        switch self {
+        case .check:
+            return NSLocalizedString("Checking Account", comment: "")
+        case .saving:
+            return NSLocalizedString("Savings Account", comment: "")
+        case .credit:
+            return NSLocalizedString("Credit Card", comment: "")
+        case .debit:
+            return NSLocalizedString("Debit Card", comment: "")
+        }
+    }
 }
 
 // We consolidate PaymentCategoryType into this
@@ -25,9 +38,24 @@ enum BankOrCard {
 enum PaymentMethodType: String {
     case ach = "ACH"
     case visa = "VISA"
-    case mastercard = "MC"
+    case mastercard = "MASTERCARD"
     case amex = "AMEX"
-    case discover = "DISC"
+    case discover = "DISCOVER"
+    
+    var displayString: String {
+        switch self {
+        case .ach:
+            return NSLocalizedString("ACH", comment: "")
+        case .visa:
+            return NSLocalizedString("Visa", comment: "")
+        case .mastercard:
+            return NSLocalizedString("MasterCard", comment: "")
+        case .amex:
+            return NSLocalizedString("American Express", comment: "")
+        case .discover:
+            return NSLocalizedString("Discover", comment: "")
+        }
+    }
 }
 
 /* MCS sends something like "************1111", but we do the transform so that
@@ -46,7 +74,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
-    let paymentMethodType: PaymentMethodType? // ACH, VISA, Mastercard, etc
+    let paymentCategoryType: PaymentCategoryType
+    let paymentMethodType: PaymentMethodType
     let bankName: String?
     let expirationDate: Date?
     let isDefault: Bool
@@ -78,16 +107,15 @@ struct WalletItem: Mappable, Equatable, Hashable {
             nickName = nil
         }
         
-        if let paymentCategoryType: PaymentCategoryType = map.optionalFrom("paymentCategoryType") {
-            switch paymentCategoryType {
-            case .credit, .debit:
-                bankOrCard = .card
-            case .check, .saving:
-                bankOrCard = .bank
-            }
+        try paymentCategoryType = map.from("paymentCategoryType")
+        switch paymentCategoryType {
+        case .credit, .debit:
+            bankOrCard = .card
+        case .check, .saving:
+            bankOrCard = .bank
         }
         
-        paymentMethodType = map.optionalFrom("paymentMethodType")
+        try paymentMethodType = map.from("paymentMethodType")
         bankName = map.optionalFrom("bankName")
         expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
         isDefault = map.optionalFrom("isDefault") ?? false
@@ -110,6 +138,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["walletItemID"] = walletItemID
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
+        map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
         if let pmt = paymentMethodType {
             map["paymentMethodType"] = pmt.rawValue
         } else {
@@ -135,4 +164,5 @@ struct WalletItem: Mappable, Equatable, Hashable {
     var hashValue: Int {
         return walletItemID!.hash
     }
+
 }
