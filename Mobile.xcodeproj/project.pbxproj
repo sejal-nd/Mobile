@@ -169,6 +169,9 @@
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		315FF3E02BAB0CC702262FE6 /* Pods_BGEApp_BGEUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */; };
+		351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */; };
+		351DE2FA221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */; };
+		351DE2FB221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */; };
 		35277AFA2102325000411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFB2102325100411297 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		35277AFD210266BF00411297 /* UsageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277AFC210266BF00411297 /* UsageTool.swift */; };
@@ -187,9 +190,6 @@
 		35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
 		35376C6A20F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
-		35640825221EEF980084C224 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35640824221EEF970084C224 /* UITableView+ResizableHeaderFooter.swift */; };
-		35640826221EEF9A0084C224 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35640824221EEF970084C224 /* UITableView+ResizableHeaderFooter.swift */; };
-		35640827221EEF9A0084C224 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35640824221EEF970084C224 /* UITableView+ResizableHeaderFooter.swift */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		356C7F752190974A003E8A90 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -2493,12 +2493,12 @@
 		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryTableViewCell.swift; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillingHistoryTableViewCell.xib; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3557071173F2557B279CD47A /* Pods_PECO_WatchOS_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECO_WatchOS_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35640824221EEF970084C224 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		356C7F7E21909976003E8A90 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
@@ -4370,6 +4370,7 @@
 				9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */,
 				B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */,
 				9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */,
+				351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -7237,6 +7238,7 @@
 				CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
+				351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */,
 				B0336FEA21762FB400751430 /* EventStore.swift in Sources */,
 				826DCCED1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
@@ -7813,6 +7815,7 @@
 				B0D84D5F220382F000C70A6F /* MockAppState.swift in Sources */,
 				E801BADB1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADB1E78360D001E8A44 /* AccountService.swift in Sources */,
+				351DE2FB221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
@@ -7954,6 +7957,7 @@
 				B0336FEB21762FB400751430 /* EventStore.swift in Sources */,
 				82A18EA21EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				228877021FC611990024D7F0 /* MockAlertsService.swift in Sources */,
+				351DE2FA221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				E86DE4B81F06D70800EDB154 /* PaymentViewModel.swift in Sources */,
 				82E22B5F1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				E80D2E181E721668002626C9 /* MaskedString.swift in Sources */,

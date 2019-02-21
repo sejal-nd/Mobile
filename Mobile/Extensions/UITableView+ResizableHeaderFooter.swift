@@ -1,6 +1,6 @@
 //
 //  UITableView+ResizableHeaderFooter.swift
-//  BGE
+//  Mobile
 //
 //  Created by Joseph Erlandson on 2/21/19.
 //  Copyright © 2019 Exelon Corporation. All rights reserved.

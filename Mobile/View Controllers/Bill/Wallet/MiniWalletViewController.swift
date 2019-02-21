@@ -91,7 +91,7 @@ class MiniWalletViewController: UIViewController {
     
     // MARK: - Helper
     
-    func addAccessibility() {
+    private func addAccessibility() {
         miniBankButton.isAccessibilityElement = true
         miniBankButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
@@ -101,7 +101,7 @@ class MiniWalletViewController: UIViewController {
         addPaymentAccountBottomBar.accessibilityElements = [addPaymentAccountLabel, miniBankButton, miniCreditCardButton]
     }
     
-    func setupButtonTaps() {
+    private func setupButtonTaps() {
         Driver.merge(miniBankButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
@@ -115,7 +115,7 @@ class MiniWalletViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    func fetchWalletItems() {
+    private func fetchWalletItems() {
         viewModel.fetchWalletItems(onSuccess: { [weak self] in
             guard let self = self else { return }
             self.tableView.reloadData()
@@ -127,13 +127,16 @@ class MiniWalletViewController: UIViewController {
         })
     }
     
-    @objc func onBankAccountPress(sender: ButtonControl) {
+    
+    // MARK: - Actions
+    
+    @objc private func onBankAccountPress(sender: ButtonControl) {
         guard let walletItem = viewModel.walletItems.value?[sender.tag] else { return }
         delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func onAddBankAccountPress() {
+    @objc private func onAddBankAccountPress() {
         let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
             guard let self = self else { return }
             let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
@@ -150,13 +153,13 @@ class MiniWalletViewController: UIViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
-    @objc func onCreditCardPress(sender: ButtonControl) {
+    @objc private func onCreditCardPress(sender: ButtonControl) {
         guard let walletItem = viewModel.walletItems.value?[sender.tag] else { return }
         delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func onAddCreditCardPress() {
+    @objc private func onAddCreditCardPress() {
         let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
             guard let self = self else { return }
             let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)

@@ -50,7 +50,7 @@ class MiniWalletTableViewCell: UITableViewCell {
     func bindToWalletItem(_ walletItem: WalletItem, isSelectedItem: Bool) {
         var a11yLabel = ""
         
-        iconImageView.image = walletItem.paymentMethodType?.imageMini ?? #imageLiteral(resourceName: "ic_genericcard")
+        iconImageView.image = walletItem.paymentMethodType.imageMini
         
         a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved credit card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
         

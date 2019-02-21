@@ -91,7 +91,7 @@ class WalletTableViewCell: UITableViewCell {
     func bindToWalletItem(_ walletItem: WalletItem, billingInfo: BillingInfo) {
         var a11yLabel = ""
         
-        accountImageView.image = walletItem.paymentMethodType?.imageLarge ?? #imageLiteral(resourceName: "opco_credit_card")
+        accountImageView.image = walletItem.paymentMethodType.imageLarge
         
         a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved credit card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
 

@@ -35,12 +35,30 @@ enum BankOrCard {
     case card
 }
 
-enum PaymentMethodType: String {
-    case ach = "ACH"
-    case visa = "VISA"
-    case mastercard = "MASTERCARD"
-    case amex = "AMEX"
-    case discover = "DISCOVER"
+enum PaymentMethodType {
+    case ach
+    case visa
+    case mastercard
+    case amex
+    case discover
+    case unknown(String)
+    
+    init(_ paymentMethodType: String) {
+        switch paymentMethodType {
+        case "ACH":
+            self = .ach
+        case "VISA":
+            self = .visa
+        case "MASTERCARD":
+            self = .mastercard
+        case "AMEX":
+            self = .amex
+        case "DISCOVER":
+            self = .discover
+        default:
+            self = .unknown(paymentMethodType)
+        }
+    }
     
     var imageLarge: UIImage {
         switch self {
@@ -54,6 +72,8 @@ enum PaymentMethodType: String {
             return #imageLiteral(resourceName: "ic_discover_large")
         case .ach:
             return #imageLiteral(resourceName: "opco_bank")
+        case .unknown(_):
+            return #imageLiteral(resourceName: "opco_credit_card")
         }
     }
     
@@ -69,6 +89,8 @@ enum PaymentMethodType: String {
             return #imageLiteral(resourceName: "ic_discover_mini")
         case .ach:
             return #imageLiteral(resourceName: "opco_bank_mini")
+        case .unknown(_):
+            return #imageLiteral(resourceName: "credit_card_mini")
         }
     }
 
@@ -84,6 +106,8 @@ enum PaymentMethodType: String {
             return NSLocalizedString("American Express", comment: "")
         case .discover:
             return NSLocalizedString("Discover", comment: "")
+        case .unknown(let value):
+            return value
         }
     }
 }
@@ -147,7 +171,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
         
         try paymentCategoryType = map.from("paymentCategoryType")
-        try paymentMethodType = map.from("paymentMethodType")
+        try paymentMethodType = PaymentMethodType(map.from("paymentMethodType"))
         bankName = map.optionalFrom("bankName")
         expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
         isDefault = map.optionalFrom("isDefault") ?? false
@@ -159,7 +183,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     init(walletItemID: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
-         paymentMethodType: PaymentMethodType? = nil,
+         paymentMethodType: PaymentMethodType = .unknown("Test"),
          bankName: String? = "M&T Bank",
          expirationDate: String? = "01/2100",
          isDefault: Bool = false,
@@ -171,13 +195,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
         map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
-        if let pmt = paymentMethodType {
-            map["paymentMethodType"] = pmt.rawValue
-        } else {
-            map["paymentMethodType"] = bankOrCard == .bank ?
-                PaymentMethodType.ach.rawValue :
-                PaymentMethodType.visa.rawValue
-        }
+        map["paymentMethodType"] = paymentMethodType
         map["bankName"] = bankName
         map["expirationDate"] = expirationDate
         map["isDefault"] = isDefault
