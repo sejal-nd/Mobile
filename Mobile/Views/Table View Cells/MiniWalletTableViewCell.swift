@@ -52,7 +52,7 @@ class MiniWalletTableViewCell: UITableViewCell {
         
         iconImageView.image = walletItem.paymentMethodType.imageMini
         
-        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved credit card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
+        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved \(walletItem.paymentMethodType.displayString) card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
         
         if let nickname = walletItem.nickName {
             nicknameLabel.isHidden = false

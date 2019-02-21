@@ -93,7 +93,7 @@ class WalletTableViewCell: UITableViewCell {
         
         accountImageView.image = walletItem.paymentMethodType.imageLarge
         
-        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved credit card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
+        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved \(walletItem.paymentMethodType.displayString) card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
 
         nicknameLabel.text = walletItem.nickName?.uppercased()
         if let nicknameText = nicknameLabel.text {
