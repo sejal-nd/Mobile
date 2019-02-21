@@ -152,13 +152,6 @@ class BGEAutoPayViewModel {
             $0 == .enrolled && !$1
         }
     
-    private(set) lazy var shouldShowSettingsButton: Driver<Bool> =
-        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
-                             self.selectedWalletItem.asDriver(),
-                             self.isUnenrolling) {
-            $0 == .enrolled || $1 != nil && !$2
-        }
-    
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.isError.asDriver()) {
         return !$0 && !$1
     }
@@ -229,6 +222,27 @@ class BGEAutoPayViewModel {
         }
         
         return a11yLabel
+    }
+    
+    private(set) lazy var settingsButtonAmountText: Driver<String> = Driver
+        .combineLatest(amountToPay.asDriver(), amountNotToExceed.asDriver())
+        { amountToPay, amountNotToExceed in
+            switch amountToPay {
+            case .upToAmount:
+                return String.localizedStringWithFormat("Pay Maximum of %@", amountNotToExceed)
+            case .amountDue:
+                return NSLocalizedString("Pay Total Amount Billed", comment: "")
+            }
+    }
+    
+    private(set) lazy var settingsButtonDaysBeforeText: Driver<String> = numberOfDaysBeforeDueDate.asDriver()
+        .map { numberOfDays in
+            switch numberOfDays {
+            case "0":
+                return NSLocalizedString("On Due Date", comment: "")
+            default:
+                return String.localizedStringWithFormat("%@ Day%@ Before Due Date", numberOfDays, numberOfDays == "1" ? "":"s")
+            }
     }
     
     func formatAmountNotToExceed() {

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4aX-NF-dKM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4aX-NF-dKM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,10 +22,6 @@
         <scene sceneID="fXj-ER-VVH">
             <objects>
                 <viewController storyboardIdentifier="miniWallet" id="igx-qV-3kC" customClass="MiniWalletViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="51T-YO-Tf4"/>
-                        <viewControllerLayoutGuide type="bottom" id="qq7-jH-YNI"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uQw-T2-J3D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,16 +268,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7ml-14-vto" firstAttribute="centerY" secondItem="uQw-T2-J3D" secondAttribute="centerY" id="Akg-Rv-DOA"/>
-                            <constraint firstItem="LCy-cb-IPG" firstAttribute="leading" secondItem="uQw-T2-J3D" secondAttribute="leading" id="Hr6-rM-WFL"/>
-                            <constraint firstItem="7ml-14-vto" firstAttribute="centerX" secondItem="uQw-T2-J3D" secondAttribute="centerX" id="Tsq-Ob-cGn"/>
-                            <constraint firstItem="AVa-WU-YEm" firstAttribute="centerX" secondItem="uQw-T2-J3D" secondAttribute="centerX" id="XXc-L9-0eh"/>
+                            <constraint firstItem="LCy-cb-IPG" firstAttribute="leading" secondItem="sQN-Oz-GCe" secondAttribute="leading" id="Hr6-rM-WFL"/>
+                            <constraint firstItem="7ml-14-vto" firstAttribute="centerX" secondItem="sQN-Oz-GCe" secondAttribute="centerX" id="Tsq-Ob-cGn"/>
+                            <constraint firstItem="AVa-WU-YEm" firstAttribute="centerX" secondItem="sQN-Oz-GCe" secondAttribute="centerX" id="XXc-L9-0eh"/>
                             <constraint firstAttribute="topMargin" secondItem="LCy-cb-IPG" secondAttribute="top" id="ZU3-zX-mye"/>
                             <constraint firstItem="AVa-WU-YEm" firstAttribute="centerY" secondItem="uQw-T2-J3D" secondAttribute="centerY" id="aVc-Iz-cSN"/>
                             <constraint firstAttribute="bottom" secondItem="LCy-cb-IPG" secondAttribute="bottom" id="gy0-z3-H2D"/>
-                            <constraint firstAttribute="trailing" secondItem="LCy-cb-IPG" secondAttribute="trailing" id="h9W-Rv-xbH"/>
+                            <constraint firstItem="sQN-Oz-GCe" firstAttribute="trailing" secondItem="LCy-cb-IPG" secondAttribute="trailing" id="h9W-Rv-xbH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7ml-14-vto" secondAttribute="trailing" constant="29" id="ncO-YG-Kih"/>
                             <constraint firstItem="7ml-14-vto" firstAttribute="leading" secondItem="uQw-T2-J3D" secondAttribute="leadingMargin" constant="29" id="tx0-eq-Gsb"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="sQN-Oz-GCe"/>
                     </view>
                     <navigationItem key="navigationItem" title="Select Payment Method" id="Xwh-6R-lRb"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -302,10 +300,6 @@
         <scene sceneID="55v-6j-o5M">
             <objects>
                 <viewController storyboardIdentifier="wallet" hidesBottomBarWhenPushed="YES" id="4aX-NF-dKM" customClass="WalletViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g46-df-GSz"/>
-                        <viewControllerLayoutGuide type="bottom" id="1Hn-mi-cpW"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f2r-mr-jIZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -853,21 +847,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5N7-vK-To4" firstAttribute="centerY" secondItem="f2r-mr-jIZ" secondAttribute="centerY" id="4Z1-gZ-vtv"/>
-                            <constraint firstAttribute="trailing" secondItem="8yJ-Rv-Wa8" secondAttribute="trailing" id="6TQ-Xd-uQ7"/>
-                            <constraint firstItem="07H-3r-ibw" firstAttribute="top" secondItem="g46-df-GSz" secondAttribute="bottom" id="Ot5-Nt-x5M"/>
-                            <constraint firstItem="kuF-lR-wxr" firstAttribute="leading" secondItem="f2r-mr-jIZ" secondAttribute="leading" constant="29" id="SmT-eL-yZS"/>
-                            <constraint firstItem="07H-3r-ibw" firstAttribute="leading" secondItem="f2r-mr-jIZ" secondAttribute="leading" id="dYS-hx-3Vq"/>
-                            <constraint firstItem="8yJ-Rv-Wa8" firstAttribute="leading" secondItem="f2r-mr-jIZ" secondAttribute="leading" id="dZw-6p-g66"/>
-                            <constraint firstItem="1Hn-mi-cpW" firstAttribute="top" secondItem="eI7-T3-T2H" secondAttribute="bottom" id="dfS-QT-I9g"/>
-                            <constraint firstAttribute="trailing" secondItem="kuF-lR-wxr" secondAttribute="trailing" constant="29" id="e7C-lQ-p04"/>
-                            <constraint firstItem="8yJ-Rv-Wa8" firstAttribute="top" secondItem="g46-df-GSz" secondAttribute="bottom" id="k2G-zy-KNX"/>
-                            <constraint firstItem="kuF-lR-wxr" firstAttribute="centerX" secondItem="f2r-mr-jIZ" secondAttribute="centerX" id="q2r-QR-rID"/>
+                            <constraint firstItem="2dX-nU-fTd" firstAttribute="trailing" secondItem="8yJ-Rv-Wa8" secondAttribute="trailing" id="6TQ-Xd-uQ7"/>
+                            <constraint firstItem="07H-3r-ibw" firstAttribute="top" secondItem="2dX-nU-fTd" secondAttribute="top" id="Ot5-Nt-x5M"/>
+                            <constraint firstItem="kuF-lR-wxr" firstAttribute="leading" secondItem="2dX-nU-fTd" secondAttribute="leading" constant="29" id="SmT-eL-yZS"/>
+                            <constraint firstItem="07H-3r-ibw" firstAttribute="leading" secondItem="2dX-nU-fTd" secondAttribute="leading" id="dYS-hx-3Vq"/>
+                            <constraint firstItem="8yJ-Rv-Wa8" firstAttribute="leading" secondItem="2dX-nU-fTd" secondAttribute="leading" id="dZw-6p-g66"/>
+                            <constraint firstItem="2dX-nU-fTd" firstAttribute="bottom" secondItem="eI7-T3-T2H" secondAttribute="bottom" id="dfS-QT-I9g"/>
+                            <constraint firstItem="2dX-nU-fTd" firstAttribute="trailing" secondItem="kuF-lR-wxr" secondAttribute="trailing" constant="29" id="e7C-lQ-p04"/>
+                            <constraint firstItem="8yJ-Rv-Wa8" firstAttribute="top" secondItem="2dX-nU-fTd" secondAttribute="top" id="k2G-zy-KNX"/>
+                            <constraint firstItem="kuF-lR-wxr" firstAttribute="centerX" secondItem="2dX-nU-fTd" secondAttribute="centerX" id="q2r-QR-rID"/>
                             <constraint firstItem="kuF-lR-wxr" firstAttribute="centerY" secondItem="f2r-mr-jIZ" secondAttribute="centerY" id="qGs-LK-iPB"/>
-                            <constraint firstItem="5N7-vK-To4" firstAttribute="centerX" secondItem="f2r-mr-jIZ" secondAttribute="centerX" id="rig-wo-ppq"/>
+                            <constraint firstItem="5N7-vK-To4" firstAttribute="centerX" secondItem="2dX-nU-fTd" secondAttribute="centerX" id="rig-wo-ppq"/>
                             <constraint firstAttribute="bottom" secondItem="07H-3r-ibw" secondAttribute="bottom" id="yap-EH-upr"/>
                             <constraint firstAttribute="bottom" secondItem="8yJ-Rv-Wa8" secondAttribute="bottom" id="zjZ-cx-b4Q"/>
-                            <constraint firstAttribute="trailing" secondItem="07H-3r-ibw" secondAttribute="trailing" id="zy3-hh-RXh"/>
+                            <constraint firstItem="2dX-nU-fTd" firstAttribute="trailing" secondItem="07H-3r-ibw" secondAttribute="trailing" id="zy3-hh-RXh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="2dX-nU-fTd"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Wallet" id="wfM-W8-eOg">
                         <barButtonItem key="backBarButtonItem" title="Back" id="E5s-mr-4C4"/>

@@ -224,14 +224,14 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVw-1S-MK6">
-                                <rect key="frame" x="0.0" y="114" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="672.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FrB-7r-SHz">
                                 <rect key="frame" x="0.0" y="114" width="375" height="586"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="eDo-fn-RRN">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="529"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="672.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWQ-yZ-dT0">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
@@ -287,7 +287,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WvE-Si-V3N">
-                                                <rect key="frame" x="29" y="179.5" width="317" height="163"/>
+                                                <rect key="frame" x="29" y="179.5" width="317" height="85"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AutoPay Payment Method:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOo-eR-bj7">
                                                         <rect key="frame" x="0.0" y="0.0" width="317" height="17"/>
@@ -351,51 +351,63 @@
                                                             <action selector="onSelectBankAccountPress" destination="Zhu-5c-ibe" eventType="touchUpInside" id="Ig1-u6-RF0"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJC-go-Hyf">
-                                                        <rect key="frame" x="0.0" y="93" width="317" height="70"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbU-ce-fbQ" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="186" y="2" width="131" height="68"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AutoPay Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCh-ay-rRd">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="131" height="68"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="uCh-ay-rRd" secondAttribute="trailing" id="7CI-pX-WX9"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="uCh-ay-rRd" secondAttribute="bottom" priority="999" id="Sr6-yf-NKP"/>
-                                                                    <constraint firstItem="uCh-ay-rRd" firstAttribute="top" secondItem="vbU-ce-fbQ" secondAttribute="top" priority="999" id="agy-fh-7gn"/>
-                                                                    <constraint firstItem="uCh-ay-rRd" firstAttribute="leading" secondItem="vbU-ce-fbQ" secondAttribute="leading" id="pZT-Pt-Htp"/>
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorOnPress">
-                                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onSettingsPress" destination="Zhu-5c-ibe" eventType="touchUpInside" id="itV-pX-keb"/>
-                                                                </connections>
-                                                            </view>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="vbU-ce-fbQ" secondAttribute="bottom" id="1Sj-DV-mBa"/>
-                                                            <constraint firstItem="vbU-ce-fbQ" firstAttribute="top" secondItem="IJC-go-Hyf" secondAttribute="top" constant="2" id="8VV-1B-QpP"/>
-                                                            <constraint firstAttribute="trailing" secondItem="vbU-ce-fbQ" secondAttribute="trailing" id="EDF-ku-5me"/>
-                                                        </constraints>
-                                                    </view>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ISX-K4-ywc"/>
                                                 </constraints>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hip-3C-tbf">
+                                                <rect key="frame" x="29" y="294.5" width="317" height="62.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AutoPay Settings:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQz-Ju-fA3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="135.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eS-Ne-7Hb" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="32.5" width="317" height="30"/>
+                                                        <connections>
+                                                            <action selector="onSettingsPress" destination="Zhu-5c-ibe" eventType="touchUpInside" id="Kws-TH-4jx"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="4eS-Ne-7Hb" secondAttribute="trailing" id="9Dw-IF-zO0"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="CZx-lm-BYS"/>
+                                                    <constraint firstAttribute="width" priority="999" constant="460" id="HbH-WV-n4y"/>
+                                                    <constraint firstItem="4eS-Ne-7Hb" firstAttribute="leading" secondItem="hip-3C-tbf" secondAttribute="leading" id="Ylk-xW-LHI"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-hG-B7m">
+                                                <rect key="frame" x="29" y="387" width="317" height="99"/>
+                                                <subviews>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nYR-dg-hOW" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                    </switch>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="oag-Kv-9hn">
+                                                        <rect key="frame" x="61" y="0.0" width="256" height="99"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes, I have read, understand, and agree to the terms and conditions provided below:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JD-47-J9K">
+                                                                <rect key="frame" x="0.0" y="0.0" width="256" height="61"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m39-TC-zui">
+                                                                <rect key="frame" x="0.0" y="69" width="182" height="30"/>
+                                                                <state key="normal" title="View terms and conditions"/>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" priority="999" constant="460" id="FrA-gM-7Rh"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ZgR-jU-C1X"/>
+                                                </constraints>
+                                            </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="anT-2i-mNO">
-                                                <rect key="frame" x="29" y="372.5" width="317" height="50"/>
+                                                <rect key="frame" x="29" y="516" width="317" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ad6-bW-Brv" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="49" y="20" width="219" height="30"/>
@@ -449,7 +461,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vch-kQ-TeG">
-                                                <rect key="frame" x="0.0" y="452.5" width="375" height="76.5"/>
+                                                <rect key="frame" x="0.0" y="596" width="375" height="76.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZh-8a-uyy">
                                                         <rect key="frame" x="29" y="30" width="317" height="16.5"/>
@@ -469,16 +481,24 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="anT-2i-mNO" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" priority="999" constant="29" id="9MV-lY-dLh"/>
+                                            <constraint firstItem="hip-3C-tbf" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" priority="999" constant="29" id="KFI-IJ-AGe"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hip-3C-tbf" secondAttribute="trailing" constant="29" id="LOj-Pv-htg"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="anT-2i-mNO" secondAttribute="trailing" constant="29" id="OGJ-8i-ai4"/>
                                             <constraint firstItem="anT-2i-mNO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eDo-fn-RRN" secondAttribute="leading" constant="29" id="Ren-j1-zkO"/>
                                             <constraint firstItem="9ya-E5-jrB" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" priority="999" constant="29" id="SsE-7q-GRC"/>
                                             <constraint firstAttribute="trailing" secondItem="WvE-Si-V3N" secondAttribute="trailing" priority="999" constant="29" id="UtY-BI-GNu"/>
                                             <constraint firstAttribute="trailing" secondItem="anT-2i-mNO" secondAttribute="trailing" priority="999" constant="29" id="WrI-hg-VUa"/>
+                                            <constraint firstItem="Xte-hG-B7m" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" priority="999" constant="29" id="WtO-Px-hGJ"/>
                                             <constraint firstAttribute="trailing" secondItem="fWQ-yZ-dT0" secondAttribute="trailing" id="ZCk-fW-x8w"/>
                                             <constraint firstItem="fWQ-yZ-dT0" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" id="b8J-XT-b5Y"/>
                                             <constraint firstItem="WvE-Si-V3N" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" priority="999" constant="29" id="dxd-By-hfd"/>
                                             <constraint firstAttribute="trailing" secondItem="9ya-E5-jrB" secondAttribute="trailing" priority="999" constant="29" id="etP-WP-dn8"/>
+                                            <constraint firstAttribute="trailing" secondItem="Xte-hG-B7m" secondAttribute="trailing" priority="999" constant="29" id="g9g-5N-W3H"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xte-hG-B7m" secondAttribute="trailing" constant="29" id="gft-pD-BpB"/>
+                                            <constraint firstItem="hip-3C-tbf" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" priority="999" constant="29" id="iv1-Y5-Yco"/>
                                             <constraint firstAttribute="trailing" secondItem="Vch-kQ-TeG" secondAttribute="trailing" id="shb-Ac-8kV"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hip-3C-tbf" secondAttribute="trailing" constant="29" id="tD8-dX-Me2"/>
+                                            <constraint firstItem="Xte-hG-B7m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eDo-fn-RRN" secondAttribute="leading" constant="29" id="vWP-uq-F5S"/>
                                             <constraint firstItem="Vch-kQ-TeG" firstAttribute="leading" secondItem="eDo-fn-RRN" secondAttribute="leading" id="zXg-eT-R7z"/>
                                         </constraints>
                                     </stackView>
@@ -549,9 +569,12 @@
                         <outlet property="loadingIndicator" destination="78M-KI-pKV" id="Wcc-O0-VBm"/>
                         <outlet property="scrollView" destination="FrB-7r-SHz" id="m8u-Pr-o8L"/>
                         <outlet property="selectBankAccountLabel" destination="9ya-E5-jrB" id="n54-gZ-F2Q"/>
-                        <outlet property="settingsButton" destination="vbU-ce-fbQ" id="PDK-sS-dMB"/>
-                        <outlet property="settingsButtonLabel" destination="uCh-ay-rRd" id="slS-E8-yPI"/>
-                        <outlet property="settingsButtonView" destination="IJC-go-Hyf" id="jFz-sI-SZw"/>
+                        <outlet property="settingsButton" destination="4eS-Ne-7Hb" id="neY-Ag-3R2"/>
+                        <outlet property="settingsLabel" destination="zQz-Ju-fA3" id="tK2-9G-sCp"/>
+                        <outlet property="termsButton" destination="m39-TC-zui" id="m9V-tH-oOL"/>
+                        <outlet property="termsLabel" destination="9JD-47-J9K" id="mN4-G8-qVh"/>
+                        <outlet property="termsStackView" destination="Xte-hG-B7m" id="pwy-rg-b6J"/>
+                        <outlet property="termsSwitch" destination="nYR-dg-hOW" id="kzE-95-eEw"/>
                         <outlet property="topSpacerView" destination="Nsc-i6-2Nv" id="G1n-b7-pcp"/>
                         <segue destination="K4v-kg-55U" kind="show" identifier="bgeAutoPaySettingsSegue" id="cEw-e0-0sL"/>
                     </connections>

@@ -47,9 +47,13 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var bankAccountButtonAccountNumberLabel: UILabel!
     @IBOutlet weak var bankAccountButtonNicknameLabel: UILabel!
     
-    @IBOutlet weak var settingsButtonView: UIView!
-    @IBOutlet weak var settingsButton: ButtonControl!
-    @IBOutlet weak var settingsButtonLabel: UILabel!
+    @IBOutlet weak var settingsLabel: UILabel!
+    @IBOutlet weak var settingsButton: DisclosureButton!
+    
+    @IBOutlet weak var termsStackView: UIStackView!
+    @IBOutlet weak var termsSwitch: Switch!
+    @IBOutlet weak var termsLabel: UILabel!
+    @IBOutlet weak var termsButton: UIButton!
     
     @IBOutlet weak var bottomLabelView: UIView!
     @IBOutlet weak var bottomLabel: UILabel!
@@ -107,9 +111,9 @@ class BGEAutoPayViewController: UIViewController {
         bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
         bottomLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        settingsButtonLabel.textColor = .actionBlue
-        settingsButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        settingsButtonLabel.text = NSLocalizedString("AutoPay Settings", comment: "")
+        settingsLabel.textColor = .blackText
+        settingsLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        settingsLabel.text = NSLocalizedString("AutoPay Settings", comment: "")
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -161,7 +165,6 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
         bankAccountButton.isAccessibilityElement = true
         settingsButton.isAccessibilityElement = true
-        settingsButton.accessibilityLabel = settingsButtonLabel.text
         
         enrollmentSwitch.accessibilityLabel = "Enrollment status: "
         enrollmentStatusLabel.isAccessibilityElement = false
@@ -186,11 +189,13 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.walletItemNicknameText.drive(bankAccountButtonNicknameLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(bankAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
+        viewModel.settingsButtonAmountText.drive(settingsButton.rx.labelText).disposed(by: disposeBag)
+        viewModel.settingsButtonDaysBeforeText.drive(settingsButton.rx.detailText).disposed(by: disposeBag)
+        
         viewModel.enrollSwitchValue.asDriver().drive(enrollmentSwitch.rx.isOn).disposed(by: disposeBag)
         enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).disposed(by: disposeBag)
         
         viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowSettingsButton.map(!).drive(settingsButtonView.rx.isHidden).disposed(by: disposeBag)
     }
     
     @objc func onCancelPress() {
@@ -274,7 +279,19 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onLearnMorePress() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: NSLocalizedString("With AutoPay, your payment is automatically deducted from your bank account. Upon payment, you will receive a payment confirmation for your records.", comment: ""))
+        let modalDescription: String
+        switch Environment.shared.opco {
+        case .bge:
+            modalDescription = """
+Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+            
+AutoPay will charge the total amount billed each month or up to the total amount specified, if applicable. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay automatic withdrawal.
+"""
+        case .comEd, .peco:
+            modalDescription = "With AutoPay, your payment is automatically deducted from your bank account. Upon payment, you will receive a payment confirmation for your records."
+        }
+        
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: NSLocalizedString(modalDescription, comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 
