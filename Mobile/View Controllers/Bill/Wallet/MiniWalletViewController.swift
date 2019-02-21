@@ -10,16 +10,6 @@ import RxSwift
 
 protocol MiniWalletViewControllerDelegate: class {
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem)
-    
-    // Used in the payment workflow:
-    func miniWalletViewControllerDidTapAddBank(_ miniWalletViewController: MiniWalletViewController)
-    func miniWalletViewControllerDidTapAddCard(_ miniWalletViewController: MiniWalletViewController)
-}
-
-// Default implementation to make these protocol functions optional
-extension MiniWalletViewControllerDelegate {
-    func miniWalletViewControllerDidTapAddBank(_ miniWalletViewController: MiniWalletViewController) { }
-    func miniWalletViewControllerDidTapAddCard(_ miniWalletViewController: MiniWalletViewController) { }
 }
 
 class MiniWalletViewController: UIViewController {
@@ -125,27 +115,6 @@ class MiniWalletViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let oneTouchPayItem = viewModel.walletItems.value?.first(where: { $0.isDefault == true })
-        
-        if let vc = segue.destination as? AddBankAccountViewController {
-            vc.accountDetail = accountDetail
-            vc.oneTouchPayItem = oneTouchPayItem
-            if let walletItems = viewModel.walletItems.value {
-                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
-            }
-            vc.delegate = self
-        } else if let vc = segue.destination as? AddCreditCardViewController {
-            vc.accountDetail = accountDetail
-            vc.oneTouchPayItem = oneTouchPayItem
-            if let walletItems = viewModel.walletItems.value {
-                vc.nicknamesInWallet = walletItems.map { $0.nickName ?? "" }.filter { !$0.isEmpty }
-            }
-            vc.delegate = self
-        }
-    }
-    
     func fetchWalletItems() {
         viewModel.fetchWalletItems(onSuccess: { [weak self] in
             guard let self = self else { return }
@@ -165,28 +134,20 @@ class MiniWalletViewController: UIViewController {
     }
     
     @objc func onAddBankAccountPress() {
-        if sentFromPayment {
-            if Environment.shared.opco == .bge {
-                delegate?.miniWalletViewControllerDidTapAddBank(self)
-                navigationController?.popViewController(animated: true)
-            } else {
-                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
-                    guard let self = self else { return }
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
-                    paymentusVC.shouldPopToMakePaymentOnSave = true
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }, dontSaveHandler: { [weak self] _ in
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
-                    paymentusVC.delegate = self?.delegate as? PaymentusFormViewControllerDelegate
-                    paymentusVC.shouldPopToMakePaymentOnSave = true
-                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
-                })
-                present(actionSheet, animated: true, completion: nil)
-            }
-        } else {
-            performSegue(withIdentifier: "miniWalletAddBankAccountSegue", sender: self)
-        }
+        let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+            guard let self = self else { return }
+            let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+            paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+            paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
+            self.navigationController?.pushViewController(paymentusVC, animated: true)
+        }, dontSaveHandler: { [weak self] _ in
+            guard let self = self else { return }
+            let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
+            paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+            paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
+            self.navigationController?.pushViewController(paymentusVC, animated: true)
+        })
+        present(actionSheet, animated: true, completion: nil)
     }
     
     @objc func onCreditCardPress(sender: ButtonControl) {
@@ -196,28 +157,20 @@ class MiniWalletViewController: UIViewController {
     }
     
     @objc func onAddCreditCardPress() {
-        if sentFromPayment {
-            if Environment.shared.opco == .bge {
-                delegate?.miniWalletViewControllerDidTapAddCard(self)
-                navigationController?.popViewController(animated: true)
-            } else {
-                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
-                    guard let self = self else { return }
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
-                    paymentusVC.shouldPopToMakePaymentOnSave = true
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }, dontSaveHandler: { [weak self] _ in
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
-                    paymentusVC.delegate = self?.delegate as? PaymentusFormViewControllerDelegate
-                    paymentusVC.shouldPopToMakePaymentOnSave = true
-                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
-                })
-                present(actionSheet, animated: true, completion: nil)
-            }
-        } else {
-            performSegue(withIdentifier: "miniWalletAddCreditCardSegue", sender: self)
-        }
+        let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+            guard let self = self else { return }
+            let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+            paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+            paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
+            self.navigationController?.pushViewController(paymentusVC, animated: true)
+        }, dontSaveHandler: { [weak self] _ in
+            guard let self = self else { return }
+            let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
+            paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+            paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
+            self.navigationController?.pushViewController(paymentusVC, animated: true)
+        })
+        present(actionSheet, animated: true, completion: nil)
     }
     
 }
@@ -316,9 +269,6 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
                 
                 cell.innerContentView.isEnabled = true
-                if let cardIssuer = cardItem.cardIssuer, cardIssuer == "Visa", sentFromPayment, !accountDetail.isResidential, Environment.shared.opco == .bge { // BGE Commercial cannot pay with VISA
-                    cell.innerContentView.isEnabled = false
-                }
                 if creditCardsDisabled || cardItem.isExpired {
                     cell.innerContentView.isEnabled = false
                 }
@@ -338,26 +288,3 @@ extension MiniWalletViewController: UITableViewDataSource {
     
     
 }
-
-extension MiniWalletViewController: AddBankAccountViewControllerDelegate {
-    
-    func addBankAccountViewControllerDidAddAccount(_ addBankAccountViewController: AddBankAccountViewController) {
-        fetchWalletItems()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Bank account added", comment: ""))
-        })
-    }
-    
-}
-
-extension MiniWalletViewController: AddCreditCardViewControllerDelegate {
-    
-    func addCreditCardViewControllerDidAddAccount(_ addCreditCardViewController: AddCreditCardViewController) {
-        fetchWalletItems()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            self.view.showToast(NSLocalizedString("Card added", comment: ""))
-        })
-    }
-}
-
-

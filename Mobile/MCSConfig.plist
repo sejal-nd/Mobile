@@ -14,8 +14,6 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>mobileAppUATTest</key>
 		<dict>
@@ -27,8 +25,6 @@
 			<string>YW5vbl90c3Q6NkclUXViQGxaQm1vZ09xJFc4Qlg=</string>
 			<key>oauthEndpoint</key>
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>mobileAppDevStage</key>
 		<dict>
@@ -40,8 +36,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>mobileAppUATStage</key>
 		<dict>
@@ -53,8 +47,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>stageMain</key>
 		<dict>
@@ -66,8 +58,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>Stage-bgeMBE</key>
 		<dict>
@@ -79,8 +69,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>Stage-comedMBE</key>
 		<dict>
@@ -92,8 +80,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>Stage-pecoMBE</key>
 		<dict>
@@ -105,8 +91,6 @@
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://sptest144aa.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>Prod-bgeMBE</key>
 		<dict>
@@ -118,8 +102,6 @@
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>Prod-comedMBE</key>
 		<dict>
@@ -131,8 +113,6 @@
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
 		</dict>
 		<key>Prod-pecoMBE</key>
 		<dict>
@@ -144,8 +124,6 @@
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>speedpayUrl</key>
-			<string>https://tokenservice.speedpay.com/api/token/GetToken</string>
 		</dict>
 	</dict>
 </dict>

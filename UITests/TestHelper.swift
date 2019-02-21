@@ -10,12 +10,16 @@ import Foundation
 import AppCenterXCUITestExtensions
 import XCTest
 
-internal var appOpCo: OpCo {
-    let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
-    let options: [OpCo] = [.bge, .comEd, .peco]
-
-    return options.lazy.filter({ appName.contains($0.displayString) }).first ?? .bge
+enum OpCo: String {
+    case bge = "BGEUITests-Runner"
+    case comEd = "ComEdUITests-Runner"
+    case peco = "PECOUITests-Runner"
 }
+
+let appOpCo: OpCo = {
+    let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
+    return OpCo(rawValue: appName)!
+}()
 
 class ExelonUITestCase: XCTestCase {
     
@@ -29,13 +33,16 @@ class ExelonUITestCase: XCTestCase {
         
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app.launchArguments = ["UITest"]
-        ACTLaunch.launch(app)
     }
     
     override func tearDown() {
         ACTLabel.labelStep("Tearing down")
 
         super.tearDown()
+    }
+    
+    func launchApp() {
+        ACTLaunch.launch(app)
     }
     
     func handleTermsFirstLaunch() {
@@ -81,22 +88,18 @@ class ExelonUITestCase: XCTestCase {
         ACTLabel.labelStep("Signing in...")
         tapButton(buttonText: "Sign In")
     
-        XCTAssertTrue(tabButtonElement(withText: "Home").exists)
+        if app.launchArguments.contains("stormMode") {
+            checkExistenceOfElement(.staticText, "Storm mode is in effect. Due to severe weather, the most relevant features are optimized to allow us to better serve you.")
+        } else {
+            XCTAssertTrue(tabButtonElement(withText: "Home").exists)
+        }
+        
         ACTLabel.labelStep("Signed in")
     }
 }
 
 // MARK: - Helpers
 extension ExelonUITestCase {
-
-    func dateString(from date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .opCo
-        dateFormatter.calendar = .opCo
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-
-        return dateFormatter.string(from: date)
-    }
 
     func selectTab(tabName: String) {
         ACTLabel.labelStep("Pre-select tab \(tabName)")
@@ -121,14 +124,48 @@ extension ExelonUITestCase {
         table.swipeUp() // In case the last cell becomes visible but we're looking for another element inside or the footer view
     }
 
-    func checkExistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)], timeout: TimeInterval = 3) {
+    func checkExistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)],
+                                  timeout: TimeInterval = 3,
+                                  file: StaticString = #file,
+                                  line: UInt = #line) {
         for (type, text) in typesAndTexts {
-            checkExistenceOfElement(type, text, timeout: timeout)
+            checkExistenceOfElement(type, text, timeout: timeout, file: file, line: line)
         }
     }
 
-    func checkExistenceOfElement(_ type: XCUIElement.ElementType, _ text: String, timeout: TimeInterval = 3) {
-        XCTAssertTrue(element(ofType: type, withText: text, timeout: timeout).exists, "Element with text \"\(text)\" could not be found.")
+    func checkExistenceOfElement(_ type: XCUIElement.ElementType,
+                                 _ text: String,
+                                 timeout: TimeInterval = 3,
+                                 file: StaticString = #file,
+                                 line: UInt = #line) {
+        XCTAssertTrue(
+            element(ofType: type, withText: text, timeout: timeout).exists,
+            "Element with text \"\(text)\" could not be found.",
+            file: file,
+            line: line
+        )
+    }
+    
+    func checkNonexistenceOfElements(_ typesAndTexts: [(XCUIElement.ElementType, String)],
+                                     timeout: TimeInterval = 3,
+                                     file: StaticString = #file,
+                                     line: UInt = #line) {
+        for (type, text) in typesAndTexts {
+            checkNonexistenceOfElement(type, text, timeout: timeout, file: file, line: line)
+        }
+    }
+    
+    func checkNonexistenceOfElement(_ type: XCUIElement.ElementType,
+                                    _ text: String,
+                                    timeout: TimeInterval = 3,
+                                    file: StaticString = #file,
+                                    line: UInt = #line) {
+        XCTAssertTrue(
+            !element(ofType: type, withText: text, timeout: timeout).exists,
+            "Element with text \"\(text)\" could not be found.",
+            file: file,
+            line: line
+        )
     }
 
     func tabButtonElement(withText text: String, timeout: TimeInterval = 5) -> XCUIElement {

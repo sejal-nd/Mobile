@@ -170,6 +170,19 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
+    @IBOutlet private weak var accountDisallowView: UIView!
+    @IBOutlet private weak var accountDisallowIconImageView: UIImageView! {
+        didSet {
+            // Apply different colors for ADA contrast compliance (ComEd default color is already compliant)
+            accountDisallowIconImageView.image = UIImage(named: "ic_lock_opco")?.withRenderingMode(.alwaysTemplate)
+            if Environment.shared.opco == .bge {
+                accountDisallowIconImageView.tintColor = UIColor(red: 102/255, green: 179/255, blue: 96/255, alpha: 1)
+            } else if Environment.shared.opco == .peco {
+                accountDisallowIconImageView.tintColor = UIColor(red: 0, green: 162/255, blue: 1, alpha: 1)
+            }
+        }
+    }
+    
     /// This houses both the outage status button and the loading view for the button
     @IBOutlet private weak var loadingContentView: UIView!
     @IBOutlet private weak var loadingView: UIView!
@@ -266,13 +279,14 @@ class StormModeHomeViewController: AccountPickerViewController {
         outageStatusButton.isHidden = true
         gasOnlyView.isHidden = true
         finalPayView.isHidden = true
+        accountDisallowView.isHidden = true
         footerStackView.isHidden = true
         noNetworkConnectionView.isHidden = true
         setRefreshControlEnabled(enabled: false)
         
         viewModel.stormModeUpdate.asDriver().isNil().drive(onNext: { [weak self] noUpdate in
             self?.headerCaretImageView.isHidden = noUpdate
-            self?.headerContentView.accessibilityTraits = noUpdate ? [.none] : [.button]
+            self?.headerContentView.accessibilityTraits = noUpdate ? .staticText : .button
         }).disposed(by: disposeBag)
         
         Driver.merge(reportOutageButton.rx.touchUpInside.asDriver().map(to: "ReportOutageSegue"),
@@ -431,7 +445,9 @@ class StormModeHomeViewController: AccountPickerViewController {
             footerStackView.isHidden = true
             noNetworkConnectionView.isHidden = true
             gasOnlyView.isHidden = true
+            billButton.isHidden = false
             finalPayView.isHidden = true
+            accountDisallowView.isHidden = true
             loadingView.isHidden = false
             scrollView?.isHidden = false
             setRefreshControlEnabled(enabled: false)
@@ -468,11 +484,21 @@ class StormModeHomeViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
             
+            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                self.accountDisallowView.isHidden = false
+                self.finalPayView.isHidden = true
+                self.billButton.isHidden = true
+            } else {
+                self.accountDisallowView.isHidden = true
+                self.finalPayView.isHidden = false
+                self.finalPayTitleLabel.isHidden = true
+                self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+                self.billButton.isHidden = false
+            }
+            
             self.loadingContentView.isHidden = true
-            self.finalPayView.isHidden = false
-            self.finalPayTitleLabel.isHidden = true
-            self.finalPayTextView.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
             self.finalPayButtonContainer.isHidden = true
+            
             self.outageSectionContainer.isHidden = true
             self.footerStackView.isHidden = false
             self.loadingView.isHidden = true

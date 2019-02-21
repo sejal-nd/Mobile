@@ -1,0 +1,868 @@
+{
+    "default": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "residential": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "screenshots": {
+        "accountNumber": "7989123445",
+        "premiseNumber": "1",
+        "isAutoPayEligible": true,
+        "isResidential": true,
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isModeledForOpower": true,
+        "isEBillEnrollment": true,
+        "BillingInfo": {
+            "netDueAmount": 137,
+            "dueByDate": "2019-01-14T00:00:00",
+            "billDate": "2018-12-14T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardNoDefaultPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "convenienceFee": 5,
+            "feeCommercial": 4,
+            "feeResidential": 3
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardWithDefaultPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 5000,
+            "dueByDate": "2019-01-11T00:00:00",
+            "convenienceFee": 5,
+            "feeCommercial": 4,
+            "feeResidential": 3
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardWithDefaultCcPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 435.323,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billCardWithExpiredDefaultPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billNoDueDate": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "minPaymentAmount": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 0.001,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "maxPaymentAmount": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 100000000,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "cashOnly": {
+        "accountNumber": "1234567890",
+        "isCashOnly": true,
+        "isResidential": true,
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "scheduledPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 82,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "autoPay": {
+        "accountNumber": "1234567890",
+        "isAutoPay": true,
+        "BillingInfo": {
+            "netDueAmount": 82,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "bgEasy": {
+        "accountNumber": "1234567890",
+        "isBGEasy": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "autoPayScheduled": {
+        "accountNumber": "1234567890",
+        "isAutoPay": true,
+        "BillingInfo": {
+            "netDueAmount": 82,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "autoPayEligible": {
+        "accountNumber": "1234567890",
+        "isAutoPayEligible": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "budgetBill": {
+        "accountNumber": "1234567890",
+        "isBudgetBill": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "budgetBillEligible": {
+        "accountNumber": "1234567890",
+        "isBudgetBillEligible": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "eBill": {
+        "accountNumber": "1234567890",
+        "isEBillEnrollment": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "eBillEligible": {
+        "accountNumber": "1234567890",
+        "isEBillEligible": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "finaledStatus": {
+        "accountNumber": "1234567890",
+        "isEBillEligible": true,
+        "isResidential": true,
+        "status": "finaled",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "thankYouForPayment": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 0,
+            "lastPaymentAmount": 200,
+            "lastPaymentDate": "2019-01-01T00:00:00",
+            "dueByDate": "2019-01-01T00:00:00",
+            "billDate": "2018-12-31T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "paymentPending": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "remainingBalanceDue": 100,
+            "dueByDate": "2019-01-11T00:00:00",
+            "payments": [
+                {
+                    "paymentAmount": 100,
+                    "status": "pending"
+                }
+            ]
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "paymentsPending": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 300,
+            "dueByDate": "2019-01-11T00:00:00",
+            "payments": [
+                {
+                    "paymentAmount": 200,
+                    "status": "pending"
+                },
+                {
+                    "paymentAmount": 100,
+                    "status": "pending"
+                }
+            ]
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "credit": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": -350.34
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "finaled": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 200
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "pastDue": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 140,
+            "dueByDate": "2019-01-11T00:00:00",
+            "currentDueAmount": 60
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "pastDueEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "restoreService": {
+        "accountNumber": "1234567890",
+        "isCutOutNonPay": true,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "restorationAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "restoreServiceEqual": {
+        "accountNumber": "1234567890",
+        "isCutOutNonPay": true,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "restorationAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "eligibleForCutoff": {
+        "accountNumber": "1234567890",
+        "isCutOutIssued": true,
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 100,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 100,
+            "currentDueAmount": 100
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoff": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 100,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 100,
+            "currentDueAmount": 100
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 100,
+            "currentDueAmount": 150,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastEqualExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200,
+            "currentDueAmount": 150,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastNetEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffPastNetEqualExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 200,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffAllEqual": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 350
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avoidShutoffAllEqualExtended": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "disconnectNoticeArrears": 350,
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUp": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "amtDpaReinst": 100,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 5,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUpPastEqual": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 200,
+            "amtDpaReinst": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 7.5,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUpPastNetEqual": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "amtDpaReinst": 200,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 7.45,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "catchUpAllEqual": {
+        "accountNumber": "1234567890",
+        "isLowIncome": false,
+        "BillingInfo": {
+            "netDueAmount": 350,
+            "pastDueAmount": 350,
+            "amtDpaReinst": 350,
+            "dueByDate": "2019-01-11T00:00:00",
+            "atReinstateFee": 5,
+            "currentDueAmount": 150
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "comparedEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "serviceType": "GAS/ELECTRIC",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "referenceEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedCost": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedUsage": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "avgTemp": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "invalidServiceType": {
+        "accountNumber": "1234567890",
+        "serviceType": "fjdkslaj",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "finaledResidential": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "pastDueAmount": 200
+        },
+        "flagFinaled": true,
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "bgeControlGroup": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "fjdkslaj",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
+    },
+    "gasOnly": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "GAS",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
+    },
+    "electricOnly": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "ELECTRIC",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
+    },
+    "gasAndElectric": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "GAS/ELECTRIC",
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {
+            "controlGroupFlag": "CONTROL"
+        }
+    },
+    "billBreakdown": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "supplyCharges": 42,
+            "taxesAndFees": 13,
+            "deliveryCharges": 38
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "comparedMinHeight": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "referenceMinHeight": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "hasForecastComparedHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "hasForecastReferenceHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "hasForecastForecastHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "noForecastComparedHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "noForecastReferenceHighest": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedCostAndUsage": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectedCostAndUsageOpower": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isModeledForOpower": true,
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionLessThan7": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionMoreThan7": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionSixDaysOut": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "projectionThreeDaysOut": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "comparedReferenceStartEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "forecastStartEndDate": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "isAMIAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "zeroCostDifference": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "positiveCostDifference": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "negativeCostDifference": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsNoData": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsAboutSame": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsGreater": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "likelyReasonsLess": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "ELECTRIC",
+        "isResidential": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "pts": {
+        "accountNumber": "1234567890",
+        "isPTSAccount": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "serEnrolled": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "PremiseInfo": [
+            {
+                "premiseNumber": "1",
+                "smartEnergyRewards": "ENROLLED"
+            }
+        ],
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "ptsAndSerEnrolled": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "isPTSAccount": true,
+        "PremiseInfo": [
+            {
+                "premiseNumber": "1",
+                "smartEnergyRewards": "ENROLLED"
+            }
+        ],
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "activeSeverance": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "activeSeverance": true,
+        "BillingInfo": {},
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "dueDatePassed": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 200,
+            "lastPaymentAmount": 200,
+            "lastPaymentDate": "2018-11-31T00:00:00",
+            "dueByDate": "2018-12-31T00:00:00",
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "error": {
+        "code": "TC-UNKNOWN",
+        "description": "Account detail fetch failed."
+    }
+}

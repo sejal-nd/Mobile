@@ -14,7 +14,6 @@ class MockPaymentService: PaymentService {
         return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
-    
     func enrollInAutoPayBGE(accountNumber: String,
                             walletItemId: String?,
                             amountType: AmountType,
@@ -27,33 +26,26 @@ class MockPaymentService: PaymentService {
         return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
-    
     func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
         return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
         
     }
     
-    
     func enrollInAutoPay(accountNumber: String,
                          nameOfAccount: String,
-                         bankAccountType: BankAccountType,
+                         bankAccountType: String,
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void> {
         return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
-    
     func unenrollFromAutoPay(accountNumber: String, reason: String) -> Observable<Void> {
         return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
     func schedulePayment(payment: Payment) -> Observable<String> {
-        return Observable.just("123456").delay(2, scheduler: MainScheduler.instance)
-    }
-    
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
-        return Observable.just("").delay(2, scheduler: MainScheduler.instance)
+        return .just("123456")
     }
     
     func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {

@@ -158,11 +158,7 @@ class ReviewPaymentViewController: UIViewController {
         
         termsConditionsSwitchLabel.textColor = .deepGray
         termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        if Environment.shared.opco == .bge {
-            termsConditionsSwitchLabel.text = NSLocalizedString("I have read and accept the Terms and Conditions below & E-Sign Disclosure and Consent Notice. Please review and retain a copy for your records.", comment: "")
-        } else {
-            termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
-        }
+        termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
         termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
         termsConditionsButtonLabel.font = SystemFont.bold.of(textStyle: .headline)
         termsConditionsButtonLabel.textColor = .actionBlue
@@ -187,6 +183,7 @@ class ReviewPaymentViewController: UIViewController {
         footerView.backgroundColor = .softGray
         footerLabel.textColor = .blackText
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.text = viewModel.reviewPaymentFooterLabelText
         
         bindViewHiding()
         bindViewContent()
@@ -208,7 +205,6 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.isOverpayingCard.map(!).drive(cardOverpayingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isOverpayingBank.map(!).drive(bankOverpayingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowTermsConditionsSwitchView.map(!).drive(termsConditionsSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).disposed(by: disposeBag)
     }
@@ -247,9 +243,6 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).disposed(by: disposeBag)
         overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).disposed(by: disposeBag)
         activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).disposed(by: disposeBag)
-        
-        // Footer Label
-        viewModel.reviewPaymentFooterLabelText.drive(footerLabel.rx.text).disposed(by: disposeBag)
     }
     
     func bindButtonTaps() {
@@ -272,33 +265,16 @@ class ReviewPaymentViewController: UIViewController {
         
         let handleError = { [weak self] (err: ServiceError) in
             guard let self = self else { return }
+            
             LoadingView.hide()
-            if Environment.shared.opco == .bge {
-                let errMessage = err.localizedDescription
-                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                
-                // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
-                // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
-                if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
-                        action -> Void in
-                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
-                    }))
-                } else {
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
+                forError: err,
+                walletItem: self.viewModel.selectedWalletItem.value!,
+                callHandler: { _ in
+                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
                 }
-                self.present(alertVc, animated: true, completion: nil)
-            } else {
-                let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
-                    forError: err,
-                    walletItem: self.viewModel.selectedWalletItem.value!,
-                    callHandler: { _ in
-                        UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
-                    }
-                )
-                self.present(paymentusAlertVC, animated: true, completion: nil)
-            }
+            )
+            self.present(paymentusAlertVC, animated: true, completion: nil)
         }
         
         if viewModel.paymentId.value != nil { // Modify
@@ -348,8 +324,7 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     func onTermsConditionsPress() {
-        let url = Environment.shared.opco == .bge ? URL(string: "https://www.speedpay.com/terms/")! :
-            URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
+        let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }

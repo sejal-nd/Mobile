@@ -1,0 +1,13 @@
+{
+    "default": {
+        "properties": {
+            "periods": [
+                {
+                    "temperature": 72,
+                    "icon": "hot",
+                    "isDaytime": true
+                }
+            ]
+        }
+    }
+}

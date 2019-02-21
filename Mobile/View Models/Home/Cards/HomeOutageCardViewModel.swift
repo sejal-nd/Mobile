@@ -77,7 +77,7 @@ class HomeOutageCardViewModel {
     private lazy var storedEtr: Driver<Date?> = self.outageReported
         .startWith(())
         .map { [weak self] in
-            guard AccountsStore.shared.currentAccount != nil else { return nil }
+            guard AccountsStore.shared.currentIndex != nil else { return nil }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
             return self?.outageService.getReportedOutageResult(accountNumber: accountNumber)?.etr
     }
@@ -119,7 +119,7 @@ class HomeOutageCardViewModel {
         .merge(self.outageReported, self.currentOutageStatus.map(to: ()))
         .map { [weak self] in
             guard let this = self else { return false }
-            guard AccountsStore.shared.currentAccount != nil else { return false }
+            guard AccountsStore.shared.currentIndex != nil else { return false }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
             return this.outageService.getReportedOutageResult(accountNumber: accountNumber) != nil
         }
@@ -147,7 +147,7 @@ class HomeOutageCardViewModel {
                                                                              self.currentOutageStatus.map(to: ()))
         .map { [weak self] in
             guard let this = self else { return nil }
-            guard AccountsStore.shared.currentAccount != nil else { return nil }
+            guard AccountsStore.shared.currentIndex != nil else { return nil }
             let accountNumber = AccountsStore.shared.currentAccount.accountNumber
             guard let reportedTime = this.outageService.getReportedOutageResult(accountNumber: accountNumber)?.reportedTime else {
                 return nil

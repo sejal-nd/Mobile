@@ -81,6 +81,7 @@ class MaintenanceModeView: UIView {
         super.layoutSubviews()
         styleViews()
         infoTextView.attributedText = infoText
+        infoTextView.accessibilityLabel = infoText.string
     }
     
     func styleViews() {

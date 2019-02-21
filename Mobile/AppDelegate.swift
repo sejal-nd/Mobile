@@ -44,6 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.keyWindow?.layer.speed = 200
         }
         
+        // Set mock maintenance mode state based on launch argument
+        if let key = processInfo.arguments.lazy.compactMap(MockDataKey.init).first,
+            processInfo.arguments.contains("UITest") {
+            MockAppState.current = MockAppState(maintenanceKey: key)
+        }
+        
         if let appInfo = Bundle.main.infoDictionary,
             let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
@@ -152,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
-                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
+                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
             }
         } else {
             // App was in the foreground when notification received - do nothing

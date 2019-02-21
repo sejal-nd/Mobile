@@ -9,58 +9,82 @@
 import Foundation
 import Mapper
 
-// Used internally for Payment model
-enum PaymentType: String {
-    case check = "Check"
-    case credit = "Card"
-}
-
-// Comed/PECO
 enum PaymentCategoryType: String {
     case check = "CHECK"
     case saving = "SAVING"
     case credit = "CREDIT"
     case debit = "DEBIT"
+    
+    var displayString: String {
+        switch self {
+        case .check:
+            return NSLocalizedString("Checking Account", comment: "")
+        case .saving:
+            return NSLocalizedString("Savings Account", comment: "")
+        case .credit:
+            return NSLocalizedString("Credit Card", comment: "")
+        case .debit:
+            return NSLocalizedString("Debit Card", comment: "")
+        }
+    }
 }
 
-// BGE
-enum BankAccountType: String {
-    case checking = "checking"
-    case savings = "saving"
-    case card = "card"
-}
-
-// We consolidate PaymentCategoryType & BankAccountType into this
+// We consolidate PaymentCategoryType into this
 enum BankOrCard {
     case bank
     case card
 }
 
+enum PaymentMethodType: String {
+    case ach = "ACH"
+    case visa = "VISA"
+    case mastercard = "MASTERCARD"
+    case amex = "AMEX"
+    case discover = "DISCOVER"
+    
+    var displayString: String {
+        switch self {
+        case .ach:
+            return NSLocalizedString("ACH", comment: "")
+        case .visa:
+            return NSLocalizedString("Visa", comment: "")
+        case .mastercard:
+            return NSLocalizedString("MasterCard", comment: "")
+        case .amex:
+            return NSLocalizedString("American Express", comment: "")
+        case .discover:
+            return NSLocalizedString("Discover", comment: "")
+        }
+    }
+}
+
+/* MCS sends something like "************1111", but we do the transform so that
+ * maskedWalletItemAccountNumber is just a 4 character string */
 private func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
     }
-    
     let last4 = string.components(separatedBy: CharacterSet.decimalDigits.inverted)
         .joined()
         .suffix(4)
-    
     return String(last4)
 }
 
 struct WalletItem: Mappable, Equatable, Hashable {
     let walletItemID: String?
-    let walletExternalID: String? // TODO: Remove for BGE when they switch to paymentus
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
-    let walletItemStatusType: String? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
+    let paymentCategoryType: PaymentCategoryType
+    let paymentMethodType: PaymentMethodType
+    let bankName: String?
+    let expirationDate: Date?
+    let isDefault: Bool
+    
     var isExpired: Bool {
-        if Environment.shared.opco == .bge {
-            return walletItemStatusType?.lowercased() == "expired"
-        } else if let exp = expirationDate {
+        if let exp = expirationDate {
             let monthYearSet = Set<Calendar.Component>(arrayLiteral: .month, .year)
             let expComponents = Calendar.gmt.dateComponents(monthYearSet, from: exp)
-            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: Date())
+            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: .now)
             guard let expMonth = expComponents.month, let expYear = expComponents.year,
                 let todayMonth = todayComponents.month, let todayYear = todayComponents.year else {
                 return false
@@ -71,87 +95,64 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
         return false
     }
-    let expirationDate: Date? // Paymentus only field
     
-    let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
-    let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
-    var bankOrCard: BankOrCard = .card
-    var isTemporary: Bool // Indicates temporary Paymentus wallet item
+    var bankOrCard: BankOrCard {
+        switch paymentCategoryType {
+        case .credit, .debit:
+            return .card
+        case .check, .saving:
+            return .bank
+        }
+    }
     
-    let bankAccountNumber: String?
-    let bankAccountName: String?
-    let isDefault: Bool
-    
-    let cardIssuer: String?
-    
-    let dateCreated: Date? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
+    var isTemporary: Bool // Indicates payment method NOT saved to wallet
     
     init(map: Mapper) throws {
         walletItemID = map.optionalFrom("walletItemID")
-        walletExternalID = map.optionalFrom("walletExternalID")
-        
         maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
         
         nickName = map.optionalFrom("nickName")
-        if let nickname = nickName {
-            if nickname.isEmpty { // prevent empty strings
-                nickName = nil
-            }
+        if let n = nickName, n.isEmpty {
+            nickName = nil
         }
         
-        paymentCategoryType = map.optionalFrom("paymentCategoryType")
-        bankAccountType = map.optionalFrom("bankAccountType")
-        bankAccountNumber = map.optionalFrom("bankAccountNumber")
-        bankAccountName = map.optionalFrom("bankAccountName")
-        isDefault = map.optionalFrom("isDefault") ?? false
-        cardIssuer = map.optionalFrom("cardIssuer")
-        dateCreated = map.optionalFrom("dateCreated", transformation: DateParser().extractDate)
-        
-        walletItemStatusType = map.optionalFrom("walletItemStatusType")
+        try paymentCategoryType = map.from("paymentCategoryType")
+        try paymentMethodType = map.from("paymentMethodType")
+        bankName = map.optionalFrom("bankName")
         expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
-        
-        if let type = bankAccountType, Environment.shared.opco == .bge {
-            bankOrCard = type == .card ? .card : .bank
-        } else if let type = paymentCategoryType {
-            switch type {
-            case .credit, .debit:
-                bankOrCard = .card
-            case .check, .saving:
-                bankOrCard = .bank
-            }
-        }
+        isDefault = map.optionalFrom("isDefault") ?? false
         
         isTemporary = false
     }
     
     // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
     init(walletItemID: String? = "1234",
-         walletExternalID: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
-         walletItemStatusType: String? = "active",
+         paymentMethodType: PaymentMethodType? = nil,
+         bankName: String? = "M&T Bank",
          expirationDate: String? = "01/2100",
-         bankAccountNumber: String? = nil,
-         bankAccountName: String? = nil,
          isDefault: Bool = false,
-         cardIssuer: String? = nil,
          bankOrCard: BankOrCard = .bank,
          isTemporary: Bool = false) {
         
         var map = [String: Any]()
         map["walletItemID"] = walletItemID
-        map["walletExternalID"] = walletExternalID
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
-        map["walletItemStatusType"] = walletItemStatusType
-        map["bankAccountNumber"] = bankAccountNumber
-        map["bankAccountName"] = bankAccountName
-        map["isDefault"] = isDefault
-        map["cardIssuer"] = cardIssuer
+        map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
+        if let pmt = paymentMethodType {
+            map["paymentMethodType"] = pmt.rawValue
+        } else {
+            map["paymentMethodType"] = bankOrCard == .bank ?
+                PaymentMethodType.ach.rawValue :
+                PaymentMethodType.visa.rawValue
+        }
+        map["bankName"] = bankName
         map["expirationDate"] = expirationDate
+        map["isDefault"] = isDefault
         
         self = WalletItem.from(map as NSDictionary)!
-        self.bankOrCard = bankOrCard
         self.isTemporary = isTemporary
     }
     
@@ -164,4 +165,5 @@ struct WalletItem: Mappable, Equatable, Hashable {
     var hashValue: Int {
         return walletItemID!.hash
     }
+
 }

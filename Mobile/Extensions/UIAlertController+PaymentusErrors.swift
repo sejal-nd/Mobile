@@ -34,11 +34,11 @@ extension UIAlertController {
             includeCallCTA = true
         case ServiceErrorCode.blockedPaymentType.rawValue:
             title = NSLocalizedString("Payment Method Unavailable", comment: "")
-            message = String.localizedStringWithFormat("%@ payments are not available on your account at this time. Please select another payment method or contact %@ customer service.", walletItem.bankOrCard == .bank ? "Bank account" : "Card", Environment.shared.opco.displayString)
+            message = String.localizedStringWithFormat("%@ payments are not available on your account at this time. Please select another payment method or contact %@ customer service.", walletItem.paymentMethodType.displayString, Environment.shared.opco.displayString)
             includeCallCTA = true
         case ServiceErrorCode.duplicatePayment.rawValue:
             title = NSLocalizedString("Duplicate Payment", comment: "")
-            message = String.localizedStringWithFormat("Recent transaction blocked due to duplicate payment. Matching amount using the same %@ was submitted within the last 24 hours.", walletItem.bankOrCard == .bank ? "bank account" : "card")
+            message = String.localizedStringWithFormat("Recent transaction blocked due to duplicate payment. Matching amount using the same %@ was submitted within the last 24 hours.", walletItem.paymentCategoryType.displayString)
         case ServiceErrorCode.paymentAccountVelocityBank.rawValue:
             fallthrough
         case ServiceErrorCode.paymentAccountVelocityCard.rawValue:

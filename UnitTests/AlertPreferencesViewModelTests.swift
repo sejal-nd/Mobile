@@ -16,7 +16,8 @@ class AlertPreferencesViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234567890", "address": "573 Elm Street"])!
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
     }
     
     func testShouldEnrollPaperlessEBill() {
@@ -36,19 +37,19 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             
             let expect = expectation(description: "callback")
             viewModel.fetchData(onCompletion: {
                 // Assert that all our view model vars were set from the Mock AlertPreferences object
                 XCTAssert(self.viewModel.outage.value)
-                XCTAssertFalse(self.viewModel.scheduledMaint.value)
+                XCTAssert(self.viewModel.scheduledMaint.value)
                 XCTAssert(self.viewModel.severeWeather.value)
-                XCTAssertFalse(self.viewModel.billReady.value)
+                XCTAssert(self.viewModel.billReady.value)
                 XCTAssert(self.viewModel.paymentDue.value)
                 XCTAssert(self.viewModel.paymentDueDaysBefore.value == 99)
                 XCTAssert(self.viewModel.budgetBilling.value)
-                XCTAssertFalse(self.viewModel.forYourInfo.value)
+                XCTAssert(self.viewModel.forYourInfo.value)
                 expect.fulfill()
             })
             
@@ -59,19 +60,19 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             
             let expect = expectation(description: "callback")
             viewModel.fetchData(onCompletion: {
                 // Assert that all our view model vars were set from the Mock AlertPreferences object
                 XCTAssert(self.viewModel.outage.value)
-                XCTAssertFalse(self.viewModel.scheduledMaint.value)
+                XCTAssert(self.viewModel.scheduledMaint.value)
                 XCTAssert(self.viewModel.severeWeather.value)
-                XCTAssertFalse(self.viewModel.billReady.value)
+                XCTAssert(self.viewModel.billReady.value)
                 XCTAssert(self.viewModel.paymentDue.value)
                 XCTAssert(self.viewModel.paymentDueDaysBefore.value == 99)
                 XCTAssert(self.viewModel.budgetBilling.value)
-                XCTAssertFalse(self.viewModel.forYourInfo.value)
+                XCTAssert(self.viewModel.forYourInfo.value)
                 XCTAssert(self.viewModel.initialEnglishValue)
                 XCTAssert(self.viewModel.english.value)
                 expect.fulfill()
@@ -88,7 +89,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
         viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                               billService: MockBillService(),
                                               accountService: MockAccountService())
-        viewModel.accountDetail = AccountDetail()
+        viewModel.accountDetail = .default
         
         let expect = expectation(description: "callback")
         viewModel.saveChanges(onSuccess: { 
@@ -107,7 +108,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             viewModel.initialEnglishValue = false
             viewModel.english.value = true
             
@@ -129,7 +130,7 @@ class AlertPreferencesViewModelTests: XCTestCase {
             viewModel = AlertPreferencesViewModel(alertsService: MockAlertsService(),
                                                   billService: MockBillService(),
                                                   accountService: MockAccountService())
-            viewModel.accountDetail = AccountDetail()
+            viewModel.accountDetail = .default
             viewModel.initialBillReadyValue = false
             viewModel.billReady.value = true
             

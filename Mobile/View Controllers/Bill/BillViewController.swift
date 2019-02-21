@@ -90,6 +90,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var genericErrorView: UIView!
     @IBOutlet weak var genericErrorLabel: UILabel!
+    @IBOutlet weak var accountDisallowView: UIView!
     
     private let cornerRadius: CGFloat = 4.0
     
@@ -276,6 +277,14 @@ class BillViewController: AccountPickerViewController {
         errorView.isHidden = false
         bottomStackContainerView.isHidden = true
         maintenanceModeView.isHidden = true
+        
+        if error?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+            genericErrorView.isHidden = true
+            accountDisallowView.isHidden = false
+        } else {
+            genericErrorView.isHidden = false
+            accountDisallowView.isHidden = true
+        }
         
         enableRefresh()
     }
@@ -539,7 +548,7 @@ class BillViewController: AccountPickerViewController {
                 let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let self = self else { return }
-                    let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                    let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
                     paymentVc.accountDetail = accountDetail
                     self.navigationController?.pushViewController(paymentVc, animated: true)
                 }

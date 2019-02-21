@@ -13,6 +13,7 @@ struct MCSAccountService: AccountService {
     
     func fetchAccounts() -> Observable<[Account]> {
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts")
+            .delay(30, scheduler: MainScheduler.instance)
             .map { accounts in
                 let accountArray = (accounts as! [[String: Any]])
                     .compactMap { Account.from($0 as NSDictionary) }
@@ -32,7 +33,7 @@ struct MCSAccountService: AccountService {
                     .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
                 
                 AccountsStore.shared.accounts = sortedAccounts
-                AccountsStore.shared.currentAccount = sortedAccounts[0]
+                AccountsStore.shared.currentIndex = 0
                 
                 return sortedAccounts
         }
@@ -124,7 +125,10 @@ struct MCSAccountService: AccountService {
                 } else if (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) && serviceError.serviceCode ==  ServiceErrorCode.failed.rawValue {
                     return Observable.just([])
                 } else {
-                    throw serviceError
+                    // TODO: Restore the error getting thrown here. Temporary workaround while
+                    // this endpoint is failing on BGE v6
+                    return Observable.just([])
+                    //throw serviceError
                 }
             }
     }

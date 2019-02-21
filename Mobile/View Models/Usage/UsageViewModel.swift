@@ -124,6 +124,7 @@ class UsageViewModel {
     // MARK: - Main States
     
     private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
+                                                                     showAccountDisallowState,
                                                                      showNoNetworkState,
                                                                      showMaintenanceModeState,
                                                                      showBillComparisonContents,
@@ -133,6 +134,14 @@ class UsageViewModel {
     private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
         .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
+        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    
+    private(set) lazy var showAccountDisallowState: Driver<Void> = accountDetailEvents
+        .filter { $0.error != nil }
+        .filter { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -418,7 +427,7 @@ class UsageViewModel {
             let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             if lastYearPrevBillSegmentIndex == 0 { return false } // Projections are only for "Previous Bill" selection
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             if let gasForecast = billForecast?.gas, isGas {
                 if let startDate = gasForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
@@ -442,7 +451,7 @@ class UsageViewModel {
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             
             let localizedString = NSLocalizedString("%@ days", comment: "")
             if let gasForecast = billForecast?.gas, isGas {
@@ -589,7 +598,7 @@ class UsageViewModel {
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             var daysRemainingString = ""
             let localizedDaysRemaining = NSLocalizedString("%@ days until next forecast.", comment: "")
             if let gasForecast = billForecast?.gas, isGas {

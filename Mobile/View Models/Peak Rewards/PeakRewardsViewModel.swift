@@ -128,7 +128,7 @@ class PeakRewardsViewModel {
             let programs = summary.programs.filter { selectedDevice.programNames.contains($0.name) }
             let override = overrides.filter {
                 guard let start = $0.start else { return false }
-                return $0.serialNumber == selectedDevice.serialNumber && Calendar.opCo.isDateInToday(start)
+                return $0.serialNumber == selectedDevice.serialNumber && start.isInToday(calendar: .opCo)
                 }.first
             
             return programs
@@ -147,7 +147,7 @@ class PeakRewardsViewModel {
                     case (.inactive, .active?):
                         body = NSLocalizedString("Override scheduled for today", comment: "")
                     case (.inactive, .scheduled?):
-                        if let start = override?.start, Calendar.opCo.isDateInToday(start) && override?.stop != nil {
+                        if let start = override?.start, start.isInToday(calendar: .opCo) && override?.stop != nil {
                             body = NSLocalizedString("You have been cycled today", comment: "")
                         } else {
                             body = NSLocalizedString("You have not been cycled today", comment: "")
@@ -155,7 +155,7 @@ class PeakRewardsViewModel {
                     case (.inactive, .none):
                         if program.stopDate == nil {
                             body = NSLocalizedString("You have not been cycled today", comment: "")
-                        } else if let startDate = program.startDate, Calendar.opCo.isDateInToday(startDate) {
+                        } else if let startDate = program.startDate, startDate.isInToday(calendar: .opCo) {
                             body = NSLocalizedString("You have been cycled today", comment: "")
                         } else {
                             body = NSLocalizedString("You have not been cycled today", comment: "")

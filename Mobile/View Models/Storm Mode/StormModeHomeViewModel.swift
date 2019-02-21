@@ -74,22 +74,22 @@ class StormModeHomeViewModel {
             .subscribe(onNext: { [weak self] outageStatus in
                 self?.currentOutageStatus = outageStatus
                 onSuccess()
-                }, onError: { [weak self] error in
-                    guard let self = self else { return }
-                    let serviceError = error as! ServiceError
-                    if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
-                        self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
-                        onSuccess()
-                    } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
-                        self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
-                        onSuccess()
-                    } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
-                        self.currentOutageStatus = OutageStatus.from(["flagNonService": true])
-                        onSuccess()
-                    } else {
-                        self.currentOutageStatus = nil
-                        onError(serviceError)
-                    }
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                let serviceError = error as! ServiceError
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
+                    self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
+                    onSuccess()
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
+                    self.currentOutageStatus = OutageStatus.from(["flagNoPay": true])
+                    onSuccess()
+                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
+                    self.currentOutageStatus = OutageStatus.from(["flagNonService": true])
+                    onSuccess()
+                } else {
+                    self.currentOutageStatus = nil
+                    onError(serviceError)
+                }
             })
     }
     
@@ -104,7 +104,7 @@ class StormModeHomeViewModel {
     }
     
     var reportedOutage: ReportedOutageResult? {
-        guard AccountsStore.shared.currentAccount != nil else { return nil }
+        guard AccountsStore.shared.currentIndex != nil else { return nil }
         return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
