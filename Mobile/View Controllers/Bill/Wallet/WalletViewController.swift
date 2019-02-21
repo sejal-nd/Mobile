@@ -55,7 +55,7 @@ class WalletViewController: UIViewController {
 
         // Empty state stuff
         choosePaymentMethodLabel.textColor = .blackText
-        choosePaymentMethodLabel.font = OpenSans.regular.of(textStyle: .headline)
+        choosePaymentMethodLabel.font = OpenSans.semibold.of(textStyle: .headline)
         choosePaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
 
         bankButton.addShadow(color: .black, opacity: 0.22, offset: .zero, radius: 4)

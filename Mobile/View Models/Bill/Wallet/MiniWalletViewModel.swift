@@ -54,42 +54,9 @@ class MiniWalletViewModel {
             return !$0 && $1
         }
     }
-    
-    var bankAccounts: [WalletItem]! {
-        var banks = [WalletItem]()
-        guard let walletItems = walletItems.value else { return banks }
-        for item in walletItems {
-            if item.bankOrCard == .bank {
-                banks.append(item)
-            }
-        }
-        if let tempItem = temporaryItem.value {
-            if tempItem.bankOrCard == .bank && !banks.contains(tempItem) {
-                banks.insert(tempItem, at: 0)
-            }
-        }
-        return banks
-    }
-    
-    var creditCards: [WalletItem]! {
-        var cards = [WalletItem]()
-        guard let walletItems = walletItems.value else { return cards }
-        for item in walletItems {
-            if item.bankOrCard == .card {
-                cards.append(item)
-            }
-        }
-        if let tempItem = temporaryItem.value {
-            if tempItem.bankOrCard == .card && !cards.contains(tempItem) {
-                cards.insert(tempItem, at: 0)
-            }
-        }
-        return cards
-    }
-    
+
     var footerLabelText: String {
         return NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
     }
         
 }
-

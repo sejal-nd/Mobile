@@ -50,13 +50,9 @@ class MiniWalletTableViewCell: UITableViewCell {
     func bindToWalletItem(_ walletItem: WalletItem, isSelectedItem: Bool) {
         var a11yLabel = ""
         
-        if walletItem.bankOrCard == .bank {
-            iconImageView.image = #imageLiteral(resourceName: "opco_bank_mini")
-            a11yLabel = NSLocalizedString("Bank account", comment: "")
-        } else {
-            iconImageView.image = #imageLiteral(resourceName: "opco_credit_card_mini")
-            a11yLabel = NSLocalizedString("Credit card", comment: "")
-        }
+        iconImageView.image = walletItem.paymentMethodType?.imageMini ?? #imageLiteral(resourceName: "ic_genericcard")
+        
+        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved credit card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
         
         if let nickname = walletItem.nickName {
             nicknameLabel.isHidden = false

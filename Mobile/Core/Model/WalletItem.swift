@@ -25,9 +25,39 @@ enum BankOrCard {
 enum PaymentMethodType: String {
     case ach = "ACH"
     case visa = "VISA"
-    case mastercard = "MC"
+    case mastercard = "MASTERCARD"
     case amex = "AMEX"
-    case discover = "DISC"
+    case discover = "DISCOVER"
+    
+    var imageLarge: UIImage {
+        switch self {
+        case .visa:
+            return #imageLiteral(resourceName: "ic_visa_large")
+        case .mastercard:
+            return #imageLiteral(resourceName: "ic_mastercard_large")
+        case .amex:
+            return #imageLiteral(resourceName: "ic_amex_large")
+        case .discover:
+            return #imageLiteral(resourceName: "ic_discover_large")
+        case .ach:
+            return #imageLiteral(resourceName: "opco_bank")
+        }
+    }
+    
+    var imageMini: UIImage {
+        switch self {
+        case .visa:
+            return #imageLiteral(resourceName: "ic_visa_mini")
+        case .mastercard:
+            return #imageLiteral(resourceName: "ic_mastercard_mini")
+        case .amex:
+            return #imageLiteral(resourceName: "ic_amex_mini")
+        case .discover:
+            return #imageLiteral(resourceName: "ic_discover_mini")
+        case .ach:
+            return #imageLiteral(resourceName: "opco_bank_mini")
+        }
+    }
 }
 
 /* MCS sends something like "************1111", but we do the transform so that
