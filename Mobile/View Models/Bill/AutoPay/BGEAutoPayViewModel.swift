@@ -28,14 +28,13 @@ class BGEAutoPayViewModel {
     let isFetchingAutoPayInfo = Variable(false)
     let isError = Variable(false)
     
-    var accountDetail: AccountDetail
+    let accountDetail: AccountDetail
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
-    let enrollSwitchValue: Variable<Bool>
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     // --- Settings --- //
-    var userDidChangeSettings = Variable(false)
-    var userDidChangeBankAccount = Variable(false)
+    let userDidChangeSettings = Variable(false)
+    let userDidChangeBankAccount = Variable(false)
     
     let amountToPay = Variable<AmountType>(.amountDue)
     let whenToPay = Variable<PaymentDateType>(.onDueDate)
@@ -43,14 +42,13 @@ class BGEAutoPayViewModel {
     let amountNotToExceed = Variable("")
     let numberOfPayments = Variable("")
     
-    var numberOfDaysBeforeDueDate = Variable("0")
+    var numberOfDaysBeforeDueDate = Variable(0)
     // ---------------- //
 
     required init(paymentService: PaymentService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
         self.accountDetail = accountDetail
         initialEnrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
-        enrollSwitchValue = Variable(accountDetail.isAutoPay ? true : false)
     }
     
     private func amountNotToExceedDouble() -> String {
@@ -77,13 +75,12 @@ class BGEAutoPayViewModel {
                 }
                 
                 if let amountThreshold = autoPayInfo.amountThreshold {
-                    self.amountNotToExceed.value = amountThreshold
-                    self.formatAmountNotToExceed()
+                    self.amountNotToExceed.value = amountThreshold.currencyString
                 }
                 
                 if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
                     self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
-                    self.whenToPay.value = paymentDaysBeforeDue == "0" ? .onDueDate : .beforeDueDate
+                    self.whenToPay.value = paymentDaysBeforeDue == 0 ? .onDueDate : .beforeDueDate
                 }
                 
                 onSuccess?()
@@ -97,12 +94,12 @@ class BGEAutoPayViewModel {
     }
     
     func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        let daysBefore = whenToPay.value == .onDueDate ? "0" : numberOfDaysBeforeDueDate.value
+        let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
         paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
                                           walletItemId: selectedWalletItem.value!.walletItemID,
                                           amountType: amountToPay.value,
                                           amountThreshold: amountNotToExceedDouble(),
-                                          paymentDaysBeforeDue: daysBefore,
+                                          paymentDaysBeforeDue: "\(daysBefore)",
                                           isUpdate: update)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
@@ -132,25 +129,23 @@ class BGEAutoPayViewModel {
     private(set) lazy var submitButtonEnabled: Driver<Bool> =
         Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
                              self.selectedWalletItem.asDriver(),
-                             self.enrollSwitchValue.asDriver(),
                              self.userDidChangeSettings.asDriver(),
                              self.userDidChangeBankAccount.asDriver()) {
             if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
                 return true
             }
-            if $0 == .enrolled && !$2 { // Enrolled and enrollment switch toggled off
+            if $0 == .enrolled { // Enrolled
                 return true
             }
-            if $0 == .enrolled && $1?.walletItemID != nil && ($3 || $4) { // Enrolled with a selected wallet item and changed settings or bank
+            if $0 == .enrolled && $1?.walletItemID != nil && ($2 || $3) { // Enrolled with a selected wallet item and changed settings or bank
                 return true
             }
             return false
         }
     
-    private(set) lazy var isUnenrolling: Driver<Bool> =
-        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(), self.enrollSwitchValue.asDriver()) {
-            $0 == .enrolled && !$1
-        }
+    private(set) lazy var showUnenrollFooter: Driver<Bool> = initialEnrollmentStatus.asDriver().map {
+        $0 == .enrolled
+    }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.isError.asDriver()) {
         return !$0 && !$1
@@ -173,7 +168,7 @@ class BGEAutoPayViewModel {
             }
         }
         
-        if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == "0" {
+        if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == 0 {
             return defaultString
         }
         
@@ -238,21 +233,17 @@ class BGEAutoPayViewModel {
     private(set) lazy var settingsButtonDaysBeforeText: Driver<String> = numberOfDaysBeforeDueDate.asDriver()
         .map { numberOfDays in
             switch numberOfDays {
-            case "0":
+            case 0:
                 return NSLocalizedString("On Due Date", comment: "")
             default:
-                return String.localizedStringWithFormat("%@ Day%@ Before Due Date", numberOfDays, numberOfDays == "1" ? "":"s")
+                return String.localizedStringWithFormat("%@ Day%@ Before Due Date", String(numberOfDays), numberOfDays == 1 ? "":"s")
             }
     }
     
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })
         if let intVal = Double(textStr) {
-            if intVal == 0 {
-                amountNotToExceed.value = "$0.00"
-            } else {
-                amountNotToExceed.value = (intVal / 100).currencyString
-            }
+            amountNotToExceed.value = (intVal / 100).currencyString
         }
     }
 

@@ -350,7 +350,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
         beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will process on your selected number of days before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", comment: "")
         
-        if viewModel.numberOfDaysBeforeDueDate.value != "0" {
+        if viewModel.numberOfDaysBeforeDueDate.value != 0 {
             modifyBeforeDueDateDetailsLabel()
         }
         
@@ -368,11 +368,11 @@ class BGEAutoPaySettingsViewController: UIViewController {
     func modifyBeforeDueDateDetailsLabel() {
         let numDays = viewModel.numberOfDaysBeforeDueDate.value
         
-        let numDaysPlural = numDays > "1" ? "s" : ""
+        let numDaysPlural = numDays == 1 ? "" : "s"
         
-        beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will process \(numDays) day\(numDaysPlural) before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", comment: "")
+        beforeDueDateDetailsLabel.text = String.localizedStringWithFormat("Your payment will process %@ day%@ before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", String(numDays), numDaysPlural)
         
-        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("\(numDays) Day\(numDaysPlural)", comment: "")
+        beforeDueDateRadioControl.detailButtonTitle = String.localizedStringWithFormat("%@ Day%@", String(numDays), numDaysPlural)
 
     }
     
@@ -381,8 +381,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         // Delay here fixes a bug when button is tapped with keyboard up
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: { [weak self] in
             guard let self = self else { return }
-            let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == "0" ?
-                0 : (Int(self.viewModel.numberOfDaysBeforeDueDate.value)! - 1)
+            let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == 0 ?
+                0 : (self.viewModel.numberOfDaysBeforeDueDate.value - 1)
             PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
                             data: (1...15).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
                             selectedIndex: selectedIndex,
@@ -391,7 +391,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                                     guard let self = self else { return }
                                     let day = index + 1
                                     self.viewModel.userDidChangeSettings.value = true
-                                    self.viewModel.numberOfDaysBeforeDueDate.value = "\(day)"
+                                    self.viewModel.numberOfDaysBeforeDueDate.value = day
                                     self.modifyBeforeDueDateDetailsLabel()
                                 }
                 },

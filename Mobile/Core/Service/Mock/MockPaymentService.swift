@@ -22,11 +22,11 @@ class MockPaymentService: PaymentService {
                             amountThreshold: String,
                             paymentDaysBeforeDue: String,
                             isUpdate: Bool) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+        return .just(())
     }
     
     func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+        return .just(())
         
     }
     
@@ -36,11 +36,11 @@ class MockPaymentService: PaymentService {
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+        return .just(())
     }
     
     func unenrollFromAutoPay(accountNumber: String, reason: String) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+        return .just(())
     }
     
     func schedulePayment(payment: Payment) -> Observable<String> {

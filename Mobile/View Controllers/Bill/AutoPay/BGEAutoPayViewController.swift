@@ -19,21 +19,11 @@ class BGEAutoPayViewController: UIViewController {
     weak var delegate: BGEAutoPayViewControllerDelegate?
     
     let disposeBag = DisposeBag()
-    
-    @IBOutlet weak var gradientView: UIView!
-    var gradientLayer = CAGradientLayer()
 
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    
-    @IBOutlet weak var learnMoreButton: ButtonControl!
-    @IBOutlet weak var learnMoreButtonLabel: UILabel!
-    
-    @IBOutlet weak var enrollmentSwitchView: UIView!
-    @IBOutlet weak var enrollmentStatusLabel: UILabel!
-    @IBOutlet weak var enrollmentSwitch: Switch!
     
     @IBOutlet weak var topSpacerView: UIView!
     
@@ -55,12 +45,21 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var termsLabel: UILabel!
     @IBOutlet weak var termsButton: UIButton!
     
+    @IBOutlet weak var learnMoreView: UIView!
+    @IBOutlet weak var learnMoreButton: ButtonControl!
+    @IBOutlet weak var learnMoreButtonLabel: UILabel!
+    
     @IBOutlet weak var bottomLabelView: UIView!
     @IBOutlet weak var bottomLabel: UILabel!
     
+    @IBOutlet weak var unenrollView: UIView!
+    @IBOutlet weak var unenrollLabel: UILabel!
+    @IBOutlet weak var unenrollButton: UIButton!
+    
     var accountDetail: AccountDetail! // Passed from BillViewController
     
-    lazy var viewModel: BGEAutoPayViewModel = { BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(), accountDetail: self.accountDetail) }()
+    lazy var viewModel: BGEAutoPayViewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(),
+                                                                  accountDetail: accountDetail)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,15 +72,6 @@ class BGEAutoPayViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [
-            UIColor.softGray.cgColor,
-            UIColor.white.cgColor,
-        ]
-        gradientView.layer.insertSublayer(gradientLayer, at: 0)
-        
-        enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
-        
         learnMoreButtonLabel.textColor = .actionBlue
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -89,7 +79,7 @@ class BGEAutoPayViewController: UIViewController {
         
         selectBankAccountLabel.textColor = .blackText
         selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        selectBankAccountLabel.text = NSLocalizedString("Select a bank account to enroll in AutoPay.", comment: "")
+        selectBankAccountLabel.text = NSLocalizedString("Select a Bank Account", comment: "")
         
         enrolledPaymentAccountLabel.textColor = .deepGray
         enrolledPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -106,6 +96,13 @@ class BGEAutoPayViewController: UIViewController {
         bankAccountButtonAccountNumberLabel.textColor = .blackText
         bankAccountButtonNicknameLabel.textColor = .middleGray
         
+        settingsButton.label.lineBreakMode = .byTruncatingMiddle
+        
+        termsLabel.textColor = .deepGray
+        termsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        termsButton.setTitleColor(.actionBlue, for: .normal)
+        termsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        
         bottomLabelView.backgroundColor = .softGray
         bottomLabel.textColor = .blackText
         bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
@@ -114,6 +111,12 @@ class BGEAutoPayViewController: UIViewController {
         settingsLabel.textColor = .blackText
         settingsLabel.font = OpenSans.semibold.of(textStyle: .headline)
         settingsLabel.text = NSLocalizedString("AutoPay Settings", comment: "")
+        
+        unenrollView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: -2), radius: 2)
+        unenrollLabel.font = SystemFont.regular.of(textStyle: .headline)
+        unenrollLabel.textColor = .deepGray
+        unenrollButton.setTitleColor(.actionBlue, for: .normal)
+        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -143,21 +146,11 @@ class BGEAutoPayViewController: UIViewController {
         if viewModel.initialEnrollmentStatus.value == .enrolled {
             selectBankAccountLabel.isHidden = true
             topSpacerView.isHidden = true
+            termsStackView.isHidden = true
         } else {
-            enrollmentSwitchView.isHidden = true
             enrolledPaymentAccountLabel.isHidden = true
         }
 
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        gradientLayer.frame = gradientView.bounds
-    }
-    
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = gradientView.bounds
     }
     
     private func accessibilitySetup() {
@@ -165,14 +158,10 @@ class BGEAutoPayViewController: UIViewController {
         learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
         bankAccountButton.isAccessibilityElement = true
         settingsButton.isAccessibilityElement = true
-        
-        enrollmentSwitch.accessibilityLabel = "Enrollment status: "
-        enrollmentStatusLabel.isAccessibilityElement = false
     }
     
     func setupBindings() {
         viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowContent.not().drive(gradientView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.showBottomLabel.not().drive(bottomLabelView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showBottomLabel.asObservable().subscribe(onNext: { [weak self] show in
@@ -192,10 +181,8 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.settingsButtonAmountText.drive(settingsButton.rx.labelText).disposed(by: disposeBag)
         viewModel.settingsButtonDaysBeforeText.drive(settingsButton.rx.detailText).disposed(by: disposeBag)
         
-        viewModel.enrollSwitchValue.asDriver().drive(enrollmentSwitch.rx.isOn).disposed(by: disposeBag)
-        enrollmentSwitch.rx.isOn.asDriver().drive(viewModel.enrollSwitchValue).disposed(by: disposeBag)
-        
-        viewModel.isUnenrolling.drive(bankAccountContainerStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showUnenrollFooter.drive(learnMoreView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showUnenrollFooter.not().drive(unenrollView.rx.isHidden).disposed(by: disposeBag)
     }
     
     @objc func onCancelPress() {
@@ -214,68 +201,81 @@ class BGEAutoPayViewController: UIViewController {
     @objc func onSubmitPress() {
         LoadingView.show()
         
-        if viewModel.initialEnrollmentStatus.value == .unenrolled {
-            Analytics.log(event: .autoPayEnrollSubmit)
-            if viewModel.userDidChangeSettings.value {
-                Analytics.log(event: .autoPayModifySettingSubmit)
-            }
+        switch viewModel.initialEnrollmentStatus.value {
+        case .unenrolled:
+            enroll()
+        case .enrolled:
+            updateSettings()
+        }
+    }
+    
+    @IBAction func onUnenrollPress() {
+        let alert = UIAlertController(title: NSLocalizedString("Unenroll from AutoPay", comment: ""), message: NSLocalizedString("You will be responsible for making manual payments after unenrolling from AutoPay. If you unenroll from AutoPay close to the selected date, the funds may still be deducted from your bank account.", comment: ""), preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
             
-            viewModel.enrollOrUpdate(onSuccess: { [weak self] in
+            LoadingView.show()
+            Analytics.log(event: .autoPayUnenrollOffer)
+            self.viewModel.unenroll(onSuccess: { [weak self] in
                 LoadingView.hide()
-                Analytics.log(event: .autoPayEnrollComplete)
-                if self?.viewModel.userDidChangeSettings.value ?? false {
-                    Analytics.log(event: .autoPayModifySettingCompleteNew)
-                }
+                Analytics.log(event: .autoPayUnenrollComplete)
                 
                 guard let self = self else { return }
-                self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
+                self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
                 self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
-                    
-                    guard let self = self else { return }
-                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
+                    self?.showErrorAlert(message: errMessage)
             })
-        } else if viewModel.initialEnrollmentStatus.value == .enrolled {
-            if viewModel.enrollSwitchValue.value { // Update
-                Analytics.log(event: .autoPayModifySettingSubmit)
-                viewModel.enrollOrUpdate(update: true, onSuccess: { [weak self] in
-                    LoadingView.hide()
-                    Analytics.log(event: .autoPayModifySettingComplete)
-                    
-                    guard let self = self else { return }
-                    self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
-                    self.navigationController?.popViewController(animated: true)
-                }, onError: { [weak self] errMessage in
-                    LoadingView.hide()
-                    
-                    guard let self = self else { return }
-                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
-                })
-            } else { // Unenroll
-                Analytics.log(event: .autoPayUnenrollOffer)
-                viewModel.unenroll(onSuccess: { [weak self] in
-                    LoadingView.hide()
-                    Analytics.log(event: .autoPayUnenrollComplete)
-                    
-                    guard let self = self else { return }
-                    self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
-                    self.navigationController?.popViewController(animated: true)
-                }, onError: { [weak self] errMessage in
-                    LoadingView.hide()
-                    
-                    guard let self = self else { return }
-                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertVc, animated: true, completion: nil)
-                })
-            }
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func enroll() {
+        Analytics.log(event: .autoPayEnrollSubmit)
+        if viewModel.userDidChangeSettings.value {
+            Analytics.log(event: .autoPayModifySettingSubmit)
         }
-
+        
+        viewModel.enrollOrUpdate(onSuccess: { [weak self] in
+            LoadingView.hide()
+            guard let self = self else { return }
+            
+            Analytics.log(event: .autoPayEnrollComplete)
+            if self.viewModel.userDidChangeSettings.value {
+                Analytics.log(event: .autoPayModifySettingCompleteNew)
+            }
+            
+            self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
+            self.navigationController?.popViewController(animated: true)
+            }, onError: { [weak self] errMessage in
+                LoadingView.hide()
+                self?.showErrorAlert(message: errMessage)
+        })
+    }
+    
+    private func updateSettings() {
+        Analytics.log(event: .autoPayModifySettingSubmit)
+        viewModel.enrollOrUpdate(update: true, onSuccess: { [weak self] in
+            LoadingView.hide()
+            Analytics.log(event: .autoPayModifySettingComplete)
+            
+            guard let self = self else { return }
+            self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
+            self.navigationController?.popViewController(animated: true)
+            }, onError: { [weak self] errMessage in
+                LoadingView.hide()
+                self?.showErrorAlert(message: errMessage)
+        })
+    }
+    
+    private func showErrorAlert(message: String) {
+        let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .alert)
+        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+        self.present(alertVc, animated: true, completion: nil)
     }
     
     @IBAction func onLearnMorePress() {
