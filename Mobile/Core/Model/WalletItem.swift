@@ -171,8 +171,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
         
         try paymentCategoryType = map.from("paymentCategoryType")
-        try paymentMethodType = map.from("paymentMethodType", transformation: WalletItem.extractPaymentMethodType)
-
+        try paymentMethodType = PaymentMethodType(map.from("paymentMethodType"))
+        
         bankName = map.optionalFrom("bankName")
         expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
         isDefault = map.optionalFrom("isDefault") ?? false
@@ -196,22 +196,13 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
         map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
-        map["paymentMethodType"] = paymentMethodType
+        map["paymentMethodType"] = paymentMethodType.displayString
         map["bankName"] = bankName
         map["expirationDate"] = expirationDate
         map["isDefault"] = isDefault
         
         self = WalletItem.from(map as NSDictionary)!
         self.isTemporary = isTemporary
-    }
-    
-    // Helper method to prevent mapper errors
-    private static func extractPaymentMethodType(object: Any?) throws -> PaymentMethodType {
-        guard let paymentType = object as? PaymentMethodType else {
-            throw MapperError.convertibleError(value: object, type: PaymentMethodType.self)
-        }
-        
-        return paymentType
     }
     
     // Equatable
