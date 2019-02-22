@@ -41,7 +41,7 @@ class WalletTableViewCell: UITableViewCell {
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
-            UIColor(red: 238/255, green: 242/255, blue: 248/255, alpha: 1).cgColor
+            UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1).cgColor
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
@@ -91,25 +91,10 @@ class WalletTableViewCell: UITableViewCell {
     func bindToWalletItem(_ walletItem: WalletItem, billingInfo: BillingInfo) {
         var a11yLabel = ""
         
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            if walletItem.bankOrCard == .card {
-                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
-            } else {
-                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
-            }
-        case .bge:
-            if walletItem.bankOrCard == .card {
-                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
-            } else {
-                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
-            }
-        }
+        accountImageView.image = walletItem.paymentMethodType.imageLarge
         
+        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved \(walletItem.paymentMethodType.displayString) card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
+
         nicknameLabel.text = walletItem.nickName?.uppercased()
         if let nicknameText = nicknameLabel.text {
             a11yLabel += ", \(nicknameText)"
