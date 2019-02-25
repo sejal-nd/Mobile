@@ -57,7 +57,7 @@ struct MockAuthenticationService: AuthenticationService {
         return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
             .do(onNext: { maintenance in
                 if maintenance.allStatus {
-                    NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
+                    NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: maintenance)
                 }
             })
     }
