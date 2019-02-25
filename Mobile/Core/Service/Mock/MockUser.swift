@@ -216,6 +216,12 @@ enum MockDataKey: String {
     case maintAllTabsIOS
     case maintNotHome
     case maintNotHomeIOS
+    case maintCustomMessage
+    case maintCustomMessageIOS
+    case maintCustomMessageEmpty
+    case maintCustomMessageIOSEmpty
+    case maintCustomMessageShort
+    case maintCustomMessageLong
     case stormMode
     case urgentBanner
     case acctLookup1

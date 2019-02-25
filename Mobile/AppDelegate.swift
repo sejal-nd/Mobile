@@ -74,8 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
         
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
-            .subscribe(onNext: { [weak self] _ in
-                self?.showMaintenanceMode(nil)
+            .subscribe(onNext: { [weak self] notification in
+                self?.showMaintenanceMode(notification.object as? Maintenance)
             })
             .disposed(by: disposeBag)
         
