@@ -32,6 +32,16 @@
     "stormMode": {
         "storm": true
     },
+    "maintCustomMessage": {
+        "all": true,
+        "message": "This is a custom maintenance mode message."
+    },
+    "maintCustomMessageIOS": {
+        "ios": {
+            "all": true,
+            "message": "This is a custom iOS-specific maintenance mode message."
+        }
+    },
     "error": {
         "code": "TC-UNKNOWN",
         "description": "This is a test error"
