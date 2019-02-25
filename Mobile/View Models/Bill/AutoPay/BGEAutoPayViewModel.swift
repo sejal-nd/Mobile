@@ -35,11 +35,12 @@ class BGEAutoPayViewModel {
     // --- Settings --- //
     let userDidChangeSettings = Variable(false)
     let userDidChangeBankAccount = Variable(false)
+    let userDidReadTerms = Variable(false)
     
     let amountToPay = Variable<AmountType>(.amountDue)
     let whenToPay = Variable<PaymentDateType>(.onDueDate)
     
-    let amountNotToExceed = Variable("")
+    let amountNotToExceed = Variable(0.0.currencyString)
     let numberOfPayments = Variable("")
     
     var numberOfDaysBeforeDueDate = Variable(0)
@@ -66,8 +67,16 @@ class BGEAutoPayViewModel {
                 self.isError.value = false
                 
                 // Sync up our view model with the existing AutoPay settings
-                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
-                    self.selectedWalletItem.value = WalletItem.from(["walletItemID": walletItemId, "maskedWalletItemAccountNumber": masked4, "nickName": nickname])
+                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
+                    self.selectedWalletItem.value = WalletItem(walletItemID: walletItemId,
+                                                               maskedWalletItemAccountNumber: masked4,
+                                                               nickName: autoPayInfo.paymentAccountNickname,
+                                                               paymentMethodType: .ach,
+                                                               bankName: nil,
+                                                               expirationDate: nil,
+                                                               isDefault: false,
+                                                               bankOrCard: .bank,
+                                                               isTemporary: false)
                 }
                 
                 if let amountType = autoPayInfo.amountType {
@@ -124,24 +133,29 @@ class BGEAutoPayViewModel {
     private(set) lazy var showBottomLabel: Driver<Bool> =
         Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.initialEnrollmentStatus.asDriver()) {
             return !$0 && $1 != .enrolled
-        }
+    }
     
-    private(set) lazy var submitButtonEnabled: Driver<Bool> =
-        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
-                             self.selectedWalletItem.asDriver(),
-                             self.userDidChangeSettings.asDriver(),
-                             self.userDidChangeBankAccount.asDriver()) {
-            if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
+    private(set) lazy var submitButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(initialEnrollmentStatus.asDriver(),
+                       selectedWalletItem.asDriver(),
+                       userDidChangeSettings.asDriver(),
+                       userDidChangeBankAccount.asDriver(),
+                       userDidReadTerms.asDriver())
+        { initialEnrollmentStatus, selectedWalletItem, userDidChangeSettings, userDidChangeBankAccount, userDidReadTerms in
+            if initialEnrollmentStatus == .unenrolled && selectedWalletItem != nil && userDidReadTerms { // Unenrolled with bank account selected
                 return true
             }
-            if $0 == .enrolled { // Enrolled
+            
+            // Enrolled with a selected wallet item, changed settings or bank, read terms
+            if initialEnrollmentStatus == .enrolled &&
+                selectedWalletItem != nil &&
+                (userDidChangeSettings || userDidChangeBankAccount) &&
+                userDidReadTerms {
                 return true
             }
-            if $0 == .enrolled && $1?.walletItemID != nil && ($2 || $3) { // Enrolled with a selected wallet item and changed settings or bank
-                return true
-            }
+            
             return false
-        }
+    }
     
     private(set) lazy var showUnenrollFooter: Driver<Bool> = initialEnrollmentStatus.asDriver().map {
         $0 == .enrolled
@@ -183,7 +197,7 @@ class BGEAutoPayViewModel {
         if $0 != nil {
             return #imageLiteral(resourceName: "opco_bank_mini")
         } else {
-            return #imageLiteral(resourceName: "bank_building_mini")
+            return #imageLiteral(resourceName: "bank_building_mini_noBg")
         }
     }
     

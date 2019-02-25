@@ -25,12 +25,9 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBOutlet weak var topSpacerView: UIView!
-    
     @IBOutlet weak var selectBankAccountLabel: UILabel!
     
     @IBOutlet weak var bankAccountContainerStack: UIStackView!
-    @IBOutlet weak var enrolledPaymentAccountLabel: UILabel!
     @IBOutlet weak var bankAccountButton: ButtonControl!
     @IBOutlet weak var bankAccountButtonIcon: UIImageView!
     @IBOutlet weak var bankAccountButtonSelectLabel: UILabel!
@@ -81,10 +78,6 @@ class BGEAutoPayViewController: UIViewController {
         selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         selectBankAccountLabel.text = NSLocalizedString("Select a Bank Account", comment: "")
         
-        enrolledPaymentAccountLabel.textColor = .deepGray
-        enrolledPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        enrolledPaymentAccountLabel.text = NSLocalizedString("AutoPay Payment Method:", comment: "")
-        
         bankAccountButton.backgroundColorOnPress = .softGray
         bankAccountButton.layer.cornerRadius = 10
         bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
@@ -100,6 +93,7 @@ class BGEAutoPayViewController: UIViewController {
         
         termsLabel.textColor = .deepGray
         termsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        termsLabel.setLineHeight(lineHeight: 25)
         termsButton.setTitleColor(.actionBlue, for: .normal)
         termsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
         
@@ -136,21 +130,27 @@ class BGEAutoPayViewController: UIViewController {
         if viewModel.initialEnrollmentStatus.value == .unenrolled {
             Analytics.log(event: .autoPayEnrollOffer)
         }
+        
+        if viewModel.initialEnrollmentStatus.value == .enrolled {
+            termsStackView.isHidden = true
+            termsStackView.alpha = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setColoredNavBar()
-        
-        if viewModel.initialEnrollmentStatus.value == .enrolled {
-            selectBankAccountLabel.isHidden = true
-            topSpacerView.isHidden = true
-            termsStackView.isHidden = true
-        } else {
-            enrolledPaymentAccountLabel.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if termsStackView.isHidden &&
+            (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
+            UIView.animate(withDuration: 0.25) { [weak self] in
+                self?.termsStackView.isHidden = false
+                self?.termsStackView.alpha = 1
+            }
         }
-
     }
     
     private func accessibilitySetup() {
@@ -183,6 +183,8 @@ class BGEAutoPayViewController: UIViewController {
         
         viewModel.showUnenrollFooter.drive(learnMoreView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showUnenrollFooter.not().drive(unenrollView.rx.isHidden).disposed(by: disposeBag)
+        
+        termsSwitch.rx.isOn.asDriver().drive(viewModel.userDidReadTerms).disposed(by: disposeBag)
     }
     
     @objc func onCancelPress() {
@@ -313,6 +315,12 @@ AutoPay will charge the total amount billed each month or up to the total amount
         performSegue(withIdentifier: "bgeAutoPaySettingsSegue", sender: self)
     }
     
+    @IBAction func onTermsConditionsPress() {
+        let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
+        let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
+        navigationController?.present(tacModal, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -331,11 +339,10 @@ AutoPay will charge the total amount billed each month or up to the total amount
 extension BGEAutoPayViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
-        if let currWalletItem = viewModel.selectedWalletItem.value {
-            if walletItem != currWalletItem {
-                viewModel.userDidChangeBankAccount.value = true
-            }
+        if walletItem != viewModel.selectedWalletItem.value {
+            viewModel.userDidChangeBankAccount.value = true
+            viewModel.selectedWalletItem.value = walletItem
         }
-        viewModel.selectedWalletItem.value = walletItem
     }
+    
 }
