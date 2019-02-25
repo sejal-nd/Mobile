@@ -31,7 +31,15 @@ struct Maintenance: Mappable {
         //stormModeStatus = true // Force Storm Mode
         //stormModeStatus = Int.random(in: 1...5) != 1 // 1 in 5 chance to test exiting Storm Mode
         
-        allMessage = map.optionalFrom("ios.message") ?? map.optionalFrom("message")
+        let iOSMessage = map.optionalFrom("ios.message") ?? ""
+        let globalMessage = map.optionalFrom("message") ?? ""
+        if !iOSMessage.isEmpty {
+            allMessage = iOSMessage
+        } else if !globalMessage.isEmpty {
+            allMessage = globalMessage
+        } else {
+            allMessage = nil
+        }
     }
     
 }
