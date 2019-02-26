@@ -19,9 +19,9 @@ class MCSApi {
 
     static let shared = MCSApi()
     
-    enum PathPrefix: String {
-        case anon = "anon_v6"
-        case auth = "auth_v6"
+    enum PathPrefix {
+        case anon
+        case auth
         case none
     }
     
@@ -198,9 +198,9 @@ class MCSApi {
         switch pathPrefix {
         case .anon:
             let opCoString = Environment.shared.opco.displayString.uppercased()
-            fullPath = "\(pathPrefix.rawValue)/\(opCoString)/\(path)"
+            fullPath = String(format: "anon_%@/%@/%@", Environment.shared.mcsConfig.apiVersion, opCoString, path)
         case .auth:
-            fullPath = "\(pathPrefix.rawValue)/\(path)"
+            fullPath = String(format: "auth_%@/%@", Environment.shared.mcsConfig.apiVersion, path)
         case .none:
             fullPath = path
         }
