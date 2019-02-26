@@ -54,6 +54,7 @@ struct MCSConfig {
     let mobileBackendId: String
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
+    let apiVersion: String
     
     init(mcsInstanceName: String) {
         let configPath = Bundle.main.path(forResource: "MCSConfig", ofType: "plist")!
@@ -65,6 +66,7 @@ struct MCSConfig {
         mobileBackendId = mobileBackend["mobileBackendID"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
+        apiVersion = mobileBackend["apiVersion"] as! String
     }
 }
 
