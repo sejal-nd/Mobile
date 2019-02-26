@@ -15,7 +15,7 @@
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>paymentusUrl</key>
-	<string>https://comd-uat.paymentus.io/xotp/pm/comd</string>
+	<string>https://comd-sit-623.paymentus.io/xotp/pm/comd</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_comed_develop</string>
 	<key>gaTrackingId</key>
