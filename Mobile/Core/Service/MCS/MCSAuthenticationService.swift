@@ -135,7 +135,7 @@ struct MCSAuthenticationService : AuthenticationService {
             .map { Maintenance.from($0 as! NSDictionary)! }
             .do(onNext: { maint in
                 if maint.allStatus && postNotification {
-                    NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: self)
+                    NotificationCenter.default.post(name: .didMaintenanceModeTurnOn, object: maint)
                 }
             })
     }

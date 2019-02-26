@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>ComEd_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppDevTest</string>
+	<string>mobileAppUATTest</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>paymentusUrl</key>
@@ -24,5 +24,7 @@
 	<string>azstg.comed.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.comed.com</string>
+	<key>appCenterId</key>
+	<string>10cbbd03-c59b-4a65-ad28-bd1f289cd329</string>
 </dict>
 </plist>

@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>BGE_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppDevTest</string>
+	<string>mobileAppUATTest</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>paymentusUrl</key>
@@ -24,5 +24,7 @@
 	<string>azstg.bge.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.bge.com</string>
+	<key>appCenterId</key>
+	<string>5555b456-47b1-4288-b4d4-c6cf44b15fb9</string>
 </dict>
 </plist>
