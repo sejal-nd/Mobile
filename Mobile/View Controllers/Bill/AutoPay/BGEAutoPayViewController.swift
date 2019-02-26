@@ -20,6 +20,7 @@ class BGEAutoPayViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
+    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
@@ -161,7 +162,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     func setupBindings() {
-        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(mainStackView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.showBottomLabel.not().drive(bottomLabelView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showBottomLabel.asObservable().subscribe(onNext: { [weak self] show in
@@ -301,13 +302,18 @@ AutoPay will charge the total amount billed each month or up to the total amount
         let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
         miniWalletVC.tableHeaderLabelText = NSLocalizedString("Select a bank account to enroll in AutoPay.", comment: "")
         miniWalletVC.accountDetail = viewModel.accountDetail
+        miniWalletVC.pushBankOnEmpty = true
         miniWalletVC.creditCardsDisabled = true
+        miniWalletVC.popToViewController = self
+        miniWalletVC.allowTemporaryItems = false
         miniWalletVC.delegate = self
+        
         if accountDetail.isAutoPay {
             Analytics.log(event: .autoPayModifyWallet)
         } else {
             Analytics.log(event: .autoPayEnrollSelectBank)
         }
+        
         navigationController?.pushViewController(miniWalletVC, animated: true)
     }
     
@@ -324,8 +330,11 @@ AutoPay will charge the total amount billed each month or up to the total amount
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? BGEAutoPaySettingsViewController {
+        switch segue.destination {
+        case let vc as BGEAutoPaySettingsViewController:
             vc.viewModel = viewModel
+        default:
+            break
         }
     }
     
@@ -345,4 +354,11 @@ extension BGEAutoPayViewController: MiniWalletViewControllerDelegate {
         }
     }
     
+}
+
+extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {
+    func didAddWalletItem(_ walletItem: WalletItem) {
+        viewModel.userDidChangeBankAccount.value = true
+        viewModel.selectedWalletItem.value = walletItem
+    }
 }

@@ -21,8 +21,9 @@ class MiniWalletViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
+    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableFooterLabel: UILabel!
+    @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
     
     // Bottom Bar
@@ -34,9 +35,11 @@ class MiniWalletViewController: UIViewController {
     let viewModel = MiniWalletViewModel(walletService: ServiceFactory.createWalletService())
     
     // These should be passed by whatever VC is presenting MiniWalletViewController
-    var sentFromPayment = false
+    weak var popToViewController: UIViewController? // Pop to this view controller on new item save
+    var pushBankOnEmpty = false
     var bankAccountsDisabled = false
     var creditCardsDisabled = false
+    var allowTemporaryItems = true
     var tableHeaderLabelText: String?
     var accountDetail: AccountDetail!
     // --------- //
@@ -49,9 +52,9 @@ class MiniWalletViewController: UIViewController {
         
         title = NSLocalizedString("Select Payment Method", comment: "")
 
-        tableFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        tableFooterLabel.textColor = .blackText
-        tableFooterLabel.text = viewModel.footerLabelText
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.textColor = .blackText
+        footerLabel.text = viewModel.footerLabelText
         
         addPaymentAccountBottomBar.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
         addPaymentAccountLabel.textColor = .deepGray
@@ -59,10 +62,12 @@ class MiniWalletViewController: UIViewController {
         addPaymentAccountLabel.font = SystemFont.regular.of(textStyle: .headline)
         miniCreditCardButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniCreditCardButton.layer.cornerRadius = 8
+        miniCreditCardButton.isEnabled = !creditCardsDisabled
         miniBankButton.addShadow(color: .black, opacity: 0.17, offset: .zero, radius: 3)
         miniBankButton.layer.cornerRadius = 8
+        miniBankButton.isEnabled = !bankAccountsDisabled
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowTableView.map(!).drive(mainStackView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -81,13 +86,6 @@ class MiniWalletViewController: UIViewController {
         
         addAccessibility()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        tableView.sizeFooterToFit()
-    }
-    
     
     // MARK: - Helper
     
@@ -118,13 +116,32 @@ class MiniWalletViewController: UIViewController {
     private func fetchWalletItems() {
         viewModel.fetchWalletItems(onSuccess: { [weak self] in
             guard let self = self else { return }
-            self.tableView.reloadData()
-            self.view.setNeedsLayout()
+            
+            if self.pushBankOnEmpty && self.viewModel.walletItems.value?.isEmpty ?? true {
+                let paymentusVC = PaymentusFormViewController(bankOrCard: .bank,
+                                                              temporary: false,
+                                                              isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+                paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+                paymentusVC.popToViewController = self.popToViewController
+                self.navigationController?.viewControllers = Array(self.navigationController!.viewControllers.dropLast()) + [paymentusVC]
+            } else {
+                self.tableView.reloadData()
+            }
+            
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
             }, onError: { [weak self] in
                 guard let self = self else { return }
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
+    }
+    
+    private func presentPaymentusForm(bankOrCard: BankOrCard, temporary: Bool) {
+        let paymentusVC = PaymentusFormViewController(bankOrCard: bankOrCard,
+                                                      temporary: temporary,
+                                                      isWalletEmpty: viewModel.walletItems.value!.isEmpty)
+        paymentusVC.delegate = delegate as? PaymentusFormViewControllerDelegate
+        paymentusVC.popToViewController = popToViewController
+        navigationController?.pushViewController(paymentusVC, animated: true)
     }
     
     
@@ -137,20 +154,19 @@ class MiniWalletViewController: UIViewController {
     }
     
     @objc private func onAddBankAccountPress() {
-        let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
-            guard let self = self else { return }
-            let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-            paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
-            paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
-            self.navigationController?.pushViewController(paymentusVC, animated: true)
-            }, dontSaveHandler: { [weak self] _ in
-                guard let self = self else { return }
-                let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
-                paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
-                paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
-                self.navigationController?.pushViewController(paymentusVC, animated: true)
-        })
-        present(actionSheet, animated: true, completion: nil)
+        if allowTemporaryItems {
+            let actionSheet = UIAlertController
+                .saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                    self?.presentPaymentusForm(bankOrCard: .bank, temporary: false)
+                    }, dontSaveHandler: { [weak self] _ in
+                        self?.presentPaymentusForm(bankOrCard: .bank, temporary: true)
+                })
+            
+            present(actionSheet, animated: true, completion: nil)
+        } else {
+            presentPaymentusForm(bankOrCard: .bank, temporary: false)
+        }
+        
     }
     
     @objc private func onCreditCardPress(sender: ButtonControl) {
@@ -160,19 +176,12 @@ class MiniWalletViewController: UIViewController {
     }
     
     @objc private func onAddCreditCardPress() {
-        let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
-            guard let self = self else { return }
-            let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-            paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
-            paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
-            self.navigationController?.pushViewController(paymentusVC, animated: true)
-            }, dontSaveHandler: { [weak self] _ in
-                guard let self = self else { return }
-                let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
-                paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
-                paymentusVC.shouldPopToMakePaymentOnSave = self.sentFromPayment
-                self.navigationController?.pushViewController(paymentusVC, animated: true)
-        })
+        let actionSheet = UIAlertController
+            .saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                self?.presentPaymentusForm(bankOrCard: .card, temporary: false)
+                }, dontSaveHandler: { [weak self] _ in
+                    self?.presentPaymentusForm(bankOrCard: .card, temporary: true)
+            })
         present(actionSheet, animated: true, completion: nil)
     }
     

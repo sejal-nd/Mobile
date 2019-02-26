@@ -50,7 +50,7 @@ class PaymentusFormViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var editingDefaultItem = false // We need to know if user is editing the default so we can properly fire the `defaultWalletItemUpdated` notification
-    var shouldPopToMakePaymentOnSave = false
+    weak var popToViewController: UIViewController? // Pop to this view controller on new item save
     var shouldPopToRootOnSave = false
     
     let walletService: WalletService = ServiceFactory.createWalletService()
@@ -280,13 +280,8 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         } else {
                             navigationController?.popToRootViewController(animated: true)
                         }
-                    } else if shouldPopToMakePaymentOnSave {
-                        for vc in navigationController!.viewControllers {
-                            guard let dest = vc as? MakePaymentViewController else {
-                                continue
-                            }
-                            navigationController?.popToViewController(dest, animated: true)
-                        }
+                    } else if let dest = popToViewController {
+                        navigationController?.popToViewController(dest, animated: true)
                     } else {
                         navigationController?.popViewController(animated: true)
                     }

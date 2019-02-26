@@ -216,18 +216,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVS-Em-9Iu" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5eo-cF-Lpi"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="em4-P8-gSz" userLabel="Main Stack">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="138" width="375" height="640"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVS-Em-9Iu" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="5eo-cF-Lpi"/>
-                                        </constraints>
-                                    </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FrB-7r-SHz">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="579.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="579.66666666666663"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnr-5P-RZv">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="527.33333333333337"/>
@@ -481,7 +481,7 @@
                                         </constraints>
                                     </scrollView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIw-1h-TwU">
-                                        <rect key="frame" x="0.0" y="629.66666666666663" width="375" height="60.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="579.66666666666663" width="375" height="60.333333333333371"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdJ-C6-qgB">
                                                 <rect key="frame" x="60.000000000000014" y="0.0" width="255.33333333333337" height="60.333333333333336"/>
@@ -522,16 +522,14 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="78M-KI-pKV" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.66666666666666" y="469" width="60" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="78M-KI-pKV" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157.66666666666666" y="452" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqw-F0-A6U">
-                                <rect key="frame" x="145.66666666666666" y="396" width="83.666666666666657" height="20.333333333333314"/>
+                                <rect key="frame" x="145.66666666666666" y="448" width="83.666666666666657" height="20.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cbw-nW-JUM"/>
-                                    <constraint firstAttribute="width" priority="999" constant="460" id="tYP-xU-Jjc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -540,15 +538,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uqw-F0-A6U" firstAttribute="centerY" secondItem="LEx-8H-no4" secondAttribute="centerY" id="220-VB-i8W"/>
-                            <constraint firstItem="uqw-F0-A6U" firstAttribute="leading" secondItem="LEx-8H-no4" secondAttribute="leadingMargin" priority="999" constant="29" id="2Ps-Kf-WYY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="uqw-F0-A6U" secondAttribute="trailing" priority="999" constant="29" id="9OA-fr-P0g"/>
+                            <constraint firstItem="78M-KI-pKV" firstAttribute="centerY" secondItem="em4-P8-gSz" secondAttribute="centerY" id="10h-HR-Gg4"/>
+                            <constraint firstItem="CVS-Em-9Iu" firstAttribute="leading" secondItem="LEx-8H-no4" secondAttribute="leading" id="C4n-Hy-dmO"/>
                             <constraint firstItem="uqw-F0-A6U" firstAttribute="centerX" secondItem="LEx-8H-no4" secondAttribute="centerX" id="E5C-TR-lcr"/>
                             <constraint firstAttribute="trailing" secondItem="em4-P8-gSz" secondAttribute="trailing" id="FY0-ux-NUV"/>
                             <constraint firstItem="em4-P8-gSz" firstAttribute="leading" secondItem="LEx-8H-no4" secondAttribute="leading" id="H5J-SO-HLo"/>
+                            <constraint firstAttribute="trailing" secondItem="CVS-Em-9Iu" secondAttribute="trailing" id="OZh-df-gDH"/>
+                            <constraint firstItem="em4-P8-gSz" firstAttribute="top" secondItem="CVS-Em-9Iu" secondAttribute="bottom" id="QYq-Pr-0Sv"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uqw-F0-A6U" secondAttribute="trailing" constant="29" id="gdA-tG-QMw"/>
-                            <constraint firstItem="em4-P8-gSz" firstAttribute="top" secondItem="uh7-LL-eXs" secondAttribute="bottom" id="iqS-hZ-DcU"/>
+                            <constraint firstItem="CVS-Em-9Iu" firstAttribute="top" secondItem="uh7-LL-eXs" secondAttribute="bottom" id="jmt-Ff-JUN"/>
                             <constraint firstItem="uqw-F0-A6U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LEx-8H-no4" secondAttribute="leading" constant="29" id="lDh-4O-hKq"/>
+                            <constraint firstItem="78M-KI-pKV" firstAttribute="centerX" secondItem="LEx-8H-no4" secondAttribute="centerX" id="r0V-G4-7v0"/>
+                            <constraint firstItem="uqw-F0-A6U" firstAttribute="centerY" secondItem="em4-P8-gSz" secondAttribute="centerY" id="rhC-DP-xk1"/>
                             <constraint firstItem="faH-t4-eer" firstAttribute="top" secondItem="em4-P8-gSz" secondAttribute="bottom" id="tkR-g5-8SV"/>
                         </constraints>
                     </view>
@@ -570,6 +571,7 @@
                         <outlet property="learnMoreButtonLabel" destination="ROC-Gd-253" id="7yN-dq-8T1"/>
                         <outlet property="learnMoreView" destination="anT-2i-mNO" id="Olp-uZ-RYf"/>
                         <outlet property="loadingIndicator" destination="78M-KI-pKV" id="Wcc-O0-VBm"/>
+                        <outlet property="mainStackView" destination="em4-P8-gSz" id="Xuc-O5-HLx"/>
                         <outlet property="scrollView" destination="FrB-7r-SHz" id="m8u-Pr-o8L"/>
                         <outlet property="selectBankAccountLabel" destination="9ya-E5-jrB" id="n54-gZ-F2Q"/>
                         <outlet property="settingsButton" destination="4eS-Ne-7Hb" id="neY-Ag-3R2"/>
