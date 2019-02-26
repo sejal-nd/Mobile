@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>PECO_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppDevTest</string>
+	<string>mobileAppUATTest</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>paymentusUrl</key>
@@ -24,5 +24,7 @@
 	<string>azstg.peco.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.peco.com</string>
+	<key>appCenterId</key>
+	<string>5396a42c-0b16-4984-af32-ee9957764960</string>
 </dict>
 </plist>
