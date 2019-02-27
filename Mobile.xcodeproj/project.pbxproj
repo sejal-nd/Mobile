@@ -1031,6 +1031,12 @@
 		B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */; };
 		B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */; };
 		B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */; };
+		B06B08822226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */; };
+		B06B08832226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */; };
+		B06B08842226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */; };
+		B06B08852226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */; };
+		B06B08862226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */; };
+		B06B08872226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */; };
 		B06B40F920D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
 		B06B40FA20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
 		B06B40FB20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */; };
@@ -2849,6 +2855,7 @@
 		B068DB5520D2E99300930589 /* HomeEditCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditCardCell.swift; sourceTree = "<group>"; };
 		B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditFlowLayout.swift; sourceTree = "<group>"; };
 		B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditSectionHeaderView.swift; sourceTree = "<group>"; };
+		B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEAutoPaySettingsViewModel.swift; sourceTree = "<group>"; };
 		B06B40F820D0723100F37FE8 /* BorderedFloatLabeledTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedFloatLabeledTextView.swift; sourceTree = "<group>"; };
 		B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditViewController.swift; sourceTree = "<group>"; };
 		B07269342127579C009B2BFF /* HomeUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUpdateView.swift; sourceTree = "<group>"; };
@@ -5177,6 +5184,7 @@
 			children = (
 				822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */,
 				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
+				B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */,
 			);
 			path = AutoPay;
 			sourceTree = "<group>";
@@ -7480,6 +7488,7 @@
 				82E22B581F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				B596062A1F7C1F4A00515B72 /* AppRating.swift in Sources */,
 				821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
+				B06B08822226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				225FF85A1EC56B480079010C /* Date.swift in Sources */,
@@ -7600,6 +7609,7 @@
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
+				B06B08842226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				825171B71F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3461F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
@@ -8199,6 +8209,7 @@
 				8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				82E22B591F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
+				B06B08832226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				B596062B1F7C1F4A00515B72 /* AppRating.swift in Sources */,
 				826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
 				225FF85B1EC56B480079010C /* Date.swift in Sources */,
@@ -8357,6 +8368,7 @@
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */,
 				E8039FF81EFB041D004DB789 /* BGEAutoPayInfo.swift in Sources */,
+				B06B08852226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A261FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
 				B05E9D16217F688A0003FAB8 /* Application.swift in Sources */,
@@ -8590,6 +8602,7 @@
 				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */,
 				B011C0BC20F5063B00C900BE /* RecentPaymentsStore.swift in Sources */,
+				B06B08862226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62B9A200924410077B3DA /* RegistrationService.swift in Sources */,
 				B05E9D17217F688A0003FAB8 /* Application.swift in Sources */,
@@ -8777,6 +8790,7 @@
 				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */,
 				B011C0BD20F5063C00C900BE /* RecentPaymentsStore.swift in Sources */,
+				B06B08872226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62C4F200924570077B3DA /* RegistrationService.swift in Sources */,
 				B05E9D18217F688A0003FAB8 /* Application.swift in Sources */,

@@ -330,11 +330,15 @@ AutoPay will charge the total amount billed each month or up to the total amount
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.destination {
-        case let vc as BGEAutoPaySettingsViewController:
-            vc.viewModel = viewModel
-        default:
-            break
+        if let navCtl = segue.destination as? UINavigationController,
+            let settingsVC = navCtl.viewControllers.first as? BGEAutoPaySettingsViewController {
+            settingsVC.viewModel = BGEAutoPaySettingsViewModel(accountDetail: accountDetail,
+                                                               initialEnrollmentStatus: viewModel.initialEnrollmentStatus.value,
+                                                               amountToPay: viewModel.amountToPay.value,
+                                                               amountNotToExceed: viewModel.amountNotToExceed.value,
+                                                               whenToPay: viewModel.whenToPay.value,
+                                                               numberOfDaysBeforeDueDate: viewModel.numberOfDaysBeforeDueDate.value)
+            settingsVC.delegate = self
         }
     }
     
@@ -360,5 +364,21 @@ extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
         viewModel.userDidChangeBankAccount.value = true
         viewModel.selectedWalletItem.value = walletItem
+    }
+}
+
+extension BGEAutoPayViewController: BGEAutoPaySettingsViewControllerDelegate {
+    func didUpdateSettings(amountToPay: AmountType, amountNotToExceed: Double, whenToPay: BGEAutoPayViewModel.PaymentDateType, numberOfDaysBeforeDueDate: Int) {
+        if viewModel.amountToPay.value != amountToPay ||
+            (viewModel.amountToPay.value == .upToAmount && viewModel.amountNotToExceed.value != amountNotToExceed) ||
+            viewModel.whenToPay.value != whenToPay ||
+            (viewModel.whenToPay.value == .beforeDueDate && viewModel.numberOfDaysBeforeDueDate.value != numberOfDaysBeforeDueDate) {
+            viewModel.userDidChangeSettings.value = true
+        }
+        
+        viewModel.amountToPay.value = amountToPay
+        viewModel.amountNotToExceed.value = amountNotToExceed
+        viewModel.whenToPay.value = whenToPay
+        viewModel.numberOfDaysBeforeDueDate.value = numberOfDaysBeforeDueDate
     }
 }

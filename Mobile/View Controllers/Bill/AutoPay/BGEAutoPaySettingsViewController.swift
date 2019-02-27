@@ -11,6 +11,13 @@ import RxSwift
 import RxCocoa
 import PDTSimpleCalendar
 
+protocol BGEAutoPaySettingsViewControllerDelegate: class {
+    func didUpdateSettings(amountToPay: AmountType,
+                           amountNotToExceed: Double,
+                           whenToPay: BGEAutoPayViewModel.PaymentDateType,
+                           numberOfDaysBeforeDueDate: Int)
+}
+
 class BGEAutoPaySettingsViewController: UIViewController {
     
     let disposeBag = DisposeBag()
@@ -24,7 +31,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     @IBOutlet weak var amountDueHeaderLabel: UILabel!
     @IBOutlet weak var totalAmountDueButtonStackView: UIStackView!      //1.1.1
-    let totalAmountDueRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Total Amount Due", comment: ""))
+    let totalAmountDueRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Total Amount Billed", comment: ""))
     
     @IBOutlet weak var amountNotToExceedButtonStackView: UIStackView!   //1.1.2
     let amountNotToExceedRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Amount Not To Exceed", comment: ""))
@@ -57,10 +64,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
     //
     let now = Calendar.current.startOfDay(for: .now)
     let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: .now))
-    
-    var numberOfDaysBefore: [String]!
 
-    var viewModel: BGEAutoPayViewModel! // Passed from BGEAutoPayViewController
+    var viewModel: BGEAutoPaySettingsViewModel! // Passed from BGEAutoPayViewController
+    weak var delegate: BGEAutoPaySettingsViewControllerDelegate?
     
     var zPositionForWindow: CGFloat = 0.0
     
@@ -74,13 +80,16 @@ class BGEAutoPaySettingsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
-
-        let systemBack = Bundle.main.loadNibNamed("UINavigationBackButton", owner: self, options: nil)![0] as! UINavigationBackButton
-        systemBack.addTarget(self, action: #selector(onBackPress), for: .touchUpInside)
-        let backButton = UIBarButtonItem(customView: systemBack)
-        backButton.isAccessibilityElement = true
-        backButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
-        navigationItem.leftBarButtonItems = [backButton]
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
+        navigationItem.leftBarButtonItems = [cancelButton]
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
+        doneButton.isAccessibilityElement = true
+        doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
+        navigationItem.rightBarButtonItems = [doneButton]
         
         buildStackViews()
         
@@ -91,19 +100,19 @@ class BGEAutoPaySettingsViewController: UIViewController {
                 guard let self = self else { return }
                 if let text = self.amountNotToExceedTextField.textField.text {
                     if !text.isEmpty {
-                        self.viewModel.userDidChangeSettings.value = true
                         self.viewModel.formatAmountNotToExceed()
                     }
                 }
             }).disposed(by: disposeBag)
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setColoredNavBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if viewModel.initialEnrollmentStatus.value == .enrolled {
+        if viewModel.initialEnrollmentStatus == .enrolled {
             Analytics.log(event: .autoPayModifySettingOffer)
         } else {
             Analytics.log(event: .autoPayModifySettingOfferNew)
@@ -111,8 +120,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func loadSettings() {
-        // placeholder for now
-        switch(viewModel.amountToPay.value) {
+        switch viewModel.amountToPay.value {
         case .amountDue:
             totalAmountDueRadioControl.isSelected = true
             amountNotToExceedRadioControl.isSelected = false
@@ -122,8 +130,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
             amountNotToExceedRadioControl.isSelected = true
         }
         
-        //
-        switch (viewModel.whenToPay.value) {
+        switch viewModel.whenToPay.value {
         case .onDueDate:
             onDueDateRadioControl.isSelected = true
             beforeDueDateRadioControl.isSelected = false
@@ -133,7 +140,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
             beforeDueDateRadioControl.isSelected = true
         }
     
-        //
         hideAmountNotToExceedControlViews(viewModel.amountToPay.value == .amountDue)
         hideBeforeDueDateControlViews(viewModel.whenToPay.value != .onDueDate)
     }
@@ -384,13 +390,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
             let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == 0 ?
                 0 : (self.viewModel.numberOfDaysBeforeDueDate.value - 1)
             PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
-                            data: (1...15).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
+                            data: (1...10).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
                             selectedIndex: selectedIndex,
                             onDone: { [weak self] value, index in
                                 DispatchQueue.main.async { [weak self] in
                                     guard let self = self else { return }
                                     let day = index + 1
-                                    self.viewModel.userDidChangeSettings.value = true
                                     self.viewModel.numberOfDaysBeforeDueDate.value = day
                                     self.modifyBeforeDueDateDetailsLabel()
                                 }
@@ -400,9 +405,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         })
     }
     
-    /////////////////////////////////////////////////////////////////////////////////////////////////
     @objc func radioControlSet1Pressed(control: UIControl) {
-        viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
         amountDueRadioControlsSet
@@ -415,7 +418,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     @objc func radioControlSet2Pressed(control: UIControl) {
-        viewModel.userDidChangeSettings.value = true
         control.isSelected = true
         
         dueDateRadioControlsSet
@@ -427,13 +429,21 @@ class BGEAutoPaySettingsViewController: UIViewController {
         hideBeforeDueDateControlViews(control != onDueDateRadioControl)
     }
     
-    @objc func onBackPress() {
-        if let errorMessage = viewModel.getInvalidSettingsMessage() {
+    @objc func onCancelPress() {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func onDonePress() {
+        if let errorMessage = viewModel.invalidSettingsMessage {
             let alertVc = UIAlertController(title: NSLocalizedString("Missing Required Fields", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alertVc, animated: true, completion: nil)
         } else {
-            navigationController?.popViewController(animated: true)
+            delegate?.didUpdateSettings(amountToPay: viewModel.amountToPay.value,
+                                        amountNotToExceed: viewModel.amountNotToExceedDouble,
+                                        whenToPay: viewModel.whenToPay.value,
+                                        numberOfDaysBeforeDueDate: viewModel.numberOfDaysBeforeDueDate.value)
+            presentingViewController?.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -455,6 +465,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
     @objc func keyboardWillHide(notification: Notification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

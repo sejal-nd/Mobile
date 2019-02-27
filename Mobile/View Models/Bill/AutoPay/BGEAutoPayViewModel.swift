@@ -40,20 +40,14 @@ class BGEAutoPayViewModel {
     let amountToPay = Variable<AmountType>(.amountDue)
     let whenToPay = Variable<PaymentDateType>(.onDueDate)
     
-    let amountNotToExceed = Variable(0.0.currencyString)
-    let numberOfPayments = Variable("")
-    
-    var numberOfDaysBeforeDueDate = Variable(0)
+    let amountNotToExceed = Variable(0.0)
+    let numberOfDaysBeforeDueDate = Variable(0)
     // ---------------- //
 
     required init(paymentService: PaymentService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
         self.accountDetail = accountDetail
         initialEnrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
-    }
-    
-    private func amountNotToExceedDouble() -> String {
-        return String(amountNotToExceed.value.filter { "0123456789.".contains($0) })
     }
     
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -84,7 +78,7 @@ class BGEAutoPayViewModel {
                 }
                 
                 if let amountThreshold = autoPayInfo.amountThreshold {
-                    self.amountNotToExceed.value = amountThreshold.currencyString
+                    self.amountNotToExceed.value = amountThreshold
                 }
                 
                 if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
@@ -107,8 +101,8 @@ class BGEAutoPayViewModel {
         paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
                                           walletItemId: selectedWalletItem.value!.walletItemID,
                                           amountType: amountToPay.value,
-                                          amountThreshold: amountNotToExceedDouble(),
-                                          paymentDaysBeforeDue: "\(daysBefore)",
+                                          amountThreshold: String(amountNotToExceed.value),
+                                          paymentDaysBeforeDue: String(daysBefore),
                                           isUpdate: update)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
@@ -165,30 +159,6 @@ class BGEAutoPayViewModel {
         return !$0 && !$1
     }
     
-    func getInvalidSettingsMessage() -> String? {
-        let defaultString = NSLocalizedString("Complete all required fields before returning to the AutoPay screen. Check your selected settings and complete secondary fields.", comment: "")
-        
-        if amountToPay.value == .upToAmount {
-            if amountNotToExceed.value.isEmpty {
-                return defaultString
-            } else {
-                let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount()
-                let maxPaymentAmount = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
-                if let amountDouble = Double(amountNotToExceedDouble()) {
-                    if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount {
-                        return String.localizedStringWithFormat("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between %@ and %@", minPaymentAmount.currencyString, maxPaymentAmount.currencyString)
-                    }
-                }
-            }
-        }
-        
-        if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == 0 {
-            return defaultString
-        }
-        
-        return nil
-    }
-    
     private(set) lazy var shouldShowWalletItem: Driver<Bool> = self.selectedWalletItem.asDriver().map {
         return $0 != nil
     }
@@ -238,27 +208,21 @@ class BGEAutoPayViewModel {
         { amountToPay, amountNotToExceed in
             switch amountToPay {
             case .upToAmount:
-                return String.localizedStringWithFormat("Pay Maximum of %@", amountNotToExceed)
+                return String.localizedStringWithFormat("Pay Maximum of %@", amountNotToExceed.currencyString)
             case .amountDue:
                 return NSLocalizedString("Pay Total Amount Billed", comment: "")
             }
     }
     
-    private(set) lazy var settingsButtonDaysBeforeText: Driver<String> = numberOfDaysBeforeDueDate.asDriver()
-        .map { numberOfDays in
-            switch numberOfDays {
-            case 0:
+    private(set) lazy var settingsButtonDaysBeforeText: Driver<String> = Driver
+        .combineLatest(whenToPay.asDriver(), numberOfDaysBeforeDueDate.asDriver())
+        { whenToPay, numberOfDays in
+            switch whenToPay {
+            case .onDueDate:
                 return NSLocalizedString("On Due Date", comment: "")
-            default:
+            case .beforeDueDate:
                 return String.localizedStringWithFormat("%@ Day%@ Before Due Date", String(numberOfDays), numberOfDays == 1 ? "":"s")
             }
-    }
-    
-    func formatAmountNotToExceed() {
-        let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })
-        if let intVal = Double(textStr) {
-            amountNotToExceed.value = (intVal / 100).currencyString
-        }
     }
 
 }

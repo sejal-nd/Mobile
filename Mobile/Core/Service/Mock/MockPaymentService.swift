@@ -27,7 +27,6 @@ class MockPaymentService: PaymentService {
     
     func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
         return .just(())
-        
     }
     
     func enrollInAutoPay(accountNumber: String,
