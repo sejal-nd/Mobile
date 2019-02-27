@@ -185,6 +185,9 @@ class HomeBillCardView: UIView {
         autoPayButton.titleLabel?.numberOfLines = 0
         
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        oneTouchPayTCButtonLabel.text = NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms & Conditions.", comment: "")
+        oneTouchPayTCButton.accessibilityLabel = oneTouchPayTCButtonLabel.text
+        oneTouchPayTCButtonLabel.textColor = .actionBlue
         
         viewBillButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
         viewBillButton.accessibilityLabel = NSLocalizedString("View Bill Details", comment: "")
@@ -353,13 +356,6 @@ class HomeBillCardView: UIView {
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.text).disposed(by: bag)
-        viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButton.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.oneTouchPayTCButtonText.drive(oneTouchPayTCButtonLabel.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isUserInteractionEnabled).disposed(by: bag)
-        viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).disposed(by: bag)
-        viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isAccessibilityElement).disposed(by: bag)
-        viewModel.enableOneTouchPayTCButton.not().drive(oneTouchPayTCButtonLabel.rx.isAccessibilityElement).disposed(by: bag)
         viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
         
         // Actions

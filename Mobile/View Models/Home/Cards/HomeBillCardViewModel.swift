@@ -723,37 +723,6 @@ class HomeBillCardViewModel {
         return String(format: localizedText, paymentAmountText, paymentDateText)
     }
 
-    private(set) lazy var oneTouchPayTCButtonText: Driver<String?> = walletItemDriver.map {
-        guard let walletItem = $0 else { return nil }
-        switch (Environment.shared.opco, walletItem.bankOrCard) {
-        case (.bge, .bank):
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled.", comment: "")
-        default:
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms & Conditions.", comment: "")
-        }
-    }
-
-    private(set) lazy var enableOneTouchPayTCButton: Driver<Bool> = walletItemDriver.map {
-        guard let walletItem = $0 else { return false }
-        switch (Environment.shared.opco, walletItem.bankOrCard) {
-        case (.bge, .bank):
-            return false
-        default:
-            return true
-        }
-    }
-
-    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton
-        .map { enable in
-            if StormModeStatus.shared.isOn {
-                return .white
-            } else if enable {
-                return .actionBlue
-            } else {
-                return .blackText
-            }
-    }
-
     private(set) lazy var slideToPayConfirmationDetailText: Driver<String?> = accountDetailDriver
         .map { _ in
             switch Environment.shared.opco {
