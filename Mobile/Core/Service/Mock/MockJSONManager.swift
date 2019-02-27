@@ -120,6 +120,7 @@ final class MockJSONManager {
         case alertPreferences = "alert_preferences"
         case peakRewardsSummary = "peak_rewards_summary"
         case peakRewardsOverrides = "peak_rewards_overrides"
+        case autoPayInfo = "autopay_info"
     }
 }
 
