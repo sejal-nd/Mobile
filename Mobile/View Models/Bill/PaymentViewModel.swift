@@ -199,16 +199,6 @@ class PaymentViewModel {
     private(set) lazy var paymentAmountString = paymentAmount.asDriver()
         .map { $0.currencyString }
 
-    private(set) lazy var bankWorkflow: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem = $0 else { return false }
-        return walletItem.bankOrCard == .bank
-    }
-
-    private(set) lazy var cardWorkflow: Driver<Bool> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem = $0 else { return false }
-        return walletItem.bankOrCard == .card
-    }
-
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
         .combineLatest(shouldShowContent, paymentAmountErrorMessage) {
             return $0 && $1 == nil
@@ -279,24 +269,22 @@ class PaymentViewModel {
         { $0 && $1 }
 
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
-        return Driver.combineLatest(bankWorkflow,
-                                    cardWorkflow,
+        return Driver.combineLatest(selectedWalletItem.asDriver(),
                                     accountDetail.asDriver(),
                                     paymentAmount.asDriver(),
                                     amountDue.asDriver())
-        { (bankWorkflow, cardWorkflow, accountDetail, paymentAmount, amountDue) -> String? in
-            if bankWorkflow {
+        { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
+            guard let walletItem = walletItem else { return nil }
+            if walletItem.bankOrCard == .bank {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount()
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if Environment.shared.opco == .bge {
-                    // BGE BANK
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
                         return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 } else {
-                    // COMED/PECO BANK
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > amountDue {
@@ -305,18 +293,16 @@ class PaymentViewModel {
                         return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 }
-            } else if cardWorkflow {
+            } else {
                 let minPayment = accountDetail.billingInfo.minPaymentAmount()
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
                 if Environment.shared.opco == .bge {
-                    // BGE CREDIT CARD
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > maxPayment {
                         return NSLocalizedString("Maximum payment allowed is \(maxPayment.currencyString)", comment: "")
                     }
                 } else {
-                    // COMED/PECO CREDIT CARD
                     if paymentAmount < minPayment {
                         return NSLocalizedString("Minimum payment allowed is \(minPayment.currencyString)", comment: "")
                     } else if paymentAmount > amountDue {
@@ -422,33 +408,24 @@ class PaymentViewModel {
         return amounts
     }()
 
-    private(set) lazy var paymentAmountFeeLabelText: Driver<String?> = Driver
-        .combineLatest(bankWorkflow, cardWorkflow)
-    { [weak self] (bankWorkflow, cardWorkflow) -> String? in
-        guard let self = self else { return nil }
-        if bankWorkflow {
-            return NSLocalizedString("No convenience fee will be applied.", comment: "")
-        } else if cardWorkflow {
-            if Environment.shared.opco == .bge {
-                return NSLocalizedString(self.accountDetail.value.billingInfo.convenienceFeeString(isComplete: true), comment: "")
+    private(set) lazy var paymentAmountFeeLabelText: Driver<String?> =
+        self.selectedWalletItem.asDriver().map { [weak self] in
+            guard let self = self, let walletItem = $0 else { return nil }
+            if walletItem.bankOrCard == .bank {
+                return NSLocalizedString("No convenience fee will be applied.", comment: "")
             } else {
                 return String.localizedStringWithFormat("A %@ convenience fee will be applied by Paymentus, our payment partner.", self.convenienceFee.currencyString)
             }
         }
-        return ""
-    }
 
-    private(set) lazy var paymentAmountFeeFooterLabelText: Driver<String> = Driver
-        .combineLatest(bankWorkflow, cardWorkflow, accountDetail.asDriver())
-        { [weak self] (bankWorkflow, cardWorkflow, accountDetail) -> String in
-            guard let self = self else { return "" }
-            if bankWorkflow {
+    private(set) lazy var paymentAmountFeeFooterLabelText: Driver<String?> =
+        self.selectedWalletItem.asDriver().map { [weak self] in
+            guard let self = self, let walletItem = $0 else { return "" }
+            if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No convenience fee will be applied.", comment: "")
-            } else if cardWorkflow {
-                return String(format: NSLocalizedString("Your payment includes a %@ convenience fee.", comment: ""),
-                              Environment.shared.opco == .bge && !accountDetail.isResidential ? self.convenienceFee.percentString! : self.convenienceFee.currencyString)
+            } else  {
+                return String.localizedStringWithFormat("Your payment includes a %@ convenience fee.", self.convenienceFee.currencyString)
             }
-            return ""
     }
 
     private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.paymentId.asDriver())
@@ -502,14 +479,15 @@ class PaymentViewModel {
     }
 
     var convenienceFee: Double {
-        switch Environment.shared.opco {
-        case .bge:
-            return self.accountDetail.value.isResidential ?
-                accountDetail.value.billingInfo.residentialFee! :
-                accountDetail.value.billingInfo.commercialFee!
-        case .comEd, .peco:
-            return accountDetail.value.billingInfo.convenienceFee!
-        }
+//        switch Environment.shared.opco {
+//        case .bge:
+//            return self.accountDetail.value.isResidential ?
+//                accountDetail.value.billingInfo.residentialFee! :
+//                accountDetail.value.billingInfo.commercialFee!
+//        case .comEd, .peco:
+//            return accountDetail.value.billingInfo.convenienceFee!
+//        }
+        return accountDetail.value.billingInfo.convenienceFee
     }
 
     private(set) lazy var amountDueCurrencyString: Driver<String?> = amountDue.asDriver()
@@ -609,7 +587,8 @@ class PaymentViewModel {
             return true
         }
 
-    private(set) lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> = cardWorkflow
+    private(set) lazy var reviewPaymentShouldShowConvenienceFeeBox: Driver<Bool> =
+        self.selectedWalletItem.asDriver().map { $0?.bankOrCard == .card }
 
     private(set) lazy var isOverpaying: Driver<Bool> = {
         switch Environment.shared.opco {
@@ -620,9 +599,15 @@ class PaymentViewModel {
         }
     }()
 
-    private(set) lazy var isOverpayingCard: Driver<Bool> = Driver.combineLatest(isOverpaying, cardWorkflow) { $0 && $1 }
+    private(set) lazy var isOverpayingCard: Driver<Bool> =
+        Driver.combineLatest(isOverpaying, self.selectedWalletItem.asDriver()) {
+            $0 && $1?.bankOrCard == .card
+        }
 
-    private(set) lazy var isOverpayingBank: Driver<Bool> = Driver.combineLatest(isOverpaying, bankWorkflow) { $0 && $1 }
+    private(set) lazy var isOverpayingBank: Driver<Bool> =
+        Driver.combineLatest(isOverpaying, self.selectedWalletItem.asDriver()) {
+            $0 && $1?.bankOrCard == .bank
+        }
 
     private(set) lazy var overpayingValueDisplayString: Driver<String?> = Driver
         .combineLatest(amountDue.asDriver(), paymentAmount.asDriver())
@@ -673,7 +658,8 @@ class PaymentViewModel {
 
     // MARK: - Payment Confirmation
 
-    private(set) lazy var shouldShowConvenienceFeeLabel: Driver<Bool> = cardWorkflow
+    private(set) lazy var shouldShowConvenienceFeeLabel: Driver<Bool> =
+        self.selectedWalletItem.asDriver().map { $0?.bankOrCard == .card }
 
     var errorPhoneNumber: String {
         switch Environment.shared.opco {
