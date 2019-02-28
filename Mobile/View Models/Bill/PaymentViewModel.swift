@@ -479,14 +479,6 @@ class PaymentViewModel {
     }
 
     var convenienceFee: Double {
-//        switch Environment.shared.opco {
-//        case .bge:
-//            return self.accountDetail.value.isResidential ?
-//                accountDetail.value.billingInfo.residentialFee! :
-//                accountDetail.value.billingInfo.commercialFee!
-//        case .comEd, .peco:
-//            return accountDetail.value.billingInfo.convenienceFee!
-//        }
         return accountDetail.value.billingInfo.convenienceFee
     }
 
@@ -615,15 +607,6 @@ class PaymentViewModel {
 
     private(set) lazy var shouldShowOverpaymentSwitchView: Driver<Bool> = isOverpaying
 
-    private(set) lazy var convenienceFeeDisplayString: Driver<String?> = paymentAmount.asDriver().map { [weak self] in
-            guard let self = self else { return nil }
-            if Environment.shared.opco == .bge && !self.accountDetail.value.isResidential {
-                return (($0 / 100) * self.convenienceFee).currencyString
-            } else {
-                return self.convenienceFee.currencyString
-            }
-    }
-
     private(set) lazy var shouldShowAutoPayEnrollButton: Driver<Bool> = accountDetail.asDriver().map {
         !$0.isAutoPay && $0.isAutoPayEligible && !StormModeStatus.shared.isOn
     }
@@ -637,16 +620,7 @@ class PaymentViewModel {
         .map { [weak self] paymentAmount, showConvenienceFeeBox in
             guard let self = self else { return nil }
             if showConvenienceFeeBox {
-                switch Environment.shared.opco {
-                case .bge:
-                    if self.accountDetail.value.isResidential {
-                        return (paymentAmount + self.convenienceFee).currencyString
-                    } else {
-                        return ((1 + self.convenienceFee / 100) * paymentAmount).currencyString
-                    }
-                case .comEd, .peco:
-                    return (paymentAmount + self.convenienceFee).currencyString
-                }
+                return (paymentAmount + self.convenienceFee).currencyString
             } else {
                 return paymentAmount.currencyString
             }
