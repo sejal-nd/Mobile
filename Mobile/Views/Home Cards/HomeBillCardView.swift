@@ -229,6 +229,7 @@ class HomeBillCardView: UIView {
         amountLabel.textColor = .white
         reinstatementFeeLabel.textColor = .white
         slideToPayConfirmationDetailLabel.textColor = .white
+        bankCreditCardImageView.tintColor = .white
         bankCreditCardNumberLabel.textColor = .white
         minimumPaymentLabel.textColor = .white
         convenienceFeeLabel.textColor = .white

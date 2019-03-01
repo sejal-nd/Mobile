@@ -592,12 +592,7 @@ class HomeBillCardViewModel {
 
     private(set) lazy var bankCreditCardImage: Driver<UIImage?> = walletItemDriver.map {
         guard let walletItem = $0 else { return nil }
-        switch walletItem.bankOrCard {
-        case .bank:
-            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_bank_white.pdf") : #imageLiteral(resourceName: "ic_bank")
-        case .card:
-            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_creditcard_white.pdf") : #imageLiteral(resourceName: "ic_creditcard")
-        }
+        return walletItem.bankOrCard == .bank ? #imageLiteral(resourceName: "ic_bank") : #imageLiteral(resourceName: "ic_creditcard")
     }
 
     private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = walletItemDriver.map {

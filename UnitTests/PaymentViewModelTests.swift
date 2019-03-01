@@ -641,9 +641,9 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertEqual(image, #imageLiteral(resourceName: "opco_bank_mini"), "Selected bank account should show opco_bank_mini image")
         }).disposed(by: disposeBag)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa, bankOrCard: .card)
         viewModel.selectedWalletItemImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssertEqual(image, #imageLiteral(resourceName: "opco_credit_card_mini"), "Selected credit card should show opco_credit_card_mini image")
+            XCTAssertEqual(image, UIImage(named: "ic_visa_mini"), "Selected credit card should show ic_visa_mini")
         }).disposed(by: disposeBag)
     }
 
