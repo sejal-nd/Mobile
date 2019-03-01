@@ -436,11 +436,7 @@ class PaymentViewModel {
 
     private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return nil }
-        if walletItem.bankOrCard == .bank {
-            return #imageLiteral(resourceName: "opco_bank_mini")
-        } else {
-            return #imageLiteral(resourceName: "opco_credit_card_mini")
-        }
+        return walletItem.paymentMethodType.imageMini
     }
 
     private(set) lazy var selectedWalletItemMaskedAccountString: Driver<String> = selectedWalletItem.asDriver().map {
