@@ -60,6 +60,23 @@ enum PaymentMethodType {
         }
     }
     
+    var rawString: String {
+        switch self {
+        case .ach:
+            return "ACH"
+        case .visa:
+            return "VISA"
+        case .mastercard:
+            return "MASTERCARD"
+        case .amex:
+            return "AMEX"
+        case .discover:
+            return "DISCOVER"
+        case .unknown(let raw):
+            return raw
+        }
+    }
+    
     var imageLarge: UIImage {
         switch self {
         case .visa:
@@ -196,7 +213,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
         map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
-        map["paymentMethodType"] = paymentMethodType.displayString
+        map["paymentMethodType"] = paymentMethodType.rawString
         map["bankName"] = bankName
         map["expirationDate"] = expirationDate
         map["isDefault"] = isDefault
