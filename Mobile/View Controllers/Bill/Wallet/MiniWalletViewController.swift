@@ -147,8 +147,8 @@ class MiniWalletViewController: UIViewController {
     
     // MARK: - Actions
     
-    @objc private func onBankAccountPress(sender: ButtonControl) {
-        guard let walletItem = viewModel.walletItems.value?[sender.tag] else { return }
+    @objc private func onWalletItemCellPress(sender: ButtonControl) {
+        let walletItem = viewModel.tableViewWalletItems[sender.tag]
         delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
         navigationController?.popViewController(animated: true)
     }
@@ -169,12 +169,6 @@ class MiniWalletViewController: UIViewController {
         
     }
     
-    @objc private func onCreditCardPress(sender: ButtonControl) {
-        guard let walletItem = viewModel.walletItems.value?[sender.tag] else { return }
-        delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
-        navigationController?.popViewController(animated: true)
-    }
-    
     @objc private func onAddCreditCardPress() {
         let actionSheet = UIAlertController
             .saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
@@ -192,8 +186,7 @@ class MiniWalletViewController: UIViewController {
 
 extension MiniWalletViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let walletItems = viewModel.walletItems.value else { return 0 }
-        return walletItems.count
+        return viewModel.tableViewWalletItems.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -225,23 +218,16 @@ extension MiniWalletViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MiniWalletItemCell", for: indexPath) as? MiniWalletTableViewCell else {
             fatalError("Invalid Table View Cell.")
         }
-        guard let item = viewModel.walletItems.value?[indexPath.row] else {
-            return UITableViewCell()
-        }
-        switch item.bankOrCard {
-        case .bank:
-            cell.bindToWalletItem(item, isSelectedItem: item == viewModel.selectedItem.value)
-            cell.innerContentView.tag = indexPath.row
-            cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
-            cell.innerContentView.addTarget(self, action: #selector(onBankAccountPress(sender:)), for: .touchUpInside)
-            cell.innerContentView.isEnabled = !bankAccountsDisabled
-        case .card:
-            cell.bindToWalletItem(item, isSelectedItem: item == viewModel.selectedItem.value)
-            cell.innerContentView.tag = indexPath.row
-            cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
-            cell.innerContentView.addTarget(self, action: #selector(onCreditCardPress(sender:)), for: .touchUpInside)
-            
-            cell.innerContentView.isEnabled = true
+        let item = viewModel.tableViewWalletItems[indexPath.row]
+        
+        cell.bindToWalletItem(item, isSelectedItem: item == viewModel.selectedItem.value)
+        cell.innerContentView.tag = indexPath.row
+        cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
+        cell.innerContentView.addTarget(self, action: #selector(onWalletItemCellPress(sender:)), for: .touchUpInside)
+        cell.innerContentView.isEnabled = true
+        if item.bankOrCard == .bank && bankAccountsDisabled {
+            cell.innerContentView.isEnabled = false
+        } else {
             if creditCardsDisabled || item.isExpired {
                 cell.innerContentView.isEnabled = false
             }

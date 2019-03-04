@@ -164,12 +164,12 @@ class BGEAutoPayViewModel {
     }
     
     private(set) lazy var bankAccountButtonImage: Driver<UIImage> = self.selectedWalletItem.asDriver().map {
-        if $0 != nil {
-            return #imageLiteral(resourceName: "opco_bank_mini")
-        } else {
-            return #imageLiteral(resourceName: "bank_building_mini_noBg")
+            if let walletItem = $0 {
+                return walletItem.paymentMethodType.imageMini
+            } else {
+                return #imageLiteral(resourceName: "bank_building_mini_white_bg")
+            }
         }
-    }
     
     private(set) lazy var walletItemAccountNumberText: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let item = $0 else { return "" }

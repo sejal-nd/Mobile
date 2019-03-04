@@ -229,13 +229,11 @@ struct BillingInfo: Mappable {
     let disconnectNoticeArrears: Double?
     let isDisconnectNotice: Bool
     let billDate: Date?
-    let convenienceFee: Double? // ComEd/PECO use this
+    let convenienceFee: Double
     let scheduledPayment: PaymentItem?
     let pendingPayments: [PaymentItem]
     let atReinstateFee: Double?
     let currentDueAmount: Double?
-    let residentialFee: Double? // BGE uses this and
-    let commercialFee: Double? // this
     let turnOffNoticeExtensionStatus: String?
     let turnOffNoticeExtendedDueDate: Date?
     let turnOffNoticeDueDate: Date?
@@ -268,9 +266,7 @@ struct BillingInfo: Mappable {
         _minPaymentAmountACH =  map.optionalFrom("minimumPaymentAmountACH")
         _maxPaymentAmountACH = map.optionalFrom("maximumPaymentAmountACH")
         currentDueAmount = map.optionalFrom("currentDueAmount")
-        convenienceFee = map.optionalFrom("convenienceFee")
-        residentialFee = map.optionalFrom("feeResidential")
-        commercialFee = map.optionalFrom("feeCommercial")
+        convenienceFee = map.optionalFrom("convenienceFee") ?? 0.0
         turnOffNoticeExtensionStatus = map.optionalFrom("turnOffNoticeExtensionStatus")
         turnOffNoticeExtendedDueDate = map.optionalFrom("turnOffNoticeExtendedDueDate", transformation: DateParser().extractDate)
         turnOffNoticeDueDate = map.optionalFrom("turnOffNoticeDueDate", transformation: DateParser().extractDate)
@@ -295,19 +291,6 @@ struct BillingInfo: Mappable {
     
     var pendingPaymentsTotal: Double {
         return pendingPayments.map(\.amount).reduce(0, +)
-    }
-    
-    func convenienceFeeString(isComplete: Bool) -> String {
-        var convenienceFeeStr = ""
-        if isComplete {
-            convenienceFeeStr = String(format: "A convenience fee will be applied to this payment. " +
-                "Residential accounts: %@. Business accounts: %@.", residentialFee!.currencyString,
-                commercialFee!.percentString!)
-        } else {
-            convenienceFeeStr = String(format:"Fees: %@ Residential | %@ Business",
-                residentialFee!.currencyString, commercialFee!.percentString!)
-        }
-        return convenienceFeeStr
     }
     
     func minPaymentAmount() -> Double {

@@ -138,44 +138,6 @@ class PaymentViewModelTests: XCTestCase {
         })
     }
 
-    func testBankWorkflow() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-        viewModel.bankWorkflow.asObservable().take(1).subscribe(onNext: { bankWorkflow in
-            XCTAssertFalse(bankWorkflow, "bankWorkflow should be false initially")
-        }).disposed(by: disposeBag)
-
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-        viewModel.bankWorkflow.asObservable().take(1).subscribe(onNext: { bankWorkflow in
-            XCTAssert(bankWorkflow, "bankWorkflow should be true when selectedWalletItem is a bank account")
-        }).disposed(by: disposeBag)
-
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-        viewModel.bankWorkflow.asObservable().take(1).subscribe(onNext: { bankWorkflow in
-            XCTAssertFalse(bankWorkflow, "bankWorkflow should be false when selectedWalletItem is a card")
-        }).disposed(by: disposeBag)
-    }
-
-    func testCardWorkflow() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-        viewModel.cardWorkflow.asObservable().take(1).subscribe(onNext: { cardWorkflow in
-            XCTAssertFalse(cardWorkflow, "cardWorkflow should be false initially")
-        }).disposed(by: disposeBag)
-
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-        viewModel.cardWorkflow.asObservable().take(1).subscribe(onNext: { cardWorkflow in
-            XCTAssert(cardWorkflow, "cardWorkflow should be true when selectedWalletItem is a card")
-        }).disposed(by: disposeBag)
-
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-        viewModel.cardWorkflow.asObservable().take(1).subscribe(onNext: { cardWorkflow in
-            XCTAssertFalse(cardWorkflow, "cardWorkflow should be false when selectedWalletItem is a bank account")
-        }).disposed(by: disposeBag)
-    }
-
     func testPaymentFieldsValid() {
         let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:], "BillingInfo": ["netDueAmount": 200], "SERInfo": [:]])!
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
@@ -593,55 +555,29 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testPaymentAmountFeeLabelTextBank() {
-        if Environment.shared.opco == .bge {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-            viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText ?? "nil")\"")
-            }).disposed(by: disposeBag)
-        } else { // ComEd/PECO
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-            viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText ?? "nil")\"")
-            }).disposed(by: disposeBag)
-        }
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                "SERInfo": [:]])!
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        
+        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
+        viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
+            let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
+            XCTAssertEqual(feeText, expectedFeeString)
+        }).disposed(by: disposeBag)
     }
 
     func testPaymentAmountFeeLabelTextCard() {
-        if Environment.shared.opco == .bge {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                "SERInfo": [:]])!
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("A convenience fee will be applied to this payment. Residential accounts: $2.00. Business accounts: 5%.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText ?? "nil")\"")
-            }).disposed(by: disposeBag)
-        } else {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("A $2.00 convenience fee will be applied by Paymentus, our payment partner.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText ?? "nil")\"")
-            }).disposed(by: disposeBag)
-        }
+        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
+            let expectedFeeString = NSLocalizedString("A $2.00 convenience fee will be applied by Paymentus, our payment partner.", comment: "")
+            XCTAssertEqual(feeText, expectedFeeString)
+        }).disposed(by: disposeBag)
     }
 
     func testPaymentAmountFeeFooterLabelTextBank() {
@@ -654,7 +590,7 @@ class PaymentViewModelTests: XCTestCase {
             viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
             viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
                 let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText)\"")
+                XCTAssertEqual(feeText, expectedFeeString)
             }).disposed(by: disposeBag)
         } else { // ComEd/PECO
             let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
@@ -665,61 +601,35 @@ class PaymentViewModelTests: XCTestCase {
             viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
             viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
                 let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText)\"")
+                XCTAssertEqual(feeText, expectedFeeString)
             }).disposed(by: disposeBag)
         }
     }
 
     func testPaymentAmountFeeFooterLabelTextCardResidential() {
-        if Environment.shared.opco == .bge {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                "SERInfo": [:]])!
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("Your payment includes a $2.00 convenience fee.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText)\"")
-            }).disposed(by: disposeBag)
-        } else {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("Your payment includes a $2.00 convenience fee.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText)\"")
-            }).disposed(by: disposeBag)
-        }
+        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
+            let expectedFeeString = NSLocalizedString("Your payment includes a $2.00 convenience fee.", comment: "")
+            XCTAssertEqual(feeText, expectedFeeString)
+        }).disposed(by: disposeBag)
     }
 
     func testPaymentAmountFeeFooterLabelTextCardCommercial() {
-        if Environment.shared.opco == .bge {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                                "SERInfo": [:]])!
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("Your payment includes a 5% convenience fee.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText)\"")
-            }).disposed(by: disposeBag)
-        } else {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
-                let expectedFeeString = NSLocalizedString("Your payment includes a $2.00 convenience fee.", comment: "")
-                XCTAssert(feeText == expectedFeeString, "Expected \"\(expectedFeeString)\", got \"\(feeText)\"")
-            }).disposed(by: disposeBag)
-        }
+        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
+            let expectedFeeString = NSLocalizedString("Your payment includes a $2.00 convenience fee.", comment: "")
+            XCTAssertEqual(feeText, expectedFeeString)
+        }).disposed(by: disposeBag)
     }
 
     func testSelectedWalletItemImage() {
@@ -728,12 +638,12 @@ class PaymentViewModelTests: XCTestCase {
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
         viewModel.selectedWalletItemImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssert(image == #imageLiteral(resourceName: "opco_bank_mini"), "Selected bank account should show opco_bank_mini image")
+            XCTAssertEqual(image, #imageLiteral(resourceName: "opco_bank_mini"), "Selected bank account should show opco_bank_mini image")
         }).disposed(by: disposeBag)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa, bankOrCard: .card)
         viewModel.selectedWalletItemImage.asObservable().take(1).subscribe(onNext: { image in
-            XCTAssert(image == #imageLiteral(resourceName: "opco_credit_card_mini"), "Selected credit card should show opco_credit_card_mini image")
+            XCTAssertEqual(image, UIImage(named: "ic_visa_mini"), "Selected credit card should show ic_visa_mini")
         }).disposed(by: disposeBag)
     }
 
@@ -743,7 +653,7 @@ class PaymentViewModelTests: XCTestCase {
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
         viewModel.selectedWalletItemMaskedAccountString.asObservable().take(1).subscribe(onNext: { str in
-            XCTAssert(str == "**** 1234", "Expected \"**** 1234\", got \"\(str)\"")
+            XCTAssertEqual(str, "**** 1234")
         }).disposed(by: disposeBag)
     }
 
@@ -753,41 +663,23 @@ class PaymentViewModelTests: XCTestCase {
 
         // No selected wallet item
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
-            XCTAssertNil(nickname, "Expected nil, got \"\(nickname ?? "nil")\"")
+            XCTAssertNil(nickname)
         }).disposed(by: disposeBag)
 
         // Selected wallet item
         viewModel.selectedWalletItem.value = WalletItem(nickName: "Test")
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
-            XCTAssert(nickname == "Test", "Expected \"Test\", got \"\(nickname ?? "nil")\"")
+            XCTAssertEqual(nickname, "Test")
         }).disposed(by: disposeBag)
     }
 
     func testConvenienceFee() {
-        if Environment.shared.opco == .bge {
-            // BGE Residential
-            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            XCTAssert(viewModel.convenienceFee == 2, "Expected fee = 2, got fee = \(viewModel.convenienceFee)")
-
-            // BGE Commercial
-            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
-                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
+                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
                                                 "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
-            XCTAssert(viewModel.convenienceFee == 5, "Expected fee = 5, got fee = \(viewModel.convenienceFee)")
-        } else {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            XCTAssert(viewModel.convenienceFee == 2, "Expected fee = 2, got fee = \(viewModel.convenienceFee)")
-        }
+        XCTAssertEqual(viewModel.convenienceFee, 2)
     }
 
     func testAmountDueCurrencyString() {
@@ -796,32 +688,32 @@ class PaymentViewModelTests: XCTestCase {
 
         viewModel.amountDue.value = 0
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
-            XCTAssert(string == "$0.00", "Expected string = $0.00, got string = \(string ?? "nil")")
+            XCTAssertEqual(string, "$0.00")
         }).disposed(by: disposeBag)
 
         viewModel.amountDue.value = 15.29
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
-            XCTAssert(string == "$15.29", "Expected string = $15.29, got string = \(string ?? "nil")")
+            XCTAssertEqual(string, "$15.29")
         }).disposed(by: disposeBag)
 
         viewModel.amountDue.value = 200.999 // Round up
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
-            XCTAssert(string == "$201.00", "Expected string = $200.99, got string = \(string ?? "nil")")
+            XCTAssertEqual(string, "$201.00")
         }).disposed(by: disposeBag)
 
         viewModel.amountDue.value = 13.922 // Round down
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
-            XCTAssert(string == "$13.92", "Expected string = $200.99, got string = \(string ?? "nil")")
+            XCTAssertEqual(string, "$13.92")
         }).disposed(by: disposeBag)
 
         viewModel.amountDue.value = 0.13
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
-            XCTAssert(string == "$0.13", "Expected string = $0.13, got string = \(string ?? "nil")")
+            XCTAssertEqual(string, "$0.13")
         }).disposed(by: disposeBag)
 
         viewModel.amountDue.value = 5
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
-            XCTAssert(string == "$5.00", "Expected string = $5.00, got string = \(string ?? "nil")")
+            XCTAssertEqual(string, "$5.00")
         }).disposed(by: disposeBag)
     }
 
@@ -902,79 +794,16 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
 
-    func testConvenienceFeeDisplayString() {
-        if Environment.shared.opco == .bge {
-            // BGE Residential
-            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
-                XCTAssert(feeStr == "$2.00", "Expected $2.00, got \(feeStr ?? "nil")")
-            }).disposed(by: disposeBag)
-
-            // BGE Commercial - Percentage of payment amount
-            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
-                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
-                XCTAssert(feeStr == "$10.00", "Expected $10.00, got \(feeStr ?? "nil")")
-            }).disposed(by: disposeBag)
-        } else { // ComEd/PECO
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.convenienceFeeDisplayString.asObservable().take(1).subscribe(onNext: { feeStr in
-                XCTAssert(feeStr == "$2.00", "Expected $2.00, got \(feeStr ?? "nil")")
-            }).disposed(by: disposeBag)
-        }
-    }
-
     func testTotalPaymentDisplayString() {
-        if Environment.shared.opco == .bge {
-            var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": true, "CustomerInfo": [:],
-                                                    "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                    "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
+                                            "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
+                                            "SERInfo": [:]])!
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
 
-            // Bank workflow, no convenience fee
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
-                XCTAssert(str == "$200.00", "Expected $200.00, got \(str ?? "nil")")
-            }).disposed(by: disposeBag)
-
-            // Residential card - fixed fee
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
-                XCTAssert(str == "$202.00", "Expected $202.00, got \(str ?? "nil")")
-            }).disposed(by: disposeBag)
-
-            accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
-                                                "BillingInfo": ["netDueAmount": 200, "feeResidential": 2, "feeCommercial": 5],
-                                                "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            // Commercial card - percentage fee
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
-                XCTAssert(str == "$210.00", "Expected $210.00, got \(str ?? "nil")")
-            }).disposed(by: disposeBag)
-        } else {
-            let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isResidential": false, "CustomerInfo": [:],
-                                                "BillingInfo": ["netDueAmount": 200, "convenienceFee": 2],
-                                                "SERInfo": [:]])!
-            viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-
-            viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
-            viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
-                XCTAssert(str == "$202.00", "Expected $202.00, got \(str ?? "nil")")
-            }).disposed(by: disposeBag)
-        }
+        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
+            XCTAssertEqual(str, "$202.00")
+        }).disposed(by: disposeBag)
     }
 
     func testReviewPaymentFooterLabelText() {
