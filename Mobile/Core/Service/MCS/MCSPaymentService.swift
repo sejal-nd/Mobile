@@ -178,10 +178,7 @@ class MCSPaymentService: PaymentService {
             "biller_id": "\(opCo.rawValue)Registered", // Still needed?
             "auth_sess_token": "" // Still needed?
         ]
-        return cancelPaymentInternal(accountNumber: accountNumber, paymentId: paymentId, params: params)
-    }
-    
-    private func cancelPaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
+
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
             .do(onNext: {
@@ -189,4 +186,5 @@ class MCSPaymentService: PaymentService {
                 AppRating.logRatingEvent()
             })
     }
+
 }
