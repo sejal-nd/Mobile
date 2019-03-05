@@ -212,6 +212,7 @@ class HomeBillCardView: UIView {
         alertAnimation.isAccessibilityElement = true
         alertAnimation.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         bankCreditCardImageView.isAccessibilityElement = true
+        bankCreditCardImageView.tintColor = .primaryColor
         resetAnimation()
         
         if StormModeStatus.shared.isOn {
