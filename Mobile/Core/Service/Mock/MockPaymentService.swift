@@ -48,19 +48,8 @@ class MockPaymentService: PaymentService {
         return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
     }
     
-    /// Return the next 90 days, minus weekends
-    func fetchWorkdays() -> Observable<[Date]> {
-        let today = Calendar.opCo.startOfDay(for: Date())
-        
-        let workDays = (0..<90)
-            .map { Calendar.opCo.date(byAdding: DateComponents(day: $0), to: today)! }
-            .filter { !Calendar.opCo.isDateInWeekend($0) }
-        
-        return .just(workDays)
-    }
-    
     func schedulePayment(payment: Payment) -> Observable<String> {
-        return Observable.just("").delay(2, scheduler: MainScheduler.instance)
+        return Observable.just("123456").delay(2, scheduler: MainScheduler.instance)
     }
     
     func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
@@ -75,13 +64,8 @@ class MockPaymentService: PaymentService {
         return .just(())
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, bankOrCard: BankOrCard?, paymentDetail: PaymentDetail) -> Observable<Void> {
+    func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void> {
         return .just(())
-    }
-    
-    func fetchPaymentFreezeDate() -> Observable<Date> {
-        return Observable.just(Calendar.opCo.date(from: DateComponents(year: 2088, month: 11, day: 10))!)
-//            .delay(2, scheduler: MainScheduler.instance)
     }
     
 }

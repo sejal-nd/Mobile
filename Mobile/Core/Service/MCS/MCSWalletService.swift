@@ -21,7 +21,7 @@ class MCSWalletService: WalletService {
             params["biller_id"] = "\(opCo.rawValue)Registered"
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "wallet/query", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let walletItems = dict["WalletItems"] as? [[String: Any]] else {
@@ -30,18 +30,30 @@ class MCSWalletService: WalletService {
                 
                 let itemArray = walletItems.compactMap { WalletItem.from($0 as NSDictionary) }
                     .sorted { (a: WalletItem, b: WalletItem) in
-                        switch (a.bankOrCard, b.bankOrCard) {
-                        case (.bank, .bank):
-                            guard let aCreated = a.dateCreated, let bCreated = b.dateCreated else {
+                        // Sort order:
+                        // 1. Default Payment Method (Paymentus Only)
+                        // 2. Most recent to least recently added bank accounts
+                        // 3. Most recent to least recently added credit cards
+                        if Environment.shared.opco != .bge {
+                            if a.isDefault && !b.isDefault {
                                 return true
+                            } else if b.isDefault && !a.isDefault {
+                                return false
                             }
-                            return aCreated >= bCreated
+                        }
+
+                        switch (a.bankOrCard, b.bankOrCard) {
                         case (.bank, .card):
                             return true
                         case (.card, .bank):
                             return false
+                        case (.bank, .bank):
+                            fallthrough
                         case (.card, .card):
-                            return true
+                            guard let aCreated = a.dateCreated, let bCreated = b.dateCreated else {
+                                return true
+                            }
+                            return aCreated >= bCreated
                         }
                 }
                 
@@ -49,31 +61,8 @@ class MCSWalletService: WalletService {
         }
     }
     
-    func fetchAuthSessionToken() -> Observable<String> {
-        let opCo = Environment.shared.opco
-        
-        var params: Dictionary<String, String> = [:]
-        
-        if opCo == .comEd || opCo == .peco {
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-        }
-        
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
-            .map { json in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return token
-        }
-    }
-    
     func fetchBankName(routingNumber: String) -> Observable<String> {
-        let opCo = Environment.shared.opco.displayString.uppercased()
-        let path = "anon_\(MCSApi.API_VERSION)/" + opCo + "/bank/" + routingNumber
-        return MCSApi.shared.get(path: path)
+        return MCSApi.shared.get(pathPrefix: .anon, path: "bank/" + routingNumber)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let bankName = dict["BankName"] as? String else {
@@ -84,55 +73,17 @@ class MCSWalletService: WalletService {
         }
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     func addBankAccount(_ bankAccount: BankAccount, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
-        let opCo = Environment.shared.opco
-        
-        if(opCo == .comEd || opCo == .peco) {
-            return addFiservBankAccount(bankAccount, forCustomerNumber: customerNumber)
-        } else {
+        switch Environment.shared.opco {
+        case .comEd, .peco:
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
+        case .bge:
             return addMCSBankAccount(bankAccount)
         }
     }
     
-    private func addFiservBankAccount(_ bankAccount: BankAccount, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
-        //1. get the wallet to grab a new auth token for fiserv
-        //2. call the fiserv add api
-        
-        let opCo = Environment.shared.opco
-        
-        var params: Dictionary<String, String> = [:]
-        
-        if opCo == .comEd || opCo == .peco {
-            params["biller_id"] = "\(opCo.rawValue)Registered"
-        }
-        
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
-            .flatMap { json -> Observable<WalletItemResult> in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return FiservApi().addBankAccount(bankAccountNumber: bankAccount.bankAccountNumber,
-                                                  routingNumber: bankAccount.routingNumber,
-                                                  firstName: nil,
-                                                  lastName: nil,
-                                                  nickname: bankAccount.accountNickname,
-                                                  token: token,
-                                                  customerNumber: customerNumber,
-                                                  oneTimeUse: bankAccount.oneTimeUse)
-            }
-            .do(onNext: { [weak self] _ in
-                let accountNumber = bankAccount.bankAccountNumber
-                let last4 = accountNumber[accountNumber.index((accountNumber.endIndex), offsetBy: -4)...]
-                
-                self?.addWalletItemMCS(accountNumber: AccountsStore.shared.accounts[0].accountNumber,
-                                       maskedAccountNumber: String(last4),
-                                       categoryType: "Checking")
-            })
-    }
-    
+    //TODO: Remove this once BGE moves to paymentus
     private func addMCSBankAccount(_ bankAccount: BankAccount) -> Observable<WalletItemResult> {
         let params = ["account_number" : AccountsStore.shared.accounts[0].accountNumber,
                       "routing_number" : bankAccount.routingNumber,
@@ -141,7 +92,7 @@ class MCSWalletService: WalletService {
                       "bank_account_number" : bankAccount.bankAccountNumber,
                       "bank_account_name" : bankAccount.accountName ?? ""] as [String:Any]
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "wallet", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let message = dict["message"] as? String,
@@ -169,50 +120,17 @@ class MCSWalletService: WalletService {
         }
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     func addCreditCard(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
         switch Environment.shared.opco {
         case .comEd, .peco:
-            return addCreditCardFiserv(creditCard, forCustomerNumber: customerNumber)
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         case .bge:
             return addCreditCardSpeedpay(creditCard)
         }
     }
     
-    private func addCreditCardFiserv(_ creditCard: CreditCard, forCustomerNumber customerNumber: String) -> Observable<WalletItemResult> {
-        var params: Dictionary<String, String> = [:]
-        params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
-        
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
-            .map { json in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return token
-            }
-            .flatMap { token in
-                FiservApi().addCreditCard(cardNumber: creditCard.cardNumber,
-                                          expirationMonth: creditCard.expirationMonth,
-                                          expirationYear: creditCard.expirationYear,
-                                          securityCode: creditCard.securityCode,
-                                          postalCode: creditCard.postalCode,
-                                          nickname: creditCard.nickname,
-                                          token: token,
-                                          customerNumber: customerNumber,
-                                          oneTimeUse: creditCard.oneTimeUse)
-                    .do(onNext: { [weak self] walletItemResult in
-                        let string = creditCard.cardNumber
-                        let last4 = string[string.index(string.endIndex, offsetBy: -4)...]
-                        
-                        self?.addWalletItemMCS(accountNumber: AccountsStore.shared.accounts[0].accountNumber,
-                                              maskedAccountNumber: String(last4),
-                                              categoryType: "Credit")
-                    })
-        }
-    }
-    
+    //TODO: Remove this once BGE moves to paymentus
     private func addCreditCardSpeedpay(_ creditCard: CreditCard) -> Observable<WalletItemResult> {
         return SpeedpayApi().fetchTokenizedCardNumber(cardNumber: creditCard.cardNumber)
             .flatMap { [weak self] token in
@@ -220,6 +138,7 @@ class MCSWalletService: WalletService {
         }
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     private func addCreditCardMCS(_ creditCard: CreditCard, token: String) -> Observable<WalletItemResult> {
         let parsed = DateFormatter.MMyyyyFormatter.date(from: creditCard.expirationMonth + creditCard.expirationYear)
 
@@ -232,7 +151,7 @@ class MCSWalletService: WalletService {
                       "cvv" : creditCard.securityCode,
                       "expiration_date" : DateFormatter.yyyyMMddFormatter.string(from: parsed!)] as [String: Any]
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "wallet", params: params)
             .map { json in
                 guard let dict = json as? [String: Any],
                     let message = dict["message"] as? String,
@@ -260,23 +179,27 @@ class MCSWalletService: WalletService {
         }
     }
     
-    /// "Add" a wallet item to MCS - This should be called after
-    /// adding a wallet item through a third party (Fiserv/Speedpay)
-    ///
-    /// - Parameters:
-    ///   - accountNumber: the user account number
-    ///   - maskedAccountNumber: the masked (last 4 digits) of the wallet item account number
-    ///   - categoryType: the payment category type that was added.
-    private func addWalletItemMCS(accountNumber: String, maskedAccountNumber: String, categoryType: String) {
-        let params: [String: Any] = ["account_number" : accountNumber,
-                                     "masked_wallet_item_acc_num" : maskedAccountNumber,
-                                     "payment_category_type" : categoryType]
+    func addWalletItemMCS(_ walletItem: WalletItem) {
+        let params: [String: Any] = ["account_number": AccountsStore.shared.currentAccount.accountNumber,
+                                     "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
+                                     "payment_category_type": walletItem.bankOrCard == .bank ? "check" : "credit"]
         
-        MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
-            .subscribe()
-            .disposed(by: disposeBag)
+        /* We don't dispose this observable because we want the request to live on
+         * even after we've popped the PaymentusFormViewController */
+        _ = MCSApi.shared.post(pathPrefix: .auth, path: "wallet", params: params).subscribe()
     }
     
+    func updateWalletItemMCS(_ walletItem: WalletItem) {
+        let params: [String: Any] = ["account_number": AccountsStore.shared.currentAccount.accountNumber,
+                                     "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
+                                     "payment_category_type": walletItem.bankOrCard == .bank ? "check" : "credit"]
+        
+        /* We don't dispose this observable because we want the request to live on
+         * even after we've popped the PaymentusFormViewController */
+        _ = MCSApi.shared.put(pathPrefix: .auth, path: "wallet", params: params).subscribe()
+    }
+    
+    //TODO: Remove this once BGE moves to paymentus
     func updateCreditCard(walletItemID: String,
                           customerNumber: String,
                           expirationMonth: String,
@@ -285,12 +208,7 @@ class MCSWalletService: WalletService {
                           postalCode: String) -> Observable<Void> {
         switch Environment.shared.opco {
         case .comEd, .peco:
-            return updateFiservCreditCard(walletItemID: walletItemID,
-                                          customerNumber: customerNumber,
-                                          expirationMonth: expirationMonth,
-                                          expirationYear: expirationYear,
-                                          securityCode: securityCode,
-                                          postalCode: postalCode)
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         case .bge:
             return updateMCSCreditCard(walletItemID: walletItemID,
                                        expirationMonth: expirationMonth,
@@ -301,6 +219,7 @@ class MCSWalletService: WalletService {
         
     }
     
+    //TODO: Remove this once BGE moves to paymentus
     private func updateMCSCreditCard(walletItemID: String,
                                      expirationMonth: String,
                                      expirationYear: String,
@@ -316,7 +235,7 @@ class MCSWalletService: WalletService {
             params["expiration_date"] = DateFormatter.yyyyMMddFormatter.string(from: parsed)
         }
         
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "wallet", params: params)
             .mapTo(())
             .catchError { error in
                 let serviceError = error as? ServiceError ?? ServiceError(cause: error)
@@ -336,106 +255,38 @@ class MCSWalletService: WalletService {
         }
     }
     
-    private func updateFiservCreditCard(walletItemID: String,
-                                        customerNumber: String,
-                                        expirationMonth: String,
-                                        expirationYear: String,
-                                        securityCode: String,
-                                        postalCode: String) -> Observable<Void> {
-        
-        var params: [String: Any] = [:]
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            params["biller_id"] = "\(Environment.shared.opco.rawValue)Registered"
-        case .bge:
-            break
-        }
-        
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/query", params: params)
-            .flatMap { json -> Observable<WalletItemResult> in
-                guard let dict = json as? [String: Any],
-                    let token = dict["authSessionToken"] as? String else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.localError.rawValue,
-                                           serviceMessage: "An authentication error has occurred.")
-                }
-                
-                return FiservApi().updateCreditCard(walletItemID: walletItemID,
-                                                    expirationMonth: expirationMonth,
-                                                    expirationYear: expirationYear,
-                                                    securityCode: securityCode,
-                                                    postalCode: postalCode,
-                                                    token: token,
-                                                    customerNumber: customerNumber)
-            }
-            .mapTo(())
-            .do(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                // Send the PUT request to auth_\(MCSApi.API_VERSION)/wallet so that emails get sent out - ignoring whether it succeeds to fails
-                self.updateMCSCreditCard(walletItemID: walletItemID,
-                                         expirationMonth: expirationMonth,
-                                         expirationYear: expirationYear,
-                                         securityCode: securityCode,
-                                         postalCode: postalCode)
-                    .subscribe()
-                    .disposed(by: self.disposeBag)
-            })
-    }
-        
-    func updateMCSBankAccount(walletItemID: String,
-                              bankAccountNumber: String,
-                              routingNumber: String,
-                              accountType: BankAccountType,
-                              nickname: String?,
-                              accountName: String?) -> Observable<Void> {
-        var params = ["wallet_item_id": walletItemID,
-                      "account_number": AccountsStore.shared.accounts[0].accountNumber,
-                      "routing_number": routingNumber,
-                      "bank_account_type": accountType.rawValue,
-                      "bank_account_number": bankAccountNumber] as [String : Any]
-        
-        if(!(nickname ?? "").isEmpty) {
-            params["account_nick_name"] = nickname
-        }
-        if(!(accountName ?? "").isEmpty) {
-            params["bank_account_name"] = accountName
-        }
-        
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/wallet", params: params)
-            .mapTo(())
-    }
-    
     func deletePaymentMethod(walletItem : WalletItem) -> Observable<Void> {
         var params = ["account_number": AccountsStore.shared.accounts[0].accountNumber,
+                      "masked_wallet_item_acc_num": walletItem.maskedWalletItemAccountNumber ?? "",
                       "wallet_item_id": walletItem.walletItemID ?? ""] as [String: Any]
         
         let opCo = Environment.shared.opco
         if opCo == .comEd || opCo == .peco {
             params["biller_id"] = "\(opCo.rawValue)Registered"
-            params["payment_category_type"] = walletItem.paymentCategoryType?.rawValue
+            params["payment_category_type"] = walletItem.bankOrCard == .bank ? "check" : "credit"
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/wallet/delete", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "wallet/delete", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())
             })
-            .catchError { err in
-                guard let error = err as? ServiceError else {
-                    throw ServiceError(cause: err)
-                }
-                
-                if let fiservError = FiservErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceMessage: fiservError.text)
-                } else if let speedpayError = SpeedpayErrorMapper.shared.getError(message: error.errorDescription ?? "", context: nil) {
-                    throw ServiceError(serviceMessage: speedpayError.text)
-                } else {
-                    if error.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                        throw err
+            .catchError { error in
+                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                if Environment.shared.opco == .bge {
+                    if let speedpayError = SpeedpayErrorMapper.shared.getError(message: serviceError.errorDescription ?? "", context: nil) {
+                        throw ServiceError(serviceMessage: speedpayError.text)
                     } else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                            throw serviceError
+                        } else {
+                            throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue)
+                        }
                     }
+                } else {
+                    throw serviceError
                 }
-        }
+            }
     }
     
     func setOneTouchPayItem(walletItemId: String, walletId: String?, customerId: String) -> Observable<Void> {
@@ -443,7 +294,7 @@ class MCSWalletService: WalletService {
                       "wallet_id":walletId ?? "",
                       "person_id":customerId]
         
-        return MCSApi.shared.put(path: "auth_\(MCSApi.API_VERSION)/wallet/default", params: params)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "wallet/default", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())
@@ -451,10 +302,45 @@ class MCSWalletService: WalletService {
     }
     
     func removeOneTouchPayItem(customerId: String) -> Observable<Void> {
-        return MCSApi.shared.delete(path: "auth_\(MCSApi.API_VERSION)/wallet/default/\(customerId)", params: nil)
+        return MCSApi.shared.delete(pathPrefix: .auth, path: "wallet/default/\(customerId)", params: nil)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.defaultWalletItemUpdated.onNext(())
             })
+    }
+    
+    func fetchWalletEncryptionKey(customerId: String,
+                                  bankOrCard: BankOrCard,
+                                  temporary: Bool,
+                                  isWalletEmpty: Bool,
+                                  walletItemId: String? = nil) -> Observable<String> {
+        var params = [
+            "pmCategory": bankOrCard == .bank ? "DD" : "CC", // "DC" = Debit Card
+            "postbackUrl": "",
+        ]
+        
+        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=\(Environment.shared.paymentusUrl);"
+        if temporary {
+            strParam += "nickname=false;primaryPM=false;"
+        } else {
+            if isWalletEmpty { // If wallet is empty, hide the default checkbox because Paymentus automatically sets first wallet items as default
+                strParam += "primaryPM=false;"
+            }
+            params["ownerId"] = customerId
+        }
+        params["strParam"] = strParam
+        
+        if let wid = walletItemId { // Indicates that this is an edit operation (as opposed to an add)
+            params["wallet_item_id"] = wid
+        }
+        
+        return MCSApi.shared.post(pathPrefix: .auth, path: "encryptionkey", params: params)
+            .map { json in
+                guard let token = json as? String else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
+                return token
+            }
     }
 }

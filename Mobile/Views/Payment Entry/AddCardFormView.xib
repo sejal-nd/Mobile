@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -66,14 +66,14 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="Jf5-Cm-B8R"/>
                                     </constraints>
                                 </view>
-                                <imageView verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CEX-bi-tO6">
+                                <imageView verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CEX-bi-tO6">
                                     <rect key="frame" x="17" y="25" width="30" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="PDu-WQ-es2"/>
                                         <constraint firstAttribute="height" constant="25" id="Sbl-FA-6kI"/>
                                     </constraints>
                                 </imageView>
-                                <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IpC-qo-H8o">
+                                <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpC-qo-H8o">
                                     <rect key="frame" x="272" y="8" width="1" height="44"/>
                                     <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -81,7 +81,7 @@
                                         <constraint firstAttribute="height" constant="44" id="TMi-iP-qxo"/>
                                     </constraints>
                                 </view>
-                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ckd-So-G6Z">
+                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ckd-So-G6Z">
                                     <rect key="frame" x="273" y="8" width="44" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="7oc-KT-Z3n"/>
@@ -111,21 +111,21 @@
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljP-0Y-qxX" userLabel="Expiration Date View">
                             <rect key="frame" x="29" y="192.5" width="317" height="99"/>
                             <subviews>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Expiration Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZw-2E-5Jx">
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZw-2E-5Jx">
                                     <rect key="frame" x="0.0" y="0.0" width="116.5" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0b-el-Kxw" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="38.5" width="129" height="60.5"/>
+                                    <rect key="frame" x="0.0" y="38.5" width="129" height="60"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="129" id="OA8-lZ-jxd"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="ZuM-Jk-nnB"/>
                                     </constraints>
                                 </view>
-                                <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khG-s2-840" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khG-s2-840" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="141" y="38.5" width="129" height="60"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -159,8 +159,8 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="cGa-pr-rzf"/>
                                     </constraints>
                                 </view>
-                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-fs-UTH">
-                                    <rect key="frame" x="78" y="4" width="51" height="51"/>
+                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-fs-UTH">
+                                    <rect key="frame" x="78" y="4.5" width="51" height="51"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="51" id="Ehy-sY-why"/>
                                         <constraint firstAttribute="width" constant="51" id="zhe-C8-JGR"/>
@@ -170,7 +170,7 @@
                                         <action selector="onCVVTooltipPress" destination="-1" eventType="touchUpInside" id="sez-qn-Tga"/>
                                     </connections>
                                 </button>
-                                <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oxa-yP-ppg" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
+                                <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oxa-yP-ppg" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                     <rect key="frame" x="141" y="0.0" width="172" height="60"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -196,15 +196,15 @@
                         <stackView verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="lR0-wB-1Uc">
                             <rect key="frame" x="29" y="424.5" width="317" height="97"/>
                             <subviews>
-                                <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-pl-XhC">
+                                <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-pl-XhC">
                                     <rect key="frame" x="0.0" y="0.0" width="317" height="50"/>
                                     <subviews>
-                                        <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAK-U0-5tb" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                        <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAK-U0-5tb" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="9.5" width="51" height="31"/>
                                             <accessibility key="accessibilityConfiguration" label="Save to my wallet"/>
                                         </switch>
-                                        <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Save to My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijN-0B-mFw">
-                                            <rect key="frame" x="61" y="0.5" width="256" height="19.5"/>
+                                        <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save to My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijN-0B-mFw">
+                                            <rect key="frame" x="61" y="0.0" width="256" height="50"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
@@ -223,7 +223,7 @@
                                         <constraint firstItem="ijN-0B-mFw" firstAttribute="leading" secondItem="RAK-U0-5tb" secondAttribute="trailing" constant="12" id="pmo-n4-05I"/>
                                     </constraints>
                                 </view>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="By not saving this payment account, you will only be eligible to make an instant payment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOP-DP-Vy2">
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By not saving this payment method, you will only be eligible to make an instant payment." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOP-DP-Vy2">
                                     <rect key="frame" x="0.0" y="64" width="317" height="33"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
@@ -241,18 +241,18 @@
                         <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJq-aU-YbT" userLabel="One Touch Pay View">
                             <rect key="frame" x="29" y="654" width="317" height="89"/>
                             <subviews>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Set this payment account as default to easily pay from the Home and Bill screens." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-DR-Zk8">
-                                    <rect key="frame" x="0.0" y="0.0" width="317" height="28"/>
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set this payment method as default to easily pay from the Home and Bill screens." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yp-DR-Zk8">
+                                    <rect key="frame" x="0.0" y="0.0" width="317" height="33.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-US-KMn" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="53" width="51" height="31"/>
-                                    <accessibility key="accessibilityConfiguration" label="Default payment account"/>
+                                <switch verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ifa-US-KMn" customClass="Switch" customModule="BGE" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="58.5" width="51" height="31"/>
+                                    <accessibility key="accessibilityConfiguration" label="Default payment method"/>
                                 </switch>
-                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Default Payment Account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-D9-9Ct">
-                                    <rect key="frame" x="61" y="59" width="256" height="19.5"/>
+                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Payment Method" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8l-D9-9Ct">
+                                    <rect key="frame" x="61" y="64" width="256" height="19.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>

@@ -1,6 +1,0 @@
-framework module Pods_ComEdUITests {
-  umbrella header "Pods-ComEdUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -93,11 +93,11 @@ class AddBankAccountViewModel {
         if let item = oneTouchPayItem {
             switch item.bankOrCard {
             case .bank:
-                return String(format: NSLocalizedString("You are currently using bank account %@ as your default payment account.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                return String(format: NSLocalizedString("You are currently using bank account %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
             case .card:
-                return String(format: NSLocalizedString("You are currently using card %@ as your default payment account.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
+                return String(format: NSLocalizedString("You are currently using card %@ as your default payment method.", comment: ""), "**** \(item.maskedWalletItemAccountNumber!)")
             }
         }
-        return NSLocalizedString("Set this payment account as default to easily pay from the Home and Bill screens.", comment: "")
+        return NSLocalizedString("Set this payment method as default to easily pay from the Home and Bill screens.", comment: "")
     }
 }

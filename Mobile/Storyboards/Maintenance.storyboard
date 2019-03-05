@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="emJ-sh-7g1">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="emJ-sh-7g1">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,36 +23,36 @@
                         <viewControllerLayoutGuide type="bottom" id="BlZ-mU-8sJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wU4-Bc-zL5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0W-zM-Af5">
-                                <rect key="frame" x="0.0" y="64" width="320" height="936"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZe-n8-O6q" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="667.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oar-PX-3sy" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="78" width="262" height="581.5"/>
+                                                <rect key="frame" x="29" y="78" width="317" height="579"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="ejI-Id-7Io">
-                                                        <rect key="frame" x="-1" y="20" width="263" height="80"/>
+                                                        <rect key="frame" x="54" y="20" width="263" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="5cb-LQ-Z00"/>
                                                             <constraint firstAttribute="width" constant="263" id="xq7-cC-ux7"/>
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="VcL-AS-HfY" userLabel="Reload View" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="92" y="127" width="78.5" height="22"/>
+                                                        <rect key="frame" x="119.33333333333334" y="127" width="78.666666666666657" height="22"/>
                                                         <subviews>
                                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5hD-gP-UEs">
-                                                                <rect key="frame" x="0.0" y="0.0" width="78.5" height="22"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="22"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_reload" translatesAutoresizingMaskIntoConstraints="NO" id="0j4-df-xqf" userLabel="Reload Image">
                                                                         <rect key="frame" x="0.0" y="0.0" width="18" height="22"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Reload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kev-wR-SyM" userLabel="Reload Label">
-                                                                        <rect key="frame" x="26" y="1" width="52.5" height="20.5"/>
+                                                                        <rect key="frame" x="25.999999999999996" y="1" width="52.666666666666657" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -76,27 +75,22 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKd-gP-q76">
-                                                        <rect key="frame" x="0.0" y="173" width="262" height="384.5"/>
+                                                        <rect key="frame" x="0.0" y="173" width="317" height="382"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-2M-LHc" userLabel="Main Stack">
-                                                                <rect key="frame" x="22" y="28" width="218" height="341.5"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6iq-2M-LHc" userLabel="Main Stack">
+                                                                <rect key="frame" x="22" y="30" width="273" height="312"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bV4-kB-3pq" userLabel="Title and Image Stack">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="218" height="84"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" restorationIdentifier="Heading" text="The BGE App is currently unavailable due to scheduled maintenance." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iY-Ll-WFa">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="130" height="84"/>
-                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_maintenancemode_overall" translatesAutoresizingMaskIntoConstraints="NO" id="YD8-MU-XS4">
-                                                                                <rect key="frame" x="138" y="1.5" width="80" height="81"/>
-                                                                            </imageView>
-                                                                        </subviews>
-                                                                    </stackView>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_maint_mode_all" translatesAutoresizingMaskIntoConstraints="NO" id="YD8-MU-XS4">
+                                                                        <rect key="frame" x="98.666666666666657" y="0.0" width="76" height="50"/>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="750" verticalCompressionResistancePriority="999" restorationIdentifier="Heading" text="The BGE App is currently unavailable due to maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iY-Ll-WFa">
+                                                                        <rect key="frame" x="8.3333333333333428" y="66" width="256.66666666666663" height="33.666666666666657"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-2z-TTf" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="94" width="218" height="130.5"/>
+                                                                        <rect key="frame" x="0.0" y="115.66666666666669" width="273" height="114.33333333333331"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <string key="text">If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123 
 
@@ -105,44 +99,34 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     </textView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ud4-bu-ibZ">
-                                                                        <rect key="frame" x="0.0" y="234.5" width="218" height="107"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Representatives are available 24 hours a day, 7 days a week." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fP-UW-M2y">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="218" height="33"/>
-                                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wt4-D4-g0s" userLabel="Divider">
-                                                                                <rect key="frame" x="0.0" y="45" width="218" height="1"/>
-                                                                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="1" id="Cwv-5g-rTu"/>
-                                                                                </constraints>
-                                                                            </view>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" text="For all other inquiries, please call 1-800-685-0123 M-F 7AM to 7PM" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-X4-R8B" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="58" width="218" height="49"/>
-                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                            </textView>
-                                                                        </subviews>
-                                                                    </stackView>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wt4-D4-g0s" userLabel="Divider">
+                                                                        <rect key="frame" x="0.0" y="246" width="273" height="1"/>
+                                                                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="1" id="Cwv-5g-rTu"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" text="For all other inquiries, please call 1-800-685-0123 M-F 7AM to 7PM" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-X4-R8B" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="263" width="273" height="49"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                    </textView>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="Ud4-bu-ibZ" secondAttribute="bottom" id="Uuu-4E-V5w"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Ud4-bu-ibZ" secondAttribute="trailing" id="jOe-7x-Rok"/>
+                                                                    <constraint firstItem="Wt4-D4-g0s" firstAttribute="leading" secondItem="6iq-2M-LHc" secondAttribute="leading" id="IMB-x8-yRh"/>
+                                                                    <constraint firstItem="SEK-X4-R8B" firstAttribute="leading" secondItem="6iq-2M-LHc" secondAttribute="leading" id="J9f-c8-ZDD"/>
+                                                                    <constraint firstItem="GuV-2z-TTf" firstAttribute="leading" secondItem="6iq-2M-LHc" secondAttribute="leading" id="kJH-Oe-mRz"/>
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="6iq-2M-LHc" secondAttribute="bottom" constant="15" id="Hk0-HM-4IT"/>
+                                                            <constraint firstAttribute="bottom" secondItem="6iq-2M-LHc" secondAttribute="bottom" constant="40" id="Hk0-HM-4IT"/>
                                                             <constraint firstItem="6iq-2M-LHc" firstAttribute="leading" secondItem="nKd-gP-q76" secondAttribute="leading" constant="22" id="Sff-gk-Zt1"/>
                                                             <constraint firstAttribute="trailing" secondItem="6iq-2M-LHc" secondAttribute="trailing" constant="22" id="ZLh-Va-Xkl"/>
-                                                            <constraint firstItem="6iq-2M-LHc" firstAttribute="top" secondItem="nKd-gP-q76" secondAttribute="top" constant="28" id="ddC-5w-qzB"/>
+                                                            <constraint firstItem="6iq-2M-LHc" firstAttribute="top" secondItem="nKd-gP-q76" secondAttribute="top" constant="30" id="ddC-5w-qzB"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -165,6 +149,8 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oar-PX-3sy" secondAttribute="trailing" constant="29" id="Cqo-o4-gSK"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="oar-PX-3sy" secondAttribute="bottom" id="L2v-p4-SGO"/>
+                                            <constraint firstItem="oar-PX-3sy" firstAttribute="leading" secondItem="NZe-n8-O6q" secondAttribute="leading" priority="999" constant="29" id="QwW-sA-uOx"/>
+                                            <constraint firstAttribute="trailing" secondItem="oar-PX-3sy" secondAttribute="trailing" priority="999" constant="29" id="VA4-KI-8SS"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NZe-n8-O6q" secondAttribute="leading" constant="29" id="cgE-lZ-6n7"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="top" secondItem="NZe-n8-O6q" secondAttribute="topMargin" constant="70" id="fXi-A3-K6f"/>
                                             <constraint firstItem="oar-PX-3sy" firstAttribute="centerX" secondItem="NZe-n8-O6q" secondAttribute="centerX" id="xca-qf-GCg"/>
@@ -189,14 +175,10 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                             <constraint firstItem="N0W-zM-Af5" firstAttribute="leading" secondItem="wU4-Bc-zL5" secondAttribute="leading" id="yUa-k0-Wmh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="7Pi-wa-lIn"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="1000"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="BGEInquiriesLabel" destination="SEK-X4-R8B" id="ATq-ic-ZD5"/>
-                        <outlet property="BGEStackView" destination="Ud4-bu-ibZ" id="liV-tP-2wR"/>
                         <outlet property="bodyLabel" destination="GuV-2z-TTf" id="OvM-Pg-9UK"/>
+                        <outlet property="footerTextView" destination="SEK-X4-R8B" id="xHz-hW-imp"/>
                         <outlet property="headerLabel" destination="3iY-Ll-WFa" id="6KF-PY-29u"/>
                         <outlet property="maintenanceModeBody" destination="nKd-gP-q76" id="AUO-TB-nNg"/>
                         <outlet property="opcoLogo" destination="ejI-Id-7Io" id="3sl-Bb-rt5"/>
@@ -211,7 +193,7 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
         </scene>
     </scenes>
     <resources>
-        <image name="ic_maintenancemode_overall" width="80" height="81"/>
+        <image name="ic_maint_mode_all" width="76" height="50"/>
         <image name="ic_reload" width="18" height="22"/>
         <image name="img_logo_white" width="251" height="80"/>
     </resources>

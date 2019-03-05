@@ -51,7 +51,7 @@ struct MockAuthenticationService: AuthenticationService {
         }
     }
     
-    func getMaintenanceMode() -> Observable<Maintenance> {
+    func getMaintenanceMode(postNotification: Bool) -> Observable<Maintenance> {
         switch MockData.shared.username {
         case "maintAll":
             return .just(Maintenance(all: true))

@@ -9,12 +9,12 @@
 import Foundation
 
 /// Utility class for intantiating Service Instances
-class ServiceFactory {
+struct ServiceFactory {
 
     static let sharedOutageService = MCSOutageService()
     static let sharedMockOutageService = MockOutageService()
 
-    class func createAuthenticationService() -> AuthenticationService {
+    static func createAuthenticationService() -> AuthenticationService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockAuthenticationService()
@@ -23,11 +23,11 @@ class ServiceFactory {
         }
     }
 
-    class func createBiometricsService() -> BiometricsService {
+    static func createBiometricsService() -> BiometricsService {
         return BiometricsService()
     }
 
-    class func createAccountService() -> AccountService {
+    static func createAccountService() -> AccountService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockAccountService()
@@ -36,7 +36,7 @@ class ServiceFactory {
         }
     }
 
-    class func createOutageService() -> OutageService {
+    static func createOutageService() -> OutageService {
         switch Environment.shared.environmentName {
         case .aut:
             return sharedMockOutageService
@@ -45,7 +45,7 @@ class ServiceFactory {
         }
     }
 
-    class func createBillService() -> BillService {
+    static func createBillService() -> BillService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockBillService()
@@ -54,7 +54,7 @@ class ServiceFactory {
         }
     }
 
-    class func createWalletService() -> WalletService {
+    static func createWalletService() -> WalletService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockWalletService()
@@ -63,7 +63,7 @@ class ServiceFactory {
         }
     }
 
-    class func createRegistrationService() -> RegistrationService {
+    static func createRegistrationService() -> RegistrationService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockRegistrationService()
@@ -72,7 +72,7 @@ class ServiceFactory {
         }
     }
 
-    class func createPaymentService() -> PaymentService {
+    static func createPaymentService() -> PaymentService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockPaymentService()
@@ -81,20 +81,20 @@ class ServiceFactory {
         }
     }
 
-    class func createWeatherService() -> WeatherService {
-        return WeatherAPI()
+    static func createWeatherService() -> WeatherService {
+        return WeatherApi()
     }
 
-    class func createUsageService() -> UsageService {
+    static func createUsageService(useCache: Bool) -> UsageService {
         switch Environment.shared.environmentName {
         case .aut:
-            return MockUsageService()
+            return MockUsageService(useCache: useCache)
         default:
-            return MCSUsageService()
+            return MCSUsageService(useCache: useCache)
         }
     }
 
-    class func createAlertsService() -> AlertsService {
+    static func createAlertsService() -> AlertsService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockAlertsService()
@@ -102,12 +102,12 @@ class ServiceFactory {
             return MCSAlertsService()
         }
     }
-    
-    class func createPeakRewardsService() -> PeakRewardsService {
+
+    static func createPeakRewardsService() -> PeakRewardsService {
         return MCSPeakRewardsService()
     }
-    
-    class func createAppointmentService() -> AppointmentService {
+
+    static func createAppointmentService() -> AppointmentService {
         switch Environment.shared.environmentName {
         case .aut:
             return MockAppointmentService()

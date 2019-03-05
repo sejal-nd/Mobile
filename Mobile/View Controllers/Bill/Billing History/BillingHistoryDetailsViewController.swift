@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class BillingHistoryDetailsViewController: UIViewController {
 
@@ -72,15 +73,18 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         title = NSLocalizedString("Payment Details", comment: "")
         
-        viewModel = BillingHistoryDetailsViewModel.init(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
+        viewModel = BillingHistoryDetailsViewModel(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
         
         formatViews()
         styleViews()
         bindLoadingStates()
         
-        viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
-            UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
-        })
+        // We may be able to restore this for ComEd/PECO with ePay R2
+        if Environment.shared.opco == .bge {
+            viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
+                UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
+            })
+        }
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +94,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func formatViews() {
-        if !viewModel.isBGE {
+        if Environment.shared.opco != .bge {
             paymentTypeView.isHidden = true
             paymentTypeLabel.isAccessibilityElement = false
             paymentTypeSeparatorLine.isHidden = true
@@ -207,7 +211,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         viewModel.convenienceFee.drive(convenienceFeeDetailsLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountPaid.drive(totalAmountPaidDetailsLabel.rx.text).disposed(by: bag)
         
-        paymentStatusDetailsLabel.text = viewModel.paymentStatus.capitalized
+        paymentStatusDetailsLabel.text = viewModel.paymentStatus
         confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
 
     }

@@ -12,15 +12,18 @@ import Mapper
 struct PaymentDetails: Mappable {
     let amount: Double
     let date: Date
+    let confirmationNumber: String
     
     init(map: Mapper) throws {
         amount = try map.from("amount")
         date = try map.from("date", transformation: DateParser().extractDate)
+        confirmationNumber = try map.from("confirmationNumber")
     }
     
-    init(amount: Double, date: Date) {
+    init(amount: Double, date: Date, confirmationNumber: String) {
         self.amount = amount
         self.date = date
+        self.confirmationNumber = confirmationNumber
     }
 }
 
@@ -70,7 +73,8 @@ class RecentPaymentsStore {
             if let paymentDetails = newValue {
                 paymentDetailsDictionary[account.accountNumber] = [
                     "amount": paymentDetails.amount,
-                    "date": paymentDetails.date.apiFormatString
+                    "date": paymentDetails.date.apiFormatString,
+                    "confirmationNumber": paymentDetails.confirmationNumber
                 ]
                 UserDefaults.standard.set(paymentDetailsDictionary, forKey: UserDefaultKeys.paymentDetailsDictionary)
             } else {

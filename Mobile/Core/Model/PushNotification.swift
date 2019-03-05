@@ -6,6 +6,8 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
+
 class PushNotification: NSObject, NSCoding {
     
     struct Keys {

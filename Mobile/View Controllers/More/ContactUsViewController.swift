@@ -19,6 +19,11 @@ class ContactUsViewController: UIViewController {
     
     @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+    @IBOutlet weak var bgeOnlyStackView: UIStackView!
+    @IBOutlet weak var bgeGasNumber1TextView: DataDetectorTextView!
+    @IBOutlet weak var bgeGasNumber2TextView: DataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber1TextView: DataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber2TextView: DataDetectorTextView!
     
     @IBOutlet weak var submitFormButton: UIButton!
     @IBOutlet weak var onlineDescriptionLabel: UILabel!
@@ -35,7 +40,7 @@ class ContactUsViewController: UIViewController {
     @IBOutlet var dividerLines: [UIView]!
     @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
     
-    let contactUsViewModel = ContactUsViewModel()
+    let viewModel = ContactUsViewModel()
     
     let bag = DisposeBag()
     
@@ -72,23 +77,50 @@ class ContactUsViewController: UIViewController {
     }
     
     func emergencySetup() {
-        emergencyNumberTextView.text = contactUsViewModel.phoneNumber1
+        emergencyNumberTextView.text = viewModel.phoneNumber1
         emergencyNumberTextView.textContainerInset = .zero
+        emergencyNumberTextView.textContainer.lineFragmentPadding = 0
         emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         emergencyNumberTextView.linkTapDelegate = self
         
+        if Environment.shared.opco == .bge {
+            emergencyNumberTextView.isHidden = true
+        } else {
+            bgeOnlyStackView.isHidden = true
+        }
+        bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
+        bgeGasNumber1TextView.textContainerInset = .zero
+        bgeGasNumber1TextView.textContainer.lineFragmentPadding = 0
+        bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgeGasNumber1TextView.linkTapDelegate = self
+        bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
+        bgeGasNumber2TextView.textContainerInset = .zero
+        bgeGasNumber2TextView.textContainer.lineFragmentPadding = 0
+        bgeGasNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgeGasNumber2TextView.linkTapDelegate = self
+        bgePowerLineNumber1TextView.text = viewModel.bgePowerLineNumber1
+        bgePowerLineNumber1TextView.textContainerInset = .zero
+        bgePowerLineNumber1TextView.textContainer.lineFragmentPadding = 0
+        bgePowerLineNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgePowerLineNumber1TextView.linkTapDelegate = self
+        bgePowerLineNumber2TextView.text = viewModel.bgePowerLineNumber2
+        bgePowerLineNumber2TextView.textContainerInset = .zero
+        bgePowerLineNumber2TextView.textContainer.lineFragmentPadding = 0
+        bgePowerLineNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
+        bgePowerLineNumber2TextView.linkTapDelegate = self
+
         emergencyDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        emergencyDescriptionLabel.attributedText = contactUsViewModel.emergencyAttrString
+        emergencyDescriptionLabel.attributedText = viewModel.emergencyAttrString
     }
     
     func onlineSetup() {
         submitFormButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 Analytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
                 
-                let safariVC = SFSafariViewController.createWithCustomStyle(url: self.contactUsViewModel.onlineFormUrl)
+                let safariVC = SFSafariViewController.createWithCustomStyle(url: self.viewModel.onlineFormUrl)
                 self.present(safariVC, animated: true, completion: nil)
             })
             .disposed(by: bag)
@@ -98,30 +130,33 @@ class ContactUsViewController: UIViewController {
     
     func customerServiceSetup() {
         firstLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        firstLabel.text = contactUsViewModel.label1
-        firstNumberTextView.text = contactUsViewModel.phoneNumber2
+        firstLabel.text = viewModel.label1
+        firstNumberTextView.text = viewModel.phoneNumber2
         firstNumberTextView.textContainerInset = .zero
+        firstNumberTextView.textContainer.lineFragmentPadding = 0
         firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         firstNumberTextView.linkTapDelegate = self
         
-        if let label2 = contactUsViewModel.label2,
-            let phoneNumber3 = contactUsViewModel.phoneNumber3 {
+        if let label2 = viewModel.label2,
+            let phoneNumber3 = viewModel.phoneNumber3 {
             secondLabel.font = OpenSans.regular.of(textStyle: .subheadline)
             secondLabel.text = label2
             secondNumberTextView.text = phoneNumber3
             secondNumberTextView.textContainerInset = .zero
+            secondNumberTextView.textContainer.lineFragmentPadding = 0
             secondNumberTextView.tintColor = .actionBlue // Color of the phone numbers
             secondNumberTextView.linkTapDelegate = self
         } else {
             secondStack.isHidden = true
         }
         
-        if let label3 = contactUsViewModel.label3,
-            let phoneNumber4 = contactUsViewModel.phoneNumber4 {
+        if let label3 = viewModel.label3,
+            let phoneNumber4 = viewModel.phoneNumber4 {
             thirdLabel.font = OpenSans.regular.of(textStyle: .subheadline)
             thirdLabel.text = label3
             thirdNumberTextView.text = phoneNumber4
             thirdNumberTextView.textContainerInset = .zero
+            thirdNumberTextView.textContainer.lineFragmentPadding = 0
             thirdNumberTextView.tintColor = .actionBlue // Color of the phone numbers
             thirdNumberTextView.linkTapDelegate = self
         } else {
@@ -131,7 +166,7 @@ class ContactUsViewController: UIViewController {
     
     func socialMediaButtonsSetup() {
         // create buttons
-        var buttons: [UIView] = contactUsViewModel.buttonInfoList
+        var buttons: [UIView] = viewModel.buttonInfoList
             .map { (urlString, image, accessibilityLabel) -> UIButton in
                 let button = UIButton(type: .custom)
                 button.accessibilityLabel = accessibilityLabel
@@ -187,14 +222,19 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         let screenName: AnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
         var dimensionValue: String?
         
-        if textView == emergencyNumberTextView {
+        switch textView {
+        case emergencyNumberTextView, bgeGasNumber1TextView,
+             bgeGasNumber2TextView, bgePowerLineNumber1TextView,
+             bgePowerLineNumber2TextView:
             dimensionValue = "Emergency"
-        } else if textView == firstNumberTextView {
+        case firstNumberTextView:
             dimensionValue = "Residential"
-        } else if textView == secondNumberTextView {
+        case secondNumberTextView:
             dimensionValue = "Business"
-        } else if textView == thirdNumberTextView {
+        case thirdNumberTextView:
             dimensionValue = "TTY/TTD"
+        default:
+            dimensionValue = "" // Won't happen
         }
         
         if let value = dimensionValue {

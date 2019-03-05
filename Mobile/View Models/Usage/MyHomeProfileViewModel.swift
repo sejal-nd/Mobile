@@ -111,7 +111,7 @@ class MyHomeProfileViewModel {
         .do(onNext: { Analytics.log(event: .homeProfileSave) })
         .withLatestFrom(self.updatedHomeProfile)
         .flatMapLatest { [weak self] updatedHomeProfile -> Observable<Event<Void>> in
-            guard let `self` = self else { return .empty() }
+            guard let self = self else { return .empty() }
             return self.usageService.updateHomeProfile(accountNumber: self.accountDetail.accountNumber,
                                                        premiseNumber: self.accountDetail.premiseNumber!,
                                                        homeProfile: updatedHomeProfile)

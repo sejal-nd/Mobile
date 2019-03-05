@@ -59,109 +59,22 @@ class WalletViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
     }
     
-    func testCreditCardLimitReached() {
-        if Environment.shared.opco == .bge {
-            var walletItems = [WalletItem]()
-            for _ in 0..<100 {
-                walletItems.append(WalletItem(bankOrCard: .card))
-            }
-            viewModel.walletItems.value = walletItems
-            viewModel.creditCardLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "BGE has no credit card limit - should always return false")
-            }).disposed(by: disposeBag)
-        } else { // ComEd/PECO have a 3 card limit
-            viewModel.creditCardLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "creditCardLimitReached should be false initially")
-            }).disposed(by: disposeBag)
-            
-            viewModel.walletItems.value = []
-            viewModel.creditCardLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "creditCardLimitReached should be false with empty walletItems array")
-            }).disposed(by: disposeBag)
-            
-            viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card), WalletItem(bankOrCard: .card)]
-            viewModel.creditCardLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "creditCardLimitReached should be false with only 2 credit cards")
-            }).disposed(by: disposeBag)
-            
-            viewModel.walletItems.value = [WalletItem(bankOrCard: .card), WalletItem(bankOrCard: .card), WalletItem(bankOrCard: .card), WalletItem(bankOrCard: .bank)]
-            viewModel.creditCardLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssert(limitReached, "creditCardLimitReached should be true with 3 credit cards")
-            }).disposed(by: disposeBag)
-        }
-    }
-    
-    func testBankAccountLimitReached() {
-        if Environment.shared.opco == .bge {
-            var walletItems = [WalletItem]()
-            for _ in 0..<100 {
-                walletItems.append(WalletItem(bankOrCard: .bank))
-            }
-            viewModel.walletItems.value = walletItems
-            viewModel.bankAccountLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "BGE has no bank account limit - should always return false")
-            }).disposed(by: disposeBag)
-        } else { // ComEd/PECO have a 3 account limit
-            viewModel.bankAccountLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "bankAccountLimitReached should be false initially")
-            }).disposed(by: disposeBag)
-            
-            viewModel.walletItems.value = []
-            viewModel.bankAccountLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "bankAccountLimitReached should be false with empty walletItems array")
-            }).disposed(by: disposeBag)
-            
-            viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card), WalletItem(bankOrCard: .card)]
-            viewModel.bankAccountLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssertFalse(limitReached, "bankAccountLimitReached should be false with only 2 bank accounts")
-            }).disposed(by: disposeBag)
-            
-            viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card)]
-            viewModel.bankAccountLimitReached.asObservable().take(1).subscribe(onNext: { limitReached in
-                XCTAssert(limitReached, "bankAccountLimitReached should be true with 3 bank accounts")
-            }).disposed(by: disposeBag)
-        }
-    }
-    
     func testAddBankDisabled() {
-        if Environment.shared.opco != .bge {
-            viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card)]
-            viewModel.addBankDisabled.asObservable().take(1).subscribe(onNext: { disabled in
-                XCTAssert(disabled, "addBankDisabled should be true for ComEd/PECO user with 3 bank accounts")
-            }).disposed(by: disposeBag)
-        }
-        
         viewModel.walletItems.value = []
         viewModel.accountDetail = AccountDetail()
-        viewModel.addBankDisabled.asObservable().take(1).subscribe(onNext: { disabled in
-            XCTAssertFalse(disabled, "addBankDisabled should be false for non-cash only users")
-        }).disposed(by: disposeBag)
-        
+        XCTAssertFalse(viewModel.addBankDisabled, "addBankDisabled should be false for non-cash only users")
+
         viewModel.accountDetail = AccountDetail(isCashOnly: true)
-        viewModel.addBankDisabled.asObservable().take(1).subscribe(onNext: { disabled in
-            XCTAssert(disabled, "addBankDisabled should be true for cash only users")
-        }).disposed(by: disposeBag)
+        XCTAssert(viewModel.addBankDisabled, "addBankDisabled should be true for cash only users")
     }
-    
-    func testEmptyStateCreditFeeLabelText() {
-        if Environment.shared.opco == .bge {
-            viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(residentialFee: 2, commercialFee: 5))
-            let expectedStr = "A convenience fee will be applied to your payments. Residential accounts: $2.00. Business accounts: 5%."
-            XCTAssert(viewModel.emptyStateCreditFeeLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.emptyStateCreditFeeLabelText)\"")
-        } else { // ComEd/PECO
-            viewModel.accountDetail = AccountDetail(billingInfo: BillingInfo(convenienceFee: 2))
-            let expectedStr = "A $2.00 convenience fee will be applied\nto your payments."
-            XCTAssert(viewModel.emptyStateCreditFeeLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.emptyStateCreditFeeLabelText)\"")
-        }
-    }
-    
+        
     func testFooterLabelText() {
         let expectedStr: String
         switch Environment.shared.opco {
         case .bge:
             expectedStr = NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         case .comEd, .peco:
-            expectedStr = NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+            expectedStr = NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
         }
         XCTAssert(viewModel.footerLabelText == expectedStr, "Expected \"\(expectedStr)\", got \"\(viewModel.footerLabelText)\"")
     }

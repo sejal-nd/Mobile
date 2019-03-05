@@ -16,6 +16,9 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var clippingView: UIView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var loadingView: UIView!
+    @IBOutlet private weak var errorView: UIView!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
+    @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     
     // Bill Comparison
@@ -97,7 +100,7 @@ class HomeUsageCardView: UIView {
     static func create(withViewModel viewModel: HomeUsageCardViewModel) -> HomeUsageCardView {
         let view = Bundle.main.loadViewFromNib() as HomeUsageCardView
         view.viewModel = viewModel
-        view.smartEnergyRewardsGraphView.viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: viewModel.accountDetailDriver)
+        view.smartEnergyRewardsGraphView.viewModel = SmartEnergyRewardsViewModel(eventResults: viewModel.serResultEvents.elements())
         return view
     }
     
@@ -121,6 +124,12 @@ class HomeUsageCardView: UIView {
         unavailableDescriptionLabel.textColor = .middleGray
         unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
+        
+        errorTitleLabel.textColor = .blackText
+        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        
+        errorLabel.font = OpenSans.regular.of(textStyle: .title1)
+        errorLabel.textAlignment = .center
     }
     
     func superviewDidLayoutSubviews() {
@@ -220,6 +229,18 @@ class HomeUsageCardView: UIView {
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
         maintenanceModeView.isHidden = true
+        errorView.isHidden = true
+    }
+    
+    private func showErrorState() {
+        billComparisonView.isHidden = true
+        billComparisonContentView.isHidden = true
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = true
+        maintenanceModeView.isHidden = true
+        errorView.isHidden = false
     }
     
     private func showSmartEnergyRewards() {
@@ -229,6 +250,7 @@ class HomeUsageCardView: UIView {
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
         maintenanceModeView.isHidden = true
+        errorView.isHidden = true
     }
     
     private func showSmartEnergyRewardsEmptyState() {
@@ -238,6 +260,7 @@ class HomeUsageCardView: UIView {
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
         maintenanceModeView.isHidden = true
+        errorView.isHidden = true
     }
     
     private func showBillComparisonEmptyState() {
@@ -248,6 +271,7 @@ class HomeUsageCardView: UIView {
         billComparisonEmptyStateView.isHidden = false
         unavailableView.isHidden = true
         maintenanceModeView.isHidden = true
+        errorView.isHidden = true
     }
     
     private func showUnavailableState() {
@@ -257,6 +281,7 @@ class HomeUsageCardView: UIView {
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = false
         maintenanceModeView.isHidden = true
+        errorView.isHidden = true
     }
     
     private func showMaintenanceModeState() {
@@ -266,6 +291,7 @@ class HomeUsageCardView: UIView {
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
         maintenanceModeView.isHidden = false
+        errorView.isHidden = true
     }
     
     private func bindViewModel() {
@@ -279,6 +305,10 @@ class HomeUsageCardView: UIView {
         // Bill Comparison vs. SER Show/Hide
         viewModel.showBillComparison
             .drive(onNext: { [weak self] in self?.showContent() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showErrorState
+            .drive(onNext: { [weak self] in self?.showErrorState() })
             .disposed(by: disposeBag)
         
         viewModel.showSmartEnergyRewards
@@ -318,6 +348,11 @@ class HomeUsageCardView: UIView {
             })
             .disposed(by: disposeBag)
         
+        let attributedErrorText = viewModel.errorLabelText.attributedString(textAlignment: .center, lineHeight: 26)
+        errorLabel.attributedText = attributedErrorText
+        let localizedAccessibililtyText = NSLocalizedString("Usage OverView, %@", comment: "")
+        errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, attributedErrorText)
+        
         // Segmented Controls
         viewModel.showElectricGasSegmentedControl.not()
             .drive(segmentedControl.rx.isHidden)
@@ -336,7 +371,7 @@ class HomeUsageCardView: UIView {
         }).disposed(by: disposeBag)
         
         viewModel.billComparisonEvents.subscribe({ [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.moveTriangleTo(barView: self.currentContainerButton)
             
             self.viewModel.setBarSelected(tag: 2)
@@ -373,7 +408,7 @@ class HomeUsageCardView: UIView {
         viewModel.previousBarA11yLabel.drive(previousContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.currentBarA11yLabel.drive(currentContainerButton.rx.accessibilityLabel).disposed(by: disposeBag)
         viewModel.noPreviousData.asObservable().subscribe(onNext: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             var a11yElementArray: [ButtonControl] = []
             if $0 {
                 a11yElementArray.append(self.noDataContainerButton)

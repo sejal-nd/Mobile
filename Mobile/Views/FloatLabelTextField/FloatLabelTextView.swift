@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import JVFloatLabeledText
+import JVFloatLabeledTextField
 import RxSwift
 import RxCocoa
 
@@ -74,7 +74,7 @@ class FloatLabelTextView: UIView {
     
     private func configureStateObservers() {
         textView.rx.didBeginEditing.asObservable().subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.bottomColorBar.backgroundColor = .primaryColor
             self.bottomColorBar.isHidden = false
             self.textFieldIsFocused = true
@@ -82,7 +82,7 @@ class FloatLabelTextView: UIView {
         
         
         textView.rx.didEndEditing.asObservable().subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.textView.hasText {
                 self.bottomColorBar.backgroundColor = .accentGray
                 self.bottomColorBar.isHidden = false
@@ -93,7 +93,7 @@ class FloatLabelTextView: UIView {
         }).disposed(by: disposeBag)
         
         textView.rx.didChange.asObservable().subscribe(onNext: {[weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.enforceCharacterLimit()
             self.updateInfoMessage()
         }).disposed(by: disposeBag)

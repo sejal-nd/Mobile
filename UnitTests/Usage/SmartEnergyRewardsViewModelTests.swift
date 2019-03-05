@@ -16,7 +16,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     var scheduler = TestScheduler(initialClock: 0)
     var viewModel: SmartEnergyRewardsViewModel!
-    var accountDetailSubject = PublishSubject<AccountDetail>()
+    var eventResultsSubject = PublishSubject<[SERResult]>()
     
     lazy var dateFormatter = DateFormatter.mmDdYyyyFormatter
     
@@ -25,7 +25,8 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailSubject.asDriver(onErrorDriveWith: .empty()))
+        //viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailSubject.asDriver(onErrorDriveWith: .empty()))
+        viewModel = SmartEnergyRewardsViewModel(eventResults: eventResultsSubject.asObservable())
     }
     
     private func scheduleBoilerplateEvents() {
@@ -44,16 +45,14 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         ]
         
         let events = [
-            AccountDetail(serInfo: SERInfo()),
-            AccountDetail(serInfo: SERInfo(eventResults: [eventResults2.last!])),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults2)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults4))
-            ]
-            .enumerated()
-            .map(next)
+            [],
+            [eventResults2.last!],
+            eventResults2,
+            eventResults4
+        ].enumerated().map(next)
         
         scheduler.createHotObservable(events)
-            .bind(to: accountDetailSubject)
+            .bind(to: eventResultsSubject)
             .disposed(by: disposeBag)
     }
     
@@ -74,7 +73,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
                 SERResult(eventStart: dateFormatter.date(from: "05/23/2018")!),
                 SERResult(eventStart: dateFormatter.date(from: "06/23/2018")!)
             ]
-            ]
+        ]
         
         let observer = scheduler.createObserver([SERResult].self)
         viewModel.latest3EventsThisSeason.drive(observer).disposed(by: disposeBag)
@@ -147,13 +146,13 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         ]
         
         let events = [
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults1)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults2)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults3))
+            eventResults1,
+            eventResults2,
+            eventResults3
         ].enumerated().map(next)
         
         scheduler.createHotObservable(events)
-            .bind(to: accountDetailSubject)
+            .bind(to: eventResultsSubject)
             .disposed(by: disposeBag)
         
         let observer = scheduler.createObserver(String?.self)
@@ -208,17 +207,15 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         ]
         
         let events = [
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults1)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults2)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults3)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults4)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults5))
-            ]
-            .enumerated()
-            .map(next)
+            eventResults1,
+            eventResults2,
+            eventResults3,
+            eventResults4,
+            eventResults5
+        ].enumerated().map(next)
         
         scheduler.createHotObservable(events)
-            .bind(to: accountDetailSubject)
+            .bind(to: eventResultsSubject)
             .disposed(by: disposeBag)
         
         let observer = scheduler.createObserver(CGFloat.self)
@@ -245,15 +242,14 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
             SERResult(eventStart: dateFormatter.date(from: "05/23/2018")!, savingDollar: 4)
         ]
         
-
         let events = [
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults1)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults2)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults3))
+            eventResults1,
+            eventResults2,
+            eventResults3
         ].enumerated().map(next)
         
         scheduler.createHotObservable(events)
-            .bind(to: accountDetailSubject)
+            .bind(to: eventResultsSubject)
             .disposed(by: disposeBag)
         
         let observer = scheduler.createObserver(String?.self)
@@ -306,17 +302,15 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         ]
         
         let events = [
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults1)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults2)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults3)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults4)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults5))
-            ]
-            .enumerated()
-            .map(next)
+            eventResults1,
+            eventResults2,
+            eventResults3,
+            eventResults4,
+            eventResults5
+        ].enumerated().map(next)
         
         scheduler.createHotObservable(events)
-            .bind(to: accountDetailSubject)
+            .bind(to: eventResultsSubject)
             .disposed(by: disposeBag)
         
         let observer = scheduler.createObserver(CGFloat.self)
@@ -345,14 +339,14 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         
         
         let events = [
-            AccountDetail(serInfo: SERInfo(eventResults: [])),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults1)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults2)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults3))
-            ].enumerated().map(next)
+            [],
+            eventResults1,
+            eventResults2,
+            eventResults3
+        ].enumerated().map(next)
         
         scheduler.createHotObservable(events)
-            .bind(to: accountDetailSubject)
+            .bind(to: eventResultsSubject)
             .disposed(by: disposeBag)
         
         let observer = scheduler.createObserver(String?.self)
@@ -409,18 +403,16 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         ]
         
         let events = [
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults1)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults2)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults3)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults4)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults5)),
-            AccountDetail(serInfo: SERInfo(eventResults: eventResults6))
-            ]
-            .enumerated()
-            .map(next)
+            eventResults1,
+            eventResults2,
+            eventResults3,
+            eventResults4,
+            eventResults5,
+            eventResults6
+        ].enumerated().map(next)
         
         scheduler.createHotObservable(events)
-            .bind(to: accountDetailSubject)
+            .bind(to: eventResultsSubject)
             .disposed(by: disposeBag)
         
         let observer = scheduler.createObserver(CGFloat.self)
@@ -438,8 +430,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
             SERResult(eventStart: dateFormatter.date(from: "05/23/2018")!, savingDollar: 4)
         ]
         
-        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
-        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "May 23, 2018")
@@ -463,8 +454,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
             SERResult(eventStart: startDate, eventEnd: endDate)
         ]
         
-        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
-        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionPeakHoursLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "Peak Hours: 12PM - 7PM")
@@ -474,8 +464,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionTypicalUseValueLabelText() {
         let eventResults = [SERResult(baselineKWH: 1029.21341)]
         
-        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
-        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionTypicalUseValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "1029.2 kWh")
@@ -485,8 +474,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionActualUseValueLabelText() {
         let eventResults = [SERResult(actualKWH: 18)]
         
-        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
-        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionActualUseValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "18.0 kWh")
@@ -496,8 +484,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionEnergySavingsValueLabelText() {
         let eventResults = [SERResult(savingKWH: 900.19)]
         
-        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
-        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionEnergySavingsValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "900.2 kWh")
@@ -507,8 +494,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionBillCreditValueLabelText() {
         let eventResults = [SERResult(savingDollar: 13.99)]
         
-        let accountDetailDriver = Driver.just(AccountDetail(serInfo: SERInfo(eventResults: eventResults)))
-        viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailDriver)
+        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionBillCreditValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "$13.99")

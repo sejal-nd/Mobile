@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class BGEAutoPayViewModel {
     
@@ -66,7 +67,7 @@ class BGEAutoPayViewModel {
         paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.isFetchingAutoPayInfo.value = false
                 self.isError.value = false
                 
@@ -114,7 +115,7 @@ class BGEAutoPayViewModel {
                 
                 onSuccess?()
             }, onError: { [weak self] error in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.isFetchingAutoPayInfo.value = false
                     self.isError.value = true
                     onError?(error.localizedDescription)
@@ -202,10 +203,8 @@ class BGEAutoPayViewModel {
                 let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: .bank)
                 let maxPaymentAmount = accountDetail.maxPaymentAmount(bankOrCard: .bank)
                 if let amountDouble = Double(amountNotToExceedDouble()) {
-                    if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount,
-                        let minString = minPaymentAmount.currencyString,
-                        let maxString = maxPaymentAmount.currencyString {
-                        return NSLocalizedString("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between \(minString) and \(maxString)", comment: "")
+                    if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount {
+                        return String.localizedStringWithFormat("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between %@ and %@", minPaymentAmount.currencyString, maxPaymentAmount.currencyString)
                     }
                 }
             }
@@ -274,7 +273,7 @@ class BGEAutoPayViewModel {
             if intVal == 0 {
                 amountNotToExceed.value = "$0.00"
             } else {
-                amountNotToExceed.value = (intVal / 100).currencyString!
+                amountNotToExceed.value = (intVal / 100).currencyString
             }
         }
     }

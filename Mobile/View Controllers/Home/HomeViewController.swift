@@ -49,7 +49,8 @@ class HomeViewController: AccountPickerViewController {
                                   weatherService: ServiceFactory.createWeatherService(),
                                   walletService: ServiceFactory.createWalletService(),
                                   paymentService: ServiceFactory.createPaymentService(),
-                                  usageService: ServiceFactory.createUsageService(),
+                                  usageService: ServiceFactory.createUsageService(useCache: true),
+                                  projectedBillUsageService: ServiceFactory.createUsageService(useCache: false),
                                   authService: ServiceFactory.createAuthenticationService(),
                                   outageService: ServiceFactory.createOutageService(),
                                   alertsService: ServiceFactory.createAlertsService(),
@@ -71,23 +72,7 @@ class HomeViewController: AccountPickerViewController {
             .drive(backgroundTopConstraint.rx.constant)
             .disposed(by: bag)
         
-        accountPickerViewControllerWillAppear
-            .withLatestFrom(viewModel.accountDetailEvents.map { $0 }.startWith(nil)) { ($0, $1) }
-            .subscribe(onNext: { [weak self] state, accountDetailEvent in
-                guard let `self` = self else { return }
-                switch(state) {
-                case .loadingAccounts:
-                    self.setRefreshControlEnabled(enabled: false)
-                case .readyToFetchData:
-                    self.setRefreshControlEnabled(enabled: true)
-                    if AccountsStore.shared.currentAccount != self.accountPicker.currentAccount {
-                        self.viewModel.fetchData.onNext(.switchAccount)
-                    } else if accountDetailEvent?.element == nil {
-                        self.viewModel.fetchData.onNext(.switchAccount)
-                    }
-                }
-            })
-            .disposed(by: bag)
+        setRefreshControlEnabled(enabled: false)
         
         viewModel.accountDetailEvents.elements()
             .take(1)
@@ -108,7 +93,13 @@ class HomeViewController: AccountPickerViewController {
         styleViews()
         bindLoadingStates()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(killRefresh), name: .didMaintenanceModeTurnOn, object: nil)
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl?.endRefreshing()
+                self?.scrollView!.alwaysBounceVertical = true
+            })
+            .disposed(by: bag)
     }
     
     func viewSetup() {
@@ -447,7 +438,7 @@ class HomeViewController: AccountPickerViewController {
         
         billCardView.pushedViewControllers
             .drive(onNext: { [weak self] viewController in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 
                 if let vc = viewController as? WalletViewController {
                     vc.didUpdate
@@ -489,7 +480,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: usageCardView.disposeBag)
         
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
+            .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 Analytics.log(event: .allSavingsSmartEnergy)
@@ -552,12 +543,7 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: outageCardView.bag)
     }
-    
-    @objc func killRefresh() -> Void {
-        self.refreshControl?.endRefreshing()
-        self.scrollView!.alwaysBounceVertical = true
-    }
-    
+        
     @objc func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             scrollView!.alwaysBounceVertical = true
@@ -615,8 +601,8 @@ class HomeViewController: AccountPickerViewController {
                 .disposed(by: vc.disposeBag)
         case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
-        case let (vc as TotalSavingsViewController, accountDetail as AccountDetail):
-            vc.eventResults = accountDetail.serInfo.eventResults
+        case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
+            vc.eventResults = eventResults
         case let (vc as UpdatesDetailViewController, update as OpcoUpdate):
             vc.opcoUpdate = update
         case let (vc as ReportOutageViewController, currentOutageStatus as OutageStatus):
@@ -639,11 +625,12 @@ class HomeViewController: AccountPickerViewController {
             break
         }
     }
-    
 }
 
 extension HomeViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        // enable refresh control once accounts list loads
+        setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(.switchAccount)
     }
 }

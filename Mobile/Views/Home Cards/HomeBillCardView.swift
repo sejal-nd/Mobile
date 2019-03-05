@@ -51,8 +51,8 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var reinstatementFeeContainer: UIView!
     @IBOutlet private weak var reinstatementFeeLabel: UILabel!
     
-    @IBOutlet private weak var slideToPay24DisclaimerContainer: UIView!
-    @IBOutlet private weak var slideToPay24DisclaimerLabel: UILabel!
+    @IBOutlet private weak var slideToPayConfirmationDetailContainer: UIView!
+    @IBOutlet private weak var slideToPayConfirmationDetailLabel: UITextView!
     
     @IBOutlet private weak var walletItemInfoContainer: UIView!
     @IBOutlet private weak var walletItemInfoBox: UIView!
@@ -98,6 +98,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var billNotReadyImageView: UIImageView!
     @IBOutlet private weak var billNotReadyLabel: UILabel!
     @IBOutlet private weak var errorStack: UIStackView!
+    @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
@@ -155,7 +156,7 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment account", comment: "")
+        saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
@@ -164,7 +165,14 @@ class HomeBillCardView: UIView {
         dueDateLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        slideToPay24DisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        //TODO: Remove this check when BGE switches to Paymentus
+        switch Environment.shared.opco {
+        case .bge:
+            slideToPayConfirmationDetailLabel.isSelectable = false
+            slideToPayConfirmationDetailLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        case .comEd, .peco:
+            slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        }
         
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -198,6 +206,9 @@ class HomeBillCardView: UIView {
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
         
+        errorTitleLabel.textColor = .blackText
+        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        
         maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
         
         // Accessibility
@@ -220,7 +231,7 @@ class HomeBillCardView: UIView {
         paymentDescriptionLabel.textColor = .white
         amountLabel.textColor = .white
         reinstatementFeeLabel.textColor = .white
-        slideToPay24DisclaimerLabel.textColor = .white
+        slideToPayConfirmationDetailLabel.textColor = .white
         bankCreditCardNumberLabel.textColor = .white
         minimumPaymentLabel.textColor = .white
         convenienceFeeLabel.textColor = .white
@@ -251,6 +262,8 @@ class HomeBillCardView: UIView {
         autoPayImageView.image = #imageLiteral(resourceName: "ic_autopay_sm.pdf")
         
         billNotReadyImageView.image = #imageLiteral(resourceName: "ic_home_billnotready_sm.pdf")
+        
+        errorTitleLabel.textColor = .white
     }
     
     private func bindViewModel() {
@@ -300,7 +313,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showPaymentPendingIcon.not().drive(paymentPendingContainer.rx.isHidden).disposed(by: bag)
         viewModel.showBillPaidIcon.not().drive(paymentConfirmationContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showSlideToPay24DisclaimerLabel.not().drive(slideToPay24DisclaimerContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSlideToPayConfirmationDetailLabel.not().drive(slideToPayConfirmationDetailContainer.rx.isHidden).disposed(by: bag)
         
         viewModel.showPaymentDescription.not().drive(paymentDescriptionLabel.rx.isHidden).disposed(by: bag)
         viewModel.showAmount.not().drive(amountLabel.rx.isHidden).disposed(by: bag)
@@ -333,10 +346,10 @@ class HomeBillCardView: UIView {
         viewModel.amountFont.drive(amountLabel.rx.font).disposed(by: bag)
         viewModel.amountText.drive(amountLabel.rx.text).disposed(by: bag)
         
-        // `.delay(.leastNonzeroMagnitude)` fixes a weird bug where the label's font
+        // `.delay(0.02)` fixes a weird bug where the label's font
         // is set to regular instead of semibold while the view is still hidden.
         // This is not an ideal fix, hoping to find a better one later.
-        viewModel.dueDateText.delay(.leastNonzeroMagnitude).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
+        viewModel.dueDateText.delay(0.02).drive(dueDateLabel.rx.attributedText).disposed(by: bag)
         viewModel.reinstatementFeeText.drive(reinstatementFeeLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardNumberText.drive(bankCreditCardNumberLabel.rx.text).disposed(by: bag)
         viewModel.bankCreditCardImage.drive(bankCreditCardImageView.rx.image).disposed(by: bag)
@@ -355,11 +368,12 @@ class HomeBillCardView: UIView {
         viewModel.oneTouchPayTCButtonTextColor.drive(oneTouchPayTCButtonLabel.rx.textColor).disposed(by: bag)
         viewModel.enableOneTouchPayTCButton.drive(oneTouchPayTCButton.rx.isAccessibilityElement).disposed(by: bag)
         viewModel.enableOneTouchPayTCButton.not().drive(oneTouchPayTCButtonLabel.rx.isAccessibilityElement).disposed(by: bag)
+        viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
         
         // Actions
-        otpIsBeforeFiservCutoffDate.filter { $0 }
-            .withLatestFrom(Driver.combineLatest(viewModel.shouldShowWeekendWarning, viewModel.promptForCVV))
-            .filter { !$0 && !$1 }
+        oneTouchSlider.didFinishSwipe
+            .withLatestFrom(viewModel.promptForCVV)
+            .filter(!)
             .map(to: ())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
@@ -374,7 +388,7 @@ class HomeBillCardView: UIView {
                          NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.viewModel.showSaveAPaymentAccountButton.asObservable().single().subscribe(onNext: { show in
                     let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
                     self.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
@@ -383,32 +397,6 @@ class HomeBillCardView: UIView {
             })
             .disposed(by: bag)
     }
-    
-    // Actions
-    private lazy var otpIsBeforeFiservCutoffDate = oneTouchSlider.didFinishSwipe
-        // Fiserv Cutoff Date Check START
-        // Remove this block after ePay transition
-        .do(onNext: { _ in
-            switch Environment.shared.opco {
-            case .bge: break
-            case .comEd, .peco:
-                LoadingView.show(animated: true)
-            }
-        })
-        .asObservable()
-        .toAsyncRequest { [weak self] _ -> Observable<Bool> in
-            self?.viewModel.isBeforeFiservCutoffDate() ?? .empty()
-        }
-        .dematerialize()
-        .asDriver(onErrorDriveWith: .empty())
-        .do(onNext: { _ in
-            switch Environment.shared.opco {
-            case .bge: break
-            case .comEd, .peco:
-                LoadingView.hide(animated: true)
-            }
-        })
-        // Fiserv Cutoff Date Check END
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: { Analytics.log(event: .viewBillBillCard) })
@@ -431,50 +419,39 @@ class HomeBillCardView: UIView {
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var cutoffAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter(!)
-        .map { [weak self] _ in
-            UIAlertController.fiservCutoffAlert { [weak self] _ in
-                self?.oneTouchSlider.reset(animated: true)
-            }
-    }
-    
-    private(set) lazy var oneTouchSliderWeekendAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter { $0 }
-        .withLatestFrom(self.viewModel.shouldShowWeekendWarning)
-        .filter { $0 }
-        .map { [weak self] _ in
-            let alertController = UIAlertController(title: NSLocalizedString("Weekend/Holiday Payment", comment: ""),
-                                                    message: NSLocalizedString("You are making a payment on a weekend or holiday. Your payment will be scheduled for the next business day.", comment: ""), preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel){ [weak self] _ in
-                self?.oneTouchSlider.reset(animated: true)
-            })
-
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in
-                LoadingView.show(animated: true)
-                self?.viewModel.submitOneTouchPay.onNext(())
-            })
-            return alertController
-    }
-    
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .map { [weak self] error in
-            let errMessage = error.localizedDescription
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
-            
-            // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
-            // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
-            if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
-                    action -> Void in
-                    UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
-                }))
+        .withLatestFrom(self.viewModel.walletItem) {
+            return ($0, $1)
+        }
+        .map { [weak self] error, walletItem in
+            if Environment.shared.opco == .bge {
+                let errMessage = error.localizedDescription
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString(errMessage, comment: ""), preferredStyle: .alert)
+                
+                // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+                // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+                if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: {
+                        action -> Void in
+                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
+                    }))
+                } else {
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                }
+                
+                return alert
             } else {
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                return UIAlertController.paymentusErrorAlertController(
+                    forError: error as! ServiceError,
+                    walletItem: walletItem!,
+                    callHandler: { _ in
+                        if let phone = self?.viewModel.errorPhoneNumber {
+                            UIApplication.shared.openPhoneNumberIfCan(phone)
+                        }
+                    }
+                )
             }
-            
-            return alert
         }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -493,17 +470,17 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
-        .filter { $0 }
+    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = oneTouchSlider.didFinishSwipe
         .withLatestFrom(self.viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
         .flatMap { [weak self] _ -> Observable<UIViewController> in
             Observable<UIViewController>.create { [weak self] observer in
-                guard let `self` = self else {
+                guard let self = self else {
                     observer.onCompleted()
                     return Disposables.create()
                 }
+                
                 let alertController = UIAlertController(title: NSLocalizedString("Enter CVV2", comment: ""),
                                                         message: NSLocalizedString("Enter your 3 or 4 digit security code to complete your payment.", comment: ""),
                                                         preferredStyle: .alert)
@@ -515,7 +492,7 @@ class HomeBillCardView: UIView {
                 }
                 
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.cvvValidationDisposable?.dispose()
                     let textField = alertController.textFields![0]
                     let alertController2 = self.oneTouchBGELegalAlert(observer: observer)
@@ -583,14 +560,12 @@ class HomeBillCardView: UIView {
     
     private(set) lazy var modalViewControllers: Driver<UIViewController> = Driver
         .merge(tooltipModal,
-               oneTouchSliderWeekendAlert,
                paymentTACModal,
                oneTouchPayErrorAlert,
                oneTouchSliderCVV2Alert,
                tutorialViewController,
                bgeasyViewController,
-               autoPayAlert,
-               cutoffAlert)
+               autoPayAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside

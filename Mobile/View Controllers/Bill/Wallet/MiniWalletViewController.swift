@@ -48,7 +48,7 @@ class MiniWalletViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Select Payment Account", comment: "")
+        title = NSLocalizedString("Select Payment Method", comment: "")
         
         tableView.rx.contentOffset.asDriver()
             .map { $0.y <= 0 ? .white: .softGray }
@@ -148,12 +148,12 @@ class MiniWalletViewController: UIViewController {
     
     func fetchWalletItems() {
         viewModel.fetchWalletItems(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.tableView.reloadData()
             self.view.setNeedsLayout()
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         }, onError: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
     }
@@ -166,8 +166,24 @@ class MiniWalletViewController: UIViewController {
     
     @objc func onAddBankAccountPress() {
         if sentFromPayment {
-            delegate?.miniWalletViewControllerDidTapAddBank(self)
-            navigationController?.popViewController(animated: true)
+            if Environment.shared.opco == .bge {
+                delegate?.miniWalletViewControllerDidTapAddBank(self)
+                navigationController?.popViewController(animated: true)
+            } else {
+                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.shouldPopToMakePaymentOnSave = true
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }, dontSaveHandler: { [weak self] _ in
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
+                    paymentusVC.delegate = self?.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.shouldPopToMakePaymentOnSave = true
+                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
+                })
+                present(actionSheet, animated: true, completion: nil)
+            }
         } else {
             performSegue(withIdentifier: "miniWalletAddBankAccountSegue", sender: self)
         }
@@ -181,8 +197,24 @@ class MiniWalletViewController: UIViewController {
     
     @objc func onAddCreditCardPress() {
         if sentFromPayment {
-            delegate?.miniWalletViewControllerDidTapAddCard(self)
-            navigationController?.popViewController(animated: true)
+            if Environment.shared.opco == .bge {
+                delegate?.miniWalletViewControllerDidTapAddCard(self)
+                navigationController?.popViewController(animated: true)
+            } else {
+                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
+                    paymentusVC.delegate = self.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.shouldPopToMakePaymentOnSave = true
+                    self.navigationController?.pushViewController(paymentusVC, animated: true)
+                }, dontSaveHandler: { [weak self] _ in
+                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
+                    paymentusVC.delegate = self?.delegate as? PaymentusFormViewControllerDelegate
+                    paymentusVC.shouldPopToMakePaymentOnSave = true
+                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
+                })
+                present(actionSheet, animated: true, completion: nil)
+            }
         } else {
             performSegue(withIdentifier: "miniWalletAddCreditCardSegue", sender: self)
         }
@@ -225,7 +257,7 @@ extension MiniWalletViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SectionHeaderCell") as! MiniWalletSectionHeaderCell
         
         if section == 0 {
-            cell.label.text = NSLocalizedString("No convenience fee will be applied.", comment: "")
+            cell.label.text = NSLocalizedString("Bank Accounts", comment: "")
             if bankAccountsDisabled {
                 cell.label.alpha = 0.33
                 cell.accessibilityElementsHidden = true
@@ -234,16 +266,7 @@ extension MiniWalletViewController: UITableViewDataSource {
                 cell.accessibilityElementsHidden = false
             }
         } else {
-            var creditCardFeeString: String {
-                switch Environment.shared.opco {
-                case .bge:
-                    return NSLocalizedString(accountDetail.billingInfo.convenienceFeeString(isComplete: true), comment: "")
-                case .comEd, .peco:
-                    let feeString = "A " + accountDetail.billingInfo.convenienceFee!.currencyString! + " convenience fee will be applied by Bill Matrix, our payment partner."
-                    return NSLocalizedString(feeString, comment: "")
-                }
-            }
-            cell.label.text = creditCardFeeString
+            cell.label.text = NSLocalizedString("Credit/Debit Cards", comment: "")
             if creditCardsDisabled {
                 cell.label.alpha = 0.33
                 cell.accessibilityElementsHidden = true
@@ -277,15 +300,10 @@ extension MiniWalletViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "bank_building_mini")
                 cell.label.text = NSLocalizedString("Add Bank Account", comment: "")
-                viewModel.bankAccountLimitReached.map { [weak self] in
-                    if self?.bankAccountsDisabled ?? false {
-                        return false
-                    }
-                    return !$0
-                }.drive(cell.innerContentView.rx.isEnabled).disposed(by: disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddBankAccountPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Bank Account", comment: "")
+                cell.innerContentView.isEnabled = !bankAccountsDisabled
                 return cell
             }
         } else {
@@ -309,15 +327,10 @@ extension MiniWalletViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AddAccountCell", for: indexPath) as! MiniWalletAddAccountCell
                 cell.iconImageView.image = #imageLiteral(resourceName: "credit_card_mini")
                 cell.label.text = NSLocalizedString("Add Credit/Debit Card", comment: "")
-                viewModel.creditCardLimitReached.map { [weak self] in
-                    if self?.creditCardsDisabled ?? false {
-                        return false
-                    }
-                    return !$0
-                }.drive(cell.innerContentView.rx.isEnabled).disposed(by: disposeBag)
                 cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
                 cell.innerContentView.addTarget(self, action: #selector(onAddCreditCardPress), for: .touchUpInside)
                 cell.innerContentView.accessibilityLabel = NSLocalizedString("Add Credit/Debit Card", comment: "")
+                cell.innerContentView.isEnabled = !creditCardsDisabled
                 return cell
             }
         }

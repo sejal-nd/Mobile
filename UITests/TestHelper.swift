@@ -166,9 +166,10 @@ extension ExelonUITestCase {
             let inTableView = app.tables.descendants(matching: type)[text]
             let inTabBar = app.tabBars.descendants(matching: type)[text]
             let inNavBar = app.navigationBars.descendants(matching: type)[text]
+            let inSheet = app.sheets.descendants(matching: type)[text]
             let lastDitchEffort = app.staticTexts[text]
 
-            possibleElements.append(contentsOf: [inScrollView, inApp, inTableView, inTabBar, inNavBar, lastDitchEffort])
+            possibleElements.append(contentsOf: [inScrollView, inApp, inTableView, inTabBar, inNavBar, inSheet, lastDitchEffort])
         }
 
         let matchFilter: (XCUIElement) -> Bool = { $0.exists && $0.elementType == type }
@@ -189,14 +190,16 @@ extension ExelonUITestCase {
     /// Breaks down multi-line text for predicate use
     private func labelPredicate(forText text: String) -> NSPredicate {
         let linesOfText = text.components(separatedBy: "\n")
-        var format = "label CONTAINS '\(linesOfText.first!)'"
+        var format = "label CONTAINS %@"
+        var formatArgsArray = [linesOfText.first!]
 
         if linesOfText.count > 1 {
             for i in 1..<linesOfText.count where !linesOfText[i].isEmpty {
-                format += " AND label CONTAINS '\(linesOfText[i])'"
+                format += " AND label CONTAINS %@"
+                formatArgsArray.append(linesOfText[i])
             }
         }
-        return NSPredicate(format: format)
+        return NSPredicate(format: format, argumentArray: formatArgsArray)
     }
 }
 

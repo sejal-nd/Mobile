@@ -46,20 +46,18 @@ class MCSRegistrationService: RegistrationService {
             params["account_num"] = accountNum
         }
         
-        return MCSApi.shared.post(path: "anon_\(MCSApi.API_VERSION)/\(opCo.rawValue)/registration", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration", params: params)
             .mapTo(())
     }
     
     func checkForDuplicateAccount(_ username: String) -> Observable<Void> {
-        let opCo = Environment.shared.opco.rawValue
         let params = ["username": username] as [String : Any]
-        return MCSApi.shared.post(path: "anon_\(MCSApi.API_VERSION)/\(opCo)/registration/duplicate", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/duplicate", params: params)
             .mapTo(())
     }
     
     func loadSecretQuestions() -> Observable<[String]> {
-        let opCo = Environment.shared.opco.rawValue
-        return MCSApi.shared.get(path: "anon_\(MCSApi.API_VERSION)/\(opCo)/registration/questions")
+        return MCSApi.shared.get(pathPrefix: .anon, path: "registration/questions")
             .map { json in
                 guard let questions = json as? [String] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -72,8 +70,6 @@ class MCSRegistrationService: RegistrationService {
     func validateAccountInformation(_ identifier: String,
                                     phone: String,
                                     accountNum: String?) -> Observable<[String: Any]> {
-        let opCo = Environment.shared.opco.rawValue.uppercased()
-        
         var params = ["phone": phone] as [String : Any]
         params["identifier"] = identifier
         
@@ -81,7 +77,7 @@ class MCSRegistrationService: RegistrationService {
             params["account_num"] = accountNum
         }
         
-        return MCSApi.shared.post(path: "anon_\(MCSApi.API_VERSION)/\(opCo)/registration/validate", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/validate", params: params)
             .map { json in
                 guard let dict = json as? [String : Any] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -92,23 +88,20 @@ class MCSRegistrationService: RegistrationService {
     }
     
     func resendConfirmationEmail(_ username: String) -> Observable<Void> {
-        let opCo = Environment.shared.opco.displayString.uppercased()
         let params = ["username": username] as [String: Any]
-        return MCSApi.shared.post(path: "anon_\(MCSApi.API_VERSION)/\(opCo)/registration/confirmation", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "registration/confirmation", params: params)
             .mapTo(())
     }
 
     func validateConfirmationEmail(_ guid: String) -> Observable<Void> {
-        let opCo = Environment.shared.opco.displayString.uppercased()
         let params = ["guid": guid] as [String: Any]
-        return MCSApi.shared.put(path: "anon_\(MCSApi.API_VERSION)/\(opCo)/registration/confirmation", params: params)
+        return MCSApi.shared.put(pathPrefix: .anon, path: "registration/confirmation", params: params)
             .mapTo(())
     }
     
     func recoverPassword(_ username: String) -> Observable<Void> {
-        let opCo = Environment.shared.opco.rawValue
         let params = ["username": username] as [String: Any]
-        return MCSApi.shared.post(path: "anon_\(MCSApi.API_VERSION)/\(opCo)/recover/password", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "recover/password", params: params)
             .mapTo(())
     }
 }

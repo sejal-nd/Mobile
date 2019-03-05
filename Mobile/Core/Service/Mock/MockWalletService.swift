@@ -18,11 +18,11 @@ struct MockWalletService: WalletService {
         } else if loggedInUsername == "billCardWithDefaultPayment" {
             walletItems = [
                 WalletItem(nickName: "Test Nickname", isDefault: true),
-                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: false, cardIssuer: "Visa", bankOrCard: .card)
+                WalletItem(nickName: "Expired Card", isDefault: false, cardIssuer: "Visa", bankOrCard: .card)
             ]
         } else if loggedInUsername == "billCardWithExpiredDefaultPayment" {
             walletItems = [
-                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", isDefault: true, cardIssuer: "Visa", bankOrCard: .card)
+                WalletItem(nickName: "Expired Card", walletItemStatusType: "expired", expirationDate: "01/2018", isDefault: true, cardIssuer: "Visa", bankOrCard: .card)
             ]
         }else if loggedInUsername == "billCardWithDefaultCcPayment" {
             walletItems = [
@@ -66,6 +66,14 @@ struct MockWalletService: WalletService {
             return .just(walletResult)
         }
     }
+    
+    func addWalletItemMCS(_ walletItem: WalletItem) {
+        // Do nothing - we never handle for the response of this
+    }
+    
+    func updateWalletItemMCS(_ walletItem: WalletItem) {
+        // Do nothing - we never handle for the response of this
+    }
 
     func updateCreditCard(walletItemID: String,
                           customerNumber: String,
@@ -77,7 +85,7 @@ struct MockWalletService: WalletService {
     }
 
     func deletePaymentMethod(walletItem : WalletItem) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: ""))
+        return Observable.just(()).delay(1, scheduler: MainScheduler.instance)
     }
 
     func setOneTouchPayItem(walletItemId: String,
@@ -88,5 +96,9 @@ struct MockWalletService: WalletService {
     
     func removeOneTouchPayItem(customerId: String) -> Observable<Void> {
         return .just(())
+    }
+    
+    func fetchWalletEncryptionKey(customerId: String, bankOrCard: BankOrCard, temporary: Bool, walletItemId: String? = nil) -> Observable<String> {
+        return .just("")
     }
 }

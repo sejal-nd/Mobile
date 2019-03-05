@@ -16,6 +16,7 @@ class HomeViewModel {
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let usageService: UsageService
+    private let projectedBillUsageService: UsageService
     private let authService: AuthenticationService
     private let outageService: OutageService
     private let alertsService: AlertsService
@@ -42,6 +43,7 @@ class HomeViewModel {
                   walletService: WalletService,
                   paymentService: PaymentService,
                   usageService: UsageService,
+                  projectedBillUsageService: UsageService,
                   authService: AuthenticationService,
                   outageService: OutageService,
                   alertsService: AlertsService,
@@ -52,6 +54,7 @@ class HomeViewModel {
         self.walletService = walletService
         self.paymentService = paymentService
         self.usageService = usageService
+        self.projectedBillUsageService = projectedBillUsageService
         self.authService = authService
         self.outageService = outageService
         self.alertsService = alertsService
@@ -71,6 +74,7 @@ class HomeViewModel {
         HomeBillCardViewModel(fetchData: fetchDataObservable,
                               fetchDataMMEvents: fetchDataMMEvents,
                               accountDetailEvents: accountDetailEvents,
+                              scheduledPaymentEvents: scheduledPaymentEvents,
                               walletService: walletService,
                               paymentService: paymentService,
                               authService: authService,
@@ -81,11 +85,12 @@ class HomeViewModel {
         HomeUsageCardViewModel(fetchData: fetchDataObservable,
                                maintenanceModeEvents: maintenanceModeEvents,
                                accountDetailEvents: accountDetailEvents,
+                               accountService: accountService,
                                usageService: usageService,
                                refreshFetchTracker: refreshFetchTracker,
                                switchAccountFetchTracker: usageTracker)
     
-    private(set) lazy var templateCardViewModel: TemplateCardViewModel =
+    private(set) lazy var templateCardViewModel =
         TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
                               showLoadingState: accountDetailTracker.asDriver()
                                 .filter { $0 }
@@ -96,7 +101,7 @@ class HomeViewModel {
         HomeProjectedBillCardViewModel(fetchData: fetchDataObservable,
                                        maintenanceModeEvents: maintenanceModeEvents,
                                        accountDetailEvents: accountDetailEvents,
-                                       usageService: usageService,
+                                       usageService: projectedBillUsageService,
                                        refreshFetchTracker: refreshFetchTracker,
                                        switchAccountFetchTracker: projectedBillTracker)
     
@@ -107,7 +112,11 @@ class HomeViewModel {
                                 refreshFetchTracker: refreshFetchTracker,
                                 switchAccountFetchTracker: outageTracker)
     
-    private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount))
+    private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount), RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
+    
+    private lazy var recentPaymentsFetchTrigger = Observable
+        .merge(fetchDataObservable,
+               RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     // Awful maintenance mode check
     private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = fetchData
@@ -130,11 +139,16 @@ class HomeViewModel {
                 return self.authService.getMaintenanceMode()
             })
     
+    private lazy var recentPaymentsUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.recentPaymentsUpdated
+        .toAsyncRequest(activityTracker: billTracker) { [weak self] _ in
+            self?.authService.getMaintenanceMode() ?? .empty()
+        }
+    
     private lazy var maintenanceModeEvents: Observable<Event<Maintenance>> = Observable
         .merge(fetchDataMMEvents, accountDetailUpdatedMMEvents)
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
-        .filter { !($0.element?.homeStatus ?? false) }
+        .filter { !($0.element?.allStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(fetchTrigger)
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
@@ -144,9 +158,32 @@ class HomeViewModel {
             case .switchAccount:
                 return [this.billTracker, this.usageTracker, this.accountDetailTracker, this.projectedBillTracker]
             }
-            }, requestSelector: { [weak self] _ in
-                guard let this = self else { return .empty() }
-                return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        }, requestSelector: { [weak self] _ in
+            guard let this = self else { return .empty() }
+            return this.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        })
+        .share(replay: 1, scope: .forever)
+    
+    private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = Observable
+        .merge(fetchDataMMEvents, recentPaymentsUpdatedMMEvents)
+        .filter {
+            guard let maint = $0.element else { return false }
+            return !maint.allStatus && !maint.billStatus && !maint.homeStatus
+        }
+        .withLatestFrom(fetchTrigger)
+        .toAsyncRequest(activityTrackers: { [weak self] state in
+            guard let this = self else { return nil }
+            switch state {
+            case .refresh:
+                return [this.refreshFetchTracker]
+            case .switchAccount:
+                return [this.billTracker]
+            }
+        }, requestSelector: { [weak self] _ in
+            guard let this = self else { return .empty() }
+            return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map {
+                return $0.last
+            }
         })
         .share(replay: 1, scope: .forever)
 
@@ -168,7 +205,8 @@ class HomeViewModel {
         .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = fetchDataObservable
+    private(set) lazy var importantUpdate: Driver<OpcoUpdate?> = maintenanceModeEvents
+        .filter { !($0.element?.allStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .toAsyncRequest { [weak self] _ in
             guard let this = self else { return .empty() }
             return this.alertsService.fetchOpcoUpdates(bannerOnly: true)

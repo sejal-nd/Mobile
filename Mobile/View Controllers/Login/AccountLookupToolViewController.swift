@@ -116,7 +116,7 @@ class AccountLookupToolViewController: UIViewController {
         LoadingView.show()
         viewModel.performSearch(onSuccess: { [weak self] in
             LoadingView.hide()
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if self.viewModel.accountLookupResults.count == 1 {
                 let selectedAccount = self.viewModel.accountLookupResults.first!
                 self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)

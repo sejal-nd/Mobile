@@ -57,7 +57,6 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         footerView.backgroundColor = .softGray
-        footerTextView.font = SystemFont.regular.of(textStyle: .headline)
         footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
@@ -99,11 +98,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         navigationItem.rightBarButtonItem = nil
         
         viewModel.checkForMaintenance(
-            onAll: { [weak self] in
-                self?.navigationController?.view.isUserInteractionEnabled = true
-                let ad = UIApplication.shared.delegate as! AppDelegate
-                ad.showMaintenanceMode()
-            }, onOutage: { [weak self] in
+            onOutageOnly: { [weak self] _ in
                 self?.loadingIndicator.isHidden = true
                 self?.maintenanceModeView.isHidden = false
                 self?.scrollView.isHidden = true
@@ -115,7 +110,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
                 self?.scrollView.isHidden = false
                 self?.footerView.isHidden = false
                 self?.navigationItem.rightBarButtonItem = self?.submitButton
-        })
+            })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,7 +127,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         viewModel.accountNumberTextFieldEnabled.drive(accountNumberTextField.rx.isEnabled).disposed(by: disposeBag)
         viewModel.accountNumberTextFieldEnabled.not().drive(accountNumberTooltipButton.rx.isHidden).disposed(by: disposeBag)
         
-        footerTextView.text = viewModel.footerText
+        footerTextView.attributedText = viewModel.footerTextViewText
     }
     
     func bindValidation() {
@@ -142,7 +137,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !$1 {
                     self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long.", comment: ""))
                 }
@@ -159,7 +154,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
             .filter { !$0.0.isEmpty }
             .drive(onNext: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if !$1 {
                     self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long.", comment: ""))
                 }
@@ -203,7 +198,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         
         LoadingView.show()
         viewModel.fetchOutageStatus(onSuccess: { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             LoadingView.hide()
             
             if self.viewModel.selectedOutageStatus != nil {
@@ -212,7 +207,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
                 self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
             }
         }, onError: { [weak self] errTitle, errMessage in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             LoadingView.hide()
             
             let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)

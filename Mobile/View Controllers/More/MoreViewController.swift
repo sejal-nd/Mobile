@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import StoreKit
-import ToastSwiftFramework
+import Toast_Swift
 
 class MoreViewController: UIViewController {
     
@@ -126,7 +126,7 @@ class MoreViewController: UIViewController {
         
         let pwAlert = UIAlertController(title: NSLocalizedString("Confirm Password", comment: ""), message: message, preferredStyle: .alert)
         pwAlert.addTextField(configurationHandler: { [weak self] (textField) in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             textField.placeholder = NSLocalizedString("Password", comment: "")
             textField.isSecureTextEntry = true
             textField.rx.text.orEmpty.bind(to: self.viewModel.password).disposed(by: self.disposeBag)
@@ -138,12 +138,12 @@ class MoreViewController: UIViewController {
         pwAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) -> Void in
             LoadingView.show()
             self?.viewModel.validateCredentials(onSuccess: { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 LoadingView.hide()
                 self.view.showToast(String(format: NSLocalizedString("%@ Enabled", comment: ""), self.viewModel.biometricsString()!))
                 }, onError: { [weak self] (error) in
                     LoadingView.hide()
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.biometricsPasswordRetryCount += 1
                     if self.biometricsPasswordRetryCount < 3 {
                         self.presentPasswordAlert(message: NSLocalizedString("Error", comment: "") + ": \(error)", toggle: toggle)

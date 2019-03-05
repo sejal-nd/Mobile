@@ -11,7 +11,7 @@ import RxSwift
 
 extension Reactive where Base: URLSession {
     
-    func fullResponse(request: URLRequest) -> Observable<(HTTPURLResponse, Data)> {
+    func fullResponse(request: URLRequest, onCanceled: @escaping () -> () = {}) -> Observable<(HTTPURLResponse, Data)> {
         return Observable
             .create { observer in
                 let task = self.base.dataTask(with: request) { (data, response, error) in
@@ -30,12 +30,17 @@ extension Reactive where Base: URLSession {
                 }
                 
                 task.resume()
-                return Disposables.create(with: task.cancel)
+                return Disposables.create {
+                    task.cancel()
+                    if task.state == .canceling {
+                        onCanceled()
+                    }
+                }
         }
     }
     
-    func dataResponse(request: URLRequest) -> Observable<Data> {
-        return fullResponse(request: request)
+    func dataResponse(request: URLRequest, onCanceled: @escaping () -> () = {}) -> Observable<Data> {
+        return fullResponse(request: request, onCanceled: onCanceled)
             .map { _, data in data }
     }
 }

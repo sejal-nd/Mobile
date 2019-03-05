@@ -9,8 +9,8 @@
 import Mapper
 
 private func dollarAmount(fromValue value: Any?) throws -> Double {
-    // We're checking for both a double or a string here, because they've changed their web services
-    // here before and I want to protect against that possibility again
+    /* We're checking for both a double or a string here, because they've changed
+       their web services here before and I want to protect against that possibility again */
     if let doubleVal = value as? Double {
         return doubleVal
     } else if let stringVal = value as? String {
@@ -24,10 +24,41 @@ private func dollarAmount(fromValue value: Any?) throws -> Double {
     }
 }
 
-private func calculateIsFuture(dateToCompare: Date) -> Bool {
-    let calendar = Calendar.current
-    let yesterday = calendar.date(byAdding: .day, value: -1, to: Date())
-    return dateToCompare > yesterday!
+enum BillingHistoryStatus {
+    case scheduled
+    case pending
+    case processing
+    case processed
+    case canceled
+    case failed
+    case unknown
+    case accepted
+    
+    init(identifier: String?) {
+        guard let id = identifier?.lowercased() else {
+            self = .unknown
+            return
+        }
+        
+        switch id {
+        case "scheduled":
+            self = .scheduled
+        case "pending":
+            self = .pending
+        case "processing":
+            self = .processing
+        case "processed":
+            self = .processed
+        case "canceled", "cancelled", "void":
+            self = .canceled
+        case "failed", "declined", "returned":
+            self = .failed
+        case "accepted", "posted", "complete":
+            self = .accepted
+        default:
+            self = .unknown
+        }
+    }
 }
 
 struct BillingHistoryItem: Mappable {
@@ -36,63 +67,58 @@ struct BillingHistoryItem: Mappable {
     let totalAmountDue: Double?
     let date: Date
     let description: String?
-    let status: String?
-    var isFuture: Bool
+    let statusString: String?
+    let status: BillingHistoryStatus
     let confirmationNumber: String?
     let paymentType: String?
-    let type: String?
+    let isBillPDF: Bool
     let paymentMethod: String?
     let paymentId: String?
     let walletItemId: String?
-    let flagAllowDeletes: Bool
-    let flagAllowEdits: Bool
-    let encryptedPaymentId: String?
+    let flagAllowDeletes: Bool // BGE only - ComEd/PECO default to true
+    let flagAllowEdits: Bool // BGE only - ComEd/PECO default to true
     
+    var isFuture: Bool {
+        switch status {
+        case .pending, .processing, .processed:
+            return true
+        case .canceled, .accepted: // EM-2638: Canceled payments should always be in the past
+            return false
+        case .scheduled, .failed, .unknown:
+            if isBillPDF { // EM-2638: Bills should always be in the past
+                return false
+            }
+            
+            return date >= Calendar.opCo.startOfDay(for: Date())
+        }
+    }
+
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
         chargeAmount = map.optionalFrom("charge_amount", transformation: dollarAmount)
         totalAmountDue = map.optionalFrom("total_amount_due", transformation: dollarAmount)
         try date = map.from("date", transformation: DateParser().extractDate)
         description = map.optionalFrom("description")
-        status = map.optionalFrom("status")
+
+        statusString = map.optionalFrom("status")
+        status = BillingHistoryStatus(identifier: statusString)
+        
         confirmationNumber = map.optionalFrom("confirmation_number")
         paymentType = map.optionalFrom("payment_type")
         paymentMethod = map.optionalFrom("payment_method")
-        type = map.optionalFrom("type")
+        if let type: String = map.optionalFrom("type") {
+            isBillPDF = type == "billing"
+        } else {
+            isBillPDF = false
+        }
         paymentId = map.optionalFrom("payment_id")
         walletItemId = map.optionalFrom("wallet_item_id")
-        flagAllowDeletes = map.optionalFrom("flag_allow_deletes") ?? true
-        flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
-        encryptedPaymentId = map.optionalFrom("encrypted_payment_id")
-        isFuture = calculateIsFuture(dateToCompare: date)
-        if status == BillingHistoryProperties.statusPending.rawValue ||
-            status == BillingHistoryProperties.statusProcessing.rawValue ||
-            status == BillingHistoryProperties.statusProcessed.rawValue {
-            isFuture = true
-        } else if status == BillingHistoryProperties.statusCanceled.rawValue || status == BillingHistoryProperties.statusCANCELLED.rawValue {
-            // EM-2638: Cancelled payments should always be in the past
-            isFuture = false
-        } else if type == BillingHistoryProperties.typeBilling.rawValue {
-            // EM-2638: Bills should always be in the past
-            isFuture = false
+        if Environment.shared.opco == .bge {
+            flagAllowDeletes = map.optionalFrom("flag_allow_deletes") ?? true
+            flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
+        } else {
+            flagAllowDeletes = true
+            flagAllowEdits = false
         }
     }
-}
-
-enum BillingHistoryProperties: String {
-    case typeBilling = "billing"
-    case typePayment = "payment"
-    case statusCanceled = "canceled"
-    case statusCANCELLED = "CANCELLED" //PECO
-    case statusPosted = "Posted"
-    case statusFailed = "failed"
-    case statusPending = "Pending" //TODO: need to confirm case
-    case statusProcessing = "processing"
-    case statusProcessed = "processed"
-    case statusScheduled = "scheduled"
-    case statusSCHEDULED = "SCHEDULED" //PECO
-    case paymentMethod_S = "S"
-    case paymentMethod_R = "R"
-    case paymentTypeSpeedpay = "SPEEDPAY"
-    case paymentTypeCSS = "CSS"
 }

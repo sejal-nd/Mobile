@@ -42,6 +42,17 @@ enum ServiceErrorCode : String {
     case fnOverNotFound = "FN-OVER-NOTFOUND" // BGE PeakRewards overrides not found
     case fnOverExists = "FN-OVER-EXISTS" // BGE PeakRewards overrides already exists
     case fnOverOther = "FN-OVER-OTHER" // BGE PeakRewards overrides
+    case failed = "FAILED" // ComEd/PECO /payments endpoint with no scheduled payments
+    case functionalError = "FUNCTIONAL ERROR" // BGE /programs endpoint with no eventResults
+    
+    // Paymentus Errors
+    case blockedPaymentMethod = "xmlPayment.declined"
+    case blockedUtilityAccount = "accountNumber.suspended"
+    case blockedPaymentType = "paymentMethodType.blocked"
+    case duplicatePayment = "xmlPayment.duplicate"
+    case paymentAccountVelocityBank = "pmBankAccount.tooManyPerPaymentMethodType"
+    case paymentAccountVelocityCard = "pmCreditCardNumber.tooManyPerPaymentMethodType"
+    case utilityAccountVelocity = "accountNumber.tooManyPerPaymentType"
 }
 
 // MARK: - ServiceError

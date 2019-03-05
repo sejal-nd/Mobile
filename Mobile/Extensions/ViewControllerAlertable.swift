@@ -12,7 +12,6 @@ extension UIViewController {
     
     func presentAlert(title: String?, message: String?, style: UIAlertController.Style, actions: [UIAlertAction]) {
         var alertController = UIAlertController()
-        alertController.view.tintColor = .actionBlue
         
         // Force iPad's to only show Alert Style (Does not support Action Sheets)
         if UIDevice.current.userInterfaceIdiom == .pad {

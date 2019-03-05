@@ -58,7 +58,7 @@ class SettingsViewModel {
     func validateCredentials(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         authService.validateLogin(username: username.value, password: password.value).observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.biometricsService.setStoredPassword(password: self.password.value)
                 onSuccess()
             }, onError: { (error: Error) in

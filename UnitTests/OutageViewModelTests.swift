@@ -185,27 +185,35 @@ class OutageViewModelTests: XCTestCase {
     }
     
     func testFooterTextViewText() {
-            AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
-            
-            switch Environment.shared.opco {
-            case .bge:
-                return XCTAssert(self.viewModel.footerTextViewText == "To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", "BGE footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")
-            case .comEd:
-                return XCTAssert(self.viewModel.footerTextViewText == "To report a downed or sparking power line, please call 1-800-334-7661", "ComEd footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")
-            case .peco:
-                return XCTAssert(self.viewModel.footerTextViewText == "To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", "PECO footer text was not returned. Recieved \(self.viewModel.footerTextViewText)")}
+        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
+        
+        let expectedString: String
+        switch Environment.shared.opco {
+        case .bge:
+            expectedString = "If you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-877-778-7798\n\nFor downed or sparking power lines, please call 1-800-685-0123 or 1-877-778-2222"
+        case .comEd:
+            expectedString = "To report a downed or sparking power line, please call 1-800-334-7661"
+        case .peco:
+            expectedString = "To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141"
+        }
+        
+        return XCTAssertEqual(self.viewModel.footerTextViewText.string, expectedString)
     }
     
     func testGasOnlyMessage() {
         AccountsStore.shared.currentAccount = Account.from(["accountNumber": "5591032201", "address": "573 Elm Street"])!
         
+        let expectedString: String
         switch Environment.shared.opco {
         case .bge:
-            return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", "BGE Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")
+            expectedString = "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nIf you smell natural gas, leave the area immediately and call 1-800-685-0123 or 1-877-778-7798."
         case .peco:
-            return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", "PECO Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")
-        default:
-            return XCTAssert(self.viewModel.gasOnlyMessage == "We currently do not allow reporting of gas issues online but want to hear from you right away.", "Default Gas Only message was not returned. Received \(self.viewModel.gasOnlyMessage)")}
+            expectedString = "We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141."
+        case .comEd:
+            expectedString = "We currently do not allow reporting of gas issues online but want to hear from you right away."
+        }
+        
+        return XCTAssertEqual(self.viewModel.gasOnlyMessage.string, expectedString)
     }
     
     func testAccountFinaled() {

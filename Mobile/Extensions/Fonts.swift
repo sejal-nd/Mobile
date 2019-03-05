@@ -114,7 +114,7 @@ extension UIFont {
         #endif
     }
     
-    @nonobjc private static var sizeTable: [UIFont.TextStyle : [UIContentSizeCategory : CGFloat]] = {
+    @nonobjc private static let sizeTable: [UIFont.TextStyle : [UIContentSizeCategory : CGFloat]] =
         [
             .title1: [
                 .accessibilityExtraExtraExtraLarge: 23,
@@ -246,6 +246,5 @@ extension UIFont {
                 .medium: 10,
                 .small: 10,
                 .extraSmall: 10]
-        ]
-    }()
+    ]
 }

@@ -17,17 +17,23 @@ struct Maintenance: Mappable {
     let usageStatus: Bool
     let stormModeStatus: Bool
     
+    let allMessage: String?
+    
     init(map: Mapper) throws {
-        allStatus = map.optionalFrom("all") ?? false
-        homeStatus = map.optionalFrom("home") ?? false
-        billStatus = map.optionalFrom("bill") ?? false
-        outageStatus = map.optionalFrom("outage") ?? false
-        alertStatus = map.optionalFrom("alerts") ?? false
-        usageStatus = map.optionalFrom("usage") ?? false
+        allStatus = (map.optionalFrom("all") ?? false) || (map.optionalFrom("ios.all") ?? false)
+        homeStatus = map.optionalFrom("home") ?? false || (map.optionalFrom("ios.home") ?? false)
+        billStatus = map.optionalFrom("bill") ?? false || (map.optionalFrom("ios.bill") ?? false)
+        outageStatus = map.optionalFrom("outage") ?? false || (map.optionalFrom("ios.outage") ?? false)
+        alertStatus = map.optionalFrom("alerts") ?? false || (map.optionalFrom("ios.alerts") ?? false)
+        usageStatus = map.optionalFrom("usage") ?? false || (map.optionalFrom("ios.usage") ?? false)
         
         stormModeStatus = map.optionalFrom("storm") ?? false // Real Storm Mode value
         //stormModeStatus = true // Force Storm Mode
         //stormModeStatus = Int.random(in: 1...5) != 1 // 1 in 5 chance to test exiting Storm Mode
+        
+        allMessage = nil
+        //allMessage = map.optionalFrom("allMessage")
+        //allMessage = Bool.random() ? nil : "how now brown cow"
     }
     
 }

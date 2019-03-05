@@ -24,7 +24,7 @@ class MCSOutageService: OutageService {
     private var outageMap = [String: ReportedOutageResult]()
     
     func pingMeter(account: Account) -> Observable<MeterPingInfo> {
-        return MCSApi.shared.get(path: "auth_v2/accounts/\(account.accountNumber)/outage/ping")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/outage/ping")
             .map { json in
                 guard let dict = json as? NSDictionary,
                     let meterPingDict = dict["meterInfo"] as? NSDictionary,
@@ -37,7 +37,7 @@ class MCSOutageService: OutageService {
     }
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
-        return MCSApi.shared.get(path: "auth_\(MCSApi.API_VERSION)/accounts/\(account.accountNumber)/outage?meterPing=false")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/outage?meterPing=false")
             .map { jsonArray in
                 guard let outageStatusArray = jsonArray as? NSArray else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -83,7 +83,7 @@ class MCSOutageService: OutageService {
             }
         }
         
-        return MCSApi.shared.post(path: "auth_\(MCSApi.API_VERSION)/accounts/\(outageInfo.accountNumber)/outage", params: params)
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(outageInfo.accountNumber)/outage", params: params)
             .do(onNext: { json in
                 guard let dict = json as? NSDictionary,
                     let reportedOutage = ReportedOutageResult.from(dict) else {
@@ -115,7 +115,7 @@ class MCSOutageService: OutageService {
             }
         }
         
-        return MCSApi.shared.post(path: "anon_\(MCSApi.API_VERSION)/\(Environment.shared.opco.rawValue)/outage", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "outage", params: params)
             .map { json in
                 guard let dict = json as? NSDictionary,
                     let reportedOutage = ReportedOutageResult.from(dict) else {
@@ -141,7 +141,7 @@ class MCSOutageService: OutageService {
             params["account_number"] = accountNum
         }
         
-        return MCSApi.shared.post(path: "anon_\(MCSApi.API_VERSION)/\(Environment.shared.opco.rawValue.uppercased())/outage/query", params: params)
+        return MCSApi.shared.post(pathPrefix: .anon, path: "outage/query", params: params)
             .map { json in
                 guard let outageStatusArray = json as? [[String: Any]] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)

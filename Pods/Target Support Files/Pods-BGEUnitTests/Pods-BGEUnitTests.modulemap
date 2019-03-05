@@ -1,6 +1,0 @@
-framework module Pods_BGEUnitTests {
-  umbrella header "Pods-BGEUnitTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -178,7 +178,7 @@ class AutoPayViewModel {
                          NSLocalizedString("Other", comment: "")]
     
     private(set) lazy var footerText: Driver<String?> = self.enrollmentStatus.asDriver().map { [weak self] enrollmentStatus in
-        guard let `self` = self else { return nil }
+        guard let self = self else { return nil }
 		var footerText: String
         switch (Environment.shared.opco, enrollmentStatus) {
         case (.peco, .enrolling):

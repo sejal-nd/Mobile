@@ -19,16 +19,14 @@ enum OpCo: String {
     
     // Used for reading the splash screen animation to VoiceOver users
     var taglineString: String {
-        var tagline: String
         switch self {
         case .bge:
-            tagline = "That's smart energy"
+            return "That's smart energy"
         case .comEd:
-            tagline = "Powering lives"
+            return "Powering lives"
         case .peco:
-            tagline = "The future is on"
+            return "The future is on"
         }
-        return tagline
     }
     
     var appStoreLink: URL? {
@@ -56,7 +54,6 @@ struct MCSConfig {
     let mobileBackendId: String
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
-    let fiservUrl: String
     let speedpayUrl: String
     
     init(mcsInstanceName: String) {
@@ -69,7 +66,6 @@ struct MCSConfig {
         mobileBackendId = mobileBackend["mobileBackendID"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
-        fiservUrl = mobileBackend["fiservUrl"] as! String
         speedpayUrl = mobileBackend["speedpayUrl"] as! String
     }
 }
@@ -84,6 +80,7 @@ struct Environment {
     let mcsInstanceName: String
     let mcsConfig: MCSConfig
     let outageMapUrl: String
+    let paymentusUrl: String
     let gaTrackingId: String
     let watchGaTrackingId: String
     let firebaseConfigFile: String
@@ -101,6 +98,7 @@ struct Environment {
         mcsInstanceName = dict?["mcsInstanceName"] as! String
         mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName)
         outageMapUrl = dict?["outageMapUrl"] as! String
+        paymentusUrl = dict?["paymentusUrl"] as! String
         gaTrackingId = dict?["gaTrackingId"] as! String
         watchGaTrackingId = dict?["watchGaTrackingId"] as! String
         firebaseConfigFile = dict?["firebaseConfigFile"] as! String

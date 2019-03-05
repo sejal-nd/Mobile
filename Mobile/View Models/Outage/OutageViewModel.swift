@@ -43,13 +43,15 @@ class OutageViewModel {
         
         currentGetMaintenanceModeStatusDisposable = authService.getMaintenanceMode()
             .subscribe(onNext: { [weak self] status in
-                if status.outageStatus {
+                if status.allStatus {
+                    onError(ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue))
+                } else if status.outageStatus {
                     onMaintenance()
                 } else {
                     self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
                 }
-                }, onError: { [weak self] _ in
-                    self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
+            }, onError: { [weak self] _ in
+                self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
             })
     }
     
@@ -64,7 +66,7 @@ class OutageViewModel {
                 self?.currentOutageStatus = outageStatus
                 onSuccess()
             }, onError: { [weak self] error in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
                     self.currentOutageStatus = OutageStatus.from(["flagFinaled": true])
@@ -108,26 +110,79 @@ class OutageViewModel {
         return NSLocalizedString("Reported", comment: "")
     }
     
-    var footerTextViewText: String {
+    var footerTextViewText: NSAttributedString {
+        var localizedString: String
+        let phoneNumbers: [String]
         switch Environment.shared.opco {
         case .bge:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123", comment: "")
+            let phone1 = "1-800-685-0123"
+            let phone2 = "1-877-778-7798"
+            let phone3 = "1-877-778-2222"
+            phoneNumbers = [phone1, phone2, phone3]
+            localizedString = String.localizedStringWithFormat(
+                """
+                If you smell natural gas, leave the area immediately and call %@ or %@\n
+                For downed or sparking power lines, please call %@ or %@
+                """
+            , phone1, phone2, phone1, phone3)
         case .comEd:
-            return NSLocalizedString("To report a downed or sparking power line, please call 1-800-334-7661", comment: "")
+            let phone1 = "1-800-334-7661"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("To report a downed or sparking power line, please call %@", phone1)
         case .peco:
-            return NSLocalizedString("To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141", comment: "")
+            let phone1 = "1-800-841-4141"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
         }
+        
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
+        for phone in phoneNumbers {
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
+                }
+        }
+        return attributedText
     }
     
-    var gasOnlyMessage: String {
+    var gasOnlyMessage: NSAttributedString {
+        var localizedString: String
+        let phoneNumbers: [String]
         switch Environment.shared.opco {
         case .bge:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: "")
+            let phone1 = "1-800-685-0123"
+            let phone2 = "1-877-778-7798"
+            phoneNumbers = [phone1, phone2]
+            localizedString = String.localizedStringWithFormat(
+                """
+                We currently do not allow reporting of gas issues online but want to hear from you right away.\n
+                If you smell natural gas, leave the area immediately and call %@ or %@.
+                """
+            , phone1, phone2)
         case .peco:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo issue a Gas Emergency Order, please call 1-800-841-4141.", comment: "")
+            let phone1 = "1-800-841-4141"
+            phoneNumbers = [phone1]
+            localizedString = String.localizedStringWithFormat(
+                """
+                We currently do not allow reporting of gas issues online but want to hear from you right away.\n
+                To issue a Gas Emergency Order, please call %@.
+                """
+            , phone1)
         default:
-            return NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
+            phoneNumbers = []
+            localizedString = NSLocalizedString("We currently do not allow reporting of gas issues online but want to hear from you right away.", comment: "")
         }
+        
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .subheadline)])
+        for phone in phoneNumbers {
+            localizedString.ranges(of: phone, options: .regularExpression)
+                .map { NSRange($0, in: localizedString) }
+                .forEach {
+                    attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .subheadline), range: $0)
+            }
+        }
+        return attributedText
     }
     
     var accountNonPayFinaledMessage: String {
@@ -148,12 +203,11 @@ class OutageViewModel {
     }
     
     var showReportStreetlightOutageButton: Bool {
-        return false
-//        switch Environment.shared.opco {
-//        case .comEd:
-//            return true
-//        case .bge, .peco:
-//            return false
-//        }
+        switch Environment.shared.opco {
+        case .comEd:
+            return true
+        case .bge, .peco:
+            return false
+        }
     }
 }

@@ -17,6 +17,7 @@ class MiniWalletViewModel {
     
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedItem = Variable<WalletItem?>(nil)
+    let temporaryItem = Variable<WalletItem?>(nil)
     let isFetchingWalletItems = Variable(false)
     let isError = Variable(false)
     
@@ -30,12 +31,12 @@ class MiniWalletViewModel {
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] walletItems in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.isFetchingWalletItems.value = false
                 self.walletItems.value = walletItems
                 onSuccess()
                 }, onError: { [weak self] err in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     self.isFetchingWalletItems.value = false
                     self.isError.value = true
                 onError?()
@@ -62,21 +63,12 @@ class MiniWalletViewModel {
                 banks.append(item)
             }
         }
-        return banks
-    }
-
-    lazy var bankAccountLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.shared.opco == .bge { return false } // No limit for BGE
-        
-        guard let walletItems = $0 else { return false }
-        var bankCount = 0
-        for item in walletItems {
-            if item.bankOrCard == .bank {
-                bankCount += 1
-                if bankCount == 3 { break }
+        if let tempItem = temporaryItem.value {
+            if tempItem.bankOrCard == .bank && !banks.contains(tempItem) {
+                banks.insert(tempItem, at: 0)
             }
         }
-        return bankCount >= 3
+        return banks
     }
     
     var creditCards: [WalletItem]! {
@@ -87,6 +79,11 @@ class MiniWalletViewModel {
                 cards.append(item)
             }
         }
+        if let tempItem = temporaryItem.value {
+            if tempItem.bankOrCard == .card && !cards.contains(tempItem) {
+                cards.insert(tempItem, at: 0)
+            }
+        }
         return cards
     }
     
@@ -95,23 +92,9 @@ class MiniWalletViewModel {
         case .bge:
             return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
         case .comEd, .peco:
-            return NSLocalizedString("Up to three payment accounts for credit cards and bank accounts may be saved.\n\nWe accept: Discover, MasterCard, and Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo. American Express is not accepted at this time.", comment: "")
+            return NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
         }
     }
-    
-    lazy var creditCardLimitReached: Driver<Bool> = self.walletItems.asDriver().map {
-        if Environment.shared.opco == .bge { return false } // No limit for BGE
         
-        guard let walletItems = $0 else { return false }
-        var creditCount = 0
-        for item in walletItems {
-            if item.bankOrCard == .card {
-                creditCount += 1
-                if creditCount == 3 { break }
-            }
-        }
-        return creditCount >= 3
-    }
-    
 }
 

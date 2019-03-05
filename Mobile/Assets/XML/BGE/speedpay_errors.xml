@@ -9,15 +9,15 @@
     <item id="3307" context="">We are unable to process your request. It looks like you are attempting to make a duplicate payment.</item>
     <item id="3314" context="">We are unable to process your request. Please contact our Customer Care Center at 1-800-685-0123.</item>
     <item id="4330" context="">We are unable to process your request. The routing number provided is not valid. Please verify your information and try again.</item>
-    <item id="4331" context="">The bank indicated by the routing number does not allow payments of this type. Please use another payment account.</item>
-    <item id="4332" context="">The bank indicated by this routing number is unable to process ACH payments. Please use another payment account.</item>
+    <item id="4331" context="">The bank indicated by the routing number does not allow payments of this type. Please use another payment method.</item>
+    <item id="4332" context="">The bank indicated by this routing number is unable to process ACH payments. Please use another payment method.</item>
     <item id="18030" context="">We are unable to process your request. The zip code provided is not valid. Please verify your information and try again.</item>
-    <item id="18074" context="">Credit card type is not accepted. You may add a different payment account to your wallet.</item>
+    <item id="18074" context="">Credit card type is not accepted. You may add a different payment method to your wallet.</item>
     <item id="18077" context="">Card account number has failed validations. Please verify card information.</item>
-    <item id="18081" context="">The account nickname is invalid. Please re-enter and try again.</item>
-    <item id="28003" context="">This payment account already exists in your wallet.</item>
+    <item id="18081" context="">The payment method nickname is invalid. Please re-enter and try again.</item>
+    <item id="28003" context="">This payment method already exists in your wallet.</item>
     <item id="28009" context="">We are unable to process your request. The zip code provided is not valid. Please verify your information and try again.</item>
     <item id="19022" context="">The time allowed for processing the card transaction has expired. Please try again.</item>
-    <item id="19001" context="">We are unable to process your request. This card account has reached the limit of permitted payments in the last 30 days. Please use a different payment account.</item>
+    <item id="19001" context="">We are unable to process your request. This card account has reached the limit of permitted payments in the last 30 days. Please use a different payment method.</item>
     <item id="19002" context="">We are unable to process your request as you have reached the maximum number of payments permitted. Please contact our Customer Care Center at 1-800-685-0123.</item>
 </errors>

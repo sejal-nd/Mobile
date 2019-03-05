@@ -119,8 +119,8 @@ class AppointmentDetailViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment is complete. Please call for further assistance.", comment: ""))
         
         // Canceled
-        viewModel.appointment = Appointment(id: "0", startDate: Date(), stopDate: Date(), status: .canceled)
-        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment has been canceled. We apologize for the inconvenience. Please contact us to reschedule.", comment: ""))
+        viewModel.appointment = Appointment(id: "0", startDate: future9, stopDate: future11, status: .canceled)
+        XCTAssertEqual(viewModel.appointmentDescriptionText.string, NSLocalizedString("Your appointment scheduled for Sunday, Oct 31st has been canceled.\n\nWe apologize for the inconvenience. Please contact us to reschedule.", comment: ""))
     }
     
     func testCalendarEvent() {

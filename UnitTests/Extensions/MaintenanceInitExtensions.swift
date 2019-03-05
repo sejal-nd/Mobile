@@ -6,6 +6,8 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
+import Foundation
+
 extension Maintenance {
     init(all: Bool = false,
          home: Bool = false,
