@@ -63,9 +63,4 @@ protocol RegistrationService {
      */
     func validateConfirmationEmail(_ guid: String) -> Observable<Void>
     
-    /*
-     username	String   The user's email address or username.
-     */
-    func recoverPassword(_ username: String) -> Observable<Void>
-    
 }

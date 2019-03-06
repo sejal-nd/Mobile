@@ -230,7 +230,7 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.overpayingValueDisplayString.drive(bankOverpayingValueLabel.rx.text).disposed(by: disposeBag)
         
         // Convenience Fee
-        viewModel.convenienceFeeDisplayString.drive(convenienceFeeValueLabel.rx.text).disposed(by: disposeBag)
+        convenienceFeeValueLabel.text = viewModel.convenienceFee.currencyString
         
         // Payment Date
         viewModel.paymentDateString.asDriver().drive(paymentDateValueLabel.rx.text).disposed(by: disposeBag)

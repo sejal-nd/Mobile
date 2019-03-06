@@ -13,12 +13,6 @@ enum AmountType: String {
     case amountDue = "amount due"
 }
 
-enum EffectivePeriod: String {
-    case untilCanceled = "untilCanceled"
-    case endDate = "endDate"
-    case maxPayments = "maxPayments"
-}
-
 private func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
@@ -26,30 +20,41 @@ private func extractLast4(object: Any?) throws -> String? {
     return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
 }
 
-
 struct BGEAutoPayInfo: Mappable {
-    
     let walletItemId: String?
     let paymentAccountNickname: String?
     let paymentAccountLast4: String?
     let amountType: AmountType?
-    let amountThreshold: String?
-    let paymentDaysBeforeDue: String?
-    let effectivePeriod: EffectivePeriod?
-    let effectiveEndDate: Date?
-    let effectiveNumPayments: String?
-    let numberOfPaymentsScheduled: String?
+    let amountThreshold: Double?
+    let paymentDaysBeforeDue: Int?
     
     init(map: Mapper) throws {
         walletItemId = map.optionalFrom("wallet_item_id")
         paymentAccountNickname = map.optionalFrom("payment_acount") // Yes, this is mispelled
         paymentAccountLast4 = map.optionalFrom("masked_account_number", transformation: extractLast4)
         amountType = map.optionalFrom("amount_type")
-        amountThreshold = map.optionalFrom("amount_threshold")
-        paymentDaysBeforeDue = map.optionalFrom("payment_days_before_due")
-        effectivePeriod = map.optionalFrom("effective_period")
-        effectiveEndDate = map.optionalFrom("effective_end_date", transformation: DateParser().extractDate)
-        effectiveNumPayments = map.optionalFrom("effective_number_of_payments")
-        numberOfPaymentsScheduled = map.optionalFrom("no_of_payments_scheduled")
+        amountThreshold = map.optionalFrom("amount_threshold") { object in
+            guard let string = object as? String else {
+                throw MapperError.convertibleError(value: object, type: String.self)
+            }
+            
+            guard let double = Double(string) else {
+                throw MapperError.convertibleError(value: string, type: Double.self)
+            }
+            
+            return double
+        }
+        
+        paymentDaysBeforeDue = map.optionalFrom("payment_days_before_due") { object in
+            guard let string = object as? String else {
+                throw MapperError.convertibleError(value: object, type: String.self)
+            }
+            
+            guard let int = Int(string) else {
+                throw MapperError.convertibleError(value: string, type: Int.self)
+            }
+            
+            return int
+        }
     }
 }

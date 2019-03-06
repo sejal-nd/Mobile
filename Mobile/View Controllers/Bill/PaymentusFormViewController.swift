@@ -20,7 +20,6 @@ fileprivate enum PaymentusPaymentMethodType: String {
     case discover = "DISC"
     case visaDebit = "VISA_DEBIT"
     case mastercardDebit = "MC_DEBIT"
-    //case pinlessDebit = "PD" // Paymentus documentation includes this, but I'm unsure know what it is
 }
 
 protocol PaymentusFormViewControllerDelegate: class {
@@ -50,7 +49,7 @@ class PaymentusFormViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var editingDefaultItem = false // We need to know if user is editing the default so we can properly fire the `defaultWalletItemUpdated` notification
-    var shouldPopToMakePaymentOnSave = false
+    weak var popToViewController: UIViewController? // Pop to this view controller on new item save
     var shouldPopToRootOnSave = false
     
     let walletService: WalletService = ServiceFactory.createWalletService()
@@ -156,8 +155,8 @@ class PaymentusFormViewController: UIViewController {
                 } else {
                     self.showError()
                 }
-                }, onError: { [weak self] err in
-                    self?.showError()
+            }, onError: { [weak self] err in
+                self?.showError()
             }).disposed(by: disposeBag)
     }
     
@@ -228,21 +227,25 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     
                     // Map the Paymentus returned "Type" to our PaymentMethodTypes for correct icon display
                     let paymentMethodType: PaymentMethodType
-                    if let type = pmDetailsJson["Type"] as? PaymentusPaymentMethodType {
-                        switch type {
-                        case .checking, .saving:
-                            paymentMethodType = .ach
-                        case .visa, .visaDebit:
-                            paymentMethodType = .visa
-                        case .mastercard, .mastercardDebit:
-                            paymentMethodType = .mastercard
-                        case .amex:
-                            paymentMethodType = .amex
-                        case .discover:
-                            paymentMethodType = .discover
+                    if let typeString = pmDetailsJson["Type"] as? String {
+                        if let type = PaymentusPaymentMethodType(rawValue: typeString) {
+                            switch type {
+                            case .checking, .saving:
+                                paymentMethodType = .ach
+                            case .visa, .visaDebit:
+                                paymentMethodType = .visa
+                            case .mastercard, .mastercardDebit:
+                                paymentMethodType = .mastercard
+                            case .amex:
+                                paymentMethodType = .amex
+                            case .discover:
+                                paymentMethodType = .discover
+                            }
+                        } else {
+                            paymentMethodType = .unknown(typeString)
                         }
                     } else {
-                        paymentMethodType = .ach
+                        paymentMethodType = bankOrCard == .bank ? .ach : .unknown("Credit Card")
                     }
                     
                     let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String,
@@ -280,13 +283,8 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         } else {
                             navigationController?.popToRootViewController(animated: true)
                         }
-                    } else if shouldPopToMakePaymentOnSave {
-                        for vc in navigationController!.viewControllers {
-                            guard let dest = vc as? MakePaymentViewController else {
-                                continue
-                            }
-                            navigationController?.popToViewController(dest, animated: true)
-                        }
+                    } else if let dest = popToViewController {
+                        navigationController?.popToViewController(dest, animated: true)
                     } else {
                         navigationController?.popViewController(animated: true)
                     }

@@ -592,12 +592,7 @@ class HomeBillCardViewModel {
 
     private(set) lazy var bankCreditCardImage: Driver<UIImage?> = walletItemDriver.map {
         guard let walletItem = $0 else { return nil }
-        switch walletItem.bankOrCard {
-        case .bank:
-            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_bank_white.pdf") : #imageLiteral(resourceName: "ic_bank")
-        case .card:
-            return StormModeStatus.shared.isOn ? #imageLiteral(resourceName: "ic_creditcard_white.pdf") : #imageLiteral(resourceName: "ic_creditcard")
-        }
+        return walletItem.bankOrCard == .bank ? #imageLiteral(resourceName: "ic_bank") : #imageLiteral(resourceName: "ic_creditcard")
     }
 
     private(set) lazy var bankCreditCardButtonAccessibilityLabel: Driver<String?> = walletItemDriver.map {
@@ -634,32 +629,15 @@ class HomeBillCardViewModel {
         }
     }
 
-    private(set) lazy var convenienceFeeText: Driver<String?> = Driver.combineLatest(accountDetailDriver, walletItemDriver)
-        { accountDetail, walletItem in
+    private(set) lazy var convenienceFeeText: Driver<String?> =
+        Driver.combineLatest(accountDetailDriver, walletItemDriver) { accountDetail, walletItem in
             guard let walletItem = walletItem else { return nil }
-
-            var localizedText: String? = nil
-            var convenienceFeeString: String? = nil
-            switch (accountDetail.isResidential, walletItem.bankOrCard, Environment.shared.opco) {
-            case (_, .card, .peco):
-                fallthrough
-            case (_, .card, .comEd):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied by Paymentus, our payment partner.", comment: "")
-                convenienceFeeString = accountDetail.billingInfo.convenienceFee?.currencyString
-            case (true, .card, .bge):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied.", comment: "")
-                convenienceFeeString = accountDetail.billingInfo.residentialFee?.currencyString
-            case (false, .card, .bge):
-                localizedText = NSLocalizedString("A %@ convenience fee will be applied.", comment: "")
-                convenienceFeeString = accountDetail.billingInfo.commercialFee?.percentString
-            case (_, .bank, _):
+            if walletItem.bankOrCard == .bank {
                 return NSLocalizedString("No fees applied.", comment: "")
+            } else {
+                return String.localizedStringWithFormat("A %@ convenience fee will be applied by Paymentus, our payment partner.", accountDetail.billingInfo.convenienceFee.currencyString)
             }
-
-            guard let text = localizedText, let convenienceFee = convenienceFeeString else { return nil }
-            return String(format: text, convenienceFee)
-
-    }
+        }
 
     private(set) lazy var enableOneTouchSlider: Driver<Bool> =
         Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
@@ -721,37 +699,6 @@ class HomeBillCardViewModel {
         guard let paymentDateText = $0?.date?.mmDdYyyyString else { return nil }
         let localizedText = NSLocalizedString("Thank you for scheduling your %@ payment for %@." , comment: "")
         return String(format: localizedText, paymentAmountText, paymentDateText)
-    }
-
-    private(set) lazy var oneTouchPayTCButtonText: Driver<String?> = walletItemDriver.map {
-        guard let walletItem = $0 else { return nil }
-        switch (Environment.shared.opco, walletItem.bankOrCard) {
-        case (.bge, .bank):
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled.", comment: "")
-        default:
-            return NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms & Conditions.", comment: "")
-        }
-    }
-
-    private(set) lazy var enableOneTouchPayTCButton: Driver<Bool> = walletItemDriver.map {
-        guard let walletItem = $0 else { return false }
-        switch (Environment.shared.opco, walletItem.bankOrCard) {
-        case (.bge, .bank):
-            return false
-        default:
-            return true
-        }
-    }
-
-    private(set) lazy var oneTouchPayTCButtonTextColor: Driver<UIColor> = enableOneTouchPayTCButton
-        .map { enable in
-            if StormModeStatus.shared.isOn {
-                return .white
-            } else if enable {
-                return .actionBlue
-            } else {
-                return .blackText
-            }
     }
 
     private(set) lazy var slideToPayConfirmationDetailText: Driver<String?> = accountDetailDriver

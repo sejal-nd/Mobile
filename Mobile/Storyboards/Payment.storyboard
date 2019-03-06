@@ -88,24 +88,20 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaQ-tE-Mxh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bank_building_mini" translatesAutoresizingMaskIntoConstraints="NO" id="JV8-ZF-cGj">
-                                                                        <rect key="frame" x="12" y="10" width="50" height="40"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="50" id="OL1-fy-6bh"/>
-                                                                            <constraint firstAttribute="height" constant="40" id="TRj-qM-ACv"/>
-                                                                        </constraints>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="bank_building_mini" translatesAutoresizingMaskIntoConstraints="NO" id="JV8-ZF-cGj">
+                                                                        <rect key="frame" x="12" y="17" width="28" height="26"/>
                                                                     </imageView>
                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dJR-J3-FoI">
-                                                                        <rect key="frame" x="80" y="13" width="193" height="34"/>
+                                                                        <rect key="frame" x="58" y="13" width="215" height="34"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 4321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqT-8F-o0x">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="193" height="19.5"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="215" height="19.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIG-U5-bev">
-                                                                                <rect key="frame" x="0.0" y="19.5" width="193" height="14.5"/>
+                                                                                <rect key="frame" x="0.0" y="19.5" width="215" height="14.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -389,12 +385,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WtE-3Q-eZT" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bank_building_mini" translatesAutoresizingMaskIntoConstraints="NO" id="EXR-g0-D7J">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="bank_building_mini_white_bg" translatesAutoresizingMaskIntoConstraints="NO" id="EXR-g0-D7J">
                                                                         <rect key="frame" x="12" y="10" width="50" height="40"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="40" id="Fky-Rq-v6R"/>
-                                                                            <constraint firstAttribute="width" constant="50" id="Sjq-xx-DET"/>
-                                                                        </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bank Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayP-gC-7LC">
                                                                         <rect key="frame" x="74" y="19.5" width="235" height="21.5"/>
@@ -416,12 +408,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zx7-pt-08g" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="80" width="317" height="60"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="credit_card_mini" translatesAutoresizingMaskIntoConstraints="NO" id="1Jy-0G-fk7">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="credit_card_mini_white_bg" translatesAutoresizingMaskIntoConstraints="NO" id="1Jy-0G-fk7">
                                                                         <rect key="frame" x="12" y="10" width="50" height="40"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="40" id="8t2-dl-0Ir"/>
-                                                                            <constraint firstAttribute="width" constant="50" id="ehS-I2-sKM"/>
-                                                                        </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Credit/Debit Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbz-Rd-CSU">
                                                                         <rect key="frame" x="74" y="19.5" width="235" height="21.5"/>
@@ -1767,12 +1755,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bank_building_mini" width="50" height="40"/>
-        <image name="credit_card_mini" width="50" height="40"/>
+        <image name="bank_building_mini" width="28" height="26"/>
+        <image name="bank_building_mini_white_bg" width="50" height="40"/>
+        <image name="credit_card_mini_white_bg" width="50" height="40"/>
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_delete" width="20" height="20"/>
         <image name="img_confirmation_green" width="206" height="136"/>
-        <image name="opco_bank_mini" width="50" height="40"/>
+        <image name="opco_bank_mini" width="45" height="36"/>
     </resources>
 </document>

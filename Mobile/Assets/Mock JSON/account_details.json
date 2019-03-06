@@ -856,7 +856,7 @@
             "netDueAmount": 200,
             "lastPaymentAmount": 200,
             "lastPaymentDate": "2018-11-31T00:00:00",
-            "dueByDate": "2018-12-31T00:00:00",
+            "dueByDate": "2018-12-31T00:00:00"
         },
         "CustomerInfo": {},
         "SERInfo": {}

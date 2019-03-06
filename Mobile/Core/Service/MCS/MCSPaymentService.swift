@@ -27,27 +27,18 @@ class MCSPaymentService: PaymentService {
                             amountType: AmountType,
                             amountThreshold: String,
                             paymentDaysBeforeDue: String,
-                            effectivePeriod: EffectivePeriod,
-                            effectiveEndDate: Date?,
-                            effectiveNumPayments: String,
                             isUpdate: Bool) -> Observable<Void> {
         let path = "accounts/\(accountNumber)/payments/recurring"
 
         var params = ["amount_type": amountType.rawValue,
                       "payment_date_type": "before due",
-                      "payment_days_before_due": paymentDaysBeforeDue,
-                      "effective_period": effectivePeriod.rawValue]
+                      "payment_days_before_due": paymentDaysBeforeDue]
 
         if let walletId = walletItemId {
             params["wallet_item_id"] = walletId
         }
         if amountType == .upToAmount {
             params["amount_threshold"] = amountThreshold
-        }
-        if effectivePeriod == .endDate {
-            params["effective_end_date"] = effectiveEndDate!.apiFormatString
-        } else if effectivePeriod == .maxPayments {
-            params["effective_number_of_payments"] = effectiveNumPayments
         }
 
         params["auto_pay_request_type"] = isUpdate ? "Update" : "Start"
@@ -168,11 +159,8 @@ class MCSPaymentService: PaymentService {
             "biller_id": "\(opCo.rawValue)Registered", // Still needed?
             "auth_sess_token": "" // Still needed?
         ]
-        return updatePaymentInternal(accountNumber: payment.accountNumber, paymentId: paymentId, params: params)
-    }
-    
-    private func updatePaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
-        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
+        
+        return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(payment.accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())
@@ -190,10 +178,7 @@ class MCSPaymentService: PaymentService {
             "biller_id": "\(opCo.rawValue)Registered", // Still needed?
             "auth_sess_token": "" // Still needed?
         ]
-        return cancelPaymentInternal(accountNumber: accountNumber, paymentId: paymentId, params: params)
-    }
-    
-    private func cancelPaymentInternal(accountNumber: String, paymentId: String, params: [String: Any]) -> Observable<Void> {
+
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
             .do(onNext: {
@@ -201,4 +186,5 @@ class MCSPaymentService: PaymentService {
                 AppRating.logRatingEvent()
             })
     }
+
 }

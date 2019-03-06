@@ -438,7 +438,7 @@ class MakePaymentViewController: UIViewController {
                 }
             }
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
-            miniWalletVC.sentFromPayment = true
+            miniWalletVC.popToViewController = self
             miniWalletVC.delegate = self
             if self.billingHistoryItem != nil, let walletItem = self.viewModel.selectedWalletItem.value {
                 if Environment.shared.opco == .bge {

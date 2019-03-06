@@ -43,6 +43,17 @@ class MiniWalletViewModel {
             }).disposed(by: disposeBag)
     }
     
+    var tableViewWalletItems: [WalletItem]! {
+        guard let walletItems = walletItems.value else { return [] }
+        var items = walletItems
+        if let tempItem = temporaryItem.value {
+            if !items.contains(tempItem) {
+                items.insert(tempItem, at: 0)
+            }
+        }
+        return items
+    }
+    
     var shouldShowTableView: Driver<Bool> {
         return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
             return !$0 && !$1
