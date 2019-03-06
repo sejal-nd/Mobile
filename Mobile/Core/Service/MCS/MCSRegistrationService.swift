@@ -99,9 +99,4 @@ class MCSRegistrationService: RegistrationService {
             .mapTo(())
     }
     
-    func recoverPassword(_ username: String) -> Observable<Void> {
-        let params = ["username": username] as [String: Any]
-        return MCSApi.shared.post(pathPrefix: .anon, path: "recover/password", params: params)
-            .mapTo(())
-    }
 }
