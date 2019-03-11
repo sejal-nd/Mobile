@@ -308,8 +308,7 @@ class MCSPaymentService: PaymentService {
     }
     
     func fetchPaymentFreezeDate() -> Observable<Date> {
-        let opCo = Environment.shared.opco.displayString.uppercased()
-        return MCSApi.shared.get(pathPrefix: .anon, path: "\(opCo)/config/epay_freeze")
+        return MCSApi.shared.get(pathPrefix: .anon, path: "config/epay_freeze")
             .map { response in
                 guard let json = response as? [String: Any],
                     let dateString = json["cutover_date"] as? String else {

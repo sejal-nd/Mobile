@@ -601,7 +601,8 @@ class HomeBillCardView: UIView {
                oneTouchSliderCVV2Alert,
                tutorialViewController,
                bgeasyViewController,
-               autoPayAlert)
+               autoPayAlert,
+               cutoffAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
