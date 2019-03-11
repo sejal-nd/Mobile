@@ -296,20 +296,13 @@ class ReviewPaymentViewController: UIViewController {
                     okHandler: { [weak self] _ in
                         guard let self = self else { return }
                         if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
-                            let makePaymentVC = self.navigationController?.viewControllers
-                                .compactMap { $0 as? MakePaymentViewController }
-                                .first
-                            
-                            if let vc = makePaymentVC {
-                                self.viewModel.selectedWalletItem.value = nil
-                                self.viewModel.newlyAddedWalletItem.value = nil
-                                vc.fetchData()
-                                self.navigationController?.popToViewController(vc, animated: true)
-                            } else {
-                                self.navigationController?.popToRootViewController(animated: true)
-                            }
+                            guard let navCtl = self.navigationController else { return }
+                            let makePaymentVC = UIStoryboard(name: "Wallet", bundle: nil)
+                                .instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                            makePaymentVC.accountDetail = self.viewModel.accountDetail.value
+                            navCtl.viewControllers = [navCtl.viewControllers.first!, makePaymentVC]
                         }
-                },
+                    },
                     callHandler: { _ in
                         UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
                 }

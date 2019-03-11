@@ -447,11 +447,6 @@ class HomeBillCardView: UIView {
                     forError: err,
                     walletItem: walletItem!,
                     customMessage: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
-                    okHandler: { _ in
-                        if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
-                            RxNotifications.shared.defaultWalletItemUpdated.onNext(())
-                        }
-                },
                     callHandler: { _ in
                         if let phone = self?.viewModel.errorPhoneNumber {
                             UIApplication.shared.openPhoneNumberIfCan(phone)
