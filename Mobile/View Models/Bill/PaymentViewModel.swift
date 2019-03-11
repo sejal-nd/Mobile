@@ -48,6 +48,8 @@ class PaymentViewModel {
     let allowEdits = Variable(true)
     let allowCancel = Variable(false)
     
+    let speedpayCutoffDate = Variable<Date?>(nil)
+    
     var confirmationNumber: String?
     
     init(walletService: WalletService, paymentService: PaymentService, accountDetail: AccountDetail, addBankFormViewModel: AddBankFormViewModel, addCardFormViewModel: AddCardFormViewModel, paymentDetail: PaymentDetail?, billingHistoryItem: BillingHistoryItem?) {
@@ -89,6 +91,33 @@ class PaymentViewModel {
         }
     }
     
+    func fetchSpeedpayCutoff() -> Observable<Date> {
+        return paymentService.fetchPaymentFreezeDate().map { date in
+            self.speedpayCutoffDate.value = date
+            return date
+        }
+    }
+    
+    func checkForCutoff(onShouldReject: @escaping (() -> Void), onShouldContinue: @escaping (() -> Void)) {
+        if Environment.shared.opco == .bge {
+            onShouldContinue()
+        } else {
+            isFetching.value = true
+            fetchSpeedpayCutoff().subscribe(onNext: { [weak self] cutoffDate in
+                guard let self = self else { return }
+                self.isFetching.value = false
+                if Date() >= cutoffDate || self.paymentDate.value >= cutoffDate {
+                    onShouldReject()
+                } else {
+                    onShouldContinue()
+                }
+                }, onError: { [weak self] _ in
+                    self?.isFetching.value = false
+                    onShouldContinue()
+            }).disposed(by: disposeBag)
+        }
+    }
+    
     func computeDefaultPaymentDate() {
         let now = Date()
         
@@ -97,26 +126,40 @@ class PaymentViewModel {
             paymentDate.value = now
         case .bge:
             let startOfTodayDate = Calendar.opCo.startOfDay(for: now)
-            let tomorrow =  Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!
+            let tomorrow = Calendar.opCo.date(byAdding: .day, value: 1, to: startOfTodayDate)!
             
             if Calendar.opCo.component(.hour, from: Date()) >= 20 &&
                 !accountDetail.value.isActiveSeverance {
-                self.paymentDate.value = tomorrow
+                paymentDate.value = tomorrow
             }
             
             let isFixedPaymentDate = fixedPaymentDateLogic(accountDetail: accountDetail.value, cardWorkflow: false, inlineCard: false, saveBank: true, saveCard: true, allowEdits: allowEdits.value)
             if !accountDetail.value.isActiveSeverance && !isFixedPaymentDate {
-                self.paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
+                paymentDate.value = Calendar.opCo.component(.hour, from: Date()) < 20 ? now: tomorrow
             } else if let dueDate = accountDetail.value.billingInfo.dueByDate {
                 if dueDate >= now && !isFixedPaymentDate {
-                    self.paymentDate.value = dueDate
+                    if let cutoffDate = self.speedpayCutoffDate.value {
+                        self.paymentDate.value = min(dueDate, cutoffDate)
+                    } else {
+                        self.paymentDate.value = dueDate
+                    }
                 }
             }
         }
     }
     
-    func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?) {
+    func fetchData(onSuccess: (() -> ())?, onError: (() -> ())?, onSpeedpayCutoff: (() -> ())?) {
         var observables = [fetchWalletItems()]
+        if Environment.shared.opco == .bge {
+            let cutoffObservable = fetchSpeedpayCutoff()
+                .do(onNext: { [weak self] date in
+                    self?.speedpayCutoffDate.value = date
+                })
+                .mapTo(())
+                .catchErrorJustReturn(())
+            
+            observables.append(cutoffObservable)
+        }
         
         if let paymentId = paymentId.value, paymentDetail.value == nil {
             observables.append(fetchPaymentDetails(paymentId: paymentId))
@@ -128,6 +171,20 @@ class PaymentViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.isFetching.value = false
+                
+                if let cutoffDate = self.speedpayCutoffDate.value {
+                    var earliestDate = Date()
+                    if Calendar.opCo.component(.hour, from: earliestDate) >= 20 &&
+                    !self.accountDetail.value.isActiveSeverance {
+                        let tomorrow = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: earliestDate)!
+                        earliestDate = Calendar.opCo.startOfDay(for: tomorrow)
+                    }
+                    
+                    guard earliestDate < cutoffDate else {
+                        onSpeedpayCutoff?()
+                        return
+                    }
+                }
                 
                 self.computeDefaultPaymentDate()
                 
