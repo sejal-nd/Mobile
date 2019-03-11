@@ -896,27 +896,30 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
                 minDate = today
             }
             
-            //TODO: Remove cutoff check with BGE switch to paymentus
-            if let cutoffDate = viewModel.speedpayCutoffDate.value, minDate > cutoffDate {
-                return false
-            }
-            
             guard let todayPlus90 = Calendar.opCo.date(byAdding: .day, value: 90, to: today),
                 let todayPlus180 = Calendar.opCo.date(byAdding: .day, value: 180, to: today) else {
                     return false
             }
             
-            if viewModel.inlineCard.value {
-                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
-            } else if viewModel.inlineBank.value {
-                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
-            } else if let walletItem = viewModel.selectedWalletItem.value {
-                if walletItem.bankOrCard == .card {
-                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
-                } else {
-                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
-                }
+            var maxDate: Date
+            if viewModel.inlineCard.value || viewModel.selectedWalletItem.value?.bankOrCard == .card {
+                maxDate = todayPlus90
+            } else if viewModel.inlineBank.value || viewModel.selectedWalletItem.value?.bankOrCard == .bank {
+                maxDate = todayPlus180
+            } else {
+                return false
             }
+            
+            //TODO: Remove cutoff check with BGE switch to paymentus
+            if let cutoffDate = viewModel.speedpayCutoffDate.value {
+                if minDate > cutoffDate { // No valid dates in this case
+                    return false
+                }
+                
+                maxDate = min(cutoffDate, maxDate)
+            }
+            
+            return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
         case .comEd, .peco:
             if billingHistoryItem != nil && opCoTimeDate == today  { // Modifying payment on ComEd/PECO disables changing date to today
                 return false
