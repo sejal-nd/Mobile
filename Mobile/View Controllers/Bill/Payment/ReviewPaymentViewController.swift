@@ -293,9 +293,26 @@ class ReviewPaymentViewController: UIViewController {
                 let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
                     forError: err,
                     walletItem: self.viewModel.selectedWalletItem.value!,
+                    okHandler: { [weak self] _ in
+                        guard let self = self else { return }
+                        if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
+                            let makePaymentVC = self.navigationController?.viewControllers
+                                .compactMap { $0 as? MakePaymentViewController }
+                                .first
+                            
+                            if let vc = makePaymentVC {
+                                self.viewModel.selectedWalletItem.value = nil
+                                self.viewModel.newlyAddedWalletItem.value = nil
+                                vc.fetchData()
+                                self.navigationController?.popToViewController(vc, animated: true)
+                            } else {
+                                self.navigationController?.popToRootViewController(animated: true)
+                            }
+                        }
+                },
                     callHandler: { _ in
                         UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
-                    }
+                }
                 )
                 self.present(paymentusAlertVC, animated: true, completion: nil)
             }
