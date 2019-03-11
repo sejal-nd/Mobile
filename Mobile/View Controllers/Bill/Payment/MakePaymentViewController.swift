@@ -897,7 +897,7 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
             }
             
             //TODO: Remove cutoff check with BGE switch to paymentus
-            if let cutoffDate = viewModel.speedpayCutoffDate.value, minDate < cutoffDate {
+            if let cutoffDate = viewModel.speedpayCutoffDate.value, minDate > cutoffDate {
                 return false
             }
             
