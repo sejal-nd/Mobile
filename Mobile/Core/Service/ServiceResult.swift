@@ -53,6 +53,7 @@ enum ServiceErrorCode : String {
     case paymentAccountVelocityBank = "pmBankAccount.tooManyPerPaymentMethodType"
     case paymentAccountVelocityCard = "pmCreditCardNumber.tooManyPerPaymentMethodType"
     case utilityAccountVelocity = "accountNumber.tooManyPerPaymentType"
+    case walletItemIdTimeout = "tokenizedProfile.notProcessed"
 }
 
 // MARK: - ServiceError
