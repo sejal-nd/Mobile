@@ -99,6 +99,17 @@ class HomeBillCardViewModel {
                             return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
         })
     
+    func isBeforeFiservCutoffDate() -> Observable<Bool> {
+        switch Environment.shared.opco {
+        case .comEd, .peco:
+            return .just(true)
+        case .bge:
+            return paymentService.fetchPaymentFreezeDate()
+                .map { Date() < $0 }
+                .catchErrorJustReturn(true)
+        }
+    }
+    
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
