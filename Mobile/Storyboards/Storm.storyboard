@@ -907,7 +907,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtO-H4-uEn" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="70" width="343" height="60"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Payment Activity"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Bill &amp; Payment Activity"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UL9-05-v8P" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
