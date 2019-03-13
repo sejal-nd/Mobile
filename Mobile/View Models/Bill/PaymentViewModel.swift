@@ -99,22 +99,25 @@ class PaymentViewModel {
     }
     
     func checkForCutoff(onShouldReject: @escaping (() -> Void), onShouldContinue: @escaping (() -> Void)) {
-        if Environment.shared.opco == .bge {
-            onShouldContinue()
-        } else {
+        switch Environment.shared.opco {
+        case .bge:
             isFetching.value = true
-            fetchSpeedpayCutoff().subscribe(onNext: { [weak self] cutoffDate in
-                guard let self = self else { return }
-                self.isFetching.value = false
-                if Date() >= cutoffDate || self.paymentDate.value >= cutoffDate {
-                    onShouldReject()
-                } else {
-                    onShouldContinue()
-                }
-                }, onError: { [weak self] _ in
-                    self?.isFetching.value = false
-                    onShouldContinue()
-            }).disposed(by: disposeBag)
+            fetchSpeedpayCutoff()
+                .subscribe(onNext: { [weak self] cutoffDate in
+                    guard let self = self else { return }
+                    self.isFetching.value = false
+                    if Date() >= cutoffDate || self.paymentDate.value >= cutoffDate {
+                        onShouldReject()
+                    } else {
+                        onShouldContinue()
+                    }
+                    }, onError: { [weak self] _ in
+                        self?.isFetching.value = false
+                        onShouldContinue()
+                })
+                .disposed(by: disposeBag)
+        case .comEd, .peco:
+            onShouldContinue()
         }
     }
     
