@@ -3755,7 +3755,7 @@
                                                         <rect key="frame" x="0.0" y="418" width="359" height="64"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vvh-Um-xag">
-                                                                <rect key="frame" x="0.0" y="-5" width="359" height="74.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="1.6666666666666288" width="359" height="60.666666666666664"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Confirmation Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7d-qD-WYg">
                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="20.333333333333332"/>
@@ -3763,13 +3763,17 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwQ-M5-Anv">
-                                                                        <rect key="frame" x="0.0" y="24.333333333333371" width="359" height="50"/>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IyY-Pe-otw" customClass="UITextViewFixed" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="24.333333333333375" width="359" height="36.333333333333343"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                    </textView>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="IyY-Pe-otw" secondAttribute="trailing" id="FWP-hQ-wbx"/>
+                                                                    <constraint firstItem="IyY-Pe-otw" firstAttribute="leading" secondItem="Vvh-Um-xag" secondAttribute="leading" id="XN1-85-Rfe"/>
+                                                                </constraints>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3846,9 +3850,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="confirmationNumberDetailsLabel" destination="AwQ-M5-Anv" id="sCk-dR-uJd"/>
+                        <outlet property="confirmationNumberDetailTextView" destination="IyY-Pe-otw" id="1r0-Ps-NyJ"/>
                         <outlet property="confirmationNumberLabel" destination="p7d-qD-WYg" id="QgM-G0-dDD"/>
-                        <outlet property="confirmationNumberSeparatorView" destination="Kji-6M-MLC" id="vpA-dA-bf3"/>
+                        <outlet property="confirmationNumberSeparatorView" destination="Kji-6M-MLC" id="EI9-iJ-mvi"/>
                         <outlet property="confirmationNumberView" destination="i9u-dE-IeU" id="8GP-Jw-cGG"/>
                         <outlet property="convenienceFeeDetailsLabel" destination="Uke-FH-oLp" id="ixj-Va-3na"/>
                         <outlet property="convenienceFeeLabel" destination="aai-Rm-yvo" id="F5i-4Y-Cxd"/>

@@ -55,7 +55,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     @IBOutlet weak var confirmationNumberView: UIView!
     @IBOutlet weak var confirmationNumberLabel: UILabel!
-    @IBOutlet weak var confirmationNumberDetailsLabel: UILabel!
+    @IBOutlet weak var confirmationNumberDetailTextView: UITextView!
     @IBOutlet weak var confirmationNumberSeparatorView: UIView!
     
     var viewModel: BillingHistoryDetailsViewModel!
@@ -123,8 +123,8 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         confirmationNumberLabel.textColor = .deepGray
         confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        confirmationNumberDetailsLabel.textColor = .blackText
-        confirmationNumberDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
+        confirmationNumberDetailTextView.textColor = .blackText
+        confirmationNumberDetailTextView.font = SystemFont.medium.of(textStyle: .headline)
     }
     
     func configureState() {
@@ -179,7 +179,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         if let confirmationNumber = viewModel.confirmationNumber {
             confirmationNumberView.isHidden = false
-            confirmationNumberDetailsLabel.text = confirmationNumber
+            confirmationNumberDetailTextView.text = confirmationNumber
         } else {
             confirmationNumberView.isHidden = true
             confirmationNumberSeparatorView.isHidden = true
