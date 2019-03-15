@@ -101,6 +101,7 @@ class BillingHistoryViewController: UIViewController {
         } else if let vc = segue.destination as? BillingHistoryDetailsViewController,
             let billingHistoryItem = sender as? BillingHistoryItem {
             vc.billingHistoryItem = billingHistoryItem
+            vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? ViewBillViewController,
             let billingHistoryItem = sender as? BillingHistoryItem {
             vc.viewModel.billDate = billingHistoryItem.date

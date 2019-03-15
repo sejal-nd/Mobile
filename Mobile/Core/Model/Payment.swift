@@ -47,4 +47,13 @@ struct PaymentDetail: Mappable {
         self.paymentAmount = paymentAmount
         self.paymentDate = paymentDate
     }
+    
+    init(walletItemId: String?, paymentAmount: Double, paymentDate: Date?, convinienceFee: Double?, paymentAccount: String?, accountNumber: String?) {
+        self.walletItemId = walletItemId
+        self.paymentAmount = paymentAmount
+        self.paymentDate = paymentDate
+        self.convenienceFee = convinienceFee
+        self.paymentAccount = paymentAccount
+        self.accountNumber = accountNumber
+    }
 }

@@ -14,19 +14,11 @@ import RxSwiftExt
 class BillingHistoryDetailsViewController: UIViewController {
 
     var billingHistoryItem: BillingHistoryItem!
-    
-    @IBOutlet weak var loadingIndicator: LoadingIndicator!
-    @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet weak var paymentTypeView: UIView!
-    @IBOutlet weak var paymentTypeLabel: UILabel!
-    @IBOutlet weak var paymentTypeDetailLabel: UILabel!
-    
-    @IBOutlet weak var paymentTypeSeparatorLine: UIView!
+    var accountDetail: AccountDetail!
     
     @IBOutlet weak var paymentAccountView: UIView!
     @IBOutlet weak var paymentAccountLabel: UILabel!
+    @IBOutlet weak var paymentAccountImageView: UIImageView!
     @IBOutlet weak var paymentAccountDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentAccountSeparatorLine: UIView!
@@ -64,6 +56,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     @IBOutlet weak var confirmationNumberView: UIView!
     @IBOutlet weak var confirmationNumberLabel: UILabel!
     @IBOutlet weak var confirmationNumberDetailsLabel: UILabel!
+    @IBOutlet weak var confirmationNumberSeparatorView: UIView!
     
     var viewModel: BillingHistoryDetailsViewModel!
     let bag = DisposeBag()
@@ -73,18 +66,10 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         title = NSLocalizedString("Payment Details", comment: "")
         
-        viewModel = BillingHistoryDetailsViewModel(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
+        viewModel = BillingHistoryDetailsViewModel(accountDetail: accountDetail, billingHistoryItem: billingHistoryItem)
         
-        formatViews()
         styleViews()
-        bindLoadingStates()
-        
-        // We may be able to restore this for ComEd/PECO with ePay R2
-        if Environment.shared.opco == .bge {
-            viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
-                UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
-            })
-        }
+        configureState()
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -93,127 +78,112 @@ class BillingHistoryDetailsViewController: UIViewController {
         navigationController?.setColoredNavBar()
     }
     
-    func formatViews() {
-        if Environment.shared.opco != .bge {
-            paymentTypeView.isHidden = true
-            paymentTypeLabel.isAccessibilityElement = false
-            paymentTypeSeparatorLine.isHidden = true
-            
-            paymentAccountView.isHidden = true
-            paymentAccountLabel.isAccessibilityElement = false
-            paymentAccountSeparatorLine.isHidden = true
-            
-            convenienceFeeView.isHidden = true
-            convenienceFeeLabel.isAccessibilityElement = false
-            convenienceFeeSeparatorLine.isHidden = true
-            
-            totalAmountPaidView.isHidden = true
-            totalAmountPaidLabel.isAccessibilityElement = false
-            totalAmountPaidSeparatorLine.isHidden = true
-            
-            confirmationNumberView.isHidden = true
-            confirmationNumberLabel.isAccessibilityElement = false
-        } else {
-            if viewModel.isSpeedpay {
-                paymentTypeView.isHidden = true
-                paymentTypeLabel.isAccessibilityElement = false
-                paymentTypeSeparatorLine.isHidden = true
-            } else {
-                paymentAccountView.isHidden = true
-                paymentAccountLabel.isAccessibilityElement = false
-                paymentAccountSeparatorLine.isHidden = true
-                
-                convenienceFeeView.isHidden = true
-                convenienceFeeLabel.isAccessibilityElement = false
-                convenienceFeeSeparatorLine.isHidden = true
-                
-                totalAmountPaidView.isHidden = true
-                totalAmountPaidLabel.isAccessibilityElement = false
-                totalAmountPaidSeparatorLine.isHidden = true
-            }
-        }
-    }
-    
     func styleViews() {
-        
-        paymentTypeLabel.textColor = .deepGray
-        paymentTypeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentTypeDetailLabel.textColor = .black
-        paymentTypeDetailLabel.font = SystemFont.bold.of(textStyle: .headline)
-        
-        paymentTypeSeparatorLine.backgroundColor = .softGray
-        
         paymentAccountLabel.textColor = .deepGray
         paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentAccountDetailsLabel.textColor = .black
-        paymentAccountDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        paymentAccountDetailsLabel.textColor = .blackText
+        paymentAccountDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentAccountSeparatorLine.backgroundColor = .softGray
         
         paymentDateLabel.textColor = .deepGray
         paymentDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentDateDetailsLabel.textColor = .black
-        paymentDateDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        paymentDateDetailsLabel.textColor = .blackText
+        paymentDateDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentDateSeparatorLine.backgroundColor = .softGray
         
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentAmountDetailsLabel.textColor = .successGreenText
-        paymentAmountDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        paymentAmountDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentAmountSeparatorLine.backgroundColor = .softGray
         
         convenienceFeeLabel.textColor = .deepGray
         convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         convenienceFeeDetailsLabel.textColor = .successGreenText
-        convenienceFeeDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        convenienceFeeDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         convenienceFeeSeparatorLine.backgroundColor = .softGray
         
         totalAmountPaidLabel.textColor = .deepGray
         totalAmountPaidLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         totalAmountPaidDetailsLabel.textColor = .successGreenText
-        totalAmountPaidDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        totalAmountPaidDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         totalAmountPaidSeparatorLine.backgroundColor = .softGray
         
         paymentStatusLabel.textColor = .deepGray
         paymentStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentStatusDetailsLabel.textColor = .black
-        paymentStatusDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        paymentStatusDetailsLabel.textColor = .blackText
+        paymentStatusDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
 
         paymentStatusSeparatorLine.backgroundColor = .softGray
         
         confirmationNumberLabel.textColor = .deepGray
         confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        confirmationNumberDetailsLabel.textColor = .black
-        confirmationNumberDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
-        
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        confirmationNumberDetailsLabel.textColor = .blackText
+        confirmationNumberDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
     }
     
-    func bindLoadingStates() {
-        viewModel.paymentAccount.drive(paymentAccountDetailsLabel.rx.text).disposed(by: bag)
+    func configureState() {
+        if let paymentMethod = viewModel.paymentType {
+            paymentAccountView.isHidden = false
+            paymentAccountDetailsLabel.text = paymentMethod
+            paymentAccountImageView.image = viewModel.paymentAccountImage
+        } else {
+            paymentAccountView.isHidden = true
+            paymentAccountSeparatorLine.isHidden = true
+        }
         
-        paymentTypeLabel.text = viewModel.paymentTypeLabel
-        paymentTypeDetailLabel.text = viewModel.paymentType
-        paymentDateDetailsLabel.text = viewModel.paymentDate
-        paymentAmountLabel.text = viewModel.paymentAmountLabel
-        paymentAmountDetailsLabel.text = viewModel.amountPaid
+        if let paymentAmount = viewModel.paymentAmount {
+            paymentAmountView.isHidden = false
+            paymentAmountDetailsLabel.text = paymentAmount
+        } else {
+            paymentAmountView.isHidden = true
+            paymentAmountSeparatorLine.isHidden = true
+        }
         
-        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: bag)
-        viewModel.fetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: bag)
-        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: bag)
+        if let convenienceFee = viewModel.convenienceFee {
+            convenienceFeeView.isHidden = false
+            convenienceFeeDetailsLabel.text = convenienceFee
+        } else {
+            convenienceFeeView.isHidden = true
+            convenienceFeeSeparatorLine.isHidden = true
+        }
         
-        viewModel.convenienceFee.drive(convenienceFeeDetailsLabel.rx.text).disposed(by: bag)
-        viewModel.totalAmountPaid.drive(totalAmountPaidDetailsLabel.rx.text).disposed(by: bag)
+        if let totalPaymentAmount = viewModel.totalPaymentAmount {
+            totalAmountPaidView.isHidden = false
+            totalAmountPaidDetailsLabel.text = totalPaymentAmount
+        } else {
+            totalAmountPaidView.isHidden = true
+            totalAmountPaidSeparatorLine.isHidden = true
+        }
         
-        paymentStatusDetailsLabel.text = viewModel.paymentStatus
-        confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
-
+        if let paymentDate = viewModel.paymentDate {
+            paymentDateView.isHidden = false
+            paymentDateDetailsLabel.text = paymentDate
+        } else {
+            paymentDateView.isHidden = true
+            paymentDateSeparatorLine.isHidden = true
+        }
+        
+        if let paymentStatus = viewModel.paymentStatus {
+            paymentStatusView.isHidden = false
+            paymentStatusDetailsLabel.text = paymentStatus
+        } else {
+            paymentStatusView.isHidden = true
+            paymentStatusSeparatorLine.isHidden = true
+        }
+        
+        if let confirmationNumber = viewModel.confirmationNumber {
+            confirmationNumberView.isHidden = false
+            confirmationNumberDetailsLabel.text = confirmationNumber
+        } else {
+            confirmationNumberView.isHidden = true
+            confirmationNumberSeparatorView.isHidden = true
+        }
     }
     
 }

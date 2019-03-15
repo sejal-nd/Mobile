@@ -47,7 +47,7 @@ class MockPaymentService: PaymentService {
     }
     
     func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
-        return .just(PaymentDetail(walletItemId: "1234", paymentAmount: 100, paymentDate: Date(timeIntervalSince1970: 13)))
+        return .just(PaymentDetail(walletItemId: "1234", paymentAmount: 100, paymentDate: Date(timeIntervalSince1970: 13), convinienceFee: 1.50,  paymentAccount: "Test Account", accountNumber: "1234"))
     }
     
     func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
