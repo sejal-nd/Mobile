@@ -6,7 +6,7 @@ def shared_pods # Shared in both iOS and WatchOS
 end
 
 def iOS_pods
-  pod 'lottie-ios', '2.0.3'
+  pod 'lottie-ios', '2.5.3'
   pod 'JVFloatLabeledTextField', '1.2.1'
   pod 'Toast-Swift', '4.0.0'
   pod 'zxcvbn-ios', '1.0.4'
