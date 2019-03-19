@@ -46,6 +46,10 @@ class AccountPickerViewController: UIViewController {
         iconView = UIImageView(frame: .zero)
         iconView.translatesAutoresizingMaskIntoConstraints = false
         iconView.isAccessibilityElement = true
+        iconView.setContentCompressionResistancePriority(.required, for: .vertical)
+        iconView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        iconView.setContentHuggingPriority(.required, for: .vertical)
+        iconView.setContentHuggingPriority(.required, for: .horizontal)
         
         accountNumberLabel = UILabel(frame: .zero)
         accountNumberLabel.translatesAutoresizingMaskIntoConstraints = false
