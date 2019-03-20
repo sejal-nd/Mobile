@@ -70,6 +70,6 @@ class MockPaymentService: PaymentService {
     
     
     func fetchPaymentFreezeDate() -> Observable<Date> {
-        return .just(Calendar.opCo.date(from: DateComponents(year: 2019, month: 3, day: 15))!)
+        return .just(Calendar.opCo.date(from: DateComponents(year: 2019, month: 10, day: 15))!)
     }
 }
