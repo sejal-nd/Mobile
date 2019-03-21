@@ -15,10 +15,11 @@ class PaperlessEBillViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testSingleEnrollSuccess() {
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "1234567890"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "1234567890", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
-        viewModel.switched(accountDetail: accountDetail!, on: true)
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
+        let accountDetail = AccountDetail.fromMockJson(forKey: .eBillEligible)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.submitChanges(onSuccess: { status in
             if Environment.shared.opco == .bge && status != PaperlessEBillChangedStatus.enroll {
                 XCTFail("status should be .Enroll")
@@ -30,10 +31,11 @@ class PaperlessEBillViewModelTests: XCTestCase {
     }
     
     func testSingleEnrollFailure() {
-        AccountsStore.shared.accounts = [Account.from(["accountNumber": "0000"])!]
-        let accountDetail = AccountDetail.from(["accountNumber": "0000", "isEBillEligible": true, "isEBillEnrollment": false, "CustomerInfo": ["emailAddress": "test@test.com"], "BillingInfo": [:], "SERInfo": [:]])
-        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail!)
-        viewModel.switched(accountDetail: accountDetail!, on: true)
+        MockUser.current = MockUser(globalKeys: .accountZeros)
+        MockAccountService.loadAccountsSync()
+        let accountDetail = AccountDetail.fromMockJson(forKey: .accountZeros)
+        viewModel = PaperlessEBillViewModel(accountService: MockAccountService(), billService: MockBillService(), initialAccountDetail: accountDetail)
+        viewModel.switched(accountDetail: accountDetail, on: true)
         viewModel.submitChanges(onSuccess: { status in
             XCTFail("enrollment should fail")
         }, onError: { errMessage in
