@@ -43,7 +43,7 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        })
+        }, onSpeedpayCutoff: nil)
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
         
@@ -73,7 +73,7 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        })
+        }, onSpeedpayCutoff: nil)
         
         XCTAssert(viewModel.isFetching.value, "isFetching should be true as soon as fetchData is called")
         
@@ -97,7 +97,7 @@ class PaymentViewModelTests: XCTestCase {
             expect.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        })
+        }, onSpeedpayCutoff: nil)
 
         waitForExpectations(timeout: 3) { err in
             XCTAssertNil(err, "timeout")
@@ -118,7 +118,7 @@ class PaymentViewModelTests: XCTestCase {
                 expect1.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
-            })
+            }, onSpeedpayCutoff: nil)
 
             waitForExpectations(timeout: 3) { err in
                 XCTAssertNil(err, "timeout")
@@ -133,7 +133,7 @@ class PaymentViewModelTests: XCTestCase {
                 expect2.fulfill()
             }, onError: {
                 XCTFail("unexpected error response")
-            })
+            }, onSpeedpayCutoff: nil)
             
             waitForExpectations(timeout: 3) { err in
                 XCTAssertNil(err, "timeout")
@@ -155,7 +155,7 @@ class PaymentViewModelTests: XCTestCase {
             expect1.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        })
+        }, onSpeedpayCutoff: nil)
         
         waitForExpectations(timeout: 3) { err in
             XCTAssertNil(err, "timeout")
@@ -170,7 +170,7 @@ class PaymentViewModelTests: XCTestCase {
             expect2.fulfill()
         }, onError: {
             XCTFail("unexpected error response")
-        })
+        }, onSpeedpayCutoff: nil)
         
         waitForExpectations(timeout: 3) { err in
             XCTAssertNil(err, "timeout")

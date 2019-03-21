@@ -11,6 +11,8 @@ import UIKit
 extension UIAlertController {
     static func paymentusErrorAlertController(forError error: ServiceError,
                                               walletItem: WalletItem,
+                                              customMessage: String? = nil,
+                                              okHandler: @escaping ((UIAlertAction) -> ()) = { _ in },
                                               callHandler: @escaping ((UIAlertAction) -> ())) -> UIAlertController {
         let title: String
         let message: String
@@ -48,18 +50,21 @@ extension UIAlertController {
             title = NSLocalizedString("Unable to process electronic payments", comment: "")
             message = String.localizedStringWithFormat("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact %@ customer service for further assistance.", Environment.shared.opco.displayString)
             includeCallCTA = true
+        case ServiceErrorCode.walletItemIdTimeout.rawValue:
+            title = NSLocalizedString("Session Expired", comment: "")
+            message = String.localizedStringWithFormat("Please attempt to make your payment again.", Environment.shared.opco.displayString)
         default:
             title = NSLocalizedString("Payment Error", comment: "")
             message = NSLocalizedString("Unable to process electronic payments for your account at this time. Please try again later or view other payment options.", comment: "")
         }
         
         
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: customMessage ?? message, preferredStyle: .alert)
         if includeCallCTA {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: callHandler))
         } else {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: okHandler))
         }
         return alert
     }
