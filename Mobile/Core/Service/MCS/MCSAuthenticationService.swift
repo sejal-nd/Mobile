@@ -102,23 +102,22 @@ struct MCSAuthenticationService : AuthenticationService {
         
         return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
             APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .canceled, message: nil)
+        }).do(onError: { error in
+            let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+            APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
         })
-            .do(onError: { error in
-                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
-            })
-            .map { data in
-                switch AuthTokenParser.parseAuthTokenResponse(data: data) {
-                case .success(let response):
-                    APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
-                    return response
-                case .failure(let error):
-                    APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
-                    throw error
-                }
+        .map { data in
+            switch AuthTokenParser.parseAuthTokenResponse(data: data) {
+            case .success(let response):
+                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
+                return response
+            case .failure(let error):
+                APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
+                throw error
             }
-            .catchError {
-                throw ServiceError(cause: $0)
+        }
+        .catchError {
+            throw $0 as? ServiceError ?? ServiceError(cause: $0)
         }
     }
     
