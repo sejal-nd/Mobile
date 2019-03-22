@@ -12,30 +12,28 @@ import RxSwift
 struct MCSAccountService: AccountService {
     
     func fetchAccounts() -> Observable<[Account]> {
-        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts")
-            .delay(30, scheduler: MainScheduler.instance)
-            .map { accounts in
-                let accountArray = (accounts as! [[String: Any]])
-                    .compactMap { Account.from($0 as NSDictionary) }
-                
-                guard !accountArray.isEmpty else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue,
-                                       serviceMessage: NSLocalizedString("No accounts found", comment: ""))
-                }
-                
-                // Error if the first account is password protected.
-                guard !accountArray[0].isPasswordProtected else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.fnAccountProtected.rawValue)
-                }
-                
-                let sortedAccounts = accountArray
-                    .filter { !$0.isPasswordProtected } // Filter out password protected accounts
-                    .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
-                
-                AccountsStore.shared.accounts = sortedAccounts
-                AccountsStore.shared.currentIndex = 0
-                
-                return sortedAccounts
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts").map { accounts in
+            let accountArray = (accounts as! [[String: Any]])
+                .compactMap { Account.from($0 as NSDictionary) }
+            
+            guard !accountArray.isEmpty else {
+                throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue,
+                                   serviceMessage: NSLocalizedString("No accounts found", comment: ""))
+            }
+            
+            // Error if the first account is password protected.
+            guard !accountArray[0].isPasswordProtected else {
+                throw ServiceError(serviceCode: ServiceErrorCode.fnAccountProtected.rawValue)
+            }
+            
+            let sortedAccounts = accountArray
+                .filter { !$0.isPasswordProtected } // Filter out password protected accounts
+                .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
+            
+            AccountsStore.shared.accounts = sortedAccounts
+            AccountsStore.shared.currentIndex = 0
+            
+            return sortedAccounts
         }
     }
     
@@ -72,13 +70,12 @@ struct MCSAccountService: AccountService {
         
         path.append(String(queryString))
         
-        return MCSApi.shared.get(pathPrefix: .auth, path: path)
-            .map { json in
-                guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                return accountDetail
+        return MCSApi.shared.get(pathPrefix: .auth, path: path).map { json in
+            guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
+                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+            }
+            
+            return accountDetail
         }
     }
     
@@ -104,7 +101,7 @@ struct MCSAccountService: AccountService {
                 }
                 
                 return ssoData
-        }
+            }
     }
     
     func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
