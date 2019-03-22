@@ -2,7 +2,12 @@
     "default": {
         "accountNumber": "1234567890",
         "premiseNumber": "1",
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -10,7 +15,12 @@
         "accountNumber": "1234567890",
         "premiseNumber": "1",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -26,7 +36,11 @@
         "BillingInfo": {
             "netDueAmount": 137,
             "dueByDate": "2019-01-14T00:00:00",
-            "billDate": "2018-12-14T00:00:00"
+            "billDate": "2018-12-14T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -36,9 +50,10 @@
         "BillingInfo": {
             "netDueAmount": 200,
             "dueByDate": "2019-01-11T00:00:00",
-            "convenienceFee": 5,
-            "feeCommercial": 4,
-            "feeResidential": 3
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -48,9 +63,10 @@
         "BillingInfo": {
             "netDueAmount": 5000,
             "dueByDate": "2019-01-11T00:00:00",
-            "convenienceFee": 5,
-            "feeCommercial": 4,
-            "feeResidential": 3
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -59,7 +75,11 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 435.323,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -68,7 +88,11 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 200,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -76,7 +100,11 @@
     "billNoDueDate": {
         "accountNumber": "1234567890",
         "BillingInfo": {
-            "netDueAmount": 200
+            "netDueAmount": 200,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -85,7 +113,11 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 0.001,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -94,7 +126,11 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 100000000,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -105,7 +141,11 @@
         "isResidential": true,
         "BillingInfo": {
             "netDueAmount": 200,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -114,7 +154,11 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 82,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -124,7 +168,11 @@
         "isAutoPay": true,
         "BillingInfo": {
             "netDueAmount": 82,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -132,7 +180,12 @@
     "bgEasy": {
         "accountNumber": "1234567890",
         "isBGEasy": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -141,7 +194,11 @@
         "isAutoPay": true,
         "BillingInfo": {
             "netDueAmount": 82,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -149,35 +206,60 @@
     "autoPayEligible": {
         "accountNumber": "1234567890",
         "isAutoPayEligible": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
     "budgetBill": {
         "accountNumber": "1234567890",
         "isBudgetBill": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
     "budgetBillEligible": {
         "accountNumber": "1234567890",
         "isBudgetBillEligible": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
     "eBill": {
         "accountNumber": "1234567890",
         "isEBillEnrollment": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
     "eBillEligible": {
         "accountNumber": "1234567890",
         "isEBillEligible": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -186,7 +268,12 @@
         "isEBillEligible": true,
         "isResidential": true,
         "status": "finaled",
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -197,7 +284,11 @@
             "lastPaymentAmount": 200,
             "lastPaymentDate": "2019-01-01T00:00:00",
             "dueByDate": "2019-01-01T00:00:00",
-            "billDate": "2018-12-31T00:00:00"
+            "billDate": "2018-12-31T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -213,7 +304,11 @@
                     "paymentAmount": 100,
                     "status": "pending"
                 }
-            ]
+            ],
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -232,7 +327,11 @@
                     "paymentAmount": 100,
                     "status": "pending"
                 }
-            ]
+            ],
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -240,7 +339,11 @@
     "credit": {
         "accountNumber": "1234567890",
         "BillingInfo": {
-            "netDueAmount": -350.34
+            "netDueAmount": -350.34,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -249,7 +352,11 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": 200,
-            "pastDueAmount": 200
+            "pastDueAmount": 200,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "flagFinaled": true,
         "CustomerInfo": {},
@@ -261,7 +368,11 @@
             "netDueAmount": 200,
             "pastDueAmount": 140,
             "dueByDate": "2019-01-11T00:00:00",
-            "currentDueAmount": 60
+            "currentDueAmount": 60,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -271,7 +382,11 @@
         "BillingInfo": {
             "netDueAmount": 200,
             "pastDueAmount": 200,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -284,7 +399,11 @@
             "pastDueAmount": 200,
             "restorationAmount": 200,
             "dueByDate": "2019-01-11T00:00:00",
-            "currentDueAmount": 150
+            "currentDueAmount": 150,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -296,7 +415,11 @@
             "netDueAmount": 350,
             "pastDueAmount": 350,
             "restorationAmount": 350,
-            "dueByDate": "2019-01-11T00:00:00"
+            "dueByDate": "2019-01-11T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -309,7 +432,11 @@
             "pastDueAmount": 100,
             "dueByDate": "2019-01-11T00:00:00",
             "disconnectNoticeArrears": 100,
-            "currentDueAmount": 100
+            "currentDueAmount": 100,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -321,7 +448,11 @@
             "pastDueAmount": 100,
             "dueByDate": "2019-01-11T00:00:00",
             "disconnectNoticeArrears": 100,
-            "currentDueAmount": 100
+            "currentDueAmount": 100,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -334,7 +465,11 @@
             "dueByDate": "2019-01-11T00:00:00",
             "disconnectNoticeArrears": 100,
             "currentDueAmount": 150,
-            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -346,7 +481,11 @@
             "pastDueAmount": 200,
             "dueByDate": "2019-01-11T00:00:00",
             "disconnectNoticeArrears": 200,
-            "currentDueAmount": 150
+            "currentDueAmount": 150,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -359,7 +498,11 @@
             "dueByDate": "2019-01-11T00:00:00",
             "disconnectNoticeArrears": 200,
             "currentDueAmount": 150,
-            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -370,7 +513,11 @@
             "netDueAmount": 350,
             "pastDueAmount": 350,
             "dueByDate": "2019-01-11T00:00:00",
-            "disconnectNoticeArrears": 200
+            "disconnectNoticeArrears": 200,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -382,7 +529,11 @@
             "pastDueAmount": 350,
             "dueByDate": "2019-01-11T00:00:00",
             "disconnectNoticeArrears": 200,
-            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -393,7 +544,11 @@
             "netDueAmount": 350,
             "pastDueAmount": 350,
             "dueByDate": "2019-01-11T00:00:00",
-            "disconnectNoticeArrears": 350
+            "disconnectNoticeArrears": 350,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -405,7 +560,11 @@
             "pastDueAmount": 350,
             "dueByDate": "2019-01-11T00:00:00",
             "disconnectNoticeArrears": 350,
-            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00"
+            "turnOffNoticeExtendedDueDate": "2019-01-09T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -419,7 +578,11 @@
             "amtDpaReinst": 100,
             "dueByDate": "2019-01-11T00:00:00",
             "atReinstateFee": 5,
-            "currentDueAmount": 150
+            "currentDueAmount": 150,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -433,7 +596,11 @@
             "amtDpaReinst": 200,
             "dueByDate": "2019-01-11T00:00:00",
             "atReinstateFee": 7.5,
-            "currentDueAmount": 150
+            "currentDueAmount": 150,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -447,7 +614,11 @@
             "amtDpaReinst": 200,
             "dueByDate": "2019-01-11T00:00:00",
             "atReinstateFee": 7.45,
-            "currentDueAmount": 150
+            "currentDueAmount": 150,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -461,7 +632,11 @@
             "amtDpaReinst": 350,
             "dueByDate": "2019-01-11T00:00:00",
             "atReinstateFee": 5,
-            "currentDueAmount": 150
+            "currentDueAmount": 150,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -471,7 +646,12 @@
         "premiseNumber": "1",
         "isResidential": true,
         "serviceType": "GAS/ELECTRIC",
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -480,7 +660,12 @@
         "premiseNumber": "1",
         "serviceType": "GAS/ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -490,7 +675,12 @@
         "serviceType": "GAS/ELECTRIC",
         "isAMIAccount": true,
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -500,7 +690,12 @@
         "serviceType": "GAS/ELECTRIC",
         "isAMIAccount": true,
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -510,7 +705,12 @@
         "serviceType": "GAS/ELECTRIC",
         "isAMIAccount": true,
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -520,7 +720,12 @@
         "serviceType": "GAS/ELECTRIC",
         "isAMIAccount": true,
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -528,7 +733,12 @@
         "accountNumber": "1234567890",
         "serviceType": "fjdkslaj",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -538,7 +748,11 @@
         "isResidential": true,
         "BillingInfo": {
             "netDueAmount": 200,
-            "pastDueAmount": 200
+            "pastDueAmount": 200,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "flagFinaled": true,
         "CustomerInfo": {},
@@ -549,7 +763,12 @@
         "premiseNumber": "123",
         "isResidential": true,
         "serviceType": "fjdkslaj",
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {
             "controlGroupFlag": "CONTROL"
@@ -560,7 +779,12 @@
         "premiseNumber": "123",
         "isResidential": true,
         "serviceType": "GAS",
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {
             "controlGroupFlag": "CONTROL"
@@ -571,7 +795,12 @@
         "premiseNumber": "123",
         "isResidential": true,
         "serviceType": "ELECTRIC",
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {
             "controlGroupFlag": "CONTROL"
@@ -582,7 +811,12 @@
         "premiseNumber": "123",
         "isResidential": true,
         "serviceType": "GAS/ELECTRIC",
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {
             "controlGroupFlag": "CONTROL"
@@ -593,7 +827,11 @@
         "BillingInfo": {
             "supplyCharges": 42,
             "taxesAndFees": 13,
-            "deliveryCharges": 38
+            "deliveryCharges": 38,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}
@@ -603,7 +841,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -612,7 +855,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -622,7 +870,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -632,7 +885,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -642,7 +900,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -651,7 +914,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -660,7 +928,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -670,7 +943,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -681,7 +959,12 @@
         "isModeledForOpower": true,
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -691,7 +974,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -701,7 +989,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -711,7 +1004,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -721,7 +1019,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -731,7 +1034,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -741,7 +1049,12 @@
         "serviceType": "ELECTRIC",
         "isResidential": true,
         "isAMIAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -750,7 +1063,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -759,7 +1077,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -768,7 +1091,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -777,7 +1105,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -786,7 +1119,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -795,7 +1133,12 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -804,14 +1147,24 @@
         "premiseNumber": "1",
         "serviceType": "ELECTRIC",
         "isResidential": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
     "pts": {
         "accountNumber": "1234567890",
         "isPTSAccount": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -824,7 +1177,12 @@
                 "smartEnergyRewards": "ENROLLED"
             }
         ],
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -838,7 +1196,12 @@
                 "smartEnergyRewards": "ENROLLED"
             }
         ],
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -846,7 +1209,12 @@
         "accountNumber": "1234567890",
         "premiseNumber": "1",
         "activeSeverance": true,
-        "BillingInfo": {},
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
         "CustomerInfo": {},
         "SERInfo": {}
     },
@@ -856,7 +1224,11 @@
             "netDueAmount": 200,
             "lastPaymentAmount": 200,
             "lastPaymentDate": "2018-11-31T00:00:00",
-            "dueByDate": "2018-12-31T00:00:00"
+            "dueByDate": "2018-12-31T00:00:00",
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
         },
         "CustomerInfo": {},
         "SERInfo": {}

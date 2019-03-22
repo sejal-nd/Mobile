@@ -15,16 +15,14 @@ class BGEAutoPayViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testShowBottomLabel() {
-        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: accountDetail)
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .default)
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Bottom label should show when not enrolled")
             }
         }).disposed(by: disposeBag)
         
-        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: accountDetail)
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .autoPay))
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if show {
                 XCTFail("Bottom label should not show when enrolled")
@@ -33,8 +31,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
     }
     
     func testSubmitButtonEnabled() {
-        var accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: accountDetail)
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .default)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.userDidReadTerms.value = true
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
@@ -43,8 +40,7 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": true, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: accountDetail)
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .autoPay))
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.userDidChangeSettings.value = true
         viewModel.userDidReadTerms.value = true

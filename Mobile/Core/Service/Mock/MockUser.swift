@@ -75,6 +75,9 @@ struct MockAccount {
 }
 
 enum MockDataKey: String {
+    // Accounts
+    case accountZeros
+    
     // Billing
     case billCardNoDefaultPayment
     case billCardWithDefaultPayment

@@ -276,7 +276,7 @@ class PaymentViewModel {
         { (walletItem, accountDetail, paymentAmount, amountDue) -> String? in
             guard let walletItem = walletItem else { return nil }
             if walletItem.bankOrCard == .bank {
-                let minPayment = accountDetail.billingInfo.minPaymentAmount()
+                let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
                 if Environment.shared.opco == .bge {
                     if paymentAmount < minPayment {
@@ -294,7 +294,7 @@ class PaymentViewModel {
                     }
                 }
             } else {
-                let minPayment = accountDetail.billingInfo.minPaymentAmount()
+                let minPayment = accountDetail.billingInfo.minPaymentAmount
                 let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .card)
                 if Environment.shared.opco == .bge {
                     if paymentAmount < minPayment {
@@ -324,7 +324,7 @@ class PaymentViewModel {
             return false
         }
 
-        let min = self.accountDetail.value.billingInfo.minPaymentAmount()
+        let min = self.accountDetail.value.billingInfo.minPaymentAmount
         let max = self.accountDetail.value.billingInfo.maxPaymentAmount(bankOrCard: bankOrCard)
         for paymentAmount in self.paymentAmounts {
             guard let amount = paymentAmount.0 else { continue }
