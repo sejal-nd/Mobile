@@ -72,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnFailedAccountsFetch), name: .didReceiveAccountListError, object: nil)
         
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
             .subscribe(onNext: { [weak self] notification in
@@ -284,14 +285,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @objc func resetNavigationOnAuthTokenExpire() {
-        resetNavigation(sendToLogin: false)
+        resetNavigation(sendToLogin: true)
         
-        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
-        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-        self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            self.configureQuickActions(isAuthenticated: false)
+        }
+    }
+    
+    @objc func resetNavigationOnFailedAccountsFetch() {
+        resetNavigation(sendToLogin: true)
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-        configureQuickActions(isAuthenticated: false)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let alertVc = UIAlertController(title: NSLocalizedString("Unable to retrieve account", comment: ""), message: NSLocalizedString("Your account data could not be retrieved. Please sign in again.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            self.configureQuickActions(isAuthenticated: false)
+        }
     }
     
     func showMaintenanceMode(_ maintenanceInfo: Maintenance?) {

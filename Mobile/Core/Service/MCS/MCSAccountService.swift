@@ -13,7 +13,6 @@ struct MCSAccountService: AccountService {
     
     func fetchAccounts() -> Observable<[Account]> {
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts")
-            .delay(30, scheduler: MainScheduler.instance)
             .map { accounts in
                 let accountArray = (accounts as! [[String: Any]])
                     .compactMap { Account.from($0 as NSDictionary) }

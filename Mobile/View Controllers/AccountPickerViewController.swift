@@ -141,15 +141,9 @@ class AccountPickerViewController: UIViewController {
                 guard let self = self else { return }
                 self.accountPicker.setLoading(false)
                 self.accountPicker.loadAccounts()
-            }, onError: { [weak self] err in
-                guard let self = self else { return }
-                self.accountPicker.setLoading(false)
-                let alertVc = UIAlertController(title: NSLocalizedString("Could Not Load Accounts", comment: ""), message: err.localizedDescription, preferredStyle: .alert)
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: .default, handler: { _ in
-                    self.fetchAccounts()
-                }))
-                self.present(alertVc, animated: true, completion: nil)
+            }, onError: { _ in
+                MCSApi.shared.logout()
+                NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
             }).disposed(by: disposeBag)
     }
     
