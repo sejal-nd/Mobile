@@ -170,7 +170,7 @@ class HomeViewModel {
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = Observable
         .merge(fetchDataMMEvents, recentPaymentsUpdatedMMEvents)
         .filter {
-            guard let maint = $0.element else { return false }
+            guard let maint = $0.element else { return true }
             return !maint.allStatus && !maint.billStatus && !maint.homeStatus
         }
         .withLatestFrom(fetchTrigger)

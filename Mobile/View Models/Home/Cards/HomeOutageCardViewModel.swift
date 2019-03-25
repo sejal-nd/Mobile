@@ -36,7 +36,7 @@ class HomeOutageCardViewModel {
     
     private lazy var outageStatusEvents: Observable<Event<OutageStatus>> = self.maintenanceModeEvents
         .filter {
-            guard let maint = $0.element else { return false }
+            guard let maint = $0.element else { return true }
             return !maint.allStatus && !maint.outageStatus && !maint.homeStatus
         }
         .withLatestFrom(self.fetchDataObservable)

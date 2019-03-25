@@ -63,7 +63,7 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = maintenanceModeEvents
         .filter {
-            guard let maint = $0.element else { return false }
+            guard let maint = $0.element else { return true }
             return !maint.allStatus && !maint.usageStatus && !maint.homeStatus
         }
         .withLatestFrom(fetchData)
