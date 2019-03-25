@@ -297,6 +297,13 @@ class MakePaymentViewController: UIViewController {
         }, onError: { [weak self] in
             guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            }, onSpeedpayCutoff: { [weak self] in
+                guard let self = self else { return }
+                let alert = UIAlertController.speedpayCutoffAlert { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                
+                self.present(alert, animated: true, completion: nil)
         })
     }
     
@@ -880,29 +887,40 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
         let today = Calendar.opCo.startOfDay(for: Date())
-        if Environment.shared.opco == .bge {
-            let minDate: Date
+        switch Environment.shared.opco {
+        case .bge:
+            var minDate: Date
             if Calendar.opCo.component(.hour, from: Date()) >= 20 {
                 minDate = Calendar.opCo.date(byAdding: .day, value: 1, to: today)!
             } else {
                 minDate = today
             }
+            
             guard let todayPlus90 = Calendar.opCo.date(byAdding: .day, value: 90, to: today),
                 let todayPlus180 = Calendar.opCo.date(byAdding: .day, value: 180, to: today) else {
                     return false
             }
-            if viewModel.inlineCard.value {
-                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
-            } else if viewModel.inlineBank.value {
-                return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
-            } else if let walletItem = viewModel.selectedWalletItem.value {
-                if walletItem.bankOrCard == .card {
-                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
-                } else {
-                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
-                }
+            
+            var maxDate: Date
+            if viewModel.inlineCard.value || viewModel.selectedWalletItem.value?.bankOrCard == .card {
+                maxDate = todayPlus90
+            } else if viewModel.inlineBank.value || viewModel.selectedWalletItem.value?.bankOrCard == .bank {
+                maxDate = todayPlus180
+            } else {
+                return false
             }
-        } else {
+            
+            //TODO: Remove cutoff check with BGE switch to paymentus
+            if let cutoffDate = viewModel.speedpayCutoffDate.value {
+                if minDate > cutoffDate { // No valid dates in this case
+                    return false
+                }
+                
+                maxDate = min(cutoffDate, maxDate)
+            }
+            
+            return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
+        case .comEd, .peco:
             if billingHistoryItem != nil && opCoTimeDate == today  { // Modifying payment on ComEd/PECO disables changing date to today
                 return false
             }

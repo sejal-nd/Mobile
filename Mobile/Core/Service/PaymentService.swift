@@ -85,4 +85,6 @@ protocol PaymentService {
     func updatePayment(paymentId: String, payment: Payment) -> Observable<Void>
     
     func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void>
+    
+    func fetchPaymentFreezeDate() -> Observable<Date>
 }

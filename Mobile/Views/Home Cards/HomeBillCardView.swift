@@ -371,7 +371,7 @@ class HomeBillCardView: UIView {
         viewModel.slideToPayConfirmationDetailText.drive(slideToPayConfirmationDetailLabel.rx.text).disposed(by: bag)
         
         // Actions
-        oneTouchSlider.didFinishSwipe
+        otpIsBeforeFiservCutoffDate.filter { $0 }
             .withLatestFrom(viewModel.promptForCVV)
             .filter(!)
             .map(to: ())
@@ -398,6 +398,33 @@ class HomeBillCardView: UIView {
             .disposed(by: bag)
     }
     
+    private lazy var otpIsBeforeFiservCutoffDate = oneTouchSlider.didFinishSwipe
+        // Speedpay Cutoff Date Check START
+        // Remove this block after ePay transition
+        .do(onNext: { _ in
+            switch Environment.shared.opco {
+            case .bge:
+                LoadingView.show(animated: true)
+            case .comEd, .peco:
+                break
+            }
+        })
+        .asObservable()
+        .toAsyncRequest { [weak self] _ -> Observable<Bool> in
+            self?.viewModel.isBeforeFiservCutoffDate() ?? .empty()
+        }
+        .dematerialize()
+        .asDriver(onErrorDriveWith: .empty())
+        .do(onNext: { _ in
+            switch Environment.shared.opco {
+            case .bge:
+                LoadingView.hide(animated: true)
+            case .comEd, .peco:
+                break
+            }
+        })
+    // Speedpay Cutoff Date Check END
+    
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
         .do(onNext: { Analytics.log(event: .viewBillBillCard) })
     
@@ -419,8 +446,16 @@ class HomeBillCardView: UIView {
         .map(WebViewController.init)
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var cutoffAlert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
+        .filter(!)
+        .map { [weak self] _ in
+            UIAlertController.speedpayCutoffAlert { [weak self] _ in
+                self?.oneTouchSlider.reset(animated: true)
+            }
+    }
+    
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .withLatestFrom(self.viewModel.walletItem) {
+        .withLatestFrom(viewModel.walletItem) {
             return ($0, $1)
         }
         .map { [weak self] error, walletItem in
@@ -442,14 +477,16 @@ class HomeBillCardView: UIView {
                 
                 return alert
             } else {
+                let err = error as! ServiceError
                 return UIAlertController.paymentusErrorAlertController(
-                    forError: error as! ServiceError,
+                    forError: err,
                     walletItem: walletItem!,
+                    customMessage: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
                     callHandler: { _ in
                         if let phone = self?.viewModel.errorPhoneNumber {
                             UIApplication.shared.openPhoneNumberIfCan(phone)
                         }
-                    }
+                }
                 )
             }
         }
@@ -470,8 +507,9 @@ class HomeBillCardView: UIView {
         return alertController2
     }
     
-    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = oneTouchSlider.didFinishSwipe
-        .withLatestFrom(self.viewModel.promptForCVV)
+    private(set) lazy var oneTouchSliderCVV2Alert: Driver<UIViewController> = otpIsBeforeFiservCutoffDate
+        .filter { $0 }
+        .withLatestFrom(viewModel.promptForCVV)
         .asObservable()
         .filter { $0 }
         .flatMap { [weak self] _ -> Observable<UIViewController> in
@@ -565,7 +603,8 @@ class HomeBillCardView: UIView {
                oneTouchSliderCVV2Alert,
                tutorialViewController,
                bgeasyViewController,
-               autoPayAlert)
+               autoPayAlert,
+               cutoffAlert)
     
     // Pushed View Controllers
     private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside

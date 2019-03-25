@@ -35,13 +35,13 @@ class AuthTokenParser : NSObject {
     /// - Returns: A ServiceResult with either the token on success, or a ServiceError for failure.
     class func parseAuthTokenResponse(data: Data) -> ServiceResult<AuthTokenResponse> {
         do {
-            let parsedData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+            let parsedData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
             
             if let success = parsedData["success"] as? Bool {
                 if success == false {
-                    return self.parseError(parsedData: parsedData)
+                    return parseError(parsedData: parsedData)
                 } else {
-                    return self.parseSuccess(parsedData: parsedData)
+                    return parseSuccess(parsedData: parsedData)
                 }
             } else {
                 return ServiceResult.failure(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))

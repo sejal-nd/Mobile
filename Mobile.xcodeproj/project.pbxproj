@@ -114,6 +114,9 @@
 		0EF60FD920EE8105006ABC18 /* GSTouchesShowingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB420EE78F6006ABC18 /* GSTouchesShowingWindow.swift */; };
 		0EF60FDA20EE8105006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB520EE78F6006ABC18 /* GSTouchesShowingGestureRecognizer.swift */; };
 		0EF60FDB20EE8105006ABC18 /* GSTouchesShowingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF60FB620EE78F6006ABC18 /* GSTouchesShowingController.swift */; };
+		222F9B972232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222F9B962232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift */; };
+		222F9B982232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222F9B962232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift */; };
+		222F9B992232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222F9B962232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift */; };
 		2249C037216C44C800EAA44D /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
 		2249C038216C44C800EAA44D /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
 		2249C039216C44C800EAA44D /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
@@ -2392,6 +2395,7 @@
 		1BD79CAFE843705C9795521E /* Pods_ComEdApp_ComEd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEdApp_ComEd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C33D950607BDB958492E3A9 /* Pods-PECO_WatchOS Extension.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.develop.xcconfig"; sourceTree = "<group>"; };
 		1FC86F494EBA854AF018DFB7 /* Pods_PECOApp_PECO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		222F9B962232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+SpeedpayCutoff.swift"; sourceTree = "<group>"; };
 		2249C036216C44C800EAA44D /* URLSession+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Rx.swift"; sourceTree = "<group>"; };
 		224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAppointmentCardView.swift; sourceTree = "<group>"; };
 		224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAppointmentCardView.xib; sourceTree = "<group>"; };
@@ -4290,6 +4294,7 @@
 				9CCE3E4521B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift */,
 				B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */,
 				9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */,
+				222F9B962232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6088,7 +6093,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6127,7 +6132,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1F320E9F488F4AF612BF5C4D /* [CP] Embed Pods Frameworks */ = {
@@ -6138,7 +6143,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6177,7 +6182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		21FCC9D56DC0C626A725A88B /* [CP] Check Pods Manifest.lock */ = {
@@ -6210,7 +6215,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6251,7 +6256,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		406C7655A7FF0BC739C0F4EB /* [CP] Embed Pods Frameworks */ = {
@@ -6262,7 +6267,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6303,7 +6308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		41DEF2587A5D2CF44ABDBFD5 /* [CP] Check Pods Manifest.lock */ = {
@@ -6468,7 +6473,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6509,7 +6514,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B58B5B6A1E51728B0051FD5F /* Run Script */ = {
@@ -6563,7 +6568,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6604,7 +6609,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B94B53A494B834F78A5C29C7 /* [CP] Check Pods Manifest.lock */ = {
@@ -6637,7 +6642,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6678,7 +6683,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D78727F1DC655E92E060260C /* [CP] Check Pods Manifest.lock */ = {
@@ -6711,7 +6716,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
 			);
@@ -6724,7 +6729,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F83C4B3507FC346BD43DF524 /* [CP] Embed Pods Frameworks */ = {
@@ -6735,7 +6740,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6774,7 +6779,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9CBF2ECCE98E33F8775740D /* [CP] Embed Pods Frameworks */ = {
@@ -6785,7 +6790,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
@@ -6826,7 +6831,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -7279,6 +7284,7 @@
 				821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				E8127B221EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				E8C4531F1EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
+				222F9B972232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift in Sources */,
 				225FF85A1EC56B480079010C /* Date.swift in Sources */,
 				B58B5AC51E4E28740051FD5F /* AppDelegate.swift in Sources */,
 				22EBDCCD1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
@@ -7427,6 +7433,7 @@
 				E87C41491FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
 				82A18EDC1EBA684F00BE9F21 /* MultiPremiseTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
+				222F9B992232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift in Sources */,
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF559A2170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
@@ -8024,6 +8031,7 @@
 				821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				B596062B1F7C1F4A00515B72 /* AppRating.swift in Sources */,
 				E887C9D51ED4CDDE002433A3 /* AddBankAccountViewModel.swift in Sources */,
+				222F9B982232F61800EEB934 /* UIAlertViewController+SpeedpayCutoff.swift in Sources */,
 				826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
 				225FF85B1EC56B480079010C /* Date.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
