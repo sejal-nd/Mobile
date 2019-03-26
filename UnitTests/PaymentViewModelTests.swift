@@ -78,7 +78,7 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertEqual(self.viewModel.selectedWalletItem.value!.nickName, "Test Card 1")
         }, onError: {
             XCTFail("unexpected error response")
-        })
+        }, onSpeedpayCutoff: nil)
         
         // Test 2: Cash only user with a bank account but no credit cards
         MockUser.current = MockUser(globalKeys: .billCardWithDefaultPayment)

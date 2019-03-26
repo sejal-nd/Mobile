@@ -408,19 +408,21 @@ class HomeBillCardView: UIView {
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
-        .withLatestFrom(self.viewModel.walletItem) {
+        .withLatestFrom(viewModel.walletItem) {
             return ($0, $1)
         }
         .map { [weak self] error, walletItem in
-            return UIAlertController.paymentusErrorAlertController(
-                forError: error as! ServiceError,
-                walletItem: walletItem!,
-                callHandler: { _ in
-                    if let phone = self?.viewModel.errorPhoneNumber {
-                        UIApplication.shared.openPhoneNumberIfCan(phone)
-                    }
+                let err = error as! ServiceError
+                return UIAlertController.paymentusErrorAlertController(
+                    forError: err,
+                    walletItem: walletItem!,
+                    customMessage: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
+                    callHandler: { _ in
+                        if let phone = self?.viewModel.errorPhoneNumber {
+                            UIApplication.shared.openPhoneNumberIfCan(phone)
+                        }
                 }
-            )
+                )
         }
         .asDriver(onErrorDriveWith: .empty())
     
