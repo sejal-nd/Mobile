@@ -11,61 +11,58 @@ import RxSwiftExt
 import RxCocoa
 
 class BillingHistoryDetailsViewModel {
-    let disposeBag = DisposeBag()
     
-    private let paymentService: PaymentService
-    
+    private let accountDetail: AccountDetail
     private let billingHistory: BillingHistoryItem
 
-    let fetching = Variable(false)
-    let isError = Variable(false)
-    let paymentDetail = Variable<PaymentDetail?>(nil)
     
-    private(set) lazy var paymentAccount: Driver<String?> = self.paymentDetail.asDriver().map {
-        guard let paymentAccount = $0?.accountNumber else { return "" }
+    var paymentAccount: String? {
+        let paymentAccount = accountDetail.accountNumber
         return "**** " + String(paymentAccount.suffix(4))
     }
     
-    var paymentType: String {
-        guard let paymentType = billingHistory.description else { return "" }
-        return isSpeedpay ? "" : paymentType
+    var paymentAccountImage: UIImage? {
+        guard let paymentMethod = billingHistory.paymentMethod else { return nil }
+        let paymentMethodType = PaymentMethodType(paymentMethod)
+        return paymentMethodType.imageMini
     }
     
-    var paymentDate: String {
+    var paymentType: String? {
+        return billingHistory.description
+    }
+    
+    var paymentDate: String? {
         return billingHistory.date.mmDdYyyyString
     }
     
     //amountPaid and paymentAmount
-    var amountPaid: String {
-        return billingHistory.amountPaid?.currencyString ?? ""
+    var paymentAmount: String? {
+        return billingHistory.amountPaid?.currencyString
     }
     
-    var chargeAmount: String {
-        return billingHistory.chargeAmount?.currencyString ?? ""
+    var chargeAmount: String? {
+        return billingHistory.chargeAmount?.currencyString
     }
     
-    private(set) lazy var convenienceFee: Driver<String?> = self.paymentDetail.asDriver().map {
-        guard let convFee = $0?.convenienceFee else { return "" }
-        return convFee.currencyString
+    var convenienceFee: String? {
+        let convFee = accountDetail.billingInfo.convenienceFee
+        return convFee.isZero ? nil : convFee.currencyString
     }
-    
-    private(set) lazy var totalAmountPaid: Driver<String?> = self.paymentDetail.asDriver().map {
-        guard let paymentDetail = $0 else { return "" }
-        guard let convFee = paymentDetail.convenienceFee else { return "" }
-        let returnValue = convFee + paymentDetail.paymentAmount
+
+    // TODO: Fix Unit Tests
+    var totalPaymentAmount: String? {
+        let convFee = accountDetail.billingInfo.convenienceFee
+        guard let paymentAmount = accountDetail.billingInfo.lastPaymentAmount else { return nil } // is last payment amount the same as paymentDetail paymentAmount?
+        let returnValue = convFee + paymentAmount
         return returnValue.currencyString
     }
     
-    var paymentStatus: String {
-        return billingHistory.statusString?.capitalized ?? ""
+    var paymentStatus: String? {
+        return billingHistory.statusString?.capitalized
     }
     
-    var confirmationNumber: String {
-        return billingHistory.confirmationNumber ?? ""
-    }
-    
-    var isSpeedpay: Bool {
-        return billingHistory.paymentType == "SPEEDPAY"
+    var confirmationNumber: String? {
+        return billingHistory.confirmationNumber
     }
     
     var paymentTypeLabel: String {
@@ -73,36 +70,9 @@ class BillingHistoryDetailsViewModel {
             NSLocalizedString("PaymentAccountNickname", comment: "") :
             NSLocalizedString("Payment Type", comment: "")
     }
-    
-    var paymentAmountLabel: String {
-        return isSpeedpay ?
-            NSLocalizedString("Payment Amount", comment: "") :
-            NSLocalizedString("Amount Paid", comment: "")
-    }
-    
-    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(fetching.asDriver(),
-                                                                                 isError.asDriver(),
-                                                                                 resultSelector: { !$0 && !$1 })
-    
-    required init(paymentService: PaymentService, billingHistoryItem: BillingHistoryItem) {
-        self.paymentService = paymentService
+
+    required init(accountDetail: AccountDetail, billingHistoryItem: BillingHistoryItem) {
+        self.accountDetail = accountDetail
         self.billingHistory = billingHistoryItem
-    }
-    
-    func fetchPaymentDetails(billingHistoryItem: BillingHistoryItem, onCompletion: @escaping () -> Void) {
-        if let paymentId = billingHistoryItem.paymentId {
-            fetching.value = true
-            paymentService.fetchPaymentDetails(accountNumber: AccountsStore.shared.currentAccount.accountNumber, paymentId: paymentId).subscribe(onNext: { [weak self] paymentDetail in
-                self?.fetching.value = false
-                self?.paymentDetail.value = paymentDetail
-                onCompletion()
-            }, onError: { [weak self] err in
-                self?.fetching.value = false
-                self?.isError.value = true
-                onCompletion()
-            }).disposed(by: disposeBag)
-        } else {
-            fetching.value = false
-        }
     }
 }

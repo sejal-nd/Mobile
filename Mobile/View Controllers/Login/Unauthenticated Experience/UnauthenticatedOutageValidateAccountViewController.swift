@@ -21,7 +21,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
     @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var footerTextView: DataDetectorTextView!
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
     var submitButton: UIBarButtonItem!
     var analyticsSource: AnalyticsOutageSource!
@@ -57,7 +57,6 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
         footerView.backgroundColor = .softGray
-        footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.linkTapDelegate = self
