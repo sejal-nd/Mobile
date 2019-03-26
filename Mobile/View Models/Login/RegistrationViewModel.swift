@@ -39,7 +39,7 @@ class RegistrationViewModel {
     
     var paperlessEbill = Variable<Bool>(true)
     
-    var isPaperlessEbillEligible = false //not making this Rx until this VM is made Rx
+    var isPaperlessEbillEligible = false
     
     let loadSecurityQuestionsData = PublishSubject<Void>()
     
@@ -53,18 +53,21 @@ class RegistrationViewModel {
     var registrationService: RegistrationService
     var authenticationService: AuthenticationService
     
-    // Keeps track of strong password for Analytics
-    var hasStrongPassword = false
+    var hasStrongPassword = false // Keeps track of strong password for Analytics
     
     required init(registrationService: RegistrationService, authenticationService: AuthenticationService) {
         self.registrationService = registrationService
         self.authenticationService = authenticationService
     }
     
-    func validateAccount(onSuccess: @escaping () -> Void, onMultipleAccounts: @escaping() -> Void, onError: @escaping (String, String) -> Void) {
+    func validateAccount(onSuccess: @escaping () -> Void,
+                         onMultipleAccounts: @escaping() -> Void,
+                         onError: @escaping (String, String) -> Void) {
         let identifier: String = identifierNumber.value
         
-        registrationService.validateAccountInformation(identifier, phone: extractDigitsFrom(phoneNumber.value), accountNum: accountNumber.value)
+        registrationService.validateAccountInformation(identifier,
+                                                       phone: extractDigitsFrom(phoneNumber.value),
+                                                       accountNum: accountNumber.value)
         	.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
@@ -89,7 +92,9 @@ class RegistrationViewModel {
             .disposed(by: disposeBag)
     }
     
-    func verifyUniqueUsername(onSuccess: @escaping () -> Void, onEmailAlreadyExists: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
+    func verifyUniqueUsername(onSuccess: @escaping () -> Void,
+                              onEmailAlreadyExists: @escaping () -> Void,
+                              onError: @escaping (String, String) -> Void) {
         registrationService.checkForDuplicateAccount(username.value)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
@@ -111,9 +116,8 @@ class RegistrationViewModel {
                 } else {
                     onSuccess()
                 }
-                }, onError: { error in
+            }, onError: { error in
                 let serviceError = error as! ServiceError
-                
                 if serviceError.serviceCode == ServiceErrorCode.fnProfileExists.rawValue {
                     onEmailAlreadyExists()
                 } else {
@@ -146,7 +150,7 @@ class RegistrationViewModel {
                 switch (serviceError.serviceCode) {
                 case ServiceErrorCode.fnAccountMultiple.rawValue:
                     onError(NSLocalizedString("Multiple Accounts", comment: ""), error.localizedDescription)
-                    
+            
                 case ServiceErrorCode.fnCustomerNotFound.rawValue:
                     onError(NSLocalizedString("Customer Not Found", comment: ""), error.localizedDescription)
                     
@@ -205,8 +209,6 @@ class RegistrationViewModel {
             .disposed(by: disposeBag)
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-
     // THIS IS FOR THE NEXT BUTTON ON THE FIRST STEP (VALIDATE ACCOUNT)
 	private(set) lazy var nextButtonEnabled: Driver<Bool> = {
 		if Environment.shared.opco == .bge {
@@ -230,100 +232,119 @@ class RegistrationViewModel {
             .disposed(by: disposeBag)
     }
 	
-	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> = self.phoneNumber.asDriver().map { [weak self] text -> Bool in
-        guard let self = self else { return false }
-		let digitsOnlyString = self.extractDigitsFrom(text)
-		return digitsOnlyString.count == 10
-	}
+	private(set) lazy var phoneNumberHasTenDigits: Driver<Bool> =
+        self.phoneNumber.asDriver().map { [weak self] text -> Bool in
+            guard let self = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.count == 10
+        }
 	
-    private(set) lazy var identifierHasFourDigits: Driver<Bool> = self.identifierNumber.asDriver().map { $0.count == 4 }
+    private(set) lazy var identifierHasFourDigits: Driver<Bool> =
+        self.identifierNumber.asDriver().map { $0.count == 4 }
 	
-    private(set) lazy var identifierIsNumeric: Driver<Bool> = self.identifierNumber.asDriver().map { [weak self] text -> Bool in
-        guard let self = self else { return false }
-        let digitsOnlyString = self.extractDigitsFrom(text)
-        return digitsOnlyString.count == text.count
-    }
+    private(set) lazy var identifierIsNumeric: Driver<Bool> =
+        self.identifierNumber.asDriver().map { [weak self] text -> Bool in
+            guard let self = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.count == text.count
+        }
     
-    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> = self.accountNumber.asDriver().map { [weak self] text -> Bool in
-        guard let self = self else { return false }
-        let digitsOnlyString = self.extractDigitsFrom(text)
-        return digitsOnlyString.count == 10
-    }
+    private(set) lazy var accountNumberHasTenDigits: Driver<Bool> =
+        self.accountNumber.asDriver().map { [weak self] text -> Bool in
+            guard let self = self else { return false }
+            let digitsOnlyString = self.extractDigitsFrom(text)
+            return digitsOnlyString.count == 10
+        }
     
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
     
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-    private(set) lazy var newUsernameHasText: Driver<Bool> = self.username.asDriver().map { !$0.isEmpty }
+    private(set) lazy var newUsernameHasText: Driver<Bool> =
+        self.username.asDriver().map { !$0.isEmpty }
 	
-	private(set) lazy var newUsernameIsValidBool: Driver<Bool> = self.username.asDriver().map { text -> Bool in
-		if text.count > kMaxUsernameChars {
-			return false
-		}
-		
-		let components = text.components(separatedBy: "@")
-		
-		if components.count != 2 {
-			return false
-		}
-		
-		let urlComponents = components[1].components(separatedBy: ".")
-		
-		if urlComponents.count < 2 {
-			return false
-		} else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
-			return false
-		}
-		
-		return true
-	}
+	private(set) lazy var newUsernameIsValidBool: Driver<Bool> =
+        self.username.asDriver().map { text -> Bool in
+            if text.count > kMaxUsernameChars {
+                return false
+            }
+            
+            let components = text.components(separatedBy: "@")
+            
+            if components.count != 2 {
+                return false
+            }
+            
+            let urlComponents = components[1].components(separatedBy: ".")
+            
+            if urlComponents.count < 2 {
+                return false
+            } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                return false
+            }
+            
+            return true
+        }
 	
-	private(set) lazy var newUsernameIsValid: Driver<String?> = self.username.asDriver().map { text -> String? in
-		if !text.isEmpty {
-			if text.count > kMaxUsernameChars {
-				return "Maximum of 255 characters allowed"
-			}
-			
-			let components = text.components(separatedBy: "@")
-			
-			if components.count != 2 {
-				return "Invalid email address"
-			}
-			
-			let urlComponents = components[1].components(separatedBy: ".")
-			
-			if urlComponents.count < 2 {
-				return "Invalid email address"
-			} else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
-				return "Invalid email address"
-			}
-		}
-		
-		return nil
-	}
+	private(set) lazy var newUsernameIsValid: Driver<String?> =
+        self.username.asDriver().map { text -> String? in
+            if !text.isEmpty {
+                if text.count > kMaxUsernameChars {
+                    return "Maximum of 255 characters allowed"
+                }
+                
+                let components = text.components(separatedBy: "@")
+                
+                if components.count != 2 {
+                    return "Invalid email address"
+                }
+                
+                let urlComponents = components[1].components(separatedBy: ".")
+                
+                if urlComponents.count < 2 {
+                    return "Invalid email address"
+                } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+                    return "Invalid email address"
+                }
+            }
+            
+            return nil
+        }
 	
-	private(set) lazy var newPasswordHasText: Driver<Bool> = self.newPassword.asDriver().map{ !$0.isEmpty }
+	private(set) lazy var newPasswordHasText: Driver<Bool> =
+        self.newPassword.asDriver().map{ !$0.isEmpty }
 	
 	private(set) lazy var characterCountValid: Driver<Bool> = self.newPassword.asDriver()
 		.map{ $0.components(separatedBy: .whitespacesAndNewlines).joined() }
 		.map{ 8...16 ~= $0.count }
 	
-	private(set) lazy var usernameMaxCharacters: Driver<Bool> = self.username.asDriver().map { $0.count > kMaxUsernameChars }
+	private(set) lazy var usernameMaxCharacters: Driver<Bool> =
+        self.username.asDriver().map { $0.count > kMaxUsernameChars }
 	
-	private(set) lazy var containsUppercaseLetter: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
-		let regex = try! NSRegularExpression(pattern: ".*[A-Z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
-	}
+	private(set) lazy var containsUppercaseLetter: Driver<Bool> =
+        self.newPassword.asDriver().map { text -> Bool in
+            let regex = try! NSRegularExpression(pattern: ".*[A-Z].*",
+                                                 options: NSRegularExpression.Options.useUnixLineSeparators)
+            return regex.firstMatch(in: text,
+                                    options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
+                                    range: NSMakeRange(0, text.count)) != nil
+        }
 	
-	private(set) lazy var containsLowercaseLetter: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
-		let regex = try! NSRegularExpression(pattern: ".*[a-z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
-	}
+	private(set) lazy var containsLowercaseLetter: Driver<Bool> =
+        self.newPassword.asDriver().map { text -> Bool in
+            let regex = try! NSRegularExpression(pattern: ".*[a-z].*",
+                                                 options: NSRegularExpression.Options.useUnixLineSeparators)
+            return regex.firstMatch(in: text,
+                                    options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
+                                    range: NSMakeRange(0, text.count)) != nil
+        }
 	
 	private(set) lazy var containsNumber: Driver<Bool> = self.newPassword.asDriver().map { text -> Bool in
-		let regex = try! NSRegularExpression(pattern: ".*[0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-		return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
+		let regex = try! NSRegularExpression(pattern: ".*[0-9].*",
+                                             options: NSRegularExpression.Options.useUnixLineSeparators)
+		return regex.firstMatch(in: text,
+                                options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
+                                range: NSMakeRange(0, text.count)) != nil
 	}
 	
 	private(set) lazy var containsSpecialCharacter: Driver<Bool> = self.newPassword.asDriver()
@@ -332,50 +353,52 @@ class RegistrationViewModel {
 		}
 		.map { text -> Bool in
 			let regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
-			return regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.init(rawValue: 0) , range: NSMakeRange(0, text.count)) != nil
+			return regex.firstMatch(in: text,
+                                    options: NSRegularExpression.MatchingOptions.init(rawValue: 0),
+                                    range: NSMakeRange(0, text.count)) != nil
 	}
 	
-	private(set) lazy var passwordMatchesUsername: Driver<Bool> = Driver.combineLatest(self.newPassword.asDriver(), self.username.asDriver())
-	{ newPassword, username -> Bool in
-		newPassword.lowercased() == username.lowercased() && !newPassword.isEmpty
-	}
+	private(set) lazy var passwordMatchesUsername: Driver<Bool> =
+        Driver.combineLatest(self.newPassword.asDriver(),
+                             self.username.asDriver())
+        { newPassword, username -> Bool in
+            newPassword.lowercased() == username.lowercased() && !newPassword.isEmpty
+        }
 	
-	private(set) lazy var newPasswordIsValid: Driver<Bool> = Driver.combineLatest([self.characterCountValid,
-	                                                                               self.containsLowercaseLetter,
-	                                                                               self.containsUppercaseLetter,
-	                                                                               self.containsNumber,
-	                                                                               self.containsSpecialCharacter])
-	{ array in
-		if array[0] {
-			let otherArray = array[1...4].filter{ $0 }
-			
-			if otherArray.count >= 3 {
-				return true
-			}
-		}
-		
-		return false
-	}
+	private(set) lazy var newPasswordIsValid: Driver<Bool> =
+        Driver.combineLatest([self.characterCountValid,
+                              self.containsLowercaseLetter,
+                              self.containsUppercaseLetter,
+                              self.containsNumber,
+                              self.containsSpecialCharacter])
+        { array in
+            if array[0] {
+                let otherArray = array[1...4].filter { $0 }
+                if otherArray.count >= 3 {
+                    return true
+                }
+            }
+            return false
+        }
 	
-	private(set) lazy var everythingValid: Driver<Bool> = Driver.combineLatest([self.passwordMatchesUsername,
-	                                                                            self.characterCountValid,
-	                                                                            self.containsUppercaseLetter,
-	                                                                            self.containsLowercaseLetter,
-	                                                                            self.containsNumber,
-	                                                                            self.containsSpecialCharacter,
-	                                                                            self.newUsernameHasText,
-	                                                                            self.newUsernameIsValidBool])
-	{ array in
-		if !array[0] && array[1] && array[6] && array[7] {
-			let otherArray = array[2...5].filter{ $0 }
-			
-			if otherArray.count >= 3 {
-				return true
-			}
-		}
-		
-		return false
-	}
+	private(set) lazy var everythingValid: Driver<Bool> =
+        Driver.combineLatest([self.passwordMatchesUsername,
+                            self.characterCountValid,
+                            self.containsUppercaseLetter,
+                            self.containsLowercaseLetter,
+                            self.containsNumber,
+                            self.containsSpecialCharacter,
+                            self.newUsernameHasText,
+                            self.newUsernameIsValidBool])
+        { array in
+            if !array[0] && array[1] && array[6] && array[7] {
+                let otherArray = array[2...5].filter { $0 }
+                if otherArray.count >= 3 {
+                    return true
+                }
+            }
+            return false
+        }
 	
     func getPasswordScore() -> Int32 {
         var score: Int32 = -1
@@ -385,16 +408,14 @@ class RegistrationViewModel {
         return score
     }
     
-    private(set) lazy var confirmPasswordMatches: Driver<Bool> = Driver.combineLatest(self.confirmPassword.asDriver(),
-                                                                                      self.newPassword.asDriver(),
-                                                                                      resultSelector: ==)
+    private(set) lazy var confirmPasswordMatches: Driver<Bool> =
+        Driver.combineLatest(self.confirmPassword.asDriver(), self.newPassword.asDriver(), resultSelector: ==)
     
     // THIS IS FOR THE NEXT BUTTON ON THE SECOND STEP (CREATE SIGN IN CREDENTIALS)
     private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     
-    /////////////////////////////////////////////////////////////////////////////////////////////////
 	private(set) lazy var question1Selected: Driver<Bool> = self.securityQuestion1.asDriver().map { !$0.isEmpty }
 	private(set) lazy var question2Selected: Driver<Bool> = self.securityQuestion2.asDriver().map { !$0.isEmpty }
 	private(set) lazy var question3Selected: Driver<Bool> = self.securityQuestion3.asDriver().map { !$0.isEmpty }

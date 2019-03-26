@@ -214,9 +214,7 @@ struct MCSAuthenticationService : AuthenticationService {
     }
     
     func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]> {
-        //let params = ["AccountDetails": ["SocialSecurityOrTaxId" : identifier, "PhoneNumber" : phone]] // MMS - Kenny added this, I don't know where it comes from. It's not in the API documentation and the call fails unless the params are as follows:
         let params: [String: Any] = ["identifier": identifier, "phone": phone]
-        
         return MCSApi.shared.post(pathPrefix: .anon, path: "account/lookup", params: params)
             .map { json in
                 guard let entries = json as? [NSDictionary] else {
@@ -227,7 +225,7 @@ struct MCSAuthenticationService : AuthenticationService {
                 return entries
                     .compactMap { $0["AccountDetails"] as? NSDictionary }
                     .compactMap(AccountLookupResult.from)
-        }
+            }
     }
     
     #if os(iOS)

@@ -95,8 +95,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     func loadSecurityQuestions() {
         loadingIndicator.isHidden = false
         scrollView.isHidden = true
-        var messages = ""
-        var title = ""
         
         viewModel.loadSecurityQuestions(onSuccess: { [weak self] in
             guard let self = self else { return }
@@ -111,16 +109,11 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 self.eBillSwitchView.isHidden = true
             }
         }, onError: { [weak self] (securityTitle, securityMessage) in
-            title = securityTitle
-            messages += securityMessage
-            self?.loadErrorMessage(title, message: messages)
+            self?.loadErrorMessage(securityTitle, message: securityMessage)
         })
     }
     
     func loadAccounts() {
-        var messages = ""
-        var title = ""
-        
         viewModel.loadAccounts(onSuccess: { [weak self] in
             guard let self = self else { return }
             let opco = Environment.shared.opco
@@ -144,16 +137,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             self.loadingIndicator.isHidden = true
             
         }, onError: { [weak self] (accountsTitle, accountsMessage) in
-            title = accountsTitle
-            messages = accountsMessage
-            
-            self?.loadErrorMessage(title, message: messages)
-            
-//                // MMS - I'm ignoring this error for now - TODO, fix it
-//                self.loadAccountsError = true
-//                self.scrollView.isHidden = false
-//                self.loadingIndicator.isHidden = true
-//                self.toggleAccountListing(false)
+            self?.loadErrorMessage(accountsTitle, message: accountsMessage)
         })
     }
     
@@ -186,7 +170,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         eBillSwitchInstructions.textColor = .blackText
         eBillSwitchInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
         eBillSwitchInstructions.font = SystemFont.regular.of(textStyle: .headline)
-        
     }
     
     func populateAccountListingLabels() {
@@ -310,13 +293,10 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
                 switch (self.viewModel.selectedQuestionRow) {
                 case 1:
                     self.question1AnswerTextField.textField.text = ""
-                    
                 case 2:
                     self.question2AnswerTextField.textField.text = ""
-                    
                 case 3:
                     self.question3AnswerTextField.textField.text = ""
-                    
                 default:
                     break
                 }
