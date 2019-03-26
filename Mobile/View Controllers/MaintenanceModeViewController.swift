@@ -28,8 +28,8 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var opcoLogo: UIImageView!
     @IBOutlet weak var maintenanceModeBody: UIView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var bodyTextView: ZeroInsetTextView!
-    @IBOutlet weak var footerTextView: ZeroInsetTextView!
+    @IBOutlet weak var bodyTextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
         
     override func viewDidLoad() {
         super.viewDidLoad()

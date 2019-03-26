@@ -29,13 +29,13 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var reportStreetlightOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTitleLabel: UILabel!
-    @IBOutlet weak var gasOnlyTextView: ZeroInsetTextView!
+    @IBOutlet weak var gasOnlyTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var finaledNoPayView: UIView!
-    @IBOutlet weak var finaledNoPayTextView: ZeroInsetTextView!
+    @IBOutlet weak var finaledNoPayTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var finaledNoPayTitleLabel: UILabel!
     @IBOutlet weak var noPayPayBillButton: ButtonControl!
     @IBOutlet weak var noPayPayBillButtonLabel: UILabel!
-    @IBOutlet weak var footerTextView: ZeroInsetTextView!
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
     // We keep track of this constraint because AutoLayout uses it to calculate the height of the scrollView's content
     // When the gasOnlyView is hidden, we do not want it's height to impact the scrollView content size (the normal outage

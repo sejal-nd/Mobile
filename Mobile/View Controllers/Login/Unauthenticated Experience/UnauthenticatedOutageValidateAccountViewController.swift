@@ -21,7 +21,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
     @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var footerTextView: ZeroInsetTextView!
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
     var submitButton: UIBarButtonItem!
     var analyticsSource: AnalyticsOutageSource!

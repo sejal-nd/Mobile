@@ -17,25 +17,25 @@ class ContactUsViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var containerStack: UIStackView!
     
-    @IBOutlet weak var emergencyNumberTextView: ZeroInsetTextView!
+    @IBOutlet weak var emergencyNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
     @IBOutlet weak var bgeOnlyStackView: UIStackView!
-    @IBOutlet weak var bgeGasNumber1TextView: ZeroInsetTextView!
-    @IBOutlet weak var bgeGasNumber2TextView: ZeroInsetTextView!
-    @IBOutlet weak var bgePowerLineNumber1TextView: ZeroInsetTextView!
-    @IBOutlet weak var bgePowerLineNumber2TextView: ZeroInsetTextView!
+    @IBOutlet weak var bgeGasNumber1TextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var bgeGasNumber2TextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber1TextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber2TextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet weak var submitFormButton: UIButton!
     @IBOutlet weak var onlineDescriptionLabel: UILabel!
     
     @IBOutlet weak var firstLabel: UILabel!
-    @IBOutlet weak var firstNumberTextView: ZeroInsetTextView!
+    @IBOutlet weak var firstNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var secondStack: UIStackView!
     @IBOutlet weak var secondLabel: UILabel!
-    @IBOutlet weak var secondNumberTextView: ZeroInsetTextView!
+    @IBOutlet weak var secondNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var thirdStack: UIStackView!
     @IBOutlet weak var thirdLabel: UILabel!
-    @IBOutlet weak var thirdNumberTextView: ZeroInsetTextView!
+    @IBOutlet weak var thirdNumberTextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet var dividerLines: [UIView]!
     @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!

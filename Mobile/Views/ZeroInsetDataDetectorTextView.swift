@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class ZeroInsetTextView: DataDetectorTextView {
+@IBDesignable class ZeroInsetDataDetectorTextView: DataDetectorTextView {
     
     override func layoutSubviews() {
         super.layoutSubviews()

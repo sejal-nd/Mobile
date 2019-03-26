@@ -11,7 +11,7 @@ import RxCocoa
 
 class ForgotUsernameResultViewController: UIViewController {
     
-    @IBOutlet weak var topTextView: ZeroInsetTextView!
+    @IBOutlet weak var topTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var topTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!

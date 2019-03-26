@@ -25,7 +25,7 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorViewBackground: UIView!
     @IBOutlet weak var errorTitleLabel: UILabel!
-    @IBOutlet weak var errorTextView: ZeroInsetTextView!
+    @IBOutlet weak var errorTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var retryButton: ButtonControl!
     
     var performDeepLink = false

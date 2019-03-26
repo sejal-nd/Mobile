@@ -13,7 +13,7 @@ class HomeAppointmentCardView: UIView {
     
     @IBOutlet private weak var clippingView: UIView!
     @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var topTextView: ZeroInsetTextView!
+    @IBOutlet private weak var topTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet private weak var apologyLabelContainer: UIView!
     @IBOutlet private weak var apologyLabel: UILabel!
     @IBOutlet weak var bottomButton: ButtonControl!
