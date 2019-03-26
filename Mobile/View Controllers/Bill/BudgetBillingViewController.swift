@@ -114,7 +114,7 @@ class BudgetBillingViewController: UIViewController {
             paymentAmountView.isHidden = true
             amountDescriptionLabel.text = NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly budget billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
-            amountDescriptionLabel.text = viewModel.getAmountDescriptionText()
+            amountDescriptionLabel.text = viewModel.amountDescriptionText
         }
         
         enrollmentLabel.textColor = .blackText
@@ -201,7 +201,7 @@ class BudgetBillingViewController: UIViewController {
         viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
             guard let self = self else { return }
             
-            if let footerText = self.viewModel.getFooterText() {
+            if let footerText = self.viewModel.footerText {
                 self.footerLabel.text = footerText
                 self.view.backgroundColor = .softGray
             } else {
@@ -215,7 +215,7 @@ class BudgetBillingViewController: UIViewController {
             self.gradientView.isHidden = false
             
             if Environment.shared.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
-                self.monthlyAmountLabel.text = budgetBillingInfo.averageMonthlyBill
+                self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill ?? budgetBillingInfo.averageMonthlyBill
                 self.lastPaymentDateLabel.text = self.accountDetail.billingInfo.lastPaymentDate?.mmDdYyyyString
                 self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff
                 self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance
@@ -368,7 +368,7 @@ extension BudgetBillingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! RadioSelectionTableViewCell
         
-        cell.label.text = viewModel.getReasonString(forIndex: indexPath.row)
+        cell.label.text = viewModel.reasonString(forIndex: indexPath.row)
         
         return cell
     }
