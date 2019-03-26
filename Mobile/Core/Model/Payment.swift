@@ -42,11 +42,11 @@ struct PaymentDetail: Mappable {
         accountNumber = map.optionalFrom("account_number")
     }
     
-    init(walletItemId: String?, paymentAmount: Double, paymentDate: Date?, convinienceFee: Double? = nil, paymentAccount: String? = nil, accountNumber: String? = nil) {
+    init(walletItemId: String?, paymentAmount: Double, paymentDate: Date?, convenienceFee: Double? = nil, paymentAccount: String? = nil, accountNumber: String? = nil) {
         self.walletItemId = walletItemId
         self.paymentAmount = paymentAmount
         self.paymentDate = paymentDate
-        self.convenienceFee = convinienceFee
+        self.convenienceFee = convenienceFee
         self.paymentAccount = paymentAccount
         self.accountNumber = accountNumber
     }
