@@ -28,8 +28,8 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var opcoLogo: UIImageView!
     @IBOutlet weak var maintenanceModeBody: UIView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var bodyLabel: DataDetectorTextView!
-    @IBOutlet weak var footerTextView: DataDetectorTextView!
+    @IBOutlet weak var bodyTextView: ZeroInsetTextView!
+    @IBOutlet weak var footerTextView: ZeroInsetTextView!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,18 +50,14 @@ class MaintenanceModeViewController: UIViewController {
         headerLabel.textColor = .deepGray
         headerLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
-        bodyLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        bodyLabel.attributedText = viewModel.labelBody
-        bodyLabel.accessibilityLabel = viewModel.labelBody.string
+        bodyTextView.font = OpenSans.regular.of(textStyle: .footnote)
+        bodyTextView.attributedText = viewModel.labelBody
+        bodyTextView.accessibilityLabel = viewModel.labelBody.string
         
-        bodyLabel.textColor = .blackText
-        bodyLabel.textContainerInset = .zero
-        bodyLabel.textContainer.lineFragmentPadding = 0
-        bodyLabel.tintColor = .actionBlue // Color of the phone numbers
+        bodyTextView.textColor = .blackText
+        bodyTextView.tintColor = .actionBlue // Color of the phone numbers
         
         footerTextView.font = OpenSans.regular.of(textStyle: .footnote)
-        footerTextView.textContainerInset = .zero
-        footerTextView.textContainer.lineFragmentPadding = 0
         footerTextView.tintColor = .actionBlue
         footerTextView.attributedText = viewModel.footerLabelText
         

@@ -345,7 +345,7 @@
                                                                                 <rect key="frame" x="93" y="0.0" width="125" height="126"/>
                                                                             </imageView>
                                                                             <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-hm-Egb">
-                                                                                <rect key="frame" x="155.5" y="135" width="0.0" height="20"/>
+                                                                                <rect key="frame" x="155.5" y="139" width="0.0" height="20"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" id="MmR-WT-ajM"/>
@@ -353,13 +353,13 @@
                                                                                 </constraints>
                                                                             </view>
                                                                             <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outage Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ytz-FG-53M">
-                                                                                <rect key="frame" x="75" y="163.5" width="161" height="21.5"/>
+                                                                                <rect key="frame" x="75" y="171.5" width="161" height="21.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jpt-Jv-nQF" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="2" y="194" width="307.5" height="111.5"/>
+                                                                            <textView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jpt-Jv-nQF" customClass="ZeroInsetTextView" customModule="BGE" customModuleProvider="target">
+                                                                                <rect key="frame" x="7" y="206" width="297.5" height="95.5"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 <string key="text">We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call x-xxx-xxx-xxxx.</string>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

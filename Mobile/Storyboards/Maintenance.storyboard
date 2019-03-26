@@ -89,7 +89,7 @@
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-2z-TTf" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-2z-TTf" customClass="ZeroInsetTextView" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="115.66666666666669" width="273" height="114.33333333333331"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <string key="text">If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123 
@@ -106,7 +106,7 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                                                                             <constraint firstAttribute="height" constant="1" id="Cwv-5g-rTu"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" text="For all other inquiries, please call 1-800-685-0123 M-F 7AM to 7PM" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-X4-R8B" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" text="For all other inquiries, please call 1-800-685-0123 M-F 7AM to 7PM" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SEK-X4-R8B" customClass="ZeroInsetTextView" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="263" width="273" height="49"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -177,7 +177,7 @@ For all other inquiries please call 1-800-494-4000 M-F 7AM to 7PM</string>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="bodyLabel" destination="GuV-2z-TTf" id="OvM-Pg-9UK"/>
+                        <outlet property="bodyTextView" destination="GuV-2z-TTf" id="OvM-Pg-9UK"/>
                         <outlet property="footerTextView" destination="SEK-X4-R8B" id="xHz-hW-imp"/>
                         <outlet property="headerLabel" destination="3iY-Ll-WFa" id="6KF-PY-29u"/>
                         <outlet property="maintenanceModeBody" destination="nKd-gP-q76" id="AUO-TB-nNg"/>

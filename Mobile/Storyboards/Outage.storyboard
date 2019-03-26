@@ -79,7 +79,7 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WSs-bB-AwP">
                                                                         <rect key="frame" x="0.0" y="217" width="317" height="139.5"/>
                                                                         <subviews>
-                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qAF-UH-EXa" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qAF-UH-EXa" customClass="ZeroInsetTextView" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="73.5"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -188,7 +188,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="SQU-ql-0n5" secondAttribute="trailing" id="vRb-ho-uhm"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QN1-1Y-eoZ" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QN1-1Y-eoZ" customClass="ZeroInsetTextView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="29" y="912.5" width="317" height="49"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -224,7 +224,7 @@
                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="ZeroInsetTextView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="46" y="268" width="283" height="676.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

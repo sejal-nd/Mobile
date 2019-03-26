@@ -359,9 +359,9 @@
 		35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
 		35E7C8072190805C00BA13C6 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
 		35E7C80B2190806800BA13C6 /* DebugOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8092190806700BA13C6 /* DebugOptions.swift */; };
-		35FEDD5C223C155F008CB349 /* UITextViewFixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FEDD5B223C155F008CB349 /* UITextViewFixed.swift */; };
-		35FEDD5D223C155F008CB349 /* UITextViewFixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FEDD5B223C155F008CB349 /* UITextViewFixed.swift */; };
-		35FEDD5E223C155F008CB349 /* UITextViewFixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FEDD5B223C155F008CB349 /* UITextViewFixed.swift */; };
+		35FEDD5C223C155F008CB349 /* ZeroInsetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FEDD5B223C155F008CB349 /* ZeroInsetTextView.swift */; };
+		35FEDD5D223C155F008CB349 /* ZeroInsetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FEDD5B223C155F008CB349 /* ZeroInsetTextView.swift */; };
+		35FEDD5E223C155F008CB349 /* ZeroInsetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FEDD5B223C155F008CB349 /* ZeroInsetTextView.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -2595,7 +2595,7 @@
 		35E7C8092190806700BA13C6 /* DebugOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugOptions.swift; sourceTree = "<group>"; };
 		35E7C80A2190806700BA13C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
-		35FEDD5B223C155F008CB349 /* UITextViewFixed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewFixed.swift; sourceTree = "<group>"; };
+		35FEDD5B223C155F008CB349 /* ZeroInsetTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroInsetTextView.swift; sourceTree = "<group>"; };
 		384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		385AF21B1F278EFD001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
@@ -4313,7 +4313,7 @@
 				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
 				35AFB42A20C82DA0000312B9 /* MaskView.swift */,
-				35FEDD5B223C155F008CB349 /* UITextViewFixed.swift */,
+				35FEDD5B223C155F008CB349 /* ZeroInsetTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -7474,7 +7474,7 @@
 				B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
 				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
-				35FEDD5C223C155F008CB349 /* UITextViewFixed.swift in Sources */,
+				35FEDD5C223C155F008CB349 /* ZeroInsetTextView.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
@@ -7572,7 +7572,7 @@
 				8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE821751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				E8C453171EF3293600F5C781 /* ToastView.swift in Sources */,
-				35FEDD5E223C155F008CB349 /* UITextViewFixed.swift in Sources */,
+				35FEDD5E223C155F008CB349 /* ZeroInsetTextView.swift in Sources */,
 				2FA5D8661F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				2FA5D8611F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EF202514CB00A749A3 /* MockUsageService.swift in Sources */,
@@ -8197,7 +8197,7 @@
 				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
-				35FEDD5D223C155F008CB349 /* UITextViewFixed.swift in Sources */,
+				35FEDD5D223C155F008CB349 /* ZeroInsetTextView.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,

@@ -146,11 +146,9 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    @IBOutlet private weak var finalPayTextView: DataDetectorTextView! {
+    @IBOutlet private weak var finalPayTextView: ZeroInsetTextView! {
         didSet {
             finalPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
-            finalPayTextView.textContainerInset = .zero
-            finalPayTextView.textContainer.lineFragmentPadding = 0
             finalPayTextView.tintColor = .white
         }
     }

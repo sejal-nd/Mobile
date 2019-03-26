@@ -8,13 +8,16 @@
 
 import UIKit
 
-@IBDesignable class UITextViewFixed: UITextView {
+@IBDesignable class ZeroInsetTextView: DataDetectorTextView {
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setup()
     }
-    func setup() {
-        textContainerInset = UIEdgeInsets.zero
+    
+    private func setup() {
+        textContainerInset = .zero
         textContainer.lineFragmentPadding = 0
     }
+    
 }
