@@ -105,8 +105,8 @@ struct UsageBillPeriod: Mappable {
     init(charges: Double = 100,
          usage: Double = 100,
          startDate: String = "2017-08-01", // Pass in yyyy-MM-dd format
-        endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
-        averageTemperature: Double = 72) {
+         endDate: String? = "2017-09-01", // Pass in yyyy-MM-dd format
+         averageTemperature: Double = 72) {
         
         var map = [String: Any]()
         map["charges"] = charges

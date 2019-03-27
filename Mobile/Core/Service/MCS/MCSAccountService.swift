@@ -144,7 +144,8 @@ struct MCSAccountService: AccountService {
                             throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
                     return serResults
-                }.catchError { error in
+                }
+                .catchError { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                     if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.functionalError.rawValue {
                         return Observable.just([])

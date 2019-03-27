@@ -45,12 +45,10 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return viewableQuestions.count
     }
 
@@ -59,7 +57,6 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
 
         let question = viewableQuestions[indexPath.row]
         
-        // Configure the cell...
         cell.label.text = question.securityQuestion
         
         if question.selected {

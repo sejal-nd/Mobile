@@ -46,7 +46,7 @@ class MCSWalletService: WalletService {
                 }
                 
                 return itemArray
-        }
+            }
     }
     
     func fetchBankName(routingNumber: String) -> Observable<String> {
@@ -58,7 +58,7 @@ class MCSWalletService: WalletService {
                 }
                 
                 return bankName
-        }
+            }
     }
     
     func addWalletItemMCS(_ walletItem: WalletItem) {
