@@ -53,7 +53,6 @@ struct MCSAuthenticationService : AuthenticationService {
                 // loading account details on the home screen if the user has only 1 account
                 RxNotifications.shared.configureQuickActions.onNext(true)
             })
-            
             // 3
             .flatMap { profileStatus in
                 // This will error if the first account is password protected
@@ -62,9 +61,9 @@ struct MCSAuthenticationService : AuthenticationService {
             .do(onNext: { _ in
                 // Reconfigure quick actions since we now know whether or not the user is multi-account.
                 RxNotifications.shared.configureQuickActions.onNext(true)
-            },
-                onError: { _ in  self.logout() }
-            )
+            }, onError: { _ in
+                self.logout()
+            })
     }
     
     func validateLogin(username: String, password: String) -> Observable<Void> {
@@ -105,8 +104,7 @@ struct MCSAuthenticationService : AuthenticationService {
         }).do(onError: { error in
             let serviceError = error as? ServiceError ?? ServiceError(cause: error)
             APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: serviceError.errorDescription)
-        })
-        .map { data in
+        }).map { data in
             switch AuthTokenParser.parseAuthTokenResponse(data: data) {
             case .success(let response):
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
@@ -115,8 +113,7 @@ struct MCSAuthenticationService : AuthenticationService {
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
                 throw error
             }
-        }
-        .catchError {
+        }.catchError {
             throw $0 as? ServiceError ?? ServiceError(cause: $0)
         }
     }
@@ -143,14 +140,16 @@ struct MCSAuthenticationService : AuthenticationService {
         return MCSApi.shared.get(pathPrefix: .anon, path: "config/versions")
             .map { json in
                 MinimumVersion.from(json as! NSDictionary)!
-        }
+            }
     }
     
     #if os(iOS)
     func changePassword(currentPassword: String, newPassword: String) -> Observable<Void> {
         
-        let params = [ChangePasswordParams.oldPassword.rawValue: currentPassword,
-                      ChangePasswordParams.newPassword.rawValue: newPassword]
+        let params = [
+            ChangePasswordParams.oldPassword.rawValue: currentPassword,
+            ChangePasswordParams.newPassword.rawValue: newPassword
+        ]
         
         return MCSApi.shared.put(pathPrefix: .auth, path: "profile/password", params: params)
             .mapTo(())
@@ -158,9 +157,11 @@ struct MCSAuthenticationService : AuthenticationService {
     
     func changePasswordAnon(username: String, currentPassword: String, newPassword: String) -> Observable<Void> {
         
-        let params = [AnonChangePasswordParams.username.rawValue: username,
-                      AnonChangePasswordParams.oldPassword.rawValue: currentPassword,
-                      AnonChangePasswordParams.newPassword.rawValue: newPassword]
+        let params = [
+            AnonChangePasswordParams.username.rawValue: username,
+            AnonChangePasswordParams.oldPassword.rawValue: currentPassword,
+            AnonChangePasswordParams.newPassword.rawValue: newPassword
+        ]
         
         return MCSApi.shared.put(pathPrefix: .anon, path: "profile/password", params: params)
             .mapTo(())
@@ -185,7 +186,7 @@ struct MCSAuthenticationService : AuthenticationService {
                 }
                 
                 return maskedEntries.compactMap(ForgotUsernameMasked.from)
-        }
+            }
     }
     
     func recoverUsername(phone: String, identifier: String?, accountNumber: String?, questionId: Int, questionResponse: String, cipher: String) -> Observable<String> {
@@ -210,7 +211,7 @@ struct MCSAuthenticationService : AuthenticationService {
                 }
                 
                 return unmasked
-        }
+            }
     }
     
     func lookupAccount(phone: String, identifier: String) -> Observable<[AccountLookupResult]> {

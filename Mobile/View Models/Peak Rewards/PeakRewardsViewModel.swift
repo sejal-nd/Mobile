@@ -129,7 +129,7 @@ class PeakRewardsViewModel {
             let override = overrides.filter {
                 guard let start = $0.start else { return false }
                 return $0.serialNumber == selectedDevice.serialNumber && start.isInToday(calendar: .opCo)
-                }.first
+            }.first
             
             return programs
                 .sorted { program1, program2 in

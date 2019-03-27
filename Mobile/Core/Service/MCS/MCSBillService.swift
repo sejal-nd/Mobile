@@ -56,7 +56,7 @@ class MCSBillService: BillService {
                 }
                 
                 return dataString
-        }
+            }
     }
     
     func fetchBillingHistory(accountNumber: String, startDate: Date, endDate: Date) -> Observable<BillingHistory> {
@@ -80,7 +80,7 @@ class MCSBillService: BillService {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 return billingHistory
-        }
+            }
     }
     
 }

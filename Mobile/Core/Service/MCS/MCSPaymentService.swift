@@ -19,7 +19,7 @@ class MCSPaymentService: PaymentService {
                 }
                 
                 return autoPayInfo
-        }
+            }
     }
     
     func enrollInAutoPayBGE(accountNumber: String,
