@@ -630,6 +630,65 @@ class PaymentViewModel {
 
     private(set) lazy var shouldShowConvenienceFeeLabel: Driver<Bool> =
         self.selectedWalletItem.asDriver().map { $0?.bankOrCard == .card }
+    
+    var showConfirmationFooterText: Bool {
+        return !confirmationFooterText.string.isEmpty
+    }
+    
+    var confirmationFooterText: NSAttributedString {
+        let accountDetail = self.accountDetail.value
+        let billingInfo = accountDetail.billingInfo
+        
+        // Only show text in these precarious situations
+        guard (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+            (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
+            (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {
+            return NSAttributedString(string: "")
+        }
+        
+        let boldText = NSLocalizedString("IMPORTANT: ", comment: "")
+        let bodyText: String
+        switch Environment.shared.opco {
+        case .bge:
+            bodyText = """
+            If your service has been interrupted due to a past due balance and the submitted payment satisfies the required amount, your service will be restored.
+            
+            Your service will be restored between 4 and 72 hours.
+            
+            Breaker Policy: BGE requires your breakers to be in the off position.
+            
+            Gas Off:  If your natural gas service has been interrupted, a restoration appointment must be scheduled. An adult (18 years or older) must be at the property and provide access to light the pilots on all gas appliances. If an adult is not present or cannot provide the access required, the gas service will NOT be restored. This policy ensures public safety.
+            """
+        case .comEd:
+            bodyText = """
+            If your service has been interrupted due to a past due balance and the submitted payment satisfies the required restoral amount, your service will be restored:
+            
+            Typically within 30 minutes if you have a smart meter
+            
+            Typically by end of the next business day if you do not have a smart meter
+            """
+        case .peco:
+            bodyText = """
+            If your service has been interrupted due to a past due balance and the submitted payment satisfies the required amount, your service will be restored.
+            
+            Your service will be restored between 4 and 72 hours.
+            
+            Breaker Policy: PECO requires your breakers to be in the off position.
+            
+            Gas Off:  If your natural gas service has been interrupted, a restoration appointment must be scheduled. An adult (18 years or older) must be at the property and provide access to light the pilots on all gas appliances. If an adult is not present or cannot provide the access required, the gas service will NOT be restored. This policy ensures public safety.
+            """
+        }
+        
+        let localizedText = String.localizedStringWithFormat("%@%@", boldText, bodyText)
+        let attributedText = NSMutableAttributedString(string: localizedText,
+                                                       attributes: [.foregroundColor: UIColor.blackText,
+                                                                    .font: OpenSans.regular.of(textStyle: .footnote)])
+        attributedText.addAttribute(.font,
+                                    value: OpenSans.bold.of(textStyle: .footnote),
+                                    range: NSRange(location: 0, length: boldText.count))
+        
+        return attributedText
+    }
 
     var errorPhoneNumber: String {
         switch Environment.shared.opco {
