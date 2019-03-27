@@ -664,27 +664,28 @@ extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
         let today = Calendar.opCo.startOfDay(for: .now)
-        if Environment.shared.opco == .bge {
+        switch Environment.shared.opco {
+        case .bge:
             let minDate = today
-            guard let todayPlus90 = Calendar.opCo.date(byAdding: .day, value: 90, to: today),
-                let todayPlus180 = Calendar.opCo.date(byAdding: .day, value: 180, to: today) else {
-                    return false
+            var maxDate: Date
+            switch viewModel.selectedWalletItem.value?.bankOrCard {
+            case .card?:
+                maxDate = Calendar.opCo.date(byAdding: .day, value: 90, to: today) ?? today
+            case .bank?:
+                maxDate = Calendar.opCo.date(byAdding: .day, value: 180, to: today) ?? today
+            default:
+                return false
             }
-            if let walletItem = viewModel.selectedWalletItem.value {
-                if walletItem.bankOrCard == .card {
-                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus90
-                } else {
-                    return opCoTimeDate >= minDate && opCoTimeDate <= todayPlus180
-                }
-            }
-        } else {
+            
+            return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
+        case .comEd, .peco:
             if billingHistoryItem != nil && opCoTimeDate == today  { // Modifying payment on ComEd/PECO disables changing date to today
                 return false
             }
             
             if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
                 let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                return opCoTimeDate >= today && opCoTimeDate <= startOfDueDate
+                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
             }
         }
         
