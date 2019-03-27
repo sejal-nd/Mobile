@@ -41,7 +41,7 @@
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
-			<string>v5</string>
+			<string>v6</string>
 		</dict>
 		<key>mobileAppUATStage</key>
 		<dict>
@@ -54,7 +54,7 @@
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
-			<string>v5</string>
+			<string>v6</string>
 		</dict>
 		<key>stageMain</key>
 		<dict>
