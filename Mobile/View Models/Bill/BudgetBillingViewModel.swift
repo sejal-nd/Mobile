@@ -80,7 +80,7 @@ class BudgetBillingViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: getReasonString(forIndex: selectedUnenrollmentReason.value))
+        billService.unenrollBudgetBilling(accountNumber: accountDetail.accountNumber, reason: reasonString(forIndex: selectedUnenrollmentReason.value))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 NotificationCenter.default.post(name: .didChangeBudgetBillingEnrollment, object: self)
@@ -103,7 +103,7 @@ class BudgetBillingViewModel {
         }
     }
     
-    func getAmountDescriptionText() -> String {
+    var amountDescriptionText: String {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
@@ -114,7 +114,7 @@ class BudgetBillingViewModel {
         }
     }
     
-    func getFooterText() -> String? {
+    var footerText: String? {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
@@ -132,7 +132,7 @@ class BudgetBillingViewModel {
         return nil
     }
     
-    func getReasonString(forIndex index: Int) -> String {
+    func reasonString(forIndex index: Int) -> String {
         if index == 0 {
             return String(format: NSLocalizedString("Closing %@ Account", comment: ""), Environment.shared.opco.displayString)
         } else if index == 1 {

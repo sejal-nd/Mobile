@@ -1,6 +1,7 @@
 {
     "default": {
         "enrolled": true,
-        "averageMonthlyBill": 120
+        "averageMonthlyBill": 120,
+        "budgetBill": 150
     }
 }
