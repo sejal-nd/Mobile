@@ -84,12 +84,12 @@ class PaperlessEBillAccountView: UIView {
         
         imageView.isAccessibilityElement = true
         imageView.accessibilityLabel = NSLocalizedString("Residential account", comment: "")
-        if enrollSwitch != nil {
+        if let enrollSwitch = enrollSwitch {
             enrollSwitch.isAccessibilityElement = true
             enrollSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ",comment: "")
-            self.accessibilityElements = [imageView, accountStackView, enrollSwitch]
+            self.accessibilityElements = [imageView, accountStackView, enrollSwitch] as [UIView]
         } else {
-            self.accessibilityElements = [imageView, accountStackView, enrollStatusLabel]
+            self.accessibilityElements = [imageView, accountStackView, enrollStatusLabel] as [UIView]
         }
     }
     

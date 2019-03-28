@@ -388,7 +388,7 @@ class HomeBillCardViewModel {
     private(set) lazy var resetAlertAnimation: Driver<Void> = Driver.merge(refreshFetchTracker.asDriver(),
                                                                            switchAccountFetchTracker.asDriver())
         .filter(!)
-        .map(to: ())
+        .mapTo(())
 
     private(set) lazy var headerText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
     { accountDetail, billState in

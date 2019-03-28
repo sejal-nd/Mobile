@@ -79,7 +79,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     @objc func handleDragToReorder(gesture: UIGestureRecognizer) {
         guard let collectionView = collectionView else { return }
         
-        switch(gesture.state) {
+        switch gesture.state {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)), selectedIndexPath.section == 0 else { break }
             isReordering.value = true
@@ -107,7 +107,8 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         case .cancelled, .failed:
             collectionView.cancelInteractiveMovement()
             transformCardCell(pickUp: false)
-        case .possible:
+        case .possible: fallthrough
+        @unknown default:
             break
         }
     }
@@ -200,7 +201,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         let addRemoveTapped = { [weak self] in
             guard let this = self, !this.isReordering.value else { return }
             
-            let sourceIndexPath = IndexPath(item: this.cards.value[indexPath.section].index(of: card)!, section: indexPath.section)
+            let sourceIndexPath = IndexPath(item: this.cards.value[indexPath.section].firstIndex(of: card)!, section: indexPath.section)
             this.cards.value[indexPath.section].remove(at: sourceIndexPath.item)
             
             let destinationIndex: Int

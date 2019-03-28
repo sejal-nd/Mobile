@@ -60,7 +60,7 @@ class HomeOutageCardView: UIView {
     private(set) lazy var viewOutageMapTapped: Driver<Void> = callToActionButton.rx.touchUpInside.asDriver()
         .withLatestFrom(viewModel.showReportedOutageTime)
         .filter { $0 }
-        .map(to: ())
+        .mapTo(())
     
     private var viewModel: HomeOutageCardViewModel! {
         didSet {

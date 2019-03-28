@@ -330,7 +330,7 @@ class BillViewController: AccountPickerViewController {
         
         viewModel.switchAccountsTracker.asDriver()
             .filter { $0 }
-            .map(to: ())
+            .mapTo(())
             .startWith(())
             .drive(onNext: { [weak self] in self?.showSwitchingAccountState() })
             .disposed(by: bag)
@@ -348,7 +348,7 @@ class BillViewController: AccountPickerViewController {
 
 	func bindViewHiding() {
         viewModel.showAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
-        viewModel.showAlertBanner.filter { $0 }.map(to: ())
+        viewModel.showAlertBanner.filter { $0 }.mapTo(())
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 

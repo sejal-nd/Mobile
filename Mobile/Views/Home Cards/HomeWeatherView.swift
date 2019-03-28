@@ -40,7 +40,7 @@ class HomeWeatherView: UIView {
         greetingLabel.isAccessibilityElement = true
         temperatureLabel.isAccessibilityElement = true
         weatherIconImage.isAccessibilityElement = true
-        accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage, temperatureTipButton]
+        accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage, temperatureTipButton] as [UIView]
     }
     
     func bindViewModel() {

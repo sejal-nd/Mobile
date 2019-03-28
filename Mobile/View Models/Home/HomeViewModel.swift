@@ -94,7 +94,7 @@ class HomeViewModel {
         TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
                               showLoadingState: accountDetailTracker.asDriver()
                                 .filter { $0 }
-                                .map(to: ())
+                                .mapTo(())
                                 .startWith(()))
     
     private(set) lazy var projectedBillCardViewModel =

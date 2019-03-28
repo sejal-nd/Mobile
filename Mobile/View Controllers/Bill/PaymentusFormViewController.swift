@@ -208,9 +208,11 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
         if let bodyString = message.body as? String {
             if bodyString.contains("frameHeight") { return } // Ignore the frameHeight message
             
-            if let data = bodyString.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! String {
+            if let data = bodyString.data(using: .utf8),
+                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? String {
                 let pmDetailsString = json.replacingOccurrences(of: "pmDetails:", with: "")
-                if let pmDetailsData = pmDetailsString.data(using: .utf8), let pmDetailsJson = try? JSONSerialization.jsonObject(with: pmDetailsData, options: []) as! [String: Any] {
+                if let pmDetailsData = pmDetailsString.data(using: .utf8),
+                    let pmDetailsJson = try? JSONSerialization.jsonObject(with: pmDetailsData, options: []) as? [String: Any] {
                     // Payment method was successfully submitted
                     
                     var didSetDefault = false

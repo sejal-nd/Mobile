@@ -176,7 +176,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
                         guard let self = self, error == nil && granted else { return }
                         self.addCalendarEvent()
                     }
-                case .restricted:
+                case .restricted: fallthrough
+                @unknown default:
                     break
                 }
             })
@@ -348,7 +349,8 @@ extension AppointmentDetailViewController: EKEventEditViewDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Appointment added to calendar", comment: ""))
             })
-        case .canceled, .deleted:
+        case .canceled, .deleted: fallthrough
+        @unknown default:
             break
         }
     }

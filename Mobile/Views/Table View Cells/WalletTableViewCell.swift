@@ -125,7 +125,7 @@ class WalletTableViewCell: UITableViewCell {
 
         innerContentView.accessibilityLabel = a11yLabel
         innerContentView.isAccessibilityElement = true
-        self.accessibilityElements = [innerContentView, editButton, deleteButton]
+        self.accessibilityElements = [innerContentView, editButton, deleteButton] as [UIView]
         
         expiredView.isHidden = !walletItem.isExpired
         expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""

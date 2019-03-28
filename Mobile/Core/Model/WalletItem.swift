@@ -228,8 +228,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
     }
     
     // Hashable
-    var hashValue: Int {
-        return walletItemID!.hash
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(walletItemID!)
     }
 
 }
