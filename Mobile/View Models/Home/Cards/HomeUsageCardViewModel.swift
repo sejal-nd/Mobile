@@ -77,20 +77,32 @@ class HomeUsageCardViewModel {
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
         .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = Observable
-        .combineLatest(accountDetailEvents, serResultEvents)
-        .filter { $0.element != nil && $1.element != nil }
-        .map { accountDetailEvent, _ in accountDetailEvent }
+    private(set) lazy var accountDetailChanged = accountDetailEvents
+        .filter { accountDetailEvent in
+            guard let accountDetail = accountDetailEvent.element else {
+                return false // show error state
+            }
+            
+            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+                return false // show SER state (error if ser results fail)
+            }
+            
+            if !accountDetail.isEligibleForUsageData {
+                return false // show usage unavailable state
+            }
+            
+            return true // show bill comparison
+        }
         .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
         .elements()
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { $0.isEligibleForUsageData && !$1 }
-        .map { accountDetail, _ in accountDetail }
+        .filter { !$1 }
         .withLatestFrom(Observable.combineLatest(fetchData,
                                                  electricGasSelectedSegmentIndex.asObservable()))
-        { ($0, $1.0, $1.1) }
-        .toAsyncRequest { [unowned self] data -> Observable<BillComparison> in
+        { ($0.0, $1.0, $1.1) }
+        .toAsyncRequest { [weak self] data -> Observable<BillComparison> in
             let (accountDetail, fetchState, segmentIndex) = data
+            guard let self = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
 
             var gas = false // Default to electric
@@ -106,9 +118,10 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable()
         .skip(1)
-        .withLatestFrom(accountDetailEvents.elements().filter { $0.isEligibleForUsageData })
+        .withLatestFrom(accountDetailEvents.elements())
         { ($0, $1) }
-        .toAsyncRequest { [unowned self] segmentIndex, accountDetail -> Observable<BillComparison> in
+        .toAsyncRequest { [weak self] segmentIndex, accountDetail -> Observable<BillComparison> in
+            guard let self = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             
             var gas = false // Default to electric
@@ -136,7 +149,18 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var showErrorState: Driver<Void> = Observable
         .combineLatest(accountDetailEvents, serResultEvents)
-        .filter { $0.error != nil || $1.error != nil }
+        .filter { accountDetailEvent, serResultEvent in
+            guard let accountDetail = accountDetailEvent.element else {
+                return true
+            }
+            
+            // Only show error state for SER result errors if the SER results matter for the account
+            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+                return serResultEvent.element == nil
+            }
+            
+            return false
+        }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -146,17 +170,20 @@ class HomeUsageCardViewModel {
         .combineLatest(accountDetailEvents, serResultEvents)
         .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
         .filter { accountDetailEvent, eventResultsEvent, isMaintenanceMode in
-            guard let accountDetail = accountDetailEvent.element,
-                let eventResults = eventResultsEvent.element else {
-                    return false
-            }
-            
             if isMaintenanceMode {
                 return false
             }
             
-            if accountDetail.isBGEControlGroup {
-                return !accountDetail.isSERAccount || eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
+            // Account Detail fetch failed
+            guard let accountDetail = accountDetailEvent.element else {
+                return false
+            }
+            
+            // SER + Control Group customer, and SERResults either failed or is empty
+            if accountDetail.isBGEControlGroup &&
+                accountDetail.isSERAccount &&
+                (eventResultsEvent.element?.isEmpty ?? true) {
+                return false
             }
             
             return !accountDetail.isEligibleForUsageData
