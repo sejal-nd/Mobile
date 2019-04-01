@@ -61,17 +61,18 @@ class HomeUsageCardViewModel {
         .startWith(true)
         .distinctUntilChanged()
     
-    private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = maintenanceModeEvents
-        .filter {
-            guard let maint = $0.element else { return true }
-            return !maint.allStatus && !maint.usageStatus && !maint.homeStatus
-        }
-        .withLatestFrom(fetchData)
-        .toAsyncRequest(activityTracker: { [weak self] fetchingState in
+    private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = accountDetailEvents
+        .elements()
+        .withLatestFrom(fetchData) { ($0, $1) }
+        .toAsyncRequest(activityTracker: { [weak self] _, fetchingState in
             self?.fetchTracker(forState: fetchingState)
-            }, requestSelector: { [weak self] _ in
-                self?.accountService
-                    .fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber) ?? .empty()
+            }, requestSelector: { [weak self] accountDetail, _ in
+                guard let self = self else { return .empty() }
+                guard accountDetail.isBGEControlGroup && accountDetail.isSERAccount else {
+                    return Observable.just([])
+                }
+                
+                return self.accountService.fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
@@ -166,23 +167,17 @@ class HomeUsageCardViewModel {
     
     let errorLabelText: String = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
-    private(set) lazy var showUnavailableState: Driver<Void> = Observable
-        .combineLatest(accountDetailEvents, serResultEvents)
-        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
-        .filter { accountDetailEvent, eventResultsEvent, isMaintenanceMode in
+    private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents
+        .elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenanceMode in
             if isMaintenanceMode {
                 return false
             }
             
-            // Account Detail fetch failed
-            guard let accountDetail = accountDetailEvent.element else {
-                return false
-            }
-            
-            // SER + Control Group customer, and SERResults either failed or is empty
+            // SER + Control Group customer
             if accountDetail.isBGEControlGroup &&
-                accountDetail.isSERAccount &&
-                (eventResultsEvent.element?.isEmpty ?? true) {
+                accountDetail.isSERAccount {
                 return false
             }
             
