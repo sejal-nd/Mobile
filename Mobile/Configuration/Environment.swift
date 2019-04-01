@@ -46,6 +46,7 @@ enum EnvironmentName: String {
     case dev = "DEV"
     case test = "TEST"
     case stage = "STAGE"
+    case prodbeta = "PRODBETA"
     case prod = "PROD"
 }
 

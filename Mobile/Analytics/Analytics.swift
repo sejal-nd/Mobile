@@ -253,7 +253,7 @@ struct Analytics {
     
     static var isAnalyticsEnabled: Bool {
         switch Environment.shared.environmentName {
-        case .stage, .prod:
+        case .stage, .prodbeta, .prod:
             return true
         default:
             return false
