@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import RxGesture
 
 fileprivate var topSectionHeaderHeight: CGFloat = 120
 fileprivate let cardsInUseString = NSLocalizedString("Cards in Use", comment: "")
@@ -242,13 +241,10 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                        isActive: indexPath.section == 0,
                        addRemoveTapped: addRemoveTapped)
         
-        cell.gripView.rx.panGesture() { _, delegate in
-            delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering.value ?? false) }
-            delegate.simultaneousRecognitionPolicy = .never
-            }
-            .asDriver()
-            .drive(onNext: { [weak self] in self?.handleDragToReorder(gesture: $0)})
-            .disposed(by: cell.disposeBag)
+        cell.gripView.gestureRecognizers = []
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragToReorder))
+        recognizer.delegate = self
+        cell.gripView.addGestureRecognizer(recognizer)
         
         return cell
     }
@@ -300,4 +296,30 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
+}
+
+extension HomeEditViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return !isReordering.value
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+        return true
+    }
 }

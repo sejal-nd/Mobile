@@ -1,7 +1,7 @@
 inhibit_all_warnings! # ignore all warnings from all pods
 
 def shared_pods # Shared in both iOS and WatchOS
-  pod 'RxSwift', '4.4.2'
+  pod 'RxSwift', '4.5.0'
   pod 'ModelMapper', '10.0.0'
 end
 
@@ -15,7 +15,6 @@ def iOS_pods
   pod 'RxSwiftExt/RxCocoa', '3.4.0'
   pod 'PDTSimpleCalendar', '0.9.1'
   pod 'Charts', '3.2.2'
-  pod 'RxGesture', '2.1.0'
   pod 'XLPagerTabStrip', '8.1.1'
   pod 'GoogleAnalytics', '3.17.0'
   pod 'Firebase/Core', '5.19.0'
@@ -23,7 +22,7 @@ def iOS_pods
 end
 
 def iOS_UnitTestPods
-  pod 'RxTest', '4.4.2'
+  pod 'RxTest', '4.5.0'
 end
 
 def iOS_UITestPods

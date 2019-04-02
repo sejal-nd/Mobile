@@ -69,14 +69,9 @@ PODS:
   - nanopb/encode (0.3.901)
   - PDTSimpleCalendar (0.9.1)
   - ReachabilitySwift (4.3.1)
-  - RxAtomic (4.4.2)
   - RxCocoa (4.4.2):
     - RxSwift (>= 4.4.2, ~> 4.4)
-  - RxGesture (2.1.0):
-    - RxCocoa (~> 4.4.0)
-    - RxSwift (~> 4.4.0)
-  - RxSwift (4.4.2):
-    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
   - RxSwiftExt (3.4.0):
     - RxSwiftExt/Core (= 3.4.0)
     - RxSwiftExt/RxCocoa (= 3.4.0)
@@ -85,8 +80,7 @@ PODS:
   - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
-  - RxTest (4.4.2):
-    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - Toast-Swift (4.0.1)
   - XLPagerTabStrip (8.1.1)
@@ -103,11 +97,10 @@ DEPENDENCIES:
   - ModelMapper (= 10.0.0)
   - PDTSimpleCalendar (= 0.9.1)
   - ReachabilitySwift (= 4.3.1)
-  - RxGesture (= 2.1.0)
-  - RxSwift (= 4.4.2)
+  - RxSwift (= 4.5.0)
   - RxSwiftExt (= 3.4.0)
   - RxSwiftExt/RxCocoa (= 3.4.0)
-  - RxTest (= 4.4.2)
+  - RxTest (= 4.5.0)
   - Toast-Swift (= 4.0.1)
   - XLPagerTabStrip (= 8.1.1)
   - zxcvbn-ios (= 1.0.4)
@@ -130,9 +123,7 @@ SPEC REPOS:
     - nanopb
     - PDTSimpleCalendar
     - ReachabilitySwift
-    - RxAtomic
     - RxCocoa
-    - RxGesture
     - RxSwift
     - RxSwiftExt
     - RxTest
@@ -157,16 +148,14 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
-  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
-  RxGesture: 7f6dfb45dbde06e618c24442d38493e3144f2c95
-  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
-  RxTest: 6433d5b6229f5de424fa534bc22b5e6c38b0b671
+  RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: d4d5c0c7145179a5ce37f41f6ec7e11db10456b3
+PODFILE CHECKSUM: 680fa114c08cdc49f581715c19df9555200c4965
 
 COCOAPODS: 1.6.1
