@@ -1019,6 +1019,12 @@
 		B0649A62214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		B0649A63214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
 		B0649A64214834380041B299 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		B066281A2252953B0060A89F /* ser_results.json in Resources */ = {isa = PBXBuildFile; fileRef = B06628192252953B0060A89F /* ser_results.json */; };
+		B066281B2252953B0060A89F /* ser_results.json in Resources */ = {isa = PBXBuildFile; fileRef = B06628192252953B0060A89F /* ser_results.json */; };
+		B066281C2252953B0060A89F /* ser_results.json in Resources */ = {isa = PBXBuildFile; fileRef = B06628192252953B0060A89F /* ser_results.json */; };
+		B066281D2252953B0060A89F /* ser_results.json in Resources */ = {isa = PBXBuildFile; fileRef = B06628192252953B0060A89F /* ser_results.json */; };
+		B066281E2252953B0060A89F /* ser_results.json in Resources */ = {isa = PBXBuildFile; fileRef = B06628192252953B0060A89F /* ser_results.json */; };
+		B066281F2252953B0060A89F /* ser_results.json in Resources */ = {isa = PBXBuildFile; fileRef = B06628192252953B0060A89F /* ser_results.json */; };
 		B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
 		B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */; };
@@ -2854,6 +2860,7 @@
 		B05D84B62187803000F15A9F /* DisclosureCellButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisclosureCellButton.xib; sourceTree = "<group>"; };
 		B05E9D12217F688A0003FAB8 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		B0649A5E214834380041B299 /* StormModeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormModeStatus.swift; sourceTree = "<group>"; };
+		B06628192252953B0060A89F /* ser_results.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ser_results.json; sourceTree = "<group>"; };
 		B067E0A22045E77A001C1271 /* PeakRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPeakRewardsService.swift; sourceTree = "<group>"; };
 		B068DB5520D2E99300930589 /* HomeEditCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEditCardCell.swift; sourceTree = "<group>"; };
@@ -4443,6 +4450,7 @@
 				B0D84D45220244E000C70A6F /* payments.json */,
 				B08957062215FE7800A97965 /* recover_username.json */,
 				B0EE78E9221353E600F53C56 /* report_outage.json */,
+				B06628192252953B0060A89F /* ser_results.json */,
 				B08956F12215C27100A97965 /* sso_data.json */,
 				B07E17C42209DB1C00B6E3C7 /* weather.json */,
 				9CC48017220A442900393CC7 /* meter_ping_info.json */,
@@ -5611,6 +5619,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ar,
@@ -5786,6 +5795,7 @@
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
 				82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */,
 				B089572D2217596400A97965 /* billing_history.json in Resources */,
+				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
@@ -5936,6 +5946,7 @@
 				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
+				B066281C2252953B0060A89F /* ser_results.json in Resources */,
 				B089572F2217596400A97965 /* billing_history.json in Resources */,
 				B08957092215FE7900A97965 /* recover_username.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
@@ -6086,6 +6097,7 @@
 				82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
+				B066281B2252953B0060A89F /* ser_results.json in Resources */,
 				B089572E2217596400A97965 /* billing_history.json in Resources */,
 				B08957082215FE7900A97965 /* recover_username.json in Resources */,
 				441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */,
@@ -6182,6 +6194,7 @@
 				9C46B1312216142000A5D537 /* wallet.json in Resources */,
 				B07E179D2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F2220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B066281D2252953B0060A89F /* ser_results.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6234,6 +6247,7 @@
 				9C46B1322216142100A5D537 /* wallet.json in Resources */,
 				B07E179E2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F3220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B066281E2252953B0060A89F /* ser_results.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6270,6 +6284,7 @@
 				9C46B1332216142100A5D537 /* wallet.json in Resources */,
 				B07E179F2204E8F900B6E3C7 /* bill_comparison.json in Resources */,
 				B07E17F4220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				B066281F2252953B0060A89F /* ser_results.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

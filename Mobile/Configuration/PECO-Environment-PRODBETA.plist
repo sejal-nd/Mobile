@@ -5,7 +5,7 @@
 	<key>watchGaTrackingId</key>
 	<string>UA-130226978-1</string>
 	<key>environment</key>
-	<string>PROD</string>
+	<string>PRODBETA</string>
 	<key>opco</key>
 	<string>PECO</string>
 	<key>appName</key>

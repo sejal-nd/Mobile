@@ -50,7 +50,7 @@ class LandingViewController: UIViewController {
         
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             switch Environment.shared.environmentName {
-            case .prod:
+            case .prod, .prodbeta:
                 versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
             default:
                 versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
