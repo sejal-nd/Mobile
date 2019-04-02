@@ -78,7 +78,6 @@ struct AccountDetail: Mappable {
     let isActiveSeverance: Bool
     let isHourlyPricing: Bool
     let isPTSAccount: Bool // ComEd only - Peak Time Savings enrollment status
-    let isSERAccount: Bool // BGE only - Smart Energy Rewards enrollment status
 
     let isBudgetBillEnrollment: Bool
     let isBudgetBillEligible: Bool
@@ -119,16 +118,6 @@ struct AccountDetail: Mappable {
         isPTSAccount = map.optionalFrom("isPTSAccount") ?? false
         
         premiseInfo = map.optionalFrom("PremiseInfo") ?? []
-        if !premiseInfo.isEmpty {
-            let premise = premiseInfo[0]
-            if let smartEnergyRewards = premise.smartEnergyRewards, smartEnergyRewards == "ENROLLED" {
-                isSERAccount = true
-            } else {
-                isSERAccount = false
-            }
-        } else {
-            isSERAccount = false
-        }
         
         isModeledForOpower = map.optionalFrom("isModeledForOpower") ?? false
         isPasswordProtected = map.optionalFrom("isPasswordProtected") ?? false
@@ -162,6 +151,11 @@ struct AccountDetail: Mappable {
         
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
+    }
+    
+    // BGE only - Smart Energy Rewards enrollment status
+    var isSERAccount: Bool {
+        return premiseInfo.first?.smartEnergyRewards == "ENROLLED"
     }
     
     var isBGEControlGroup: Bool {

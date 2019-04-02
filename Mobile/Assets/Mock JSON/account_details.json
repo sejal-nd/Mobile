@@ -771,8 +771,36 @@
         },
         "CustomerInfo": {},
         "SERInfo": {
-            "controlGroupFlag": "CONTROL"
-        }
+            "ControlGroupFlag": "CONTROL"
+        },
+        "PremiseInfo": [
+            {
+                "premiseNumber": "123",
+                "smartEnergyRewards": "ENROLLED"
+            }
+        ]
+    },
+    "bgeControlGroupNoPrograms": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "123",
+        "isResidential": true,
+        "serviceType": "fjdkslaj",
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
+        "CustomerInfo": {},
+        "SERInfo": {
+            "ControlGroupFlag": "CONTROL"
+        },
+        "PremiseInfo": [
+            {
+                "premiseNumber": "123",
+                "smartEnergyRewards": "ENROLLED"
+            }
+        ]
     },
     "gasOnly": {
         "accountNumber": "1234567890",

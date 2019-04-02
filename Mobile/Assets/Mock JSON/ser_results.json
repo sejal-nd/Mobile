@@ -1,0 +1,14 @@
+{
+    "default": [],
+    "bgeControlGroup": [
+        {
+            "eventStart": "2019-01-01T10:00:00",
+            "eventEnd": "2019-01-01T18:00:00",
+            "actualKWH": "23",
+            "baselineKWH": "26",
+            "savingDollar": "4",
+            "savingKWH": "3"
+        }
+    ],
+    "bgeControlGroupNoPrograms": []
+}

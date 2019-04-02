@@ -143,6 +143,7 @@ enum MockDataKey: String {
     case outageSmartMeter
     
     // Usage
+    case bgeControlGroupNoPrograms
     case referenceEndDate
     case comparedEndDate
     case referenceMinHeight
