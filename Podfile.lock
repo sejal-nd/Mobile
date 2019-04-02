@@ -83,7 +83,7 @@ PODS:
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - Toast-Swift (4.0.1)
-  - XLPagerTabStrip (8.1.1)
+  - XLPagerTabStrip (9.0.0)
   - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
@@ -102,7 +102,7 @@ DEPENDENCIES:
   - RxSwiftExt/RxCocoa (= 3.4.0)
   - RxTest (= 4.5.0)
   - Toast-Swift (= 4.0.1)
-  - XLPagerTabStrip (= 8.1.1)
+  - XLPagerTabStrip (= 9.0.0)
   - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
@@ -153,9 +153,9 @@ SPEC CHECKSUMS:
   RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
-  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 680fa114c08cdc49f581715c19df9555200c4965
+PODFILE CHECKSUM: 8ecb925c9198477489530a8d36cf2554821bc413
 
 COCOAPODS: 1.6.1
