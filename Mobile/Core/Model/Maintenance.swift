@@ -20,6 +20,19 @@ struct Maintenance: Mappable {
     let allMessage: String?
     
     init(map: Mapper) throws {
+        // VSTS Task 124538 - Make all Prod Beta builds ignore Maintenance Mode
+        if Environment.shared.environmentName == .prodbeta {
+            allStatus = false
+            homeStatus = false
+            billStatus = false
+            outageStatus = false
+            alertStatus = false
+            usageStatus = false
+            stormModeStatus = false
+            allMessage = nil
+            return
+        }
+        
         allStatus = (map.optionalFrom("all") ?? false) || (map.optionalFrom("ios.all") ?? false)
         homeStatus = map.optionalFrom("home") ?? false || (map.optionalFrom("ios.home") ?? false)
         billStatus = map.optionalFrom("bill") ?? false || (map.optionalFrom("ios.bill") ?? false)
