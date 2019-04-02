@@ -49,9 +49,13 @@ final class MockJSONManager {
     func jsonObject(fromFile file: File, key: MockDataKey) throws -> JSONObject {
         let json = try jsonObject(fromFile: file)
         
-        // Every JSON file should have a `default` object to fall back on
-        guard let jsonObject = (json[key.rawValue] ?? json[MockDataKey.default.rawValue]) as? JSONObject else {
-            throw ServiceError.parsing
+        guard let jsonObject = json[key.rawValue] as? JSONObject else {
+            // Every JSON file should have a `default` object to fall back on
+            guard let jsonObject = json[MockDataKey.default.rawValue] as? JSONObject else {
+                throw ServiceError.parsing
+            }
+            
+            return jsonObject
         }
         
         return jsonObject
