@@ -267,24 +267,24 @@ class ReviewPaymentViewController: UIViewController {
             guard let self = self else { return }
             
             LoadingView.hide()
-                let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
-                    forError: err,
-                    walletItem: self.viewModel.selectedWalletItem.value!,
-                    okHandler: { [weak self] _ in
-                        guard let self = self else { return }
-                        if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
-                            guard let navCtl = self.navigationController else { return }
-                            let makePaymentVC = UIStoryboard(name: "Wallet", bundle: nil)
-                                .instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
-                            makePaymentVC.accountDetail = self.viewModel.accountDetail.value
-                            navCtl.viewControllers = [navCtl.viewControllers.first!, makePaymentVC]
-                        }
-                    },
-                    callHandler: { _ in
-                        UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
+            let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
+                forError: err,
+                walletItem: self.viewModel.selectedWalletItem.value!,
+                okHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
+                        guard let navCtl = self.navigationController else { return }
+                        let makePaymentVC = UIStoryboard(name: "Payment", bundle: nil)
+                            .instantiateInitialViewController() as! MakePaymentViewController
+                        makePaymentVC.accountDetail = self.viewModel.accountDetail.value
+                        navCtl.viewControllers = [navCtl.viewControllers.first!, makePaymentVC]
+                    }
+                },
+                callHandler: { _ in
+                    UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
                 }
-                )
-                self.present(paymentusAlertVC, animated: true, completion: nil)
+            )
+            self.present(paymentusAlertVC, animated: true, completion: nil)
         }
         
         if viewModel.paymentId.value != nil { // Modify
