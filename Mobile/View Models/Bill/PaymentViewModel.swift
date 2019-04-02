@@ -50,16 +50,16 @@ class PaymentViewModel {
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
         self.paymentDetail.value = paymentDetail
+        
         if let billingHistoryItem = billingHistoryItem {
             self.paymentId.value = billingHistoryItem.paymentId
             self.allowEdits.value = billingHistoryItem.flagAllowEdits
             self.allowCancel.value = billingHistoryItem.flagAllowDeletes
         }
 
-        self.paymentDate = Variable(.now) // May be updated later...see computeDefaultPaymentDate()
-
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
         paymentAmount = Variable(billingHistoryItem?.amountPaid ?? accountDetail.billingInfo.netDueAmount ?? 0)
+        paymentDate = Variable(.now) // May be updated later...see computeDefaultPaymentDate()
     }
 
     // MARK: - Service Calls
@@ -106,6 +106,7 @@ class PaymentViewModel {
                             }
                         }
                     } else {
+                        self.computeDefaultPaymentDate()
                         if self.accountDetail.value.isCashOnly {
                             if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
                                 self.selectedWalletItem.value = defaultWalletItem!
@@ -193,6 +194,49 @@ class PaymentViewModel {
             })
             .disposed(by: self.disposeBag)
     }
+    
+    // MARK: - Payment Date Stuff
+    
+    func computeDefaultPaymentDate() {
+        if Environment.shared.opco == .bge {
+            paymentDate.value = .now
+        } else {
+            guard let dueDate = accountDetail.value.billingInfo.dueByDate else {
+                return
+            }
+            if isDueDateInTheFuture && (accountDetail.value.billingInfo.pastDueAmount ?? 0) == 0 {
+                paymentDate.value = dueDate
+            }
+        }
+    }
+    
+    var isPaymentDateEditable: Bool {
+        if Environment.shared.opco == .bge && accountDetail.value.isActiveSeverance {
+            return false
+        }
+        if !allowEdits.value {
+            return false
+        }
+        return isDueDateInTheFuture // Payment date not editable if due date is in the past
+    }
+    
+    private var isDueDateInTheFuture: Bool {
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
+        if let dueDate = accountDetail.value.billingInfo.dueByDate {
+            if dueDate <= startOfTodayDate {
+                return false
+            }
+        }
+        return true
+    }
+    
+    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> =
+        Driver.combineLatest(self.hasWalletItems, self.paymentId.asDriver()) {
+            $0 || $1 != nil
+        }
+
+    private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
+        .map { $0.mmDdYyyyString }
 
     // MARK: - Shared Drivers
 
@@ -204,7 +248,8 @@ class PaymentViewModel {
             return $0 && $1 == nil
         }
 
-    // MARK: - Make Payment Drivers
+    // MARK: - Other Make Payment Drivers
+    
     private(set) lazy var makePaymentNextButtonEnabled: Driver<Bool> = Driver
         .combineLatest(selectedWalletItem.asDriver(), paymentFieldsValid) {
             return $0 != nil && $1
@@ -427,10 +472,7 @@ class PaymentViewModel {
                 return String.localizedStringWithFormat("Your payment includes a %@ convenience fee.", self.convenienceFee.currencyString)
             }
     }
-
-    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.paymentId.asDriver())
-    { $0 || $1 != nil }
-
+    
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
     { $0 && $1 }
 
@@ -500,29 +542,7 @@ class PaymentViewModel {
     var walletFooterLabelText: String {
         return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
     }
-
-    private(set) lazy var isFixedPaymentDate: Driver<Bool> = Driver
-        .combineLatest(accountDetail.asDriver(), allowEdits.asDriver())
-        { [weak self] (accountDetail, allowEdits) in
-            guard let self = self else { return false }
-            if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
-                return true
-            }
-            
-            if !allowEdits {
-                return true
-            }
-            
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
-            if let dueDate = accountDetail.billingInfo.dueByDate {
-                if dueDate <= startOfTodayDate {
-                    return true
-                }
-            }
-            
-            return false
-        }
-
+    
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
         if Environment.shared.opco == .bge || self?.paymentId.value != nil {
             return false
@@ -541,9 +561,6 @@ class PaymentViewModel {
 
         return pastDueAmount > 0
     }
-
-    private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
-        .map { $0.mmDdYyyyString }
 
     private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
         .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
