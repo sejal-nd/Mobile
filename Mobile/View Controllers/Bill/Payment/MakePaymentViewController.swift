@@ -280,8 +280,8 @@ class MakePaymentViewController: UIViewController {
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowPastDueLabel.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
-        paymentDateButtonView.isHidden = !viewModel.isPaymentDateEditable
-        paymentDateFixedDateLabel.isHidden = viewModel.isPaymentDateEditable
+        paymentDateButtonView.isHidden = !viewModel.canEditPaymentDate
+        paymentDateFixedDateLabel.isHidden = viewModel.canEditPaymentDate
         
         // Add bank/credit card empty wallet state
         viewModel.shouldShowAddPaymentMethodView.map(!).drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)

@@ -201,23 +201,49 @@ class PaymentViewModel {
         if Environment.shared.opco == .bge {
             paymentDate.value = .now
         } else {
-            guard let dueDate = accountDetail.value.billingInfo.dueByDate else {
-                return
+            let acctDetail = accountDetail.value
+            
+            // Covers precarious states 6, 5, and 4 (in that order) on the Billing Scenarios table
+            if (acctDetail.isFinaled && acctDetail.billingInfo.pastDueAmount > 0) ||
+                (acctDetail.isCutOutIssued && acctDetail.billingInfo.disconnectNoticeArrears > 0) ||
+                (acctDetail.isCutOutNonPay && acctDetail.billingInfo.restorationAmount > 0) {
+                paymentDate.value = .now
             }
-            if isDueDateInTheFuture && (accountDetail.value.billingInfo.pastDueAmount ?? 0) == 0 {
-                paymentDate.value = dueDate
+            
+            // All the other states boil down to the due date being in the future
+            if let dueDate = acctDetail.billingInfo.dueByDate {
+                paymentDate.value = isDueDateInTheFuture ? dueDate : .now
+            } else { // Should never get here?
+                paymentDate.value = .now
             }
         }
     }
     
-    var isPaymentDateEditable: Bool {
-        if Environment.shared.opco == .bge && accountDetail.value.isActiveSeverance {
+    var canEditPaymentDate: Bool {
+        if !allowEdits.value { // I think this will be going away with the edit payment task
             return false
         }
-        if !allowEdits.value {
+        
+        let acctDetail = accountDetail.value
+        
+        // Precarious state 6: BGE can future date, ComEd/PECO cannot
+        if acctDetail.isFinaled && acctDetail.billingInfo.pastDueAmount > 0 {
+            return Environment.shared.opco == .bge
+        }
+        
+        // Precarious states 4 and 5 cannot future date
+        if (acctDetail.isCutOutIssued && acctDetail.billingInfo.disconnectNoticeArrears > 0) ||
+            (acctDetail.isCutOutNonPay && acctDetail.billingInfo.restorationAmount > 0) {
             return false
         }
-        return isDueDateInTheFuture // Payment date not editable if due date is in the past
+        
+        // Precarious state 3
+        if !acctDetail.isCutOutIssued && acctDetail.billingInfo.disconnectNoticeArrears > 0 {
+            return Environment.shared.opco == .bge || isDueDateInTheFuture
+        }
+        
+        // All the other states boil down to the due date being in the future
+        return isDueDateInTheFuture
     }
     
     private var isDueDateInTheFuture: Bool {
