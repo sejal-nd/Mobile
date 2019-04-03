@@ -140,8 +140,7 @@ class MCSWalletService: WalletService {
     
     //TODO: Remove this once BGE moves to paymentus
     private func addCreditCardMCS(_ creditCard: CreditCard, token: String) -> Observable<WalletItemResult> {
-        let parsed = DateFormatter.MMyyyyFormatter.date(from: creditCard.expirationMonth + creditCard.expirationYear)
-
+        let expDateStr = String(format: "%@-%@-01", creditCard.expirationYear, creditCard.expirationMonth)
         let params = ["account_number": AccountsStore.shared.accounts[0].accountNumber,
                       "account_nick_name": creditCard.nickname ?? "",
                       "bank_account_type" : "card",
@@ -149,7 +148,7 @@ class MCSWalletService: WalletService {
                       "bank_account_name" : "card",
                       "zipcode" : creditCard.postalCode,
                       "cvv" : creditCard.securityCode,
-                      "expiration_date" : DateFormatter.yyyyMMddFormatter.string(from: parsed!)] as [String: Any]
+                      "expiration_date" : expDateStr] as [String: Any]
         
         return MCSApi.shared.post(pathPrefix: .auth, path: "wallet", params: params)
             .map { json in

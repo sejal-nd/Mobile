@@ -143,8 +143,7 @@ class MCSPaymentService: PaymentService {
     func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
         return SpeedpayApi().fetchTokenizedCardNumber(cardNumber: creditCard.cardNumber)
             .flatMap { tokenizedCardNumber -> Observable<String> in
-                let parsed = DateFormatter.MMyyyyFormatter.date(from: creditCard.expirationMonth + creditCard.expirationYear)!
-                
+                let expDateStr = String(format: "%@-%@-01T12:00:00", creditCard.expirationYear, creditCard.expirationMonth)
                 let params: [String: Any] = ["is_existing_account": false,
                                              "is_save_account": false,
                                              "payment_amount": String.init(format: "%.02f", paymentAmount),
@@ -152,7 +151,7 @@ class MCSPaymentService: PaymentService {
                                              "payment_date": paymentDate.paymentFormatString,
                                              "account_holder_name": creditCard.cardHolderName!,
                                              "bank_account_number": tokenizedCardNumber,
-                                             "expiration_date": parsed.paymentFormatString,
+                                             "expiration_date": expDateStr,
                                              "zip_code": creditCard.postalCode,
                                              "cvv": creditCard.securityCode]
                     
