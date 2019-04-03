@@ -146,19 +146,7 @@ class HomeUsageCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showErrorState: Driver<Void> = Observable
-        .combineLatest(accountDetailEvents, serResultEvents)
-        .filter { accountDetailEvent, serResultEvent in
-            guard let accountDetail = accountDetailEvent.element else {
-                return true
-            }
-            
-            // Only show error state for SER result errors if the SER results matter for the account
-            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return serResultEvent.element == nil
-            }
-            
-            return false
-        }
+        .merge(accountDetailEvents.errors(), serResultEvents.errors())
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
