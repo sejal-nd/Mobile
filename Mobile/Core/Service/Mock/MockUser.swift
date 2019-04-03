@@ -75,6 +75,9 @@ struct MockAccount {
 }
 
 enum MockDataKey: String {
+    // Accounts
+    case accountZeros
+    
     // Billing
     case billCardNoDefaultPayment
     case billCardWithDefaultPayment
@@ -140,6 +143,7 @@ enum MockDataKey: String {
     case outageSmartMeter
     
     // Usage
+    case bgeControlGroupNoPrograms
     case referenceEndDate
     case comparedEndDate
     case referenceMinHeight

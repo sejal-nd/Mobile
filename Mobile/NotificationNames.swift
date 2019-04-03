@@ -11,6 +11,7 @@ import Foundation
 extension NSNotification.Name {
     
     static let didReceiveInvalidAuthToken = NSNotification.Name(rawValue: "kDidReceiveInvalidAuthToken")
+    static let didReceiveAccountListError = NSNotification.Name(rawValue: "kDidReceiveAccountListError")
     static let didMaintenanceModeTurnOn = NSNotification.Name(rawValue: "kDidMaintenanceModeTurnOn")
     static let didSelectEnrollInAutoPay = NSNotification.Name(rawValue: "kDidSelectEnrollInAutoPay")
     static let didChangeBudgetBillingEnrollment = NSNotification.Name(rawValue: "kDidChangeBudgetBillingEnrollment")

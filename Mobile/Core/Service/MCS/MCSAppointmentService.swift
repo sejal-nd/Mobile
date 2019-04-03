@@ -26,6 +26,6 @@ class MCSAppointmentService: AppointmentService {
 
                 return array.compactMap(Appointment.from)
                     .sorted { $0.startDate < $1.startDate }
-        }
+            }
     }
 }

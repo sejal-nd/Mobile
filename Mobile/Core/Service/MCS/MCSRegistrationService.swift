@@ -64,7 +64,7 @@ class MCSRegistrationService: RegistrationService {
                 }
                 
                 return questions
-        }
+            }
     }
     
     func validateAccountInformation(_ identifier: String,
@@ -84,7 +84,7 @@ class MCSRegistrationService: RegistrationService {
                 }
                 
                 return dict
-        }
+            }
     }
     
     func resendConfirmationEmail(_ username: String) -> Observable<Void> {

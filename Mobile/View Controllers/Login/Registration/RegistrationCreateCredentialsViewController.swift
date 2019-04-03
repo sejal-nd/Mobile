@@ -41,7 +41,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     @IBOutlet weak var primaryProfileLabel: UILabel!
     @IBOutlet weak var primaryProfileSwitch: Switch!
     
-    var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    var viewModel: RegistrationViewModel!
     
     var nextButton = UIBarButtonItem()
     
@@ -96,16 +96,15 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             LoadingView.hide()
             Analytics.log(event: .registerAccountSetup)
             self?.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
-            }, onEmailAlreadyExists: { [weak self] in
-                LoadingView.hide()
-                self?.createUsernameTextField.setError(NSLocalizedString("Email already exists. Please select a different email to login to view your account", comment: ""))
-                self?.accessibilityErrorLabel()
-                
-            }, onError: { [weak self] (title, message) in
-                LoadingView.hide()
-                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self?.present(alertController, animated: true, completion: nil)
+        }, onEmailAlreadyExists: { [weak self] in
+            LoadingView.hide()
+            self?.createUsernameTextField.setError(NSLocalizedString("Email already exists. Please select a different email to login to view your account", comment: ""))
+            self?.accessibilityErrorLabel()
+        }, onError: { [weak self] (title, message) in
+            LoadingView.hide()
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     
@@ -117,20 +116,20 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
             message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
             style: .actionSheet,
-            actions:
-            [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
-                self?.viewModel.hasStrongPassword = true
-                self?.viewModel.newPassword.value = strongPassword
-                self?.viewModel.confirmPassword.value = strongPassword
-                self?.createPasswordTextField.textField.text = strongPassword
-                self?.confirmPasswordTextField.textField.text = strongPassword
-                self?.createPasswordTextField.textField.backgroundColor = .autoFillYellow
-                self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
-                self?.createPasswordTextField.textField.resignFirstResponder()
+            actions: [
+                UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
+                    self?.viewModel.hasStrongPassword = true
+                    self?.viewModel.newPassword.value = strongPassword
+                    self?.viewModel.confirmPassword.value = strongPassword
+                    self?.createPasswordTextField.textField.text = strongPassword
+                    self?.confirmPasswordTextField.textField.text = strongPassword
+                    self?.createPasswordTextField.textField.backgroundColor = .autoFillYellow
+                    self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
+                    self?.createPasswordTextField.textField.resignFirstResponder()
                 },
-             UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ])
     }
-    
     
     // MARK: - Helper
 
@@ -195,7 +194,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         confirmPasswordTextField.textField.delegate = self
         confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-                
         // Bind to the view model
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         

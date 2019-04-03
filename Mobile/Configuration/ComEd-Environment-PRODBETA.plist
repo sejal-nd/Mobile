@@ -5,7 +5,7 @@
 	<key>watchGaTrackingId</key>
 	<string></string>
 	<key>environment</key>
-	<string>PROD</string>
+	<string>PRODBETA</string>
 	<key>opco</key>
 	<string>ComEd</string>
 	<key>appName</key>

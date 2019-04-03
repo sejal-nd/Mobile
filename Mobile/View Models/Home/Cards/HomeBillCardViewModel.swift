@@ -89,7 +89,7 @@ class HomeBillCardViewModel {
 
     private lazy var walletItemEvents: Observable<Event<WalletItem?>> = maintenanceModeEvents
         .filter {
-            guard let maint = $0.element else { return false }
+            guard let maint = $0.element else { return true }
             return !maint.allStatus && !maint.billStatus && !maint.homeStatus
         }
         .withLatestFrom(fetchTrigger)
@@ -615,7 +615,7 @@ class HomeBillCardViewModel {
         guard let walletItem = walletItemOptional else { return nil }
         guard let paymentAmount = accountDetail.billingInfo.netDueAmount else { return nil }
 
-        let minPayment = accountDetail.billingInfo.minPaymentAmount()
+        let minPayment = accountDetail.billingInfo.minPaymentAmount
         let maxPayment = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: walletItem.bankOrCard)
 
         if paymentAmount < minPayment {
@@ -651,7 +651,7 @@ class HomeBillCardViewModel {
                 return false
             }
 
-            let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount()
+            let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount
             if accountDetail.billingInfo.netDueAmount ?? 0 < minPaymentAmount && Environment.shared.opco != .bge {
                 return false
             }

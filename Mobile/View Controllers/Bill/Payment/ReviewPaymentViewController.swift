@@ -270,6 +270,16 @@ class ReviewPaymentViewController: UIViewController {
             let paymentusAlertVC = UIAlertController.paymentusErrorAlertController(
                 forError: err,
                 walletItem: self.viewModel.selectedWalletItem.value!,
+                okHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
+                        guard let navCtl = self.navigationController else { return }
+                        let makePaymentVC = UIStoryboard(name: "Payment", bundle: nil)
+                            .instantiateInitialViewController() as! MakePaymentViewController
+                        makePaymentVC.accountDetail = self.viewModel.accountDetail.value
+                        navCtl.viewControllers = [navCtl.viewControllers.first!, makePaymentVC]
+                    }
+                },
                 callHandler: { _ in
                     UIApplication.shared.openPhoneNumberIfCan(self.viewModel.errorPhoneNumber)
                 }
@@ -290,35 +300,35 @@ class ReviewPaymentViewController: UIViewController {
                 let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                 self?.present(alertVc, animated: true, completion: nil)
-            }, onSuccess: { [weak self] in
-                LoadingView.hide()
-                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
-                    switch bankOrCard {
-                    case .bank:
-                        Analytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
-                    case .card:
-                        Analytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                }, onSuccess: { [weak self] in
+                    LoadingView.hide()
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                        switch bankOrCard {
+                        case .bank:
+                            Analytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                        case .card:
+                            Analytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                        }
                     }
-                }
-                
-                self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
-            }, onError: { [weak self] error in
-                if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
-                    switch bankOrCard {
-                    case .bank:
-                        Analytics.log(event: .eCheckError, dimensions: [
-                            .errorCode: error.serviceCode,
-                            .paymentTempWalletItem: temp ? "true" : "false"
-                        ])
-                    case .card:
-                        Analytics.log(event: .cardError, dimensions: [
-                            .errorCode: error.serviceCode,
-                            .paymentTempWalletItem: temp ? "true" : "false"
-                        ])
+                    
+                    self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
+                }, onError: { [weak self] error in
+                    if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
+                        switch bankOrCard {
+                        case .bank:
+                            Analytics.log(event: .eCheckError, dimensions: [
+                                .errorCode: error.serviceCode,
+                                .paymentTempWalletItem: temp ? "true" : "false"
+                                ])
+                        case .card:
+                            Analytics.log(event: .cardError, dimensions: [
+                                .errorCode: error.serviceCode,
+                                .paymentTempWalletItem: temp ? "true" : "false"
+                                ])
+                        }
                     }
-                }
-                
-                handleError(error)
+                    
+                    handleError(error)
             })
         }
     }

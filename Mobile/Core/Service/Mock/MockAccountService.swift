@@ -76,6 +76,8 @@ class MockAccountService: AccountService {
     }
     
     func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {
-        return .just([])
+        let dataFile = MockJSONManager.File.serResults
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableArray(fromFile: dataFile, key: key)
     }
 }

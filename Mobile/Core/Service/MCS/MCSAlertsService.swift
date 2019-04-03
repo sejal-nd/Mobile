@@ -36,7 +36,7 @@ struct MCSAlertsService: AlertsService {
                 
                 let alertPrefsArray = prefsDictArray.compactMap(AlertPreference.from)
                 return AlertPreferences(alertPreferences: alertPrefsArray)
-        }
+            }
     }
     
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
@@ -59,7 +59,7 @@ struct MCSAlertsService: AlertsService {
                 }
                 
                 return language
-        }
+            }
     }
     
     func setAlertLanguage(accountNumber: String, english: Bool) -> Observable<Void> {
@@ -112,24 +112,21 @@ struct MCSAlertsService: AlertsService {
         
         return URLSession.shared.rx.dataResponse(request: request, onCanceled: {
             APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .canceled, message: nil)
-        })
-            .do(onError: { error in
-                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: serviceError.errorDescription)
-            })
-            .map { data in
-                guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                    let dictData = parsedData as? [String: Any],
-                    let d = dictData["d"] as? [String: Any],
-                    let results = d["results"] as? [NSDictionary] else {
-                        APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: String(data: data, encoding: .utf8))
-                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: String(data: data, encoding: .utf8))
-                return results.compactMap(OpcoUpdate.from)
+        }).do(onError: { error in
+            let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+            APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: serviceError.errorDescription)
+        }).map { data in
+            guard let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                let dictData = parsedData as? [String: Any],
+                let d = dictData["d"] as? [String: Any],
+                let results = d["results"] as? [NSDictionary] else {
+                    APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .error, message: String(data: data, encoding: .utf8))
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+            }
+            
+            APILog(MCSAlertsService.self, requestId: requestId, path: path, method: .get, logType: .response, message: String(data: data, encoding: .utf8))
+            return results.compactMap(OpcoUpdate.from)
         }
-        
     }
     
 }

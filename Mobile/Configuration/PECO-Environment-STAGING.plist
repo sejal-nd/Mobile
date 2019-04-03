@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>PECO_STAGE</string>
 	<key>mcsInstanceName</key>
-	<string>stageMain</string>
+	<string>mobileAppUATStage</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>paymentusUrl</key>

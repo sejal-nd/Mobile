@@ -69,13 +69,11 @@ class AdvancedAccountPickerMultiPremiseTableViewCell: UITableViewCell {
         }
         
         if account.accountNumber == AccountsStore.shared.currentAccount.accountNumber {
-            
             self.separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             self.checkMarkImageView.isHidden = false
             self.checkMarkImageView.isAccessibilityElement = true
             self.checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
         } else {
-            
             self.separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
             self.checkMarkImageView.isHidden = true
             self.checkMarkImageView.isAccessibilityElement = false
