@@ -39,25 +39,25 @@ platform :ios do
     )
 
     # Upload generated dSYMs
-    unzip(file: "mobile.app.dSYM.zip",
-      destination_path: "./fastlane/IPA/mobile.app.dSYM.zip"
-    )
-    appcenter_upload(
-      api_token: ENV["TEST_APPCENTER_API_TOKEN"],
-      owner_name: "Exelon-Digital-Projects",
-      app_name: ENV["APPCENTER_APP_NAME"],
-      upload_dsym_only: true,
-      dsym: "./fastlane/IPA/mobile.app.dSYM"
-    )
+    # unzip(file: "mobile.app.dSYM.zip",
+    #   destination_path: "./fastlane/IPA/mobile.app.dSYM.zip"
+    # )
+    # appcenter_upload(
+    #   api_token: ENV["TEST_APPCENTER_API_TOKEN"],
+    #   owner_name: "Exelon-Digital-Projects",
+    #   app_name: ENV["APPCENTER_APP_NAME"],
+    #   upload_dsym_only: true,
+    #   dsym: "./fastlane/IPA/mobile.app.dSYM"
+    # )
 
     deliver(
       app_identifier: ENV["APP_IDENTIFIER"],
       ipa: "./fastlane/IPA/mobile.ipa", # Same as output directory above
-      username: "exelonutilitiesappleid@exeloncorp.com",
+      username: "e20600@exelonds.com",
       submit_for_review: false,
       force: false,
       # metadata_path: ENV["METADATA_PATH"],
-      screenshot_path: "./fastlane/screenshots"
+      # screenshot_path: "./fastlane/screenshots"
     )
 
     clean_build_artifacts
@@ -71,7 +71,7 @@ platform :ios do
     # Download dSYM files from iTC
 		download_dsyms(
       version: "latest",
-      username: "exelonutilitiesappleid@exeloncorp.com",
+      username: "e20600@exelonds.com",
       team_name: "EXELON BUSINESS SERVICES COMPANY, LLC",
       app_identifier: ENV["APP_IDENTIFIER"],
       output_directory: "./fastlane/downloaded_dSYMs"
