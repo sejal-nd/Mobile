@@ -4,7 +4,7 @@ set -x
 export FASTLANE_PASSWORD="$1"
 
 cd ./_Exelon_Mobile_iOS/fastlane/
-mv ../.././build/drop/build/xcarchive/COMED-RELEASE.xcarchive .
+mv ../.././build/drop/build/xcarchive/$OPCO-RELEASE.xcarchive .
 
 # update fastlane stuff
 bundle update --bundler
@@ -14,4 +14,4 @@ fastlane update_plugins
 find .
 
 # upload to appstore
-fastlane uploadBuild --env comed --verbose
+fastlane uploadBuild --env $OPCO --verbose
