@@ -19,11 +19,11 @@ platform :ios do
   lane :uploadBuild do
     update_fastlane
 
-    capture_screenshots(
-      workspace: "Mobile.xcworkspace",
-      scheme: ENV["SCREENSHOT_SCHEME"],
-      output_directory: "./fastlane/screenshots"
-    )
+    # capture_screenshots(
+    #   workspace: "Mobile.xcworkspace",
+    #   scheme: ENV["SCREENSHOT_SCHEME"],
+    #   output_directory: "./fastlane/screenshots"
+    # )
 
     build_ios_app(
       scheme: ENV["RELEASE_SCHEME"],
