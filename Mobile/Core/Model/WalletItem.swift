@@ -129,9 +129,41 @@ enum PaymentMethodType {
     }
 }
 
+// The postMessage event of the Paymentus iFrame sends "pmDetails.Type" as one of these
+// Also, these are returned as the "payment_type" from Billing History
+enum PaymentusPaymentMethodType: String {
+    case checking = "CHQ"
+    case saving = "SAV"
+    case visa = "VISA"
+    case mastercard = "MC"
+    case amex = "AMEX"
+    case discover = "DISC"
+    case visaDebit = "VISA_DEBIT"
+    case mastercardDebit = "MC_DEBIT"
+}
+
+func paymentMethodTypeForPaymentusString(_ paymentusString: String) -> PaymentMethodType {
+    if let type = PaymentusPaymentMethodType(rawValue: paymentusString) {
+        switch type {
+        case .checking, .saving:
+            return .ach
+        case .visa, .visaDebit:
+            return .visa
+        case .mastercard, .mastercardDebit:
+            return .mastercard
+        case .amex:
+            return .amex
+        case .discover:
+            return .discover
+        }
+    } else {
+        return .unknown(paymentusString)
+    }
+}
+
 /* MCS sends something like "************1111", but we do the transform so that
  * maskedWalletItemAccountNumber is just a 4 character string */
-private func extractLast4(object: Any?) throws -> String? {
+func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
     }

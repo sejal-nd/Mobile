@@ -61,22 +61,47 @@ enum BillingHistoryStatus {
     }
 }
 
+//{
+//    "amount_paid": 6,
+//    "biller_id": null,
+//    "ccf_gas": null,
+//    "charge_amount": null,
+//    "date": "2019-02-21T01:28:54-05:00",
+//    "description": "payment",
+//    "kwh_elec": null,
+//    "masked_wallet_item_account_number": "************1111",
+//    "outstanding_balance": null,
+//    "payment_id": "734975",
+//    "status": "DECLINED",
+//    "total_amount_due": null,
+//    "wallet_id": "",
+//    "wallet_item_id": "",
+//    "payment_type": "VISA",
+//    "confirmation_number": null,
+//    "type": "payment",
+//    "encrypted_payment_id": null,
+//    "documentID": null,
+//    "convenience_fee": 1.5,
+//    "total_amount": 7.5
+//},
+
 struct BillingHistoryItem: Mappable {
     let amountPaid: Double?
-    let chargeAmount: Double?
-    let totalAmountDue: Double?
+    let chargeAmount: Double? // null
+    let totalAmountDue: Double? // null
     let date: Date
     let description: String?
     let statusString: String?
     let status: BillingHistoryStatus
     let confirmationNumber: String?
-    let paymentType: String?
+    let maskedWalletItemAccountNumber: String?
+    let paymentMethodType: PaymentMethodType?
     let isBillPDF: Bool
-    let paymentMethod: String?
+    //let paymentMethod: String?
     let paymentId: String?
-    let walletItemId: String?
-    let flagAllowDeletes: Bool // BGE only - ComEd/PECO default to true
-    let flagAllowEdits: Bool // BGE only - ComEd/PECO default to true
+    //let walletItemId: String?
+    let convenienceFee: Double?
+    let totalAmount: Double?
     
     var isFuture: Bool {
         switch status {
@@ -104,21 +129,20 @@ struct BillingHistoryItem: Mappable {
         status = BillingHistoryStatus(identifier: statusString)
         
         confirmationNumber = map.optionalFrom("confirmation_number")
-        paymentType = map.optionalFrom("payment_type")
-        paymentMethod = map.optionalFrom("payment_method")
+        maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
+        
+        if let paymentusPaymentMethodType: String? = map.optionalFrom("payment_type") {
+            paymentMethodType = paymentMethodTypeForPaymentusString(paymentusPaymentMethodType)
+        }
+
         if let type: String = map.optionalFrom("type") {
             isBillPDF = type == "billing"
         } else {
             isBillPDF = false
         }
         paymentId = map.optionalFrom("payment_id")
-        walletItemId = map.optionalFrom("wallet_item_id")
-        if Environment.shared.opco == .bge {
-            flagAllowDeletes = map.optionalFrom("flag_allow_deletes") ?? true
-            flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
-        } else {
-            flagAllowDeletes = true
-            flagAllowEdits = false
-        }
+        //walletItemId = map.optionalFrom("wallet_item_id")
+        convenienceFee = map.optionalFrom("convenience_fee")
+        totalAmount = map.optionalFrom("total_amount")
     }
 }

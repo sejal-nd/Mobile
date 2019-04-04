@@ -22,8 +22,7 @@ class BillingHistoryDetailsViewModel {
     }
     
     var paymentAccountImage: UIImage? {
-        guard let paymentMethod = billingHistory.paymentMethod else { return nil }
-        let paymentMethodType = PaymentMethodType(paymentMethod)
+        guard let paymentMethodType = billingHistory.paymentMethodType else { return nil }
         return paymentMethodType.imageMini
     }
     

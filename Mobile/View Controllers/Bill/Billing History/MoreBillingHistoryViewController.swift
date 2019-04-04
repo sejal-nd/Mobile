@@ -119,20 +119,20 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
-        if Environment.shared.opco == .bge {
-            guard let paymentMethod = billingItem.paymentMethod else { return }
-            if paymentMethod == "S" { //scheduled
-                showModifyScheduledItem(billingItem: billingItem)
-            } else {  // recurring/automatic
-                let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                    vc.accountDetail = accountDetail
-                    navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-        } else { //PECO/COMED scheduled
+//        if Environment.shared.opco == .bge {
+//            guard let paymentMethod = billingItem.paymentMethod else { return }
+//            if paymentMethod == "S" { //scheduled
+//                showModifyScheduledItem(billingItem: billingItem)
+//            } else {  // recurring/automatic
+//                let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+//                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+//                    vc.accountDetail = accountDetail
+//                    navigationController?.pushViewController(vc, animated: true)
+//                }
+//            }
+//        } else { //PECO/COMED scheduled
             showModifyScheduledItem(billingItem: billingItem)
-        }
+//        }
     }
     
     private func showBillPdf(billingItem: BillingHistoryItem) {
@@ -149,10 +149,10 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
         paymentVc.accountDetail = accountDetail
         paymentVc.billingHistoryItem = billingItem
-        if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
-            let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
-            paymentVc.paymentDetail = paymentDetail
-        }
+//        if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
+//            let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
+//            paymentVc.paymentDetail = paymentDetail
+//        }
         navigationController?.pushViewController(paymentVc, animated: true)
     }
 }

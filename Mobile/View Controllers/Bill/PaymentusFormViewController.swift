@@ -10,18 +10,6 @@ import UIKit
 import WebKit
 import RxSwift
 
-// The postMessage event sends pmDetails.Type as one of these
-fileprivate enum PaymentusPaymentMethodType: String {
-    case checking = "CHQ"
-    case saving = "SAV"
-    case visa = "VISA"
-    case mastercard = "MC"
-    case amex = "AMEX"
-    case discover = "DISC"
-    case visaDebit = "VISA_DEBIT"
-    case mastercardDebit = "MC_DEBIT"
-}
-
 protocol PaymentusFormViewControllerDelegate: class {
     func didEditWalletItem()
     func didAddWalletItem(_ walletItem: WalletItem)
@@ -228,22 +216,7 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     // Map the Paymentus returned "Type" to our PaymentMethodTypes for correct icon display
                     let paymentMethodType: PaymentMethodType
                     if let typeString = pmDetailsJson["Type"] as? String {
-                        if let type = PaymentusPaymentMethodType(rawValue: typeString) {
-                            switch type {
-                            case .checking, .saving:
-                                paymentMethodType = .ach
-                            case .visa, .visaDebit:
-                                paymentMethodType = .visa
-                            case .mastercard, .mastercardDebit:
-                                paymentMethodType = .mastercard
-                            case .amex:
-                                paymentMethodType = .amex
-                            case .discover:
-                                paymentMethodType = .discover
-                            }
-                        } else {
-                            paymentMethodType = .unknown(typeString)
-                        }
+                        paymentMethodType = paymentMethodTypeForPaymentusString(typeString)
                     } else {
                         paymentMethodType = bankOrCard == .bank ? .ach : .unknown("Credit Card")
                     }

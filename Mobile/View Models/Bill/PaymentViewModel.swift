@@ -36,8 +36,8 @@ class PaymentViewModel {
 
     let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
-    let allowEdits = Variable(true)
-    let allowCancel = Variable(false)
+//    let allowEdits = Variable(true)
+//    let allowCancel = Variable(false)
 
     var confirmationNumber: String?
 
@@ -52,8 +52,8 @@ class PaymentViewModel {
         self.paymentDetail.value = paymentDetail
         if let billingHistoryItem = billingHistoryItem {
             self.paymentId.value = billingHistoryItem.paymentId
-            self.allowEdits.value = billingHistoryItem.flagAllowEdits
-            self.allowCancel.value = billingHistoryItem.flagAllowDeletes
+//            self.allowEdits.value = billingHistoryItem.flagAllowEdits
+//            self.allowCancel.value = billingHistoryItem.flagAllowDeletes
         }
 
         self.paymentDate = Variable(.now) // May be updated later...see computeDefaultPaymentDate()
@@ -214,13 +214,18 @@ class PaymentViewModel {
 
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
 
-    private(set) lazy var shouldShowNextButton: Driver<Bool> =
-        Driver.combineLatest(self.paymentId.asDriver(),
-                             self.allowEdits.asDriver())
-        {
-            if $0 != nil {
-                return $1
-            }
+//    private(set) lazy var shouldShowNextButton: Driver<Bool> =
+//        Driver.combineLatest(self.paymentId.asDriver(),
+//                             self.allowEdits.asDriver())
+//        {
+//            if $0 != nil {
+//                return $1
+//            }
+//            return true
+//        }
+    
+    private(set) lazy var shouldShowNextButton: Driver<Bool> = self.paymentId.asDriver()
+        .map { _ in
             return true
         }
 
@@ -263,10 +268,7 @@ class PaymentViewModel {
             }
         }
 
-    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> =
-        Driver.combineLatest(self.hasWalletItems,
-                             self.allowEdits.asDriver())
-        { $0 && $1 }
+    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = self.hasWalletItems
 
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         return Driver.combineLatest(selectedWalletItem.asDriver(),
@@ -429,10 +431,10 @@ class PaymentViewModel {
     }
 
     private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.paymentId.asDriver())
-    { $0 || $1 != nil }
+        { $0 || $1 != nil }
 
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
-    { $0 && $1 }
+        { $0 && $1 }
 
     private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return nil }
@@ -486,12 +488,10 @@ class PaymentViewModel {
     }
 
     private(set) lazy var shouldShowAddBankAccount: Driver<Bool> = Driver
-        .combineLatest(isCashOnlyUser, hasWalletItems, allowEdits.asDriver())
-        { !$0 && !$1 && $2 }
+        .combineLatest(isCashOnlyUser, hasWalletItems)
+        { !$0 && !$1 }
 
-    private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = Driver
-        .combineLatest(hasWalletItems, allowEdits.asDriver())
-        { !$0 && $1 }
+    private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = self.hasWalletItems
 
     private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
         .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)
@@ -545,14 +545,9 @@ class PaymentViewModel {
     private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
         .map { $0.mmDdYyyyString }
 
-    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
-        .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
-        {
-            if $0 != nil {
-                return $1
-            }
-            return false
-        }
+    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = paymentId.asDriver().map {
+        return $0 != nil
+    }
 
     // MARK: - Review Payment Drivers
 
