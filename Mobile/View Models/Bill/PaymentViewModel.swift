@@ -202,16 +202,17 @@ class PaymentViewModel {
             paymentDate.value = .now
         } else {
             let acctDetail = accountDetail.value
+            let billingInfo = acctDetail.billingInfo
             
             // Covers precarious states 6, 5, and 4 (in that order) on the Billing Scenarios table
-            if (acctDetail.isFinaled && acctDetail.billingInfo.pastDueAmount > 0) ||
-                (acctDetail.isCutOutIssued && acctDetail.billingInfo.disconnectNoticeArrears > 0) ||
-                (acctDetail.isCutOutNonPay && acctDetail.billingInfo.restorationAmount > 0) {
+            if (acctDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+                (acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
+                (acctDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
                 paymentDate.value = .now
             }
             
             // All the other states boil down to the due date being in the future
-            if let dueDate = acctDetail.billingInfo.dueByDate {
+            if let dueDate = billingInfo.dueByDate {
                 paymentDate.value = isDueDateInTheFuture ? dueDate : .now
             } else { // Should never get here?
                 paymentDate.value = .now
@@ -225,20 +226,21 @@ class PaymentViewModel {
         }
         
         let acctDetail = accountDetail.value
+        let billingInfo = acctDetail.billingInfo
         
         // Precarious state 6: BGE can future date, ComEd/PECO cannot
-        if acctDetail.isFinaled && acctDetail.billingInfo.pastDueAmount > 0 {
+        if acctDetail.isFinaled && billingInfo.pastDueAmount > 0 {
             return Environment.shared.opco == .bge
         }
         
         // Precarious states 4 and 5 cannot future date
-        if (acctDetail.isCutOutIssued && acctDetail.billingInfo.disconnectNoticeArrears > 0) ||
-            (acctDetail.isCutOutNonPay && acctDetail.billingInfo.restorationAmount > 0) {
+        if (acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
+            (acctDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
             return false
         }
         
         // Precarious state 3
-        if !acctDetail.isCutOutIssued && acctDetail.billingInfo.disconnectNoticeArrears > 0 {
+        if !acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
             return Environment.shared.opco == .bge || isDueDateInTheFuture
         }
         
