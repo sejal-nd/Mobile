@@ -75,6 +75,14 @@ struct MockAccount {
 }
 
 enum MockDataKey: String {
+    // General
+    case `default`
+    case screenshots
+    case residential
+    case bgePrepaidEnrolled
+    case bgePrepaidPending
+    case error
+    
     // Accounts
     case accountZeros
     
@@ -229,10 +237,4 @@ enum MockDataKey: String {
     case stormMode
     case urgentBanner
     case acctLookup1
-    
-    // General
-    case screenshots
-    case residential
-    case error
-    case `default`
 }

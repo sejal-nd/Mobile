@@ -103,6 +103,14 @@ struct AccountDetail: Mappable {
     
     let peakRewards: String?
     let zipCode: String?
+    
+    enum PrepaidEnrollmentStatus: String {
+        case notEnrolled, pending, enrolled
+    }
+    
+    let prepaidEnrollmentStatus: PrepaidEnrollmentStatus
+    let prepaidStepsToGo: Int?
+    let prepaidCutoffDate: Date?
 
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
@@ -151,6 +159,10 @@ struct AccountDetail: Mappable {
         
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
+        
+        prepaidEnrollmentStatus = map.optionalFrom("prepaidEnrollmentStatus") ?? .notEnrolled
+        prepaidStepsToGo = map.optionalFrom("prepaidStepsToGo")
+        prepaidCutoffDate = map.optionalFrom("prepaidCutoffDate", transformation: DateParser().extractDate)
     }
     
     // BGE only - Smart Energy Rewards enrollment status
@@ -178,7 +190,7 @@ struct AccountDetail: Mappable {
     var isEligibleForUsageData: Bool {
         switch serviceType {
         case "GAS", "ELECTRIC", "GAS/ELECTRIC":
-            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled
+            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled && prepaidEnrollmentStatus != .enrolled
         default:
             return false
         }

@@ -1261,6 +1261,34 @@
         "CustomerInfo": {},
         "SERInfo": {}
     },
+    "bgePrepaidEnrolled": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
+        "CustomerInfo": {},
+        "SERInfo": {},
+        "prepaidEnrollmentStatus": "enrolled"
+    },
+    "bgePrepaidPending": {
+        "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
+        "CustomerInfo": {},
+        "SERInfo": {},
+        "prepaidEnrollmentStatus": "pending",
+        "prepaidStepsToGo": 2,
+        "prepaidCutoffDate": "2019-01-04T00:00:00"
+    },
     "error": {
         "code": "TC-UNKNOWN",
         "description": "Account detail fetch failed."
