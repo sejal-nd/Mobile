@@ -220,11 +220,7 @@ class PaymentViewModel {
         }
     }
     
-    var canEditPaymentDate: Bool {
-        if !allowEdits.value { // I think this will be going away with the edit payment task
-            return false
-        }
-        
+    var canEditPaymentDate: Bool {        
         let acctDetail = accountDetail.value
         let billingInfo = acctDetail.billingInfo
         

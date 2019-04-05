@@ -131,8 +131,10 @@ struct BillingHistoryItem: Mappable {
         confirmationNumber = map.optionalFrom("confirmation_number")
         maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
         
-        if let paymentusPaymentMethodType: String? = map.optionalFrom("payment_type") {
+        if let paymentusPaymentMethodType: String = map.optionalFrom("payment_type") {
             paymentMethodType = paymentMethodTypeForPaymentusString(paymentusPaymentMethodType)
+        } else {
+            paymentMethodType = nil
         }
 
         if let type: String = map.optionalFrom("type") {
