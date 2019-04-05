@@ -61,47 +61,20 @@ enum BillingHistoryStatus {
     }
 }
 
-//{
-//    "amount_paid": 6,
-//    "biller_id": null,
-//    "ccf_gas": null,
-//    "charge_amount": null,
-//    "date": "2019-02-21T01:28:54-05:00",
-//    "description": "payment",
-//    "kwh_elec": null,
-//    "masked_wallet_item_account_number": "************1111",
-//    "outstanding_balance": null,
-//    "payment_id": "734975",
-//    "status": "DECLINED",
-//    "total_amount_due": null,
-//    "wallet_id": "",
-//    "wallet_item_id": "",
-//    "payment_type": "VISA",
-//    "confirmation_number": null,
-//    "type": "payment",
-//    "encrypted_payment_id": null,
-//    "documentID": null,
-//    "convenience_fee": 1.5,
-//    "total_amount": 7.5
-//},
-
 struct BillingHistoryItem: Mappable {
     let amountPaid: Double?
-    let chargeAmount: Double? // null
-    let totalAmountDue: Double? // null
     let date: Date
     let description: String?
+    let maskedWalletItemAccountNumber: String?
+    let paymentId: String?
     let statusString: String?
     let status: BillingHistoryStatus
-    let confirmationNumber: String?
-    let maskedWalletItemAccountNumber: String?
+    let totalAmountDue: Double? // Only sent when isBillPDF = true
     let paymentMethodType: PaymentMethodType?
-    let isBillPDF: Bool
-    //let paymentMethod: String?
-    let paymentId: String?
-    //let walletItemId: String?
+    let confirmationNumber: String?
     let convenienceFee: Double?
     let totalAmount: Double?
+    let isBillPDF: Bool
     
     var isFuture: Bool {
         switch status {
@@ -113,23 +86,23 @@ struct BillingHistoryItem: Mappable {
             if isBillPDF { // EM-2638: Bills should always be in the past
                 return false
             }
-            
             return date >= Calendar.opCo.startOfDay(for: .now)
         }
     }
 
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
-        chargeAmount = map.optionalFrom("charge_amount", transformation: dollarAmount)
-        totalAmountDue = map.optionalFrom("total_amount_due", transformation: dollarAmount)
         try date = map.from("date", transformation: DateParser().extractDate)
         description = map.optionalFrom("description")
+        confirmationNumber = map.optionalFrom("confirmation_number")
+        maskedWalletItemAccountNumber = map.optionalFrom("masked_wallet_item_account_number", transformation: extractLast4)
+        paymentId = map.optionalFrom("payment_id")
+        totalAmountDue = map.optionalFrom("total_amount_due")
+        convenienceFee = map.optionalFrom("convenience_fee")
+        totalAmount = map.optionalFrom("total_amount")
 
         statusString = map.optionalFrom("status")
         status = BillingHistoryStatus(identifier: statusString)
-        
-        confirmationNumber = map.optionalFrom("confirmation_number")
-        maskedWalletItemAccountNumber = map.optionalFrom("masked_wallet_item_account_number", transformation: extractLast4)
         
         if let paymentusPaymentMethodType: String = map.optionalFrom("payment_type") {
             paymentMethodType = paymentMethodTypeForPaymentusString(paymentusPaymentMethodType)
@@ -142,9 +115,5 @@ struct BillingHistoryItem: Mappable {
         } else {
             isBillPDF = false
         }
-        paymentId = map.optionalFrom("payment_id")
-        //walletItemId = map.optionalFrom("wallet_item_id")
-        convenienceFee = map.optionalFrom("convenience_fee")
-        totalAmount = map.optionalFrom("total_amount")
     }
 }

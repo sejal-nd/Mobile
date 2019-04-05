@@ -12,66 +12,47 @@ import RxCocoa
 
 class BillingHistoryDetailsViewModel {
     
-    private let accountDetail: AccountDetail
-    private let billingHistory: BillingHistoryItem
-
+    private let billingHistoryItem: BillingHistoryItem
     
-    var paymentAccount: String? {
-        let paymentAccount = accountDetail.accountNumber
-        return "**** " + String(paymentAccount.suffix(4))
+    required init(billingHistoryItem: BillingHistoryItem) {
+        self.billingHistoryItem = billingHistoryItem
     }
-    
-    var paymentAccountImage: UIImage? {
-        guard let paymentMethodType = billingHistory.paymentMethodType else { return nil }
+
+    var paymentMethodImage: UIImage? {
+        guard let paymentMethodType = billingHistoryItem.paymentMethodType else { return nil }
         return paymentMethodType.imageMini
     }
     
-    var paymentType: String? {
-        return billingHistory.description
+    var paymentMethodString: String? {
+        guard let maskedAcctNum = billingHistoryItem.maskedWalletItemAccountNumber,
+            !maskedAcctNum.isEmpty else { return nil }
+        return "**** \(maskedAcctNum)"
     }
     
-    var paymentDate: String? {
-        return billingHistory.date.mmDdYyyyString
-    }
-    
-    //amountPaid and paymentAmount
     var paymentAmount: String? {
-        return billingHistory.amountPaid?.currencyString
-    }
-    
-    var chargeAmount: String? {
-        return billingHistory.chargeAmount?.currencyString
+        return billingHistoryItem.amountPaid?.currencyString
     }
     
     var convenienceFee: String? {
-        let convFee = accountDetail.billingInfo.convenienceFee
+        guard let convFee = billingHistoryItem.convenienceFee else { return nil }
         return convFee.isZero ? nil : convFee.currencyString
     }
-
-    // TODO: Fix Unit Tests
+    
     var totalPaymentAmount: String? {
-        let convFee = accountDetail.billingInfo.convenienceFee
-        guard let paymentAmount = accountDetail.billingInfo.lastPaymentAmount else { return nil } // is last payment amount the same as paymentDetail paymentAmount?
-        let returnValue = convFee + paymentAmount
-        return returnValue.currencyString
+        guard let totalAmount = billingHistoryItem.totalAmount else { return nil }
+        return totalAmount.currencyString
     }
     
+    var paymentDate: String? {
+        return billingHistoryItem.date.mmDdYyyyString
+    }
+
     var paymentStatus: String? {
-        return billingHistory.statusString?.capitalized
+        return billingHistoryItem.statusString?.capitalized
     }
     
     var confirmationNumber: String? {
-        return billingHistory.confirmationNumber
+        return billingHistoryItem.confirmationNumber
     }
     
-    var paymentTypeLabel: String {
-        return paymentType == "CSS" ?
-            NSLocalizedString("PaymentAccountNickname", comment: "") :
-            NSLocalizedString("Payment Type", comment: "")
-    }
-
-    required init(accountDetail: AccountDetail, billingHistoryItem: BillingHistoryItem) {
-        self.accountDetail = accountDetail
-        self.billingHistory = billingHistoryItem
-    }
 }
