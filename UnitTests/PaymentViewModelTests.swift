@@ -24,7 +24,7 @@ class PaymentViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         let accountDetail = AccountDetail.fromMockJson(forKey: .residential)
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, billingHistoryItem: nil)
 
         viewModel.fetchData(initialFetch: true, onSuccess: {
             XCTAssertFalse(self.viewModel.isFetching.value)
@@ -37,30 +37,13 @@ class PaymentViewModelTests: XCTestCase {
         })
     }
 
-    func testFetchDataModifyPayment() {
-        MockUser.current = MockUser.default
-        MockAccountService.loadAccountsSync()
-        
-        let accountDetail = AccountDetail.fromMockJson(forKey: .residential)
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
-        viewModel.paymentId.value = "1"
-
-        viewModel.fetchData(initialFetch: true, onSuccess: {
-            XCTAssertEqual(self.viewModel.paymentAmount.value, 100.00)
-            XCTAssertEqual(self.viewModel.paymentDate.value, Date(timeIntervalSince1970: 13), "paymentDate should have been updated from the paymentDetail")
-            XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should have been set to the matching walletId from the paymentDetail")
-        }, onError: {
-            XCTFail("unexpected error response")
-        })
-    }
-
     func testFetchDataCashOnly() {
         // Test 1: Cash only user with a credit card set as default
         MockUser.current = MockUser.default
         MockAccountService.loadAccountsSync()
         
         let accountDetail = AccountDetail.fromMockJson(forKey: .cashOnly)
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, billingHistoryItem: nil)
 
         viewModel.fetchData(initialFetch: true, onSuccess: {
             XCTAssertNotNil(self.viewModel.selectedWalletItem.value, "selectedWalletItem should not be nil because default item is credit card")
@@ -96,7 +79,7 @@ class PaymentViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         let accountDetail = AccountDetail.default
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, billingHistoryItem: nil)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.schedulePayment(onDuplicate: { (title, message) in
             XCTFail("unexpected onDuplicate response")
@@ -112,9 +95,8 @@ class PaymentViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         let accountDetail = AccountDetail.default
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, billingHistoryItem: nil)
         viewModel.paymentId.value = "123"
-        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
         viewModel.cancelPayment(onSuccess: {
             // Pass
         }, onError: { err in
@@ -127,9 +109,8 @@ class PaymentViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
         
         let accountDetail = AccountDetail.default
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: accountDetail, billingHistoryItem: nil)
         viewModel.paymentId.value = "123"
-        viewModel.paymentDetail.value = PaymentDetail(walletItemId: "123", paymentAmount: 123, paymentDate: .now)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.modifyPayment(onSuccess: {
             // Pass
@@ -139,7 +120,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testPaymentFieldsValid() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.paymentAmount.value = 100
         viewModel.paymentFieldsValid.asObservable().take(1).subscribe(onNext: { valid in
@@ -148,40 +129,18 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testMakePaymentNextButtonEnabled() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         // Initial state
         viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
             XCTAssertFalse(enabled, "Next button should not be enabled initially")
         }).disposed(by: disposeBag)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
-        viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
-            XCTAssert(enabled, "Next button should be enabled for this test case")
-        }).disposed(by: disposeBag)
-    }
-
-    func testShouldShowNextButton() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
-
-        viewModel.shouldShowNextButton.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssert(shouldShow, "Next button should show by default")
-        }).disposed(by: disposeBag)
-
-        viewModel.paymentId.value = "123"
-        viewModel.allowEdits.value = false
-        viewModel.shouldShowNextButton.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "Next button should not show when allowEdits is false")
-        }).disposed(by: disposeBag)
-
-        viewModel.allowEdits.value = true
-        viewModel.shouldShowNextButton.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssert(shouldShow, "Next button should show when allowEdits is true")
-        }).disposed(by: disposeBag)
+        // TODO: Make this test more robust
     }
 
     func testShouldShowPaymentAccountView() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssertFalse(shouldShow, "Payment method view should not be shown by default")
@@ -194,7 +153,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testHasWalletItems() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .cashOnly), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .cashOnly), billingHistoryItem: nil)
 
         // Cash only user test - bank accounts should be ignored
         viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank)]
@@ -219,24 +178,28 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testShouldShowPaymentAmountTextField() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        // Allow edits false
-        viewModel.allowEdits.value = false
+        // Editing payment
         viewModel.shouldShowPaymentAmountTextField.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssert(!shouldShow, "paymentAmountTextField should not show when allowEdits is false")
+            XCTAssert(!shouldShow, "paymentAmountTextField should not show when no wallet items + not editing")
         }).disposed(by: disposeBag)
 
         // Has Wallet Items
-        viewModel.allowEdits.value = true
         viewModel.walletItems.value = [WalletItem(bankOrCard: .bank)]
         viewModel.shouldShowPaymentAmountTextField.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssert(shouldShow, "paymentAmountTextField should show when user has wallet items")
         }).disposed(by: disposeBag)
+        
+        viewModel.walletItems.value = nil
+        viewModel.paymentId.value = "123"
+        viewModel.shouldShowPaymentAmountTextField.asObservable().take(1).subscribe(onNext: { shouldShow in
+            XCTAssert(shouldShow, "paymentAmountTextField should show when user is editing")
+        }).disposed(by: disposeBag)
     }
 
     func testPaymentAmountFeeLabelTextBank() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
         
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
         viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
@@ -246,7 +209,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testPaymentAmountFeeLabelTextCard() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
         viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
@@ -256,7 +219,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testPaymentAmountFeeFooterLabelTextBank() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
         
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
         viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
@@ -266,7 +229,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testPaymentAmountFeeFooterLabelTextCardResidential() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
         viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
@@ -276,7 +239,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testPaymentAmountFeeFooterLabelTextCardCommercial() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
         viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
@@ -286,7 +249,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testSelectedWalletItemImage() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
         viewModel.selectedWalletItemImage.asObservable().take(1).subscribe(onNext: { image in
@@ -300,7 +263,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testSelectedWalletItemMaskedAccountString() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
         viewModel.selectedWalletItemMaskedAccountString.asObservable().take(1).subscribe(onNext: { str in
@@ -309,7 +272,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testSelectedWalletItemNickname() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         // No selected wallet item
         viewModel.selectedWalletItemNickname.asObservable().take(1).subscribe(onNext: { nickname in
@@ -324,13 +287,13 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testConvenienceFee() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         XCTAssertEqual(viewModel.convenienceFee, 5.95)
     }
 
     func testAmountDueCurrencyString() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.amountDue.value = 0
         viewModel.amountDueCurrencyString.asObservable().take(1).subscribe(onNext: { string in
@@ -364,7 +327,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testDueDate() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.dueDate.asObservable().take(1).subscribe(onNext: { dueDate in
             XCTAssertEqual(dueDate, "01/11/2019")
@@ -385,7 +348,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testIsOverpaying() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .default, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .default, billingHistoryItem: nil)
 
         if Environment.shared.opco == .bge { // Overpayment is a BGE only concept
             viewModel.amountDue.value = 100
@@ -401,7 +364,7 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testOverpayingValueDisplayString() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.paymentAmount.value = 200
         viewModel.overpayingValueDisplayString.asObservable().take(1).subscribe(onNext: { str in
@@ -415,16 +378,17 @@ class PaymentViewModelTests: XCTestCase {
     }
 
     func testTotalPaymentDisplayString() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.paymentAmount.value = 200
         viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssertEqual(str, "$205.95")
         }).disposed(by: disposeBag)
     }
 
     func testReviewPaymentFooterLabelText() {
-        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .default, paymentDetail: nil, billingHistoryItem: nil)
+        viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .default, billingHistoryItem: nil)
         
         XCTAssertEqual(viewModel.reviewPaymentFooterLabelText, NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation. You will receive an email confirming that your payment was submitted successfully. If you receive an error message, please check for your email confirmation to verify you’ve successfully submitted payment.", comment: ""))
     }

@@ -134,18 +134,6 @@ class MCSPaymentService: PaymentService {
             })
     }
     
-    // TODO: Confirm if still needed for ePay R2 - remove if not. Could also remove the PaymentDetail model.
-    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
-        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)")
-            .map { json in
-                guard let dict = json as? NSDictionary,
-                    let paymentDetail = PaymentDetail.from(dict) else {
-                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                return paymentDetail
-            }
-    }
-    
     func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
         let opCo = Environment.shared.opco
         let params: [String: Any] = [
@@ -169,18 +157,8 @@ class MCSPaymentService: PaymentService {
             })
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void> {
-        let opCo = Environment.shared.opco
-        let params: [String: Any] = [
-            "payment_id": paymentId,
-            "payment_amount": String.init(format: "%.02f", paymentDetail.paymentAmount),
-            "wallet_item_id" : paymentDetail.walletItemId ?? "",
-            "cancel_payment_method": "", // Needed?
-            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
-            "auth_sess_token": "" // Still needed?
-        ]
-
-        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
+    func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void> {
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: nil)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())

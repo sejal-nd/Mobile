@@ -34,7 +34,6 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
 
-    let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
 
     var confirmationNumber: String?
@@ -42,12 +41,10 @@ class PaymentViewModel {
     init(walletService: WalletService,
          paymentService: PaymentService,
          accountDetail: AccountDetail,
-         paymentDetail: PaymentDetail?,
          billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
-        self.paymentDetail.value = paymentDetail
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.value = billingHistoryItem.paymentId
@@ -131,8 +128,7 @@ class PaymentViewModel {
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
-                                     paymentId: paymentId.value!,
-                                     paymentDetail: paymentDetail.value!)
+                                     paymentId: paymentId.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

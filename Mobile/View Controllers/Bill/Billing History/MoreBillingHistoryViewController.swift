@@ -149,10 +149,6 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
         let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
         paymentVc.accountDetail = accountDetail
         paymentVc.billingHistoryItem = billingItem
-//        if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
-//            let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
-//            paymentVc.paymentDetail = paymentDetail
-//        }
         navigationController?.pushViewController(paymentVc, animated: true)
     }
 }
