@@ -129,7 +129,7 @@ struct BillingHistoryItem: Mappable {
         status = BillingHistoryStatus(identifier: statusString)
         
         confirmationNumber = map.optionalFrom("confirmation_number")
-        maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
+        maskedWalletItemAccountNumber = map.optionalFrom("masked_wallet_item_account_number", transformation: extractLast4)
         
         if let paymentusPaymentMethodType: String = map.optionalFrom("payment_type") {
             paymentMethodType = paymentMethodTypeForPaymentusString(paymentusPaymentMethodType)

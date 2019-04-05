@@ -134,6 +134,7 @@ class MCSPaymentService: PaymentService {
             })
     }
     
+    // TODO: Confirm if still needed for ePay R2 - remove if not. Could also remove the PaymentDetail model.
     func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)")
             .map { json in

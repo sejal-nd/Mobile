@@ -36,8 +36,6 @@ class PaymentViewModel {
 
     let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
-//    let allowEdits = Variable(true)
-//    let allowCancel = Variable(false)
 
     var confirmationNumber: String?
 
@@ -51,43 +49,21 @@ class PaymentViewModel {
         self.accountDetail = Variable(accountDetail)
         self.paymentDetail.value = paymentDetail
         
-        if let billingHistoryItem = billingHistoryItem {
-            self.paymentId.value = billingHistoryItem.paymentId
-//            self.allowEdits.value = billingHistoryItem.flagAllowEdits
-//            self.allowCancel.value = billingHistoryItem.flagAllowDeletes
+        if let billingHistoryItem = billingHistoryItem { // Editing a payment
+            paymentId.value = billingHistoryItem.paymentId
+            selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,  paymentMethodType: billingHistoryItem.paymentMethodType)
         }
 
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentDate = Variable(.now) // May be updated later...see computeDefaultPaymentDate()
+        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? 0)
+        paymentDate = Variable(billingHistoryItem?.date ?? .now) // May be updated later...see computeDefaultPaymentDate()
     }
 
     // MARK: - Service Calls
 
-    func fetchWalletItems() -> Observable<Void> {
-        return walletService.fetchWalletItems()
-            .map { walletItems in
-                self.walletItems.value = walletItems
-            }
-    }
-
-    func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
-        return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber,
-                                                  paymentId: paymentId)
-            .map { paymentDetail in
-                self.paymentDetail.value = paymentDetail
-            }
-    }
-
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
-        var observables = [fetchWalletItems()]
-
-        if let paymentId = paymentId.value, paymentDetail.value == nil {
-            observables.append(fetchPaymentDetails(paymentId: paymentId))
-        }
-
         isFetching.value = true
-        Observable.zip(observables)
+        walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -97,15 +73,7 @@ class PaymentViewModel {
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
-                    if self.paymentId.value != nil { // Modifiying Payment
-                        if let paymentDetail = self.paymentDetail.value {
-                            self.paymentAmount.value = paymentDetail.paymentAmount
-                            self.paymentDate.value = paymentDetail.paymentDate!
-                            if let matchingItem = walletItems.first(where: { $0.walletItemID == paymentDetail.walletItemId }) {
-                                self.selectedWalletItem.value = matchingItem
-                            }
-                        }
-                    } else {
+                    if self.paymentId.value == nil { // If not modifiying payment
                         self.computeDefaultPaymentDate()
                         if self.accountDetail.value.isCashOnly {
                             if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
@@ -283,21 +251,6 @@ class PaymentViewModel {
 
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
 
-//    private(set) lazy var shouldShowNextButton: Driver<Bool> =
-//        Driver.combineLatest(self.paymentId.asDriver(),
-//                             self.allowEdits.asDriver())
-//        {
-//            if $0 != nil {
-//                return $1
-//            }
-//            return true
-//        }
-    
-    private(set) lazy var shouldShowNextButton: Driver<Bool> = self.paymentId.asDriver()
-        .map { _ in
-            return true
-        }
-
     private(set) lazy var shouldShowContent: Driver<Bool> =
         Driver.combineLatest(self.isFetching.asDriver(),
                              self.isError.asDriver())
@@ -337,7 +290,9 @@ class PaymentViewModel {
             }
         }
 
-    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = self.hasWalletItems
+    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = Driver
+        .combineLatest(hasWalletItems, paymentId.asDriver())
+        { $0 || $1 != nil }
 
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         return Driver.combineLatest(selectedWalletItem.asDriver(),
@@ -554,10 +509,12 @@ class PaymentViewModel {
     }
 
     private(set) lazy var shouldShowAddBankAccount: Driver<Bool> = Driver
-        .combineLatest(isCashOnlyUser, hasWalletItems)
-        { !$0 && !$1 }
+        .combineLatest(isCashOnlyUser, hasWalletItems, paymentId.asDriver())
+        { !$0 && !$1 && $2 == nil }
 
-    private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = self.hasWalletItems
+    private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = Driver
+        .combineLatest(hasWalletItems, paymentId.asDriver())
+        { !$0 && $1 == nil }
 
     private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
         .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)

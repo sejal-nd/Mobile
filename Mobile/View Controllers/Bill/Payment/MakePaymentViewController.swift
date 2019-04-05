@@ -29,6 +29,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
     @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
+    
+    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
     @IBOutlet weak var fixedPaymentAccountView: UIView!
     @IBOutlet weak var fixedPaymentAccountImageView: UIImageView!
     @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
@@ -45,6 +47,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
+    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
     @IBOutlet weak var fixedPaymentAmountView: UIView!
     @IBOutlet weak var fixedPaymentAmountTextLabel: UILabel!
     @IBOutlet weak var fixedPaymentAmountValueLabel: UILabel!
@@ -113,11 +116,6 @@ class MakePaymentViewController: UIViewController {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
         viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.shouldShowNextButton.distinctUntilChanged()
-            .filter(!)
-            .drive(onNext: { [weak self] _ in
-                self?.navigationItem.rightBarButtonItem = nil
-            }).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -267,15 +265,22 @@ class MakePaymentViewController: UIViewController {
         
         // Payment Method
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
-//        viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
-//        viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
+        // --- TODO: Cleanup ---
+        //viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
+        //viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
+        paymentAccountButton.isHidden = false
+        fixedPaymentAccountView.isHidden = true
+        // ---------------------
         viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Amount Text Field
         viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
         
         // Fixed Payment Amount - if allowEdits is false
-//        viewModel.allowEdits.asDriver().drive(fixedPaymentAmountView.rx.isHidden).disposed(by: disposeBag)
+        // --- TODO: Cleanup ---
+        //viewModel.allowEdits.asDriver().drive(fixedPaymentAmountView.rx.isHidden).disposed(by: disposeBag)
+        fixedPaymentAmountView.isHidden = true
+        // ---------------------
         
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
@@ -304,8 +309,7 @@ class MakePaymentViewController: UIViewController {
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
         
-        if Environment.shared.opco != .bge && billingHistoryItem != nil {
-            // ePay R1 ComEd/PECO modify tweaks
+        if billingHistoryItem != nil {
             amountDueView.isHidden = true
             dueDateView.isHidden = true
         }
