@@ -161,16 +161,16 @@ func paymentMethodTypeForPaymentusString(_ paymentusString: String) -> PaymentMe
     }
 }
 
-/* MCS sends something like "************1111", but we do the transform so that
- * maskedWalletItemAccountNumber is just a 4 character string */
+/* MCS sends "*****0113-******4485" for bank accounts
+ * (routingNum-accountNum) and "************1111" for cards.
+ * We've also seen a bank account like "*****0113-***4" when
+ * their account number is only 4 digits long. This just grabs
+ * the last 4 characters of whatever we get */
 func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
     }
-    let last4 = string.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        .joined()
-        .suffix(4)
-    return String(last4)
+    return String(string.suffix(4))
 }
 
 struct WalletItem: Mappable, Equatable, Hashable {
