@@ -1261,7 +1261,7 @@
         "CustomerInfo": {},
         "SERInfo": {}
     },
-    "bgePrepaidEnrolled": {
+    "bgePrepaidActive": {
         "accountNumber": "1234567890",
         "premiseNumber": "1",
         "BillingInfo": {
@@ -1272,7 +1272,7 @@
         },
         "CustomerInfo": {},
         "SERInfo": {},
-        "prepaidEnrollmentStatus": "enrolled"
+        "prepaidEnrollmentStatus": "active"
     },
     "bgePrepaidPending": {
         "accountNumber": "1234567890",

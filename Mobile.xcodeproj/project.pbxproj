@@ -971,6 +971,18 @@
 		B039246B21E4F433006D83B0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		B039246C21E4F434006D83B0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		B039246D21E4F435006D83B0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		B039DB71225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */; };
+		B039DB72225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */; };
+		B039DB73225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */; };
+		B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */; };
+		B039DB76225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */; };
+		B039DB77225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */; };
+		B039DB79225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
+		B039DB7A225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
+		B039DB7B225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
+		B039DB7C225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
+		B039DB7D225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
+		B039DB7E225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
 		B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
@@ -2850,6 +2862,9 @@
 		B01FF0AE221DFC77008CA222 /* autopay_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = autopay_info.json; sourceTree = "<group>"; };
 		B0336FE521751FB700751430 /* MCSAppointmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSAppointmentService.swift; sourceTree = "<group>"; };
 		B0336FE921762FB400751430 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
+		B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePrepaidCardView.swift; sourceTree = "<group>"; };
+		B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePrepaidCardView.xib; sourceTree = "<group>"; };
+		B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePrepaidCardViewModel.swift; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
 		B04DDF5A21FA800C00594ACF /* Date+Now.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Now.swift"; sourceTree = "<group>"; };
 		B04DDF7421FFB0A700594ACF /* MockUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
@@ -3972,6 +3987,8 @@
 				B0726938212757AA009B2BFF /* HomeUpdateView.xib */,
 				224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */,
 				224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */,
+				B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */,
+				B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */,
 			);
 			path = "Home Cards";
 			sourceTree = "<group>";
@@ -3986,6 +4003,7 @@
 				9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */,
 				35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */,
 				224EFF1F216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift */,
+				B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -5728,6 +5746,7 @@
 				2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				826DCCFE1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
+				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
@@ -5879,6 +5898,7 @@
 				385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
+				B039DB77225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				E841F3A11F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736471E6742A6003B9369 /* MCSConfig.plist in Resources */,
@@ -6030,6 +6050,7 @@
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
 				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
 				B0DB275B215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
+				B039DB76225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				2F3FA63C1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				826DCCFF1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
@@ -7294,6 +7315,7 @@
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
+				B039DB79225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF55982170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
@@ -7522,6 +7544,7 @@
 				B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
+				B039DB71225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
 				6A4FD45A4A53BE785EDA8FF4 /* TutorialModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7541,6 +7564,7 @@
 				82AC2A201FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
 				54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */,
 				824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				B039DB73225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
 				E87C41401FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				B06B40FB20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
 				820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
@@ -7683,6 +7707,7 @@
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				B05E9D15217F688A0003FAB8 /* Application.swift in Sources */,
 				B0B083B8216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
+				B039DB7B225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				54AE06B21ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E881B1551F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151F1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
@@ -8017,6 +8042,7 @@
 				22EF55992170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */,
+				B039DB7A225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				9C72424D21E5061900E5946B /* GovWeatherService.swift in Sources */,
 				B0B0839B216F970800B1C632 /* Appointment.swift in Sources */,
@@ -8245,6 +8271,7 @@
 				B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
+				B039DB72225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
 				6A4FDC6FCEC722F72EA840D3 /* TutorialModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8358,6 +8385,7 @@
 				E840CB391F82D18500357780 /* AutoPayViewModel.swift in Sources */,
 				E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				E83F02731FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
+				B039DB7C225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				E895E9B21EBB84B7003B38A1 /* LoginViewModel.swift in Sources */,
 				B094A35020D9442400E81303 /* HomeCard.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
@@ -8592,6 +8620,7 @@
 				E8F62B81200924410077B3DA /* Environment.swift in Sources */,
 				E8F62B82200924410077B3DA /* AutoPayViewModel.swift in Sources */,
 				E8F62B83200924410077B3DA /* AccountsStore.swift in Sources */,
+				B039DB7D225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				E8F62B86200924410077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62B88200924410077B3DA /* LoginViewModel.swift in Sources */,
 				B094A35120D9442400E81303 /* HomeCard.swift in Sources */,
@@ -8780,6 +8809,7 @@
 				E8F62C36200924570077B3DA /* Environment.swift in Sources */,
 				E8F62C37200924570077B3DA /* AutoPayViewModel.swift in Sources */,
 				E8F62C38200924570077B3DA /* AccountsStore.swift in Sources */,
+				B039DB7E225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				E8F62C3B200924570077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62C3D200924570077B3DA /* LoginViewModel.swift in Sources */,
 				B094A35220D9442400E81303 /* HomeCard.swift in Sources */,

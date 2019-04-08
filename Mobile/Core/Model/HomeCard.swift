@@ -9,7 +9,7 @@
 import RxSwift
 
 enum HomeCard: Int {
-    case bill, usage, template, projectedBill, outageStatus, peakRewards, newBusiness, nothing
+    case bill, usage, template, projectedBill, outageStatus, nothing
     
     static let allCards: [HomeCard] = {
         return [.bill, .usage, .template, .outageStatus, .projectedBill]
@@ -34,10 +34,6 @@ enum HomeCard: Int {
             return NSLocalizedString("Projected Bill", comment: "")
         case .outageStatus:
             return NSLocalizedString("Outage Status", comment: "")
-        case .peakRewards:
-            return NSLocalizedString("PeakRewards", comment: "")
-        case .newBusiness:
-            return NSLocalizedString("New Business", comment: "")
         case .nothing:
             return ""
         }
@@ -55,10 +51,6 @@ enum HomeCard: Int {
             return "projectedBill"
         case .outageStatus:
             return "outageStatus"
-        case .peakRewards:
-            return "peakRewards"
-        case .newBusiness:
-            return "newBusiness"
         case .nothing:
             return "nothing"
         }
