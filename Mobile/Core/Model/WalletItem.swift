@@ -131,7 +131,7 @@ enum PaymentMethodType {
 
 // The postMessage event of the Paymentus iFrame sends "pmDetails.Type" as one of these
 // Also, these are returned as the "payment_type" from Billing History
-enum PaymentusPaymentMethodType: String {
+fileprivate enum PaymentusPaymentMethodType: String {
     case checking = "CHQ"
     case saving = "SAV"
     case visa = "VISA"
