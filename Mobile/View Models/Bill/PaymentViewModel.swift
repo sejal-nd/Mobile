@@ -34,60 +34,33 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
 
-    let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
-    let allowEdits = Variable(true)
-    let allowCancel = Variable(false)
 
     var confirmationNumber: String?
 
     init(walletService: WalletService,
          paymentService: PaymentService,
          accountDetail: AccountDetail,
-         paymentDetail: PaymentDetail?,
          billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
-        self.paymentDetail.value = paymentDetail
         
-        if let billingHistoryItem = billingHistoryItem {
-            self.paymentId.value = billingHistoryItem.paymentId
-            self.allowEdits.value = billingHistoryItem.flagAllowEdits
-            self.allowCancel.value = billingHistoryItem.flagAllowDeletes
+        if let billingHistoryItem = billingHistoryItem { // Editing a payment
+            paymentId.value = billingHistoryItem.paymentId
+            selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,  paymentMethodType: billingHistoryItem.paymentMethodType)
         }
 
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentDate = Variable(.now) // May be updated later...see computeDefaultPaymentDate()
+        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? 0)
+        paymentDate = Variable(billingHistoryItem?.date ?? .now) // May be updated later...see computeDefaultPaymentDate()
     }
 
     // MARK: - Service Calls
 
-    func fetchWalletItems() -> Observable<Void> {
-        return walletService.fetchWalletItems()
-            .map { walletItems in
-                self.walletItems.value = walletItems
-            }
-    }
-
-    func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
-        return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber,
-                                                  paymentId: paymentId)
-            .map { paymentDetail in
-                self.paymentDetail.value = paymentDetail
-            }
-    }
-
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
-        var observables = [fetchWalletItems()]
-
-        if let paymentId = paymentId.value, paymentDetail.value == nil {
-            observables.append(fetchPaymentDetails(paymentId: paymentId))
-        }
-
         isFetching.value = true
-        Observable.zip(observables)
+        walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -97,15 +70,7 @@ class PaymentViewModel {
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
-                    if self.paymentId.value != nil { // Modifiying Payment
-                        if let paymentDetail = self.paymentDetail.value {
-                            self.paymentAmount.value = paymentDetail.paymentAmount
-                            self.paymentDate.value = paymentDetail.paymentDate!
-                            if let matchingItem = walletItems.first(where: { $0.walletItemID == paymentDetail.walletItemId }) {
-                                self.selectedWalletItem.value = matchingItem
-                            }
-                        }
-                    } else {
+                    if self.paymentId.value == nil { // If not modifiying payment
                         self.computeDefaultPaymentDate()
                         if self.accountDetail.value.isCashOnly {
                             if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
@@ -163,8 +128,7 @@ class PaymentViewModel {
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
-                                     paymentId: paymentId.value!,
-                                     paymentDetail: paymentDetail.value!)
+                                     paymentId: paymentId.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -220,11 +184,7 @@ class PaymentViewModel {
         }
     }
     
-    var canEditPaymentDate: Bool {
-        if !allowEdits.value { // I think this will be going away with the edit payment task
-            return false
-        }
-        
+    var canEditPaymentDate: Bool {        
         let acctDetail = accountDetail.value
         let billingInfo = acctDetail.billingInfo
         
@@ -287,16 +247,6 @@ class PaymentViewModel {
 
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
 
-    private(set) lazy var shouldShowNextButton: Driver<Bool> =
-        Driver.combineLatest(self.paymentId.asDriver(),
-                             self.allowEdits.asDriver())
-        {
-            if $0 != nil {
-                return $1
-            }
-            return true
-        }
-
     private(set) lazy var shouldShowContent: Driver<Bool> =
         Driver.combineLatest(self.isFetching.asDriver(),
                              self.isError.asDriver())
@@ -336,10 +286,9 @@ class PaymentViewModel {
             }
         }
 
-    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> =
-        Driver.combineLatest(self.hasWalletItems,
-                             self.allowEdits.asDriver())
-        { $0 && $1 }
+    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = Driver
+        .combineLatest(hasWalletItems, paymentId.asDriver())
+        { $0 || $1 != nil }
 
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         return Driver.combineLatest(selectedWalletItem.asDriver(),
@@ -500,9 +449,9 @@ class PaymentViewModel {
                 return String.localizedStringWithFormat("Your payment includes a %@ convenience fee.", self.convenienceFee.currencyString)
             }
     }
-    
+
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
-    { $0 && $1 }
+        { $0 && $1 }
 
     private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return nil }
@@ -556,12 +505,12 @@ class PaymentViewModel {
     }
 
     private(set) lazy var shouldShowAddBankAccount: Driver<Bool> = Driver
-        .combineLatest(isCashOnlyUser, hasWalletItems, allowEdits.asDriver())
-        { !$0 && !$1 && $2 }
+        .combineLatest(isCashOnlyUser, hasWalletItems, paymentId.asDriver())
+        { !$0 && !$1 && $2 == nil }
 
     private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = Driver
-        .combineLatest(hasWalletItems, allowEdits.asDriver())
-        { !$0 && $1 }
+        .combineLatest(hasWalletItems, paymentId.asDriver())
+        { !$0 && $1 == nil }
 
     private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
         .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)
@@ -590,14 +539,9 @@ class PaymentViewModel {
         return pastDueAmount > 0
     }
 
-    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
-        .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
-        {
-            if $0 != nil {
-                return $1
-            }
-            return false
-        }
+    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = paymentId.asDriver().map {
+        return $0 != nil
+    }
 
     // MARK: - Review Payment Drivers
 

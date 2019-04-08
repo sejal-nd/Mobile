@@ -12,45 +12,41 @@ import RxCocoa
 import RxSwiftExt
 
 class BillingHistoryDetailsViewController: UIViewController {
-
+    
+    // Passed from BillingHistoryViewController/MoreBillingHistoryViewController
     var billingHistoryItem: BillingHistoryItem!
-    var accountDetail: AccountDetail!
+
+    var viewModel: BillingHistoryDetailsViewModel!
     
-    @IBOutlet weak var paymentAccountView: UIView!
-    @IBOutlet weak var paymentAccountLabel: UILabel!
-    @IBOutlet weak var paymentAccountImageView: UIImageView!
-    @IBOutlet weak var paymentAccountDetailsLabel: UILabel!
-    
-    @IBOutlet weak var paymentAccountSeparatorLine: UIView!
-    
-    @IBOutlet weak var paymentDateView: UIView!
-    @IBOutlet weak var paymentDateLabel: UILabel!
-    @IBOutlet weak var paymentDateDetailsLabel: UILabel!
-    
-    @IBOutlet weak var paymentDateSeparatorLine: UIView!
+    @IBOutlet weak var paymentMethodView: UIView!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
+    @IBOutlet weak var paymentMethodImageView: UIImageView!
+    @IBOutlet weak var paymentMethodDetailsLabel: UILabel!
+    @IBOutlet weak var paymentMethodSeparatorLine: UIView!
     
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var paymentAmountDetailsLabel: UILabel!
-    
     @IBOutlet weak var paymentAmountSeparatorLine: UIView!
     
     @IBOutlet weak var convenienceFeeView: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     @IBOutlet weak var convenienceFeeDetailsLabel: UILabel!
-    
     @IBOutlet weak var convenienceFeeSeparatorLine: UIView!
     
     @IBOutlet weak var totalAmountPaidView: UIView!
     @IBOutlet weak var totalAmountPaidLabel: UILabel!
     @IBOutlet weak var totalAmountPaidDetailsLabel: UILabel!
-    
     @IBOutlet weak var totalAmountPaidSeparatorLine: UIView!
+    
+    @IBOutlet weak var paymentDateView: UIView!
+    @IBOutlet weak var paymentDateLabel: UILabel!
+    @IBOutlet weak var paymentDateDetailsLabel: UILabel!
+    @IBOutlet weak var paymentDateSeparatorLine: UIView!
     
     @IBOutlet weak var paymentStatusView: UIView!
     @IBOutlet weak var paymentStatusLabel: UILabel!
     @IBOutlet weak var paymentStatusDetailsLabel: UILabel!
-    
     @IBOutlet weak var paymentStatusSeparatorLine: UIView!
     
     @IBOutlet weak var confirmationNumberView: UIView!
@@ -58,7 +54,6 @@ class BillingHistoryDetailsViewController: UIViewController {
     @IBOutlet weak var confirmationNumberDetailTextView: UITextView!
     @IBOutlet weak var confirmationNumberSeparatorView: UIView!
     
-    var viewModel: BillingHistoryDetailsViewModel!
     let bag = DisposeBag()
     
     override func viewDidLoad() {
@@ -66,7 +61,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         title = NSLocalizedString("Payment Details", comment: "")
         
-        viewModel = BillingHistoryDetailsViewModel(accountDetail: accountDetail, billingHistoryItem: billingHistoryItem)
+        viewModel = BillingHistoryDetailsViewModel(billingHistoryItem: billingHistoryItem)
         
         styleViews()
         configureState()
@@ -79,46 +74,40 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func styleViews() {
-        paymentAccountLabel.textColor = .deepGray
-        paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentAccountDetailsLabel.textColor = .blackText
-        paymentAccountDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
-        
-        paymentAccountSeparatorLine.backgroundColor = .softGray
-        
-        paymentDateLabel.textColor = .deepGray
-        paymentDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentDateDetailsLabel.textColor = .blackText
-        paymentDateDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
-        
-        paymentDateSeparatorLine.backgroundColor = .softGray
+        paymentMethodLabel.textColor = .deepGray
+        paymentMethodLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentMethodDetailsLabel.textColor = .blackText
+        paymentMethodDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
+        paymentMethodSeparatorLine.backgroundColor = .softGray
         
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentAmountDetailsLabel.textColor = .successGreenText
         paymentAmountDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
-        
         paymentAmountSeparatorLine.backgroundColor = .softGray
         
         convenienceFeeLabel.textColor = .deepGray
         convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         convenienceFeeDetailsLabel.textColor = .successGreenText
         convenienceFeeDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
-        
         convenienceFeeSeparatorLine.backgroundColor = .softGray
         
         totalAmountPaidLabel.textColor = .deepGray
         totalAmountPaidLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         totalAmountPaidDetailsLabel.textColor = .successGreenText
         totalAmountPaidDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
-        
         totalAmountPaidSeparatorLine.backgroundColor = .softGray
+        
+        paymentDateLabel.textColor = .deepGray
+        paymentDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentDateDetailsLabel.textColor = .blackText
+        paymentDateDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
+        paymentDateSeparatorLine.backgroundColor = .softGray
         
         paymentStatusLabel.textColor = .deepGray
         paymentStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentStatusDetailsLabel.textColor = .blackText
         paymentStatusDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
-
         paymentStatusSeparatorLine.backgroundColor = .softGray
         
         confirmationNumberLabel.textColor = .deepGray
@@ -128,13 +117,14 @@ class BillingHistoryDetailsViewController: UIViewController {
     }
     
     func configureState() {
-        if let paymentMethod = viewModel.paymentType {
-            paymentAccountView.isHidden = false
-            paymentAccountDetailsLabel.text = paymentMethod
-            paymentAccountImageView.image = viewModel.paymentAccountImage
+        if let paymentMethodImage = viewModel.paymentMethodImage,
+            let paymentMethodStr = viewModel.paymentMethodString {
+            paymentMethodView.isHidden = false
+            paymentMethodImageView.image = paymentMethodImage
+            paymentMethodDetailsLabel.text = paymentMethodStr
         } else {
-            paymentAccountView.isHidden = true
-            paymentAccountSeparatorLine.isHidden = true
+            paymentMethodView.isHidden = true
+            paymentMethodSeparatorLine.isHidden = true
         }
         
         if let paymentAmount = viewModel.paymentAmount {

@@ -129,16 +129,48 @@ enum PaymentMethodType {
     }
 }
 
-/* MCS sends something like "************1111", but we do the transform so that
- * maskedWalletItemAccountNumber is just a 4 character string */
-private func extractLast4(object: Any?) throws -> String? {
+// The postMessage event of the Paymentus iFrame sends "pmDetails.Type" as one of these
+// Also, these are returned as the "payment_type" from Billing History
+enum PaymentusPaymentMethodType: String {
+    case checking = "CHQ"
+    case saving = "SAV"
+    case visa = "VISA"
+    case mastercard = "MC"
+    case amex = "AMEX"
+    case discover = "DISC"
+    case visaDebit = "VISA_DEBIT"
+    case mastercardDebit = "MC_DEBIT"
+}
+
+func paymentMethodTypeForPaymentusString(_ paymentusString: String) -> PaymentMethodType {
+    if let type = PaymentusPaymentMethodType(rawValue: paymentusString) {
+        switch type {
+        case .checking, .saving:
+            return .ach
+        case .visa, .visaDebit:
+            return .visa
+        case .mastercard, .mastercardDebit:
+            return .mastercard
+        case .amex:
+            return .amex
+        case .discover:
+            return .discover
+        }
+    } else {
+        return .unknown(paymentusString)
+    }
+}
+
+/* MCS sends "*****0113-******4485" for bank accounts
+ * (routingNum-accountNum) and "************1111" for cards.
+ * We've also seen a bank account like "*****0113-***4" when
+ * their account number is only 4 digits long. This just grabs
+ * the last 4 characters of whatever we get */
+func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
     }
-    let last4 = string.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        .joined()
-        .suffix(4)
-    return String(last4)
+    return String(string.suffix(4))
 }
 
 struct WalletItem: Mappable, Equatable, Hashable {
@@ -201,7 +233,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     init(walletItemID: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
-         paymentMethodType: PaymentMethodType = .ach,
+         paymentMethodType: PaymentMethodType? = .ach,
          bankName: String? = "M&T Bank",
          expirationDate: String? = "01/2100",
          isDefault: Bool = false,
@@ -213,7 +245,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
         map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
-        map["paymentMethodType"] = paymentMethodType.rawString
+        map["paymentMethodType"] = paymentMethodType!.rawString
         map["bankName"] = bankName
         map["expirationDate"] = expirationDate
         map["isDefault"] = isDefault
