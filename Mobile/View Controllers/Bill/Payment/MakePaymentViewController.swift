@@ -63,6 +63,14 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
+    @IBOutlet weak var editPaymentDetailView: UIView!
+    @IBOutlet weak var paymentStatusView: UIView!
+    @IBOutlet weak var paymentStatusTextLabel: UILabel!
+    @IBOutlet weak var paymentStatusValueLabel: UILabel!
+    @IBOutlet weak var confirmationNumberView: UIView!
+    @IBOutlet weak var confirmationNumberTextLabel: UILabel!
+    @IBOutlet weak var confirmationNumberValueLabel: UILabel!
+    
     @IBOutlet weak var addPaymentMethodView: UIView!
     @IBOutlet weak var addPaymentMethodLabel: UILabel!
     @IBOutlet weak var addBankAccountButton: ButtonControl!
@@ -311,6 +319,8 @@ class MakePaymentViewController: UIViewController {
         if billingHistoryItem != nil {
             amountDueView.isHidden = true
             dueDateView.isHidden = true
+        } else {
+            editPaymentDetailView.isHidden = true
         }
     }
     
