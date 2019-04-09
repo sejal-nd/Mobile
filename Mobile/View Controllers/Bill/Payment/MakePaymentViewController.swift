@@ -483,8 +483,6 @@ class MakePaymentViewController: UIViewController {
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
         
-
-        
         addBankAccountButton.rx.touchUpInside
             .do(onNext: { Analytics.log(event: .addBankNewWallet) })
             .subscribe(onNext: { [weak self] _ in

@@ -51,7 +51,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     @IBOutlet weak var confirmationNumberView: UIView!
     @IBOutlet weak var confirmationNumberLabel: UILabel!
-    @IBOutlet weak var confirmationNumberDetailTextView: UITextView!
+    @IBOutlet weak var confirmationNumberDetailTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var confirmationNumberSeparatorView: UIView!
     
     let bag = DisposeBag()
@@ -114,6 +114,7 @@ class BillingHistoryDetailsViewController: UIViewController {
         confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberDetailTextView.textColor = .blackText
         confirmationNumberDetailTextView.font = SystemFont.medium.of(textStyle: .headline)
+        confirmationNumberDetailTextView.dataDetectorTypes.remove(.all)
     }
     
     func configureState() {
