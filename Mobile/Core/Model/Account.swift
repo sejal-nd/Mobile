@@ -104,8 +104,17 @@ struct AccountDetail: Mappable {
     let peakRewards: String?
     let zipCode: String?
     
+    // Only 3 real states to think about
     enum PrepaidStatus: String {
-        case active, canceled, expired, inactive, invited, pending
+        // Not Enrolled
+        case inactive = "INACTIVE"
+        case invited = "INVITED"
+        case canceled = "CANCELED"
+        case expired = "EXPIRED"
+        // Pending
+        case pending = "PENDING"
+        // Enrolled
+        case active = "ACTIVE"
     }
     
     let prepaidStatus: PrepaidStatus

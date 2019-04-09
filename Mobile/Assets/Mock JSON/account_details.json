@@ -1272,7 +1272,7 @@
         },
         "CustomerInfo": {},
         "SERInfo": {},
-        "prepaidEnrollmentStatus": "active"
+        "prepaidEnrollmentStatus": "ACTIVE"
     },
     "bgePrepaidPending": {
         "accountNumber": "1234567890",
@@ -1285,7 +1285,7 @@
         },
         "CustomerInfo": {},
         "SERInfo": {},
-        "prepaidEnrollmentStatus": "pending",
+        "prepaidEnrollmentStatus": "PENDING",
         "prepaidStepsToGo": 2,
         "prepaidCutoffDate": "2019-01-04T00:00:00"
     },
