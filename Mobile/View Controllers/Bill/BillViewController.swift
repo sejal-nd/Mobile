@@ -20,7 +20,11 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
 	@IBOutlet weak var bottomStackContainerView: UIView!
-
+    
+    @IBOutlet weak var prepaidBannerButton: ButtonControl!
+    @IBOutlet weak var prepaidHeaderLabel: UILabel!
+    @IBOutlet weak var prepaidDetailLabel: UILabel!
+    
     @IBOutlet weak var alertBannerView: BillAlertBannerView!
     
     @IBOutlet weak var totalAmountView: UIView!
@@ -180,6 +184,10 @@ class BillViewController: AccountPickerViewController {
 
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
+        
+        prepaidBannerButton.layer.cornerRadius = 10
+        prepaidHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        prepaidDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         
         alertBannerView.layer.cornerRadius = 10
 
@@ -347,6 +355,8 @@ class BillViewController: AccountPickerViewController {
 	}
 
 	func bindViewHiding() {
+        viewModel.showPrepaidPending.not().drive(prepaidBannerButton.rx.isHidden).disposed(by: bag)
+        
         viewModel.showAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
         viewModel.showAlertBanner.filter { $0 }.map(to: ())
             .drive(alertBannerView.rx.resetAnimation)
@@ -422,6 +432,12 @@ class BillViewController: AccountPickerViewController {
         noNetworkConnectionView.reload
             .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
+            .disposed(by: bag)
+        
+        prepaidBannerButton.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] in
+                UIApplication.shared.openUrlIfCan(self?.viewModel.prepaidUrl)
+            })
             .disposed(by: bag)
         
         questionMarkButton.rx.tap.asDriver()

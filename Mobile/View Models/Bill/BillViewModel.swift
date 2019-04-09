@@ -538,8 +538,25 @@ class BillViewModel {
         }
     }
     
+    // MARK: - Prepaid
+    
+    private(set) lazy var showPrepaidPending = Driver
+        .combineLatest(currentAccountDetail, switchAccountsTracker.asDriver())
+        { $0.prepaidStatus == .pending && !$1 }
+        .startWith(false)
+        .distinctUntilChanged()
+    
+    private(set) lazy var showPrepaidActive = Driver
+        .combineLatest(currentAccountDetail, switchAccountsTracker.asDriver())
+        { $0.prepaidStatus == .active && !$1 }
+        .startWith(false)
+        .distinctUntilChanged()
+    
+    var prepaidUrl: URL {
+        return URL(string: "https://bge.com/MyAccount")!
+    }
 	
-	// MARK: - Conveniece functions
+	// MARK: - Convenience functions
 	
     private static func isEnrolledText(topText: String, bottomText: String) -> NSAttributedString {
         let mutableText = NSMutableAttributedString(string: topText + "\n" + bottomText)
