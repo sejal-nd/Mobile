@@ -63,20 +63,18 @@ enum BillingHistoryStatus {
 
 struct BillingHistoryItem: Mappable {
     let amountPaid: Double?
-    let chargeAmount: Double?
-    let totalAmountDue: Double?
     let date: Date
     let description: String?
+    let maskedWalletItemAccountNumber: String?
+    let paymentId: String?
     let statusString: String?
     let status: BillingHistoryStatus
+    let totalAmountDue: Double? // Only sent when isBillPDF = true
+    let paymentMethodType: PaymentMethodType?
     let confirmationNumber: String?
-    let paymentType: String?
+    let convenienceFee: Double?
+    let totalAmount: Double?
     let isBillPDF: Bool
-    let paymentMethod: String?
-    let paymentId: String?
-    let walletItemId: String?
-    let flagAllowDeletes: Bool // BGE only - ComEd/PECO default to true
-    let flagAllowEdits: Bool // BGE only - ComEd/PECO default to true
     
     var isFuture: Bool {
         switch status {
@@ -88,37 +86,34 @@ struct BillingHistoryItem: Mappable {
             if isBillPDF { // EM-2638: Bills should always be in the past
                 return false
             }
-            
             return date >= Calendar.opCo.startOfDay(for: .now)
         }
     }
 
     init(map: Mapper) throws {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
-        chargeAmount = map.optionalFrom("charge_amount", transformation: dollarAmount)
-        totalAmountDue = map.optionalFrom("total_amount_due", transformation: dollarAmount)
         try date = map.from("date", transformation: DateParser().extractDate)
         description = map.optionalFrom("description")
+        confirmationNumber = map.optionalFrom("confirmation_number")
+        maskedWalletItemAccountNumber = map.optionalFrom("masked_wallet_item_account_number", transformation: extractLast4)
+        paymentId = map.optionalFrom("payment_id")
+        totalAmountDue = map.optionalFrom("total_amount_due")
+        convenienceFee = map.optionalFrom("convenience_fee")
+        totalAmount = map.optionalFrom("total_amount")
 
         statusString = map.optionalFrom("status")
         status = BillingHistoryStatus(identifier: statusString)
         
-        confirmationNumber = map.optionalFrom("confirmation_number")
-        paymentType = map.optionalFrom("payment_type")
-        paymentMethod = map.optionalFrom("payment_method")
+        if let paymentusPaymentMethodType: String = map.optionalFrom("payment_type") {
+            paymentMethodType = paymentMethodTypeForPaymentusString(paymentusPaymentMethodType)
+        } else {
+            paymentMethodType = nil
+        }
+
         if let type: String = map.optionalFrom("type") {
             isBillPDF = type == "billing"
         } else {
             isBillPDF = false
-        }
-        paymentId = map.optionalFrom("payment_id")
-        walletItemId = map.optionalFrom("wallet_item_id")
-        if Environment.shared.opco == .bge {
-            flagAllowDeletes = map.optionalFrom("flag_allow_deletes") ?? true
-            flagAllowEdits = map.optionalFrom("flag_allow_edits") ?? true
-        } else {
-            flagAllowDeletes = true
-            flagAllowEdits = false
         }
     }
 }
