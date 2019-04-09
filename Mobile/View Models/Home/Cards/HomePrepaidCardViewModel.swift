@@ -48,10 +48,6 @@ final class HomePrepaidCardViewModel {
     }
     
     var buttonUrl: URL {
-        if isActive {
-            return URL(string: "https://google.com")!
-        } else {
-            return URL(string: "https://mindgrub.com")!
-        }
+        return URL(string: "https://bge.com/MyAccount")!
     }
 }
