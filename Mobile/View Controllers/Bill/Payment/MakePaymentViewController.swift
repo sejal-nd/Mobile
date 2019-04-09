@@ -444,26 +444,14 @@ class MakePaymentViewController: UIViewController {
             if let selectedItem = self.viewModel.selectedWalletItem.value {
                 miniWalletVC.viewModel.selectedItem.value = selectedItem
                 if selectedItem.isTemporary {
-                     miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                    miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                } else if selectedItem.isEditingItem {
+                    miniWalletVC.viewModel.editingItem.value = selectedItem
                 }
             }
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.popToViewController = self
             miniWalletVC.delegate = self
-            if self.billingHistoryItem != nil, let walletItem = self.viewModel.selectedWalletItem.value {
-                if Environment.shared.opco == .bge {
-                    if walletItem.bankOrCard == .bank {
-                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
-                        miniWalletVC.creditCardsDisabled = true
-                    } else {
-                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a card payment, you may only select another card as your method of payment.", comment: "")
-                        miniWalletVC.bankAccountsDisabled = true
-                    }
-                } else {
-                    miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
-                    miniWalletVC.creditCardsDisabled = true
-                }
-            }
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).disposed(by: disposeBag)
         

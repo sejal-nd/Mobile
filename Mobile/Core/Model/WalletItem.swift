@@ -209,6 +209,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     }
     
     var isTemporary: Bool // Indicates payment method NOT saved to wallet
+    var isEditingItem: Bool // In the edit workflow, this is the original payment method
     
     init(map: Mapper) throws {
         walletItemID = map.optionalFrom("walletItemID")
@@ -227,6 +228,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         isDefault = map.optionalFrom("isDefault") ?? false
         
         isTemporary = false
+        isEditingItem = false
     }
     
     // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
@@ -238,7 +240,8 @@ struct WalletItem: Mappable, Equatable, Hashable {
          expirationDate: String? = "01/2100",
          isDefault: Bool = false,
          bankOrCard: BankOrCard = .bank,
-         isTemporary: Bool = false) {
+         isTemporary: Bool = false,
+         isEditingItem: Bool = false) {
         
         var map = [String: Any]()
         map["walletItemID"] = walletItemID
@@ -252,6 +255,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
         
         self = WalletItem.from(map as NSDictionary)!
         self.isTemporary = isTemporary
+        self.isEditingItem = isEditingItem
     }
     
     // Equatable
