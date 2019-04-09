@@ -272,22 +272,10 @@ class MakePaymentViewController: UIViewController {
         
         // Payment Method
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
-        // --- TODO: Cleanup ---
-        //viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
-        //viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
-        paymentAccountButton.isHidden = false
-        fixedPaymentAccountView.isHidden = true
-        // ---------------------
         viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Amount Text Field
         viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
-        
-        // Fixed Payment Amount - if allowEdits is false
-        // --- TODO: Cleanup ---
-        //viewModel.allowEdits.asDriver().drive(fixedPaymentAmountView.rx.isHidden).disposed(by: disposeBag)
-        fixedPaymentAmountView.isHidden = true
-        // ---------------------
         
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
@@ -316,12 +304,17 @@ class MakePaymentViewController: UIViewController {
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
         
+        // Edit Payment Stuff
         if billingHistoryItem != nil {
             amountDueView.isHidden = true
             dueDateView.isHidden = true
         } else {
             editPaymentDetailView.isHidden = true
         }
+        
+        // Currently not using. Keeping around in case payment method/amount become not editable in some cases
+        fixedPaymentAccountView.isHidden = true
+        fixedPaymentAmountView.isHidden = true
     }
     
     func bindViewContent() {
@@ -426,6 +419,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.label.rx.text).disposed(by: disposeBag)
         viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        
+        // Edit Payment Detail View
+        paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
+        confirmationNumberValueLabel.text = billingHistoryItem?.confirmationNumber ?? "--" // TODO - confirmation number is always null currently
         
         // Wallet Footer Label
         walletFooterLabel.text = viewModel.walletFooterLabelText
