@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gRa-nh-wfg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -60,7 +60,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="1330"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="LBl-yS-qiq">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="3311"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="3439"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="VT3-VG-S91" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -562,8 +562,31 @@
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="JSN-Jt-Sjy"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="ge6-hr-xTi" userLabel="Prepaid View">
+                                                <rect key="frame" x="0.0" y="1033" width="375" height="100"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9X-Hg-d2T" customClass="PrepaidCardView" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="2" width="343" height="98"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="boN-Gm-ikG"/>
+                                                            <constraint firstAttribute="width" priority="999" constant="460" id="tZZ-C7-yV3"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="m9X-Hg-d2T" secondAttribute="trailing" priority="999" constant="16" id="2Xw-hH-4rc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="m9X-Hg-d2T" secondAttribute="bottom" id="6tG-pg-ca2"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m9X-Hg-d2T" secondAttribute="trailing" constant="16" id="BTw-cX-cNC"/>
+                                                    <constraint firstItem="m9X-Hg-d2T" firstAttribute="top" secondItem="ge6-hr-xTi" secondAttribute="top" constant="2" id="Gwg-6Q-1ru"/>
+                                                    <constraint firstItem="m9X-Hg-d2T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ge6-hr-xTi" secondAttribute="leading" constant="16" id="OaK-E5-Pue"/>
+                                                    <constraint firstItem="m9X-Hg-d2T" firstAttribute="centerX" secondItem="ge6-hr-xTi" secondAttribute="centerX" id="eyI-c6-mPq"/>
+                                                    <constraint firstItem="m9X-Hg-d2T" firstAttribute="leading" secondItem="ge6-hr-xTi" secondAttribute="leading" priority="999" constant="16" id="zqj-HW-XuP"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B6w-3l-gs6">
-                                                <rect key="frame" x="29" y="1033" width="317" height="1125"/>
+                                                <rect key="frame" x="29" y="1161" width="317" height="1125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo5-kv-hgY">
                                                         <rect key="frame" x="0.0" y="542" width="317" height="41"/>
@@ -582,7 +605,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-Bj-mhL">
-                                                <rect key="frame" x="0.0" y="2186" width="375" height="1125"/>
+                                                <rect key="frame" x="0.0" y="2314" width="375" height="1125"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Co4-sK-H5A">
                                                         <rect key="frame" x="0.0" y="440.5" width="375" height="244.5"/>
@@ -627,6 +650,7 @@
                                             </view>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ge6-hr-xTi" secondAttribute="trailing" id="74N-IB-cN9"/>
                                             <constraint firstItem="VT3-VG-S91" firstAttribute="leading" secondItem="LBl-yS-qiq" secondAttribute="leading" id="O5b-Ln-b9Y"/>
                                             <constraint firstAttribute="trailing" secondItem="l15-zg-OGE" secondAttribute="trailing" priority="999" constant="29" id="VyW-4d-uMr"/>
                                             <constraint firstItem="B6w-3l-gs6" firstAttribute="leading" secondItem="LBl-yS-qiq" secondAttribute="leading" priority="999" constant="29" id="fWp-8l-UUs"/>
@@ -637,6 +661,7 @@
                                             <constraint firstAttribute="trailing" secondItem="YV8-Bj-mhL" secondAttribute="trailing" priority="999" id="sFU-5f-N8g"/>
                                             <constraint firstAttribute="trailing" secondItem="VT3-VG-S91" secondAttribute="trailing" id="sJF-VG-vbO"/>
                                             <constraint firstAttribute="trailing" secondItem="N2i-cc-UM6" secondAttribute="trailing" priority="999" constant="16" id="wb6-Uj-X08"/>
+                                            <constraint firstItem="ge6-hr-xTi" firstAttribute="leading" secondItem="LBl-yS-qiq" secondAttribute="leading" id="zYi-rg-wiZ"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -712,6 +737,7 @@
                         <outlet property="noDataDateLabel" destination="VEE-ID-33l" id="h1C-ET-nk5"/>
                         <outlet property="noDataLabel" destination="CGS-fb-MRF" id="xuu-Jc-0OI"/>
                         <outlet property="noNetworkConnectionView" destination="iyt-BW-05Y" id="pAx-xB-JGw"/>
+                        <outlet property="prepaidView" destination="ge6-hr-xTi" id="rvL-Qq-nCg"/>
                         <outlet property="previousBarHeightConstraint" destination="bjl-u6-7QU" id="lAQ-xI-Ecl"/>
                         <outlet property="previousBarView" destination="dKk-5X-by1" id="rdU-4S-ymd"/>
                         <outlet property="previousBillButton" destination="1zd-LH-vJB" id="QO7-vh-J64"/>

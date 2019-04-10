@@ -158,7 +158,16 @@ class UsageViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
-        .filter { !($0.element?.isEligibleForUsageData ?? true) }
+        .filter { accountDetailEvent in
+            guard let accountDetail = accountDetailEvent.element else { return false }
+            return !accountDetail.isEligibleForUsageData &&
+                accountDetail.prepaidStatus != .active
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
+        .filter { $0.element?.prepaidStatus == .active }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
