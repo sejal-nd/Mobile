@@ -94,13 +94,16 @@ struct BillingHistoryItem: Mappable {
         amountPaid = map.optionalFrom("amount_paid", transformation: dollarAmount)
         try date = map.from("date", transformation: DateParser().extractDate)
         description = map.optionalFrom("description")
-        confirmationNumber = map.optionalFrom("confirmation_number")
         maskedWalletItemAccountNumber = map.optionalFrom("masked_wallet_item_account_number", transformation: extractLast4)
         paymentId = map.optionalFrom("payment_id")
+        
+        // Historical payments send "confirmation_number". For Paymentus, the paymentId is the confirmation number
+        confirmationNumber = map.optionalFrom("confirmation_number") ?? map.optionalFrom("payment_id")
+        
         totalAmountDue = map.optionalFrom("total_amount_due")
         convenienceFee = map.optionalFrom("convenience_fee")
         totalAmount = map.optionalFrom("total_amount")
-
+        
         statusString = map.optionalFrom("status")
         status = BillingHistoryStatus(identifier: statusString)
         
