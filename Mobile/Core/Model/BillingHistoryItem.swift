@@ -98,8 +98,14 @@ struct BillingHistoryItem: Mappable {
         paymentId = map.optionalFrom("payment_id")
         
         // Historical payments send "confirmation_number". For Paymentus, the paymentId is the confirmation number
-        confirmationNumber = map.optionalFrom("confirmation_number") ?? map.optionalFrom("payment_id")
-        
+        if let confNum: String = map.optionalFrom("confirmation_number") {
+            confirmationNumber = confNum
+        } else if let pid: String = map.optionalFrom("payment_id"), !pid.isEmpty {
+            confirmationNumber = pid
+        } else {
+            confirmationNumber = nil
+        }
+
         totalAmountDue = map.optionalFrom("total_amount_due")
         convenienceFee = map.optionalFrom("convenience_fee")
         totalAmount = map.optionalFrom("total_amount")
