@@ -71,9 +71,13 @@ class BillViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showLoadedState: Driver<Void> = dataEvents
-        .filter { $0.error == nil }
+        .filter { $0.element != nil && $0.element?.0.prepaidStatus != .active }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showPrepaidState: Driver<Void> = currentAccountDetail
+        .filter { $0.prepaidStatus == .active }
+        .map(to: ())
     
 	func fetchAccountDetail(isRefresh: Bool) {
 		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)

@@ -91,6 +91,8 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
 	@IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
 
+    @IBOutlet weak var prepaidView: UIView!
+    
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var genericErrorView: UIView!
     @IBOutlet weak var genericErrorLabel: UILabel!
@@ -262,6 +264,7 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = false
         bottomView.isHidden = false
         errorView.isHidden = true
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = false
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
@@ -283,6 +286,7 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = false
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = true
         maintenanceModeView.isHidden = true
         
@@ -297,6 +301,20 @@ class BillViewController: AccountPickerViewController {
         enableRefresh()
     }
     
+    func showPrepaidState() {
+        billLoadingIndicator.isHidden = true
+        loadingIndicatorView.isHidden = true
+        topView.isHidden = true
+        bottomView.isHidden = true
+        errorView.isHidden = true
+        prepaidView.isHidden = false
+        bottomStackContainerView.isHidden = true
+        scrollView?.isHidden = false
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
+        enableRefresh()
+    }
+    
     func showMaintenanceModeState() {
         maintenanceModeView.isHidden = false
         
@@ -308,6 +326,7 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = true
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = true
         
         enableRefresh()
@@ -321,6 +340,7 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = false
         bottomView.isHidden = false
         errorView.isHidden = true
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = true
         
         refreshControl?.endRefreshing()
@@ -344,6 +364,7 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
+        viewModel.showPrepaidState.drive(onNext: { [weak self] in self?.showPrepaidState() }).disposed(by: bag)
         viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)
         
         // Clear shortcut handling in the case of an error.
