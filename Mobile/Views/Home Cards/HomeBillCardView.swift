@@ -416,7 +416,7 @@ class HomeBillCardView: UIView {
             return UIAlertController.paymentusErrorAlertController(
                 forError: err,
                 walletItem: walletItem!,
-                customMessage: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
+                customMessageForSessionExpired: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
                 callHandler: { _ in
                     if let phone = self?.viewModel.errorPhoneNumber {
                         UIApplication.shared.openPhoneNumberIfCan(phone)
