@@ -52,14 +52,14 @@ extension UIAlertController {
             includeCallCTA = true
         case ServiceErrorCode.walletItemIdTimeout.rawValue:
             title = NSLocalizedString("Session Expired", comment: "")
-            message = String.localizedStringWithFormat("Please attempt to make your payment again.", Environment.shared.opco.displayString)
+            message = customMessage ?? NSLocalizedString("Please attempt to make your payment again.", comment: "")
         default:
             title = NSLocalizedString("Payment Error", comment: "")
             message = NSLocalizedString("Unable to process electronic payments for your account at this time. Please try again later or view other payment options.", comment: "")
         }
         
         
-        let alert = UIAlertController(title: title, message: customMessage ?? message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if includeCallCTA {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: callHandler))
