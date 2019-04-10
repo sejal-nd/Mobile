@@ -62,10 +62,11 @@ class PaymentViewModel {
         isFetching.value = true
         walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] walletItems in
                 guard let self = self else { return }
                 self.isFetching.value = false
-
+                
+                self.walletItems.value = walletItems
                 guard let walletItems = self.walletItems.value else { return }
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
