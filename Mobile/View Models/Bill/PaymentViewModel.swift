@@ -190,22 +190,27 @@ class PaymentViewModel {
     }
     
     var canEditPaymentDate: Bool {        
-        let acctDetail = accountDetail.value
-        let billingInfo = acctDetail.billingInfo
+        let accountDetail = self.accountDetail.value
+        let billingInfo = accountDetail.billingInfo
+        
+        // Existing requirement from before Paymentus
+        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+            return false
+        }
         
         // Precarious state 6: BGE can future date, ComEd/PECO cannot
-        if acctDetail.isFinaled && billingInfo.pastDueAmount > 0 {
+        if accountDetail.isFinaled && billingInfo.pastDueAmount > 0 {
             return Environment.shared.opco == .bge
         }
         
         // Precarious states 4 and 5 cannot future date
-        if (acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
-            (acctDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
+        if (accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
+            (accountDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
             return false
         }
         
         // Precarious state 3
-        if !acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
+        if !accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
             return Environment.shared.opco == .bge || isDueDateInTheFuture
         }
         
@@ -634,7 +639,8 @@ class PaymentViewModel {
         let billingInfo = accountDetail.billingInfo
         
         // Only show text in these precarious situations
-        guard (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+        guard (Environment.shared.opco == .bge && accountDetail.isActiveSeverance) ||
+            (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
             (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
             (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {
             return NSAttributedString(string: "")
