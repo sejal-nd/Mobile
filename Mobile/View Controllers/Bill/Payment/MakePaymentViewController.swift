@@ -69,7 +69,9 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentStatusValueLabel: UILabel!
     @IBOutlet weak var confirmationNumberView: UIView!
     @IBOutlet weak var confirmationNumberTextLabel: UILabel!
-    @IBOutlet weak var confirmationNumberValueLabel: UILabel!
+    @IBOutlet weak var confirmationNumberValueTextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet var editPaymentDividerLines: [UIView]!
+    @IBOutlet var editPaymentDividerLineConstraints: [NSLayoutConstraint]!
     
     @IBOutlet weak var addPaymentMethodView: UIView!
     @IBOutlet weak var addPaymentMethodLabel: UILabel!
@@ -186,6 +188,21 @@ class MakePaymentViewController: UIViewController {
         paymentDateFixedDatePastDueLabel.textColor = .blackText
         paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
+        // Edit Payment
+        paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
+        paymentStatusTextLabel.textColor = .deepGray
+        paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentStatusValueLabel.textColor = .blackText
+        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle:.title1)
+        confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
+        confirmationNumberTextLabel.textColor = .deepGray
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberValueTextView.textColor = .blackText
+        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle:.title1)
+        for line in editPaymentDividerLines {
+            line.backgroundColor = .accentGray
+        }
+        
         addPaymentMethodLabel.textColor = .deepGray
         addPaymentMethodLabel.font = OpenSans.semibold.of(textStyle: .title2)
         addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
@@ -248,6 +265,13 @@ class MakePaymentViewController: UIViewController {
         navigationController?.setColoredNavBar()
     }
     
+    override func updateViewConstraints() {
+        for constraint in editPaymentDividerLineConstraints {
+            constraint.constant = 1.0 / UIScreen.main.scale
+        }
+        super.updateViewConstraints()
+    }
+    
     func fetchData(initialFetch: Bool) {
         viewModel.fetchData(initialFetch: initialFetch, onSuccess: { [weak self] in
             guard let self = self else { return }
@@ -305,9 +329,11 @@ class MakePaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         // Edit Payment Stuff
-        if billingHistoryItem != nil {
+        if let billingHistoryItem = billingHistoryItem {
             amountDueView.isHidden = true
             dueDateView.isHidden = true
+            paymentStatusView.isHidden = billingHistoryItem.statusString == nil
+            confirmationNumberView.isHidden = billingHistoryItem.confirmationNumber == nil
         } else {
             editPaymentDetailView.isHidden = true
         }
@@ -422,7 +448,7 @@ class MakePaymentViewController: UIViewController {
         
         // Edit Payment Detail View
         paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
-        confirmationNumberValueLabel.text = billingHistoryItem?.confirmationNumber ?? "--" // TODO - confirmation number is always null currently
+        confirmationNumberValueTextView.text = billingHistoryItem?.confirmationNumber
         
         // Wallet Footer Label
         walletFooterLabel.text = viewModel.walletFooterLabelText

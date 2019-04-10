@@ -113,8 +113,8 @@ class BillingHistoryDetailsViewController: UIViewController {
         confirmationNumberDetailTextView.font = SystemFont.medium.of(textStyle: .headline)
         confirmationNumberDetailTextView.dataDetectorTypes.remove(.all)
         
-        for dividerLine in dividerLines {
-            dividerLine.backgroundColor = .accentGray
+        for line in dividerLines {
+            line.backgroundColor = .accentGray
         }
     }
     

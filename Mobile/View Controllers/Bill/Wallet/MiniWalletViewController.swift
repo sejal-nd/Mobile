@@ -31,6 +31,7 @@ class MiniWalletViewController: UIViewController {
     @IBOutlet weak var currPaymentMethodLabel: UILabel!
     @IBOutlet weak var currPaymentMethodIconImageView: UIImageView!
     @IBOutlet weak var currPaymentMethodAccountNumberLabel: UILabel!
+    @IBOutlet weak var currPaymentMethodDividerLineConstraint: NSLayoutConstraint!
     
     // Bottom Bar
     @IBOutlet weak var addPaymentAccountBottomBar: UIView!
@@ -125,6 +126,11 @@ class MiniWalletViewController: UIViewController {
             }
             tableView.tableHeaderView = headerView
         }
+    }
+    
+    override func updateViewConstraints() {
+        currPaymentMethodDividerLineConstraint.constant = 1.0 / UIScreen.main.scale
+        super.updateViewConstraints()
     }
     
     // MARK: - Helper

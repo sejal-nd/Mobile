@@ -37,7 +37,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wi0-ln-V9R">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Current Payment Method" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twc-EX-zMj">
                                                             <rect key="frame" x="28" y="30" width="192.5" height="20.5"/>
@@ -59,10 +59,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E57-DE-55I">
-                                                            <rect key="frame" x="20" y="115.5" width="394" height="0.5"/>
+                                                            <rect key="frame" x="20" y="115.5" width="394" height="1"/>
                                                             <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="0.5" id="Ndi-Ox-RDA"/>
+                                                                <constraint firstAttribute="height" constant="1" id="Ndi-Ox-RDA"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -343,6 +343,7 @@
                         <outlet property="addPaymentAccountBottomBar" destination="t7Y-Rm-mqa" id="THx-Dk-GoK"/>
                         <outlet property="addPaymentAccountLabel" destination="Ags-lR-fwp" id="Auv-1T-uoj"/>
                         <outlet property="currPaymentMethodAccountNumberLabel" destination="9Xh-JN-FSi" id="qZE-KX-Wkj"/>
+                        <outlet property="currPaymentMethodDividerLineConstraint" destination="Ndi-Ox-RDA" id="Sfm-fL-bjf"/>
                         <outlet property="currPaymentMethodIconImageView" destination="Ing-Md-AeW" id="eXA-Ot-4Ea"/>
                         <outlet property="currPaymentMethodLabel" destination="twc-EX-zMj" id="cpP-2i-MVT"/>
                         <outlet property="editPaymentHeaderView" destination="wi0-ln-V9R" id="jEe-DW-lCG"/>
