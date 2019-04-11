@@ -84,41 +84,25 @@ extension MoreBillingHistoryViewController: UITableViewDelegate {
             } else {
                 switch billingItem.status {
                 case .processing, .processed, .scheduled, .pending:
-                    handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
+                    handleAllOpcoScheduledClick(billingItem: billingItem)
                 case .canceled, .failed, .accepted, .unknown:
                     performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
                 }
             }
         case .upcoming:
-            if Environment.shared.opco == .bge {
-                handleBGEUpcomingClick(indexPath: indexPath)
-            } else {
-                guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
-                switch billingItem.status {
-                case .processing, .processed, .scheduled:
-                    handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-                case .canceled, .accepted, .failed:
-                    performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
-                case .pending, .unknown:
-                    break
-                }
+            guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
+            switch billingItem.status {
+            case .canceled, .accepted, .failed:
+                performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
+            case .scheduled:
+                handleAllOpcoScheduledClick(billingItem: billingItem)
+            case .pending, .processing, .processed, .unknown:
+                break
             }
         }
     }
     
-    private func handleBGEUpcomingClick(indexPath: IndexPath) {
-        guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
-        switch billingItem.status {
-        case .processing, .processed, .canceled, .failed, .accepted:
-            performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
-        case .scheduled:
-            handleAllOpcoScheduledClick(indexPath: indexPath, billingItem: billingItem)
-        case .pending, .unknown:
-            break
-        }
-    }
-    
-    private func handleAllOpcoScheduledClick(indexPath: IndexPath, billingItem: BillingHistoryItem) {
+    private func handleAllOpcoScheduledClick(billingItem: BillingHistoryItem) {
 //        if Environment.shared.opco == .bge {
 //            guard let paymentMethod = billingItem.paymentMethod else { return }
 //            if paymentMethod == "S" { //scheduled
