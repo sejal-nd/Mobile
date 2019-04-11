@@ -84,17 +84,17 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentAmountDetailsLabel.textColor = .successGreenText
+        paymentAmountDetailsLabel.textColor = .blackText
         paymentAmountDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         convenienceFeeLabel.textColor = .deepGray
         convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        convenienceFeeDetailsLabel.textColor = .successGreenText
+        convenienceFeeDetailsLabel.textColor = .blackText
         convenienceFeeDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         totalAmountPaidLabel.textColor = .deepGray
         totalAmountPaidLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        totalAmountPaidDetailsLabel.textColor = .successGreenText
+        totalAmountPaidDetailsLabel.textColor = .blackText
         totalAmountPaidDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentDateLabel.textColor = .deepGray

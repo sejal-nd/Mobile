@@ -32,7 +32,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
         titleLabel.font = SystemFont.medium.of(textStyle: .headline)
         dateLabel.textColor = .deepGray
         dateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        amountLabel.font = SystemFont.regular.of(textStyle: .headline)
+        amountLabel.textColor = .blackText
     }
 
     func configureWith(item: BillingHistoryItem) {
@@ -70,7 +71,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 let titleText = NSLocalizedString("Payment", comment: "")
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 titleLabel.text = titleText
-                amountLabel.textColor = .successGreenText
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .failed:
                 let titleText = NSLocalizedString("Failed Payment", comment: "")
@@ -102,7 +102,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
         dateLabel.text = ""
         titleLabel.text = ""
         amountLabel.text = ""
-        amountLabel.textColor = .blackText
         iconImageView.image = nil
         caretImageView.isHidden = false
         innerContentView.isUserInteractionEnabled = true
