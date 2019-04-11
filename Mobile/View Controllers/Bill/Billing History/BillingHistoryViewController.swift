@@ -101,7 +101,6 @@ class BillingHistoryViewController: UIViewController {
         } else if let vc = segue.destination as? BillingHistoryDetailsViewController,
             let billingHistoryItem = sender as? BillingHistoryItem {
             vc.billingHistoryItem = billingHistoryItem
-            vc.accountDetail = accountDetail
         } else if let vc = segue.destination as? ViewBillViewController,
             let billingHistoryItem = sender as? BillingHistoryItem {
             vc.viewModel.billDate = billingHistoryItem.date
@@ -187,20 +186,20 @@ extension BillingHistoryViewController: UITableViewDelegate {
     }
     
     private func handleAllOpcoScheduledClick(billingItem: BillingHistoryItem) {
-        if Environment.shared.opco == .bge {
-            guard let paymentMethod = billingItem.paymentMethod else { return }
-            if paymentMethod == "S" { //scheduled
-                showModifyScheduledItem(billingItem: billingItem)
-            } else {  // recurring/automatic
-                let storyboard = UIStoryboard(name: "Bill", bundle: nil)
-                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
-                    vc.accountDetail = accountDetail
-                    navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-        } else { //PECO/COMED scheduled
+//        if Environment.shared.opco == .bge {
+//            guard let paymentMethod = billingItem.paymentMethod else { return }
+//            if paymentMethod == "S" { //scheduled
+//                showModifyScheduledItem(billingItem: billingItem)
+//            } else {  // recurring/automatic
+//                let storyboard = UIStoryboard(name: "Bill", bundle: nil)
+//                if let vc = storyboard.instantiateViewController(withIdentifier: "BGEAutoPay") as? BGEAutoPayViewController {
+//                    vc.accountDetail = accountDetail
+//                    navigationController?.pushViewController(vc, animated: true)
+//                }
+//            }
+//        } else { //PECO/COMED scheduled
             showModifyScheduledItem(billingItem: billingItem)
-        }
+//        }
     }
     
     private func showBillPdf(billingItem: BillingHistoryItem) {
@@ -217,10 +216,6 @@ extension BillingHistoryViewController: UITableViewDelegate {
         let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
         paymentVc.accountDetail = accountDetail
         paymentVc.billingHistoryItem = billingItem
-        if let walletItemId = billingItem.walletItemId, let paymentAmount = billingItem.amountPaid {
-            let paymentDetail = PaymentDetail(walletItemId: walletItemId, paymentAmount: paymentAmount, paymentDate: billingItem.date)
-            paymentVc.paymentDetail = paymentDetail
-        }
         navigationController?.pushViewController(paymentVc, animated: true)
     }
     

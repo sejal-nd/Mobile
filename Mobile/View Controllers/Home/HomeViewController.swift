@@ -34,6 +34,7 @@ class HomeViewController: AccountPickerViewController {
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var appointmentCardView: HomeAppointmentCardView?
+    var prepaidCardView: HomePrepaidCardView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -105,19 +106,18 @@ class HomeViewController: AccountPickerViewController {
     
     func viewSetup() {
         // Observe selected card list
-        HomeCardPrefsStore.shared.listObservable
-            .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
-            .asDriver(onErrorDriveWith: .empty())
+        viewModel.cardPreferenceChanges
             .drive(onNext: { [weak self] (oldCards, newCards) in
-                self?.scrollView?.setContentOffset(.zero, animated: false)
+                guard let self = self else { return }
+                self.scrollView?.setContentOffset(.zero, animated: false)
                 
                 // Perform reorder if preference changed
                 guard oldCards != newCards else { return }
-                self?.setCards(oldCards: oldCards, newCards: newCards)
+                self.setCards(oldCards: oldCards, newCards: newCards)
                 
                 // Refresh if not first load and new card(s) added
                 if !oldCards.isEmpty && !Set(newCards).subtracting(oldCards).isEmpty {
-                    self?.viewModel.fetchData.onNext(.switchAccount)
+                    self.viewModel.fetchData.onNext(.switchAccount)
                 }
             })
             .disposed(by: bag)
@@ -141,6 +141,25 @@ class HomeViewController: AccountPickerViewController {
         if tappedVersion < viewModel.latestNewCardVersion {
             topPersonalizeButtonSetup()
         }
+        
+        viewModel.prepaidCardViewModel
+            .drive(onNext: { [weak self] viewModel in
+                guard let self = self else { return }
+                // Remove the existing card
+                self.prepaidCardView?.removeFromSuperview()
+                self.prepaidCardView = nil
+                
+                guard let viewModel = viewModel else {
+                    return // If no card needed, we're done
+                }
+                
+                let prepaidCardView = HomePrepaidCardView.create(withViewModel: viewModel)
+                
+                let index = self.topPersonalizeButton != nil ? 1 : 0
+                self.contentStackView.insertArrangedSubview(prepaidCardView, at: index)
+                self.prepaidCardView = prepaidCardView
+            })
+            .disposed(by: bag)
         
         // Appointment Card
         viewModel.showAppointmentCard
@@ -371,8 +390,8 @@ class HomeViewController: AccountPickerViewController {
             return billCardView
         case .usage:
             let usageCardView: HomeUsageCardView
-            if let billCard = self.usageCardView {
-                usageCardView = billCard
+            if let usageCard = self.usageCardView {
+                usageCardView = usageCard
             } else {
                 usageCardView = .create(withViewModel: viewModel.usageCardViewModel)
                 self.usageCardView = usageCardView

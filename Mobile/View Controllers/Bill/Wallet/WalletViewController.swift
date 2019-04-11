@@ -265,17 +265,20 @@ class WalletViewController: UIViewController {
             selectedWalletItem = walletItems[sender.tag]
 
             let title: String
+            var message = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Bill & Payment Activity.", comment: "")
             let toast: String
             if selectedWalletItem!.bankOrCard == .bank {
                 title = NSLocalizedString("Delete Bank Account?", comment: "")
                 toast = NSLocalizedString("Bank Account deleted", comment: "")
+                if Environment.shared.opco == .bge {
+                    message += NSLocalizedString(" Utility Accounts enrolled in AutoPay using this payment method will be unenrolled.", comment: "")
+                }
             } else {
                 title = NSLocalizedString("Delete Card?", comment: "")
                 toast = NSLocalizedString("Card deleted", comment: "")
             }
 
-            let messageString = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Bill & Payment Activity.", comment: "")
-            let alertController = UIAlertController(title: title, message: messageString, preferredStyle: .alert)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
                 guard let self = self else { return }

@@ -261,4 +261,49 @@ class HomeViewModel {
                appointmentsUpdates.map { !$0.isEmpty },
                appointmentTracker.asObservable().filter { $0 }.not())
         .asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var prepaidStatus = accountDetailEvents.elements()
+        .mapAt(\.prepaidStatus)
+        .startWith(.inactive)
+        .distinctUntilChanged()
+    
+    private lazy var isPrepaidActive = prepaidStatus.map { $0 == .active }
+    private lazy var isPrepaidPending = prepaidStatus.map { $0 == .pending }
+    
+    private(set) lazy var prepaidCardViewModel: Driver<HomePrepaidCardViewModel?> = Observable
+        .combineLatest(prepaidStatus, accountDetailTracker.asObservable())
+        { prepaidStatus, isLoading -> HomePrepaidCardViewModel? in
+            guard !isLoading else { return nil }
+            switch prepaidStatus {
+            case .active:
+                return HomePrepaidCardViewModel(isActive: true)
+            case .pending:
+                return HomePrepaidCardViewModel(isActive: false)
+            default:
+                return nil
+            }
+        }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var cardPreferenceChanges = Observable
+        .combineLatest(HomeCardPrefsStore.shared.listObservable, isPrepaidActive)
+        .scan(([HomeCard](), [HomeCard]())) { oldCards, newData in
+            var (newCards, isPrepaidActive) = newData
+            
+            // Active BGE Prepaid users should not see bill, usage, or projected bill cards.
+            if isPrepaidActive {
+                newCards.removeAll { card in
+                    switch card {
+                    case .bill, .usage, .projectedBill:
+                        return true
+                    default:
+                        return false
+                    }
+                }
+            }
+            
+            return (oldCards.1, newCards)
+        }
+        .asDriver(onErrorDriveWith: .empty())
 }
