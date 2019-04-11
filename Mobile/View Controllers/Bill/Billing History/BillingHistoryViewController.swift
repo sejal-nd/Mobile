@@ -135,9 +135,9 @@ extension BillingHistoryViewController: UITableViewDelegate {
                 showBillPdf(billingItem: billingItem)
             } else {
                 switch billingItem.status {
-                case .processing, .processed, .scheduled, .pending:
-                    handleAllOpcoScheduledClick(billingItem: billingItem)
-                case .canceled, .failed, .accepted, .unknown:
+                case .scheduled:
+                    handleScheduledClick(billingItem: billingItem)
+                default:
                     performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                 }
             }
@@ -155,23 +155,21 @@ extension BillingHistoryViewController: UITableViewDelegate {
             } else {
                 var selectedIndex = indexPath.row
                 if accountDetail.isBGEasy || accountDetail.isAutoPay {
-                    selectedIndex -= 1 //everything is offset by BGEasy cell
+                    selectedIndex -= 1 // everything is offset by BGEasy cell
                 }
                 
                 let billingItem = billingHistory.upcoming[selectedIndex]
                 switch billingItem.status {
-                case .canceled, .accepted, .failed:
-                    performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                 case .scheduled:
-                    handleAllOpcoScheduledClick(billingItem: billingItem)
-                case .pending, .processing, .processed, .unknown:
-                    break
+                    handleScheduledClick(billingItem: billingItem)
+                default:
+                    performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                 }
             }
         }
     }
     
-    private func handleAllOpcoScheduledClick(billingItem: BillingHistoryItem) {
+    private func handleScheduledClick(billingItem: BillingHistoryItem) {
 //        if Environment.shared.opco == .bge {
 //            guard let paymentMethod = billingItem.paymentMethod else { return }
 //            if paymentMethod == "S" { //scheduled

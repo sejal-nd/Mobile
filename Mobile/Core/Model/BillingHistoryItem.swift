@@ -27,12 +27,12 @@ private func dollarAmount(fromValue value: Any?) throws -> Double {
 enum BillingHistoryStatus {
     case scheduled
     case pending
-    case processing
-    case processed
-    case canceled
+    case success
     case failed
+    case canceled
+    case returned
+    case refunded
     case unknown
-    case accepted
     
     init(identifier: String?) {
         guard let id = identifier?.lowercased() else {
@@ -45,16 +45,16 @@ enum BillingHistoryStatus {
             self = .scheduled
         case "pending":
             self = .pending
-        case "processing":
-            self = .processing
-        case "processed":
-            self = .processed
-        case "canceled", "cancelled", "void":
-            self = .canceled
-        case "failed", "declined", "returned":
+        case "posted", "accepted":
+            self = .success
+        case "failed", "declined":
             self = .failed
-        case "accepted", "posted", "complete":
-            self = .accepted
+        case "cancelled", "void":
+            self = .canceled
+        case "returned":
+            self = .returned
+        case "refunded":
+            self = .refunded
         default:
             self = .unknown
         }
@@ -78,11 +78,11 @@ struct BillingHistoryItem: Mappable {
     
     var isFuture: Bool {
         switch status {
-        case .pending, .processing, .processed:
+        case .pending:
             return true
-        case .canceled, .accepted: // EM-2638: Canceled payments should always be in the past
+        case .canceled: // EM-2638: Canceled payments should always be in the past
             return false
-        case .scheduled, .failed, .unknown:
+        default:
             if isBillPDF { // EM-2638: Bills should always be in the past
                 return false
             }
