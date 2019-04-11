@@ -77,7 +77,7 @@ class BillViewModel {
     
     private(set) lazy var showPrepaidState: Driver<Void> = currentAccountDetail
         .filter { $0.prepaidStatus == .active }
-        .map(to: ())
+        .mapTo(())
     
 	func fetchAccountDetail(isRefresh: Bool) {
 		fetchAccountDetail.onNext(isRefresh ? .refresh: .switchAccount)
