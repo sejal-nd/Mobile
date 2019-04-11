@@ -101,6 +101,8 @@ end
 # Removes the project warning after a `pod install`
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
+        config.build_settings['SWIFT_VERSION'] = '5.0'
+        config.build_settings['CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED'] = 'YES'
         if config.name == 'Release'
             config.build_settings['SWIFT_COMPILATION_MODE'] = 'wholemodule'
         end
