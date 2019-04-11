@@ -146,7 +146,7 @@ class PaymentViewModelTests: XCTestCase {
             XCTAssertFalse(shouldShow, "Payment method view should not be shown by default")
         }).disposed(by: disposeBag)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
         viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssert(shouldShow, "Payment method view should be shown after a wallet item is selected")
         }).disposed(by: disposeBag)
@@ -156,11 +156,11 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .cashOnly), billingHistoryItem: nil)
 
         // Cash only user test - bank accounts should be ignored
-        viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .bank)]
+        viewModel.walletItems.value = [WalletItem(), WalletItem()]
         viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
             XCTAssertFalse(hasWalletItems, "hasWalletItems should be false for a cash only user with only include bank accounts")
         }).disposed(by: disposeBag)
-        viewModel.walletItems.value!.append(WalletItem(bankOrCard: .card))
+        viewModel.walletItems.value!.append(WalletItem(paymentMethodType: .visa))
         viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
             XCTAssert(hasWalletItems, "hasWalletItems should be true for a cash only user with a credit card")
         }).disposed(by: disposeBag)
@@ -171,7 +171,7 @@ class PaymentViewModelTests: XCTestCase {
         viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
             XCTAssertFalse(hasWalletItems, "hasWalletItems should be false for a normal scenario with no wallet items")
         }).disposed(by: disposeBag)
-        viewModel.walletItems.value = [WalletItem(bankOrCard: .bank), WalletItem(bankOrCard: .card)]
+        viewModel.walletItems.value = [WalletItem(), WalletItem(paymentMethodType: .visa)]
         viewModel.hasWalletItems.asObservable().take(1).subscribe(onNext: { hasWalletItems in
             XCTAssert(hasWalletItems, "hasWalletItems should be true for a normal scenario with wallet items")
         }).disposed(by: disposeBag)
@@ -186,7 +186,7 @@ class PaymentViewModelTests: XCTestCase {
         }).disposed(by: disposeBag)
 
         // Has Wallet Items
-        viewModel.walletItems.value = [WalletItem(bankOrCard: .bank)]
+        viewModel.walletItems.value = [WalletItem()]
         viewModel.shouldShowPaymentAmountTextField.asObservable().take(1).subscribe(onNext: { shouldShow in
             XCTAssert(shouldShow, "paymentAmountTextField should show when user has wallet items")
         }).disposed(by: disposeBag)
@@ -201,7 +201,7 @@ class PaymentViewModelTests: XCTestCase {
     func testPaymentAmountFeeLabelTextBank() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
         
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
+        viewModel.selectedWalletItem.value = WalletItem()
         viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
             let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
             XCTAssertEqual(feeText, expectedFeeString)
@@ -211,7 +211,7 @@ class PaymentViewModelTests: XCTestCase {
     func testPaymentAmountFeeLabelTextCard() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
         viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
             let expectedFeeString = NSLocalizedString("A $5.95 convenience fee will be applied by Paymentus, our payment partner.", comment: "")
             XCTAssertEqual(feeText, expectedFeeString)
@@ -221,7 +221,7 @@ class PaymentViewModelTests: XCTestCase {
     func testPaymentAmountFeeFooterLabelTextBank() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
         
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
+        viewModel.selectedWalletItem.value = WalletItem()
         viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
             let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
             XCTAssertEqual(feeText, expectedFeeString)
@@ -231,7 +231,7 @@ class PaymentViewModelTests: XCTestCase {
     func testPaymentAmountFeeFooterLabelTextCardResidential() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
         viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
             let expectedFeeString = NSLocalizedString("Your payment includes a $5.95 convenience fee.", comment: "")
             XCTAssertEqual(feeText, expectedFeeString)
@@ -241,7 +241,7 @@ class PaymentViewModelTests: XCTestCase {
     func testPaymentAmountFeeFooterLabelTextCardCommercial() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
         viewModel.paymentAmountFeeFooterLabelText.asObservable().take(1).subscribe(onNext: { feeText in
             let expectedFeeString = NSLocalizedString("Your payment includes a $5.95 convenience fee.", comment: "")
             XCTAssertEqual(feeText, expectedFeeString)
@@ -251,12 +251,12 @@ class PaymentViewModelTests: XCTestCase {
     func testSelectedWalletItemImage() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
+        viewModel.selectedWalletItem.value = WalletItem()
         viewModel.selectedWalletItemImage.asObservable().take(1).subscribe(onNext: { image in
             XCTAssertEqual(image, #imageLiteral(resourceName: "opco_bank_mini"), "Selected bank account should show opco_bank_mini image")
         }).disposed(by: disposeBag)
 
-        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa, bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
         viewModel.selectedWalletItemImage.asObservable().take(1).subscribe(onNext: { image in
             XCTAssertEqual(image, UIImage(named: "ic_visa_mini"), "Selected credit card should show ic_visa_mini")
         }).disposed(by: disposeBag)
@@ -265,7 +265,7 @@ class PaymentViewModelTests: XCTestCase {
     func testSelectedWalletItemMaskedAccountString() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .bank)
+        viewModel.selectedWalletItem.value = WalletItem()
         viewModel.selectedWalletItemMaskedAccountString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssertEqual(str, "**** 1234")
         }).disposed(by: disposeBag)
@@ -380,7 +380,7 @@ class PaymentViewModelTests: XCTestCase {
     func testTotalPaymentDisplayString() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.selectedWalletItem.value = WalletItem(bankOrCard: .card)
+        viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
         viewModel.paymentAmount.value = 200
         viewModel.totalPaymentDisplayString.asObservable().take(1).subscribe(onNext: { str in
             XCTAssertEqual(str, "$205.95")

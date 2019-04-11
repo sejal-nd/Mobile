@@ -66,7 +66,12 @@ protocol PaymentService {
     ///   - payment: the payment to schedule
     func schedulePayment(payment: Payment) -> Observable<String>
         
-    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void>
+    func updatePayment(paymentId: String,
+                       accountNumber: String,
+                       paymentAmount: Double,
+                       paymentDate: Date,
+                       walletId: String,
+                       walletItem: WalletItem) -> Observable<Void>
     
     func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void>
 }

@@ -142,17 +142,12 @@ class PaymentViewModel {
     }
 
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                              existingAccount: true,
-                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                              paymentAmount: self.paymentAmount.value,
-                              paymentType: paymentType,
-                              paymentDate: self.paymentDate.value,
-                              walletId: AccountsStore.shared.customerIdentifier,
-                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
-
-        self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
+        self.paymentService.updatePayment(paymentId: self.paymentId.value!,
+                                          accountNumber: self.accountDetail.value.accountNumber,
+                                          paymentAmount: self.paymentAmount.value,
+                                          paymentDate: self.paymentDate.value,
+                                          walletId: AccountsStore.shared.customerIdentifier,
+                                          walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()

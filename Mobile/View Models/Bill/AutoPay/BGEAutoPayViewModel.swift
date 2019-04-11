@@ -69,7 +69,6 @@ class BGEAutoPayViewModel {
                                                                bankName: nil,
                                                                expirationDate: nil,
                                                                isDefault: false,
-                                                               bankOrCard: .bank,
                                                                isTemporary: false)
                 }
                 

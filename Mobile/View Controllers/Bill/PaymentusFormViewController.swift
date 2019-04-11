@@ -226,7 +226,6 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                                                 nickName: nickname,
                                                 paymentMethodType: paymentMethodType,
                                                 isDefault: didSetDefault,
-                                                bankOrCard: bankOrCard,
                                                 isTemporary: temporary)
                     
                     if walletItemId != nil { // Editing Payment Method

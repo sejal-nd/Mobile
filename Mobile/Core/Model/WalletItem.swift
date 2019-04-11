@@ -239,7 +239,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
          bankName: String? = "M&T Bank",
          expirationDate: String? = "01/2100",
          isDefault: Bool = false,
-         bankOrCard: BankOrCard = .bank,
          isTemporary: Bool = false,
          isEditingItem: Bool = false) {
         
@@ -247,17 +246,23 @@ struct WalletItem: Mappable, Equatable, Hashable {
         map["walletItemID"] = walletItemID
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
-        map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
         map["paymentMethodType"] = paymentMethodType!.rawString
         map["bankName"] = bankName
         map["expirationDate"] = expirationDate
         map["isDefault"] = isDefault
         
+        switch paymentMethodType! {
+        case .ach:
+            map["paymentCategoryType"] = "CHECK"
+        default:
+            map["paymentCategoryType"] = "CREDIT"
+        }
+        
         self = WalletItem.from(map as NSDictionary)!
         self.isTemporary = isTemporary
         self.isEditingItem = isEditingItem
     }
-    
+        
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
         return lhs.walletItemID == rhs.walletItemID
