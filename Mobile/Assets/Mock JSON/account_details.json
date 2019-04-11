@@ -1278,6 +1278,8 @@
         "accountNumber": "1234567890",
         "premiseNumber": "1",
         "BillingInfo": {
+            "netDueAmount": 200,
+            "dueByDate": "2019-01-21T00:00:00",
             "minimumPaymentAmount": 5,
             "maximumPaymentAmount": 5000,
             "maximumPaymentAmountACH": 100000,
