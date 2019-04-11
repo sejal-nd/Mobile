@@ -73,8 +73,8 @@ class PaymentViewModel {
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
-                    self.computeDefaultPaymentDate()
                     if self.paymentId.value == nil { // If not modifiying payment
+                        self.computeDefaultPaymentDate()
                         if self.accountDetail.value.isCashOnly {
                             if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
                                 self.selectedWalletItem.value = defaultWalletItem!
@@ -154,8 +154,6 @@ class PaymentViewModel {
     // MARK: - Payment Date Stuff
     
     func computeDefaultPaymentDate() {
-        if paymentId.value != nil { return } // We don't want the date being set/reset during the edit workflow
-        
         if Environment.shared.opco == .bge {
             paymentDate.value = .now
         } else {

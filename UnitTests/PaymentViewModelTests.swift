@@ -340,11 +340,11 @@ class PaymentViewModelTests: XCTestCase {
     }
     
     func testComputeDefaultPaymentDate() {
-        // TODO: Reimplement this test (rules are currently in flux so not worth it right now
+        // TODO: Reimplement this test (rules are currently in flux so not worth it right now)
     }
 
     func testCanEditPaymentDate() {
-        // TODO: Reimplement this test (rules are currently in flux so not worth it right now
+        // TODO: Reimplement this test (rules are currently in flux so not worth it right now)
     }
 
     func testIsOverpaying() {
