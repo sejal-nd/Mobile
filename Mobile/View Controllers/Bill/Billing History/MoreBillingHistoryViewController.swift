@@ -76,33 +76,20 @@ class MoreBillingHistoryViewController: UIViewController {
 extension MoreBillingHistoryViewController: UITableViewDelegate {
     
     func selectedRow(at indexPath: IndexPath) {
-        switch billingSelection {
-        case .history:
-            let billingItem = billingList[indexPath.row]
-            if billingItem.isBillPDF {
-                showBillPdf(billingItem: billingItem)
-            } else {
-                switch billingItem.status {
-                case .processing, .processed, .scheduled, .pending:
-                    handleAllOpcoScheduledClick(billingItem: billingItem)
-                case .canceled, .failed, .accepted, .unknown:
-                    performSegue(withIdentifier: "showBillingHistoryDetailsSegue", sender: billingItem)
-                }
-            }
-        case .upcoming:
-            guard let billingItem = billingHistory?.upcoming[indexPath.row] else { return }
+        let billingItem = billingList[indexPath.row]
+        if billingItem.isBillPDF {
+            showBillPdf(billingItem: billingItem)
+        } else {
             switch billingItem.status {
-            case .canceled, .accepted, .failed:
-                performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
             case .scheduled:
-                handleAllOpcoScheduledClick(billingItem: billingItem)
-            case .pending, .processing, .processed, .unknown:
-                break
+                handleScheduledClick(billingItem: billingItem)
+            default:
+                performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
             }
         }
     }
     
-    private func handleAllOpcoScheduledClick(billingItem: BillingHistoryItem) {
+    private func handleScheduledClick(billingItem: BillingHistoryItem) {
 //        if Environment.shared.opco == .bge {
 //            guard let paymentMethod = billingItem.paymentMethod else { return }
 //            if paymentMethod == "S" { //scheduled

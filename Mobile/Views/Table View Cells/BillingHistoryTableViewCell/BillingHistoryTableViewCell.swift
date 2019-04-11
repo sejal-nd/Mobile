@@ -34,18 +34,10 @@ class BillingHistoryTableViewCell: UITableViewCell {
         dateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
-    
+
     func configureWith(item: BillingHistoryItem) {
-        dateLabel.text = item.date.mmDdYyyyString
-        if item.isFuture {
-            configureUpcomingCell(item: item)
-        } else {
-            configurePastCell(item: item)
-        }
-    }
-    
-    private func configurePastCell(item: BillingHistoryItem) {
         let dateString = item.date.shortMonthDayAndYearString
+        dateLabel.text = item.date.mmDdYyyyString
         
         var a11y = ""
         if item.isBillPDF {
@@ -58,89 +50,50 @@ class BillingHistoryTableViewCell: UITableViewCell {
             guard let amountPaid = item.amountPaid?.currencyString else {
                 return
             }
+            amountLabel.text = amountPaid
             
             switch item.status {
             case .scheduled:
                 let titleText = NSLocalizedString("Scheduled Payment", comment: "")
                 iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
                 titleLabel.text = titleText
-                amountLabel.text = amountPaid
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
-            case .canceled:
-                let titleText = NSLocalizedString("Payment", comment: "")
+            case .pending:
+                let titleText = NSLocalizedString("Pending Payment", comment: "")
+                iconImageView.image = #imageLiteral(resourceName: "ic_pending")
                 titleLabel.text = titleText
-                amountLabel.text = amountPaid
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
-                a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), titleText, dateString, amountLabel.text ?? "")
-            case .failed:
-                let titleText = NSLocalizedString("Payment", comment: "")
-                titleLabel.text = titleText
-                amountLabel.text = amountPaid
-                iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
-                a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), titleText, dateString, amountLabel.text ?? "")
-            default:
+                dateLabel.isHidden = true
+                caretImageView.isHidden = true
+                innerContentView.isUserInteractionEnabled = false
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+            case .success, .unknown:
                 let titleText = NSLocalizedString("Payment", comment: "")
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 titleLabel.text = titleText
-                amountLabel.text = amountPaid
                 amountLabel.textColor = .successGreenText
-                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountLabel.text ?? "")
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+            case .failed:
+                let titleText = NSLocalizedString("Failed Payment", comment: "")
+                titleLabel.text = titleText
+                iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+            case .canceled:
+                let titleText = NSLocalizedString("Canceled Payment", comment: "")
+                titleLabel.text = titleText
+                iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+            case .returned:
+                let titleText = NSLocalizedString("Returned Payment", comment: "")
+                titleLabel.text = titleText
+                iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
+            case .refunded:
+                let titleText = NSLocalizedString("Refunded Payment", comment: "")
+                titleLabel.text = titleText
+                iconImageView.image = #imageLiteral(resourceName: "ic_activity_refunded")
+                a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             }
         }
-        innerContentView.accessibilityLabel = a11y
-    }
-    
-    private func configureUpcomingCell(item: BillingHistoryItem) {
-        guard let amountPaid = item.amountPaid?.currencyString else { return }
-        
-        var a11y = ""
-        let dateString = item.date.shortMonthDayAndYearString
-        
-        switch item.status {
-        case .pending:
-            iconImageView.image = #imageLiteral(resourceName: "ic_pending")
-            let titleText = NSLocalizedString("Pending Payment", comment: "")
-            titleLabel.text = titleText
-            amountLabel.text = amountPaid
-            dateLabel.isHidden = true
-            caretImageView.isHidden = true
-            innerContentView.isUserInteractionEnabled = false
-            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
-        case .processing, .processed:
-            iconImageView.image = #imageLiteral(resourceName: "ic_pending")
-            let titleText = NSLocalizedString("Payment Processing", comment: "")
-            titleLabel.text = titleText
-            amountLabel.text = amountPaid
-            dateLabel.isHidden = true
-            caretImageView.isHidden = false
-            innerContentView.isUserInteractionEnabled = true
-            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
-        case .canceled:
-            let titleText = NSLocalizedString("Payment", comment: "")
-            titleLabel.text = titleText
-            amountLabel.text = amountPaid
-            caretImageView.isHidden = false
-            iconImageView.image = #imageLiteral(resourceName: "ic_activity_canceled")
-            innerContentView.isUserInteractionEnabled = true
-            a11y = String(format: NSLocalizedString("Canceled %@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
-        case .failed:
-            let titleText = NSLocalizedString("Payment", comment: "")
-            titleLabel.text = titleText
-            amountLabel.text = amountPaid
-            caretImageView.isHidden = false
-            iconImageView.image = #imageLiteral(resourceName: "ic_activity_failed")
-            innerContentView.isUserInteractionEnabled = true
-            a11y = String(format: NSLocalizedString("Failed %@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
-        default:
-            let titleText = NSLocalizedString("Scheduled Payment", comment: "")
-            iconImageView.image = #imageLiteral(resourceName: "ic_scheduled")
-            titleLabel.text = titleText
-            amountLabel.text = amountPaid
-            caretImageView.isHidden = false
-            innerContentView.isUserInteractionEnabled = true
-            a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
-        }
-        
         innerContentView.accessibilityLabel = a11y
     }
     
@@ -152,6 +105,7 @@ class BillingHistoryTableViewCell: UITableViewCell {
         amountLabel.textColor = .blackText
         iconImageView.image = nil
         caretImageView.isHidden = false
+        innerContentView.isUserInteractionEnabled = true
         dateLabel.isHidden = false
         disposeBag = DisposeBag()
     }
