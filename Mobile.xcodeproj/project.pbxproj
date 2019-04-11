@@ -983,6 +983,12 @@
 		B039DB7C225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
 		B039DB7D225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
 		B039DB7E225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */; };
+		B039DB80225E6D5700BB5479 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */; };
+		B039DB81225E6D5700BB5479 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */; };
+		B039DB82225E6D5700BB5479 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */; };
+		B039DB84225E6F2400BB5479 /* PrepaidCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */; };
+		B039DB85225E6F2400BB5479 /* PrepaidCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */; };
+		B039DB86225E6F2400BB5479 /* PrepaidCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */; };
 		B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
@@ -2859,6 +2865,8 @@
 		B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePrepaidCardView.swift; sourceTree = "<group>"; };
 		B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePrepaidCardView.xib; sourceTree = "<group>"; };
 		B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePrepaidCardViewModel.swift; sourceTree = "<group>"; };
+		B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
+		B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepaidCardView.xib; sourceTree = "<group>"; };
 		B0472B282111011F0048C1A7 /* UsageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageViewController.swift; sourceTree = "<group>"; };
 		B04DDF5A21FA800C00594ACF /* Date+Now.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Now.swift"; sourceTree = "<group>"; };
 		B04DDF7421FFB0A700594ACF /* MockUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
@@ -4324,6 +4332,8 @@
 				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
 				35AFB42A20C82DA0000312B9 /* MaskView.swift */,
 				35FEDD5B223C155F008CB349 /* ZeroInsetDataDetectorTextView.swift */,
+				B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */,
+				B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5772,6 +5782,7 @@
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
+				B039DB84225E6F2400BB5479 /* PrepaidCardView.xib in Resources */,
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				359BB2792148349200FBAD83 /* outage.json in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
@@ -5924,6 +5935,7 @@
 				35A6C6E4211CC17100C2A58F /* Updates.storyboard in Resources */,
 				B0882CB6210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				E80043431E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				B039DB86225E6F2400BB5479 /* PrepaidCardView.xib in Resources */,
 				E85895791E8AACFF009485E3 /* loading_blue.json in Resources */,
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				9C97DB1D20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
@@ -6076,6 +6088,7 @@
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
 				B0882CB5210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B574BAD01E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
+				B039DB85225E6F2400BB5479 /* PrepaidCardView.xib in Resources */,
 				82A18ED01EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
 				359BB2812148518C00FBAD83 /* sm_outage_loading.json in Resources */,
@@ -7216,6 +7229,7 @@
 				E841F3A21F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				0ED0E9932191EE5E0050C719 /* WatchSessionManager.swift in Sources */,
 				82EAB33C1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
+				B039DB80225E6D5700BB5479 /* PrepaidCardView.swift in Sources */,
 				B574BAF71E786473001E8A44 /* MockOutageService.swift in Sources */,
 				9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
 				E807A9E52022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
@@ -7851,6 +7865,7 @@
 				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
+				B039DB82225E6D5700BB5479 /* PrepaidCardView.swift in Sources */,
 				8206D0191FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
@@ -7941,6 +7956,7 @@
 				82EAB33D1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F051EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
 				9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */,
+				B039DB81225E6D5700BB5479 /* PrepaidCardView.swift in Sources */,
 				E807A9E62022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				35A6C6FF2121DAE500C2A58F /* MoreViewModel.swift in Sources */,
 				E8CFB8AB1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,

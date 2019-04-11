@@ -13,6 +13,7 @@ import RxSwiftExt
 class StormModeBillViewController: AccountPickerViewController {
     
     @IBOutlet private weak var contentStack: UIStackView!
+    @IBOutlet private weak var prepaidView: PrepaidCardView!
     @IBOutlet private weak var buttonStack: UIStackView!
     @IBOutlet private weak var makeAPaymentButton: DisclosureButton!
     @IBOutlet private weak var paymentActivityButton: DisclosureButton!
@@ -101,7 +102,9 @@ class StormModeBillViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.setRefreshControlEnabled(enabled: !$0) })
             .disposed(by: disposeBag)
         
+        viewModel.showBillCard.not().drive(billCardView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showButtonStack.not().drive(buttonStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showPrepaidCard.not().drive(prepaidView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showNoNetworkConnectionView.not().drive(noNetworkConnectionView.rx.isHidden).disposed(by: disposeBag)

@@ -635,20 +635,20 @@ class PaymentViewModel {
             return NSAttributedString(string: "")
         }
         
-        let boldText = NSLocalizedString("IMPORTANT: ", comment: "")
+        let boldText: String
         let bodyText: String
         switch Environment.shared.opco {
         case .bge:
+            boldText = ""
             bodyText = """
-            If your service has been interrupted due to a past due balance and the submitted payment satisfies the required amount, your service will be restored.
+            If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.
             
-            Your service will be restored between 4 and 72 hours.
+            Please ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.
             
-            Breaker Policy: BGE requires your breakers to be in the off position.
-            
-            Gas Off:  If your natural gas service has been interrupted, a restoration appointment must be scheduled. An adult (18 years or older) must be at the property and provide access to light the pilots on all gas appliances. If an adult is not present or cannot provide the access required, the gas service will NOT be restored. This policy ensures public safety.
+            If an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.
             """
         case .comEd:
+            boldText = NSLocalizedString("IMPORTANT: ", comment: "")
             bodyText = """
             If your service has been interrupted due to a past due balance and the submitted payment satisfies the required restoral amount, your service will be restored:
             
@@ -657,6 +657,7 @@ class PaymentViewModel {
             Typically by end of the next business day if you do not have a smart meter
             """
         case .peco:
+            boldText = NSLocalizedString("IMPORTANT: ", comment: "")
             bodyText = """
             If your service has been interrupted due to a past due balance and the submitted payment satisfies the required amount, your service will be restored.
             
