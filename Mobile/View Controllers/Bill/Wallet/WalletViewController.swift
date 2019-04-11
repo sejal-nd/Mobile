@@ -252,7 +252,7 @@ class WalletViewController: UIViewController {
     @objc private func onEditWalletItemPress(sender: UIButton) {
         if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
             selectedWalletItem = walletItems[sender.tag]
-            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, temporary: false, walletItemId: selectedWalletItem!.walletItemID)
+            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, temporary: false, walletItemId: selectedWalletItem!.walletItemId)
             paymentusVC.delegate = self
             paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
             paymentusVC.editingDefaultItem = selectedWalletItem!.isDefault

@@ -62,14 +62,13 @@ class BGEAutoPayViewModel {
                 
                 // Sync up our view model with the existing AutoPay settings
                 if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
-                    self.selectedWalletItem.value = WalletItem(walletItemID: walletItemId,
+                    self.selectedWalletItem.value = WalletItem(walletItemId: walletItemId,
                                                                maskedWalletItemAccountNumber: masked4,
                                                                nickName: autoPayInfo.paymentAccountNickname,
                                                                paymentMethodType: .ach,
                                                                bankName: nil,
                                                                expirationDate: nil,
                                                                isDefault: false,
-                                                               bankOrCard: .bank,
                                                                isTemporary: false)
                 }
                 
@@ -99,7 +98,7 @@ class BGEAutoPayViewModel {
     func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
         paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
-                                          walletItemId: selectedWalletItem.value!.walletItemID,
+                                          walletItemId: selectedWalletItem.value!.walletItemId,
                                           amountType: amountToPay.value,
                                           amountThreshold: String(amountNotToExceed.value),
                                           paymentDaysBeforeDue: String(daysBefore),

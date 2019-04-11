@@ -131,7 +131,7 @@ enum PaymentMethodType {
 
 // The postMessage event of the Paymentus iFrame sends "pmDetails.Type" as one of these
 // Also, these are returned as the "payment_type" from Billing History
-enum PaymentusPaymentMethodType: String {
+fileprivate enum PaymentusPaymentMethodType: String {
     case checking = "CHQ"
     case saving = "SAV"
     case visa = "VISA"
@@ -174,7 +174,7 @@ func extractLast4(object: Any?) throws -> String? {
 }
 
 struct WalletItem: Mappable, Equatable, Hashable {
-    let walletItemID: String?
+    let walletItemId: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
     let paymentCategoryType: PaymentCategoryType
@@ -209,9 +209,10 @@ struct WalletItem: Mappable, Equatable, Hashable {
     }
     
     var isTemporary: Bool // Indicates payment method NOT saved to wallet
+    var isEditingItem: Bool // In the edit workflow, this is the original payment method
     
     init(map: Mapper) throws {
-        walletItemID = map.optionalFrom("walletItemID")
+        walletItemId = map.optionalFrom("walletItemID")
         maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
         
         nickName = map.optionalFrom("nickName")
@@ -227,41 +228,49 @@ struct WalletItem: Mappable, Equatable, Hashable {
         isDefault = map.optionalFrom("isDefault") ?? false
         
         isTemporary = false
+        isEditingItem = false
     }
     
     // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
-    init(walletItemID: String? = "1234",
+    init(walletItemId: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
          paymentMethodType: PaymentMethodType? = .ach,
          bankName: String? = "M&T Bank",
          expirationDate: String? = "01/2100",
          isDefault: Bool = false,
-         bankOrCard: BankOrCard = .bank,
-         isTemporary: Bool = false) {
+         isTemporary: Bool = false,
+         isEditingItem: Bool = false) {
         
         var map = [String: Any]()
-        map["walletItemID"] = walletItemID
+        map["walletItemID"] = walletItemId
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
-        map["paymentCategoryType"] = bankOrCard == .bank ? "CHECK" : "CREDIT"
         map["paymentMethodType"] = paymentMethodType!.rawString
         map["bankName"] = bankName
         map["expirationDate"] = expirationDate
         map["isDefault"] = isDefault
         
+        switch paymentMethodType! {
+        case .ach:
+            map["paymentCategoryType"] = "CHECK"
+        default:
+            map["paymentCategoryType"] = "CREDIT"
+        }
+        
         self = WalletItem.from(map as NSDictionary)!
         self.isTemporary = isTemporary
+        self.isEditingItem = isEditingItem
     }
-    
+        
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
-        return lhs.walletItemID == rhs.walletItemID
+        return lhs.walletItemId == rhs.walletItemId
     }
     
     // Hashable
     var hashValue: Int {
-        return walletItemID!.hash
+        return walletItemId!.hash
     }
 
 }

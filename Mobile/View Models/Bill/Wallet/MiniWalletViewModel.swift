@@ -18,6 +18,7 @@ class MiniWalletViewModel {
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedItem = Variable<WalletItem?>(nil)
     let temporaryItem = Variable<WalletItem?>(nil)
+    let editingItem = Variable<WalletItem?>(nil)
     let isFetchingWalletItems = Variable(false)
     let isError = Variable(false)
     
