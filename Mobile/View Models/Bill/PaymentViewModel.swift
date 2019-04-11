@@ -108,17 +108,11 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
                          onError: @escaping (ServiceError) -> Void) {
-        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                              existingAccount: !self.selectedWalletItem.value!.isTemporary,
-                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                              paymentAmount: self.paymentAmount.value,
-                              paymentType: paymentType,
-                              paymentDate: self.paymentDate.value,
-                              walletId: AccountsStore.shared.customerIdentifier,
-                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
-        
-        self.paymentService.schedulePayment(payment: payment)
+        self.paymentService.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
+                                            paymentAmount: self.paymentAmount.value,
+                                            paymentDate: self.paymentDate.value,
+                                            walletId: AccountsStore.shared.customerIdentifier,
+                                            walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] confirmationNumber in
                 self?.confirmationNumber = confirmationNumber

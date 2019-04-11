@@ -106,22 +106,26 @@ class MCSPaymentService: PaymentService {
                 RxNotifications.shared.accountDetailUpdated.onNext(())
             })
     }
-
-    func schedulePayment(payment: Payment) -> Observable<String> {
+    
+    func schedulePayment(accountNumber: String,
+                         paymentAmount: Double,
+                         paymentDate: Date,
+                         walletId: String,
+                         walletItem: WalletItem) -> Observable<String> {
         let opCo = Environment.shared.opco
         let params: [String: Any] = [
-            "masked_wallet_item_account_number": payment.maskedWalletAccountNumber,
-            "payment_amount": String.init(format: "%.02f", payment.paymentAmount),
-            "payment_category_type": payment.paymentType.rawValue,
-            "payment_date": payment.paymentDate.paymentFormatString,
-            "wallet_id": payment.walletId,
-            "wallet_item_id": payment.walletItemId,
-            "is_existing_account": payment.existingAccount,
+            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber!,
+            "payment_amount": String.init(format: "%.02f", paymentAmount),
+            "payment_category_type": walletItem.bankOrCard == .bank ? "CHECK" : "CARD",
+            "payment_date": paymentDate.paymentFormatString,
+            "wallet_id": walletId,
+            "wallet_item_id": walletItem.walletItemId!,
+            "is_existing_account": !walletItem.isTemporary,
             "biller_id": "\(opCo.rawValue)Registered", // Still needed?
             "auth_sess_token": "" // Still needed?
         ]
-        
-        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(payment.accountNumber)/payments/schedule", params: params)
+
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
             .map { json -> String in
                 guard let dict = json as? NSDictionary, let confirmation = dict["confirmationNumber"] as? String else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -151,7 +155,7 @@ class MCSPaymentService: PaymentService {
             "auth_sess_token": "" // Still needed?
         ]
         
-        if !walletItem.isEditingItem, let walletItemId = walletItem.walletItemID { // User selected a new payment method
+        if !walletItem.isEditingItem, let walletItemId = walletItem.walletItemId { // User selected a new payment method
             params["wallet_id"] = walletId
             params["wallet_item_id"] = walletItemId
             params["is_existing_account"] = !walletItem.isTemporary

@@ -174,7 +174,7 @@ func extractLast4(object: Any?) throws -> String? {
 }
 
 struct WalletItem: Mappable, Equatable, Hashable {
-    let walletItemID: String?
+    let walletItemId: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
     let paymentCategoryType: PaymentCategoryType
@@ -212,7 +212,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     var isEditingItem: Bool // In the edit workflow, this is the original payment method
     
     init(map: Mapper) throws {
-        walletItemID = map.optionalFrom("walletItemID")
+        walletItemId = map.optionalFrom("walletItemID")
         maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
         
         nickName = map.optionalFrom("nickName")
@@ -232,7 +232,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     }
     
     // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
-    init(walletItemID: String? = "1234",
+    init(walletItemId: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
          paymentMethodType: PaymentMethodType? = .ach,
@@ -243,7 +243,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
          isEditingItem: Bool = false) {
         
         var map = [String: Any]()
-        map["walletItemID"] = walletItemID
+        map["walletItemID"] = walletItemId
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
         map["paymentMethodType"] = paymentMethodType!.rawString
@@ -265,12 +265,12 @@ struct WalletItem: Mappable, Equatable, Hashable {
         
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
-        return lhs.walletItemID == rhs.walletItemID
+        return lhs.walletItemId == rhs.walletItemId
     }
     
     // Hashable
     var hashValue: Int {
-        return walletItemID!.hash
+        return walletItemId!.hash
     }
 
 }

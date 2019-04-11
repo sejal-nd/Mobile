@@ -93,7 +93,7 @@ class MCSWalletService: WalletService {
         let opCo = Environment.shared.opco
         let params: [String: Any] = [
             "account_number": AccountsStore.shared.accounts[0].accountNumber,
-            "wallet_item_id": walletItem.walletItemID ?? "",
+            "wallet_item_id": walletItem.walletItemId ?? "",
             "biller_id": "\(opCo.rawValue)Registered",
             "payment_category_type": walletItem.bankOrCard == .bank ? "check" : "credit"
         ]

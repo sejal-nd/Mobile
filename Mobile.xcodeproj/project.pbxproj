@@ -1531,10 +1531,6 @@
 		B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B5AC06EB1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
 		B5AC06EC1E52755800BBA4ED /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
-		B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
-		B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
-		B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
-		B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415711F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist */; };
 		B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415731F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist */; };
 		B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */; };
@@ -2124,7 +2120,6 @@
 		E8F62B6A200924410077B3DA /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
 		E8F62B6B200924410077B3DA /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
 		E8F62B6C200924410077B3DA /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
-		E8F62B6D200924410077B3DA /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		E8F62B6E200924410077B3DA /* BudgetBillingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */; };
 		E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8F62B70200924410077B3DA /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
@@ -2241,7 +2236,6 @@
 		E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD4A11ED87AE200F0198B /* CreditCard.swift */; };
 		E8F62C20200924570077B3DA /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
 		E8F62C21200924570077B3DA /* AlertPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */; };
-		E8F62C22200924570077B3DA /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D07CB11F0EC2F10018B02D /* Payment.swift */; };
 		E8F62C23200924570077B3DA /* BudgetBillingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE11EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift */; };
 		E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846931E6F4FF5008CE1B1 /* MockAuthenticationService.swift */; };
 		E8F62C25200924570077B3DA /* MockBillService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EE41EC9F84A0080AB3E /* MockBillService.swift */; };
@@ -3023,7 +3017,6 @@
 		B5AC07391E52A2B900BBA4ED /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B5AC073B1E52A2BD00BBA4ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5AC07411E52A49900BBA4ED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		B5D07CB11F0EC2F10018B02D /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		B5D415711F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_testing.plist"; sourceTree = "<group>"; };
 		B5D415731F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_develop.plist"; sourceTree = "<group>"; };
 		B5D415751F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_bge_staging.plist"; sourceTree = "<group>"; };
@@ -4850,7 +4843,6 @@
 				54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */,
 				E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */,
 				2FEC69401F056EEB00C059DC /* Premise.swift */,
-				B5D07CB11F0EC2F10018B02D /* Payment.swift */,
 				0D79C6D01F1FB761004793DD /* Maintenance.swift */,
 				E8790BE61F8C18C20067BE85 /* BillComparison.swift */,
 				E827F18E1F8E9D620090C5A5 /* BillForecast.swift */,
@@ -7426,7 +7418,6 @@
 				0EF60FD420EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E80043091E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				82DE61051FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
-				B5D07CB21F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8D340911EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */,
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
@@ -7755,7 +7746,6 @@
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CF1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
-				B5D07CB41F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				B0B083B1216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
@@ -8123,7 +8113,6 @@
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CE1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
-				B5D07CB31F0EC2F10018B02D /* Payment.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
@@ -8349,7 +8338,6 @@
 				0E7E16352191E75800A3748A /* WatchSessionManager.swift in Sources */,
 				E8264EF5200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
 				E87C414E1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
-				B5D07CB51F0EC2F10018B02D /* Payment.swift in Sources */,
 				E8F51EE21EC9F7CE0080AB3E /* BudgetBillingViewModelTests.swift in Sources */,
 				B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
@@ -8585,7 +8573,6 @@
 				E8F62B6B200924410077B3DA /* BillForecast.swift in Sources */,
 				E8264EF6200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
 				E8F62B6C200924410077B3DA /* AlertPreferencesViewModel.swift in Sources */,
-				E8F62B6D200924410077B3DA /* Payment.swift in Sources */,
 				E8F62B6E200924410077B3DA /* BudgetBillingViewModelTests.swift in Sources */,
 				9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
@@ -8774,7 +8761,6 @@
 				E8F62C20200924570077B3DA /* BillForecast.swift in Sources */,
 				E8264EF7200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
 				E8F62C21200924570077B3DA /* AlertPreferencesViewModel.swift in Sources */,
-				E8F62C22200924570077B3DA /* Payment.swift in Sources */,
 				E8F62C23200924570077B3DA /* BudgetBillingViewModelTests.swift in Sources */,
 				9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
