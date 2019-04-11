@@ -43,7 +43,7 @@ struct MockUser {
         case .screenshots:
             accounts = [MockAccount](repeating: account, count: 3)
         case .bgePrepaidMulti:
-            let keys: [MockDataKey] = [.bgePrepaidActive, .bgePrepaidPending, .default]
+            let keys: [MockDataKey] = [.bgePrepaidActive, .bgePrepaidPending, .screenshots]
             accounts = keys.map(MockAccount.init)
         default:
             accounts = [account]
