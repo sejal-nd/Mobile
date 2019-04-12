@@ -26,6 +26,7 @@ class MainTabBarController: UITabBarController {
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
         tabBar.isTranslucent = false
+        delegate = self
         
         setButtonStates(itemTag: 1)
         
@@ -144,4 +145,24 @@ class MainTabBarController: UITabBarController {
         }
     }
     
+    private lazy var previousViewController = viewControllers?.first
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let selectedNavVC = viewController as? UINavigationController,
+            let selectedVC = selectedNavVC.viewControllers.first,
+            selectedNavVC == previousViewController else {
+                previousViewController = viewController
+                return
+        }
+        
+        previousViewController = selectedNavVC
+        
+        if let vc = selectedVC as? AccountPickerViewController {
+            vc.scrollView?.setContentOffset(.zero, animated: true)
+        } else if let vc = selectedVC as? MoreViewController {
+            vc.tableView?.setContentOffset(.zero, animated: true)
+        }
+    }
 }
