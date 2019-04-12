@@ -270,7 +270,7 @@ struct WalletItem: Mappable, Equatable, Hashable {
     
     // Hashable
     func hash(into hasher: inout Hasher) {
-        hasher.combine(walletItemID!)
+        hasher.combine(walletItemId!)
     }
 
 }
