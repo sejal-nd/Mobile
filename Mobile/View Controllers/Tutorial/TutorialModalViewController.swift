@@ -37,15 +37,15 @@ class TutorialModalViewController: DismissableFormSheetViewController {
         nextButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
         
         slides.forEach(addViewFor)
-        view.accessibilityElements = [xButton, pagerContent, pageControl, nextButton]
-        pagerContent.accessibilityElements = [slideViews[0].titleText, slideViews[0].messageText]
+        view.accessibilityElements = [xButton, pagerContent, pageControl, nextButton] as [UIView]
+        pagerContent.accessibilityElements = [slideViews[0].titleText, slideViews[0].messageText] as [UIView]
     }
     
     func setCurrentPage(_ page: Int) {
         pageControl.currentPage = page
         let lastPage = scrollView.currentPage == pageControl.numberOfPages - 1
         nextButton.setTitle(lastPage ? NSLocalizedString("Got It", comment: "") : NSLocalizedString("Next", comment: ""), for: .normal)
-        pagerContent.accessibilityElements = [slideViews[page].titleText, slideViews[page].messageText]
+        pagerContent.accessibilityElements = [slideViews[page].titleText, slideViews[page].messageText] as [UIView]
         UIAccessibility.post(notification: .screenChanged, argument: pagerContent)
     }
     

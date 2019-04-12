@@ -51,8 +51,8 @@ struct Account: Mappable, Equatable, Hashable {
     }
     
     // Hashable
-    var hashValue: Int {
-        return accountNumber.hash
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(accountNumber)
     }
 }
 

@@ -154,7 +154,7 @@ class MyHomeProfileViewController: UIViewController {
                 
                 let selectedIndex: Int
                 if let homeType = homeType {
-                    selectedIndex = HomeType.allCases.index(of: homeType) ?? 0
+                    selectedIndex = HomeType.allCases.firstIndex(of: homeType) ?? 0
                 } else {
                     selectedIndex = 0
                 }
@@ -177,7 +177,7 @@ class MyHomeProfileViewController: UIViewController {
                 
                 let selectedIndex: Int
                 if let heatType = heatType {
-                    selectedIndex = HeatType.allCases.index(of: heatType) ?? 0
+                    selectedIndex = HeatType.allCases.firstIndex(of: heatType) ?? 0
                 } else {
                     selectedIndex = 0
                 }
@@ -200,7 +200,7 @@ class MyHomeProfileViewController: UIViewController {
                 
                 let selectedIndex: Int
                 if let numberOfAdults = numberOfAdults {
-                    selectedIndex = self.viewModel.numberOfAdultsOptions.index(of: numberOfAdults) ?? 0
+                    selectedIndex = self.viewModel.numberOfAdultsOptions.firstIndex(of: numberOfAdults) ?? 0
                 } else {
                     selectedIndex = 0
                 }
@@ -223,7 +223,7 @@ class MyHomeProfileViewController: UIViewController {
                 
                 let selectedIndex: Int
                 if let numberOfChildren = numberOfChildren {
-                    selectedIndex = self.viewModel.numberOfChildrenOptions.index(of: numberOfChildren) ?? 0
+                    selectedIndex = self.viewModel.numberOfChildrenOptions.firstIndex(of: numberOfChildren) ?? 0
                 } else {
                     selectedIndex = 0
                 }

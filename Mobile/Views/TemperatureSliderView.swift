@@ -81,7 +81,7 @@ class TemperatureSliderView: UIView {
     func bindViews() {
         let offText = mode.asDriver()
             .filter { $0 == .off }
-            .map(to: NSLocalizedString("Off", comment: ""))
+            .mapTo(NSLocalizedString("Off", comment: ""))
         
         offText
             .drive(temperatureLabel.rx.text)

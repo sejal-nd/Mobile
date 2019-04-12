@@ -165,11 +165,11 @@ class SmartEnergyRewardsView: UIView {
         viewModel.latest3EventsThisSeason.asObservable().subscribe(onNext: { [weak self] latest3Events in
             guard let self = self else { return }
             if latest3Events.count == 3 {
-                self.barGraphStackView.accessibilityElements = [self.bar1ContainerButton, self.bar2ContainerButton, self.bar3ContainerButton]
+                self.barGraphStackView.accessibilityElements = [self.bar1ContainerButton, self.bar2ContainerButton, self.bar3ContainerButton] as [UIView]
             } else if latest3Events.count == 2 {
-                self.barGraphStackView.accessibilityElements = [self.bar2ContainerButton, self.bar3ContainerButton]
+                self.barGraphStackView.accessibilityElements = [self.bar2ContainerButton, self.bar3ContainerButton] as [UIView]
             } else if latest3Events.count == 1 {
-                self.barGraphStackView.accessibilityElements = [self.bar3ContainerButton]
+                self.barGraphStackView.accessibilityElements = [self.bar3ContainerButton] as [UIView]
             }
         }).disposed(by: disposeBag)
         

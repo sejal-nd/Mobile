@@ -315,8 +315,8 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func bindDataFetching() {
-        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: false),
-                     previousBillButton.rx.tap.asDriver().map(to: true))
+        Driver.merge(lastYearButton.rx.tap.asDriver().mapTo(false),
+                     previousBillButton.rx.tap.asDriver().mapTo(true))
             .drive(onNext: { [weak self] isPreviousBill in
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 Analytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)

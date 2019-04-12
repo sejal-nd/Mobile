@@ -1,108 +1,108 @@
 PODS:
-  - AppCenter (1.12.0):
-    - AppCenter/Analytics (= 1.12.0)
-    - AppCenter/Crashes (= 1.12.0)
-  - AppCenter/Analytics (1.12.0):
+  - AppCenter (1.14.0):
+    - AppCenter/Analytics (= 1.14.0)
+    - AppCenter/Crashes (= 1.14.0)
+  - AppCenter/Analytics (1.14.0):
     - AppCenter/Core
-  - AppCenter/Core (1.12.0)
-  - AppCenter/Crashes (1.12.0):
+  - AppCenter/Core (1.14.0)
+  - AppCenter/Crashes (1.14.0):
     - AppCenter/Core
   - AppCenterXCUITestExtensions (1.0.0)
-  - Charts (3.2.0):
-    - Charts/Core (= 3.2.0)
-  - Charts/Core (3.2.0)
-  - Firebase/Core (5.15.0):
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
+  - Firebase/Core (5.19.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.4.0)
-  - Firebase/CoreOnly (5.15.0):
-    - FirebaseCore (= 5.1.10)
-  - FirebaseAnalytics (5.4.0):
-    - FirebaseCore (~> 5.1)
-    - FirebaseInstanceID (~> 3.3)
-    - GoogleAppMeasurement (= 5.4.0)
+    - FirebaseAnalytics (= 5.8.0)
+  - Firebase/CoreOnly (5.19.0):
+    - FirebaseCore (= 5.4.0)
+  - FirebaseAnalytics (5.8.0):
+    - FirebaseCore (~> 5.4)
+    - FirebaseInstanceID (~> 3.8)
+    - GoogleAppMeasurement (= 5.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.1.10):
+  - FirebaseCore (5.4.0):
+    - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseInstanceID (3.3.0):
-    - FirebaseCore (~> 5.1)
-    - GoogleUtilities/Environment (~> 5.3)
-    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseInstanceID (3.8.0):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
   - GoogleAnalytics (3.17.0)
-  - GoogleAppMeasurement (5.4.0):
+  - GoogleAppMeasurement (5.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
+  - GoogleUtilities/AppDelegateSwizzler (5.5.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.7)
-  - GoogleUtilities/Logger (5.3.7):
+  - GoogleUtilities/Environment (5.5.0)
+  - GoogleUtilities/Logger (5.5.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.7):
+  - GoogleUtilities/MethodSwizzler (5.5.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.7):
+  - GoogleUtilities/Network (5.5.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.7)"
-  - GoogleUtilities/Reachability (5.3.7):
+  - "GoogleUtilities/NSData+zlib (5.5.0)"
+  - GoogleUtilities/Reachability (5.5.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.7):
+  - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
   - JVFloatLabeledTextField (1.2.1)
   - lottie-ios (2.5.3)
-  - ModelMapper (9.0.0)
+  - ModelMapper (10.0.0):
+    - ModelMapper/Core (= 10.0.0)
+  - ModelMapper/Core (10.0.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - PDTSimpleCalendar (0.9.1)
-  - ReachabilitySwift (4.2.1)
-  - RxCocoa (4.3.1):
+  - ReachabilitySwift (4.3.1)
+  - RxCocoa (4.4.2):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
     - RxSwift (~> 4.0)
-  - RxGesture (2.0.1):
-    - RxCocoa (~> 4.3.1)
-    - RxSwift (~> 4.3.1)
-  - RxSwift (4.3.1)
-  - RxSwiftExt (3.3.0):
-    - RxSwiftExt/Core (= 3.3.0)
-  - RxSwiftExt/Core (3.3.0):
-    - RxSwift (~> 4.0)
-  - RxSwiftExt/RxCocoa (3.3.0):
+  - RxSwiftExt/RxCocoa (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwiftExt/Core
-  - RxTest (4.3.1):
-    - RxSwift (~> 4.0)
-  - Toast-Swift (4.0.0)
-  - XLPagerTabStrip (8.1.1)
+  - RxTest (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - Toast-Swift (5.0.0)
+  - XLPagerTabStrip (9.0.0)
   - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
-  - AppCenter (= 1.12)
+  - AppCenter (= 1.14)
   - AppCenterXCUITestExtensions (= 1.0)
-  - Charts (= 3.2.0)
-  - Firebase/Core (= 5.15.0)
+  - Charts (= 3.2.2)
+  - Firebase/Core (= 5.19.0)
   - GoogleAnalytics (= 3.17.0)
   - JVFloatLabeledTextField (= 1.2.1)
   - lottie-ios (= 2.5.3)
-  - ModelMapper (= 9.0.0)
+  - ModelMapper (= 10.0.0)
   - PDTSimpleCalendar (= 0.9.1)
-  - ReachabilitySwift (= 4.2.1)
-  - RxGesture (= 2.0.1)
-  - RxSwift (= 4.3.1)
-  - RxSwiftExt (= 3.3.0)
-  - RxSwiftExt/RxCocoa (= 3.3.0)
-  - RxTest (= 4.3.1)
-  - Toast-Swift (= 4.0.0)
-  - XLPagerTabStrip (= 8.1.1)
+  - ReachabilitySwift (= 4.3.1)
+  - RxSwift (= 4.5.0)
+  - RxSwiftExt (= 3.4.0)
+  - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxTest (= 4.5.0)
+  - Toast-Swift (= 5.0.0)
+  - XLPagerTabStrip (= 9.0.0)
   - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
@@ -124,7 +124,6 @@ SPEC REPOS:
     - PDTSimpleCalendar
     - ReachabilitySwift
     - RxCocoa
-    - RxGesture
     - RxSwift
     - RxSwiftExt
     - RxTest
@@ -133,31 +132,30 @@ SPEC REPOS:
     - zxcvbn-ios
 
 SPEC CHECKSUMS:
-  AppCenter: 4d27bdafd74b1b3e90946b9989fd6011a7e39c5e
+  AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
   AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
-  Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
-  Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
-  FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
-  FirebaseCore: 35747502d9e8c6ee217385ad04446c7c2aaf9c5c
-  FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
+  FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
+  FirebaseCore: 22a79a961c3951ef2f77b67bfbc99e454247b319
+  FirebaseInstanceID: cf488df2f4b79782f0e430b04a0e17c0aa7979b2
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
-  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
+  GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
-  ModelMapper: d73910ce35d8dca0042bcea4cddc24050014e09a
+  ModelMapper: a8dbf2a2003bf626627b9fe7c9a22b3405a30404
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
-  ReachabilitySwift: 35720ffea59c1c76d15f885be77fd33e33985427
-  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
-  RxGesture: 26ede4ed13ffc6336d29dbd9a8dff229bdb72de7
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
-  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
-  Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
-  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+  RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 3231a52e1e40b2ee76bde37e3a6291021ce4e3be
+PODFILE CHECKSUM: 06c81bc6620afcfe05c93c871acf3bb60c1cfadf
 
 COCOAPODS: 1.6.1

@@ -76,7 +76,7 @@ class LoginTermsPoliciesViewController: UIViewController {
         agreeSwitch.isAccessibilityElement = true
         agreeSwitch.accessibilityLabel = agreeLabel.text
         
-        self.view.accessibilityElements = [webView, agreeSwitch, continueButton]
+        self.view.accessibilityElements = [webView, agreeSwitch, continueButton] as [UIView]
     }
     
     private func setupWKWebView(with url: URL) {

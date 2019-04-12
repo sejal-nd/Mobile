@@ -80,7 +80,7 @@ class AdvancedAccountPickerMultiPremiseTableViewCell: UITableViewCell {
         }
         
         let premises = account.premises
-        let currentPremiseIndex = premises.index(of: account.currentPremise!)
+        let currentPremiseIndex = premises.firstIndex(of: account.currentPremise!)
         
         //premise info
         for (index, premise) in premises.enumerated() {

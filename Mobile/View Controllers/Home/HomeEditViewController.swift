@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import RxGesture
 
 fileprivate var topSectionHeaderHeight: CGFloat = 120
 fileprivate let cardsInUseString = NSLocalizedString("Cards in Use", comment: "")
@@ -79,7 +78,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     @objc func handleDragToReorder(gesture: UIGestureRecognizer) {
         guard let collectionView = collectionView else { return }
         
-        switch(gesture.state) {
+        switch gesture.state {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)), selectedIndexPath.section == 0 else { break }
             isReordering.value = true
@@ -107,7 +106,8 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         case .cancelled, .failed:
             collectionView.cancelInteractiveMovement()
             transformCardCell(pickUp: false)
-        case .possible:
+        case .possible: fallthrough
+        @unknown default:
             break
         }
     }
@@ -200,7 +200,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         let addRemoveTapped = { [weak self] in
             guard let this = self, !this.isReordering.value else { return }
             
-            let sourceIndexPath = IndexPath(item: this.cards.value[indexPath.section].index(of: card)!, section: indexPath.section)
+            let sourceIndexPath = IndexPath(item: this.cards.value[indexPath.section].firstIndex(of: card)!, section: indexPath.section)
             this.cards.value[indexPath.section].remove(at: sourceIndexPath.item)
             
             let destinationIndex: Int
@@ -241,13 +241,10 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                        isActive: indexPath.section == 0,
                        addRemoveTapped: addRemoveTapped)
         
-        cell.gripView.rx.panGesture() { _, delegate in
-            delegate.beginPolicy = .custom { [weak self] _ in !(self?.isReordering.value ?? false) }
-            delegate.simultaneousRecognitionPolicy = .never
-            }
-            .asDriver()
-            .drive(onNext: { [weak self] in self?.handleDragToReorder(gesture: $0)})
-            .disposed(by: cell.disposeBag)
+        cell.gripView.gestureRecognizers = []
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragToReorder))
+        recognizer.delegate = self
+        cell.gripView.addGestureRecognizer(recognizer)
         
         return cell
     }
@@ -299,4 +296,30 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
+}
+
+extension HomeEditViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return !isReordering.value
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return true
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+        return true
+    }
 }

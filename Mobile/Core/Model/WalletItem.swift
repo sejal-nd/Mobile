@@ -173,7 +173,7 @@ func extractLast4(object: Any?) throws -> String? {
     return String(string.suffix(4))
 }
 
-struct WalletItem: Mappable, Equatable, Hashable {
+struct WalletItem: Mappable, Equatable {
     let walletItemId: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
@@ -266,11 +266,6 @@ struct WalletItem: Mappable, Equatable, Hashable {
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
         return lhs.walletItemId == rhs.walletItemId
-    }
-    
-    // Hashable
-    var hashValue: Int {
-        return walletItemId!.hash
     }
 
 }

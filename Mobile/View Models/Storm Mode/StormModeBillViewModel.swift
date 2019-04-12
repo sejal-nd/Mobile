@@ -78,7 +78,7 @@ class StormModeBillViewModel {
     private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
         .asDriver()
         .filter(!)
-        .map(to: ())
+        .mapTo(())
     
     private(set) lazy var isSwitchingAccounts: Driver<Bool> = switchAccountTracker
         .asDriver()

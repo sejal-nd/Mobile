@@ -111,7 +111,7 @@ class AccountPicker: UIView {
             
             scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(pageViews.count), height: intrinsicContentSize.height)
             if pageControl.currentPage < pageViews.count {
-                scrollView.scrollRectToVisible(pageViews[accounts.index(of: currentAccount) ?? 0].frame, animated: false)
+                scrollView.scrollRectToVisible(pageViews[accounts.firstIndex(of: currentAccount) ?? 0].frame, animated: false)
             }
         }
         
@@ -366,7 +366,7 @@ class AccountPicker: UIView {
     func updateCurrentAccount() {
         currentIndex = AccountsStore.shared.currentIndex
         if pageViews.count > 0 {
-            if let index = accounts.index(where: { $0 == currentAccount}) {
+            if let index = accounts.firstIndex(where: { $0 == currentAccount}) {
                 pageControl.currentPage = index
                 scrollView.scrollRectToVisible(CGRect(x: scrollView.frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: scrollView.frame.size.width, height: intrinsicContentSize.height), animated: false)
             }
@@ -421,7 +421,7 @@ class AccountPicker: UIView {
 
 extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
     func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
-        currentIndex = accounts.index(of: account)
+        currentIndex = accounts.firstIndex(of: account)
         
         updateAdvancedAccountPicker(account)
         
