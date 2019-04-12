@@ -48,7 +48,9 @@ class PaymentViewModel {
         
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.value = billingHistoryItem.paymentId
-            selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,  paymentMethodType: billingHistoryItem.paymentMethodType)
+            selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
+                                                  paymentMethodType: billingHistoryItem.paymentMethodType,
+                                                  isEditingItem: true)
         }
 
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
@@ -106,17 +108,11 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
                          onError: @escaping (ServiceError) -> Void) {
-        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                              existingAccount: !self.selectedWalletItem.value!.isTemporary,
-                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                              paymentAmount: self.paymentAmount.value,
-                              paymentType: paymentType,
-                              paymentDate: self.paymentDate.value,
-                              walletId: AccountsStore.shared.customerIdentifier,
-                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
-        
-        self.paymentService.schedulePayment(payment: payment)
+        self.paymentService.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
+                                            paymentAmount: self.paymentAmount.value,
+                                            paymentDate: self.paymentDate.value,
+                                            walletId: AccountsStore.shared.customerIdentifier,
+                                            walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] confirmationNumber in
                 self?.confirmationNumber = confirmationNumber
@@ -140,17 +136,12 @@ class PaymentViewModel {
     }
 
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                              existingAccount: true,
-                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                              paymentAmount: self.paymentAmount.value,
-                              paymentType: paymentType,
-                              paymentDate: self.paymentDate.value,
-                              walletId: AccountsStore.shared.customerIdentifier,
-                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
-
-        self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
+        self.paymentService.updatePayment(paymentId: self.paymentId.value!,
+                                          accountNumber: self.accountDetail.value.accountNumber,
+                                          paymentAmount: self.paymentAmount.value,
+                                          paymentDate: self.paymentDate.value,
+                                          walletId: AccountsStore.shared.customerIdentifier,
+                                          walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -186,22 +177,27 @@ class PaymentViewModel {
     }
     
     var canEditPaymentDate: Bool {        
-        let acctDetail = accountDetail.value
-        let billingInfo = acctDetail.billingInfo
+        let accountDetail = self.accountDetail.value
+        let billingInfo = accountDetail.billingInfo
+        
+        // Existing requirement from before Paymentus
+        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+            return false
+        }
         
         // Precarious state 6: BGE can future date, ComEd/PECO cannot
-        if acctDetail.isFinaled && billingInfo.pastDueAmount > 0 {
+        if accountDetail.isFinaled && billingInfo.pastDueAmount > 0 {
             return Environment.shared.opco == .bge
         }
         
         // Precarious states 4 and 5 cannot future date
-        if (acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
-            (acctDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
+        if (accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
+            (accountDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
             return false
         }
         
         // Precarious state 3
-        if !acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
+        if !accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
             return Environment.shared.opco == .bge || isDueDateInTheFuture
         }
         
@@ -630,7 +626,8 @@ class PaymentViewModel {
         let billingInfo = accountDetail.billingInfo
         
         // Only show text in these precarious situations
-        guard (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+        guard (Environment.shared.opco == .bge && accountDetail.isActiveSeverance) ||
+            (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
             (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
             (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {
             return NSAttributedString(string: "")

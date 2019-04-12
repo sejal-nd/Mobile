@@ -42,11 +42,20 @@ class MockPaymentService: PaymentService {
         return .just(())
     }
     
-    func schedulePayment(payment: Payment) -> Observable<String> {
+    func schedulePayment(accountNumber: String,
+                         paymentAmount: Double,
+                         paymentDate: Date,
+                         walletId: String,
+                         walletItem: WalletItem) -> Observable<String> {
         return .just("123456")
     }
     
-    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
+    func updatePayment(paymentId: String,
+                       accountNumber: String,
+                       paymentAmount: Double,
+                       paymentDate: Date,
+                       walletId: String,
+                       walletItem: WalletItem) -> Observable<Void> {
         return .just(())
     }
     

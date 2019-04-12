@@ -63,6 +63,16 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
+    @IBOutlet weak var editPaymentDetailView: UIView!
+    @IBOutlet weak var paymentStatusView: UIView!
+    @IBOutlet weak var paymentStatusTextLabel: UILabel!
+    @IBOutlet weak var paymentStatusValueLabel: UILabel!
+    @IBOutlet weak var confirmationNumberView: UIView!
+    @IBOutlet weak var confirmationNumberTextLabel: UILabel!
+    @IBOutlet weak var confirmationNumberValueTextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet var editPaymentDividerLines: [UIView]!
+    @IBOutlet var editPaymentDividerLineConstraints: [NSLayoutConstraint]!
+    
     @IBOutlet weak var addPaymentMethodView: UIView!
     @IBOutlet weak var addPaymentMethodLabel: UILabel!
     @IBOutlet weak var addBankAccountButton: ButtonControl!
@@ -178,6 +188,21 @@ class MakePaymentViewController: UIViewController {
         paymentDateFixedDatePastDueLabel.textColor = .blackText
         paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
+        // Edit Payment
+        paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
+        paymentStatusTextLabel.textColor = .deepGray
+        paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentStatusValueLabel.textColor = .blackText
+        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle:.title1)
+        confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
+        confirmationNumberTextLabel.textColor = .deepGray
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberValueTextView.textColor = .blackText
+        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle:.title1)
+        for line in editPaymentDividerLines {
+            line.backgroundColor = .accentGray
+        }
+        
         addPaymentMethodLabel.textColor = .deepGray
         addPaymentMethodLabel.font = OpenSans.semibold.of(textStyle: .title2)
         addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
@@ -240,6 +265,13 @@ class MakePaymentViewController: UIViewController {
         navigationController?.setColoredNavBar()
     }
     
+    override func updateViewConstraints() {
+        for constraint in editPaymentDividerLineConstraints {
+            constraint.constant = 1.0 / UIScreen.main.scale
+        }
+        super.updateViewConstraints()
+    }
+    
     func fetchData(initialFetch: Bool) {
         viewModel.fetchData(initialFetch: initialFetch, onSuccess: { [weak self] in
             guard let self = self else { return }
@@ -264,22 +296,10 @@ class MakePaymentViewController: UIViewController {
         
         // Payment Method
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
-        // --- TODO: Cleanup ---
-        //viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
-        //viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
-        paymentAccountButton.isHidden = false
-        fixedPaymentAccountView.isHidden = true
-        // ---------------------
         viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Amount Text Field
         viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
-        
-        // Fixed Payment Amount - if allowEdits is false
-        // --- TODO: Cleanup ---
-        //viewModel.allowEdits.asDriver().drive(fixedPaymentAmountView.rx.isHidden).disposed(by: disposeBag)
-        fixedPaymentAmountView.isHidden = true
-        // ---------------------
         
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
@@ -308,10 +328,19 @@ class MakePaymentViewController: UIViewController {
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
         
-        if billingHistoryItem != nil {
+        // Edit Payment Stuff
+        if let billingHistoryItem = billingHistoryItem {
             amountDueView.isHidden = true
             dueDateView.isHidden = true
+            paymentStatusView.isHidden = billingHistoryItem.statusString == nil
+            confirmationNumberView.isHidden = billingHistoryItem.confirmationNumber == nil
+        } else {
+            editPaymentDetailView.isHidden = true
         }
+        
+        // Currently not using. Keeping around in case payment method/amount become not editable in some cases
+        fixedPaymentAccountView.isHidden = true
+        fixedPaymentAmountView.isHidden = true
     }
     
     func bindViewContent() {
@@ -417,6 +446,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
+        // Edit Payment Detail View
+        paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
+        confirmationNumberValueTextView.text = billingHistoryItem?.confirmationNumber
+        
         // Wallet Footer Label
         walletFooterLabel.text = viewModel.walletFooterLabelText
         
@@ -437,26 +470,14 @@ class MakePaymentViewController: UIViewController {
             if let selectedItem = self.viewModel.selectedWalletItem.value {
                 miniWalletVC.viewModel.selectedItem.value = selectedItem
                 if selectedItem.isTemporary {
-                     miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                    miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                } else if selectedItem.isEditingItem {
+                    miniWalletVC.viewModel.editingItem.value = selectedItem
                 }
             }
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.popToViewController = self
             miniWalletVC.delegate = self
-            if self.billingHistoryItem != nil, let walletItem = self.viewModel.selectedWalletItem.value {
-                if Environment.shared.opco == .bge {
-                    if walletItem.bankOrCard == .bank {
-                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
-                        miniWalletVC.creditCardsDisabled = true
-                    } else {
-                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a card payment, you may only select another card as your method of payment.", comment: "")
-                        miniWalletVC.bankAccountsDisabled = true
-                    }
-                } else {
-                    miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
-                    miniWalletVC.creditCardsDisabled = true
-                }
-            }
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).disposed(by: disposeBag)
         

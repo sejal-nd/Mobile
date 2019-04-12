@@ -223,12 +223,11 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         paymentMethodType = bankOrCard == .bank ? .ach : .unknown("Credit Card")
                     }
                     
-                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String,
+                    let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String,
                                                 maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String,
                                                 nickName: nickname,
                                                 paymentMethodType: paymentMethodType,
                                                 isDefault: didSetDefault,
-                                                bankOrCard: bankOrCard,
                                                 isTemporary: temporary)
                     
                     if walletItemId != nil { // Editing Payment Method

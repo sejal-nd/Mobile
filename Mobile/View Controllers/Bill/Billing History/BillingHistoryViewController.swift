@@ -88,10 +88,7 @@ class BillingHistoryViewController: UIViewController {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         view.endEditing(true)
         
         if let vc = segue.destination as? MoreBillingHistoryViewController {
@@ -138,9 +135,9 @@ extension BillingHistoryViewController: UITableViewDelegate {
                 showBillPdf(billingItem: billingItem)
             } else {
                 switch billingItem.status {
-                case .processing, .processed, .scheduled, .pending:
-                    handleAllOpcoScheduledClick(billingItem: billingItem)
-                case .canceled, .failed, .accepted, .unknown:
+                case .scheduled:
+                    handleScheduledClick(billingItem: billingItem)
+                default:
                     performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                 }
             }
@@ -158,34 +155,21 @@ extension BillingHistoryViewController: UITableViewDelegate {
             } else {
                 var selectedIndex = indexPath.row
                 if accountDetail.isBGEasy || accountDetail.isAutoPay {
-                    selectedIndex -= 1 //everything is offset by BGEasy cell
+                    selectedIndex -= 1 // everything is offset by BGEasy cell
                 }
                 
                 let billingItem = billingHistory.upcoming[selectedIndex]
-                if Environment.shared.opco == .bge {
-                    switch billingItem.status {
-                    case .processing, .processed, .canceled, .failed:
-                        performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
-                    case .scheduled:
-                        handleAllOpcoScheduledClick(billingItem: billingItem)
-                    case .pending, .accepted, .unknown:
-                        break
-                    }
-                } else {
-                    switch billingItem.status {
-                    case .canceled, .accepted, .failed:
-                        performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
-                    case .scheduled, .processing, .processed:
-                        handleAllOpcoScheduledClick(billingItem: billingItem)
-                    case .pending, .unknown:
-                        break
-                    }
+                switch billingItem.status {
+                case .scheduled:
+                    handleScheduledClick(billingItem: billingItem)
+                default:
+                    performSegue(withIdentifier: "showBillingDetailsSegue", sender: billingItem)
                 }
             }
         }
     }
     
-    private func handleAllOpcoScheduledClick(billingItem: BillingHistoryItem) {
+    private func handleScheduledClick(billingItem: BillingHistoryItem) {
 //        if Environment.shared.opco == .bge {
 //            guard let paymentMethod = billingItem.paymentMethod else { return }
 //            if paymentMethod == "S" { //scheduled
