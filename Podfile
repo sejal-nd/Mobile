@@ -98,10 +98,12 @@ target 'PECO_WatchOS Extension' do
   shared_pods
 end
 
-# Removes the project warning after a `pod install`
+# Removes the project warnings after a `pod install`
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
+        # Force the main pods frameworks to Swift 5.0
         config.build_settings['SWIFT_VERSION'] = '5.0'
+        # Fix localization warning in Xcode 10.2
         config.build_settings['CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED'] = 'YES'
         if config.name == 'Release'
             config.build_settings['SWIFT_COMPILATION_MODE'] = 'wholemodule'
