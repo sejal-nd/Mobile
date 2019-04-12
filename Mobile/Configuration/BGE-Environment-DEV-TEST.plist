@@ -5,26 +5,24 @@
 	<key>watchGaTrackingId</key>
 	<string></string>
 	<key>environment</key>
-	<string>TEST</string>
+	<string>DEV</string>
 	<key>opco</key>
 	<string>BGE</string>
 	<key>appName</key>
-	<string>BGE_TEST</string>
+	<string>BGE_DEV</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUATTest</string>
+	<string>mobileAppDevTest</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>paymentusUrl</key>
 	<string>https://bge-sit-620.paymentus.io/xotp/pm/bge</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_bge_testing</string>
+	<string>GoogleService-Info_bge_develop</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
 	<string>azstg.bge.com</string>
 	<key>associatedDomain</key>
 	<string>azstg-secure.bge.com</string>
-	<key>appCenterId</key>
-	<string>5555b456-47b1-4288-b4d4-c6cf44b15fb9</string>
 </dict>
 </plist>
