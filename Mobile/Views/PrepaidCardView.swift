@@ -47,7 +47,7 @@ final class PrepaidCardView: UIView {
     }
     
     @IBAction private func launchDashboard() {
-        let url = URL(string: "https://bge.com/MyAccount")
+        let url = URL(string: Environment.shared.myAccountUrl)!
         UIApplication.shared.openUrlIfCan(url)
     }
 }

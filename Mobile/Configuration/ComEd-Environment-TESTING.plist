@@ -12,6 +12,8 @@
 	<string>ComEd_TEST</string>
 	<key>mcsInstanceName</key>
 	<string>mobileAppUATTest</string>
+	<key>myAccountUrl</key>
+	<string>https://aztst.comed.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>paymentusUrl</key>

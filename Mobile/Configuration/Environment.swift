@@ -80,6 +80,7 @@ struct Environment {
     let opco: OpCo
     let mcsInstanceName: String
     let mcsConfig: MCSConfig
+    let myAccountUrl: String
     let outageMapUrl: String
     let paymentusUrl: String
     let gaTrackingId: String
@@ -98,6 +99,7 @@ struct Environment {
         opco = OpCo(rawValue: dict["opco"] as! String)!
         mcsInstanceName = dict["mcsInstanceName"] as! String
         mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName)
+        myAccountUrl = dict["myAccountUrl"] as! String
         outageMapUrl = dict["outageMapUrl"] as! String
         paymentusUrl = dict["paymentusUrl"] as! String
         gaTrackingId = dict["gaTrackingId"] as! String
