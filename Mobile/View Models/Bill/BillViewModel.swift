@@ -557,7 +557,7 @@ class BillViewModel {
         .distinctUntilChanged()
     
     var prepaidUrl: URL {
-        return URL(string: "https://bge.com/MyAccount")!
+        return URL(string: Environment.shared.myAccountUrl)!
     }
 	
 	// MARK: - Convenience functions

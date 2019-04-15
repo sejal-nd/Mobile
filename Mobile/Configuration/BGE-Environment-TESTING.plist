@@ -12,6 +12,8 @@
 	<string>BGE_TEST</string>
 	<key>mcsInstanceName</key>
 	<string>mobileAppUATTest</string>
+	<key>myAccountUrl</key>
+	<string>https://aztst.bge.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>paymentusUrl</key>
