@@ -27,5 +27,12 @@ struct BillingHistory: Mappable {
             mostRecentSixMonths = []
         }
     }
+    
+    init(upcoming: [BillingHistoryItem], past: [BillingHistoryItem]) {
+        self.billingHistoryItems = upcoming + past
+        self.upcoming = upcoming
+        self.past = past
+        self.mostRecentSixMonths = []
+    }
 }
 

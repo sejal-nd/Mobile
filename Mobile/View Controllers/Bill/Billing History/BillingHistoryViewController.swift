@@ -28,6 +28,7 @@ class BillingHistoryViewController: UIViewController {
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
     var accountDetail: AccountDetail! // Passed from BillViewController
+    var isViewingMore = false // Pass in to indicate "View More" screen
 
     override func viewDidLoad() {
         super.viewDidLoad()
