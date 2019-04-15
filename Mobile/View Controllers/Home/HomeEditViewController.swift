@@ -26,7 +26,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         let selectedCards = HomeCardPrefsStore.shared.list
         
         // generate the sorted array of rejected cards
-        var rejectedCards = HomeCard.allCards.filter { !selectedCards.contains($0) }
+        var rejectedCards = HomeCard.editableCards.filter { !selectedCards.contains($0) }
         if rejectedCards.isEmpty {
             rejectedCards.append(.nothing)
         }
@@ -180,7 +180,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                         let selectedCards = HomeCardPrefsStore.defaultList
                         
                         // generate the sorted array of rejected cards
-                        var rejectedCards = HomeCard.allCards.filter { !selectedCards.contains($0) }
+                        var rejectedCards = HomeCard.editableCards.filter { !selectedCards.contains($0) }
                         if rejectedCards.isEmpty {
                             rejectedCards.append(.nothing)
                         }
