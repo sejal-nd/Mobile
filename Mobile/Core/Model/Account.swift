@@ -167,7 +167,7 @@ struct AccountDetail: Mappable {
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
         
-        prepaidStatus = map.optionalFrom("prepaidEnrollmentStatus") ?? .inactive
+        prepaidStatus = map.optionalFrom("prepaid_status") ?? .inactive
     }
     
     // BGE only - Smart Energy Rewards enrollment status
