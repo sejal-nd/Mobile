@@ -114,15 +114,12 @@ class MCSPaymentService: PaymentService {
                          walletItem: WalletItem) -> Observable<String> {
         let opCo = Environment.shared.opco
         let params: [String: Any] = [
-            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber!,
             "payment_amount": String.init(format: "%.02f", paymentAmount),
-            "payment_category_type": walletItem.bankOrCard == .bank ? "CHECK" : "CARD",
             "payment_date": paymentDate.paymentFormatString,
             "wallet_id": walletId,
             "wallet_item_id": walletItem.walletItemId!,
             "is_existing_account": !walletItem.isTemporary,
-            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
-            "auth_sess_token": "" // Still needed?
+            "biller_id": "\(opCo.rawValue)Registered"
         ]
 
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
@@ -146,13 +143,10 @@ class MCSPaymentService: PaymentService {
                        walletItem: WalletItem) -> Observable<Void> {
         let opCo = Environment.shared.opco
         var params: [String: Any] = [
-            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber!,
             "payment_amount": String.init(format: "%.02f", paymentAmount),
-            "payment_category_type": walletItem.bankOrCard == .bank ? "CHECK" : "CARD",
             "payment_date": paymentDate.paymentFormatString,
             "payment_id": paymentId,
-            "biller_id": "\(opCo.rawValue)Registered", // Still needed?
-            "auth_sess_token": "" // Still needed?
+            "biller_id": "\(opCo.rawValue)Registered"
         ]
         
         if !walletItem.isEditingItem, let walletItemId = walletItem.walletItemId { // User selected a new payment method
