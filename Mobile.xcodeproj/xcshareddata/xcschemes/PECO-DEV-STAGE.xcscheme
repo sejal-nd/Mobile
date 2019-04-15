@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-               BuildableName = "PECO_WatchOS.app"
-               BlueprintName = "PECO_WatchOS"
-               ReferencedContainer = "container:Mobile.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
                BuildableName = "PECO.app"
                BlueprintName = "PECO"
@@ -40,15 +26,26 @@
       buildConfiguration = "Develop-Stage"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E8F62BE6200924570077B3DA"
+               BuildableName = "PECOUnitTests.xctest"
+               BlueprintName = "PECOUnitTests"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO_WatchOS.app"
-            BlueprintName = "PECO_WatchOS"
+            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
+            BuildableName = "PECO.app"
+            BlueprintName = "PECO"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,63 +62,41 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/PECO">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO_WatchOS.app"
-            BlueprintName = "PECO_WatchOS"
+            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
+            BuildableName = "PECO.app"
+            BlueprintName = "PECO"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO_WatchOS.app"
-            BlueprintName = "PECO_WatchOS"
-            ReferencedContainer = "container:Mobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Develop-Stage"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/PECO">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO_WatchOS.app"
-            BlueprintName = "PECO_WatchOS"
+            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
+            BuildableName = "PECO.app"
+            BlueprintName = "PECO"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO_WatchOS.app"
-            BlueprintName = "PECO_WatchOS"
-            ReferencedContainer = "container:Mobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Develop-Stage">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Develop-Stage"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
