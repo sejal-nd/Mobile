@@ -569,14 +569,13 @@ class MakePaymentViewController: UIViewController {
             LoadingView.show()
             self?.viewModel.cancelPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
-
                 guard let self = self, let navigationController = self.navigationController else { return }
-                // Always pop back to the root billing history screen here (because MoreBillingHistoryViewController does not refetch data)
                 for vc in navigationController.viewControllers {
-                    guard let dest = vc as? BillingHistoryViewController else {
+                    // Always pop back to the root billing history screen here (hence the check for viewingMoreActivity)
+                    guard let dest = vc as? BillingHistoryViewController, !dest.viewingMoreActivity else {
                         continue
                     }
-                    dest.onPaymentDelete()
+                    dest.onPaymentCancel()
                     navigationController.popToViewController(dest, animated: true)
                     return
                 }
