@@ -112,6 +112,12 @@ class HomeViewModel {
                                 refreshFetchTracker: refreshFetchTracker,
                                 switchAccountFetchTracker: outageTracker)
     
+    private(set) lazy var prepaidActiveCardViewModel =
+        HomePrepaidCardViewModel(isActive: true)
+    
+    private(set) lazy var prepaidPendingCardViewModel =
+        HomePrepaidCardViewModel(isActive: false)
+    
     private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount), RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     private lazy var recentPaymentsFetchTrigger = Observable
@@ -267,9 +273,6 @@ class HomeViewModel {
         .startWith(.inactive)
         .distinctUntilChanged()
     
-    private lazy var isPrepaidActive = prepaidStatus.map { $0 == .active }
-    private lazy var isPrepaidPending = prepaidStatus.map { $0 == .pending }
-    
     private(set) lazy var prepaidCardViewModel: Driver<HomePrepaidCardViewModel?> = Observable
         .combineLatest(prepaidStatus, accountDetailTracker.asObservable())
         { prepaidStatus, isLoading -> HomePrepaidCardViewModel? in
@@ -287,12 +290,18 @@ class HomeViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var cardPreferenceChanges = Observable
-        .combineLatest(HomeCardPrefsStore.shared.listObservable, isPrepaidActive)
+        .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus)
         .scan(([HomeCard](), [HomeCard]())) { oldCards, newData in
-            var (newCards, isPrepaidActive) = newData
+            var (newCards, prepaidStatus) = newData
             
-            // Active BGE Prepaid users should not see bill, usage, or projected bill cards.
-            if isPrepaidActive {
+            switch prepaidStatus {
+            case .active:
+                // Active Prepaid replaces the bill card
+                // Also remove usage and projected bill
+                if let billIndex = newCards.firstIndex(of: .bill) {
+                    newCards[billIndex] = .prepaidActive
+                }
+                
                 newCards.removeAll { card in
                     switch card {
                     case .bill, .usage, .projectedBill:
@@ -301,6 +310,11 @@ class HomeViewModel {
                         return false
                     }
                 }
+            case .pending:
+                // Pending Prepaid is always at the top
+                newCards.insert(.prepaidPending, at: 0)
+            default:
+                break
             }
             
             return (oldCards.1, newCards)

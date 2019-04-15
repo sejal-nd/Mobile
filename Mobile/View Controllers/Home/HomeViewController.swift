@@ -34,7 +34,8 @@ class HomeViewController: AccountPickerViewController {
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var appointmentCardView: HomeAppointmentCardView?
-    var prepaidCardView: HomePrepaidCardView?
+    var prepaidPendingCardView: HomePrepaidCardView?
+    var prepaidActiveCardView: HomePrepaidCardView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -141,25 +142,6 @@ class HomeViewController: AccountPickerViewController {
         if tappedVersion < viewModel.latestNewCardVersion {
             topPersonalizeButtonSetup()
         }
-        
-        viewModel.prepaidCardViewModel
-            .drive(onNext: { [weak self] viewModel in
-                guard let self = self else { return }
-                // Remove the existing card
-                self.prepaidCardView?.removeFromSuperview()
-                self.prepaidCardView = nil
-                
-                guard let viewModel = viewModel else {
-                    return // If no card needed, we're done
-                }
-                
-                let prepaidCardView = HomePrepaidCardView.create(withViewModel: viewModel)
-                
-                let index = self.topPersonalizeButton != nil ? 1 : 0
-                self.contentStackView.insertArrangedSubview(prepaidCardView, at: index)
-                self.prepaidCardView = prepaidCardView
-            })
-            .disposed(by: bag)
         
         // Appointment Card
         viewModel.showAppointmentCard
@@ -370,6 +352,10 @@ class HomeViewController: AccountPickerViewController {
             projectedBillCardView = nil
         case .outageStatus:
             outageCardView = nil
+        case .prepaidPending:
+            prepaidPendingCardView = nil
+        case .prepaidActive:
+            prepaidActiveCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -431,6 +417,26 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return outageCardView
+        case .prepaidPending:
+            let prepaidPendingCardView: HomePrepaidCardView
+            if let prepaidCard = self.prepaidPendingCardView {
+                prepaidPendingCardView = prepaidCard
+            } else {
+                prepaidPendingCardView = .create(withViewModel: viewModel.prepaidPendingCardViewModel)
+                self.prepaidPendingCardView = prepaidPendingCardView
+            }
+            
+            return prepaidPendingCardView
+        case .prepaidActive:
+            let prepaidActiveCardView: HomePrepaidCardView
+            if let prepaidCard = self.prepaidActiveCardView {
+                prepaidActiveCardView = prepaidCard
+            } else {
+                prepaidActiveCardView = .create(withViewModel: viewModel.prepaidActiveCardViewModel)
+                self.prepaidActiveCardView = prepaidActiveCardView
+            }
+            
+            return prepaidActiveCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }

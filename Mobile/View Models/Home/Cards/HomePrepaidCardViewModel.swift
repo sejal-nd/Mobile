@@ -33,7 +33,7 @@ final class HomePrepaidCardViewModel {
     
     var detailText: String {
         if isActive {
-            return NSLocalizedString("As a BGE Prepaid Power pilot participant, you will have access to a personalized dashboard on the website to manage your Prepaid experience. Some account information in this app does not reflect your Prepaid Power account status.", comment: "")
+            return NSLocalizedString("As a BGE Prepaid Power pilot participant, you will have access to a personalized dashboard on the website to manage your Prepaid experience.", comment: "")
         } else {
             return NSLocalizedString("Complete all required steps within 5 business days of starting your enrollment.", comment: "")
         }
