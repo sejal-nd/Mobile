@@ -48,6 +48,6 @@ final class HomePrepaidCardViewModel {
     }
     
     var buttonUrl: URL {
-        return URL(string: "https://bge.com/MyAccount")!
+        return URL(string: Environment.shared.myAccountUrl)!
     }
 }
