@@ -355,11 +355,12 @@ class PaymentViewModel {
     }
 
     /**
-     Some funky logic going on here. Basically, there are three cases in which we just return []
+     Some funky logic going on here. Basically, there are 4 cases in which we just return []
 
      1. No pastDueAmount
      2. netDueAmount == pastDueAmount, no other precarious amounts exist
      3. netDueAmount == pastDueAmount == other precarious amount (restorationAmount, amtDpaReinst, disconnectNoticeArrears)
+     4. We're editing a payment
 
      In these cases we don't give the user multiple payment amount options, just the text field.
     */
@@ -368,7 +369,8 @@ class PaymentViewModel {
 
         guard let netDueAmount = billingInfo.netDueAmount,
             let pastDueAmount = billingInfo.pastDueAmount,
-            pastDueAmount > 0 else {
+            pastDueAmount > 0,
+            paymentId.value == nil else {
             return []
         }
 
