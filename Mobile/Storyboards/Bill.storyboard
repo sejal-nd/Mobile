@@ -3510,53 +3510,6 @@
             </objects>
             <point key="canvasLocation" x="2391.1999999999998" y="-3049.4752623688159"/>
         </scene>
-        <!--More Activity-->
-        <scene sceneID="GMp-3i-pWK">
-            <objects>
-                <viewController id="tQK-DR-cra" customClass="MoreBillingHistoryViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sm5-YW-QKI"/>
-                        <viewControllerLayoutGuide type="bottom" id="pxD-bM-dzq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JA2-Zr-ZHX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="712"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gXN-bS-1R3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="712"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="3FP-hJ-GKm" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="350" width="60" height="12"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="gXN-bS-1R3" secondAttribute="trailing" id="24b-4a-uf7"/>
-                            <constraint firstItem="3FP-hJ-GKm" firstAttribute="centerX" secondItem="JA2-Zr-ZHX" secondAttribute="centerX" id="9yA-Ag-XZu"/>
-                            <constraint firstItem="gXN-bS-1R3" firstAttribute="leading" secondItem="JA2-Zr-ZHX" secondAttribute="leading" id="LO8-Nk-m85"/>
-                            <constraint firstItem="gXN-bS-1R3" firstAttribute="top" secondItem="sm5-YW-QKI" secondAttribute="bottom" id="LyV-Wg-gjG"/>
-                            <constraint firstItem="3FP-hJ-GKm" firstAttribute="centerY" secondItem="JA2-Zr-ZHX" secondAttribute="centerY" id="g6p-Oc-nVJ"/>
-                            <constraint firstAttribute="bottom" secondItem="gXN-bS-1R3" secondAttribute="bottom" id="hVM-1E-feX"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="More Activity" id="go9-JQ-k61">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="QPi-b4-gJC"/>
-                    </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="800"/>
-                    <connections>
-                        <outlet property="loadingIndicator" destination="3FP-hJ-GKm" id="vbG-v5-AvT"/>
-                        <outlet property="tableView" destination="gXN-bS-1R3" id="EKS-Ub-RaX"/>
-                        <segue destination="MpQ-Zp-Bed" kind="show" identifier="showBillingDetailsSegue" id="erR-LQ-U7d"/>
-                        <segue destination="LoQ-Uh-PUl" kind="show" identifier="viewBillSegue" id="c6a-C1-blF"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DWr-jW-b5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5983" y="481"/>
-        </scene>
         <!--Billing History Details View Controller-->
         <scene sceneID="Luh-dg-AiZ">
             <objects>
@@ -3942,7 +3895,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Io-ob-DW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5551" y="1233"/>
+            <point key="canvasLocation" x="6090" y="481"/>
         </scene>
         <!--What Is Budget Billing View Controller-->
         <scene sceneID="g0H-0E-Iut">
@@ -4385,7 +4338,7 @@ the year</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="712"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="KjS-5f-IeS" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="KjS-5f-IeS" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="350" width="60" height="12"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -4431,7 +4384,6 @@ the year</string>
                         <outlet property="errorLabel" destination="K8A-sl-oov" id="WbD-Uo-pM8"/>
                         <outlet property="loadingIndicator" destination="KjS-5f-IeS" id="hTw-f0-0kd"/>
                         <outlet property="tableView" destination="WyA-2k-Kom" id="iwI-Z8-coH"/>
-                        <segue destination="tQK-DR-cra" kind="show" identifier="showMoreBillingHistorySegue" id="Tjx-QE-Jag"/>
                         <segue destination="MpQ-Zp-Bed" kind="show" identifier="showBillingDetailsSegue" id="X62-GM-RxQ"/>
                         <segue destination="VY7-IV-VDc" kind="presentation" identifier="viewBGEasySegue" modalPresentationStyle="formSheet" id="Z6O-TZ-udR"/>
                         <segue destination="LoQ-Uh-PUl" kind="show" identifier="viewBillSegue" id="JxE-Ae-J8n"/>
@@ -4484,8 +4436,7 @@ the year</string>
         <image name="paperless_modal" width="206" height="136"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X62-GM-RxQ"/>
-        <segue reference="c6a-C1-blF"/>
+        <segue reference="JxE-Ae-J8n"/>
         <segue reference="7KW-Av-o21"/>
         <segue reference="Kur-v9-at5"/>
         <segue reference="Z6O-TZ-udR"/>

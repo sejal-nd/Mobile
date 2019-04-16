@@ -417,13 +417,10 @@
 		54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */; };
 		54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */; };
 		54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */; };
-		54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */; };
 		54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89548F41EC646A200730022 /* BGEasyViewController.swift */; };
 		54C1DEF81F01EBFA00290FE5 /* BGEasyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89548F41EC646A200730022 /* BGEasyViewController.swift */; };
 		54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */; };
 		54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */; };
-		54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */; };
-		54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */; };
 		54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */; };
 		54C1DEFE1F02B8FC00290FE5 /* BillingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */; };
 		54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */; };
@@ -2656,7 +2653,6 @@
 		54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
 		54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryViewController.swift; sourceTree = "<group>"; };
-		54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreBillingHistoryViewController.swift; sourceTree = "<group>"; };
 		54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorSpaceView.swift; sourceTree = "<group>"; };
 		54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
 		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
@@ -3719,7 +3715,6 @@
 			isa = PBXGroup;
 			children = (
 				54C1DEF01F01A1A000290FE5 /* BillingHistoryViewController.swift */,
-				54C1DEF51F01A1D000290FE5 /* MoreBillingHistoryViewController.swift */,
 				54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */,
 			);
 			path = "Billing History";
@@ -7438,7 +7433,6 @@
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
-				54C1DEF61F01A1D000290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				E87C41391FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */,
 				E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
@@ -7853,7 +7847,6 @@
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				826773331FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
-				54C1DEFC1F02B8E300290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				B039DB82225E6D5700BB5479 /* PrepaidCardView.swift in Sources */,
@@ -8221,7 +8214,6 @@
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
 				E87C414C1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				826773321FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
-				54C1DEFB1F02B8E200290FE5 /* MoreBillingHistoryViewController.swift in Sources */,
 				82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
