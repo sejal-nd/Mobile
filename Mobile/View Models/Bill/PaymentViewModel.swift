@@ -143,7 +143,8 @@ class PaymentViewModel {
                                           walletId: AccountsStore.shared.customerIdentifier,
                                           walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] confirmationNumber in
+                self?.confirmationNumber = confirmationNumber
                 onSuccess()
             }, onError: { err in
                 onError(err as! ServiceError)

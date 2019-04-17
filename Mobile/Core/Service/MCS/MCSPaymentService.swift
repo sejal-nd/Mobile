@@ -140,7 +140,7 @@ class MCSPaymentService: PaymentService {
                        paymentAmount: Double,
                        paymentDate: Date,
                        walletId: String,
-                       walletItem: WalletItem) -> Observable<Void> {
+                       walletItem: WalletItem) -> Observable<String> {
         let opCo = Environment.shared.opco
         var params: [String: Any] = [
             "payment_amount": String.init(format: "%.02f", paymentAmount),
@@ -156,8 +156,13 @@ class MCSPaymentService: PaymentService {
         }
         
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
-            .mapTo(())
-            .do(onNext: {
+            .map { json -> String in
+                guard let dict = json as? NSDictionary, let confirmation = dict["confirmationNumber"] as? String else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                return confirmation
+            }
+            .do(onNext: { _ in
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())
                 AppRating.logRatingEvent()
             })
