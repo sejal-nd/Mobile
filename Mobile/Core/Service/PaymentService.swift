@@ -79,7 +79,7 @@ protocol PaymentService {
                        paymentAmount: Double,
                        paymentDate: Date,
                        walletId: String,
-                       walletItem: WalletItem) -> Observable<Void>
+                       walletItem: WalletItem) -> Observable<String>
     
     func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void>
 }

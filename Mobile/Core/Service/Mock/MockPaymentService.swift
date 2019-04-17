@@ -55,8 +55,8 @@ class MockPaymentService: PaymentService {
                        paymentAmount: Double,
                        paymentDate: Date,
                        walletId: String,
-                       walletItem: WalletItem) -> Observable<Void> {
-        return .just(())
+                       walletItem: WalletItem) -> Observable<String> {
+        return .just("123456")
     }
     
     func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void> {
