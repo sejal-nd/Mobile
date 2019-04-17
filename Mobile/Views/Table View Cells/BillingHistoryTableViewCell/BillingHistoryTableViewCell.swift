@@ -64,8 +64,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 iconImageView.image = #imageLiteral(resourceName: "ic_pending")
                 titleLabel.text = titleText
                 dateLabel.isHidden = true
-                caretImageView.isHidden = true
-                innerContentView.isUserInteractionEnabled = false
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .success, .unknown:
                 let titleText = NSLocalizedString("Payment", comment: "")
@@ -103,8 +101,6 @@ class BillingHistoryTableViewCell: UITableViewCell {
         titleLabel.text = ""
         amountLabel.text = ""
         iconImageView.image = nil
-        caretImageView.isHidden = false
-        innerContentView.isUserInteractionEnabled = true
         dateLabel.isHidden = false
         disposeBag = DisposeBag()
     }
