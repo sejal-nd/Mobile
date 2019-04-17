@@ -10,18 +10,6 @@ import UIKit
 import WebKit
 import RxSwift
 
-// The postMessage event sends pmDetails.Type as one of these
-fileprivate enum PaymentusPaymentMethodType: String {
-    case checking = "CHQ"
-    case saving = "SAV"
-    case visa = "VISA"
-    case mastercard = "MC"
-    case amex = "AMEX"
-    case discover = "DISC"
-    case visaDebit = "VISA_DEBIT"
-    case mastercardDebit = "MC_DEBIT"
-}
-
 protocol PaymentusFormViewControllerDelegate: class {
     func didEditWalletItem()
     func didAddWalletItem(_ walletItem: WalletItem)
@@ -208,9 +196,11 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
         if let bodyString = message.body as? String {
             if bodyString.contains("frameHeight") { return } // Ignore the frameHeight message
             
-            if let data = bodyString.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! String {
+            if let data = bodyString.data(using: .utf8),
+                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? String {
                 let pmDetailsString = json.replacingOccurrences(of: "pmDetails:", with: "")
-                if let pmDetailsData = pmDetailsString.data(using: .utf8), let pmDetailsJson = try? JSONSerialization.jsonObject(with: pmDetailsData, options: []) as! [String: Any] {
+                if let pmDetailsData = pmDetailsString.data(using: .utf8),
+                    let pmDetailsJson = try? JSONSerialization.jsonObject(with: pmDetailsData, options: []) as? [String: Any] {
                     // Payment method was successfully submitted
                     
                     var didSetDefault = false
@@ -228,32 +218,16 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                     // Map the Paymentus returned "Type" to our PaymentMethodTypes for correct icon display
                     let paymentMethodType: PaymentMethodType
                     if let typeString = pmDetailsJson["Type"] as? String {
-                        if let type = PaymentusPaymentMethodType(rawValue: typeString) {
-                            switch type {
-                            case .checking, .saving:
-                                paymentMethodType = .ach
-                            case .visa, .visaDebit:
-                                paymentMethodType = .visa
-                            case .mastercard, .mastercardDebit:
-                                paymentMethodType = .mastercard
-                            case .amex:
-                                paymentMethodType = .amex
-                            case .discover:
-                                paymentMethodType = .discover
-                            }
-                        } else {
-                            paymentMethodType = .unknown(typeString)
-                        }
+                        paymentMethodType = paymentMethodTypeForPaymentusString(typeString)
                     } else {
                         paymentMethodType = bankOrCard == .bank ? .ach : .unknown("Credit Card")
                     }
                     
-                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String,
+                    let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String,
                                                 maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String,
                                                 nickName: nickname,
                                                 paymentMethodType: paymentMethodType,
                                                 isDefault: didSetDefault,
-                                                bankOrCard: bankOrCard,
                                                 isTemporary: temporary)
                     
                     if walletItemId != nil { // Editing Payment Method

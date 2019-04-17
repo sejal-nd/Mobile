@@ -34,78 +34,47 @@ class PaymentViewModel {
     let overpayingSwitchValue = Variable(false)
     let activeSeveranceSwitchValue = Variable(false)
 
-    let paymentDetail = Variable<PaymentDetail?>(nil)
     let paymentId = Variable<String?>(nil)
-    let allowEdits = Variable(true)
-    let allowCancel = Variable(false)
 
     var confirmationNumber: String?
 
     init(walletService: WalletService,
          paymentService: PaymentService,
          accountDetail: AccountDetail,
-         paymentDetail: PaymentDetail?,
          billingHistoryItem: BillingHistoryItem?) {
         self.walletService = walletService
         self.paymentService = paymentService
         self.accountDetail = Variable(accountDetail)
-        self.paymentDetail.value = paymentDetail
-        if let billingHistoryItem = billingHistoryItem {
-            self.paymentId.value = billingHistoryItem.paymentId
-            self.allowEdits.value = billingHistoryItem.flagAllowEdits
-            self.allowCancel.value = billingHistoryItem.flagAllowDeletes
+        
+        if let billingHistoryItem = billingHistoryItem { // Editing a payment
+            paymentId.value = billingHistoryItem.paymentId
+            selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
+                                                  paymentMethodType: billingHistoryItem.paymentMethodType,
+                                                  isEditingItem: true)
         }
 
-        self.paymentDate = Variable(.now) // May be updated later...see computeDefaultPaymentDate()
-
         amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? accountDetail.billingInfo.netDueAmount ?? 0)
+        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? 0)
+        paymentDate = Variable(billingHistoryItem?.date ?? .now) // May be updated later...see computeDefaultPaymentDate()
     }
 
     // MARK: - Service Calls
 
-    func fetchWalletItems() -> Observable<Void> {
-        return walletService.fetchWalletItems()
-            .map { walletItems in
-                self.walletItems.value = walletItems
-            }
-    }
-
-    func fetchPaymentDetails(paymentId: String) -> Observable<Void> {
-        return paymentService.fetchPaymentDetails(accountNumber: accountDetail.value.accountNumber,
-                                                  paymentId: paymentId)
-            .map { paymentDetail in
-                self.paymentDetail.value = paymentDetail
-            }
-    }
-
     func fetchData(initialFetch: Bool, onSuccess: (() -> ())?, onError: (() -> ())?) {
-        var observables = [fetchWalletItems()]
-
-        if let paymentId = paymentId.value, paymentDetail.value == nil {
-            observables.append(fetchPaymentDetails(paymentId: paymentId))
-        }
-
         isFetching.value = true
-        Observable.zip(observables)
+        walletService.fetchWalletItems()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] walletItems in
                 guard let self = self else { return }
                 self.isFetching.value = false
-
+                
+                self.walletItems.value = walletItems
                 guard let walletItems = self.walletItems.value else { return }
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
-                    if self.paymentId.value != nil { // Modifiying Payment
-                        if let paymentDetail = self.paymentDetail.value {
-                            self.paymentAmount.value = paymentDetail.paymentAmount
-                            self.paymentDate.value = paymentDetail.paymentDate!
-                            if let matchingItem = walletItems.first(where: { $0.walletItemID == paymentDetail.walletItemId }) {
-                                self.selectedWalletItem.value = matchingItem
-                            }
-                        }
-                    } else {
+                    if self.paymentId.value == nil { // If not modifiying payment
+                        self.computeDefaultPaymentDate()
                         if self.accountDetail.value.isCashOnly {
                             if defaultWalletItem?.bankOrCard == .card { // Select the default item IF it's a credit card
                                 self.selectedWalletItem.value = defaultWalletItem!
@@ -139,17 +108,11 @@ class PaymentViewModel {
     func schedulePayment(onDuplicate: @escaping (String, String) -> Void,
                          onSuccess: @escaping () -> Void,
                          onError: @escaping (ServiceError) -> Void) {
-        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                              existingAccount: !self.selectedWalletItem.value!.isTemporary,
-                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                              paymentAmount: self.paymentAmount.value,
-                              paymentType: paymentType,
-                              paymentDate: self.paymentDate.value,
-                              walletId: AccountsStore.shared.customerIdentifier,
-                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
-        
-        self.paymentService.schedulePayment(payment: payment)
+        self.paymentService.schedulePayment(accountNumber: self.accountDetail.value.accountNumber,
+                                            paymentAmount: self.paymentAmount.value,
+                                            paymentDate: self.paymentDate.value,
+                                            walletId: AccountsStore.shared.customerIdentifier,
+                                            walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] confirmationNumber in
                 self?.confirmationNumber = confirmationNumber
@@ -162,8 +125,7 @@ class PaymentViewModel {
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
-                                     paymentId: paymentId.value!,
-                                     paymentDetail: paymentDetail.value!)
+                                     paymentId: paymentId.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 onSuccess()
@@ -174,25 +136,93 @@ class PaymentViewModel {
     }
 
     func modifyPayment(onSuccess: @escaping () -> Void, onError: @escaping (ServiceError) -> Void) {
-        let paymentType: PaymentType = self.selectedWalletItem.value!.bankOrCard == .bank ? .check : .credit
-        let payment = Payment(accountNumber: self.accountDetail.value.accountNumber,
-                              existingAccount: true,
-                              maskedWalletAccountNumber: self.selectedWalletItem.value!.maskedWalletItemAccountNumber!,
-                              paymentAmount: self.paymentAmount.value,
-                              paymentType: paymentType,
-                              paymentDate: self.paymentDate.value,
-                              walletId: AccountsStore.shared.customerIdentifier,
-                              walletItemId: self.selectedWalletItem.value!.walletItemID!)
-
-        self.paymentService.updatePayment(paymentId: self.paymentId.value!, payment: payment)
+        self.paymentService.updatePayment(paymentId: self.paymentId.value!,
+                                          accountNumber: self.accountDetail.value.accountNumber,
+                                          paymentAmount: self.paymentAmount.value,
+                                          paymentDate: self.paymentDate.value,
+                                          walletId: AccountsStore.shared.customerIdentifier,
+                                          walletItem: self.selectedWalletItem.value!)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
+            .subscribe(onNext: { [weak self] confirmationNumber in
+                self?.confirmationNumber = confirmationNumber
                 onSuccess()
             }, onError: { err in
                 onError(err as! ServiceError)
             })
             .disposed(by: self.disposeBag)
     }
+    
+    // MARK: - Payment Date Stuff
+    
+    func computeDefaultPaymentDate() {
+        if Environment.shared.opco == .bge {
+            paymentDate.value = .now
+        } else {
+            let acctDetail = accountDetail.value
+            let billingInfo = acctDetail.billingInfo
+            
+            // Covers precarious states 6, 5, and 4 (in that order) on the Billing Scenarios table
+            if (acctDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+                (acctDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
+                (acctDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
+                paymentDate.value = .now
+            }
+            
+            // All the other states boil down to the due date being in the future
+            if let dueDate = billingInfo.dueByDate {
+                paymentDate.value = isDueDateInTheFuture ? dueDate : .now
+            } else { // Should never get here?
+                paymentDate.value = .now
+            }
+        }
+    }
+    
+    var canEditPaymentDate: Bool {        
+        let accountDetail = self.accountDetail.value
+        let billingInfo = accountDetail.billingInfo
+        
+        // Existing requirement from before Paymentus
+        if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
+            return false
+        }
+        
+        // Precarious state 6: BGE can future date, ComEd/PECO cannot
+        if accountDetail.isFinaled && billingInfo.pastDueAmount > 0 {
+            return Environment.shared.opco == .bge
+        }
+        
+        // Precarious states 4 and 5 cannot future date
+        if (accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0) ||
+            (accountDetail.isCutOutNonPay && billingInfo.restorationAmount > 0) {
+            return false
+        }
+        
+        // Precarious state 3
+        if !accountDetail.isCutOutIssued && billingInfo.disconnectNoticeArrears > 0 {
+            return Environment.shared.opco == .bge || isDueDateInTheFuture
+        }
+        
+        // All the other states boil down to the due date being in the future
+        return isDueDateInTheFuture
+    }
+    
+    private var isDueDateInTheFuture: Bool {
+        let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
+        if let dueDate = accountDetail.value.billingInfo.dueByDate {
+            if dueDate <= startOfTodayDate {
+                return false
+            }
+        }
+        return true
+    }
+    
+    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> =
+        Driver.combineLatest(self.hasWalletItems, self.paymentId.asDriver()) {
+            $0 || $1 != nil
+        }
+
+    private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
+        .map { $0.mmDdYyyyString }
 
     // MARK: - Shared Drivers
 
@@ -204,7 +234,8 @@ class PaymentViewModel {
             return $0 && $1 == nil
         }
 
-    // MARK: - Make Payment Drivers
+    // MARK: - Other Make Payment Drivers
+    
     private(set) lazy var makePaymentNextButtonEnabled: Driver<Bool> = Driver
         .combineLatest(selectedWalletItem.asDriver(), paymentFieldsValid) {
             return $0 != nil && $1
@@ -213,16 +244,6 @@ class PaymentViewModel {
     private(set) lazy var isCashOnlyUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isCashOnly }
 
     private(set) lazy var isActiveSeveranceUser: Driver<Bool> = self.accountDetail.asDriver().map { $0.isActiveSeverance }
-
-    private(set) lazy var shouldShowNextButton: Driver<Bool> =
-        Driver.combineLatest(self.paymentId.asDriver(),
-                             self.allowEdits.asDriver())
-        {
-            if $0 != nil {
-                return $1
-            }
-            return true
-        }
 
     private(set) lazy var shouldShowContent: Driver<Bool> =
         Driver.combineLatest(self.isFetching.asDriver(),
@@ -263,10 +284,9 @@ class PaymentViewModel {
             }
         }
 
-    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> =
-        Driver.combineLatest(self.hasWalletItems,
-                             self.allowEdits.asDriver())
-        { $0 && $1 }
+    private(set) lazy var shouldShowPaymentAmountTextField: Driver<Bool> = Driver
+        .combineLatest(hasWalletItems, paymentId.asDriver())
+        { $0 || $1 != nil }
 
     private(set) lazy var paymentAmountErrorMessage: Driver<String?> = {
         return Driver.combineLatest(selectedWalletItem.asDriver(),
@@ -336,11 +356,12 @@ class PaymentViewModel {
     }
 
     /**
-     Some funky logic going on here. Basically, there are three cases in which we just return []
+     Some funky logic going on here. Basically, there are 4 cases in which we just return []
 
      1. No pastDueAmount
      2. netDueAmount == pastDueAmount, no other precarious amounts exist
      3. netDueAmount == pastDueAmount == other precarious amount (restorationAmount, amtDpaReinst, disconnectNoticeArrears)
+     4. We're editing a payment
 
      In these cases we don't give the user multiple payment amount options, just the text field.
     */
@@ -349,7 +370,8 @@ class PaymentViewModel {
 
         guard let netDueAmount = billingInfo.netDueAmount,
             let pastDueAmount = billingInfo.pastDueAmount,
-            pastDueAmount > 0 else {
+            pastDueAmount > 0,
+            paymentId.value == nil else {
             return []
         }
 
@@ -428,11 +450,8 @@ class PaymentViewModel {
             }
     }
 
-    private(set) lazy var shouldShowPaymentDateView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.paymentId.asDriver())
-    { $0 || $1 != nil }
-
     private(set) lazy var shouldShowStickyFooterView: Driver<Bool> = Driver.combineLatest(self.hasWalletItems, self.shouldShowContent)
-    { $0 && $1 }
+        { $0 && $1 }
 
     private(set) lazy var selectedWalletItemImage: Driver<UIImage?> = selectedWalletItem.asDriver().map {
         guard let walletItem: WalletItem = $0 else { return nil }
@@ -486,12 +505,12 @@ class PaymentViewModel {
     }
 
     private(set) lazy var shouldShowAddBankAccount: Driver<Bool> = Driver
-        .combineLatest(isCashOnlyUser, hasWalletItems, allowEdits.asDriver())
-        { !$0 && !$1 && $2 }
+        .combineLatest(isCashOnlyUser, hasWalletItems, paymentId.asDriver())
+        { !$0 && !$1 && $2 == nil }
 
     private(set) lazy var shouldShowAddCreditCard: Driver<Bool> = Driver
-        .combineLatest(hasWalletItems, allowEdits.asDriver())
-        { !$0 && $1 }
+        .combineLatest(hasWalletItems, paymentId.asDriver())
+        { !$0 && $1 == nil }
 
     private(set) lazy var shouldShowAddPaymentMethodView: Driver<Bool> = Driver
         .combineLatest(shouldShowAddBankAccount, shouldShowAddCreditCard)
@@ -500,29 +519,7 @@ class PaymentViewModel {
     var walletFooterLabelText: String {
         return NSLocalizedString("All payments and associated convenience fees are processed by Paymentus Corporation. Payment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
     }
-
-    private(set) lazy var isFixedPaymentDate: Driver<Bool> = Driver
-        .combineLatest(accountDetail.asDriver(), allowEdits.asDriver())
-        { [weak self] (accountDetail, allowEdits) in
-            guard let self = self else { return false }
-            if Environment.shared.opco == .bge && accountDetail.isActiveSeverance {
-                return true
-            }
-            
-            if !allowEdits {
-                return true
-            }
-            
-            let startOfTodayDate = Calendar.opCo.startOfDay(for: .now)
-            if let dueDate = accountDetail.billingInfo.dueByDate {
-                if dueDate <= startOfTodayDate {
-                    return true
-                }
-            }
-            
-            return false
-        }
-
+    
     private(set) lazy var shouldShowPastDueLabel: Driver<Bool> = accountDetail.asDriver().map { [weak self] in
         if Environment.shared.opco == .bge || self?.paymentId.value != nil {
             return false
@@ -542,17 +539,9 @@ class PaymentViewModel {
         return pastDueAmount > 0
     }
 
-    private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
-        .map { $0.mmDdYyyyString }
-
-    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = Driver
-        .combineLatest(paymentId.asDriver(), allowCancel.asDriver())
-        {
-            if $0 != nil {
-                return $1
-            }
-            return false
-        }
+    private(set) lazy var shouldShowCancelPaymentButton: Driver<Bool> = paymentId.asDriver().map {
+        return $0 != nil
+    }
 
     // MARK: - Review Payment Drivers
 
@@ -640,26 +629,27 @@ class PaymentViewModel {
         let billingInfo = accountDetail.billingInfo
         
         // Only show text in these precarious situations
-        guard (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+        guard (Environment.shared.opco == .bge && accountDetail.isActiveSeverance) ||
+            (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
             (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
             (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {
             return NSAttributedString(string: "")
         }
         
-        let boldText = NSLocalizedString("IMPORTANT: ", comment: "")
+        let boldText: String
         let bodyText: String
         switch Environment.shared.opco {
         case .bge:
+            boldText = ""
             bodyText = """
-            If your service has been interrupted due to a past due balance and the submitted payment satisfies the required amount, your service will be restored.
+            If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.
             
-            Your service will be restored between 4 and 72 hours.
+            Please ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.
             
-            Breaker Policy: BGE requires your breakers to be in the off position.
-            
-            Gas Off:  If your natural gas service has been interrupted, a restoration appointment must be scheduled. An adult (18 years or older) must be at the property and provide access to light the pilots on all gas appliances. If an adult is not present or cannot provide the access required, the gas service will NOT be restored. This policy ensures public safety.
+            If an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.
             """
         case .comEd:
+            boldText = NSLocalizedString("IMPORTANT: ", comment: "")
             bodyText = """
             If your service has been interrupted due to a past due balance and the submitted payment satisfies the required restoral amount, your service will be restored:
             
@@ -668,6 +658,7 @@ class PaymentViewModel {
             Typically by end of the next business day if you do not have a smart meter
             """
         case .peco:
+            boldText = NSLocalizedString("IMPORTANT: ", comment: "")
             bodyText = """
             If your service has been interrupted due to a past due balance and the submitted payment satisfies the required amount, your service will be restored.
             

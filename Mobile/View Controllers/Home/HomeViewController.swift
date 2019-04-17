@@ -34,6 +34,8 @@ class HomeViewController: AccountPickerViewController {
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var appointmentCardView: HomeAppointmentCardView?
+    var prepaidPendingCardView: HomePrepaidCardView?
+    var prepaidActiveCardView: HomePrepaidCardView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -105,19 +107,18 @@ class HomeViewController: AccountPickerViewController {
     
     func viewSetup() {
         // Observe selected card list
-        HomeCardPrefsStore.shared.listObservable
-            .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
-            .asDriver(onErrorDriveWith: .empty())
+        viewModel.cardPreferenceChanges
             .drive(onNext: { [weak self] (oldCards, newCards) in
-                self?.scrollView?.setContentOffset(.zero, animated: false)
+                guard let self = self else { return }
+                self.scrollView?.setContentOffset(.zero, animated: false)
                 
                 // Perform reorder if preference changed
                 guard oldCards != newCards else { return }
-                self?.setCards(oldCards: oldCards, newCards: newCards)
+                self.setCards(oldCards: oldCards, newCards: newCards)
                 
                 // Refresh if not first load and new card(s) added
                 if !oldCards.isEmpty && !Set(newCards).subtracting(oldCards).isEmpty {
-                    self?.viewModel.fetchData.onNext(.switchAccount)
+                    self.viewModel.fetchData.onNext(.switchAccount)
                 }
             })
             .disposed(by: bag)
@@ -351,6 +352,10 @@ class HomeViewController: AccountPickerViewController {
             projectedBillCardView = nil
         case .outageStatus:
             outageCardView = nil
+        case .prepaidPending:
+            prepaidPendingCardView = nil
+        case .prepaidActive:
+            prepaidActiveCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -371,8 +376,8 @@ class HomeViewController: AccountPickerViewController {
             return billCardView
         case .usage:
             let usageCardView: HomeUsageCardView
-            if let billCard = self.usageCardView {
-                usageCardView = billCard
+            if let usageCard = self.usageCardView {
+                usageCardView = usageCard
             } else {
                 usageCardView = .create(withViewModel: viewModel.usageCardViewModel)
                 self.usageCardView = usageCardView
@@ -412,6 +417,26 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return outageCardView
+        case .prepaidPending:
+            let prepaidPendingCardView: HomePrepaidCardView
+            if let prepaidCard = self.prepaidPendingCardView {
+                prepaidPendingCardView = prepaidCard
+            } else {
+                prepaidPendingCardView = .create(withViewModel: viewModel.prepaidPendingCardViewModel)
+                self.prepaidPendingCardView = prepaidPendingCardView
+            }
+            
+            return prepaidPendingCardView
+        case .prepaidActive:
+            let prepaidActiveCardView: HomePrepaidCardView
+            if let prepaidCard = self.prepaidActiveCardView {
+                prepaidActiveCardView = prepaidCard
+            } else {
+                prepaidActiveCardView = .create(withViewModel: viewModel.prepaidActiveCardViewModel)
+                self.prepaidActiveCardView = prepaidActiveCardView
+            }
+            
+            return prepaidActiveCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }

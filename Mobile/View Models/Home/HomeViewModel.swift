@@ -94,7 +94,7 @@ class HomeViewModel {
         TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
                               showLoadingState: accountDetailTracker.asDriver()
                                 .filter { $0 }
-                                .map(to: ())
+                                .mapTo(())
                                 .startWith(()))
     
     private(set) lazy var projectedBillCardViewModel =
@@ -111,6 +111,12 @@ class HomeViewModel {
                                 fetchDataObservable: fetchDataObservable,
                                 refreshFetchTracker: refreshFetchTracker,
                                 switchAccountFetchTracker: outageTracker)
+    
+    private(set) lazy var prepaidActiveCardViewModel =
+        HomePrepaidCardViewModel(isActive: true)
+    
+    private(set) lazy var prepaidPendingCardViewModel =
+        HomePrepaidCardViewModel(isActive: false)
     
     private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount), RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
@@ -260,5 +266,58 @@ class HomeViewModel {
         .merge(appointmentEvents.map { !($0.element?.isEmpty ?? true) },
                appointmentsUpdates.map { !$0.isEmpty },
                appointmentTracker.asObservable().filter { $0 }.not())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var prepaidStatus = accountDetailEvents.elements()
+        .mapAt(\.prepaidStatus)
+        .startWith(.inactive)
+        .distinctUntilChanged()
+    
+    private(set) lazy var prepaidCardViewModel: Driver<HomePrepaidCardViewModel?> = Observable
+        .combineLatest(prepaidStatus, accountDetailTracker.asObservable())
+        { prepaidStatus, isLoading -> HomePrepaidCardViewModel? in
+            guard !isLoading else { return nil }
+            switch prepaidStatus {
+            case .active:
+                return HomePrepaidCardViewModel(isActive: true)
+            case .pending:
+                return HomePrepaidCardViewModel(isActive: false)
+            default:
+                return nil
+            }
+        }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var cardPreferenceChanges = Observable
+        .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus)
+        .scan(([HomeCard](), [HomeCard]())) { oldCards, newData in
+            var (newCards, prepaidStatus) = newData
+            
+            switch prepaidStatus {
+            case .active:
+                // Active Prepaid replaces the bill card
+                // Also remove usage and projected bill
+                if let billIndex = newCards.firstIndex(of: .bill) {
+                    newCards[billIndex] = .prepaidActive
+                }
+                
+                newCards.removeAll { card in
+                    switch card {
+                    case .bill, .usage, .projectedBill:
+                        return true
+                    default:
+                        return false
+                    }
+                }
+            case .pending:
+                // Pending Prepaid is always at the top
+                newCards.insert(.prepaidPending, at: 0)
+            default:
+                break
+            }
+            
+            return (oldCards.1, newCards)
+        }
         .asDriver(onErrorDriveWith: .empty())
 }

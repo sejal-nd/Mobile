@@ -12,6 +12,8 @@
 	<string>PECO</string>
 	<key>mcsInstanceName</key>
 	<string>Prod-pecoMBE</string>
+	<key>myAccountUrl</key>
+	<string>https://peco.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>paymentusUrl</key>

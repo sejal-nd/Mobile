@@ -362,7 +362,7 @@ class HomeBillCardView: UIView {
         
         // Actions
         oneTouchSlider.didFinishSwipe
-            .map(to: ())
+            .mapTo(())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
@@ -416,7 +416,7 @@ class HomeBillCardView: UIView {
             return UIAlertController.paymentusErrorAlertController(
                 forError: err,
                 walletItem: walletItem!,
-                customMessage: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
+                customMessageForSessionExpired: NSLocalizedString("Please try to Slide to Pay again.", comment: ""),
                 callHandler: { _ in
                     if let phone = self?.viewModel.errorPhoneNumber {
                         UIApplication.shared.openPhoneNumberIfCan(phone)
@@ -450,12 +450,12 @@ class HomeBillCardView: UIView {
     }
     
     private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver
-        .merge(tutorialTap.rx.event.asDriver().map(to: ()),
-               tutorialSwipe.rx.event.asDriver().map(to: ()),
+        .merge(tutorialTap.rx.event.asDriver().mapTo(()),
+               tutorialSwipe.rx.event.asDriver().mapTo(()),
                a11yTutorialButton.rx.tap.asDriver())
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
-        .map(to: ())
+        .mapTo(())
         .map(OneTouchTutorialViewController.init)
     
     private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.tap.asObservable()

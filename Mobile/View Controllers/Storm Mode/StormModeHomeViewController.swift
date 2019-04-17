@@ -287,10 +287,10 @@ class StormModeHomeViewController: AccountPickerViewController {
             self?.headerContentView.accessibilityTraits = noUpdate ? .staticText : .button
         }).disposed(by: disposeBag)
         
-        Driver.merge(reportOutageButton.rx.touchUpInside.asDriver().map(to: "ReportOutageSegue"),
-                     outageMapButton.rx.touchUpInside.asDriver().map(to: "OutageMapSegue"),
-                     billButton.rx.touchUpInside.asDriver().map(to: "BillSegue"),
-                     moreButton.rx.touchUpInside.asDriver().map(to: "MoreSegue"))
+        Driver.merge(reportOutageButton.rx.touchUpInside.asDriver().mapTo("ReportOutageSegue"),
+                     outageMapButton.rx.touchUpInside.asDriver().mapTo("OutageMapSegue"),
+                     billButton.rx.touchUpInside.asDriver().mapTo("BillSegue"),
+                     moreButton.rx.touchUpInside.asDriver().mapTo("MoreSegue"))
             .drive(onNext: { [weak self] in
                 self?.performSegue(withIdentifier: $0, sender: nil)
             })

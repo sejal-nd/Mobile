@@ -51,8 +51,8 @@ struct Account: Mappable, Equatable, Hashable {
     }
     
     // Hashable
-    var hashValue: Int {
-        return accountNumber.hash
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(accountNumber)
     }
 }
 
@@ -103,6 +103,21 @@ struct AccountDetail: Mappable {
     
     let peakRewards: String?
     let zipCode: String?
+    
+    // Only 3 real states to think about
+    enum PrepaidStatus: String {
+        // Not Enrolled
+        case inactive = "INACTIVE"
+        case invited = "INVITED"
+        case canceled = "CANCELED"
+        case expired = "EXPIRED"
+        // Pending
+        case pending = "PENDING"
+        // Enrolled
+        case active = "ACTIVE"
+    }
+    
+    let prepaidStatus: PrepaidStatus
 
     init(map: Mapper) throws {
         try accountNumber = map.from("accountNumber")
@@ -151,6 +166,8 @@ struct AccountDetail: Mappable {
         
         peakRewards = map.optionalFrom("peakRewards")
         zipCode = map.optionalFrom("zipCode")
+        
+        prepaidStatus = map.optionalFrom("prepaid_status") ?? .inactive
     }
     
     // BGE only - Smart Energy Rewards enrollment status
@@ -178,7 +195,7 @@ struct AccountDetail: Mappable {
     var isEligibleForUsageData: Bool {
         switch serviceType {
         case "GAS", "ELECTRIC", "GAS/ELECTRIC":
-            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled
+            return premiseNumber != nil && isResidential && !isBGEControlGroup && !isFinaled && prepaidStatus != .active
         default:
             return false
         }

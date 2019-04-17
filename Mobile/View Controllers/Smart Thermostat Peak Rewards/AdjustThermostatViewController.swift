@@ -176,12 +176,12 @@ class AdjustThermostatViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.initialTemp.drive(tempSliderView.currentTemperature).disposed(by: disposeBag)
-        viewModel.initialMode.map { SmartThermostatMode.allValues.index(of: $0) ?? 0 }
+        viewModel.initialMode.map { SmartThermostatMode.allValues.firstIndex(of: $0) ?? 0 }
             .drive(modeSegmentedControl.selectedIndex)
             .disposed(by: disposeBag)
         
         viewModel.initialFan
-            .map { SmartThermostatFan.allValues.index(of: $0) ?? 0 }
+            .map { SmartThermostatFan.allValues.firstIndex(of: $0) ?? 0 }
             .drive(fanSegmentedControl.selectedIndex)
             .disposed(by: disposeBag)
         

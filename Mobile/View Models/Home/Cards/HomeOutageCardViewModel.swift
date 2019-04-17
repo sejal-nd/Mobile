@@ -88,7 +88,7 @@ class HomeOutageCardViewModel {
     // MARK: - Show/Hide Views
     
     private(set) lazy var showLoadingState: Driver<Void> = switchAccountFetchTracker
-        .asDriver().filter { $0 }.map(to: ())
+        .asDriver().filter { $0 }.mapTo(())
     
     private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
         .filter { $0.outageStatus }
@@ -97,26 +97,26 @@ class HomeOutageCardViewModel {
     
     private(set) lazy var showContentView: Driver<Void> = currentOutageStatus
         .filter { !$0.isCustomError }
-        .map(to: ())
+        .mapTo(())
     
     private(set) lazy var showCustomErrorView: Driver<Void> = currentOutageStatus
         .filter { $0.isCustomError }
-        .map(to: ())
+        .mapTo(())
     
     private(set) lazy var showOutstandingBalanceWarning: Driver<Void> = currentOutageStatus
         .filter { $0.isOutstandingBalance }
-        .map(to: ())
+        .mapTo(())
     
     private(set) lazy var showGasOnly: Driver<Void> = currentOutageStatus
         .filter { !$0.isOutstandingBalance && $0.flagGasOnly }
-        .map(to: ())
+        .mapTo(())
     
     private(set) lazy var showErrorState: Driver<Void> =  outageStatusEvents.errors()
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showReportedOutageTime: Driver<Bool> = Driver
-        .merge(self.outageReported, self.currentOutageStatus.map(to: ()))
+        .merge(self.outageReported, self.currentOutageStatus.mapTo(()))
         .map { [weak self] in
             guard let this = self else { return false }
             guard AccountsStore.shared.currentIndex != nil else { return false }
@@ -144,7 +144,7 @@ class HomeOutageCardViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var reportedOutageTime: Driver<String?> = Driver.merge(self.outageReported.startWith(()),
-                                                                             self.currentOutageStatus.map(to: ()))
+                                                                             self.currentOutageStatus.mapTo(()))
         .map { [weak self] in
             guard let this = self else { return nil }
             guard AccountsStore.shared.currentIndex != nil else { return nil }
@@ -161,7 +161,7 @@ class HomeOutageCardViewModel {
         .map { $0 ? NSLocalizedString("View Outage Map", comment: "") : NSLocalizedString("Report Outage", comment: "")}
 
     private(set) lazy var showEtr: Driver<Bool> = Driver
-        .merge(self.currentOutageStatus.map { $0.activeOutage }, self.outageReported.map(to: true))
+        .merge(self.currentOutageStatus.map { $0.activeOutage }, self.outageReported.mapTo(true))
         .distinctUntilChanged()
     
     private(set) lazy var accountNonPayFinaledMessage: Driver<NSAttributedString> = currentOutageStatus

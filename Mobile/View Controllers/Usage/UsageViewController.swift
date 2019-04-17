@@ -23,6 +23,7 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var unavailableView: UnavailableView!
+    @IBOutlet private weak var prepaidView: UIView!
     @IBOutlet private weak var mainErrorView: UIView!
     @IBOutlet private weak var mainErrorLabel: UILabel! {
         didSet {
@@ -314,8 +315,8 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func bindDataFetching() {
-        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: false),
-                     previousBillButton.rx.tap.asDriver().map(to: true))
+        Driver.merge(lastYearButton.rx.tap.asDriver().mapTo(false),
+                     previousBillButton.rx.tap.asDriver().mapTo(true))
             .drive(onNext: { [weak self] isPreviousBill in
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 Analytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
@@ -354,6 +355,10 @@ class UsageViewController: AccountPickerViewController {
         
         viewModel.showNoUsageDataState
             .drive(onNext: { [weak self] in self?.showNoUsageDataState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showPrepaidState
+            .drive(onNext: { [weak self] in self?.showPrepaidState() })
             .disposed(by: disposeBag)
         
         viewModel.showMainErrorState
@@ -575,6 +580,7 @@ class UsageViewController: AccountPickerViewController {
         switchAccountsLoadingIndicator.isHidden = false
         unavailableView.isHidden = true
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
@@ -587,6 +593,7 @@ class UsageViewController: AccountPickerViewController {
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         contentStack.isHidden = false
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
@@ -598,6 +605,19 @@ class UsageViewController: AccountPickerViewController {
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = false
         contentStack.isHidden = true
+        prepaidView.isHidden = true
+        mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
+    }
+    
+    private func showPrepaidState() {
+        scrollView?.isHidden = false
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        prepaidView.isHidden = false
         mainErrorView.isHidden = true
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
@@ -609,6 +629,7 @@ class UsageViewController: AccountPickerViewController {
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = false
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
@@ -620,6 +641,7 @@ class UsageViewController: AccountPickerViewController {
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
         accountDisallowView.isHidden = false
         noNetworkConnectionView.isHidden = true
@@ -631,6 +653,7 @@ class UsageViewController: AccountPickerViewController {
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = false
@@ -642,6 +665,7 @@ class UsageViewController: AccountPickerViewController {
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true

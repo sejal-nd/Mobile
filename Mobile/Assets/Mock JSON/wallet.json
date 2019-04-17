@@ -1,7 +1,7 @@
 {
     "default": [
         {
-            "walletItemID": "1234",
+            "walletItemId": "1234",
             "maskedWalletItemAccountNumber": "*****0113-******1234",
             "nickName": "Test Bank",
             "paymentCategoryType": "CHECK",
@@ -10,7 +10,7 @@
             "isDefault": false
         },
         {
-            "walletItemID": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
+            "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
             "maskedWalletItemAccountNumber": "************1111",
             "nickName": "Test Card",
             "paymentCategoryType": "CREDIT",
@@ -22,7 +22,7 @@
     "billCardNoDefaultPayment": [],
     "billCardWithDefaultPayment": [
         {
-            "walletItemID": "45CBE19F37712E7F4E2FCFE27422A2410971F95F",
+            "walletItemId": "45CBE19F37712E7F4E2FCFE27422A2410971F95F",
             "maskedWalletItemAccountNumber": "*****0113-******1234",
             "nickName": "Test Bank",
             "paymentCategoryType": "CHECK",
@@ -33,7 +33,7 @@
     ],
     "billCardWithExpiredDefaultPayment": [
         {
-            "walletItemID": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
+            "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
             "maskedWalletItemAccountNumber": "************1111",
             "nickName": "Expired Card",
             "paymentCategoryType": "CREDIT",
@@ -44,7 +44,7 @@
     ],
     "billCardWithDefaultCcPayment": [
         {
-            "walletItemID": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
+            "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
             "maskedWalletItemAccountNumber": "************1111",
             "nickName": "Test Card",
             "paymentCategoryType": "CREDIT",
@@ -55,7 +55,7 @@
     ],
     "twoCardsNoDefault": [
         {
-            "walletItemID": "1234",
+            "walletItemId": "1234",
             "maskedWalletItemAccountNumber": "************1111",
             "nickName": "Test Card 1",
             "paymentCategoryType": "CREDIT",
@@ -64,7 +64,7 @@
             "isDefault": false
         },
         {
-            "walletItemID": "4321",
+            "walletItemId": "4321",
             "maskedWalletItemAccountNumber": "************2222",
             "nickName": "Test Card 2",
             "paymentCategoryType": "CREDIT",

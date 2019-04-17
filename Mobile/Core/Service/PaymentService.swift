@@ -63,17 +63,23 @@ protocol PaymentService {
     /// Schedule a payment
     ///
     /// - Parameters:
-    ///   - payment: the payment to schedule
-    func schedulePayment(payment: Payment) -> Observable<String>
+    ///   - accountNumber: The account
+    ///   - paymentAmount: The amount to be paid
+    ///   - paymentDate: the date to schedule the payment for
+    ///   - walletId: Always the customerIdentifier
+    ///   - walletItem: The WalletItem being used to make the payment
+    func schedulePayment(accountNumber: String,
+                         paymentAmount: Double,
+                         paymentDate: Date,
+                         walletId: String,
+                         walletItem: WalletItem) -> Observable<String>
+
+    func updatePayment(paymentId: String,
+                       accountNumber: String,
+                       paymentAmount: Double,
+                       paymentDate: Date,
+                       walletId: String,
+                       walletItem: WalletItem) -> Observable<String>
     
-    /// Gets full details of an one time payment transaction
-    ///
-    /// - Parameters:
-    ///   - accountNumber: The account to fetch for
-    ///   - paymentId: the paymentId
-    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail>
-    
-    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void>
-    
-    func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void>
+    func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void>
 }

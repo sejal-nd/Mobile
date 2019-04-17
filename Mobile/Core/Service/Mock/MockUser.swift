@@ -42,6 +42,9 @@ struct MockUser {
         switch key {
         case .screenshots:
             accounts = [MockAccount](repeating: account, count: 3)
+        case .bgePrepaidMulti:
+            let keys: [MockDataKey] = [.bgePrepaidActive, .bgePrepaidPending, .screenshots]
+            accounts = keys.map(MockAccount.init)
         default:
             accounts = [account]
         }
@@ -75,6 +78,15 @@ struct MockAccount {
 }
 
 enum MockDataKey: String {
+    // General
+    case `default`
+    case screenshots
+    case residential
+    case bgePrepaidActive
+    case bgePrepaidPending
+    case bgePrepaidMulti
+    case error
+    
     // Accounts
     case accountZeros
     
@@ -229,10 +241,4 @@ enum MockDataKey: String {
     case stormMode
     case urgentBanner
     case acctLookup1
-    
-    // General
-    case screenshots
-    case residential
-    case error
-    case `default`
 }

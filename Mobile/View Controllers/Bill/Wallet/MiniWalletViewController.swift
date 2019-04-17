@@ -26,6 +26,13 @@ class MiniWalletViewController: UIViewController {
     @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
     
+    // Edit Payment TableView Header
+    @IBOutlet weak var editPaymentHeaderView: UIView!
+    @IBOutlet weak var currPaymentMethodLabel: UILabel!
+    @IBOutlet weak var currPaymentMethodIconImageView: UIImageView!
+    @IBOutlet weak var currPaymentMethodAccountNumberLabel: UILabel!
+    @IBOutlet weak var currPaymentMethodDividerLineConstraint: NSLayoutConstraint!
+    
     // Bottom Bar
     @IBOutlet weak var addPaymentAccountBottomBar: UIView!
     @IBOutlet weak var addPaymentAccountLabel: UILabel!
@@ -40,7 +47,6 @@ class MiniWalletViewController: UIViewController {
     var bankAccountsDisabled = false
     var creditCardsDisabled = false
     var allowTemporaryItems = true
-    var tableHeaderLabelText: String?
     var accountDetail: AccountDetail!
     // --------- //
     
@@ -74,6 +80,20 @@ class MiniWalletViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
+        currPaymentMethodLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        currPaymentMethodLabel.textColor = .deepGray
+        currPaymentMethodLabel.text = NSLocalizedString("Current Payment Method", comment: "")
+        currPaymentMethodAccountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
+        currPaymentMethodAccountNumberLabel.textColor = .blackText
+        if let editingItem = viewModel.editingItem.value {
+            currPaymentMethodIconImageView.image = editingItem.paymentMethodType.imageMini
+            currPaymentMethodAccountNumberLabel.text = "**** \(editingItem.maskedWalletItemAccountNumber!)"
+        } else {
+            editPaymentHeaderView.isHidden = true
+        }
+        
+        currPaymentMethodIconImageView.image = viewModel.editingItem.value?.paymentMethodType.imageMini
+        
         if accountDetail.isCashOnly {
             bankAccountsDisabled = true
         }
@@ -87,6 +107,32 @@ class MiniWalletViewController: UIViewController {
         addAccessibility()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Dynamic sizing for the table header view
+        if let headerView = tableView.tableHeaderView {
+            if viewModel.editingItem.value != nil {
+                let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+                var headerFrame = headerView.frame
+                
+                // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+                if height != headerFrame.size.height {
+                    headerFrame.size.height = height
+                    headerView.frame = headerFrame
+                }
+            } else {
+                headerView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
+            }
+            tableView.tableHeaderView = headerView
+        }
+    }
+    
+    override func updateViewConstraints() {
+        currPaymentMethodDividerLineConstraint.constant = 1.0 / UIScreen.main.scale
+        super.updateViewConstraints()
+    }
+    
     // MARK: - Helper
     
     private func addAccessibility() {
@@ -96,7 +142,7 @@ class MiniWalletViewController: UIViewController {
         miniCreditCardButton.isAccessibilityElement = true
         miniCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit card", comment: "")
         
-        addPaymentAccountBottomBar.accessibilityElements = [addPaymentAccountLabel, miniBankButton, miniCreditCardButton]
+        addPaymentAccountBottomBar.accessibilityElements = [addPaymentAccountLabel, miniBankButton, miniCreditCardButton] as [UIView]
     }
     
     private func setupButtonTaps() {

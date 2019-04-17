@@ -128,25 +128,29 @@ class HomeBillCardViewModel {
                 paymentDate = .now
             }
 
-            return Payment(accountNumber: accountDetail.accountNumber,
-                           existingAccount: true,
-                           maskedWalletAccountNumber: walletItem.maskedWalletItemAccountNumber!,
-                           paymentAmount: accountDetail.billingInfo.netDueAmount!,
-                           paymentType: (walletItem.bankOrCard == .bank) ? .check : .credit,
-                           paymentDate: paymentDate,
-                           walletId: AccountsStore.shared.customerIdentifier,
-                           walletItemId: walletItem.walletItemID!)
+            return [
+                "accountNumber": accountDetail.accountNumber,
+                "paymentAmount": accountDetail.billingInfo.netDueAmount!,
+                "paymentDate": paymentDate,
+                "walletItem": walletItem
+            ]
         }
         .toAsyncRequest(activityTracker: paymentTracker,
-                        requestSelector: { [unowned self] payment in
-                            self.paymentService.schedulePayment(payment: payment)
-                                .do(onNext: { confirmationNumber in
-                                    let paymentDetails = PaymentDetails(amount: payment.paymentAmount,
-                                                                        date: payment.paymentDate,
-                                                                        confirmationNumber: confirmationNumber)
-                                    RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
-                                })
-                                .mapTo(())
+                        requestSelector: { [unowned self] (object: [String: Any]) in
+            let paymentAmount = object["paymentAmount"] as! Double
+            let paymentDate = object["paymentDate"] as! Date
+            return self.paymentService.schedulePayment(accountNumber: object["accountNumber"] as! String,
+                                                       paymentAmount: paymentAmount,
+                                                       paymentDate: paymentDate,
+                                                       walletId: AccountsStore.shared.customerIdentifier,
+                                                       walletItem: object["walletItem"] as! WalletItem)
+                .do(onNext: { confirmationNumber in
+                    let paymentDetails = PaymentDetails(amount: paymentAmount,
+                                                        date: paymentDate,
+                                                        confirmationNumber: confirmationNumber)
+                    RecentPaymentsStore.shared[AccountsStore.shared.currentAccount] = paymentDetails
+                })
+                .mapTo(())
         })
 
     //MARK: - Loaded States
@@ -388,7 +392,7 @@ class HomeBillCardViewModel {
     private(set) lazy var resetAlertAnimation: Driver<Void> = Driver.merge(refreshFetchTracker.asDriver(),
                                                                            switchAccountFetchTracker.asDriver())
         .filter(!)
-        .map(to: ())
+        .mapTo(())
 
     private(set) lazy var headerText: Driver<NSAttributedString?> = Driver.combineLatest(accountDetailDriver, billState)
     { accountDetail, billState in

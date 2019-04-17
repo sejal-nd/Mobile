@@ -13,13 +13,6 @@ enum AmountType: String {
     case amountDue = "amount due"
 }
 
-private func extractLast4(object: Any?) throws -> String? {
-    guard let string = object as? String else {
-        throw MapperError.convertibleError(value: object, type: String.self)
-    }
-    return string.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-}
-
 struct BGEAutoPayInfo: Mappable {
     let walletItemId: String?
     let paymentAccountNickname: String?

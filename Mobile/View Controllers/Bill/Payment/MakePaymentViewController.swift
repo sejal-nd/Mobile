@@ -29,6 +29,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
     @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
+    
+    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
     @IBOutlet weak var fixedPaymentAccountView: UIView!
     @IBOutlet weak var fixedPaymentAccountImageView: UIImageView!
     @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
@@ -45,6 +47,7 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
+    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
     @IBOutlet weak var fixedPaymentAmountView: UIView!
     @IBOutlet weak var fixedPaymentAmountTextLabel: UILabel!
     @IBOutlet weak var fixedPaymentAmountValueLabel: UILabel!
@@ -59,6 +62,16 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateButton: DisclosureButton!
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
+    
+    @IBOutlet weak var editPaymentDetailView: UIView!
+    @IBOutlet weak var paymentStatusView: UIView!
+    @IBOutlet weak var paymentStatusTextLabel: UILabel!
+    @IBOutlet weak var paymentStatusValueLabel: UILabel!
+    @IBOutlet weak var confirmationNumberView: UIView!
+    @IBOutlet weak var confirmationNumberTextLabel: UILabel!
+    @IBOutlet weak var confirmationNumberValueTextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet var editPaymentDividerLines: [UIView]!
+    @IBOutlet var editPaymentDividerLineConstraints: [NSLayoutConstraint]!
     
     @IBOutlet weak var addPaymentMethodView: UIView!
     @IBOutlet weak var addPaymentMethodLabel: UILabel!
@@ -87,13 +100,12 @@ class MakePaymentViewController: UIViewController {
     
     var viewModel: PaymentViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
-    var paymentDetail: PaymentDetail? // Passed in from BillingHistoryViewController IF we had the data already (ComEd/PECO)
-    var billingHistoryItem: BillingHistoryItem? // Passed in from BillingHistoryViewController, indicates we are modifying a payment
+    var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail, paymentDetail: paymentDetail, billingHistoryItem: billingHistoryItem)
+        viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail, billingHistoryItem: billingHistoryItem)
         
         view.backgroundColor = .softGray
         
@@ -113,11 +125,6 @@ class MakePaymentViewController: UIViewController {
         nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
         navigationItem.rightBarButtonItem = nextButton
         viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.shouldShowNextButton.distinctUntilChanged()
-            .filter(!)
-            .drive(onNext: { [weak self] _ in
-                self?.navigationItem.rightBarButtonItem = nil
-            }).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -181,6 +188,21 @@ class MakePaymentViewController: UIViewController {
         paymentDateFixedDatePastDueLabel.textColor = .blackText
         paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
+        // Edit Payment
+        paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
+        paymentStatusTextLabel.textColor = .deepGray
+        paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentStatusValueLabel.textColor = .blackText
+        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle:.title1)
+        confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
+        confirmationNumberTextLabel.textColor = .deepGray
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberValueTextView.textColor = .blackText
+        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle:.title1)
+        for line in editPaymentDividerLines {
+            line.backgroundColor = .accentGray
+        }
+        
         addPaymentMethodLabel.textColor = .deepGray
         addPaymentMethodLabel.font = OpenSans.semibold.of(textStyle: .title2)
         addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
@@ -243,6 +265,13 @@ class MakePaymentViewController: UIViewController {
         navigationController?.setColoredNavBar()
     }
     
+    override func updateViewConstraints() {
+        for constraint in editPaymentDividerLineConstraints {
+            constraint.constant = 1.0 / UIScreen.main.scale
+        }
+        super.updateViewConstraints()
+    }
+    
     func fetchData(initialFetch: Bool) {
         viewModel.fetchData(initialFetch: initialFetch, onSuccess: { [weak self] in
             guard let self = self else { return }
@@ -267,21 +296,16 @@ class MakePaymentViewController: UIViewController {
         
         // Payment Method
         viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.allowEdits.asDriver().not().drive(paymentAccountButton.rx.isHidden).disposed(by: disposeBag)
-        viewModel.allowEdits.asDriver().drive(fixedPaymentAccountView.rx.isHidden).disposed(by: disposeBag)
         viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Amount Text Field
         viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
         
-        // Fixed Payment Amount - if allowEdits is false
-        viewModel.allowEdits.asDriver().drive(fixedPaymentAmountView.rx.isHidden).disposed(by: disposeBag)
-        
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isFixedPaymentDate.drive(paymentDateButtonView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isFixedPaymentDate.map(!).drive(paymentDateFixedDateLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowPastDueLabel.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
+        paymentDateButtonView.isHidden = !viewModel.canEditPaymentDate
+        paymentDateFixedDateLabel.isHidden = viewModel.canEditPaymentDate
         
         // Add bank/credit card empty wallet state
         viewModel.shouldShowAddPaymentMethodView.map(!).drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)
@@ -304,11 +328,19 @@ class MakePaymentViewController: UIViewController {
             self?.stickyPaymentFooterStackView.layoutIfNeeded()
         }).disposed(by: disposeBag)
         
-        if Environment.shared.opco != .bge && billingHistoryItem != nil {
-            // ePay R1 ComEd/PECO modify tweaks
+        // Edit Payment Stuff
+        if let billingHistoryItem = billingHistoryItem {
             amountDueView.isHidden = true
             dueDateView.isHidden = true
+            paymentStatusView.isHidden = billingHistoryItem.statusString == nil
+            confirmationNumberView.isHidden = billingHistoryItem.confirmationNumber == nil
+        } else {
+            editPaymentDetailView.isHidden = true
         }
+        
+        // Currently not using. Keeping around in case payment method/amount become not editable in some cases
+        fixedPaymentAccountView.isHidden = true
+        fixedPaymentAmountView.isHidden = true
     }
     
     func bindViewContent() {
@@ -414,6 +446,10 @@ class MakePaymentViewController: UIViewController {
         viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).disposed(by: disposeBag)
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
+        // Edit Payment Detail View
+        paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
+        confirmationNumberValueTextView.text = billingHistoryItem?.confirmationNumber
+        
         // Wallet Footer Label
         walletFooterLabel.text = viewModel.walletFooterLabelText
         
@@ -434,26 +470,14 @@ class MakePaymentViewController: UIViewController {
             if let selectedItem = self.viewModel.selectedWalletItem.value {
                 miniWalletVC.viewModel.selectedItem.value = selectedItem
                 if selectedItem.isTemporary {
-                     miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                    miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                } else if selectedItem.isEditingItem {
+                    miniWalletVC.viewModel.editingItem.value = selectedItem
                 }
             }
             miniWalletVC.accountDetail = self.viewModel.accountDetail.value
             miniWalletVC.popToViewController = self
             miniWalletVC.delegate = self
-            if self.billingHistoryItem != nil, let walletItem = self.viewModel.selectedWalletItem.value {
-                if Environment.shared.opco == .bge {
-                    if walletItem.bankOrCard == .bank {
-                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
-                        miniWalletVC.creditCardsDisabled = true
-                    } else {
-                        miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a card payment, you may only select another card as your method of payment.", comment: "")
-                        miniWalletVC.bankAccountsDisabled = true
-                    }
-                } else {
-                    miniWalletVC.tableHeaderLabelText = NSLocalizedString("When modifying a bank account payment, you may only select another bank account as your method of payment.", comment: "")
-                    miniWalletVC.creditCardsDisabled = true
-                }
-            }
             self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).disposed(by: disposeBag)
         
@@ -469,8 +493,6 @@ class MakePaymentViewController: UIViewController {
             
             self.navigationController?.pushViewController(calendarVC, animated: true)
         }).disposed(by: disposeBag)
-        
-
         
         addBankAccountButton.rx.touchUpInside
             .do(onNext: { Analytics.log(event: .addBankNewWallet) })
@@ -547,14 +569,13 @@ class MakePaymentViewController: UIViewController {
             LoadingView.show()
             self?.viewModel.cancelPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
-
                 guard let self = self, let navigationController = self.navigationController else { return }
-                // Always pop back to the root billing history screen here (because MoreBillingHistoryViewController does not refetch data)
                 for vc in navigationController.viewControllers {
-                    guard let dest = vc as? BillingHistoryViewController else {
+                    // Always pop back to the root billing history screen here (hence the check for viewingMoreActivity)
+                    guard let dest = vc as? BillingHistoryViewController, !dest.viewingMoreActivity else {
                         continue
                     }
-                    dest.onPaymentDelete()
+                    dest.onPaymentCancel()
                     navigationController.popToViewController(dest, animated: true)
                     return
                 }
@@ -633,6 +654,9 @@ extension MakePaymentViewController: UITextFieldDelegate {
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
+        if let existingWalletItem = viewModel.selectedWalletItem.value, existingWalletItem != walletItem {
+            viewModel.computeDefaultPaymentDate()
+        }
         viewModel.selectedWalletItem.value = walletItem
     }
     
@@ -642,6 +666,9 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
+        if let existingWalletItem = viewModel.selectedWalletItem.value, existingWalletItem != walletItem {
+            viewModel.computeDefaultPaymentDate()
+        }
         viewModel.selectedWalletItem.value = walletItem
         fetchData(initialFetch: false)
         if !walletItem.isTemporary {
