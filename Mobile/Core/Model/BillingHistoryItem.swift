@@ -74,6 +74,9 @@ struct BillingHistoryItem: Mappable {
     let confirmationNumber: String?
     let convenienceFee: Double?
     let totalAmount: Double?
+    
+    let isAutoPayPayment: Bool
+    let isFuelFundDonation: Bool
     let isBillPDF: Bool
     
     var isFuture: Bool {
@@ -113,12 +116,26 @@ struct BillingHistoryItem: Mappable {
         statusString = map.optionalFrom("status")
         status = BillingHistoryStatus(identifier: statusString)
         
+        // FYI - this seems backwards but is actually correct. "payment_type" returns the type of
+        // wallet item used (CHQ/SAV/VISA/MC). We use that to display the correct bank/card icon
+        // under the "Payment Method" label on the detail screen
         if let paymentusPaymentMethodType: String = map.optionalFrom("payment_type") {
             paymentMethodType = paymentMethodTypeForPaymentusString(paymentusPaymentMethodType)
         } else {
             paymentMethodType = nil
         }
-
+        
+        // Meanwhile, "payment_method" gives us details on the type of payment (for our purposes,
+        // detecting whether it's a scheduled AutoPay payment or a Fuel Fund donation).
+        // We display that under the "Payment Type" label on the detail screen 😖
+        if let method: String = map.optionalFrom("payment_method") {
+            isAutoPayPayment = method.lowercased() == "autopay"
+            isFuelFundDonation = method.lowercased() == "fuelfunddonation"
+        } else {
+            isAutoPayPayment = false
+            isFuelFundDonation = false
+        }
+        
         if let type: String = map.optionalFrom("type") {
             isBillPDF = type == "billing"
         } else {

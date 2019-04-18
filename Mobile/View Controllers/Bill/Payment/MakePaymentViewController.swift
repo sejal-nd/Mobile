@@ -529,7 +529,7 @@ class MakePaymentViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onDeletePaymentPress()
+            self?.onCancelPaymentPress()
         }).disposed(by: disposeBag)
     }
     
@@ -557,7 +557,7 @@ class MakePaymentViewController: UIViewController {
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
     }
     
-    func onDeletePaymentPress() {
+    func onCancelPaymentPress() {
         let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
         let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
         let alertConfirm = NSLocalizedString("Yes", comment: "")

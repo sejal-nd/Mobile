@@ -12,10 +12,11 @@ import RxSwiftExt
 import UIKit
 
 class PaymentViewModel {
+    
     let disposeBag = DisposeBag()
 
-    private var walletService: WalletService
-    private var paymentService: PaymentService
+    private let walletService: WalletService
+    private let paymentService: PaymentService
 
     let accountDetail: Variable<AccountDetail>
 
