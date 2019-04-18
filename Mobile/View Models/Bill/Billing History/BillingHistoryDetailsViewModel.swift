@@ -12,10 +12,30 @@ import RxCocoa
 
 class BillingHistoryDetailsViewModel {
     
+    let disposeBag = DisposeBag()
+    
+    private let paymentService: PaymentService
+    private let accountDetail: AccountDetail
     private let billingHistoryItem: BillingHistoryItem
     
-    required init(billingHistoryItem: BillingHistoryItem) {
+    required init(paymentService: PaymentService,
+                  accountDetail: AccountDetail,
+                  billingHistoryItem: BillingHistoryItem) {
+        self.paymentService = paymentService
+        self.accountDetail = accountDetail
         self.billingHistoryItem = billingHistoryItem
+    }
+    
+    func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        paymentService.cancelPayment(accountNumber: accountDetail.accountNumber,
+                                     paymentId: billingHistoryItem.paymentId!)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { err in
+                onError(err.localizedDescription)
+            })
+            .disposed(by: disposeBag)
     }
 
     var paymentMethodImage: UIImage? {
@@ -27,6 +47,15 @@ class BillingHistoryDetailsViewModel {
         guard let maskedAcctNum = billingHistoryItem.maskedWalletItemAccountNumber,
             !maskedAcctNum.isEmpty else { return nil }
         return "**** \(maskedAcctNum)"
+    }
+    
+    var paymentType: String? {
+        if billingHistoryItem.isAutoPayPayment {
+            return "AutoPay"
+        } else if billingHistoryItem.isFuelFundDonation {
+            return "FuelFund"
+        }
+        return nil
     }
     
     var paymentAmount: String? {
@@ -53,6 +82,10 @@ class BillingHistoryDetailsViewModel {
     
     var confirmationNumber: String? {
         return billingHistoryItem.confirmationNumber
+    }
+    
+    var shouldShowCancelPayment: Bool {
+        return billingHistoryItem.status == .scheduled && billingHistoryItem.isAutoPayPayment
     }
     
 }

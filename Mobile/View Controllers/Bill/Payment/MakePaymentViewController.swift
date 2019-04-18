@@ -30,12 +30,6 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
     @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
     
-    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
-    @IBOutlet weak var fixedPaymentAccountView: UIView!
-    @IBOutlet weak var fixedPaymentAccountImageView: UIImageView!
-    @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
-    @IBOutlet weak var fixedPaymentAccountNicknameLabel: UILabel!
-    
     @IBOutlet weak var amountDueView: UIView! // Contains amountDueTextLabel and amountDueValueLabel
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
@@ -46,11 +40,6 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet private weak var paymentAmountsStack: UIStackView!
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
-    
-    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
-    @IBOutlet weak var fixedPaymentAmountView: UIView!
-    @IBOutlet weak var fixedPaymentAmountTextLabel: UILabel!
-    @IBOutlet weak var fixedPaymentAmountValueLabel: UILabel!
     
     @IBOutlet weak var dueDateView: UIView!
     @IBOutlet weak var dueDateTextLabel: UILabel!
@@ -166,12 +155,6 @@ class MakePaymentViewController: UIViewController {
             self?.paymentAmountTextField.setError(errorMessage)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-        
-        fixedPaymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
-        fixedPaymentAmountTextLabel.textColor = .deepGray
-        fixedPaymentAmountTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        fixedPaymentAmountValueLabel.textColor = .blackText
-        fixedPaymentAmountValueLabel.font = SystemFont.semibold.of(textStyle: .title1)
         
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
         dueDateTextLabel.textColor = .deepGray
@@ -337,10 +320,6 @@ class MakePaymentViewController: UIViewController {
         } else {
             editPaymentDetailView.isHidden = true
         }
-        
-        // Currently not using. Keeping around in case payment method/amount become not editable in some cases
-        fixedPaymentAccountView.isHidden = true
-        fixedPaymentAmountView.isHidden = true
     }
     
     func bindViewContent() {
@@ -350,11 +329,6 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
         viewModel.showSelectedWalletItemNickname.not().drive(paymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        viewModel.selectedWalletItemImage.drive(fixedPaymentAccountImageView.rx.image).disposed(by: disposeBag)
-        viewModel.selectedWalletItemMaskedAccountString.drive(fixedPaymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
-        viewModel.selectedWalletItemNickname.drive(fixedPaymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
-        viewModel.showSelectedWalletItemNickname.not().drive(fixedPaymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.selectedWalletItemA11yLabel.drive(fixedPaymentAccountView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
@@ -434,9 +408,6 @@ class MakePaymentViewController: UIViewController {
                 self.viewModel.paymentAmount.value = amount
             })
             .disposed(by: disposeBag)
-        
-        // Fixed Payment Amount - if allowEdits is false
-        viewModel.paymentAmountString.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Due Date
         viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).disposed(by: disposeBag)
@@ -529,7 +500,7 @@ class MakePaymentViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onDeletePaymentPress()
+            self?.onCancelPaymentPress()
         }).disposed(by: disposeBag)
     }
     
@@ -557,7 +528,7 @@ class MakePaymentViewController: UIViewController {
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
     }
     
-    func onDeletePaymentPress() {
+    func onCancelPaymentPress() {
         let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
         let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
         let alertConfirm = NSLocalizedString("Yes", comment: "")

@@ -104,6 +104,14 @@ class BillingHistoryViewController: UIViewController {
     
     func viewControllerToPush(forTappedIndexPath indexPath: IndexPath) -> UIViewController? {
         let billStoryboard = UIStoryboard(name: "Bill", bundle: nil)
+        
+        func billingHistoryDetailsVc(_ billingHistoryItem: BillingHistoryItem) -> UIViewController {
+            let vc = billStoryboard.instantiateViewController(withIdentifier: "billingHistoryDetails") as! BillingHistoryDetailsViewController
+            vc.accountDetail = viewModel.accountDetail
+            vc.billingHistoryItem = billingHistoryItem
+            return vc
+        }
+        
         if indexPath.section == 0 { // Upcoming
             if indexPath.row == 0 && viewModel.shouldShowAutoPayCell {
                 if viewModel.accountDetail.isAutoPay {
@@ -123,23 +131,21 @@ class BillingHistoryViewController: UIViewController {
             } else {
                 var selectedIndex = indexPath.row
                 if viewModel.shouldShowAutoPayCell {
-                    selectedIndex -= 1 // everything is offset by AutoPay cell
+                    selectedIndex -= 1 // Everything is offset by AutoPay cell
                 }
                 
                 let billingHistoryItem = viewModel.billingHistory!.upcoming[selectedIndex]
-                
-
                 if billingHistoryItem.status == .scheduled {
-                    // TODO: If it's an AutoPay payment, take them to BillingHistoryDetails with a 'Cancel Payment' button
-                    
-                    let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
-                    vc.accountDetail = viewModel.accountDetail
-                    vc.billingHistoryItem = billingHistoryItem
-                    return vc
+                    if billingHistoryItem.isAutoPayPayment { // Scheduled AutoPay payment
+                        return billingHistoryDetailsVc(billingHistoryItem)
+                    } else { // Normal scheduled payment
+                        let vc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
+                        vc.accountDetail = viewModel.accountDetail
+                        vc.billingHistoryItem = billingHistoryItem
+                        return vc
+                    }
                 } else { // It's a Pending Payment
-                    let vc = billStoryboard.instantiateViewController(withIdentifier: "billingHistoryDetails") as! BillingHistoryDetailsViewController
-                    vc.billingHistoryItem = billingHistoryItem
-                    return vc
+                    return billingHistoryDetailsVc(billingHistoryItem)
                 }
             }
         } else { // Past
@@ -160,9 +166,7 @@ class BillingHistoryViewController: UIViewController {
                     return vc
                 }
             } else {
-                let vc = billStoryboard.instantiateViewController(withIdentifier: "billingHistoryDetails") as! BillingHistoryDetailsViewController
-                vc.billingHistoryItem = billingHistoryItem
-                return vc
+                return billingHistoryDetailsVc(billingHistoryItem)
             }
         }
         return nil

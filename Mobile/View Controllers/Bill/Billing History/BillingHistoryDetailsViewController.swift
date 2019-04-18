@@ -13,7 +13,8 @@ import RxSwiftExt
 
 class BillingHistoryDetailsViewController: UIViewController {
     
-    // Passed from BillingHistoryViewController/MoreBillingHistoryViewController
+    // Passed from BillingHistoryViewController
+    var accountDetail: AccountDetail!
     var billingHistoryItem: BillingHistoryItem!
 
     var viewModel: BillingHistoryDetailsViewModel!
@@ -22,6 +23,10 @@ class BillingHistoryDetailsViewController: UIViewController {
     @IBOutlet weak var paymentMethodLabel: UILabel!
     @IBOutlet weak var paymentMethodImageView: UIImageView!
     @IBOutlet weak var paymentMethodDetailsLabel: UILabel!
+    
+    @IBOutlet weak var paymentTypeView: UIView!
+    @IBOutlet weak var paymentTypeLabel: UILabel!
+    @IBOutlet weak var paymentTypeDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountLabel: UILabel!
@@ -47,6 +52,10 @@ class BillingHistoryDetailsViewController: UIViewController {
     @IBOutlet weak var confirmationNumberLabel: UILabel!
     @IBOutlet weak var confirmationNumberDetailTextView: ZeroInsetDataDetectorTextView!
     
+    @IBOutlet weak var cancelPaymentView: UIView!
+    @IBOutlet weak var cancelPaymentButton: ButtonControl!
+    @IBOutlet weak var cancelPaymentLabel: UILabel!
+    
     @IBOutlet var dividerLines: [UIView]!
     @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
     
@@ -57,7 +66,9 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         title = NSLocalizedString("Payment Details", comment: "")
         
-        viewModel = BillingHistoryDetailsViewModel(billingHistoryItem: billingHistoryItem)
+        viewModel = BillingHistoryDetailsViewModel(paymentService: ServiceFactory.createPaymentService(),
+                                                   accountDetail: accountDetail,
+                                                   billingHistoryItem: billingHistoryItem)
         
         styleViews()
         configureState()
@@ -81,6 +92,11 @@ class BillingHistoryDetailsViewController: UIViewController {
         paymentMethodLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentMethodDetailsLabel.textColor = .blackText
         paymentMethodDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
+        
+        paymentTypeLabel.textColor = .deepGray
+        paymentTypeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentTypeDetailsLabel.textColor = .blackText
+        paymentTypeDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -113,6 +129,12 @@ class BillingHistoryDetailsViewController: UIViewController {
         confirmationNumberDetailTextView.font = SystemFont.medium.of(textStyle: .headline)
         confirmationNumberDetailTextView.dataDetectorTypes.remove(.all)
         
+        let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
+        cancelPaymentButton.accessibilityLabel = cancelPaymentText
+        cancelPaymentLabel.text = cancelPaymentText
+        cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        cancelPaymentLabel.textColor = .actionBlue
+        
         for line in dividerLines {
             line.backgroundColor = .accentGray
         }
@@ -125,6 +147,12 @@ class BillingHistoryDetailsViewController: UIViewController {
             paymentMethodDetailsLabel.text = paymentMethodStr
         } else {
             paymentMethodView.isHidden = true
+        }
+        
+        if let paymentType = viewModel.paymentType {
+            paymentTypeDetailsLabel.text = paymentType
+        } else {
+            paymentTypeView.isHidden = true
         }
         
         if let paymentAmount = viewModel.paymentAmount {
@@ -162,6 +190,43 @@ class BillingHistoryDetailsViewController: UIViewController {
         } else {
             confirmationNumberView.isHidden = true
         }
+        
+        if !viewModel.shouldShowCancelPayment {
+            cancelPaymentView.isHidden = true
+        }
+    }
+    
+    @IBAction func onCancelPaymentPress() {
+        let alertTitle = NSLocalizedString("Are you sure you want to cancel this automatic payment?", comment: "")
+        let alertMessage = NSLocalizedString("Canceling this payment will not impact your AutoPay enrollment. Future bills will still be paid automatically.", comment: "")
+        let alertConfirm = NSLocalizedString("Yes", comment: "")
+        let alertDeny = NSLocalizedString("No", comment: "")
+        
+        let confirmAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: alertDeny, style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: alertConfirm, style: .destructive, handler: { [weak self] _ in
+            LoadingView.show()
+            self?.viewModel.cancelPayment(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let self = self, let navigationController = self.navigationController else { return }
+                for vc in navigationController.viewControllers {
+                    // Always pop back to the root billing history screen here (hence the check for viewingMoreActivity)
+                    guard let dest = vc as? BillingHistoryViewController, !dest.viewModel.viewingMoreActivity else {
+                        continue
+                    }
+                    dest.onPaymentCancel()
+                    navigationController.popToViewController(dest, animated: true)
+                    return
+                }
+                navigationController.popViewController(animated: true)
+            }, onError: { [weak self] errMessage in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
+            })
+        }))
+        present(confirmAlert, animated: true, completion: nil)
     }
     
 }
