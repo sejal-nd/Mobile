@@ -663,7 +663,7 @@ class BillViewController: AccountPickerViewController {
             vc.delegate = self
             vc.accountDetail = accountDetail
         case let (vc as BillingHistoryViewController, accountDetail as AccountDetail):
-            vc.accountDetail = accountDetail
+            vc.viewModel.accountDetail = accountDetail
         default:
             break
         }
