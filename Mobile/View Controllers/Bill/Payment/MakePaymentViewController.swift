@@ -572,7 +572,7 @@ class MakePaymentViewController: UIViewController {
                 guard let self = self, let navigationController = self.navigationController else { return }
                 for vc in navigationController.viewControllers {
                     // Always pop back to the root billing history screen here (hence the check for viewingMoreActivity)
-                    guard let dest = vc as? BillingHistoryViewController, !dest.viewingMoreActivity else {
+                    guard let dest = vc as? BillingHistoryViewController, !dest.viewModel.viewingMoreActivity else {
                         continue
                     }
                     dest.onPaymentCancel()

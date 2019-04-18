@@ -201,7 +201,7 @@ class StormModeBillViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch (segue.destination, sender) {
         case let (vc as BillingHistoryViewController, accountDetail as AccountDetail):
-            vc.accountDetail = accountDetail
+            vc.viewModel.accountDetail = accountDetail
         case let (vc as WalletViewController, accountDetail as AccountDetail):
             vc.viewModel.accountDetail = accountDetail
         default:
