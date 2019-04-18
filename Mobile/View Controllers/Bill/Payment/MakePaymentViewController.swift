@@ -49,6 +49,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateTextLabel: UILabel!
     @IBOutlet weak var paymentDateButtonView: UIView!
     @IBOutlet weak var paymentDateButton: DisclosureButton!
+    @IBOutlet weak var paymentDateErrorView: UIView!
+    @IBOutlet weak var paymentDateErrorLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
@@ -165,6 +167,10 @@ class MakePaymentViewController: UIViewController {
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
         paymentDateTextLabel.textColor = .deepGray
         paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        paymentDateErrorLabel.textColor = .errorRed
+        paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentDateErrorLabel.text = NSLocalizedString("Error: Invalid payment date.", comment: "")
         
         paymentDateFixedDateLabel.textColor = .blackText
         paymentDateFixedDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
@@ -287,6 +293,7 @@ class MakePaymentViewController: UIViewController {
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowPastDueLabel.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isPaymentDateValid.drive(paymentDateErrorView.rx.isHidden).disposed(by: disposeBag)
         paymentDateButtonView.isHidden = !viewModel.canEditPaymentDate
         paymentDateFixedDateLabel.isHidden = viewModel.canEditPaymentDate
         
@@ -625,9 +632,6 @@ extension MakePaymentViewController: UITextFieldDelegate {
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
-        if let existingWalletItem = viewModel.selectedWalletItem.value, existingWalletItem != walletItem {
-            viewModel.computeDefaultPaymentDate()
-        }
         viewModel.selectedWalletItem.value = walletItem
     }
     
@@ -637,9 +641,6 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
-        if let existingWalletItem = viewModel.selectedWalletItem.value, existingWalletItem != walletItem {
-            viewModel.computeDefaultPaymentDate()
-        }
         viewModel.selectedWalletItem.value = walletItem
         fetchData(initialFetch: false)
         if !walletItem.isTemporary {
@@ -658,37 +659,7 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
-        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
-        
-        let today = Calendar.opCo.startOfDay(for: .now)
-        switch Environment.shared.opco {
-        case .bge:
-            let minDate = today
-            var maxDate: Date
-            switch viewModel.selectedWalletItem.value?.bankOrCard {
-            case .card?:
-                maxDate = Calendar.opCo.date(byAdding: .day, value: 90, to: today) ?? today
-            case .bank?:
-                maxDate = Calendar.opCo.date(byAdding: .day, value: 180, to: today) ?? today
-            default:
-                return false
-            }
-            
-            return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
-        case .comEd, .peco:
-            if billingHistoryItem != nil && opCoTimeDate == today  { // Modifying payment on ComEd/PECO disables changing date to today
-                return false
-            }
-            
-            if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
-            }
-        }
-        
-        // Should never get called?
-        return opCoTimeDate >= today
+        return viewModel.shouldCalendarDateBeEnabled(date)
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {
