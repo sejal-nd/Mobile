@@ -10,6 +10,8 @@ import RxSwift
 
 class MainTabBarController: UITabBarController {
     
+    lazy var previousViewController = viewControllers?.first
+    
     let disposeBag = DisposeBag()
     
     let normalTitleFont = SystemFont.regular.of(textStyle: .caption2)
@@ -144,8 +146,6 @@ class MainTabBarController: UITabBarController {
             }
         }
     }
-    
-    private lazy var previousViewController = viewControllers?.first
 }
 
 extension MainTabBarController: UITabBarControllerDelegate {
@@ -153,10 +153,28 @@ extension MainTabBarController: UITabBarControllerDelegate {
         guard let selectedNavVC = viewController as? UINavigationController,
             let selectedVC = selectedNavVC.viewControllers.first,
             selectedNavVC == previousViewController else {
+                // Different tab tapped
                 previousViewController = viewController
+                
+                switch selectedIndex {
+                case 0:
+                    Analytics.log(event: .tabHome)
+                case 1:
+                    Analytics.log(event: .tabBill)
+                case 2:
+                    Analytics.log(event: .tabOutage)
+                case 3:
+                    Analytics.log(event: .tabUsage)
+                case 4:
+                    Analytics.log(event: .tabMore)
+                default:
+                    break
+                }
+                
                 return
         }
         
+        // Current tab tapped again. Scroll to top.
         previousViewController = selectedNavVC
         
         if let vc = selectedVC as? AccountPickerViewController {
