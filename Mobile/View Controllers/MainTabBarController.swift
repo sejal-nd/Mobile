@@ -10,6 +10,8 @@ import RxSwift
 
 class MainTabBarController: UITabBarController {
     
+    lazy var previousViewController = viewControllers?.first
+    
     let disposeBag = DisposeBag()
     
     let normalTitleFont = SystemFont.regular.of(textStyle: .caption2)
@@ -26,6 +28,7 @@ class MainTabBarController: UITabBarController {
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
         tabBar.isTranslucent = false
+        delegate = self
         
         setButtonStates(itemTag: 1)
         
@@ -143,5 +146,41 @@ class MainTabBarController: UITabBarController {
             }
         }
     }
-    
+}
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let selectedNavVC = viewController as? UINavigationController,
+            let selectedVC = selectedNavVC.viewControllers.first,
+            selectedNavVC == previousViewController else {
+                // Different tab tapped
+                previousViewController = viewController
+                
+                switch selectedIndex {
+                case 0:
+                    Analytics.log(event: .tabHome)
+                case 1:
+                    Analytics.log(event: .tabBill)
+                case 2:
+                    Analytics.log(event: .tabOutage)
+                case 3:
+                    Analytics.log(event: .tabUsage)
+                case 4:
+                    Analytics.log(event: .tabMore)
+                default:
+                    break
+                }
+                
+                return
+        }
+        
+        // Current tab tapped again. Scroll to top.
+        previousViewController = selectedNavVC
+        
+        if let vc = selectedVC as? AccountPickerViewController {
+            vc.scrollView?.setContentOffset(.zero, animated: true)
+        } else if let vc = selectedVC as? MoreViewController {
+            vc.tableView?.setContentOffset(.zero, animated: true)
+        }
+    }
 }
