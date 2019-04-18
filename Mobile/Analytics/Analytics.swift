@@ -128,6 +128,9 @@ enum AnalyticsEvent: String {
     case addWalletCameraOffer = "AddWalletCameraOffer"
     case addWalletComplete = "AddWalletComplete"
     
+    case prePaidPending = "PrePaidPending"
+    case prePaidEnrolled = "PrePaidEnrolled"
+    
     case outageStatusUnAuthOffer = "OutageStatusUnAuthOffer"
     case outageStatusUnAuthComplete = "OutageStatusUnAuthComplete"
     case outageStatusUnAuthAcctValidate = "OutageStatusUnAuthAcctValidate"
