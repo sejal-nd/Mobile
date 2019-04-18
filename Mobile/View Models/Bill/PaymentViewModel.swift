@@ -254,6 +254,7 @@ class PaymentViewModel {
         return false // Will never execute
     }
     
+    // Must combine selectedWalletItem because the date validation relies on bank vs card
     private(set) lazy var isPaymentDateValid: Driver<Bool> = Driver
         .combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver())
         .map { [weak self] paymentDate, _ in
