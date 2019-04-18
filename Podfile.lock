@@ -8,9 +8,9 @@ PODS:
   - AppCenter/Crashes (1.14.0):
     - AppCenter/Core
   - AppCenterXCUITestExtensions (1.0.0)
-  - Charts (3.2.2):
-    - Charts/Core (= 3.2.2)
-  - Charts/Core (3.2.2)
+  - Charts (3.3):
+    - Charts/Core (= 3.3)
+  - Charts/Core (3.3)
   - Firebase/Core (5.19.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.8.0)
@@ -89,7 +89,7 @@ PODS:
 DEPENDENCIES:
   - AppCenter (= 1.14)
   - AppCenterXCUITestExtensions (= 1.0)
-  - Charts (= 3.2.2)
+  - Charts (= 3.3)
   - Firebase/Core (= 5.19.0)
   - GoogleAnalytics (= 3.17.0)
   - JVFloatLabeledTextField (= 1.2.1)
@@ -134,7 +134,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
   AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
-  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  Charts: a5609adcbd70a0f7e15c6984d7e9b5ceecf3b71d
   Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
   FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
   FirebaseCore: 22a79a961c3951ef2f77b67bfbc99e454247b319
@@ -156,6 +156,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: e802fc7a73a544c55d9bd9d2c32e3188875555c8
+PODFILE CHECKSUM: e7e7600cdb6da72d60a70eb270a69cf4faa474d6
 
 COCOAPODS: 1.6.1

@@ -48,6 +48,12 @@ final class HomePrepaidCardView: UIView {
     }
     
     @objc private func openUrl() {
+        if viewModel.isActive {
+            Analytics.log(event: .prePaidEnrolled)
+        } else {
+            Analytics.log(event: .prePaidPending)
+        }
+        
         UIApplication.shared.openUrlIfCan(viewModel.buttonUrl)
     }
 }

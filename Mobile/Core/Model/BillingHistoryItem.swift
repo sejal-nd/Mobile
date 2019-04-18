@@ -83,7 +83,7 @@ struct BillingHistoryItem: Mappable {
         switch status {
         case .pending:
             return true
-        case .canceled: // EM-2638: Canceled payments should always be in the past
+        case .canceled, .success: // EM-2638: Canceled payments should always be in the past
             return false
         default:
             if isBillPDF { // EM-2638: Bills should always be in the past

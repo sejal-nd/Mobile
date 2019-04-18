@@ -9,6 +9,12 @@
 import Foundation
 
 enum AnalyticsEvent: String {
+    case tabHome = "TabHome"
+    case tabBill = "TabBill"
+    case tabOutage = "TabOutage"
+    case tabUsage = "TabUsage"
+    case tabMore = "TabMore"
+    
     case autoPayEnrollOffer = "AutoPayEnrollOffer"
     case autoPayEnrollSelectBank = "AutoPayEnrollSelectBank"
     case autoPayEnrollSubmit = "AutoPayEnrollSubmit"
@@ -121,6 +127,9 @@ enum AnalyticsEvent: String {
     case homePromoCard = "HomePromoCard"
     case addWalletCameraOffer = "AddWalletCameraOffer"
     case addWalletComplete = "AddWalletComplete"
+    
+    case prePaidPending = "PrePaidPending"
+    case prePaidEnrolled = "PrePaidEnrolled"
     
     case outageStatusUnAuthOffer = "OutageStatusUnAuthOffer"
     case outageStatusUnAuthComplete = "OutageStatusUnAuthComplete"

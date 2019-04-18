@@ -457,6 +457,7 @@ class BillViewController: AccountPickerViewController {
         
         prepaidBannerButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
+                Analytics.log(event: .prePaidPending)
                 UIApplication.shared.openUrlIfCan(self?.viewModel.prepaidUrl)
             })
             .disposed(by: bag)
