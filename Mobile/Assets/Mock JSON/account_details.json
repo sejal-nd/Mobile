@@ -852,6 +852,9 @@
     },
     "billBreakdown": {
         "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isResidential": true,
         "BillingInfo": {
             "supplyCharges": 42,
             "taxesAndFees": 13,

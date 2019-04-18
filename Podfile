@@ -14,7 +14,7 @@ def iOS_pods
   pod 'RxSwiftExt', '3.4.0'
   pod 'RxSwiftExt/RxCocoa', '3.4.0'
   pod 'PDTSimpleCalendar', '0.9.1'
-  pod 'Charts', '3.2.2'
+  pod 'Charts', '3.3'
   pod 'XLPagerTabStrip', '9.0.0'
   pod 'GoogleAnalytics', '3.17.0'
   pod 'Firebase/Core', '5.19.0'
