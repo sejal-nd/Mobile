@@ -187,10 +187,13 @@ class BillViewController: AccountPickerViewController {
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
         
-        prepaidBannerButton.layer.cornerRadius = 10
         prepaidHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
         prepaidDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        
+        prepaidBannerButton.layer.cornerRadius = 10
+        if let header = prepaidHeaderLabel.text, let detail = prepaidDetailLabel.text {
+            prepaidBannerButton.accessibilityLabel = "\(header). \(detail)"
+        }
+
         alertBannerView.layer.cornerRadius = 10
 
         totalAmountView.superview?.bringSubviewToFront(totalAmountView)
