@@ -515,20 +515,7 @@ class PaymentViewModel {
         if $1 {
             return NSLocalizedString("Select Payment Method", comment: "")
         }
-
-        var a11yLabel = walletItem.bankOrCard == .bank ?
-            NSLocalizedString("Bank account", comment: "") :
-            NSLocalizedString("Credit card", comment: "")
-
-        if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
-        }
-
-        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
-        }
-
-        return a11yLabel
+        return walletItem.accessibilityDescription()
     }
 
     var convenienceFee: Double {
