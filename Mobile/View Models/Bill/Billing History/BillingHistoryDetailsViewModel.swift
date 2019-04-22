@@ -68,7 +68,10 @@ class BillingHistoryDetailsViewModel {
     }
     
     var totalPaymentAmount: String? {
-        guard let totalAmount = billingHistoryItem.totalAmount else { return nil }
+        guard let totalAmount = billingHistoryItem.totalAmount, let _ = convenienceFee else {
+            // No need to show Total Payment Amount field unless a convenience fee was added
+            return nil
+        }
         return totalAmount.currencyString
     }
     
