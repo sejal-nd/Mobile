@@ -35,6 +35,9 @@ class BGEAutoPaySettingsViewModel {
         self.numberOfDaysBeforeDueDate = Variable(numberOfDaysBeforeDueDate)
     }
     
+    private(set) lazy var amountNotToExceedDouble: Driver<Double> = amountNotToExceed.asDriver()
+        .map { Double($0.filter { "0123456789.".contains($0) })! }
+    
     private lazy var amountToPayIsValid: Driver<Bool> = Driver
         .combineLatest(amountToPay.asDriver(), amountNotToExceedDouble)
         { [weak self] amountToPay, amountNotToExceed in
@@ -74,9 +77,6 @@ class BGEAutoPaySettingsViewModel {
     
     private(set) lazy var enableDone: Driver<Bool> = Driver
         .combineLatest(amountToPayIsValid, whenToPayIsValid) { $0 && $1 }
-    
-    private(set) lazy var amountNotToExceedDouble: Driver<Double> = amountNotToExceed.asDriver()
-        .map { Double($0.filter { "0123456789.".contains($0) })! }
     
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })

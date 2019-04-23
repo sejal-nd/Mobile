@@ -68,8 +68,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
     var viewModel: BGEAutoPaySettingsViewModel! // Passed from BGEAutoPayViewController
     weak var delegate: BGEAutoPaySettingsViewControllerDelegate?
     
-    var zPositionForWindow: CGFloat = 0.0
-    
     let separatorInset: CGFloat = 34.0
     let spacerHeight: CGFloat = 20.0
     
