@@ -127,6 +127,15 @@ enum PaymentMethodType {
             return value
         }
     }
+    
+    var accessibilityString: String {
+        switch self {
+        case .ach:
+            return NSLocalizedString("Bank account", comment: "")
+        default:
+            return displayString
+        }
+    }
 }
 
 // The postMessage event of the Paymentus iFrame sends "pmDetails.Type" as one of these
@@ -266,6 +275,28 @@ struct WalletItem: Mappable, Equatable {
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
         return lhs.walletItemId == rhs.walletItemId
+    }
+    
+    func accessibilityDescription(includingDefaultPaymentMethodInfo: Bool = false) -> String {
+        var a11yLabel = paymentMethodType.accessibilityString
+        
+        if let nickname = nickName {
+            a11yLabel += ", \(nickname)"
+        }
+        
+        if let last4Digits = maskedWalletItemAccountNumber {
+            a11yLabel += String.localizedStringWithFormat(", Account number ending in, %@", last4Digits)
+        }
+        
+        if includingDefaultPaymentMethodInfo && isDefault {
+            a11yLabel += NSLocalizedString(", Default payment method", comment: "")
+        }
+        
+        if isExpired {
+            a11yLabel += NSLocalizedString(", expired", comment: "")
+        }
+        
+        return a11yLabel
     }
 
 }

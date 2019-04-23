@@ -89,16 +89,8 @@ class WalletTableViewCell: UITableViewCell {
     
     
     func bindToWalletItem(_ walletItem: WalletItem, billingInfo: BillingInfo) {
-        var a11yLabel = ""
-        
         accountImageView.image = walletItem.paymentMethodType.imageLarge
-        
-        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved \(walletItem.paymentMethodType.displayString) card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
-
         nicknameLabel.text = walletItem.nickName?.uppercased()
-        if let nicknameText = nicknameLabel.text {
-            a11yLabel += ", \(nicknameText)"
-        }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             if let ad = UIApplication.shared.delegate as? AppDelegate, let window = ad.window {
@@ -108,27 +100,19 @@ class WalletTableViewCell: UITableViewCell {
                     accountNumberLabel.text = "**** \(last4Digits)"
                 }
             }
-            let a11yDigits = last4Digits.map(String.init).joined(separator: " ")
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), a11yDigits)
         } else {
             accountNumberLabel.text = ""
         }
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
-        if walletItem.isDefault {
-            a11yLabel += NSLocalizedString(", Default payment method", comment: "")
-        }
-        
-        if walletItem.isExpired {
-            a11yLabel += NSLocalizedString(", expired", comment: "")
-        }
-
-        innerContentView.accessibilityLabel = a11yLabel
-        innerContentView.isAccessibilityElement = true
-        self.accessibilityElements = [innerContentView, editButton, deleteButton] as [UIView]
         
         expiredView.isHidden = !walletItem.isExpired
         expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
+        
+        let a11yDescription = walletItem.accessibilityDescription(includingDefaultPaymentMethodInfo: true)
+        innerContentView.accessibilityLabel = "Saved \(a11yDescription)"
+        innerContentView.isAccessibilityElement = true
+        self.accessibilityElements = [innerContentView, editButton, deleteButton] as [UIView]
     }
     
 }

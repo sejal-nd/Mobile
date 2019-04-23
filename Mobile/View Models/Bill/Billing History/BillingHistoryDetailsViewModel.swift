@@ -37,6 +37,15 @@ class BillingHistoryDetailsViewModel {
             })
             .disposed(by: disposeBag)
     }
+    
+    var paymentMethodAccessibilityLabel: String? {
+        guard let paymentMethodType = billingHistoryItem.paymentMethodType,
+            let maskedAcctNum = billingHistoryItem.maskedWalletItemAccountNumber,
+            !maskedAcctNum.isEmpty else { return nil }
+        
+        return paymentMethodType.accessibilityString +
+            String.localizedStringWithFormat(", Account number ending in, %@", maskedAcctNum)
+    }
 
     var paymentMethodImage: UIImage? {
         guard let paymentMethodType = billingHistoryItem.paymentMethodType else { return nil }

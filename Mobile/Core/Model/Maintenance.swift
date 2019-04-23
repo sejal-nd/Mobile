@@ -33,12 +33,12 @@ struct Maintenance: Mappable {
             return
         }
         
-        allStatus = (map.optionalFrom("all") ?? false) || (map.optionalFrom("ios.all") ?? false)
-        homeStatus = map.optionalFrom("home") ?? false || (map.optionalFrom("ios.home") ?? false)
-        billStatus = map.optionalFrom("bill") ?? false || (map.optionalFrom("ios.bill") ?? false)
-        outageStatus = map.optionalFrom("outage") ?? false || (map.optionalFrom("ios.outage") ?? false)
-        alertStatus = map.optionalFrom("alerts") ?? false || (map.optionalFrom("ios.alerts") ?? false)
-        usageStatus = map.optionalFrom("usage") ?? false || (map.optionalFrom("ios.usage") ?? false)
+        allStatus = map.optionalFrom("all") ?? false || map.optionalFrom("ios.all") ?? false
+        homeStatus = map.optionalFrom("home") ?? false || map.optionalFrom("ios.home") ?? false
+        billStatus = map.optionalFrom("bill") ?? false || map.optionalFrom("ios.bill") ?? false
+        outageStatus = map.optionalFrom("outage") ?? false || map.optionalFrom("ios.outage") ?? false
+        alertStatus = map.optionalFrom("alerts") ?? false || map.optionalFrom("ios.alerts") ?? false
+        usageStatus = map.optionalFrom("usage") ?? false || map.optionalFrom("ios.usage") ?? false
         
         stormModeStatus = map.optionalFrom("storm") ?? false // Real Storm Mode value
         //stormModeStatus = true // Force Storm Mode
