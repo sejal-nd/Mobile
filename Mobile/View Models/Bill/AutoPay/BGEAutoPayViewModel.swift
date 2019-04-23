@@ -100,7 +100,7 @@ class BGEAutoPayViewModel {
         paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
                                           walletItemId: selectedWalletItem.value!.walletItemId,
                                           amountType: amountToPay.value,
-                                          amountThreshold: String(amountNotToExceed.value),
+                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
                                           paymentDaysBeforeDue: String(daysBefore),
                                           isUpdate: update)
             .observeOn(MainScheduler.instance)
@@ -211,6 +211,40 @@ class BGEAutoPayViewModel {
             case .beforeDueDate:
                 return String.localizedStringWithFormat("%@ Day%@ Before Due Date", String(numberOfDays), numberOfDays == 1 ? "":"s")
             }
+    }
+    
+    var learnMoreDescriptionText: String {
+        if accountDetail.isResidential {
+            return """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+            
+            AutoPay will charge the amount billed each month or the maximum amount specified, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+            """
+        } else {
+            let formatText = """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+            
+            AutoPay will charge the amount billed each month or the maximum amount specified, up to a limit of %@, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+            """
+            let maxPaymentAmountString = accountDetail.billingInfo
+                .maxPaymentAmount(bankOrCard: .bank)
+                .currencyNoDecimalString
+            return String(format: formatText, maxPaymentAmountString)
+        }
+    }
+    
+    var bottomLabelText: String {
+        let billingInfo = accountDetail.billingInfo
+        if billingInfo.dueByDate > Date.now && billingInfo.netDueAmount > billingInfo.pastDueAmount {
+            let formatText = """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment you will receive a payment confirmation for your records.
+            
+            If you enroll today, AutoPay will begin with your next bill. You must submit another one-time payment for your current bill of %@ due on %@.
+            """
+            return String(format: formatText, billingInfo.netDueAmount!.currencyString, billingInfo.dueByDate!.mmDdYyyyString)
+        } else {
+            return ""
+        }
     }
 
 }

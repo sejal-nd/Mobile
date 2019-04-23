@@ -285,12 +285,11 @@ extension MiniWalletViewController: UITableViewDataSource {
         cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
         cell.innerContentView.addTarget(self, action: #selector(onWalletItemCellPress(sender:)), for: .touchUpInside)
         cell.innerContentView.isEnabled = true
-        if item.bankOrCard == .bank && bankAccountsDisabled {
-            cell.innerContentView.isEnabled = false
-        } else {
-            if creditCardsDisabled || item.isExpired {
-                cell.innerContentView.isEnabled = false
-            }
+        switch item.bankOrCard {
+        case .bank:
+            cell.innerContentView.isEnabled = !bankAccountsDisabled
+        case .card:
+            cell.innerContentView.isEnabled = !creditCardsDisabled && !item.isExpired
         }
         
         return cell
