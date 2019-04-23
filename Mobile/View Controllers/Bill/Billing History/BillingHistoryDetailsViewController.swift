@@ -21,6 +21,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     
     @IBOutlet weak var paymentMethodView: UIView!
     @IBOutlet weak var paymentMethodLabel: UILabel!
+    @IBOutlet weak var paymentMethodAccessibilityView: UIView!
     @IBOutlet weak var paymentMethodImageView: UIImageView!
     @IBOutlet weak var paymentMethodDetailsLabel: UILabel!
     
@@ -143,6 +144,7 @@ class BillingHistoryDetailsViewController: UIViewController {
     func configureState() {
         if let paymentMethodImage = viewModel.paymentMethodImage,
             let paymentMethodStr = viewModel.paymentMethodString {
+            paymentMethodAccessibilityView.accessibilityLabel = viewModel.paymentMethodAccessibilityLabel
             paymentMethodImageView.image = paymentMethodImage
             paymentMethodDetailsLabel.text = paymentMethodStr
         } else {
