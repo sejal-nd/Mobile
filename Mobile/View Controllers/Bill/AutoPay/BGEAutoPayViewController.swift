@@ -70,6 +70,50 @@ class BGEAutoPayViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
+        styleViews()
+        setupBindings()
+        accessibilitySetup()
+        
+        switch viewModel.initialEnrollmentStatus.value {
+        case .unenrolled:
+            Analytics.log(event: .autoPayEnrollOffer)
+        case .enrolled:
+            termsStackView.isHidden = true
+            termsStackView.alpha = 0
+            viewModel.getAutoPayInfo(onSuccess: { [weak self] in
+                guard let self = self else { return }
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
+                }, onError: { [weak self] _ in
+                    guard let self = self else { return }
+                    UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            })
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setColoredNavBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if termsStackView.isHidden &&
+            (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
+            UIView.animate(withDuration: 0.25) { [weak self] in
+                self?.termsStackView.isHidden = false
+                self?.termsStackView.alpha = 1
+            }
+        }
+    }
+    
+    private func accessibilitySetup() {
+        learnMoreButton.isAccessibilityElement = true
+        learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
+        bankAccountButton.isAccessibilityElement = true
+        settingsButton.isAccessibilityElement = true
+    }
+    
+    private func styleViews() {
         learnMoreButtonLabel.textColor = .actionBlue
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -116,49 +160,6 @@ class BGEAutoPayViewController: UIViewController {
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        
-        setupBindings()
-        accessibilitySetup()
-    
-        viewModel.getAutoPayInfo(onSuccess: { [weak self] in
-            guard let self = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
-        }, onError: { [weak self] _ in
-            guard let self = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
-        })
-        
-        if viewModel.initialEnrollmentStatus.value == .unenrolled {
-            Analytics.log(event: .autoPayEnrollOffer)
-        }
-        
-        if viewModel.initialEnrollmentStatus.value == .enrolled {
-            termsStackView.isHidden = true
-            termsStackView.alpha = 0
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if termsStackView.isHidden &&
-            (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
-            UIView.animate(withDuration: 0.25) { [weak self] in
-                self?.termsStackView.isHidden = false
-                self?.termsStackView.alpha = 1
-            }
-        }
-    }
-    
-    private func accessibilitySetup() {
-        learnMoreButton.isAccessibilityElement = true
-        learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
-        bankAccountButton.isAccessibilityElement = true
-        settingsButton.isAccessibilityElement = true
     }
     
     func setupBindings() {
@@ -282,19 +283,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onLearnMorePress() {
-        let modalDescription: String
-        switch Environment.shared.opco {
-        case .bge:
-            modalDescription = """
-Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
-            
-AutoPay will charge the total amount billed each month or up to the total amount specified, if applicable. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay automatic withdrawal.
-"""
-        case .comEd, .peco:
-            modalDescription = "With AutoPay, your payment is automatically deducted from your bank account. Upon payment, you will receive a payment confirmation for your records."
-        }
-        
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: NSLocalizedString(modalDescription, comment: ""))
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 
