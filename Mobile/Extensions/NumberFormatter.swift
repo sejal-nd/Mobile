@@ -18,6 +18,17 @@ extension NumberFormatter {
         return numberFormatter
     }()
     
+    @nonobjc static let currencyNoDecimalFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale(identifier: "en_US")
+        numberFormatter.numberStyle = .currency
+        numberFormatter.groupingSeparator = ","
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 0
+        return numberFormatter
+    }()
+    
     @nonobjc static let percentFormatter: NumberFormatter = {
         let percentFormatter = NumberFormatter()
         percentFormatter.numberStyle = .percent
@@ -31,6 +42,10 @@ extension NumberFormatter {
 extension Double {
     @nonobjc var currencyString: String {
         return NumberFormatter.currencyFormatter.string(from: NSNumber(value: self)) ?? "--"
+    }
+    
+    @nonobjc var currencyNoDecimalString: String {
+        return NumberFormatter.currencyNoDecimalFormatter.string(from: NSNumber(value: self)) ?? "--"
     }
     
     @nonobjc var percentString: String? {

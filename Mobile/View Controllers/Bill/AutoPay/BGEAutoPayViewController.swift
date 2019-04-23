@@ -214,7 +214,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onUnenrollPress() {
-        let alert = UIAlertController(title: NSLocalizedString("Unenroll from AutoPay", comment: ""), message: NSLocalizedString("You will be responsible for making manual payments after unenrolling from AutoPay. If you unenroll from AutoPay close to the selected date, the funds may still be deducted from your bank account.", comment: ""), preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Unenroll from AutoPay", comment: ""), message: NSLocalizedString("You will be responsible for making separate one-time payments to cover your future bills after unenrolling from AutoPay. Any upcoming automatic payment for your current bill will not be canceled by unenrolling in AutoPay. To cancel an upcoming payment, visit the Bill & Payment Activity page.", comment: ""), preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in

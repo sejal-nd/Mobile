@@ -228,7 +228,7 @@ class BGEAutoPayViewModel {
             """
             let maxPaymentAmountString = accountDetail.billingInfo
                 .maxPaymentAmount(bankOrCard: .bank)
-                .currencyString
+                .currencyNoDecimalString
             return String(format: formatText, maxPaymentAmountString)
         }
     }

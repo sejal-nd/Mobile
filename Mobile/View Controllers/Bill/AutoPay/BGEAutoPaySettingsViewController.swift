@@ -266,7 +266,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         amountNotToExceedDetailsLabel.numberOfLines = 0
         amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the payment is created, and you will be responsible for manually scheduling a payment of the remaining amount. \n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in your service being disconnected.", comment: "")
+        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the automatic payment is created, and you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
         
         // adding details for second button to second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
@@ -324,7 +324,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         onDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         onDueDateDetailsLabel.numberOfLines = 0
         onDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.", comment: "")
+        onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.", comment: "")
         
         onDueDateButtonStackView.addArrangedSubview(onDueDateDetailsLabel)
         
@@ -354,7 +354,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         beforeDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         beforeDueDateDetailsLabel.numberOfLines = 0
         beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will process on your selected number of days before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary.\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", comment: "")
+        beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will be processed on your selected number of days before each bill's due date or the next business day. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.", comment: "")
         
         if viewModel.numberOfDaysBeforeDueDate.value != 0 {
             modifyBeforeDueDateDetailsLabel()
