@@ -86,10 +86,17 @@ class BGEAutoPaySettingsViewController: UIViewController {
         cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
         navigationItem.leftBarButtonItems = [cancelButton]
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onDonePress))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         doneButton.isAccessibilityElement = true
         doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
         navigationItem.rightBarButtonItems = [doneButton]
+        viewModel.enableDone.drive(doneButton.rx.isEnabled).disposed(by: disposeBag)
+        doneButton.rx.tap.asDriver()
+            .withLatestFrom(viewModel.amountNotToExceedDouble)
+            .drive(onNext: { [weak self] in
+                self?.onDonePress(amountNotToExceed: $0)
+            })
+            .disposed(by: disposeBag)
         
         buildStackViews()
         
@@ -104,6 +111,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
                     }
                 }
             }).disposed(by: disposeBag)
+        
+        viewModel.amountToPayErrorMessage
+            .drive(onNext: { [weak self] errorMessage in
+                self?.amountNotToExceedTextField.setError(errorMessage)
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -383,6 +396,10 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     @objc func beforeDueDateButtonPressed() {
+        showBeforeDueDatePicker()
+    }
+    
+    private func showBeforeDueDatePicker() {
         view.endEditing(true)
         // Delay here fixes a bug when button is tapped with keyboard up
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50), execute: { [weak self] in
@@ -390,17 +407,17 @@ class BGEAutoPaySettingsViewController: UIViewController {
             let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == 0 ?
                 0 : (self.viewModel.numberOfDaysBeforeDueDate.value - 1)
             PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
-                            data: (1...10).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
-                            selectedIndex: selectedIndex,
-                            onDone: { [weak self] value, index in
-                                DispatchQueue.main.async { [weak self] in
-                                    guard let self = self else { return }
-                                    let day = index + 1
-                                    self.viewModel.numberOfDaysBeforeDueDate.value = day
-                                    self.modifyBeforeDueDateDetailsLabel()
-                                }
+                                        data: (1...10).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
+                                        selectedIndex: selectedIndex,
+                                        onDone: { [weak self] value, index in
+                                            DispatchQueue.main.async { [weak self] in
+                                                guard let self = self else { return }
+                                                let day = index + 1
+                                                self.viewModel.numberOfDaysBeforeDueDate.value = day
+                                                self.modifyBeforeDueDateDetailsLabel()
+                                            }
                 },
-                            onCancel: nil)
+                                        onCancel: nil)
             UIAccessibility.post(notification: .layoutChanged, argument: NSLocalizedString("Please select number of days", comment: ""))
         })
     }
@@ -427,24 +444,24 @@ class BGEAutoPaySettingsViewController: UIViewController {
             }
         
         hideBeforeDueDateControlViews(control != onDueDateRadioControl)
+        
+        // Show the picker immediately upon "Before Due Date" selection
+        // if no value has already been selected
+        if control == beforeDueDateRadioControl && viewModel.numberOfDaysBeforeDueDate.value == 0 {
+            showBeforeDueDatePicker()
+        }
     }
     
     @objc func onCancelPress() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    @objc func onDonePress() {
-        if let errorMessage = viewModel.invalidSettingsMessage {
-            let alertVc = UIAlertController(title: NSLocalizedString("Missing Required Fields", comment: ""), message: errorMessage, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            present(alertVc, animated: true, completion: nil)
-        } else {
-            delegate?.didUpdateSettings(amountToPay: viewModel.amountToPay.value,
-                                        amountNotToExceed: viewModel.amountNotToExceedDouble,
-                                        whenToPay: viewModel.whenToPay.value,
-                                        numberOfDaysBeforeDueDate: viewModel.numberOfDaysBeforeDueDate.value)
-            presentingViewController?.dismiss(animated: true, completion: nil)
-        }
+    @objc func onDonePress(amountNotToExceed: Double) {
+        delegate?.didUpdateSettings(amountToPay: viewModel.amountToPay.value,
+                                    amountNotToExceed: amountNotToExceed,
+                                    whenToPay: viewModel.whenToPay.value,
+                                    numberOfDaysBeforeDueDate: viewModel.numberOfDaysBeforeDueDate.value)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - ScrollView
