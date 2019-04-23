@@ -44,6 +44,7 @@ final class HomePrepaidCardView: UIView {
         headerLabel.attributedText = viewModel.headerText
         detailLabel.text = viewModel.detailText
         bottomButtonLabel.text = viewModel.buttonText
+        bottomButton.accessibilityLabel = viewModel.buttonText
         bottomButton.addTarget(self, action: #selector(openUrl), for: .touchUpInside)
     }
     

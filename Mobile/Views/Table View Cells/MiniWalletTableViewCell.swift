@@ -48,42 +48,30 @@ class MiniWalletTableViewCell: UITableViewCell {
     }
     
     func bindToWalletItem(_ walletItem: WalletItem, isSelectedItem: Bool) {
-        var a11yLabel = ""
-        
         iconImageView.image = walletItem.paymentMethodType.imageMini
-        
-        a11yLabel = walletItem.bankOrCard == .card ? NSLocalizedString("Saved \(walletItem.paymentMethodType.displayString) card", comment: "") : NSLocalizedString("Saved bank account", comment: "")
         
         if let nickname = walletItem.nickName {
             nicknameLabel.isHidden = false
             nicknameLabel.text = nickname
-            if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
-                a11yLabel += ", \(nicknameText)"
-            }
         } else {
             nicknameLabel.isHidden = true
         }
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             accountNumberLabel.text = "**** \(last4Digits)"
-            let a11yDigits = last4Digits.map(String.init).joined(separator: " ")
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), a11yDigits)
         } else {
             accountNumberLabel.text = ""
         }
         
-        if walletItem.isExpired {
-            a11yLabel += NSLocalizedString(", expired", comment: "")
-        }
-        
+        var a11yDescription = walletItem.accessibilityDescription()
         if isSelectedItem {
-            a11yLabel += ", Selected"
+            a11yDescription += ", Selected"
             checkmarkImageView.isHidden = false
         } else {
             checkmarkImageView.isHidden = true
         }
         
-        innerContentView.accessibilityLabel = a11yLabel
+        innerContentView.accessibilityLabel = "Saved \(a11yDescription)"
         
         expiredView.isHidden = !walletItem.isExpired
         expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""

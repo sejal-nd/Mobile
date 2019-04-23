@@ -3526,16 +3526,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1I-Xk-I4g" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="10" width="414" height="664"/>
+                                        <rect key="frame" x="0.0" y="10" width="414" height="820.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-Do-Lzi">
-                                                <rect key="frame" x="28" y="0.0" width="386" height="664"/>
+                                                <rect key="frame" x="28" y="0.0" width="386" height="820.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQX-th-1K0" userLabel="Payment Method View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="386" height="86.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="386" height="92.5"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vxm-7B-Nuf">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="60.5"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vxm-7B-Nuf">
+                                                                <rect key="frame" x="0.0" y="11" width="386" height="66.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-92-nLf" userLabel="Payment Method">
                                                                         <rect key="frame" x="0.0" y="0.0" width="130.5" height="20.5"/>
@@ -3543,32 +3543,40 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="OHK-KC-GfX">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="386" height="36"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEG-Qg-5Sc">
+                                                                        <rect key="frame" x="0.0" y="30.5" width="386" height="36"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tzw-vY-PsN">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="36"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" priority="999" constant="36" id="AGS-43-sQV"/>
+                                                                                    <constraint firstAttribute="height" constant="36" id="AGS-43-sQV"/>
                                                                                     <constraint firstAttribute="width" constant="45" id="LPT-hA-dDv"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkZ-MO-r7Z">
-                                                                                <rect key="frame" x="61" y="0.0" width="325" height="36"/>
+                                                                                <rect key="frame" x="61" y="18" width="325" height="0.0"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                    </stackView>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <accessibility key="accessibilityConfiguration">
+                                                                            <bool key="isElement" value="YES"/>
+                                                                        </accessibility>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="Tzw-vY-PsN" secondAttribute="bottom" id="4Df-Kg-BYD"/>
+                                                                            <constraint firstItem="AkZ-MO-r7Z" firstAttribute="centerY" secondItem="Tzw-vY-PsN" secondAttribute="centerY" id="ARb-rK-ktf"/>
+                                                                            <constraint firstItem="Tzw-vY-PsN" firstAttribute="leading" secondItem="uEG-Qg-5Sc" secondAttribute="leading" id="Nmt-qA-Rdk"/>
+                                                                            <constraint firstItem="Tzw-vY-PsN" firstAttribute="top" secondItem="uEG-Qg-5Sc" secondAttribute="top" id="cLq-n9-e6z"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="AkZ-MO-r7Z" secondAttribute="trailing" id="l6U-Hd-V56"/>
+                                                                            <constraint firstItem="AkZ-MO-r7Z" firstAttribute="leading" secondItem="Tzw-vY-PsN" secondAttribute="trailing" constant="16" id="yz5-Do-7V8"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
-                                                                <constraints>
-                                                                    <constraint firstItem="OHK-KC-GfX" firstAttribute="leading" secondItem="Vxm-7B-Nuf" secondAttribute="leading" id="5KI-cx-roA"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="OHK-KC-GfX" secondAttribute="trailing" id="n5f-Yw-qL5"/>
-                                                                </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nka-dH-aZj" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="85.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="91.5" width="386" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="hDf-d1-jA4"/>
@@ -3586,8 +3594,47 @@
                                                             <constraint firstItem="Vxm-7B-Nuf" firstAttribute="leading" secondItem="oQX-th-1K0" secondAttribute="leading" id="g4o-PX-rg4"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltL-2O-GfC" userLabel="Payment Type View">
+                                                        <rect key="frame" x="0.0" y="92.5" width="386" height="98.5"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dZc-lU-ZQy">
+                                                                <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ9-cR-8gg">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7e-Zb-ynM">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="359" height="50"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4x-my-9Te" userLabel="Separator View">
+                                                                <rect key="frame" x="0.0" y="97.5" width="386" height="1"/>
+                                                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" priority="999" constant="1" id="IyK-vu-5xn"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstItem="X4x-my-9Te" firstAttribute="leading" secondItem="ltL-2O-GfC" secondAttribute="leading" id="GWf-sS-Vo7"/>
+                                                            <constraint firstAttribute="bottom" secondItem="dZc-lU-ZQy" secondAttribute="bottom" constant="13" id="IXa-0c-5ZK"/>
+                                                            <constraint firstAttribute="trailing" secondItem="dZc-lU-ZQy" secondAttribute="trailing" id="M5V-CC-l0t"/>
+                                                            <constraint firstItem="dZc-lU-ZQy" firstAttribute="top" secondItem="ltL-2O-GfC" secondAttribute="top" constant="11" id="UE3-7C-lHx"/>
+                                                            <constraint firstItem="dZc-lU-ZQy" firstAttribute="leading" secondItem="ltL-2O-GfC" secondAttribute="leading" id="dAi-Hb-wzb"/>
+                                                            <constraint firstAttribute="trailing" secondItem="X4x-my-9Te" secondAttribute="trailing" id="xHM-Fm-Det"/>
+                                                            <constraint firstAttribute="bottom" secondItem="X4x-my-9Te" secondAttribute="bottom" id="yiY-u1-OHH"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uAt-gn-Tuy" userLabel="Payment Amount View">
-                                                        <rect key="frame" x="0.0" y="86.5" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="191" width="386" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="4KJ-ju-rJf">
                                                                 <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
@@ -3626,7 +3673,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmJ-Jg-QL8" userLabel="Convenience Fee View">
-                                                        <rect key="frame" x="0.0" y="185" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="289.5" width="386" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="oel-4q-rja">
                                                                 <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
@@ -3665,7 +3712,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3R-WG-mv4" userLabel="Amount Paid View">
-                                                        <rect key="frame" x="0.0" y="283.5" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="388" width="386" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2Dr-w7-ppD">
                                                                 <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
@@ -3704,7 +3751,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QE-qF-Ndm" userLabel="Payment Date View">
-                                                        <rect key="frame" x="0.0" y="382" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="486.5" width="386" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-f8-hfd">
                                                                 <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
@@ -3743,7 +3790,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYD-v0-HHW" userLabel="Payment Status View">
-                                                        <rect key="frame" x="0.0" y="480.5" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="585" width="386" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bIL-xm-JNF">
                                                                 <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
@@ -3782,7 +3829,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9u-dE-IeU" userLabel="Confirmation Number View">
-                                                        <rect key="frame" x="0.0" y="579" width="386" height="85"/>
+                                                        <rect key="frame" x="0.0" y="683.5" width="386" height="85"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vvh-Um-xag">
                                                                 <rect key="frame" x="0.0" y="11" width="386" height="61"/>
@@ -3824,6 +3871,54 @@
                                                             <constraint firstAttribute="trailing" secondItem="Vvh-Um-xag" secondAttribute="trailing" id="sLp-jN-MLU"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvQ-bn-HGU">
+                                                        <rect key="frame" x="0.0" y="768.5" width="386" height="52"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FeM-ko-Kz6" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="84.5" y="11" width="161.5" height="28"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_delete" translatesAutoresizingMaskIntoConstraints="NO" id="31F-81-7FP">
+                                                                        <rect key="frame" x="8" y="4" width="20" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="20" id="Jig-iM-rhh"/>
+                                                                            <constraint firstAttribute="width" constant="20" id="fN5-gu-mbx"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWW-kZ-efX">
+                                                                        <rect key="frame" x="36" y="4.5" width="117.5" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Delete payment">
+                                                                    <accessibilityTraits key="traits" button="YES"/>
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
+                                                                <constraints>
+                                                                    <constraint firstItem="31F-81-7FP" firstAttribute="top" secondItem="FeM-ko-Kz6" secondAttribute="top" constant="4" id="17L-d9-5Pl"/>
+                                                                    <constraint firstItem="zWW-kZ-efX" firstAttribute="leading" secondItem="31F-81-7FP" secondAttribute="trailing" constant="8" id="Eom-2h-8cO"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="31F-81-7FP" secondAttribute="bottom" priority="999" constant="4" id="GNn-eL-DsD"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="zWW-kZ-efX" secondAttribute="trailing" constant="8" id="MVN-GB-TSc"/>
+                                                                    <constraint firstItem="zWW-kZ-efX" firstAttribute="centerY" secondItem="31F-81-7FP" secondAttribute="centerY" id="Z1m-Ks-MPM"/>
+                                                                    <constraint firstItem="31F-81-7FP" firstAttribute="leading" secondItem="FeM-ko-Kz6" secondAttribute="leading" constant="8" id="ZWe-hp-DKL"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onCancelPaymentPress" destination="MpQ-Zp-Bed" eventType="touchUpInside" id="jgC-HF-4rQ"/>
+                                                                </connections>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="FeM-ko-Kz6" secondAttribute="bottom" constant="13" id="AX2-FR-D3w"/>
+                                                            <constraint firstItem="FeM-ko-Kz6" firstAttribute="top" secondItem="AvQ-bn-HGU" secondAttribute="top" constant="11" id="bH2-bj-lyh"/>
+                                                            <constraint firstItem="FeM-ko-Kz6" firstAttribute="centerX" secondItem="AvQ-bn-HGU" secondAttribute="centerX" constant="-28" id="v8Y-ic-m2r"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -3855,6 +3950,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelPaymentButton" destination="FeM-ko-Kz6" id="uBH-rD-0bg"/>
+                        <outlet property="cancelPaymentLabel" destination="zWW-kZ-efX" id="Voo-89-UdR"/>
+                        <outlet property="cancelPaymentView" destination="AvQ-bn-HGU" id="gQe-DN-igv"/>
                         <outlet property="confirmationNumberDetailTextView" destination="IyY-Pe-otw" id="1r0-Ps-NyJ"/>
                         <outlet property="confirmationNumberLabel" destination="p7d-qD-WYg" id="QgM-G0-dDD"/>
                         <outlet property="confirmationNumberView" destination="i9u-dE-IeU" id="8GP-Jw-cGG"/>
@@ -3867,6 +3965,7 @@
                         <outlet property="paymentDateDetailsLabel" destination="KTv-xo-XZ5" id="4l8-2j-Tuc"/>
                         <outlet property="paymentDateLabel" destination="oiB-jk-g9H" id="EEy-S6-LAb"/>
                         <outlet property="paymentDateView" destination="3QE-qF-Ndm" id="aqm-bv-9oY"/>
+                        <outlet property="paymentMethodAccessibilityView" destination="uEG-Qg-5Sc" id="YyG-g7-HnE"/>
                         <outlet property="paymentMethodDetailsLabel" destination="AkZ-MO-r7Z" id="rx3-Sf-sSD"/>
                         <outlet property="paymentMethodImageView" destination="Tzw-vY-PsN" id="RQ6-Y7-HqY"/>
                         <outlet property="paymentMethodLabel" destination="XhV-92-nLf" id="oMc-Yw-Zuw"/>
@@ -3874,6 +3973,9 @@
                         <outlet property="paymentStatusDetailsLabel" destination="zam-xG-TiC" id="cE9-kS-7Lg"/>
                         <outlet property="paymentStatusLabel" destination="DxK-go-9vS" id="DnL-vq-aY7"/>
                         <outlet property="paymentStatusView" destination="NYD-v0-HHW" id="Rhj-v3-Sjn"/>
+                        <outlet property="paymentTypeDetailsLabel" destination="q7e-Zb-ynM" id="jkB-1j-4Dq"/>
+                        <outlet property="paymentTypeLabel" destination="vJ9-cR-8gg" id="pNP-bN-T1b"/>
+                        <outlet property="paymentTypeView" destination="ltL-2O-GfC" id="TeR-Bw-M2c"/>
                         <outlet property="totalAmountPaidDetailsLabel" destination="bLI-bK-ReK" id="isu-SG-FSM"/>
                         <outlet property="totalAmountPaidLabel" destination="CYL-5t-ePd" id="QyK-Uo-cau"/>
                         <outlet property="totalAmountPaidView" destination="o3R-WG-mv4" id="p0Y-Wx-usC"/>
@@ -3891,6 +3993,8 @@
                         <outletCollection property="dividerLineConstraints" destination="iPC-VN-N1a" collectionClass="NSMutableArray" id="bfM-Wy-pMl"/>
                         <outletCollection property="dividerLineConstraints" destination="cnz-bb-pL7" collectionClass="NSMutableArray" id="U0Q-od-oAo"/>
                         <outletCollection property="dividerLineConstraints" destination="HlJ-pV-qQ3" collectionClass="NSMutableArray" id="iyg-FM-7Cc"/>
+                        <outletCollection property="dividerLines" destination="X4x-my-9Te" collectionClass="NSMutableArray" id="9Id-fF-Uz0"/>
+                        <outletCollection property="dividerLineConstraints" destination="IyK-vu-5xn" collectionClass="NSMutableArray" id="x44-vK-Z2M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Io-ob-DW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4420,6 +4524,7 @@ the year</string>
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_check_mini_white" width="14" height="11"/>
         <image name="ic_close" width="24" height="24"/>
+        <image name="ic_delete" width="20" height="20"/>
         <image name="ic_ebilllearn" width="25" height="25"/>
         <image name="ic_email" width="43" height="43"/>
         <image name="ic_invoice" width="53" height="62"/>

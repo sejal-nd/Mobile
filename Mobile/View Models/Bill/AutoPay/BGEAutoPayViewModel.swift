@@ -188,18 +188,7 @@ class BGEAutoPayViewModel {
     
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let walletItem = $0 else { return "" }
-        
-        var a11yLabel = NSLocalizedString("Bank account", comment: "")
-        
-        if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
-        }
-        
-        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
-        }
-        
-        return a11yLabel
+        return walletItem.accessibilityDescription()
     }
     
     private(set) lazy var settingsButtonAmountText: Driver<String> = Driver
