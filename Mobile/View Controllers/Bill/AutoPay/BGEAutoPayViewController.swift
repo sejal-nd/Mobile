@@ -65,7 +65,8 @@ class BGEAutoPayViewController: UIViewController {
         title = NSLocalizedString("AutoPay", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
+        
         viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
@@ -202,7 +203,9 @@ class BGEAutoPayViewController: UIViewController {
         }
     }
     
-    @objc func onSubmitPress() {
+    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
+        guard submitButton.isEnabled else { return }
+        
         LoadingView.show()
         
         switch viewModel.initialEnrollmentStatus.value {

@@ -198,7 +198,11 @@ class OverrideViewController: UIViewController {
     }
     
     func bindActions() {
-        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
+        saveButton.rx.tap
+            .filter { [weak self] in self?.saveButton.isEnabled ?? false }
+            .bind(to: viewModel.saveAction)
+            .disposed(by: disposeBag)
+        
         cancelButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 self?.navigationController?.popViewController(animated: true)

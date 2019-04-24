@@ -43,7 +43,8 @@ class MyHomeProfileViewController: UIViewController {
     
     private lazy var viewModel = MyHomeProfileViewModel(usageService: ServiceFactory.createUsageService(useCache: false),
                                                         accountDetail: self.accountDetail,
-                                                        saveAction: self.saveButton.rx.tap.asObservable())
+                                                        saveAction: self.saveButton.rx.tap.asObservable()
+                                                            .filter { [weak self] in self?.saveButton.isEnabled ?? false })
     
     private let didSaveHomeProfileSubject = PublishSubject<Void>()
     private(set) lazy var didSaveHomeProfile: Driver<Void> = self.didSaveHomeProfileSubject.asDriver(onErrorDriveWith: .empty())

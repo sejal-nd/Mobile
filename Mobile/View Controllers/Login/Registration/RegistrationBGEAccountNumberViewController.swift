@@ -105,6 +105,8 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     }
     
     @objc func onNextPress() {
+        guard nextButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         LoadingView.show()

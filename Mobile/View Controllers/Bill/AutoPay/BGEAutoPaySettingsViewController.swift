@@ -71,6 +71,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
     let separatorInset: CGFloat = 34.0
     let spacerHeight: CGFloat = 20.0
     
+    var doneButton = UIBarButtonItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,7 +86,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
         navigationItem.leftBarButtonItems = [cancelButton]
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         doneButton.isAccessibilityElement = true
         doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
         navigationItem.rightBarButtonItems = [doneButton]
@@ -455,6 +457,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     @objc func onDonePress(amountNotToExceed: Double) {
+        guard doneButton.isEnabled else { return }
+        
         delegate?.didUpdateSettings(amountToPay: viewModel.amountToPay.value,
                                     amountNotToExceed: amountNotToExceed,
                                     whenToPay: viewModel.whenToPay.value,

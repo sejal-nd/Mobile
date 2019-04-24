@@ -155,7 +155,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     }
     
     func setupNavigationButtons() {
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
         
         viewModel.allQuestionsAnswered.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
@@ -345,7 +345,9 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func onSubmitPress() {
+    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
+        guard submitButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         LoadingView.show()

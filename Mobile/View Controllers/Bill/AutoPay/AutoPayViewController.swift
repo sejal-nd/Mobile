@@ -161,6 +161,8 @@ class AutoPayViewController: UIViewController {
     }
     
     @objc func onSubmitPress() {
+        guard submitButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         LoadingView.show()
