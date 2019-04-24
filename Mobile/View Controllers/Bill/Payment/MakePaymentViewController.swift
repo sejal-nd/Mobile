@@ -521,6 +521,8 @@ class MakePaymentViewController: UIViewController {
     }
     
     @objc func onNextPress() {
+        guard nextButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {

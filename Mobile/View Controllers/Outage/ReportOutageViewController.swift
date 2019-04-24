@@ -336,6 +336,7 @@ class ReportOutageViewController: UIViewController {
     }
     
     @objc func onSubmitPress() {
+        guard submitButton.isEnabled else { return }
         view.endEditing(true)
         
         let errorBlock = { [weak self] (errorMessage: String) in

@@ -1363,6 +1363,9 @@
 		B0B12605221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
 		B0B12606221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
 		B0B12607221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B12601221B0D6C00AF4DC4 /* peak_rewards_overrides.json */; };
+		B0CB1C1F2270DE240081F99B /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
+		B0CB1C202270DE250081F99B /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
+		B0CB1C212270DE250081F99B /* MockPeakRewardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B067E0A62045F8BF001C1271 /* MockPeakRewardsService.swift */; };
 		B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
@@ -7239,6 +7242,7 @@
 				E8FF08631F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				E840BD3F1EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */,
+				B0CB1C1F2270DE240081F99B /* MockPeakRewardsService.swift in Sources */,
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				B0DB2760215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				826DCCF21F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
@@ -7667,6 +7671,7 @@
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E83F02771FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
+				B0CB1C212270DE250081F99B /* MockPeakRewardsService.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				B07E17C02208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				B0DB2759215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
@@ -7962,6 +7967,7 @@
 				B0DB2761215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				82A18E691EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
+				B0CB1C202270DE250081F99B /* MockPeakRewardsService.swift in Sources */,
 				82DE610B1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
 				E83F026C1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0D84D5E220382EF00C70A6F /* MockAppState.swift in Sources */,
