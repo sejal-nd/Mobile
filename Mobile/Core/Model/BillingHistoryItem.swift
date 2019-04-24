@@ -129,8 +129,8 @@ struct BillingHistoryItem: Mappable {
         // detecting whether it's a scheduled AutoPay payment or a Fuel Fund donation).
         // We display that under the "Payment Type" label on the detail screen 😖
         if let method: String = map.optionalFrom("payment_method") {
-            isAutoPayPayment = method.lowercased() == "autopay"
-            isFuelFundDonation = method.lowercased() == "fuelfunddonation"
+            isAutoPayPayment = method == "APY"
+            isFuelFundDonation = method == "FFD"
         } else {
             isAutoPayPayment = false
             isFuelFundDonation = false
