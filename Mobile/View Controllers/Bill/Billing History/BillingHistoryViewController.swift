@@ -208,6 +208,13 @@ class BillingHistoryViewController: UIViewController {
 extension BillingHistoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 0 && viewModel.shouldShowAutoPayCellDetailLabel {
+            return UITableView.automaticDimension
+        }
+        return 66
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 66
     }
     
@@ -391,7 +398,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     private func autoPayTableViewCell(indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "BgEasyCell")
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "AutoPayCell")
         cell.selectionStyle = .none
         
         let innerContentView = ButtonControl(frame: .zero)
@@ -404,32 +411,54 @@ extension BillingHistoryViewController: UITableViewDataSource {
             })
             .disposed(by: disposeBag)
         
-        let label = UILabel()
-        
-        let labelText: String
+        let titleLabel = UILabel()
+        titleLabel.textColor = .blackText
+        titleLabel.font = SystemFont.medium.of(textStyle: .headline)
+        let titleText: String
         if viewModel.accountDetail.isAutoPay {
-            labelText = NSLocalizedString("You are enrolled in AutoPay", comment: "")
+            titleText = NSLocalizedString("You are enrolled in AutoPay", comment: "")
         } else {
-            labelText = NSLocalizedString("You are enrolled in BGEasy", comment: "")
+            titleText = NSLocalizedString("You are enrolled in BGEasy", comment: "")
         }
+        titleLabel.text = titleText
         
-        label.text = labelText
-        innerContentView.accessibilityLabel = labelText
-        
-        label.font = SystemFont.medium.of(textStyle: .headline)
+        let detailLabel = UILabel()
+        detailLabel.textColor = .deepGray
+        detailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        detailLabel.text = NSLocalizedString("Your upcoming automatic payment will be\nvisible once your next bill is generated.", comment: "")
+        detailLabel.numberOfLines = 0
+        detailLabel.isHidden = true
         
         let carat = UIImageView(image: #imageLiteral(resourceName: "ic_caret"))
         carat.contentMode = .scaleAspectFit
         
-        let stackView = UIStackView(arrangedSubviews: [label, UIView(), carat]).usingAutoLayout()
+        let labelStack = UIStackView(arrangedSubviews: [titleLabel, detailLabel]).usingAutoLayout()
+        labelStack.axis = .vertical
+        labelStack.alignment = .fill
+        labelStack.distribution = .equalSpacing
+        labelStack.spacing = 5
+        labelStack.isUserInteractionEnabled = false
+        
+        let stackView = UIStackView(arrangedSubviews: [labelStack, UIView(), carat]).usingAutoLayout()
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.isUserInteractionEnabled = false
         
         innerContentView.addSubview(stackView)
         
-        stackView.topAnchor.constraint(equalTo: innerContentView.topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: innerContentView.bottomAnchor).isActive = true
+        var a11yLabel = titleText
+        var topConstant: CGFloat = 0; var bottomConstant: CGFloat = 0.0
+        if viewModel.shouldShowAutoPayCellDetailLabel {
+            detailLabel.isHidden = false
+            a11yLabel += ", \(detailLabel.text!)"
+            topConstant = 13
+            bottomConstant = -24
+        }
+        
+        innerContentView.accessibilityLabel = a11yLabel
+        
+        stackView.topAnchor.constraint(equalTo: innerContentView.topAnchor, constant: topConstant).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: innerContentView.bottomAnchor, constant: bottomConstant).isActive = true
         stackView.leadingAnchor.constraint(equalTo: innerContentView.leadingAnchor, constant: 19).isActive = true
         stackView.trailingAnchor.constraint(equalTo: innerContentView.trailingAnchor, constant: -22).isActive = true
         
