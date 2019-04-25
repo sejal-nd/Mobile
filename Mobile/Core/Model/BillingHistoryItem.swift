@@ -80,16 +80,15 @@ struct BillingHistoryItem: Mappable {
     let isBillPDF: Bool
     
     var isFuture: Bool {
+        if isBillPDF { // EM-2638: Bills should always be in the past
+            return false
+        }
+        
         switch status {
         case .scheduled, .pending:
             return true
-        case .success, .failed, .canceled, .returned, .refunded:
+        case .success, .failed, .canceled, .returned, .refunded, .unknown:
             return false
-        default:
-            if isBillPDF { // EM-2638: Bills should always be in the past
-                return false
-            }
-            return date >= Calendar.opCo.startOfDay(for: .now)
         }
     }
 
