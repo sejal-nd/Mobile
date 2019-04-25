@@ -115,6 +115,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     private func styleViews() {
+        scrollView.backgroundColor = .softGray
         learnMoreButtonLabel.textColor = .actionBlue
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -145,7 +146,7 @@ class BGEAutoPayViewController: UIViewController {
         
         bottomLabelView.backgroundColor = .softGray
         bottomLabel.textColor = .blackText
-        bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
+        bottomLabel.text = viewModel.bottomLabelText
         bottomLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         settingsLabel.textColor = .blackText
@@ -166,10 +167,6 @@ class BGEAutoPayViewController: UIViewController {
     func setupBindings() {
         viewModel.shouldShowContent.not().drive(mainStackView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBottomLabel.not().drive(bottomLabelView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBottomLabel.asObservable().subscribe(onNext: { [weak self] show in
-            self?.view.backgroundColor = show ? .softGray : .white
-        }).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).disposed(by: disposeBag)

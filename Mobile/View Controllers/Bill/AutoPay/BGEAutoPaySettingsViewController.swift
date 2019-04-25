@@ -367,11 +367,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         beforeDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         beforeDueDateDetailsLabel.numberOfLines = 0
         beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        beforeDueDateDetailsLabel.text = NSLocalizedString("Your payment will be processed on your selected number of days before each bill's due date or the next business day. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.", comment: "")
-        
-        if viewModel.numberOfDaysBeforeDueDate.value != 0 {
-            modifyBeforeDueDateDetailsLabel()
-        }
+        modifyBeforeDueDateDetailsLabel()
         
         beforeDueDateButtonStackView.addArrangedSubview(beforeDueDateDetailsLabel)
         
@@ -386,12 +382,23 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     func modifyBeforeDueDateDetailsLabel() {
         let numDays = viewModel.numberOfDaysBeforeDueDate.value
-        
         let numDaysPlural = numDays == 1 ? "" : "s"
         
-        beforeDueDateDetailsLabel.text = String.localizedStringWithFormat("Your payment will process %@ day%@ before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.", String(numDays), numDaysPlural)
+        let textFormat = """
+        Your payment will process %@ before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.
+        """
+        let daysText: String
+        if numDays == 0 {
+            daysText = NSLocalizedString("on your selected number of days", comment: "")
+            beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
+        } else {
+            let format = NSLocalizedString("%@ day%@", comment: "")
+            daysText = String.localizedStringWithFormat(format, String(numDays), numDaysPlural)
+            beforeDueDateRadioControl.detailButtonTitle = String.localizedStringWithFormat("%@ Day%@", String(numDays), numDaysPlural)
+        }
         
-        beforeDueDateRadioControl.detailButtonTitle = String.localizedStringWithFormat("%@ Day%@", String(numDays), numDaysPlural)
+        beforeDueDateDetailsLabel.text = String.localizedStringWithFormat(textFormat, daysText)
+        
 
     }
     
