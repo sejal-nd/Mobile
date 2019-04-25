@@ -30,6 +30,7 @@ class BGEAutoPayViewModel {
     
     let accountDetail: AccountDetail
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
+    var confirmationNumber: String?
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     // --- Settings --- //
@@ -59,6 +60,7 @@ class BGEAutoPayViewModel {
                 guard let self = self else { return }
                 self.isFetchingAutoPayInfo.value = false
                 self.isError.value = false
+                self.confirmationNumber = autoPayInfo.confirmationNumber
                 
                 // Sync up our view model with the existing AutoPay settings
                 if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
@@ -95,14 +97,30 @@ class BGEAutoPayViewModel {
             .disposed(by: disposeBag)
     }
     
-    func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
         paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
-                                          walletItemId: selectedWalletItem.value!.walletItemId,
+                                          walletItemId: selectedWalletItem.value?.walletItemId,
                                           amountType: amountToPay.value,
                                           amountThreshold: amountNotToExceed.value.twoDecimalString,
-                                          paymentDaysBeforeDue: String(daysBefore),
-                                          isUpdate: update)
+                                          paymentDaysBeforeDue: String(daysBefore))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func update(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
+        paymentService.updateAutoPaySettingsBGE(accountNumber: accountDetail.accountNumber,
+                                          walletItemId: selectedWalletItem.value?.walletItemId,
+                                          confirmationNumber: confirmationNumber!,
+                                          amountType: amountToPay.value,
+                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
+                                          paymentDaysBeforeDue: String(daysBefore))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -113,7 +131,7 @@ class BGEAutoPayViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber)
+        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber, confirmationNumber: confirmationNumber!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()

@@ -6,6 +6,7 @@
         "masked_account_number": "****1234",
         "amount_type": "upto amount",
         "amount_threshold": "100.00",
-        "payment_days_before_due": "3"
+        "payment_days_before_due": "3",
+        "confirmation_number": "1234"
     }
 }

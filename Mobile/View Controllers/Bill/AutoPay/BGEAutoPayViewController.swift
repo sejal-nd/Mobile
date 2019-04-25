@@ -188,16 +188,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @objc func onCancelPress() {
-        if viewModel.initialEnrollmentStatus.value == .enrolled && (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
-            let alertVc = UIAlertController(title: NSLocalizedString("Unsaved Changes", comment: ""), message: NSLocalizedString("You have unsaved changes - are you sure you want to exit this screen without saving your changes? Return to the AutoPay screen and Tap \"Submit\" to save your AutoPay changes.", comment: ""), preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }))
-            present(alertVc, animated: true, completion: nil)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func onSubmitPress(submitButton: UIBarButtonItem) {
@@ -227,8 +218,16 @@ class BGEAutoPayViewController: UIViewController {
                 Analytics.log(event: .autoPayUnenrollComplete)
                 
                 guard let self = self else { return }
-                self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
-                self.navigationController?.popViewController(animated: true)
+                let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
+                let description = NSLocalizedString("You have successfully unenrolled from AutoPay. If you have an upcoming automatic payment for your current balance, it may be viewed or canceled in Bill & Payment Activity.", comment: "")
+                let infoModal = InfoModalViewController(title: title,
+                                                        image: #imageLiteral(resourceName: "img_confirmation_green"),
+                                                        description: description)
+                { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                
+                self.navigationController?.present(infoModal, animated: true)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     self?.showErrorAlert(message: errMessage)
@@ -244,7 +243,7 @@ class BGEAutoPayViewController: UIViewController {
             Analytics.log(event: .autoPayModifySettingSubmit)
         }
         
-        viewModel.enrollOrUpdate(onSuccess: { [weak self] in
+        viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
             
@@ -253,8 +252,22 @@ class BGEAutoPayViewController: UIViewController {
                 Analytics.log(event: .autoPayModifySettingCompleteNew)
             }
             
-            self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
-            self.navigationController?.popViewController(animated: true)
+            let title = NSLocalizedString("Enrolled in AutoPay", comment: "")
+            let description: String
+            if let netDueAmount = self.accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
+                let formatText = NSLocalizedString("You are successfully enrolled in AutoPay and will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately.", comment: "")
+                description = String.localizedStringWithFormat(formatText, netDueAmount.currencyString)
+            } else {
+                description = NSLocalizedString("You are successfully enrolled in AutoPay and will begin with your next bill. Upon payment you will receive a payment confirmation for your records.", comment: "")
+            }
+            let infoModal = InfoModalViewController(title: title,
+                                                    image: #imageLiteral(resourceName: "img_confirmation_green"),
+                                                    description: description)
+            { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            
+            self.navigationController?.present(infoModal, animated: true)
             }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 self?.showErrorAlert(message: errMessage)
@@ -263,7 +276,7 @@ class BGEAutoPayViewController: UIViewController {
     
     private func updateSettings() {
         Analytics.log(event: .autoPayModifySettingSubmit)
-        viewModel.enrollOrUpdate(update: true, onSuccess: { [weak self] in
+        viewModel.update(onSuccess: { [weak self] in
             LoadingView.hide()
             Analytics.log(event: .autoPayModifySettingComplete)
             
