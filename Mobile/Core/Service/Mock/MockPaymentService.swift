@@ -20,12 +20,20 @@ class MockPaymentService: PaymentService {
                             walletItemId: String?,
                             amountType: AmountType,
                             amountThreshold: String,
-                            paymentDaysBeforeDue: String,
-                            isUpdate: Bool) -> Observable<Void> {
+                            paymentDaysBeforeDue: String) -> Observable<Void> {
         return .just(())
     }
     
-    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
+    func updateAutoPaySettingsBGE(accountNumber: String,
+                            walletItemId: String?,
+                            confirmationNumber: String,
+                            amountType: AmountType,
+                            amountThreshold: String,
+                            paymentDaysBeforeDue: String) -> Observable<Void> {
+        return .just(())
+    }
+    
+    func unenrollFromAutoPayBGE(accountNumber: String, confirmationNumber: String) -> Observable<Void> {
         return .just(())
     }
     

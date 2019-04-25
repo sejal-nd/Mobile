@@ -66,7 +66,7 @@ class HomeWeatherView: UIView {
         viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
     }
     
-    lazy var didTapTemperatureTip: Driver<(title: String, image: UIImage, body: String)> =
+    lazy var didTapTemperatureTip: Driver<(title: String, image: UIImage, body: String, onClose: (() -> ())?)> =
         self.temperatureTipButton.rx.touchUpInside.asDriver()
             .withLatestFrom(self.viewModel.temperatureTipModalData)
 
