@@ -410,7 +410,7 @@ You have a payment of $82.00 scheduled for 01/11/2019. To avoid a duplicate paym
     // Tests changes in the `paperlessButtonText` value after switching
     // through different accounts.
     func testPaperlessButtonText() {
-        MockUser.current = MockUser(globalKeys: .eBillEligible, .eBill, .finaledStatus, .default)
+        MockUser.current = MockUser(globalKeys: .eBillEligible, .eBill, .finaledStatus)
         MockAccountService.loadAccountsSync()
         
         let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
@@ -419,7 +419,6 @@ You have a payment of $82.00 scheduled for 01/11/2019. To avoid a duplicate paym
             "Would you like to enroll in Paperless eBill?",
             "Paperless eBill\nenrolled",
             nil,
-            nil
         ]
         
         simulateAccountSwitches(at: switchAccountEventTimes)
