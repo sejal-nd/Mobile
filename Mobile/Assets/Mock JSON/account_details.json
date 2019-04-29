@@ -242,6 +242,7 @@
     },
     "eBill": {
         "accountNumber": "1234567890",
+        "isResidential": true,
         "isEBillEnrollment": true,
         "BillingInfo": {
             "minimumPaymentAmount": 5,
