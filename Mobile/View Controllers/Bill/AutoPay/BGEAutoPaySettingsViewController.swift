@@ -384,22 +384,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
         let numDays = viewModel.numberOfDaysBeforeDueDate.value
         let numDaysPlural = numDays == 1 ? "" : "s"
         
-        let textFormat = """
-        Your payment will be processed %@ before each bill's due date or the next business day. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.
-        """
-        let daysText: String
+        beforeDueDateDetailsLabel.text = "Your payment will be processed on your selected number of days before each bill's due date or the next business day. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary."
         if numDays == 0 {
-            daysText = NSLocalizedString("on your selected number of days", comment: "")
             beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
         } else {
-            let format = NSLocalizedString("%@ day%@", comment: "")
-            daysText = String.localizedStringWithFormat(format, String(numDays), numDaysPlural)
             beforeDueDateRadioControl.detailButtonTitle = String.localizedStringWithFormat("%@ Day%@", String(numDays), numDaysPlural)
         }
-        
-        beforeDueDateDetailsLabel.text = String.localizedStringWithFormat(textFormat, daysText)
-        
-
     }
     
     @objc func beforeDueDateButtonPressed() {
