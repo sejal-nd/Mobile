@@ -385,7 +385,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         let numDaysPlural = numDays == 1 ? "" : "s"
         
         let textFormat = """
-        Your payment will process %@ before each bill's due date. A pending payment will be created several days before it is processed to give you the opportunity to edit or cancel the payment if necessary\n\nBGE recommends paying a few days before the due date to ensure adequate processing time.
+        Your payment will be processed %@ before each bill's due date or the next business day. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.
         """
         let daysText: String
         if numDays == 0 {
