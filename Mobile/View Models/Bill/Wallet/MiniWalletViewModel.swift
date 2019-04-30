@@ -55,17 +55,13 @@ class MiniWalletViewModel {
         return items
     }
     
-    var shouldShowTableView: Driver<Bool> {
-        return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
-            return !$0 && !$1
-        }
-    }
+    private(set) lazy var shouldShowTableView: Driver<Bool> = Driver
+        .combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver())
+        { !$0 && !$1 }
     
-    var shouldShowErrorLabel: Driver<Bool> {
-        return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
-            return !$0 && $1
-        }
-    }
+    private(set) lazy var shouldShowErrorLabel: Driver<Bool> = Driver
+        .combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver())
+        { !$0 && $1 }
 
     var footerLabelText: String {
         return NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")

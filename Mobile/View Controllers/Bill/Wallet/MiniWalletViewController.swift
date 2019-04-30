@@ -74,6 +74,7 @@ class MiniWalletViewController: UIViewController {
         miniBankButton.isEnabled = !bankAccountsDisabled
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowTableView.map(!).drive(addPaymentAccountBottomBar.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -196,14 +197,15 @@ class MiniWalletViewController: UIViewController {
     }
     
     private func presentPaymentusForm(bankOrCard: BankOrCard, temporary: Bool) {
+        guard let walletItems = viewModel.walletItems.value else { return }
+        
         let paymentusVC = PaymentusFormViewController(bankOrCard: bankOrCard,
                                                       temporary: temporary,
-                                                      isWalletEmpty: viewModel.walletItems.value!.isEmpty)
+                                                      isWalletEmpty: walletItems.isEmpty)
         paymentusVC.delegate = delegate as? PaymentusFormViewControllerDelegate
         paymentusVC.popToViewController = popToViewController
         navigationController?.pushViewController(paymentusVC, animated: true)
     }
-    
     
     // MARK: - Actions
     
