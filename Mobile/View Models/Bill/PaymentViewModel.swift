@@ -12,10 +12,11 @@ import RxSwiftExt
 import UIKit
 
 class PaymentViewModel {
+    
     let disposeBag = DisposeBag()
 
-    private var walletService: WalletService
-    private var paymentService: PaymentService
+    private let walletService: WalletService
+    private let paymentService: PaymentService
 
     let accountDetail: Variable<AccountDetail>
 
@@ -223,15 +224,52 @@ class PaymentViewModel {
 
     private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
         .map { $0.mmDdYyyyString }
-
+    
+    func shouldCalendarDateBeEnabled(_ date: Date) -> Bool {
+        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
+        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
+        
+        let today = Calendar.opCo.startOfDay(for: .now)
+        switch Environment.shared.opco {
+        case .bge:
+            let minDate = today
+            var maxDate: Date
+            switch selectedWalletItem.value?.bankOrCard {
+            case .card?:
+                maxDate = Calendar.opCo.date(byAdding: .day, value: 90, to: today) ?? today
+            case .bank?:
+                maxDate = Calendar.opCo.date(byAdding: .day, value: 180, to: today) ?? today
+            default:
+                return false
+            }
+            
+            return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
+        case .comEd, .peco:
+            if let dueDate = accountDetail.value.billingInfo.dueByDate {
+                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
+                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
+            }
+        }
+        
+        return false // Will never execute
+    }
+    
+    // Must combine selectedWalletItem because the date validation relies on bank vs card
+    private(set) lazy var isPaymentDateValid: Driver<Bool> = Driver
+        .combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver())
+        .map { [weak self] paymentDate, _ in
+            guard let self = self else { return false }
+            return self.shouldCalendarDateBeEnabled(paymentDate)
+        }
+    
     // MARK: - Shared Drivers
 
     private(set) lazy var paymentAmountString = paymentAmount.asDriver()
         .map { $0.currencyString }
 
     private(set) lazy var paymentFieldsValid: Driver<Bool> = Driver
-        .combineLatest(shouldShowContent, paymentAmountErrorMessage) {
-            return $0 && $1 == nil
+        .combineLatest(shouldShowContent, paymentAmountErrorMessage, isPaymentDateValid) {
+            return $0 && $1 == nil && $2
         }
 
     // MARK: - Other Make Payment Drivers
@@ -477,20 +515,7 @@ class PaymentViewModel {
         if $1 {
             return NSLocalizedString("Select Payment Method", comment: "")
         }
-
-        var a11yLabel = walletItem.bankOrCard == .bank ?
-            NSLocalizedString("Bank account", comment: "") :
-            NSLocalizedString("Credit card", comment: "")
-
-        if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
-        }
-
-        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
-        }
-
-        return a11yLabel
+        return walletItem.accessibilityDescription()
     }
 
     var convenienceFee: Double {

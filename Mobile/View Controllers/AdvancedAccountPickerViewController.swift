@@ -16,7 +16,6 @@ class AdvancedAccountPickerViewController: DismissableFormSheetViewController {
     weak var delegate: AdvancedAccountPickerViewControllerDelegate?
     
     var accounts: [Account]!
-    var zPositionForWindow:CGFloat = 0.0
     var accountIndexToEditPremise = -1
 
     init() {

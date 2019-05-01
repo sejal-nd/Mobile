@@ -35,31 +35,48 @@ class BGEAutoPaySettingsViewModel {
         self.numberOfDaysBeforeDueDate = Variable(numberOfDaysBeforeDueDate)
     }
     
-    var invalidSettingsMessage: String? {
-        let defaultString = NSLocalizedString("Complete all required fields before returning to the AutoPay screen. Check your selected settings and complete secondary fields.", comment: "")
-        
-        if amountToPay.value == .upToAmount {
-            if amountNotToExceedDouble == 0 {
-                return defaultString
-            } else {
-                let minPaymentAmount = accountDetail.billingInfo.minPaymentAmount
-                let maxPaymentAmount = accountDetail.billingInfo.maxPaymentAmount(bankOrCard: .bank)
-                if amountNotToExceedDouble < minPaymentAmount || amountNotToExceedDouble > maxPaymentAmount {
-                    return String.localizedStringWithFormat("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between %@ and %@", minPaymentAmount.currencyString, maxPaymentAmount.currencyString)
-                }
+    private(set) lazy var amountNotToExceedDouble: Driver<Double> = amountNotToExceed.asDriver()
+        .map { Double($0.filter { "0123456789.".contains($0) })! }
+    
+    private lazy var amountToPayIsValid: Driver<Bool> = Driver
+        .combineLatest(amountToPay.asDriver(), amountNotToExceedDouble)
+        { [weak self] amountToPay, amountNotToExceed in
+            switch amountToPay {
+            case .amountDue:
+                return true
+            case .upToAmount:
+                guard let billingInfo = self?.accountDetail.billingInfo else { return false }
+                let minPaymentAmount = billingInfo.minPaymentAmount
+                let maxPaymentAmount = billingInfo.maxPaymentAmount(bankOrCard: .bank)
+                return amountNotToExceed >= minPaymentAmount && amountNotToExceed <= maxPaymentAmount
             }
-        }
-        
-        if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == 0 {
-            return defaultString
-        }
-        
-        return nil
     }
     
-    var amountNotToExceedDouble: Double {
-        return Double(amountNotToExceed.value.filter { "0123456789.".contains($0) })!
+    private(set) lazy var amountToPayErrorMessage: Driver<String?> = amountNotToExceedDouble
+        .map { [weak self] amountNotToExceed in
+            guard let billingInfo = self?.accountDetail.billingInfo else { return nil }
+            let minPaymentAmount = billingInfo.minPaymentAmount
+            let maxPaymentAmount = billingInfo.maxPaymentAmount(bankOrCard: .bank)
+            if amountNotToExceed < minPaymentAmount {
+                let textFormat = NSLocalizedString("Minimum payment allowed is %@", comment: "")
+                return String.localizedStringWithFormat(textFormat, minPaymentAmount.currencyString)
+            } else if amountNotToExceed > maxPaymentAmount {
+                let textFormat = NSLocalizedString("Maximum payment allowed is %@", comment: "")
+                return String.localizedStringWithFormat(textFormat, maxPaymentAmount.currencyString)
+            } else {
+                return nil
+            }
     }
+    
+    private lazy var whenToPayIsValid = Driver
+        .combineLatest(whenToPay.asDriver(),
+                       numberOfDaysBeforeDueDate.asDriver())
+        { whenToPay, numberOfDaysBeforeDueDate in
+            whenToPay != .beforeDueDate || numberOfDaysBeforeDueDate != 0
+        }
+    
+    private(set) lazy var enableDone: Driver<Bool> = Driver
+        .combineLatest(amountToPayIsValid, whenToPayIsValid) { $0 && $1 }
     
     func formatAmountNotToExceed() {
         let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })

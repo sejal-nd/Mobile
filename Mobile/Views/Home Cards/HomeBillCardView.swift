@@ -517,7 +517,7 @@ class HomeBillCardView: UIView {
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
-            vc.accountDetail = accountDetail
+            vc.viewModel.accountDetail = accountDetail
             return vc
         }
         .asDriver(onErrorDriveWith: .empty())

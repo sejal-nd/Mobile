@@ -77,7 +77,7 @@ class BudgetBillingViewController: UIViewController {
         title = NSLocalizedString("Budget Billing", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
         navigationItem.leftBarButtonItem = cancelButton
         // Submit button will be added after successful load
         viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
@@ -288,7 +288,9 @@ class BudgetBillingViewController: UIViewController {
         }
     }
     
-    @objc func onSubmitPress() {
+    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
+        guard submitButton.isEnabled else { return }
+        
         if viewModel.enrolling.value {
             LoadingView.show()
             Analytics.log(event: .budgetBillEnrollOffer)

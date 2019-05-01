@@ -65,11 +65,57 @@ class BGEAutoPayViewController: UIViewController {
         title = NSLocalizedString("AutoPay", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
+        
         viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = submitButton
         
+        styleViews()
+        setupBindings()
+        accessibilitySetup()
+        
+        switch viewModel.initialEnrollmentStatus.value {
+        case .unenrolled:
+            Analytics.log(event: .autoPayEnrollOffer)
+        case .enrolled:
+            termsStackView.isHidden = true
+            termsStackView.alpha = 0
+            viewModel.getAutoPayInfo(onSuccess: { [weak self] in
+                guard let self = self else { return }
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
+                }, onError: { [weak self] _ in
+                    guard let self = self else { return }
+                    UIAccessibility.post(notification: .screenChanged, argument: self.view)
+            })
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setColoredNavBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if termsStackView.isHidden &&
+            (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
+            UIView.animate(withDuration: 0.25) { [weak self] in
+                self?.termsStackView.isHidden = false
+                self?.termsStackView.alpha = 1
+            }
+        }
+    }
+    
+    private func accessibilitySetup() {
+        learnMoreButton.isAccessibilityElement = true
+        learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
+        bankAccountButton.isAccessibilityElement = true
+        settingsButton.isAccessibilityElement = true
+    }
+    
+    private func styleViews() {
+        scrollView.backgroundColor = .softGray
         learnMoreButtonLabel.textColor = .actionBlue
         learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
         learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -100,7 +146,7 @@ class BGEAutoPayViewController: UIViewController {
         
         bottomLabelView.backgroundColor = .softGray
         bottomLabel.textColor = .blackText
-        bottomLabel.text = NSLocalizedString("Your recurring payment will apply to the next BGE bill you receive. You will need to submit a payment for your current BGE bill if you have not already done so.", comment: "")
+        bottomLabel.text = viewModel.bottomLabelText
         bottomLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         settingsLabel.textColor = .blackText
@@ -116,58 +162,11 @@ class BGEAutoPayViewController: UIViewController {
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        
-        setupBindings()
-        accessibilitySetup()
-    
-        viewModel.getAutoPayInfo(onSuccess: { [weak self] in
-            guard let self = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
-        }, onError: { [weak self] _ in
-            guard let self = self else { return }
-            UIAccessibility.post(notification: .screenChanged, argument: self.view)
-        })
-        
-        if viewModel.initialEnrollmentStatus.value == .unenrolled {
-            Analytics.log(event: .autoPayEnrollOffer)
-        }
-        
-        if viewModel.initialEnrollmentStatus.value == .enrolled {
-            termsStackView.isHidden = true
-            termsStackView.alpha = 0
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if termsStackView.isHidden &&
-            (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
-            UIView.animate(withDuration: 0.25) { [weak self] in
-                self?.termsStackView.isHidden = false
-                self?.termsStackView.alpha = 1
-            }
-        }
-    }
-    
-    private func accessibilitySetup() {
-        learnMoreButton.isAccessibilityElement = true
-        learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
-        bankAccountButton.isAccessibilityElement = true
-        settingsButton.isAccessibilityElement = true
     }
     
     func setupBindings() {
         viewModel.shouldShowContent.not().drive(mainStackView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBottomLabel.not().drive(bottomLabelView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showBottomLabel.asObservable().subscribe(onNext: { [weak self] show in
-            self?.view.backgroundColor = show ? .softGray : .white
-        }).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).disposed(by: disposeBag)
@@ -189,19 +188,12 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @objc func onCancelPress() {
-        if viewModel.initialEnrollmentStatus.value == .enrolled && (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
-            let alertVc = UIAlertController(title: NSLocalizedString("Unsaved Changes", comment: ""), message: NSLocalizedString("You have unsaved changes - are you sure you want to exit this screen without saving your changes? Return to the AutoPay screen and Tap \"Submit\" to save your AutoPay changes.", comment: ""), preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }))
-            present(alertVc, animated: true, completion: nil)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
     
-    @objc func onSubmitPress() {
+    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
+        guard submitButton.isEnabled else { return }
+        
         LoadingView.show()
         
         switch viewModel.initialEnrollmentStatus.value {
@@ -213,7 +205,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onUnenrollPress() {
-        let alert = UIAlertController(title: NSLocalizedString("Unenroll from AutoPay", comment: ""), message: NSLocalizedString("You will be responsible for making manual payments after unenrolling from AutoPay. If you unenroll from AutoPay close to the selected date, the funds may still be deducted from your bank account.", comment: ""), preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Unenroll from AutoPay", comment: ""), message: NSLocalizedString("You will be responsible for making separate one-time payments to cover your future bills after unenrolling from AutoPay. Any upcoming automatic payment for your current bill will not be canceled by unenrolling in AutoPay. To cancel an upcoming payment, visit the Bill & Payment Activity page.", comment: ""), preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
@@ -226,8 +218,16 @@ class BGEAutoPayViewController: UIViewController {
                 Analytics.log(event: .autoPayUnenrollComplete)
                 
                 guard let self = self else { return }
-                self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Unenrolled from AutoPay", comment: ""))
-                self.navigationController?.popViewController(animated: true)
+                let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
+                let description = NSLocalizedString("You have successfully unenrolled from AutoPay. If you have an upcoming automatic payment for your current balance, it may be viewed or canceled in Bill & Payment Activity.", comment: "")
+                let infoModal = InfoModalViewController(title: title,
+                                                        image: #imageLiteral(resourceName: "img_confirmation_green"),
+                                                        description: description)
+                { [weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                
+                self.navigationController?.present(infoModal, animated: true)
                 }, onError: { [weak self] errMessage in
                     LoadingView.hide()
                     self?.showErrorAlert(message: errMessage)
@@ -243,7 +243,7 @@ class BGEAutoPayViewController: UIViewController {
             Analytics.log(event: .autoPayModifySettingSubmit)
         }
         
-        viewModel.enrollOrUpdate(onSuccess: { [weak self] in
+        viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
             
@@ -252,8 +252,22 @@ class BGEAutoPayViewController: UIViewController {
                 Analytics.log(event: .autoPayModifySettingCompleteNew)
             }
             
-            self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("Enrolled in AutoPay", comment: ""))
-            self.navigationController?.popViewController(animated: true)
+            let title = NSLocalizedString("Enrolled in AutoPay", comment: "")
+            let description: String
+            if let netDueAmount = self.accountDetail.billingInfo.netDueAmount, netDueAmount > 0 {
+                let formatText = NSLocalizedString("You are successfully enrolled in AutoPay and will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately.", comment: "")
+                description = String.localizedStringWithFormat(formatText, netDueAmount.currencyString)
+            } else {
+                description = NSLocalizedString("You are successfully enrolled in AutoPay and will begin with your next bill. Upon payment you will receive a payment confirmation for your records.", comment: "")
+            }
+            let infoModal = InfoModalViewController(title: title,
+                                                    image: #imageLiteral(resourceName: "img_confirmation_green"),
+                                                    description: description)
+            { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            
+            self.navigationController?.present(infoModal, animated: true)
             }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 self?.showErrorAlert(message: errMessage)
@@ -262,7 +276,7 @@ class BGEAutoPayViewController: UIViewController {
     
     private func updateSettings() {
         Analytics.log(event: .autoPayModifySettingSubmit)
-        viewModel.enrollOrUpdate(update: true, onSuccess: { [weak self] in
+        viewModel.update(onSuccess: { [weak self] in
             LoadingView.hide()
             Analytics.log(event: .autoPayModifySettingComplete)
             
@@ -282,19 +296,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onLearnMorePress() {
-        let modalDescription: String
-        switch Environment.shared.opco {
-        case .bge:
-            modalDescription = """
-Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
-            
-AutoPay will charge the total amount billed each month or up to the total amount specified, if applicable. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay automatic withdrawal.
-"""
-        case .comEd, .peco:
-            modalDescription = "With AutoPay, your payment is automatically deducted from your bank account. Upon payment, you will receive a payment confirmation for your records."
-        }
-        
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: NSLocalizedString(modalDescription, comment: ""))
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
 

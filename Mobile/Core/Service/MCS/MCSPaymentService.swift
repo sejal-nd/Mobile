@@ -26,13 +26,13 @@ class MCSPaymentService: PaymentService {
                             walletItemId: String?,
                             amountType: AmountType,
                             amountThreshold: String,
-                            paymentDaysBeforeDue: String,
-                            isUpdate: Bool) -> Observable<Void> {
+                            paymentDaysBeforeDue: String) -> Observable<Void> {
         let path = "accounts/\(accountNumber)/payments/recurring"
 
         var params = ["amount_type": amountType.rawValue,
                       "payment_date_type": "before due",
-                      "payment_days_before_due": paymentDaysBeforeDue]
+                      "payment_days_before_due": paymentDaysBeforeDue,
+                      "auto_pay_request_type": "Start"]
 
         if let walletId = walletItemId {
             params["wallet_item_id"] = walletId
@@ -40,23 +40,45 @@ class MCSPaymentService: PaymentService {
         if amountType == .upToAmount {
             params["amount_threshold"] = amountThreshold
         }
-
-        params["auto_pay_request_type"] = isUpdate ? "Update" : "Start"
-        let observable: Observable<Any>
-        if isUpdate {
-            observable = MCSApi.shared.put(pathPrefix: .auth, path: path, params: params)
-        } else { // Start
-            observable = MCSApi.shared.post(pathPrefix: .auth, path: path, params: params)
-        }
         
-        return observable.mapTo(())
+        return MCSApi.shared.post(pathPrefix: .auth, path: path, params: params)
+            .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.accountDetailUpdated.onNext(())
             })
     }
     
-    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
-        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/recurring/delete", params: nil)
+    func updateAutoPaySettingsBGE(accountNumber: String,
+                                  walletItemId: String?,
+                                  confirmationNumber: String,
+                                  amountType: AmountType,
+                                  amountThreshold: String,
+                                  paymentDaysBeforeDue: String) -> Observable<Void> {
+        let path = "accounts/\(accountNumber)/payments/recurring"
+        
+        var params = ["amount_type": amountType.rawValue,
+                      "payment_date_type": "before due",
+                      "payment_days_before_due": paymentDaysBeforeDue,
+                      "auto_pay_request_type": "Update",
+                      "confirmation_number": confirmationNumber]
+        
+        if let walletId = walletItemId {
+            params["wallet_item_id"] = walletId
+        }
+        if amountType == .upToAmount {
+            params["amount_threshold"] = amountThreshold
+        }
+        
+        return MCSApi.shared.put(pathPrefix: .auth, path: path, params: params)
+            .mapTo(())
+            .do(onNext: {
+                RxNotifications.shared.accountDetailUpdated.onNext(())
+            })
+    }
+    
+    func unenrollFromAutoPayBGE(accountNumber: String, confirmationNumber: String) -> Observable<Void> {
+        let params = ["confirmation_number": confirmationNumber]
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/recurring/delete", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.accountDetailUpdated.onNext(())

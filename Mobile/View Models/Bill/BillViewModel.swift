@@ -179,7 +179,8 @@ class BillViewModel {
     }
     
     private(set) lazy var showPaperless: Driver<Bool> = currentAccountDetail.map {
-        if !$0.isResidential && (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) {
+        // ComEd/PECO commercial customers should always see the button
+        if !$0.isResidential && Environment.shared.opco != .bge {
             return true
         }
         
@@ -522,6 +523,11 @@ class BillViewModel {
     
     private(set) lazy var paperlessButtonText: Driver<NSAttributedString?> = currentAccountDetail
         .map { accountDetail in
+            // ComEd/PECO commercial customers always see the button in the unenrolled state
+            if !accountDetail.isResidential && Environment.shared.opco != .bge {
+                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
+            }
+            
             switch accountDetail.eBillEnrollStatus {
             case .canEnroll:
                 return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))

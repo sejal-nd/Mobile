@@ -80,7 +80,7 @@ class ReviewPaymentViewController: UIViewController {
 
         title = NSLocalizedString("Review Payment", comment: "")
         
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
         navigationItem.rightBarButtonItem = submitButton
         viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
@@ -251,7 +251,9 @@ class ReviewPaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    @objc func onSubmitPress() {
+    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
+        guard submitButton.isEnabled else { return }
+        
         LoadingView.show()
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {

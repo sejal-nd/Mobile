@@ -74,19 +74,21 @@ struct BillingHistoryItem: Mappable {
     let confirmationNumber: String?
     let convenienceFee: Double?
     let totalAmount: Double?
+    
+    let isAutoPayPayment: Bool
+    let isFuelFundDonation: Bool
     let isBillPDF: Bool
     
     var isFuture: Bool {
-        switch status {
-        case .pending:
-            return true
-        case .canceled: // EM-2638: Canceled payments should always be in the past
+        if isBillPDF { // EM-2638: Bills should always be in the past
             return false
-        default:
-            if isBillPDF { // EM-2638: Bills should always be in the past
-                return false
-            }
-            return date >= Calendar.opCo.startOfDay(for: .now)
+        }
+        
+        switch status {
+        case .scheduled, .pending:
+            return true
+        case .success, .failed, .canceled, .returned, .refunded, .unknown:
+            return false
         }
     }
 
@@ -113,12 +115,26 @@ struct BillingHistoryItem: Mappable {
         statusString = map.optionalFrom("status")
         status = BillingHistoryStatus(identifier: statusString)
         
+        // FYI - this seems backwards but is actually correct. "payment_type" returns the type of
+        // wallet item used (CHQ/SAV/VISA/MC). We use that to display the correct bank/card icon
+        // under the "Payment Method" label on the detail screen
         if let paymentusPaymentMethodType: String = map.optionalFrom("payment_type") {
             paymentMethodType = paymentMethodTypeForPaymentusString(paymentusPaymentMethodType)
         } else {
             paymentMethodType = nil
         }
-
+        
+        // Meanwhile, "payment_method" gives us details on the type of payment (for our purposes,
+        // detecting whether it's a scheduled AutoPay payment or a Fuel Fund donation).
+        // We display that under the "Payment Type" label on the detail screen 😖
+        if let method: String = map.optionalFrom("payment_method") {
+            isAutoPayPayment = method == "APY"
+            isFuelFundDonation = method == "FFD"
+        } else {
+            isAutoPayPayment = false
+            isFuelFundDonation = false
+        }
+        
         if let type: String = map.optionalFrom("type") {
             isBillPDF = type == "billing"
         } else {

@@ -15,27 +15,39 @@ protocol PaymentService {
     /// - Parameters:
     ///   - accountNumber: The account to get the info for
     func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo>
-
-
+    
+    
     /// Enroll in AutoPay (BGE only)
     ///
     /// - Parameters:
     ///   - accountNumber: The account to enroll
     ///   - walletItemId: The selected wallet item to use for AutoPay payments
-    ///   - Params 3-8: BGE AutoPay Settings
-    ///   - isUpdate: Denotes whether the account is a change, or new
+    ///   - Params 3-5: BGE AutoPay Settings
     func enrollInAutoPayBGE(accountNumber: String,
                             walletItemId: String?,
                             amountType: AmountType,
                             amountThreshold: String,
-                            paymentDaysBeforeDue: String,
-                            isUpdate: Bool) -> Observable<Void>
+                            paymentDaysBeforeDue: String) -> Observable<Void>
+    
+    
+    /// Update AutoPay Settings (BGE only)
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to enroll
+    ///   - walletItemId: The selected wallet item to use for AutoPay payments
+    ///   - Params 4-6: BGE AutoPay Settings
+    func updateAutoPaySettingsBGE(accountNumber: String,
+                                  walletItemId: String?,
+                                  confirmationNumber: String,
+                                  amountType: AmountType,
+                                  amountThreshold: String,
+                                  paymentDaysBeforeDue: String) -> Observable<Void>
     
     /// Unenroll in AutoPay (BGE only)
     ///
     /// - Parameters:
     ///   - accountNumber: The account to enroll
-    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void>
+    func unenrollFromAutoPayBGE(accountNumber: String, confirmationNumber: String) -> Observable<Void>
 
     /// Enroll in AutoPay (ComEd & PECO only)
     ///

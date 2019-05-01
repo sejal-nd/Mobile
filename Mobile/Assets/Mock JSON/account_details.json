@@ -33,6 +33,7 @@
         "isAMIAccount": true,
         "isModeledForOpower": true,
         "isEBillEnrollment": true,
+        "isBudgetBillEligible": true,
         "BillingInfo": {
             "netDueAmount": 137,
             "dueByDate": "2019-01-14T00:00:00",
@@ -241,6 +242,7 @@
     },
     "eBill": {
         "accountNumber": "1234567890",
+        "isResidential": true,
         "isEBillEnrollment": true,
         "BillingInfo": {
             "minimumPaymentAmount": 5,
@@ -852,6 +854,9 @@
     },
     "billBreakdown": {
         "accountNumber": "1234567890",
+        "premiseNumber": "1",
+        "serviceType": "GAS/ELECTRIC",
+        "isResidential": true,
         "BillingInfo": {
             "supplyCharges": 42,
             "taxesAndFees": 13,
@@ -1290,6 +1295,23 @@
         "prepaid_status": "PENDING",
         "prepaidStepsToGo": 2,
         "prepaidCutoffDate": "2019-01-04T00:00:00"
+    },
+    "peakRewardsActiveProgram": {
+        "accountNumber": "7989123445",
+        "premiseNumber": "1",
+        "isResidential": true,
+        "serviceType": "GAS/ELECTRIC",
+        "isAMIAccount": true,
+        "isModeledForOpower": true,
+        "peakRewards": "ACTIVE",
+        "BillingInfo": {
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
     },
     "error": {
         "code": "TC-UNKNOWN",

@@ -123,8 +123,17 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.paymentAmount.value = 100
+        var dateComps = DateComponents(calendar: .opCo, year: 2019, month: 1, day: 2)
+        viewModel.paymentDate.value = dateComps.date!
+        viewModel.selectedWalletItem.value = WalletItem()
         viewModel.paymentFieldsValid.asObservable().take(1).subscribe(onNext: { valid in
-            XCTAssert(valid, "paymentFieldsValid should be valid for this test case")
+            XCTAssert(valid, "paymentFieldsValid should be true for this test case")
+        }).disposed(by: disposeBag)
+        
+        dateComps = DateComponents(calendar: .opCo, year: 2019, month: 12, day: 2)
+        viewModel.paymentDate.value = dateComps.date!
+        viewModel.paymentFieldsValid.asObservable().take(1).subscribe(onNext: { valid in
+            XCTAssertFalse(valid, "paymentFieldsValid should be false when the date is past the due date (ComEd/PECO) or more than 180 days out (BGE - bank account)")
         }).disposed(by: disposeBag)
     }
 

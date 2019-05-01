@@ -21,13 +21,13 @@ class MiniWalletViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     
-    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
     
     // Edit Payment TableView Header
     @IBOutlet weak var editPaymentHeaderView: UIView!
+    @IBOutlet weak var currPaymentMethodView: UIView!
     @IBOutlet weak var currPaymentMethodLabel: UILabel!
     @IBOutlet weak var currPaymentMethodIconImageView: UIImageView!
     @IBOutlet weak var currPaymentMethodAccountNumberLabel: UILabel!
@@ -73,7 +73,8 @@ class MiniWalletViewController: UIViewController {
         miniBankButton.layer.cornerRadius = 8
         miniBankButton.isEnabled = !bankAccountsDisabled
         viewModel.isFetchingWalletItems.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowTableView.map(!).drive(mainStackView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowTableView.map(!).drive(tableView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowTableView.map(!).drive(addPaymentAccountBottomBar.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorLabel.map(!).drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -86,6 +87,7 @@ class MiniWalletViewController: UIViewController {
         currPaymentMethodAccountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
         currPaymentMethodAccountNumberLabel.textColor = .blackText
         if let editingItem = viewModel.editingItem.value {
+            currPaymentMethodView.accessibilityLabel = editingItem.accessibilityDescription()
             currPaymentMethodIconImageView.image = editingItem.paymentMethodType.imageMini
             currPaymentMethodAccountNumberLabel.text = "**** \(editingItem.maskedWalletItemAccountNumber!)"
         } else {
@@ -106,7 +108,7 @@ class MiniWalletViewController: UIViewController {
         
         addAccessibility()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -125,6 +127,19 @@ class MiniWalletViewController: UIViewController {
                 headerView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.01) // Must be 0.01 to remove empty space when hidden
             }
             tableView.tableHeaderView = headerView
+        }
+        
+        // Dynamic sizing for the table footer view
+        if let footerView = tableView.tableFooterView {
+            let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            var footerFrame = footerView.frame
+            
+            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
+            if height != footerFrame.size.height {
+                footerFrame.size.height = height
+                footerView.frame = footerFrame
+                tableView.tableFooterView = footerView
+            }
         }
     }
     
@@ -182,14 +197,15 @@ class MiniWalletViewController: UIViewController {
     }
     
     private func presentPaymentusForm(bankOrCard: BankOrCard, temporary: Bool) {
+        guard let walletItems = viewModel.walletItems.value else { return }
+        
         let paymentusVC = PaymentusFormViewController(bankOrCard: bankOrCard,
                                                       temporary: temporary,
-                                                      isWalletEmpty: viewModel.walletItems.value!.isEmpty)
+                                                      isWalletEmpty: walletItems.isEmpty)
         paymentusVC.delegate = delegate as? PaymentusFormViewControllerDelegate
         paymentusVC.popToViewController = popToViewController
         navigationController?.pushViewController(paymentusVC, animated: true)
     }
-    
     
     // MARK: - Actions
     
@@ -271,12 +287,11 @@ extension MiniWalletViewController: UITableViewDataSource {
         cell.innerContentView.removeTarget(self, action: nil, for: .touchUpInside) // Must do this first because of cell reuse
         cell.innerContentView.addTarget(self, action: #selector(onWalletItemCellPress(sender:)), for: .touchUpInside)
         cell.innerContentView.isEnabled = true
-        if item.bankOrCard == .bank && bankAccountsDisabled {
-            cell.innerContentView.isEnabled = false
-        } else {
-            if creditCardsDisabled || item.isExpired {
-                cell.innerContentView.isEnabled = false
-            }
+        switch item.bankOrCard {
+        case .bank:
+            cell.innerContentView.isEnabled = !bankAccountsDisabled
+        case .card:
+            cell.innerContentView.isEnabled = !creditCardsDisabled && !item.isExpired
         }
         
         return cell

@@ -30,12 +30,6 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
     @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
     
-    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
-    @IBOutlet weak var fixedPaymentAccountView: UIView!
-    @IBOutlet weak var fixedPaymentAccountImageView: UIImageView!
-    @IBOutlet weak var fixedPaymentAccountAccountNumberLabel: UILabel!
-    @IBOutlet weak var fixedPaymentAccountNicknameLabel: UILabel!
-    
     @IBOutlet weak var amountDueView: UIView! // Contains amountDueTextLabel and amountDueValueLabel
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
@@ -47,11 +41,6 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
-    // TODO: Confirm if still needed for ePay R2 - Remove here + Storyboard if not
-    @IBOutlet weak var fixedPaymentAmountView: UIView!
-    @IBOutlet weak var fixedPaymentAmountTextLabel: UILabel!
-    @IBOutlet weak var fixedPaymentAmountValueLabel: UILabel!
-    
     @IBOutlet weak var dueDateView: UIView!
     @IBOutlet weak var dueDateTextLabel: UILabel!
     @IBOutlet weak var dueDateDateLabel: UILabel!
@@ -60,6 +49,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateTextLabel: UILabel!
     @IBOutlet weak var paymentDateButtonView: UIView!
     @IBOutlet weak var paymentDateButton: DisclosureButton!
+    @IBOutlet weak var paymentDateErrorView: UIView!
+    @IBOutlet weak var paymentDateErrorLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
     
@@ -167,12 +158,6 @@ class MakePaymentViewController: UIViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        fixedPaymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
-        fixedPaymentAmountTextLabel.textColor = .deepGray
-        fixedPaymentAmountTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        fixedPaymentAmountValueLabel.textColor = .blackText
-        fixedPaymentAmountValueLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        
         dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
         dueDateTextLabel.textColor = .deepGray
         dueDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -182,6 +167,10 @@ class MakePaymentViewController: UIViewController {
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
         paymentDateTextLabel.textColor = .deepGray
         paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        paymentDateErrorLabel.textColor = .errorRed
+        paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentDateErrorLabel.text = NSLocalizedString("Error: Invalid payment date.", comment: "")
         
         paymentDateFixedDateLabel.textColor = .blackText
         paymentDateFixedDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
@@ -304,6 +293,7 @@ class MakePaymentViewController: UIViewController {
         // Payment Date
         viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowPastDueLabel.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isPaymentDateValid.drive(paymentDateErrorView.rx.isHidden).disposed(by: disposeBag)
         paymentDateButtonView.isHidden = !viewModel.canEditPaymentDate
         paymentDateFixedDateLabel.isHidden = viewModel.canEditPaymentDate
         
@@ -337,10 +327,6 @@ class MakePaymentViewController: UIViewController {
         } else {
             editPaymentDetailView.isHidden = true
         }
-        
-        // Currently not using. Keeping around in case payment method/amount become not editable in some cases
-        fixedPaymentAccountView.isHidden = true
-        fixedPaymentAmountView.isHidden = true
     }
     
     func bindViewContent() {
@@ -350,11 +336,6 @@ class MakePaymentViewController: UIViewController {
         viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
         viewModel.showSelectedWalletItemNickname.not().drive(paymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        viewModel.selectedWalletItemImage.drive(fixedPaymentAccountImageView.rx.image).disposed(by: disposeBag)
-        viewModel.selectedWalletItemMaskedAccountString.drive(fixedPaymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
-        viewModel.selectedWalletItemNickname.drive(fixedPaymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
-        viewModel.showSelectedWalletItemNickname.not().drive(fixedPaymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.selectedWalletItemA11yLabel.drive(fixedPaymentAccountView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
@@ -434,9 +415,6 @@ class MakePaymentViewController: UIViewController {
                 self.viewModel.paymentAmount.value = amount
             })
             .disposed(by: disposeBag)
-        
-        // Fixed Payment Amount - if allowEdits is false
-        viewModel.paymentAmountString.asDriver().drive(fixedPaymentAmountValueLabel.rx.text).disposed(by: disposeBag)
         
         // Due Date
         viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).disposed(by: disposeBag)
@@ -529,7 +507,7 @@ class MakePaymentViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onDeletePaymentPress()
+            self?.onCancelPaymentPress()
         }).disposed(by: disposeBag)
     }
     
@@ -543,6 +521,8 @@ class MakePaymentViewController: UIViewController {
     }
     
     @objc func onNextPress() {
+        guard nextButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
@@ -557,7 +537,7 @@ class MakePaymentViewController: UIViewController {
         performSegue(withIdentifier: "reviewPaymentSegue", sender: self)
     }
     
-    func onDeletePaymentPress() {
+    func onCancelPaymentPress() {
         let alertTitle = NSLocalizedString("Cancel Payment", comment: "")
         let alertMessage = NSLocalizedString("Are you sure you want to cancel this payment?", comment: "")
         let alertConfirm = NSLocalizedString("Yes", comment: "")
@@ -572,7 +552,7 @@ class MakePaymentViewController: UIViewController {
                 guard let self = self, let navigationController = self.navigationController else { return }
                 for vc in navigationController.viewControllers {
                     // Always pop back to the root billing history screen here (hence the check for viewingMoreActivity)
-                    guard let dest = vc as? BillingHistoryViewController, !dest.viewingMoreActivity else {
+                    guard let dest = vc as? BillingHistoryViewController, !dest.viewModel.viewingMoreActivity else {
                         continue
                     }
                     dest.onPaymentCancel()
@@ -654,9 +634,6 @@ extension MakePaymentViewController: UITextFieldDelegate {
 extension MakePaymentViewController: MiniWalletViewControllerDelegate {
     
     func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
-        if let existingWalletItem = viewModel.selectedWalletItem.value, existingWalletItem != walletItem {
-            viewModel.computeDefaultPaymentDate()
-        }
         viewModel.selectedWalletItem.value = walletItem
     }
     
@@ -666,9 +643,6 @@ extension MakePaymentViewController: MiniWalletViewControllerDelegate {
 
 extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
-        if let existingWalletItem = viewModel.selectedWalletItem.value, existingWalletItem != walletItem {
-            viewModel.computeDefaultPaymentDate()
-        }
         viewModel.selectedWalletItem.value = walletItem
         fetchData(initialFetch: false)
         if !walletItem.isTemporary {
@@ -687,37 +661,7 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
 
 extension MakePaymentViewController: PDTSimpleCalendarViewDelegate {
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, isEnabledDate date: Date!) -> Bool {
-        let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
-        guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
-        
-        let today = Calendar.opCo.startOfDay(for: .now)
-        switch Environment.shared.opco {
-        case .bge:
-            let minDate = today
-            var maxDate: Date
-            switch viewModel.selectedWalletItem.value?.bankOrCard {
-            case .card?:
-                maxDate = Calendar.opCo.date(byAdding: .day, value: 90, to: today) ?? today
-            case .bank?:
-                maxDate = Calendar.opCo.date(byAdding: .day, value: 180, to: today) ?? today
-            default:
-                return false
-            }
-            
-            return DateInterval(start: minDate, end: maxDate).contains(opCoTimeDate)
-        case .comEd, .peco:
-            if billingHistoryItem != nil && opCoTimeDate == today  { // Modifying payment on ComEd/PECO disables changing date to today
-                return false
-            }
-            
-            if let dueDate = viewModel.accountDetail.value.billingInfo.dueByDate {
-                let startOfDueDate = Calendar.opCo.startOfDay(for: dueDate)
-                return DateInterval(start: today, end: startOfDueDate).contains(opCoTimeDate)
-            }
-        }
-        
-        // Should never get called?
-        return opCoTimeDate >= today
+        return viewModel.shouldCalendarDateBeEnabled(date)
     }
     
     func simpleCalendarViewController(_ controller: PDTSimpleCalendarViewController!, didSelect date: Date!) {

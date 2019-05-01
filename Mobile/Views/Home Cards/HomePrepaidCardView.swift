@@ -44,10 +44,17 @@ final class HomePrepaidCardView: UIView {
         headerLabel.attributedText = viewModel.headerText
         detailLabel.text = viewModel.detailText
         bottomButtonLabel.text = viewModel.buttonText
+        bottomButton.accessibilityLabel = viewModel.buttonText
         bottomButton.addTarget(self, action: #selector(openUrl), for: .touchUpInside)
     }
     
     @objc private func openUrl() {
+        if viewModel.isActive {
+            Analytics.log(event: .prePaidEnrolled)
+        } else {
+            Analytics.log(event: .prePaidPending)
+        }
+        
         UIApplication.shared.openUrlIfCan(viewModel.buttonUrl)
     }
 }

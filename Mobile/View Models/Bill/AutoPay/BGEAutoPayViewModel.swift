@@ -30,6 +30,7 @@ class BGEAutoPayViewModel {
     
     let accountDetail: AccountDetail
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
+    var confirmationNumber: String?
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     // --- Settings --- //
@@ -59,6 +60,7 @@ class BGEAutoPayViewModel {
                 guard let self = self else { return }
                 self.isFetchingAutoPayInfo.value = false
                 self.isError.value = false
+                self.confirmationNumber = autoPayInfo.confirmationNumber
                 
                 // Sync up our view model with the existing AutoPay settings
                 if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
@@ -95,14 +97,30 @@ class BGEAutoPayViewModel {
             .disposed(by: disposeBag)
     }
     
-    func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
         paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
-                                          walletItemId: selectedWalletItem.value!.walletItemId,
+                                          walletItemId: selectedWalletItem.value?.walletItemId,
                                           amountType: amountToPay.value,
-                                          amountThreshold: String(amountNotToExceed.value),
-                                          paymentDaysBeforeDue: String(daysBefore),
-                                          isUpdate: update)
+                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
+                                          paymentDaysBeforeDue: String(daysBefore))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func update(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
+        paymentService.updateAutoPaySettingsBGE(accountNumber: accountDetail.accountNumber,
+                                          walletItemId: selectedWalletItem.value?.walletItemId,
+                                          confirmationNumber: confirmationNumber!,
+                                          amountType: amountToPay.value,
+                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
+                                          paymentDaysBeforeDue: String(daysBefore))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -113,7 +131,7 @@ class BGEAutoPayViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber)
+        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber, confirmationNumber: confirmationNumber!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -188,18 +206,7 @@ class BGEAutoPayViewModel {
     
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let walletItem = $0 else { return "" }
-        
-        var a11yLabel = NSLocalizedString("Bank account", comment: "")
-        
-        if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
-        }
-        
-        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
-        }
-        
-        return a11yLabel
+        return walletItem.accessibilityDescription()
     }
     
     private(set) lazy var settingsButtonAmountText: Driver<String> = Driver
@@ -222,6 +229,44 @@ class BGEAutoPayViewModel {
             case .beforeDueDate:
                 return String.localizedStringWithFormat("%@ Day%@ Before Due Date", String(numberOfDays), numberOfDays == 1 ? "":"s")
             }
+    }
+    
+    var learnMoreDescriptionText: String {
+        if accountDetail.isResidential {
+            return """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+            
+            AutoPay will charge the amount billed each month or the maximum amount specified, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+            """
+        } else {
+            let formatText = """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+            
+            AutoPay will charge the amount billed each month or the maximum amount specified, up to a limit of %@, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+            """
+            let maxPaymentAmountString = accountDetail.billingInfo
+                .maxPaymentAmount(bankOrCard: .bank)
+                .currencyNoDecimalString
+            return String(format: formatText, maxPaymentAmountString)
+        }
+    }
+    
+    var bottomLabelText: String {
+        let billingInfo = accountDetail.billingInfo
+        if accountDetail.isAutoPay {
+            return """
+            Editing or unenrolling in AutoPay will go into effect with your next bill. Any upcoming payments for your current bill may be viewed or canceled in Bill & Payment Activity.
+            """
+        } else if let netDueAmount = billingInfo.netDueAmount, netDueAmount > 0 {
+            let formatText = """
+            If you enroll today, AutoPay will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately.
+            """
+            return String(format: formatText, netDueAmount.currencyString)
+        } else {
+            return """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment you will receive a payment confirmation for your records.
+            """
+        }
     }
 
 }

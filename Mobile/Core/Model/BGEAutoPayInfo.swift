@@ -20,6 +20,7 @@ struct BGEAutoPayInfo: Mappable {
     let amountType: AmountType?
     let amountThreshold: Double?
     let paymentDaysBeforeDue: Int?
+    let confirmationNumber: String
     
     init(map: Mapper) throws {
         walletItemId = map.optionalFrom("wallet_item_id")
@@ -49,5 +50,7 @@ struct BGEAutoPayInfo: Mappable {
             
             return int
         }
+        
+        confirmationNumber = try map.from("confirmation_number")
     }
 }

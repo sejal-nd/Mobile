@@ -105,7 +105,7 @@ class BillBreakdownViewController: UIViewController {
             pieChartColors.append(.accentGray)
         }
         
-        let dataSet = PieChartDataSet(values: pieChartValues, label: "Current Charges")
+        let dataSet = PieChartDataSet(entries: pieChartValues, label: "Current Charges")
         dataSet.colors = pieChartColors
         dataSet.drawValuesEnabled = false
         dataSet.sliceSpace = UIScreen.main.scale * 2
