@@ -855,6 +855,9 @@
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
+		9C28D388227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */; };
+		9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */; };
+		9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */; };
 		9C46B12B221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12C221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12D221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
@@ -2838,6 +2841,7 @@
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
+		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedAccountPickerMultiPremiseTableViewCell.xib; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
@@ -5281,6 +5285,7 @@
 				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
 				E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */,
 				826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */,
+				9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -7405,6 +7410,7 @@
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				358BD21920F8FDAE00DA2012 /* BillImpactDropdownView.swift in Sources */,
+				9C28D388227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
 				0D79C6C91F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
@@ -7730,6 +7736,7 @@
 				82EAB3361F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -8130,6 +8137,7 @@
 				0EF60FD720EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				82DE61061FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
+				9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AB1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
