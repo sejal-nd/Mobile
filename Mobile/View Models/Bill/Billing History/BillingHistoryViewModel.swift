@@ -45,8 +45,9 @@ class BillingHistoryViewModel {
     }
     
     var shouldShowAutoPayCellDetailLabel: Bool {
-        // Show the detail label when there is no upcoming AutoPay payment scheduled
-        return shouldShowAutoPayCell && !accountDetail.isBGEasy &&
+        // Show the detail label when there is no upcoming AutoPay payment scheduled (BGE only)
+        return Environment.shared.opco == .bge &&
+            shouldShowAutoPayCell && !accountDetail.isBGEasy &&
             self.billingHistory?.upcoming.first(where: { $0.isAutoPayPayment }) == nil
     }
 
