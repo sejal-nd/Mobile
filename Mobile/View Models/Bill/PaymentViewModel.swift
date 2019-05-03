@@ -259,6 +259,9 @@ class PaymentViewModel {
         .combineLatest(paymentDate.asDriver(), selectedWalletItem.asDriver())
         .map { [weak self] paymentDate, _ in
             guard let self = self else { return false }
+            if !self.canEditPaymentDate { // If fixed payment date, no need for validation
+                return true
+            }
             return self.shouldCalendarDateBeEnabled(paymentDate)
         }
     
