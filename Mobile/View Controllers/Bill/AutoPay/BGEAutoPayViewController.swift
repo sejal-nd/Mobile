@@ -323,7 +323,7 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onTermsConditionsPress() {
-        let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
+        let url = URL(string: "https://ipn2.paymentus.com/biller/stde/terms-conditions-autopay-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
