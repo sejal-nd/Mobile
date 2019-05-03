@@ -21,6 +21,8 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var switchAccountsLoadingIndicator: LoadingIndicator!
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet private weak var maintenanceModeView: MaintenanceModeView!
+    
+    @IBOutlet private weak var mainStack: UIStackView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var unavailableView: UnavailableView!
     @IBOutlet private weak var prepaidView: UIView!
@@ -166,6 +168,8 @@ class UsageViewController: AccountPickerViewController {
     }
     
     // MARK: - Other Properties
+    
+    private var commercialViewController: CommercialUsageViewController?
     
     var refreshControl: UIRefreshControl?
     
@@ -355,6 +359,10 @@ class UsageViewController: AccountPickerViewController {
         
         viewModel.showNoUsageDataState
             .drive(onNext: { [weak self] in self?.showNoUsageDataState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showCommercialState
+            .drive(onNext: { [weak self] in self?.showCommercialState(viewModel: $0) })
             .disposed(by: disposeBag)
         
         viewModel.showPrepaidState
@@ -610,6 +618,29 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+    }
+    
+    private func showCommercialState(viewModel: CommercialUsageViewModel) {
+        scrollView?.isHidden = false
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        contentStack.isHidden = true
+        prepaidView.isHidden = true
+        mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
+        
+        commercialViewController?.willMove(toParent: nil)
+        commercialViewController?.view.removeFromSuperview()
+        commercialViewController?.removeFromParent()
+        
+        let commercialVC = CommercialUsageViewController(with: viewModel)
+        addChild(commercialVC)
+        mainStack.addArrangedSubview(commercialVC.view)
+        commercialVC.didMove(toParent: self)
+        commercialVC.view.addTabletWidthConstraints(horizontalPadding: 0)
+        commercialViewController = commercialVC
     }
     
     private func showPrepaidState() {

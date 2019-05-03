@@ -39,8 +39,22 @@ class UsageViewModel {
             self?.authService.getMaintenanceMode() ?? .empty()
     }
     
+    private lazy var commercialDataEvents: Observable<Event<SSOData>> = maintenanceModeEvents
+        .filter {
+            !($0.element?.allStatus ?? false) &&
+            !($0.element?.usageStatus ?? false) &&
+            !AccountsStore.shared.currentAccount.isResidential
+        }
+        .toAsyncRequest { [weak self] _ in
+            self?.accountService.fetchSSOData(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: "1") ?? .empty()
+    }
+    
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.usageStatus ?? false) }
+        .filter {
+            !($0.element?.allStatus ?? false) &&
+            !($0.element?.usageStatus ?? false) &&
+            AccountsStore.shared.currentAccount.isResidential
+        }
         .toAsyncRequest { [weak self] _ in
             self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
     }
@@ -166,6 +180,11 @@ class UsageViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var showCommercialState: Driver<CommercialUsageViewModel> = commercialDataEvents
+        .elements()
+        .map(CommercialUsageViewModel.init)
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
         .filter { $0.element?.prepaidStatus == .active }
         .mapTo(())
@@ -175,7 +194,6 @@ class UsageViewModel {
         .filter { $0.element?.isEligibleForUsageData ?? false }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
-    
     
     // MARK: - Bill Analysis States
     

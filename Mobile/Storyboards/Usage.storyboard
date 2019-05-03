@@ -69,7 +69,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N2i-cc-UM6" userLabel="Main Stack">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N2i-cc-UM6" userLabel="Content Stack">
                                                 <rect key="frame" x="16" y="118" width="343" height="887"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-bH-cZn">
@@ -730,6 +730,7 @@
                         <outlet property="lastYearButton" destination="V3z-9k-4Uq" id="yL2-BX-wTC"/>
                         <outlet property="mainErrorLabel" destination="mo5-kv-hgY" id="fOv-gw-LSY"/>
                         <outlet property="mainErrorView" destination="B6w-3l-gs6" id="Ab4-sF-fRx"/>
+                        <outlet property="mainStack" destination="LBl-yS-qiq" id="k2Q-4l-ZKt"/>
                         <outlet property="maintenanceModeView" destination="3t7-EB-sYC" id="thS-dB-495"/>
                         <outlet property="myUsageToolsLabel" destination="TZf-vb-Dqq" id="Ek1-6n-IzH"/>
                         <outlet property="noDataBarView" destination="zIn-mk-W8P" id="IgG-V8-jyD"/>
