@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RN1-zu-caH">
                         <rect key="frame" x="0.0" y="0.0" width="145" height="50"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmq-QV-yQx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmq-QV-yQx">
                                 <rect key="frame" x="55.5" y="14.5" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -42,7 +42,7 @@
                             <constraint firstItem="dmq-QV-yQx" firstAttribute="centerX" secondItem="RN1-zu-caH" secondAttribute="centerX" id="APv-Yq-Pnw"/>
                             <constraint firstItem="dmq-QV-yQx" firstAttribute="centerY" secondItem="RN1-zu-caH" secondAttribute="centerY" id="JiL-Bt-EX4"/>
                             <constraint firstAttribute="bottom" secondItem="mOg-wW-joo" secondAttribute="bottom" id="VCa-HH-io6"/>
-                            <constraint firstItem="dmq-QV-yQx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RN1-zu-caH" secondAttribute="leading" constant="4" id="dYI-KF-wb0"/>
+                            <constraint firstItem="dmq-QV-yQx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RN1-zu-caH" secondAttribute="leading" constant="6" id="dYI-KF-wb0"/>
                             <constraint firstItem="mOg-wW-joo" firstAttribute="leading" secondItem="RN1-zu-caH" secondAttribute="leading" id="jDi-i7-LIf"/>
                         </constraints>
                     </view>
@@ -59,6 +59,7 @@
             <connections>
                 <outlet property="highlightBar" destination="mOg-wW-joo" id="mMx-j0-0gY"/>
                 <outlet property="titleLabel" destination="dmq-QV-yQx" id="wGT-eW-Upw"/>
+                <outlet property="titleLeadingConstraint" destination="dYI-KF-wb0" id="tIk-dV-SQi"/>
             </connections>
             <point key="canvasLocation" x="206.52173913043481" y="160.04464285714286"/>
         </collectionViewCell>

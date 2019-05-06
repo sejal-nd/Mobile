@@ -46,6 +46,13 @@ protocol AccountService {
     ///   - premiseNumber: the premiseNumber to fetch SSOData for
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData>
     
+    /// Gets single sign-on info so that we can display the logged-in user's first fuel web widgets
+    ///
+    /// - Parameters:
+    ///   - accountNumber: the account to fetch SSOData for
+    ///   - premiseNumber: the premiseNumber to fetch SSOData for
+    func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData>
+    
     /// Gets recent scheduled, processing, and pending payments
     func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]>
     

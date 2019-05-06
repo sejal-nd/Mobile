@@ -23,6 +23,7 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet private weak var mainStack: UIStackView!
+    @IBOutlet private weak var accountPickerSpacerView: UIView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var unavailableView: UnavailableView!
     @IBOutlet private weak var prepaidView: UIView!
@@ -587,6 +588,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = false
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
         prepaidView.isHidden = true
         mainErrorView.isHidden = true
@@ -600,6 +602,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = false
         prepaidView.isHidden = true
         mainErrorView.isHidden = true
@@ -612,6 +615,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = false
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
         prepaidView.isHidden = true
         mainErrorView.isHidden = true
@@ -624,6 +628,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = true
         contentStack.isHidden = true
         prepaidView.isHidden = true
         mainErrorView.isHidden = true
@@ -647,6 +652,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
         prepaidView.isHidden = false
         mainErrorView.isHidden = true
@@ -659,6 +665,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
         prepaidView.isHidden = true
         mainErrorView.isHidden = false
@@ -671,6 +678,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
         prepaidView.isHidden = true
         mainErrorView.isHidden = true
@@ -683,6 +691,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = true
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
         prepaidView.isHidden = true
         mainErrorView.isHidden = true
@@ -695,6 +704,7 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = true
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
         prepaidView.isHidden = true
         mainErrorView.isHidden = true

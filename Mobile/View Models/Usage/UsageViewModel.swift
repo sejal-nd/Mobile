@@ -39,24 +39,20 @@ class UsageViewModel {
             self?.authService.getMaintenanceMode() ?? .empty()
     }
     
-    private lazy var commercialDataEvents: Observable<Event<SSOData>> = maintenanceModeEvents
-        .filter {
-            !($0.element?.allStatus ?? false) &&
-            !($0.element?.usageStatus ?? false) &&
-            !AccountsStore.shared.currentAccount.isResidential
-        }
-        .toAsyncRequest { [weak self] _ in
-            self?.accountService.fetchSSOData(accountNumber: AccountsStore.shared.currentAccount.accountNumber, premiseNumber: "1") ?? .empty()
-    }
-    
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter {
             !($0.element?.allStatus ?? false) &&
-            !($0.element?.usageStatus ?? false) &&
-            AccountsStore.shared.currentAccount.isResidential
+            !($0.element?.usageStatus ?? false)
         }
         .toAsyncRequest { [weak self] _ in
             self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
+    }
+    
+    private lazy var commercialDataEvents: Observable<Event<SSOData>> = accountDetailEvents
+        .elements()
+        .filter { !$0.isResidential }
+        .toAsyncRequest { [weak self] accountDetail in
+            self?.accountService.fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!) ?? .empty()
     }
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
@@ -175,6 +171,7 @@ class UsageViewModel {
         .filter { accountDetailEvent in
             guard let accountDetail = accountDetailEvent.element else { return false }
             return !accountDetail.isEligibleForUsageData &&
+                accountDetail.isResidential &&
                 accountDetail.prepaidStatus != .active
         }
         .mapTo(())
