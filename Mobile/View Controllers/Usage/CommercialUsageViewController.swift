@@ -75,15 +75,20 @@ class CommercialUsageViewController: UIViewController {
         webView.scrollView.isScrollEnabled = false
         webView.navigationDelegate = self
         
-        webView.evaluateJavaScript(viewModel.javascript) { response, err in
-            dLog("")
-//            if err != nil {
-//                self?.loadingIndicator.isHidden = true
-//                self?.errorLabel.isHidden = false
-//            } else {
-//                self?.webView.isHidden = false
-//            }
-        }
+        viewModel.javascript
+            .drive(onNext: { [weak self] javascript in
+                self?.webView.evaluateJavaScript(javascript) { response, err in
+                    dLog("")
+                    //            if err != nil {
+                    //                self?.loadingIndicator.isHidden = true
+                    //                self?.errorLabel.isHidden = false
+                    //            } else {
+                    //                self?.webView.isHidden = false
+                    //            }
+                }
+            })
+            .disposed(by: disposeBag)
+        
         
         let stackView = UIStackView(arrangedSubviews: [tabCollectionView, separatorView, webView])
         stackView.translatesAutoresizingMaskIntoConstraints = false

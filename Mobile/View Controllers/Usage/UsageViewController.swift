@@ -363,7 +363,7 @@ class UsageViewController: AccountPickerViewController {
             .disposed(by: disposeBag)
         
         viewModel.showCommercialState
-            .drive(onNext: { [weak self] in self?.showCommercialState(viewModel: $0) })
+            .drive(onNext: { [weak self] in self?.showCommercialState() })
             .disposed(by: disposeBag)
         
         viewModel.showPrepaidState
@@ -596,6 +596,8 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         showBillComparisonLoadingState()
+        removeCommercialView()
+        view.backgroundColor = .softGray
     }
     
     private func showMainContents() {
@@ -624,7 +626,7 @@ class UsageViewController: AccountPickerViewController {
         maintenanceModeView.isHidden = true
     }
     
-    private func showCommercialState(viewModel: CommercialUsageViewModel) {
+    private func showCommercialState() {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
@@ -636,16 +638,16 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         
-        commercialViewController?.willMove(toParent: nil)
-        commercialViewController?.view.removeFromSuperview()
-        commercialViewController?.removeFromParent()
-        
-        let commercialVC = CommercialUsageViewController(with: viewModel)
-        addChild(commercialVC)
-        mainStack.addArrangedSubview(commercialVC.view)
-        commercialVC.didMove(toParent: self)
-        commercialVC.view.addTabletWidthConstraints(horizontalPadding: 0)
-        commercialViewController = commercialVC
+        guard let _ = commercialViewController else {
+            let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
+            addChild(commercialVC)
+            mainStack.addArrangedSubview(commercialVC.view)
+            commercialVC.didMove(toParent: self)
+            commercialVC.view.addTabletWidthConstraints(horizontalPadding: 0)
+            commercialViewController = commercialVC
+            view.backgroundColor = .white
+            return
+        }
     }
     
     private func showPrepaidState() {
@@ -743,6 +745,13 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = false
         billComparisonDataContainer.isHidden = true
         billComparisonTitleContainer.isHidden = true
+    }
+    
+    private func removeCommercialView() {
+        commercialViewController?.willMove(toParent: nil)
+        commercialViewController?.view.removeFromSuperview()
+        commercialViewController?.removeFromParent()
+        commercialViewController = nil
     }
     
     // MARK: - Usage Tool Cards

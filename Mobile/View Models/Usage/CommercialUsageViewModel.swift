@@ -10,16 +10,20 @@ import RxSwift
 import RxCocoa
 
 class CommercialUsageViewModel {
-    let url: URL
-    let javascript: String
+    let javascript: Driver<String>
     let tabs = Observable.just(Tab.allCases).share(replay: 1)
     let selectedIndex = BehaviorRelay(value: 0)
     let htmlString: Driver<String>
     private let readyToLoadWidget = PublishSubject<Void>()
     
-    init(ssoData: SSOData) {
-        self.url = ssoData.ssoPostURL
-        javascript = "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayState.absoluteString)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL.absoluteString)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
+    init(ssoData: Observable<SSOData>) {
+        javascript = ssoData.map { ssoData in
+            String(format: jsString,
+                   ssoData.samlResponse,
+                   ssoData.relayState.absoluteString,
+                   ssoData.ssoPostURL.absoluteString)
+            }
+            .asDriver(onErrorDriveWith: .empty())
         
         htmlString = Observable
             .combineLatest(readyToLoadWidget.asObservable(),
@@ -28,7 +32,6 @@ class CommercialUsageViewModel {
             { _, selectedIndex in
                 html(for: Tab.allCases[selectedIndex])
             }
-            .debug("fjiowfmvmc")
             .asDriver(onErrorDriveWith: .empty())
     }
     
@@ -70,7 +73,9 @@ class CommercialUsageViewModel {
     }
 }
 
-// MARK: - Helper Functions
+// MARK: - Helper
+
+fileprivate let jsString = "var data={SAMLResponse:'%@',RelayState:'%@'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','%@');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
 
 fileprivate func html(for tab: CommercialUsageViewModel.Tab) -> String {
     let url = Bundle.main.url(forResource: "FirstFuelWidget", withExtension: "html")!

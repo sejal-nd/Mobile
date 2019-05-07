@@ -200,7 +200,7 @@ class MCSApi {
             let opCoString = Environment.shared.opco.displayString.uppercased()
             fullPath = String(format: "anon_%@/%@/%@", Environment.shared.mcsConfig.apiVersion, opCoString, path)
         case .auth:
-            fullPath = String(format: "auth_%@/%@", "v6ff", path)
+            fullPath = String(format: "auth_%@/%@", Environment.shared.mcsConfig.apiVersion, path)
         case .none:
             fullPath = path
         }

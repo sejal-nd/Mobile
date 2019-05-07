@@ -53,7 +53,10 @@ class UsageViewModel {
         .filter { !$0.isResidential }
         .toAsyncRequest { [weak self] accountDetail in
             self?.accountService.fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!) ?? .empty()
-    }
+        }
+        .share(replay: 1)
+    
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements())
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
@@ -133,18 +136,22 @@ class UsageViewModel {
     
     // MARK: - Main States
     
-    private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
-                                                                     showAccountDisallowState,
-                                                                     showNoNetworkState,
-                                                                     showMaintenanceModeState,
-                                                                     showBillComparisonContents,
-                                                                     showBillComparisonErrorState,
-                                                                     showNoUsageDataState)
+    private(set) lazy var endRefreshIng: Driver<Void> = Driver
+        .merge(showMainErrorState,
+               showAccountDisallowState,
+               showNoNetworkState,
+               showMaintenanceModeState,
+               showBillComparisonContents,
+               showBillComparisonErrorState,
+               showNoUsageDataState,
+               showCommercialState)
     
-    private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
-        .filter { $0.error != nil }
-        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
-        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue }
+    private(set) lazy var showMainErrorState: Driver<Void> = Observable
+        .merge(accountDetailEvents.errors(), commercialDataEvents.errors())
+        .filter {
+            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue &&
+            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue
+        }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -177,9 +184,9 @@ class UsageViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showCommercialState: Driver<CommercialUsageViewModel> = commercialDataEvents
+    private(set) lazy var showCommercialState: Driver<Void> = commercialDataEvents
         .elements()
-        .map(CommercialUsageViewModel.init)
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
