@@ -16,18 +16,18 @@ class CommercialUsageViewController: UIViewController {
     private let viewModel: CommercialUsageViewModel
     private lazy var webView: WKWebView = {
         let contentController = WKUserContentController()
-        let source = "window.addEventListener('windowResize', function(event){ window.webkit.messageHandlers.iosListener.postMessage(JSON.stringify(event.data)); })"
+        let source = "window.addEventListener('message', function(event){ window.webkit.messageHandlers.iosListener.postMessage(JSON.stringify(event.data)); })"
         let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
         contentController.addUserScript(script)
         contentController.add(self, name: "iosListener")
         
         let configuration = WKWebViewConfiguration()
-//        configuration.userContentController = contentController
+        configuration.userContentController = contentController
         let webView = WKWebView(frame: .zero, configuration: configuration).usingAutoLayout()
         return webView
     }()
     
-    private var webViewHeight: NSLayoutConstraint!
+    private lazy var webViewHeight = webView.heightAnchor.constraint(equalToConstant: 0)
     
     let tabCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -93,7 +93,6 @@ class CommercialUsageViewController: UIViewController {
         stackView.spacing = 0
         view.addSubview(stackView)
         
-        webViewHeight = webView.heightAnchor.constraint(equalToConstant: 800)
         NSLayoutConstraint.activate([
             tabCollectionView.heightAnchor.constraint(equalToConstant: 50),
             separatorView.heightAnchor.constraint(equalToConstant: 1),
@@ -142,7 +141,6 @@ class CommercialUsageViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    
     @available(*, unavailable)
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         fatalError("this init has not been implemented")
@@ -156,21 +154,7 @@ class CommercialUsageViewController: UIViewController {
 }
 
 extension CommercialUsageViewController: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // Adapt the height of the web view to the height of its contents
-        webView.evaluateJavaScript("document.readyState") { [weak self] (result, error) in
-            guard let self = self, let _ = result else { return }
-            self.webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] (height, error) in
-                guard let heightFloat = height as? CGFloat else { return }
-                self?.webViewHeight.constant = heightFloat
-                dLog("fjdiowjfajfkdl \(heightFloat)")
-            }
-        }
-    }
-    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        dLog("fdszcdsfew\t" + (navigationAction.request.url?.absoluteString ?? "n/a"))
         if navigationAction.request.url?.absoluteString.contains("tenant_id") ?? false {
             decisionHandler(.cancel)
             viewModel.didAuthenticate()
@@ -183,6 +167,14 @@ extension CommercialUsageViewController: WKNavigationDelegate {
 
 extension CommercialUsageViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        dLog("Received postMessage: \(message.body)")
+        guard let bodyString = message.body as? String,
+            let data = bodyString.data(using: .utf8),
+            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
+            let height = json["height"] as? CGFloat
+            else {
+                return
+        }
+        
+        webViewHeight.constant = height
     }
 }

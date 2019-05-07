@@ -37,17 +37,17 @@ class CommercialUsageViewModel {
     }
     
     enum Tab: CaseIterable {
-        case billingHistory
         case usageTrends
+        case billingHistory
         case weatherImpact
         case operatingSchedule
         
         var title: String {
             switch self {
-            case .billingHistory:
-                return NSLocalizedString("Billing History", comment: "")
             case .usageTrends:
                 return NSLocalizedString("Usage Trends", comment: "")
+            case .billingHistory:
+                return NSLocalizedString("Billing History", comment: "")
             case .weatherImpact:
                 return NSLocalizedString("Weather Impact", comment: "")
             case .operatingSchedule:
@@ -57,10 +57,10 @@ class CommercialUsageViewModel {
         
         var widgetId: String {
             switch self {
-            case .billingHistory:
-                return "42a223c3-ebd4-4f6f-9f11-e7ddf0158494"
             case .usageTrends:
                 return "87538db3-ddfa-4476-b0e3-c6d7e580e5d2"
+            case .billingHistory:
+                return "42a223c3-ebd4-4f6f-9f11-e7ddf0158494"
             case .weatherImpact:
                 return "e267c842-f179-4f56-adb6-6207cd3db257"
             case .operatingSchedule:
