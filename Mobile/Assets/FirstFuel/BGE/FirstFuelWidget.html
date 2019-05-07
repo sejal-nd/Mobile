@@ -5,14 +5,14 @@
     <script src="https://bge-sso.firstfuelsoftware.net/assets/ff/pdf/widgets/v1/embed.js"></script>
   </head>
   <body>
-    <div class="test-widget-content" id="chart-bill-comparison" data-login="User_2226065105@test.com" data-ff-widget="true" data-energy-type="E" data-widget-id="cd68dbdd-e5cc-4ed9-8a0c-4ab5ef4ee084">
+    <div class="test-widget-content" id="chart-bill-comparison" data-login="loggedInUsername" data-ff-widget="true" data-energy-type="E" data-widget-id="dataWidgetId">
     </div>
     <script type="text/javascript">
       $(document).ready(function(){
         ffEventLogger.enable('PARENT', 'DEBUG');
         ffWidgetFunctions.setProviderUrl('https://bge-sso.firstfuelsoftware.net');
         ffWidgetFunctions.initWidgets();
-	    });
+      });
     </script>
   </body>
 </html>
