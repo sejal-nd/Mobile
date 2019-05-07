@@ -855,6 +855,8 @@
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
+		9C28D3982281FD8700DBFE51 /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3972281FD8600DBFE51 /* FirstFuelWidget.html */; };
+		9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
 		9C46B12B221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12C221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12D221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
@@ -1381,9 +1383,7 @@
 		B0CB1C8E227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */; };
 		B0CB1C8F227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */; };
 		B0CB1C90227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */; };
-		B0CB1C922280DE870081F99B /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = B0CB1C912280DE860081F99B /* FirstFuelWidget.html */; };
 		B0CB1C932280DE870081F99B /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = B0CB1C912280DE860081F99B /* FirstFuelWidget.html */; };
-		B0CB1C942280DE870081F99B /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = B0CB1C912280DE860081F99B /* FirstFuelWidget.html */; };
 		B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
@@ -2856,6 +2856,8 @@
 		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
+		9C28D3972281FD8600DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
+		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedAccountPickerMultiPremiseTableViewCell.xib; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
@@ -4475,6 +4477,40 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9C28D3932281FCAE00DBFE51 /* FirstFuel */ = {
+			isa = PBXGroup;
+			children = (
+				9C28D3942281FCBD00DBFE51 /* BGE */,
+				9C28D3952281FCC400DBFE51 /* ComEd */,
+				9C28D3962281FCCC00DBFE51 /* PECO */,
+			);
+			path = FirstFuel;
+			sourceTree = "<group>";
+		};
+		9C28D3942281FCBD00DBFE51 /* BGE */ = {
+			isa = PBXGroup;
+			children = (
+				9C28D3972281FD8600DBFE51 /* FirstFuelWidget.html */,
+			);
+			path = BGE;
+			sourceTree = "<group>";
+		};
+		9C28D3952281FCC400DBFE51 /* ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				B0CB1C912280DE860081F99B /* FirstFuelWidget.html */,
+			);
+			path = ComEd;
+			sourceTree = "<group>";
+		};
+		9C28D3962281FCCC00DBFE51 /* PECO */ = {
+			isa = PBXGroup;
+			children = (
+				9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */,
+			);
+			path = PECO;
+			sourceTree = "<group>";
+		};
 		9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -4810,9 +4846,9 @@
 		B5AC06C61E521B2600BBA4ED /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				9C28D3932281FCAE00DBFE51 /* FirstFuel */,
 				B04DDF822200D44800594ACF /* Mock JSON */,
 				384F86A11F310B8600A85557 /* TermPolicies.html */,
-				B0CB1C912280DE860081F99B /* FirstFuelWidget.html */,
 				E800431B1E65FF4D005CF531 /* Fonts */,
 				8FD5AE971E54EA8C003F640D /* Lottie Animations */,
 				82F2BDE51FD6EF9A00612309 /* Landing Video */,
@@ -5897,7 +5933,6 @@
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
-				B0CB1C922280DE870081F99B /* FirstFuelWidget.html in Resources */,
 				B017488E2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */,
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
@@ -5927,6 +5962,7 @@
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
 				E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
+				9C28D3982281FD8700DBFE51 /* FirstFuelWidget.html in Resources */,
 				B05D84B72187803000F15A9F /* DisclosureCellButton.xib in Resources */,
 				359BB27F2148517F00FBAD83 /* sm_outage_loading.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
@@ -6052,7 +6088,6 @@
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
-				B0CB1C942280DE870081F99B /* FirstFuelWidget.html in Resources */,
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
 				9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */,
 				B01748902135D19B0039D0C6 /* Storm.storyboard in Resources */,
@@ -6082,6 +6117,7 @@
 				35AE569F214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				B59EFAA31F72E67F001490A1 /* FloatLabelTextView.xib in Resources */,
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
+				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
 				B05D84B92187803000F15A9F /* DisclosureCellButton.xib in Resources */,
 				E893993B1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				6A4FD2D560C81F27B81D2748 /* otps1_img_0.png in Resources */,
