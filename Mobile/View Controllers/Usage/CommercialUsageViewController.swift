@@ -13,9 +13,21 @@ import RxCocoa
 
 class CommercialUsageViewController: UIViewController {
     
-    let viewModel: CommercialUsageViewModel
-    let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
-    var webViewHeight: NSLayoutConstraint!
+    private let viewModel: CommercialUsageViewModel
+    private lazy var webView: WKWebView = {
+        let contentController = WKUserContentController()
+        let source = "window.addEventListener('windowResize', function(event){ window.webkit.messageHandlers.iosListener.postMessage(JSON.stringify(event.data)); })"
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        contentController.addUserScript(script)
+        contentController.add(self, name: "iosListener")
+        
+        let configuration = WKWebViewConfiguration()
+//        configuration.userContentController = contentController
+        let webView = WKWebView(frame: .zero, configuration: configuration).usingAutoLayout()
+        return webView
+    }()
+    
+    private var webViewHeight: NSLayoutConstraint!
     
     let tabCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -26,6 +38,7 @@ class CommercialUsageViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -47,16 +60,30 @@ class CommercialUsageViewController: UIViewController {
         bindTabs()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: "iosListener")
+    }
+    
     private func buildLayout() {
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        let separatorView = UIView()
+        let separatorView = UIView().usingAutoLayout()
         separatorView.backgroundColor = .accentGray
         
         webView.scrollView.isScrollEnabled = false
-        webView.load(URLRequest(url: viewModel.url))
         webView.navigationDelegate = self
+        
+        webView.evaluateJavaScript(viewModel.javascript) { response, err in
+            dLog("")
+//            if err != nil {
+//                self?.loadingIndicator.isHidden = true
+//                self?.errorLabel.isHidden = false
+//            } else {
+//                self?.webView.isHidden = false
+//            }
+        }
         
         let stackView = UIStackView(arrangedSubviews: [tabCollectionView, separatorView, webView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +93,7 @@ class CommercialUsageViewController: UIViewController {
         stackView.spacing = 0
         view.addSubview(stackView)
         
-        webViewHeight = webView.heightAnchor.constraint(equalToConstant: 0)
+        webViewHeight = webView.heightAnchor.constraint(equalToConstant: 800)
         NSLayoutConstraint.activate([
             tabCollectionView.heightAnchor.constraint(equalToConstant: 50),
             separatorView.heightAnchor.constraint(equalToConstant: 1),
@@ -100,7 +127,7 @@ class CommercialUsageViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.selectedIndex.asDriver()
-            .skip(1) // wait until the
+            .skip(1)
             .drive(onNext: { [weak self] selectedIndex in
                 self?.tabCollectionView.scrollToItem(at: IndexPath(item: selectedIndex, section: 0),
                                                      at: .centeredHorizontally,
@@ -136,13 +163,14 @@ extension CommercialUsageViewController: WKNavigationDelegate {
             guard let self = self, let _ = result else { return }
             self.webView.evaluateJavaScript("document.body.scrollHeight") { [weak self] (height, error) in
                 guard let heightFloat = height as? CGFloat else { return }
-                self?.webViewHeight.constant = 800
+                self?.webViewHeight.constant = heightFloat
                 dLog("fjdiowjfajfkdl \(heightFloat)")
             }
         }
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        dLog("fdszcdsfew\t" + (navigationAction.request.url?.absoluteString ?? "n/a"))
         if navigationAction.request.url?.absoluteString.contains("tenant_id") ?? false {
             decisionHandler(.cancel)
             viewModel.didAuthenticate()
@@ -150,5 +178,11 @@ extension CommercialUsageViewController: WKNavigationDelegate {
         }
         
         decisionHandler(.allow)
+    }
+}
+
+extension CommercialUsageViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        dLog("Received postMessage: \(message.body)")
     }
 }

@@ -11,13 +11,16 @@ import RxCocoa
 
 class CommercialUsageViewModel {
     let url: URL
+    let javascript: String
     let tabs = Observable.just(Tab.allCases).share(replay: 1)
-    let selectedIndex = Variable(0)
+    let selectedIndex = BehaviorRelay(value: 0)
     let htmlString: Driver<String>
     private let readyToLoadWidget = PublishSubject<Void>()
     
     init(ssoData: SSOData) {
         self.url = ssoData.ssoPostURL
+        javascript = "var data={SAMLResponse:'\(ssoData.samlResponse)',RelayState:'\(ssoData.relayState.absoluteString)'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','\(ssoData.ssoPostURL.absoluteString)');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
+        
         htmlString = Observable
             .combineLatest(readyToLoadWidget.asObservable(),
                            selectedIndex.asObservable()
@@ -25,11 +28,12 @@ class CommercialUsageViewModel {
             { _, selectedIndex in
                 html(for: Tab.allCases[selectedIndex])
             }
+            .debug("fjiowfmvmc")
             .asDriver(onErrorDriveWith: .empty())
     }
     
     func didAuthenticate() {
-        
+        readyToLoadWidget.onNext(())
     }
     
     enum Tab: CaseIterable {
@@ -56,7 +60,7 @@ class CommercialUsageViewModel {
             case .billingHistory:
                 return "42a223c3-ebd4-4f6f-9f11-e7ddf0158494"
             case .usageTrends:
-                return "bbbbde32-2e5a-4df2-afc0-3a46083c8f06"
+                return "87538db3-ddfa-4476-b0e3-c6d7e580e5d2"
             case .weatherImpact:
                 return "e267c842-f179-4f56-adb6-6207cd3db257"
             case .operatingSchedule:
@@ -71,6 +75,9 @@ class CommercialUsageViewModel {
 fileprivate func html(for tab: CommercialUsageViewModel.Tab) -> String {
     let url = Bundle.main.url(forResource: "FirstFuelWidget", withExtension: "html")!
     // TODO, string replace the correct "data-login" (User's ID/email), "data-widget-id" (which widget), and "data-energy-type" (GAS/ELECTRIC)
+    
+    let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)!
     return try! String(contentsOf: url)
-        .replacingOccurrences(of: "fmdcqomdkocmqcoeiwci", with: tab.widgetId)
+        .replacingOccurrences(of: "dataWidgetId", with: tab.widgetId)
+        .replacingOccurrences(of: "loggedInUsername", with: loggedInUsername)
 }
