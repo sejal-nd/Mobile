@@ -121,8 +121,7 @@ class CommercialUsageViewController: UIViewController {
                                                  cellType: TabCollectionViewCell.self))
             { [weak self] (row, tab, cell) in
                 guard let self = self else { return }
-                let isSelected = self.viewModel.selectedIndex
-                    .asDriver()
+                let isSelected = self.viewModel.selectedIndex.asDriver()
                     .distinctUntilChanged()
                     .map { $0 == row }
                 
@@ -131,7 +130,6 @@ class CommercialUsageViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.selectedIndex.asDriver()
-            .skip(1)
             .drive(onNext: { [weak self] selectedIndex in
                 self?.tabCollectionView.scrollToItem(at: IndexPath(item: selectedIndex, section: 0),
                                                      at: .centeredHorizontally,
