@@ -154,7 +154,8 @@ class PaymentViewModel {
     }
     
     // MARK: - Payment Date Stuff
-    
+
+    // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     func computeDefaultPaymentDate() {
         if Environment.shared.opco == .bge {
             paymentDate.value = .now
@@ -178,6 +179,7 @@ class PaymentViewModel {
         }
     }
     
+    // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
     var canEditPaymentDate: Bool {        
         let accountDetail = self.accountDetail.value
         let billingInfo = accountDetail.billingInfo
@@ -203,8 +205,12 @@ class PaymentViewModel {
             return Environment.shared.opco == .bge || isDueDateInTheFuture
         }
         
-        // All the other states boil down to the due date being in the future
-        return isDueDateInTheFuture
+        // If not one of the above precarious states...
+        if Environment.shared.opco == .bge { // BGE can always future date
+            return true
+        } else { // ComEd/PECO can only future date if the due date has not passed
+            return isDueDateInTheFuture
+        }
     }
     
     private var isDueDateInTheFuture: Bool {
