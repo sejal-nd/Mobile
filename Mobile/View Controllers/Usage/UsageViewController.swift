@@ -754,7 +754,10 @@ class UsageViewController: AccountPickerViewController {
         addChild(commercialVC)
         mainStack.addArrangedSubview(commercialVC.view)
         commercialVC.didMove(toParent: self)
-        commercialVC.view.addTabletWidthConstraints(horizontalPadding: 0)
+        NSLayoutConstraint.activate([
+            commercialVC.view.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
+            commercialVC.view.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
+            ])
         commercialViewController = commercialVC
         view.backgroundColor = .white
     }
