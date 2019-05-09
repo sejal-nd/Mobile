@@ -532,7 +532,7 @@ class PaymentViewModel {
     }
 
     private(set) lazy var amountDueCurrencyString: Driver<String?> = amountDue.asDriver()
-        .map { $0 < 0 ? "$0.00" : $0.currencyString }
+        .map { max(0, $0).currencyString }
 
     private(set) lazy var dueDate: Driver<String?> = accountDetail.asDriver().map {
         $0.billingInfo.dueByDate?.mmDdYyyyString ?? "--"
