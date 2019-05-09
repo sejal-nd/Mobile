@@ -11,9 +11,8 @@ import RxCocoa
 
 class CommercialUsageViewModel {
     let javascript: Driver<String>
-    let tabs = Observable.just(Tab.allCases).share(replay: 1)
+    let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
-    let htmlString: Driver<String>
     private let readyToLoadWidget = PublishSubject<Void>()
     
     init(ssoData: Observable<SSOData>) {
@@ -24,16 +23,17 @@ class CommercialUsageViewModel {
                    ssoData.ssoPostURL.absoluteString)
             }
             .asDriver(onErrorDriveWith: .empty())
-        
-        htmlString = Observable
-            .combineLatest(readyToLoadWidget.asObservable(),
-                           selectedIndex.asObservable()
-                            .distinctUntilChanged())
-            { _, selectedIndex in
-                html(for: Tab.allCases[selectedIndex])
-            }
-            .asDriver(onErrorDriveWith: .empty())
     }
+    
+    private(set) lazy var htmlString: Driver<String> = Observable
+        .combineLatest(readyToLoadWidget.asObservable(),
+                       selectedIndex.asObservable()
+                        .distinctUntilChanged())
+        { [weak self] _, selectedIndex in
+            guard let self = self else { return "" }
+            return html(for: self.tabs.value[selectedIndex])
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     func didAuthenticate() {
         readyToLoadWidget.onNext(())

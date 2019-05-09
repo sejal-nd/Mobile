@@ -107,7 +107,6 @@ class CommercialUsageViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
-        
     }
     
     private func bindTabs() {
@@ -140,6 +139,24 @@ class CommercialUsageViewController: UIViewController {
         viewModel.htmlString
             .drive(onNext: { [weak self] htmlString in
                 self?.webView.loadHTMLString(htmlString, baseURL: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.selectedIndex.asObservable()
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] selectedIndex in
+                guard let self = self else { return }
+                
+                switch self.viewModel.tabs.value[selectedIndex] {
+                case .usageTrends:
+                    Analytics.log(event: .comUsageTrends)
+                case .billingHistory:
+                    Analytics.log(event: .comUsageBilling)
+                case .weatherImpact:
+                    Analytics.log(event: .comUsageWeather)
+                case .operatingSchedule:
+                    Analytics.log(event: .comUsageOpSchedule)
+                }
             })
             .disposed(by: disposeBag)
     }
