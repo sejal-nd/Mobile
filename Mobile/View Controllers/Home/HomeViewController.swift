@@ -283,6 +283,15 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         Analytics.log(event: .homeOfferComplete)
+        let action = InfoAlertAction(ctaText: "Take Me to Usage") { [weak self] in
+            self?.tabBarController?.selectedIndex = 3
+        }
+        
+        let alert = InfoAlertController(title: "Commercial Usage",
+                              message: "Your commercial usage data is now available within the mobile app.",
+                              action: action)
+        tabBarController?.present(alert, animated: true)
+        
         if #available(iOS 10.3, *), AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }

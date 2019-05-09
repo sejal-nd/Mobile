@@ -1384,6 +1384,9 @@
 		B0CB1C8F227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */; };
 		B0CB1C90227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */; };
 		B0CB1C932280DE870081F99B /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = B0CB1C912280DE860081F99B /* FirstFuelWidget.html */; };
+		B0CB1CB7228487020081F99B /* InfoAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1CB5228487020081F99B /* InfoAlertController.swift */; };
+		B0CB1CB8228487020081F99B /* InfoAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1CB5228487020081F99B /* InfoAlertController.swift */; };
+		B0CB1CB9228487020081F99B /* InfoAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CB1CB5228487020081F99B /* InfoAlertController.swift */; };
 		B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
 		B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */; };
@@ -2991,6 +2994,7 @@
 		B0CB1C83227CB4510081F99B /* TabCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabCollectionViewCell.xib; sourceTree = "<group>"; };
 		B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommercialUsageViewModel.swift; sourceTree = "<group>"; };
 		B0CB1C912280DE860081F99B /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
+		B0CB1CB5228487020081F99B /* InfoAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlertController.swift; sourceTree = "<group>"; };
 		B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentusFormViewController.swift; sourceTree = "<group>"; };
 		B0D84D45220244E000C70A6F /* payments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payments.json; sourceTree = "<group>"; };
 		B0D84D4D2203523D00C70A6F /* maintenance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = maintenance.json; sourceTree = "<group>"; };
@@ -4342,6 +4346,7 @@
 		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B0CB1CB5228487020081F99B /* InfoAlertController.swift */,
 				E8067C901EC3C257004C2724 /* SplashViewController.swift */,
 				0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */,
 				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
@@ -7602,6 +7607,7 @@
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				82AC2A231FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
 				44A373431F211521005E227B /* TemplateCardView.swift in Sources */,
+				B0CB1CB7228487020081F99B /* InfoAlertController.swift in Sources */,
 				B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
 				E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
@@ -7623,6 +7629,7 @@
 				35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */,
 				B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
+				B0CB1CB9228487020081F99B /* InfoAlertController.swift in Sources */,
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				82AC2A201FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -8333,6 +8340,7 @@
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
 				82AC2A241FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
 				821898971F33AB300077D7A1 /* MockPaymentService.swift in Sources */,
+				B0CB1CB8228487020081F99B /* InfoAlertController.swift in Sources */,
 				B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
 				E87C41311FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -210,7 +210,7 @@
                                                     <rect key="frame" x="147.5" y="29" width="80" height="81"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Projected Bill is currently unavailable due to maintenance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0g-Lw-SqJ">
-                                                    <rect key="frame" x="26" y="130" width="323" height="49.5"/>
+                                                    <rect key="frame" x="31.5" y="130" width="312.5" height="49.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                                     <color key="textColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -218,9 +218,10 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="l0g-Lw-SqJ" secondAttribute="trailing" constant="26" id="08U-WY-WzK"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l0g-Lw-SqJ" secondAttribute="trailing" constant="26" id="08U-WY-WzK"/>
+                                                <constraint firstItem="l0g-Lw-SqJ" firstAttribute="centerX" secondItem="lzd-vh-9k8" secondAttribute="centerX" id="AZL-Kb-L3y"/>
                                                 <constraint firstItem="6bX-qd-TJF" firstAttribute="top" secondItem="lzd-vh-9k8" secondAttribute="top" constant="29" id="EIR-Tn-LVo"/>
-                                                <constraint firstItem="l0g-Lw-SqJ" firstAttribute="leading" secondItem="lzd-vh-9k8" secondAttribute="leading" constant="26" id="mQT-ND-WNH"/>
+                                                <constraint firstItem="l0g-Lw-SqJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lzd-vh-9k8" secondAttribute="leading" constant="26" id="mQT-ND-WNH"/>
                                                 <constraint firstAttribute="bottom" secondItem="l0g-Lw-SqJ" secondAttribute="bottom" constant="29" id="oZP-He-hQu"/>
                                                 <constraint firstItem="l0g-Lw-SqJ" firstAttribute="top" secondItem="6bX-qd-TJF" secondAttribute="bottom" priority="999" constant="20" id="tCH-8P-7L1"/>
                                                 <constraint firstItem="6bX-qd-TJF" firstAttribute="centerX" secondItem="lzd-vh-9k8" secondAttribute="centerX" id="zJW-w2-m2p"/>
@@ -230,16 +231,16 @@
                                             <rect key="frame" x="0.0" y="770.5" width="375" height="212.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="aoF-XH-SwC">
-                                                    <rect key="frame" x="21" y="20" width="333" height="162.5"/>
+                                                    <rect key="frame" x="64.5" y="20" width="246" height="162.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected Bill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RX8-f5-mHp">
-                                                            <rect key="frame" x="116.5" y="0.0" width="100.5" height="20.5"/>
+                                                            <rect key="frame" x="73" y="0.0" width="100.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7c-ie-gIk" userLabel="Spacer">
-                                                            <rect key="frame" x="166.5" y="32.5" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="123" y="32.5" width="0.0" height="0.0"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" id="7xD-tH-sKy"/>
@@ -247,10 +248,10 @@
                                                             </constraints>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_pbempty" translatesAutoresizingMaskIntoConstraints="NO" id="0ZW-qH-mwB">
-                                                            <rect key="frame" x="77" y="44.5" width="179" height="65"/>
+                                                            <rect key="frame" x="33.5" y="44.5" width="179" height="65"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected bill is not available for this account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cs2-SP-feZ">
-                                                            <rect key="frame" x="43.5" y="121.5" width="246" height="41"/>
+                                                            <rect key="frame" x="0.0" y="121.5" width="246" height="41"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -262,8 +263,9 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="aoF-XH-SwC" secondAttribute="bottom" constant="30" id="6m7-Cq-htj"/>
                                                 <constraint firstItem="aoF-XH-SwC" firstAttribute="top" secondItem="l7V-8n-3jr" secondAttribute="top" constant="20" id="B9I-2K-IgG"/>
-                                                <constraint firstItem="aoF-XH-SwC" firstAttribute="leading" secondItem="l7V-8n-3jr" secondAttribute="leading" constant="21" id="gjW-R1-uPv"/>
-                                                <constraint firstAttribute="trailing" secondItem="aoF-XH-SwC" secondAttribute="trailing" constant="21" id="k8h-bz-DwF"/>
+                                                <constraint firstItem="aoF-XH-SwC" firstAttribute="centerX" secondItem="l7V-8n-3jr" secondAttribute="centerX" id="PVL-Wc-vL5"/>
+                                                <constraint firstItem="aoF-XH-SwC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l7V-8n-3jr" secondAttribute="leading" constant="21" id="gjW-R1-uPv"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aoF-XH-SwC" secondAttribute="trailing" constant="21" id="k8h-bz-DwF"/>
                                             </constraints>
                                         </view>
                                     </subviews>
