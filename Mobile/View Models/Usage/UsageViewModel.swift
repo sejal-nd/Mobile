@@ -194,10 +194,9 @@ class UsageViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMainContents: Driver<Void> = accountDetailEvents
-        .filter { $0.element?.isEligibleForUsageData ?? false }
+    private(set) lazy var showMainContents: Driver<Void> = accountDetail
+        .filter { $0.isEligibleForUsageData }
         .mapTo(())
-        .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Bill Analysis States
     
@@ -1109,7 +1108,6 @@ class UsageViewModel {
             
             return usageTools
         }
-        .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Helpers
     

@@ -47,6 +47,8 @@ class CommercialUsageViewController: UIViewController {
         return collectionView
     }()
     
+    let loadingIndicatorView = UIView().usingAutoLayout()
+    
     let disposeBag = DisposeBag()
     
     init(with viewModel: CommercialUsageViewModel) {
@@ -75,22 +77,10 @@ class CommercialUsageViewController: UIViewController {
         webView.scrollView.isScrollEnabled = false
         webView.navigationDelegate = self
         
-        viewModel.javascript
-            .drive(onNext: { [weak self] javascript in
-                self?.webView.evaluateJavaScript(javascript) { response, err in
-                    dLog("")
-                    //            if err != nil {
-                    //                self?.loadingIndicator.isHidden = true
-                    //                self?.errorLabel.isHidden = false
-                    //            } else {
-                    //                self?.webView.isHidden = false
-                    //            }
-                }
-            })
-            .disposed(by: disposeBag)
+        let loadingIndicator = LoadingIndicator(frame: .zero).usingAutoLayout()
+        loadingIndicatorView.addSubview(loadingIndicator)
         
-        
-        let stackView = UIStackView(arrangedSubviews: [tabCollectionView, separatorView, webView])
+        let stackView = UIStackView(arrangedSubviews: [tabCollectionView, separatorView, loadingIndicatorView, webView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .fill
         stackView.distribution = .fill
@@ -105,8 +95,20 @@ class CommercialUsageViewController: UIViewController {
             stackView.topAnchor.constraint(equalTo: view.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingIndicator.centerXAnchor.constraint(equalTo: loadingIndicatorView.centerXAnchor),
+            loadingIndicator.topAnchor.constraint(equalTo: loadingIndicatorView.topAnchor, constant: 50),
+            loadingIndicator.bottomAnchor.constraint(equalTo: loadingIndicatorView.bottomAnchor)
             ])
+        
+        viewModel.javascript
+            .drive(onNext: { [weak self] javascript in
+                guard let self = self else { return }
+                self.loadingIndicatorView.isHidden = false
+                self.webView.isHidden = true
+                self.webView.evaluateJavaScript(javascript)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindTabs() {
@@ -177,6 +179,8 @@ extension CommercialUsageViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.url?.absoluteString.contains("tenant_id") ?? false {
             decisionHandler(.cancel)
+            loadingIndicatorView.isHidden = true
+            webView.isHidden = false
             viewModel.didAuthenticate()
             return
         }
