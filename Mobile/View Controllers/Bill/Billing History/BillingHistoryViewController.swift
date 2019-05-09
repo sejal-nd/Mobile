@@ -16,22 +16,47 @@ class BillingHistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    
+    @IBOutlet weak var emptyStateView: UIView!
     @IBOutlet weak var emptyStateLabel: UILabel!
+    @IBOutlet weak var emptyStateAutoPayButton: SecondaryButton!
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .softGray
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: BillingHistoryTableViewCell.className, bundle: nil), forCellReuseIdentifier: BillingHistoryTableViewCell.className)
+        
+        // TODO: Uncomment this, and the `UIViewControllerPreviewingDelegate` below to enable 3D Touch
         //registerForPreviewing(with: self, sourceView: tableView)
         
-        emptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
-        emptyStateLabel.textColor = .blackText
-        emptyStateLabel.text = NSLocalizedString("No data currently available.", comment: "")
-        emptyStateLabel.isHidden = true
+        emptyStateAutoPayButton.setTitle(NSLocalizedString("View AutoPay Settings", comment: ""), for: .normal)
+        emptyStateAutoPayButton.removeShadow()
+        emptyStateAutoPayButton.layer.cornerRadius = 22.5
+        emptyStateAutoPayButton.layer.borderWidth = 1
+        emptyStateAutoPayButton.layer.borderColor = UIColor.accentGray.cgColor
+        emptyStateAutoPayButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        emptyStateAutoPayButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let billStoryboard = UIStoryboard(name: "Bill", bundle: nil)
+            let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
+            vc.accountDetail = self.viewModel.accountDetail
+            self.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: disposeBag)
+        
+        emptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        emptyStateLabel.textColor = .middleGray
+        var emptyStateText = NSLocalizedString("Once you receive your bill or make a payment, details about those activities can be accessed here.", comment: "")
+        if viewModel.shouldShowAutoPayCellDetailLabel {
+            emptyStateText += NSLocalizedString(" Automatic payments will be visible once your bill is generated.", comment: "")
+            emptyStateAutoPayButton.isHidden = false
+        }
+        emptyStateLabel.text = emptyStateText
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -67,8 +92,8 @@ class BillingHistoryViewController: UIViewController {
             
             if billingHistory.upcoming.count == 0 && billingHistory.past.count == 0 {
                 self.tableView.isHidden = true
-                self.emptyStateLabel.isHidden = false
-                UIAccessibility.post(notification: .screenChanged, argument: self.emptyStateLabel)
+                self.emptyStateView.isHidden = false
+                UIAccessibility.post(notification: .screenChanged, argument: self.emptyStateView)
             } else {
                 self.tableView.reloadData()
                 UIAccessibility.post(notification: .screenChanged, argument: self.tableView)
@@ -114,7 +139,10 @@ class BillingHistoryViewController: UIViewController {
         
         if indexPath.section == 0 { // Upcoming
             if indexPath.row == 0 && viewModel.shouldShowAutoPayCell {
-                if viewModel.accountDetail.isAutoPay {
+                if viewModel.accountDetail.isBGEasy {
+                    let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEasy") as! BGEasyViewController
+                    return vc
+                } else if viewModel.accountDetail.isAutoPay {
                     if Environment.shared.opco == .bge {
                         let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                         vc.accountDetail = viewModel.accountDetail
@@ -124,9 +152,6 @@ class BillingHistoryViewController: UIViewController {
                         vc.accountDetail = viewModel.accountDetail
                         return vc
                     }
-                } else if viewModel.accountDetail.isBGEasy {
-                    let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEasy") as! BGEasyViewController
-                    return vc
                 }
             } else {
                 var selectedIndex = indexPath.row
