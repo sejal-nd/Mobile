@@ -82,10 +82,8 @@ class TemplateCardViewModel {
             case .bge:
                 if accountDetail.isResidential {
                     switch accountDetail.peakRewards {
-                    case "ACTIVE"?:
+                    case "ACTIVE"?, "ECOBEE WIFI"?:
                         return NSLocalizedString("PeakRewards Program", comment: "")
-                    case "ECOBEE WIFI"?:
-                        return NSLocalizedString("Ecobee Thermostat", comment: "")
                     default:
                         return NSLocalizedString("BGE Bill Credits with PeakRewards", comment: "")
                     }
