@@ -119,7 +119,9 @@ class BillingHistoryViewController: UIViewController {
                 Analytics.log(event: .billViewPastOfferComplete)
                 AppRating.logRatingEvent()
             }
-            if vc is UIAlertController { // Catches 3rd party supplier case
+            
+            if vc is UIAlertController || vc is BGEasyViewController {
+                // UIAlertController (3rd party supplier case) and BGEasyViewController are modals
                 present(vc, animated: true, completion: nil)
             } else {
                 navigationController?.pushViewController(vc, animated: true)
