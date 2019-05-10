@@ -166,7 +166,20 @@ class HomeUsageCardViewModel {
                 return false
             }
             
-            return !accountDetail.isEligibleForUsageData
+            return !accountDetail.isEligibleForUsageData && accountDetail.isResidential
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents
+        .elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenance in
+            if isMaintenance {
+                return false
+            }
+            
+            return !accountDetail.isResidential
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -187,6 +200,7 @@ class HomeUsageCardViewModel {
         .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
         .filter { accountDetail, eventResults, isMaintenanceMode in
             !isMaintenanceMode &&
+                accountDetail.isResidential &&
                 accountDetail.isBGEControlGroup &&
                 accountDetail.isSERAccount &&
                 !eventResults.isEmpty
@@ -199,6 +213,7 @@ class HomeUsageCardViewModel {
         .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
         .filter { accountDetail, eventResults, isMaintenanceMode in
             !isMaintenanceMode &&
+                accountDetail.isResidential &&
                 accountDetail.isBGEControlGroup &&
                 accountDetail.isSERAccount &&
                 eventResults.isEmpty
