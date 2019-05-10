@@ -896,6 +896,7 @@ extension UsageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         showSwitchAccountsLoadingState()
         viewModel.fetchAllData()
+        viewModel.commercialViewModel.selectedIndex.accept(0) // reset commercial tab selection
         setRefreshControlEnabled(enabled: false)
     }
     
