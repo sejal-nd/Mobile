@@ -46,6 +46,7 @@ class BillingHistoryViewController: UIViewController {
             let billStoryboard = UIStoryboard(name: "Bill", bundle: nil)
             let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
             vc.accountDetail = self.viewModel.accountDetail
+            vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: disposeBag)
         
@@ -148,10 +149,12 @@ class BillingHistoryViewController: UIViewController {
                     if Environment.shared.opco == .bge {
                         let vc = billStoryboard.instantiateViewController(withIdentifier: "BGEAutoPay") as! BGEAutoPayViewController
                         vc.accountDetail = viewModel.accountDetail
+                        vc.delegate = self
                         return vc
                     } else {
                         let vc = billStoryboard.instantiateViewController(withIdentifier: "AutoPay") as! AutoPayViewController
                         vc.accountDetail = viewModel.accountDetail
+                        vc.delegate = self
                         return vc
                     }
                 }
@@ -507,6 +510,28 @@ extension BillingHistoryViewController: UITableViewDataSource {
         innerContentView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor).isActive = true
         
         return cell
+    }
+}
+
+extension BillingHistoryViewController: AutoPayViewControllerDelegate {
+    
+    func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool) {
+        let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
+        showDelayedToast(withMessage: message)
+        
+        if enrolled {
+            Analytics.log(event: .autoPayEnrollComplete)
+        } else {
+            Analytics.log(event: .autoPayUnenrollComplete)
+        }
+    }
+    
+}
+
+extension BillingHistoryViewController: BGEAutoPayViewControllerDelegate {
+    
+    func BGEAutoPayViewController(_ BGEAutoPayViewController: BGEAutoPayViewController, didUpdateWithToastMessage message: String) {
+        showDelayedToast(withMessage: message)
     }
 }
 
