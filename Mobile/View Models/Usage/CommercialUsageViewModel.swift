@@ -8,30 +8,34 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class CommercialUsageViewModel {
-    let javascript: Driver<String>
+    let ssoData: Observable<SSOData>
     let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
     private let readyToLoadWidget = PublishSubject<Void>()
     
     init(ssoData: Observable<SSOData>) {
-        javascript = ssoData.map { ssoData in
-            String(format: jsString,
-                   ssoData.samlResponse,
-                   ssoData.relayState.absoluteString,
-                   ssoData.ssoPostURL.absoluteString)
-            }
-            .asDriver(onErrorDriveWith: .empty())
+        self.ssoData = ssoData
     }
+    
+    private(set) lazy var javascript: Driver<String> = ssoData.map { ssoData in
+        String(format: jsString,
+               ssoData.samlResponse,
+               ssoData.relayState.absoluteString,
+               ssoData.ssoPostURL.absoluteString)
+        }
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var htmlString: Driver<String> = Observable
         .combineLatest(readyToLoadWidget.asObservable(),
                        selectedIndex.asObservable()
                         .distinctUntilChanged())
-        { [weak self] _, selectedIndex in
+        .withLatestFrom(ssoData.map(\.username).unwrap()) { ($0.0, $0.1, $1) }
+        .map { [weak self] _, selectedIndex, username in
             guard let self = self else { return "" }
-            return html(for: self.tabs.value[selectedIndex])
+            return html(forTab: self.tabs.value[selectedIndex], username: username)
         }
         .asDriver(onErrorDriveWith: .empty())
     
@@ -77,12 +81,11 @@ class CommercialUsageViewModel {
 
 fileprivate let jsString = "var data={SAMLResponse:'%@',RelayState:'%@'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','%@');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
 
-fileprivate func html(for tab: CommercialUsageViewModel.Tab) -> String {
+fileprivate func html(forTab tab: CommercialUsageViewModel.Tab, username: String) -> String {
     let url = Bundle.main.url(forResource: "FirstFuelWidget", withExtension: "html")!
     // TODO, string replace the correct "data-login" (User's ID/email), "data-widget-id" (which widget), and "data-energy-type" (GAS/ELECTRIC)
     
-    let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)!
     return try! String(contentsOf: url)
         .replacingOccurrences(of: "dataWidgetId", with: tab.widgetId)
-        .replacingOccurrences(of: "loggedInUsername", with: loggedInUsername)
+        .replacingOccurrences(of: "loggedInUsername", with: username)
 }
