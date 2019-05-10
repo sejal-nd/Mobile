@@ -19,13 +19,13 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     
     @IBOutlet weak var electricRow: UIView!
     @IBOutlet weak var electricTitleLabel: UILabel!
-    @IBOutlet weak var electricValueLabel: UILabel!
+    @IBOutlet weak var electricValueTextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet weak var dividerLine: UIView!
     
     @IBOutlet weak var gasRow: UIView!
     @IBOutlet weak var gasTitleLabel: UILabel!
-    @IBOutlet weak var gasValueLabel: UILabel!
+    @IBOutlet weak var gasValueTextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet weak var errorEmptyStateView: UIView!
     @IBOutlet weak var errorEmptyStateLabel: UILabel!
@@ -49,16 +49,18 @@ class BGEChoiceIDViewController: AccountPickerViewController {
         electricTitleLabel.textColor = .blackText
         electricTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         electricTitleLabel.text = NSLocalizedString("Electric Choice ID", comment: "")
-        electricValueLabel.textColor = .blackText
-        electricValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        electricValueTextView.textColor = .blackText
+        electricValueTextView.font = SystemFont.regular.of(textStyle: .subheadline)
+        electricValueTextView.dataDetectorTypes.remove(.all)
         
         dividerLine.backgroundColor = .accentGray
         
         gasTitleLabel.textColor = .blackText
         gasTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         gasTitleLabel.text = NSLocalizedString("Gas Choice ID", comment: "")
-        gasValueLabel.textColor = .blackText
-        gasValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        gasValueTextView.textColor = .blackText
+        gasValueTextView.font = SystemFont.regular.of(textStyle: .subheadline)
+        gasValueTextView.dataDetectorTypes.remove(.all)
         
         errorEmptyStateLabel.textColor = .blackText
         errorEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -75,9 +77,9 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     private func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.electricChoiceId.asDriver().isNil().drive(electricRow.rx.isHidden).disposed(by: disposeBag)
-        viewModel.electricChoiceId.asDriver().drive(electricValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.electricChoiceId.asDriver().drive(electricValueTextView.rx.text).disposed(by: disposeBag)
         viewModel.gasChoiceId.asDriver().isNil().drive(gasRow.rx.isHidden).disposed(by: disposeBag)
-        viewModel.gasChoiceId.asDriver().drive(gasValueLabel.rx.text).disposed(by: disposeBag)
+        viewModel.gasChoiceId.asDriver().drive(gasValueTextView.rx.text).disposed(by: disposeBag)
         viewModel.shouldShowDividerLine.not().drive(dividerLine.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowErrorEmptyState.not().drive(errorEmptyStateView.rx.isHidden).disposed(by: disposeBag)
     }
