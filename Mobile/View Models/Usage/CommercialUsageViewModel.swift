@@ -11,13 +11,23 @@ import RxCocoa
 import RxSwiftExt
 
 class CommercialUsageViewModel {
+    let SESSION_TIMEOUT: TimeInterval = 900 // 15 minutes
+    
     let ssoData: Observable<SSOData>
+    let refetchTrigger: PublishSubject<Void>
     let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
     private let readyToLoadWidget = PublishSubject<Void>()
     
-    init(ssoData: Observable<SSOData>) {
+    init(ssoData: Observable<SSOData>, refetchTrigger: PublishSubject<Void>) {
         self.ssoData = ssoData
+        self.refetchTrigger = refetchTrigger
+        
+        // Start the timer. The FirstFuel session is only valid for [SESSION_TIMEOUT] seconds -
+        // so we automatically reload after that amount of time.
+        Timer.scheduledTimer(withTimeInterval: SESSION_TIMEOUT, repeats: true) { [weak self] timer in
+            self?.refetchTrigger.onNext(())
+        }
     }
     
     private(set) lazy var javascript: Driver<String> = ssoData.map { ssoData in
@@ -30,8 +40,7 @@ class CommercialUsageViewModel {
     
     private(set) lazy var htmlString: Driver<String> = Observable
         .combineLatest(readyToLoadWidget.asObservable(),
-                       selectedIndex.asObservable()
-                        .distinctUntilChanged())
+                       selectedIndex.asObservable().distinctUntilChanged())
         .withLatestFrom(ssoData.map(\.username).unwrap()) { ($0.0, $0.1, $1) }
         .map { [weak self] _, selectedIndex, username in
             guard let self = self else { return "" }

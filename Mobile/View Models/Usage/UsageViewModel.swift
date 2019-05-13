@@ -56,7 +56,7 @@ class UsageViewModel {
         }
         .share(replay: 1)
     
-    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements())
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements(), refetchTrigger: fetchAllDataTrigger)
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },

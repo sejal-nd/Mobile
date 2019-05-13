@@ -99,7 +99,7 @@ class CommercialUsageViewController: UIViewController {
             loadingIndicator.centerXAnchor.constraint(equalTo: loadingIndicatorView.centerXAnchor),
             loadingIndicator.topAnchor.constraint(equalTo: loadingIndicatorView.topAnchor, constant: 50),
             loadingIndicator.bottomAnchor.constraint(equalTo: loadingIndicatorView.bottomAnchor)
-            ])
+        ])
         
         viewModel.javascript
             .drive(onNext: { [weak self] javascript in
