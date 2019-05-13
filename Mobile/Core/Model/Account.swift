@@ -104,6 +104,9 @@ struct AccountDetail: Mappable {
     let peakRewards: String?
     let zipCode: String?
     
+    let electricChoiceId: String?
+    let gasChoiceId: String?
+    
     // Only 3 real states to think about
     enum PrepaidStatus: String {
         // Not Enrolled
@@ -168,6 +171,9 @@ struct AccountDetail: Mappable {
         zipCode = map.optionalFrom("zipCode")
         
         prepaidStatus = map.optionalFrom("prepaid_status") ?? .inactive
+        
+        electricChoiceId = map.optionalFrom("electricChoiceID")
+        gasChoiceId = map.optionalFrom("gasChoiceID")
     }
     
     // BGE only - Smart Energy Rewards enrollment status
