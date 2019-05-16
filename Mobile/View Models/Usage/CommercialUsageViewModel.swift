@@ -10,12 +10,11 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 
+fileprivate let jsTimeoutInterval: TimeInterval = 15 // 15 seconds
+
 class CommercialUsageViewModel {
-    let SESSION_TIMEOUT: TimeInterval = 900 // 15 minutes
-    let JS_TIMEOUT: TimeInterval = 15 // 15 seconds
     
     let ssoData: Observable<SSOData>
-    let refetchTrigger: PublishSubject<Void>
     let errorTrigger: PublishSubject<Error>
     let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
@@ -23,22 +22,15 @@ class CommercialUsageViewModel {
     
     var jsTimeout: Timer?
     
-    init(ssoData: Observable<SSOData>, refetchTrigger: PublishSubject<Void>, errorTrigger: PublishSubject<Error>) {
+    init(ssoData: Observable<SSOData>, errorTrigger: PublishSubject<Error>) {
         self.ssoData = ssoData
-        self.refetchTrigger = refetchTrigger
         self.errorTrigger = errorTrigger
-        
-        // Start the timer. The FirstFuel session is only valid for [SESSION_TIMEOUT] seconds -
-        // so we automatically reload after that amount of time.
-        Timer.scheduledTimer(withTimeInterval: SESSION_TIMEOUT, repeats: true) { [weak self] timer in
-            self?.refetchTrigger.onNext(())
-        }
     }
     
     private(set) lazy var javascript: Driver<String> = ssoData.map { [weak self] ssoData in
         guard let self = self else { return "" }
-        self.jsTimeout = Timer.scheduledTimer(withTimeInterval: self.JS_TIMEOUT, repeats: false, block: { _ in
-            dLog("Did not observe expected redirect within \(self.JS_TIMEOUT) seconds")
+        self.jsTimeout = Timer.scheduledTimer(withTimeInterval: jsTimeoutInterval, repeats: false, block: { _ in
+            dLog("Did not observe expected redirect within \(jsTimeoutInterval) seconds")
             self.errorTrigger.onNext(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         })
 
