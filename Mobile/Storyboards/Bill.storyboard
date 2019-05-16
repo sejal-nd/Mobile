@@ -238,7 +238,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="WvE-Si-V3N">
                                                                 <rect key="frame" x="29" y="0.0" width="356" height="93.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a bank account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ya-E5-jrB">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bank account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ya-E5-jrB">
                                                                         <rect key="frame" x="0.0" y="0.0" width="356" height="20.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Nuv-c1-82B"/>
@@ -428,6 +428,10 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZh-8a-uyy">
                                                                         <rect key="frame" x="29" y="30" width="356" height="16.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="1Ws-uV-9Ii"/>
+                                                                            <constraint firstAttribute="width" priority="999" constant="460" id="r6w-iZ-TZj"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -435,10 +439,13 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="mZh-8a-uyy" secondAttribute="trailing" constant="29" id="14A-6X-pey"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mZh-8a-uyy" secondAttribute="trailing" constant="29" id="14A-6X-pey"/>
                                                                     <constraint firstItem="mZh-8a-uyy" firstAttribute="top" secondItem="Vch-kQ-TeG" secondAttribute="top" constant="30" id="BOc-Xt-sTN"/>
-                                                                    <constraint firstItem="mZh-8a-uyy" firstAttribute="leading" secondItem="Vch-kQ-TeG" secondAttribute="leading" constant="29" id="ONa-7t-Fdg"/>
+                                                                    <constraint firstItem="mZh-8a-uyy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vch-kQ-TeG" secondAttribute="leading" constant="29" id="ONa-7t-Fdg"/>
+                                                                    <constraint firstItem="mZh-8a-uyy" firstAttribute="centerX" secondItem="Vch-kQ-TeG" secondAttribute="centerX" id="Qju-o0-0xb"/>
                                                                     <constraint firstAttribute="bottom" secondItem="mZh-8a-uyy" secondAttribute="bottom" constant="30" id="bh2-1O-hBO"/>
+                                                                    <constraint firstItem="mZh-8a-uyy" firstAttribute="leading" secondItem="Vch-kQ-TeG" secondAttribute="leading" priority="999" constant="29" id="llX-jr-vnM"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="mZh-8a-uyy" secondAttribute="trailing" priority="999" constant="29" id="tQK-pJ-2CK"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>

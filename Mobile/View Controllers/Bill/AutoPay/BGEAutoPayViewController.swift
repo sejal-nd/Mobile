@@ -123,7 +123,7 @@ class BGEAutoPayViewController: UIViewController {
         
         selectBankAccountLabel.textColor = .blackText
         selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        selectBankAccountLabel.text = NSLocalizedString("Select a Bank Account", comment: "")
+        selectBankAccountLabel.text = NSLocalizedString("Bank Account", comment: "")
         
         bankAccountButton.backgroundColorOnPress = .softGray
         bankAccountButton.layer.cornerRadius = 10
@@ -141,8 +141,10 @@ class BGEAutoPayViewController: UIViewController {
         termsLabel.textColor = .deepGray
         termsLabel.font = SystemFont.regular.of(textStyle: .headline)
         termsLabel.setLineHeight(lineHeight: 25)
+        termsLabel.isAccessibilityElement = false
         termsButton.setTitleColor(.actionBlue, for: .normal)
         termsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        termsSwitch.accessibilityLabel = termsLabel.text
         
         bottomLabelView.backgroundColor = .softGray
         bottomLabel.textColor = .blackText
@@ -180,6 +182,10 @@ class BGEAutoPayViewController: UIViewController {
         
         viewModel.settingsButtonAmountText.drive(settingsButton.rx.labelText).disposed(by: disposeBag)
         viewModel.settingsButtonDaysBeforeText.drive(settingsButton.rx.detailText).disposed(by: disposeBag)
+        
+        viewModel.settingsButtonA11yLabel
+            .drive(settingsButton.rx.accessibilityLabel)
+            .disposed(by: disposeBag)
         
         viewModel.showUnenrollFooter.drive(learnMoreView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showUnenrollFooter.not().drive(unenrollView.rx.isHidden).disposed(by: disposeBag)
