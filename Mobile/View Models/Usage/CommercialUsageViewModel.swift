@@ -12,16 +12,21 @@ import RxSwiftExt
 
 class CommercialUsageViewModel {
     let SESSION_TIMEOUT: TimeInterval = 900 // 15 minutes
+    let JS_TIMEOUT: TimeInterval = 15 // 15 seconds
     
     let ssoData: Observable<SSOData>
     let refetchTrigger: PublishSubject<Void>
+    let errorTrigger: PublishSubject<Error>
     let tabs = BehaviorRelay(value: Tab.allCases)
     let selectedIndex = BehaviorRelay(value: 0)
     private let readyToLoadWidget = PublishSubject<Void>()
     
-    init(ssoData: Observable<SSOData>, refetchTrigger: PublishSubject<Void>) {
+    var jsTimeout: Timer?
+    
+    init(ssoData: Observable<SSOData>, refetchTrigger: PublishSubject<Void>, errorTrigger: PublishSubject<Error>) {
         self.ssoData = ssoData
         self.refetchTrigger = refetchTrigger
+        self.errorTrigger = errorTrigger
         
         // Start the timer. The FirstFuel session is only valid for [SESSION_TIMEOUT] seconds -
         // so we automatically reload after that amount of time.
@@ -30,13 +35,19 @@ class CommercialUsageViewModel {
         }
     }
     
-    private(set) lazy var javascript: Driver<String> = ssoData.map { ssoData in
-        String(format: jsString,
-               ssoData.samlResponse,
-               ssoData.relayState.absoluteString,
-               ssoData.ssoPostURL.absoluteString)
-        }
-        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var javascript: Driver<String> = ssoData.map { [weak self] ssoData in
+        guard let self = self else { return "" }
+        self.jsTimeout = Timer.scheduledTimer(withTimeInterval: self.JS_TIMEOUT, repeats: false, block: { _ in
+            dLog("Did not observe expected redirect within \(self.JS_TIMEOUT) seconds")
+            self.errorTrigger.onNext(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
+        })
+
+        return String(format: jsString,
+                      ssoData.samlResponse,
+                      ssoData.relayState.absoluteString,
+                      ssoData.ssoPostURL.absoluteString)
+    }
+    .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var htmlString: Driver<String> = Observable
         .combineLatest(readyToLoadWidget.asObservable(),

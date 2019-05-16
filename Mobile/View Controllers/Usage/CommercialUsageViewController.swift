@@ -178,10 +178,15 @@ class CommercialUsageViewController: UIViewController {
 extension CommercialUsageViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.url?.absoluteString.contains("tenant_id") ?? false {
-            decisionHandler(.cancel)
+            viewModel.jsTimeout?.invalidate()
+            viewModel.jsTimeout = nil
+            
             loadingIndicatorView.isHidden = true
             webView.isHidden = false
+            
             viewModel.didAuthenticate()
+            
+            decisionHandler(.cancel)
             return
         }
         

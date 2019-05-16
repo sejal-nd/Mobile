@@ -56,7 +56,11 @@ class UsageViewModel {
         }
         .share(replay: 1)
     
-    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements(), refetchTrigger: fetchAllDataTrigger)
+    private let commercialErrorTrigger = PublishSubject<Error>()
+    
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements(),
+                                                                         refetchTrigger: fetchAllDataTrigger,
+                                                                         errorTrigger: commercialErrorTrigger)
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
@@ -147,7 +151,7 @@ class UsageViewModel {
                showCommercialState)
     
     private(set) lazy var showMainErrorState: Driver<Void> = Observable
-        .merge(accountDetailEvents.errors(), commercialDataEvents.errors())
+        .merge(accountDetailEvents.errors(), commercialDataEvents.errors(), commercialErrorTrigger.asObservable())
         .filter {
             ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue &&
             ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue
