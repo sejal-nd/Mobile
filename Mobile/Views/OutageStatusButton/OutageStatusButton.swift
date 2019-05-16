@@ -221,7 +221,7 @@ class OutageStatusButton: UIView {
         
         // Set Values
         
-        statusETRLabel.text = NSLocalizedString("Our records indicate", comment: "")
+        statusETRLabel.text = NSLocalizedString("Our records indicate your", comment: "")
         reportedDetailLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
         reportedETRTitleLabel.text = NSLocalizedString("Estimated Restoration", comment: "")
         reportedETRLabel.text = estimatedRestorationDateString
@@ -253,7 +253,7 @@ class OutageStatusButton: UIView {
         
         // Set Values
         
-        statusTitleLabel.text = NSLocalizedString("Our records indicate", comment: "")
+        statusTitleLabel.text = NSLocalizedString("Our records indicate your", comment: "")
         statusDetailLabel.text = NSLocalizedString("POWER IS ON", comment: "")
 
         innerCircleView.accessibilityLabel = NSLocalizedString("Outage status button. Our records indicate your power is on.", comment: "")
