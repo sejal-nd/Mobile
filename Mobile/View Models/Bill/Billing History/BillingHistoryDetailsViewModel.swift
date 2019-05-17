@@ -89,7 +89,12 @@ class BillingHistoryDetailsViewModel {
     }
 
     var paymentStatus: String? {
-        return billingHistoryItem.statusString?.capitalized
+        if let statusString = billingHistoryItem.statusString {
+            return statusString.capitalized
+        } else {
+            // Data issue (should not happen in prod), but web treats null status as "Posted"
+            return NSLocalizedString("Posted", comment: "")
+        }
     }
     
     var confirmationNumber: String? {
