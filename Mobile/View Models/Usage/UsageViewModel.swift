@@ -9,6 +9,9 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxSwiftExt
+
+fileprivate let firstfuelSessionTimeout: TimeInterval = 900 // 15 minutes
 
 class UsageViewModel {
     
@@ -40,10 +43,36 @@ class UsageViewModel {
     }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.usageStatus ?? false) }
+        .filter {
+            !($0.element?.allStatus ?? false) &&
+            !($0.element?.usageStatus ?? false)
+        }
         .toAsyncRequest { [weak self] _ in
             self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
     }
+    
+    private lazy var commercialDataEvents: Observable<Event<SSOData>> = accountDetailEvents
+        .elements()
+        .toAsyncRequest { [weak self] accountDetail -> Observable<SSOData> in
+            // Start the timer. The FirstFuel session is only valid for [firstfuelSessionTimeout] seconds -
+            // so we automatically reload after that amount of time.
+            // Replace timer with .empty() for residential accounts
+            guard !accountDetail.isResidential else { return .empty() }
+            return Observable<Int>
+                .timer(0, period: firstfuelSessionTimeout, scheduler: MainScheduler.instance)
+                .flatMapLatest { [weak self] _ -> Observable<SSOData> in
+                    guard let self = self else { return .empty() }
+                    return self.accountService
+                        .fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
+                                               premiseNumber: accountDetail.premiseNumber!)
+            }
+        }
+        .share(replay: 1)
+    
+    private let commercialErrorTrigger = PublishSubject<Error>()
+    
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements(),
+                                                                         errorTrigger: commercialErrorTrigger)
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
@@ -123,18 +152,22 @@ class UsageViewModel {
     
     // MARK: - Main States
     
-    private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
-                                                                     showAccountDisallowState,
-                                                                     showNoNetworkState,
-                                                                     showMaintenanceModeState,
-                                                                     showBillComparisonContents,
-                                                                     showBillComparisonErrorState,
-                                                                     showNoUsageDataState)
+    private(set) lazy var endRefreshIng: Driver<Void> = Driver
+        .merge(showMainErrorState,
+               showAccountDisallowState,
+               showNoNetworkState,
+               showMaintenanceModeState,
+               showBillComparisonContents,
+               showBillComparisonErrorState,
+               showNoUsageDataState,
+               showCommercialState)
     
-    private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
-        .filter { $0.error != nil }
-        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
-        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue }
+    private(set) lazy var showMainErrorState: Driver<Void> = Observable
+        .merge(accountDetailEvents.errors(), commercialDataEvents.errors(), commercialErrorTrigger.asObservable())
+        .filter {
+            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue &&
+            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue
+        }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -161,8 +194,14 @@ class UsageViewModel {
         .filter { accountDetailEvent in
             guard let accountDetail = accountDetailEvent.element else { return false }
             return !accountDetail.isEligibleForUsageData &&
+                accountDetail.isResidential &&
                 accountDetail.prepaidStatus != .active
         }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showCommercialState: Driver<Void> = commercialDataEvents
+        .elements()
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -171,11 +210,9 @@ class UsageViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMainContents: Driver<Void> = accountDetailEvents
-        .filter { $0.element?.isEligibleForUsageData ?? false }
+    private(set) lazy var showMainContents: Driver<Void> = accountDetail
+        .filter { $0.isEligibleForUsageData }
         .mapTo(())
-        .asDriver(onErrorDriveWith: .empty())
-    
     
     // MARK: - Bill Analysis States
     
@@ -1087,7 +1124,6 @@ class UsageViewModel {
             
             return usageTools
         }
-        .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Helpers
     

@@ -193,6 +193,11 @@ enum AnalyticsEvent: String {
     case allSavingsUsage = "AllSavingsUsage"
     case allSavingsSmartEnergy = "AllSavingsSmartEnergy"
     
+    case comUsageTrends = "ComUsageTrends"
+    case comUsageBilling = "ComUsageBilling"
+    case comUsageWeather = "ComUsageWeather"
+    case comUsageOpSchedule = "ComUsageOpSchedule"
+    
     // Bill Analysis
     case billNeedHelp = "BillNeedHelp"
     case billElectricityToggle = "BillElectricityToggle"

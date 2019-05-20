@@ -101,7 +101,18 @@ struct MCSAccountService: AccountService {
                 }
                 
                 return ssoData
-            }
+        }
+    }
+    
+    func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/ffssodata")
+            .map { json in
+                guard let dict = json as? NSDictionary, let ssoData = SSOData.from(dict) else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
+                return ssoData
+        }
     }
     
     func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
