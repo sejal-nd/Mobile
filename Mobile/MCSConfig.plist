@@ -67,7 +67,7 @@
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
-			<string>v5</string>
+			<string>v6</string>
 		</dict>
 		<key>Stage-bgeMBE</key>
 		<dict>
@@ -80,7 +80,7 @@
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
-			<string>v5</string>
+			<string>v6</string>
 		</dict>
 		<key>Stage-comedMBE</key>
 		<dict>
@@ -93,7 +93,7 @@
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
-			<string>v5</string>
+			<string>v6</string>
 		</dict>
 		<key>Stage-pecoMBE</key>
 		<dict>
@@ -106,7 +106,7 @@
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
-			<string>v5</string>
+			<string>v6</string>
 		</dict>
 		<key>Prod-bgeMBE</key>
 		<dict>
