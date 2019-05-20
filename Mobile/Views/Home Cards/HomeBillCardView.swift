@@ -185,7 +185,7 @@ class HomeBillCardView: UIView {
         autoPayButton.titleLabel?.numberOfLines = 0
         
         oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        oneTouchPayTCButtonLabel.text = NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to these payment Terms & Conditions.", comment: "")
+        oneTouchPayTCButtonLabel.text = NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions.", comment: "")
         oneTouchPayTCButton.accessibilityLabel = oneTouchPayTCButtonLabel.text
         oneTouchPayTCButtonLabel.textColor = .actionBlue
         

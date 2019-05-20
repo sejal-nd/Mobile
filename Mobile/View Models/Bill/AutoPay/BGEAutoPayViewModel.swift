@@ -205,7 +205,7 @@ class BGEAutoPayViewModel {
     }
     
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem = $0 else { return "" }
+        guard let walletItem = $0 else { return NSLocalizedString("Select Bank Account", comment: "") }
         return walletItem.accessibilityDescription()
     }
     
@@ -230,6 +230,11 @@ class BGEAutoPayViewModel {
                 return String.localizedStringWithFormat("%@ Day%@ Before Due Date", String(numberOfDays), numberOfDays == 1 ? "":"s")
             }
     }
+    
+    private(set) lazy var settingsButtonA11yLabel: Driver<String> = Driver
+        .combineLatest(settingsButtonAmountText,
+                       settingsButtonDaysBeforeText)
+        { $0 + ", " + $1 }
     
     var learnMoreDescriptionText: String {
         if accountDetail.isResidential {

@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://bge-sso.firstfuelsoftware.net/assets/ff/pdf/widgets/v1/embed.js"></script>
+  </head>
+  <body>
+    <div class="test-widget-content" id="chart-bill-comparison" data-login="loggedInUsername" data-ff-widget="true" data-energy-type="E" data-widget-id="dataWidgetId">
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        ffEventLogger.enable('PARENT', 'DEBUG');
+        ffWidgetFunctions.setProviderUrl('https://bge-sso.firstfuelsoftware.net');
+        ffWidgetFunctions.initWidgets();
+      });
+    </script>
+  </body>
+</html>

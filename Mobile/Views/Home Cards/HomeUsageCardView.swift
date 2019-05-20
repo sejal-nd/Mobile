@@ -68,6 +68,12 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var unavailableTitleLabel: UILabel!
     @IBOutlet private weak var unavailableDescriptionLabel: UILabel!
     
+    @IBOutlet private weak var commercialView: UIStackView!
+    @IBOutlet private weak var commercialTitleLabel: UILabel!
+    @IBOutlet private weak var commercialDescriptionLabel: UILabel!
+    @IBOutlet weak var viewUsageCommercialButton: ButtonControl!
+    @IBOutlet private weak var viewUsageCommercialButtonLabel: UILabel!
+    
     @IBOutlet private weak var billComparisonEmptyStateView: UIView!
     @IBOutlet private weak var billComparisonEmptyStateLabel: UILabel!
     @IBOutlet private weak var billComparisonEmptyStateTopSpace: UIView!
@@ -120,9 +126,16 @@ class HomeUsageCardView: UIView {
         unavailableTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         
         unavailableDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
-        
         unavailableDescriptionLabel.textColor = .middleGray
         unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
+            .attributedString(textAlignment: .center, lineHeight: 26)
+        
+        commercialTitleLabel.textColor = .blackText
+        commercialTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        
+        commercialDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
+        commercialDescriptionLabel.textColor = .middleGray
+        commercialDescriptionLabel.attributedText = NSLocalizedString("View data to analyze trends in your energy consumption.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
         
         errorTitleLabel.textColor = .blackText
@@ -182,11 +195,16 @@ class HomeUsageCardView: UIView {
         barDescriptionUsageTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         barDescriptionUsageValueLabel.textColor = .blackText
         barDescriptionUsageValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
+        
         viewUsageButtonLabel.textColor = .actionBlue
         viewUsageButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
         viewUsageButtonLabel.text = NSLocalizedString("View Usage", comment: "")
         viewUsageButton.accessibilityLabel = viewUsageButtonLabel.text
+        
+        viewUsageCommercialButtonLabel.textColor = .actionBlue
+        viewUsageCommercialButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        viewUsageCommercialButtonLabel.text = NSLocalizedString("View Usage", comment: "")
+        viewUsageCommercialButton.accessibilityLabel = viewUsageButtonLabel.text
     }
     
     private func styleSmartEnergyRewards() {
@@ -228,6 +246,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        commercialView.isHidden = true
         maintenanceModeView.isHidden = true
         errorView.isHidden = true
     }
@@ -239,6 +258,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        commercialView.isHidden = true
         maintenanceModeView.isHidden = true
         errorView.isHidden = false
     }
@@ -249,6 +269,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        commercialView.isHidden = true
         maintenanceModeView.isHidden = true
         errorView.isHidden = true
     }
@@ -259,6 +280,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = false
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        commercialView.isHidden = true
         maintenanceModeView.isHidden = true
         errorView.isHidden = true
     }
@@ -270,6 +292,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = false
         unavailableView.isHidden = true
+        commercialView.isHidden = true
         maintenanceModeView.isHidden = true
         errorView.isHidden = true
     }
@@ -280,6 +303,18 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = false
+        commercialView.isHidden = true
+        maintenanceModeView.isHidden = true
+        errorView.isHidden = true
+    }
+    
+    private func showCommercialState() {
+        billComparisonView.isHidden = true
+        smartEnergyRewardsView.isHidden = true
+        smartEnergyRewardsEmptyStateView.isHidden = true
+        billComparisonEmptyStateView.isHidden = true
+        unavailableView.isHidden = true
+        commercialView.isHidden = false
         maintenanceModeView.isHidden = true
         errorView.isHidden = true
     }
@@ -290,6 +325,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsEmptyStateView.isHidden = true
         billComparisonEmptyStateView.isHidden = true
         unavailableView.isHidden = true
+        commercialView.isHidden = true
         maintenanceModeView.isHidden = false
         errorView.isHidden = true
     }
@@ -327,6 +363,10 @@ class HomeUsageCardView: UIView {
         
         viewModel.showUnavailableState
             .drive(onNext: { [weak self] in self?.showUnavailableState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showCommercialState
+            .drive(onNext: { [weak self] in self?.showCommercialState() })
             .disposed(by: disposeBag)
         
         viewModel.showMaintenanceModeState

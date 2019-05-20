@@ -163,6 +163,7 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsButtonLabel.font = SystemFont.bold.of(textStyle: .headline)
         termsConditionsButtonLabel.textColor = .actionBlue
         termsConditionsButtonLabel.text = NSLocalizedString("View terms and conditions", comment: "")
+        termsConditionsButton.accessibilityLabel = termsConditionsButtonLabel.text
         termsConditionsSwitchLabel.isAccessibilityElement = false
         termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         

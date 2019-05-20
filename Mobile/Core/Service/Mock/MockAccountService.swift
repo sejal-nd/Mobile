@@ -69,6 +69,12 @@ class MockAccountService: AccountService {
         return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
+    func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
+        let dataFile = MockJSONManager.File.ssoData
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
+    }
+    
     func fetchScheduledPayments(accountNumber: String) -> Observable<[PaymentItem]> {
         let dataFile = MockJSONManager.File.payments
         let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
