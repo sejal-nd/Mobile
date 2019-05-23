@@ -71,7 +71,8 @@ class UsageViewModel {
     
     private let commercialErrorTrigger = PublishSubject<Error>()
     
-    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements(),
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(accountDetail: accountDetailEvents.elements(),
+                                                                         ssoData: commercialDataEvents.elements(),
                                                                          errorTrigger: commercialErrorTrigger)
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
