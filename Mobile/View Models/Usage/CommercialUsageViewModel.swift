@@ -14,6 +14,7 @@ fileprivate let jsTimeoutInterval: TimeInterval = 15 // 15 seconds
 
 class CommercialUsageViewModel {
     
+    let accountDetail: Observable<AccountDetail>
     let ssoData: Observable<SSOData>
     let errorTrigger: PublishSubject<Error>
     let tabs = BehaviorRelay(value: Tab.allCases)
@@ -22,9 +23,25 @@ class CommercialUsageViewModel {
     
     var jsTimeout: Timer?
     
-    init(ssoData: Observable<SSOData>, errorTrigger: PublishSubject<Error>) {
+    let disposeBag = DisposeBag()
+    
+    init(accountDetail: Observable<AccountDetail>,
+         ssoData: Observable<SSOData>,
+         errorTrigger: PublishSubject<Error>) {
+        self.accountDetail = accountDetail
         self.ssoData = ssoData
         self.errorTrigger = errorTrigger
+        
+        accountDetail
+            .map { accountDetail -> [Tab] in
+                if !accountDetail.isAMIAccount || accountDetail.isFinaled || accountDetail.isActiveSeverance {
+                    return Tab.allCases.filter { $0 != .operatingSchedule }
+                } else {
+                    return Tab.allCases
+                }
+            }
+            .bind(to: tabs)
+            .disposed(by: disposeBag)
     }
     
     private(set) lazy var javascript: Driver<String> = ssoData.map { [weak self] ssoData in
