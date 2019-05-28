@@ -67,7 +67,7 @@
 			<key>oauthEndpoint</key>
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
-			<string>v5</string>
+			<string>v6</string>
 		</dict>
 		<key>Stage-bgeMBE</key>
 		<dict>
