@@ -34,7 +34,8 @@ class CommercialUsageViewModel {
         
         accountDetail
             .map { accountDetail -> [Tab] in
-                if !accountDetail.isAMIAccount || accountDetail.isFinaled || accountDetail.isActiveSeverance {
+                if !accountDetail.isAMIAccount || accountDetail.isFinaled ||
+                    accountDetail.isActiveSeverance || accountDetail.serviceType?.uppercased() == "GAS" {
                     return Tab.allCases.filter { $0 != .operatingSchedule }
                 } else {
                     return Tab.allCases
