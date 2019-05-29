@@ -116,6 +116,7 @@ fileprivate func html(forTab tab: CommercialUsageViewModel.Tab, username: String
     // TODO, string replace the correct "data-login" (User's ID/email), "data-widget-id" (which widget), and "data-energy-type" (GAS/ELECTRIC)
     
     return try! String(contentsOf: url)
-        .replacingOccurrences(of: "dataWidgetId", with: tab.widgetId)
-        .replacingOccurrences(of: "loggedInUsername", with: username)
+        .replacingOccurrences(of: "[dataWidgetId]", with: tab.widgetId)
+        .replacingOccurrences(of: "[loggedInUsername]", with: username)
+        .replacingOccurrences(of: "[accountNumber]", with: AccountsStore.shared.currentAccount.accountNumber)
 }
