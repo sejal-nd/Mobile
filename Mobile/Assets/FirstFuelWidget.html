@@ -2,7 +2,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://bge-sso.firstfuelsoftware.net/assets/ff/pdf/widgets/v1/embed.js"></script>
+    <script src="[embedJsSrc]"></script>
   </head>
   <body>
     <div
@@ -15,8 +15,8 @@
     />
     <script type="text/javascript">
       $(document).ready(function(){
-        ffEventLogger.enable('PARENT', 'DEBUG');
-        ffWidgetFunctions.setProviderUrl('https://bge-sso.firstfuelsoftware.net');
+        ffEventLogger.enable('PARENT', '[logLevel]');
+        ffWidgetFunctions.setProviderUrl('[providerUrl]');
         ffWidgetFunctions.initWidgets();
       });
     </script>
