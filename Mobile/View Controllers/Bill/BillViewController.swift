@@ -713,12 +713,22 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
         switch didChangeStatus {
         case .enroll:
             toastMessage = NSLocalizedString("Enrolled in Paperless eBill", comment: "")
+            showDelayedToast(withMessage: toastMessage)
         case .unenroll:
             toastMessage = NSLocalizedString("Unenrolled from Paperless eBill", comment: "")
-        case .mixed:
-            toastMessage = NSLocalizedString("Paperless eBill changes saved", comment: "")
+            showDelayedToast(withMessage: toastMessage)
+        case .mixed: // ComEd/PECO only
+            let action = InfoAlertAction(ctaText: NSLocalizedString("I understand", comment: ""))
+            
+            let alert = InfoAlertController(title: NSLocalizedString("Paperless eBill Changes Saved", comment: ""),
+                                            message: NSLocalizedString("Your enrollment status may take up to 24 hours to update and may not be reflected immediately.", comment: ""),
+                                            icon: #imageLiteral(resourceName: "ic_home_confirmation"),
+                                            action: action)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { [weak self] in
+                self?.tabBarController?.present(alert, animated: true)
+            }
         }
-        showDelayedToast(withMessage: toastMessage)
     }
 }
 

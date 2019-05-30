@@ -11,10 +11,16 @@ import UIKit
 struct InfoAlertAction {
     let ctaText: String
     let callToAction: () -> ()
+    
+    init(ctaText: String, callToAction: @escaping () -> () = {}) {
+        self.ctaText = ctaText
+        self.callToAction = callToAction
+    }
 }
 
 class InfoAlertController: UIViewController {
     private let alertContainerView = UIView().usingAutoLayout()
+    private let iconImageView = UIImageView().usingAutoLayout()
     private let titleLabel = UILabel().usingAutoLayout()
     private let messageLabel = UILabel().usingAutoLayout()
     private let xButton = UIButton(type: .custom).usingAutoLayout()
@@ -22,11 +28,13 @@ class InfoAlertController: UIViewController {
     
     private let titleString: String
     private let message: String
+    private let icon: UIImage?
     private let action: InfoAlertAction?
     
-    init(title: String, message: String, action: InfoAlertAction? = nil) {
+    init(title: String, message: String, icon: UIImage? = nil, action: InfoAlertAction? = nil) {
         self.titleString = title
         self.message = message
+        self.icon = icon
         self.action = action
         super.init(nibName: nil, bundle: nil)
         
@@ -63,6 +71,11 @@ class InfoAlertController: UIViewController {
             // Container (tablet width constraints added later)
             alertContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ]
+        
+        if let icon = icon {
+            iconImageView.image = icon
+            stackView.addArrangedSubview(iconImageView)
+        }
         
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(messageLabel)
