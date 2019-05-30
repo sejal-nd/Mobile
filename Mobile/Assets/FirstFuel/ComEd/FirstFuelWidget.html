@@ -5,8 +5,14 @@
     <script src="https://comed-sso.firstfuelsoftware.net/assets/ff/pdf/widgets/v1/embed.js"></script>
   </head>
   <body>
-    <div class="test-widget-content" id="chart-bill-comparison" data-login="loggedInUsername" data-ff-widget="true" data-energy-type="E" data-widget-id="dataWidgetId">
-    </div>
+    <div
+      class="test-widget-content"
+      id="chart-bill-comparison"
+      data-login="[loggedInUsername]"
+      data-ec-username="[accountNumber]"
+      data-ff-widget="true"
+      data-widget-id="[dataWidgetId]"
+    />
     <script type="text/javascript">
       $(document).ready(function(){
         ffEventLogger.enable('PARENT', 'DEBUG');
