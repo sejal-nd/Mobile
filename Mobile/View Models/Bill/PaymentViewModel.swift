@@ -661,10 +661,11 @@ class PaymentViewModel {
     var confirmationFooterText: NSAttributedString {
         let accountDetail = self.accountDetail.value
         let billingInfo = accountDetail.billingInfo
+        let opco = Environment.shared.opco
         
         // Only show text in these precarious situations
-        guard (Environment.shared.opco == .bge && accountDetail.isActiveSeverance) ||
-            (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+        guard (opco == .bge && accountDetail.isActiveSeverance) ||
+            (accountDetail.isFinaled && (opco == .bge || billingInfo.pastDueAmount > 0)) ||
             (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
             (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {
             return NSAttributedString(string: "")
