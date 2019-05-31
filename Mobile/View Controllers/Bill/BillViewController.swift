@@ -722,7 +722,7 @@ extension BillViewController: PaperlessEBillViewControllerDelegate {
             
             let alert = InfoAlertController(title: NSLocalizedString("Paperless eBill Changes Saved", comment: ""),
                                             message: NSLocalizedString("Your enrollment status may take up to 24 hours to update and may not be reflected immediately.", comment: ""),
-                                            icon: #imageLiteral(resourceName: "ic_home_confirmation"),
+                                            icon: #imageLiteral(resourceName: "ic_confirmation_mini"),
                                             action: action)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { [weak self] in
