@@ -138,6 +138,7 @@ class MCSPaymentService: PaymentService {
         let params: [String: Any] = [
             "payment_amount": String.init(format: "%.02f", paymentAmount),
             "payment_date": paymentDate.paymentFormatString,
+            "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
             "wallet_id": walletId,
             "wallet_item_id": walletItem.walletItemId!,
             "is_existing_account": !walletItem.isTemporary,
@@ -167,6 +168,7 @@ class MCSPaymentService: PaymentService {
         var params: [String: Any] = [
             "payment_amount": String.init(format: "%.02f", paymentAmount),
             "payment_date": paymentDate.paymentFormatString,
+            "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
             "payment_id": paymentId,
             "biller_id": "\(opCo.rawValue)Registered"
         ]
