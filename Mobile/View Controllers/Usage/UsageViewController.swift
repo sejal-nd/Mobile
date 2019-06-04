@@ -610,6 +610,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showNoUsageDataState() {
@@ -623,6 +624,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showCommercialState() {
@@ -654,6 +656,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showMainErrorState() {
@@ -681,6 +684,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showNoNetworkState() {
@@ -694,6 +698,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = false
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showMaintenanceModeState() {
@@ -707,6 +712,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = false
+        removeCommercialView()
     }
     
     private func showBillComparisonLoadingState() {
