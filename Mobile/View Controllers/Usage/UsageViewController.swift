@@ -610,6 +610,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showNoUsageDataState() {
@@ -623,6 +624,7 @@ class UsageViewController: AccountPickerViewController {
         accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showCommercialState() {
