@@ -111,12 +111,34 @@ class CommercialUsageViewModel {
 
 fileprivate let jsString = "var data={SAMLResponse:'%@',RelayState:'%@'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','%@');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
 
+fileprivate let isProd = Environment.shared.environmentName == .prod ||
+    Environment.shared.environmentName == .prodbeta
+
+fileprivate var embedJsUrl: String {
+    let opcoStr = Environment.shared.opco.displayString.lowercased()
+    let strFormat = isProd ? "https://%@-sso.firstfuel.com/assets/widgets/v1/embed.js" :
+        "https://%@-sso.firstfuelsoftware.net/assets/ff/pdf/widgets/v1/embed.js"
+    return String(format: strFormat, opcoStr)
+}
+
+fileprivate var providerUrl: String {
+    let opcoStr = Environment.shared.opco.displayString.lowercased()
+    let strFormat = isProd ? "https://%@-sso.firstfuel.com" :
+        "https://%@-sso.firstfuelsoftware.net"
+    return String(format: strFormat, opcoStr)
+}
+
+fileprivate var logLevel: String {
+    return isProd ? "INFO" : "DEBUG"
+}
+
 fileprivate func html(forTab tab: CommercialUsageViewModel.Tab, username: String) -> String {
     let url = Bundle.main.url(forResource: "FirstFuelWidget", withExtension: "html")!
-    // TODO, string replace the correct "data-login" (User's ID/email), "data-widget-id" (which widget), and "data-energy-type" (GAS/ELECTRIC)
-    
     return try! String(contentsOf: url)
         .replacingOccurrences(of: "[dataWidgetId]", with: tab.widgetId)
         .replacingOccurrences(of: "[loggedInUsername]", with: username)
         .replacingOccurrences(of: "[accountNumber]", with: AccountsStore.shared.currentAccount.accountNumber)
+        .replacingOccurrences(of: "[embedJsSrc]", with: embedJsUrl)
+        .replacingOccurrences(of: "[providerUrl]", with: providerUrl)
+        .replacingOccurrences(of: "[logLevel]", with: logLevel)
 }
