@@ -133,10 +133,7 @@ struct MCSAccountService: AccountService {
                 } else if (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) && serviceError.serviceCode ==  ServiceErrorCode.failed.rawValue {
                     return Observable.just([])
                 } else {
-                    // TODO: Restore the error getting thrown here. Temporary workaround while
-                    // this endpoint is failing on BGE v6
-                    return Observable.just([])
-                    //throw serviceError
+                    throw serviceError
                 }
             }
     }
