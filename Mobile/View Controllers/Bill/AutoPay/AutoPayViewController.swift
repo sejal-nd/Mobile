@@ -422,7 +422,7 @@ class AutoPayViewController: UIViewController {
     
     func onTermsAndConditionsPress() {
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
-                                      url: URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!)
+                                      url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
     

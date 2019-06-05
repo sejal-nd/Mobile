@@ -724,7 +724,7 @@ class HomeBillCardViewModel {
     }
 
     var paymentTACUrl: URL {
-        return URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!
+        return URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions-exln.html")!
     }
 
     var errorPhoneNumber: String {
