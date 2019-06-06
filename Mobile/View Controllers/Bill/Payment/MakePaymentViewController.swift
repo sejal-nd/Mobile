@@ -108,7 +108,7 @@ class MakePaymentViewController: UIViewController {
         stackView.sendSubviewToBack(bg)
         
         if billingHistoryItem != nil {
-            title = NSLocalizedString("Modify Payment", comment: "")
+            title = NSLocalizedString("Edit Payment", comment: "")
         } else {
             title = NSLocalizedString("Make a Payment", comment: "")
         }

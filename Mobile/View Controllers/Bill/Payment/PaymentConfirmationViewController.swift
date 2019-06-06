@@ -123,7 +123,7 @@ class PaymentConfirmationViewController: UIViewController {
     }
 
     @IBAction func onXButtonPress() {
-        if viewModel.paymentId.value != nil { // Modify Payment
+        if viewModel.paymentId.value != nil { // Edit Payment
             for vc in presentingNavController.viewControllers {
                 guard let dest = vc as? BillingHistoryViewController else {
                     continue
