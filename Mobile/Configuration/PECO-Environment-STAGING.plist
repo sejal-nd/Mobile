@@ -17,7 +17,7 @@
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>paymentusUrl</key>
-	<string>https://peco-uat.paymentus.io/xotp/pm/peco</string>
+	<string>https://secure2.paymentus.com/xotp/pm/peco</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_staging</string>
 	<key>gaTrackingId</key>
