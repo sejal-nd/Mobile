@@ -142,7 +142,8 @@ class MCSPaymentService: PaymentService {
             "wallet_id": walletId,
             "wallet_item_id": walletItem.walletItemId!,
             "is_existing_account": !walletItem.isTemporary,
-            "biller_id": "\(opCo.rawValue)Registered"
+            "biller_id": "\(opCo.rawValue)Registered",
+            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber ?? ""
         ]
 
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
@@ -177,6 +178,7 @@ class MCSPaymentService: PaymentService {
             params["wallet_id"] = walletId
             params["wallet_item_id"] = walletItemId
             params["is_existing_account"] = !walletItem.isTemporary
+            params["masked_wallet_item_account_number"] = walletItem.maskedWalletItemAccountNumber ?? ""
         }
         
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
