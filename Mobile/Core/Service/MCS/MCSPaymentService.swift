@@ -142,7 +142,8 @@ class MCSPaymentService: PaymentService {
             "wallet_id": walletId,
             "wallet_item_id": walletItem.walletItemId!,
             "is_existing_account": !walletItem.isTemporary,
-            "biller_id": "\(opCo.rawValue)Registered"
+            "biller_id": "\(opCo.rawValue)Registered",
+            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber ?? ""
         ]
 
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
@@ -170,7 +171,8 @@ class MCSPaymentService: PaymentService {
             "payment_date": paymentDate.paymentFormatString,
             "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
             "payment_id": paymentId,
-            "biller_id": "\(opCo.rawValue)Registered"
+            "biller_id": "\(opCo.rawValue)Registered",
+            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber ?? ""
         ]
         
         if !walletItem.isEditingItem, let walletItemId = walletItem.walletItemId { // User selected a new payment method
