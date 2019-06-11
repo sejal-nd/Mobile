@@ -194,8 +194,11 @@ class MCSPaymentService: PaymentService {
             })
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void> {
-        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: nil)
+    func cancelPayment(accountNumber: String, paymentAmount: Double, paymentId: String) -> Observable<Void> {
+        let params: [String: Any] = [
+            "payment_amount": String.init(format: "%.02f", paymentAmount)
+        ]
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())

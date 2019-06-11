@@ -126,6 +126,7 @@ class PaymentViewModel {
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
+                                     paymentAmount: paymentAmount.value,
                                      paymentId: paymentId.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in

@@ -67,7 +67,7 @@ class MockPaymentService: PaymentService {
         return .just("123456")
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void> {
+    func cancelPayment(accountNumber: String, paymentAmount: Double, paymentId: String) -> Observable<Void> {
         return .just(())
     }
     
