@@ -54,9 +54,14 @@ class PaymentViewModel {
                                                   isEditingItem: true)
         }
 
-        amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? 0)
-        paymentDate = Variable(billingHistoryItem?.date ?? .now) // May be updated later...see computeDefaultPaymentDate()
+        let netDueAmount: Double = accountDetail.billingInfo.netDueAmount ?? 0
+        amountDue = Variable(netDueAmount)
+        
+        // If editing, default to the amount paid. If not editing, default to total amount due
+        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? netDueAmount)
+        
+        // May be updated later...see computeDefaultPaymentDate()
+        paymentDate = Variable(billingHistoryItem?.date ?? .now)
     }
 
     // MARK: - Service Calls
