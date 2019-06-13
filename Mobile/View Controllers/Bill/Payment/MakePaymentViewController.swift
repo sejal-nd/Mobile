@@ -154,6 +154,7 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.textColor = .blackText
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
+        paymentAmountTextField.textField.text = viewModel.paymentAmount.value.currencyString
         paymentAmountTextField.setKeyboardType(.decimalPad)
         viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
             self?.paymentAmountTextField.setError(errorMessage)
