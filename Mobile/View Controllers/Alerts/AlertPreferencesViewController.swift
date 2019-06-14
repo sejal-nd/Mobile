@@ -126,6 +126,7 @@ class AlertPreferencesViewController: UIViewController {
     }
     
     @objc func onSavePress() {
+        guard saveButton.isEnabled else { return }
         Analytics.log(event: .alertsPrefCenterSave)
         
         LoadingView.show()

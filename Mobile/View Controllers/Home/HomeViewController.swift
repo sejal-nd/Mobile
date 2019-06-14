@@ -22,6 +22,7 @@ class HomeViewController: AccountPickerViewController {
     @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
+    @IBOutlet weak var accountDisallowView: UIView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
     @IBOutlet weak var mainStackView: UIStackView!
@@ -33,6 +34,8 @@ class HomeViewController: AccountPickerViewController {
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
     var appointmentCardView: HomeAppointmentCardView?
+    var prepaidPendingCardView: HomePrepaidCardView?
+    var prepaidActiveCardView: HomePrepaidCardView?
     var billCardView: HomeBillCardView?
     var usageCardView: HomeUsageCardView?
     var templateCardView: TemplateCardView?
@@ -104,19 +107,18 @@ class HomeViewController: AccountPickerViewController {
     
     func viewSetup() {
         // Observe selected card list
-        HomeCardPrefsStore.shared.listObservable
-            .scan(([HomeCard](), [HomeCard]())) { oldCards, newCards in (oldCards.1, newCards) }
-            .asDriver(onErrorDriveWith: .empty())
+        viewModel.cardPreferenceChanges
             .drive(onNext: { [weak self] (oldCards, newCards) in
-                self?.scrollView?.setContentOffset(.zero, animated: false)
+                guard let self = self else { return }
+                self.scrollView?.setContentOffset(.zero, animated: false)
                 
                 // Perform reorder if preference changed
                 guard oldCards != newCards else { return }
-                self?.setCards(oldCards: oldCards, newCards: newCards)
+                self.setCards(oldCards: oldCards, newCards: newCards)
                 
                 // Refresh if not first load and new card(s) added
                 if !oldCards.isEmpty && !Set(newCards).subtracting(oldCards).isEmpty {
-                    self?.viewModel.fetchData.onNext(.switchAccount)
+                    self.viewModel.fetchData.onNext(.switchAccount)
                 }
             })
             .disposed(by: bag)
@@ -192,11 +194,11 @@ class HomeViewController: AccountPickerViewController {
         viewModel.importantUpdate
             .filter { $0 == nil }
             .drive(onNext: { [weak self] _ in
-                guard let this = self else { return }
-                this.weatherView.isHidden = false
-                this.topPersonalizeButton?.isHidden = false
-                this.importantUpdateView?.removeFromSuperview()
-                this.importantUpdateView = nil
+                guard let self = self else { return }
+                self.weatherView.isHidden = false
+                self.topPersonalizeButton?.isHidden = false
+                self.importantUpdateView?.removeFromSuperview()
+                self.importantUpdateView = nil
             })
             .disposed(by: bag)
         
@@ -205,15 +207,15 @@ class HomeViewController: AccountPickerViewController {
         viewModel.importantUpdate
             .filter { $0 != nil }
             .drive(onNext: { [weak self] update in
-                guard let this = self, let update = update else { return }
-                this.weatherView.isHidden = true
-                this.topPersonalizeButton?.isHidden = true
+                guard let self = self, let update = update else { return }
+                self.weatherView.isHidden = true
+                self.topPersonalizeButton?.isHidden = true
                 
-                if let importantUpdateView = this.importantUpdateView {
+                if let importantUpdateView = self.importantUpdateView {
                     importantUpdateView.configure(withUpdate: update)
                 } else {
                     let importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                    this.mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
+                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
                     importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
@@ -221,7 +223,7 @@ class HomeViewController: AccountPickerViewController {
                         })
                         .disposed(by: importantUpdateView.disposeBag)
                     
-                    this.importantUpdateView = importantUpdateView
+                    self.importantUpdateView = importantUpdateView
                 }
             })
             .disposed(by: bag)
@@ -281,6 +283,7 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         Analytics.log(event: .homeOfferComplete)
+        
         if #available(iOS 10.3, *), AppRating.shouldRequestRating() {
             SKStoreReviewController.requestReview()
         }
@@ -350,6 +353,10 @@ class HomeViewController: AccountPickerViewController {
             projectedBillCardView = nil
         case .outageStatus:
             outageCardView = nil
+        case .prepaidPending:
+            prepaidPendingCardView = nil
+        case .prepaidActive:
+            prepaidActiveCardView = nil
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -370,8 +377,8 @@ class HomeViewController: AccountPickerViewController {
             return billCardView
         case .usage:
             let usageCardView: HomeUsageCardView
-            if let billCard = self.usageCardView {
-                usageCardView = billCard
+            if let usageCard = self.usageCardView {
+                usageCardView = usageCard
             } else {
                 usageCardView = .create(withViewModel: viewModel.usageCardViewModel)
                 self.usageCardView = usageCardView
@@ -411,6 +418,26 @@ class HomeViewController: AccountPickerViewController {
             }
             
             return outageCardView
+        case .prepaidPending:
+            let prepaidPendingCardView: HomePrepaidCardView
+            if let prepaidCard = self.prepaidPendingCardView {
+                prepaidPendingCardView = prepaidCard
+            } else {
+                prepaidPendingCardView = .create(withViewModel: viewModel.prepaidPendingCardViewModel)
+                self.prepaidPendingCardView = prepaidPendingCardView
+            }
+            
+            return prepaidPendingCardView
+        case .prepaidActive:
+            let prepaidActiveCardView: HomePrepaidCardView
+            if let prepaidCard = self.prepaidActiveCardView {
+                prepaidActiveCardView = prepaidCard
+            } else {
+                prepaidActiveCardView = .create(withViewModel: viewModel.prepaidActiveCardViewModel)
+                self.prepaidActiveCardView = prepaidActiveCardView
+            }
+            
+            return prepaidActiveCardView
         default:
             fatalError(card.displayString + " card view doesn't exist yet")
         }
@@ -462,8 +489,9 @@ class HomeViewController: AccountPickerViewController {
     
     func bindUsageCard() {
         guard let usageCardView = usageCardView else { return }
-
-        usageCardView.viewUsageButton.rx.touchUpInside.asDriver()
+        
+        Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
+                     usageCardView.viewUsageCommercialButton.rx.touchUpInside.asDriver())
             .withLatestFrom(viewModel.accountDetailEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
@@ -581,12 +609,48 @@ class HomeViewController: AccountPickerViewController {
         viewModel.showMaintenanceModeState.not().drive(maintenanceModeView.rx.isHidden).disposed(by: bag)
         
         Driver.combineLatest(viewModel.showNoNetworkConnectionState, viewModel.showMaintenanceModeState)
-        { $0 || $1 }
+            { $0 || $1 }
             .drive(scrollView!.rx.isHidden).disposed(by: bag)
+        
+        /* Unlike the no network view, we can't simply hide the entire scrollView for FN-ACCT-DISALLOW
+         * (because multi-account users need to be able to switch accounts). This creates some weirdness
+         * because weatherView and importantUpdateView live outside of the scrollView, but this driver
+         * handles all of that. */
+        Driver.combineLatest(viewModel.showAccountDisallowState, viewModel.importantUpdate).drive(onNext: { [weak self] (showAcctDisallow, update) in
+            self?.accountDisallowView.isHidden = !showAcctDisallow
+            self?.contentStackView.isHidden = showAcctDisallow
+            self?.weatherView.isHidden = showAcctDisallow || update != nil
+            self?.importantUpdateView?.isHidden = showAcctDisallow
+        }).disposed(by:bag)
         
         Observable.merge(maintenanceModeView.reload, noNetworkConnectionView.reload)
             .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchData)
+            .disposed(by: bag)
+        
+        // Commerical Usage Modal
+        viewModel.accountDetailEvents.elements()
+            .filter { !$0.isResidential && CommercialUsageAlertStore.shared.isEligibleForAlert }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] accountDetail in
+                guard let self = self else { return }
+                if !accountDetail.isResidential && CommercialUsageAlertStore.shared.isEligibleForAlert {
+                    let action = InfoAlertAction(ctaText: NSLocalizedString("Take Me to Usage", comment: "")) { [weak self] in
+                        self?.tabBarController?.selectedIndex = 3
+                    }
+                    
+                    let alert = InfoAlertController(title: NSLocalizedString("Commercial Usage", comment: ""),
+                                                    message: NSLocalizedString("Your commercial usage data is now available within the mobile app.", comment: ""),
+                                                    action: action)
+                    
+                    // If they're already on the usage screen, don't show the alert
+                    if self.tabBarController?.selectedIndex != 3 {
+                        self.tabBarController?.present(alert, animated: true)
+                    }
+                    
+                    CommercialUsageAlertStore.shared.hasSeenAlert()
+                }
+            })
             .disposed(by: bag)
     }
     

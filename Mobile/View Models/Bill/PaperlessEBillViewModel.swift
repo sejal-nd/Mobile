@@ -80,7 +80,7 @@ class PaperlessEBillViewModel {
             .map { accountDetails in
                 accountDetails
                     .map { detail -> (Int, AccountDetail) in
-                        let idx = accounts.index { $0.accountNumber == detail.accountNumber }
+                        let idx = accounts.firstIndex { $0.accountNumber == detail.accountNumber }
                         guard let index = idx else {
                             return (.max, detail)
                         }

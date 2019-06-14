@@ -9,6 +9,12 @@
 import Foundation
 
 enum AnalyticsEvent: String {
+    case tabHome = "TabHome"
+    case tabBill = "TabBill"
+    case tabOutage = "TabOutage"
+    case tabUsage = "TabUsage"
+    case tabMore = "TabMore"
+    
     case autoPayEnrollOffer = "AutoPayEnrollOffer"
     case autoPayEnrollSelectBank = "AutoPayEnrollSelectBank"
     case autoPayEnrollSubmit = "AutoPayEnrollSubmit"
@@ -122,6 +128,9 @@ enum AnalyticsEvent: String {
     case addWalletCameraOffer = "AddWalletCameraOffer"
     case addWalletComplete = "AddWalletComplete"
     
+    case prePaidPending = "PrePaidPending"
+    case prePaidEnrolled = "PrePaidEnrolled"
+    
     case outageStatusUnAuthOffer = "OutageStatusUnAuthOffer"
     case outageStatusUnAuthComplete = "OutageStatusUnAuthComplete"
     case outageStatusUnAuthAcctValidate = "OutageStatusUnAuthAcctValidate"
@@ -183,6 +192,11 @@ enum AnalyticsEvent: String {
     
     case allSavingsUsage = "AllSavingsUsage"
     case allSavingsSmartEnergy = "AllSavingsSmartEnergy"
+    
+    case comUsageTrends = "ComUsageTrends"
+    case comUsageBilling = "ComUsageBilling"
+    case comUsageWeather = "ComUsageWeather"
+    case comUsageOpSchedule = "ComUsageOpSchedule"
     
     // Bill Analysis
     case billNeedHelp = "BillNeedHelp"
@@ -253,7 +267,7 @@ struct Analytics {
     
     static var isAnalyticsEnabled: Bool {
         switch Environment.shared.environmentName {
-        case .stage, .prod:
+        case .test, .stage, .prodbeta, .prod:
             return true
         default:
             return false

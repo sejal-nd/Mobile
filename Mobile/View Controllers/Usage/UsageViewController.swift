@@ -21,8 +21,12 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var switchAccountsLoadingIndicator: LoadingIndicator!
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet private weak var maintenanceModeView: MaintenanceModeView!
+    
+    @IBOutlet private weak var mainStack: UIStackView!
+    @IBOutlet private weak var accountPickerSpacerView: UIView!
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var unavailableView: UnavailableView!
+    @IBOutlet private weak var prepaidView: UIView!
     @IBOutlet private weak var mainErrorView: UIView!
     @IBOutlet private weak var mainErrorLabel: UILabel! {
         didSet {
@@ -30,6 +34,7 @@ class UsageViewController: AccountPickerViewController {
             mainErrorLabel.textColor = .blackText
         }
     }
+    @IBOutlet weak var accountDisallowView: UIView!
     
     @IBOutlet private weak var segmentControl: BillAnalysisSegmentedControl! {
         didSet {
@@ -164,6 +169,8 @@ class UsageViewController: AccountPickerViewController {
     }
     
     // MARK: - Other Properties
+    
+    private var commercialViewController: CommercialUsageViewController?
     
     var refreshControl: UIRefreshControl?
     
@@ -313,8 +320,8 @@ class UsageViewController: AccountPickerViewController {
     }
     
     private func bindDataFetching() {
-        Driver.merge(lastYearButton.rx.tap.asDriver().map(to: false),
-                     previousBillButton.rx.tap.asDriver().map(to: true))
+        Driver.merge(lastYearButton.rx.tap.asDriver().mapTo(false),
+                     previousBillButton.rx.tap.asDriver().mapTo(true))
             .drive(onNext: { [weak self] isPreviousBill in
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 Analytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
@@ -355,8 +362,20 @@ class UsageViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.showNoUsageDataState() })
             .disposed(by: disposeBag)
         
+        viewModel.showCommercialState
+            .drive(onNext: { [weak self] in self?.showCommercialState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showPrepaidState
+            .drive(onNext: { [weak self] in self?.showPrepaidState() })
+            .disposed(by: disposeBag)
+        
         viewModel.showMainErrorState
             .drive(onNext: { [weak self] in self?.showMainErrorState() })
+            .disposed(by: disposeBag)
+        
+        viewModel.showAccountDisallowState
+            .drive(onNext: { [weak self] in self?.showAccountDisallowState() })
             .disposed(by: disposeBag)
         
         viewModel.showNoNetworkState
@@ -569,61 +588,131 @@ class UsageViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = false
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         showBillComparisonLoadingState()
+        removeCommercialView()
     }
     
     private func showMainContents() {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = false
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showNoUsageDataState() {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = false
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
+    }
+    
+    private func showCommercialState() {
+        scrollView?.isHidden = false
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = true
+        contentStack.isHidden = true
+        prepaidView.isHidden = true
+        mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
+        
+        guard let _ = commercialViewController else {
+            addCommercialView()
+            return
+        }
+    }
+    
+    private func showPrepaidState() {
+        scrollView?.isHidden = false
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
+        contentStack.isHidden = true
+        prepaidView.isHidden = false
+        mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showMainErrorState() {
         scrollView?.isHidden = false
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = false
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        removeCommercialView()
+    }
+    
+    private func showAccountDisallowState() {
+        scrollView?.isHidden = false
+        switchAccountsLoadingIndicator.isHidden = true
+        unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
+        contentStack.isHidden = true
+        prepaidView.isHidden = true
+        mainErrorView.isHidden = true
+        accountDisallowView.isHidden = false
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showNoNetworkState() {
         scrollView?.isHidden = true
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = false
         maintenanceModeView.isHidden = true
+        removeCommercialView()
     }
     
     private func showMaintenanceModeState() {
         scrollView?.isHidden = true
         switchAccountsLoadingIndicator.isHidden = true
         unavailableView.isHidden = true
+        accountPickerSpacerView.isHidden = false
         contentStack.isHidden = true
+        prepaidView.isHidden = true
         mainErrorView.isHidden = true
+        accountDisallowView.isHidden = true
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = false
+        removeCommercialView()
     }
     
     private func showBillComparisonLoadingState() {
@@ -656,6 +745,27 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = false
         billComparisonDataContainer.isHidden = true
         billComparisonTitleContainer.isHidden = true
+    }
+    
+    private func removeCommercialView() {
+        commercialViewController?.willMove(toParent: nil)
+        commercialViewController?.view.removeFromSuperview()
+        commercialViewController?.removeFromParent()
+        commercialViewController = nil
+        view.backgroundColor = .softGray
+    }
+    
+    private func addCommercialView() {
+        let commercialVC = CommercialUsageViewController(with: viewModel.commercialViewModel)
+        addChild(commercialVC)
+        mainStack.addArrangedSubview(commercialVC.view)
+        commercialVC.didMove(toParent: self)
+        NSLayoutConstraint.activate([
+            commercialVC.view.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
+            commercialVC.view.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
+            ])
+        commercialViewController = commercialVC
+        view.backgroundColor = .white
     }
     
     // MARK: - Usage Tool Cards
@@ -792,6 +902,7 @@ extension UsageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         showSwitchAccountsLoadingState()
         viewModel.fetchAllData()
+        viewModel.commercialViewModel.selectedIndex.accept(0) // reset commercial tab selection
         setRefreshControlEnabled(enabled: false)
     }
     

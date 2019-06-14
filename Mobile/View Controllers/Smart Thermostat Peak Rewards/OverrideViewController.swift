@@ -198,7 +198,11 @@ class OverrideViewController: UIViewController {
     }
     
     func bindActions() {
-        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
+        saveButton.rx.tap
+            .filter { [weak self] in self?.saveButton.isEnabled ?? false }
+            .bind(to: viewModel.saveAction)
+            .disposed(by: disposeBag)
+        
         cancelButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
@@ -207,7 +211,7 @@ class OverrideViewController: UIViewController {
         scheduledCancelButton.rx.tap.bind(to: viewModel.cancelAction).disposed(by: disposeBag)
         
         dateButton.rx.tap.asObservable()
-            .withLatestFrom(viewModel.selectedDate.startWith(Calendar.opCo.startOfDay(for: Date())))
+            .withLatestFrom(viewModel.selectedDate.startWith(Calendar.opCo.startOfDay(for: .now)))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
@@ -272,7 +276,7 @@ extension OverrideViewController: PDTSimpleCalendarViewDelegate {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
-        let today = Calendar.opCo.startOfDay(for: Date())
+        let today = Calendar.opCo.startOfDay(for: .now)
         var addDaysComponents = DateComponents()
         addDaysComponents.day = 30
         let latestDay = Calendar.opCo.date(byAdding: addDaysComponents, to: today)!

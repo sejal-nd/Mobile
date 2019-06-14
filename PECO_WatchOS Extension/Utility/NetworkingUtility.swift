@@ -291,7 +291,7 @@ class NetworkingUtility {
     private func fetchOutageStatus(success: @escaping (OutageStatus) -> Void, error: @escaping (ServiceError) -> Void) {
         aLog("Fetching Outage Status...")
 
-        guard let currentAccount = AccountsStore.shared.currentAccount else {
+        guard let _ = AccountsStore.shared.currentIndex else {
             aLog("Failed to retreive current account while fetching outage status.")
             error(Errors.noAccountsFound)
             return
@@ -299,7 +299,7 @@ class NetworkingUtility {
         
         let outageService = MCSOutageService()
         
-        outageService.fetchOutageStatus(account: currentAccount).subscribe(onNext: { [weak self] outageStatus in
+        outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount).subscribe(onNext: { [weak self] outageStatus in
             // handle success
             aLog("Outage Status Fetched.")
             success(outageStatus)

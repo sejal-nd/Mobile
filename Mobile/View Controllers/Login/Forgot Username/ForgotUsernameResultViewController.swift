@@ -11,7 +11,7 @@ import RxCocoa
 
 class ForgotUsernameResultViewController: UIViewController {
     
-    @IBOutlet weak var topTextView: UITextView!
+    @IBOutlet weak var topTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var topTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -65,8 +65,6 @@ class ForgotUsernameResultViewController: UIViewController {
         attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .subheadline), range: fullRange)
         attrString.addAttribute(.foregroundColor, value: UIColor.blackText, range: fullRange)
         
-        topTextView.textContainerInset = .zero
-        topTextView.textContainer.lineFragmentPadding = 0
         topTextView.attributedText = attrString
         topTextView.tintColor = .actionBlue
         

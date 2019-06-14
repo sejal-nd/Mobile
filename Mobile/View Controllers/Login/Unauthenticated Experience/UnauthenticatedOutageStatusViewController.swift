@@ -16,7 +16,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var reportOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
-    @IBOutlet weak var footerTextView: DataDetectorTextView!
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
     let disposeBag = DisposeBag()
     
@@ -47,7 +47,6 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
             reportOutageButton.accessibilityLabel = NSLocalizedString("Report outage", comment: "")
         }
         
-        footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText

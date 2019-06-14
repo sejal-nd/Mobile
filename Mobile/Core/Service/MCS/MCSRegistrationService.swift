@@ -64,7 +64,7 @@ class MCSRegistrationService: RegistrationService {
                 }
                 
                 return questions
-        }
+            }
     }
     
     func validateAccountInformation(_ identifier: String,
@@ -84,7 +84,7 @@ class MCSRegistrationService: RegistrationService {
                 }
                 
                 return dict
-        }
+            }
     }
     
     func resendConfirmationEmail(_ username: String) -> Observable<Void> {
@@ -99,9 +99,4 @@ class MCSRegistrationService: RegistrationService {
             .mapTo(())
     }
     
-    func recoverPassword(_ username: String) -> Observable<Void> {
-        let params = ["username": username] as [String: Any]
-        return MCSApi.shared.post(pathPrefix: .anon, path: "recover/password", params: params)
-            .mapTo(())
-    }
 }

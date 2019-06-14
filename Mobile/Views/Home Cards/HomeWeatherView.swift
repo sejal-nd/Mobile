@@ -40,7 +40,7 @@ class HomeWeatherView: UIView {
         greetingLabel.isAccessibilityElement = true
         temperatureLabel.isAccessibilityElement = true
         weatherIconImage.isAccessibilityElement = true
-        accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage, temperatureTipButton]
+        accessibilityElements = [greetingLabel, temperatureLabel, weatherIconImage, temperatureTipButton] as [UIView]
     }
     
     func bindViewModel() {
@@ -66,7 +66,7 @@ class HomeWeatherView: UIView {
         viewModel.temperatureTipImage.drive(temperatureTipImageView.rx.image).disposed(by: bag)
     }
     
-    lazy var didTapTemperatureTip: Driver<(title: String, image: UIImage, body: String)> =
+    lazy var didTapTemperatureTip: Driver<(title: String, image: UIImage, body: String, onClose: (() -> ())?)> =
         self.temperatureTipButton.rx.touchUpInside.asDriver()
             .withLatestFrom(self.viewModel.temperatureTipModalData)
 

@@ -78,17 +78,39 @@ class StormModeBillViewModel {
     private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
         .asDriver()
         .filter(!)
-        .map(to: ())
+        .mapTo(())
     
     private(set) lazy var isSwitchingAccounts: Driver<Bool> = switchAccountTracker
         .asDriver()
         .distinctUntilChanged()
     
+    private(set) lazy var showBillCard: Driver<Bool> = Observable
+        .combineLatest(switchAccountTracker.asObservable(),
+                       accountDetailEvents)
+        { isLoading, accountDetailEvent in
+            isLoading || accountDetailEvent.element?.prepaidStatus != .active
+        }
+        .startWith(false)
+        .distinctUntilChanged()
+        .asDriver(onErrorDriveWith: .empty())
+    
     private(set) lazy var showButtonStack: Driver<Bool> = Observable
         .combineLatest(switchAccountTracker.asObservable(),
                        accountDetailEvents)
         { isLoading, accountDetailEvent in
-            accountDetailEvent.error == nil && !isLoading
+            accountDetailEvent.error == nil &&
+                !isLoading &&
+                accountDetailEvent.element?.prepaidStatus != .active
+        }
+        .startWith(false)
+        .distinctUntilChanged()
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showPrepaidCard: Driver<Bool> = Observable
+        .combineLatest(switchAccountTracker.asObservable(),
+                       accountDetailEvents)
+        { isLoading, accountDetailEvent in
+            !isLoading && accountDetailEvent.element?.prepaidStatus == .active
         }
         .startWith(false)
         .distinctUntilChanged()

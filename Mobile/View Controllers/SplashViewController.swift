@@ -25,7 +25,7 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorViewBackground: UIView!
     @IBOutlet weak var errorTitleLabel: UILabel!
-    @IBOutlet weak var errorTextView: DataDetectorTextView!
+    @IBOutlet weak var errorTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var retryButton: ButtonControl!
     
     var performDeepLink = false
@@ -52,8 +52,6 @@ class SplashViewController: UIViewController{
         errorTitleLabel.textColor = .deepGray
         errorTitleLabel.text = viewModel.errorTitleText
         
-        errorTextView.textContainerInset = .zero
-        errorTextView.textContainer.lineFragmentPadding = 0
         errorTextView.tintColor = .actionBlue // For the phone numbers
         errorTextView.attributedText = viewModel.errorLabelText
 
@@ -213,7 +211,7 @@ class SplashViewController: UIViewController{
         }
     }
     
-    func handleOutOfDate(){
+    func handleOutOfDate() {
         let requireUpdateAlert = UIAlertController(title: nil , message: NSLocalizedString("There is a newer version of this application available. Tap OK to update now.", comment: ""), preferredStyle: .alert)
         requireUpdateAlert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
             UIApplication.shared.openUrlIfCan(Environment.shared.opco.appStoreLink)

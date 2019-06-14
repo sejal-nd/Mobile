@@ -113,7 +113,7 @@ class ReportOutageViewModel {
             outageIssue = OutageIssue.flickering
         }
         
-        var outageInfo = OutageInfo(accountNumber: accountNumber ?? outageStatus.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment:comments.value)
+        var outageInfo = OutageInfo(accountNumber: accountNumber ?? outageStatus.accountNumber!, issue: outageIssue, phoneNumber: extractDigitsFrom(phoneNumber.value), comment: comments.value)
         if phoneExtension.value.count > 0 {
             outageInfo.phoneExtension = phoneExtension.value
         }

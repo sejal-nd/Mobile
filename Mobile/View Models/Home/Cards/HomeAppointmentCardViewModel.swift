@@ -74,12 +74,12 @@ class HomeAppointmentCardViewModel {
             case .scheduled:
                 let regularText: String
                 let boldText: String
-                if Calendar.opCo.isDateInToday(appointment.startDate) {
+                if appointment.startDate.isInToday(calendar: .opCo) {
                     regularText = NSLocalizedString("Your appointment is ", comment: "")
                     boldText = String.localizedStringWithFormat("today between %@ - %@.",
                                                                 appointment.startDate.hourAmPmString,
                                                                 appointment.stopDate.hourAmPmString)
-                } else if Calendar.opCo.isDateInTomorrow(appointment.startDate) {
+                } else if appointment.startDate.isInTomorrow(calendar: .opCo) {
                     regularText = NSLocalizedString("Your appointment is ", comment: "")
                     boldText = String.localizedStringWithFormat("tomorrow between %@ - %@.",
                                                                 appointment.startDate.hourAmPmString,

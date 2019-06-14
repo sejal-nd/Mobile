@@ -33,7 +33,7 @@ class MCSOutageService: OutageService {
                 }
                 
                 return meterPingInfo
-        }
+            }
     }
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
@@ -60,7 +60,7 @@ class MCSOutageService: OutageService {
                     
                     return outageStatus
                 }
-        }
+            }
     }
     
     #if os(iOS)
@@ -124,7 +124,7 @@ class MCSOutageService: OutageService {
                 
                 ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutage
                 return reportedOutage
-        }
+            }
     }
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
@@ -173,6 +173,6 @@ class MCSOutageService: OutageService {
                 }
                 
                 return finalOutageArray
-        }
+            }
     }
 }

@@ -8,13 +8,15 @@
 
 import UIKit
 
+fileprivate let maxTabletWidth: CGFloat = 460
+
 extension UIView {
     func usingAutoLayout() -> Self {
         translatesAutoresizingMaskIntoConstraints = false
         return self
     }
     
-    func addTabletWidthConstraints(horizontalPadding: CGFloat) {
+    func addTabletWidthConstraints(horizontalPadding: CGFloat, padMaxWidth: Bool = false) {
         guard let superview = superview else { return }
         
         let leading = leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: horizontalPadding)
@@ -29,9 +31,10 @@ extension UIView {
         
         centerXAnchor.constraint(equalTo: superview.centerXAnchor).isActive = true
         
-        let width = widthAnchor.constraint(equalToConstant: 460)
+        let maxWidth = maxTabletWidth - (padMaxWidth ? horizontalPadding : 0)
+        let width = widthAnchor.constraint(equalToConstant: maxWidth)
         width.priority = UILayoutPriority(rawValue: 999)
         width.isActive = true
-        widthAnchor.constraint(lessThanOrEqualToConstant: 460).isActive = true
+        widthAnchor.constraint(lessThanOrEqualToConstant: maxWidth).isActive = true
     }
 }

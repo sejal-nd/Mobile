@@ -31,12 +31,14 @@ struct BudgetBillingInfo: Mappable {
     let budgetBillBalance: String? // Only used for BGE Footer View
     let budgetBillPayoff: String? // Only used for BGE Footer View
     let isUSPPParticipant: Bool // BGE only
+    let budgetBill: String?
     
     init(map: Mapper) throws {
         averageMonthlyBill = map.optionalFrom("averageMonthlyBill", transformation: extractDollarAmountString)
         budgetBillDifference = map.optionalFrom("budgetBillDifference", transformation: extractDollarAmountString)
         budgetBillBalance = map.optionalFrom("budgetBillBalance", transformation: extractDollarAmountString)
         budgetBillPayoff = map.optionalFrom("budgetBillPayoff", transformation: extractDollarAmountString)
+        budgetBill = map.optionalFrom("budgetBill", transformation: extractDollarAmountString)
         
         if let programCode: String = map.optionalFrom("programCode"), programCode == "USPPBDPL" {
             isUSPPParticipant = true

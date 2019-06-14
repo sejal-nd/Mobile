@@ -1,0 +1,51 @@
+{
+    "default": {
+        "billing_and_payment_history": [
+            {
+                "total_amount_due": 447.0,
+                "date": "2019-03-1T00:00:00",
+                "description": "Billing",
+                "statusString": "Due 3/25/2019",
+                "status": "scheduled",
+                "isBillPDF": true,
+                "flagAllowDeletes": true,
+                "flagAllowEdits": true,
+                "isFuture": false
+            },
+            {
+                "amount_paid": 82.0,
+                "charge_amount": 25.0,
+                "total_amount_due": 37.0,
+                "date": "2019-02-25T00:00:00",
+                "description": "Payment - Automated",
+                "status": "accepted",
+                "confirmation_number": "191531550834588703",
+                "payment_type": "test type",
+                "isBillPDF": false,
+                "payment_method": "R",
+                "payment_id": "191531550834588703",
+                "wallet_item_id": "testId",
+                "flag_allow_deletes": true,
+                "flag_allow_edits": true,
+                "isFuture": false
+            },
+            {
+                "amount_paid": 89.0,
+                "charge_amount": 25.0,
+                "total_amount_due": 37.0,
+                "date": "2019-02-25T00:00:00",
+                "description": "Hello World",
+                "status": "posted",
+                "confirmation_number": "191531550834588703",
+                "payment_type": "Card",
+                "isBillPDF": false,
+                "payment_method": "VISA",
+                "payment_id": "191531550834588703",
+                "wallet_item_id": "191531550834588703",
+                "flag_allow_deletes": false,
+                "flag_allow_edits": false,
+                "isFuture": false
+            }
+        ]
+    }
+}

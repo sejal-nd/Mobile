@@ -11,8 +11,14 @@ import Foundation
 /// Utility class for intantiating Service Instances
 struct ServiceFactory {
 
-    static let sharedOutageService = MCSOutageService()
-    static let sharedMockOutageService = MockOutageService()
+    static let sharedOutageService: OutageService = {
+        switch Environment.shared.environmentName {
+        case .aut:
+            return MockOutageService()
+        default:
+            return MCSOutageService()
+        }
+    }()
 
     static func createAuthenticationService() -> AuthenticationService {
         switch Environment.shared.environmentName {
@@ -37,12 +43,7 @@ struct ServiceFactory {
     }
 
     static func createOutageService() -> OutageService {
-        switch Environment.shared.environmentName {
-        case .aut:
-            return sharedMockOutageService
-        default:
-            return sharedOutageService
-        }
+        return sharedOutageService
     }
 
     static func createBillService() -> BillService {
@@ -82,7 +83,12 @@ struct ServiceFactory {
     }
 
     static func createWeatherService() -> WeatherService {
-        return WeatherApi()
+        switch Environment.shared.environmentName {
+        case .aut:
+            return MockWeatherService()
+        default:
+            return GovWeatherService()
+        }
     }
 
     static func createUsageService(useCache: Bool) -> UsageService {
@@ -104,7 +110,12 @@ struct ServiceFactory {
     }
 
     static func createPeakRewardsService() -> PeakRewardsService {
-        return MCSPeakRewardsService()
+        switch Environment.shared.environmentName {
+        case .aut:
+            return MockPeakRewardsService()
+        default:
+            return MCSPeakRewardsService()
+        }
     }
 
     static func createAppointmentService() -> AppointmentService {

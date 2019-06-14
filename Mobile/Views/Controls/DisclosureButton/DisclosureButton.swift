@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class DisclosureButton: UIButton {
     
@@ -90,6 +92,23 @@ class DisclosureButton: UIButton {
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 300, height: 60)
+    }
+    
+}
+
+
+extension Reactive where Base: DisclosureButton {
+    
+    var labelText: Binder<String?> {
+        return Binder(base) { button, text in
+            button.label.text = text
+        }
+    }
+    
+    var detailText: Binder<String?> {
+        return Binder(base) { button, text in
+            button.setDetailLabel(text: text, checkHidden: true)
+        }
     }
     
 }

@@ -9,6 +9,14 @@
 import Foundation
 import Mapper
 
+fileprivate func extractDouble(_ object: Any) throws -> Double {
+    guard let string = object as? String, let double = Double(string) else {
+        throw MapperError.convertibleError(value: object, type: Double.self)
+    }
+    
+    return double
+}
+
 struct SERResult: Mappable, Equatable {
     let actualKWH: Double
     let baselineKWH: Double
@@ -21,37 +29,9 @@ struct SERResult: Mappable, Equatable {
         try eventStart = map.from("eventStart", transformation: DateParser().extractDate)
         try eventEnd = map.from("eventEnd", transformation: DateParser().extractDate)
         
-        if let actualString: String = map.optionalFrom("actualKWH"), let doubleVal = Double(actualString) {
-            actualKWH = doubleVal
-        } else {
-            actualKWH = 0
-        }
-        
-        if let baselineString: String = map.optionalFrom("baselineKWH"), let doubleVal = Double(baselineString) {
-            baselineKWH = doubleVal
-        } else {
-            baselineKWH = 0
-        }
-        
-        if let savingDollarString: String = map.optionalFrom("savingDollar"), let doubleVal = Double(savingDollarString) {
-            savingDollar = doubleVal
-        } else {
-            savingDollar = 0
-        }
-        
-        if let savingKWHString: String = map.optionalFrom("savingKWH"), let doubleVal = Double(savingKWHString) {
-            savingKWH = doubleVal
-        } else {
-            savingKWH = 0
-        }
-    }
-    
-    static func ==(lhs: SERResult, rhs: SERResult) -> Bool {
-        return lhs.actualKWH == rhs.actualKWH &&
-            lhs.baselineKWH == rhs.baselineKWH &&
-            lhs.eventStart == rhs.eventStart &&
-            lhs.eventEnd == rhs.eventEnd &&
-            lhs.savingDollar == rhs.savingDollar &&
-            lhs.savingKWH == rhs.savingKWH
+        actualKWH = map.optionalFrom("actualKWH", transformation: extractDouble) ?? 0
+        baselineKWH = map.optionalFrom("baselineKWH", transformation: extractDouble) ?? 0
+        savingDollar = map.optionalFrom("savingDollar", transformation: extractDouble) ?? 0
+        savingKWH = map.optionalFrom("savingKWH", transformation: extractDouble) ?? 0
     }
 }

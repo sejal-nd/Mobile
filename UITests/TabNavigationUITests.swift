@@ -9,11 +9,10 @@
 import XCTest
 import AppCenterXCUITestExtensions
 class TabNavigationUITests: ExelonUITestCase {
-        
-    
     
     override func setUp() {
         super.setUp()
+        launchApp()
         doLogin(username: "valid@test.com")
     }
    

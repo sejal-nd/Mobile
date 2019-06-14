@@ -1,0 +1,18 @@
+{
+    "default": {
+        "accountNumber": "1234567890",
+        "address": "573 Elm Street"
+    },
+    "screenshots": {
+        "accountNumber": "7989123445",
+        "address": "10 Anywhere Ave"
+    },
+    "residential": {
+        "accountNumber": "1234567890",
+        "address": "123 Main Street",
+        "isResidential": true
+    },
+    "accountZeros": {
+        "accountNumber": "0000"
+    }
+}

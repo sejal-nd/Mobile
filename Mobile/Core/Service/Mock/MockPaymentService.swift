@@ -11,65 +11,64 @@ import Foundation
 
 class MockPaymentService: PaymentService {
     func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+        let dataFile = MockJSONManager.File.autoPayInfo
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
-    
     
     func enrollInAutoPayBGE(accountNumber: String,
                             walletItemId: String?,
                             amountType: AmountType,
                             amountThreshold: String,
-                            paymentDaysBeforeDue: String,
-                            effectivePeriod: EffectivePeriod,
-                            effectiveEndDate: Date?,
-                            effectiveNumPayments: String,
-                            isUpdate: Bool) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+                            paymentDaysBeforeDue: String) -> Observable<Void> {
+        return .just(())
     }
     
-    
-    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
-        
+    func updateAutoPaySettingsBGE(accountNumber: String,
+                            walletItemId: String?,
+                            confirmationNumber: String,
+                            amountType: AmountType,
+                            amountThreshold: String,
+                            paymentDaysBeforeDue: String) -> Observable<Void> {
+        return .just(())
     }
     
+    func unenrollFromAutoPayBGE(accountNumber: String, confirmationNumber: String) -> Observable<Void> {
+        return .just(())
+    }
     
     func enrollInAutoPay(accountNumber: String,
                          nameOfAccount: String,
-                         bankAccountType: BankAccountType,
+                         bankAccountType: String,
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
+        return .just(())
     }
-    
     
     func unenrollFromAutoPay(accountNumber: String, reason: String) -> Observable<Void> {
-        return .error(ServiceError(serviceCode: "", serviceMessage: nil, cause: nil))
-    }
-    
-    func schedulePayment(payment: Payment) -> Observable<String> {
-        return Observable.just("123456").delay(2, scheduler: MainScheduler.instance)
-    }
-    
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String> {
-        return Observable.just("").delay(2, scheduler: MainScheduler.instance)
-    }
-    
-    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail> {
-        return .just(PaymentDetail(walletItemId: "1234", paymentAmount: 100, paymentDate: Date(timeIntervalSince1970: 13)))
-    }
-    
-    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void> {
         return .just(())
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void> {
+    func schedulePayment(accountNumber: String,
+                         paymentAmount: Double,
+                         paymentDate: Date,
+                         walletId: String,
+                         walletItem: WalletItem) -> Observable<String> {
+        return .just("123456")
+    }
+    
+    func updatePayment(paymentId: String,
+                       accountNumber: String,
+                       paymentAmount: Double,
+                       paymentDate: Date,
+                       walletId: String,
+                       walletItem: WalletItem) -> Observable<String> {
+        return .just("123456")
+    }
+    
+    func cancelPayment(accountNumber: String, paymentAmount: Double, paymentId: String) -> Observable<Void> {
         return .just(())
     }
     
-    
-    func fetchPaymentFreezeDate() -> Observable<Date> {
-        return .just(Calendar.opCo.date(from: DateComponents(year: 2019, month: 10, day: 15))!)
-    }
 }

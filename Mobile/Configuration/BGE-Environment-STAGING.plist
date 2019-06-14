@@ -12,10 +12,12 @@
 	<string>BGE_STAGE</string>
 	<key>mcsInstanceName</key>
 	<string>stageMain</string>
+	<key>myAccountUrl</key>
+	<string>https://azstg.bge.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>paymentusUrl</key>
-	<string>https://bge-uat.paymentus.io/xotp/pm/bge</string>
+	<string>https://secure2.paymentus.com/xotp/pm/bge</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_staging</string>
 	<key>gaTrackingId</key>

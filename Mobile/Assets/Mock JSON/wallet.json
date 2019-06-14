@@ -1,0 +1,76 @@
+{
+    "default": [
+        {
+            "walletItemId": "1234",
+            "maskedWalletItemAccountNumber": "*****0113-******1234",
+            "nickName": "Test Bank",
+            "paymentCategoryType": "CHECK",
+            "paymentMethodType": "ACH",
+            "bankName": "M & T BANK",
+            "isDefault": false
+        },
+        {
+            "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
+            "maskedWalletItemAccountNumber": "************1111",
+            "nickName": "Test Card",
+            "paymentCategoryType": "CREDIT",
+            "paymentMethodType": "VISA",
+            "expirationDate": "01/2100",
+            "isDefault": true
+        }
+    ],
+    "billCardNoDefaultPayment": [],
+    "billCardWithDefaultPayment": [
+        {
+            "walletItemId": "45CBE19F37712E7F4E2FCFE27422A2410971F95F",
+            "maskedWalletItemAccountNumber": "*****0113-******1234",
+            "nickName": "Test Bank",
+            "paymentCategoryType": "CHECK",
+            "paymentMethodType": "ACH",
+            "bankName": "M & T BANK",
+            "isDefault": true
+        }
+    ],
+    "billCardWithExpiredDefaultPayment": [
+        {
+            "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
+            "maskedWalletItemAccountNumber": "************1111",
+            "nickName": "Expired Card",
+            "paymentCategoryType": "CREDIT",
+            "paymentMethodType": "VISA",
+            "expirationDate": "01/2018",
+            "isDefault": true
+        }
+    ],
+    "billCardWithDefaultCcPayment": [
+        {
+            "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
+            "maskedWalletItemAccountNumber": "************1111",
+            "nickName": "Test Card",
+            "paymentCategoryType": "CREDIT",
+            "paymentMethodType": "VISA",
+            "expirationDate": "01/2100",
+            "isDefault": true
+        }
+    ],
+    "twoCardsNoDefault": [
+        {
+            "walletItemId": "1234",
+            "maskedWalletItemAccountNumber": "************1111",
+            "nickName": "Test Card 1",
+            "paymentCategoryType": "CREDIT",
+            "paymentMethodType": "VISA",
+            "expirationDate": "01/2100",
+            "isDefault": false
+        },
+        {
+            "walletItemId": "4321",
+            "maskedWalletItemAccountNumber": "************2222",
+            "nickName": "Test Card 2",
+            "paymentCategoryType": "CREDIT",
+            "paymentMethodType": "VISA",
+            "expirationDate": "01/2100",
+            "isDefault": false
+        }
+    ]
+}

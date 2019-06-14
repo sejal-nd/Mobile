@@ -31,8 +31,8 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var autoPayLabel: UILabel!
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
     
-    @IBOutlet weak var bgeFooterView: UIView!
-    @IBOutlet weak var bgeFooterLabel: UILabel!
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerLabel: UILabel!
     
     var presentingNavController: UINavigationController! // Passed from ReviewPaymentViewController
     
@@ -78,6 +78,8 @@ class PaymentConfirmationViewController: UIViewController {
         confirmationNumberTextLabel.textColor = .blackText
         confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
+        confirmationNumberValueLabel.contentInset = .zero
+        confirmationNumberValueLabel.textContainerInset = .zero
         confirmationNumberValueLabel.textColor = .blackText
         confirmationNumberValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
@@ -86,16 +88,9 @@ class PaymentConfirmationViewController: UIViewController {
         autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
         enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
-        if Environment.shared.opco == .bge {
-            bgeFooterView.backgroundColor = .softGray
-            bgeFooterLabel.textColor = .blackText
-            bgeFooterLabel.text = NSLocalizedString("If service is off and your balance was paid after 3pm, or on a Sunday or Holiday, your service will be restored the next business day.\n\nPlease ensure that circuit breakers are off. If applicable, remove any fuses prior to reconnection of the service, remove any flammable materials from heat sources, and unplug any sensitive electronics and large appliances.\n\nIf an electric smart meter is installed at the premise, BGE will first attempt to restore the service remotely. If both gas and electric services are off, or if BGE does not have access to the meters, we may contact you to make arrangements when an adult will be present.", comment: "")
-            bgeFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        } else {
-            bgeFooterView.isHidden = true
-            bgeFooterLabel.text = ""
-        }
-        
+        footerView.backgroundColor = .softGray
+        footerLabel.attributedText = viewModel.confirmationFooterText
+        footerView.isHidden = !viewModel.showConfirmationFooterText
         
         bindViewHiding()
         bindViewContent()
@@ -114,8 +109,7 @@ class PaymentConfirmationViewController: UIViewController {
         viewModel.totalPaymentDisplayString.asDriver().drive(amountPaidValueLabel.rx.text).disposed(by: disposeBag)
         
         // Confirmation Number
-        //TODO: remove the opco check when BGE moves to paymentus
-        if let confirmationNumber = viewModel.confirmationNumber, Environment.shared.opco != .bge {
+        if let confirmationNumber = viewModel.confirmationNumber {
             confirmationNumberValueLabel.text = confirmationNumber
             confirmationNumberDivider.isHidden = false
             confirmationNumberView.isHidden = false
@@ -129,7 +123,7 @@ class PaymentConfirmationViewController: UIViewController {
     }
 
     @IBAction func onXButtonPress() {
-        if viewModel.paymentId.value != nil { // Modify Payment
+        if viewModel.paymentId.value != nil { // Edit Payment
             for vc in presentingNavController.viewControllers {
                 guard let dest = vc as? BillingHistoryViewController else {
                     continue

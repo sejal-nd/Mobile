@@ -28,7 +28,7 @@ class BillAlertBannerView: UIView {
         animationView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         
         // Here lies the reason for this class' existence. Order of `accessibilityElements`
-        accessibilityElements = [animationView, label]
+        accessibilityElements = [animationView, label] as [UIView]
     }
     
     func resetAnimation() {

@@ -15,14 +15,12 @@ class PeakRewardsViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     var scheduler = TestScheduler(initialClock: 0)
     
-    override func setUp() {
-        super.setUp()
-        AccountsStore.shared.currentAccount = Account.from(["accountNumber": "1234567890"])!
-    }
-    
     func testOverrides() {
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -33,16 +31,17 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedValues = [[PeakRewardsOverride()]]
-        XCTAssertEqual(observer.events.count, expectedValues.count)
-        XCTAssert(!zip(observer.events, expectedValues)
-            .map { $0.0.value.element! == $0.1 }
-            .contains(false))
+        let expectedOverrides: [PeakRewardsOverride] = try! MockJSONManager.shared
+            .mappableArray(fromFile: .peakRewardsOverrides, key: .default)
+        XCTAssertRecordedElements(observer.events, [expectedOverrides])
     }
     
     func testDevices() {
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -53,16 +52,17 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedValues = [[SmartThermostatDevice(), SmartThermostatDevice()]]
-        XCTAssertEqual(observer.events.count, expectedValues.count)
-        XCTAssert(!zip(observer.events, expectedValues)
-            .map { $0.0.value.element! == $0.1 }
-            .contains(false))
+        let expectedSummary: PeakRewardsSummary = try! MockJSONManager.shared
+            .mappableObject(fromFile: .peakRewardsSummary, key: .default)
+        XCTAssertRecordedElements(observer.events, [expectedSummary.devices])
     }
     
     func testSelectedDevice() {
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -77,13 +77,17 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedElements = [SmartThermostatDevice](repeating: SmartThermostatDevice(), count: 2)
-        XCTAssertRecordedElements(observer.events, expectedElements)
+        let expectedSummary: PeakRewardsSummary = try! MockJSONManager.shared
+            .mappableObject(fromFile: .peakRewardsSummary, key: .default)
+        XCTAssertRecordedElements(observer.events, expectedSummary.devices)
     }
     
     func testDeviceButtonText() {
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -103,8 +107,12 @@ class PeakRewardsViewModelTests: XCTestCase {
     }
     
     func testProgramCardsDataActiveOverride() {
+        MockUser.current = MockUser(dataKeys: [.peakRewardsSummary: .peakRewardsInactiveProgram,
+                                               .peakRewardsOverrides: .peakRewardsActiveOverride])
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "programCardsDataActiveOverride", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -131,8 +139,12 @@ class PeakRewardsViewModelTests: XCTestCase {
     }
     
     func testProgramCardsDataNoOverrides() {
+        MockUser.current = MockUser(dataKeys: [.peakRewardsSummary: .peakRewardsActiveProgram,
+                                               .peakRewardsOverrides: .peakRewardsNoOverrides])
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "programCardsDataNoOverrides", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -159,8 +171,12 @@ class PeakRewardsViewModelTests: XCTestCase {
     }
     
     func testProgramCardsDataInactiveProgramActiveOverride() {
+        MockUser.current = MockUser(dataKeys: [.peakRewardsSummary: .peakRewardsInactiveProgram,
+                                               .peakRewardsOverrides: .peakRewardsActiveOverride])
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "programCardsDataInactiveProgram", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -187,8 +203,12 @@ class PeakRewardsViewModelTests: XCTestCase {
     }
     
     func testProgramCardsDataInactiveProgramScheduledOverride() {
+        MockUser.current = MockUser(dataKeys: [.peakRewardsSummary: .peakRewardsInactiveProgram,
+                                               .peakRewardsOverrides: .peakRewardsScheduledOverride])
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "programCardsDataInactiveProgramScheduledOverride", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -215,8 +235,12 @@ class PeakRewardsViewModelTests: XCTestCase {
     }
     
     func testProgramCardsDataInactiveProgramNoOverrides() {
+        MockUser.current = MockUser(dataKeys: [.peakRewardsSummary: .peakRewardsInactiveProgram,
+                                               .peakRewardsOverrides: .peakRewardsNoOverrides])
+        MockAccountService.loadAccountsSync()
+        
         let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "programCardsDataInactiveProgramNoOverrides", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -231,7 +255,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        let expectedEvents = [[("Test Program", "You have not been cycled today")]].enumerated().map(next)
+        let expectedEvents = [[("Test Program", "You have been cycled today")]].enumerated().map(next)
         XCTAssert(!zip(observer.events, expectedEvents)
             .map {
                 if let observedTupleArray = $0.0.value.element, let expectedTupleArray = $0.1.value.element {
@@ -243,9 +267,12 @@ class PeakRewardsViewModelTests: XCTestCase {
     }
     
     func testShowDeviceButton() {
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
+        
         // Test case: devices.count > 1, should show
         var viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -256,13 +283,15 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        
+        XCTAssertRecordedElements(observer.events, [true])
         XCTAssertEqual(observer.events, [true].enumerated().map(next))
         
+        MockUser.current = MockUser(globalKeys: .peakRewardsActiveProgram)
+        MockAccountService.loadAccountsSync()
         
         // Test case: devices.count == 1, should not show
         viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: AccountDetail(accountNumber: "programCardsDataActiveOverride", premiseNumber: ""))
+                                             accountDetail: .default)
         
         scheduler.createHotObservable([next(0, ())])
             .bind(to: viewModel.loadInitialData)
@@ -273,7 +302,7 @@ class PeakRewardsViewModelTests: XCTestCase {
         
         scheduler.start()
         
-        XCTAssertEqual(observer.events, [false].enumerated().map(next))
+        XCTAssertRecordedElements(observer.events, [false])
     }
     
 }

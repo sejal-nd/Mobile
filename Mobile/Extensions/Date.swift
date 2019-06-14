@@ -75,7 +75,7 @@ extension Date {
     }
     
     @nonobjc var paymentFormatString: String {
-        if Calendar.opCo.isDateInToday(self) {
+        if isInToday(calendar: .opCo) {
             return DateFormatter.apiFormatterGMT.string(from: self)
         } else {
             return DateFormatter.noonApiFormatter.string(from: self)
