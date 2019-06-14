@@ -14,18 +14,12 @@ protocol AccountPickerDelegate: class {
 
 class AccountPicker: UIView {
     
-    let maxAccounts = 5
-    
     weak var delegate: AccountPickerDelegate?
+    weak var parentViewController: UIViewController?
 
     let scrollView = UIScrollView(frame: .zero)
-    let pageControl = UIPageControl(frame: .zero)
     let loadingIndicator = LoadingIndicator(frame: .zero)
     let shadowView = UIView().usingAutoLayout()
-    let leftButton = ButtonControl().usingAutoLayout()
-    let leftCaretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret_white_left"))
-    let rightButton = ButtonControl().usingAutoLayout()
-    let rightCaretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret_white"))
     
     var accounts: [Account]! {
         get { return AccountsStore.shared.accounts }
@@ -34,10 +28,6 @@ class AccountPicker: UIView {
     var currentIndex: Int! {
         didSet {
             AccountsStore.shared.currentIndex = currentIndex
-            leftButton.isEnabled = currentIndex > 0
-            rightButton.isEnabled = currentIndex < accounts.count - 1
-            pageControl.numberOfPages = accounts.count
-            pageControl.currentPage = currentIndex
             delegate?.accountPickerDidChangeAccount(self)
         }
     }
@@ -51,14 +41,10 @@ class AccountPicker: UIView {
     }
     
     private var shouldScroll: Bool {
-        return 2...maxAccounts ~= accounts?.count ?? 0 && !isMultiPremise
+        return false
     }
     
     private var loadedAccounts = false
-    
-    weak var parentViewController: UIViewController?
-
-    var pageViews = [UIView]()
     
     var advancedAccountIconImageView: UIImageView?
     var advancedAccountNumberLabel: UILabel?
@@ -81,38 +67,14 @@ class AccountPicker: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        leftButton.frame = CGRect(x: 0, y: 0, width: 40, height: intrinsicContentSize.height)
-        leftCaretImageView.frame = CGRect(x: leftButton.frame.width / 2 - leftCaretImageView.frame.width / 2,
-                                          y: leftButton.frame.height / 2 - leftCaretImageView.frame.height / 2 - 10,
-                                          width: 8, height: 13)
-        rightButton.frame = CGRect(x: frame.size.width - 40, y: 0, width: 40, height: intrinsicContentSize.height)
-        rightCaretImageView.frame = CGRect(x: rightButton.frame.width / 2 - rightCaretImageView.frame.width / 2,
-                                           y: rightButton.frame.height / 2 - rightCaretImageView.frame.height / 2 - 10,
-                                           width: 8, height: 13)
-        
-        
         if shouldScroll {
             scrollView.frame = CGRect(x: 40, y: 0, width: frame.size.width - 80, height: intrinsicContentSize.height)
         } else {
             scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: intrinsicContentSize.height)
         }
         
-        pageControl.frame = CGRect(x: frame.size.width / 2 - 80, y: intrinsicContentSize.height - 23, width: 160, height: 7)
-        
         if let button = advancedAccountButton {
             button.frame = bounds
-        }
-        
-        if pageViews.count > 0 {
-            for index in 0..<pageViews.count {
-                let pageView = pageViews[index]
-                pageView.frame = CGRect(x: CGFloat(index) * scrollView.frame.size.width, y: 0, width: scrollView.frame.size.width, height: intrinsicContentSize.height)
-            }
-            
-            scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(pageViews.count), height: intrinsicContentSize.height)
-            if pageControl.currentPage < pageViews.count {
-                scrollView.scrollRectToVisible(pageViews[accounts.firstIndex(of: currentAccount) ?? 0].frame, animated: false)
-            }
         }
         
     }
@@ -129,32 +91,10 @@ class AccountPicker: UIView {
         clipsToBounds = true
         backgroundColor = .clear
         
-        leftButton.shouldFadeSubviewsOnPress = true
-        leftButton.addSubview(leftCaretImageView)
-        leftButton.isEnabled = false
-        addSubview(leftButton)
-        leftButton.isHidden = true
-        leftButton.isAccessibilityElement = true
-        leftButton.accessibilityLabel = NSLocalizedString("Previous account", comment: "")
-        
-        rightButton.shouldFadeSubviewsOnPress = true
-        rightButton.addSubview(rightCaretImageView)
-        rightButton.isEnabled = false
-        addSubview(rightButton)
-        rightButton.isHidden = true
-        rightButton.isAccessibilityElement = true
-        rightButton.accessibilityLabel = NSLocalizedString("Next account", comment: "")
-        
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.delegate = self
         scrollView.clipsToBounds = true
         addSubview(scrollView)
-
-        pageControl.pageIndicatorTintColor = tintWhite ? UIColor.white.withAlphaComponent(0.43) : .accentGray
-        pageControl.currentPageIndicatorTintColor = tintWhite ? .white : .actionBlue
-        pageControl.addTarget(self, action: #selector(onPageControlTap(sender:)), for: .valueChanged)
-        addSubview(pageControl)
         
         loadingIndicator.isHidden = true
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -170,9 +110,6 @@ class AccountPicker: UIView {
         shadowView.topAnchor.constraint(equalTo: bottomAnchor).isActive = true
         shadowView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 3)
 
-        leftButton.addTarget(self, action: #selector(leftPressed), for: .touchUpInside)
-        rightButton.addTarget(self, action: #selector(rightPressed), for: .touchUpInside)
-        
         if tintWhite {
             backgroundColor = .primaryColorAccountPicker
             shadowView.backgroundColor = .primaryColorAccountPicker
@@ -186,16 +123,6 @@ class AccountPicker: UIView {
         }
     }
     
-    @objc func rightPressed() {
-        pageControl.currentPage += 1
-        onPageControlTap(sender: pageControl)
-    }
-    
-    @objc func leftPressed() {
-        pageControl.currentPage -= 1
-        onPageControlTap(sender: pageControl)
-    }
-    
     func setLoading(_ loading: Bool) {
         loadingIndicator.isHidden = !loading
     }
@@ -205,34 +132,9 @@ class AccountPicker: UIView {
         loadedAccounts = true
 
         currentIndex = AccountsStore.shared.currentIndex ?? 0
-        var pagedAccounts: [Account] = accounts
-
-        if accounts.count > 1 && accounts.count <= maxAccounts {
-            pageControl.numberOfPages = accounts.count
-        } else {
-            pagedAccounts = Array(accounts.prefix(maxAccounts))
-            pageControl.isHidden = true
-        }
-
-        pageViews.removeAll()
-        if accounts.count <= maxAccounts && !isMultiPremise {
-            for account in pagedAccounts {
-                addAccountToScrollView(account)
-            }
-        } else { // Advanced Account Picker
-            pageControl.isHidden = true
-            addAccountToScrollView(currentAccount, advancedPicker: true)
-        }
         
-        if shouldScroll {
-            accessibilityElements = [scrollView, pageControl, leftButton, rightButton]
-            leftButton.isHidden = false
-            rightButton.isHidden = false
-        } else {
-            leftButton.isHidden = true
-            rightButton.isHidden = true
-        }
-
+        addAccountToScrollView(currentAccount, advancedPicker: true)
+        
         setNeedsLayout()
         invalidateIntrinsicContentSize()
     }
@@ -242,7 +144,6 @@ class AccountPicker: UIView {
         
         // Setting the page view to this initial size avoids upfront autolayout warnings
         let pageView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 60))
-        pageViews.append(pageView)
         
         let icon: UIImage
         let a11yDescription: String
@@ -313,9 +214,6 @@ class AccountPicker: UIView {
         accountStackView.trailingAnchor.constraint(lessThanOrEqualTo: pageView.trailingAnchor).isActive = true
         addressLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 220).isActive = true
         
-        leftCaretImageView.image = tintWhite ? #imageLiteral(resourceName: "ic_caret_white_left"):#imageLiteral(resourceName: "ic_caret_left")
-        rightCaretImageView.image = tintWhite ? #imageLiteral(resourceName: "ic_caret_white"):#imageLiteral(resourceName: "ic_caret")
-        
         scrollView.addSubview(pageView)
         
         if advancedPicker { // Makes area tappable and adds caret icon
@@ -328,19 +226,6 @@ class AccountPicker: UIView {
             advancedAccountButton?.isAccessibilityElement = true
             advancedAccountButton?.accessibilityLabel = NSLocalizedString("Account selector", comment: "")
             addSubview(advancedAccountButton!)
-            
-            let caret = tintWhite ? #imageLiteral(resourceName: "ic_caret_white"): #imageLiteral(resourceName: "ic_caret")
-            let caretImageView = UIImageView(image: caret)
-            caretImageView.frame = .zero
-            caretImageView.translatesAutoresizingMaskIntoConstraints = false
-            pageView.addSubview(caretImageView)
-            
-            addConstraints([
-                caretImageView.widthAnchor.constraint(equalToConstant: 8),
-                caretImageView.heightAnchor.constraint(equalToConstant: 13),
-                caretImageView.trailingAnchor.constraint(equalTo: pageView.trailingAnchor, constant: -18),
-                caretImageView.centerYAnchor.constraint(equalTo: pageView.centerYAnchor)
-            ])
         }
     }
     
@@ -358,20 +243,8 @@ class AccountPicker: UIView {
         }
     }
     
-    @objc func onPageControlTap(sender: UIPageControl) {
-        scrollView.scrollRectToVisible(CGRect(x: scrollView.frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: scrollView.frame.size.width, height: intrinsicContentSize.height), animated: true)
-        currentIndex = pageControl.currentPage
-    }
-    
     func updateCurrentAccount() {
         currentIndex = AccountsStore.shared.currentIndex
-        if pageViews.count > 0 {
-            if let index = accounts.firstIndex(where: { $0 == currentAccount}) {
-                pageControl.currentPage = index
-                scrollView.scrollRectToVisible(CGRect(x: scrollView.frame.size.width * CGFloat(pageControl.currentPage), y: 0, width: scrollView.frame.size.width, height: intrinsicContentSize.height), animated: false)
-            }
-        }
-        
         updateAdvancedAccountPicker(currentAccount)
     }
     
@@ -427,16 +300,4 @@ extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
         
         delegate?.accountPickerDidChangeAccount(self)
     }
-}
-
-extension AccountPicker: UIScrollViewDelegate {
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
-
-        if currentPage != pageControl.currentPage {
-            currentIndex = currentPage
-        }
-    }
-
 }
