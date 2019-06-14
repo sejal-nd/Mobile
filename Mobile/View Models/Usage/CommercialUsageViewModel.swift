@@ -14,6 +14,7 @@ fileprivate let jsTimeoutInterval: TimeInterval = 15 // 15 seconds
 
 class CommercialUsageViewModel {
     
+    let accountDetail: Observable<AccountDetail>
     let ssoData: Observable<SSOData>
     let errorTrigger: PublishSubject<Error>
     let tabs = BehaviorRelay(value: Tab.allCases)
@@ -22,9 +23,26 @@ class CommercialUsageViewModel {
     
     var jsTimeout: Timer?
     
-    init(ssoData: Observable<SSOData>, errorTrigger: PublishSubject<Error>) {
+    let disposeBag = DisposeBag()
+    
+    init(accountDetail: Observable<AccountDetail>,
+         ssoData: Observable<SSOData>,
+         errorTrigger: PublishSubject<Error>) {
+        self.accountDetail = accountDetail
         self.ssoData = ssoData
         self.errorTrigger = errorTrigger
+        
+        accountDetail
+            .map { accountDetail -> [Tab] in
+                if !accountDetail.isAMIAccount || accountDetail.isFinaled ||
+                    accountDetail.isActiveSeverance || accountDetail.serviceType?.uppercased() == "GAS" {
+                    return Tab.allCases.filter { $0 != .operatingSchedule }
+                } else {
+                    return Tab.allCases
+                }
+            }
+            .bind(to: tabs)
+            .disposed(by: disposeBag)
     }
     
     private(set) lazy var javascript: Driver<String> = ssoData.map { [weak self] ssoData in
@@ -93,11 +111,34 @@ class CommercialUsageViewModel {
 
 fileprivate let jsString = "var data={SAMLResponse:'%@',RelayState:'%@'};var form=document.createElement('form');form.setAttribute('method','post'),form.setAttribute('action','%@');for(var key in data){if(data.hasOwnProperty(key)){var hiddenField=document.createElement('input');hiddenField.setAttribute('type', 'hidden');hiddenField.setAttribute('name', key);hiddenField.setAttribute('value', data[key]);form.appendChild(hiddenField);}}document.body.appendChild(form);form.submit();"
 
+fileprivate let isProd = Environment.shared.environmentName == .prod ||
+    Environment.shared.environmentName == .prodbeta
+
+fileprivate var embedJsUrl: String {
+    let opcoStr = Environment.shared.opco.displayString.lowercased()
+    let strFormat = isProd ? "https://%@-sso.firstfuel.com/assets/widgets/v1/embed.js" :
+        "https://%@-sso.firstfuelsoftware.net/assets/ff/pdf/widgets/v1/embed.js"
+    return String(format: strFormat, opcoStr)
+}
+
+fileprivate var providerUrl: String {
+    let opcoStr = Environment.shared.opco.displayString.lowercased()
+    let strFormat = isProd ? "https://%@-sso.firstfuel.com" :
+        "https://%@-sso.firstfuelsoftware.net"
+    return String(format: strFormat, opcoStr)
+}
+
+fileprivate var logLevel: String {
+    return isProd ? "INFO" : "DEBUG"
+}
+
 fileprivate func html(forTab tab: CommercialUsageViewModel.Tab, username: String) -> String {
     let url = Bundle.main.url(forResource: "FirstFuelWidget", withExtension: "html")!
-    // TODO, string replace the correct "data-login" (User's ID/email), "data-widget-id" (which widget), and "data-energy-type" (GAS/ELECTRIC)
-    
     return try! String(contentsOf: url)
-        .replacingOccurrences(of: "dataWidgetId", with: tab.widgetId)
-        .replacingOccurrences(of: "loggedInUsername", with: username)
+        .replacingOccurrences(of: "[dataWidgetId]", with: tab.widgetId)
+        .replacingOccurrences(of: "[loggedInUsername]", with: username)
+        .replacingOccurrences(of: "[accountNumber]", with: AccountsStore.shared.currentAccount.accountNumber)
+        .replacingOccurrences(of: "[embedJsSrc]", with: embedJsUrl)
+        .replacingOccurrences(of: "[providerUrl]", with: providerUrl)
+        .replacingOccurrences(of: "[logLevel]", with: logLevel)
 }

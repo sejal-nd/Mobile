@@ -28,6 +28,7 @@ class BillingHistoryDetailsViewModel {
     
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.accountNumber,
+                                     paymentAmount: billingHistoryItem.amountPaid ?? 0,
                                      paymentId: billingHistoryItem.paymentId!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in

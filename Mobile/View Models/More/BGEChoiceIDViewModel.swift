@@ -26,6 +26,8 @@ class BGEChoiceIDViewModel {
     }
     
     func fetchChoiceIds() {
+        electricChoiceId.accept(nil)
+        gasChoiceId.accept(nil)
         loading.accept(true)
         accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
             .observeOn(MainScheduler.instance)

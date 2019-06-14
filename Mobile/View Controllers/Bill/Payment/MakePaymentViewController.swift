@@ -93,6 +93,8 @@ class MakePaymentViewController: UIViewController {
     var accountDetail: AccountDetail! // Passed in from presenting view
     var billingHistoryItem: BillingHistoryItem? // Passed in from Billing History, indicates we are modifying a payment
     
+    var hasPrecariousOtherAmountBeenSelected = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,7 +110,7 @@ class MakePaymentViewController: UIViewController {
         stackView.sendSubviewToBack(bg)
         
         if billingHistoryItem != nil {
-            title = NSLocalizedString("Modify Payment", comment: "")
+            title = NSLocalizedString("Edit Payment", comment: "")
         } else {
             title = NSLocalizedString("Make a Payment", comment: "")
         }
@@ -152,6 +154,7 @@ class MakePaymentViewController: UIViewController {
         paymentAmountFeeLabel.textColor = .blackText
         paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
+        paymentAmountTextField.textField.text = viewModel.paymentAmount.value.currencyString
         paymentAmountTextField.setKeyboardType(.decimalPad)
         viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in
             self?.paymentAmountTextField.setError(errorMessage)
@@ -233,13 +236,6 @@ class MakePaymentViewController: UIViewController {
         bindViewHiding()
         bindViewContent()
         bindButtonTaps()
-        
-        viewModel.shouldShowSelectPaymentAmount.asObservable().single().subscribe(onNext: { [weak self] shouldShow in
-            guard let self = self else { return }
-            self.paymentAmountTextField.textField.text = shouldShow ?
-                0.0.currencyString :
-                self.viewModel.paymentAmount.value.currencyString
-        }).disposed(by: disposeBag)
 
         fetchData(initialFetch: true)
     }
@@ -362,10 +358,18 @@ class MakePaymentViewController: UIViewController {
                     
                     // Only set and animate `isHidden` if the value should change.
                     // Otherwise we get weird animation queue issues 🤷‍♂️
-                    let shouldHide = control != radioControls.last
-                    if shouldHide != self.paymentAmountTextField.isHidden {
+                    let shouldHideOtherTextField = control != radioControls.last
+                    if shouldHideOtherTextField != self.paymentAmountTextField.isHidden {
+                        if !shouldHideOtherTextField && !self.hasPrecariousOtherAmountBeenSelected {
+                            // If user selects "Other", default the payment amount to $0.00. We use `hasPrecariousOtherAmountBeenSelected` to
+                            // ensure this only happens once, i.e. if the user enters a custom amount, then selects another radio button,
+                            // then selects "Other" again, the previously entered amount should persist.
+                            self.hasPrecariousOtherAmountBeenSelected = true
+                            self.paymentAmountTextField.textField.text = 0.currencyString
+                            self.viewModel.paymentAmount.value = 0
+                        }
                         UIView.animate(withDuration: 0.2) {
-                            self.paymentAmountTextField.isHidden = shouldHide
+                            self.paymentAmountTextField.isHidden = shouldHideOtherTextField
                         }
                     }
                     

@@ -173,6 +173,10 @@ class CommercialUsageViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        viewModel.jsTimeout?.invalidate()
+        viewModel.jsTimeout = nil
+    }
 }
 
 extension CommercialUsageViewController: WKNavigationDelegate {

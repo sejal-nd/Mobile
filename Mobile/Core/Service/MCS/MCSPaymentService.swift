@@ -138,10 +138,12 @@ class MCSPaymentService: PaymentService {
         let params: [String: Any] = [
             "payment_amount": String.init(format: "%.02f", paymentAmount),
             "payment_date": paymentDate.paymentFormatString,
+            "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
             "wallet_id": walletId,
             "wallet_item_id": walletItem.walletItemId!,
             "is_existing_account": !walletItem.isTemporary,
-            "biller_id": "\(opCo.rawValue)Registered"
+            "biller_id": "\(opCo.rawValue)Registered",
+            "masked_wallet_item_account_number": walletItem.maskedWalletItemAccountNumber ?? ""
         ]
 
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule", params: params)
@@ -167,6 +169,7 @@ class MCSPaymentService: PaymentService {
         var params: [String: Any] = [
             "payment_amount": String.init(format: "%.02f", paymentAmount),
             "payment_date": paymentDate.paymentFormatString,
+            "payment_category_type": walletItem.bankOrCard == .bank ? "Check" : "Credit",
             "payment_id": paymentId,
             "biller_id": "\(opCo.rawValue)Registered"
         ]
@@ -175,6 +178,7 @@ class MCSPaymentService: PaymentService {
             params["wallet_id"] = walletId
             params["wallet_item_id"] = walletItemId
             params["is_existing_account"] = !walletItem.isTemporary
+            params["masked_wallet_item_account_number"] = walletItem.maskedWalletItemAccountNumber ?? ""
         }
         
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
@@ -190,8 +194,11 @@ class MCSPaymentService: PaymentService {
             })
     }
     
-    func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void> {
-        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: nil)
+    func cancelPayment(accountNumber: String, paymentAmount: Double, paymentId: String) -> Observable<Void> {
+        let params: [String: Any] = [
+            "payment_amount": String.init(format: "%.02f", paymentAmount)
+        ]
+        return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/payments/schedule/\(paymentId)", params: params)
             .mapTo(())
             .do(onNext: {
                 RxNotifications.shared.recentPaymentsUpdated.onNext(())

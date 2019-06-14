@@ -57,21 +57,22 @@ class UsageViewModel {
             // Start the timer. The FirstFuel session is only valid for [firstfuelSessionTimeout] seconds -
             // so we automatically reload after that amount of time.
             // Replace timer with .empty() for residential accounts
-            guard !accountDetail.isResidential else { return .empty() }
+            guard !accountDetail.isResidential, let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             return Observable<Int>
                 .timer(0, period: firstfuelSessionTimeout, scheduler: MainScheduler.instance)
                 .flatMapLatest { [weak self] _ -> Observable<SSOData> in
                     guard let self = self else { return .empty() }
                     return self.accountService
                         .fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
-                                               premiseNumber: accountDetail.premiseNumber!)
+                                               premiseNumber: premiseNumber)
             }
         }
         .share(replay: 1)
     
     private let commercialErrorTrigger = PublishSubject<Error>()
     
-    private(set) lazy var commercialViewModel = CommercialUsageViewModel(ssoData: commercialDataEvents.elements(),
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(accountDetail: accountDetailEvents.elements(),
+                                                                         ssoData: commercialDataEvents.elements(),
                                                                          errorTrigger: commercialErrorTrigger)
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
@@ -194,7 +195,7 @@ class UsageViewModel {
         .filter { accountDetailEvent in
             guard let accountDetail = accountDetailEvent.element else { return false }
             return !accountDetail.isEligibleForUsageData &&
-                accountDetail.isResidential &&
+                (accountDetail.isResidential || accountDetail.premiseNumber == nil) &&
                 accountDetail.prepaidStatus != .active
         }
         .mapTo(())

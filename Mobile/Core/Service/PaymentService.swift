@@ -93,5 +93,5 @@ protocol PaymentService {
                        walletId: String,
                        walletItem: WalletItem) -> Observable<String>
     
-    func cancelPayment(accountNumber: String, paymentId: String) -> Observable<Void>
+    func cancelPayment(accountNumber: String, paymentAmount: Double, paymentId: String) -> Observable<Void>
 }

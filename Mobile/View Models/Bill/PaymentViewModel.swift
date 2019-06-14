@@ -54,9 +54,14 @@ class PaymentViewModel {
                                                   isEditingItem: true)
         }
 
-        amountDue = Variable(accountDetail.billingInfo.netDueAmount ?? 0)
-        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? 0)
-        paymentDate = Variable(billingHistoryItem?.date ?? .now) // May be updated later...see computeDefaultPaymentDate()
+        let netDueAmount: Double = accountDetail.billingInfo.netDueAmount ?? 0
+        amountDue = Variable(netDueAmount)
+        
+        // If editing, default to the amount paid. If not editing, default to total amount due
+        paymentAmount = Variable(billingHistoryItem?.amountPaid ?? netDueAmount)
+        
+        // May be updated later...see computeDefaultPaymentDate()
+        paymentDate = Variable(billingHistoryItem?.date ?? .now)
     }
 
     // MARK: - Service Calls
@@ -126,6 +131,7 @@ class PaymentViewModel {
 
     func cancelPayment(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
         paymentService.cancelPayment(accountNumber: accountDetail.value.accountNumber,
+                                     paymentAmount: paymentAmount.value,
                                      paymentId: paymentId.value!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
@@ -661,10 +667,11 @@ class PaymentViewModel {
     var confirmationFooterText: NSAttributedString {
         let accountDetail = self.accountDetail.value
         let billingInfo = accountDetail.billingInfo
+        let opco = Environment.shared.opco
         
         // Only show text in these precarious situations
-        guard (Environment.shared.opco == .bge && accountDetail.isActiveSeverance) ||
-            (accountDetail.isFinaled && billingInfo.pastDueAmount > 0) ||
+        guard (opco == .bge && accountDetail.isActiveSeverance) ||
+            (accountDetail.isFinaled && (opco == .bge || billingInfo.pastDueAmount > 0)) ||
             (billingInfo.restorationAmount > 0 && accountDetail.isCutOutNonPay) ||
             (billingInfo.disconnectNoticeArrears > 0 && accountDetail.isCutOutIssued) else {
             return NSAttributedString(string: "")
