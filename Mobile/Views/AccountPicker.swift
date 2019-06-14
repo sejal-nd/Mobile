@@ -19,7 +19,6 @@ class AccountPicker: UIView {
 
     let scrollView = UIScrollView(frame: .zero)
     let loadingIndicator = LoadingIndicator(frame: .zero)
-    let shadowView = UIView().usingAutoLayout()
     
     var accounts: [Account]! {
         get { return AccountsStore.shared.accounts }
@@ -53,12 +52,6 @@ class AccountPicker: UIView {
     
     @IBInspectable var tintWhite: Bool = false
     
-    @IBInspectable var showShadow: Bool = true {
-        didSet {
-            shadowView.isHidden = !showShadow
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
@@ -91,6 +84,8 @@ class AccountPicker: UIView {
         clipsToBounds = true
         backgroundColor = .clear
         
+        addBottomBorder(color: UIColor.white.withAlphaComponent(0.5), width: 1)
+        
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.clipsToBounds = true
@@ -103,19 +98,10 @@ class AccountPicker: UIView {
         loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        addSubview(shadowView)
-        shadowView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        shadowView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        shadowView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        shadowView.topAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        shadowView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 3)
-
         if tintWhite {
             backgroundColor = .primaryColorAccountPicker
-            shadowView.backgroundColor = .primaryColorAccountPicker
         } else {
             backgroundColor = .white
-            shadowView.backgroundColor = .white
         }
         
         if StormModeStatus.shared.isOn {
