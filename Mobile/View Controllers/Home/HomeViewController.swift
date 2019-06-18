@@ -250,6 +250,11 @@ class HomeViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
     }
+    @IBAction func tempPresentAccount(_ sender: Any) {
+        guard let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() else { return }
+        vc.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(vc, animated: false, completion: nil)
+    }
     
     func topPersonalizeButtonSetup() {
         let topPersonalizeButton = ConversationalButton()

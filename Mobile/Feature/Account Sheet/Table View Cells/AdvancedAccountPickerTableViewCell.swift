@@ -14,26 +14,22 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
     @IBOutlet weak var accountNumber: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var checkMarkImageView: UIImageView!
-    @IBOutlet weak var accountStatusLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accountNumber.textColor = .black
+        accountNumber.textColor = .orange//.black
         accountNumber.font = SystemFont.regular.of(textStyle: .headline)
         addressLabel.textColor = .middleGray
         addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        accountStatusLabel.textColor = .middleGray
     }
     
     func configure(withAccount account: Account) {
         let commercialUser = !account.isResidential
         
-        accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial") : #imageLiteral(resourceName: "ic_residential")
+        accountImageView.image = commercialUser ? UIImage(named: "ic_commercial_mini") : UIImage(named: "ic_residential_mini")
         accountImageView.isAccessibilityElement = false
         accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
-        accountNumber.text = account.accountNumber
-        accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), account.accountNumber)
         addressLabel.text = account.address
         if let address = account.address {
             addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@.", comment: ""), address)
@@ -41,19 +37,21 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
             addressLabel.accessibilityLabel = nil
         }
         
+        let accountNumberText: String
         if account.isDefault {
-            accountStatusLabel.text = NSLocalizedString("Default", comment: "")
+            accountNumberText = "\(account.accountNumber) (Default)"
         } else if account.isFinaled {
-            accountStatusLabel.text = NSLocalizedString("Finaled", comment: "")
+            accountNumberText = "\(account.accountNumber) (Finaled)"
             accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial_disabled") : #imageLiteral(resourceName: "ic_residential_disabled")
         } else if account.isLinked {
-            accountStatusLabel.text = NSLocalizedString("Linked", comment: "")
+            accountNumberText = "\(account.accountNumber) (Linked)"
         } else {
-            accountStatusLabel.text = nil
+            accountNumberText = account.accountNumber
         }
         
-        accountStatusLabel.isHidden = !(account.isDefault || account.isFinaled || account.isLinked)
-        
+        accountNumber.text = account.accountNumber
+        accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
+                
         if account.accountNumber == AccountsStore.shared.currentAccount.accountNumber {
             separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
             checkMarkImageView.isHidden = false
@@ -63,15 +61,8 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
             checkMarkImageView.isHidden = true
         }
         checkMarkImageView.isAccessibilityElement = false
-        
-        if let text = accountStatusLabel.text {
-            accountStatusLabel.accessibilityLabel = "\(text) account"
-        } else {
-            accountStatusLabel.accessibilityLabel = nil
-        }
-        self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), " +
-        "\(addressLabel.accessibilityLabel ?? "") \(accountStatusLabel.accessibilityLabel ?? "")"
-        
+
+        self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), "
     }
     
 }

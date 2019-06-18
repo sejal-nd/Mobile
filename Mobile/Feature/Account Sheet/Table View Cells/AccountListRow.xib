@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountListRow" rowHeight="175" id="hlT-LO-36c" customClass="AccountListRow" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="175"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hlT-LO-36c" id="Hlg-Rd-hRq">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="174.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aR9-nL-tOv">
+                        <rect key="frame" x="36" y="8" width="342" height="158.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="u0p-Rp-EZo">
+                                <rect key="frame" x="0.0" y="0.0" width="342" height="55"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RPy-yR-W5T">
+                                        <rect key="frame" x="0.0" y="17" width="42" height="21"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="G0V-0x-Ief">
+                                                <rect key="frame" x="0.0" y="5.5" width="14" height="10"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="14" id="Ap1-C8-99W"/>
+                                                    <constraint firstAttribute="height" constant="10" id="Ogj-FV-h8b"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gfq-Oc-niO">
+                                                <rect key="frame" x="22" y="0.0" width="20" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="0ZJ-3k-eBB"/>
+                                                    <constraint firstAttribute="width" constant="20" id="hYr-L9-1mG"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ldb-ek-XpS">
+                                        <rect key="frame" x="50" y="7.5" width="271" height="40.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ6-fj-Twg">
+                                                <rect key="frame" x="0.0" y="0.0" width="271" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skG-co-YWn">
+                                                <rect key="frame" x="0.0" y="23.5" width="271" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_carat_down" translatesAutoresizingMaskIntoConstraints="NO" id="OkA-RB-RPb">
+                                        <rect key="frame" x="329" y="23.5" width="13" height="8"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="VMS-2P-JSL"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bA2-fa-VBf">
+                                <rect key="frame" x="0.0" y="55" width="342" height="103.5"/>
+                                <color key="backgroundColor" red="0.81568627449999997" green="0.0078431372550000003" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="120" id="SIC-Ve-0S9"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="u0p-Rp-EZo" firstAttribute="top" secondItem="aR9-nL-tOv" secondAttribute="top" id="Y9M-PB-Rcp"/>
+                            <constraint firstAttribute="trailing" secondItem="u0p-Rp-EZo" secondAttribute="trailing" id="uyy-3X-n0b"/>
+                            <constraint firstItem="u0p-Rp-EZo" firstAttribute="leading" secondItem="aR9-nL-tOv" secondAttribute="leading" id="wcg-La-zle"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="aR9-nL-tOv" secondAttribute="trailing" constant="16" id="Aak-83-lxG"/>
+                    <constraint firstItem="aR9-nL-tOv" firstAttribute="leading" secondItem="Hlg-Rd-hRq" secondAttribute="leadingMargin" constant="16" id="nGU-Sm-1Kw"/>
+                    <constraint firstAttribute="bottom" secondItem="aR9-nL-tOv" secondAttribute="bottom" constant="8" id="vhy-w4-U2n"/>
+                    <constraint firstItem="aR9-nL-tOv" firstAttribute="top" secondItem="Hlg-Rd-hRq" secondAttribute="top" constant="8" id="y8K-uh-XBg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="accountImageView" destination="gfq-Oc-niO" id="t6r-m7-BuR"/>
+                <outlet property="accountNumber" destination="eJ6-fj-Twg" id="B1a-hn-9UM"/>
+                <outlet property="addressLabel" destination="skG-co-YWn" id="GOj-Pe-wen"/>
+                <outlet property="carrotImageView" destination="OkA-RB-RPb" id="eHr-AN-lyZ"/>
+                <outlet property="checkMarkImageView" destination="G0V-0x-Ief" id="wlp-hC-J1H"/>
+                <outlet property="stackView" destination="aR9-nL-tOv" id="VsC-p8-r9B"/>
+                <outlet property="tableView" destination="bA2-fa-VBf" id="zJy-hL-pWD"/>
+                <outlet property="tableViewHeightConstraint" destination="SIC-Ve-0S9" id="W0t-hu-e1t"/>
+            </connections>
+            <point key="canvasLocation" x="176.81159420289856" y="-75.334821428571431"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_carat_down" width="13" height="8"/>
+        <image name="ic_check_outage" width="19" height="16"/>
+    </resources>
+</document>

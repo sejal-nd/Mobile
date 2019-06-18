@@ -21,9 +21,9 @@ class AdvancedAccountPickerMultiPremiseTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accountNumber.textColor = .black
+        accountNumber.textColor = .red//.black
         accountNumber.font = SystemFont.regular.of(textStyle: .headline)
-        addressLabel.textColor = .middleGray
+        addressLabel.textColor = .green//.middleGray
         addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
         accountStatusLabel.textColor = .middleGray
     }
@@ -58,6 +58,7 @@ class AdvancedAccountPickerMultiPremiseTableViewCell: UITableViewCell {
         }
 
         if account.isDefault {
+            
             self.accountStatusLabel.text = NSLocalizedString("Default", comment: "")
         } else if account.isFinaled {
             self.accountStatusLabel.text = NSLocalizedString("Finaled", comment: "")
