@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1W-u8-rsg">
-                        <rect key="frame" x="30" y="8" width="368" height="43.5"/>
+                        <rect key="frame" x="56" y="8" width="342" height="43.5"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="43.5" id="3VM-sk-e07"/>
                         </constraints>
@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="ThY-hb-Ts0">
-                        <rect key="frame" x="8" y="25" width="14" height="10"/>
+                        <rect key="frame" x="30" y="25" width="14" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="2cV-Xd-UUf"/>
                             <constraint firstAttribute="width" constant="14" id="9oU-xd-gNc"/>
@@ -36,9 +36,9 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="A1W-u8-rsg" firstAttribute="leading" secondItem="ThY-hb-Ts0" secondAttribute="trailing" constant="8" id="9YQ-BQ-H6r"/>
+                    <constraint firstItem="A1W-u8-rsg" firstAttribute="leading" secondItem="ThY-hb-Ts0" secondAttribute="trailing" constant="12" id="9YQ-BQ-H6r"/>
                     <constraint firstItem="A1W-u8-rsg" firstAttribute="top" secondItem="797-yf-quO" secondAttribute="top" constant="8" id="DcG-gN-vRP"/>
-                    <constraint firstItem="ThY-hb-Ts0" firstAttribute="leading" secondItem="797-yf-quO" secondAttribute="leading" constant="8" id="RUh-2j-vRm"/>
+                    <constraint firstItem="ThY-hb-Ts0" firstAttribute="leading" secondItem="797-yf-quO" secondAttribute="leading" constant="30" id="RUh-2j-vRm"/>
                     <constraint firstItem="ThY-hb-Ts0" firstAttribute="centerY" secondItem="797-yf-quO" secondAttribute="centerY" id="ToM-iS-FJz"/>
                     <constraint firstAttribute="bottom" secondItem="A1W-u8-rsg" secondAttribute="bottom" constant="8" id="XXI-Pc-5e8"/>
                     <constraint firstAttribute="trailing" secondItem="A1W-u8-rsg" secondAttribute="trailing" constant="16" id="o3G-Ye-k49"/>

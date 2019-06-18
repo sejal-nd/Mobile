@@ -107,21 +107,21 @@ class AccountListRow: UITableViewCell {
         accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
         if account.accountNumber == AccountsStore.shared.currentAccount.accountNumber {
-            separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
-            checkMarkImageView.isHidden = false
+//            separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
+//            checkMarkImageView.isHidden = false
             checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
         } else {
-            separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
-            checkMarkImageView.isHidden = true
+//            separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
+//            checkMarkImageView.isHidden = true
         }
         checkMarkImageView.isAccessibilityElement = false
         
         self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), "
         
-        checkMarkImageView.isHidden = account.isMultipremise
+//        checkMarkImageView.isHidden = account.isMultipremise
         carrotImageView.isHidden = !account.isMultipremise
         
-        selectionStyle = account.isMultipremise ? .none : .default
+//        selectionStyle = account.isMultipremise ? .none : .default
     }
 }
 
