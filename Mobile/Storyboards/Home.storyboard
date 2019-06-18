@@ -341,25 +341,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="90" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="90"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="dgH-cW-Bpv"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzY-0e-rXR">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-go-05Y" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="533"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UPV-GL-s03" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="463"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-LQ-p93">
                                                         <rect key="frame" x="16" y="0.0" width="343" height="56"/>
@@ -394,10 +391,10 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErJ-ar-hFE">
-                                                        <rect key="frame" x="0.0" y="56" width="375" height="407"/>
+                                                        <rect key="frame" x="0.0" y="56" width="375" height="447"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dne-fe-jfO">
-                                                                <rect key="frame" x="0.0" y="81.5" width="375" height="244.5"/>
+                                                                <rect key="frame" x="0.0" y="101.5" width="375" height="244.5"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_white" translatesAutoresizingMaskIntoConstraints="NO" id="Y9g-FB-sR2">
                                                                         <rect key="frame" x="125" y="0.0" width="125" height="126"/>
