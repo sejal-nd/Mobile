@@ -53,10 +53,6 @@ class AccountPicker: UIControl {
             
             switchAccountImageView.image = tintWhite ? UIImage(named: "ic_switchaccount")! :
                 UIImage(named: "ic_switchaccount_blue")
-            
-            let borderWhiteAlpha: CGFloat = StormModeStatus.shared.isOn ? 0.3 : 0.5
-            let borderColor = tintWhite ? UIColor.white.withAlphaComponent(borderWhiteAlpha) : .accentGray
-            addBottomBorder(color: borderColor, width: 1)
         }
     }
     
@@ -72,6 +68,15 @@ class AccountPicker: UIControl {
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 0, height: 50)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Need to set border here for it to properly stretch on iPad
+        let borderWhiteAlpha: CGFloat = StormModeStatus.shared.isOn ? 0.3 : 0.5
+        let borderColor = tintWhite ? UIColor.white.withAlphaComponent(borderWhiteAlpha) : .accentGray
+        addBottomBorder(color: borderColor, width: 1)
     }
 
     func commonInit() {
