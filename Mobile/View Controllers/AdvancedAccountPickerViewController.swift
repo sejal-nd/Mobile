@@ -77,17 +77,18 @@ extension AdvancedAccountPickerViewController: UITableViewDelegate {
             
             let dataArray = account.premises.map { $0.addressLineString }
             PickerView.showStringPicker(withTitle: NSLocalizedString("Select Premise", comment: ""),
-                            data: dataArray,
-                            selectedIndex: 0,
-                            onDone: { [weak self] value, index in
-                                guard let self = self else { return }
-                                self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[index]
-                                
-                                AccountsStore.shared.accounts = self.accounts
-                                
-                                self.exitWith(selectedAccount: self.accounts[self.accountIndexToEditPremise])
+                data: dataArray,
+                selectedIndex: 0,
+                onDone: { [weak self] value, index in
+                    guard let self = self else { return }
+                    self.accounts[self.accountIndexToEditPremise].currentPremise = self.accounts[self.accountIndexToEditPremise].premises[index]
+                    
+                    AccountsStore.shared.accounts = self.accounts
+                    
+                    self.exitWith(selectedAccount: self.accounts[self.accountIndexToEditPremise])
                 },
-                            onCancel: nil)
+                onCancel: nil
+            )
         } else {
             self.exitWith(selectedAccount: accounts[indexPath.row])
         }

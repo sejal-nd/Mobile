@@ -36,11 +36,7 @@ class AccountPickerViewController: UIViewController {
         if AccountsStore.shared.currentIndex == nil {
             fetchAccounts()
         } else {
-            let currentAccount = AccountsStore.shared.currentAccount
-            accountPicker.loadAccounts()
-            if currentAccount != accountPicker.currentAccount || currentAccount.currentPremise != accountPicker.currentAccount.currentPremise {
-                accountPicker.updateCurrentAccount()
-            }
+            accountPicker.refresh()
         }
     }
     
@@ -51,7 +47,7 @@ class AccountPickerViewController: UIViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.accountPicker.setLoading(false)
-                self.accountPicker.loadAccounts()
+                self.accountPicker.refresh()
             }, onError: { _ in
                 MCSApi.shared.logout()
                 NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
