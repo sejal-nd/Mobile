@@ -44,10 +44,8 @@ class AccountPicker: UIControl {
     
     @IBInspectable var tintWhite: Bool = false {
         didSet {
-            view.backgroundColor = tintWhite ? .primaryColorAccountPicker : .white
-            
             for label in accountNumberLabels {
-                label.textColor = tintWhite ? .white: .blackText
+                label.textColor = tintWhite ? .white: .deepGray
             }
             for label in addressLabels {
                 label.textColor = tintWhite ? .white: .deepGray
@@ -55,6 +53,9 @@ class AccountPicker: UIControl {
             
             switchAccountImageView.image = tintWhite ? UIImage(named: "ic_switchaccount")! :
                 UIImage(named: "ic_switchaccount_blue")
+            
+            let borderColor = tintWhite ? UIColor.white.withAlphaComponent(0.5) : .accentGray
+            addBottomBorder(color: borderColor, width: 1)
         }
     }
     
@@ -83,18 +84,17 @@ class AccountPicker: UIControl {
         accessibilityTraits = .button
         clipsToBounds = true
         backgroundColor = .clear
-        
-        addBottomBorder(color: UIColor.white.withAlphaComponent(0.5), width: 1)
+        view.backgroundColor = .clear
         
         multiAccountView.isHidden = true // Hide one so that intrinsic height is 50
         loadingIndicator.isHidden = true
         loadingIndicator.isStormMode = StormModeStatus.shared.isOn
         
-        if StormModeStatus.shared.isOn {
-            backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        }
+//        if StormModeStatus.shared.isOn {
+//            backgroundColor = UIColor.black.withAlphaComponent(0.1)
+//        }
         
-        addTarget(self, action: #selector(onAdvancedAccountButtonPress), for: .touchUpInside)
+        addTarget(self, action: #selector(onAccountPickerPress), for: .touchUpInside)
         
         for label in accountNumberLabels {
             label.font = SystemFont.semibold.of(textStyle: .subheadline)
@@ -157,7 +157,10 @@ class AccountPicker: UIControl {
         }
     }
     
-    @objc func onAdvancedAccountButtonPress() {
+    @objc func onAccountPickerPress() {
+        // Single, non-multipremise accounts
+        guard accounts.count > 1 || isMultiPremise else { return }
+        
         let vc = AdvancedAccountPickerViewController()
         vc.delegate = self
         vc.accounts = accounts
