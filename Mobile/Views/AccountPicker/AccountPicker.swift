@@ -54,7 +54,8 @@ class AccountPicker: UIControl {
             switchAccountImageView.image = tintWhite ? UIImage(named: "ic_switchaccount")! :
                 UIImage(named: "ic_switchaccount_blue")
             
-            let borderColor = tintWhite ? UIColor.white.withAlphaComponent(0.5) : .accentGray
+            let borderWhiteAlpha: CGFloat = StormModeStatus.shared.isOn ? 0.3 : 0.5
+            let borderColor = tintWhite ? UIColor.white.withAlphaComponent(borderWhiteAlpha) : .accentGray
             addBottomBorder(color: borderColor, width: 1)
         }
     }
