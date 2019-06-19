@@ -25,11 +25,6 @@ class AccountPickerViewController: UIViewController {
     var defaultStatusBarStyle: UIStatusBarStyle { return .default }
     var safeAreaTop: CGFloat = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

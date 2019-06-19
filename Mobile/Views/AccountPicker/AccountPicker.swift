@@ -95,20 +95,15 @@ class AccountPicker: UIControl {
         multiAccountView.isHidden = true // Hide one so that intrinsic height is 50
         loadingIndicator.isHidden = true
         loadingIndicator.isStormMode = StormModeStatus.shared.isOn
-        
-//        if StormModeStatus.shared.isOn {
-//            backgroundColor = UIColor.black.withAlphaComponent(0.1)
-//        }
-        
-        addTarget(self, action: #selector(onAccountPickerPress), for: .touchUpInside)
-        
+    
         for label in accountNumberLabels {
             label.font = SystemFont.semibold.of(textStyle: .subheadline)
         }
         for label in addressLabels {
             label.font = SystemFont.regular.of(textStyle: .subheadline)
         }
-
+        
+        addTarget(self, action: #selector(onAccountPickerPress), for: .touchUpInside)
     }
     
     func setLoading(_ loading: Bool) {
