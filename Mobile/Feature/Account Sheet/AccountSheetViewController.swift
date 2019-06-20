@@ -22,34 +22,13 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var gestureView: UIView!
     @IBOutlet weak var handleView: UIView!
     @IBOutlet weak var navigationBar: UINavigationBar!
-    //    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardViewTopConstraint: NSLayoutConstraint!
     
-    var accountListViewController: AccountListViewController!
-    
-    // maybe: fix the dismiss animation so the view goes complete off screen
-    // implement table View
-        // 1.  Inspect how it is currently handled in alert preferences
-        // 2.  rework both account table view cells
-            // add carrot to main table view cell
-            // change press action on main cell if it is multi premise
+    // TODO
+    // - fix tableview scroll on bottom sheet scroll up
     
     
-    // ***** Leaning towards this option******
-    // Table View Other Option
-        // Table View cell that is the account table view cell....
-        // Nested with another non scrolling table view cell
-    // stack view to show/hide the tableView based on: hasUser toggled carrot and hasMultiPremise.
-    
-    // Fully recreate detail table view cell
-    
-    
-    // implement top over-scroll to dismiss ???? STRETCH
-    // This means from collapsed state the user should be able to drag from anywhere on the screen to move the card view, not just the top gesture view.
-    
-    
-    
-    /// The default height of the card view (Height of half state)
     let defaultHeight = UIScreen.main.bounds.height * 0.55
     
     /// Determines when to "snap" to the open or half state
@@ -68,12 +47,12 @@ class AccountSheetViewController: UIViewController {
                 self.cardViewTopConstraint.constant = 0
                 self.locationInView = 0
                 
-                accountListViewController.isScrollEnabled = true
+                tableView.isScrollEnabled = true
             case .half:
                 self.cardViewTopConstraint.constant = self.defaultHeight
                 self.locationInView = self.defaultHeight
                 
-                accountListViewController.isScrollEnabled = false
+                tableView.isScrollEnabled = false
             case .closed:
                 let screenHeight = UIScreen.main.bounds.height
                 self.cardViewTopConstraint.constant = screenHeight
@@ -93,11 +72,18 @@ class AccountSheetViewController: UIViewController {
         }
     }
     
+    private var accounts = AccountsStore.shared.accounts ?? [Account]()
+    
+    
+    
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+        configureTableView()
         
         // Start with view hidden
         let screenHeight = UIScreen.main.bounds.height
@@ -108,6 +94,7 @@ class AccountSheetViewController: UIViewController {
         if #available(iOS 11.0, *) {
             cardView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         } else {
+            
             // todo
             // Fallback on earlier versions
         }
@@ -117,12 +104,31 @@ class AccountSheetViewController: UIViewController {
         
         let backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapGesture(_:)))
         backgroundView.addGestureRecognizer(backgroundTapGesture)
-        
+
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
-        gestureView.addGestureRecognizer(panGesture)
+        panGesture.delegate = self
+        tableView.addGestureRecognizer(panGesture)
+        
+        let panGesture2 = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
+        gestureView.addGestureRecognizer(panGesture2)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognizer(_:)))
         gestureView.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //
+        //        // Make the currently selected account the first item in list
+        //        let currentAccount = accounts.remove(at: AccountsStore.shared.currentIndex)
+        //        accounts.insert(currentAccount, at: 0)
+        //
+        //        if StormModeStatus.shared.isOn {
+        //            navigationController?.setColoredNavBar()
+        //        } else {
+        //            navigationController?.setWhiteNavBar()
+        //        }
     }
     
     // Logic for advanced account picker presentation
@@ -144,12 +150,25 @@ class AccountSheetViewController: UIViewController {
         super.viewDidAppear(animated)
         
         present()
+        
+        // Todo: Remove
+        var i = 0
+        while i < 20 {
+            i += 1
+            accounts.append(AccountsStore.shared.accounts.first!)
+        }
+
+        tableView.reloadData()
+
+        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? AccountListViewController else { return }
-        accountListViewController = vc
-    }
+    // todo: see if we can refactor this back into a container VC
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let vc = segue.destination as? AccountListViewController else { return }
+//        accountListViewController = vc
+//        print("tableview:\(vc) \(vc.tableView)")
+//    }
     
     deinit {
         print("deinit")
@@ -172,27 +191,76 @@ class AccountSheetViewController: UIViewController {
     private func tapGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
         sliderState = sliderState == .half ? .open : .half
     }
+
     
+    var initialTableViewContentOffset: CGFloat = 0
+    
+    var isOverScroll = false
+    
+    // need to fix the scrolling, can scroll table view, but only when it is max and it is a very weird interaction
     @objc
     private func panGestureDidOccur(_ gestureRecognizer: UIPanGestureRecognizer) {
+        print("Pan gesture called")
+
+        let velocity = gestureRecognizer.velocity(in: tableView)
         let state = gestureRecognizer.state
+        
+        if gestureRecognizer.state == .began {
+            // Capture table content offset, prevents jump animation
+            initialTableViewContentOffset = tableView.contentOffset.y
+        }
         
         switch state {
         case .began, .changed:
+            print("Gesture began or changed")
+            
+            guard let originView = gestureRecognizer.view else { return }
+            switch originView {
+            case tableView:
+                // why does the table view not scroll even when it hits the if statement... makes no sense!
+                // is sliderState == .open neccissary?
+                if tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open {// || (tableView.contentOffset.y >= 0 && isOverScroll) {//&& sliderState == .open {// || tableView.contentOffset.y >= 0 && isOverScroll {// || isOverScroll { // need to take into account direction of gesture
+                    
+                    // Return from pan gesture: vanilla table view scroll
+                    //let trans = gestureRecognizer.translation(in: tableView)
+                    //self.tableView.contentOffset.y = trans.y
+                    print("Allow TableView to scroll")
+                    let translation2 = gestureRecognizer.translation(in: self.view)
+                    print("Metrics: \(translation2.y)...\(tableView.contentOffset.y)...\(tableView.isScrollEnabled)")
+                    return
+                } else {
+                    print("Do not allow tableview to scroll")
+                }
+            default:
+                break
+            }
+
             let translation = gestureRecognizer.translation(in: self.view)
-            let newLocation = locationInView + translation.y
-            
-            print("newLocationInView: \(newLocation)")
-            
+            let newLocation = locationInView + translation.y - initialTableViewContentOffset
+
+            // Animate bottom sheet
             if newLocation > 0 {
+                isOverScroll = false
+
+                print("Bottom Sheet Animate")
+                print("Metrics (Bottom Sheet): \(translation.y)...\(tableView.contentOffset.y)...\(newLocation)")
+                
+                tableView.isScrollEnabled = false
                 UIView.animate(withDuration: 0.1) { [unowned self] in
                     self.cardViewTopConstraint.constant = newLocation
                 }
+            } else {
+                // WIP
+                isOverScroll = true
+                tableView.isScrollEnabled = true
+                print("Do not animate bottom sheet")
             }
         case .ended:
+            print("Pan Gesture Ended")
             let endingLocationInView = cardViewTopConstraint.constant
             
-            // the signs here are VERY CONFUSING we need to 1.  figure them out, and 2.  make this code more legible....
+            // Commit the desired state of bottom sheet
+            // the signs here are VERY CONFUSING we need to make this code more legible....
             if endingLocationInView < threshHoldOpen {
                 sliderState = .open
             } else if endingLocationInView > threshHoldOpen && endingLocationInView < defaultHeight || endingLocationInView > defaultHeight  && endingLocationInView < threshHoldClosed {
@@ -203,11 +271,15 @@ class AccountSheetViewController: UIViewController {
         default:
             break
         }
-        
     }
     
     
     // MARK: - Helper
+    
+    private func configureTableView() {
+        tableView.isScrollEnabled = false
+        tableView.tableFooterView = UIView()
+    }
     
     func present() {
         UIView.animate(withDuration: 0.3) { [unowned self] in
@@ -216,90 +288,55 @@ class AccountSheetViewController: UIViewController {
         
         sliderState = .half
     }
+}
+
+
+// MARK: - Table View Delegate
+
+extension AccountSheetViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let account = accounts[indexPath.row]
+        if account.isMultipremise {
+            let cell = tableView.cellForRow(at: indexPath) as! AccountListRow
+            cell.didPress()
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        } else {
+            self.exitWith(selectedAccount: accounts[indexPath.row])
+        }
+    }
     
-    // i dont think swipe direction even matters in this instance
-    //            if velocity.y < 0 {
-    //                // Swipe Up
-    //
-    //                // is the current location > the 0.3 threshhold? if so, open fully, else collapse back to half state
-    //
-    //                // something to keep in mind, does the constraint system map directly to screen height system?..... UNSURE...
-    //                if endingLocationInView < threshHoldOpen {
-    //                    setAccountListSliderState(.open)
-    //                } else {
-    //                    setAccountListSliderState(.half)
-    //                }
-    //
-    //
-    //                // User must be trying to open the fully open state
-    //            } else {
-    //                // Swipe Down
-    //
-    //
-    //                if endingLocationInView > threshHoldOpen && endingLocationInView < threshHoldClosed {
-    //                    setAccountListSliderState(.half)
-    //                } else {
-    //                    setAccountListSliderState(.closed)
-    //                }
-    //
-    //                // User is either trying to collapse to half way, or the user is trying to collapse to empty
-    //            }
+    func exitWith(selectedAccount: Account) {
+        dismiss(animated: true, completion: nil)
+    }
     
-    // this will actually change based on the enum state that ends up being set
+}
+
+
+// MARK: - Table View Data Source
+
+extension AccountSheetViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("account count del: \(accounts.count)")
+        return accounts.count
+    }
     
-    
-    
-    
-    // previously used before we implemented enum state.
-    //            locationInView = endingLocationInView
-    
-    
-    
-    
-    
-    // based on value:
-    //            setAccountListSliderState(.half)
-    
-    
-    
-    //        if gestureRecognizer.state == UIGestureRecognizer.State.began || gestureRecognizer.state == UIGestureRecognizer.State.changed {
-    //            //optionsOpenedConstraint.isActive = false
-    //            //optionsVisiableConstraint.isActive = false
-    //            let translation = gestureRecognizer.translation(in: self.view)
-    //            if((distanceFromBottom - translation.y) < 100) {
-    //                gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x, y: gestureRecognizer.view!.center.y + translation.y)
-    //                gestureRecognizer.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
-    //            }
-    //
-    //        }
-    //        if gestureRecognizer.state == UIGestureRecognizer.State.ended{
-    //            if distanceFromBottom > 6{
-    //                openOptionsPanel()
-    //            }else{
-    //                closeOptionsPanel()
-    //            }
-    //        }
-    
-    //    private func setAccountListSliderState(_ sliderState: SliderState = .half) {
-    //        // why is this being triggered twice?
-    //        switch sliderState {
-    //        case .open:
-    //            print("OPEN")
-    //            cardViewTopConstraint.constant = 0
-    //            locationInView = 0
-    //        case .half:
-    //            print("HALF")
-    //            cardViewTopConstraint.constant = defaultHeight
-    //            locationInView = defaultHeight
-    //            break
-    //        case .closed:
-    //            print("DISMISS VIEW")
-    //
-    //            // need to figure out a way to get this view completely off screen.
-    //            //cardViewTopConstraint.constant = UIScreen.main.bounds.height + 50
-    //            // dismiss view.
-    //            break
-    //        }
-    //    }
-    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: AccountListRow.className, for: indexPath) as! AccountListRow
+        let account = accounts[indexPath.row]
+        cell.configure(withAccount: account)
+        return cell
+    }
+}
+
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension AccountSheetViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

@@ -34,7 +34,7 @@ class AccountListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // perhaps we can handle this at the accountStore layer so that we never have to bother doing this.  always keep the array up to date.
-        accounts = AccountsStore.reorderAccountList()
+//        accounts = AccountsStore.reorderAccountList()
         
 //        
 //        // Make the currently selected account the first item in list
@@ -60,7 +60,7 @@ class AccountListViewController: UIViewController {
 //        tableView.register(accountListCell, forCellReuseIdentifier: AccountListRow.className)
         
         tableView.isScrollEnabled = false
-        tableView.tableHeaderView = UIView()
+        tableView.tableFooterView = UIView()
     }
 
 }
