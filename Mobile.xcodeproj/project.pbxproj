@@ -342,9 +342,9 @@
 		35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
-		35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
-		35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
-		35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
+		35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
+		35AFB42C20C82DA0000312B9 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
+		35AFB42D20C82DA0000312B9 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
 		35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
 		35B9609A22B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
 		35B9609B22B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
@@ -2631,7 +2631,7 @@
 		35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutageCardViewModel.swift; sourceTree = "<group>"; };
 		35AE569C214AD98500F633D0 /* ellipses_loading_white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ellipses_loading_white.json; sourceTree = "<group>"; };
 		35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCorners.swift; sourceTree = "<group>"; };
-		35AFB42A20C82DA0000312B9 /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
+		35AFB42A20C82DA0000312B9 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		35B9609822B7BC61003BCC97 /* PremiseListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiseListRow.xib; sourceTree = "<group>"; };
 		35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiseListRow.swift; sourceTree = "<group>"; };
 		35CE69D421122F50007EB844 /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
@@ -4463,7 +4463,7 @@
 				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
 				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
-				35AFB42A20C82DA0000312B9 /* MaskView.swift */,
+				35AFB42A20C82DA0000312B9 /* SheetView.swift */,
 				35FEDD5B223C155F008CB349 /* ZeroInsetDataDetectorTextView.swift */,
 				B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */,
 				B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */,
@@ -7529,7 +7529,7 @@
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
-				35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */,
+				35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */,
 				B05D84B321877FEB00F15A9F /* DisclosureCellButton.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
@@ -7893,7 +7893,7 @@
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
-				35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */,
+				35AFB42D20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEF1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				B05D84B521877FEB00F15A9F /* DisclosureCellButton.swift in Sources */,
@@ -8271,7 +8271,7 @@
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
-				35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */,
+				35AFB42C20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEE1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				B05D84B421877FEB00F15A9F /* DisclosureCellButton.swift in Sources */,

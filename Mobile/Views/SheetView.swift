@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MaskView: UIView {
+class SheetView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
