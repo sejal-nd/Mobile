@@ -734,13 +734,22 @@
                                     <constraint firstAttribute="bottom" secondItem="Wuk-bq-YQH" secondAttribute="bottom" id="xQl-QW-bLz"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSh-Ri-HQ6">
+                                <rect key="frame" x="164.5" y="1185" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="accountpress:" destination="7nx-bF-5mO" eventType="touchUpInside" id="Fcn-a0-uEV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901960784313" green="0.14901960784313725" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ajl-VW-4VX" secondAttribute="trailing" id="0AR-IS-8tF"/>
                             <constraint firstItem="mLx-1J-TCL" firstAttribute="leading" secondItem="NPq-OC-mEq" secondAttribute="leading" id="4rq-6h-Qnv"/>
+                            <constraint firstItem="RSh-Ri-HQ6" firstAttribute="centerY" secondItem="y2F-qh-7Mk" secondAttribute="centerY" id="6Dc-4Q-FpJ"/>
                             <constraint firstItem="FxF-xR-Hyf" firstAttribute="top" secondItem="ajl-VW-4VX" secondAttribute="bottom" id="BwT-B0-s5U"/>
                             <constraint firstAttribute="bottom" secondItem="Ybl-Tq-eQ9" secondAttribute="bottom" id="NM1-Vg-Xtt"/>
+                            <constraint firstItem="RSh-Ri-HQ6" firstAttribute="centerX" secondItem="y2F-qh-7Mk" secondAttribute="centerX" id="QpD-Wo-19k"/>
                             <constraint firstItem="NPq-OC-mEq" firstAttribute="trailing" secondItem="FxF-xR-Hyf" secondAttribute="trailing" id="RDf-je-OWs"/>
                             <constraint firstItem="Wuk-bq-YQH" firstAttribute="width" secondItem="y2F-qh-7Mk" secondAttribute="width" id="RkX-zJ-aTO"/>
                             <constraint firstItem="NPq-OC-mEq" firstAttribute="trailing" secondItem="mLx-1J-TCL" secondAttribute="trailing" id="TAJ-1I-l4h"/>

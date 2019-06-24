@@ -74,7 +74,7 @@ class AccountSheetViewController: UIViewController {
     
     private var accounts = AccountsStore.shared.accounts ?? [Account]()
     
-    
+    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
     
     
     // MARK: - View Life Cycle
@@ -105,13 +105,13 @@ class AccountSheetViewController: UIViewController {
         let backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapGesture(_:)))
         backgroundView.addGestureRecognizer(backgroundTapGesture)
 
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
+        
         panGesture.delegate = self
         tableView.addGestureRecognizer(panGesture)
         
-        let panGesture2 = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
-        gestureView.addGestureRecognizer(panGesture2)
-        
+//        let panGesture2 = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
+//        gestureView.addGestureRecognizer(panGesture2)
+//
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognizer(_:)))
         gestureView.addGestureRecognizer(tapGesture)
     }
@@ -219,14 +219,24 @@ class AccountSheetViewController: UIViewController {
             case tableView:
                 // why does the table view not scroll even when it hits the if statement... makes no sense!
                 // is sliderState == .open neccissary?
-                if tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open {// || (tableView.contentOffset.y >= 0 && isOverScroll) {//&& sliderState == .open {// || tableView.contentOffset.y >= 0 && isOverScroll {// || isOverScroll { // need to take into account direction of gesture
+                if tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open || (tableView.contentOffset.y >= 0 && isOverScroll) {//  {//&& sliderState == .open {// || tableView.contentOffset.y >= 0 && isOverScroll {// || isOverScroll { // need to take into account direction of gesture
                     
                     // Return from pan gesture: vanilla table view scroll
                     //let trans = gestureRecognizer.translation(in: tableView)
                     //self.tableView.contentOffset.y = trans.y
+                    
+                    // Test
+//                    let translation = gestureRecognizer.translation(in: self.view)
+//                    let newLocation = locationInView + translation.y - initialTableViewContentOffset
+//                    self.tableView.contentOffset.y = newLocation
+                    
                     print("Allow TableView to scroll")
                     let translation2 = gestureRecognizer.translation(in: self.view)
                     print("Metrics: \(translation2.y)...\(tableView.contentOffset.y)...\(tableView.isScrollEnabled)")
+                    
+                    // why is the table view not scrolling here?  We have set the gestures to recognize simulatneously...
+                    
+                    print("Test")
                     return
                 } else {
                     print("Do not allow tableview to scroll")
@@ -274,6 +284,8 @@ class AccountSheetViewController: UIViewController {
     }
     
     
+    
+    
     // MARK: - Helper
     
     private func configureTableView() {
@@ -319,7 +331,6 @@ extension AccountSheetViewController: UITableViewDelegate {
 
 extension AccountSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("account count del: \(accounts.count)")
         return accounts.count
     }
     
@@ -339,4 +350,27 @@ extension AccountSheetViewController: UIGestureRecognizerDelegate {
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
+    // Determines when to use vanilla tableview gesture or the bottom sheet gesture
+    // second tableview recognizer conforms to this
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//
+//
+//    }
+    
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        print("shouldRequireFailure")
+//        // if statement to reject gesture.
+//        guard let gesture = gestureRecognizer as? UIPanGestureRecognizer else {
+//            print("FAILED STATEMENT")
+//            return true }
+//        let velocity = gesture.velocity(in: tableView)
+//        print("Metrics: \(tableView.contentOffset.y)...\n\(velocity.y)\n\(sliderState)\n\(isOverScroll)")
+//        if gestureRecognizer == self.panGesture && tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open || (tableView.contentOffset.y >= 0 && isOverScroll) {
+//            print("REJECT")
+//            return false
+//        }
+//        print("ALLOW")
+//        return true
+//    }
 }

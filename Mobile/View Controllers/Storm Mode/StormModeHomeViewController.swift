@@ -504,6 +504,12 @@ class StormModeHomeViewController: AccountPickerViewController {
         })
     }
     
+    @IBAction func accountpress(_ sender: Any) {
+        guard let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() else { return }
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: false, completion: nil)
+    }
+    
     private func returnToMainApp() {
         guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window else { return }
         StormModeStatus.shared.isOn = false
