@@ -25,7 +25,7 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var cardViewTopConstraint: NSLayoutConstraint!
 
     // this does not recalculate on device rotation, especially problematic for iPad?
-    let defaultHeight = UIScreen.main.bounds.height * 0.55
+    var defaultHeight = UIScreen.main.bounds.height * 0.55
     
     /// Determines when to "snap" to the top or middle state
     let threshHoldTop = UIScreen.main.bounds.height * 0.3
@@ -111,6 +111,16 @@ class AccountSheetViewController: UIViewController {
 
         tableView.reloadData()
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        defaultHeight = UIScreen.main.bounds.height * 0.55
+        
+        if lastSheetLevel == .middle {
+            lastSheetLevel = .middle
+        }
+    }
 
     deinit {
         print("deinit")
@@ -118,12 +128,7 @@ class AccountSheetViewController: UIViewController {
     
     
     // MARK: - Actions
-    
-    // FIXME: delete after implementation
-    @IBAction func tempToggle(_ sender: Any) {
-        lastSheetLevel = .closed
-    }
-    
+
     @objc
     private func backgroundTapGesture(_ gestureRecognizer: UIGestureRecognizer) {
         lastSheetLevel = .closed
