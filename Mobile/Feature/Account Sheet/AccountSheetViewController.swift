@@ -25,6 +25,12 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardViewTopConstraint: NSLayoutConstraint!
     
+    
+    // temp
+    
+    var shouldDisabledTableScroll = true
+    
+    
     // TODO
     // - fix tableview scroll on bottom sheet scroll up
     
@@ -47,12 +53,12 @@ class AccountSheetViewController: UIViewController {
                 self.cardViewTopConstraint.constant = 0
                 self.locationInView = 0
                 
-                tableView.isScrollEnabled = true
+//                tableView.isScrollEnabled = true
             case .half:
                 self.cardViewTopConstraint.constant = self.defaultHeight
                 self.locationInView = self.defaultHeight
                 
-                tableView.isScrollEnabled = false
+//                tableView.isScrollEnabled = false
             case .closed:
                 let screenHeight = UIScreen.main.bounds.height
                 self.cardViewTopConstraint.constant = screenHeight
@@ -74,7 +80,7 @@ class AccountSheetViewController: UIViewController {
     
     private var accounts = AccountsStore.shared.accounts ?? [Account]()
     
-    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
+    var panGesture: UIPanGestureRecognizer!
     
     
     // MARK: - View Life Cycle
@@ -100,14 +106,25 @@ class AccountSheetViewController: UIViewController {
         }
         cardView.layer.masksToBounds = true
         
+//        tableView.isScrollEnabled = false
+        
         handleView.layer.cornerRadius = handleView.bounds.height / 2
         
         let backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapGesture(_:)))
         backgroundView.addGestureRecognizer(backgroundTapGesture)
-
         
+        
+        //panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccurV2(_:)))
+        //panGesture.delegate = self
+        //tableView.addGestureRecognizer(panGesture)
+        
+        
+        // test
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccurV2(_:)))
         panGesture.delegate = self
-        tableView.addGestureRecognizer(panGesture)
+        cardView.addGestureRecognizer(panGesture)
+        
+        tableView.panGestureRecognizer.addTarget(self, action: #selector(panGestureDidOccurV2(_:)))
         
 //        let panGesture2 = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidOccur(_:)))
 //        gestureView.addGestureRecognizer(panGesture2)
@@ -160,7 +177,7 @@ class AccountSheetViewController: UIViewController {
 
         tableView.reloadData()
 
-        
+//        tableView.isScrollEnabled = false
     }
     
     // todo: see if we can refactor this back into a container VC
@@ -212,61 +229,62 @@ class AccountSheetViewController: UIViewController {
         
         switch state {
         case .began, .changed:
-            print("Gesture began or changed")
-            
-            guard let originView = gestureRecognizer.view else { return }
-            switch originView {
-            case tableView:
-                // why does the table view not scroll even when it hits the if statement... makes no sense!
-                // is sliderState == .open neccissary?
-                if tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open || (tableView.contentOffset.y >= 0 && isOverScroll) {//  {//&& sliderState == .open {// || tableView.contentOffset.y >= 0 && isOverScroll {// || isOverScroll { // need to take into account direction of gesture
-                    
-                    // Return from pan gesture: vanilla table view scroll
-                    //let trans = gestureRecognizer.translation(in: tableView)
-                    //self.tableView.contentOffset.y = trans.y
-                    
-                    // Test
-//                    let translation = gestureRecognizer.translation(in: self.view)
-//                    let newLocation = locationInView + translation.y - initialTableViewContentOffset
-//                    self.tableView.contentOffset.y = newLocation
-                    
-                    print("Allow TableView to scroll")
-                    let translation2 = gestureRecognizer.translation(in: self.view)
-                    print("Metrics: \(translation2.y)...\(tableView.contentOffset.y)...\(tableView.isScrollEnabled)")
-                    
-                    // why is the table view not scrolling here?  We have set the gestures to recognize simulatneously...
-                    
-                    print("Test")
-                    return
-                } else {
-                    print("Do not allow tableview to scroll")
-                }
-            default:
-                break
-            }
+//            print("Gesture began or changed")
+//
+//            guard let originView = gestureRecognizer.view else { return }
+//            switch originView {
+//            case tableView:
+//                // why does the table view not scroll even when it hits the if statement... makes no sense!
+//                // is sliderState == .open neccissary?
+//                if tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open || (tableView.contentOffset.y >= 0 && isOverScroll) {//  {//&& sliderState == .open {// || tableView.contentOffset.y >= 0 && isOverScroll {// || isOverScroll { // need to take into account direction of gesture
+//
+//                    // Return from pan gesture: vanilla table view scroll
+//                    //let trans = gestureRecognizer.translation(in: tableView)
+//                    //self.tableView.contentOffset.y = trans.y
+//
+//                    // Test
+////                    let translation = gestureRecognizer.translation(in: self.view)
+////                    let newLocation = locationInView + translation.y - initialTableViewContentOffset
+////                    self.tableView.contentOffset.y = newLocation
+//
+//                    print("Allow TableView to scroll")
+//                    let translation2 = gestureRecognizer.translation(in: self.view)
+//                    print("Metrics: \(translation2.y)...\(tableView.contentOffset.y)...\(tableView.isScrollEnabled)")
+//
+//                    // why is the table view not scrolling here?  We have set the gestures to recognize simulatneously...
+//
+//                    print("Test")
+//                    return
+//                } else {
+//                    print("Do not allow tableview to scroll")
+//                }
+//            default:
+//                break
+//            }
 
-            let translation = gestureRecognizer.translation(in: self.view)
+            let translation = gestureRecognizer.translation(in: cardView)
             let newLocation = locationInView + translation.y - initialTableViewContentOffset
 
             // Animate bottom sheet
-            if newLocation > 0 {
-                isOverScroll = false
+            if newLocation >= 0 {
+////                isOverScroll = false
 
-                print("Bottom Sheet Animate")
-                print("Metrics (Bottom Sheet): \(translation.y)...\(tableView.contentOffset.y)...\(newLocation)")
+//                print("Bottom Sheet Animate")
+//                print("Metrics (Bottom Sheet): \(translation.y)...\(tableView.contentOffset.y)...\(newLocation)")
                 
-                tableView.isScrollEnabled = false
+//                tableView.isScrollEnabled = false
                 UIView.animate(withDuration: 0.1) { [unowned self] in
                     self.cardViewTopConstraint.constant = newLocation
                 }
-            } else {
-                // WIP
-                isOverScroll = true
-                tableView.isScrollEnabled = true
-                print("Do not animate bottom sheet")
             }
+//            } else {
+//                // WIP
+////                isOverScroll = true
+////                tableView.isScrollEnabled = true
+//                print("Do not animate bottom sheet")
+//            }
         case .ended:
-            print("Pan Gesture Ended")
+//            print("Pan Gesture Ended")
             let endingLocationInView = cardViewTopConstraint.constant
             
             // Commit the desired state of bottom sheet
@@ -286,10 +304,86 @@ class AccountSheetViewController: UIViewController {
     
     
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard scrollView == tableView, shouldDisabledTableScroll else { return }
+        targetContentOffset.pointee = scrollView.contentOffset
+        shouldDisabledTableScroll = false
+    }
+    
+    // need to fix the scrolling, can scroll table view, but only when it is max and it is a very weird interaction
+    @objc
+    private func panGestureDidOccurV2(_ gestureRecognizer: UIPanGestureRecognizer) {
+        print("Pan gesture called")
+        
+        let velocityY = gestureRecognizer.velocity(in: tableView).y
+        let state = gestureRecognizer.state
+        
+        switch state {
+        case .began:
+            // Capture table content offset, prevents jump animation
+            initialTableViewContentOffset = tableView.contentOffset.y
+        case .changed:
+            let translation = gestureRecognizer.translation(in: cardView)
+            let newLocation = locationInView + translation.y - initialTableViewContentOffset
+            
+            print("Metrics: \(velocityY)...\(cardViewTopConstraint.constant)....\(tableView.contentOffset.y)")
+            
+            // Determine which view to animate:
+            let shouldAnimateCardView: Bool
+            
+//
+//             && sliderState == .open || (tableView.contentOffset.y >= 0 && isOverScroll)
+//
+//
+            if (tableView.contentOffset.y >= 0 && velocityY <= 0 && cardViewTopConstraint.constant < 15) || (velocityY >= 0 && tableView.contentOffset.y != 0) {
+                print("Allow tv scroll")
+//                tableView.isScrollEnabled = true
+                shouldAnimateCardView = true // allow table scrolling
+            } else {
+                print("disallow tv scroll")
+//                tableView.isScrollEnabled = false
+                shouldAnimateCardView = false
+            }
+            
+            // Animate bottom sheet
+            if newLocation >= 0  && !shouldAnimateCardView {
+                ////                isOverScroll = false
+                
+                //                print("Bottom Sheet Animate")
+                //                print("Metrics (Bottom Sheet): \(translation.y)...\(tableView.contentOffset.y)...\(newLocation)")
+                
+                //                tableView.isScrollEnabled = false
+                UIView.animate(withDuration: 0.1) { [unowned self] in
+                    self.cardViewTopConstraint.constant = newLocation
+                }
+            }
+        case .ended:
+            //            print("Pan Gesture Ended")
+            let endingLocationInView = cardViewTopConstraint.constant
+            
+            // Commit the desired state of bottom sheet
+            // the signs here are VERY CONFUSING we need to make this code more legible....
+            if endingLocationInView < threshHoldOpen {
+                shouldDisabledTableScroll = false
+                sliderState = .open
+            } else if endingLocationInView > threshHoldOpen && endingLocationInView < defaultHeight || endingLocationInView > defaultHeight  && endingLocationInView < threshHoldClosed {
+                shouldDisabledTableScroll = true
+                sliderState = .half
+            } else {
+                shouldDisabledTableScroll = true
+                sliderState = .closed
+            }
+        default:
+            break
+        }
+
+    }
+    
+    
     // MARK: - Helper
     
     private func configureTableView() {
-        tableView.isScrollEnabled = false
+//        tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView()
     }
     
@@ -351,26 +445,149 @@ extension AccountSheetViewController: UIGestureRecognizerDelegate {
         return true
     }
     
-    // Determines when to use vanilla tableview gesture or the bottom sheet gesture
-    // second tableview recognizer conforms to this
+//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        print("shouldBegin...")
+//
+//        guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else { return false }
+//        if panGestureRecognizer == panGesture {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+    
+    // wecant have tableview gesture adopt to this delegate
+    // we could use this to determine only when the overlaying gesture can occur
+    
+    
+    // we could use it in conjunction with this delegate to determine when the tableview can scroll.
+    
+    
+    
+    
+    
+    // stops card gesture
 //    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 //
 //
-//    }
-    
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        print("shouldRequireFailure")
-//        // if statement to reject gesture.
+//        print("SHOULD REQUIRE FAILUREOF: \(!shouldStopTableGetsure)")
+//
+//
 //        guard let gesture = gestureRecognizer as? UIPanGestureRecognizer else {
 //            print("FAILED STATEMENT")
-//            return true }
-//        let velocity = gesture.velocity(in: tableView)
-//        print("Metrics: \(tableView.contentOffset.y)...\n\(velocity.y)\n\(sliderState)\n\(isOverScroll)")
-//        if gestureRecognizer == self.panGesture && tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open || (tableView.contentOffset.y >= 0 && isOverScroll) {
-//            print("REJECT")
 //            return false
 //        }
-//        print("ALLOW")
-//        return true
+//
+//
+//        let velocityY = gesture.velocity(in: tableView).y
+//
+//        print("Metrics: \(velocityY)...\(cardViewTopConstraint.constant)....\(tableView.contentOffset.y)")
+//
+//        if velocityY >= 0 && cardViewTopConstraint.constant < 15 {
+//            tableView.isScrollEnabled = true
+//            shouldStopTableGetsure = true // allow table scrolling
+//            print("allow tv scroll")
+//        } else if velocityY <= 0 && tableView.contentOffset.y != 0 {
+//            tableView.isScrollEnabled = true
+//            shouldStopTableGetsure = true // allow table scrolling
+//            print("allow tv scroll")
+//        } else {
+//            tableView.isScrollEnabled = false
+//            shouldStopTableGetsure = false // disallow tableview scrolling
+//            print("disallow tv scroll")
+//        }
+//
+//        print("result: \(shouldStopTableGetsure)")
+//        return shouldStopTableGetsure
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        //return false // if true... disables the gesture itself.
+////        return !shouldStopTableGetsure
+//    }
+    
+    
+//    // Stops table gesture / scrolling
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//
+//        print("shouldBeRequireFailure")
+//
+//        guard let gesture = gestureRecognizer as? UIPanGestureRecognizer else {
+//            print("FAILED STATEMENT")
+//            return false
+//        }
+//
+//
+//        print("bottomTopY: \(cardViewTopConstraint.constant)")
+//
+//        let velocityY = gesture.velocity(in: tableView).y
+//
+//
+//        if velocityY >= 0 && cardViewTopConstraint.constant < 15 {
+//            shouldStopTableGetsure = false // allow table scrolling
+//        } else if velocityY <= 0 && tableView.contentOffset.y != 0 {
+//            shouldStopTableGetsure = false // allow table scrolling
+//        } else {
+//            shouldStopTableGetsure = true
+//        }
+//
+//        return shouldStopTableGetsure
+//
+//
+//
+//
+//
+////
+////        if gesture == panGesture {
+////            print("==")
+////            return true
+////        } else if gesture == tableView.panGestureRecognizer {
+////            print("table pan")
+////            return false
+////        }
+//
+//
+//
+//
+////        // if statement to reject gesture.
+////        guard let gesture = gestureRecognizer as? UIPanGestureRecognizer else {
+////            print("FAILED STATEMENT")
+////
+////            return false }
+////
+////
+////
+//
+////        print("Metrics: \(tableView.contentOffset.y)...\n\(velocity.y)\n\(sliderState)\n\(isOverScroll)")
+////        if gestureRecognizer == self.panGesture && tableView.contentOffset.y > 0 && velocity.y >= 0 && sliderState == .open || (tableView.contentOffset.y >= 0 && isOverScroll) {
+////            print("REJECT")
+////            tableView.isScrollEnabled = true
+////            return true // overlay only
+////            // this is currently not animating becasue the gesture recognizer function tells it not to.
+////        }
+////
+////        print("ALLOW")
+////        tableView.isScrollEnabled = false
+////        return false // both scroll
+////        print("ALLOW")
+//
+//
+//
+//
+////        return true // overlaying gesture works
+////        return false // both scroll
+//        // how do we make just the table scroll?
+//
+////        tableView.isScrollEnabled = false // this is equivalent to just calling return true.  as when return true occurs, tableview does not scroll.
+//
+//        // so then how do we disable only the gesture itself.
+//
+////        return false
 //    }
 }
