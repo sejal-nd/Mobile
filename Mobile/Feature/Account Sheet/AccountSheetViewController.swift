@@ -24,7 +24,7 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cardViewTopConstraint: NSLayoutConstraint!
 
-    // this does not recalculate on device rotation, especially problematic for iPad?
+    /// Recalculated on orientation change: `viewWillTransition`
     var defaultHeight = UIScreen.main.bounds.height * 0.55
     
     /// Determines when to "snap" to the top or middle state
@@ -35,6 +35,15 @@ class AccountSheetViewController: UIViewController {
     /// The current Y location of cardView
     var locationInView: CGFloat!
     
+    /// Prevents Table `ContentOffset` from moving in scrollView Methods
+    var shouldDisableTableScrolling = false
+    
+    /// Captures distance from `tableView` scroll to prevent unsightly bounch animation
+    var initialTableViewContentOffset: CGFloat = 0
+    
+    private let lightImpactGenerator = UIImpactFeedbackGenerator(style: .light)
+    private let mediumImpactGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
     /// Determines location of cardView via cardViewTopConstraint
     var lastSheetLevel: SheetLevel = .middle {
         didSet {
@@ -42,16 +51,23 @@ class AccountSheetViewController: UIViewController {
             case .top:
                 self.cardViewTopConstraint.constant = 0
                 self.locationInView = 0
+                
+                
+                mediumImpactGenerator.impactOccurred()
             case .middle:
                 self.cardViewTopConstraint.constant = self.defaultHeight
                 self.locationInView = self.defaultHeight
                 
                 // Reset TableView Content
                 self.tableView.contentOffset.y = 0
+                
+                mediumImpactGenerator.impactOccurred()
             case .closed:
                 let screenHeight = UIScreen.main.bounds.height
                 self.cardViewTopConstraint.constant = screenHeight
                 self.locationInView = screenHeight
+                
+                mediumImpactGenerator.impactOccurred()
             }
             
             
@@ -70,15 +86,9 @@ class AccountSheetViewController: UIViewController {
     
     private var accounts = AccountsStore.shared.accounts ?? [Account]()
     
-    var shouldDisableTableScrolling = false
-
-    var initialTableViewContentOffset: CGFloat = 0
-
-    
     
     // MARK: - View Life Cycle
     
-    // todo this can cash if accounts store has not loaded in yet -> STORM MODE.
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,8 +99,7 @@ class AccountSheetViewController: UIViewController {
         configureGestures()
         
         // Start with view hidden
-        // This is does not react to screen rotation, it should...
-        let screenHeight = self.view.bounds.height//UIScreen.main.bounds.height
+        let screenHeight = UIScreen.main.bounds.height
         self.cardViewTopConstraint.constant = screenHeight
         self.locationInView = screenHeight
         
@@ -179,7 +188,7 @@ class AccountSheetViewController: UIViewController {
             let shouldAnimateCardView: Bool
             if (tableView.contentOffset.y >= 0 && velocityY <= 0 && cardViewTopConstraint.constant < 0 && originView == tableView) || (velocityY >= 0 && tableView.contentOffset.y >= 0 && originView == tableView) {
                 shouldDisableTableScrolling = false
-                shouldAnimateCardView = false // allow table scrolling
+                shouldAnimateCardView = false
             } else {
                 shouldDisableTableScrolling = true
                 shouldAnimateCardView = true
@@ -194,6 +203,12 @@ class AccountSheetViewController: UIViewController {
                     if newLocation < 3 {
                         newLocation = 0
                     }
+                    
+                    // todo test
+                    if newLocation == self.threshHoldClosed || newLocation == self.defaultHeight || newLocation == self.threshHoldTop {
+                        self.lightImpactGenerator.impactOccurred()
+                    }
+                    
                     self.cardViewTopConstraint.constant = newLocation
                 }
             }
@@ -201,7 +216,6 @@ class AccountSheetViewController: UIViewController {
             // Commit the desired state of bottom sheet
             let endingLocationInView = cardViewTopConstraint.constant
             
-            // the signs here are VERY CONFUSING we need to make this code more legible....
             if endingLocationInView < threshHoldTop {
                 lastSheetLevel = .top
             } else if endingLocationInView > threshHoldTop && endingLocationInView < defaultHeight || endingLocationInView > defaultHeight  && endingLocationInView < threshHoldClosed {
