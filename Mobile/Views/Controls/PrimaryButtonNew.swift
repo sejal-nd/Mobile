@@ -22,6 +22,13 @@ class PrimaryButtonNew: UIButton {
         }
     }
     
+    @IBInspectable var condensed: Bool = false {
+        didSet {
+            titleLabel?.font = condensed ? SystemFont.semibold.of(textStyle: .headline) :
+                SystemFont.semibold.of(textStyle: .title1)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
