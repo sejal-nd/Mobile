@@ -40,10 +40,7 @@ class AccountSheetViewController: UIViewController {
     
     /// Captures distance from `tableView` scroll to prevent unsightly bounch animation
     var initialTableViewContentOffset: CGFloat = 0
-    
-    private let lightImpactGenerator = UIImpactFeedbackGenerator(style: .light)
-    private let mediumImpactGenerator = UIImpactFeedbackGenerator(style: .medium)
-    
+
     /// Determines location of cardView via cardViewTopConstraint
     var lastSheetLevel: SheetLevel = .middle {
         didSet {
@@ -51,30 +48,22 @@ class AccountSheetViewController: UIViewController {
             case .top:
                 self.cardViewTopConstraint.constant = 0
                 self.locationInView = 0
-                
-                
-                mediumImpactGenerator.impactOccurred()
             case .middle:
                 self.cardViewTopConstraint.constant = self.defaultHeight
                 self.locationInView = self.defaultHeight
                 
                 // Reset TableView Content
-                self.tableView.contentOffset.y = 0
-                
-                mediumImpactGenerator.impactOccurred()
+                self.tableView.setContentOffset(CGPoint(x: tableView.contentOffset.x, y: 0), animated: true)
             case .closed:
                 let screenHeight = UIScreen.main.bounds.height
                 self.cardViewTopConstraint.constant = screenHeight
                 self.locationInView = screenHeight
-                
-                mediumImpactGenerator.impactOccurred()
             }
             
-            
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: { [unowned self] in
                 self.view.layoutIfNeeded()
             }, completion: nil)
-            
+
             guard lastSheetLevel == .closed else { return }
             UIView.animate(withDuration: 0.3, animations: { [unowned self] in
                 self.backgroundView.alpha = 0.0
@@ -102,8 +91,6 @@ class AccountSheetViewController: UIViewController {
         let screenHeight = UIScreen.main.bounds.height
         self.cardViewTopConstraint.constant = screenHeight
         self.locationInView = screenHeight
-        
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -154,7 +141,7 @@ class AccountSheetViewController: UIViewController {
     // Prevents TableView from scrolling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView == tableView, shouldDisableTableScrolling else { return }
-        tableView.contentOffset.y = 0
+            tableView.contentOffset.y = 0
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -162,18 +149,16 @@ class AccountSheetViewController: UIViewController {
         targetContentOffset.pointee = scrollView.contentOffset
         shouldDisableTableScrolling = false
     }
-    
-    
+
     @objc
     private func panGestureDidOccur(_ gestureRecognizer: UIPanGestureRecognizer) {
-        print("Pan gesture called")
-
         guard let originView = gestureRecognizer.view else { return }
         let velocityY = gestureRecognizer.velocity(in: tableView).y
         let state = gestureRecognizer.state
         
         switch state {
         case .began:
+
             // Capture table content offset, prevents jump animation
             if originView == tableView {
                 initialTableViewContentOffset = tableView.contentOffset.y
@@ -186,10 +171,12 @@ class AccountSheetViewController: UIViewController {
             
             // Determine which view to animate: Table or Sheet
             let shouldAnimateCardView: Bool
-            if (tableView.contentOffset.y >= 0 && velocityY <= 0 && cardViewTopConstraint.constant < 0 && originView == tableView) || (velocityY >= 0 && tableView.contentOffset.y >= 0 && originView == tableView) {
+            if (tableView.contentOffset.y >= 0 && velocityY <= 0 && cardViewTopConstraint.constant <= 0 && originView == tableView) || (velocityY >= 0 && tableView.contentOffset.y >= 0 && originView == tableView) {
                 shouldDisableTableScrolling = false
                 shouldAnimateCardView = false
             } else {
+                // Prevents choppiness
+                tableView.contentOffset.y = 0
                 shouldDisableTableScrolling = true
                 shouldAnimateCardView = true
             }
@@ -197,19 +184,18 @@ class AccountSheetViewController: UIViewController {
             print("newLocation: \(newLocation)")
             print("Constant: \(cardViewTopConstraint.constant)")
             // Animate bottom sheet
+            
+            // Normalize gesture - User could pan from say 2 -> -1 and thus would be stuck at a 2 constraint
+            if newLocation < 3  {
+                newLocation = 0
+            }
+
             if shouldAnimateCardView {
+                cardViewTopConstraint.constant = newLocation
+                
+                // Animate Constraint Change
                 UIView.animate(withDuration: 0.1) { [unowned self] in
-                    // Normalize gesture - User could pan from say 2 -> -1 and thus would be stuck at a 2 constraint
-                    if newLocation < 3 {
-                        newLocation = 0
-                    }
-                    
-                    // todo test
-                    if newLocation == self.threshHoldClosed || newLocation == self.defaultHeight || newLocation == self.threshHoldTop {
-                        self.lightImpactGenerator.impactOccurred()
-                    }
-                    
-                    self.cardViewTopConstraint.constant = newLocation
+                    self.view.layoutIfNeeded()
                 }
             }
         case .ended, .failed, .cancelled:

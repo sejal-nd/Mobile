@@ -188,7 +188,6 @@
                         <constraints>
                             <constraint firstItem="CYS-0z-nPK" firstAttribute="leading" secondItem="SXw-0u-BIV" secondAttribute="leading" id="2Be-hS-HYV"/>
                             <constraint firstItem="CYS-0z-nPK" firstAttribute="top" secondItem="WpJ-xU-EG4" secondAttribute="top" constant="426" id="GS2-Xp-7By"/>
-                            <constraint firstItem="CYS-0z-nPK" firstAttribute="top" secondItem="WpJ-xU-EG4" secondAttribute="bottom" constant="-308" id="Jec-dB-o6I"/>
                             <constraint firstAttribute="bottom" secondItem="CYS-0z-nPK" secondAttribute="bottom" priority="999" id="LIQ-KT-DqO"/>
                             <constraint firstItem="VD7-e3-wKt" firstAttribute="leading" secondItem="SXw-0u-BIV" secondAttribute="leading" id="LTL-99-mNj"/>
                             <constraint firstItem="VD7-e3-wKt" firstAttribute="top" secondItem="SXw-0u-BIV" secondAttribute="top" id="Uir-Jk-ckV"/>
