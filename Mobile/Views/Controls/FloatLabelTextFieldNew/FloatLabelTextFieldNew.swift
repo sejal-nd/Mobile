@@ -15,6 +15,8 @@ class FloatLabelTextFieldNew: UIView {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var textFieldContainerView: UIView!
     @IBOutlet weak var textField: InsetTextField!
+    @IBOutlet weak var floatLabel: UILabel!
+    @IBOutlet weak var floatLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var checkAccessoryImageView: UIImageView!
     
     @IBOutlet weak var errorView: UIView!
@@ -25,6 +27,15 @@ class FloatLabelTextFieldNew: UIView {
     var errorMessage = ""
     
     let disposeBag = DisposeBag()
+    
+    var placeholder: String? {
+        didSet {
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.middleGray
+            ])
+            floatLabel.text = placeholder
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -50,15 +61,17 @@ class FloatLabelTextFieldNew: UIView {
         errorLabel.text = nil
         errorView.isHidden = true
         
+        floatLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        floatLabel.textColor = .middleGray
+        floatLabel.alpha = 0
+        
         textField.font = SystemFont.regular.of(textStyle: .title1)
-//        textField.floatingLabelFont = SystemFont.semibold.of(textStyle: .caption1)
-//        textField.floatingLabelYPadding = 6
-//        textField.floatingLabelTextColor = .middleGray
-//        textField.floatingLabelActiveTextColor = .primaryColorDark
+        textField.tintColor = .primaryColor
         
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             if !self.errorState {
+                self.floatLabel.textColor = .primaryColorDark
                 self.textFieldContainerView.layer.borderColor = UIColor.primaryColor.cgColor
             }
             self.textFieldIsFocused = true
@@ -67,24 +80,41 @@ class FloatLabelTextFieldNew: UIView {
         textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             if !self.errorState {
+                self.floatLabel.textColor = .middleGray
                 self.textFieldContainerView.layer.borderColor = UIColor.accentGray.cgColor
             }
             self.textFieldIsFocused = false
         }).disposed(by: disposeBag)
         
-        textFieldContainerView.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
+        textField.rx.text.asObservable().subscribe(onNext: { [weak self] text in
+            guard let self = self else { return }
+            self.view.layoutIfNeeded() // So that the textRect shift doesn't animate
+            if text?.count > 0 && self.floatLabelTopConstraint.constant != 8 {
+                self.floatLabelTopConstraint.constant = 8
+                UIView.animate(withDuration: 0.3) {
+                    self.floatLabel.alpha = 1
+                    self.view.layoutIfNeeded()
+                }
+            } else if text?.count == 0 && self.floatLabelTopConstraint.constant != 16 {
+                self.floatLabelTopConstraint.constant = 16
+                UIView.animate(withDuration: 0.3) {
+                    self.floatLabel.alpha = 0
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }).disposed(by: disposeBag)
         
         setDefaultStyles()
     }
     
     func setDefaultStyles() {
         textFieldContainerView.backgroundColor = .white
+        textFieldContainerView.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         
-//        textField.placeholderColor = .middleGray
-//        textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
         textField.textColor = .deepGray
-        
-        //textFieldContainerView.layer.borderColor = UIColor.accentGray.cgColor
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.middleGray
+        ])
     }
     
     func setError(_ error: String?) {
@@ -93,9 +123,7 @@ class FloatLabelTextFieldNew: UIView {
             checkAccessoryImageView.isHidden = true
             errorLabel.textColor = .errorRed
             
-//            textField.floatingLabelTextColor = .errorRed
-//            textField.floatingLabelActiveTextColor = .errorRed
-//            textField.floatingLabel.textColor = .errorRed
+            floatLabel.textColor = .errorRed
             
             errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
             self.errorMessage = errorMessage
@@ -103,13 +131,10 @@ class FloatLabelTextFieldNew: UIView {
         } else {
             errorState = false
             
-            
-//            textField.floatingLabelTextColor = .middleGray
-//            textField.floatingLabelActiveTextColor = .primaryColorDark
             if textFieldIsFocused {
-                //textField.floatingLabel.textColor = .primaryColorDark
+                floatLabel.textColor = .primaryColorDark
             } else {
-                //textField.floatingLabel.textColor = .middleGray
+                floatLabel.textColor = .middleGray
             }
             
             errorLabel.text = nil
@@ -119,9 +144,8 @@ class FloatLabelTextFieldNew: UIView {
     }
     
     func getError() -> String {
-        //let fieldTitle = textField.floatingLabel.text?.replacingOccurrences(of: "*", with: "")
-        //return errorMessage != "" ? fieldTitle! + " error: " + errorMessage + ". " : ""
-        return ""
+        let fieldTitle = textField.placeholder?.replacingOccurrences(of: "*", with: "")
+        return errorMessage != "" ? fieldTitle! + " error: " + errorMessage + ". " : ""
     }
         
     func setInfoMessage(_ message: String?) {
@@ -151,8 +175,10 @@ class FloatLabelTextFieldNew: UIView {
             setValidated(false)
             
             textFieldContainerView.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
-//            textField.placeholderColor = .middleGray
-//            textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
+        
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.deepGray.withAlphaComponent(0.5)
+            ])
         }
     }
     
@@ -164,11 +190,11 @@ class FloatLabelTextFieldNew: UIView {
             if let label = accessibilityLabel {
                 checkAccessoryImageView.accessibilityLabel = label
             }
-            //textField.isShowingAccessory = true
+            textField.isShowingAccessory = true
         } else {
             checkAccessoryImageView.isHidden = true
             checkAccessoryImageView.isAccessibilityElement = false
-            //textField.isShowingAccessory = false
+            textField.isShowingAccessory = false
         }
     }
     

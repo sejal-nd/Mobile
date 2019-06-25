@@ -14,6 +14,8 @@
                 <outlet property="checkAccessoryImageView" destination="f9d-zJ-mKR" id="ODk-1X-TWI"/>
                 <outlet property="errorLabel" destination="dny-ww-tgA" id="kUZ-cB-hhP"/>
                 <outlet property="errorView" destination="8Oo-nS-ebR" id="kzd-ST-nmR"/>
+                <outlet property="floatLabel" destination="G7e-ec-ajQ" id="MrK-Us-Ixz"/>
+                <outlet property="floatLabelTopConstraint" destination="Drp-xQ-FCq" id="D4W-Ai-sTb"/>
                 <outlet property="textField" destination="TnQ-GT-WNf" id="Rv7-bk-t54"/>
                 <outlet property="textFieldContainerView" destination="yWb-Mv-Mh9" id="tc5-Br-azg"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Qdz-UB-iMc"/>
@@ -36,6 +38,12 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-ec-ajQ">
+                                    <rect key="frame" x="16" y="16" width="33" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="f9d-zJ-mKR">
                                     <rect key="frame" x="287" y="22.5" width="13" height="10"/>
                                     <constraints>
@@ -47,6 +55,8 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="999" constant="55" id="0Za-Yu-rt6"/>
+                                <constraint firstItem="G7e-ec-ajQ" firstAttribute="leading" secondItem="yWb-Mv-Mh9" secondAttribute="leading" constant="16" id="Bam-6E-ZkC"/>
+                                <constraint firstItem="G7e-ec-ajQ" firstAttribute="top" secondItem="yWb-Mv-Mh9" secondAttribute="top" constant="16" id="Drp-xQ-FCq"/>
                                 <constraint firstItem="TnQ-GT-WNf" firstAttribute="top" secondItem="yWb-Mv-Mh9" secondAttribute="top" id="SxR-dN-KY5"/>
                                 <constraint firstItem="f9d-zJ-mKR" firstAttribute="centerY" secondItem="TnQ-GT-WNf" secondAttribute="centerY" id="ZEu-MV-sxT"/>
                                 <constraint firstAttribute="bottom" secondItem="TnQ-GT-WNf" secondAttribute="bottom" id="bfg-HK-klZ"/>
