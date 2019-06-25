@@ -554,7 +554,7 @@ if [[ $target_phases = *"nowsecure"* ]]; then
         if [ -n "$NOWSECURE_API_TOKEN" ]; then
             echo "Uploading ./build/output/$target_scheme/$target_scheme.ipa to NowSecure"
             pwd
-            curl -H "Authorization: Bearer ${NOWSECURE_API_TOKEN}" -X POST https://lab-api.nowsecure.com/build/ --data-binary ./build/output/$target_scheme/$target_scheme.ipa
+            curl -H "Authorization: Bearer ${NOWSECURE_API_TOKEN}" -X POST https://lab-api.nowsecure.com/build/ --data-binary @./build/output/$target_scheme/$target_scheme.ipa
         else
             echo "NowSecure API token is missing, can't upload binary!"
         fi
