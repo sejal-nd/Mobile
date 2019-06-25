@@ -17,12 +17,12 @@ class AccountSheetViewController: UIViewController {
     }
     
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var gestureView: UIView!
     @IBOutlet weak var handleView: UIView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var cardViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
 
     /// Recalculated on orientation change: `viewWillTransition`
     var defaultHeight = UIScreen.main.bounds.height * 0.55
@@ -46,24 +46,27 @@ class AccountSheetViewController: UIViewController {
         didSet {
             switch self.lastSheetLevel {
             case .top:
-                self.cardViewTopConstraint.constant = 0
+                self.bottomSheetViewTopConstraint.constant = 0
                 self.locationInView = 0
             case .middle:
-                self.cardViewTopConstraint.constant = self.defaultHeight
+                self.bottomSheetViewTopConstraint.constant = self.defaultHeight
                 self.locationInView = self.defaultHeight
                 
-                // Reset TableView Content
+                // Reset TableView Content Offset
                 self.tableView.setContentOffset(CGPoint(x: tableView.contentOffset.x, y: 0), animated: true)
             case .closed:
                 let screenHeight = UIScreen.main.bounds.height
-                self.cardViewTopConstraint.constant = screenHeight
+                self.bottomSheetViewTopConstraint.constant = screenHeight
                 self.locationInView = screenHeight
             }
             
+            
+            // Animate Bottom Sheet
             UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: { [unowned self] in
                 self.view.layoutIfNeeded()
             }, completion: nil)
 
+            // Animate Background
             guard lastSheetLevel == .closed else { return }
             UIView.animate(withDuration: 0.3, animations: { [unowned self] in
                 self.backgroundView.alpha = 0.0
@@ -87,16 +90,13 @@ class AccountSheetViewController: UIViewController {
         
         configureGestures()
         
-        // Start with view hidden
-        let screenHeight = UIScreen.main.bounds.height
-        self.cardViewTopConstraint.constant = screenHeight
-        self.locationInView = screenHeight
+        hideBottomSheet()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        present()
+        presentBottomSheet()
         
         // Todo: Remove
         var i = 0
@@ -141,7 +141,7 @@ class AccountSheetViewController: UIViewController {
     // Prevents TableView from scrolling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView == tableView, shouldDisableTableScrolling else { return }
-            tableView.contentOffset.y = 0
+        tableView.contentOffset.y = 0
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -166,32 +166,28 @@ class AccountSheetViewController: UIViewController {
                 initialTableViewContentOffset = 0
             }
         case .changed:
-            let translation = gestureRecognizer.translation(in: cardView)
+            let translation = gestureRecognizer.translation(in: bottomSheetView)
             var newLocation = locationInView + translation.y - initialTableViewContentOffset
             
             // Determine which view to animate: Table or Sheet
-            let shouldAnimateCardView: Bool
-            if (tableView.contentOffset.y >= 0 && velocityY <= 0 && cardViewTopConstraint.constant <= 0 && originView == tableView) || (velocityY >= 0 && tableView.contentOffset.y >= 0 && originView == tableView) {
+            let shouldAnimateBottomSheetView: Bool
+            if (tableView.contentOffset.y >= 0 && velocityY <= 0 && bottomSheetViewTopConstraint.constant <= 0 && originView == tableView) || (velocityY >= 0 && tableView.contentOffset.y >= 0 && originView == tableView) {
                 shouldDisableTableScrolling = false
-                shouldAnimateCardView = false
+                shouldAnimateBottomSheetView = false
             } else {
                 // Prevents choppiness
                 tableView.contentOffset.y = 0
                 shouldDisableTableScrolling = true
-                shouldAnimateCardView = true
+                shouldAnimateBottomSheetView = true
             }
-
-            print("newLocation: \(newLocation)")
-            print("Constant: \(cardViewTopConstraint.constant)")
-            // Animate bottom sheet
             
             // Normalize gesture - User could pan from say 2 -> -1 and thus would be stuck at a 2 constraint
             if newLocation < 3  {
                 newLocation = 0
             }
 
-            if shouldAnimateCardView {
-                cardViewTopConstraint.constant = newLocation
+            if shouldAnimateBottomSheetView {
+                bottomSheetViewTopConstraint.constant = newLocation
                 
                 // Animate Constraint Change
                 UIView.animate(withDuration: 0.1) { [unowned self] in
@@ -200,7 +196,7 @@ class AccountSheetViewController: UIViewController {
             }
         case .ended, .failed, .cancelled:
             // Commit the desired state of bottom sheet
-            let endingLocationInView = cardViewTopConstraint.constant
+            let endingLocationInView = bottomSheetViewTopConstraint.constant
             
             if endingLocationInView < threshHoldTop {
                 lastSheetLevel = .top
@@ -218,8 +214,8 @@ class AccountSheetViewController: UIViewController {
     // MARK: - Helper
     
     private func configureCardView() {
-        cardView.roundCorners([.topLeft, .topRight], radius: 10.0)
-        cardView.layer.masksToBounds = true
+        bottomSheetView.roundCorners([.topLeft, .topRight], radius: 10.0)
+        bottomSheetView.layer.masksToBounds = true
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
     }
@@ -245,12 +241,19 @@ class AccountSheetViewController: UIViewController {
         gestureView.addGestureRecognizer(tapGesture)
     }
     
-    private func present() {
+    private func presentBottomSheet() {
         UIView.animate(withDuration: 0.3) { [unowned self] in
             self.backgroundView.alpha = 1.0
         }
         
         lastSheetLevel = .middle
+    }
+    
+    private func hideBottomSheet() {
+        // Start with view hidden
+        let screenHeight = UIScreen.main.bounds.height
+        self.bottomSheetViewTopConstraint.constant = screenHeight
+        self.locationInView = screenHeight
     }
 }
 

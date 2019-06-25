@@ -199,8 +199,8 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="VD7-e3-wKt" id="SRW-Jj-qcK"/>
-                        <outlet property="cardView" destination="CYS-0z-nPK" id="6eC-Cm-rKu"/>
-                        <outlet property="cardViewTopConstraint" destination="GS2-Xp-7By" id="h5g-fy-2Qo"/>
+                        <outlet property="bottomSheetView" destination="CYS-0z-nPK" id="6eC-Cm-rKu"/>
+                        <outlet property="bottomSheetViewTopConstraint" destination="GS2-Xp-7By" id="h5g-fy-2Qo"/>
                         <outlet property="gestureView" destination="jOk-5D-qem" id="x4y-9K-rAd"/>
                         <outlet property="handleView" destination="zfp-En-5in" id="Knu-vt-NzE"/>
                         <outlet property="navigationBar" destination="d6S-PX-OzL" id="8YQ-3w-l89"/>
