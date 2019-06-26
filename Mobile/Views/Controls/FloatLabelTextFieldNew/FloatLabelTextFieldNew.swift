@@ -67,7 +67,7 @@ class FloatLabelTextFieldNew: UIView {
         
         textField.font = SystemFont.regular.of(textStyle: .title1)
         textField.tintColor = .primaryColor
-        
+
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             if !self.errorState {
@@ -86,7 +86,7 @@ class FloatLabelTextFieldNew: UIView {
             self.textFieldIsFocused = false
         }).disposed(by: disposeBag)
         
-        textField.rx.text.asObservable().subscribe(onNext: { [weak self] text in
+        textField.textPublishSubject.asObservable().subscribe(onNext: { [weak self] text in
             guard let self = self else { return }
             self.view.layoutIfNeeded() // So that the textRect shift doesn't animate
             if text?.count > 0 && self.floatLabelTopConstraint.constant != 8 {
@@ -118,28 +118,31 @@ class FloatLabelTextFieldNew: UIView {
     }
     
     func setError(_ error: String?) {
-        if let errorMessage = error {
+        if let errMsg = error {
             errorState = true
-            checkAccessoryImageView.isHidden = true
-            errorLabel.textColor = .errorRed
-            
-            floatLabel.textColor = .errorRed
-            
+            errorMessage = errMsg
             errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
-            self.errorMessage = errorMessage
+            
+            errorLabel.textColor = .errorRed
+            floatLabel.textColor = .errorRed
+            textFieldContainerView.layer.borderColor = UIColor.errorRed.cgColor
+            
             errorView.isHidden = false
+            checkAccessoryImageView.isHidden = true
         } else {
             errorState = false
+            errorMessage = ""
+            errorLabel.text = nil
             
             if textFieldIsFocused {
                 floatLabel.textColor = .primaryColorDark
+                textFieldContainerView.layer.borderColor = UIColor.primaryColor.cgColor
             } else {
                 floatLabel.textColor = .middleGray
+                textFieldContainerView.layer.borderColor = UIColor.accentGray.cgColor
             }
             
-            errorLabel.text = nil
             errorView.isHidden = true
-            self.errorMessage = ""
         }
     }
     

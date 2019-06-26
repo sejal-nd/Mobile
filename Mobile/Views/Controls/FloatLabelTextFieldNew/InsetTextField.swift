@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import RxSwift
 
 class InsetTextField: UITextField {
 
     var isShowingAccessory = false
     var customAccessibilityLabel: String?
+    
+    /* We need this because setting the text programatically (textField.text = "like this"), does
+     * NOT trigger rx.text (or rx.controlEvent(.valueChanged)) observers. I tried just calling
+     * `sendActions(for: .valueChanged)` in the didSet, but that can cause an infinite loop in places
+     * like Make A Payment where we transform (and then re-set) text as the user types. */
+    var textPublishSubject = PublishSubject<String?>()
+    override var text: String? {
+        didSet {
+            textPublishSubject.onNext(text)
+        }
+    }
     
     override var accessibilityLabel: String? {
         get {
