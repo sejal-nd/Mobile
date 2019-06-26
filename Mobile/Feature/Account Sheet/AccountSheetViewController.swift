@@ -197,13 +197,29 @@ class AccountSheetViewController: UIViewController {
         case .ended, .failed, .cancelled:
             // Commit the desired state of bottom sheet
             let endingLocationInView = bottomSheetViewTopConstraint.constant
-            
-            if endingLocationInView < threshHoldTop {
+
+            // Handle Velocity
+            if velocityY > 300 {
+                // Swipe Down
+                
+                // if end location is past default height, collapse
+                if endingLocationInView > defaultHeight {
+                    lastSheetLevel = .closed
+                } else {
+                    lastSheetLevel = lastSheetLevel == .top ? .middle : .closed
+                }
+            } else if velocityY < -300 {
+                // Swipe Up
                 lastSheetLevel = .top
-            } else if endingLocationInView > threshHoldTop && endingLocationInView < defaultHeight || endingLocationInView > defaultHeight  && endingLocationInView < threshHoldClosed {
-                lastSheetLevel = .middle
             } else {
-                lastSheetLevel = .closed
+                // Handle Location
+                if endingLocationInView <= threshHoldTop {
+                    lastSheetLevel = .top
+                } else if endingLocationInView > threshHoldTop && endingLocationInView < threshHoldClosed {
+                    lastSheetLevel = .middle
+                } else {
+                    lastSheetLevel = .closed
+                }
             }
         default:
             break
