@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PremiseSelectDelegate: class {
+    func didSelectPremise(at indexPath: IndexPath)
+}
+
 class AccountListRow: UITableViewCell {
     
     enum CellState {
@@ -25,19 +29,23 @@ class AccountListRow: UITableViewCell {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
+    weak var delegate: PremiseSelectDelegate?
+    var parentIndexPath: IndexPath!
     
     private var account: Account!
+    
+    var premiseSelectedIndexPath: IndexPath?
     
     var cellState: CellState = .collapsed
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accountNumber.textColor = .orange//.black
+        accountNumber.textColor = .blackText
         accountNumber.font = SystemFont.regular.of(textStyle: .headline)
         addressLabel.textColor = .middleGray
         addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
-
+        
         let premiseListCell = UINib(nibName: PremiseListRow.className, bundle: nil)
         tableView.register(premiseListCell, forCellReuseIdentifier: PremiseListRow.className)
         
@@ -45,8 +53,6 @@ class AccountListRow: UITableViewCell {
         tableView.dataSource = self
     }
     
-    // we may need to bring distinction to selecting the cell vs selecting the area of the cell.....
-    // tap gestures in top areaof cell vs tap gestures in cells of other table view...?
     func didPress() {
         guard account.isMultipremise else { return }
         
@@ -56,47 +62,83 @@ class AccountListRow: UITableViewCell {
             tableViewHeightConstraint.constant = 0
         case .collapsed:
             cellState = .expanded
-            tableViewHeightConstraint.constant = tableView.contentSize.height
+            tableViewHeightConstraint.constant = CGFloat(integerLiteral: account.premises.count) * 60
         }
         
         UIView.animate(withDuration: 0.3) { [unowned self] in
             self.stackView.layoutIfNeeded()
         }
-
+        
         UIView.transition(with: carrotImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
             self.carrotImageView.image = self.cellState == .collapsed ? UIImage(named: "ic_carat_down") : UIImage(named: "ic_carat_up")
-        }, completion: nil)
+            }, completion: nil)
     }
     
-    func configure(withAccount account: Account) {
+    func configure(withAccount account: Account,
+                   indexPath: IndexPath,
+                   selectedIndexPath: IndexPath?,
+                   delegate: PremiseSelectDelegate) {
         self.account = account
+
+        self.delegate = delegate
+
         
+        // Mutli Premise
         if account.isMultipremise {
+//            print("premise count: \(account.premises.count)")
+            tableView.isHidden = false
+            
+            parentIndexPath = indexPath
+            // determine selected indexPath
+            guard let currentPremise = AccountsStore.shared.currentAccount.currentPremise,
+                  let row = account.premises.firstIndex(of: currentPremise) else { return }
+            premiseSelectedIndexPath = IndexPath(row: row, section: 0)
+            tableView.reloadData()
+            
             cellState = .collapsed
             
-            // Dyanmic height table view
+            // Start TableView Collapsed
             self.layoutIfNeeded()
             tableViewHeightConstraint.constant = 0
-        }
-        
-        let commercialUser = !account.isResidential
-        
-        accountImageView.image = commercialUser ? UIImage(named: "ic_commercial_mini") : UIImage(named: "ic_residential_mini")
-        accountImageView.isAccessibilityElement = false
-        accountImageView.accessibilityLabel = commercialUser ? NSLocalizedString("Commercial account", comment: "") : NSLocalizedString("Residential account", comment: "")
-        addressLabel.text = account.address
-        if let address = account.address {
-            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@.", comment: ""), address)
+            self.layoutIfNeeded()
+            
+            selectionStyle = .none
+            carrotImageView.isHidden = false
         } else {
-            addressLabel.accessibilityLabel = nil
+            tableView.isHidden = true
+            
+            selectionStyle = .default
+            
+            carrotImageView.isHidden = true
         }
         
+        // Checkmark
+        if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
+            checkMarkImageView.isHidden = false
+            checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
+        } else {
+            checkMarkImageView.isHidden = true
+        }
+        checkMarkImageView.isAccessibilityElement = false
+        
+        let isCommericalUser = !account.isResidential
+        
+        // Determine Address Icon
+        if isCommericalUser {
+            accountImageView.image = UIImage(named: "ic_commercial_mini")
+            accountImageView.accessibilityLabel = NSLocalizedString("Commercial account", comment: "")
+        } else {
+            accountImageView.image = UIImage(named: "ic_residential_mini")
+            accountImageView.accessibilityLabel = NSLocalizedString("Residential account", comment: "")
+        }
+        accountImageView.isAccessibilityElement = false
+        
+        // Account Number
         let accountNumberText: String
         if account.isDefault {
             accountNumberText = "\(account.accountNumber) (Default)"
         } else if account.isFinaled {
             accountNumberText = "\(account.accountNumber) (Finaled)"
-            accountImageView.image = commercialUser ? #imageLiteral(resourceName: "ic_commercial_disabled") : #imageLiteral(resourceName: "ic_residential_disabled")
         } else if account.isLinked {
             accountNumberText = "\(account.accountNumber) (Linked)"
         } else {
@@ -106,22 +148,15 @@ class AccountListRow: UITableViewCell {
         accountNumber.text = account.accountNumber
         accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
-        if account.accountNumber == AccountsStore.shared.currentAccount.accountNumber {
-//            separatorInset = UIEdgeInsets(top: 0, left: 90, bottom: 0, right: 0)
-//            checkMarkImageView.isHidden = false
-            checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
+        // Address Label
+        addressLabel.text = account.address
+        if let address = account.address {
+            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@.", comment: ""), address)
         } else {
-//            separatorInset = UIEdgeInsets(top: 0, left: 67, bottom: 0, right: 0)
-//            checkMarkImageView.isHidden = true
+            addressLabel.accessibilityLabel = nil
         }
-        checkMarkImageView.isAccessibilityElement = false
         
         self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), "
-        
-//        checkMarkImageView.isHidden = account.isMultipremise
-        carrotImageView.isHidden = !account.isMultipremise
-        
-//        selectionStyle = account.isMultipremise ? .none : .default
     }
 }
 
@@ -130,9 +165,28 @@ class AccountListRow: UITableViewCell {
 
 extension AccountListRow: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // todo do something.
-        print("selected")
         tableView.deselectRow(at: indexPath, animated: true)
+
+        // Single Cell Selection
+        if indexPath == premiseSelectedIndexPath {
+            return
+        }
+        
+        // toggle old one off and the new one on
+        guard let newCell = tableView.cellForRow(at: indexPath) as? PremiseListRow else { return }
+        if newCell.checkMarkImageView.isHidden {
+            newCell.checkMarkImageView.isHidden = false
+        }
+        
+        guard let unwrappedSelectedIndexPath = premiseSelectedIndexPath, let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? PremiseListRow else { return }
+        if !oldCell.checkMarkImageView.isHidden {
+            oldCell.checkMarkImageView.isHidden = true
+        }
+        
+        premiseSelectedIndexPath = indexPath
+        
+        // Select parent checkmark.
+        delegate?.didSelectPremise(at: parentIndexPath)
     }
 }
 
@@ -141,7 +195,7 @@ extension AccountListRow: UITableViewDelegate {
 
 extension AccountListRow: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 60
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -151,7 +205,7 @@ extension AccountListRow: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PremiseListRow.className, for: indexPath) as! PremiseListRow
         let premise = account.premises[indexPath.row]
-        cell.configureWithPremise(premise)
+        cell.configureWithPremise(premise, indexPath: indexPath, selectedIndexPath: premiseSelectedIndexPath)
         return cell
     }
 }

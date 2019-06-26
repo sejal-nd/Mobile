@@ -26,7 +26,13 @@ class PremiseListRow: UITableViewCell {
 // MARK: - Cell Configuration
 
 extension PremiseListRow {
-    func configureWithPremise(_ premise: Premise) {
-        accountNumber.text = premise.premiseNumber
+    func configureWithPremise(_ premise: Premise, indexPath: IndexPath, selectedIndexPath: IndexPath?) {
+        accountNumber.text = premise.addressLineString
+        
+        if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
+            checkMarkImageView.isHidden = false
+        } else {
+            checkMarkImageView.isHidden = true
+        }
     }
 }

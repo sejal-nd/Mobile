@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AccountSelectDelegate: class {
+    func didSelectAccount(_ didSelectAccount: Account)
+}
+
 class AccountSheetViewController: UIViewController {
     
     enum SheetLevel {
@@ -24,13 +28,15 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
 
+    weak var accountSelectDelegate: AccountSelectDelegate?
+    
     /// Recalculated on orientation change: `viewWillTransition`
     var defaultHeight = UIScreen.main.bounds.height * 0.55
     
     /// Determines when to "snap" to the top or middle state
-    let threshHoldTop = UIScreen.main.bounds.height * 0.3
+    var threshHoldTop = UIScreen.main.bounds.height * 0.3
     /// Determines when to "snap" to the middle or closed state
-    let threshHoldClosed = UIScreen.main.bounds.height * 0.7
+    var threshHoldClosed = UIScreen.main.bounds.height * 0.7
     
     /// The current Y location of cardView
     var locationInView: CGFloat!
@@ -78,6 +84,7 @@ class AccountSheetViewController: UIViewController {
     
     private var accounts = AccountsStore.shared.accounts ?? [Account]()
     
+    private var selectedIndexPath: IndexPath?
     
     // MARK: - View Life Cycle
     
@@ -97,21 +104,14 @@ class AccountSheetViewController: UIViewController {
         super.viewDidAppear(animated)
         
         presentBottomSheet()
-        
-        // Todo: Remove
-        var i = 0
-        while i < 20 {
-            i += 1
-            accounts.append(AccountsStore.shared.accounts.first!)
-        }
-
-        tableView.reloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
+        threshHoldTop = UIScreen.main.bounds.height * 0.3
         defaultHeight = UIScreen.main.bounds.height * 0.55
+        threshHoldClosed = UIScreen.main.bounds.height * 0.7
         
         if lastSheetLevel == .middle {
             lastSheetLevel = .middle
@@ -222,6 +222,11 @@ class AccountSheetViewController: UIViewController {
     
     private func configureTableView() {
         tableView.tableFooterView = UIView()
+        
+        // determine selected indexPath
+        guard let row = accounts.firstIndex(of: AccountsStore.shared.currentAccount) else { return }
+        selectedIndexPath = IndexPath(row: row, section: 0)
+        tableView.reloadData()
     }
     
     private func configureGestures() {
@@ -271,10 +276,38 @@ extension AccountSheetViewController: UITableViewDelegate {
             tableView.beginUpdates()
             tableView.endUpdates()
         } else {
-            // todo trigger delegate ect...
-            lastSheetLevel = .closed
+            didSelectIndexPath(indexPath: indexPath)
         }
     }
+    
+    func didSelectIndexPath(indexPath: IndexPath, shouldAllowSameCellSelection: Bool = false) {
+        // Single Cell Selection
+
+        // Same row selected -> return
+        if indexPath == selectedIndexPath, !shouldAllowSameCellSelection {
+            return
+        }
+        
+        // toggle old one off and the new one on
+        guard let newCell = tableView.cellForRow(at: indexPath) as? AccountListRow else {
+            return }
+        if newCell.checkMarkImageView.isHidden {
+            newCell.checkMarkImageView.isHidden = false
+        }
+        
+        guard let unwrappedSelectedIndexPath = selectedIndexPath, let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? AccountListRow else {
+            return }
+        if !oldCell.checkMarkImageView.isHidden {
+            oldCell.checkMarkImageView.isHidden = true
+        }
+        
+        selectedIndexPath = indexPath
+        
+        // Selection Action
+        accountSelectDelegate?.didSelectAccount(accounts[indexPath.row])
+        lastSheetLevel = .closed
+    }
+    
 }
 
 
@@ -288,7 +321,7 @@ extension AccountSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AccountListRow.className, for: indexPath) as! AccountListRow
         let account = accounts[indexPath.row]
-        cell.configure(withAccount: account)
+        cell.configure(withAccount: account, indexPath: indexPath, selectedIndexPath: selectedIndexPath, delegate: self)
         return cell
     }
 }
@@ -300,5 +333,11 @@ extension AccountSheetViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+extension AccountSheetViewController: PremiseSelectDelegate {
+    func didSelectPremise(at indexPath: IndexPath) {
+        didSelectIndexPath(indexPath: indexPath, shouldAllowSameCellSelection: true)
     }
 }

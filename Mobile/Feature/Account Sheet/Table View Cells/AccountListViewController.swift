@@ -100,7 +100,7 @@ extension AccountListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AccountListRow.className, for: indexPath) as! AccountListRow
         let account = accounts[indexPath.row]
-        cell.configure(withAccount: account)
+//        cell.configure(withAccount: account)
         return cell
     }
 }
