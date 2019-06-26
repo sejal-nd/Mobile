@@ -86,23 +86,25 @@ class FloatLabelTextFieldNew: UIView {
             self.textFieldIsFocused = false
         }).disposed(by: disposeBag)
         
-        textField.textPublishSubject.asObservable().subscribe(onNext: { [weak self] text in
-            guard let self = self else { return }
-            self.view.layoutIfNeeded() // So that the textRect shift doesn't animate
-            if text?.count > 0 && self.floatLabelTopConstraint.constant != 8 {
-                self.floatLabelTopConstraint.constant = 8
-                UIView.animate(withDuration: 0.3) {
-                    self.floatLabel.alpha = 1
-                    self.view.layoutIfNeeded()
+        Observable.merge(textField.rx.text.asObservable(),
+                         textField.textPublishSubject.asObservable())
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
+                self.view.layoutIfNeeded() // So that the textRect shift doesn't animate
+                if text?.count > 0 && self.floatLabelTopConstraint.constant != 8 {
+                    self.floatLabelTopConstraint.constant = 8
+                    UIView.animate(withDuration: 0.3) {
+                        self.floatLabel.alpha = 1
+                        self.view.layoutIfNeeded()
+                    }
+                } else if text?.count == 0 && self.floatLabelTopConstraint.constant != 16 {
+                    self.floatLabelTopConstraint.constant = 16
+                    UIView.animate(withDuration: 0.3) {
+                        self.floatLabel.alpha = 0
+                        self.view.layoutIfNeeded()
+                    }
                 }
-            } else if text?.count == 0 && self.floatLabelTopConstraint.constant != 16 {
-                self.floatLabelTopConstraint.constant = 16
-                UIView.animate(withDuration: 0.3) {
-                    self.floatLabel.alpha = 0
-                    self.view.layoutIfNeeded()
-                }
-            }
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         setDefaultStyles()
     }
