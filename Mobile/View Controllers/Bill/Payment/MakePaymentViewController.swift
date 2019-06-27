@@ -190,6 +190,7 @@ class MakePaymentViewController: UIViewController {
         confirmationNumberTextLabel.textColor = .deepGray
         confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberValueTextView.textColor = .blackText
+        confirmationNumberValueTextView.dataDetectorTypes.remove(.all) // Some confirmation numbers are detected as phone numbers
         confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle:.title1)
         for line in editPaymentDividerLines {
             line.backgroundColor = .accentGray
