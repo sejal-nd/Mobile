@@ -874,6 +874,9 @@
 		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
+		9C62447422C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */; };
+		9C62447522C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */; };
+		9C62447622C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */; };
 		9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
@@ -2874,6 +2877,7 @@
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlNew.swift; sourceTree = "<group>"; };
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
@@ -4175,6 +4179,7 @@
 				54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */,
 				545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */,
 				B085C44220FD2C5500CE0893 /* ConversationalButton.swift */,
+				9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -7225,6 +7230,7 @@
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
+				9C62447422C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */,
 				9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
@@ -7900,6 +7906,7 @@
 				B59EFAA71F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				B039DB82225E6D5700BB5479 /* PrepaidCardView.swift in Sources */,
 				8206D0191FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
+				9C62447622C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
@@ -7962,6 +7969,7 @@
 				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
+				9C62447522C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */,
 				9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				82AC2A1F1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
