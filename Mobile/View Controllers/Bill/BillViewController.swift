@@ -184,7 +184,7 @@ class BillViewController: AccountPickerViewController {
         view.backgroundColor = .primaryColorAccountPicker
         contentView.backgroundColor = .primaryColorAccountPicker
 
-        topView.backgroundColor = .primaryColor
+        topView.backgroundColor = .primaryColorAccountPicker
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
         
         prepaidHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)

@@ -892,6 +892,9 @@
 		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
+		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
+		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
+		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
@@ -2901,6 +2904,7 @@
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedAccountPickerMultiPremiseTableViewCell.xib; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		9C50EBD222B971D500A89DBF /* AccountPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountPicker.xib; sourceTree = "<group>"; };
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -4433,6 +4437,7 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9C50EBD122B971AF00A89DBF /* AccountPicker */,
 				358DE0A621021B46002C544E /* Unavailable View */,
 				358BD21520F8FB1500DA2012 /* Usage */,
 				B068DB5420D2E88700930589 /* Home Edit */,
@@ -4447,7 +4452,6 @@
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				E8FF085D1F7EDD2F0030F1BF /* TutorialView */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
-				E80D2E261E72FC2C002626C9 /* AccountPicker.swift */,
 				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
@@ -4539,6 +4543,15 @@
 				351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C50EBD122B971AF00A89DBF /* AccountPicker */ = {
+			isa = PBXGroup;
+			children = (
+				E80D2E261E72FC2C002626C9 /* AccountPicker.swift */,
+				9C50EBD222B971D500A89DBF /* AccountPicker.xib */,
+			);
+			path = AccountPicker;
 			sourceTree = "<group>";
 		};
 		9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */ = {
@@ -5966,6 +5979,7 @@
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
+				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
@@ -6123,6 +6137,7 @@
 				B089572F2217596400A97965 /* billing_history.json in Resources */,
 				B08957092215FE7900A97965 /* recover_username.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
+				9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */,
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
@@ -6280,6 +6295,7 @@
 				B089572E2217596400A97965 /* billing_history.json in Resources */,
 				B08957082215FE7900A97965 /* recover_username.json in Resources */,
 				441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */,
+				9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B522A082CD0087F0BA /* FirstFuelWidget.html in Resources */,

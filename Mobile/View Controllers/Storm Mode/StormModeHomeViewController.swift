@@ -12,11 +12,7 @@ import RxSwiftExt
 import Lottie
 
 class StormModeHomeViewController: AccountPickerViewController {
-    
-    override var showMinimizedPicker: Bool {
-        return false
-    }
-    
+        
     @IBOutlet private weak var gradientView: UIView!
     var gradientLayer = CAGradientLayer()
     
