@@ -119,10 +119,6 @@ class AccountSheetViewController: UIViewController {
             lastSheetLevel = .middle
         }
     }
-
-    deinit {
-        print("deinit")
-    }
     
     
     // MARK: - Actions
@@ -240,6 +236,9 @@ class AccountSheetViewController: UIViewController {
     }
     
     private func configureTableView() {
+        let accountListCell = UINib(nibName: AccountListRow.className, bundle: nil)
+        tableView.register(accountListCell, forCellReuseIdentifier: AccountListRow.className)
+        
         tableView.tableFooterView = UIView()
         
         // Determine selected indexPath

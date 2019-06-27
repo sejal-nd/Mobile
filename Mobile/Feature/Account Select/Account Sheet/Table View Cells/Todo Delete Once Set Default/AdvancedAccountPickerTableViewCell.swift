@@ -18,7 +18,7 @@ class AdvancedAccountPickerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accountNumber.textColor = .orange//.black
+        accountNumber.textColor = .blackText
         accountNumber.font = SystemFont.regular.of(textStyle: .headline)
         addressLabel.textColor = .middleGray
         addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
