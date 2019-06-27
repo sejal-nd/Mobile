@@ -13,7 +13,6 @@ protocol PremiseSelectDelegate: class {
 }
 
 class AccountListRow: UITableViewCell {
-    
     enum CellState {
         case expanded
         case collapsed
