@@ -1870,12 +1870,6 @@
 		E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C412F1FAA522B00448F86 /* AlertsViewController.swift */; };
 		E87C41311FAA522B00448F86 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C412F1FAA522B00448F86 /* AlertsViewController.swift */; };
 		E87C41321FAA522B00448F86 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C412F1FAA522B00448F86 /* AlertsViewController.swift */; };
-		E87C41351FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87C41341FAA562500448F86 /* AlertsSegmentedControl.xib */; };
-		E87C41361FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87C41341FAA562500448F86 /* AlertsSegmentedControl.xib */; };
-		E87C41371FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87C41341FAA562500448F86 /* AlertsSegmentedControl.xib */; };
-		E87C41391FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41381FAA565700448F86 /* AlertsSegmentedControl.swift */; };
-		E87C413A1FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41381FAA565700448F86 /* AlertsSegmentedControl.swift */; };
-		E87C413B1FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C41381FAA565700448F86 /* AlertsSegmentedControl.swift */; };
 		E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
 		E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
 		E87C41401FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */; };
@@ -3197,8 +3191,6 @@
 		E87C32001E9EB0D200E5F6FD /* AccountLookupToolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolViewController.swift; sourceTree = "<group>"; };
 		E87C320E1E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultViewController.swift; sourceTree = "<group>"; };
 		E87C412F1FAA522B00448F86 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
-		E87C41341FAA562500448F86 /* AlertsSegmentedControl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertsSegmentedControl.xib; sourceTree = "<group>"; };
-		E87C41381FAA565700448F86 /* AlertsSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsSegmentedControl.swift; sourceTree = "<group>"; };
 		E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewModel.swift; sourceTree = "<group>"; };
 		E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTableViewCell.swift; sourceTree = "<group>"; };
 		E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewModel.swift; sourceTree = "<group>"; };
@@ -4168,7 +4160,6 @@
 		82A18EB01EBA667900BE9F21 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				E87C41331FAA560000448F86 /* AlertsSegmentedControl */,
 				E89399331F86719B00B9184C /* BillAnalysisSegmentedControl */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
 				E841F39A1F02F2A0007BFA82 /* DateDisclosureButton */,
@@ -5171,15 +5162,6 @@
 			path = Alerts;
 			sourceTree = "<group>";
 		};
-		E87C41331FAA560000448F86 /* AlertsSegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				E87C41381FAA565700448F86 /* AlertsSegmentedControl.swift */,
-				E87C41341FAA562500448F86 /* AlertsSegmentedControl.xib */,
-			);
-			path = AlertsSegmentedControl;
-			sourceTree = "<group>";
-		};
 		E87C413C1FAA6BF800448F86 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -5896,7 +5878,6 @@
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
 				B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */,
-				E87C41351FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				385AF2261F27915A001E3619 /* img_1.png in Resources */,
 				359BB2672146F05400FBAD83 /* sm_outage.json in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
@@ -6052,7 +6033,6 @@
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */,
 				B0B0840321710D1500B1C632 /* Appt_Inprogress.json in Resources */,
-				E87C41371FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				359BB27D214834BA00FBAD83 /* outage.json in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
@@ -6209,7 +6189,6 @@
 				B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */,
 				82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
-				E87C41361FAA562500448F86 /* AlertsSegmentedControl.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
@@ -7497,7 +7476,6 @@
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
-				E87C41391FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */,
 				E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -7857,7 +7835,6 @@
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
-				E87C413B1FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */,
 				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
@@ -8232,7 +8209,6 @@
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
-				E87C413A1FAA565700448F86 /* AlertsSegmentedControl.swift in Sources */,
 				E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF31F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
