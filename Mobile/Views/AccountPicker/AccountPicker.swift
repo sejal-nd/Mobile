@@ -30,8 +30,8 @@ class AccountPicker: UIControl {
     weak var delegate: AccountPickerDelegate?
     weak var parentViewController: UIViewController?
     
-    var accounts: [Account]! {
-        get { return AccountsStore.shared.accounts }
+    var accounts: [Account] {
+        get { return AccountsStore.shared.accounts ?? [Account]() }
     }
     
     /* We keep track of the current account so that we can avoid reloads when the user
@@ -39,7 +39,7 @@ class AccountPicker: UIControl {
     var currentAccount: Account?
     
     private var isMultiPremise: Bool {
-        return accounts?.contains { $0.isMultipremise } ?? false
+        return accounts.contains { $0.isMultipremise }
     }
     
     @IBInspectable var tintWhite: Bool = false {
@@ -79,7 +79,7 @@ class AccountPicker: UIControl {
         addBottomBorder(color: borderColor, width: 1)
     }
 
-    func commonInit() {
+    private func commonInit() {
         Bundle.main.loadNibNamed(AccountPicker.className, owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -158,40 +158,33 @@ class AccountPicker: UIControl {
         }
     }
     
-    @objc func onAccountPickerPress() {
-        // Single, non-multipremise accounts
-        guard accounts.count > 1 || isMultiPremise else { return }
-        
-        let vc = AdvancedAccountPickerViewController()
+    /// Present Bottom Sheet
+    @objc private func onAccountPickerPress() {
+        guard accounts.count > 1 || isMultiPremise,
+        let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() as? AccountSheetViewController else { return }
         vc.delegate = self
-        vc.accounts = accounts
-        if let parentVc = parentViewController {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                vc.modalPresentationStyle = .formSheet
-                parentVc.present(vc, animated: true, completion: nil)
-            } else {
-                parentVc.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        vc.modalPresentationStyle = .overCurrentContext
+        parentViewController?.tabBarController?.present(vc, animated: false, completion: nil)
     }
+    
     
     // MARK: - IBOutletCollection Helpers
     
-    func setIconImage(_ image: UIImage, accessibilityLabel: String) {
+    private func setIconImage(_ image: UIImage, accessibilityLabel: String) {
         for imageView in iconImageViews {
             imageView.image = image
             imageView.accessibilityLabel = accessibilityLabel
         }
     }
     
-    func setAccountNumberText(_ text: String, accessibilityLabel: String) {
+    private func setAccountNumberText(_ text: String, accessibilityLabel: String) {
         for label in accountNumberLabels {
             label.text = text
             label.accessibilityLabel = accessibilityLabel
         }
     }
     
-    func setAddressText(_ text: String, accessibilityLabel: String) {
+    private func setAddressText(_ text: String, accessibilityLabel: String) {
         for label in addressLabels {
             label.text = text
             label.accessibilityLabel = accessibilityLabel
@@ -200,8 +193,8 @@ class AccountPicker: UIControl {
     
 }
 
-extension AccountPicker: AdvancedAccountPickerViewControllerDelegate {
-    func advancedAccountPickerViewController(_ advancedAccountPickerViewController: AdvancedAccountPickerViewController, didSelectAccount account: Account) {
+extension AccountPicker: AccountSelectDelegate {
+    internal func didSelectAccount(_ account: Account) {
         AccountsStore.shared.currentIndex = accounts.firstIndex(of: account)
         refresh()
     }

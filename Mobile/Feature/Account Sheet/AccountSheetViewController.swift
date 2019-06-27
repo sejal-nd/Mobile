@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AccountSelectDelegate: class {
-    func didSelectAccount(_ didSelectAccount: Account)
+    func didSelectAccount(_ account: Account)
 }
 
 class AccountSheetViewController: UIViewController {
@@ -28,7 +28,7 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
 
     /// Passes selection of both account & premise selection to account top bar
-    weak var accountSelectDelegate: AccountSelectDelegate?
+    weak var delegate: AccountSelectDelegate?
     
     /// Used for single cell selection
     private var selectedIndexPath: IndexPath?
@@ -232,7 +232,6 @@ class AccountSheetViewController: UIViewController {
     // MARK: - Helper
     
     private func configureCardView() {
-        bottomSheetView.roundCorners([.topLeft, .topRight], radius: 10.0)
         bottomSheetView.layer.masksToBounds = true
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
@@ -324,7 +323,7 @@ extension AccountSheetViewController: UITableViewDelegate {
         selectedIndexPath = indexPath
         
         // Selection Action
-        accountSelectDelegate?.didSelectAccount(accounts[indexPath.row])
+        delegate?.didSelectAccount(accounts[indexPath.row])
         lastSheetLevel = .closed
     }
     

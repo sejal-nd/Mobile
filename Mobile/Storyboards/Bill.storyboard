@@ -1484,7 +1484,7 @@
                                                                             <outlet property="label" destination="LUM-6w-0Ba" id="0dT-Bd-YVV"/>
                                                                         </connections>
                                                                     </view>
-                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Kh-nMw" customClass="MaskView" customModule="BGE" customModuleProvider="target">
+                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Kh-nMw" customClass="SheetView" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="18" y="234" width="339" height="922.5"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xef-Jy-u4j">

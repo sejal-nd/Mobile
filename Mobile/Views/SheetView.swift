@@ -1,5 +1,5 @@
 //
-//  MaskView.swift
+//  SheetView.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 6/6/18.
