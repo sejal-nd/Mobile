@@ -236,6 +236,8 @@ class AccountSheetViewController: UIViewController {
         bottomSheetView.layer.masksToBounds = true
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
+
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.font: SystemFont.semibold.of(textStyle: .title3)]
     }
     
     private func configureTableView() {

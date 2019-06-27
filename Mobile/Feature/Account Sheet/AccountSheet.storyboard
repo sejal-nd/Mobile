@@ -36,7 +36,7 @@
                                             </navigationBar>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfp-En-5in">
                                                 <rect key="frame" x="162.66666666666666" y="8" width="50" height="6"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="lfp-hz-90q"/>
                                                     <constraint firstAttribute="height" constant="6" id="urp-KU-eZv"/>
@@ -83,13 +83,13 @@
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="B0q-Lz-dD4">
                                                                             <rect key="frame" x="67" y="7" width="270" height="40.333333333333336"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGF-au-Gvn">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGF-au-Gvn">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="270" height="20.333333333333332"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LU-Bz-hB1">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LU-Bz-hB1">
                                                                                     <rect key="frame" x="0.0" y="23.333333333333332" width="270" height="16.999999999999996"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                     <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -97,7 +97,7 @@
                                                                                 </label>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40.329999999999998" id="mqJ-H8-knd"/>
+                                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40.329999999999998" id="YFb-FT-9kl"/>
                                                                             </constraints>
                                                                         </stackView>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_carat_down" translatesAutoresizingMaskIntoConstraints="NO" id="Dvq-0q-Lhc">
@@ -119,13 +119,12 @@
                                                                         <constraint firstItem="GbW-rc-Qup" firstAttribute="centerY" secondItem="TJ9-aQ-7pP" secondAttribute="centerY" id="53N-y9-LhS"/>
                                                                         <constraint firstItem="FE4-9q-zBc" firstAttribute="centerY" secondItem="TJ9-aQ-7pP" secondAttribute="centerY" id="DOs-vv-2fr"/>
                                                                         <constraint firstItem="FE4-9q-zBc" firstAttribute="leading" secondItem="TJ9-aQ-7pP" secondAttribute="leadingMargin" constant="8" id="P6A-4I-Pp5"/>
-                                                                        <constraint firstItem="B0q-Lz-dD4" firstAttribute="top" secondItem="TJ9-aQ-7pP" secondAttribute="top" priority="998" constant="7" id="SF0-7F-Azd"/>
+                                                                        <constraint firstItem="B0q-Lz-dD4" firstAttribute="top" secondItem="TJ9-aQ-7pP" secondAttribute="top" constant="7" id="SF0-7F-Azd"/>
                                                                         <constraint firstItem="Dvq-0q-Lhc" firstAttribute="leading" secondItem="B0q-Lz-dD4" secondAttribute="trailing" constant="8" id="WMi-3B-B40"/>
                                                                         <constraint firstItem="B0q-Lz-dD4" firstAttribute="leading" secondItem="GbW-rc-Qup" secondAttribute="trailing" constant="8" id="XbM-2w-AKl"/>
                                                                         <constraint firstAttribute="trailingMargin" secondItem="Dvq-0q-Lhc" secondAttribute="trailing" constant="8" id="eZ5-q2-K3c"/>
                                                                         <constraint firstItem="Dvq-0q-Lhc" firstAttribute="centerY" secondItem="TJ9-aQ-7pP" secondAttribute="centerY" id="nJn-wj-zNu"/>
-                                                                        <constraint firstItem="B0q-Lz-dD4" firstAttribute="centerY" secondItem="TJ9-aQ-7pP" secondAttribute="centerY" id="pbn-ha-f1M"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="B0q-Lz-dD4" secondAttribute="bottom" priority="998" constant="7" id="rto-ce-fKh"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="B0q-Lz-dD4" secondAttribute="bottom" constant="7" id="rto-ce-fKh"/>
                                                                         <constraint firstItem="GbW-rc-Qup" firstAttribute="leading" secondItem="FE4-9q-zBc" secondAttribute="trailing" constant="8" id="ssR-4I-hjI"/>
                                                                     </constraints>
                                                                 </view>
