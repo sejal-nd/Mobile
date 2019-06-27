@@ -110,6 +110,11 @@ class AccountListRow: UITableViewCell {
             
             selectionStyle = .default
             
+            // Cell Selection Color
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = .softGray
+            selectedBackgroundView = backgroundView
+            
             carrotImageView.isHidden = true
         }
         

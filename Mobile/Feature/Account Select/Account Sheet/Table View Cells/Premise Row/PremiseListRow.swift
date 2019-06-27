@@ -34,5 +34,10 @@ extension PremiseListRow {
         } else {
             checkmarkImageView.isHidden = true
         }
+        
+        // Cell Selection Color
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .softGray
+        selectedBackgroundView = backgroundView
     }
 }
