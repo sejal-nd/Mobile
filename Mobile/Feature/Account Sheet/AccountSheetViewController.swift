@@ -13,7 +13,6 @@ protocol AccountSelectDelegate: class {
 }
 
 class AccountSheetViewController: UIViewController {
-    
     enum SheetLevel {
         case top
         case middle
@@ -28,7 +27,11 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
 
+    /// Passes selection of both account & premise selection to account top bar
     weak var accountSelectDelegate: AccountSelectDelegate?
+    
+    /// Used for single cell selection
+    private var selectedIndexPath: IndexPath?
     
     /// Recalculated on orientation change: `viewWillTransition`
     var defaultHeight = UIScreen.main.bounds.height * 0.55
@@ -84,7 +87,6 @@ class AccountSheetViewController: UIViewController {
     
     private var accounts = AccountsStore.shared.accounts ?? [Account]()
     
-    private var selectedIndexPath: IndexPath?
     
     // MARK: - View Life Cycle
     
@@ -239,7 +241,7 @@ class AccountSheetViewController: UIViewController {
     private func configureTableView() {
         tableView.tableFooterView = UIView()
         
-        // determine selected indexPath
+        // Determine selected indexPath
         guard let row = accounts.firstIndex(of: AccountsStore.shared.currentAccount) else { return }
         selectedIndexPath = IndexPath(row: row, section: 0)
         tableView.reloadData()
@@ -288,7 +290,7 @@ extension AccountSheetViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         if account.isMultipremise {
             let cell = tableView.cellForRow(at: indexPath) as! AccountListRow
-            cell.didPress()
+            cell.didSelect()
             tableView.beginUpdates()
             tableView.endUpdates()
         } else {
@@ -304,17 +306,17 @@ extension AccountSheetViewController: UITableViewDelegate {
             return
         }
         
-        // toggle old one off and the new one on
+        // Toggle old checkmark off and the new one on
         guard let newCell = tableView.cellForRow(at: indexPath) as? AccountListRow else {
             return }
-        if newCell.checkMarkImageView.isHidden {
-            newCell.checkMarkImageView.isHidden = false
+        if newCell.checkmarkImageView.isHidden {
+            newCell.checkmarkImageView.isHidden = false
         }
         
         guard let unwrappedSelectedIndexPath = selectedIndexPath, let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? AccountListRow else {
             return }
-        if !oldCell.checkMarkImageView.isHidden {
-            oldCell.checkMarkImageView.isHidden = true
+        if !oldCell.checkmarkImageView.isHidden {
+            oldCell.checkmarkImageView.isHidden = true
         }
         
         selectedIndexPath = indexPath

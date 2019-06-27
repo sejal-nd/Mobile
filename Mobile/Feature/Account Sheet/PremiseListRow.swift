@@ -10,7 +10,7 @@ import UIKit
 
 class PremiseListRow: UITableViewCell {
     
-    @IBOutlet weak var checkMarkImageView: UIImageView!
+    @IBOutlet weak var checkmarkImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
 
     override func awakeFromNib() {
@@ -30,9 +30,9 @@ extension PremiseListRow {
         accountNumber.text = premise.addressLineString
         
         if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
-            checkMarkImageView.isHidden = false
+            checkmarkImageView.isHidden = false
         } else {
-            checkMarkImageView.isHidden = true
+            checkmarkImageView.isHidden = true
         }
     }
 }

@@ -75,7 +75,7 @@ extension AccountListViewController: UITableViewDelegate {
         let account = accounts[indexPath.row]
         if account.isMultipremise {
             let cell = tableView.cellForRow(at: indexPath) as! AccountListRow
-            cell.didPress()
+            cell.didSelect()
             tableView.beginUpdates()
             tableView.endUpdates()
         } else {

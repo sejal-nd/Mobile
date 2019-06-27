@@ -20,7 +20,7 @@ class AccountListRow: UITableViewCell {
     }
     
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var checkMarkImageView: UIImageView!
+    @IBOutlet weak var checkmarkImageView: UIImageView!
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -29,78 +29,79 @@ class AccountListRow: UITableViewCell {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
+    /// Used for calculating tableView Height: Objects * cellHeight
+    private let cellHeight: CGFloat = 60
+    
+    /// Passes row selection action into parent view controller
     weak var delegate: PremiseSelectDelegate?
+    
+    /// Index of selected account
     var parentIndexPath: IndexPath!
     
     private var account: Account!
     
+    /// Enforces single cell selection (of premises)
     var premiseSelectedIndexPath: IndexPath?
     
+    /// State of tableView
     var cellState: CellState = .collapsed
+    
+    
+    // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        // Syle View
         accountNumber.textColor = .blackText
         accountNumber.font = SystemFont.regular.of(textStyle: .headline)
         addressLabel.textColor = .middleGray
         addressLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        
-        let premiseListCell = UINib(nibName: PremiseListRow.className, bundle: nil)
-        tableView.register(premiseListCell, forCellReuseIdentifier: PremiseListRow.className)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
-    func didPress() {
+    
+    // MARK: - Action
+    
+    /// Selection at the account level: Expand TableView if `isMultipremise`
+    func didSelect() {
         guard account.isMultipremise else { return }
         
+        // Toggle cellState & change constraints
         switch cellState {
         case .expanded:
             cellState = .collapsed
             tableViewHeightConstraint.constant = 0
         case .collapsed:
             cellState = .expanded
-            tableViewHeightConstraint.constant = CGFloat(integerLiteral: account.premises.count) * 60
+            tableViewHeightConstraint.constant = CGFloat(integerLiteral: account.premises.count) * cellHeight
         }
         
+        // Animate constraint change
         UIView.animate(withDuration: 0.3) { [unowned self] in
             self.stackView.layoutIfNeeded()
         }
         
+        // Animate carrot image
         UIView.transition(with: carrotImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
             self.carrotImageView.image = self.cellState == .collapsed ? UIImage(named: "ic_carat_down") : UIImage(named: "ic_carat_up")
             }, completion: nil)
     }
+    
+    
+    // MARK: - Helper
     
     func configure(withAccount account: Account,
                    indexPath: IndexPath,
                    selectedIndexPath: IndexPath?,
                    delegate: PremiseSelectDelegate) {
         self.account = account
-
         self.delegate = delegate
+        parentIndexPath = indexPath
 
         
         // Mutli Premise
         if account.isMultipremise {
-//            print("premise count: \(account.premises.count)")
-            tableView.isHidden = false
-            
-            parentIndexPath = indexPath
-            // determine selected indexPath
-            guard let currentPremise = AccountsStore.shared.currentAccount.currentPremise,
-                  let row = account.premises.firstIndex(of: currentPremise) else { return }
-            premiseSelectedIndexPath = IndexPath(row: row, section: 0)
-            tableView.reloadData()
-            
-            cellState = .collapsed
-            
-            // Start TableView Collapsed
-            self.layoutIfNeeded()
-            tableViewHeightConstraint.constant = 0
-            self.layoutIfNeeded()
+           configureTableView()
             
             selectionStyle = .none
             carrotImageView.isHidden = false
@@ -114,16 +115,16 @@ class AccountListRow: UITableViewCell {
         
         // Checkmark
         if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
-            checkMarkImageView.isHidden = false
-            checkMarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
+            checkmarkImageView.isHidden = false
+            checkmarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
         } else {
-            checkMarkImageView.isHidden = true
+            checkmarkImageView.isHidden = true
         }
-        checkMarkImageView.isAccessibilityElement = false
+        checkmarkImageView.isAccessibilityElement = false
         
         let isCommericalUser = !account.isResidential
         
-        // Determine Address Icon
+        // Address Icon
         if isCommericalUser {
             accountImageView.image = UIImage(named: "ic_commercial_mini")
             accountImageView.accessibilityLabel = NSLocalizedString("Commercial account", comment: "")
@@ -156,7 +157,29 @@ class AccountListRow: UITableViewCell {
             addressLabel.accessibilityLabel = nil
         }
         
-        self.accessibilityLabel = "\(checkMarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), "
+        // Accessibility
+        self.accessibilityLabel = "\(checkmarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), "
+    }
+    
+    private func configureTableView() {
+        let premiseListCell = UINib(nibName: PremiseListRow.className, bundle: nil)
+        tableView.register(premiseListCell, forCellReuseIdentifier: PremiseListRow.className)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Determine selected indexPath
+        guard let currentPremise = AccountsStore.shared.currentAccount.currentPremise,
+            let row = account.premises.firstIndex(of: currentPremise) else { return }
+        premiseSelectedIndexPath = IndexPath(row: row, section: 0)
+        tableView.reloadData()
+        
+        // Start TableView Collapsed
+        tableView.isHidden = false
+        cellState = .collapsed
+
+        tableViewHeightConstraint.constant = 0
+        self.layoutIfNeeded()
     }
 }
 
@@ -164,6 +187,7 @@ class AccountListRow: UITableViewCell {
 // MARK: - Table View Delegate
 
 extension AccountListRow: UITableViewDelegate {
+    /// Note: Can only be called if account is multipremise
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
@@ -172,15 +196,15 @@ extension AccountListRow: UITableViewDelegate {
             return
         }
         
-        // toggle old one off and the new one on
+        // Toggle old checkmark off and the new one on
         guard let newCell = tableView.cellForRow(at: indexPath) as? PremiseListRow else { return }
-        if newCell.checkMarkImageView.isHidden {
-            newCell.checkMarkImageView.isHidden = false
+        if newCell.checkmarkImageView.isHidden {
+            newCell.checkmarkImageView.isHidden = false
         }
         
         guard let unwrappedSelectedIndexPath = premiseSelectedIndexPath, let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? PremiseListRow else { return }
-        if !oldCell.checkMarkImageView.isHidden {
-            oldCell.checkMarkImageView.isHidden = true
+        if !oldCell.checkmarkImageView.isHidden {
+            oldCell.checkmarkImageView.isHidden = true
         }
         
         premiseSelectedIndexPath = indexPath
@@ -195,7 +219,7 @@ extension AccountListRow: UITableViewDelegate {
 
 extension AccountListRow: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return cellHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
