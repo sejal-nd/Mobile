@@ -156,7 +156,7 @@ class BillViewController: AccountPickerViewController {
         scrollView!.alwaysBounceVertical = false
         
         // only enable refresh if the accounts list has loaded
-        if !(accountPicker.accounts ?? []).isEmpty {
+        if !accountPicker.accounts.isEmpty {
             enableRefresh()
         }
     }
