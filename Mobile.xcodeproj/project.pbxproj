@@ -136,12 +136,6 @@
 		2F036CF01F1EA7D5000DECBE /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
 		2F036CF11F1EA7D5000DECBE /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
 		2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */; };
-		2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */; };
-		2F3FA6381F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */; };
-		2F3FA6391F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */; };
-		2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */; };
-		2F3FA63C1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */; };
-		2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */; };
 		2F4AFE5A1F068FE800603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		2F4AFE5B1F068FE900603B0E /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
@@ -169,6 +163,12 @@
 		2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */; };
 		2FEC69411F056EEB00C059DC /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		315FF3E02BAB0CC702262FE6 /* Pods_BGEApp_BGEUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */; };
+		351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
+		351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
+		351241F122B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */; };
+		351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
+		351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
+		351241F422B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */; };
 		351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */; };
 		351DE2FA221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */; };
 		351DE2FB221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */; };
@@ -240,6 +240,9 @@
 		356C7FAC2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		356C7FAD2190D940003E8A90 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		356C7FAE2190DC63003E8A90 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
+		3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3575232C22C53A1B00A0AFAC /* AccountListRow.xib */; };
+		3575232E22C53A1B00A0AFAC /* AccountListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3575232C22C53A1B00A0AFAC /* AccountListRow.xib */; };
+		3575232F22C53A1B00A0AFAC /* AccountListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3575232C22C53A1B00A0AFAC /* AccountListRow.xib */; };
 		3577573A2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573B2113582700E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
 		3577573C2113582800E73542 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
@@ -327,9 +330,18 @@
 		35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41A20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
 		35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */; };
-		35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
-		35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
-		35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* MaskView.swift */; };
+		35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
+		35AFB42C20C82DA0000312B9 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
+		35AFB42D20C82DA0000312B9 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AFB42A20C82DA0000312B9 /* SheetView.swift */; };
+		35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
+		35B9609A22B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
+		35B9609B22B7BC61003BCC97 /* PremiseListRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B9609822B7BC61003BCC97 /* PremiseListRow.xib */; };
+		35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */; };
+		35B9609E22B7BC79003BCC97 /* PremiseListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */; };
+		35B9609F22B7BC79003BCC97 /* PremiseListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */; };
+		35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
+		35B960C022C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
+		35B960C122C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
 		35E7C79C21907EA400BA13C6 /* PECO_WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO_WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -684,9 +696,6 @@
 		82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
 		82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
 		82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
-		82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift */; };
-		82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift */; };
-		82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift */; };
 		82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */; };
 		82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */; };
 		82A18EE51EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */; };
@@ -843,9 +852,6 @@
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
-		9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
-		9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
-		9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */; };
 		9C119F6421FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
 		9C119F6521FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
 		9C119F6621FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
@@ -868,12 +874,12 @@
 		9C46B1312216142000A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B1322216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B1332216142100A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
-		9C46B13A2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */; };
-		9C46B13B2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */; };
-		9C46B13C2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */; };
 		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
+		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
+		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
+		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C62445622C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
 		9C62445722C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
 		9C62445822C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
@@ -2554,8 +2560,6 @@
 		2A96D28A5A5C59547E4C45B2 /* Pods-BGEApp-BGEUnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		2B9439801B731C80F3E0C5F1 /* Pods-ComEdApp-ComEdUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
-		2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPremiseAddressView.swift; sourceTree = "<group>"; };
-		2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiPremiseAddressView.xib; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
 		2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovWeatherService.swift; sourceTree = "<group>"; };
 		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -2566,6 +2570,8 @@
 		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryTableViewCell.swift; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillingHistoryTableViewCell.xib; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
+		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
+		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
@@ -2576,6 +2582,7 @@
 		356C7F7E21909976003E8A90 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
 		356C7FA92190D93F003E8A90 /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
+		3575232C22C53A1B00A0AFAC /* AccountListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountListRow.xib; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
@@ -2611,7 +2618,10 @@
 		35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeOutageCardViewModel.swift; sourceTree = "<group>"; };
 		35AE569C214AD98500F633D0 /* ellipses_loading_white.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ellipses_loading_white.json; sourceTree = "<group>"; };
 		35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCorners.swift; sourceTree = "<group>"; };
-		35AFB42A20C82DA0000312B9 /* MaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
+		35AFB42A20C82DA0000312B9 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		35B9609822B7BC61003BCC97 /* PremiseListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiseListRow.xib; sourceTree = "<group>"; };
+		35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiseListRow.swift; sourceTree = "<group>"; };
+		35B960BE22C2A15A003BCC97 /* AccountListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListRow.swift; sourceTree = "<group>"; };
 		35CE69D421122F50007EB844 /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		35CE69D521122F50007EB844 /* PECO-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-TEST.entitlements"; sourceTree = "<group>"; };
 		35CE69D621122F50007EB844 /* ComEd-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-TEST.entitlements"; sourceTree = "<group>"; };
@@ -2815,7 +2825,6 @@
 		82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
-		82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerMultiPremiseTableViewCell.swift; sourceTree = "<group>"; };
 		82A18ED61EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameTableViewCell.swift; sourceTree = "<group>"; };
 		82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
 		82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaperlessEBillAccountView.xib; sourceTree = "<group>"; };
@@ -2874,15 +2883,14 @@
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
 		99C898A9F3F572B258B68313 /* Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
-		9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
 		9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewModel.swift; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
-		9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedAccountPickerMultiPremiseTableViewCell.xib; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		9C50EBD222B971D500A89DBF /* AccountPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountPicker.xib; sourceTree = "<group>"; };
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -3560,6 +3568,33 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		351241EA22B3DB6800E8BD25 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				351241EB22B3DB7600E8BD25 /* Account Select */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		351241EB22B3DB7600E8BD25 /* Account Select */ = {
+			isa = PBXGroup;
+			children = (
+				3575233122C53AC700A0AFAC /* Account Picker */,
+				3575233022C53ABF00A0AFAC /* Account Sheet */,
+			);
+			path = "Account Select";
+			sourceTree = "<group>";
+		};
+		351241F822B3DB8D00E8BD25 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3575232A22C5371800A0AFAC /* Account Row */,
+				3575232B22C5371F00A0AFAC /* Premise Row */,
+				3575232922C536FD00A0AFAC /* Todo Delete Once Set Default */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
 		35376C6B20F914D5007E50F7 /* Bill Impact Dropdown View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3567,6 +3602,52 @@
 				358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */,
 			);
 			path = "Bill Impact Dropdown View";
+			sourceTree = "<group>";
+		};
+		3575232922C536FD00A0AFAC /* Todo Delete Once Set Default */ = {
+			isa = PBXGroup;
+			children = (
+				826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */,
+				826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */,
+			);
+			path = "Todo Delete Once Set Default";
+			sourceTree = "<group>";
+		};
+		3575232A22C5371800A0AFAC /* Account Row */ = {
+			isa = PBXGroup;
+			children = (
+				35B960BE22C2A15A003BCC97 /* AccountListRow.swift */,
+				3575232C22C53A1B00A0AFAC /* AccountListRow.xib */,
+			);
+			path = "Account Row";
+			sourceTree = "<group>";
+		};
+		3575232B22C5371F00A0AFAC /* Premise Row */ = {
+			isa = PBXGroup;
+			children = (
+				35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */,
+				35B9609822B7BC61003BCC97 /* PremiseListRow.xib */,
+			);
+			path = "Premise Row";
+			sourceTree = "<group>";
+		};
+		3575233022C53ABF00A0AFAC /* Account Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */,
+				351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */,
+				351241F822B3DB8D00E8BD25 /* Table View Cells */,
+			);
+			path = "Account Sheet";
+			sourceTree = "<group>";
+		};
+		3575233122C53AC700A0AFAC /* Account Picker */ = {
+			isa = PBXGroup;
+			children = (
+				E80D2E261E72FC2C002626C9 /* AccountPicker.swift */,
+				9C50EBD222B971D500A89DBF /* AccountPicker.xib */,
+			);
+			path = "Account Picker";
 			sourceTree = "<group>";
 		};
 		358BD21520F8FB1500DA2012 /* Usage */ = {
@@ -4096,19 +4177,6 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
-		826DCCF01F0E84EA0063D47E /* Advanced Account Picker */ = {
-			isa = PBXGroup;
-			children = (
-				826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */,
-				826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */,
-				82A18ED31EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift */,
-				9C46B1392217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib */,
-				2F3FA6361F06CA0F00A1F4BF /* MultiPremiseAddressView.swift */,
-				2F3FA63A1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib */,
-			);
-			path = "Advanced Account Picker";
-			sourceTree = "<group>";
-		};
 		829D3975203F1E7F008D7BAE /* Usage */ = {
 			isa = PBXGroup;
 			children = (
@@ -4212,7 +4280,6 @@
 			isa = PBXGroup;
 			children = (
 				B0DB275D215ECF3B00CD703B /* Account Info Bar */,
-				826DCCF01F0E84EA0063D47E /* Advanced Account Picker */,
 				B0728E43215C132B0007C608 /* Alert Preferences */,
 				35A6C6BF211C7AB600C2A58F /* TitleTableViewCell */,
 				35A6C6F82121D62D00C2A58F /* ToggleTableViewCell */,
@@ -4377,7 +4444,6 @@
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
 				E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */,
-				9A3161011EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift */,
 				E87C412E1FAA520A00448F86 /* Alerts */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
 				2FA5D8621F17D85A00A8B16B /* Home */,
@@ -4412,7 +4478,6 @@
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				E8FF085D1F7EDD2F0030F1BF /* TutorialView */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
-				E80D2E261E72FC2C002626C9 /* AccountPicker.swift */,
 				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
@@ -4423,7 +4488,7 @@
 				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
 				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
-				35AFB42A20C82DA0000312B9 /* MaskView.swift */,
+				35AFB42A20C82DA0000312B9 /* SheetView.swift */,
 				35FEDD5B223C155F008CB349 /* ZeroInsetDataDetectorTextView.swift */,
 				B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */,
 				B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */,
@@ -4785,6 +4850,7 @@
 				E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */,
 				E89496351EE9E04000B76F8C /* NotificationNames.swift */,
 				9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */,
+				351241EA22B3DB6800E8BD25 /* Feature */,
 				B52CA0AD1F3114D5002B5674 /* Analytics */,
 				B5AC06E21E522E7A00BBA4ED /* Core */,
 				8FDF8C651E550459000B7BD0 /* Extensions */,
@@ -5852,17 +5918,16 @@
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
-				2F3FA63B1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				826DCCFE1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
 				385AF2201F278F11001E3619 /* uu_otp.json in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
-				9C46B13A2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
@@ -5925,9 +5990,11 @@
 				82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */,
 				B089572D2217596400A97965 /* billing_history.json in Resources */,
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
+				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
+				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
@@ -5978,6 +6045,7 @@
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
 				6A4FD8F40311B79006BEA4D7 /* otps3_img_0.png in Resources */,
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
+				3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				6A4FDCC9FBA97FEF77672BED /* otps3_img_1.png in Resources */,
 				6A4FD21BE1692C3726A5C3FF /* otp_step3.json in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
@@ -6012,11 +6080,11 @@
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B039DB77225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
+				351241F122B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				E841F3A11F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736471E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
 				B0728E4B215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
-				9C46B13C2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
 				B0B12604221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				822BBBA61EFC1A01004EBBAB /* WebViewController.xib in Resources */,
@@ -6076,13 +6144,14 @@
 				B08957282217496D00A97965 /* bill_pdf.json in Resources */,
 				9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */,
 				35A6C6D6211C8F1300C2A58F /* TitleTableViewHeaderView.xib in Resources */,
-				2F3FA63D1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
 				82D626161FE1AD6B00B09F00 /* landing_video.mp4 in Resources */,
 				8FD5AE9C1E54EAB8003F640D /* checkmark.json in Resources */,
 				B066281C2252953B0060A89F /* ser_results.json in Resources */,
+				35B9609B22B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B089572F2217596400A97965 /* billing_history.json in Resources */,
 				B08957092215FE7900A97965 /* recover_username.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
+				9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */,
 				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
@@ -6133,6 +6202,7 @@
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
+				3575232F22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				6A4FDEB37967D5B806CE00FC /* otps3_img_1.png in Resources */,
 				6A4FDCF675D261AB6008C079 /* otp_step3.json in Resources */,
 				82AC2A131FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
@@ -6167,11 +6237,10 @@
 				B0DB275B215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				B039DB76225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
-				2F3FA63C1F06CB1D00A1F4BF /* MultiPremiseAddressView.xib in Resources */,
+				351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				826DCCFF1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
-				9C46B13B2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
 				B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
 				E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */,
@@ -6235,9 +6304,11 @@
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				B5D4157C1F3A6E2700AC32B2 /* GoogleService-Info_comed_develop.plist in Resources */,
 				B066281B2252953B0060A89F /* ser_results.json in Resources */,
+				35B9609A22B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B089572E2217596400A97965 /* billing_history.json in Resources */,
 				B08957082215FE7900A97965 /* recover_username.json in Resources */,
 				441353E01F0EB08B0099BBB5 /* BillingHistoryTableViewCell.xib in Resources */,
+				9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */,
 				8FD5AE9B1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433F1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B522A082CD0087F0BA /* FirstFuelWidget.html in Resources */,
@@ -6288,6 +6359,7 @@
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
 				6A4FD323AF99726FB2158A2E /* otps3_img_0.png in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
+				3575232E22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				6A4FDF0D523DED06D1465E99 /* otps3_img_1.png in Resources */,
 				6A4FD451E3D8B0019DD36819 /* otp_step3.json in Resources */,
 				82AC2A121FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
@@ -7335,6 +7407,7 @@
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				82A18EE31EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
+				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -7355,7 +7428,6 @@
 				E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
-				82A18EDA1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */,
 				B0336FEA21762FB400751430 /* EventStore.swift in Sources */,
 				826DCCED1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */,
@@ -7407,6 +7479,7 @@
 				54EDD2DF1ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				54AE06991ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E8B674C41E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */,
 				E882B7F21EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				E803A0041EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
@@ -7430,7 +7503,6 @@
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
-				9A3161021EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02701FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
@@ -7477,7 +7549,7 @@
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				0D79C6D11F1FB761004793DD /* Maintenance.swift in Sources */,
 				545784B21EF9A9B800C58E63 /* SeparatorLineView.swift in Sources */,
-				35AFB42B20C82DA0000312B9 /* MaskView.swift in Sources */,
+				35AFB42B20C82DA0000312B9 /* SheetView.swift in Sources */,
 				B05D84B321877FEB00F15A9F /* DisclosureCellButton.swift in Sources */,
 				E8CA07DD1E9BD0FF00A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
@@ -7533,7 +7605,6 @@
 				2FA7B9FA1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
-				2F3FA6371F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
@@ -7586,6 +7657,7 @@
 				8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				357757552114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
+				35B9609D22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
 				82E22B581F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				B596062A1F7C1F4A00515B72 /* AppRating.swift in Sources */,
 				821898921F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
@@ -7621,6 +7693,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8EA601C1FA13D7500FCE085 /* TotalSavingsTableViewCell.swift in Sources */,
+				35B9609F22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */,
@@ -7736,7 +7809,6 @@
 				82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */,
 				E893993F1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				E87C41491FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
-				82A18EDC1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
@@ -7768,6 +7840,7 @@
 				54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				B54F0FF81E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
 				E8039FF71EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
+				351241F422B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				E8039FFA1EFB0420004DB789 /* PaymentService.swift in Sources */,
 				54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
@@ -7795,7 +7868,6 @@
 				B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02721FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
-				9A3161041EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
@@ -7825,6 +7897,7 @@
 				B0B083A3216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8EEF72B1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				35B960C122C2A15A003BCC97 /* AccountListRow.swift in Sources */,
 				0D79C6CF1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
@@ -7838,7 +7911,7 @@
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
-				35AFB42D20C82DA0000312B9 /* MaskView.swift in Sources */,
+				35AFB42D20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEF1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				B05D84B521877FEB00F15A9F /* DisclosureCellButton.swift in Sources */,
@@ -7874,7 +7947,6 @@
 				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
-				2F3FA6391F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
@@ -8078,6 +8150,7 @@
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				82A18EE41EBA684F00BE9F21 /* ForgotUsernameTableViewCell.swift in Sources */,
+				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				E803A0051EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
@@ -8120,7 +8193,6 @@
 				82E9B60F1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF55992170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
-				82A18EDB1EBA684F00BE9F21 /* AdvancedAccountPickerMultiPremiseTableViewCell.swift in Sources */,
 				B039DB7A225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				9C72424D21E5061900E5946B /* GovWeatherService.swift in Sources */,
@@ -8150,6 +8222,7 @@
 				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* MCSApi.swift in Sources */,
+				35B960C022C2A15A003BCC97 /* AccountListRow.swift in Sources */,
 				E8CA07F51E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994C1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				B05E9D14217F688A0003FAB8 /* Application.swift in Sources */,
@@ -8172,7 +8245,6 @@
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02711FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
-				9A3161031EAE6FD000D4AD7B /* AdvancedAccountPickerViewController.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
@@ -8215,7 +8287,7 @@
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
-				35AFB42C20C82DA0000312B9 /* MaskView.swift in Sources */,
+				35AFB42C20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
 				826DCCEE1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
 				B05D84B421877FEB00F15A9F /* DisclosureCellButton.swift in Sources */,
@@ -8250,7 +8322,6 @@
 				E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF31F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
-				2F3FA6381F06CA0F00A1F4BF /* MultiPremiseAddressView.swift in Sources */,
 				E8B8C84D1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -8329,6 +8400,7 @@
 				8206D01C1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
 				E8127B231EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				357757562114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
+				35B9609E22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
 				8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				82E22B591F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
