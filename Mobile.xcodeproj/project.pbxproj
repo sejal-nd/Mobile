@@ -1788,12 +1788,6 @@
 		E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
 		E841F3AB1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
 		E841F3AC1F02F316007BFA82 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3A61F02F316007BFA82 /* PickerView.swift */; };
-		E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */; };
-		E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */; };
-		E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */; };
-		E841F3B21F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */; };
-		E841F3B31F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */; };
-		E841F3B41F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */; };
 		E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */; };
 		E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		E84705ED202514CB00A749A3 /* MockUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84705EC202514CB00A749A3 /* MockUsageService.swift */; };
@@ -3185,8 +3179,6 @@
 		E841F39D1F02F30E007BFA82 /* UINavigationBackButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UINavigationBackButton.xib; sourceTree = "<group>"; };
 		E841F39E1F02F30E007BFA82 /* UINavigationBackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBackButton.swift; sourceTree = "<group>"; };
 		E841F3A61F02F316007BFA82 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
-		E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateDisclosureButton.xib; sourceTree = "<group>"; };
-		E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDisclosureButton.swift; sourceTree = "<group>"; };
 		E84705EC202514CB00A749A3 /* MockUsageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUsageService.swift; sourceTree = "<group>"; };
 		E84705F62025160F00A749A3 /* MockRegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRegistrationService.swift; sourceTree = "<group>"; };
 		E8494F361EBBCB2B0047D6BE /* full_screen_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = full_screen_loading.json; sourceTree = "<group>"; };
@@ -4188,7 +4180,6 @@
 				E87C41331FAA560000448F86 /* AlertsSegmentedControl */,
 				E89399331F86719B00B9184C /* BillAnalysisSegmentedControl */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
-				E841F39A1F02F2A0007BFA82 /* DateDisclosureButton */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
 				9C62447922C65D0700F14DA0 /* DisclosureButtonNew */,
 				B05D84B121877FD900F15A9F /* DisclosureCellButton */,
@@ -5120,15 +5111,6 @@
 			path = Usage;
 			sourceTree = "<group>";
 		};
-		E841F39A1F02F2A0007BFA82 /* DateDisclosureButton */ = {
-			isa = PBXGroup;
-			children = (
-				E841F3AD1F02F31E007BFA82 /* DateDisclosureButton.xib */,
-				E841F3AE1F02F31E007BFA82 /* DateDisclosureButton.swift */,
-			);
-			path = DateDisclosureButton;
-			sourceTree = "<group>";
-		};
 		E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -5901,7 +5883,6 @@
 				B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				CEA215251F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				B5D415741F3A6B5D00AC32B2 /* GoogleService-Info_bge_develop.plist in Resources */,
-				E841F3AF1F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				82D599511EC3A00900DDB380 /* alert_icon.json in Resources */,
 				8FD5AE901E54EA53003F640D /* Login.storyboard in Resources */,
 				B01FF0AF221DFC77008CA222 /* autopay_info.json in Resources */,
@@ -6046,7 +6027,6 @@
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B039DB77225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
-				E841F3B11F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				E841F3A11F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736471E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				82D599531EC3A00900DDB380 /* alert_icon.json in Resources */,
@@ -6209,7 +6189,6 @@
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				9C46B13B2217514700A5D537 /* AdvancedAccountPickerMultiPremiseTableViewCell.xib in Resources */,
 				B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
-				E841F3B01F02F31E007BFA82 /* DateDisclosureButton.xib in Resources */,
 				B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */,
 				E841F3A01F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				B55736461E6742A6003B9369 /* MCSConfig.plist in Resources */,
@@ -7457,7 +7436,6 @@
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
-				E841F3B21F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
@@ -7935,7 +7913,6 @@
 				82EAB33A1F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */,
-				E841F3B41F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				44A373441F211522005E227B /* TemplateCardView.swift in Sources */,
@@ -8312,7 +8289,6 @@
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				E8EEF7171E566FD8006804D4 /* BiometricsService.swift in Sources */,
-				E841F3B31F02F31E007BFA82 /* DateDisclosureButton.swift in Sources */,
 				82A18E5D1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				E882B7EE1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				2F036CF11F1EA7D5000DECBE /* WeatherService.swift in Sources */,
