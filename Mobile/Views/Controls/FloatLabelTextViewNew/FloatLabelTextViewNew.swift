@@ -155,15 +155,7 @@ class FloatLabelTextViewNew: UIView {
         }
     }
     
-    func setKeyboardType(_ type: UIKeyboardType) {
-        textView.keyboardType = type
-        if type == .numberPad || type == .decimalPad || type == .phonePad {
-            let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(doneButtonAction))
-            addDoneButton(done)
-        }
-    }
-    
-    func setKeyboardType(_ type: UIKeyboardType, doneActionTarget: Any, doneActionSelector: Selector) {
+    func setKeyboardType(_ type: UIKeyboardType, doneActionTarget: Any = self, doneActionSelector: Selector = #selector(doneButtonAction)) {
         textView.keyboardType = type
         if type == .numberPad || type == .decimalPad || type == .phonePad {
             let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: doneActionTarget, action: doneActionSelector)
