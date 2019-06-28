@@ -877,6 +877,12 @@
 		9C62445622C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
 		9C62445722C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
 		9C62445822C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
+		9C62447C22C65D0700F14DA0 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447A22C65D0700F14DA0 /* DisclosureButtonNew.swift */; };
+		9C62447D22C65D0700F14DA0 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447A22C65D0700F14DA0 /* DisclosureButtonNew.swift */; };
+		9C62447E22C65D0700F14DA0 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447A22C65D0700F14DA0 /* DisclosureButtonNew.swift */; };
+		9C62447F22C65D0700F14DA0 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62447B22C65D0700F14DA0 /* DisclosureButtonNew.xib */; };
+		9C62448022C65D0700F14DA0 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62447B22C65D0700F14DA0 /* DisclosureButtonNew.xib */; };
+		9C62448122C65D0700F14DA0 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62447B22C65D0700F14DA0 /* DisclosureButtonNew.xib */; };
 		9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
@@ -2887,6 +2893,8 @@
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonNew.swift; sourceTree = "<group>"; };
+		9C62447A22C65D0700F14DA0 /* DisclosureButtonNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButtonNew.swift; sourceTree = "<group>"; };
+		9C62447B22C65D0700F14DA0 /* DisclosureButtonNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButtonNew.xib; sourceTree = "<group>"; };
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
@@ -4176,11 +4184,13 @@
 		82A18EB01EBA667900BE9F21 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				9C62447822C6575B00F14DA0 /* DataDetectorTextView */,
 				E87C41331FAA560000448F86 /* AlertsSegmentedControl */,
 				E89399331F86719B00B9184C /* BillAnalysisSegmentedControl */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
 				E841F39A1F02F2A0007BFA82 /* DateDisclosureButton */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
+				9C62447922C65D0700F14DA0 /* DisclosureButtonNew */,
 				B05D84B121877FD900F15A9F /* DisclosureCellButton */,
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				E841F3A61F02F316007BFA82 /* PickerView.swift */,
@@ -4194,6 +4204,7 @@
 				54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */,
 				545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */,
 				B085C44220FD2C5500CE0893 /* ConversationalButton.swift */,
+				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -4411,22 +4422,18 @@
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				E8FF085D1F7EDD2F0030F1BF /* TutorialView */,
+				9C62447722C656E800F14DA0 /* PrepaidCardView */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 				E80D2E261E72FC2C002626C9 /* AccountPicker.swift */,
-				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
-				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
 				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
 				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
 				35AFB42A20C82DA0000312B9 /* MaskView.swift */,
-				35FEDD5B223C155F008CB349 /* ZeroInsetDataDetectorTextView.swift */,
-				B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */,
-				B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4504,6 +4511,33 @@
 				351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C62447722C656E800F14DA0 /* PrepaidCardView */ = {
+			isa = PBXGroup;
+			children = (
+				B039DB7F225E6D5700BB5479 /* PrepaidCardView.swift */,
+				B039DB83225E6F2400BB5479 /* PrepaidCardView.xib */,
+			);
+			path = PrepaidCardView;
+			sourceTree = "<group>";
+		};
+		9C62447822C6575B00F14DA0 /* DataDetectorTextView */ = {
+			isa = PBXGroup;
+			children = (
+				E8EC6F321E804FF70050E3B6 /* DataDetectorTextView.swift */,
+				35FEDD5B223C155F008CB349 /* ZeroInsetDataDetectorTextView.swift */,
+			);
+			path = DataDetectorTextView;
+			sourceTree = "<group>";
+		};
+		9C62447922C65D0700F14DA0 /* DisclosureButtonNew */ = {
+			isa = PBXGroup;
+			children = (
+				9C62447A22C65D0700F14DA0 /* DisclosureButtonNew.swift */,
+				9C62447B22C65D0700F14DA0 /* DisclosureButtonNew.xib */,
+			);
+			path = DisclosureButtonNew;
 			sourceTree = "<group>";
 		};
 		9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */ = {
@@ -5959,6 +5993,7 @@
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
+				9C62447F22C65D0700F14DA0 /* DisclosureButtonNew.xib in Resources */,
 				E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				B05D84B72187803000F15A9F /* DisclosureCellButton.xib in Resources */,
 				359BB27F2148517F00FBAD83 /* sm_outage_loading.json in Resources */,
@@ -6114,6 +6149,7 @@
 				35AE569F214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				B59EFAA31F72E67F001490A1 /* FloatLabelTextView.xib in Resources */,
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
+				9C62448122C65D0700F14DA0 /* DisclosureButtonNew.xib in Resources */,
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
 				B05D84B92187803000F15A9F /* DisclosureCellButton.xib in Resources */,
 				E893993B1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
@@ -6269,6 +6305,7 @@
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
 				B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
+				9C62448022C65D0700F14DA0 /* DisclosureButtonNew.xib in Resources */,
 				B59EFAA21F72E67E001490A1 /* FloatLabelTextView.xib in Resources */,
 				B05D84B82187803000F15A9F /* DisclosureCellButton.xib in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
@@ -7426,6 +7463,7 @@
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
+				9C62447C22C65D0700F14DA0 /* DisclosureButtonNew.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
@@ -7785,6 +7823,7 @@
 				82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269372127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DC1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
+				9C62447E22C65D0700F14DA0 /* DisclosureButtonNew.swift in Sources */,
 				E882B7F41EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63F210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E882B7E61EA8009500EA3C13 /* BillViewController.swift in Sources */,
@@ -8169,6 +8208,7 @@
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
 				B07E17B42208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
+				9C62447D22C65D0700F14DA0 /* DisclosureButtonNew.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02711FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
