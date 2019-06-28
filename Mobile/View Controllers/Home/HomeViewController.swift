@@ -18,8 +18,6 @@ fileprivate let editHomeSegueId = "editHomeSegue"
 
 class HomeViewController: AccountPickerViewController {
     
-    @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var accountDisallowView: UIView!
@@ -67,14 +65,7 @@ class HomeViewController: AccountPickerViewController {
         super.viewDidLoad()
         accountPicker.delegate = self
         accountPicker.parentViewController = self
-        
-        backgroundView.backgroundColor = .primaryColor
-        scrollView?.rx.contentOffset.asDriver()
-            .map { -min(0, $0.y) }
-            .distinctUntilChanged()
-            .drive(backgroundTopConstraint.rx.constant)
-            .disposed(by: bag)
-        
+                
         setRefreshControlEnabled(enabled: false)
         
         viewModel.accountDetailEvents.elements()
@@ -125,7 +116,7 @@ class HomeViewController: AccountPickerViewController {
         
         // Create weather card
         weatherView = .create(withViewModel: viewModel.weatherViewModel)
-        mainStackView.insertArrangedSubview(weatherView, at: 1)
+        mainStackView.insertArrangedSubview(weatherView, at: 0)
         weatherView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
         weatherView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
         
@@ -215,7 +206,7 @@ class HomeViewController: AccountPickerViewController {
                     importantUpdateView.configure(withUpdate: update)
                 } else {
                     let importantUpdateView = HomeUpdateView.create(withUpdate: update)
-                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: 1)
+                    self.mainStackView.insertArrangedSubview(importantUpdateView, at: 0)
                     importantUpdateView.addTabletWidthConstraints(horizontalPadding: 16)
                     importantUpdateView.button.rx.touchUpInside.asDriver()
                         .drive(onNext: { [weak self] in
@@ -249,6 +240,11 @@ class HomeViewController: AccountPickerViewController {
                 })
             })
             .disposed(by: bag)
+    }
+    @IBAction func tempPresentAccount(_ sender: Any) {
+        guard let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() else { return }
+        vc.modalPresentationStyle = .overCurrentContext
+        tabBarController?.present(vc, animated: false, completion: nil)
     }
     
     func topPersonalizeButtonSetup() {

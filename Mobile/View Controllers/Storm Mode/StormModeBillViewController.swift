@@ -21,9 +21,7 @@ class StormModeBillViewController: AccountPickerViewController {
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     
     var billCardView: HomeBillCardView!
-    
-    override var showMinimizedPicker: Bool { return false }
-    
+
     var refreshControl: UIRefreshControl?
     
     let disposeBag = DisposeBag()
