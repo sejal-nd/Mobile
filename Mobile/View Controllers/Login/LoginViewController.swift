@@ -206,7 +206,7 @@ class LoginViewController: UIViewController {
                 preferredStyle: .alert
             )
             alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Reset Password", comment: ""), style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Change Password", comment: ""), style: .default, handler: { _ in
                 let storyboard = UIStoryboard(name: "More", bundle: nil)
                 let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
                 changePwVc.delegate = self
