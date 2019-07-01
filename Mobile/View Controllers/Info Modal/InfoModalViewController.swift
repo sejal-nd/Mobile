@@ -19,12 +19,13 @@ class InfoModalViewController: DismissableFormSheetViewController {
     private var navTitle: String
     private var image: UIImage
     private var infoDescription: String
+    private let onClose: (() -> ())?
     
-    
-    init(title: String, image img: UIImage, description: String) {
+    init(title: String, image img: UIImage, description: String, onClose: (() -> ())? = nil) {
         navTitle = title
         image = img
         infoDescription = description
+        self.onClose = onClose
         
         super.init(nibName: "InfoModal", bundle: nil)
         
@@ -51,12 +52,12 @@ class InfoModalViewController: DismissableFormSheetViewController {
 
         descriptionLabel.font = OpenSans.regular.of(textStyle: .body)
         descriptionLabel.textColor = .deepGray
-        descriptionLabel.setLineHeight(lineHeight: 25)
         descriptionLabel.text = infoDescription
+        descriptionLabel.setLineHeight(lineHeight: 25)
     }
     
     @IBAction func xAction(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: onClose)
     }
 
 }

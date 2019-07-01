@@ -12,29 +12,28 @@ import RxSwift
 struct MCSAccountService: AccountService {
     
     func fetchAccounts() -> Observable<[Account]> {
-        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts")
-            .map { accounts in
-                let accountArray = (accounts as! [[String: Any]])
-                    .compactMap { Account.from($0 as NSDictionary) }
-                
-                guard !accountArray.isEmpty else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue,
-                                       serviceMessage: NSLocalizedString("No accounts found", comment: ""))
-                }
-                
-                // Error if the first account is password protected.
-                guard !accountArray[0].isPasswordProtected else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.fnAccountProtected.rawValue)
-                }
-                
-                let sortedAccounts = accountArray
-                    .filter { !$0.isPasswordProtected } // Filter out password protected accounts
-                    .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
-                
-                AccountsStore.shared.accounts = sortedAccounts
-                AccountsStore.shared.currentAccount = sortedAccounts[0]
-                
-                return sortedAccounts
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts").map { accounts in
+            let accountArray = (accounts as! [[String: Any]])
+                .compactMap { Account.from($0 as NSDictionary) }
+            
+            guard !accountArray.isEmpty else {
+                throw ServiceError(serviceCode: ServiceErrorCode.tcUnknown.rawValue,
+                                   serviceMessage: NSLocalizedString("No accounts found", comment: ""))
+            }
+            
+            // Error if the first account is password protected.
+            guard !accountArray[0].isPasswordProtected else {
+                throw ServiceError(serviceCode: ServiceErrorCode.fnAccountProtected.rawValue)
+            }
+            
+            let sortedAccounts = accountArray
+                .filter { !$0.isPasswordProtected } // Filter out password protected accounts
+                .sorted { ($0.isDefault && !$1.isDefault) || (!$0.isFinaled && $1.isFinaled) }
+            
+            AccountsStore.shared.accounts = sortedAccounts
+            AccountsStore.shared.currentIndex = 0
+            
+            return sortedAccounts
         }
     }
     
@@ -71,13 +70,12 @@ struct MCSAccountService: AccountService {
         
         path.append(String(queryString))
         
-        return MCSApi.shared.get(pathPrefix: .auth, path: path)
-            .map { json in
-                guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
-                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                }
-                
-                return accountDetail
+        return MCSApi.shared.get(pathPrefix: .auth, path: path).map { json in
+            guard let dict = json as? NSDictionary, let accountDetail = AccountDetail.from(dict) else {
+                throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+            }
+            
+            return accountDetail
         }
     }
     
@@ -97,6 +95,17 @@ struct MCSAccountService: AccountService {
     
     func fetchSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/ssodata")
+            .map { json in
+                guard let dict = json as? NSDictionary, let ssoData = SSOData.from(dict) else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
+                return ssoData
+        }
+    }
+    
+    func fetchFirstFuelSSOData(accountNumber: String, premiseNumber: String) -> Observable<SSOData> {
+        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/ffssodata")
             .map { json in
                 guard let dict = json as? NSDictionary, let ssoData = SSOData.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -143,7 +152,8 @@ struct MCSAccountService: AccountService {
                             throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
                     return serResults
-                }.catchError { error in
+                }
+                .catchError { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)
                     if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.functionalError.rawValue {
                         return Observable.just([])

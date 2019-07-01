@@ -151,7 +151,7 @@
                                                     <constraint firstAttribute="height" constant="72" id="PjH-zT-mW7"/>
                                                 </constraints>
                                             </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qjN-8f-H9S" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qjN-8f-H9S" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="22" y="108" width="273" height="116.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <string key="text">If you smell natural gas or see downed power lines, leave the area immediately, and then call BGE at 1-800-685-0123.
@@ -456,7 +456,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zhf-KV-7UG">
                                 <rect key="frame" x="0.0" y="540.5" width="375" height="126.5"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141" translatesAutoresizingMaskIntoConstraints="NO" id="iGR-H2-rIQ" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-841-4141" translatesAutoresizingMaskIntoConstraints="NO" id="iGR-H2-rIQ" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="30" y="30" width="315" height="66.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -2394,7 +2394,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cg5-y8-Ra2" userLabel="Tablet View">
                                                 <rect key="frame" x="29" y="0.0" width="317" height="559"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FoR-l7-FZR" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FoR-l7-FZR" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="30" width="317" height="96"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -3564,7 +3564,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GYT-tJ-2IP"/>
-        <segue reference="m8m-Zs-f6g"/>
+        <segue reference="JKs-yE-NBJ"/>
         <segue reference="mO8-br-Aqn"/>
         <segue reference="cyl-oL-1Pd"/>
     </inferredMetricsTieBreakers>

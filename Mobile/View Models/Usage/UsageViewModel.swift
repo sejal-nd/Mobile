@@ -9,6 +9,9 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxSwiftExt
+
+fileprivate let firstfuelSessionTimeout: TimeInterval = 900 // 15 minutes
 
 class UsageViewModel {
     
@@ -40,10 +43,37 @@ class UsageViewModel {
     }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
-        .filter { !($0.element?.allStatus ?? false) && !($0.element?.usageStatus ?? false) }
+        .filter {
+            !($0.element?.allStatus ?? false) &&
+            !($0.element?.usageStatus ?? false)
+        }
         .toAsyncRequest { [weak self] _ in
             self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
     }
+    
+    private lazy var commercialDataEvents: Observable<Event<SSOData>> = accountDetailEvents
+        .elements()
+        .toAsyncRequest { [weak self] accountDetail -> Observable<SSOData> in
+            // Start the timer. The FirstFuel session is only valid for [firstfuelSessionTimeout] seconds -
+            // so we automatically reload after that amount of time.
+            // Replace timer with .empty() for residential accounts
+            guard !accountDetail.isResidential, let premiseNumber = accountDetail.premiseNumber else { return .empty() }
+            return Observable<Int>
+                .timer(0, period: firstfuelSessionTimeout, scheduler: MainScheduler.instance)
+                .flatMapLatest { [weak self] _ -> Observable<SSOData> in
+                    guard let self = self else { return .empty() }
+                    return self.accountService
+                        .fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
+                                               premiseNumber: premiseNumber)
+            }
+        }
+        .share(replay: 1)
+    
+    private let commercialErrorTrigger = PublishSubject<Error>()
+    
+    private(set) lazy var commercialViewModel = CommercialUsageViewModel(accountDetail: accountDetailEvents.elements(),
+                                                                         ssoData: commercialDataEvents.elements(),
+                                                                         errorTrigger: commercialErrorTrigger)
     
     private lazy var billAnalysisEvents: Observable<Event<(BillComparison, BillForecastResult?)>> = Observable
         .combineLatest(accountDetailEvents.elements().filter { $0.isEligibleForUsageData },
@@ -123,16 +153,29 @@ class UsageViewModel {
     
     // MARK: - Main States
     
-    private(set) lazy var endRefreshIng: Driver<Void> = Driver.merge(showMainErrorState,
-                                                                     showNoNetworkState,
-                                                                     showMaintenanceModeState,
-                                                                     showBillComparisonContents,
-                                                                     showBillComparisonErrorState,
-                                                                     showNoUsageDataState)
+    private(set) lazy var endRefreshIng: Driver<Void> = Driver
+        .merge(showMainErrorState,
+               showAccountDisallowState,
+               showNoNetworkState,
+               showMaintenanceModeState,
+               showBillComparisonContents,
+               showBillComparisonErrorState,
+               showNoUsageDataState,
+               showCommercialState)
     
-    private(set) lazy var showMainErrorState: Driver<Void> = accountDetailEvents
+    private(set) lazy var showMainErrorState: Driver<Void> = Observable
+        .merge(accountDetailEvents.errors(), commercialDataEvents.errors(), commercialErrorTrigger.asObservable())
+        .filter {
+            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue &&
+            ($0 as? ServiceError)?.serviceCode != ServiceErrorCode.fnAccountDisallow.rawValue
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    
+    private(set) lazy var showAccountDisallowState: Driver<Void> = accountDetailEvents
         .filter { $0.error != nil }
-        .filter { ($0.error as? ServiceError)?.serviceCode != ServiceErrorCode.noNetworkConnection.rawValue }
+        .filter { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -149,15 +192,28 @@ class UsageViewModel {
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
-        .filter { !($0.element?.isEligibleForUsageData ?? true) }
+        .filter { accountDetailEvent in
+            guard let accountDetail = accountDetailEvent.element else { return false }
+            return !accountDetail.isEligibleForUsageData &&
+                (accountDetail.isResidential || accountDetail.premiseNumber == nil) &&
+                accountDetail.prepaidStatus != .active
+        }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMainContents: Driver<Void> = accountDetailEvents
-        .filter { $0.element?.isEligibleForUsageData ?? false }
+    private(set) lazy var showCommercialState: Driver<Void> = commercialDataEvents
+        .elements()
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
+    private(set) lazy var showPrepaidState: Driver<Void> = accountDetailEvents
+        .filter { $0.element?.prepaidStatus == .active }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showMainContents: Driver<Void> = accountDetail
+        .filter { $0.isEligibleForUsageData }
+        .mapTo(())
     
     // MARK: - Bill Analysis States
     
@@ -418,7 +474,7 @@ class UsageViewModel {
             let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             if lastYearPrevBillSegmentIndex == 0 { return false } // Projections are only for "Previous Bill" selection
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             if let gasForecast = billForecast?.gas, isGas {
                 if let startDate = gasForecast.billingStartDate {
                     let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
@@ -442,7 +498,7 @@ class UsageViewModel {
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             
             let localizedString = NSLocalizedString("%@ days", comment: "")
             if let gasForecast = billForecast?.gas, isGas {
@@ -495,10 +551,10 @@ class UsageViewModel {
         let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
         if compared.charges < 0 {
             let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: billCreditString, abs(compared.charges).currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: billCreditString, abs(compared.charges).currencyString, avgUsagePerDay.twoDecimalString, $0.meterUnit)
         } else {
             let localizedString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: localizedString, compared.charges.currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: localizedString, compared.charges.currencyString, avgUsagePerDay.twoDecimalString, $0.meterUnit)
         }
         
         return "\(dateString). \(tempString). \(detailString)"
@@ -519,10 +575,10 @@ class UsageViewModel {
         let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
         if reference.charges < 0 {
             let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: billCreditString, abs(reference.charges).currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: billCreditString, abs(reference.charges).currencyString, avgUsagePerDay.twoDecimalString, $0.meterUnit)
         } else {
             let localizedString = NSLocalizedString("Your bill was %@. You used an average of %@ %@ per day.", comment: "")
-            detailString = String(format: localizedString, reference.charges.currencyString, String(format: "%.2f", avgUsagePerDay), $0.meterUnit)
+            detailString = String(format: localizedString, reference.charges.currencyString, avgUsagePerDay.twoDecimalString, $0.meterUnit)
         }
         
         return "\(dateString). \(tempString). \(detailString)"
@@ -589,7 +645,7 @@ class UsageViewModel {
             guard let this = self else { return nil }
             let isGas = this.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasSelectedIndex)
             
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             var daysRemainingString = ""
             let localizedDaysRemaining = NSLocalizedString("%@ days until next forecast.", comment: "")
             if let gasForecast = billForecast?.gas, isGas {
@@ -706,9 +762,9 @@ class UsageViewModel {
                     let avgUsagePerDay = compared.usage / Double(daysInBillPeriod)
                     if compared.charges < 0 {
                         let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                        return String(format: billCreditString, abs(compared.charges).currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: billCreditString, abs(compared.charges).currencyString, avgUsagePerDay.twoDecimalString, billComparison.meterUnit)
                     } else {
-                        return String(format: localizedPrevCurrString, compared.charges.currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: localizedPrevCurrString, compared.charges.currencyString, avgUsagePerDay.twoDecimalString, billComparison.meterUnit)
                     }
                 }
             case .current:
@@ -717,9 +773,9 @@ class UsageViewModel {
                     let avgUsagePerDay = reference.usage / Double(daysInBillPeriod)
                     if reference.charges < 0 {
                         let billCreditString = NSLocalizedString("You had a bill credit of %@. You used an average of %@ %@ per day.", comment: "")
-                        return String(format: billCreditString, abs(reference.charges).currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: billCreditString, abs(reference.charges).currencyString, avgUsagePerDay.twoDecimalString, billComparison.meterUnit)
                     } else {
-                        return String(format: localizedPrevCurrString, reference.charges.currencyString, String(format: "%.2f", avgUsagePerDay), billComparison.meterUnit)
+                        return String(format: localizedPrevCurrString, reference.charges.currencyString, avgUsagePerDay.twoDecimalString, billComparison.meterUnit)
                     }
                 }
             case .projected:
@@ -1069,7 +1125,6 @@ class UsageViewModel {
             
             return usageTools
         }
-        .asDriver(onErrorDriveWith: .empty())
     
     // MARK: - Helpers
     

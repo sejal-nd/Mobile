@@ -20,7 +20,11 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
 	@IBOutlet weak var bottomStackContainerView: UIView!
-
+    
+    @IBOutlet weak var prepaidBannerButton: ButtonControl!
+    @IBOutlet weak var prepaidHeaderLabel: UILabel!
+    @IBOutlet weak var prepaidDetailLabel: UILabel!
+    
     @IBOutlet weak var alertBannerView: BillAlertBannerView!
     
     @IBOutlet weak var totalAmountView: UIView!
@@ -87,9 +91,12 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
 	@IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
 
+    @IBOutlet weak var prepaidView: UIView!
+    
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var genericErrorView: UIView!
     @IBOutlet weak var genericErrorLabel: UILabel!
+    @IBOutlet weak var accountDisallowView: UIView!
     
     private let cornerRadius: CGFloat = 4.0
     
@@ -180,6 +187,13 @@ class BillViewController: AccountPickerViewController {
         topView.backgroundColor = .primaryColor
         bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
         
+        prepaidHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        prepaidDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        prepaidBannerButton.layer.cornerRadius = 10
+        if let header = prepaidHeaderLabel.text, let detail = prepaidDetailLabel.text {
+            prepaidBannerButton.accessibilityLabel = "\(header). \(detail)"
+        }
+
         alertBannerView.layer.cornerRadius = 10
 
         totalAmountView.superview?.bringSubviewToFront(totalAmountView)
@@ -253,6 +267,7 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = false
         bottomView.isHidden = false
         errorView.isHidden = true
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = false
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
@@ -274,9 +289,32 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = false
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = true
         maintenanceModeView.isHidden = true
         
+        if error?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+            genericErrorView.isHidden = true
+            accountDisallowView.isHidden = false
+        } else {
+            genericErrorView.isHidden = false
+            accountDisallowView.isHidden = true
+        }
+        
+        enableRefresh()
+    }
+    
+    func showPrepaidState() {
+        billLoadingIndicator.isHidden = true
+        loadingIndicatorView.isHidden = true
+        topView.isHidden = true
+        bottomView.isHidden = true
+        errorView.isHidden = true
+        prepaidView.isHidden = false
+        bottomStackContainerView.isHidden = true
+        scrollView?.isHidden = false
+        noNetworkConnectionView.isHidden = true
+        maintenanceModeView.isHidden = true
         enableRefresh()
     }
     
@@ -291,6 +329,7 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = true
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = true
         
         enableRefresh()
@@ -304,6 +343,7 @@ class BillViewController: AccountPickerViewController {
         topView.isHidden = false
         bottomView.isHidden = false
         errorView.isHidden = true
+        prepaidView.isHidden = true
         bottomStackContainerView.isHidden = true
         
         refreshControl?.endRefreshing()
@@ -321,12 +361,13 @@ class BillViewController: AccountPickerViewController {
         
         viewModel.switchAccountsTracker.asDriver()
             .filter { $0 }
-            .map(to: ())
+            .mapTo(())
             .startWith(())
             .drive(onNext: { [weak self] in self?.showSwitchingAccountState() })
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
+        viewModel.showPrepaidState.drive(onNext: { [weak self] in self?.showPrepaidState() }).disposed(by: bag)
         viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)
         
         // Clear shortcut handling in the case of an error.
@@ -338,8 +379,10 @@ class BillViewController: AccountPickerViewController {
 	}
 
 	func bindViewHiding() {
+        viewModel.showPrepaidPending.not().drive(prepaidBannerButton.rx.isHidden).disposed(by: bag)
+        
         viewModel.showAlertBanner.not().drive(alertBannerView.rx.isHidden).disposed(by: bag)
-        viewModel.showAlertBanner.filter { $0 }.map(to: ())
+        viewModel.showAlertBanner.filter { $0 }.mapTo(())
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 
@@ -413,6 +456,13 @@ class BillViewController: AccountPickerViewController {
         noNetworkConnectionView.reload
             .mapTo(FetchingAccountState.switchAccount)
             .bind(to: viewModel.fetchAccountDetail)
+            .disposed(by: bag)
+        
+        prepaidBannerButton.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] in
+                Analytics.log(event: .prePaidPending)
+                UIApplication.shared.openUrlIfCan(self?.viewModel.prepaidUrl)
+            })
             .disposed(by: bag)
         
         questionMarkButton.rx.tap.asDriver()
@@ -539,7 +589,7 @@ class BillViewController: AccountPickerViewController {
                 let (titleOpt, messageOpt, accountDetail) = alertInfo
                 let goToMakePayment = { [weak self] in
                     guard let self = self else { return }
-                    let paymentVc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "makeAPayment") as! MakePaymentViewController
+                    let paymentVc = UIStoryboard(name: "Payment", bundle: nil).instantiateInitialViewController() as! MakePaymentViewController
                     paymentVc.accountDetail = accountDetail
                     self.navigationController?.pushViewController(paymentVc, animated: true)
                 }
@@ -585,7 +635,7 @@ class BillViewController: AccountPickerViewController {
     func configureAccessibility() {
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
-        activityButton.accessibilityLabel = NSLocalizedString("Payment Activity", comment: "")
+        activityButton.accessibilityLabel = NSLocalizedString("Bill & Payment Activity", comment: "")
         walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
         
         viewModel.autoPayButtonText.map { $0.string }.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
@@ -616,7 +666,7 @@ class BillViewController: AccountPickerViewController {
             vc.delegate = self
             vc.accountDetail = accountDetail
         case let (vc as BillingHistoryViewController, accountDetail as AccountDetail):
-            vc.accountDetail = accountDetail
+            vc.viewModel.accountDetail = accountDetail
         default:
             break
         }

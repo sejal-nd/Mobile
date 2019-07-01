@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="[embedJsSrc]"></script>
+  </head>
+  <body>
+    <div
+      class="test-widget-content"
+      id="chart-bill-comparison"
+      data-login="[loggedInUsername]"
+      data-ec-username="[accountNumber]"
+      data-ff-widget="true"
+      data-widget-id="[dataWidgetId]"
+    />
+    <script type="text/javascript">
+      $(document).ready(function(){
+        ffEventLogger.enable('PARENT', '[logLevel]');
+        ffWidgetFunctions.setProviderUrl('[providerUrl]');
+        ffWidgetFunctions.initWidgets();
+      });
+    </script>
+  </body>
+</html>

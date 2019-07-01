@@ -9,14 +9,14 @@
 import RxSwift
 
 enum HomeCard: Int {
-    case bill, usage, template, projectedBill, outageStatus, peakRewards, newBusiness, nothing
+    case bill, usage, template, projectedBill, outageStatus, prepaidActive, prepaidPending, nothing
     
-    static let allCards: [HomeCard] = {
+    static let editableCards: [HomeCard] = {
         return [.bill, .usage, .template, .outageStatus, .projectedBill]
     }()
     
     init?(id: String) {
-        guard let homeCard = HomeCard.allCards.first(where: { $0.id == id }) else {
+        guard let homeCard = HomeCard.editableCards.first(where: { $0.id == id }) else {
             return nil
         }
         self = homeCard
@@ -34,11 +34,7 @@ enum HomeCard: Int {
             return NSLocalizedString("Projected Bill", comment: "")
         case .outageStatus:
             return NSLocalizedString("Outage Status", comment: "")
-        case .peakRewards:
-            return NSLocalizedString("PeakRewards", comment: "")
-        case .newBusiness:
-            return NSLocalizedString("New Business", comment: "")
-        case .nothing:
+        case .prepaidActive, .prepaidPending, .nothing:
             return ""
         }
     }
@@ -55,10 +51,10 @@ enum HomeCard: Int {
             return "projectedBill"
         case .outageStatus:
             return "outageStatus"
-        case .peakRewards:
-            return "peakRewards"
-        case .newBusiness:
-            return "newBusiness"
+        case .prepaidActive:
+            return "prepaidActive"
+        case .prepaidPending:
+            return "prepaidPending"
         case .nothing:
             return "nothing"
         }
@@ -122,7 +118,7 @@ final class HomeCardPrefsStore {
             .map { HomeCard(id: $0) }
             .compactMap { $0 } ?? HomeCardPrefsStore.defaultList
         
-        HomeCard.allCards.filter { !$0.isOptional }.forEach {
+        HomeCard.editableCards.filter { !$0.isOptional }.forEach {
             if !storedList.contains($0) {
                 storedList.append($0)
             }

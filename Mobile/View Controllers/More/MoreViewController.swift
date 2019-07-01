@@ -25,7 +25,7 @@ class MoreViewController: UIViewController {
         didSet {
             if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
                 switch Environment.shared.environmentName {
-                case .prod:
+                case .prod, .prodbeta:
                     versionLabel.text = String(format: NSLocalizedString("Version %@", comment: ""), version)
                 default:
                     versionLabel.text = String(format: NSLocalizedString("Version %@ - MBE %@", comment: ""), version, Environment.shared.mcsInstanceName)
@@ -202,7 +202,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return 2
         case 1:
-            return 4
+            return 5
         case 2:
             return 3
         default:
@@ -233,6 +233,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return (Environment.shared.opco == .bge && AccountsStore.shared.accounts.count > 1) ? 60 : 0
             case 3:
                 return Environment.shared.opco == .peco ? 60 : 0
+            case 4:
+                return Environment.shared.opco == .bge ? 60 : 0
             default:
                 return 60
             }
@@ -279,6 +281,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_moredefault"), text: NSLocalizedString("Set Default Account", comment: ""))
             case 3:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
+            case 4:
+                cell.configure(image: #imageLiteral(resourceName: "ic_morechoiceid"), text: NSLocalizedString("Choice ID", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -324,6 +328,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 performSegue(withIdentifier: "defaultAccountSegue", sender: nil)
             case 3:
                 performSegue(withIdentifier: "releaseOfInfoSegue", sender: nil)
+            case 4:
+                performSegue(withIdentifier: "choiceIdSegue", sender: nil)
             default:
                 break
             }
@@ -354,7 +360,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             headerView.configure(text: NSLocalizedString("Notifications", comment: ""))
         case 1:
-            headerView.configure(text: NSLocalizedString("Settings", comment: ""))
+            headerView.configure(text: NSLocalizedString("Account & Settings", comment: ""))
         case 2:
             headerView.configure(text: NSLocalizedString("Help & Support", comment: ""))
         default:

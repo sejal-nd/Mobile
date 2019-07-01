@@ -127,7 +127,7 @@ class HomeProjectedBillCardViewModel {
     private(set) lazy var projectionNotAvailable: Driver<Bool> = Driver
         .combineLatest(billForecastDriver, isGas)
         .map { billForecast, isGas in
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             if !isGas, let startDate = billForecast.electric?.billingStartDate {
                 let daysSinceBillingStart = abs(startDate.interval(ofComponent: .day, fromDate: today))
                 return daysSinceBillingStart < 7
@@ -141,7 +141,7 @@ class HomeProjectedBillCardViewModel {
     private(set) lazy var projectionLabelString: Driver<String?> = Driver
         .combineLatest(billForecastDriver, isGas, accountDetailDriver)
         .map { billForecast, isGas, accountDetail in
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             let localizedString = NSLocalizedString("%@ days", comment: "")
             if !isGas,
                 let elecCost = billForecast.electric?.projectedCost,
@@ -184,7 +184,7 @@ class HomeProjectedBillCardViewModel {
     private(set) lazy var projectionSubLabelString: Driver<String?> = Driver.combineLatest(self.billForecastDriver,
                                                                                            self.isGas)
         .map { billForecast, isGas in
-            let today = Calendar.opCo.startOfDay(for: Date())
+            let today = Calendar.opCo.startOfDay(for: .now)
             if !isGas,
                 let startDate = billForecast.electric?.billingStartDate,
                 let endDate = billForecast.electric?.billingEndDate {

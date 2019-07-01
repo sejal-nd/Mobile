@@ -31,6 +31,9 @@ class AlertsViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = NSLocalizedString("My Alerts", comment: "")
+        
         tableView.backgroundColor = .white
         tableView.separatorColor = .accentGray
         tableView.isHidden = true

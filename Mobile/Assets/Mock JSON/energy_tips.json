@@ -1,0 +1,69 @@
+{
+    "default": [
+        {
+            "title": "short title",
+            "shortBody": "short body"
+        },
+        {
+            "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit eros quis nisi rhoncus luctus. Nullam suscipit velit a hendrerit.",
+            "shortBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit orci at sapien tempus malesuada. In sagittis nibh eu sapien volutpat facilisis. Duis volutpat mauris in sem mattis dignissim. Nullam eget venenatis quam. Nullam sodales id nisi euismod scelerisque. Maecenas ultricies malesuada fermentum. Donec ut commodo urna, eget accumsan ex. Vivamus non congue lacus."
+        },
+        {
+            "title": "<b>Bold</b> <i>Italic</i>",
+            "shortBody": "This body has html formatting. <b>This sentence is bold.</b> <i>This sentence is italic.</i>"
+        },
+        {
+            "title": "title 4",
+            "shortBody": "body 4"
+        },
+        {
+            "title": "title 5",
+            "shortBody": "body 5"
+        }
+    ],
+    "energyTipsNone": [],
+    "energyTips3": [
+        {
+            "title": "title 1",
+            "shortBody": "body 1"
+        },
+        {
+            "title": "title 2",
+            "shortBody": "body 2"
+        },
+        {
+            "title": "title 3",
+            "shortBody": "body 3"
+        }
+    ],
+    "energyTips7": [
+        {
+            "title": "title 1",
+            "shortBody": "body 1"
+        },
+        {
+            "title": "title 2",
+            "shortBody": "body 2"
+        },
+        {
+            "title": "title 3",
+            "shortBody": "body 3"
+        },
+        {
+            "title": "title 4",
+            "shortBody": "body 4"
+        },
+        {
+            "title": "title 5",
+            "shortBody": "body 5"
+        },
+        {
+            "title": "title 6",
+            "shortBody": "body 6"
+        },
+        {
+            "title": "title 7",
+            "shortBody": "body 7"
+        }
+    ]
+}

@@ -18,6 +18,7 @@ class MiniWalletViewModel {
     let walletItems = Variable<[WalletItem]?>(nil)
     let selectedItem = Variable<WalletItem?>(nil)
     let temporaryItem = Variable<WalletItem?>(nil)
+    let editingItem = Variable<WalletItem?>(nil)
     let isFetchingWalletItems = Variable(false)
     let isError = Variable(false)
     
@@ -43,58 +44,27 @@ class MiniWalletViewModel {
             }).disposed(by: disposeBag)
     }
     
-    var shouldShowTableView: Driver<Bool> {
-        return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
-            return !$0 && !$1
-        }
-    }
-    
-    var shouldShowErrorLabel: Driver<Bool> {
-        return Driver.combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver()).map {
-            return !$0 && $1
-        }
-    }
-    
-    var bankAccounts: [WalletItem]! {
-        var banks = [WalletItem]()
-        guard let walletItems = walletItems.value else { return banks }
-        for item in walletItems {
-            if item.bankOrCard == .bank {
-                banks.append(item)
-            }
-        }
+    var tableViewWalletItems: [WalletItem]! {
+        guard let walletItems = walletItems.value else { return [] }
+        var items = walletItems
         if let tempItem = temporaryItem.value {
-            if tempItem.bankOrCard == .bank && !banks.contains(tempItem) {
-                banks.insert(tempItem, at: 0)
+            if !items.contains(tempItem) {
+                items.insert(tempItem, at: 0)
             }
         }
-        return banks
+        return items
     }
     
-    var creditCards: [WalletItem]! {
-        var cards = [WalletItem]()
-        guard let walletItems = walletItems.value else { return cards }
-        for item in walletItems {
-            if item.bankOrCard == .card {
-                cards.append(item)
-            }
-        }
-        if let tempItem = temporaryItem.value {
-            if tempItem.bankOrCard == .card && !cards.contains(tempItem) {
-                cards.insert(tempItem, at: 0)
-            }
-        }
-        return cards
-    }
+    private(set) lazy var shouldShowTableView: Driver<Bool> = Driver
+        .combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver())
+        { !$0 && !$1 }
     
+    private(set) lazy var shouldShowErrorLabel: Driver<Bool> = Driver
+        .combineLatest(isFetchingWalletItems.asDriver(), isError.asDriver())
+        { !$0 && $1 }
+
     var footerLabelText: String {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("We accept: VISA, MasterCard, Discover, and American Express. Business customers cannot use VISA.", comment: "")
-        case .comEd, .peco:
-            return NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
-        }
+        return NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
     }
         
 }
-

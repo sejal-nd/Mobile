@@ -12,60 +12,54 @@ import RxCocoa
 import RxSwiftExt
 
 class BillingHistoryDetailsViewController: UIViewController {
-
-    var billingHistoryItem: BillingHistoryItem!
     
-    @IBOutlet weak var loadingIndicator: LoadingIndicator!
-    @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
+    // Passed from BillingHistoryViewController
+    var accountDetail: AccountDetail!
+    var billingHistoryItem: BillingHistoryItem!
+
+    var viewModel: BillingHistoryDetailsViewModel!
+    
+    @IBOutlet weak var paymentMethodView: UIView!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
+    @IBOutlet weak var paymentMethodAccessibilityView: UIView!
+    @IBOutlet weak var paymentMethodImageView: UIImageView!
+    @IBOutlet weak var paymentMethodDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentTypeView: UIView!
     @IBOutlet weak var paymentTypeLabel: UILabel!
-    @IBOutlet weak var paymentTypeDetailLabel: UILabel!
-    
-    @IBOutlet weak var paymentTypeSeparatorLine: UIView!
-    
-    @IBOutlet weak var paymentAccountView: UIView!
-    @IBOutlet weak var paymentAccountLabel: UILabel!
-    @IBOutlet weak var paymentAccountDetailsLabel: UILabel!
-    
-    @IBOutlet weak var paymentAccountSeparatorLine: UIView!
-    
-    @IBOutlet weak var paymentDateView: UIView!
-    @IBOutlet weak var paymentDateLabel: UILabel!
-    @IBOutlet weak var paymentDateDetailsLabel: UILabel!
-    
-    @IBOutlet weak var paymentDateSeparatorLine: UIView!
+    @IBOutlet weak var paymentTypeDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var paymentAmountDetailsLabel: UILabel!
     
-    @IBOutlet weak var paymentAmountSeparatorLine: UIView!
-    
     @IBOutlet weak var convenienceFeeView: UIView!
     @IBOutlet weak var convenienceFeeLabel: UILabel!
     @IBOutlet weak var convenienceFeeDetailsLabel: UILabel!
-    
-    @IBOutlet weak var convenienceFeeSeparatorLine: UIView!
     
     @IBOutlet weak var totalAmountPaidView: UIView!
     @IBOutlet weak var totalAmountPaidLabel: UILabel!
     @IBOutlet weak var totalAmountPaidDetailsLabel: UILabel!
     
-    @IBOutlet weak var totalAmountPaidSeparatorLine: UIView!
+    @IBOutlet weak var paymentDateView: UIView!
+    @IBOutlet weak var paymentDateLabel: UILabel!
+    @IBOutlet weak var paymentDateDetailsLabel: UILabel!
     
     @IBOutlet weak var paymentStatusView: UIView!
     @IBOutlet weak var paymentStatusLabel: UILabel!
     @IBOutlet weak var paymentStatusDetailsLabel: UILabel!
     
-    @IBOutlet weak var paymentStatusSeparatorLine: UIView!
-    
     @IBOutlet weak var confirmationNumberView: UIView!
     @IBOutlet weak var confirmationNumberLabel: UILabel!
-    @IBOutlet weak var confirmationNumberDetailsLabel: UILabel!
+    @IBOutlet weak var confirmationNumberDetailTextView: ZeroInsetDataDetectorTextView!
     
-    var viewModel: BillingHistoryDetailsViewModel!
+    @IBOutlet weak var cancelPaymentView: UIView!
+    @IBOutlet weak var cancelPaymentButton: ButtonControl!
+    @IBOutlet weak var cancelPaymentLabel: UILabel!
+    
+    @IBOutlet var dividerLines: [UIView]!
+    @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
+    
     let bag = DisposeBag()
     
     override func viewDidLoad() {
@@ -73,18 +67,12 @@ class BillingHistoryDetailsViewController: UIViewController {
         
         title = NSLocalizedString("Payment Details", comment: "")
         
-        viewModel = BillingHistoryDetailsViewModel(paymentService: ServiceFactory.createPaymentService(), billingHistoryItem: billingHistoryItem)
+        viewModel = BillingHistoryDetailsViewModel(paymentService: ServiceFactory.createPaymentService(),
+                                                   accountDetail: accountDetail,
+                                                   billingHistoryItem: billingHistoryItem)
         
-        formatViews()
         styleViews()
-        bindLoadingStates()
-        
-        // We may be able to restore this for ComEd/PECO with ePay R2
-        if Environment.shared.opco == .bge {
-            viewModel.fetchPaymentDetails(billingHistoryItem: billingHistoryItem, onCompletion: {
-                UIAccessibility.post(notification: .screenChanged, argument: self.scrollView)
-            })
-        }
+        configureState()
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -93,127 +81,154 @@ class BillingHistoryDetailsViewController: UIViewController {
         navigationController?.setColoredNavBar()
     }
     
-    func formatViews() {
-        if Environment.shared.opco != .bge {
-            paymentTypeView.isHidden = true
-            paymentTypeLabel.isAccessibilityElement = false
-            paymentTypeSeparatorLine.isHidden = true
-            
-            paymentAccountView.isHidden = true
-            paymentAccountLabel.isAccessibilityElement = false
-            paymentAccountSeparatorLine.isHidden = true
-            
-            convenienceFeeView.isHidden = true
-            convenienceFeeLabel.isAccessibilityElement = false
-            convenienceFeeSeparatorLine.isHidden = true
-            
-            totalAmountPaidView.isHidden = true
-            totalAmountPaidLabel.isAccessibilityElement = false
-            totalAmountPaidSeparatorLine.isHidden = true
-            
-            confirmationNumberView.isHidden = true
-            confirmationNumberLabel.isAccessibilityElement = false
-        } else {
-            if viewModel.isSpeedpay {
-                paymentTypeView.isHidden = true
-                paymentTypeLabel.isAccessibilityElement = false
-                paymentTypeSeparatorLine.isHidden = true
-            } else {
-                paymentAccountView.isHidden = true
-                paymentAccountLabel.isAccessibilityElement = false
-                paymentAccountSeparatorLine.isHidden = true
-                
-                convenienceFeeView.isHidden = true
-                convenienceFeeLabel.isAccessibilityElement = false
-                convenienceFeeSeparatorLine.isHidden = true
-                
-                totalAmountPaidView.isHidden = true
-                totalAmountPaidLabel.isAccessibilityElement = false
-                totalAmountPaidSeparatorLine.isHidden = true
-            }
+    override func updateViewConstraints() {
+        for constraint in dividerLineConstraints {
+            constraint.constant = 1.0 / UIScreen.main.scale
         }
+        super.updateViewConstraints()
     }
     
     func styleViews() {
+        paymentMethodLabel.textColor = .deepGray
+        paymentMethodLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentMethodDetailsLabel.textColor = .blackText
+        paymentMethodDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentTypeLabel.textColor = .deepGray
         paymentTypeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentTypeDetailLabel.textColor = .black
-        paymentTypeDetailLabel.font = SystemFont.bold.of(textStyle: .headline)
-        
-        paymentTypeSeparatorLine.backgroundColor = .softGray
-        
-        paymentAccountLabel.textColor = .deepGray
-        paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentAccountDetailsLabel.textColor = .black
-        paymentAccountDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
-        
-        paymentAccountSeparatorLine.backgroundColor = .softGray
-        
-        paymentDateLabel.textColor = .deepGray
-        paymentDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentDateDetailsLabel.textColor = .black
-        paymentDateDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
-        
-        paymentDateSeparatorLine.backgroundColor = .softGray
+        paymentTypeDetailsLabel.textColor = .blackText
+        paymentTypeDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentAmountDetailsLabel.textColor = .successGreenText
-        paymentAmountDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
-        
-        paymentAmountSeparatorLine.backgroundColor = .softGray
+        paymentAmountDetailsLabel.textColor = .blackText
+        paymentAmountDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         convenienceFeeLabel.textColor = .deepGray
         convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        convenienceFeeDetailsLabel.textColor = .successGreenText
-        convenienceFeeDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
-        
-        convenienceFeeSeparatorLine.backgroundColor = .softGray
+        convenienceFeeDetailsLabel.textColor = .blackText
+        convenienceFeeDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         totalAmountPaidLabel.textColor = .deepGray
         totalAmountPaidLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        totalAmountPaidDetailsLabel.textColor = .successGreenText
-        totalAmountPaidDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        totalAmountPaidDetailsLabel.textColor = .blackText
+        totalAmountPaidDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
-        totalAmountPaidSeparatorLine.backgroundColor = .softGray
+        paymentDateLabel.textColor = .deepGray
+        paymentDateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentDateDetailsLabel.textColor = .blackText
+        paymentDateDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         paymentStatusLabel.textColor = .deepGray
         paymentStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentStatusDetailsLabel.textColor = .black
-        paymentStatusDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
-
-        paymentStatusSeparatorLine.backgroundColor = .softGray
+        paymentStatusDetailsLabel.textColor = .blackText
+        paymentStatusDetailsLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         confirmationNumberLabel.textColor = .deepGray
         confirmationNumberLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        confirmationNumberDetailsLabel.textColor = .black
-        confirmationNumberDetailsLabel.font = SystemFont.bold.of(textStyle: .headline)
+        confirmationNumberDetailTextView.textColor = .blackText
+        confirmationNumberDetailTextView.font = SystemFont.medium.of(textStyle: .headline)
+        confirmationNumberDetailTextView.dataDetectorTypes.remove(.all)
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
+        cancelPaymentButton.accessibilityLabel = cancelPaymentText
+        cancelPaymentLabel.text = cancelPaymentText
+        cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        cancelPaymentLabel.textColor = .actionBlue
+        
+        for line in dividerLines {
+            line.backgroundColor = .accentGray
+        }
     }
     
-    func bindLoadingStates() {
-        viewModel.paymentAccount.drive(paymentAccountDetailsLabel.rx.text).disposed(by: bag)
+    func configureState() {
+        if let paymentMethodImage = viewModel.paymentMethodImage,
+            let paymentMethodStr = viewModel.paymentMethodString {
+            paymentMethodAccessibilityView.accessibilityLabel = viewModel.paymentMethodAccessibilityLabel
+            paymentMethodImageView.image = paymentMethodImage
+            paymentMethodDetailsLabel.text = paymentMethodStr
+        } else {
+            paymentMethodView.isHidden = true
+        }
         
-        paymentTypeLabel.text = viewModel.paymentTypeLabel
-        paymentTypeDetailLabel.text = viewModel.paymentType
-        paymentDateDetailsLabel.text = viewModel.paymentDate
-        paymentAmountLabel.text = viewModel.paymentAmountLabel
-        paymentAmountDetailsLabel.text = viewModel.amountPaid
+        if let paymentType = viewModel.paymentType {
+            paymentTypeDetailsLabel.text = paymentType
+        } else {
+            paymentTypeView.isHidden = true
+        }
         
-        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: bag)
-        viewModel.fetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: bag)
-        viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: bag)
+        if let paymentAmount = viewModel.paymentAmount {
+            paymentAmountDetailsLabel.text = paymentAmount
+        } else {
+            paymentAmountView.isHidden = true
+        }
         
-        viewModel.convenienceFee.drive(convenienceFeeDetailsLabel.rx.text).disposed(by: bag)
-        viewModel.totalAmountPaid.drive(totalAmountPaidDetailsLabel.rx.text).disposed(by: bag)
+        if let convenienceFee = viewModel.convenienceFee {
+            convenienceFeeDetailsLabel.text = convenienceFee
+        } else {
+            convenienceFeeView.isHidden = true
+        }
         
-        paymentStatusDetailsLabel.text = viewModel.paymentStatus
-        confirmationNumberDetailsLabel.text = viewModel.confirmationNumber
-
+        if let totalPaymentAmount = viewModel.totalPaymentAmount {
+            totalAmountPaidDetailsLabel.text = totalPaymentAmount
+        } else {
+            totalAmountPaidView.isHidden = true
+        }
+        
+        if let paymentDate = viewModel.paymentDate {
+            paymentDateDetailsLabel.text = paymentDate
+        } else {
+            paymentDateView.isHidden = true
+        }
+        
+        if let paymentStatus = viewModel.paymentStatus {
+            paymentStatusDetailsLabel.text = paymentStatus
+        } else {
+            paymentStatusView.isHidden = true
+        }
+        
+        if let confirmationNumber = viewModel.confirmationNumber {
+            confirmationNumberDetailTextView.text = confirmationNumber
+        } else {
+            confirmationNumberView.isHidden = true
+        }
+        
+        if !viewModel.shouldShowCancelPayment {
+            cancelPaymentView.isHidden = true
+        }
+    }
+    
+    @IBAction func onCancelPaymentPress() {
+        let alertTitle = NSLocalizedString("Are you sure you want to cancel this automatic payment?", comment: "")
+        let alertMessage = NSLocalizedString("Canceling this payment will not impact your AutoPay enrollment. Future bills will still be paid automatically.", comment: "")
+        let alertConfirm = NSLocalizedString("Yes", comment: "")
+        let alertDeny = NSLocalizedString("No", comment: "")
+        
+        let confirmAlert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: alertDeny, style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: alertConfirm, style: .destructive, handler: { [weak self] _ in
+            LoadingView.show()
+            self?.viewModel.cancelPayment(onSuccess: { [weak self] in
+                LoadingView.hide()
+                guard let self = self, let navigationController = self.navigationController else { return }
+                for vc in navigationController.viewControllers {
+                    // Always pop back to the root billing history screen here (hence the check for viewingMoreActivity)
+                    guard let dest = vc as? BillingHistoryViewController, !dest.viewModel.viewingMoreActivity else {
+                        continue
+                    }
+                    dest.onPaymentCancel()
+                    navigationController.popToViewController(dest, animated: true)
+                    return
+                }
+                navigationController.popViewController(animated: true)
+            }, onError: { [weak self] errMessage in
+                LoadingView.hide()
+                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alertVc, animated: true, completion: nil)
+            })
+        }))
+        present(confirmAlert, animated: true, completion: nil)
     }
     
 }

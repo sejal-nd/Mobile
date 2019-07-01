@@ -28,37 +28,27 @@ class BGEAutoPayViewModel {
     let isFetchingAutoPayInfo = Variable(false)
     let isError = Variable(false)
     
-    var accountDetail: AccountDetail
+    let accountDetail: AccountDetail
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
-    let enrollSwitchValue: Variable<Bool>
+    var confirmationNumber: String?
     let selectedWalletItem = Variable<WalletItem?>(nil)
-    let expiredReason = Variable<String?>(nil)
     
     // --- Settings --- //
-    var userDidChangeSettings = Variable(false)
-    var userDidChangeBankAccount = Variable(false)
+    let userDidChangeSettings = Variable(false)
+    let userDidChangeBankAccount = Variable(false)
+    let userDidReadTerms = Variable(false)
     
     let amountToPay = Variable<AmountType>(.amountDue)
     let whenToPay = Variable<PaymentDateType>(.onDueDate)
-    let howLongForAutoPay = Variable<EffectivePeriod>(.untilCanceled)
     
-    let amountNotToExceed = Variable("")
-    let numberOfPayments = Variable("")
-    
-    var numberOfDaysBeforeDueDate = Variable("0")
-    
-    var autoPayUntilDate = Variable<Date?>(nil)
+    let amountNotToExceed = Variable(0.0)
+    let numberOfDaysBeforeDueDate = Variable(0)
     // ---------------- //
 
     required init(paymentService: PaymentService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
         self.accountDetail = accountDetail
         initialEnrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
-        enrollSwitchValue = Variable(accountDetail.isAutoPay ? true : false)
-    }
-    
-    private func amountNotToExceedDouble() -> String {
-        return String(amountNotToExceed.value.filter { "0123456789.".contains($0) })
     }
     
     func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
@@ -70,47 +60,31 @@ class BGEAutoPayViewModel {
                 guard let self = self else { return }
                 self.isFetchingAutoPayInfo.value = false
                 self.isError.value = false
+                self.confirmationNumber = autoPayInfo.confirmationNumber
                 
-                // Expired accounts
-                var isExpired = false
-                if let effectiveNumberOfPayments = autoPayInfo.effectiveNumPayments,
-                    let numberOfPaymentsScheduled = autoPayInfo.numberOfPaymentsScheduled,
-                    Int(numberOfPaymentsScheduled)! >= Int(effectiveNumberOfPayments)! {
-                    isExpired = true
-                    let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire after %d payments.", comment: "")
-                    self.expiredReason.value = String(format: localizedString, Int(effectiveNumberOfPayments)!)
-                } else if let effectiveEndDate = autoPayInfo.effectiveEndDate, effectiveEndDate < Date() {
-                    isExpired = true
-                    let localizedString = NSLocalizedString("Enrollment expired due to AutoPay settings - you set enrollment to expire on %@.", comment: "")
-                    self.expiredReason.value = String(format: localizedString, effectiveEndDate.mmDdYyyyString)
-                } else {
-                    self.expiredReason.value = nil
+                // Sync up our view model with the existing AutoPay settings
+                if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4 {
+                    self.selectedWalletItem.value = WalletItem(walletItemId: walletItemId,
+                                                               maskedWalletItemAccountNumber: masked4,
+                                                               nickName: autoPayInfo.paymentAccountNickname,
+                                                               paymentMethodType: .ach,
+                                                               bankName: nil,
+                                                               expirationDate: nil,
+                                                               isDefault: false,
+                                                               isTemporary: false)
                 }
                 
-                if !isExpired { // Sync up our view model with the existing AutoPay settings
-                    if let walletItemId = autoPayInfo.walletItemId, let masked4 = autoPayInfo.paymentAccountLast4, let nickname = autoPayInfo.paymentAccountNickname {
-                        self.selectedWalletItem.value = WalletItem.from(["walletItemID": walletItemId, "maskedWalletItemAccountNumber": masked4, "nickName": nickname])
-                    }
-                    if let amountType = autoPayInfo.amountType {
-                        self.amountToPay.value = amountType
-                    }
-                    if let amountThreshold = autoPayInfo.amountThreshold {
-                        self.amountNotToExceed.value = amountThreshold
-                        self.formatAmountNotToExceed()
-                    }
-                    if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
-                        self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
-                        self.whenToPay.value = paymentDaysBeforeDue == "0" ? .onDueDate : .beforeDueDate
-                    }
-                    if let effectivePeriod = autoPayInfo.effectivePeriod {
-                        self.howLongForAutoPay.value = effectivePeriod
-                    }
-                    if let effectiveEndDate = autoPayInfo.effectiveEndDate {
-                        self.autoPayUntilDate.value = effectiveEndDate
-                    }
-                    if let effectiveNumPayments = autoPayInfo.effectiveNumPayments {
-                        self.numberOfPayments.value = effectiveNumPayments
-                    }
+                if let amountType = autoPayInfo.amountType {
+                    self.amountToPay.value = amountType
+                }
+                
+                if let amountThreshold = autoPayInfo.amountThreshold {
+                    self.amountNotToExceed.value = amountThreshold
+                }
+                
+                if let paymentDaysBeforeDue = autoPayInfo.paymentDaysBeforeDue {
+                    self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
+                    self.whenToPay.value = paymentDaysBeforeDue == 0 ? .onDueDate : .beforeDueDate
                 }
                 
                 onSuccess?()
@@ -123,17 +97,30 @@ class BGEAutoPayViewModel {
             .disposed(by: disposeBag)
     }
     
-    func enrollOrUpdate(update: Bool = false, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        let daysBefore = whenToPay.value == .onDueDate ? "0" : numberOfDaysBeforeDueDate.value
+    func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
         paymentService.enrollInAutoPayBGE(accountNumber: accountDetail.accountNumber,
-                                          walletItemId: selectedWalletItem.value!.walletItemID,
+                                          walletItemId: selectedWalletItem.value?.walletItemId,
                                           amountType: amountToPay.value,
-                                          amountThreshold: amountNotToExceedDouble(),
-                                          paymentDaysBeforeDue: daysBefore,
-                                          effectivePeriod: howLongForAutoPay.value,
-                                          effectiveEndDate: autoPayUntilDate.value,
-                                          effectiveNumPayments: numberOfPayments.value,
-                                          isUpdate: update)
+                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
+                                          paymentDaysBeforeDue: String(daysBefore))
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                onSuccess()
+            }, onError: { error in
+                onError(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func update(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let daysBefore = whenToPay.value == .onDueDate ? 0 : numberOfDaysBeforeDueDate.value
+        paymentService.updateAutoPaySettingsBGE(accountNumber: accountDetail.accountNumber,
+                                          walletItemId: selectedWalletItem.value?.walletItemId,
+                                          confirmationNumber: confirmationNumber!,
+                                          amountType: amountToPay.value,
+                                          amountThreshold: amountNotToExceed.value.twoDecimalString,
+                                          paymentDaysBeforeDue: String(daysBefore))
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -144,7 +131,7 @@ class BGEAutoPayViewModel {
     }
     
     func unenroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber)
+        paymentService.unenrollFromAutoPayBGE(accountNumber: accountDetail.accountNumber, confirmationNumber: confirmationNumber!)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 onSuccess()
@@ -157,68 +144,36 @@ class BGEAutoPayViewModel {
     private(set) lazy var showBottomLabel: Driver<Bool> =
         Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.initialEnrollmentStatus.asDriver()) {
             return !$0 && $1 != .enrolled
-        }
+    }
     
-    private(set) lazy var submitButtonEnabled: Driver<Bool> =
-        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
-                             self.selectedWalletItem.asDriver(),
-                             self.enrollSwitchValue.asDriver(),
-                             self.userDidChangeSettings.asDriver(),
-                             self.userDidChangeBankAccount.asDriver()) {
-            if $0 == .unenrolled && $1 != nil { // Unenrolled with bank account selected
+    private(set) lazy var submitButtonEnabled: Driver<Bool> = Driver
+        .combineLatest(initialEnrollmentStatus.asDriver(),
+                       selectedWalletItem.asDriver(),
+                       userDidChangeSettings.asDriver(),
+                       userDidChangeBankAccount.asDriver(),
+                       userDidReadTerms.asDriver())
+        { initialEnrollmentStatus, selectedWalletItem, userDidChangeSettings, userDidChangeBankAccount, userDidReadTerms in
+            if initialEnrollmentStatus == .unenrolled && selectedWalletItem != nil && userDidReadTerms { // Unenrolled with bank account selected
                 return true
             }
-            if $0 == .enrolled && !$2 { // Enrolled and enrollment switch toggled off
+            
+            // Enrolled with a selected wallet item, changed settings or bank, read terms
+            if initialEnrollmentStatus == .enrolled &&
+                selectedWalletItem != nil &&
+                (userDidChangeSettings || userDidChangeBankAccount) &&
+                userDidReadTerms {
                 return true
             }
-            if $0 == .enrolled && $1?.walletItemID != nil && ($3 || $4) { // Enrolled with a selected wallet item and changed settings or bank
-                return true
-            }
+            
             return false
-        }
+    }
     
-    private(set) lazy var isUnenrolling: Driver<Bool> =
-        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(), self.enrollSwitchValue.asDriver()) {
-            $0 == .enrolled && !$1
-        }
-    
-    private(set) lazy var shouldShowSettingsButton: Driver<Bool> =
-        Driver.combineLatest(self.initialEnrollmentStatus.asDriver(),
-                             self.selectedWalletItem.asDriver(),
-                             self.isUnenrolling) {
-            $0 == .enrolled || $1 != nil && !$2
-        }
+    private(set) lazy var showUnenrollFooter: Driver<Bool> = initialEnrollmentStatus.asDriver().map {
+        $0 == .enrolled
+    }
     
     private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.isError.asDriver()) {
         return !$0 && !$1
-    }
-    
-    func getInvalidSettingsMessage() -> String? {
-        let defaultString = NSLocalizedString("Complete all required fields before returning to the AutoPay screen. Check your selected settings and complete secondary fields.", comment: "")
-        
-        if amountToPay.value == .upToAmount {
-            if amountNotToExceed.value.isEmpty {
-                return defaultString
-            } else {
-                let minPaymentAmount = accountDetail.minPaymentAmount(bankOrCard: .bank)
-                let maxPaymentAmount = accountDetail.maxPaymentAmount(bankOrCard: .bank)
-                if let amountDouble = Double(amountNotToExceedDouble()) {
-                    if amountDouble < minPaymentAmount || amountDouble > maxPaymentAmount {
-                        return String.localizedStringWithFormat("Complete all required fields before returning to the AutoPay screen. \"Amount Not To Exceed\" must be between %@ and %@", minPaymentAmount.currencyString, maxPaymentAmount.currencyString)
-                    }
-                }
-            }
-        }
-        if whenToPay.value == .beforeDueDate && numberOfDaysBeforeDueDate.value == "0" {
-            return defaultString
-        }
-        if howLongForAutoPay.value == .maxPayments && numberOfPayments.value.isEmpty {
-            return defaultString
-        }
-        if howLongForAutoPay.value == .endDate && autoPayUntilDate.value == nil {
-            return defaultString
-        }
-        return nil
     }
     
     private(set) lazy var shouldShowWalletItem: Driver<Bool> = self.selectedWalletItem.asDriver().map {
@@ -226,12 +181,12 @@ class BGEAutoPayViewModel {
     }
     
     private(set) lazy var bankAccountButtonImage: Driver<UIImage> = self.selectedWalletItem.asDriver().map {
-        if $0 != nil {
-            return #imageLiteral(resourceName: "opco_bank_mini")
-        } else {
-            return #imageLiteral(resourceName: "bank_building_mini")
+            if let walletItem = $0 {
+                return walletItem.paymentMethodType.imageMini
+            } else {
+                return #imageLiteral(resourceName: "bank_building_mini_white_bg")
+            }
         }
-    }
     
     private(set) lazy var walletItemAccountNumberText: Driver<String> = self.selectedWalletItem.asDriver().map {
         guard let item = $0 else { return "" }
@@ -250,31 +205,72 @@ class BGEAutoPayViewModel {
     }
     
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> = self.selectedWalletItem.asDriver().map {
-        guard let walletItem = $0 else { return "" }
-        
-        var a11yLabel = NSLocalizedString("Bank account", comment: "")
-        
-        if let nicknameText = walletItem.nickName, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
-        }
-        
-        if let last4Digits = walletItem.maskedWalletItemAccountNumber {
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), last4Digits)
-        }
-        
-        return a11yLabel
+        guard let walletItem = $0 else { return NSLocalizedString("Select Bank Account", comment: "") }
+        return walletItem.accessibilityDescription()
     }
     
-    private(set) lazy var shouldShowExpiredReason: Driver<Bool> = self.expiredReason.asDriver().isNil().not()
-    
-    func formatAmountNotToExceed() {
-        let textStr = String(amountNotToExceed.value.filter { "0123456789".contains($0) })
-        if let intVal = Double(textStr) {
-            if intVal == 0 {
-                amountNotToExceed.value = "$0.00"
-            } else {
-                amountNotToExceed.value = (intVal / 100).currencyString
+    private(set) lazy var settingsButtonAmountText: Driver<String> = Driver
+        .combineLatest(amountToPay.asDriver(), amountNotToExceed.asDriver())
+        { amountToPay, amountNotToExceed in
+            switch amountToPay {
+            case .upToAmount:
+                return String.localizedStringWithFormat("Pay Maximum of %@", amountNotToExceed.currencyString)
+            case .amountDue:
+                return NSLocalizedString("Pay Total Amount Billed", comment: "")
             }
+    }
+    
+    private(set) lazy var settingsButtonDaysBeforeText: Driver<String> = Driver
+        .combineLatest(whenToPay.asDriver(), numberOfDaysBeforeDueDate.asDriver())
+        { whenToPay, numberOfDays in
+            switch whenToPay {
+            case .onDueDate:
+                return NSLocalizedString("On Due Date", comment: "")
+            case .beforeDueDate:
+                return String.localizedStringWithFormat("%@ Day%@ Before Due Date", String(numberOfDays), numberOfDays == 1 ? "":"s")
+            }
+    }
+    
+    private(set) lazy var settingsButtonA11yLabel: Driver<String> = Driver
+        .combineLatest(settingsButtonAmountText,
+                       settingsButtonDaysBeforeText)
+        { $0 + ", " + $1 }
+    
+    var learnMoreDescriptionText: String {
+        if accountDetail.isResidential {
+            return """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+            
+            AutoPay will charge the amount billed each month or the maximum amount specified, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+            """
+        } else {
+            let formatText = """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment, you will receive a payment confirmation for your records.
+            
+            AutoPay will charge the amount billed each month or the maximum amount specified, up to a limit of %@, if applicable. You will receive a notification after your new bill is generated and an upcoming automatic payment is created. Upcoming automatic payments may be viewed or cancelled on the Bill & Payment Activity page. Submitting other payments may result in overpaying and a credit being applied to your account. Please ensure you have adequate funds in your bank account to cover the AutoPay deduction.
+            """
+            let maxPaymentAmountString = accountDetail.billingInfo
+                .maxPaymentAmount(bankOrCard: .bank)
+                .currencyNoDecimalString
+            return String(format: formatText, maxPaymentAmountString)
+        }
+    }
+    
+    var bottomLabelText: String {
+        let billingInfo = accountDetail.billingInfo
+        if accountDetail.isAutoPay {
+            return """
+            Editing or unenrolling in AutoPay will go into effect with your next bill. Any upcoming payments for your current bill may be viewed or canceled in Bill & Payment Activity.
+            """
+        } else if let netDueAmount = billingInfo.netDueAmount, netDueAmount > 0 {
+            let formatText = """
+            If you enroll today, AutoPay will begin with your next bill. You must submit a separate payment for your account balance of %@. Any past due amount is due immediately.
+            """
+            return String(format: formatText, netDueAmount.currencyString)
+        } else {
+            return """
+            Enroll in AutoPay to have your payment automatically deducted from your bank account on your preferred payment date. Upon payment you will receive a payment confirmation for your records.
+            """
         }
     }
 

@@ -15,18 +15,17 @@ class MockAlertsService: AlertsService {
     }
     
     func fetchAlertPreferences(accountNumber: String) -> Observable<AlertPreferences> {
-        let testPrefs = AlertPreferences(outage: true,
-                                         scheduledMaint: false,
-                                         severeWeather: true,
-                                         billReady: false,
-                                         paymentDue: true,
-                                         paymentDueDaysBefore: 99,
-                                         paymentPosted: true,
-                                         paymentPastDue: true,
-                                         budgetBilling: true,
-                                         appointmentTracking: false,
-                                         forYourInfo: false)
-        return .just(testPrefs)
+        let dataFile = MockJSONManager.File.alertPreferences
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.jsonObject(fromFile: dataFile, key: key)
+            .map { json in
+                guard let jsonArray = json["alertPreferences"] as? NSArray,
+                    let prefsArray = AlertPreference.from(jsonArray) else {
+                    throw ServiceError.parsing
+                }
+                
+                return AlertPreferences(alertPreferences: prefsArray)
+        }
     }
     
     func setAlertPreferences(accountNumber: String, alertPreferences: AlertPreferences) -> Observable<Void> {
@@ -49,14 +48,9 @@ class MockAlertsService: AlertsService {
         return .just(())
     }
     
-    var updatesShouldSucceed = true
-    
     func fetchOpcoUpdates(bannerOnly: Bool = false, stormOnly: Bool = false) -> Observable<[OpcoUpdate]> {
-        if updatesShouldSucceed {
-            let opcoUpdates = [OpcoUpdate.from(["Title": "Test Title", "Message": "Test Message"])!]
-            return .just(opcoUpdates)
-        } else {
-            return .error(ServiceError(serviceMessage: "Mock Error"))
-        }
+        let dataFile = MockJSONManager.File.opcoUpdates
+        let key = MockAppState.current.opCoUpdatesKey
+        return MockJSONManager.shared.rx.mappableArray(fromFile: dataFile, key: key)
     }
 }

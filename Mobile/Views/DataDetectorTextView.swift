@@ -22,19 +22,17 @@ class DataDetectorTextView: UITextView, UITextViewDelegate {
         }
     }
     
-    override init(frame: CGRect, textContainer: NSTextContainer?) {
-        super.init(frame: frame, textContainer: textContainer)
-        
-        commonInit()
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         commonInit()
     }
     
-    func commonInit() {
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        commonInit()
+    }
+    
+    private func commonInit() {
         isEditable = false
         dataDetectorTypes = .phoneNumber
         accessibilityTraits = .staticText

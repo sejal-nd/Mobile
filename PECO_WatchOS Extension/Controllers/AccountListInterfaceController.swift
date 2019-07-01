@@ -37,12 +37,12 @@ class AccountListInterfaceController: WKInterfaceController {
     
     private func loadTableData() {
         guard let storedAccounts = AccountsStore.shared.accounts,
-              let currentAccount = AccountsStore.shared.currentAccount else { return }
+              let _ = AccountsStore.shared.currentIndex else { return }
 
         accounts = storedAccounts
         
         // Arrange Current Account to First in Array
-        if let currentAccountIndex = accounts.lastIndex(of: currentAccount) {
+        if let currentAccountIndex = accounts.lastIndex(of: AccountsStore.shared.currentAccount) {
             accounts.rearrange(from: currentAccountIndex, to: 0)
         }
         
@@ -68,9 +68,8 @@ extension AccountListInterfaceController {
         }
         
         // Set Selected Account
-        let newAccount = accounts[rowIndex]
-        AccountsStore.shared.currentAccount = newAccount
-        NotificationCenter.default.post(name: Notification.Name.currentAccountUpdated, object: newAccount)
+        AccountsStore.shared.currentIndex = rowIndex
+        NotificationCenter.default.post(name: Notification.Name.currentAccountUpdated, object: AccountsStore.shared.currentAccount)
         
         dismiss()
     }

@@ -247,7 +247,7 @@ class ChangePasswordTests: XCTestCase {
     func testChangePasswordCurrentPasswordIncorrect() {
         let asyncExpectation = expectation(description: "testChangePasswordCurrentPasswordIncorrect")
         
-        viewModel.currentPassword.value = "abcd1234"
+        viewModel.currentPassword.value = "invalid"
         viewModel.changePassword(sentFromLogin: false, onSuccess: {
             XCTFail("Unexpected success response")
         }, onPasswordNoMatch: {

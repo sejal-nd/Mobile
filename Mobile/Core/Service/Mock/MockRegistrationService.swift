@@ -34,8 +34,5 @@ struct MockRegistrationService: RegistrationService {
     func validateConfirmationEmail(_ guid: String) -> Observable<Void> {
         return .just(())
     }
-    
-    func recoverPassword(_ username: String) -> Observable<Void> {
-        return .just(())
-    }
+
 }

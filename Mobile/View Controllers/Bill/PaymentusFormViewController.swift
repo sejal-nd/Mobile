@@ -37,7 +37,7 @@ class PaymentusFormViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var editingDefaultItem = false // We need to know if user is editing the default so we can properly fire the `defaultWalletItemUpdated` notification
-    var shouldPopToMakePaymentOnSave = false
+    weak var popToViewController: UIViewController? // Pop to this view controller on new item save
     var shouldPopToRootOnSave = false
     
     let walletService: WalletService = ServiceFactory.createWalletService()
@@ -143,8 +143,8 @@ class PaymentusFormViewController: UIViewController {
                 } else {
                     self.showError()
                 }
-                }, onError: { [weak self] err in
-                    self?.showError()
+            }, onError: { [weak self] err in
+                self?.showError()
             }).disposed(by: disposeBag)
     }
     
@@ -196,9 +196,11 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
         if let bodyString = message.body as? String {
             if bodyString.contains("frameHeight") { return } // Ignore the frameHeight message
             
-            if let data = bodyString.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! String {
+            if let data = bodyString.data(using: .utf8),
+                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? String {
                 let pmDetailsString = json.replacingOccurrences(of: "pmDetails:", with: "")
-                if let pmDetailsData = pmDetailsString.data(using: .utf8), let pmDetailsJson = try? JSONSerialization.jsonObject(with: pmDetailsData, options: []) as! [String: Any] {
+                if let pmDetailsData = pmDetailsString.data(using: .utf8),
+                    let pmDetailsJson = try? JSONSerialization.jsonObject(with: pmDetailsData, options: []) as? [String: Any] {
                     // Payment method was successfully submitted
                     
                     var didSetDefault = false
@@ -213,19 +215,30 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         nickname = pmDetailsJson["ProfileDescription"] as? String
                     }
                     
-                    let walletItem = WalletItem(walletItemID: pmDetailsJson["Token"] as? String, maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String, nickName: nickname, isDefault: didSetDefault, bankOrCard: bankOrCard, isTemporary: temporary)
-                    
-                    if !temporary {
-                        if walletItemId != nil {
-                            walletService.updateWalletItemMCS(walletItem)
-                        } else {
-                            walletService.addWalletItemMCS(walletItem)
-                        }
+                    // Map the Paymentus returned "Type" to our PaymentMethodTypes for correct icon display
+                    let paymentMethodType: PaymentMethodType
+                    if let typeString = pmDetailsJson["Type"] as? String {
+                        paymentMethodType = paymentMethodTypeForPaymentusString(typeString)
+                    } else {
+                        paymentMethodType = bankOrCard == .bank ? .ach : .unknown("Credit Card")
                     }
                     
-                    if walletItemId != nil {
+                    let walletItem = WalletItem(walletItemId: pmDetailsJson["Token"] as? String,
+                                                maskedWalletItemAccountNumber: pmDetailsJson["MaskedAccountNumber"] as? String,
+                                                nickName: nickname,
+                                                paymentMethodType: paymentMethodType,
+                                                isDefault: didSetDefault,
+                                                isTemporary: temporary)
+                    
+                    if walletItemId != nil { // Editing Payment Method
+                        if !temporary {
+                            walletService.updateWalletItemMCS(walletItem)
+                        }
                         delegate?.didEditWalletItem()
-                    } else {
+                    } else { // Adding Payment Method
+                        if !temporary {
+                            walletService.addWalletItemMCS(walletItem)
+                        }
                         delegate?.didAddWalletItem(walletItem)
                     }
                     
@@ -244,13 +257,8 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         } else {
                             navigationController?.popToRootViewController(animated: true)
                         }
-                    } else if shouldPopToMakePaymentOnSave {
-                        for vc in navigationController!.viewControllers {
-                            guard let dest = vc as? MakePaymentViewController else {
-                                continue
-                            }
-                            navigationController?.popToViewController(dest, animated: true)
-                        }
+                    } else if let dest = popToViewController {
+                        navigationController?.popToViewController(dest, animated: true)
                     } else {
                         navigationController?.popViewController(animated: true)
                     }

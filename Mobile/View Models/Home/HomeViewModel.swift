@@ -94,7 +94,7 @@ class HomeViewModel {
         TemplateCardViewModel(accountDetailEvents: accountDetailEvents,
                               showLoadingState: accountDetailTracker.asDriver()
                                 .filter { $0 }
-                                .map(to: ())
+                                .mapTo(())
                                 .startWith(()))
     
     private(set) lazy var projectedBillCardViewModel =
@@ -112,6 +112,12 @@ class HomeViewModel {
                                 refreshFetchTracker: refreshFetchTracker,
                                 switchAccountFetchTracker: outageTracker)
     
+    private(set) lazy var prepaidActiveCardViewModel =
+        HomePrepaidCardViewModel(isActive: true)
+    
+    private(set) lazy var prepaidPendingCardViewModel =
+        HomePrepaidCardViewModel(isActive: false)
+    
     private lazy var fetchTrigger = Observable.merge(fetchDataObservable, RxNotifications.shared.accountDetailUpdated.mapTo(FetchingAccountState.switchAccount), RxNotifications.shared.recentPaymentsUpdated.mapTo(FetchingAccountState.switchAccount))
     
     private lazy var recentPaymentsFetchTrigger = Observable
@@ -120,6 +126,7 @@ class HomeViewModel {
     
     // Awful maintenance mode check
     private lazy var fetchDataMMEvents: Observable<Event<Maintenance>> = fetchData
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
             switch state {
@@ -131,6 +138,7 @@ class HomeViewModel {
             }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
             return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
@@ -140,6 +148,7 @@ class HomeViewModel {
             })
     
     private lazy var recentPaymentsUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.recentPaymentsUpdated
+        .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTracker: billTracker) { [weak self] _ in
             self?.authService.getMaintenanceMode() ?? .empty()
         }
@@ -167,7 +176,7 @@ class HomeViewModel {
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = Observable
         .merge(fetchDataMMEvents, recentPaymentsUpdatedMMEvents)
         .filter {
-            guard let maint = $0.element else { return false }
+            guard let maint = $0.element else { return true }
             return !maint.allStatus && !maint.billStatus && !maint.homeStatus
         }
         .withLatestFrom(fetchTrigger)
@@ -190,8 +199,19 @@ class HomeViewModel {
     private lazy var accountDetailNoNetworkConnection: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
     
-    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> =  Driver
+    private lazy var accountDetailAccountDisallow: Observable<Bool> = accountDetailEvents
+        .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue }
+    
+    private(set) lazy var showNoNetworkConnectionState: Driver<Bool> = Driver
         .combineLatest(accountDetailNoNetworkConnection.asDriver(onErrorDriveWith: .empty()),
+                       showMaintenanceModeState,
+                       accountDetailTracker.asDriver())
+        { $0 && !$1 && !$2 }
+        .startWith(false)
+        .distinctUntilChanged()
+    
+    private(set) lazy var showAccountDisallowState: Driver<Bool> = Driver
+        .combineLatest(accountDetailAccountDisallow.asDriver(onErrorDriveWith: .empty()),
                        showMaintenanceModeState,
                        accountDetailTracker.asDriver())
         { $0 && !$1 && !$2 }
@@ -214,6 +234,7 @@ class HomeViewModel {
                 .catchError { _ in .just(nil) }
         }
         .elements()
+        .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var appointmentEvents = accountDetailEvents
@@ -245,5 +266,58 @@ class HomeViewModel {
         .merge(appointmentEvents.map { !($0.element?.isEmpty ?? true) },
                appointmentsUpdates.map { !$0.isEmpty },
                appointmentTracker.asObservable().filter { $0 }.not())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private lazy var prepaidStatus = accountDetailEvents.elements()
+        .mapAt(\.prepaidStatus)
+        .startWith(.inactive)
+        .distinctUntilChanged()
+    
+    private(set) lazy var prepaidCardViewModel: Driver<HomePrepaidCardViewModel?> = Observable
+        .combineLatest(prepaidStatus, accountDetailTracker.asObservable())
+        { prepaidStatus, isLoading -> HomePrepaidCardViewModel? in
+            guard !isLoading else { return nil }
+            switch prepaidStatus {
+            case .active:
+                return HomePrepaidCardViewModel(isActive: true)
+            case .pending:
+                return HomePrepaidCardViewModel(isActive: false)
+            default:
+                return nil
+            }
+        }
+        .startWith(nil)
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var cardPreferenceChanges = Observable
+        .combineLatest(HomeCardPrefsStore.shared.listObservable, prepaidStatus)
+        .scan(([HomeCard](), [HomeCard]())) { oldCards, newData in
+            var (newCards, prepaidStatus) = newData
+            
+            switch prepaidStatus {
+            case .active:
+                // Active Prepaid replaces the bill card
+                // Also remove usage and projected bill
+                if let billIndex = newCards.firstIndex(of: .bill) {
+                    newCards[billIndex] = .prepaidActive
+                }
+                
+                newCards.removeAll { card in
+                    switch card {
+                    case .bill, .usage, .projectedBill:
+                        return true
+                    default:
+                        return false
+                    }
+                }
+            case .pending:
+                // Pending Prepaid is always at the top
+                newCards.insert(.prepaidPending, at: 0)
+            default:
+                break
+            }
+            
+            return (oldCards.1, newCards)
+        }
         .asDriver(onErrorDriveWith: .empty())
 }

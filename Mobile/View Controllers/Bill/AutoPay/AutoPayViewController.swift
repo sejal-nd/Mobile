@@ -161,6 +161,8 @@ class AutoPayViewController: UIViewController {
     }
     
     @objc func onSubmitPress() {
+        guard submitButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         LoadingView.show()
@@ -289,14 +291,11 @@ class AutoPayViewController: UIViewController {
         
         viewModel.enrollmentStatus.asDriver().map { $0 != .enrolling }.drive(enrollStackView.rx.isHidden).disposed(by: bag)
         
-        checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
-        
-        checkingSavingsSegmentedControl.selectedIndex.asObservable()
-            .map { selectedIndex -> BankAccountType in
-                selectedIndex == 0 ? .checking: .savings
-            }
-            .bind(to: viewModel.bankAccountType)
-            .disposed(by: bag)
+        checkingSavingsSegmentedControl.items = [
+            NSLocalizedString("Checking", comment: ""),
+            NSLocalizedString("Savings", comment: "")
+        ]
+        checkingSavingsSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.checkingSavingsSegmentedControlIndex).disposed(by: bag)
         
         tacButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
@@ -423,7 +422,7 @@ class AutoPayViewController: UIViewController {
     
     func onTermsAndConditionsPress() {
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
-                                      url: URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!)
+                                      url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
     

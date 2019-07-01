@@ -17,17 +17,8 @@ struct ForgotUsernameMasked: Mappable {
     init(map: Mapper) throws {
         email = map.optionalFrom("email")
         question = map.optionalFrom("question")
-       
-        do {
-            try cipher = map.from("cipherString")
-        } catch {
-            cipher = ""
-        }
-        do {
-            try questionId = map.from("question_id")
-        } catch {
-            questionId = 0
-        }
+        cipher = map.optionalFrom("cipherString") ?? ""
+        questionId = map.optionalFrom("question_id") ?? 0
     }
 }
 

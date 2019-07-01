@@ -21,49 +21,42 @@ class Top5EnergyTipsTests: XCTestCase {
     }
     
     func testSuccessCutoff() {
-        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: AccountDetail(accountNumber: "8", premiseNumber: ""))
+        MockUser.current = .default
+        MockAccountService.loadAccountsSync()
         
-        let expectedValues = [[
-            EnergyTip(title: "title 1", body: "body 1"),
-            EnergyTip(title: "title 2", body: "body 2"),
-            EnergyTip(title: "title 3", body: "body 3"),
-            EnergyTip(title: "title 4", body: "body 4"),
-            EnergyTip(title: "title 5", body: "body 5")
-            ]]
+        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: .default)
+        
+        let expectedValues: [EnergyTip] = try! MockJSONManager.shared.mappableArray(fromFile: .energyTips, key: .default)
         
         let observer = scheduler.createObserver([EnergyTip].self)
         viewModel.energyTips.subscribe(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        XCTAssertEqual(observer.events[0].value.element!.count, expectedValues[0].count)
-        XCTAssert(!zip(observer.events, expectedValues)
-            .map { $0.0.value.element! == $0.1 }
-            .contains(false))
+        XCTAssertRecordedElements(Array(observer.events.dropLast()), [expectedValues])
     }
     
     func testSuccessLessThan5() {
-        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: AccountDetail(accountNumber: "3", premiseNumber: ""))
+        MockUser.current = MockUser(globalKeys: .energyTips3)
+        MockAccountService.loadAccountsSync()
         
-        let expectedValues = [[
-            EnergyTip(title: "title 1", body: "body 1"),
-            EnergyTip(title: "title 2", body: "body 2"),
-            EnergyTip(title: "title 3", body: "body 3")
-            ]]
+        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: .default)
+        
+        let expectedValues: [EnergyTip] = try! MockJSONManager.shared.mappableArray(fromFile: .energyTips, key: .energyTips3)
         
         let observer = scheduler.createObserver([EnergyTip].self)
         viewModel.energyTips.subscribe(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
-        XCTAssertEqual(observer.events[0].value.element!.count, expectedValues[0].count)
-        XCTAssert(!zip(observer.events, expectedValues)
-            .map { $0.0.value.element! == $0.1 }
-            .contains(false))
+        XCTAssertRecordedElements(Array(observer.events.dropLast()), [expectedValues])
     }
     
     func testFailure() {
-        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: AccountDetail(accountNumber: "", premiseNumber: ""))
+        MockUser.current = MockUser(globalKeys: .error)
+        MockAccountService.loadAccountsSync()
+        
+        let viewModel = Top5EnergyTipsViewModel(usageService: MockUsageService(), accountDetail: .default)
         
         let expectedValues = ["fetch failed"]
         

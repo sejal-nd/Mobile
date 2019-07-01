@@ -17,25 +17,25 @@ class ContactUsViewController: UIViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var containerStack: UIStackView!
     
-    @IBOutlet weak var emergencyNumberTextView: DataDetectorTextView!
+    @IBOutlet weak var emergencyNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
     @IBOutlet weak var bgeOnlyStackView: UIStackView!
-    @IBOutlet weak var bgeGasNumber1TextView: DataDetectorTextView!
-    @IBOutlet weak var bgeGasNumber2TextView: DataDetectorTextView!
-    @IBOutlet weak var bgePowerLineNumber1TextView: DataDetectorTextView!
-    @IBOutlet weak var bgePowerLineNumber2TextView: DataDetectorTextView!
+    @IBOutlet weak var bgeGasNumber1TextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var bgeGasNumber2TextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber1TextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var bgePowerLineNumber2TextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet weak var submitFormButton: UIButton!
     @IBOutlet weak var onlineDescriptionLabel: UILabel!
     
     @IBOutlet weak var firstLabel: UILabel!
-    @IBOutlet weak var firstNumberTextView: DataDetectorTextView!
+    @IBOutlet weak var firstNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var secondStack: UIStackView!
     @IBOutlet weak var secondLabel: UILabel!
-    @IBOutlet weak var secondNumberTextView: DataDetectorTextView!
+    @IBOutlet weak var secondNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var thirdStack: UIStackView!
     @IBOutlet weak var thirdLabel: UILabel!
-    @IBOutlet weak var thirdNumberTextView: DataDetectorTextView!
+    @IBOutlet weak var thirdNumberTextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet var dividerLines: [UIView]!
     @IBOutlet var dividerLineConstraints: [NSLayoutConstraint]!
@@ -78,8 +78,6 @@ class ContactUsViewController: UIViewController {
     
     func emergencySetup() {
         emergencyNumberTextView.text = viewModel.phoneNumber1
-        emergencyNumberTextView.textContainerInset = .zero
-        emergencyNumberTextView.textContainer.lineFragmentPadding = 0
         emergencyNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         emergencyNumberTextView.linkTapDelegate = self
         
@@ -89,23 +87,15 @@ class ContactUsViewController: UIViewController {
             bgeOnlyStackView.isHidden = true
         }
         bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
-        bgeGasNumber1TextView.textContainerInset = .zero
-        bgeGasNumber1TextView.textContainer.lineFragmentPadding = 0
         bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
         bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
-        bgeGasNumber2TextView.textContainerInset = .zero
-        bgeGasNumber2TextView.textContainer.lineFragmentPadding = 0
         bgeGasNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber2TextView.linkTapDelegate = self
         bgePowerLineNumber1TextView.text = viewModel.bgePowerLineNumber1
-        bgePowerLineNumber1TextView.textContainerInset = .zero
-        bgePowerLineNumber1TextView.textContainer.lineFragmentPadding = 0
         bgePowerLineNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgePowerLineNumber1TextView.linkTapDelegate = self
         bgePowerLineNumber2TextView.text = viewModel.bgePowerLineNumber2
-        bgePowerLineNumber2TextView.textContainerInset = .zero
-        bgePowerLineNumber2TextView.textContainer.lineFragmentPadding = 0
         bgePowerLineNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
         bgePowerLineNumber2TextView.linkTapDelegate = self
 
@@ -132,8 +122,6 @@ class ContactUsViewController: UIViewController {
         firstLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         firstLabel.text = viewModel.label1
         firstNumberTextView.text = viewModel.phoneNumber2
-        firstNumberTextView.textContainerInset = .zero
-        firstNumberTextView.textContainer.lineFragmentPadding = 0
         firstNumberTextView.tintColor = .actionBlue // Color of the phone numbers
         firstNumberTextView.linkTapDelegate = self
         
@@ -142,8 +130,6 @@ class ContactUsViewController: UIViewController {
             secondLabel.font = OpenSans.regular.of(textStyle: .subheadline)
             secondLabel.text = label2
             secondNumberTextView.text = phoneNumber3
-            secondNumberTextView.textContainerInset = .zero
-            secondNumberTextView.textContainer.lineFragmentPadding = 0
             secondNumberTextView.tintColor = .actionBlue // Color of the phone numbers
             secondNumberTextView.linkTapDelegate = self
         } else {
@@ -155,8 +141,6 @@ class ContactUsViewController: UIViewController {
             thirdLabel.font = OpenSans.regular.of(textStyle: .subheadline)
             thirdLabel.text = label3
             thirdNumberTextView.text = phoneNumber4
-            thirdNumberTextView.textContainerInset = .zero
-            thirdNumberTextView.textContainer.lineFragmentPadding = 0
             thirdNumberTextView.tintColor = .actionBlue // Color of the phone numbers
             thirdNumberTextView.linkTapDelegate = self
         } else {

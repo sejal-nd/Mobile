@@ -103,15 +103,11 @@ class AutoPayChangeBankViewController: UIViewController {
 	}
 	
 	private func bindViews() {
-		
-		checkingSavingsSegmentedControl.items = [NSLocalizedString("Checking", comment: ""), NSLocalizedString("Savings", comment: "")]
-		
-		checkingSavingsSegmentedControl.selectedIndex.asObservable()
-			.map { selectedIndex -> BankAccountType in
-				selectedIndex == 0 ? .checking: .savings
-			}
-			.bind(to: viewModel.bankAccountType)
-			.disposed(by: bag)
+        checkingSavingsSegmentedControl.items = [
+            NSLocalizedString("Checking", comment: ""),
+            NSLocalizedString("Savings", comment: "")
+        ]
+        checkingSavingsSegmentedControl.selectedIndex.asObservable().bind(to: viewModel.checkingSavingsSegmentedControlIndex).disposed(by: bag)
 		
 		tacButton.rx.tap.asDriver()
 			.drive(onNext: onTermsAndConditionsPress)
@@ -236,7 +232,7 @@ class AutoPayChangeBankViewController: UIViewController {
 	
 	func onTermsAndConditionsPress() {
 		let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
-		                                 url: URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions.html")!)
+		                                 url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
 		navigationController?.present(tacModal, animated: true, completion: nil)
 	}
 	

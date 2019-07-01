@@ -199,6 +199,8 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @objc func onSubmitPress() {
+        guard submitButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         // Hide password while loading

@@ -41,7 +41,7 @@ class WalletTableViewCell: UITableViewCell {
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [
             UIColor.white.cgColor,
-            UIColor(red: 238/255, green: 242/255, blue: 248/255, alpha: 1).cgColor
+            UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1).cgColor
         ]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
@@ -89,53 +89,8 @@ class WalletTableViewCell: UITableViewCell {
     
     
     func bindToWalletItem(_ walletItem: WalletItem, billingInfo: BillingInfo) {
-        var a11yLabel = ""
-        
-        switch Environment.shared.opco {
-        case .comEd, .peco:
-            if walletItem.bankOrCard == .card {
-                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
-            } else {
-                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
-            }
-        case .bge:
-            if walletItem.bankOrCard == .card {
-                accountImageView.image = #imageLiteral(resourceName: "opco_credit_card")
-                a11yLabel = NSLocalizedString("Saved credit card", comment: "")
-            } else {
-                accountImageView.image = #imageLiteral(resourceName: "opco_bank")
-                a11yLabel = NSLocalizedString("Saved bank account", comment: "")
-            }
-        }
-        
-        // Nickname
-        if let nickname = walletItem.nickName {
-            nicknameLabel.text = nickname.uppercased()
-            if Environment.shared.opco == .bge {
-                if walletItem.bankOrCard == .bank {
-                    if let bankAccountType = walletItem.bankAccountType {
-                        if bankAccountType.rawValue.uppercased() == "SAVING"{
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, SAVINGS", nickname),comment: "")
-                        } else {
-                            nicknameLabel.text = NSLocalizedString(String(format:"%@, CHECKING", nickname),comment: "")
-                        }
-                    }
-                }
-            }
-        } else {
-            nicknameLabel.text = ""
-            if Environment.shared.opco == .bge {
-                if let bankAccountType = walletItem.bankAccountType {
-                    nicknameLabel.text = bankAccountType.rawValue.uppercased()
-                }
-            }
-        }
-        
-        if let nicknameText = nicknameLabel.text, !nicknameText.isEmpty {
-            a11yLabel += ", \(nicknameText)"
-        }
+        accountImageView.image = walletItem.paymentMethodType.imageLarge
+        nicknameLabel.text = walletItem.nickName?.uppercased()
         
         if let last4Digits = walletItem.maskedWalletItemAccountNumber {
             if let ad = UIApplication.shared.delegate as? AppDelegate, let window = ad.window {
@@ -145,27 +100,19 @@ class WalletTableViewCell: UITableViewCell {
                     accountNumberLabel.text = "**** \(last4Digits)"
                 }
             }
-            let a11yDigits = last4Digits.map(String.init).joined(separator: " ")
-            a11yLabel += String(format: NSLocalizedString(", Account number ending in, %@", comment: ""), a11yDigits)
         } else {
             accountNumberLabel.text = ""
         }
         
         oneTouchPayView.isHidden = true // Calculated in cellForRowAtIndexPath
-        if walletItem.isDefault {
-            a11yLabel += NSLocalizedString(", Default payment method", comment: "")
-        }
-        
-        if walletItem.isExpired {
-            a11yLabel += NSLocalizedString(", expired", comment: "")
-        }
-
-        innerContentView.accessibilityLabel = a11yLabel
-        innerContentView.isAccessibilityElement = true
-        self.accessibilityElements = [innerContentView, editButton, deleteButton]
         
         expiredView.isHidden = !walletItem.isExpired
         expiredLabel.text = walletItem.isExpired ? NSLocalizedString("Expired", comment: "") : ""
+        
+        let a11yDescription = walletItem.accessibilityDescription(includingDefaultPaymentMethodInfo: true)
+        innerContentView.accessibilityLabel = "Saved \(a11yDescription)"
+        innerContentView.isAccessibilityElement = true
+        self.accessibilityElements = [innerContentView, editButton, deleteButton] as [UIView]
     }
     
 }

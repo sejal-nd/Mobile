@@ -23,18 +23,19 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var loadingBackgroundView: UIView!
     @IBOutlet weak var loadingAnimationView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var accountDisallowView: UIView!
     @IBOutlet weak var outageStatusButton: OutageStatusButton!
     @IBOutlet weak var reportOutageButton: DisclosureButton!
     @IBOutlet weak var reportStreetlightOutageButton: DisclosureButton!
     @IBOutlet weak var viewOutageMapButton: DisclosureButton!
     @IBOutlet weak var gasOnlyTitleLabel: UILabel!
-    @IBOutlet weak var gasOnlyTextView: DataDetectorTextView!
+    @IBOutlet weak var gasOnlyTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var finaledNoPayView: UIView!
-    @IBOutlet weak var finaledNoPayTextView: DataDetectorTextView!
+    @IBOutlet weak var finaledNoPayTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var finaledNoPayTitleLabel: UILabel!
     @IBOutlet weak var noPayPayBillButton: ButtonControl!
     @IBOutlet weak var noPayPayBillButtonLabel: UILabel!
-    @IBOutlet weak var footerTextView: DataDetectorTextView!
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
     // We keep track of this constraint because AutoLayout uses it to calculate the height of the scrollView's content
     // When the gasOnlyView is hidden, we do not want it's height to impact the scrollView content size (the normal outage
@@ -68,20 +69,17 @@ class OutageViewController: AccountPickerViewController {
         
         outageStatusButton.delegate = self
         
-        footerTextView.textContainerInset = .zero
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
         gasOnlyTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        gasOnlyTextView.textContainerInset = .zero
         gasOnlyTextView.tintColor = .actionBlue
         gasOnlyTextView.attributedText = viewModel.gasOnlyMessage
         
         finaledNoPayTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
         finaledNoPayTextView.font = OpenSans.regular.of(textStyle: .subheadline)
-        finaledNoPayTextView.textContainerInset = .zero
         finaledNoPayTextView.tintColor = .actionBlue
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -225,6 +223,7 @@ class OutageViewController: AccountPickerViewController {
         gasOnlyView.isHidden = true
         finaledNoPayView.isHidden = true
         errorLabel.isHidden = true
+        accountDisallowView.isHidden = true
         loadingView.isHidden = false
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
@@ -263,7 +262,13 @@ class OutageViewController: AccountPickerViewController {
             self?.loadingView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
             
-            self?.errorLabel.isHidden = false
+            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                self?.errorLabel.isHidden = true
+                self?.accountDisallowView.isHidden = false
+            } else {
+                self?.errorLabel.isHidden = false
+            }
+            
             self?.maintenanceModeView.isHidden = true
         }, onMaintenance: { [weak self] in
             self?.shortcutItem = .none
@@ -274,6 +279,7 @@ class OutageViewController: AccountPickerViewController {
             self?.loadingView.isHidden = true
             self?.setRefreshControlEnabled(enabled: true)
             self?.errorLabel.isHidden = true
+            self?.accountDisallowView.isHidden = true
         })
     }
     
@@ -298,7 +304,12 @@ class OutageViewController: AccountPickerViewController {
                 self.noNetworkConnectionView.isHidden = true
             }
 
-            self.errorLabel.isHidden = false
+            if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                self.errorLabel.isHidden = true
+                self.accountDisallowView.isHidden = false
+            } else {
+                self.errorLabel.isHidden = false
+            }
             
             // Hide everything else
             self.accountContentView.isHidden = true
@@ -314,6 +325,7 @@ class OutageViewController: AccountPickerViewController {
             self.scrollView?.isHidden = true
             self.noNetworkConnectionView.isHidden = true
             self.errorLabel.isHidden = true
+            self.accountDisallowView.isHidden = true
             
             // Hide everything else
             self.accountContentView.isHidden = true

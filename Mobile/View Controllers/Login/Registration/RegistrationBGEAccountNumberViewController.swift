@@ -19,10 +19,9 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var questionMarkButton: UIButton!
 
-    var viewModel: RegistrationViewModel!// = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService())
+    var viewModel: RegistrationViewModel!
     var nextButton = UIBarButtonItem()
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,7 +86,10 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     }
     
 	@objc func onAccountNumberKeyboardDonePress() {
-		viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+		viewModel.accountNumberHasTenDigits
+            .asObservable()
+            .take(1)
+            .asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in
 				if enabled {
 					self?.onNextPress()
@@ -103,6 +105,8 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     }
     
     @objc func onNextPress() {
+        guard nextButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         LoadingView.show()
@@ -157,8 +161,6 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
     
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
@@ -172,4 +174,3 @@ extension RegistrationBGEAccountNumberViewController: UITextFieldDelegate {
     }
     
 }
-

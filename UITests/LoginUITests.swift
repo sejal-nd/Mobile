@@ -13,6 +13,7 @@ class LoginUITests: ExelonUITestCase {
     
     override func setUp() {
         super.setUp()
+        launchApp()
         handleTermsFirstLaunch()
     }
     
@@ -117,7 +118,7 @@ class LoginUITests: ExelonUITestCase {
 
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         XCTAssertTrue(passwordSecureTextField.waitForExistence(timeout: 5))
-        passwordSecureTextField.clearAndEnterText("oijrgoiwjothiqoij")
+        passwordSecureTextField.clearAndEnterText("invalid")
 
         tapButton(buttonText: "Sign In")
 
@@ -179,85 +180,6 @@ class LoginUITests: ExelonUITestCase {
                 (.button, "Pinterest")
             ])
         }
-    }
-    
-    func testMaintModeAll() {
-        tapButton(buttonText: "Sign In")
-        
-        let elementsQuery = app.scrollViews.otherElements
-        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText("maintAll")
-        
-        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
-        tapButton(buttonText: "Sign In")
-        
-        let moreButton = app.tabBars.buttons["More"]
-        XCTAssert(moreButton.waitForExistence(timeout: 10))
-        moreButton.tap()
-        
-        tapButton(buttonText: "Sign Out")
-        app.alerts["Sign Out"].buttons["Yes"].tap()
-        tapButton(buttonText: "Sign In")
-
-        checkExistenceOfElement(.button, "Reload")
-
-        if appOpCo == .bge {
-
-            checkExistenceOfElement(.staticText, "The BGE App is currently unavailable due to maintenance.")
-            
-            //Parial string match needed to work around staticText 128 char query limit
-            let mmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your powe"]
-            XCTAssertEqual(mmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your power is out, call 1-877-778-2222")
-        }
-        else if appOpCo == .comEd {
-
-            checkExistenceOfElement(.staticText, "The ComEd App is currently unavailable due to maintenance.")
-            
-            let mmStaticText = app.staticTexts["If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24"]
-            XCTAssertEqual(mmStaticText.value as? String, "If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-334-7661 M-F 7AM to 7PM\n\n")
-        } else {
-
-            checkExistenceOfElement(.staticText, "The PECO App is currently unavailable due to maintenance.")
-
-            let mmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representati"]
-            XCTAssertEqual(mmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-494-4000 M-F 7AM to 7PM\n\n")
-        }
-    }
-    
-    func testUnauthOutageMaintMode() {
-        tapButton(buttonText: "Sign In")
-        let elementsQuery = app.scrollViews.otherElements
-        let usernameEmailAddressTextField = elementsQuery.textFields["Username / Email Address"]
-        XCTAssert(usernameEmailAddressTextField.waitForExistence(timeout: 5))
-        usernameEmailAddressTextField.clearAndEnterText("maintAllTabs")
-
-        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
-        passwordSecureTextField.clearAndEnterText("Password1")
-        tapButton(buttonText: "Sign In")
-        
-        tapButton(buttonText: "More")
-        
-        tapButton(buttonText: "Sign Out")
-        app.alerts["Sign Out"].buttons["Yes"].tap()
-        tapButton(buttonText: "CONTINUE AS GUEST")
-        tapButton(buttonText: "Report Outage")
-
-        if appOpCo == .bge {
-            //Parial string match needed to work around staticText 128 char query limit
-            let outageMmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your powe"]
-            XCTAssertEqual(outageMmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call BGE at 1-800-685-0123\n\nIf your power is out, call 1-877-778-2222")
-        }
-        else if appOpCo == .comEd {
-            let outageMmStaticText = app.staticTexts["If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24"]
-            XCTAssertEqual(outageMmStaticText.value as? String, "If you see downed power lines, leave the area immediately and then call ComEd at 1-800-334-7661 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-334-7661 M-F 7AM to 7PM")
-        }
-        else {
-            let outageMmStaticText = app.staticTexts["If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representati"]
-            XCTAssertEqual(outageMmStaticText.value as? String, "If you smell natural gas or see downed power lines, leave the area immediately and then call PECO at 1-800-841-4141 Representatives are available 24 hours a day, 7 days a week.\n\nFor all other inquiries, please call\n1-800-494-4000 M-F 7AM to 7PM")
-        }
-        
     }
 }
 

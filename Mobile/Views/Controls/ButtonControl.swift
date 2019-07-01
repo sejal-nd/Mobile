@@ -38,12 +38,12 @@ class ButtonControl: UIControl {
             normalBackgroundColor = backgroundColor
         }
         
-        let pressed = rx.controlEvent(.touchDown).asDriver().map(to: true)
+        let pressed = rx.controlEvent(.touchDown).asDriver().mapTo(true)
         
         let notPressed = Driver.merge(rx.controlEvent(.touchUpInside).asDriver(),
                                       rx.controlEvent(.touchUpOutside).asDriver(),
                                       rx.controlEvent(.touchDragExit).asDriver(),
-                                      rx.controlEvent(.touchCancel).asDriver()).map(to: false)
+                                      rx.controlEvent(.touchCancel).asDriver()).mapTo(false)
         
         Driver.merge(pressed, notPressed)
             .startWith(false)

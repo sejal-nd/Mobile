@@ -6,61 +6,197 @@
 //  Copyright © 2017 Exelon Corporation. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Mapper
 
-// Used internally for Payment model
-enum PaymentType: String {
-    case check = "Check"
-    case credit = "Card"
-}
-
-// Comed/PECO
 enum PaymentCategoryType: String {
     case check = "CHECK"
     case saving = "SAVING"
     case credit = "CREDIT"
     case debit = "DEBIT"
+    
+    var displayString: String {
+        switch self {
+        case .check:
+            return NSLocalizedString("Checking Account", comment: "")
+        case .saving:
+            return NSLocalizedString("Savings Account", comment: "")
+        case .credit:
+            return NSLocalizedString("Credit Card", comment: "")
+        case .debit:
+            return NSLocalizedString("Debit Card", comment: "")
+        }
+    }
 }
 
-// BGE
-enum BankAccountType: String {
-    case checking = "checking"
-    case savings = "saving"
-    case card = "card"
-}
-
-// We consolidate PaymentCategoryType & BankAccountType into this
+// We consolidate PaymentCategoryType into this
 enum BankOrCard {
     case bank
     case card
 }
 
-private func extractLast4(object: Any?) throws -> String? {
+enum PaymentMethodType {
+    case ach
+    case visa
+    case mastercard
+    case amex
+    case discover
+    case unknown(String)
+    
+    init(_ paymentMethodType: String) {
+        switch paymentMethodType {
+        case "ACH":
+            self = .ach
+        case "VISA":
+            self = .visa
+        case "MASTERCARD":
+            self = .mastercard
+        case "AMEX":
+            self = .amex
+        case "DISCOVER":
+            self = .discover
+        default:
+            self = .unknown(paymentMethodType)
+        }
+    }
+    
+    var rawString: String {
+        switch self {
+        case .ach:
+            return "ACH"
+        case .visa:
+            return "VISA"
+        case .mastercard:
+            return "MASTERCARD"
+        case .amex:
+            return "AMEX"
+        case .discover:
+            return "DISCOVER"
+        case .unknown(let raw):
+            return raw
+        }
+    }
+    
+    var imageLarge: UIImage {
+        switch self {
+        case .visa:
+            return #imageLiteral(resourceName: "ic_visa_large")
+        case .mastercard:
+            return #imageLiteral(resourceName: "ic_mastercard_large")
+        case .amex:
+            return #imageLiteral(resourceName: "ic_amex_large")
+        case .discover:
+            return #imageLiteral(resourceName: "ic_discover_large")
+        case .ach:
+            return #imageLiteral(resourceName: "opco_bank")
+        case .unknown(_):
+            return #imageLiteral(resourceName: "opco_credit_card")
+        }
+    }
+    
+    var imageMini: UIImage {
+        switch self {
+        case .visa:
+            return #imageLiteral(resourceName: "ic_visa_mini")
+        case .mastercard:
+            return #imageLiteral(resourceName: "ic_mastercard_mini")
+        case .amex:
+            return #imageLiteral(resourceName: "ic_amex_mini")
+        case .discover:
+            return #imageLiteral(resourceName: "ic_discover_mini")
+        case .ach:
+            return #imageLiteral(resourceName: "opco_bank_mini")
+        case .unknown(_):
+            return #imageLiteral(resourceName: "credit_card_mini_white_bg")
+        }
+    }
+
+    var displayString: String {
+        switch self {
+        case .ach:
+            return NSLocalizedString("ACH", comment: "")
+        case .visa:
+            return NSLocalizedString("Visa", comment: "")
+        case .mastercard:
+            return NSLocalizedString("MasterCard", comment: "")
+        case .amex:
+            return NSLocalizedString("American Express", comment: "")
+        case .discover:
+            return NSLocalizedString("Discover", comment: "")
+        case .unknown(let value):
+            return value
+        }
+    }
+    
+    var accessibilityString: String {
+        switch self {
+        case .ach:
+            return NSLocalizedString("Bank account", comment: "")
+        default:
+            return displayString
+        }
+    }
+}
+
+// The postMessage event of the Paymentus iFrame sends "pmDetails.Type" as one of these
+// Also, these are returned as the "payment_type" from Billing History
+fileprivate enum PaymentusPaymentMethodType: String {
+    case checking = "CHQ"
+    case saving = "SAV"
+    case visa = "VISA"
+    case mastercard = "MC"
+    case amex = "AMEX"
+    case discover = "DISC"
+    case visaDebit = "VISA_DEBIT"
+    case mastercardDebit = "MC_DEBIT"
+}
+
+func paymentMethodTypeForPaymentusString(_ paymentusString: String) -> PaymentMethodType {
+    if let type = PaymentusPaymentMethodType(rawValue: paymentusString) {
+        switch type {
+        case .checking, .saving:
+            return .ach
+        case .visa, .visaDebit:
+            return .visa
+        case .mastercard, .mastercardDebit:
+            return .mastercard
+        case .amex:
+            return .amex
+        case .discover:
+            return .discover
+        }
+    } else {
+        return .unknown(paymentusString)
+    }
+}
+
+/* MCS sends "*****0113-******4485" for bank accounts
+ * (routingNum-accountNum) and "************1111" for cards.
+ * We've also seen a bank account like "*****0113-***4" when
+ * their account number is only 4 digits long. This just grabs
+ * the last 4 characters of whatever we get */
+func extractLast4(object: Any?) throws -> String? {
     guard let string = object as? String else {
         throw MapperError.convertibleError(value: object, type: String.self)
     }
-    
-    let last4 = string.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        .joined()
-        .suffix(4)
-    
-    return String(last4)
+    return String(string.suffix(4))
 }
 
-struct WalletItem: Mappable, Equatable, Hashable {
-    let walletItemID: String?
-    let walletExternalID: String? // TODO: Remove for BGE when they switch to paymentus
+struct WalletItem: Mappable, Equatable {
+    let walletItemId: String?
     let maskedWalletItemAccountNumber: String?
     var nickName: String?
-    let walletItemStatusType: String? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
+    let paymentCategoryType: PaymentCategoryType
+    let paymentMethodType: PaymentMethodType
+    let bankName: String?
+    let expirationDate: Date?
+    let isDefault: Bool
+    
     var isExpired: Bool {
-        if Environment.shared.opco == .bge {
-            return walletItemStatusType?.lowercased() == "expired"
-        } else if let exp = expirationDate {
+        if let exp = expirationDate {
             let monthYearSet = Set<Calendar.Component>(arrayLiteral: .month, .year)
             let expComponents = Calendar.gmt.dateComponents(monthYearSet, from: exp)
-            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: Date())
+            let todayComponents = Calendar.gmt.dateComponents(monthYearSet, from: .now)
             guard let expMonth = expComponents.month, let expYear = expComponents.year,
                 let todayMonth = todayComponents.month, let todayYear = todayComponents.year else {
                 return false
@@ -71,97 +207,96 @@ struct WalletItem: Mappable, Equatable, Hashable {
         }
         return false
     }
-    let expirationDate: Date? // Paymentus only field
     
-    let paymentCategoryType: PaymentCategoryType? // Do not use this for determining bank vs card - use bankOrCard
-    let bankAccountType: BankAccountType? // Do not use this for determining bank vs card - use bankOrCard
-    var bankOrCard: BankOrCard = .card
-    var isTemporary: Bool // Indicates temporary Paymentus wallet item
+    var bankOrCard: BankOrCard {
+        switch paymentCategoryType {
+        case .credit, .debit:
+            return .card
+        case .check, .saving:
+            return .bank
+        }
+    }
     
-    let bankAccountNumber: String?
-    let bankAccountName: String?
-    let isDefault: Bool
-    
-    let cardIssuer: String?
-    
-    let dateCreated: Date? // Not sent for paymentus wallet items. TODO: Remove for BGE when they switch to paymentus
+    var isTemporary: Bool // Indicates payment method NOT saved to wallet
+    var isEditingItem: Bool // In the edit workflow, this is the original payment method
     
     init(map: Mapper) throws {
-        walletItemID = map.optionalFrom("walletItemID")
-        walletExternalID = map.optionalFrom("walletExternalID")
-        
+        walletItemId = map.optionalFrom("walletItemID")
         maskedWalletItemAccountNumber = map.optionalFrom("maskedWalletItemAccountNumber", transformation: extractLast4)
         
         nickName = map.optionalFrom("nickName")
-        if let nickname = nickName {
-            if nickname.isEmpty { // prevent empty strings
-                nickName = nil
-            }
+        if let n = nickName, n.isEmpty {
+            nickName = nil
         }
         
-        paymentCategoryType = map.optionalFrom("paymentCategoryType")
-        bankAccountType = map.optionalFrom("bankAccountType")
-        bankAccountNumber = map.optionalFrom("bankAccountNumber")
-        bankAccountName = map.optionalFrom("bankAccountName")
-        isDefault = map.optionalFrom("isDefault") ?? false
-        cardIssuer = map.optionalFrom("cardIssuer")
-        dateCreated = map.optionalFrom("dateCreated", transformation: DateParser().extractDate)
+        try paymentCategoryType = map.from("paymentCategoryType")
+        try paymentMethodType = PaymentMethodType(map.from("paymentMethodType"))
         
-        walletItemStatusType = map.optionalFrom("walletItemStatusType")
+        bankName = map.optionalFrom("bankName")
         expirationDate = map.optionalFrom("expirationDate", transformation: DateParser().extractDate)
-        
-        if let type = bankAccountType, Environment.shared.opco == .bge {
-            bankOrCard = type == .card ? .card : .bank
-        } else if let type = paymentCategoryType {
-            switch type {
-            case .credit, .debit:
-                bankOrCard = .card
-            case .check, .saving:
-                bankOrCard = .bank
-            }
-        }
+        isDefault = map.optionalFrom("isDefault") ?? false
         
         isTemporary = false
+        isEditingItem = false
     }
     
     // Used both for Unit/UI Tests AND for the creation of the temporary wallet items from Paymentus iFrame
-    init(walletItemID: String? = "1234",
-         walletExternalID: String? = "1234",
+    init(walletItemId: String? = "1234",
          maskedWalletItemAccountNumber: String? = "1234",
          nickName: String? = nil,
-         walletItemStatusType: String? = "active",
+         paymentMethodType: PaymentMethodType? = .ach,
+         bankName: String? = "M&T Bank",
          expirationDate: String? = "01/2100",
-         bankAccountNumber: String? = nil,
-         bankAccountName: String? = nil,
          isDefault: Bool = false,
-         cardIssuer: String? = nil,
-         bankOrCard: BankOrCard = .bank,
-         isTemporary: Bool = false) {
+         isTemporary: Bool = false,
+         isEditingItem: Bool = false) {
         
         var map = [String: Any]()
-        map["walletItemID"] = walletItemID
-        map["walletExternalID"] = walletExternalID
+        map["walletItemID"] = walletItemId
         map["maskedWalletItemAccountNumber"] = maskedWalletItemAccountNumber
         map["nickName"] = nickName
-        map["walletItemStatusType"] = walletItemStatusType
-        map["bankAccountNumber"] = bankAccountNumber
-        map["bankAccountName"] = bankAccountName
-        map["isDefault"] = isDefault
-        map["cardIssuer"] = cardIssuer
+        map["paymentMethodType"] = paymentMethodType!.rawString
+        map["bankName"] = bankName
         map["expirationDate"] = expirationDate
+        map["isDefault"] = isDefault
+        
+        switch paymentMethodType! {
+        case .ach:
+            map["paymentCategoryType"] = "CHECK"
+        default:
+            map["paymentCategoryType"] = "CREDIT"
+        }
         
         self = WalletItem.from(map as NSDictionary)!
-        self.bankOrCard = bankOrCard
         self.isTemporary = isTemporary
+        self.isEditingItem = isEditingItem
     }
-    
+        
     // Equatable
     static func ==(lhs: WalletItem, rhs: WalletItem) -> Bool {
-        return lhs.walletItemID == rhs.walletItemID
+        return lhs.walletItemId == rhs.walletItemId
     }
     
-    // Hashable
-    var hashValue: Int {
-        return walletItemID!.hash
+    func accessibilityDescription(includingDefaultPaymentMethodInfo: Bool = false) -> String {
+        var a11yLabel = paymentMethodType.accessibilityString
+        
+        if let nickname = nickName {
+            a11yLabel += ", \(nickname)"
+        }
+        
+        if let last4Digits = maskedWalletItemAccountNumber {
+            a11yLabel += String.localizedStringWithFormat(", Account number ending in, %@", last4Digits)
+        }
+        
+        if includingDefaultPaymentMethodInfo && isDefault {
+            a11yLabel += NSLocalizedString(", Default payment method", comment: "")
+        }
+        
+        if isExpired {
+            a11yLabel += NSLocalizedString(", expired", comment: "")
+        }
+        
+        return a11yLabel
     }
+
 }

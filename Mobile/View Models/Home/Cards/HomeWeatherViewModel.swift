@@ -35,7 +35,11 @@ class HomeWeatherViewModel {
     //MARK: - Weather
     private lazy var weatherEvents: Observable<Event<WeatherItem>> = accountDetailEvents.elements()
         .map { [weak self] in
-            AccountsStore.shared.currentAccount?.currentPremise?.zipCode ?? $0.zipCode ?? self?.defaultZip
+            guard AccountsStore.shared.currentIndex != nil else {
+                return nil
+            }
+            
+            return AccountsStore.shared.currentAccount.currentPremise?.zipCode ?? $0.zipCode ?? self?.defaultZip
         }
         .unwrap()
         .toAsyncRequest { [weak self] in
@@ -47,7 +51,7 @@ class HomeWeatherViewModel {
 //        .map { "\($0)" }
         .mapTo(())
         .startWith(())
-        .map { Date().localizedGreeting }
+        .map { Date.now.localizedGreeting }
         .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     
@@ -133,13 +137,13 @@ class HomeWeatherViewModel {
                 .map { $0.body }
     }
     
-    private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String)> = Observable
+    private(set) lazy var temperatureTipModalData: Driver<(title: String, image: UIImage, body: String, onClose: (() -> ())?)> = Observable
         .combineLatest(temperatureTipEvents.elements(),
                        temperatureTipText.asObservable().unwrap(),
                        weatherEvents.elements())
         { temperatureTip, title, weatherItem in
             let image = weatherItem.isHighTemperature ? #imageLiteral(resourceName: "img_hightemp") : #imageLiteral(resourceName: "img_lowtemp")
-            return (title, image, temperatureTip)
+            return (title, image, temperatureTip, nil)
         }
         .asDriver(onErrorDriveWith: .empty())
 }

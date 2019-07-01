@@ -44,6 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.keyWindow?.layer.speed = 200
         }
         
+        // Set mock maintenance mode state based on launch argument
+        if let key = processInfo.arguments.lazy.compactMap(MockDataKey.init).first,
+            processInfo.arguments.contains("UITest") {
+            MockAppState.current = MockAppState(maintenanceKey: key)
+        }
+        
         if let appInfo = Bundle.main.infoDictionary,
             let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
@@ -66,10 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnFailedAccountsFetch), name: .didReceiveAccountListError, object: nil)
         
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
-            .subscribe(onNext: { [weak self] _ in
-                self?.showMaintenanceMode(nil)
+            .subscribe(onNext: { [weak self] notification in
+                self?.showMaintenanceMode(notification.object as? Maintenance)
             })
             .disposed(by: disposeBag)
         
@@ -152,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
-                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
+                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
             }
         } else {
             // App was in the foreground when notification received - do nothing
@@ -278,14 +285,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @objc func resetNavigationOnAuthTokenExpire() {
-        resetNavigation(sendToLogin: false)
+        resetNavigation(sendToLogin: true)
         
-        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
-        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-        self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            self.configureQuickActions(isAuthenticated: false)
+        }
+    }
+    
+    @objc func resetNavigationOnFailedAccountsFetch() {
+        resetNavigation(sendToLogin: true)
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-        configureQuickActions(isAuthenticated: false)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let alertVc = UIAlertController(title: NSLocalizedString("Unable to retrieve account", comment: ""), message: NSLocalizedString("Your account data could not be retrieved. Please sign in again.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            self.configureQuickActions(isAuthenticated: false)
+        }
     }
     
     func showMaintenanceMode(_ maintenanceInfo: Maintenance?) {

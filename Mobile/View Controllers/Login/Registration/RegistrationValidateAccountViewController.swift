@@ -30,8 +30,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService(), authenticationService: ServiceFactory.createAuthenticationService())
 
     var nextButton = UIBarButtonItem()
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,7 +85,6 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     func prepareTextFieldsForInput() {
-        //
         let opCo = Environment.shared.opco
 
         // if opco is not BGE, then format it and ready it for usage; else hide it.
@@ -119,7 +117,6 @@ class RegistrationValidateAccountViewController: UIViewController {
             accountNumberView.isHidden = true
         }
         
-        //
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
@@ -142,7 +139,6 @@ class RegistrationValidateAccountViewController: UIViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        //
 		let ssString: String
         if Environment.shared.opco == .bge {
 			ssString = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
@@ -221,6 +217,8 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     @objc func onNextPress() {
+        guard nextButton.isEnabled else { return }
+        
         view.endEditing(true)
         
         LoadingView.show()
@@ -296,9 +294,6 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
 extension RegistrationValidateAccountViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)

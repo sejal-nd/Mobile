@@ -19,6 +19,8 @@ class ViewBillViewController: UIViewController {
     var documentController: UIDocumentInteractionController?
     
     let viewModel = ViewBillViewModel(billService: ServiceFactory.createBillService())
+    
+    var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +37,26 @@ class ViewBillViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.setWhiteNavBar()
+        if webView != nil {
+            /* Upon the first viewWillAppear, webView will be nil so this will not happen.
+             * When peek/popping from Billing History, if you wait on the peek until the PDF
+             * fully loads, then pop in, the PDF would disappear for some reason. Reloading it here
+             * fixes the issue, because viewWillAppear is called again during the pop */
+            guard let pdfData = viewModel.pdfData, let baseUrl = URL(string: "https://www.google.com") else { return }
+            webView.load(pdfData, mimeType: "application/pdf", characterEncodingName: "utf-8", baseURL: baseUrl)
+        }
     }
-    
     
     // MARK: - Helper
     
     private func setupWKWebView() {
         loadingIndicator.isHidden = false
 
-        // Programtically Configure WKWebView due to a bug with using IB WKWebView before iOS 11
+        // Programatically Configure WKWebView due to a bug with using IB WKWebView before iOS 11
         let webConfiguration = WKWebViewConfiguration()
-        let webView = WKWebView(frame: .zero , configuration: webConfiguration)
+        webView = WKWebView(frame: .zero , configuration: webConfiguration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
         view.addSubview(webView)

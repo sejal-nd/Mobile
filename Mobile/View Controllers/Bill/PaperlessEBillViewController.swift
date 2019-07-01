@@ -212,6 +212,8 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
+        guard submitButton.isEnabled else { return }
+        
         LoadingView.show()
         viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()

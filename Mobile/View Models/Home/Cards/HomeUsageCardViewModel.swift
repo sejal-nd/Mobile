@@ -61,36 +61,47 @@ class HomeUsageCardViewModel {
         .startWith(true)
         .distinctUntilChanged()
     
-    private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = maintenanceModeEvents
-        .filter {
-            guard let maint = $0.element else { return false }
-            return !maint.allStatus && !maint.usageStatus && !maint.homeStatus
-        }
-        .withLatestFrom(fetchData)
-        .toAsyncRequest(activityTracker: { [weak self] fetchingState in
+    private(set) lazy var serResultEvents: Observable<Event<[SERResult]>> = accountDetailEvents
+        .elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { !$1 }
+        .withLatestFrom(fetchData) { ($0.0, $1) }
+        .toAsyncRequest(activityTracker: { [weak self] _, fetchingState in
             self?.fetchTracker(forState: fetchingState)
-            }, requestSelector: { [weak self] _ in
-                self?.accountService
-                    .fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber) ?? .empty()
+            }, requestSelector: { [weak self] accountDetail, _ in
+                guard let self = self else { return .empty() }
+                guard accountDetail.isBGEControlGroup && accountDetail.isSERAccount else {
+                    return Observable.just([])
+                }
+                
+                return self.accountService.fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable
-        .merge(accountDetailChanged, segmentedControlChanged).share(replay: 1)
+        .merge(accountDetailBillComparisonEvents, segmentedControlChanged)
+        .share(replay: 1)
     
-    private(set) lazy var accountDetailChanged = Observable
-        .combineLatest(accountDetailEvents, serResultEvents)
-        .filter { $0.element != nil && $1.element != nil }
-        .map { accountDetailEvent, _ in accountDetailEvent }
-        .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
+    private lazy var accountDetailBillComparisonEvents = accountDetailEvents
         .elements()
+        .filter { accountDetail in
+            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
+                return false // show SER state (error if ser results fail)
+            }
+            
+            if !accountDetail.isEligibleForUsageData {
+                return false // show usage unavailable state
+            }
+            
+            return true // show bill comparison
+        }
+        .do(onNext: { [weak self] _ in self?.usageService.clearCache() })
         .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
-        .filter { $0.isEligibleForUsageData && !$1 }
-        .map { accountDetail, _ in accountDetail }
-        .withLatestFrom(Observable.combineLatest(fetchData,
-                                                 electricGasSelectedSegmentIndex.asObservable()))
-        { ($0, $1.0, $1.1) }
-        .toAsyncRequest { [unowned self] data -> Observable<BillComparison> in
+        .filter { !$1 }
+        .withLatestFrom(Observable.combineLatest(fetchData, electricGasSelectedSegmentIndex.asObservable()))
+        { ($0.0, $1.0, $1.1) }
+        .toAsyncRequest { [weak self] data -> Observable<BillComparison> in
             let (accountDetail, fetchState, segmentIndex) = data
+            guard let self = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
 
             var gas = false // Default to electric
@@ -106,9 +117,10 @@ class HomeUsageCardViewModel {
     
     private(set) lazy var segmentedControlChanged = self.electricGasSelectedSegmentIndex.asObservable()
         .skip(1)
-        .withLatestFrom(accountDetailEvents.elements().filter { $0.isEligibleForUsageData })
+        .withLatestFrom(accountDetailEvents.elements())
         { ($0, $1) }
-        .toAsyncRequest { [unowned self] segmentIndex, accountDetail -> Observable<BillComparison> in
+        .toAsyncRequest { [weak self] segmentIndex, accountDetail -> Observable<BillComparison> in
+            guard let self = self else { return .empty() }
             guard let premiseNumber = accountDetail.premiseNumber else { return .empty() }
             
             var gas = false // Default to electric
@@ -122,49 +134,58 @@ class HomeUsageCardViewModel {
                 .trackActivity(self.loadingTracker)
         }
     
-    private(set) lazy var accountDetailDriver: Driver<AccountDetail> = self.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty())
-    
     private(set) lazy var billComparisonDriver: Driver<BillComparison> = self.billComparisonEvents.elements().asDriver(onErrorDriveWith: .empty())
     
     
     // MARK: Bill Comparison
     
-    private(set) lazy var showBillComparison: Driver<Void> = billComparisonEvents.elements()
+    private(set) lazy var showBillComparison: Driver<Void> = billComparisonEvents
+        .elements()
         .filter { $0.reference != nil }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showErrorState: Driver<Void> = Observable
-        .combineLatest(accountDetailEvents, serResultEvents)
-        .filter { $0.error != nil || $1.error != nil }
+        .merge(accountDetailEvents.errors(), serResultEvents.errors())
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     let errorLabelText: String = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
-    private(set) lazy var showUnavailableState: Driver<Void> = Observable
-        .combineLatest(accountDetailEvents, serResultEvents)
-        .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
-        .filter { accountDetailEvent, eventResultsEvent, isMaintenanceMode in
-            guard let accountDetail = accountDetailEvent.element,
-                let eventResults = eventResultsEvent.element else {
-                    return false
-            }
-            
-            if isMaintenanceMode {
+    private(set) lazy var showUnavailableState: Driver<Void> = accountDetailEvents
+        .elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenance in
+            if isMaintenance {
                 return false
             }
             
-            if accountDetail.isBGEControlGroup {
-                return !accountDetail.isSERAccount || eventResults.isEmpty // BGE Control Group + SER enrollment get the SER graph on usage card
+            // SER + Control Group customer
+            if accountDetail.isBGEControlGroup &&
+                accountDetail.isSERAccount {
+                return false
             }
             
-            return !accountDetail.isEligibleForUsageData
+            return !accountDetail.isEligibleForUsageData && accountDetail.isResidential
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents.elements()
+    private(set) lazy var showCommercialState: Driver<Void> = accountDetailEvents
+        .elements()
+        .withLatestFrom(maintenanceModeEvents) { ($0, $1.element?.usageStatus ?? false) }
+        .filter { accountDetail, isMaintenance in
+            if isMaintenance {
+                return false
+            }
+            
+            return !accountDetail.isResidential
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showMaintenanceModeState: Driver<Void> = maintenanceModeEvents
+        .elements()
         .filter { $0.usageStatus }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -179,6 +200,7 @@ class HomeUsageCardViewModel {
         .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
         .filter { accountDetail, eventResults, isMaintenanceMode in
             !isMaintenanceMode &&
+                accountDetail.isResidential &&
                 accountDetail.isBGEControlGroup &&
                 accountDetail.isSERAccount &&
                 !eventResults.isEmpty
@@ -190,15 +212,11 @@ class HomeUsageCardViewModel {
         .combineLatest(accountDetailEvents.elements(), serResultEvents.elements())
         .withLatestFrom(maintenanceModeEvents) { ($0.0, $0.1, $1.element?.usageStatus ?? false) }
         .filter { accountDetail, eventResults, isMaintenanceMode in
-            if isMaintenanceMode {
-                return false
-            }
-            
-            if accountDetail.isBGEControlGroup && accountDetail.isSERAccount {
-                return eventResults.isEmpty
-            }
-            
-            return false
+            !isMaintenanceMode &&
+                accountDetail.isResidential &&
+                accountDetail.isBGEControlGroup &&
+                accountDetail.isSERAccount &&
+                eventResults.isEmpty
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())

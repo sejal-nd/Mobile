@@ -10,11 +10,16 @@ import XCTest
 import AppCenterXCUITestExtensions
 class BillUITests: ExelonUITestCase {
     
+    override func setUp() {
+        super.setUp()
+        launchApp()
+    }
+    
     func testScheduledPayment() {
         doLogin(username: "scheduledPayment")
         selectTab(tabName: "Bill")
 
-        let buttonText = "Thank you for scheduling your $82.00 payment for \(dateString(from: Date()))"
+        let buttonText = "Thank you for scheduling your $82.00 payment for 01/11/2019"
         checkExistenceOfElement(.button, buttonText)
     }
     
@@ -22,7 +27,7 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "thankYouForPayment")
         selectTab(tabName: "Bill")
 
-        let buttonText = "Thank you for $200.00 payment on \(dateString(from: Date()))"
+        let buttonText = "Thank you for $200.00 payment on 01/01/2019"
         checkExistenceOfElement(.button, buttonText)
     }
     
@@ -31,9 +36,9 @@ class BillUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
 
         checkExistenceOfElements([
-            (.staticText, "Amount Past Due"),
-            (.staticText, "Total Amount Due Immediately"),
+            (.staticText, "$140.00 of the total is due immediately."),
             (.staticText, "$200.00"),
+            (.staticText, "Past Due Amount"),
             (.staticText, "Due Immediately")
         ])
     }
@@ -42,18 +47,12 @@ class BillUITests: ExelonUITestCase {
         doLogin(username: "avoidShutoff")
         selectTab(tabName: "Bill")
         
-        if appOpCo == .bge {
-            checkExistenceOfElements([
-                (.staticText, "Amount Due to Avoid Service Interruption"),
-                (.staticText, "$200.00")
+        checkExistenceOfElements([
+            (.staticText, "$100.00 of the total must be paid immediately to avoid shut-off."),
+            (.staticText, "$350.00"),
+            (.staticText, "Past Due Amount"),
+            (.staticText, "Due Immediately")
             ])
-        } else {
-            checkExistenceOfElements([
-                (.staticText, "Payment due to avoid shut-off is $200.00 due immediately."),
-                (.staticText, "Amount Due to Avoid shut-off"),
-                (.staticText, "Due Immediately")
-            ])
-        }
     }
     
     func testPaymentPending() {
@@ -61,23 +60,12 @@ class BillUITests: ExelonUITestCase {
         selectTab(tabName: "Bill")
 
         let paymentText = appOpCo == .bge
-            ? "Payment Processing"
-            : "Pending Payment"
+            ? "Payments Processing"
+            : "Pending Payments"
 
         checkExistenceOfElements([
-            (.staticText, "-$200.00"),
+            (.staticText, "-$100.00"),
             (.staticText, paymentText)
-        ])
-    }
-    
-    func testMaintModeBill() {
-        doLogin(username: "maintNotHome")
-        selectTab(tabName: "Bill")
-
-        checkExistenceOfElements([
-            (.button, "Reload"),
-            (.staticText, "Maintenance"),
-            (.staticText, "Billing is currently unavailable due to maintenance.")
         ])
     }
     
@@ -95,7 +83,7 @@ class BillUITests: ExelonUITestCase {
         
         // TODO - Remove this `if` when BGE goes to Paymentus
         if appOpCo == .bge {
-            let expiredCardCell = app.tables.cells.containing(NSPredicate(format: "label CONTAINS 'Saved credit card, EXPIRED CARD, Account number ending in, 1 2 3 4, Default payment method, expired'"))
+            let expiredCardCell = app.tables.cells.containing(NSPredicate(format: "label CONTAINS 'Saved Visa, EXPIRED CARD, Account number ending in, 1 2 3 4, Default payment method, expired'"))
             let editButton = expiredCardCell.buttons["Edit payment method"]
             
             editButton.tap()
@@ -106,20 +94,4 @@ class BillUITests: ExelonUITestCase {
         }
     }
     
-    // TODO - Remove this test when BGE goes to Paymentus
-    func testCvvText() {
-        if appOpCo == .bge {
-            let elementsQuery = app.scrollViews.otherElements
-            doLogin(username: "billCardWithDefaultCcPayment")
-            selectTab(tabName: "Bill")
-            
-            tapButton(buttonText: "My Wallet")
-            
-            let cell = app.tables.cells.containing(NSPredicate(format: "label CONTAINS 'Saved credit card, TEST NICKNAME, Account number ending in, 1 2 3 4, Default payment method'"))
-            let editButton = cell.buttons["Edit payment method"]
-            editButton.tap()
-            elementsQuery.buttons["Tool tip"].tap()
-            checkExistenceOfElement(.staticText, "Your security code is usually a 3 or 4 digit number found on your card.")
-        }
-    }
 }
