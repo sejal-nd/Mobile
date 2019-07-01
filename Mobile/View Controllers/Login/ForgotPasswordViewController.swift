@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol ForgotPasswordViewControllerDelegate: class {
-    func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController)
+    func forgotPasswordViewControllerDidSubmit(_ viewController: UIViewController)
 }
 
 class ForgotPasswordViewController: UIViewController {
