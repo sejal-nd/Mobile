@@ -52,6 +52,7 @@ The build script already figures these values based on opco + configuration, but
 need to override the default behavior you can do so with these. However, it's recommended
 to just update the build script directly if it's a permanent change.
 
+--nowsecure-api-token     - API key for NowSecure security scanning system
 --azuredevopstoken        - A token used by the eucoms-list-changes.sh script to access pull
                             request and work item details to generate release notes. 
                             See the EU-DevOps -> eucoms-list-changes repo for details
@@ -65,7 +66,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - cocoapods, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
+--phase                   - cocoapods, build, veracodePrep, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 --override-mbe            - Override the default MBE for testing or staging builds only 
                           - Options: ${stagingMBEs[*]}
 "
@@ -92,6 +93,7 @@ OVERRIDE_MBE=
 AZURE_DEVOPS_TOKEN=
 RELEASE_NOTES_PR_NUMBER=
 RELEASE_NOTES_CONTENT=
+NOWSECURE_API_TOKEN=
 
 # Parse arguments.
 for i in "$@"; do
@@ -114,6 +116,7 @@ for i in "$@"; do
         --azuredevopstoken) AZURE_DEVOPS_TOKEN="$2"; shift ;;
         --releasenotesprnumber) RELEASE_NOTES_PR_NUMBER="$2"; shift ;;
         --releasenotescontent) RELEASE_NOTES_CONTENT="$2"; shift ;;
+        --nowsecure-api-token) NOWSECURE_API_TOKEN="$2"; shift ;;
     esac
     shift
 done
@@ -162,7 +165,7 @@ elif [ -z "$OPCO" ]; then
     exit 1
 fi
 
-target_phases="cocoapods, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
+target_phases="cocoapods, build, veracodePrep, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -543,6 +546,24 @@ if [[ $target_phases = *"veracodePrep"* ]]; then
         echo "Skipping Veracode prep. Only Staging configuration is setup for Veracode analysis currently"
     fi
 fi
+
+if [[ $target_phases = *"nowsecure"* ]]; then
+
+    if [ "$CONFIGURATION" == "Staging" ]; then
+
+        if [ -n "$NOWSECURE_API_TOKEN" ]; then
+            echo "Uploading ./build/output/$target_scheme/$target_scheme.ipa to NowSecure"
+            pwd
+            curl -H "Authorization: Bearer ${NOWSECURE_API_TOKEN}" -X POST https://lab-api.nowsecure.com/build/ --data-binary @./build/output/$target_scheme/$target_scheme.ipa
+        else
+            echo "NowSecure API token is missing, can't upload binary!"
+        fi
+
+    else
+        echo "Skipping NowSecure upload. Only Staging configuration is setup for NowSecure analysis currently"
+    fi
+fi
+
 
 
 if [[ $target_phases = *"appCenterTest"* ]]; then
