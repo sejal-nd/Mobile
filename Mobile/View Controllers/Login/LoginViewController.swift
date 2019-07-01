@@ -190,6 +190,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
+        view.endEditing(true)
+        
         if Environment.shared.opco != .bge && !viewModel.usernameIsValidEmailAddress {
             // ComEd/PECO only email validation. If not valid email then fail before making the call
             let message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
@@ -226,7 +228,6 @@ class LoginViewController: UIViewController {
             Analytics.log(event: .forgotUsernameCompleteAccountValidation)
         }
 
-        view.endEditing(true)
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
