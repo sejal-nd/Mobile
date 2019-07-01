@@ -17,10 +17,16 @@ protocol ChangePasswordViewControllerDelegate: class {
 class ChangePasswordViewController: UIViewController {
     
     weak var delegate: ChangePasswordViewControllerDelegate?
+    weak var forgotPasswordDelegate: ForgotPasswordViewControllerDelegate?
     
-    var sentFromLogin = false
+    var tempPasswordWorkflow = false
+    var resetPasswordWorkflow = false
+    var resetPasswordUsername: String?
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var havingTroubleView: UIView!
+    @IBOutlet weak var havingTroubleLabel: UILabel!
+    @IBOutlet weak var havingTroubleButton: UIButton!
     @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
     @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
@@ -69,8 +75,8 @@ class ChangePasswordViewController: UIViewController {
         
         cancelButton.target = self
         submitButton.target = self
-        navigationItem.leftBarButtonItem = sentFromLogin ? nil : cancelButton
-        navigationItem.hidesBackButton = sentFromLogin
+        navigationItem.leftBarButtonItem = tempPasswordWorkflow ? nil : cancelButton
+        navigationItem.hidesBackButton = tempPasswordWorkflow
         navigationItem.rightBarButtonItem = submitButton
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -78,10 +84,18 @@ class ChangePasswordViewController: UIViewController {
         
         setupValidation()
         
-        passwordStrengthView.isHidden = true
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        havingTroubleView.isHidden = true
+        havingTroubleLabel.textColor = .blackText
+        havingTroubleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        havingTroubleLabel.text = NSLocalizedString("Having trouble?", comment: "")
+        havingTroubleButton.tintColor = .actionBlue
+        havingTroubleButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        havingTroubleButton.setTitle(NSLocalizedString("Request a Temporary Password", comment: ""), for: .normal)
         
-        currentPasswordTextField.textField.placeholder = sentFromLogin ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
+        passwordStrengthView.isHidden = true
+        passwordStrengthLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        currentPasswordTextField.textField.placeholder = tempPasswordWorkflow ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.textField.isShowingAccessory = true
@@ -176,7 +190,7 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if sentFromLogin || StormModeStatus.shared.isOn {
+        if tempPasswordWorkflow || resetPasswordWorkflow || StormModeStatus.shared.isOn {
             navigationController?.setColoredNavBar()
         } else {
             navigationController?.setWhiteNavBar()
@@ -209,7 +223,10 @@ class ChangePasswordViewController: UIViewController {
         }
         
         LoadingView.show()
-        viewModel.changePassword(sentFromLogin: sentFromLogin, onSuccess: { [weak self] in
+        viewModel.changePassword(tempPasswordWorkflow: tempPasswordWorkflow,
+                                 resetPasswordWorkflow: resetPasswordWorkflow,
+                                 resetPasswordUsername: resetPasswordUsername,
+                                 onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
             self.delegate?.changePasswordViewControllerDidChangePassword(self)
@@ -226,11 +243,18 @@ class ChangePasswordViewController: UIViewController {
             guard let self = self else { return }
             self.currentPasswordTextField.setError(NSLocalizedString("Incorrect current password", comment: ""))
             self.accessibilityErrorLabel()
-            
+            if self.resetPasswordWorkflow {
+                self.havingTroubleView.isHidden = false
+            }
         }, onError: { [weak self] (error: String) in
             LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: error, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in
+                guard let self = self else { return }
+                if self.resetPasswordWorkflow {
+                    self.havingTroubleView.isHidden = false
+                }
+            }))
             self?.present(alert, animated: true)
         })
     }
@@ -241,20 +265,22 @@ class ChangePasswordViewController: UIViewController {
         Analytics.log(event: .strongPasswordOffer)
         
         presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
-                     message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
-                     style: .actionSheet,
-                     actions:
-                        [UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
-                            self?.viewModel.hasStrongPassword = true
-                            self?.viewModel.newPassword.value = strongPassword
-                            self?.viewModel.confirmPassword.value = strongPassword
-                            self?.newPasswordTextField.textField.text = strongPassword
-                            self?.confirmPasswordTextField.textField.text = strongPassword
-                            self?.newPasswordTextField.textField.backgroundColor = .autoFillYellow
-                            self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
-                            self?.newPasswordTextField.textField.resignFirstResponder()
-                            },
-                         UIAlertAction(title: "Cancel", style: .cancel, handler: nil)])
+            message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",
+            style: .actionSheet,
+            actions: [
+                UIAlertAction(title: "Use Suggested Password", style: .default) { [weak self] action in
+                    self?.viewModel.hasStrongPassword = true
+                    self?.viewModel.newPassword.value = strongPassword
+                    self?.viewModel.confirmPassword.value = strongPassword
+                    self?.newPasswordTextField.textField.text = strongPassword
+                    self?.confirmPasswordTextField.textField.text = strongPassword
+                    self?.newPasswordTextField.textField.backgroundColor = .autoFillYellow
+                    self?.confirmPasswordTextField.textField.backgroundColor = .autoFillYellow
+                    self?.newPasswordTextField.textField.resignFirstResponder()
+                },
+                UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            ]
+        )
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
@@ -349,6 +375,26 @@ class ChangePasswordViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         viewModel.doneButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
+    }
+    
+    @IBAction func onRequestTempPasswordPress() {
+        guard let username = resetPasswordUsername else { return }
+        
+        view.endEditing(true)
+        
+        LoadingView.show()
+        viewModel.submitForgotPassword(username: username, onSuccess: { [weak self] in
+            LoadingView.hide()
+            guard let self = self else { return }
+            self.forgotPasswordDelegate?.forgotPasswordViewControllerDidSubmit(self)
+            self.navigationController?.popViewController(animated: true)
+        }, onError: { [weak self] errorMessage in
+            LoadingView.hide()
+            guard let self = self else { return }
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        })
     }
     
     // MARK: - ScrollView
