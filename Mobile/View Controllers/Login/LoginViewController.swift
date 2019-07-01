@@ -190,9 +190,37 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginPress() {
-        Analytics.log(event: .loginOffer,
-                        dimensions: [.keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true":"false",
-                                     .fingerprintUsed: "disabled"])
+        if Environment.shared.opco != .bge && !viewModel.usernameIsValidEmailAddress {
+            // ComEd/PECO only email validation. If not valid email then fail before making the call
+            let message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
+            showErrorAlertWith(title: nil, message: message)
+            return
+        }
+        
+        if !viewModel.passwordMeetsRequirements {
+            let alert = UIAlertController(
+                title: NSLocalizedString("Sign In Error", comment: ""),
+                message: NSLocalizedString("To provide increased protection of your account, passwords must now meet new complexity standards.", comment: ""),
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Reset Password", comment: ""), style: .default, handler: { _ in
+                let storyboard = UIStoryboard(name: "More", bundle: nil)
+                let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
+                changePwVc.delegate = self
+                changePwVc.forgotPasswordDelegate = self
+                changePwVc.resetPasswordWorkflow = true
+                changePwVc.resetPasswordUsername = self.viewModel.username.value
+                self.navigationController?.pushViewController(changePwVc, animated: true)
+            }))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        Analytics.log(event: .loginOffer, dimensions: [
+            .keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true" : "false",
+            .fingerprintUsed: "disabled"
+        ])
 
         if forgotUsernamePopulated {
             Analytics.log(event: .forgotUsernameCompleteAccountValidation)
@@ -229,7 +257,7 @@ class LoginViewController: UIViewController {
                     let storyboard = UIStoryboard(name: "More", bundle: nil)
                     let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
                     changePwVc.delegate = self
-                    changePwVc.sentFromLogin = true
+                    changePwVc.tempPasswordWorkflow = true
                     self.navigationController?.pushViewController(changePwVc, animated: true)
                 } else {
                     if self.viewModel.isDeviceBiometricCompatible() {
@@ -464,7 +492,7 @@ extension LoginViewController: UIScrollViewDelegate {
 
 extension LoginViewController: ForgotPasswordViewControllerDelegate {
     
-    func forgotPasswordViewControllerDidSubmit(_ forgotPasswordViewController: ForgotPasswordViewController) {
+    func forgotPasswordViewControllerDidSubmit(_ viewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
             Analytics.log(event: .forgotPasswordComplete)
