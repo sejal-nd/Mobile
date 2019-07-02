@@ -16,8 +16,6 @@ class UsageViewController: AccountPickerViewController {
     
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var backgroundScrollConstraint: NSLayoutConstraint!
-    
     @IBOutlet private weak var switchAccountsLoadingIndicator: LoadingIndicator!
     @IBOutlet private weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet private weak var maintenanceModeView: MaintenanceModeView!
@@ -191,12 +189,6 @@ class UsageViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         setRefreshControlEnabled(enabled: false)
-        
-        scrollView?.rx.contentOffset.asDriver()
-            .map { min(0, $0.y) }
-            .distinctUntilChanged()
-            .drive(backgroundScrollConstraint.rx.constant)
-            .disposed(by: disposeBag)
         
         showSwitchAccountsLoadingState()
         barGraphPress(currentContainerButton)

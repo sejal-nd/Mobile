@@ -12,11 +12,7 @@ import RxSwiftExt
 import Lottie
 
 class StormModeHomeViewController: AccountPickerViewController {
-    
-    override var showMinimizedPicker: Bool {
-        return false
-    }
-    
+        
     @IBOutlet private weak var gradientView: UIView!
     var gradientLayer = CAGradientLayer()
     
@@ -502,6 +498,12 @@ class StormModeHomeViewController: AccountPickerViewController {
             self.loadingView.isHidden = true
             self.setRefreshControlEnabled(enabled: true)
         })
+    }
+    
+    @IBAction func accountpress(_ sender: Any) {
+        guard let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() else { return }
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: false, completion: nil)
     }
     
     private func returnToMainApp() {

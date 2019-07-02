@@ -1,5 +1,5 @@
 //
-//  MaskView.swift
+//  SheetView.swift
 //  Mobile
 //
 //  Created by Joseph Erlandson on 6/6/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MaskView: UIView {
+class SheetView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
