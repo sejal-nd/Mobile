@@ -133,14 +133,10 @@ class SegmentedControlNew: UIControl {
         let itemWidth = frame.width / CGFloat(items!.count)
         let xPos = CGFloat(index) * itemWidth
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.selectionPill.frame = CGRect(x: xPos, y: 0, width: itemWidth, height: self.frame.height)
             self.layoutIfNeeded()
         }, completion: nil)
-//        UIView.animate(withDuration: 0.3) {
-//            self.selectionPill.frame = CGRect(x: xPos, y: 0, width: itemWidth, height: self.frame.height)
-//            self.layoutIfNeeded()
-//        }
     }
 
 }
