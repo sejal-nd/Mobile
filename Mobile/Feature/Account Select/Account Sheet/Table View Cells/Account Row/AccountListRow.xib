@@ -24,7 +24,7 @@
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V9V-9b-Oqh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="cs2-ic-zlZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="cs2-ic-zlZ">
                                         <rect key="frame" x="16" y="22.5" width="14" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="14" id="UZs-zB-V99"/>
@@ -116,6 +116,6 @@
     </objects>
     <resources>
         <image name="ic_carat_down" width="13" height="8"/>
-        <image name="ic_check_outage" width="19" height="16"/>
+        <image name="ic_check" width="13" height="10"/>
     </resources>
 </document>
