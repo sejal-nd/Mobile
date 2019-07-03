@@ -189,6 +189,9 @@
 		35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
 		35376C6A20F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
+		354962BE22CCFB08007E84A1 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354962BD22CCFB08007E84A1 /* Style.swift */; };
+		354962BF22CCFB08007E84A1 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354962BD22CCFB08007E84A1 /* Style.swift */; };
+		354962C022CCFB08007E84A1 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354962BD22CCFB08007E84A1 /* Style.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
@@ -2589,6 +2592,7 @@
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		354962BD22CCFB08007E84A1 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		3557071173F2557B279CD47A /* Pods_PECO_WatchOS_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECO_WatchOS_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		356C7F7E21909976003E8A90 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
@@ -5037,6 +5041,7 @@
 				356C7F7E21909976003E8A90 /* WatchSessionManager.swift */,
 				B04DDF5A21FA800C00594ACF /* Date+Now.swift */,
 				B0D7860C2285C3F4007C551F /* CommercialUsageAlertStore.swift */,
+				354962BD22CCFB08007E84A1 /* Style.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -7696,6 +7701,7 @@
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
 				B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399351F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
+				354962BE22CCFB08007E84A1 /* Style.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */,
@@ -7831,6 +7837,7 @@
 				E803A0061EFC12BB004DB789 /* MiniWalletViewModel.swift in Sources */,
 				E8C4531B1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				B068DB6020D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
+				354962C022CCFB08007E84A1 /* Style.swift in Sources */,
 				E8DB7CBF1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7022121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
@@ -8445,6 +8452,7 @@
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
+				354962BF22CCFB08007E84A1 /* Style.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,

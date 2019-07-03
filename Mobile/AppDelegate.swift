@@ -62,6 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MSAppCenter.start(appCenterId, withServices:[MSCrashes.self])
         }
         
+        // Style App
+        Style.applyLargeNav()
+        
         setupWatchConnectivity()
         setupUserDefaults()
         setupToastStyles()
