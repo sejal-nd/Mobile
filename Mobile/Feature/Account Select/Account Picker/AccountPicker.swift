@@ -164,7 +164,11 @@ class AccountPicker: UIControl {
         let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() as? AccountSheetViewController else { return }
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
-        parentViewController?.tabBarController?.present(vc, animated: false, completion: nil)
+        if let tabBarController = parentViewController?.tabBarController {
+            tabBarController.present(vc, animated: false, completion: nil)
+        } else {
+            parentViewController?.present(vc, animated: false, completion: nil)
+        }
     }
     
     

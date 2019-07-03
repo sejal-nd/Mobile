@@ -53,9 +53,9 @@ class StormModeBillViewModel {
             case .switchAccount:
                 return [self.switchAccountTracker]
             }
-            }, requestSelector: { [weak self] _ in
-                guard let self = self else { return .empty() }
-                return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        }, requestSelector: { [weak self] _ in
+            guard let self = self else { return .empty() }
+            return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
     
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = fetchData
@@ -67,9 +67,9 @@ class StormModeBillViewModel {
             case .switchAccount:
                 return [this.switchAccountTracker]
             }
-            }, requestSelector: { [weak self] _ in
-                guard let this = self else { return .empty() }
-                return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
+        }, requestSelector: { [weak self] _ in
+            guard let this = self else { return .empty() }
+            return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
         })
     
     private lazy var accountDetail = accountDetailEvents.elements()
@@ -90,7 +90,6 @@ class StormModeBillViewModel {
         { isLoading, accountDetailEvent in
             isLoading || accountDetailEvent.element?.prepaidStatus != .active
         }
-        .startWith(false)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     
@@ -98,8 +97,7 @@ class StormModeBillViewModel {
         .combineLatest(switchAccountTracker.asObservable(),
                        accountDetailEvents)
         { isLoading, accountDetailEvent in
-            accountDetailEvent.error == nil &&
-                !isLoading &&
+            accountDetailEvent.error == nil && !isLoading &&
                 accountDetailEvent.element?.prepaidStatus != .active
         }
         .startWith(false)
@@ -154,8 +152,8 @@ class StormModeBillViewModel {
                 return (localizedTitle, String(format: NSLocalizedString("You have a payment of %@ scheduled for %@. " +
                     "To avoid a duplicate payment, please review your payment activity before proceeding. Would " +
                     "you like to continue making an additional payment?", comment: ""),
-                                               scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
+                    scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString), accountDetail)
             }
             return (nil, nil, accountDetail)
-    }
+        }
 }
