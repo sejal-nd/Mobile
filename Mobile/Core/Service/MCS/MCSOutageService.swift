@@ -37,7 +37,11 @@ class MCSOutageService: OutageService {
     }
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
-        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/outage?meterPing=false")
+        var path = "accounts/\(account.accountNumber)/outage?meterPing=false"
+        if StormModeStatus.shared.isOn {
+            path.append("&summary=true")
+        }
+        return MCSApi.shared.get(pathPrefix: .auth, path: path)
             .map { jsonArray in
                 guard let outageStatusArray = jsonArray as? NSArray else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
