@@ -101,18 +101,28 @@ class ChangePasswordViewModel {
                                                                                  self.currentPasswordHasText)
     { $0 && $1 && $2 }
     
-    func changePassword(sentFromLogin: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        
+    func changePassword(tempPasswordWorkflow: Bool,
+                        resetPasswordWorkflow: Bool,
+                        resetPasswordUsername: String?,
+                        onSuccess: @escaping () -> Void,
+                        onPasswordNoMatch: @escaping () -> Void,
+                        onError: @escaping (String) -> Void) {
         // If Strong Password: force save to SWC prior to changing users passwords, on failure abort.
-        if hasStrongPassword {
+        if hasStrongPassword && !resetPasswordWorkflow {
             if let loggedInUsername = biometricsService.getStoredUsername() {
-                SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain) { [weak self] error in
+                SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value),
+                                          domain: Environment.shared.associatedDomain) { [weak self] error in
                     DispatchQueue.main.async {
                         if error != nil {
                             // Error Saving SWC
                             onError(NSLocalizedString("Please make sure AutoFill is on in Safari Settings for Names and Passwords when using Strong Passwords.", comment: ""))
                         } else {
-                            self?.changePasswordNetworkRequest(sentFromLogin: sentFromLogin, shouldSaveToWebCredentials: false, onSuccess: onSuccess, onPasswordNoMatch: onPasswordNoMatch, onError: onError)
+                            self?.changePasswordNetworkRequest(anon: tempPasswordWorkflow,
+                                                               resetPasswordUsername: resetPasswordUsername,
+                                                               shouldSaveToWebCredentials: false,
+                                                               onSuccess: onSuccess,
+                                                               onPasswordNoMatch: onPasswordNoMatch,
+                                                               onError: onError)
                         }
                     }
                 }
@@ -121,13 +131,25 @@ class ChangePasswordViewModel {
                 onError(NSLocalizedString("There was an error retrieving the logged in user.", comment: ""))
             }
         } else {
-            changePasswordNetworkRequest(sentFromLogin: sentFromLogin, shouldSaveToWebCredentials: true, onSuccess: onSuccess, onPasswordNoMatch: onPasswordNoMatch, onError: onError)
+            changePasswordNetworkRequest(anon: tempPasswordWorkflow || resetPasswordWorkflow,
+                                         resetPasswordUsername: resetPasswordUsername,
+                                         shouldSaveToWebCredentials: true,
+                                         onSuccess: onSuccess,
+                                         onPasswordNoMatch: onPasswordNoMatch,
+                                         onError: onError)
         }
     }
     
-    private func changePasswordNetworkRequest(sentFromLogin: Bool, shouldSaveToWebCredentials: Bool, onSuccess: @escaping () -> Void, onPasswordNoMatch: @escaping () -> Void, onError: @escaping (String) -> Void) {
-        if sentFromLogin {
-            authService.changePasswordAnon(username: biometricsService.getStoredUsername()!, currentPassword: currentPassword.value, newPassword: newPassword.value)
+    private func changePasswordNetworkRequest(anon: Bool,
+                                              resetPasswordUsername: String?,
+                                              shouldSaveToWebCredentials: Bool,
+                                              onSuccess: @escaping () -> Void,
+                                              onPasswordNoMatch: @escaping () -> Void,
+                                              onError: @escaping (String) -> Void) {
+        if anon {
+            authService.changePasswordAnon(username: resetPasswordUsername ?? biometricsService.getStoredUsername()!,
+                                           currentPassword: currentPassword.value,
+                                           newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
                 .asObservable()
                 .subscribe(onNext: { [weak self] _ in
@@ -146,14 +168,14 @@ class ChangePasswordViewModel {
                     }
                     
                     onSuccess()
-                    }, onError: { (error: Error) in
-                        let serviceError = error as! ServiceError
-                        
-                        if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
-                            onPasswordNoMatch()
-                        } else {
-                            onError(error.localizedDescription)
-                        }
+                }, onError: { (error: Error) in
+                    let serviceError = error as! ServiceError
+                    
+                    if serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue {
+                        onPasswordNoMatch()
+                    } else {
+                        onError(error.localizedDescription)
+                    }
                 })
                 .disposed(by: disposeBag)
         } else {
@@ -175,17 +197,28 @@ class ChangePasswordViewModel {
                     }
                     
                     onSuccess()
-                    }, onError: { (error: Error) in
-                        let serviceError = error as! ServiceError
-                        
-                        if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
-                            onPasswordNoMatch()
-                        } else {
-                            onError(error.localizedDescription)
-                        }
+                }, onError: { (error: Error) in
+                    let serviceError = error as! ServiceError
+                    
+                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
+                        onPasswordNoMatch()
+                    } else {
+                        onError(error.localizedDescription)
+                    }
                 })
                 .disposed(by: disposeBag)
         }
+    }
+    
+    func submitForgotPassword(username: String, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        authService.recoverPassword(username: username)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                onSuccess()
+            }, onError: { error in
+                let serviceError = error as! ServiceError
+                onError(serviceError.localizedDescription)
+            }).disposed(by: disposeBag)
     }
 
 }

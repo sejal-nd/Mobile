@@ -761,23 +761,49 @@
                         <viewControllerLayoutGuide type="bottom" id="sMz-dx-V7K"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MAy-au-tEX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="648"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="css-Si-oMh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="584"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kES-Fi-P4P" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="578.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="663"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v76-Y4-LTO" userLabel="Tablet View">
-                                                <rect key="frame" x="30" y="0.0" width="315" height="578.5"/>
+                                                <rect key="frame" x="30" y="0.0" width="315" height="663"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ncQ-MU-bGW">
-                                                        <rect key="frame" x="0.0" y="30" width="315" height="518.5"/>
+                                                        <rect key="frame" x="0.0" y="30" width="315" height="603"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jI-xc-C9j">
+                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="54.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Having trouble?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfI-9W-TYX">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfn-kE-A72">
+                                                                        <rect key="frame" x="0.0" y="24.5" width="216" height="30"/>
+                                                                        <state key="normal" title="Request a Temporary Password"/>
+                                                                        <connections>
+                                                                            <action selector="onRequestTempPasswordPress" destination="9Ug-ji-Hni" eventType="touchUpInside" id="MnG-Gy-iuY"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="pfn-kE-A72" firstAttribute="top" secondItem="qfI-9W-TYX" secondAttribute="bottom" constant="4" id="5yU-zU-ZHY"/>
+                                                                    <constraint firstItem="qfI-9W-TYX" firstAttribute="top" secondItem="7jI-xc-C9j" secondAttribute="top" id="J2u-Dw-kg1"/>
+                                                                    <constraint firstItem="qfI-9W-TYX" firstAttribute="leading" secondItem="7jI-xc-C9j" secondAttribute="leading" id="NQL-Mj-poA"/>
+                                                                    <constraint firstItem="pfn-kE-A72" firstAttribute="leading" secondItem="7jI-xc-C9j" secondAttribute="leading" id="S8y-x1-q0g"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="pfn-kE-A72" secondAttribute="bottom" id="fdG-am-SLz"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYq-e2-Dnd" userLabel="Current Password View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="60"/>
+                                                                <rect key="frame" x="0.0" y="84.5" width="315" height="60"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="884-Yk-5tq" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="60"/>
@@ -808,7 +834,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="90" width="315" height="60"/>
+                                                                <rect key="frame" x="0.0" y="174.5" width="315" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="fMl-Rs-kbW"/>
@@ -816,7 +842,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEP-m1-FLp">
-                                                                <rect key="frame" x="0.0" y="180" width="315" height="248.5"/>
+                                                                <rect key="frame" x="0.0" y="264.5" width="315" height="248.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="s6E-HU-rP3">
                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="248.5"/>
@@ -976,7 +1002,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-5f-05z" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="458.5" width="315" height="60"/>
+                                                                <rect key="frame" x="0.0" y="543" width="315" height="60"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="250" constant="60" id="32l-cG-AKQ"/>
@@ -1026,12 +1052,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Change Password" id="Q7B-3b-v3s"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="648"/>
+                    <size key="freeformSize" width="375" height="750"/>
                     <connections>
                         <outlet property="characterCountCheck" destination="QGp-P6-jEl" id="ax2-dj-8de"/>
                         <outlet property="confirmPasswordTextField" destination="m0b-5f-05z" id="yIU-5L-KB2"/>
                         <outlet property="currentPasswordTextField" destination="884-Yk-5tq" id="b5c-Rr-DjV"/>
                         <outlet property="eyeballButton" destination="Uok-hL-HCJ" id="q7g-rs-YT8"/>
+                        <outlet property="havingTroubleButton" destination="pfn-kE-A72" id="WtT-mB-i2e"/>
+                        <outlet property="havingTroubleLabel" destination="qfI-9W-TYX" id="j1d-MJ-2iC"/>
+                        <outlet property="havingTroubleView" destination="7jI-xc-C9j" id="2UC-dY-Shg"/>
                         <outlet property="lowercaseCheck" destination="Xg8-sV-U27" id="sce-zI-mmh"/>
                         <outlet property="mustAlsoContainLabel" destination="eVK-83-cvs" id="NOh-FE-oJA"/>
                         <outlet property="newPasswordTextField" destination="YLR-ET-G9c" id="y7d-Bn-MBI"/>
@@ -1051,7 +1080,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K2A-zE-RJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3297" y="2139"/>
+            <point key="canvasLocation" x="3297" y="1839"/>
         </scene>
         <!--Default Account-->
         <scene sceneID="27j-Xl-aTB">
