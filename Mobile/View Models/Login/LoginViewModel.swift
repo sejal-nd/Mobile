@@ -9,6 +9,8 @@
 import RxSwift
 import RxCocoa
 
+fileprivate let kMaxUsernameChars = 255
+
 class LoginViewModel {
 
     let disposeBag = DisposeBag()
@@ -168,6 +170,73 @@ class LoginViewModel {
                 onError(err.localizedDescription)
             })
             .disposed(by: disposeBag)
+    }
+    
+    // MARK: - New Email/Password Validation Requirement
+    
+    var usernameIsValidEmailAddress: Bool {
+        let username = self.username.value
+        
+        if username.count > kMaxUsernameChars {
+            return false
+        }
+        
+        let components = username.components(separatedBy: "@")
+        
+        if components.count != 2 {
+            return false
+        }
+        
+        let urlComponents = components[1].components(separatedBy: ".")
+        
+        if urlComponents.count < 2 {
+            return false
+        } else if urlComponents[0].isEmpty || urlComponents[1].isEmpty {
+            return false
+        }
+        
+        return true
+    }
+    
+    var passwordMeetsRequirements: Bool {
+        let password = self.password.value
+        
+        // Must be between 8-16 characters
+        let passwordWithoutSpaces = password.components(separatedBy: .whitespacesAndNewlines).joined()
+        if passwordWithoutSpaces.count < 8 || passwordWithoutSpaces.count > 16 {
+            return false
+        }
+        
+        // And meet at least 3 of the 4 following rules:
+        
+        var regex: NSRegularExpression
+        var numRulesMet = 0
+        
+        // Contains uppercase letter
+        regex = try! NSRegularExpression(pattern: ".*[A-Z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+        if regex.firstMatch(in: password, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, password.count)) != nil {
+            numRulesMet += 1
+        }
+        
+        // Contains lowercase letter
+        regex = try! NSRegularExpression(pattern: ".*[a-z].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+        if regex.firstMatch(in: password, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, password.count)) != nil {
+            numRulesMet += 1
+        }
+        
+        // Contains number
+        regex = try! NSRegularExpression(pattern: ".*[0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+        if regex.firstMatch(in: password, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, password.count)) != nil {
+            numRulesMet += 1
+        }
+        
+        // Contains special character
+        regex = try! NSRegularExpression(pattern: ".*[^a-zA-Z0-9].*", options: NSRegularExpression.Options.useUnixLineSeparators)
+        if regex.firstMatch(in: password, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, password.count)) != nil {
+            numRulesMet += 1
+        }
+        
+        return numRulesMet >= 3
     }
 
 }

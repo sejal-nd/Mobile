@@ -91,7 +91,7 @@ extension ServiceError : LocalizedError {
             return cause.localizedDescription
         } else {
             let description = NSLocalizedString(serviceCode, tableName: "ErrorMessages", comment: "")
-            if(description != serviceCode) {
+            if description != serviceCode {
                 return description
             } else if let serviceMessage = serviceMessage {
                 return serviceMessage
