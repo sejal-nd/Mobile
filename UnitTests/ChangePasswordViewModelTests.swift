@@ -248,13 +248,18 @@ class ChangePasswordTests: XCTestCase {
         let asyncExpectation = expectation(description: "testChangePasswordCurrentPasswordIncorrect")
         
         viewModel.currentPassword.value = "invalid"
-        viewModel.changePassword(sentFromLogin: false, onSuccess: {
-            XCTFail("Unexpected success response")
-        }, onPasswordNoMatch: {
-            asyncExpectation.fulfill()
-        }, onError: { error in
-            XCTFail("Unexpected error response")
-        })
+        viewModel.changePassword(
+            tempPasswordWorkflow: false,
+            resetPasswordWorkflow: false,
+            resetPasswordUsername: nil,
+            onSuccess: {
+                XCTFail("Unexpected success response")
+            }, onPasswordNoMatch: {
+                asyncExpectation.fulfill()
+            }, onError: { error in
+                XCTFail("Unexpected error response")
+            }
+        )
         
         waitForExpectations(timeout: 5) { error in
             XCTAssertNil(error, "timeout")
@@ -265,13 +270,18 @@ class ChangePasswordTests: XCTestCase {
         let asyncExpectation = expectation(description: "testChangePasswordSuccess")
         
         viewModel.currentPassword.value = "Password1"
-        viewModel.changePassword(sentFromLogin: false, onSuccess: {
-            asyncExpectation.fulfill()
-        }, onPasswordNoMatch: {
-            XCTFail("Unexpected PasswordNoMatch response")
-        }, onError: { error in
-            XCTFail("Unexpected error response")
-        })
+        viewModel.changePassword(
+            tempPasswordWorkflow: false,
+            resetPasswordWorkflow: false,
+            resetPasswordUsername: nil,
+            onSuccess: {
+                asyncExpectation.fulfill()
+            }, onPasswordNoMatch: {
+                XCTFail("Unexpected PasswordNoMatch response")
+            }, onError: { error in
+                XCTFail("Unexpected error response")
+            }
+        )
         
         waitForExpectations(timeout: 5) { error in
             XCTAssertNil(error, "timeout")
