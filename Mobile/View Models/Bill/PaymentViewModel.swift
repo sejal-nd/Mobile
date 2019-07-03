@@ -277,6 +277,11 @@ class PaymentViewModel {
             return self.shouldCalendarDateBeEnabled(paymentDate)
         }
     
+    private(set) lazy var shouldShowSameDayPaymentWarning: Driver<Bool> =
+        self.paymentDate.asDriver().map { date in
+            return date.isInToday(calendar: .opCo)
+        }
+    
     // MARK: - Shared Drivers
 
     private(set) lazy var paymentAmountString = paymentAmount.asDriver()
