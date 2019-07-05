@@ -117,7 +117,7 @@ class ForgotPasswordViewController: UIViewController {
             guard let loginVC = vc as? LoginViewController else {
                 continue
             }
-            loginVC.onForgotUsernamePress()
+            loginVC.forgotUsername()
             break
         }
     }

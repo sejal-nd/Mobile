@@ -16,20 +16,19 @@ class LoginViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var opcoLogoView: UIView!
     @IBOutlet weak var opcoLogo: UIImageView!
     @IBOutlet weak var loginFormView: UIView!
-    @IBOutlet weak var usernameTextField: FloatLabelTextField!
-    @IBOutlet weak var passwordTextField: FloatLabelTextField!
+    @IBOutlet weak var usernameTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var passwordTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var keepMeSignedInSwitch: Switch!
     @IBOutlet weak var keepMeSignedInLabel: UILabel!
-    @IBOutlet weak var signInButton: PrimaryButton!
-    @IBOutlet weak var forgotUsernameButton: UIButton!
-    @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var signInButton: PrimaryButtonNew!
+    @IBOutlet weak var forgotUsernamePasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
     @IBOutlet weak var biometricImageView: UIImageView!
     @IBOutlet weak var biometricLabel: UILabel!
     @IBOutlet weak var biometricButton: ButtonControl!
-    @IBOutlet weak var loginFormViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), registrationService: ServiceFactory.createRegistrationService())
     var viewAlreadyAppeared = false
@@ -54,31 +53,20 @@ class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        view.backgroundColor = .primaryColor
+        opcoLogoView.backgroundColor = .primaryColor
+        view.backgroundColor = .white
 
-        viewModel.biometricsEnabled.asDriver().drive(onNext: { [weak self] enabled in
-            guard let self = self else { return }
-            if enabled {
-                self.biometricButton.isHidden = false
-                self.loginFormViewHeightConstraint.constant = 420
-            } else {
-                self.biometricButton.isHidden = true
-                self.loginFormViewHeightConstraint.constant = 390
-            }
-        }).disposed(by: disposeBag)
-        
-        loginFormView.addShadow(color: .black, opacity: 0.15, offset: .zero, radius: 4)
-        loginFormView.layer.cornerRadius = 10
+        viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
         
         keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .headline)
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
         
-        usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
+        usernameTextField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .next
         usernameTextField.textField.keyboardType = .emailAddress
         
-        passwordTextField.textField.placeholder = NSLocalizedString("Password", comment: "")
+        passwordTextField.placeholder = NSLocalizedString("Password", comment: "")
         passwordTextField.textField.isSecureTextEntry = true
         passwordTextField.textField.returnKeyType = .done
         passwordTextField.textField.isShowingAccessory = true
@@ -120,9 +108,10 @@ class LoginViewController: UIViewController {
         passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver().drive(onNext: { [weak self] _ in
             self?.onLoginPress()
         }).disposed(by: disposeBag)
-                
-        forgotUsernameButton.tintColor = .actionBlue
-        forgotPasswordButton.tintColor = .actionBlue
+        
+        forgotUsernamePasswordButton.tintColor = .actionBlue
+        forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        forgotUsernamePasswordButton.setTitle(NSLocalizedString("Forgot your username or password?", comment: ""), for: .normal)
         
         let biometricsString = viewModel.biometricsString()
         if biometricsString == "Face ID" { // Touch ID icon is default
@@ -160,7 +149,7 @@ class LoginViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black // Needed for white status bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.backgroundColor = .primaryColor
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = true
         
@@ -326,18 +315,31 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @IBAction func onForgotUsernamePress() {
+    @IBAction func onForgotUsernamePasswordPress() {
+        let style: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: style)
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Forgot Username", comment: ""), style: .default, handler: { _ in
+            self.forgotUsername()
+        }))
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Forgot Password", comment: ""), style: .default, handler: { _ in
+            self.forgotPassword()
+        }))
+    }
+    
+    func forgotUsername() {
         Analytics.log(event: .forgotUsernameOffer)
         if Environment.shared.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
             performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
         }
+
     }
     
-    @IBAction func onForgotPasswordPress() {
+    func forgotPassword() {
         Analytics.log(event: .forgotPasswordOffer)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
+
     }
     
     @IBAction func onEyeballPress(_ sender: UIButton) {
