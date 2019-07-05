@@ -50,7 +50,7 @@ class MCSOutageService: OutageService {
                 if account.isMultipremise {
                     let outageStatusModels = outageStatusArray.map { $0 as! NSDictionary }
                     guard let premiseNumber = account.currentPremise?.premiseNumber,
-                        let dict = outageStatusModels.filter({ $0["premiseNumber"] as! String == premiseNumber }).first,
+                        let dict = outageStatusModels.filter({ $0["premiseNumber"] as? String == premiseNumber }).first,
                         let outageStatus = OutageStatus.from(dict as NSDictionary) else {
                             throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
