@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var backgroundViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var opcoLogoView: UIView!
     @IBOutlet weak var opcoLogo: UIImageView!
@@ -53,12 +55,30 @@ class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        opcoLogoView.backgroundColor = .primaryColor
         view.backgroundColor = .white
+        backgroundView.backgroundColor = .primaryColor
+        opcoLogoView.backgroundColor = .primaryColor
+        
+        scrollView?.rx.contentOffset.asDriver()
+            .map { $0.y }
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] yOffset in
+                guard let self = self else { return }
+                let breakHeight = self.opcoLogoView.frame.size.height - 120
+                if yOffset <= 0 {
+                    self.backgroundViewBottomConstraint.constant = yOffset
+                } else if yOffset > breakHeight {
+                    self.opcoLogo.alpha = self.lerp(1, 0, (yOffset - breakHeight) / 10.0)
+                } else {
+                    self.opcoLogo.alpha = 1
+                }
+            })
+            .disposed(by: disposeBag)
 
         viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
         
-        keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .headline)
+        keepMeSignedInLabel.font = OpenSans.regular.of(textStyle: .headline)
+        keepMeSignedInLabel.textColor = .deepGray
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
         
         usernameTextField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
@@ -111,7 +131,12 @@ class LoginViewController: UIViewController {
         
         forgotUsernamePasswordButton.tintColor = .actionBlue
         forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        forgotUsernamePasswordButton.setTitle(NSLocalizedString("Forgot your username or password?", comment: ""), for: .normal)
+        forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
+        forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
+        UIView.performWithoutAnimation { // Prevents ugly setTitle animation
+            self.forgotUsernamePasswordButton.setTitle(NSLocalizedString("Forgot your username or password?", comment: ""), for: .normal)
+            self.forgotUsernamePasswordButton.layoutIfNeeded()
+        }
         
         let biometricsString = viewModel.biometricsString()
         if biometricsString == "Face ID" { // Touch ID icon is default
@@ -324,6 +349,8 @@ class LoginViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Forgot Password", comment: ""), style: .default, handler: { _ in
             self.forgotPassword()
         }))
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        present(actionSheet, animated: true, completion: nil)
     }
     
     func forgotUsername() {
@@ -476,18 +503,6 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
         if let vc = segue.destination as? ForgotPasswordViewController {
             vc.delegate = self
-        }
-    }
-    
-}
-
-extension LoginViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 20 {
-            opcoLogo.alpha = lerp(1, 0, (scrollView.contentOffset.y - 20.0) / 20.0)
-        } else {
-            opcoLogo.alpha = 1
         }
     }
     
