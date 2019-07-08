@@ -31,7 +31,11 @@ class TermsPoliciesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.styleNavbar()
+        
+        // Needed to force large title on screen load
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     

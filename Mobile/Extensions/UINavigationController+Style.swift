@@ -9,7 +9,7 @@
 import UIKit
 
 extension UINavigationController {
-    func styleNavbar() {
+    func styleNavbar(isNavigationBarHidden: Bool = false) {
         navigationBar.barStyle = .default
         navigationBar.barTintColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
         navigationBar.tintColor = .actionBlue
@@ -34,6 +34,6 @@ extension UINavigationController {
 
         setNeedsStatusBarAppearanceUpdate()
 
-        setNavigationBarHidden(false, animated: true)
+        setNavigationBarHidden(isNavigationBarHidden, animated: true)
     }
 }
