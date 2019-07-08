@@ -341,8 +341,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePasswordPress() {
-        let style: UIAlertController.Style = UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: style)
+        view.endEditing(true)
+
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Forgot Username", comment: ""), style: .default, handler: { _ in
             self.forgotUsername()
         }))
@@ -350,6 +351,15 @@ class LoginViewController: UIViewController {
             self.forgotPassword()
         }))
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        
+        if let popoverController = actionSheet.popoverPresentationController { // iPad popover
+            let width = self.forgotUsernamePasswordButton.frame.size.width
+            let height = self.forgotUsernamePasswordButton.frame.size.height
+            popoverController.sourceView = self.forgotUsernamePasswordButton
+            popoverController.sourceRect = CGRect(x: width / 2, y: height, width: 0, height: 0)
+            popoverController.permittedArrowDirections = .up
+        }
+        
         present(actionSheet, animated: true, completion: nil)
     }
     
