@@ -27,9 +27,9 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var havingTroubleView: UIView!
     @IBOutlet weak var havingTroubleLabel: UILabel!
     @IBOutlet weak var havingTroubleButton: UIButton!
-    @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
-    @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
-    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
+    @IBOutlet weak var currentPasswordTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var newPasswordTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextFieldNew!
     
     @IBOutlet weak var passwordStrengthView: UIView!
     @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!
@@ -46,13 +46,12 @@ class ChangePasswordViewController: UIViewController {
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     
+    @IBOutlet weak var submitButton: PrimaryButtonNew!
+    
     let disposeBag = DisposeBag()
     
     let viewModel = ChangePasswordViewModel(userDefaults: UserDefaults.standard, authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService())
     
-    lazy var cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-    lazy var submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-
     let toolbar: UIToolbar = {
         let toolbar = UIToolbar()
         let suggestPasswordButton = UIBarButtonItem(title: "Suggest Password", style: .plain, target: self, action: #selector(suggestPassword))
@@ -73,12 +72,6 @@ class ChangePasswordViewController: UIViewController {
         
         title = NSLocalizedString("Change Password", comment: "")
         
-        cancelButton.target = self
-        submitButton.target = self
-        navigationItem.leftBarButtonItem = tempPasswordWorkflow ? nil : cancelButton
-        navigationItem.hidesBackButton = tempPasswordWorkflow
-        navigationItem.rightBarButtonItem = submitButton
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -93,9 +86,9 @@ class ChangePasswordViewController: UIViewController {
         havingTroubleButton.setTitle(NSLocalizedString("Request a Temporary Password", comment: ""), for: .normal)
         
         passwordStrengthView.isHidden = true
-        passwordStrengthLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        currentPasswordTextField.textField.placeholder = tempPasswordWorkflow ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
+        currentPasswordTextField.placeholder = tempPasswordWorkflow ? NSLocalizedString("Temporary Password", comment: "") : NSLocalizedString("Current Password", comment: "")
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.textField.isShowingAccessory = true
@@ -104,7 +97,7 @@ class ChangePasswordViewController: UIViewController {
             currentPasswordTextField.textField.textContentType = .password
         }
         
-        newPasswordTextField.textField.placeholder = NSLocalizedString("New Password", comment: "")
+        newPasswordTextField.placeholder = NSLocalizedString("New Password", comment: "")
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
@@ -122,14 +115,14 @@ class ChangePasswordViewController: UIViewController {
         
         eyeballButton.accessibilityLabel = NSLocalizedString("Show password", comment: "")
         
-        confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password", comment: "")
+        confirmPasswordTextField.placeholder = NSLocalizedString("Confirm Password", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .body)
         for label in passwordRequirementLabels {
-            label.font = SystemFont.regular.of(textStyle: .headline)
+            label.font = SystemFont.regular.of(textStyle: .body)
         }
         
         // Bind to the view model
@@ -208,13 +201,7 @@ class ChangePasswordViewController: UIViewController {
     
     // MARK: - Actions
     
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func onSubmitPress() {
-        guard submitButton.isEnabled else { return }
-        
+    @IBAction func submitButtonPress(_ sender: Any? = nil) {
         view.endEditing(true)
         
         // Hide password while loading
@@ -286,10 +273,10 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func onEyeballPress(_ sender: UIButton) {
         if currentPasswordTextField.textField.isSecureTextEntry {
             currentPasswordTextField.textField.isSecureTextEntry = false
-            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
-            currentPasswordTextField.textField.font = nil
-            currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-            // ------------------------------------------------------------------------------- //
+//            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
+//            currentPasswordTextField.textField.font = nil
+//            currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+//            // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
             eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
         } else {
@@ -447,7 +434,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
             }
         } else if textField == confirmPasswordTextField.textField {
             if submitButton.isEnabled {
-                onSubmitPress()
+                submitButtonPress()
             }
         }
         return false
