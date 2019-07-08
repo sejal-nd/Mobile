@@ -95,8 +95,7 @@ class AccountListRow: UITableViewCell {
                    delegate: PremiseSelectDelegate) {
         self.account = account
         self.delegate = delegate
-        parentIndexPath = indexPath
-
+        self.parentIndexPath = indexPath
         
         // Mutli Premise
         if account.isMultipremise {
@@ -104,6 +103,10 @@ class AccountListRow: UITableViewCell {
             
             selectionStyle = .none
             carrotImageView.isHidden = false
+            
+            // Address Label
+            addressLabel.text = "Multi-Premise Account"
+            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Multi-Premise Account", comment: ""))
         } else {
             tableView.isHidden = true
             
@@ -115,6 +118,14 @@ class AccountListRow: UITableViewCell {
             selectedBackgroundView = backgroundView
             
             carrotImageView.isHidden = true
+            
+            // Address Label
+            addressLabel.text = account.address
+            if let address = account.address {
+                addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@.", comment: ""), address)
+            } else {
+                addressLabel.accessibilityLabel = nil
+            }
         }
         
         // Checkmark
@@ -153,14 +164,6 @@ class AccountListRow: UITableViewCell {
         accountNumber.text = account.accountNumber
         accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
-        // Address Label
-        addressLabel.text = account.address
-        if let address = account.address {
-            addressLabel.accessibilityLabel = String(format: NSLocalizedString("Street address: %@.", comment: ""), address)
-        } else {
-            addressLabel.accessibilityLabel = nil
-        }
-        
         // Accessibility
         self.accessibilityLabel = "\(checkmarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), "
     }
@@ -181,9 +184,6 @@ class AccountListRow: UITableViewCell {
         // Start TableView Collapsed
         tableView.isHidden = false
         cellState = .collapsed
-
-        tableViewHeightConstraint.constant = 0
-        self.layoutIfNeeded()
     }
 }
 
@@ -196,21 +196,24 @@ extension AccountListRow: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         // Single Cell Selection
-        if indexPath == premiseSelectedIndexPath {
-            return
-        }
+        if indexPath == premiseSelectedIndexPath { return }
         
-        // Toggle old checkmark off and the new one on
+        // Toggle new cehckmark on
         guard let newCell = tableView.cellForRow(at: indexPath) as? PremiseListRow else { return }
         if newCell.checkmarkImageView.isHidden {
             newCell.checkmarkImageView.isHidden = false
         }
         
-        guard let unwrappedSelectedIndexPath = premiseSelectedIndexPath, let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? PremiseListRow else { return }
-        if !oldCell.checkmarkImageView.isHidden {
-            oldCell.checkmarkImageView.isHidden = true
-        }
+        // Toggle old checkmark off
         
+        // Remove checkmark from premise table view
+        if let unwrappedSelectedIndexPath = premiseSelectedIndexPath,
+            let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? PremiseListRow {
+            if !oldCell.checkmarkImageView.isHidden {
+                oldCell.checkmarkImageView.isHidden = true
+            }
+        }
+
         premiseSelectedIndexPath = indexPath
         
         // Select parent checkmark.
