@@ -70,7 +70,16 @@ class UnauthenticatedUserViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.styleNavbar(isNavigationBarHidden: true)
+        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+
+        setNeedsStatusBarAppearanceUpdate()
+
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     @IBAction private func loginRegisterPress(_ sender: ButtonControl) {
