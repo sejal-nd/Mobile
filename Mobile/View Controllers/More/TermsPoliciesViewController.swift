@@ -34,8 +34,10 @@ class TermsPoliciesViewController: UIViewController {
         
         navigationController?.styleNavbar()
         
-        // Needed to force large title on screen load
-        navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            // Needed to force large title on screen load
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
     
     
