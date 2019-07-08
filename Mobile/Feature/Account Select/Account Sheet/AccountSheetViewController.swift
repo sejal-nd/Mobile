@@ -119,7 +119,7 @@ class AccountSheetViewController: UIViewController {
             lastSheetLevel = .middle
         }
     }
-    
+
     
     // MARK: - Actions
 
@@ -306,17 +306,20 @@ extension AccountSheetViewController: UITableViewDelegate {
             return
         }
         
-        // Toggle old checkmark off and the new one on
+        // Toggle new checkmark on
         guard let newCell = tableView.cellForRow(at: indexPath) as? AccountListRow else {
             return }
         if newCell.checkmarkImageView.isHidden {
             newCell.checkmarkImageView.isHidden = false
         }
         
-        guard let unwrappedSelectedIndexPath = selectedIndexPath, let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? AccountListRow else {
-            return }
-        if !oldCell.checkmarkImageView.isHidden {
-            oldCell.checkmarkImageView.isHidden = true
+        // Toggle old checkmark off
+        if !shouldAllowSameCellSelection,
+            let unwrappedSelectedIndexPath = selectedIndexPath,
+            let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? AccountListRow {
+            if !oldCell.checkmarkImageView.isHidden {
+                oldCell.checkmarkImageView.isHidden = true
+            }
         }
         
         selectedIndexPath = indexPath
