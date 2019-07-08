@@ -68,7 +68,7 @@ class BillingHistoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
+        navigationController?.styleNavbar()
         
         title = viewModel.viewingMoreActivity ?
             NSLocalizedString("More Activity", comment: "") :

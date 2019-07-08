@@ -121,7 +121,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
+        navigationController?.styleNavbar()
     }
     
     override func viewDidAppear(_ animated: Bool) {

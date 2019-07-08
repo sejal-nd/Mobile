@@ -53,7 +53,7 @@ class SmartEnergyRewardsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setWhiteNavBar()
+        navigationController?.styleNavbar()
     }
     
     override func viewDidLayoutSubviews() {

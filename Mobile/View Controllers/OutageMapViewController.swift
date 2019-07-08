@@ -50,7 +50,7 @@ class OutageMapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar(hidesBottomBorder: true)
+        navigationController?.styleNavbar()
     }
     
     override func viewDidAppear(_ animated: Bool) {

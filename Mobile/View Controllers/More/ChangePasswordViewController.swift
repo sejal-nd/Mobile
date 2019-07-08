@@ -190,11 +190,7 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if tempPasswordWorkflow || resetPasswordWorkflow || StormModeStatus.shared.isOn {
-            navigationController?.setColoredNavBar()
-        } else {
-            navigationController?.setWhiteNavBar()
-        }
+        navigationController?.styleNavbar()
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -38,7 +38,7 @@ class ViewBillViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setWhiteNavBar()
+        navigationController?.styleNavbar()
         if webView != nil {
             /* Upon the first viewWillAppear, webView will be nil so this will not happen.
              * When peek/popping from Billing History, if you wait on the peek until the PDF
@@ -72,7 +72,7 @@ class ViewBillViewController: UIViewController {
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         if parent == nil {
-            navigationController?.setColoredNavBar()
+            navigationController?.styleNavbar()
         }
     }
     

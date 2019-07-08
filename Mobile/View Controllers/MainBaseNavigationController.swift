@@ -15,7 +15,7 @@ class MainBaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setColoredNavBar()
+        styleNavbar()
         
         if storyboardName != nil {
             let storyboard = UIStoryboard(name: storyboardName, bundle: nil)

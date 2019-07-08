@@ -101,7 +101,7 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.setColoredNavBar()
+        navigationController?.styleNavbar()
     }
     
     @objc func onNextPress() {

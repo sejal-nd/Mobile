@@ -30,13 +30,13 @@ class UpdatesDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setWhiteNavBar(hidesBottomBorder: true)
+        navigationController?.styleNavbar()
     }
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         if parent == nil {
-            navigationController?.setColoredNavBar()
+            navigationController?.styleNavbar()
         }
     }
 

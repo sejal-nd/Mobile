@@ -247,7 +247,7 @@ class MakePaymentViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
+        navigationController?.styleNavbar()
     }
     
     override func updateViewConstraints() {

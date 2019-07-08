@@ -64,7 +64,7 @@ class StormModeBillViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar(hidesBottomBorder: true)
+        navigationController?.styleNavbar()
     }
     
     @objc func setRefreshControlEnabled(enabled: Bool) {

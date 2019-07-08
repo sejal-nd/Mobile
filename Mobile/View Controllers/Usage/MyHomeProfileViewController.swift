@@ -68,13 +68,13 @@ class MyHomeProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
+        navigationController?.styleNavbar()
     }
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
         if parent == nil {
-            navigationController?.setWhiteNavBar()
+            navigationController?.styleNavbar()
         }
     }
     

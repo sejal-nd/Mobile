@@ -122,7 +122,7 @@ class AutoPayViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if let navController = navigationController as? MainBaseNavigationController {
-            navController.setColoredNavBar()
+            navController.styleNavbar()
         }
     }
     
