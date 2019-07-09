@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var backgroundViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fakeNavBarView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var opcoLogoView: UIView!
     @IBOutlet weak var opcoLogo: UIImageView!
@@ -57,6 +58,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         view.backgroundColor = .white
         backgroundView.backgroundColor = .primaryColor
+        fakeNavBarView.backgroundColor = .primaryColor
         opcoLogoView.backgroundColor = .primaryColor
 
         scrollView?.rx.contentOffset.asDriver()
@@ -64,7 +66,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             .distinctUntilChanged()
             .drive(onNext: { [weak self] yOffset in
                 guard let self = self else { return }
-                let breakHeight = self.opcoLogoView.frame.size.height - 120
+                let breakHeight = self.opcoLogoView.frame.size.height - 110
                 if yOffset <= 0 {
                     self.backgroundViewBottomConstraint.constant = yOffset
                 } else if yOffset > breakHeight {

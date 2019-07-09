@@ -8,9 +8,16 @@
 
 import UIKit
 
-class UnauthenticatedUserViewController: UIViewController {
+class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    @IBOutlet weak var fakeNavBarView: UIView! {
+        didSet {
+            fakeNavBarView.backgroundColor = .primaryColor
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var headerView: UIView! {
         didSet {
             headerView.backgroundColor = .primaryColor
@@ -71,6 +78,11 @@ class UnauthenticatedUserViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    @IBAction func onBackPress() {
+        navigationController?.popViewController(animated: true)
     }
 
     @IBAction private func loginRegisterPress(_ sender: ButtonControl) {
