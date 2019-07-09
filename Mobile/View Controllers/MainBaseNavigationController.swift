@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainBaseNavigationController: UINavigationController {
+class MainBaseNavigationController: LargeTitleNavigationController {
     
     @objc var storyboardName: String! // Defined as runtime attribute in Main.storyboard
 

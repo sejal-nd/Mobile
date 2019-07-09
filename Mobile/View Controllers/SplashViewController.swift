@@ -124,6 +124,11 @@ class SplashViewController: UIViewController{
                             return
                     }
                     
+                    if #available(iOS 11.0, *) {
+                        navController.navigationBar.prefersLargeTitles = false
+                        navController.navigationItem.largeTitleDisplayMode = .never
+                    }
+                    
                     navController.setViewControllers([viewController], animated: false)
                     if this.shortcutItem != .none {
                         NotificationCenter.default.post(name: .didTapOnShortcutItem, object: this.shortcutItem)
