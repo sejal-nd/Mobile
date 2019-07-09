@@ -72,8 +72,8 @@ class ChangePasswordViewController: UIViewController {
         
         title = NSLocalizedString("Change Password", comment: "")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupValidation()
         
@@ -148,7 +148,6 @@ class ChangePasswordViewController: UIViewController {
         newPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.scrollView.setContentOffset(self.newPasswordTextField.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5) {
                     self.passwordStrengthView.isHidden = false
                 }
@@ -269,10 +268,6 @@ class ChangePasswordViewController: UIViewController {
     @IBAction func onEyeballPress(_ sender: UIButton) {
         if currentPasswordTextField.textField.isSecureTextEntry {
             currentPasswordTextField.textField.isSecureTextEntry = false
-//            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
-//            currentPasswordTextField.textField.font = nil
-//            currentPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-//            // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
             eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
         } else {
@@ -380,26 +375,24 @@ class ChangePasswordViewController: UIViewController {
         })
     }
     
+    
     // MARK: - ScrollView
     
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        var safeAreaBottomInset: CGFloat = 0
-        if #available(iOS 11.0, *) {
-            safeAreaBottomInset = self.view.safeAreaInsets.bottom
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = .zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
         }
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
+
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-    
+
 }
 
 

@@ -281,9 +281,9 @@
 		359BDB3822D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */; };
 		359BDB3922D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */; };
 		359BDB3A22D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */; };
-		359BDB3022D3B917007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB2F22D3B917007002B0 /* StickyFooterView.swift */; };
-		359BDB3122D3B917007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB2F22D3B917007002B0 /* StickyFooterView.swift */; };
-		359BDB3222D3B917007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB2F22D3B917007002B0 /* StickyFooterView.swift */; };
+		359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3F22D50F90007002B0 /* StickyFooterView.swift */; };
+		359BDB4122D50F97007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3F22D50F90007002B0 /* StickyFooterView.swift */; };
+		359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3F22D50F90007002B0 /* StickyFooterView.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -2620,7 +2620,7 @@
 		359BB2822148519D00FBAD83 /* sm_outage_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sm_outage_loading.json; sourceTree = "<group>"; };
 		359BDB2722D398F0007002B0 /* UIColor+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Image.swift"; sourceTree = "<group>"; };
 		359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleNavigationController.swift; sourceTree = "<group>"; };
-		359BDB2F22D3B917007002B0 /* StickyFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyFooterView.swift; sourceTree = "<group>"; };
+		359BDB3F22D50F90007002B0 /* StickyFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyFooterView.swift; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -4290,8 +4290,8 @@
 				B085C44220FD2C5500CE0893 /* ConversationalButton.swift */,
 				9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */,
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
+				359BDB3F22D50F90007002B0 /* StickyFooterView.swift */,
 				359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */,
-				359BDB2F22D3B917007002B0 /* StickyFooterView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -7595,6 +7595,7 @@
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
+				359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
 				54B31A701EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
@@ -7701,7 +7702,6 @@
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
 				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				9C7FFD1A22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
-				359BDB3022D3B917007002B0 /* StickyFooterView.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
@@ -7972,7 +7972,6 @@
 				823694331FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */,
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
-				359BDB3222D3B917007002B0 /* StickyFooterView.swift in Sources */,
 				B0CB1C80227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
 				35277B03210794B400411297 /* UnavailableView.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
@@ -8010,6 +8009,7 @@
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
+				359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
@@ -8348,6 +8348,7 @@
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CE1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
+				359BDB4122D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
@@ -8454,7 +8455,6 @@
 				8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				9C7FFD1B22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
-				359BDB3122D3B917007002B0 /* StickyFooterView.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
