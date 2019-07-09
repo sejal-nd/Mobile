@@ -119,11 +119,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.styleNavbar()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         if viewModel.initialEnrollmentStatus == .enrolled {
             Analytics.log(event: .autoPayModifySettingOffer)

@@ -27,17 +27,5 @@ class UpdatesDetailViewController: UIViewController {
         label.font = OpenSans.regular.of(textStyle: .body)
         label.text = opcoUpdate.message
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.styleNavbar()
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            navigationController?.styleNavbar()
-        }
-    }
 
 }

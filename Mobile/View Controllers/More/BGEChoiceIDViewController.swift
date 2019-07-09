@@ -71,8 +71,10 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.styleNavbar()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
+
 
     private func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)

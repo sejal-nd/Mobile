@@ -36,12 +36,6 @@ class SmartThermostatScheduleViewController: UIViewController {
         bindSaveStates()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
     func buildLayout() {
         view.backgroundColor = .white
         

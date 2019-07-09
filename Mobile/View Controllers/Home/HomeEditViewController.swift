@@ -69,8 +69,8 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
-        navigationController?.styleNavbar()
+
+        
     }
     
     // MARK - Drag Handling

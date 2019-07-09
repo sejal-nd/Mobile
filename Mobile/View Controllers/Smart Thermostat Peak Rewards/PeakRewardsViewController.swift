@@ -83,13 +83,7 @@ class PeakRewardsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = gradientView.bounds
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         gradientLayer.frame = gradientView.bounds

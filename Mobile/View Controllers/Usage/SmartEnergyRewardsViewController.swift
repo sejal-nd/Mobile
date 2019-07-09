@@ -49,13 +49,7 @@ class SmartEnergyRewardsViewController: UIViewController {
         buttonTapSetup()
         bindViewModel()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

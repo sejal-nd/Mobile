@@ -50,13 +50,7 @@ class HourlyPricingViewController: UIViewController {
      
         webView.load(URLRequest(url: url))
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
+
 }
 
 extension HourlyPricingViewController: WKNavigationDelegate {

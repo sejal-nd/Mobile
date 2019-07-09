@@ -61,12 +61,7 @@ class StormModeBillViewController: AccountPickerViewController {
             })
             .disposed(by: disposeBag)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.styleNavbar()
-    }
-    
+
     @objc func setRefreshControlEnabled(enabled: Bool) {
         if enabled {
             scrollView!.alwaysBounceVertical = true

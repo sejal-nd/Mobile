@@ -52,9 +52,7 @@ class TotalSavingsViewController: UIViewController {
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-        
+
         scrollViewDidScroll(scrollView)
     }
     

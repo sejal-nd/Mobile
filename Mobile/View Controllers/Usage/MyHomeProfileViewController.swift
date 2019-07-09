@@ -64,20 +64,7 @@ class MyHomeProfileViewController: UIViewController {
         bindTextField()
         bindSaveResults()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            navigationController?.styleNavbar()
-        }
-    }
-    
+
     func styleViews() {
         headerLabel.numberOfLines = 0
         headerLabel.font = SystemFont.regular.of(textStyle: .headline)

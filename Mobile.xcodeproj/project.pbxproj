@@ -184,7 +184,6 @@
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
-		352CB2072140448C00DAF045 /* UINavigationController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CB2062140448C00DAF045 /* UINavigationController+Style.swift */; };
 		35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
@@ -1328,8 +1327,6 @@
 		B0A79B1120E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
 		B0A79B1220E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
 		B0A79B1320E6BF6300E04DD8 /* DateUITestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A79B1020E6BF6300E04DD8 /* DateUITestUtil.swift */; };
-		B0A8308221419C6200EC3F21 /* UINavigationController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CB2062140448C00DAF045 /* UINavigationController+Style.swift */; };
-		B0A8308321419C6300EC3F21 /* UINavigationController+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352CB2062140448C00DAF045 /* UINavigationController+Style.swift */; };
 		B0A830892146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A830882146F12F00EC3F21 /* StormModeBillViewController.swift */; };
 		B0A8308A2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A830882146F12F00EC3F21 /* StormModeBillViewController.swift */; };
 		B0A8308B2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A830882146F12F00EC3F21 /* StormModeBillViewController.swift */; };
@@ -2593,7 +2590,6 @@
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
-		352CB2062140448C00DAF045 /* UINavigationController+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Style.swift"; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3557071173F2557B279CD47A /* Pods_PECO_WatchOS_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECO_WatchOS_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
@@ -4584,7 +4580,6 @@
 				35AFB41820C6C3A1000312B9 /* UIViewRoundCorners.swift */,
 				35277B042109FC1000411297 /* ViewControllerAlertable.swift */,
 				35A6C6C9211C8B3100C2A58F /* UIColorDarker.swift */,
-				352CB2062140448C00DAF045 /* UINavigationController+Style.swift */,
 				2249C036216C44C800EAA44D /* URLSession+Rx.swift */,
 				B05E9D12217F688A0003FAB8 /* Application.swift */,
 				9CCE3E3E21B865F30008E1AF /* UIAlertController+SaveToWallet.swift */,
@@ -7429,7 +7424,6 @@
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
-				352CB2072140448C00DAF045 /* UINavigationController+Style.swift in Sources */,
 				E8400E691FE05F0C0064E242 /* MockWalletService.swift in Sources */,
 				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
@@ -7800,7 +7794,6 @@
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
-				B0A8308321419C6300EC3F21 /* UINavigationController+Style.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				B01748992135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
@@ -8179,7 +8172,6 @@
 				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
-				B0A8308221419C6200EC3F21 /* UINavigationController+Style.swift in Sources */,
 				E8C453201EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
 				B01748982135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */,

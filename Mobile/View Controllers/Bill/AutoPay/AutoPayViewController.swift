@@ -117,15 +117,7 @@ class AutoPayViewController: UIViewController {
         accessibilitySetup()
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let navController = navigationController as? MainBaseNavigationController {
-            navController.styleNavbar()
-        }
-    }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer.removeFromSuperlayer()

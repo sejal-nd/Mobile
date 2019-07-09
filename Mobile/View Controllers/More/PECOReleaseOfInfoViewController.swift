@@ -56,7 +56,7 @@ class PECOReleaseOfInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.styleNavbar()
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         fetchCurrentSelection()
     }

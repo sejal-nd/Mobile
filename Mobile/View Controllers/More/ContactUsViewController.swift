@@ -66,9 +66,10 @@ class ContactUsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.styleNavbar()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
     override func updateViewConstraints() {
         for constraint in dividerLineConstraints {
             constraint.constant = 1.0 / UIScreen.main.scale

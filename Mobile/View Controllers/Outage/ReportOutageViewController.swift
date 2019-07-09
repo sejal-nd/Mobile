@@ -232,13 +232,7 @@ class ReportOutageViewController: UIViewController {
             submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         

@@ -243,13 +243,7 @@ class MakePaymentViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
+
     override func updateViewConstraints() {
         for constraint in editPaymentDividerLineConstraints {
             constraint.constant = 1.0 / UIScreen.main.scale

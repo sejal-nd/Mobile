@@ -59,13 +59,7 @@ class BillBreakdownViewController: UIViewController {
         
         styleViews()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.styleNavbar()
-    }
-    
+
     // MARK: - Style Views
     
     private func styleViews() {

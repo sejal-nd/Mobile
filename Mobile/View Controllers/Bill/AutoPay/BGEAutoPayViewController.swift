@@ -90,12 +90,7 @@ class BGEAutoPayViewController: UIViewController {
             })
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.styleNavbar()
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if termsStackView.isHidden &&
