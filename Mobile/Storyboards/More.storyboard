@@ -101,13 +101,13 @@
         <!--Contact Us-->
         <scene sceneID="yYj-Mn-8mS">
             <objects>
-                <viewController storyboardIdentifier="ContactUsViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="TYr-cP-fT5" customClass="ContactUsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactUsViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="TYr-cP-fT5" customClass="ContactUsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h3d-35-rID">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="GzX-Zv-PKt">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="936"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIv-U1-n62" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="745.5"/>
@@ -621,9 +621,9 @@
                         <constraints>
                             <constraint firstItem="jit-TV-gME" firstAttribute="trailing" secondItem="GzX-Zv-PKt" secondAttribute="trailing" id="0uF-ce-4RU"/>
                             <constraint firstAttribute="bottom" secondItem="GzX-Zv-PKt" secondAttribute="bottom" id="6VY-Mn-9wq"/>
-                            <constraint firstItem="GzX-Zv-PKt" firstAttribute="top" secondItem="jit-TV-gME" secondAttribute="top" id="TNI-M4-nCd"/>
                             <constraint firstItem="ZIv-U1-n62" firstAttribute="width" secondItem="h3d-35-rID" secondAttribute="width" id="Ums-l9-0mE"/>
                             <constraint firstItem="GzX-Zv-PKt" firstAttribute="leading" secondItem="jit-TV-gME" secondAttribute="leading" id="hu3-vv-a0l"/>
+                            <constraint firstAttribute="top" secondItem="GzX-Zv-PKt" secondAttribute="top" id="plO-Kb-xB2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jit-TV-gME"/>
                     </view>
@@ -746,22 +746,22 @@
         <!--Change Password-->
         <scene sceneID="9e3-Th-Q4n">
             <objects>
-                <viewController storyboardIdentifier="changePassword" title="Change Password" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="9Ug-ji-Hni" customClass="ChangePasswordViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changePassword" title="Change Password" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="9Ug-ji-Hni" customClass="ChangePasswordViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MAy-au-tEX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="css-Si-oMh">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="css-Si-oMh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kES-Fi-P4P" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="648"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v76-Y4-LTO" userLabel="Tablet View">
-                                                <rect key="frame" x="30" y="0.0" width="315" height="663"/>
+                                                <rect key="frame" x="30" y="0.0" width="315" height="648"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ncQ-MU-bGW">
-                                                        <rect key="frame" x="0.0" y="30" width="315" height="603"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ncQ-MU-bGW">
+                                                        <rect key="frame" x="0.0" y="30" width="315" height="588"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jI-xc-C9j">
                                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="54.5"/>
@@ -789,18 +789,17 @@
                                                                     <constraint firstAttribute="bottom" secondItem="pfn-kE-A72" secondAttribute="bottom" id="fdG-am-SLz"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYq-e2-Dnd" userLabel="Current Password View">
-                                                                <rect key="frame" x="0.0" y="84.5" width="315" height="60"/>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="FYq-e2-Dnd" userLabel="Current Password View">
+                                                                <rect key="frame" x="0.0" y="84.5" width="315" height="55"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="884-Yk-5tq" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="60"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="55"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uok-hL-HCJ" userLabel="Eyeball Button">
-                                                                        <rect key="frame" x="255" y="0.0" width="60" height="60"/>
+                                                                        <rect key="frame" x="260" y="0.0" width="55" height="55"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="60" id="oPG-qg-c9a"/>
-                                                                            <constraint firstAttribute="height" constant="60" id="xMw-Ns-TpZ"/>
+                                                                            <constraint firstAttribute="width" constant="55" id="oPG-qg-c9a"/>
                                                                         </constraints>
                                                                         <state key="normal" image="ic_eyeball_disabled"/>
                                                                         <connections>
@@ -811,25 +810,20 @@
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstItem="884-Yk-5tq" firstAttribute="leading" secondItem="FYq-e2-Dnd" secondAttribute="leading" id="0xW-ij-kXJ"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="MZy-ZR-IcB"/>
+                                                                    <constraint firstItem="Uok-hL-HCJ" firstAttribute="top" secondItem="884-Yk-5tq" secondAttribute="top" id="AxV-5P-t2p"/>
+                                                                    <constraint firstItem="Uok-hL-HCJ" firstAttribute="bottom" secondItem="884-Yk-5tq" secondAttribute="bottom" id="HT6-Pe-Unn"/>
                                                                     <constraint firstItem="884-Yk-5tq" firstAttribute="top" secondItem="FYq-e2-Dnd" secondAttribute="top" id="Y3d-K9-oB0"/>
-                                                                    <constraint firstItem="Uok-hL-HCJ" firstAttribute="top" secondItem="884-Yk-5tq" secondAttribute="top" id="bYa-if-OMQ"/>
                                                                     <constraint firstAttribute="bottom" secondItem="884-Yk-5tq" secondAttribute="bottom" id="i0S-dX-YHn"/>
                                                                     <constraint firstAttribute="trailing" secondItem="884-Yk-5tq" secondAttribute="trailing" id="jkS-a4-xN0"/>
                                                                     <constraint firstItem="Uok-hL-HCJ" firstAttribute="trailing" secondItem="884-Yk-5tq" secondAttribute="trailing" id="kF8-8l-Dlc"/>
-                                                                    <constraint firstAttribute="height" priority="250" constant="55" id="lCe-Jq-Dua"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="174.5" width="315" height="60"/>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="YLR-ET-G9c" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="169.5" width="315" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="fMl-Rs-kbW"/>
-                                                                    <constraint firstAttribute="height" priority="250" constant="55" id="qhj-s1-1hW"/>
-                                                                </constraints>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEP-m1-FLp">
-                                                                <rect key="frame" x="0.0" y="264.5" width="315" height="248.5"/>
+                                                                <rect key="frame" x="0.0" y="254.5" width="315" height="248.5"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="s6E-HU-rP3">
                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="248.5"/>
@@ -988,18 +982,14 @@
                                                                     <constraint firstItem="s6E-HU-rP3" firstAttribute="top" secondItem="dEP-m1-FLp" secondAttribute="top" id="yW2-SY-WJe"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-5f-05z" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="543" width="315" height="60"/>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-5f-05z" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="533" width="315" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" priority="250" constant="55" id="32l-cG-AKQ"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="55" id="B3P-lk-L5Y"/>
-                                                                </constraints>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="999" constant="460" id="D6R-Nu-tzJ"/>
                                                     <constraint firstItem="ncQ-MU-bGW" firstAttribute="top" secondItem="v76-Y4-LTO" secondAttribute="top" constant="30" id="M05-zx-hOl"/>
@@ -1010,7 +1000,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="v76-Y4-LTO" firstAttribute="centerX" secondItem="kES-Fi-P4P" secondAttribute="centerX" id="4E3-eb-Ypa"/>
                                             <constraint firstItem="v76-Y4-LTO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kES-Fi-P4P" secondAttribute="leading" constant="30" id="KTd-k3-C59"/>
@@ -1064,6 +1054,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hvS-oo-gCN"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="750"/>
                     <connections>
@@ -1083,6 +1074,7 @@
                         <outlet property="passwordStrengthView" destination="dEP-m1-FLp" id="uzA-Jx-edW"/>
                         <outlet property="scrollView" destination="css-Si-oMh" id="wE3-lG-Kvn"/>
                         <outlet property="specialCharacterCheck" destination="oTL-Kh-MW2" id="gmI-5e-4Ye"/>
+                        <outlet property="stickyFooterBottomConstraint" destination="5q1-lG-BtI" id="4GB-e6-i0h"/>
                         <outlet property="submitButton" destination="qAa-Ko-ifg" id="Eet-YD-tTU"/>
                         <outlet property="uppercaseCheck" destination="X2B-PT-aSA" id="ufU-ZC-C2W"/>
                         <outletCollection property="passwordRequirementLabels" destination="TfV-dI-33W" collectionClass="NSMutableArray" id="His-GB-pJ2"/>

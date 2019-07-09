@@ -46,6 +46,7 @@ class ChangePasswordViewController: UIViewController {
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     
+    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: PrimaryButtonNew!
     
     let disposeBag = DisposeBag()
@@ -379,18 +380,16 @@ class ChangePasswordViewController: UIViewController {
     // MARK: - ScrollView
     
     @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
 
-        let keyboardScreenEndFrame = keyboardValue.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            scrollView.contentInset = .zero
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
-        }
-
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
+        let keyboardHeight = keyboardValue.cgRectValue.size.height
+        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.stickyFooterBottomConstraint.constant = keyboardHeight
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 
 }
