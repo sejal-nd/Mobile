@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
-import StoreKit
 
 class BillViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
@@ -145,9 +144,8 @@ class BillViewController: AccountPickerViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
-            SKStoreReviewController.requestReview()
-        }
+        
+        AppRating.present()
         
         // Bug was found when initially loading the Bill tab with no network. You could pull the scrollView down
         // to begin the refresh process, but would not be able to pull it down all the way to trigger the refresh.

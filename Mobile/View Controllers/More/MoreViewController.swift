@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import StoreKit
 import Toast_Swift
 
 class MoreViewController: UIViewController {
@@ -81,9 +80,7 @@ class MoreViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if #available(iOS 10.3, *) , AppRating.shouldRequestRating() {
-            SKStoreReviewController.requestReview()
-        }
+        AppRating.present()
     }
     
     
