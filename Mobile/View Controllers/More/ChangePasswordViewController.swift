@@ -380,11 +380,17 @@ class ChangePasswordViewController: UIViewController {
     // MARK: - ScrollView
     
     @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
             let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
             let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
 
-        let keyboardHeight = keyboardValue.cgRectValue.size.height
+        let keyboardHeight: CGFloat
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
+        } else {
+            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
+        }
+        
         let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             self.stickyFooterBottomConstraint.constant = keyboardHeight
