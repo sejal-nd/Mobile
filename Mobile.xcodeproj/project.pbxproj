@@ -284,6 +284,9 @@
 		359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3F22D50F90007002B0 /* StickyFooterView.swift */; };
 		359BDB4122D50F97007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3F22D50F90007002B0 /* StickyFooterView.swift */; };
 		359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB3F22D50F90007002B0 /* StickyFooterView.swift */; };
+		359BDB4C22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
+		359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
+		359BDB4E22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -2621,6 +2624,7 @@
 		359BDB2722D398F0007002B0 /* UIColor+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Image.swift"; sourceTree = "<group>"; };
 		359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleNavigationController.swift; sourceTree = "<group>"; };
 		359BDB3F22D50F90007002B0 /* StickyFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyFooterView.swift; sourceTree = "<group>"; };
+		359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddCloseButton.swift"; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -3098,7 +3102,7 @@
 		B574BAF61E786473001E8A44 /* MockOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockOutageService.swift; sourceTree = "<group>"; };
 		B574BAFC1E787655001E8A44 /* OutageInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageInfo.swift; sourceTree = "<group>"; };
 		B58B5AC11E4E28740051FD5F /* BGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		B58B5B1E1E515BD50051FD5F /* PECO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PECO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B591E516B100051FD5F /* BGE-Environment-DEV-STAGE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEV-STAGE.plist"; sourceTree = "<group>"; };
@@ -4593,6 +4597,7 @@
 				9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */,
 				351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */,
 				359BDB2722D398F0007002B0 /* UIColor+Image.swift */,
+				359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -7746,6 +7751,7 @@
 				B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
+				359BDB4C22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */,
 				B039DB71225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
 				6A4FD45A4A53BE785EDA8FF4 /* TutorialModalViewController.swift in Sources */,
 			);
@@ -7762,6 +7768,7 @@
 				35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */,
 				B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
+				359BDB4E22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */,
 				B0CB1CB9228487020081F99B /* InfoAlertController.swift in Sources */,
 				B574BACC1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				B0DB274D215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
@@ -8499,6 +8506,7 @@
 				B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
+				359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */,
 				B039DB72225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
 				6A4FDC6FCEC722F72EA840D3 /* TutorialModalViewController.swift in Sources */,
 			);
