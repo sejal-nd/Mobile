@@ -13,8 +13,8 @@
             <connections>
                 <outlet property="caretAccessory" destination="KsY-Hs-M3n" id="HHl-qJ-F39"/>
                 <outlet property="checkImage" destination="wgW-sA-4SD" id="gvh-35-Bxq"/>
-                <outlet property="detailLabel" destination="fAq-I6-Jhg" id="nQp-nI-SkT"/>
-                <outlet property="label" destination="EgK-Xb-vxA" id="CCp-QO-C2H"/>
+                <outlet property="descriptionLabel" destination="fAq-I6-Jhg" id="jK2-PK-GFL"/>
+                <outlet property="valueLabel" destination="EgK-Xb-vxA" id="SnB-6J-Gln"/>
                 <outlet property="view" destination="iN0-l3-epB" id="NJw-u0-KU2"/>
             </connections>
         </placeholder>
@@ -43,16 +43,16 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sik-2v-qbl">
                             <rect key="frame" x="33" y="0.0" width="234" height="39"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is the button label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgK-Xb-vxA">
-                                    <rect key="frame" x="0.0" y="0.0" width="234" height="21.5"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                    <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the detail label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-I6-Jhg">
-                                    <rect key="frame" x="0.0" y="24.5" width="234" height="14.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the description label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-I6-Jhg">
+                                    <rect key="frame" x="0.0" y="0.0" width="234" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is the value label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgK-Xb-vxA">
+                                    <rect key="frame" x="0.0" y="17.5" width="234" height="21.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                    <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>

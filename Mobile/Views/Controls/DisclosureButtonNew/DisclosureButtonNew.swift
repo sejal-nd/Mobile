@@ -14,20 +14,27 @@ class DisclosureButtonNew: UIButton {
     
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var checkImage: UIImageView!
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var caretAccessory: UIImageView!
     
-    @IBInspectable var labelText: String? {
+    @IBInspectable var descriptionText: String? {
         didSet {
-            label.text = labelText
+            updateLabels()
+        }
+    }
+    
+    @IBInspectable var valueText: String? {
+        didSet {
+            updateLabels()
         }
     }
     
     var stormTheme = false {
         didSet {
             view.backgroundColor = .stormModeGray
-            label.textColor = .white
+            descriptionLabel.textColor = .white
+            valueLabel.textColor = .white
             caretAccessory.image = #imageLiteral(resourceName: "ic_caret_white.pdf")
         }
     }
@@ -50,24 +57,39 @@ class DisclosureButtonNew: UIButton {
         view.translatesAutoresizingMaskIntoConstraints = true
         view.isUserInteractionEnabled = false
         addSubview(view)
-
-        label.font = SystemFont.regular.of(textStyle: .headline)
-        label.textColor = .deepGray
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        detailLabel.textColor = .middleGray
-        setDetailLabel(text: "", checkHidden: true)
         
         fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
+
+        descriptionLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        descriptionLabel.textColor = .middleGray
+        
+        valueLabel.font = SystemFont.regular.of(textStyle: .headline)
+        valueLabel.textColor = .deepGray
+        
+        checkImage.isHidden = true
+        
+        updateLabels()
     }
     
-    func setDetailLabel(text: String?, checkHidden: Bool) {
-        detailLabel.text = text
-        detailLabel.isHidden = (text ?? "").isEmpty
+    public func setHideCheck(checkHidden: Bool) {
         checkImage.isHidden = checkHidden
     }
     
     public func setHideCaret(caretHidden: Bool) {
         caretAccessory.isHidden = caretHidden
+    }
+    
+    private func updateLabels() {
+        // If both a description and value are set, display both
+        // If only a description is set, display the description as the centered value label
+        if let value = valueText, !value.isEmpty {
+            descriptionLabel.text = descriptionText
+            descriptionLabel.isHidden = descriptionText?.isEmpty ?? true
+            valueLabel.text = value
+        } else {
+            valueLabel.text = descriptionText
+            descriptionLabel.isHidden = true
+        }
     }
     
     override var isHighlighted: Bool {
@@ -96,15 +118,15 @@ class DisclosureButtonNew: UIButton {
 
 extension Reactive where Base: DisclosureButtonNew {
     
-    var labelText: Binder<String?> {
+    var descriptionText: Binder<String?> {
         return Binder(base) { button, text in
-            button.label.text = text
+            button.descriptionLabel.text = text
         }
     }
     
-    var detailText: Binder<String?> {
+    var valueText: Binder<String?> {
         return Binder(base) { button, text in
-            button.setDetailLabel(text: text, checkHidden: true)
+            button.valueLabel.text = text
         }
     }
     
