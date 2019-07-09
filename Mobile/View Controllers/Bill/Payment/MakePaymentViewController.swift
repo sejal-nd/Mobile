@@ -240,6 +240,12 @@ class MakePaymentViewController: UIViewController {
         fetchData(initialFetch: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

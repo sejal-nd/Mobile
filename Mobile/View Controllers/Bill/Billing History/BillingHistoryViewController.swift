@@ -67,7 +67,9 @@ class BillingHistoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-                
+
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
         title = viewModel.viewingMoreActivity ?
             NSLocalizedString("More Activity", comment: "") :
             NSLocalizedString("Bill & Payment Activity", comment: "")

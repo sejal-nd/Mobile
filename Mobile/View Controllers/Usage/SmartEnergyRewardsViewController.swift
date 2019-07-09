@@ -49,6 +49,12 @@ class SmartEnergyRewardsViewController: UIViewController {
         buttonTapSetup()
         bindViewModel()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

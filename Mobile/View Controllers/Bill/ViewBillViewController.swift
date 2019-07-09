@@ -37,6 +37,8 @@ class ViewBillViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         if webView != nil {
             /* Upon the first viewWillAppear, webView will be nil so this will not happen.

@@ -33,11 +33,6 @@ class TermsPoliciesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        if #available(iOS 11.0, *) {
-            // Needed to force large title on screen load
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
     }
     
     

@@ -67,6 +67,12 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     @IBAction func xPressed(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)

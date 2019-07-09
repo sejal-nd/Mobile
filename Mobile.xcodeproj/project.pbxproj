@@ -5163,8 +5163,8 @@
 		E80D2E301E730180002626C9 /* Outage */ = {
 			isa = PBXGroup;
 			children = (
-				2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */,
 				E80D2E321E7301B8002626C9 /* OutageViewController.swift */,
+				2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */,
 				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
 			);
 			path = Outage;

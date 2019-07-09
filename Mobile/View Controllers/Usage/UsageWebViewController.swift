@@ -70,6 +70,12 @@ class UsageWebViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     @objc func onInfoButtonPress() {
         let alertVc = UIAlertController(title: NSLocalizedString("Billing Period Info", comment: ""),
                                         message: NSLocalizedString("The dates shown represent your billing period. Smart meter data is typically available within 24-48 hours of your usage.", comment: ""),

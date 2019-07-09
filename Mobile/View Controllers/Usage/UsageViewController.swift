@@ -206,7 +206,7 @@ class UsageViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
+
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     

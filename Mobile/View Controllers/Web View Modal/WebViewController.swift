@@ -49,6 +49,12 @@ class WebViewController: DismissableFormSheetViewController {
         setupWKWebView(with: url)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     @IBAction func xAction(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }

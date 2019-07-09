@@ -138,6 +138,12 @@ class PaperlessEBillViewController: UIViewController {
         enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func colorAndShadowSetup() {
         singleAccountEnrollLabel.textColor = .blackText
         singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .headline)

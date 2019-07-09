@@ -64,6 +64,12 @@ class MyHomeProfileViewController: UIViewController {
         bindTextField()
         bindSaveResults()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     func styleViews() {
         headerLabel.numberOfLines = 0
