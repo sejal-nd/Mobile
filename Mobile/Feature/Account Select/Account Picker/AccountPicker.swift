@@ -110,9 +110,20 @@ class AccountPicker: UIControl {
         loadingIndicator.isHidden = !loading
         stackView.isHidden = loading
     }
+    
+    private var shouldRefresh: Bool {
+        let storedCurrAccount = AccountsStore.shared.currentAccount
+        if currentAccount != storedCurrAccount {
+            return true
+        }
+        if isMultiPremise && currentAccount?.currentPremise != storedCurrAccount.currentPremise {
+            return true
+        }
+        return false
+    }
 
-    func refresh() {
-        if currentAccount != AccountsStore.shared.currentAccount {
+    func refresh(force: Bool = false) {
+        if force || shouldRefresh {
             currentAccount = AccountsStore.shared.currentAccount
             delegate?.accountPickerDidChangeAccount(self)
             
@@ -198,8 +209,18 @@ class AccountPicker: UIControl {
 }
 
 extension AccountPicker: AccountSelectDelegate {
-    internal func didSelectAccount(_ account: Account) {
-        AccountsStore.shared.currentIndex = accounts.firstIndex(of: account)
-        refresh()
+    internal func didSelectAccount(_ account: Account, premiseIndexPath: IndexPath?) {
+        let selectedAccountIndex = accounts.firstIndex(of: account)
+        
+        // Set Selected Account
+        AccountsStore.shared.currentIndex = selectedAccountIndex
+        
+        // Set Selected Premise
+        if let selectedAccountIndex = selectedAccountIndex,
+            let premiseIndexPath = premiseIndexPath {
+            AccountsStore.shared.accounts[selectedAccountIndex].currentPremise = AccountsStore.shared.currentAccount.premises[premiseIndexPath.row]
+        }
+
+        refresh(force: true)
     }
 }

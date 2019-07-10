@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PremiseSelectDelegate: class {
-    func didSelectPremise(at indexPath: IndexPath)
+    func didSelectPremise(premiseIndexPath: IndexPath, accountIndexPath: IndexPath)
 }
 
 class AccountListRow: UITableViewCell {
@@ -217,7 +217,7 @@ extension AccountListRow: UITableViewDelegate {
         premiseSelectedIndexPath = indexPath
         
         // Select parent checkmark.
-        delegate?.didSelectPremise(at: parentIndexPath)
+        delegate?.didSelectPremise(premiseIndexPath: indexPath, accountIndexPath: parentIndexPath)
     }
 }
 
