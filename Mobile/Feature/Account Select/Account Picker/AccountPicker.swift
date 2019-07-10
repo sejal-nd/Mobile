@@ -112,7 +112,7 @@ class AccountPicker: UIControl {
     }
 
     func refresh(force: Bool = false) {
-        if currentAccount != AccountsStore.shared.currentAccount || forceRefresh {
+        if currentAccount != AccountsStore.shared.currentAccount || force {
             currentAccount = AccountsStore.shared.currentAccount
             delegate?.accountPickerDidChangeAccount(self)
             
