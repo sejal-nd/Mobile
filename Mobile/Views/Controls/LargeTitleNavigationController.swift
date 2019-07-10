@@ -31,14 +31,12 @@ class LargeTitleNavigationController: UINavigationController {
         navigationBar.setBackgroundImage(nil, for: .default)
         navigationBar.shadowImage = UIColor.primaryColor.image()
         
-        if #available(iOS 11.0, *) {
-            navigationBar.largeTitleTextAttributes = [
-                .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
-                .font: OpenSans.bold.of(size: 20)
-            ]
-            navigationItem.largeTitleDisplayMode = .always
-            navigationBar.prefersLargeTitles = true
-        }
+        navigationBar.largeTitleTextAttributes = [
+            .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
+            .font: OpenSans.bold.of(size: 20)
+        ]
+        navigationItem.largeTitleDisplayMode = .always
+        navigationBar.prefersLargeTitles = true
         
         navigationBar.titleTextAttributes = [
             .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,

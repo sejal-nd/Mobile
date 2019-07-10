@@ -100,9 +100,7 @@ class RegistrationViewModel {
             .subscribe(onNext: { [weak self] _ in
                 if #available(iOS 12.0, *) {
                     onSuccess()
-                }
-                // Manually save to SWC if iOS 11
-                else if #available(iOS 11.0, *) {
+                } else { // Manually save to SWC if iOS 11
                     guard let this = self else { return }
                     SharedWebCredentials.save(credential: (this.username.value, this.newPassword.value), domain: Environment.shared.associatedDomain) { [weak this] error in
                         DispatchQueue.main.async {
@@ -113,8 +111,6 @@ class RegistrationViewModel {
                             }
                         }
                     }
-                } else {
-                    onSuccess()
                 }
             }, onError: { error in
                 let serviceError = error as! ServiceError
