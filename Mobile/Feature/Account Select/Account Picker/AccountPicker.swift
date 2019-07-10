@@ -110,9 +110,20 @@ class AccountPicker: UIControl {
         loadingIndicator.isHidden = !loading
         stackView.isHidden = loading
     }
+    
+    private var shouldRefresh: Bool {
+        let storedCurrAccount = AccountsStore.shared.currentAccount
+        if currentAccount != storedCurrAccount {
+            return true
+        }
+        if isMultiPremise && currentAccount?.currentPremise != storedCurrAccount.currentPremise {
+            return true
+        }
+        return false
+    }
 
     func refresh(force: Bool = false) {
-        if currentAccount != AccountsStore.shared.currentAccount || force {
+        if force || shouldRefresh {
             currentAccount = AccountsStore.shared.currentAccount
             delegate?.accountPickerDidChangeAccount(self)
             
