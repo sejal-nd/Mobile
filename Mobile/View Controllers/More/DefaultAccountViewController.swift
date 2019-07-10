@@ -57,7 +57,7 @@ class DefaultAccountViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func showLoadingView(_ show: Bool) {

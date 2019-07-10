@@ -31,7 +31,13 @@ class TermsPoliciesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+//        if #available(iOS 11.0, *) {
+//            navigationController?.navigationBar.prefersLargeTitles = true
+//            navigationController?.navigationItem.largeTitleDisplayMode = .always
+//        }
     }
     
     

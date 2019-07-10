@@ -47,9 +47,10 @@ class AlertsViewController: AccountPickerViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar(hidesBottomBorder: true)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         

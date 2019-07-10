@@ -47,14 +47,16 @@ class OutageMapViewController: UIViewController {
         webView.isAccessibilityElement = false
         webView.accessibilityLabel = a11yLabel
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar(hidesBottomBorder: true)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if(unauthenticatedExperience) {
             Analytics.log(event: .viewOutageMapUnAuthOfferComplete)
         }

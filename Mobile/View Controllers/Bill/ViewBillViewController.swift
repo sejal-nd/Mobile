@@ -37,8 +37,9 @@ class ViewBillViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
-        navigationController?.setWhiteNavBar()
         if webView != nil {
             /* Upon the first viewWillAppear, webView will be nil so this will not happen.
              * When peek/popping from Billing History, if you wait on the peek until the PDF
@@ -67,13 +68,6 @@ class ViewBillViewController: UIViewController {
         
         guard let pdfData = viewModel.pdfData, let baseUrl = URL(string: "https://www.google.com") else { return }
         webView.load(pdfData, mimeType: "application/pdf", characterEncodingName: "utf-8", baseURL: baseUrl)
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            navigationController?.setColoredNavBar()
-        }
     }
     
     func fetchBillPDFData() {

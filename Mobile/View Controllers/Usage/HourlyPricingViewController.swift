@@ -54,9 +54,9 @@ class HourlyPricingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
 }
 
 extension HourlyPricingViewController: WKNavigationDelegate {

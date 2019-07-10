@@ -72,11 +72,6 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             newCell?.label.font = OpenSans.semibold.of(textStyle: .subheadline)
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setColoredNavBar()
-    }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         if appointments.count == 1 {

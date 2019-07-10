@@ -17,9 +17,8 @@ class LandingViewController: UIViewController {
 
     @IBOutlet weak var logoBackgroundView: UIView!
     @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var signInButton: SecondaryButton!
-    @IBOutlet weak var orLabel: UILabel!
-    @IBOutlet weak var registerButton: SecondaryButton!
+    @IBOutlet weak var signInButton: PrimaryButtonNew!
+    @IBOutlet weak var registerButton: SecondaryButtonNew!
     @IBOutlet weak var continueAsGuestButon: UIButton!
     @IBOutlet weak var tabletView: UIView!
     @IBOutlet weak var versionLabel: UILabel!
@@ -38,12 +37,9 @@ class LandingViewController: UIViewController {
         super.viewDidLoad()
 
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
-        orLabel.text = NSLocalizedString("OR", comment: "")
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
-        continueAsGuestButon.setTitle(NSLocalizedString("CONTINUE AS GUEST", comment: ""), for: .normal)
-        
-        orLabel.font = SystemFont.bold.of(textStyle: .headline)
-        continueAsGuestButon.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+        continueAsGuestButon.setTitle(NSLocalizedString("Continue as Guest", comment: ""), for: .normal)
+        continueAsGuestButon.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
 
         logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor

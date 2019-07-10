@@ -8,9 +8,16 @@
 
 import UIKit
 
-class UnauthenticatedUserViewController: UIViewController {
+class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDelegate {
+    
+    @IBOutlet weak var fakeNavBarView: UIView! {
+        didSet {
+            fakeNavBarView.backgroundColor = .primaryColor
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var headerView: UIView! {
         didSet {
             headerView.backgroundColor = .primaryColor
@@ -70,16 +77,12 @@ class UnauthenticatedUserViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.navigationBar.barStyle = .black // Needed for white status bar
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
-
-        setNeedsStatusBarAppearanceUpdate()
-
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    @IBAction func onBackPress() {
+        navigationController?.popViewController(animated: true)
     }
 
     @IBAction private func loginRegisterPress(_ sender: ButtonControl) {

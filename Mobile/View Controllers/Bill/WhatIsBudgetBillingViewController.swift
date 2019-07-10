@@ -133,6 +133,12 @@ class WhatIsBudgetBillingViewController: DismissableFormSheetViewController {
         card2Bullet4Label.setLineHeight(lineHeight: 24)
         card2Bullet5Label.setLineHeight(lineHeight: 24)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     @IBAction func onXPress() {
         dismiss(animated: true, completion: nil)

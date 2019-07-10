@@ -45,6 +45,12 @@ class PaperlessEBillCommercialViewController: DismissableFormSheetViewController
         buttonLabel.textColor = .actionBlue
         buttonLabel.text = NSLocalizedString("Business customers can create an online account and enroll in Paperless eBill here.", comment: "")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     @IBAction func cancelPressed(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)

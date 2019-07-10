@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import RxSwiftExt
 import Lottie
-import StoreKit
 import UserNotifications
 import SafariServices
 
@@ -280,9 +279,7 @@ class HomeViewController: AccountPickerViewController {
     override func viewDidAppear(_ animated: Bool) {
         Analytics.log(event: .homeOfferComplete)
         
-        if #available(iOS 10.3, *), AppRating.shouldRequestRating() {
-            SKStoreReviewController.requestReview()
-        }
+        AppRating.present()
         
         if Environment.shared.environmentName != .aut {
             let authOptions: UNAuthorizationOptions

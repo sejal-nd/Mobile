@@ -8,15 +8,13 @@
 
 import UIKit
 
-class MainBaseNavigationController: UINavigationController {
+class MainBaseNavigationController: LargeTitleNavigationController {
     
     @objc var storyboardName: String! // Defined as runtime attribute in Main.storyboard
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setColoredNavBar()
-        
+                
         if storyboardName != nil {
             let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
             let rootViewController = storyboard.instantiateInitialViewController()

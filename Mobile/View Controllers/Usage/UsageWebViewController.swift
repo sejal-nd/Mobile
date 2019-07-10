@@ -73,14 +73,7 @@ class UsageWebViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            navigationController?.setWhiteNavBar()
-        }
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     @objc func onInfoButtonPress() {

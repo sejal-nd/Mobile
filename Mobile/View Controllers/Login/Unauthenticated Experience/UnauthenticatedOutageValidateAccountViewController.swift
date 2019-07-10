@@ -114,8 +114,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.view.backgroundColor = .primaryColor // This prevents a black color from appearing during the transition between `isTranslucent = false` and `isTranslucent = true`
-        navigationController?.setColoredNavBar(hidesBottomBorder: true)
+
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func bindViewModel() {

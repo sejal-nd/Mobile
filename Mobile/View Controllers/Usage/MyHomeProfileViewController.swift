@@ -68,16 +68,9 @@ class MyHomeProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setColoredNavBar()
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        if parent == nil {
-            navigationController?.setWhiteNavBar()
-        }
-    }
-    
+
     func styleViews() {
         headerLabel.numberOfLines = 0
         headerLabel.font = SystemFont.regular.of(textStyle: .headline)

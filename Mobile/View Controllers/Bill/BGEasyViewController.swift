@@ -53,6 +53,12 @@ class BGEasyViewController: DismissableFormSheetViewController {
         bullet2Label.font = OpenSans.regular.of(textStyle: .body)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     @IBAction func onXPress() {
         dismiss(animated: true, completion: nil)
     }
