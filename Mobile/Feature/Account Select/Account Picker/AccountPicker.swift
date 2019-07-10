@@ -33,11 +33,7 @@ class AccountPicker: UIControl {
     var accounts: [Account] {
         get { return AccountsStore.shared.accounts ?? [Account]() }
     }
-    
-    /* We keep track of the current account so that we can avoid reloads when the user
-       selects the same account again...see refresh() */
-    var currentAccount: Account?
-    
+
     private var isMultiPremise: Bool {
         return accounts.contains { $0.isMultipremise }
     }
@@ -78,7 +74,7 @@ class AccountPicker: UIControl {
         let borderColor = tintWhite ? UIColor.white.withAlphaComponent(borderWhiteAlpha) : .accentGray
         addBottomBorder(color: borderColor, width: 1)
     }
-
+    
     private func commonInit() {
         Bundle.main.loadNibNamed(AccountPicker.className, owner: self, options: nil)
         view.frame = bounds
@@ -95,7 +91,7 @@ class AccountPicker: UIControl {
         multiAccountView.isHidden = true // Hide one so that intrinsic height is 50
         loadingIndicator.isHidden = true
         loadingIndicator.isStormMode = StormModeStatus.shared.isOn
-    
+        
         for label in accountNumberLabels {
             label.font = SystemFont.semibold.of(textStyle: .subheadline)
         }
@@ -110,58 +106,55 @@ class AccountPicker: UIControl {
         loadingIndicator.isHidden = !loading
         stackView.isHidden = loading
     }
-
+    
     func refresh() {
-        if currentAccount != AccountsStore.shared.currentAccount {
-            currentAccount = AccountsStore.shared.currentAccount
-            delegate?.accountPickerDidChangeAccount(self)
-            
-            let isSingleAccount = accounts.count == 1 && !isMultiPremise
-            multiAccountView.isHidden = isSingleAccount
-            singleAccountView.isHidden = !isSingleAccount
-            
-            guard let account = currentAccount else { return }
-            
-            let icon: UIImage
-            let a11yDescription: String
-            switch (!account.isResidential, tintWhite) {
-            case (true, true):
-                icon = UIImage(named: "ic_commercial_mini_white")!
-                a11yDescription = NSLocalizedString("Commercial account", comment: "")
-            case (true, false):
-                icon = UIImage(named: "ic_commercial_mini")!
-                a11yDescription = NSLocalizedString("Commercial account", comment: "")
-            case (false, true):
-                icon = UIImage(named: "ic_residential_mini_white")!
-                a11yDescription = NSLocalizedString("Residential account", comment: "")
-            case (false, false):
-                icon = UIImage(named: "ic_residential_mini")!
-                a11yDescription = NSLocalizedString("Residential account", comment: "")
-            }
-            setIconImage(icon, accessibilityLabel: a11yDescription)
-            
-            let finaledString = NSLocalizedString(Environment.shared.opco == .bge ? "Stopped" : "Finaled", comment: "")
-            let linkedString = NSLocalizedString("Linked", comment: "")
-            
-            let accountNumberText = "\(account.accountNumber) " +
-            "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
-            
-            setAccountNumberText(accountNumberText, accessibilityLabel: String.localizedStringWithFormat("Account number %@", accountNumberText))
-            
-            if let currPremise = account.currentPremise, let address = currPremise.addressGeneral {
-                setAddressText(address, accessibilityLabel: String.localizedStringWithFormat("Street address %@", address))
-            } else if let address = account.address {
-                setAddressText(address, accessibilityLabel: String.localizedStringWithFormat("Street address %@", address))
-            } else {
-                setAddressText(" ", accessibilityLabel: "")
-            }
+        delegate?.accountPickerDidChangeAccount(self)
+        
+        let isSingleAccount = accounts.count == 1 && !isMultiPremise
+        multiAccountView.isHidden = isSingleAccount
+        singleAccountView.isHidden = !isSingleAccount
+        
+        let account = AccountsStore.shared.currentAccount
+        
+        let icon: UIImage
+        let a11yDescription: String
+        switch (!account.isResidential, tintWhite) {
+        case (true, true):
+            icon = UIImage(named: "ic_commercial_mini_white")!
+            a11yDescription = NSLocalizedString("Commercial account", comment: "")
+        case (true, false):
+            icon = UIImage(named: "ic_commercial_mini")!
+            a11yDescription = NSLocalizedString("Commercial account", comment: "")
+        case (false, true):
+            icon = UIImage(named: "ic_residential_mini_white")!
+            a11yDescription = NSLocalizedString("Residential account", comment: "")
+        case (false, false):
+            icon = UIImage(named: "ic_residential_mini")!
+            a11yDescription = NSLocalizedString("Residential account", comment: "")
+        }
+        setIconImage(icon, accessibilityLabel: a11yDescription)
+        
+        let finaledString = NSLocalizedString(Environment.shared.opco == .bge ? "Stopped" : "Finaled", comment: "")
+        let linkedString = NSLocalizedString("Linked", comment: "")
+        
+        let accountNumberText = "\(account.accountNumber) " +
+        "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
+        
+        setAccountNumberText(accountNumberText, accessibilityLabel: String.localizedStringWithFormat("Account number %@", accountNumberText))
+        
+        if let currPremise = account.currentPremise, let address = currPremise.addressGeneral {
+            setAddressText(address, accessibilityLabel: String.localizedStringWithFormat("Street address %@", address))
+        } else if let address = account.address {
+            setAddressText(address, accessibilityLabel: String.localizedStringWithFormat("Street address %@", address))
+        } else {
+            setAddressText(" ", accessibilityLabel: "")
         }
     }
     
     /// Present Bottom Sheet
     @objc private func onAccountPickerPress() {
         guard accounts.count > 1 || isMultiPremise,
-        let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() as? AccountSheetViewController else { return }
+            let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() as? AccountSheetViewController else { return }
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         if let tabBarController = parentViewController?.tabBarController {
@@ -198,8 +191,18 @@ class AccountPicker: UIControl {
 }
 
 extension AccountPicker: AccountSelectDelegate {
-    internal func didSelectAccount(_ account: Account) {
-        AccountsStore.shared.currentIndex = accounts.firstIndex(of: account)
+    internal func didSelectAccount(_ account: Account, premiseIndexPath: IndexPath?) {
+        let selectedAccountIndex = accounts.firstIndex(of: account)
+        
+        // Set Selected Account
+        AccountsStore.shared.currentIndex = selectedAccountIndex
+        
+        // Set Selected Premise
+        if let selectedAccountIndex = selectedAccountIndex,
+            let premiseIndexPath = premiseIndexPath {
+            AccountsStore.shared.accounts[selectedAccountIndex].currentPremise = AccountsStore.shared.currentAccount.premises[premiseIndexPath.row]
+        }
+        
         refresh()
     }
 }

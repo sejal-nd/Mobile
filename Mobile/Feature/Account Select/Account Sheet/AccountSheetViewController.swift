@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AccountSelectDelegate: class {
-    func didSelectAccount(_ account: Account)
+    func didSelectAccount(_ account: Account, premiseIndexPath: IndexPath?)
 }
 
 class AccountSheetViewController: UIViewController {
@@ -294,20 +294,20 @@ extension AccountSheetViewController: UITableViewDelegate {
             tableView.beginUpdates()
             tableView.endUpdates()
         } else {
-            didSelectIndexPath(indexPath: indexPath)
+            didSelectIndexPath(accountIndexPath: indexPath)
         }
     }
     
-    func didSelectIndexPath(indexPath: IndexPath, shouldAllowSameCellSelection: Bool = false) {
+    func didSelectIndexPath(accountIndexPath: IndexPath, premiseIndexPath: IndexPath? = nil, shouldAllowSameCellSelection: Bool = false) {
         // Single Cell Selection
 
         // Same row selected -> return
-        if indexPath == selectedIndexPath, !shouldAllowSameCellSelection {
+        if accountIndexPath == selectedIndexPath, !shouldAllowSameCellSelection {
             return
         }
         
         // Toggle new checkmark on
-        guard let newCell = tableView.cellForRow(at: indexPath) as? AccountListRow else {
+        guard let newCell = tableView.cellForRow(at: accountIndexPath) as? AccountListRow else {
             return }
         if newCell.checkmarkImageView.isHidden {
             newCell.checkmarkImageView.isHidden = false
@@ -322,10 +322,10 @@ extension AccountSheetViewController: UITableViewDelegate {
             }
         }
         
-        selectedIndexPath = indexPath
+        selectedIndexPath = accountIndexPath
         
         // Selection Action
-        delegate?.didSelectAccount(accounts[indexPath.row])
+        delegate?.didSelectAccount(accounts[accountIndexPath.row], premiseIndexPath: premiseIndexPath)
         lastSheetLevel = .closed
     }
     
@@ -358,7 +358,7 @@ extension AccountSheetViewController: UIGestureRecognizerDelegate {
 }
 
 extension AccountSheetViewController: PremiseSelectDelegate {
-    func didSelectPremise(at indexPath: IndexPath) {
-        didSelectIndexPath(indexPath: indexPath, shouldAllowSameCellSelection: true)
+    func didSelectPremise(premiseIndexPath: IndexPath, accountIndexPath: IndexPath) {
+        didSelectIndexPath(accountIndexPath: accountIndexPath, premiseIndexPath: premiseIndexPath, shouldAllowSameCellSelection: true)
     }
 }
