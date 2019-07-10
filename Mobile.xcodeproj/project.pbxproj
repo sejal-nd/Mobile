@@ -384,15 +384,6 @@
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
-		385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21B1F278EFD001E3619 /* uu_otp.json */; };
-		385AF21E1F278F06001E3619 /* uu_otp.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21D1F278F06001E3619 /* uu_otp.json */; };
-		385AF2201F278F11001E3619 /* uu_otp.json in Resources */ = {isa = PBXBuildFile; fileRef = 385AF21F1F278F11001E3619 /* uu_otp.json */; };
-		385AF2231F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
-		385AF2241F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
-		385AF2251F27915A001E3619 /* img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2211F27915A001E3619 /* img_0.png */; };
-		385AF2261F27915A001E3619 /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2221F27915A001E3619 /* img_1.png */; };
-		385AF2271F27915A001E3619 /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2221F27915A001E3619 /* img_1.png */; };
-		385AF2281F27915A001E3619 /* img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 385AF2221F27915A001E3619 /* img_1.png */; };
 		389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
 		389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */; };
@@ -2689,11 +2680,6 @@
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
-		385AF21B1F278EFD001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
-		385AF21D1F278F06001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
-		385AF21F1F278F11001E3619 /* uu_otp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uu_otp.json; sourceTree = "<group>"; };
-		385AF2211F27915A001E3619 /* img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_0.png; sourceTree = "<group>"; };
-		385AF2221F27915A001E3619 /* img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_1.png; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
 		3D724009124CB9382D0948F8 /* Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		427ED97F3A13152299E3D394 /* Pods-ComEdApp-ComEd.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.develop-stage.xcconfig"; sourceTree = "<group>"; };
@@ -3856,15 +3842,6 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
-		385AF2291F2791A5001E3619 /* Unauthenticated OTP Animation Text */ = {
-			isa = PBXGroup;
-			children = (
-				385AF2211F27915A001E3619 /* img_0.png */,
-				385AF2221F27915A001E3619 /* img_1.png */,
-			);
-			path = "Unauthenticated OTP Animation Text";
-			sourceTree = "<group>";
-		};
 		54C1DEEE1F01A12700290FE5 /* Billing History */ = {
 			isa = PBXGroup;
 			children = (
@@ -4545,7 +4522,6 @@
 		8FD5AE971E54EA8C003F640D /* Lottie Animations */ = {
 			isa = PBXGroup;
 			children = (
-				385AF2291F2791A5001E3619 /* Unauthenticated OTP Animation Text */,
 				E8FE30AD1E7875E5009D28B7 /* BGE */,
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
@@ -5493,7 +5469,6 @@
 			isa = PBXGroup;
 			children = (
 				B0B083C821710BAE00B1C632 /* Appointments */,
-				385AF21F1F278F11001E3619 /* uu_otp.json */,
 				E8494F3E1EBBCB3A0047D6BE /* outage_loading.json */,
 				359BB2782148349200FBAD83 /* outage.json */,
 				359BB27E2148517F00FBAD83 /* sm_outage_loading.json */,
@@ -5508,7 +5483,6 @@
 			isa = PBXGroup;
 			children = (
 				B0B083DE21710C3E00B1C632 /* Appointments */,
-				385AF21D1F278F06001E3619 /* uu_otp.json */,
 				E8494F401EBBCB430047D6BE /* outage_loading.json */,
 				359BB27A214834A900FBAD83 /* outage.json */,
 				359BB2802148518C00FBAD83 /* sm_outage_loading.json */,
@@ -5523,7 +5497,6 @@
 			isa = PBXGroup;
 			children = (
 				B0B083D321710C1000B1C632 /* Appointments */,
-				385AF21B1F278EFD001E3619 /* uu_otp.json */,
 				E8494F421EBBCB4C0047D6BE /* outage_loading.json */,
 				359BB27C214834BA00FBAD83 /* outage.json */,
 				359BB2822148519D00FBAD83 /* sm_outage_loading.json */,
@@ -5987,7 +5960,6 @@
 				351241EF22B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				E86334671E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				384F86A21F310B8600A85557 /* TermPolicies.html in Resources */,
-				385AF2201F278F11001E3619 /* uu_otp.json in Resources */,
 				B55736451E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				B0B12602221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
@@ -6006,7 +5978,6 @@
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
-				385AF2231F27915A001E3619 /* img_0.png in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
 				B089573B22175FDC00A97965 /* alert_preferences.json in Resources */,
@@ -6033,7 +6004,6 @@
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
 				B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */,
-				385AF2261F27915A001E3619 /* img_1.png in Resources */,
 				359BB2672146F05400FBAD83 /* sm_outage.json in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
 				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
@@ -6137,7 +6107,6 @@
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
-				385AF21C1F278EFD001E3619 /* uu_otp.json in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B039DB77225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
@@ -6156,7 +6125,6 @@
 				359BB26B2146F08300FBAD83 /* sm_outage.json in Resources */,
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */,
-				385AF2251F27915A001E3619 /* img_0.png in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -6183,7 +6151,6 @@
 				9C62445E22C171C900F14DA0 /* FloatLabelTextFieldNew.xib in Resources */,
 				9CD3533622CABDB900165F87 /* DisclosureCellButton.xib in Resources */,
 				B0B0840421710D1500B1C632 /* Appt_otw.json in Resources */,
-				385AF2281F27915A001E3619 /* img_1.png in Resources */,
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
@@ -6311,10 +6278,8 @@
 				B55736461E6742A6003B9369 /* MCSConfig.plist in Resources */,
 				B5D415801F3A6E6600AC32B2 /* GoogleService-Info_comed_testing.plist in Resources */,
 				82D599521EC3A00900DDB380 /* alert_icon.json in Resources */,
-				385AF21E1F278F06001E3619 /* uu_otp.json in Resources */,
 				B01FF0B0221DFC77008CA222 /* autopay_info.json in Resources */,
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
-				385AF2241F27915A001E3619 /* img_0.png in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
 				B0EE78EB221353E700F53C56 /* report_outage.json in Resources */,
@@ -6344,7 +6309,6 @@
 				E85895781E8AACFF009485E3 /* loading_blue.json in Resources */,
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
-				385AF2271F27915A001E3619 /* img_1.png in Resources */,
 				B08956FA2215D11B00A97965 /* energy_tips.json in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
