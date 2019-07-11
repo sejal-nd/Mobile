@@ -480,13 +480,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
 
-        let screenHeight = UIScreen.main.bounds.size.height
-        if self.passwordTextField.textField.isFirstResponder && screenHeight == 568 { // Handle oddity that only occurs on iPhone 5 size
-            self.scrollView.contentOffset = CGPoint(x: 0, y: 162)
-        } else {
-            let rect = signInButton.convert(signInButton.bounds, to: scrollView)
-            scrollView.scrollRectToVisible(rect, animated: true)
-        }
+        let rect = signInButton.convert(signInButton.bounds, to: scrollView)
+        scrollView.scrollRectToVisible(rect, animated: true)
     }
 
     @objc func keyboardWillHide(notification: Notification) {
