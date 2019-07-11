@@ -20,20 +20,20 @@
         <!--Edit Home-->
         <scene sceneID="t7p-iW-psx">
             <objects>
-                <collectionViewController id="ATH-nk-Olk" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController extendedLayoutIncludesOpaqueBars="YES" id="ATH-nk-Olk" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="7Me-YR-WlA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2z0-7Z-C0Y">
                             <size key="itemSize" width="375" height="60"/>
-                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="75"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditCardCell" id="Jjd-so-i6p" customClass="HomeEditCardCell" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="75" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -147,7 +147,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditEmptyCell" id="V9i-DU-NfZ" customClass="HomeEditEmptyCell" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="120" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="145" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -186,7 +186,7 @@
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeEditRestoreDefaultCell" id="SdN-F3-DM2" customClass="HomeEditRestoreDefaultCell" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="190" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="215" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -225,23 +225,23 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HomeEditSectionHeaderView" id="wZW-zD-bZ5" customClass="HomeEditSectionHeaderView" customModule="BGE" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tl-q2-3Yp">
-                                    <rect key="frame" x="16" y="0.0" width="343" height="50"/>
+                                    <rect key="frame" x="16" y="0.0" width="343" height="75"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Jka-Ic-qFQ">
-                                            <rect key="frame" x="0.0" y="-14" width="343" height="62"/>
+                                            <rect key="frame" x="0.0" y="16" width="343" height="59"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqG-VW-vev">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqG-VW-vev">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sai-UF-P6f">
-                                                    <rect key="frame" x="0.0" y="40.5" width="343" height="21.5"/>
+                                                    <rect key="frame" x="0.0" y="40.5" width="343" height="18.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -251,9 +251,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="Jka-Ic-qFQ" firstAttribute="top" secondItem="5tl-q2-3Yp" secondAttribute="top" constant="16" id="1dX-gS-vt4"/>
                                         <constraint firstItem="Jka-Ic-qFQ" firstAttribute="leading" secondItem="5tl-q2-3Yp" secondAttribute="leading" id="Cgy-2w-1Ig"/>
                                         <constraint firstAttribute="width" priority="999" constant="460" id="JTj-4y-eUZ"/>
-                                        <constraint firstAttribute="bottom" secondItem="Jka-Ic-qFQ" secondAttribute="bottom" constant="2" id="LzX-af-FQQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jka-Ic-qFQ" secondAttribute="bottom" id="LzX-af-FQQ"/>
                                         <constraint firstAttribute="trailing" secondItem="Jka-Ic-qFQ" secondAttribute="trailing" id="Y0m-If-FUR"/>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="qtk-ea-GyN"/>
                                     </constraints>
@@ -290,7 +291,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ele-wa-cpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2015" y="-686"/>
+            <point key="canvasLocation" x="2071" y="-687"/>
         </scene>
         <!--UpdatesDetailViewController-->
         <scene sceneID="g5d-Cq-yGf">
