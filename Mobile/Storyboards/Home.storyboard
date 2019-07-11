@@ -483,6 +483,10 @@
                             <constraint firstAttribute="trailing" secondItem="ire-RJ-okt" secondAttribute="trailing" id="yav-7O-Cbq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="aOG-ge-ynh">
+                        <barButtonItem key="backBarButtonItem" title=" " id="bdz-LV-gTy"/>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="accountDisallowView" destination="ErJ-ar-hFE" id="18H-J0-YQv"/>
                         <outlet property="accountPicker" destination="tbt-1n-lFy" id="6iu-lp-I83"/>
