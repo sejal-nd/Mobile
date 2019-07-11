@@ -108,6 +108,9 @@ struct MCSAuthenticationService : AuthenticationService {
             switch AuthTokenParser.parseAuthTokenResponse(data: data) {
             case .success(let response):
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
+                
+                FirebaseUtility.logEvent(.loginTokenNetworkComplete)
+                
                 return response
             case .failure(let error):
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))

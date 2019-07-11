@@ -10,39 +10,6 @@ import FirebaseAnalytics
 import Firebase
 import Foundation
 
-/// Event name + event value -> Mapped to dict before being send to Firebase
-///
-/// - Note: Only one parameter should have a value between `value` and `providedValue`.  If both have a value, `providedValue` takes precendence.
-struct EventParameter {
-    enum Name: String {
-        case action
-        case value
-    }
-    
-    enum Value: String {
-        case errorCode
-        case screenName
-        
-        // Login
-        case show_password
-        case forgot_username_press
-        case forgot_password_press
-        
-        // keepMeSignedIn Toggle
-        case isOn
-    }
-    
-    let parameterName: Name
-    let value: Value?
-    let providedValue: String?
-    
-    init(parameterName: Name, value: Value?, providedValue: String? = nil) {
-        self.parameterName = parameterName
-        self.value = value
-        self.providedValue = providedValue
-    }
-}
-
 struct FirebaseUtility {
     /// Name of analytic event -> Mapped directly to Firebase
     enum Event: String {
@@ -50,22 +17,74 @@ struct FirebaseUtility {
         
         case login // done
         case keepMeSignedIn // done
-        case loginPageStart
-        case loginTokenNetworkComplete
-        case loginExchangeTokenNetworkComplete
-        case loginAccountNetworkComplete
-        case loginAccountDetailsNetworkComplete
-        case initialAuthenticatedScreenStart
         
-        case changePasswordStart
-        case changePasswordSubmit
-        case changePasswordNetworkComplete
+        case autoPay
+        case budgetBill
+        case eBill
+        case forgotPassword
+        case forgotUsername
+        case register
+        case bill
+        case payment
+        case wallet
+        case authOutage
+        case unauthOutage
+        case usage
+        case more
+        case biometricsToggle
+        case contactUs
+        case home
+        case unauth
+        case accountPicker
+        case alerts
+        
+        
+        
+        case loginPageStart // done
+        case loginTokenNetworkComplete
+        case loginExchangeTokenNetworkComplete // done
+        case loginAccountNetworkComplete // done
+        case loginAccountDetailsNetworkComplete // done
+        case initialAuthenticatedScreenStart // duplicate of the above?
+        
+        case changePasswordStart // done
+        case changePasswordSubmit // done
+        case changePasswordNetworkComplete // done
+        
+        case reportOutageStart
+        case reportOutageSubmit
+        case reportOutageNetworkComplete
+        case makePaymentStart
+        case makePaymentNext
+        case reviewPaymentSubmit
+        case paymentNetworkComplete
+        case autoPayStart
+        case autoPaySubmit
+        case autoPayNetworkComplete
+        case paperlessEBillStart
+        case paperlessEBillSubmit
+        case paperlessEBillNetworkComplete
+        case budgetBillingStart
+        case budgetBillingSubmit
+        case budgetBillingNetworkComplete
+        case homeProfileStart
+        case homeProfileSubmit
+        case homeProfileNetworkComplete
+        case releaseOfInfoStart
+        case releaseOfInfoSubmit
+        case releaseOfInfoNetworkComplete
+        case personalizeHomeStart
+        case personalizeHomeComplete
     }
     
     /// Name of user property -> Mapped directly to Firebase
     enum UserProperty: String {
         case isKeepMeSignedInEnabled
         case isBiometricsEnabled
+        
+        case isControlGroup
+        case customerType
+        case serviceType
     }
     
     /// This method should only be called once from App Delegate: Configures Firebase
@@ -109,5 +128,39 @@ struct FirebaseUtility {
     ///   - value: `String` value of property
     public static func setUserPropety(_ userProperty: UserProperty, value: String? = nil) {
         Analytics.setUserProperty(value, forName: userProperty.rawValue)
+    }
+}
+
+
+/// Event name + event value -> Mapped to dict before being send to Firebase
+///
+/// - Note: Only one parameter should have a value between `value` and `providedValue`.  If both have a value, `providedValue` takes precendence.
+struct EventParameter {
+    enum Name: String {
+        case action
+        case value
+    }
+    
+    enum Value: String {
+        case errorCode
+        case screenName
+        
+        // Login
+        case show_password // done
+        case forgot_username_press // done
+        case forgot_password_press // done
+        
+        // keepMeSignedIn Toggle
+        case isOn // done
+    }
+    
+    let parameterName: Name
+    let value: Value?
+    let providedValue: String?
+    
+    init(parameterName: Name, value: Value?, providedValue: String? = nil) {
+        self.parameterName = parameterName
+        self.value = value
+        self.providedValue = providedValue
     }
 }

@@ -167,6 +167,8 @@ class ChangePasswordViewModel {
                         }
                     }
                     
+                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
+                    
                     onSuccess()
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
@@ -195,6 +197,8 @@ class ChangePasswordViewModel {
                             SharedWebCredentials.save(credential: (loggedInUsername, self.newPassword.value), domain: Environment.shared.associatedDomain, completion: { _ in })
                         }
                     }
+                    
+                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
                     
                     onSuccess()
                 }, onError: { (error: Error) in

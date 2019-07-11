@@ -140,6 +140,9 @@ class MCSApi {
                     }
                     
                     APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
+                    
+                    FirebaseUtility.logEvent(.loginExchangeTokenNetworkComplete)
+                    
                     return token
                 }
                 .do(onNext: { [weak self] token in

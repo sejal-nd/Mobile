@@ -183,6 +183,8 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        FirebaseUtility.logEvent(.changePasswordStart)
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -198,6 +200,9 @@ class ChangePasswordViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
+        
+        FirebaseUtility.logEvent(.changePasswordSubmit)
+        
         view.endEditing(true)
         
         // Hide password while loading

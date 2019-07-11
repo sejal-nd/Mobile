@@ -173,6 +173,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        FirebaseUtility.logEvent(.loginPageStart)
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
 
@@ -230,8 +232,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             present(alert, animated: true, completion: nil)
             return
         }
-        
-        FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInSwitch.isOn ? "true" : "false")])
+
+        FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInSwitch.isOn.description)])
         
         GoogleAnalytics.log(event: .loginOffer, dimensions: [
             .keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true" : "false",
@@ -405,6 +407,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     func launchMainApp(isStormMode: Bool) {
+        FirebaseUtility.setUserPropety(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
+        FirebaseUtility.setUserPropety(.isKeepMeSignedInEnabled, value: viewModel.keepMeSignedIn.value.description)
+        
+        FirebaseUtility.logEvent(.loginAccountNetworkComplete)
         GoogleAnalytics.log(event: .loginComplete)
 
         if isStormMode {
