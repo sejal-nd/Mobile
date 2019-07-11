@@ -97,11 +97,11 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountViewController {
             switch(segue.identifier) {
             case "reportOutageValidateAccount"?:
-                Analytics.log(event: .reportAnOutageUnAuthOffer)
+                GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
                 vc.analyticsSource = .report
                 break
             case "checkOutageValidateAccount"?:
-                Analytics.log(event: .outageStatusUnAuthOffer)
+                GoogleAnalytics.log(event: .outageStatusUnAuthOffer)
                 vc.analyticsSource = .status
                 break
             default:
@@ -109,7 +109,7 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
             }
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.unauthenticatedExperience = true
-            Analytics.log(event: .viewOutageMapGuestMenu)
+            GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
         } else if let vc = segue.destination as? ContactUsViewController {
             vc.unauthenticatedExperience = true
         }

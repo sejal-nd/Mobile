@@ -68,7 +68,7 @@ class AutoPayChangeBankViewController: UIViewController {
 	}
 	
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .autoPayModifyBankView)
+        GoogleAnalytics.log(event: .autoPayModifyBankView)
     }
     
 	private func style() {
@@ -274,7 +274,7 @@ class AutoPayChangeBankViewController: UIViewController {
     
     @objc func onSavePress() {
         LoadingView.show()
-        Analytics.log(event: .autoPayModifyBankSave)
+        GoogleAnalytics.log(event: .autoPayModifyBankSave)
         viewModel.submit()
             .observeOn(MainScheduler.instance)
             .subscribe(

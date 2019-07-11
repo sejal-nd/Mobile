@@ -293,7 +293,7 @@ class BudgetBillingViewController: UIViewController {
         
         if viewModel.enrolling.value {
             LoadingView.show()
-            Analytics.log(event: .budgetBillEnrollOffer)
+            GoogleAnalytics.log(event: .budgetBillEnrollOffer)
             viewModel.enroll(onSuccess: { [weak self] in
                 LoadingView.hide()
                 
@@ -308,7 +308,7 @@ class BudgetBillingViewController: UIViewController {
             })
 
         } else if viewModel.unenrolling.value {
-            Analytics.log(event: .budgetBillUnEnrollOffer)
+            GoogleAnalytics.log(event: .budgetBillUnEnrollOffer)
             var message = ""
             if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
                 message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
@@ -317,10 +317,10 @@ class BudgetBillingViewController: UIViewController {
             }
             let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
-                Analytics.log(event: .budgetBillUnEnrollCancel) }))
+                GoogleAnalytics.log(event: .budgetBillUnEnrollCancel) }))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
                 LoadingView.show()
-                Analytics.log(event: .budgetBillUnEnrollOK)
+                GoogleAnalytics.log(event: .budgetBillUnEnrollOK)
                 
                 guard let self = self else { return }
                 self.viewModel.unenroll(onSuccess: { [weak self] in

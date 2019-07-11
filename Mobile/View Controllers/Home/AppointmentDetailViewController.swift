@@ -359,7 +359,7 @@ extension AppointmentDetailViewController: EKEventEditViewDelegate {
 extension AppointmentDetailViewController: AlertPreferencesViewControllerDelegate {
     
     func alertPreferencesViewControllerDidSavePreferences() {
-        Analytics.log(event: .alertsPrefCenterComplete)
+        GoogleAnalytics.log(event: .alertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
         })

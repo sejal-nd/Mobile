@@ -8,7 +8,6 @@
 
 import UIKit
 import Toast_Swift
-import Firebase
 import AppCenter
 import AppCenterCrashes
 import RxSwift
@@ -275,13 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gai = GAI.sharedInstance()
         _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
         
-        guard let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist"),
-            let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
-                return dLog("Failed to load Firebase Analytics")
-        }
-        
-        FirebaseApp.configure(options: fileopts)
-        
+        FirebaseUtility.configure()
     }
     
     @objc func resetNavigationOnAuthTokenExpire() {
@@ -454,7 +447,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
-            Analytics.log(event: .reportAnOutageUnAuthOffer)
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
             unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
             
             // Reset the unauthenticated nav stack

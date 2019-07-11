@@ -58,7 +58,7 @@ class OutageMapViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if(unauthenticatedExperience) {
-            Analytics.log(event: .viewOutageMapUnAuthOfferComplete)
+            GoogleAnalytics.log(event: .viewOutageMapUnAuthOfferComplete)
         }
     }
 

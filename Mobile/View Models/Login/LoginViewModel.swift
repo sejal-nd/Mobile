@@ -90,7 +90,7 @@ class LoginViewModel {
                 } else {
                     onError(nil, error.localizedDescription)
                 }
-                Analytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
+                GoogleAnalytics.log(event: .loginError, dimensions: [.errorCode: serviceError.serviceCode])
             })
             .disposed(by: disposeBag)
     }

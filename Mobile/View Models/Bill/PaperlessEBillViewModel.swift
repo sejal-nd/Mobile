@@ -96,15 +96,15 @@ class PaperlessEBillViewModel {
         let enrollObservables = accountsToEnroll.value.map {
             billService.enrollPaperlessBilling(accountNumber: $0,
                                                email: initialAccountDetail.value.customerInfo.emailAddress)
-                .do(onNext: {Analytics.log(event: .eBillEnrollComplete)})
+                .do(onNext: {GoogleAnalytics.log(event: .eBillEnrollComplete)})
             }
-            .doEach { _ in Analytics.log(event: .eBillEnrollOffer) }
+            .doEach { _ in GoogleAnalytics.log(event: .eBillEnrollOffer) }
         
         let unenrollObservables = accountsToUnenroll.value.map {
             billService.unenrollPaperlessBilling(accountNumber: $0)
-                .do(onNext: {Analytics.log(event: .eBillUnEnrollComplete)})
+                .do(onNext: {GoogleAnalytics.log(event: .eBillUnEnrollComplete)})
             }
-            .doEach { _ in Analytics.log(event: .eBillUnEnrollOffer) }
+            .doEach { _ in GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
         
         var changedStatus: PaperlessEBillChangedStatus
         if Environment.shared.opco == .bge {

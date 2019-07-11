@@ -159,7 +159,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                 self?.viewModel.validateRegistration(guid: guid, onSuccess: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Thank you for verifying your account", comment: ""))
-                    Analytics.log(event: .registerAccountVerify)
+                    GoogleAnalytics.log(event: .registerAccountVerify)
                 }, onError: { [weak self] title, message in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -230,14 +230,16 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             present(alert, animated: true, completion: nil)
             return
         }
-
-        Analytics.log(event: .loginOffer, dimensions: [
+        
+        FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInSwitch.isOn ? "true" : "false")])
+        
+        GoogleAnalytics.log(event: .loginOffer, dimensions: [
             .keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true" : "false",
             .fingerprintUsed: "disabled"
         ])
 
         if forgotUsernamePopulated {
-            Analytics.log(event: .forgotUsernameCompleteAccountValidation)
+            GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
         }
 
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
@@ -285,7 +287,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp(isStormMode: isStormMode)
-                                Analytics.log(event: .touchIDEnable)
+                                GoogleAnalytics.log(event: .touchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
                             self.viewModel.setShouldPromptToEnableBiometrics(false)
@@ -300,7 +302,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                             differentAccountAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp(isStormMode: isStormMode)
-                                Analytics.log(event: .touchIDEnable)
+                                GoogleAnalytics.log(event: .touchIDEnable)
                             }))
                             self.present(differentAccountAlert, animated: true, completion: nil)
                         } else {
@@ -362,7 +364,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     func forgotUsername() {
-        Analytics.log(event: .forgotUsernameOffer)
+        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .forgot_username_press)])
+        GoogleAnalytics.log(event: .forgotUsernameOffer)
         if Environment.shared.opco == .bge {
             performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
         } else {
@@ -372,18 +375,17 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     func forgotPassword() {
-        Analytics.log(event: .forgotPasswordOffer)
+        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .forgot_password_press)])
+        GoogleAnalytics.log(event: .forgotPasswordOffer)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
 
     }
 
     @IBAction func onEyeballPress(_ sender: UIButton) {
+        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .show_password)])
+        
         if passwordTextField.textField.isSecureTextEntry {
             passwordTextField.textField.isSecureTextEntry = false
-            // Fixes iOS 9 bug where font would change after setting isSecureTextEntry = false //
-            passwordTextField.textField.font = nil
-            passwordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-            // ------------------------------------------------------------------------------- //
             eyeballButton.setImage(#imageLiteral(resourceName: "ic_eyeball"), for: .normal)
             eyeballButton.accessibilityLabel = NSLocalizedString("Show password activated", comment: "")
         } else {
@@ -403,7 +405,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     func launchMainApp(isStormMode: Bool) {
-        Analytics.log(event: .loginComplete)
+        GoogleAnalytics.log(event: .loginComplete)
 
         if isStormMode {
             (UIApplication.shared.delegate as? AppDelegate)?.showStormMode()
@@ -431,7 +433,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         viewModel.attemptLoginWithBiometrics(onLoad: { [weak self] in // Face/Touch ID was successful
             guard let self = self else { return }
 
-            Analytics.log(event: .loginOffer,
+            GoogleAnalytics.log(event: .loginOffer,
                                  dimensions: [.keepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
                                               .fingerprintUsed: "enabled"])
 
@@ -521,7 +523,7 @@ extension LoginViewController: ForgotPasswordViewControllerDelegate {
     func forgotPasswordViewControllerDidSubmit(_ viewController: UIViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Temporary password sent to your email", comment: ""))
-            Analytics.log(event: .forgotPasswordComplete)
+            GoogleAnalytics.log(event: .forgotPasswordComplete)
         })
     }
 }
@@ -530,7 +532,7 @@ extension LoginViewController: ForgotUsernameSecurityQuestionViewControllerDeleg
 
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String) {
         viewModel.username.value = username
-        Analytics.log(event: .forgotUsernameCompleteAutoPopup)
+        GoogleAnalytics.log(event: .forgotUsernameCompleteAutoPopup)
         forgotUsernamePopulated = true
     }
 }

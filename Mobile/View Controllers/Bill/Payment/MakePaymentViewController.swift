@@ -477,7 +477,7 @@ class MakePaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         addBankAccountButton.rx.touchUpInside
-            .do(onNext: { Analytics.log(event: .addBankNewWallet) })
+            .do(onNext: { GoogleAnalytics.log(event: .addBankNewWallet) })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
@@ -494,7 +494,7 @@ class MakePaymentViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         addCreditCardButton.rx.touchUpInside
-            .do(onNext: { Analytics.log(event: .addCardNewWallet) })
+            .do(onNext: { GoogleAnalytics.log(event: .addCardNewWallet) })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
@@ -532,9 +532,9 @@ class MakePaymentViewController: UIViewController {
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .eCheckOffer)
+                GoogleAnalytics.log(event: .eCheckOffer)
             case .card:
-                Analytics.log(event: .cardOffer)
+                GoogleAnalytics.log(event: .cardOffer)
             }
         }
         
@@ -650,7 +650,7 @@ extension MakePaymentViewController: PaymentusFormViewControllerDelegate {
         viewModel.selectedWalletItem.value = walletItem
         fetchData(initialFetch: false)
         if !walletItem.isTemporary {
-            Analytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
+            GoogleAnalytics.log(event: walletItem.bankOrCard == .bank ? .eCheckAddNewWallet : .cardAddNewWallet, dimensions: [.otpEnabled: walletItem.isDefault ? "enabled" : "disabled"])
             let toastMessage = walletItem.bankOrCard == .bank ?
                 NSLocalizedString("Bank account added", comment: "") :
                 NSLocalizedString("Card added", comment: "")

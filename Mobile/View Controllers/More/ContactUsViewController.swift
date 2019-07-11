@@ -109,7 +109,7 @@ class ContactUsViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                Analytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
+                GoogleAnalytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
                 
                 let safariVC = SFSafariViewController.createWithCustomStyle(url: self.viewModel.onlineFormUrl)
                 self.present(safariVC, animated: true, completion: nil)
@@ -204,7 +204,7 @@ class ContactUsViewController: UIViewController {
 extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
+        let screenName: GoogleAnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
         var dimensionValue: String?
         
         switch textView {
@@ -223,7 +223,7 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         }
         
         if let value = dimensionValue {
-            Analytics.log(event: screenName, dimensions: [.link: value])
+            GoogleAnalytics.log(event: screenName, dimensions: [.link: value])
         }
     }
 }

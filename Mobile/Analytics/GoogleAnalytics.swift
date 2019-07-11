@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AnalyticsEvent: String {
+enum GoogleAnalyticsEvent: String {
     case tabHome = "TabHome"
     case tabBill = "TabBill"
     case tabOutage = "TabOutage"
@@ -249,7 +249,7 @@ enum AnalyticsOutageSource {
     case status
 }
 
-enum AnalyticsDimension: UInt {
+enum GoogleAnalyticsDimension: UInt {
     case keepMeSignedIn = 3
     case fingerprintUsed = 4
     case errorCode = 5
@@ -262,7 +262,7 @@ enum AnalyticsDimension: UInt {
     case paymentTempWalletItem = 13 // "true" or "false"
 }
 
-struct Analytics {
+struct GoogleAnalytics {
     private init() {}
     
     static var isAnalyticsEnabled: Bool {
@@ -274,7 +274,7 @@ struct Analytics {
         }
     }
     
-    static func log(event: AnalyticsEvent, dimensions: [AnalyticsDimension: String] = [:]) {
+    static func log(event: GoogleAnalyticsEvent, dimensions: [GoogleAnalyticsDimension: String] = [:]) {
         #if DEBUG
         NSLog("📊 %@", event.rawValue)
         #endif

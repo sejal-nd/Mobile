@@ -177,7 +177,7 @@ class ForgotUsernameViewController: UIViewController {
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             self?.performSegue(withIdentifier: "forgotUsernameResultSegue", sender: self)
-            Analytics.log(event: .forgotUsernameCompleteAccountValidation)
+            GoogleAnalytics.log(event: .forgotUsernameCompleteAccountValidation)
         }, onNeedAccountNumber: { [weak self] in
             LoadingView.hide()
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)

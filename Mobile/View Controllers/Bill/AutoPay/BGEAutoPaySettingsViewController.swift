@@ -121,9 +121,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if viewModel.initialEnrollmentStatus == .enrolled {
-            Analytics.log(event: .autoPayModifySettingOffer)
+            GoogleAnalytics.log(event: .autoPayModifySettingOffer)
         } else {
-            Analytics.log(event: .autoPayModifySettingOfferNew)
+            GoogleAnalytics.log(event: .autoPayModifySettingOfferNew)
         }
     }
     

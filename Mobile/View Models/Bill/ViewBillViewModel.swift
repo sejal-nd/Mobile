@@ -38,9 +38,9 @@ class ViewBillViewModel {
                 }, onError: { [weak self] errMessage in
                     onError(errMessage.localizedDescription)
                     guard let self = self else { return }
-                    let screenView: AnalyticsEvent = self.isCurrent ? .billViewCurrentError : .billViewPastError
+                    let screenView: GoogleAnalyticsEvent = self.isCurrent ? .billViewCurrentError : .billViewPastError
                     let serviceError = errMessage as! ServiceError
-                    Analytics.log(event: screenView, dimensions: [.errorCode: serviceError.serviceCode])
+                    GoogleAnalytics.log(event: screenView, dimensions: [.errorCode: serviceError.serviceCode])
             })
             .disposed(by: disposeBag)
     }

@@ -459,7 +459,7 @@ class BillViewController: AccountPickerViewController {
         
         prepaidBannerButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
-                Analytics.log(event: .prePaidPending)
+                GoogleAnalytics.log(event: .prePaidPending)
                 UIApplication.shared.openUrlIfCan(self?.viewModel.prepaidUrl)
             })
             .disposed(by: bag)
@@ -512,7 +512,7 @@ class BillViewController: AccountPickerViewController {
                     self.performSegue(withIdentifier: "viewBillSegue", sender: accountDetail)
                 }
                 
-                Analytics.log(event: .billViewCurrentOfferComplete)
+                GoogleAnalytics.log(event: .billViewCurrentOfferComplete)
             })
 			.disposed(by: bag)
 
@@ -697,12 +697,12 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
         case .comEd, .peco:
             showDelayedToast(withMessage: NSLocalizedString("Enrolled in Budget Billing", comment: ""))
         }
-        Analytics.log(event: .budgetBillEnrollComplete)
+        GoogleAnalytics.log(event: .budgetBillEnrollComplete)
     }
 
     func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
-        Analytics.log(event: .budgetBillUnEnrollComplete)
+        GoogleAnalytics.log(event: .budgetBillUnEnrollComplete)
     }
 }
 
@@ -738,9 +738,9 @@ extension BillViewController: AutoPayViewControllerDelegate {
         showDelayedToast(withMessage: message)
         
         if enrolled {
-            Analytics.log(event: .autoPayEnrollComplete)
+            GoogleAnalytics.log(event: .autoPayEnrollComplete)
         } else {
-            Analytics.log(event: .autoPayUnenrollComplete)
+            GoogleAnalytics.log(event: .autoPayUnenrollComplete)
         }
     }
 

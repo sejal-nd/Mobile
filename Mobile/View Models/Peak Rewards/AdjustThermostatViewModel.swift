@@ -79,7 +79,7 @@ class AdjustThermostatViewModel {
                        resultSelector: SmartThermostatDeviceSettings.init)
     
     private lazy var saveEvents: Observable<Event<Void>> = self.saveAction
-        .do(onNext: { Analytics.log(event: .adjustThermSave) })
+        .do(onNext: { GoogleAnalytics.log(event: .adjustThermSave) })
         .withLatestFrom(self.updatedSettings)
         .flatMapLatest { [weak self] updatedSettings -> Observable<Event<Void>> in
             guard let self = self else { return .empty() }
@@ -93,7 +93,7 @@ class AdjustThermostatViewModel {
         .share()
 
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
-        .do(onNext: { Analytics.log(event: .adjustThermToast) })
+        .do(onNext: { GoogleAnalytics.log(event: .adjustThermToast) })
     
     private(set) lazy var saveError: Observable<String> = self.saveEvents.errors()
         .map { ($0 as? ServiceError)?.errorDescription ?? "" }
