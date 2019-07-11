@@ -93,11 +93,8 @@ class ChangePasswordViewController: UIViewController {
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.textField.isShowingAccessory = true
-        
-        if #available(iOS 11.0, *) {
-            currentPasswordTextField.textField.textContentType = .password
-        }
-        
+        currentPasswordTextField.textField.textContentType = .password
+
         newPasswordTextField.placeholder = NSLocalizedString("New Password", comment: "")
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
@@ -109,7 +106,7 @@ class ChangePasswordViewController: UIViewController {
             let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
             newPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
             confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
-        } else if #available(iOS 11.0, *) {
+        } else {
             newPasswordTextField.textField.inputAccessoryView = toolbar
             confirmPasswordTextField.textField.inputAccessoryView = toolbar
         }

@@ -33,11 +33,6 @@ class TermsPoliciesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
-//        if #available(iOS 11.0, *) {
-//            navigationController?.navigationBar.prefersLargeTitles = true
-//            navigationController?.navigationItem.largeTitleDisplayMode = .always
-//        }
     }
     
     

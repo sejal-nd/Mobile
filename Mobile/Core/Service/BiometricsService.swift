@@ -47,15 +47,11 @@ class BiometricsService {
         
         var error: NSError?
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            if #available(iOS 11.0, *) {
-                if context.biometryType == .faceID {
-                    return "Face ID"
-                } else if context.biometryType == .touchID {
-                    return "Touch ID"
-                }
-                return nil
+            if context.biometryType == .faceID {
+                return "Face ID"
+            } else if context.biometryType == .touchID {
+                return "Touch ID"
             }
-            return "Touch ID"
         }
         return nil
     }

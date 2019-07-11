@@ -139,12 +139,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
 
         passwordStrengthView.isHidden = true
         
-        if #available(iOS 11.0, *) {
-            createUsernameTextField.textField.textContentType = .username
-        } else {
-            createUsernameTextField.textField.textContentType = .emailAddress
-        }
-        
+        createUsernameTextField.textField.textContentType = .username
         createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
         createUsernameTextField.setKeyboardType(.emailAddress)
         createUsernameTextField.textField.returnKeyType = .next
@@ -185,7 +180,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             let rulesDescriptor = "required: lower, upper, digit, special; minlength: 8; maxlength: 16;"
             createPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
             confirmPasswordTextField.textField.passwordRules = UITextInputPasswordRules(descriptor: rulesDescriptor)
-        } else if #available(iOS 11.0, *) {
+        } else {
             createPasswordTextField.textField.inputAccessoryView = toolbar
             confirmPasswordTextField.textField.inputAccessoryView = toolbar
         }
@@ -384,10 +379,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        var safeAreaBottomInset: CGFloat = 0
-        if #available(iOS 11.0, *) {
-            safeAreaBottomInset = view.safeAreaInsets.bottom
-        }
+        let safeAreaBottomInset = view.safeAreaInsets.bottom
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets

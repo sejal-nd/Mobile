@@ -448,10 +448,7 @@ class AutoPayViewController: UIViewController {
         let userInfo = notification.userInfo!
         let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        var safeAreaBottomInset: CGFloat = 0
-        if #available(iOS 11.0, *) {
-            safeAreaBottomInset = self.view.safeAreaInsets.bottom
-        }
+        let safeAreaBottomInset = view.safeAreaInsets.bottom
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
