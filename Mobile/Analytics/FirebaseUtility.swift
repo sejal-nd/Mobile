@@ -44,8 +44,7 @@ struct FirebaseUtility {
         case loginTokenNetworkComplete
         case loginExchangeTokenNetworkComplete // done
         case loginAccountNetworkComplete // done
-        case loginAccountDetailsNetworkComplete // done
-        case initialAuthenticatedScreenStart // duplicate of the above?
+        case initialAuthenticatedScreenStart // done
         
         case changePasswordStart // done
         case changePasswordSubmit // done

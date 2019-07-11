@@ -74,9 +74,7 @@ class HomeViewController: AccountPickerViewController {
                 
                 let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
                     (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
-                
-                FirebaseUtility.logEvent(.loginAccountDetailsNetworkComplete)
-                
+                                
                 GoogleAnalytics.log(event: .profileLoaded,
                               dimensions: [.residentialAMI: residentialAMIString,
                                            .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
@@ -279,6 +277,7 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
         GoogleAnalytics.log(event: .homeOfferComplete)
         
         AppRating.present()
