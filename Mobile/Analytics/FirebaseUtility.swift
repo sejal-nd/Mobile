@@ -144,17 +144,145 @@ struct EventParameter {
         case errorCode
         case screenName
         
+        case unenrolled_start
+        case enroll_complete
+        case enrolled_start
+        case modify_complete
+        case unenroll_complete
+        case network_submit_error
+        case settings_changed
+        case modify_bank
+        case learn_more
+        case terms
+        
+        case complete
+        
+        case start
+        case verification_complete
+        case answer_question_start
+        case answer_question_complete
+        
+        case offer
+        case account_validation
+        case account_setup
+        case account_security_questions
+        case account_complete
+        case resend_email
+        case ebill_enroll
+        case account_verify
+        
+        case view_pdf
+        case view_usage
+        case launch_prepaid
+        case history_view_more_upcoming_header
+        case history_view_more_past_header
+        case history_view_more_row
+        case history_view_pdf
+        
+        case switch_payment_method
+        case view_terms
+        case submit
+        
+        case add_bank_start
+        case add_card_start
+        case add_bank_complete
+        case add_card_complete
+        case delete_payment_method
+        case edit_payment_method
+        case scan_with_camera
+        
+        case phone_number_gas_1
+        case phone_number_gas_2
+        case phone_number_electric_1
+        case phone_number_electric_2
+        case power_status_animation_press
+        case report_complete
+        case map
+        case streetlight_map
+        
+        case account_number_help
+        
+        case electric_segment_press
+        case gas_segment_press
+        case next_graph_press
+        case previous_graph_press
+        case previous_bar_press
+        case next_bar_press
+        case projected_graph_press
+        case factors_press
+        case factor_bill_period_press
+        case factor_weather_press
+        case factor_other_press
+        
+        case strong_password_complete
+        case change_password_complete
+        case default_account_help
+        case set_default_account_complete
+        case billing_videos
+        case release_of_info_complete
+        case alert_preferences_complete
+        case sign_out
+        
+        case online_form
+        case customer_service_residential
+        case customer_service_business
+        case customer_service_tty_ttd
+        case facebook
+        case twitter
+        case youtube
+        case linkedin
+        case flickr
+        
+        case personalize_banner
+        case personalize_button
+        case personalize_complete
+        case personalize_restore
+        case bill_cta
+        case bill_slide_to_pay
+        case bil_choose_default_payment_method
+        case bill_terms
+        case bill_view_pdf
+        case usage_cta
+        case peak_rewards_cta
+        case outage_cta
+        case projected_bill_cta
+        case projected_bill_electric_press
+        case projected_bill_gas_press
+        case usage_electric_press
+        case usage_gas_press
+        case usage_previous_graph_press
+        case usage_next_graph_press
+        case urgent_message_press
+        
+        case sign_in_register_press
+        
+        case pay_remind
+        case english
+        case spanish
+        case main_screen
+        case initial
+        case initial_decline
+        case initial_accept
+        case opco_update
+        case bill_enroll_push
+        case bill_enroll_push_cancel
+        case bill_enroll_push_continue
+        case bill_unenroll_push
+        case bill_unenroll_push_cancel
+        case bill_unenroll_push_continue
+        
         // Login
         case show_password // done
         case forgot_username_press // done
         case forgot_password_press // done
-        
-        // keepMeSignedIn Toggle
-        case isOn // done
     }
     
     let parameterName: Name
+    
+    // Should only be used with a name of `action`
     let value: Value?
+    
+    // Should only be used with a name of `value`
     let providedValue: String?
     
     init(parameterName: Name, value: Value?, providedValue: String? = nil) {
