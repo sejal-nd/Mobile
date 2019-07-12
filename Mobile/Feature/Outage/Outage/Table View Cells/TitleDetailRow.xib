@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AccountListRow" rowHeight="55" id="tbI-2c-SB9" customClass="AccountListRow" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tbI-2c-SB9" id="ELe-YG-L63">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ko8-9X-HKo">
+                        <rect key="frame" x="49" y="7" width="290" height="40.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbV-tp-PwI">
+                                <rect key="frame" x="0.0" y="0.0" width="290" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gd4-az-Nev">
+                                <rect key="frame" x="0.0" y="23.5" width="290" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40.329999999999998" id="xir-Wd-oZO"/>
+                        </constraints>
+                    </stackView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="TvI-du-bVW">
+                        <rect key="frame" x="347" y="21" width="8" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="C9d-oa-5R9"/>
+                            <constraint firstAttribute="width" constant="8" id="VCJ-HO-h10"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vbN-uS-o54">
+                        <rect key="frame" x="20" y="17" width="21" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="75b-lO-lIa"/>
+                            <constraint firstAttribute="height" constant="21" id="Fzu-lG-mI5"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vbN-uS-o54" firstAttribute="centerY" secondItem="ELe-YG-L63" secondAttribute="centerY" id="305-al-Uc9"/>
+                    <constraint firstItem="TvI-du-bVW" firstAttribute="leading" secondItem="Ko8-9X-HKo" secondAttribute="trailing" constant="8" id="85t-EC-und"/>
+                    <constraint firstItem="vbN-uS-o54" firstAttribute="leading" secondItem="ELe-YG-L63" secondAttribute="leadingMargin" id="AFM-aY-wGo"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="TvI-du-bVW" secondAttribute="trailing" id="ONd-fA-e2p"/>
+                    <constraint firstItem="Ko8-9X-HKo" firstAttribute="leading" secondItem="vbN-uS-o54" secondAttribute="trailing" constant="8" id="Q0q-qe-6rx"/>
+                    <constraint firstItem="Ko8-9X-HKo" firstAttribute="top" secondItem="ELe-YG-L63" secondAttribute="top" constant="7" id="aTp-zn-Dxd"/>
+                    <constraint firstAttribute="bottom" secondItem="Ko8-9X-HKo" secondAttribute="bottom" constant="7" id="ey8-JV-FnX"/>
+                    <constraint firstItem="TvI-du-bVW" firstAttribute="centerY" secondItem="ELe-YG-L63" secondAttribute="centerY" id="idx-gF-KwJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="38" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="accountImageView" destination="vbN-uS-o54" id="VG8-28-U7N"/>
+                <outlet property="accountNumber" destination="kbV-tp-PwI" id="be6-YE-nw7"/>
+                <outlet property="addressLabel" destination="Gd4-az-Nev" id="fWF-0i-AqV"/>
+                <outlet property="carrotImageView" destination="TvI-du-bVW" id="MD0-5I-8Rg"/>
+            </connections>
+            <point key="canvasLocation" x="36.956521739130437" y="34.486607142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_caret" width="8" height="13"/>
+    </resources>
+</document>
