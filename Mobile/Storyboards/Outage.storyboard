@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WUY-4d-zPg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yf6-8Y-4nw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,16 +64,16 @@
                                                                 <rect key="frame" x="0.0" y="277" width="317" height="356.5"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nooutage" translatesAutoresizingMaskIntoConstraints="NO" id="w39-68-ZGq">
-                                                                        <rect key="frame" x="96" y="40" width="125" height="126"/>
+                                                                        <rect key="frame" x="150.5" y="40" width="16" height="16"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outage Unavailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bGi-tx-Zza">
-                                                                        <rect key="frame" x="0.0" y="186" width="317" height="29"/>
+                                                                        <rect key="frame" x="0.0" y="76" width="317" height="29"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WSs-bB-AwP">
-                                                                        <rect key="frame" x="0.0" y="217" width="317" height="139.5"/>
+                                                                        <rect key="frame" x="0.0" y="107" width="317" height="249.5"/>
                                                                         <subviews>
                                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qAF-UH-EXa" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="73.5"/>
@@ -84,7 +84,7 @@
                                                                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                                             </textView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzc-GM-YCp" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="58.5" y="89.5" width="200" height="50"/>
+                                                                                <rect key="frame" x="58.5" y="199.5" width="200" height="50"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1j-cR-LsI">
                                                                                         <rect key="frame" x="79" y="15" width="42" height="20.5"/>
@@ -212,16 +212,16 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="973.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gasonly_graphic" translatesAutoresizingMaskIntoConstraints="NO" id="rwO-5r-SUq">
-                                                        <rect key="frame" x="125" y="70" width="125" height="126"/>
+                                                        <rect key="frame" x="179.5" y="70" width="16" height="16"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gas Only Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZQw-Ul-DsT">
-                                                        <rect key="frame" x="46" y="216" width="283" height="29"/>
+                                                        <rect key="frame" x="46" y="106" width="283" height="29"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nUe-Ah-Ffw" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="46" y="268" width="283" height="676.5"/>
+                                                        <rect key="frame" x="46" y="158" width="283" height="786.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
@@ -299,19 +299,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mp-H2-KBj">
-                                                <rect key="frame" x="0.0" y="362" width="375" height="244.5"/>
+                                                <rect key="frame" x="0.0" y="417" width="375" height="134.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_opco" translatesAutoresizingMaskIntoConstraints="NO" id="T01-wC-F6N">
-                                                        <rect key="frame" x="125" y="0.0" width="125" height="126"/>
+                                                        <rect key="frame" x="179.5" y="0.0" width="16" height="16"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Ineligible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFu-V4-SGd">
-                                                        <rect key="frame" x="110.5" y="160" width="154.5" height="25"/>
+                                                        <rect key="frame" x="110.5" y="50" width="154.5" height="25"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This profile type does not have access to the mobile app. Access your account on our responsive website." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra8-i7-Ddl">
-                                                        <rect key="frame" x="29" y="187" width="317" height="57.5"/>
+                                                        <rect key="frame" x="29" y="77" width="317" height="57.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -477,10 +477,25 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="dh1-oj-yyK">
-                                    <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="dh1-oj-yyK">
+                                    <rect key="frame" x="0.0" y="116" width="375" height="124"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="waI-lA-BTk" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                            <rect key="frame" x="24" y="8" width="327" height="108"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                        </textView>
+                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="waI-lA-BTk" firstAttribute="leading" secondItem="dh1-oj-yyK" secondAttribute="leadingMargin" constant="16" id="5U3-Uc-df1"/>
+                                        <constraint firstAttribute="bottom" secondItem="waI-lA-BTk" secondAttribute="bottom" constant="8" id="8Oe-4s-qKD"/>
+                                        <constraint firstItem="waI-lA-BTk" firstAttribute="top" secondItem="dh1-oj-yyK" secondAttribute="top" constant="8" id="T5d-yT-34E"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="waI-lA-BTk" secondAttribute="trailing" constant="16" id="jbT-5C-XiS"/>
+                                    </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="BUP-Nh-LkF">
