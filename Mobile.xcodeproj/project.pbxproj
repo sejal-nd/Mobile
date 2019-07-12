@@ -293,7 +293,6 @@
 		359BDB5322D8C36D007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
 		359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
 		359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
-		359BDB5822D8C71F007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -7362,7 +7361,6 @@
 				35E7C7E62190803900BA13C6 /* AccountsManager.swift in Sources */,
 				35E7C80B2190806800BA13C6 /* DebugOptions.swift in Sources */,
 				356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */,
-				359BDB5822D8C71F007002B0 /* FirebaseUtility.swift in Sources */,
 				356C7F8A21909F89003E8A90 /* PecoColor.swift in Sources */,
 				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
 				356C7F8321909E7E003E8A90 /* NumberFormatter.swift in Sources */,
