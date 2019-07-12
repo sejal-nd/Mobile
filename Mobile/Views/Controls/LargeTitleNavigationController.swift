@@ -24,7 +24,10 @@ class LargeTitleNavigationController: UINavigationController {
     
     private func commonInit() {
         navigationBar.barStyle = .default
-        navigationBar.barTintColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        
+        let color: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        navigationBar.backgroundColor = color
+        navigationBar.barTintColor = color
         navigationBar.tintColor = .actionBlue
         navigationBar.isTranslucent = false
         
