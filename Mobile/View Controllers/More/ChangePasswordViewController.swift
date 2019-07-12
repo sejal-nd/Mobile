@@ -180,11 +180,13 @@ class ChangePasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        FirebaseUtility.logEvent(.changePasswordStart)
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .changePasswordOffer)
+        GoogleAnalytics.log(event: .changePasswordOffer)
     }
     
     deinit {
@@ -195,6 +197,9 @@ class ChangePasswordViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
+        
+        FirebaseUtility.logEvent(.changePasswordSubmit)
+        
         view.endEditing(true)
         
         // Hide password while loading
@@ -213,10 +218,10 @@ class ChangePasswordViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
 
             if self.viewModel.hasStrongPassword {
-                Analytics.log(event: .strongPasswordComplete)
+                GoogleAnalytics.log(event: .strongPasswordComplete)
             }
             
-            Analytics.log(event: .changePasswordDone)
+            GoogleAnalytics.log(event: .changePasswordDone)
 
         }, onPasswordNoMatch: { [weak self] in
             LoadingView.hide()
@@ -242,7 +247,7 @@ class ChangePasswordViewController: UIViewController {
     @objc private func suggestPassword() {
         guard let strongPassword = SharedWebCredentials.generatePassword() else { return }
         
-        Analytics.log(event: .strongPasswordOffer)
+        GoogleAnalytics.log(event: .strongPasswordOffer)
         
         presentAlert(title: "Suggested Password:\n\n\(strongPassword)\n",
             message: "This password will be saved in your iCloud keychain so it is available for AutoFill on all your devices.",

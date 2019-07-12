@@ -77,7 +77,7 @@ class BGEAutoPayViewController: UIViewController {
         
         switch viewModel.initialEnrollmentStatus.value {
         case .unenrolled:
-            Analytics.log(event: .autoPayEnrollOffer)
+            GoogleAnalytics.log(event: .autoPayEnrollOffer)
         case .enrolled:
             termsStackView.isHidden = true
             termsStackView.alpha = 0
@@ -219,10 +219,10 @@ class BGEAutoPayViewController: UIViewController {
             guard let self = self else { return }
             
             LoadingView.show()
-            Analytics.log(event: .autoPayUnenrollOffer)
+            GoogleAnalytics.log(event: .autoPayUnenrollOffer)
             self.viewModel.unenroll(onSuccess: { [weak self] in
                 LoadingView.hide()
-                Analytics.log(event: .autoPayUnenrollComplete)
+                GoogleAnalytics.log(event: .autoPayUnenrollComplete)
                 
                 guard let self = self else { return }
                 let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
@@ -245,18 +245,18 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     private func enroll() {
-        Analytics.log(event: .autoPayEnrollSubmit)
+        GoogleAnalytics.log(event: .autoPayEnrollSubmit)
         if viewModel.userDidChangeSettings.value {
-            Analytics.log(event: .autoPayModifySettingSubmit)
+            GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
         }
         
         viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
             
-            Analytics.log(event: .autoPayEnrollComplete)
+            GoogleAnalytics.log(event: .autoPayEnrollComplete)
             if self.viewModel.userDidChangeSettings.value {
-                Analytics.log(event: .autoPayModifySettingCompleteNew)
+                GoogleAnalytics.log(event: .autoPayModifySettingCompleteNew)
             }
             
             let title = NSLocalizedString("Enrolled in AutoPay", comment: "")
@@ -282,10 +282,10 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     private func updateSettings() {
-        Analytics.log(event: .autoPayModifySettingSubmit)
+        GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
         viewModel.update(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .autoPayModifySettingComplete)
+            GoogleAnalytics.log(event: .autoPayModifySettingComplete)
             
             guard let self = self else { return }
             self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
@@ -317,9 +317,9 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.delegate = self
         
         if accountDetail.isAutoPay {
-            Analytics.log(event: .autoPayModifyWallet)
+            GoogleAnalytics.log(event: .autoPayModifyWallet)
         } else {
-            Analytics.log(event: .autoPayEnrollSelectBank)
+            GoogleAnalytics.log(event: .autoPayEnrollSelectBank)
         }
         
         navigationController?.pushViewController(miniWalletVC, animated: true)

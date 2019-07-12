@@ -151,13 +151,13 @@ class CommercialUsageViewController: UIViewController {
                 
                 switch self.viewModel.tabs.value[selectedIndex] {
                 case .usageTrends:
-                    Analytics.log(event: .comUsageTrends)
+                    GoogleAnalytics.log(event: .comUsageTrends)
                 case .billingHistory:
-                    Analytics.log(event: .comUsageBilling)
+                    GoogleAnalytics.log(event: .comUsageBilling)
                 case .weatherImpact:
-                    Analytics.log(event: .comUsageWeather)
+                    GoogleAnalytics.log(event: .comUsageWeather)
                 case .operatingSchedule:
-                    Analytics.log(event: .comUsageOpSchedule)
+                    GoogleAnalytics.log(event: .comUsageOpSchedule)
                 }
             })
             .disposed(by: disposeBag)

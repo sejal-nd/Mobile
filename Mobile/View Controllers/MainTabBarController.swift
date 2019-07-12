@@ -158,15 +158,15 @@ extension MainTabBarController: UITabBarControllerDelegate {
                 
                 switch selectedIndex {
                 case 0:
-                    Analytics.log(event: .tabHome)
+                    GoogleAnalytics.log(event: .tabHome)
                 case 1:
-                    Analytics.log(event: .tabBill)
+                    GoogleAnalytics.log(event: .tabBill)
                 case 2:
-                    Analytics.log(event: .tabOutage)
+                    GoogleAnalytics.log(event: .tabOutage)
                 case 3:
-                    Analytics.log(event: .tabUsage)
+                    GoogleAnalytics.log(event: .tabUsage)
                 case 4:
-                    Analytics.log(event: .tabMore)
+                    GoogleAnalytics.log(event: .tabMore)
                 default:
                     break
                 }

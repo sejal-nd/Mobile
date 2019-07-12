@@ -260,9 +260,9 @@ class ReviewPaymentViewController: UIViewController {
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
             switch bankOrCard {
             case .bank:
-                Analytics.log(event: .eCheckSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                GoogleAnalytics.log(event: .eCheckSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
             case .card:
-                Analytics.log(event: .cardSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                GoogleAnalytics.log(event: .cardSubmit, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
             }
         }
         
@@ -308,9 +308,9 @@ class ReviewPaymentViewController: UIViewController {
                     if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
                         switch bankOrCard {
                         case .bank:
-                            Analytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                            GoogleAnalytics.log(event: .eCheckComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                         case .card:
-                            Analytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
+                            GoogleAnalytics.log(event: .cardComplete, dimensions: [.paymentTempWalletItem: temp ? "true" : "false"])
                         }
                     }
                     
@@ -319,12 +319,12 @@ class ReviewPaymentViewController: UIViewController {
                     if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
                         switch bankOrCard {
                         case .bank:
-                            Analytics.log(event: .eCheckError, dimensions: [
+                            GoogleAnalytics.log(event: .eCheckError, dimensions: [
                                 .errorCode: error.serviceCode,
                                 .paymentTempWalletItem: temp ? "true" : "false"
                                 ])
                         case .card:
-                            Analytics.log(event: .cardError, dimensions: [
+                            GoogleAnalytics.log(event: .cardError, dimensions: [
                                 .errorCode: error.serviceCode,
                                 .paymentTempWalletItem: temp ? "true" : "false"
                                 ])

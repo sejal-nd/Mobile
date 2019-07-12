@@ -48,7 +48,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .registerOffer)
+        GoogleAnalytics.log(event: .registerOffer)
     }
     
     /// Helpers
@@ -223,11 +223,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .registerAccountValidation)
+            GoogleAnalytics.log(event: .registerAccountValidation)
             self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .registerAccountValidation)
+            GoogleAnalytics.log(event: .registerAccountValidation)
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()

@@ -243,9 +243,9 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if unauthenticatedExperience {
-            Analytics.log(event: .reportAnOutageUnAuthScreenView)
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthScreenView)
         } else {
-            Analytics.log(event: .reportOutageAuthOffer)
+            GoogleAnalytics.log(event: .reportOutageAuthOffer)
         }
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
@@ -354,7 +354,7 @@ class ReportOutageViewController: UIViewController {
                 RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics.log(event: .reportAnOutageUnAuthSubmit)
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 LoadingView.hide()
@@ -362,7 +362,7 @@ class ReportOutageViewController: UIViewController {
                 RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
             }, onError: errorBlock)
-            Analytics.log(event: .reportOutageAuthSubmit)
+            GoogleAnalytics.log(event: .reportOutageAuthSubmit)
         }
         
 
@@ -370,7 +370,7 @@ class ReportOutageViewController: UIViewController {
     
     @IBAction func switchPressed(sender: AnyObject) {
         if sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn {
-            Analytics.log(event: .reportOutageAuthCircuitBreak)
+            GoogleAnalytics.log(event: .reportOutageAuthCircuitBreak)
         }
     }
     
@@ -438,10 +438,10 @@ extension ReportOutageViewController: UITextFieldDelegate {
 extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsEvent = unauthenticatedExperience ?
+        let screenName: GoogleAnalyticsEvent = unauthenticatedExperience ?
             .reportAnOutageUnAuthEmergencyPhone :
             .reportOutageEmergencyCall
         
-        Analytics.log(event: screenName)
+        GoogleAnalytics.log(event: screenName)
     }
 }

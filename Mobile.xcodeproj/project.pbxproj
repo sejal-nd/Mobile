@@ -287,6 +287,12 @@
 		359BDB4C22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4E22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
+		359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5322D8C36D007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -1507,10 +1513,10 @@
 		B0EE78F72214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F82214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
 		B0EE78F92214CA9200F53C56 /* appointments.json in Resources */ = {isa = PBXBuildFile; fileRef = B0EE78F02214766600F53C56 /* appointments.json */; };
-		B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
-		B52CA0B01F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
-		B52CA0B11F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
-		B52CA0B21F311524002B5674 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
+		B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */; };
+		B52CA0B01F311524002B5674 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */; };
+		B52CA0B11F311524002B5674 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */; };
+		B52CA0B21F311524002B5674 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */; };
 		B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
 		B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
@@ -2218,7 +2224,7 @@
 		E8F62B9B200924410077B3DA /* PeakRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */; };
 		E8F62B9C200924410077B3DA /* PeakRewardsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A1D1FAB66D800EACB3B /* PeakRewardsSummary.swift */; };
 		E8F62B9F200924410077B3DA /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
-		E8F62BA0200924410077B3DA /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
+		E8F62BA0200924410077B3DA /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */; };
 		E8F62BA1200924410077B3DA /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		E8F62BA3200924410077B3DA /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
@@ -2333,7 +2339,7 @@
 		E8F62C50200924570077B3DA /* PeakRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */; };
 		E8F62C51200924570077B3DA /* PeakRewardsSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC2A1D1FAB66D800EACB3B /* PeakRewardsSummary.swift */; };
 		E8F62C54200924570077B3DA /* ActivityTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D599411EC2374500DDB380 /* ActivityTracker.swift */; };
-		E8F62C55200924570077B3DA /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* Analytics.swift */; };
+		E8F62C55200924570077B3DA /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */; };
 		E8F62C56200924570077B3DA /* BillingHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */; };
 		E8F62C58200924570077B3DA /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
 		E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */; };
@@ -2616,6 +2622,7 @@
 		359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleNavigationController.swift; sourceTree = "<group>"; };
 		359BDB3F22D50F90007002B0 /* StickyFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyFooterView.swift; sourceTree = "<group>"; };
 		359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddCloseButton.swift"; sourceTree = "<group>"; };
+		359BDB4F22D77073007002B0 /* FirebaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -3063,7 +3070,7 @@
 		B118428B41821733972CF125 /* Pods-PECO_WatchOS.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.testing.xcconfig"; sourceTree = "<group>"; };
 		B1C82778F4B29F83D5A54EE7 /* Pods-BGEApp-BGEUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
 		B3F0A0B0AA306013338624F6 /* Pods-PECO_WatchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
-		B52CA0AE1F311524002B5674 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
 		B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParser.swift; sourceTree = "<group>"; };
 		B5389EA61E53DC1D0028AF89 /* AuthTokenParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenParserTests.swift; sourceTree = "<group>"; };
 		B54846821E687CEB008CE1B1 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
@@ -3648,8 +3655,8 @@
 		3575233022C53ABF00A0AFAC /* Account Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */,
 				351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */,
+				351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */,
 				351241F822B3DB8D00E8BD25 /* Table View Cells */,
 			);
 			path = "Account Sheet";
@@ -4804,7 +4811,8 @@
 		B52CA0AD1F3114D5002B5674 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				B52CA0AE1F311524002B5674 /* Analytics.swift */,
+				B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */,
+				359BDB4F22D77073007002B0 /* FirebaseUtility.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -7538,7 +7546,7 @@
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
-				B52CA0AF1F311524002B5674 /* Analytics.swift in Sources */,
+				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */,
 				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
@@ -7575,6 +7583,7 @@
 				B0B083AF216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
+				359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				823694311FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
 				82156F1D1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E863346F1E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
@@ -7862,6 +7871,7 @@
 				35376C6A20F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
+				359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
@@ -7915,7 +7925,7 @@
 				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				82AC2A2C1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1911F8E9D620090C5A5 /* BillForecast.swift in Sources */,
-				B52CA0B11F311524002B5674 /* Analytics.swift in Sources */,
+				B52CA0B11F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B281EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
@@ -8296,7 +8306,7 @@
 				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				82AC2A2B1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
-				B52CA0B01F311524002B5674 /* Analytics.swift in Sources */,
+				B52CA0B01F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
@@ -8330,6 +8340,7 @@
 				35277B02210794B400411297 /* UnavailableView.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
+				359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				35AFB42C20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
@@ -8494,6 +8505,7 @@
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
 				0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */,
+				359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
 				E8F51EEF1ECA5AE40080AB3E /* Fonts.swift in Sources */,
 				E8FF08671F7EDE360030F1BF /* BillingHistoryDetailsViewModel.swift in Sources */,
@@ -8616,7 +8628,7 @@
 				B05E9D16217F688A0003FAB8 /* Application.swift in Sources */,
 				82AC2A281FAB76F500EACB3B /* PeakRewardsSummary.swift in Sources */,
 				82D599451EC2374500DDB380 /* ActivityTracker.swift in Sources */,
-				B52CA0B21F311524002B5674 /* Analytics.swift in Sources */,
+				B52CA0B21F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
@@ -8729,6 +8741,7 @@
 				E8F62B3D200924410077B3DA /* PaperlessEBillViewModel.swift in Sources */,
 				E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */,
 				E8F62B3F200924410077B3DA /* Account.swift in Sources */,
+				359BDB5322D8C36D007002B0 /* FirebaseUtility.swift in Sources */,
 				E8F62B40200924410077B3DA /* Maintenance.swift in Sources */,
 				E8F62B42200924410077B3DA /* AuthTokenParserTests.swift in Sources */,
 				E8F62B43200924410077B3DA /* Fonts.swift in Sources */,
@@ -8852,7 +8865,7 @@
 				E8F62B9B200924410077B3DA /* PeakRewardsViewModel.swift in Sources */,
 				E8F62B9C200924410077B3DA /* PeakRewardsSummary.swift in Sources */,
 				E8F62B9F200924410077B3DA /* ActivityTracker.swift in Sources */,
-				E8F62BA0200924410077B3DA /* Analytics.swift in Sources */,
+				E8F62BA0200924410077B3DA /* GoogleAnalytics.swift in Sources */,
 				B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				E8F62BA1200924410077B3DA /* BillingHistoryItem.swift in Sources */,
 				E8F62BA3200924410077B3DA /* NibViews.swift in Sources */,
@@ -8918,6 +8931,7 @@
 				E8F62BF2200924570077B3DA /* PaperlessEBillViewModel.swift in Sources */,
 				E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */,
 				E8F62BF4200924570077B3DA /* Account.swift in Sources */,
+				359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */,
 				E8F62BF5200924570077B3DA /* Maintenance.swift in Sources */,
 				E8F62BF7200924570077B3DA /* AuthTokenParserTests.swift in Sources */,
 				E8F62BF8200924570077B3DA /* Fonts.swift in Sources */,
@@ -9041,7 +9055,7 @@
 				E8F62C50200924570077B3DA /* PeakRewardsViewModel.swift in Sources */,
 				E8F62C51200924570077B3DA /* PeakRewardsSummary.swift in Sources */,
 				E8F62C54200924570077B3DA /* ActivityTracker.swift in Sources */,
-				E8F62C55200924570077B3DA /* Analytics.swift in Sources */,
+				E8F62C55200924570077B3DA /* GoogleAnalytics.swift in Sources */,
 				B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				E8F62C56200924570077B3DA /* BillingHistoryItem.swift in Sources */,
 				E8F62C58200924570077B3DA /* NibViews.swift in Sources */,

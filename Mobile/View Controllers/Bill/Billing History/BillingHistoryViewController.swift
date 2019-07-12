@@ -80,7 +80,7 @@ class BillingHistoryViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .billingOfferComplete)
+        GoogleAnalytics.log(event: .billingOfferComplete)
     }
     
     func getBillingHistory() {
@@ -117,7 +117,7 @@ class BillingHistoryViewController: UIViewController {
     func selectedRow(at indexPath: IndexPath) {
         if let vc = viewControllerToPush(forTappedIndexPath: indexPath) {
             if vc is ViewBillViewController {
-                Analytics.log(event: .billViewPastOfferComplete)
+                GoogleAnalytics.log(event: .billViewPastOfferComplete)
                 AppRating.logRatingEvent()
             }
             
@@ -520,9 +520,9 @@ extension BillingHistoryViewController: AutoPayViewControllerDelegate {
         showDelayedToast(withMessage: message)
         
         if enrolled {
-            Analytics.log(event: .autoPayEnrollComplete)
+            GoogleAnalytics.log(event: .autoPayEnrollComplete)
         } else {
-            Analytics.log(event: .autoPayUnenrollComplete)
+            GoogleAnalytics.log(event: .autoPayUnenrollComplete)
         }
     }
     

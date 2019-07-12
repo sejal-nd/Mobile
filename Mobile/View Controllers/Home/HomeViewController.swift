@@ -74,8 +74,8 @@ class HomeViewController: AccountPickerViewController {
                 
                 let isPeakSmart = (Environment.shared.opco == .bge && accountDetail.isSERAccount) ||
                     (Environment.shared.opco != .bge && accountDetail.isPTSAccount)
-                
-                Analytics.log(event: .profileLoaded,
+                                
+                GoogleAnalytics.log(event: .profileLoaded,
                               dimensions: [.residentialAMI: residentialAMIString,
                                            .bgeControlGroup: accountDetail.isBGEControlGroup ? "true" : "false",
                                            .peakSmart: isPeakSmart ? "true" : "false"])
@@ -277,7 +277,8 @@ class HomeViewController: AccountPickerViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .homeOfferComplete)
+        FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
+        GoogleAnalytics.log(event: .homeOfferComplete)
         
         AppRating.present()
         
@@ -293,9 +294,9 @@ class HomeViewController: AccountPickerViewController {
                 if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
                     UserDefaults.standard.set(true, forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted)
                     if granted {
-                        Analytics.log(event: .alertsiOSPushOKInitial)
+                        GoogleAnalytics.log(event: .alertsiOSPushOKInitial)
                     } else {
-                        Analytics.log(event: .alertsiOSPushDontAllowInitial)
+                        GoogleAnalytics.log(event: .alertsiOSPushDontAllowInitial)
                     }
                 }
             })
@@ -304,7 +305,7 @@ class HomeViewController: AccountPickerViewController {
         }
         
         if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isInitialPushNotificationPermissionsWorkflowCompleted) {
-            Analytics.log(event: .alertsiOSPushInitial)
+            GoogleAnalytics.log(event: .alertsiOSPushInitial)
         }
     }
     
@@ -493,7 +494,7 @@ class HomeViewController: AccountPickerViewController {
                 let isPeakSmart = (Environment.shared.opco == .bge && $0.isSERAccount) ||
                     (Environment.shared.opco != .bge && $0.isPTSAccount)
                 
-                Analytics.log(event: .viewUsageLink,
+                GoogleAnalytics.log(event: .viewUsageLink,
                               dimensions: [.residentialAMI: residentialAMIString,
                                            .peakSmart: isPeakSmart ? "true" : "false"])
                 self?.tabBarController?.selectedIndex = 3
@@ -504,7 +505,7 @@ class HomeViewController: AccountPickerViewController {
             .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements()
                 .asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
-                Analytics.log(event: .allSavingsSmartEnergy)
+                GoogleAnalytics.log(event: .allSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
             }).disposed(by: usageCardView.disposeBag)
     }
@@ -674,7 +675,7 @@ class HomeViewController: AccountPickerViewController {
                     guard let this = self else { return }
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                         this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-                        Analytics.log(event: .reportOutageAuthComplete)
+                        GoogleAnalytics.log(event: .reportOutageAuthComplete)
                     })
                 })
                 .disposed(by: vc.disposeBag)
@@ -700,9 +701,9 @@ extension HomeViewController: AutoPayViewControllerDelegate {
             self.view.showToast(message)
         })
         if enrolled {
-            Analytics.log(event: .autoPayEnrollComplete)
+            GoogleAnalytics.log(event: .autoPayEnrollComplete)
         } else {
-            Analytics.log(event: .autoPayUnenrollComplete)
+            GoogleAnalytics.log(event: .autoPayUnenrollComplete)
         }
     }
     

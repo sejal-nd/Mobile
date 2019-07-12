@@ -35,7 +35,7 @@ class ForgotUsernameViewModel {
             .subscribe(onNext: { usernames in
                 self.maskedUsernames = usernames
                 onSuccess()
-                Analytics.log(event: .forgotUsernameAccountValidate)
+                GoogleAnalytics.log(event: .forgotUsernameAccountValidate)
             }, onError: { error in
                 let serviceError = error as! ServiceError
                 if serviceError.serviceCode == ServiceErrorCode.fnAccountNotFound.rawValue ||
@@ -54,7 +54,7 @@ class ForgotUsernameViewModel {
         let cipher = maskedUsername.cipher
         let acctNum: String? = accountNumber.value.count > 0 ? accountNumber.value : nil
         let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
-        Analytics.log(event: .forgotUsernameSecuritySubmit)
+        GoogleAnalytics.log(event: .forgotUsernameSecuritySubmit)
         
         authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
             .observeOn(MainScheduler.instance)

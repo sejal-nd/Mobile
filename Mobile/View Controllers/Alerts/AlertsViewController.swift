@@ -123,7 +123,7 @@ class AlertsViewController: AccountPickerViewController {
     }
     
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
-        Analytics.log(event: .alertsMainScreen)
+        GoogleAnalytics.log(event: .alertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
     }
 
@@ -180,7 +180,7 @@ extension AlertsViewController: AccountPickerDelegate {
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
     
     func alertPreferencesViewControllerDidSavePreferences() {
-        Analytics.log(event: .alertsPrefCenterComplete)
+        GoogleAnalytics.log(event: .alertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Preferences saved", comment: ""))
         })

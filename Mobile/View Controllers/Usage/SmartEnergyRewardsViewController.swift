@@ -92,7 +92,7 @@ class SmartEnergyRewardsViewController: UIViewController {
             .withLatestFrom(viewModel.eventResults)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] eventResults in
-                Analytics.log(event: .allSavingsUsage)
+                GoogleAnalytics.log(event: .allSavingsUsage)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: eventResults)
             })
             .disposed(by: disposeBag)
@@ -130,7 +130,7 @@ class SmartEnergyRewardsViewController: UIViewController {
         
         viewModel.shouldShowSmartEnergyRewardsContent.asObservable()
             .filter(!)
-            .subscribe(onNext: { _ in Analytics.log(event: .emptyStatePeakSmart) })
+            .subscribe(onNext: { _ in GoogleAnalytics.log(event: .emptyStatePeakSmart) })
             .disposed(by: disposeBag)
         
         viewModel.smartEnergyRewardsSeasonLabelText

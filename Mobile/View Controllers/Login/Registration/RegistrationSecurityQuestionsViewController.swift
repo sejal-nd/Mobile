@@ -357,10 +357,10 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
             LoadingView.hide()
 
             if self.viewModel.hasStrongPassword {
-                Analytics.log(event: .strongPasswordComplete)
+                GoogleAnalytics.log(event: .strongPasswordComplete)
             }
             
-            Analytics.log(event: .registerAccountSecurityQuestions)
+            GoogleAnalytics.log(event: .registerAccountSecurityQuestions)
             self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
 
         }, onError: { [weak self] (title, message) in
@@ -379,7 +379,7 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if(enrollIneBillSwitch.isOn) {
-            Analytics.log(event: .registerEBillEnroll)
+            GoogleAnalytics.log(event: .registerEBillEnroll)
         }
     }
     

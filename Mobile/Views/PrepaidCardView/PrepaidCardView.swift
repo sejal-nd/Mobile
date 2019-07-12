@@ -47,7 +47,7 @@ final class PrepaidCardView: UIView {
     }
     
     @IBAction private func launchDashboard() {
-        Analytics.log(event: .prePaidEnrolled)
+        GoogleAnalytics.log(event: .prePaidEnrolled)
         let url = URL(string: Environment.shared.myAccountUrl)!
         UIApplication.shared.openUrlIfCan(url)
     }
