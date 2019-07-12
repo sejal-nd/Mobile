@@ -601,18 +601,12 @@
 		826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773451FB2330400A8CFAA /* TemperatureSliderView.swift */; };
 		826773471FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773451FB2330400A8CFAA /* TemperatureSliderView.swift */; };
 		826773481FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773451FB2330400A8CFAA /* TemperatureSliderView.swift */; };
-		826DCCE91F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
-		826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
-		826DCCEB1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */; };
-		826DCCED1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */; };
-		826DCCEE1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */; };
-		826DCCEF1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */; };
-		826DCCF21F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */; };
-		826DCCF31F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */; };
-		826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */; };
-		826DCCFE1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */; };
-		826DCCFF1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */; };
-		826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */; };
+		826DCCE91F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* SetDefaultAccountViewController.swift */; };
+		826DCCEA1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* SetDefaultAccountViewController.swift */; };
+		826DCCEB1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCE81F0E7E0A0063D47E /* SetDefaultAccountViewController.swift */; };
+		826DCCED1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */; };
+		826DCCEE1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */; };
+		826DCCEF1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */; };
 		82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
@@ -985,6 +979,8 @@
 		9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
+		9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CE83BAC22D9201C0094C34C /* SetDefaultAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE83BAA22D9201B0094C34C /* SetDefaultAccountTableViewCell.xib */; };
 		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
@@ -2810,10 +2806,8 @@
 		8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewController.swift; sourceTree = "<group>"; };
 		826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewModel.swift; sourceTree = "<group>"; };
 		826773451FB2330400A8CFAA /* TemperatureSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureSliderView.swift; sourceTree = "<group>"; };
-		826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAccountViewController.swift; sourceTree = "<group>"; };
-		826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAccountViewModel.swift; sourceTree = "<group>"; };
-		826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedAccountPickerTableViewCell.swift; sourceTree = "<group>"; };
-		826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvancedAccountPickerTableViewCell.xib; sourceTree = "<group>"; };
+		826DCCE81F0E7E0A0063D47E /* SetDefaultAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountViewController.swift; sourceTree = "<group>"; };
+		826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountViewModel.swift; sourceTree = "<group>"; };
 		82837D131F20677700C31E1C /* RecentPaymentsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPaymentsStore.swift; sourceTree = "<group>"; };
 		8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModelTests.swift; sourceTree = "<group>"; };
 		828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsVCViewModelTests.swift; sourceTree = "<group>"; };
@@ -2937,6 +2931,8 @@
 		9CD3532622CABC0900165F87 /* PrepaidCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
 		9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButtonNew.swift; sourceTree = "<group>"; };
 		9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButtonNew.xib; sourceTree = "<group>"; };
+		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
+		9CE83BAA22D9201B0094C34C /* SetDefaultAccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetDefaultAccountTableViewCell.xib; sourceTree = "<group>"; };
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEV-TEST.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEV-TEST.plist"; sourceTree = "<group>"; };
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEV-TEST.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEV-TEST.plist"; sourceTree = "<group>"; };
 		9CEB30E12261310000DD725C /* PECO-Environment-DEV-TEST.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEV-TEST.plist"; sourceTree = "<group>"; };
@@ -3592,6 +3588,7 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				9CE83BAD22D93C870094C34C /* Set Default Account */,
 				351241EB22B3DB7600E8BD25 /* Account Select */,
 			);
 			path = Feature;
@@ -3611,7 +3608,6 @@
 			children = (
 				3575232A22C5371800A0AFAC /* Account Row */,
 				3575232B22C5371F00A0AFAC /* Premise Row */,
-				3575232922C536FD00A0AFAC /* Todo Delete Once Set Default */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -3623,15 +3619,6 @@
 				358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */,
 			);
 			path = "Bill Impact Dropdown View";
-			sourceTree = "<group>";
-		};
-		3575232922C536FD00A0AFAC /* Todo Delete Once Set Default */ = {
-			isa = PBXGroup;
-			children = (
-				826DCCF11F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift */,
-				826DCCFA1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib */,
-			);
-			path = "Todo Delete Once Set Default";
 			sourceTree = "<group>";
 		};
 		3575232A22C5371800A0AFAC /* Account Row */ = {
@@ -4244,7 +4231,6 @@
 			isa = PBXGroup;
 			children = (
 				82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */,
-				826DCCEC1F0E7E410063D47E /* DefaultAccountViewModel.swift */,
 				82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */,
 				82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */,
 				35A6C6FD2121D9D600C2A58F /* MoreViewModel.swift */,
@@ -4638,6 +4624,25 @@
 				9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */,
 			);
 			path = DisclosureButtonNew;
+			sourceTree = "<group>";
+		};
+		9CE83BA822D9201B0094C34C /* SetDefaultAccountTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */,
+				9CE83BAA22D9201B0094C34C /* SetDefaultAccountTableViewCell.xib */,
+			);
+			path = SetDefaultAccountTableViewCell;
+			sourceTree = "<group>";
+		};
+		9CE83BAD22D93C870094C34C /* Set Default Account */ = {
+			isa = PBXGroup;
+			children = (
+				826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */,
+				826DCCE81F0E7E0A0063D47E /* SetDefaultAccountViewController.swift */,
+				9CE83BA822D9201B0094C34C /* SetDefaultAccountTableViewCell */,
+			);
+			path = "Set Default Account";
 			sourceTree = "<group>";
 		};
 		B0030D062097BC5500327A3D /* MaintenanceModeView */ = {
@@ -5457,7 +5462,6 @@
 				E8EEF7441E578BCC006804D4 /* TermsPoliciesViewController.swift */,
 				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
 				E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */,
-				826DCCE81F0E7E0A0063D47E /* DefaultAccountViewController.swift */,
 				9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */,
 			);
 			path = More;
@@ -5960,7 +5964,6 @@
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
-				826DCCFE1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -6075,6 +6078,7 @@
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
 				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
+				9CE83BAC22D9201C0094C34C /* SetDefaultAccountTableViewCell.xib in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
@@ -6189,7 +6193,6 @@
 				B08957092215FE7900A97965 /* recover_username.json in Resources */,
 				B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */,
 				9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */,
-				826DCD001F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E80043401E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				E8494F431EBBCB4C0047D6BE /* outage_loading.json in Resources */,
 				9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */,
@@ -6277,7 +6280,6 @@
 				E80043271E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
 				9C62446922C42B4200F14DA0 /* FloatLabelTextViewNew.xib in Resources */,
 				351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
-				826DCCFF1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
@@ -7432,7 +7434,6 @@
 				E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				B0DB2760215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
 				B0CB1C84227CB4510081F99B /* TabCollectionViewCell.swift in Sources */,
-				826DCCF21F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				8FD5AE891E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				B0D84D5C220382EE00C70A6F /* MockAppState.swift in Sources */,
 				82DE610A1FB9F36D00DC25C1 /* OverrideViewController.swift in Sources */,
@@ -7468,7 +7469,7 @@
 				82EAB3441F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				351DE2F9221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				B0336FEA21762FB400751430 /* EventStore.swift in Sources */,
-				826DCCED1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
+				826DCCED1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */,
 				228877011FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B54846831E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				B0CB1C7E227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
@@ -7670,7 +7671,7 @@
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				0EF60FD520EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F72025160F00A749A3 /* MockRegistrationService.swift in Sources */,
-				826DCCE91F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
+				826DCCE91F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
 				E82FF1E61F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */,
 				B01748922135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
@@ -7680,6 +7681,7 @@
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
 				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				9C7FFD1A22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
+				9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
@@ -7960,7 +7962,7 @@
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				35AFB42D20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E86334711E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
-				826DCCEF1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
+				826DCCEF1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */,
 				E841F3AC1F02F316007BFA82 /* PickerView.swift in Sources */,
 				E82FF1F41F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
@@ -7993,7 +7995,6 @@
 				359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
-				826DCCF41F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
@@ -8082,7 +8083,7 @@
 				82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				B596062C1F7C1F4A00515B72 /* AppRating.swift in Sources */,
-				826DCCEB1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
+				826DCCEB1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
 				225FF85C1EC56B480079010C /* Date.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
@@ -8344,7 +8345,7 @@
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				35AFB42C20C82DA0000312B9 /* SheetView.swift in Sources */,
 				E86334701E5F84980091E6FE /* InsetJVFloatLabeledTextField.swift in Sources */,
-				826DCCEE1F0E7E410063D47E /* DefaultAccountViewModel.swift in Sources */,
+				826DCCEE1F0E7E410063D47E /* SetDefaultAccountViewModel.swift in Sources */,
 				E841F3AB1F02F316007BFA82 /* PickerView.swift in Sources */,
 				E82FF1F31F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CA1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
@@ -8374,7 +8375,6 @@
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
-				826DCCF31F0E85360063D47E /* AdvancedAccountPickerTableViewCell.swift in Sources */,
 				E8B8C84D1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -8460,7 +8460,7 @@
 				821898931F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				B06B08832226E948008FC74E /* BGEAutoPaySettingsViewModel.swift in Sources */,
 				B596062B1F7C1F4A00515B72 /* AppRating.swift in Sources */,
-				826DCCEA1F0E7E0A0063D47E /* DefaultAccountViewController.swift in Sources */,
+				826DCCEA1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
 				225FF85B1EC56B480079010C /* Date.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
 				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,

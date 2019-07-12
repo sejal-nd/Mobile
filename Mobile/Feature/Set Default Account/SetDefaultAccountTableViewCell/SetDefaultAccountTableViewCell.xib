@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SetDefaultAccountTableViewCell" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radiobutton_deselected" translatesAutoresizingMaskIntoConstraints="NO" id="Kad-vj-XY1">
+                        <rect key="frame" x="20" y="13.5" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Kxs-GB-SL5"/>
+                            <constraint firstAttribute="width" constant="24" id="pWo-L7-Tfp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQG-bd-zCX">
+                        <rect key="frame" x="54" y="17" width="250" height="16.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLf-DW-sXJ">
+                        <rect key="frame" x="54" y="49.5" width="266" height="1"/>
+                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="T5P-mg-rFk"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="fQG-bd-zCX" secondAttribute="trailing" id="17j-LY-8RO"/>
+                    <constraint firstAttribute="bottom" secondItem="RLf-DW-sXJ" secondAttribute="bottom" id="NRe-32-ob4"/>
+                    <constraint firstItem="RLf-DW-sXJ" firstAttribute="leading" secondItem="fQG-bd-zCX" secondAttribute="leading" id="Nme-9J-NOW"/>
+                    <constraint firstItem="Kad-vj-XY1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OAi-nx-6zS"/>
+                    <constraint firstItem="Kad-vj-XY1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="XbK-0m-fHi"/>
+                    <constraint firstItem="fQG-bd-zCX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YSZ-Yj-G75"/>
+                    <constraint firstAttribute="bottom" secondItem="fQG-bd-zCX" secondAttribute="bottom" constant="17" id="ev4-Ps-FCH"/>
+                    <constraint firstAttribute="trailing" secondItem="RLf-DW-sXJ" secondAttribute="trailing" id="keC-am-Ejv"/>
+                    <constraint firstItem="fQG-bd-zCX" firstAttribute="leading" secondItem="Kad-vj-XY1" secondAttribute="trailing" constant="10" id="lvI-uo-ZdZ"/>
+                    <constraint firstItem="fQG-bd-zCX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="y6H-6G-IwW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dividerLine" destination="RLf-DW-sXJ" id="VxP-G5-Lzq"/>
+                <outlet property="label" destination="fQG-bd-zCX" id="KuQ-Qc-bCg"/>
+                <outlet property="radioButtonImageView" destination="Kad-vj-XY1" id="JdK-kf-lvC"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_radiobutton_deselected" width="24" height="24"/>
+    </resources>
+</document>
