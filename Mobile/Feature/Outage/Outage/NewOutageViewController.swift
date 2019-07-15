@@ -79,7 +79,7 @@ class NewOutageViewController: AccountPickerViewController {
     // MARK: - Helper
     
     private func loadOutageStatus() {
-        configureState(.unavailable)
+        configureState(.normal)
 //        viewModel.fetchData(onSuccess: { [weak self] outageStatus in
 //            guard let `self` = self else { return }
 //            if outageStatus.flagGasOnly {
@@ -145,6 +145,28 @@ class NewOutageViewController: AccountPickerViewController {
     
     // MARK: - Actions
     
+}
+
+
+// MARK: - Table View Data Source
+
+extension NewOutageViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        fatalError()
+    }
+}
+
+
+// MARK: - Table View Delegate
+
+extension NewOutageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }
 
 
