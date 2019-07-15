@@ -24,6 +24,7 @@ class SetDefaultAccountTableViewCell: UITableViewCell {
         contentView.backgroundColor = .clear
         
         radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
+        radioButtonImageView.isAccessibilityElement = false
         
         accountNumberLabel.textColor = .deepGray
         accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -41,10 +42,37 @@ class SetDefaultAccountTableViewCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func configureWith(account: Account) {
-        accountNumberLabel.text = account.accountNumber
-        addressLabel.text = account.address
+    func configure(withAccount account: Account) {
         accountTypeImageView.image = account.isResidential ? #imageLiteral(resourceName: "ic_residential_mini.pdf") : #imageLiteral(resourceName: "ic_commercial_mini.pdf")
+        accountTypeImageView.isAccessibilityElement = false
+        accountTypeImageView.accessibilityLabel = account.isResidential ? NSLocalizedString("Residential account", comment: "") :
+            NSLocalizedString("Commercial account", comment: "")
+        
+        // Account Number
+        let accountNumberText: String
+        if account.isDefault {
+            accountNumberText = "\(account.accountNumber) (Default)"
+        } else if account.isFinaled {
+            accountNumberText = "\(account.accountNumber) (Finaled)"
+        } else if account.isLinked {
+            accountNumberText = "\(account.accountNumber) (Linked)"
+        } else {
+            accountNumberText = account.accountNumber
+        }
+        accountNumberLabel.text = accountNumberText
+        accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
+        
+        addressLabel.text = account.address
+
+        self.accessibilityLabel = "\(isSelected ? NSLocalizedString("Selected", comment: "") : ""), \(accountTypeImageView.accessibilityLabel ?? ""), \(accountNumberLabel.accessibilityLabel ?? "")"
+    }
+    
+    func setIsEnabled(_ enabled: Bool) {
+        radioButtonImageView.alpha = enabled ? 1 : 0.2
+        accountTypeImageView.alpha = enabled ? 1 : 0.2
+        accountNumberLabel.alpha = enabled ? 1 : 0.2
+        addressLabel.alpha = enabled ? 1 : 0.2
+        accessibilityTraits = enabled ? .none : .notEnabled
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

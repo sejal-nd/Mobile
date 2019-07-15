@@ -91,14 +91,12 @@ extension SetDefaultAccountViewController: UITableViewDataSource {
 
         let account = AccountsStore.shared.accounts[indexPath.row]
 
-        cell.configureWith(account: account)
+        cell.configure(withAccount: account)
         
         if account.address == nil || (account.serviceType ?? "").isEmpty {
-            cell.contentView.alpha = 0.2
-            cell.accessibilityTraits = .notEnabled
+            cell.setIsEnabled(false)
         } else {
-            cell.contentView.alpha = 1
-            cell.accessibilityTraits = .none
+            cell.setIsEnabled(true)
         }
         
         return cell
@@ -113,6 +111,10 @@ extension SetDefaultAccountViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let account = AccountsStore.shared.accounts[indexPath.row]
+        if account.address == nil || (account.serviceType ?? "").isEmpty {
+            tableView.deselectRow(at: indexPath, animated: false)
+            return
+        }
         viewModel.selectedAccount.value = account
     }
     
