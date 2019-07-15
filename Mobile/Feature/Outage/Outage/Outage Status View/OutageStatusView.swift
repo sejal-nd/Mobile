@@ -28,18 +28,44 @@ class OutageStatusView: UIView {
     
     @IBOutlet weak var button: UIButton!
     
-    var lottieAnimationView: LOTAnimationView?
+    private var lottieAnimationView: LOTAnimationView?
     
-    enum OutageState {
-        case powerStatus(Bool)
-        case reported
-        case unavailable
-        case nonPayment
-    }
+    private var outageStatus: OutageStatus?
+    private var reportedOutage: ReportedOutageResult?
     
-    var outageState: OutageState = .powerStatus(true) {
+    private var outageState: OutageState = .powerStatus(true) {
         didSet {
             configureOutageState(outageState)
+        }
+    }
+    
+    private var estimatedRestorationDateString: String {
+        if let reportedOutage = reportedOutage {
+            if let reportedETR = reportedOutage.etr {
+                return DateFormatter.outageOpcoDateFormatter.string(from: reportedETR)
+            }
+        } else {
+            if let statusETR = outageStatus?.etr {
+                return DateFormatter.outageOpcoDateFormatter.string(from: statusETR)
+            }
+        }
+        return NSLocalizedString("Assessing Damage", comment: "")
+    }
+    
+    private var descriptionText: String {
+        if Environment.shared.opco == .bge {
+            return NSLocalizedString("Outage status and report an outage may not be available for this account. Please call Customer Service at 1-877-778-2222 for further information.", comment: "")
+        } else {
+            var text = ""
+            switch outageState {
+            case .unavailable:
+                text = NSLocalizedString("Outage Status and Outage Reporting are not available for this account.", comment: "")
+            case .nonPayment:
+                text = NSLocalizedString("Our records indicate that you have been cut for non-payment. If you wish to restore your power, please make a payment.", comment: "")
+            default:
+                break
+            }
+            return text
         }
     }
     
@@ -72,7 +98,7 @@ class OutageStatusView: UIView {
 //        NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
 //        NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
         
-        outageState = .nonPayment//.powerStatus(false)
+        outageState = .powerStatus(true)//.powerStatus(false)
         
     }
     
@@ -90,22 +116,43 @@ class OutageStatusView: UIView {
         detailLabel.textColor = .deepGray
         detailLabel.font = OpenSans.semibold.of(textStyle: .caption1)
     }
-    
 }
 
 
 // MARK: - Configure Outage State
 
 extension OutageStatusView {
-    func configureOutageState(_ outageState: OutageState) {
+    public func setOutageStatus(_ outageStatus: OutageStatus,
+                                reportedResults: ReportedOutageResult? = nil,
+                                hasJustReported: Bool = false) {
+        self.outageStatus = outageStatus
+        self.reportedOutage = reportedResults
+        outageState = OutageStatus.getOutageState(outageStatus, reportedResults: reportedResults, hasJustReported: hasJustReported)
+        
+        // Populate Data
+        descriptionLabel.text = descriptionText
+        detailLabel.text = estimatedRestorationDateString
+    }
+    
+    // todo
+    private func configureReportedOutage() {
+        
+        
+        
+        detailLabel.text = ""
+    }
+    
+    private func configureOutageState(_ outageState: OutageState) {
         switch outageState {
         case .powerStatus(let isOn):
             if isOn {
                 lottieAnimationView = LOTAnimationView(name: "outage_on")
+                titleLabel.text = NSLocalizedString("POWER IS ON", comment: "")
                 detailDescriptionLabel.isHidden = true
                 detailLabel.isHidden = true
             } else {
                 lottieAnimationView = LOTAnimationView(name: "outage_off")
+                titleLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
                 detailDescriptionLabel.isHidden = false
                 detailLabel.isHidden = false
             }
@@ -125,6 +172,7 @@ extension OutageStatusView {
             statusWidthConstraint.constant = 89
             
             titleDescriptionLabel.text = NSLocalizedString("Your outage is", comment: "")
+            titleLabel.text = NSLocalizedString("REPORTED", comment: "")
             descriptionLabel.isHidden = true
             detailDescriptionLabel.isHidden = false
             detailLabel.isHidden = false
