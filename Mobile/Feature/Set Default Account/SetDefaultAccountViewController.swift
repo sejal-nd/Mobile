@@ -10,7 +10,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol SetDefaultAccountViewControllerDelegate: class {
+    func setDefaultAccountViewControllerDidFinish(_ setDefaultAccountViewController: SetDefaultAccountViewController)
+}
+
 class SetDefaultAccountViewController: UIViewController {
+    
+    weak var delegate: SetDefaultAccountViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var saveButton: PrimaryButtonNew!
@@ -49,13 +55,16 @@ class SetDefaultAccountViewController: UIViewController {
                                                 image: #imageLiteral(resourceName: "bge_account_picker"),
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
+        FirebaseUtility.logEvent(.more, parameters: [.init(parameterName: .action, value: .default_account_help)])
     }
     
     @IBAction func onSavePress() {
         LoadingView.show()
         viewModel.setDefaultAccount(onSuccess: { [weak self] in
+            guard let self = self else { return }
             LoadingView.hide()
-            self?.tableView.reloadData()
+            self.delegate?.setDefaultAccountViewControllerDidFinish(self)
+            self.navigationController?.popViewController(animated: true)
         }, onError: { [weak self] errorMessage in
             LoadingView.hide()
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
