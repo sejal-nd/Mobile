@@ -10,9 +10,12 @@ import UIKit
 
 class SetDefaultAccountTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var label: UILabel!
     @IBOutlet weak var radioButtonImageView: UIImageView!
+    @IBOutlet weak var accountTypeImageView: UIImageView!
+    @IBOutlet weak var accountNumberLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dividerLine: UIView!
+    @IBOutlet weak var dividerLineHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,13 +25,26 @@ class SetDefaultAccountTableViewCell: UITableViewCell {
         
         radioButtonImageView.image = #imageLiteral(resourceName: "ic_radiobutton_deselected")
         
-        label.lineBreakMode = .byWordWrapping
-        label.textColor = .blackText
-        label.font = SystemFont.regular.of(textStyle: .headline)
+        accountNumberLabel.textColor = .deepGray
+        accountNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+
+        addressLabel.textColor = .deepGray
+        addressLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         dividerLine.backgroundColor = .accentGray
         
         selectionStyle = .none
+    }
+    
+    override func updateConstraints() {
+        dividerLineHeightConstraint.constant = 1.0 / UIScreen.main.scale
+        super.updateConstraints()
+    }
+    
+    func configureWith(account: Account) {
+        accountNumberLabel.text = account.accountNumber
+        addressLabel.text = account.address
+        accountTypeImageView.image = account.isResidential ? #imageLiteral(resourceName: "ic_residential_mini.pdf") : #imageLiteral(resourceName: "ic_commercial_mini.pdf")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

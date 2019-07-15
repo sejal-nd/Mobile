@@ -21,12 +21,15 @@ class SetDefaultAccountViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_tooltip.pdf"), style: .plain, target: self, action: #selector(infoButtonPressed))
         navigationItem.rightBarButtonItem = infoButton
         infoButton.isAccessibilityElement = true
         infoButton.accessibilityLabel = "Tooltip"
+        
         let nib = UINib(nibName: SetDefaultAccountTableViewCell.className, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: SetDefaultAccountTableViewCell.className)
+        tableView.estimatedRowHeight = 56
         
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: bag)
     }
@@ -79,7 +82,7 @@ extension SetDefaultAccountViewController: UITableViewDataSource {
 
         let account = AccountsStore.shared.accounts[indexPath.row]
 
-        cell.label.text = account.accountNumber
+        cell.configureWith(account: account)
         
         if account.address == nil || (account.serviceType ?? "").isEmpty {
             cell.contentView.alpha = 0.2
