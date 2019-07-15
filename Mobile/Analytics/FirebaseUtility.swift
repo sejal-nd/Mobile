@@ -275,6 +275,7 @@ struct EventParameter {
         case show_password // done
         case forgot_username_press // done
         case forgot_password_press // done
+        case biometrics_press
     }
     
     let parameterName: Name
