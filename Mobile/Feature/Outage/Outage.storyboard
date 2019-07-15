@@ -497,6 +497,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="yf6-8Y-4nw" id="H5D-y0-v0t"/>
+                                    <outlet property="delegate" destination="yf6-8Y-4nw" id="6SF-46-joI"/>
+                                </connections>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-gg-gb1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>

@@ -36,6 +36,11 @@ class NewOutageViewController: AccountPickerViewController {
                                             authService: ServiceFactory.createAuthenticationService())
     
     
+    // todo create mechanism for updating report outage cell with its sub title label.
+    
+    
+    
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -56,6 +61,7 @@ class NewOutageViewController: AccountPickerViewController {
 
         // END REFACTOR - todo
         
+        configureTableView()
         
         configureState(.loading)
         loadOutageStatus()
@@ -77,6 +83,11 @@ class NewOutageViewController: AccountPickerViewController {
     
     
     // MARK: - Helper
+    
+    private func configureTableView() {
+        let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
+        tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
+    }
     
     private func loadOutageStatus() {
         configureState(.normal)
@@ -152,30 +163,29 @@ class NewOutageViewController: AccountPickerViewController {
 
 extension NewOutageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Environment.shared.opco {
-        case .comEd:
-            return 3
-        default:
-            return 2
-        }
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TitleDetailRow.className, for: indexPath) as? TitleDetailRow else { return fatalError("Invalid cell type.") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleSubTitleRow.className, for: indexPath) as? TitleSubTitleRow else { fatalError("Invalid cell type.") }
 
         switch indexPath {
         case IndexPath(row: 0, section: 0):
-            cell?.configure(image: UIImage(named: <#T##String#>), title: "Report Outage", detail: nil, disclosureIndicatorImage: <#T##UIImage?#>)
+            cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: nil)
         case IndexPath(row: 1, section: 0):
-            cell?.configure(image: UIImage(named: <#T##String#>), title: "Report Streetlight Outage", detail: nil, disclosureIndicatorImage: <#T##UIImage?#>)
+            cell.configure(image: UIImage(named: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
         case IndexPath(row: 2, section: 0):
-            cell?.configure(image: UIImage(named: <#T##String#>), title: "View Outage Map", detail: nil, disclosureIndicatorImage: <#T##UIImage?#>)
+            cell.configure(image: UIImage(named: "ic_mapoutage"), title: "View Outage Map", detail: nil)
         default:
             fatalError("Invalid index path.")
         }
         
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard indexPath.row == 1 else { return UITableView.automaticDimension }
+        return Environment.shared.opco == .comEd ? UITableView.automaticDimension : 0
     }
 }
 
@@ -184,7 +194,7 @@ extension NewOutageViewController: UITableViewDataSource {
 
 extension NewOutageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

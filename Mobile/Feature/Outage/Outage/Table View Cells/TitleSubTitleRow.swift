@@ -8,10 +8,10 @@
 
 import UIKit
 
-class TitleDetailRow: UITableViewCell {
+class TitleSubTitleRow: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
     
 
@@ -29,8 +29,8 @@ class TitleDetailRow: UITableViewCell {
     private func style() {
         titleLabel.textColor = .blackText
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        detailLabel.textColor = .middleGray
-        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        subTitleLabel.textColor = .middleGray
+        subTitleLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         // Cell Selection Color
         let backgroundView = UIView()
@@ -42,11 +42,11 @@ class TitleDetailRow: UITableViewCell {
 
 // MARK: - Cell Configuration
 
-extension TitleDetailRow {
+extension TitleSubTitleRow {
     func configure(image: UIImage? = nil, title: String, detail: String? = nil, disclosureIndicatorImage: UIImage? = UIImage(named: "ic_caret")) {
         iconImageView.image = image
         titleLabel.text = title
-        detailLabel.text = detail
+        subTitleLabel.text = detail
         disclosureIndicatorImageView.image = disclosureIndicatorImage
     }
 }
