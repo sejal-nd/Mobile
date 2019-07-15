@@ -14,7 +14,6 @@ import SafariServices
 class ContactUsViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var containerStack: UIStackView!
     
     @IBOutlet weak var emergencyNumberTextView: ZeroInsetDataDetectorTextView!
@@ -48,11 +47,6 @@ class ContactUsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
-        
-        cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        cardView.layer.cornerRadius = 10.0
         
         for line in dividerLines {
             line.backgroundColor = .accentGray
@@ -190,13 +184,13 @@ class ContactUsViewController: UIViewController {
         socialMediaButtonsStack.distribution = .fill
         socialMediaButtonsStack.spacing = 22
         containerStack.addArrangedSubview(socialMediaButtonsStack)
-        socialMediaButtonsStack.leadingAnchor.constraint(equalTo: containerStack.leadingAnchor, constant: 22).isActive = true
-        socialMediaButtonsStack.trailingAnchor.constraint(equalTo: containerStack.trailingAnchor, constant: -22).isActive = true
-    }
-    
-    // Prevents status bar color flash when pushed from MoreViewController
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        
+        let leadingConstraint = socialMediaButtonsStack.leadingAnchor.constraint(equalTo: containerStack.leadingAnchor, constant: 22)
+        leadingConstraint.priority = UILayoutPriority(rawValue: 999)
+        let trailingConstraint = socialMediaButtonsStack.trailingAnchor.constraint(equalTo: containerStack.trailingAnchor, constant: -22)
+        trailingConstraint.priority = UILayoutPriority(rawValue: 999)
+        let widthConstraint = socialMediaButtonsStack.widthAnchor.constraint(lessThanOrEqualToConstant: 460)
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, widthConstraint])
     }
     
 }
