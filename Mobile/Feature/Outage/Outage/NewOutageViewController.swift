@@ -152,11 +152,30 @@ class NewOutageViewController: AccountPickerViewController {
 
 extension NewOutageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch Environment.shared.opco {
+        case .comEd:
+            return 3
+        default:
+            return 2
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        fatalError()
+        let cell = tableView.dequeueReusableCell(withIdentifier: TitleDetailRow.className, for: indexPath) as? TitleDetailRow else { return fatalError("Invalid cell type.") }
+
+        switch indexPath {
+        case IndexPath(row: 0, section: 0):
+            cell?.configure(image: UIImage(named: <#T##String#>), title: "Report Outage", detail: nil, disclosureIndicatorImage: <#T##UIImage?#>)
+        case IndexPath(row: 1, section: 0):
+            cell?.configure(image: UIImage(named: <#T##String#>), title: "Report Streetlight Outage", detail: nil, disclosureIndicatorImage: <#T##UIImage?#>)
+        case IndexPath(row: 2, section: 0):
+            cell?.configure(image: UIImage(named: <#T##String#>), title: "View Outage Map", detail: nil, disclosureIndicatorImage: <#T##UIImage?#>)
+        default:
+            fatalError("Invalid index path.")
+        }
+        
+        
+        return cell
     }
 }
 
