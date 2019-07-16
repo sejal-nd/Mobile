@@ -99,7 +99,7 @@ class AccountListRow: UITableViewCell {
         
         // Mutli Premise
         if account.isMultipremise {
-           configureTableView()
+            configureTableView()
             
             selectionStyle = .none
             carrotImageView.isHidden = false
