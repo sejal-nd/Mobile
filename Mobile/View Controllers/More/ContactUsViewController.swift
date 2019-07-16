@@ -18,6 +18,7 @@ class ContactUsViewController: UIViewController {
     
     @IBOutlet weak var emergencyNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+    @IBOutlet weak var bgeOnlySpacer: UIView!
     @IBOutlet weak var bgeOnlyStackView: UIStackView!
     @IBOutlet weak var bgeGasNumber1TextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var bgeGasNumber2TextView: ZeroInsetDataDetectorTextView!
@@ -78,6 +79,7 @@ class ContactUsViewController: UIViewController {
         
         if Environment.shared.opco == .bge {
             emergencyNumberTextView.isHidden = true
+            bgeOnlySpacer.isHidden = true
         } else {
             bgeOnlyStackView.isHidden = true
         }
