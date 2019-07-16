@@ -15,6 +15,7 @@ extension UIViewController {
         
         // Add X Button
         let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissModal))
+        closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         navigationItem.setLeftBarButton(closeButton, animated: false)
     }
     
