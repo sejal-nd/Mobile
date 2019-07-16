@@ -17,7 +17,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Outage-->
+        <!--Outage View Controller-->
         <scene sceneID="Vsd-Z1-Jl7">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="WUY-4d-zPg" customClass="OutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
@@ -402,9 +402,10 @@
                             <constraint firstItem="eoo-sl-0bw" firstAttribute="top" secondItem="UDU-Ch-dvR" secondAttribute="bottom" id="uRc-Zg-g6e"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Outage" id="p64-58-CHY">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="C4R-fS-frt"/>
+                    <navigationItem key="navigationItem" id="p64-58-CHY">
+                        <barButtonItem key="backBarButtonItem" title=" " id="C4R-fS-frt"/>
                     </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <size key="freeformSize" width="375" height="1100"/>
                     <connections>
@@ -444,7 +445,7 @@
         <!--Outage Map-->
         <scene sceneID="YcY-ED-hEl">
             <objects>
-                <viewController storyboardIdentifier="OutageMapViewController" hidesBottomBarWhenPushed="YES" id="eVa-ie-cL3" customClass="OutageMapViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OutageMapViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="eVa-ie-cL3" customClass="OutageMapViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kEU-7E-uds"/>
                         <viewControllerLayoutGuide type="bottom" id="sh0-jw-fzi"/>
@@ -453,6 +454,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VtL-Tu-xz7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="RA2-uD-xmP" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -461,15 +470,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RA2-uD-xmP" firstAttribute="centerY" secondItem="VPU-dC-Rn2" secondAttribute="centerY" id="1mg-Ru-anO"/>
+                            <constraint firstItem="VtL-Tu-xz7" firstAttribute="top" secondItem="VPU-dC-Rn2" secondAttribute="top" id="38H-gU-K8B"/>
+                            <constraint firstAttribute="trailing" secondItem="VtL-Tu-xz7" secondAttribute="trailing" id="AgM-vn-gN1"/>
                             <constraint firstItem="RA2-uD-xmP" firstAttribute="centerX" secondItem="VPU-dC-Rn2" secondAttribute="centerX" id="DyE-nP-Ahd"/>
+                            <constraint firstItem="VtL-Tu-xz7" firstAttribute="leading" secondItem="VPU-dC-Rn2" secondAttribute="leading" id="HdR-yy-r8T"/>
+                            <constraint firstAttribute="bottom" secondItem="VtL-Tu-xz7" secondAttribute="bottom" id="vWO-fy-miS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Outage Map" id="cMi-NI-f6h"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="RA2-uD-xmP" id="NEp-8d-bud"/>
+                        <outlet property="webView" destination="VtL-Tu-xz7" id="CY8-Cu-7gw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g2R-Yw-vCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
