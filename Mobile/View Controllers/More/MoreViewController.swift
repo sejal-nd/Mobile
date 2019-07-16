@@ -179,6 +179,8 @@ class MoreViewController: UIViewController {
             vc.delegate = self
         case let vc as PECOReleaseOfInfoViewController:
             vc.delegate = self
+        case let vc as SetDefaultAccountViewController:
+            vc.delegate = self
         default:
             break
         }
@@ -394,10 +396,20 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
 extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+        DispatchQueue.main.asyncAfter(deadline:  .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
             GoogleAnalytics.log(event: .releaseInfoComplete)
         })
     }
     
+}
+
+extension MoreViewController: SetDefaultAccountViewControllerDelegate {
+    
+    func setDefaultAccountViewControllerDidFinish(_ setDefaultAccountViewController: SetDefaultAccountViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Default account changed", comment: ""))
+            FirebaseUtility.logEvent(.more, parameters: [.init(parameterName: .action, value: .set_default_account_complete)])
+        })
+    }
 }
