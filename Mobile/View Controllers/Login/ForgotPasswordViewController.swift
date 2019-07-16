@@ -110,13 +110,18 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        for vc in (navigationController?.viewControllers)! {
-            guard let loginVC = vc as? LoginViewController else {
-                continue
-            }
-            loginVC.forgotUsername()
-            break
-        }
+        guard let navController = navigationController else { return }
+        
+        let sb = UIStoryboard(name: "Login", bundle: nil)
+        let forgotUsernameVC = sb.instantiateViewController(withIdentifier: "forgotUsername")
+        
+        // Replace ForgotPassword with ForgotUsername in the nav stack, so that popping
+        // ForgotUsername goes straight back to Login
+        var vcStack = navController.viewControllers
+        _ = vcStack.popLast()
+        vcStack.append(forgotUsernameVC)
+        
+        navController.setViewControllers(vcStack, animated: true)
     }
     
     // MARK: - ScrollView
