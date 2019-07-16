@@ -49,9 +49,9 @@ struct AppRating {
     
     /// Presents the Apple App Store Rating Prompt, its presentation is not guarenteed
     static func present() {
-        guard #available(iOS 10.3, *),
-            AppRating.shouldRequestRating(),
-            Environment.shared.environmentName == .prod || Environment.shared.environmentName == .prodbeta else { return }
-        SKStoreReviewController.requestReview()
+        let env = Environment.shared.environmentName
+        if AppRating.shouldRequestRating() && (env == .prod || env == .prodbeta) {
+            SKStoreReviewController.requestReview()
+        }
     }
 }

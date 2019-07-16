@@ -17,7 +17,7 @@ class HomeEditFlowLayout: UICollectionViewFlowLayout {
         // Ensures a single column
         minimumInteritemSpacing = 100000
         
-        let horizontalInset = max(16.0, (collectionView.bounds.width - 460.0)/2.0)
+        let horizontalInset = max(16.0, (collectionView.bounds.width - 460.0) / 2.0)
         collectionView.layoutMargins = UIEdgeInsets(top: 0, left: horizontalInset,
                                                     bottom: 0, right: horizontalInset)
         
@@ -25,10 +25,7 @@ class HomeEditFlowLayout: UICollectionViewFlowLayout {
                           height: 60)
         
         sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        
-        if #available(iOS 11, *) {
-            sectionInsetReference = .fromSafeArea
-        }
+        sectionInsetReference = .fromSafeArea
     }
     
 }
