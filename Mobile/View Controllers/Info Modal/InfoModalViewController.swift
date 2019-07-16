@@ -25,8 +25,6 @@ class InfoModalViewController: DismissableFormSheetViewController {
         super.init(nibName: "InfoModal", bundle: nil)
         
         self.title = title
-        
-        extendedLayoutIncludesOpaqueBars = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +33,8 @@ class InfoModalViewController: DismissableFormSheetViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        extendedLayoutIncludesOpaqueBars = true
         
         addCloseButton()
         
