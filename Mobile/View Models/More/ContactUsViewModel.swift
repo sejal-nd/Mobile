@@ -187,22 +187,22 @@ class ContactUsViewModel {
         }
     }
     
-    var buttonInfoList: [(urlString: String?, image: UIImage, accessibilityLabel: String)] {
+    var buttonInfoList: [(urlString: String?, image: UIImage, accessibilityLabel: String, analyticParam: EventParameter.Value)] {
         switch opco {
         case .comEd:
-            return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook"),
-                    (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter"),
-                    (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube"),
-                    (linkedinURL, #imageLiteral(resourceName: "ic_linkedin"), "LinkedIn"),
-                    (instagramURL, #imageLiteral(resourceName: "ic_instagram"), "Instagram"),
-                    (pinterestURL, #imageLiteral(resourceName: "ic_pinterest"), "Pinterest"),
-                    (flickrURL, #imageLiteral(resourceName: "ic_flickr"), "Flicker")]
+            return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),
+                    (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter", .twitter),
+                    (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube", .youtube),
+                    (linkedinURL, #imageLiteral(resourceName: "ic_linkedin"), "LinkedIn", .linkedin),
+                    (instagramURL, #imageLiteral(resourceName: "ic_instagram"), "Instagram", .instagram),
+                    (pinterestURL, #imageLiteral(resourceName: "ic_pinterest"), "Pinterest", .pinterest),
+                    (flickrURL, #imageLiteral(resourceName: "ic_flickr"), "Flicker", .flickr)]
         case .bge, .peco:
-            return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook"),
-                    (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter"),
-                    (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube"),
-                    (linkedinURL, #imageLiteral(resourceName: "ic_linkedin"), "LinkedIn"),
-                    (flickrURL, #imageLiteral(resourceName: "ic_flickr"), "Flicker")]
+            return [(facebookURL, #imageLiteral(resourceName: "ic_facebook"), "Facebook", .facebook),
+                    (twitterURL, #imageLiteral(resourceName: "ic_twitter"), "Twitter", .twitter),
+                    (youtubeURL, #imageLiteral(resourceName: "ic_youtube"), "YouTube", .youtube),
+                    (linkedinURL, #imageLiteral(resourceName: "ic_linkedin"), "LinkedIn", .linkedin),
+                    (flickrURL, #imageLiteral(resourceName: "ic_flickr"), "Flicker", .flickr)]
         }
     }
     
