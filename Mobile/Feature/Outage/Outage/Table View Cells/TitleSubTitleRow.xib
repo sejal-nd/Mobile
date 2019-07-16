@@ -71,7 +71,7 @@
                 <outlet property="subTitleLabel" destination="Gd4-az-Nev" id="nxn-Ht-EVd"/>
                 <outlet property="titleLabel" destination="kbV-tp-PwI" id="Aur-Ln-M6K"/>
             </connections>
-            <point key="canvasLocation" x="36.956521739130437" y="34.486607142857139"/>
+            <point key="canvasLocation" x="36.956521739130437" y="33.816964285714285"/>
         </tableViewCell>
     </objects>
     <resources>

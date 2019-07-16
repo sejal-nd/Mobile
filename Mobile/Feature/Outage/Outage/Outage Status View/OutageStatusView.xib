@@ -34,10 +34,10 @@
                     <rect key="frame" x="16" y="68" width="285" height="324"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hso-YC-BF1">
-                            <rect key="frame" x="98" y="0.0" width="89" height="107"/>
+                            <rect key="frame" x="89" y="0.0" width="107" height="107"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nooutage" translatesAutoresizingMaskIntoConstraints="NO" id="G3l-18-uRI">
-                                    <rect key="frame" x="0.0" y="0.0" width="89" height="107"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
                                 </imageView>
                             </subviews>
                             <constraints>
@@ -46,7 +46,7 @@
                                 <constraint firstAttribute="trailing" secondItem="G3l-18-uRI" secondAttribute="trailing" id="ggR-nr-gfe"/>
                                 <constraint firstItem="G3l-18-uRI" firstAttribute="leading" secondItem="Hso-YC-BF1" secondAttribute="leading" id="vuE-79-P3g"/>
                                 <constraint firstAttribute="height" constant="107" id="yo2-B8-tmG"/>
-                                <constraint firstAttribute="width" constant="89" id="zkU-ez-zHv"/>
+                                <constraint firstAttribute="width" constant="107" id="zkU-ez-zHv"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1TH-k6-XfF">
@@ -66,7 +66,7 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIN-zU-kOq">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIN-zU-kOq">
                             <rect key="frame" x="124" y="194" width="37.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
@@ -96,6 +96,9 @@
                                 <constraint firstAttribute="height" constant="45" id="k3g-99-56t"/>
                             </constraints>
                             <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="buttonPress:" destination="-1" eventType="touchUpInside" id="PcG-SR-r8J"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

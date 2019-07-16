@@ -9,6 +9,10 @@
 import Lottie
 import UIKit
 
+protocol OutageStatusDelegate: class {
+    func didPressButton(button: UIButton, outageState: OutageState)
+}
+
 class OutageStatusView: UIView {
     
     @IBOutlet var contentView: UIView!
@@ -69,6 +73,8 @@ class OutageStatusView: UIView {
         }
     }
     
+    weak var delegate: OutageStatusDelegate?
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -89,17 +95,6 @@ class OutageStatusView: UIView {
         addSubview(contentView)
         
         style()
-        
-//
-//
-//        self.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-//        NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-//        NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-//        NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
-        
-        outageState = .powerStatus(true)//.powerStatus(false)
-        
     }
     
     private func style() {
@@ -115,6 +110,13 @@ class OutageStatusView: UIView {
         detailDescriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
         detailLabel.textColor = .deepGray
         detailLabel.font = OpenSans.semibold.of(textStyle: .caption1)
+    }
+    
+    
+    // MARK: - Action
+    
+    @IBAction func buttonPress(_ sender: UIButton) {
+        delegate?.didPressButton(button: sender, outageState: outageState)
     }
 }
 
@@ -134,14 +136,6 @@ extension OutageStatusView {
         detailLabel.text = estimatedRestorationDateString
     }
     
-    // todo
-    private func configureReportedOutage() {
-        
-        
-        
-        detailLabel.text = ""
-    }
-    
     private func configureOutageState(_ outageState: OutageState) {
         switch outageState {
         case .powerStatus(let isOn):
@@ -158,25 +152,31 @@ extension OutageStatusView {
             }
             statusImageView.isHidden = true
             statusHeightConstraint.constant = 107
-            statusWidthConstraint.constant = 89
+            statusWidthConstraint.constant = 107
             
             titleDescriptionLabel.isHidden = false
             titleDescriptionLabel.text = NSLocalizedString("Our records indicate", comment: "")
             descriptionLabel.isHidden = true
             button.isHidden = false
-            button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
+            UIView.performWithoutAnimation { [unowned self] in
+                self.button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
+                self.button.layoutIfNeeded()
+            }
         case .reported:
             lottieAnimationView = LOTAnimationView(name: "outage_reported")
             statusImageView.isHidden = true
             statusHeightConstraint.constant = 107
-            statusWidthConstraint.constant = 89
+            statusWidthConstraint.constant = 107
             
             titleDescriptionLabel.text = NSLocalizedString("Your outage is", comment: "")
             titleLabel.text = NSLocalizedString("REPORTED", comment: "")
             descriptionLabel.isHidden = true
             detailDescriptionLabel.isHidden = false
             detailLabel.isHidden = false
-            button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
+            UIView.performWithoutAnimation { [unowned self] in
+                self.button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
+                self.button.layoutIfNeeded()
+            }
         case .unavailable:
             lottieAnimationView?.removeFromSuperview()
             statusImageView.isHidden = false
@@ -199,7 +199,11 @@ extension OutageStatusView {
             detailDescriptionLabel.isHidden = true
             detailLabel.isHidden = true
             button.isHidden = false
-            button.setTitle(NSLocalizedString("Pay Bill", comment: ""), for: .normal)
+            
+            UIView.performWithoutAnimation { [unowned self] in
+                self.button.setTitle(NSLocalizedString("Pay Bill", comment: ""), for: .normal)
+                self.button.layoutIfNeeded()
+            }
         }
         
         lottieAnimationView?.frame = CGRect(x: 0, y: 1, width: animationContentView.frame.size.width, height: animationContentView.frame.size.height)

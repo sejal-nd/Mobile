@@ -2607,7 +2607,7 @@
 		2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryDetailsViewModel.swift; sourceTree = "<group>"; };
 		2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchSlider.swift; sourceTree = "<group>"; };
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "Mobile/View Controllers/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
+		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = Mobile/Feature/Outage/Outage/OutageMapViewController.swift; sourceTree = SOURCE_ROOT; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
 		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryTableViewCell.swift; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillingHistoryTableViewCell.xib; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
@@ -3746,6 +3746,8 @@
 				359BDB5C22D8DCA2007002B0 /* NewOutageViewController.swift */,
 				359BDB7E22DCBAAF007002B0 /* NewOutageViewModel.swift */,
 				359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */,
+				2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */,
+				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
 				E80D2E321E7301B8002626C9 /* OutageViewController.swift */,
 				82A18E661EB9191E00BE9F21 /* OutageViewModel.swift */,
 				359BDB6922D8DCDD007002B0 /* Outage Status View */,
@@ -4550,7 +4552,6 @@
 				82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */,
 				8FD5AE821E54EA39003F640D /* Login */,
 				E882B7E21EA7FE6300EA3C13 /* Bill */,
-				E80D2E301E730180002626C9 /* Outage */,
 				E8EEF7271E577781006804D4 /* More */,
 				822BBB961EFC17FC004EBBAB /* Web View Modal */,
 				CE28837A1F743DD800BBDB81 /* Tutorial */,
@@ -5235,15 +5236,6 @@
 				B0336FE521751FB700751430 /* MCSAppointmentService.swift */,
 			);
 			path = MCS;
-			sourceTree = "<group>";
-		};
-		E80D2E301E730180002626C9 /* Outage */ = {
-			isa = PBXGroup;
-			children = (
-				2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */,
-				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
-			);
-			path = Outage;
 			sourceTree = "<group>";
 		};
 		E81CFFE81EC230B5004FDA7E /* Entitlements */ = {

@@ -9,7 +9,6 @@
 import RxSwift
 
 class NewOutageViewModel {
-    
     let disposeBag = DisposeBag()
     
     private var accountService: AccountService
@@ -19,8 +18,8 @@ class NewOutageViewModel {
     private var currentGetMaintenanceModeStatusDisposable: Disposable?
     private var currentGetOutageStatusDisposable: Disposable?
     
+    var outageStatus: OutageStatus?
     var hasJustReportedOutage = false
-
     
     required init(accountService: AccountService,
                   outageService: OutageService,
@@ -62,32 +61,46 @@ class NewOutageViewModel {
         
         currentGetOutageStatusDisposable = outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: {outageStatus in
+            .subscribe(onNext: { outageStatus in
+                self.outageStatus = outageStatus
                 onSuccess(outageStatus)
-                }, onError: { error in
-                    guard let serviceError = error as? ServiceError else { return }
-                    
-                    if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
-                        if let outageStatus = OutageStatus.from(["flagFinaled": true]) {
-                            onSuccess(outageStatus)
-                        }
-                    } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
-                        if let outageStatus = OutageStatus.from(["flagNoPay": true]) {
-                            onSuccess(outageStatus)
-                        }
-                    } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
-                        if let outageStatus = OutageStatus.from(["flagNonService": true]) {
-                            onSuccess(outageStatus)
-                        }
-                    } else {
-                        onError(serviceError)
+            }, onError: { error in
+                guard let serviceError = error as? ServiceError else { return }
+                
+                if serviceError.serviceCode == ServiceErrorCode.fnAccountFinaled.rawValue {
+                    if let outageStatus = OutageStatus.from(["flagFinaled": true]) {
+                        self.outageStatus = outageStatus
+                        onSuccess(outageStatus)
                     }
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountNoPay.rawValue {
+                    if let outageStatus = OutageStatus.from(["flagNoPay": true]) {
+                        self.outageStatus = outageStatus
+                        onSuccess(outageStatus)
+                    }
+                } else if serviceError.serviceCode == ServiceErrorCode.fnNonService.rawValue {
+                    if let outageStatus = OutageStatus.from(["flagNonService": true]) {
+                        self.outageStatus = outageStatus
+                        onSuccess(outageStatus)
+                    }
+                } else {
+                    onError(serviceError)
+                }
             })
     }
     
     
     var reportedOutage: ReportedOutageResult? {
         return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+    }
+    
+    // todo
+    var outageReportedDateString: String {
+        if let reportedOutage = reportedOutage {
+            let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
+            return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
+        }
+        
+        return NSLocalizedString("Reported", comment: "")
     }
     
     var footerTextViewText: NSAttributedString {

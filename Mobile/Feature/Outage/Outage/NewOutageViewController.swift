@@ -10,14 +10,13 @@ import UIKit
 
 // Ensure we test of all phone sizes + ipad + orientations
 class NewOutageViewController: AccountPickerViewController {
-    
     enum State {
         case normal
         case loading
         case gasOnly
         case maintenance
         case noNetwork
-        case unavailable // what is this state?
+        case unavailable
     }
     
     // Note create these view controller / revamps last...
@@ -31,21 +30,24 @@ class NewOutageViewController: AccountPickerViewController {
     @IBOutlet weak var outageStatusView: OutageStatusView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView! // may be special text view
     
+    // todo: this is not appearing for some reason...
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
+        refreshControl.tintColor = .primaryColor
+        return refreshControl
+    }()
+    
     private let viewModel = NewOutageViewModel(accountService: ServiceFactory.createAccountService(),
                                             outageService: ServiceFactory.createOutageService(),
                                             authService: ServiceFactory.createAuthenticationService())
-    
-    
-    // todo create mechanism for updating report outage cell with its sub title label.
-    
-    
-    
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        outageStatusView.delegate = self
         
         // BEGIN REFACTOR - todo
         accountPicker.delegate = self
@@ -62,8 +64,9 @@ class NewOutageViewController: AccountPickerViewController {
         // END REFACTOR - todo
         
         configureTableView()
-        
+
         configureState(.loading)
+        
         loadOutageStatus()
         
     }
@@ -81,35 +84,78 @@ class NewOutageViewController: AccountPickerViewController {
         tableView.sizeFooterToFit()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let vc = segue.destination as? ReportOutageViewController {
+//            vc.viewModel.outageStatus = viewModel.currentOutageStatus!
+//            if let phone = viewModel.currentOutageStatus!.contactHomeNumber {
+//                vc.viewModel.phoneNumber.value = phone
+//            }
+//
+//            // Show a toast only after an outage is reported from this workflow
+//            RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
+//                .drive(onNext: { [weak self] in
+//                    guard let this = self else { return }
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+//                        this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
+//                        Analytics.log(event: .reportOutageAuthComplete)
+//                    })
+//                })
+//                .disposed(by: vc.disposeBag)
+//        
+//            
+            
+        if let vc = segue.destination as? ReportOutageViewController {
+            if let outageStatus = viewModel.outageStatus {
+                vc.viewModel.outageStatus = outageStatus
+            }
+        } else if let vc = segue.destination as? OutageMapViewController, let hasPressedStreetlightOutageMapButton = sender as? Bool {
+            vc.hasPressedStreetlightOutageMapButton = hasPressedStreetlightOutageMapButton
+        }
+    }
+    
     
     // MARK: - Helper
     
     private func configureTableView() {
         let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
         tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
+        tableView.refreshControl = refreshControl
+        tableView.reloadData()
     }
     
-    private func loadOutageStatus() {
-        configureState(.normal)
-//        viewModel.fetchData(onSuccess: { [weak self] outageStatus in
-//            guard let `self` = self else { return }
-//            if outageStatus.flagGasOnly {
-//                self.configureState(.gasOnly)
-//            } else {
-//                self.configureState(.normal)
-//                self.outageStatusView.setOutageStatus(outageStatus,
-//                                                      reportedResults: self.viewModel.reportedOutage,
-//                                                      hasJustReported: self.viewModel.hasJustReportedOutage)
-//            }
-//            }, onError: { [weak self] serviceError in
-//                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-//                    self?.configureState(.noNetwork)
-//                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-//                   self?.configureState(.unavailable)
-//                }
-//            }, onMaintenance: { [weak self] in
-//                self?.configureState(.maintenance)
-//        })
+    @objc
+    private func loadOutageStatus(sender: UIRefreshControl? = nil) {
+        viewModel.fetchData(onSuccess: { [weak self] outageStatus in
+            
+            DispatchQueue.main.async {
+//                print("sender:\(sender)")
+//                sender?.endRefreshing()
+            }
+            
+            guard let `self` = self else { return }
+            if outageStatus.flagGasOnly {
+                self.configureState(.gasOnly)
+            } else {
+                self.configureState(.normal)
+                
+                // Enable / Disable Report Outage Cell
+                if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
+                    cell.isEnabled = !outageStatus.flagNoPay
+                }
+                
+                self.outageStatusView.setOutageStatus(outageStatus,
+                                                      reportedResults: self.viewModel.reportedOutage,
+                                                      hasJustReported: self.viewModel.hasJustReportedOutage)
+            }
+            }, onError: { [weak self] serviceError in
+                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                    self?.configureState(.noNetwork)
+                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                   self?.configureState(.unavailable)
+                }
+            }, onMaintenance: { [weak self] in
+                self?.configureState(.maintenance)
+        })
     }
     
     private func configureState(_ state: State) {
@@ -194,7 +240,21 @@ extension NewOutageViewController: UITableViewDataSource {
 
 extension NewOutageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TitleSubTitleRow, cell.isEnabled else { return }
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.row {
+        case 0:
+            performSegue(withIdentifier: "reportOutageSegue", sender: self)
+        case 1:
+            Analytics.log(event: .viewStreetlightMapOfferComplete)
+            performSegue(withIdentifier: "outageMapSegue", sender: true)
+        case 2:
+            Analytics.log(event: .viewMapOfferComplete)
+            performSegue(withIdentifier: "outageMapSegue", sender: false)
+        default:
+            break
+        }
     }
 }
 
@@ -202,11 +262,27 @@ extension NewOutageViewController: UITableViewDelegate {
 // MARK: - Account Picker Delegate
 
 extension NewOutageViewController: AccountPickerDelegate {
-    
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        //getOutageStatus()
+        configureState(.loading)
+        loadOutageStatus()
     }
-    
+}
+
+
+// MARK: - Outage Status View Button Delegate
+
+extension NewOutageViewController: OutageStatusDelegate {
+    func didPressButton(button: UIButton, outageState: OutageState) {
+        switch outageState {
+        case .powerStatus(_), .reported, .unavailable:
+            guard let message = viewModel.outageStatus?.outageDescription else { return }
+            let alert = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
+                                            message: message)
+            tabBarController?.present(alert, animated: true)
+        case .nonPayment:
+            tabBarController?.selectedIndex = 1
+        }
+    }
 }
 
 

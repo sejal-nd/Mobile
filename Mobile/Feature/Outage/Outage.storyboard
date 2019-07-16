@@ -459,7 +459,6 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="g02-Sk-O1R" firstAttribute="top" secondItem="cSo-uG-Isi" secondAttribute="top" id="JRh-LW-dN1"/>
                                         <constraint firstAttribute="bottom" secondItem="g02-Sk-O1R" secondAttribute="bottom" id="Sk5-Jy-ong"/>
@@ -502,6 +501,10 @@
                                     <outlet property="delegate" destination="yf6-8Y-4nw" id="6SF-46-joI"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="YW7-Op-Vld" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-gg-gb1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
@@ -514,29 +517,24 @@
                                     <segue destination="FJs-Ee-VCt" kind="embed" id="7d6-G5-Yhi"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hW1-hm-7uS">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <connections>
-                                    <segue destination="0Fe-s3-Gze" kind="embed" id="Whh-GQ-Azv"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haH-7e-9Oh">
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <connections>
                                     <segue destination="OGh-C5-F8o" kind="embed" id="cSb-qH-bpK"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndp-bw-rV5">
-                                <rect key="frame" x="0.0" y="35" width="375" height="597"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndp-bw-rV5">
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <connections>
                                     <segue destination="azb-k7-oxC" kind="embed" id="57z-TP-Qxs"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="YW7-Op-Vld" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hW1-hm-7uS">
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <connections>
+                                    <segue destination="0Fe-s3-Gze" kind="embed" id="1b2-lO-jai"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -550,18 +548,22 @@
                             <constraint firstItem="haH-7e-9Oh" firstAttribute="top" secondItem="YW7-Op-Vld" secondAttribute="bottom" id="EHh-KY-ZHw"/>
                             <constraint firstItem="YW7-Op-Vld" firstAttribute="top" secondItem="rLJ-mF-oEY" secondAttribute="top" id="GQd-36-dlB"/>
                             <constraint firstItem="UoT-gg-gb1" firstAttribute="top" secondItem="W6a-Rg-J5C" secondAttribute="top" id="HFP-Qp-lgv"/>
+                            <constraint firstItem="Ndp-bw-rV5" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="K5Q-s9-QDz"/>
+                            <constraint firstItem="Ndp-bw-rV5" firstAttribute="top" secondItem="YW7-Op-Vld" secondAttribute="bottom" id="Men-kK-fc7"/>
                             <constraint firstAttribute="trailing" secondItem="YW7-Op-Vld" secondAttribute="trailing" id="O1m-bj-nsL"/>
                             <constraint firstItem="UoT-gg-gb1" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="Pun-ny-0tk"/>
                             <constraint firstAttribute="bottom" secondItem="aBU-xp-OAP" secondAttribute="bottom" id="QF0-dU-uO9"/>
+                            <constraint firstItem="hW1-hm-7uS" firstAttribute="top" secondItem="YW7-Op-Vld" secondAttribute="bottom" id="RYN-mS-Ggs"/>
                             <constraint firstItem="YW7-Op-Vld" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="SPh-iM-H7L"/>
                             <constraint firstItem="aBU-xp-OAP" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="SS3-5h-Obx"/>
                             <constraint firstAttribute="trailing" secondItem="haH-7e-9Oh" secondAttribute="trailing" id="UzJ-uk-kDh"/>
+                            <constraint firstAttribute="trailing" secondItem="Ndp-bw-rV5" secondAttribute="trailing" id="VDm-to-wWS"/>
                             <constraint firstAttribute="trailing" secondItem="kBP-rF-ByC" secondAttribute="trailing" id="eT7-Le-1ge"/>
                             <constraint firstItem="kBP-rF-ByC" firstAttribute="top" secondItem="W6a-Rg-J5C" secondAttribute="top" id="kCT-3p-Ojh"/>
                             <constraint firstAttribute="bottom" secondItem="haH-7e-9Oh" secondAttribute="bottom" id="mG8-0D-5U0"/>
                             <constraint firstAttribute="trailing" secondItem="UoT-gg-gb1" secondAttribute="trailing" id="oo8-4p-les"/>
-                            <constraint firstItem="hW1-hm-7uS" firstAttribute="top" secondItem="rLJ-mF-oEY" secondAttribute="top" id="pbU-Od-fpA"/>
                             <constraint firstAttribute="bottom" secondItem="hW1-hm-7uS" secondAttribute="bottom" id="sll-Lk-a4Y"/>
+                            <constraint firstAttribute="bottom" secondItem="Ndp-bw-rV5" secondAttribute="bottom" id="tQF-Xa-kfP"/>
                             <constraint firstItem="kBP-rF-ByC" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="z7r-nq-3v9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rLJ-mF-oEY"/>
@@ -576,6 +578,8 @@
                         <outlet property="notAvailableContainerView" destination="Ndp-bw-rV5" id="Yqf-aY-Ra9"/>
                         <outlet property="outageStatusView" destination="g02-Sk-O1R" id="V41-IR-WL5"/>
                         <outlet property="tableView" destination="aBU-xp-OAP" id="f59-qN-5vY"/>
+                        <segue destination="eVa-ie-cL3" kind="show" identifier="outageMapSegue" id="Vdh-ho-cmS"/>
+                        <segue destination="ZQH-GI-7Fc" kind="show" identifier="reportOutageSegue" id="Yu2-4C-5wP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boy-9U-hSJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1238,11 +1242,11 @@
             <objects>
                 <viewController id="0Fe-s3-Gze" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HG4-UA-M7Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJY-Ux-aUH" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="317.5" width="80" height="12"/>
+                                <rect key="frame" x="147.5" y="292.5" width="80" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="8cq-1l-YE1"/>
@@ -1270,4 +1274,8 @@
         <image name="ic_lock_opco" width="125" height="126"/>
         <image name="ic_nooutage" width="125" height="126"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Yu2-4C-5wP"/>
+        <segue reference="Vdh-ho-cmS"/>
+    </inferredMetricsTieBreakers>
 </document>

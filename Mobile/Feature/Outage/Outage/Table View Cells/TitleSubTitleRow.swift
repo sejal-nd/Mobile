@@ -14,12 +14,32 @@ class TitleSubTitleRow: UITableViewCell {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var disclosureIndicatorImageView: UIImageView!
     
+    var isEnabled = true {
+        didSet {
+            if isEnabled {
+                iconImageView.alpha = 1.0
+                titleLabel.alpha = 1.0
+                subTitleLabel.alpha = 1.0
+                disclosureIndicatorImageView.alpha = 1.0
+                
+                selectionStyle = .default
+            } else {
+                iconImageView.alpha = 0.7
+                titleLabel.alpha = 0.7
+                subTitleLabel.alpha = 0.7
+                disclosureIndicatorImageView.alpha = 0.7
+                
+                selectionStyle = .none
+            }
+        }
+    }
+    
 
     // MARK: - View Life Cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         style()
     }
     
@@ -48,5 +68,9 @@ extension TitleSubTitleRow {
         titleLabel.text = title
         subTitleLabel.text = detail
         disclosureIndicatorImageView.image = disclosureIndicatorImage
+    }
+    
+    func updateSubTitle(_ text: String?) {
+        subTitleLabel.text = text
     }
 }
