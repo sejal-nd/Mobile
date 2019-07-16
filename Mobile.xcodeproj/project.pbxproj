@@ -979,6 +979,10 @@
 		9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
+		9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CE2276922DE1D8B003602A0 /* SetDefaultAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE83BAA22D9201B0094C34C /* SetDefaultAccountTableViewCell.xib */; };
+		9CE2276A22DE1D8C003602A0 /* SetDefaultAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE83BAA22D9201B0094C34C /* SetDefaultAccountTableViewCell.xib */; };
 		9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
 		9CE83BAC22D9201C0094C34C /* SetDefaultAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CE83BAA22D9201B0094C34C /* SetDefaultAccountTableViewCell.xib */; };
 		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
@@ -6217,6 +6221,7 @@
 				35A6C7032121DAF100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				35ACCB4D20EA7AC00022907F /* HomeOutageCardView.xib in Resources */,
 				B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */,
+				9CE2276A22DE1D8C003602A0 /* SetDefaultAccountTableViewCell.xib in Resources */,
 				B0030D0E2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
 				B07E17DA2209F0C900B6E3C7 /* account_details.json in Resources */,
@@ -6371,6 +6376,7 @@
 				B0DB274F215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
 				E8494F3C1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B4F4B41E5C99380031D934 /* Alerts.storyboard in Resources */,
+				9CE2276922DE1D8B003602A0 /* SetDefaultAccountTableViewCell.xib in Resources */,
 				35A6C7042121DAF100C2A58F /* ToggleTableViewCell.xib in Resources */,
 				35ACCB4C20EA7ABF0022907F /* HomeOutageCardView.xib in Resources */,
 				B0030D0D2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
@@ -8060,6 +8066,7 @@
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399371F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
+				9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				B07E17B52208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
@@ -8447,6 +8454,7 @@
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E80D2E341E7301B8002626C9 /* OutageViewController.swift in Sources */,
 				B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
+				9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BADA1E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				B574BADA1E78360D001E8A44 /* AccountService.swift in Sources */,
