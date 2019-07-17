@@ -137,7 +137,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         accountLookupToolButton.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton.setTitleColor(.actionBlue, for: .normal)
-        accountLookupToolButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        accountLookupToolButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")
     }
     

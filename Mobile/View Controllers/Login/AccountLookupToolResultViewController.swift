@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol AccountLookupToolResultViewControllerDelegate: class {
     func accountLookupToolDidSelectAccount(accountNumber: String, phoneNumber: String)
@@ -22,42 +23,41 @@ class AccountLookupToolResultViewController: UIViewController {
     @IBOutlet weak var streetNumberHeaderLabel: UILabel!
     @IBOutlet weak var unitNumberHeaderLabel: UILabel!
     @IBOutlet weak var firstSeparatorView: UIView!
+    @IBOutlet weak var selectAccountButton: PrimaryButtonNew!
     
     var viewModel: AccountLookupToolViewModel!
+    
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Account Lookup", comment: "")
+        title = NSLocalizedString("Account Lookup Tool", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        navigationItem.leftBarButtonItem = cancelButton
-
-        instructionLabel.textColor = .blackText
-        instructionLabel.text = NSLocalizedString("Please select your account:", comment: "")
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        instructionLabel.textColor = .deepGray
+        instructionLabel.text = NSLocalizedString("Please select your account", comment: "")
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        accountNumberHeaderLabel.textColor = .middleGray
+        accountNumberHeaderLabel.textColor = .deepGray
         accountNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        accountNumberHeaderLabel.text = NSLocalizedString("Account Number", comment: "")
+        accountNumberHeaderLabel.text = NSLocalizedString("Account #", comment: "")
         
-        streetNumberHeaderLabel.textColor = .middleGray
+        streetNumberHeaderLabel.textColor = .deepGray
         streetNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        streetNumberHeaderLabel.text = NSLocalizedString("Street Number", comment: "")
+        streetNumberHeaderLabel.text = NSLocalizedString("Street #", comment: "")
         
-        unitNumberHeaderLabel.textColor = .middleGray
+        unitNumberHeaderLabel.textColor = .deepGray
         unitNumberHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        unitNumberHeaderLabel.text = NSLocalizedString("Unit Number", comment: "")
+        unitNumberHeaderLabel.text = NSLocalizedString("Unit #", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor
         
         tableView.isHidden = true
+        tableView.tableFooterView = UIView() // Hides extra separators
+        
+        viewModel.selectAccountButtonEnabled.drive(selectAccountButton.rx.isEnabled).disposed(by: disposeBag)
     }
-    
-    @objc func onCancelPress() {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -86,6 +86,13 @@ class AccountLookupToolResultViewController: UIViewController {
                 headerView.frame = headerFrame
                 tableView.tableHeaderView = headerView
             }
+        }
+    }
+    
+    @IBAction func onSelectAccountPress() {
+        if let selectedAccount = viewModel.selectedAccount.value {
+            delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: viewModel.phoneNumber.value)
+            dismiss(animated: true, completion: nil)
         }
     }
     
@@ -130,15 +137,6 @@ extension AccountLookupToolResultViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedAccount = viewModel.accountLookupResults[indexPath.row]
-        for vc in (self.navigationController?.viewControllers)! {
-            guard let dest = vc as? ForgotUsernameViewController else {
-                continue
-            }
-            self.delegate = dest
-            self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
-            self.navigationController?.popToViewController(dest, animated: true)
-            break
-        }
+        viewModel.selectedAccount.value = viewModel.accountLookupResults[indexPath.row]
     }
 }

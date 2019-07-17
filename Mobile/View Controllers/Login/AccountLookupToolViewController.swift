@@ -28,11 +28,11 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
         
         addCloseButton()
         
-        title = NSLocalizedString("Account Lookup", comment: "")
+        title = NSLocalizedString("Account Lookup Tool", comment: "")
         
-        searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
         viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
         
+        identifierDescriptionLabel.textColor = .deepGray
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
         
@@ -135,6 +135,7 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AccountLookupToolResultViewController {
             vc.viewModel = viewModel
+            vc.delegate = delegate
         }
     }
     

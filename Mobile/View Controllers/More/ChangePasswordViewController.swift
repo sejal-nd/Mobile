@@ -281,9 +281,9 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         message += confirmPasswordTextField.getError()
         
         if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Save Password", comment: "")
         } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save Password", comment: ""), message)
         }
     }
     
