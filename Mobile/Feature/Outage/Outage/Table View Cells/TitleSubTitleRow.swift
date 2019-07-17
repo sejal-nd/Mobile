@@ -47,8 +47,8 @@ class TitleSubTitleRow: UITableViewCell {
     // MARK: - Helper
     
     private func style() {
-        titleLabel.textColor = .blackText
-        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.medium.of(textStyle: .headline)
         subTitleLabel.textColor = .middleGray
         subTitleLabel.font = SystemFont.regular.of(textStyle: .footnote)
         

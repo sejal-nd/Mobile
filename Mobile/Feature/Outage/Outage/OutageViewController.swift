@@ -39,6 +39,10 @@ class OutageViewController: AccountPickerViewController {
     private let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(),
                                             outageService: ServiceFactory.createOutageService(),
                                             authService: ServiceFactory.createAuthenticationService())
+    
+    var shortcutItem: ShortcutItem = .none
+    
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -65,6 +69,12 @@ class OutageViewController: AccountPickerViewController {
         
         tableView.sizeHeaderToFit()
         tableView.sizeFooterToFit()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        shortcutItem = .none
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,13 +156,25 @@ class OutageViewController: AccountPickerViewController {
                                                       reportedResults: self.viewModel.reportedOutage,
                                                       hasJustReported: self.viewModel.hasJustReportedOutage)
             }
+            
+            // If coming from shortcut, check these flags for report outage button availablility
+            if !outageStatus.flagGasOnly &&
+                    !outageStatus.flagNoPay &&
+                    !outageStatus.flagFinaled &&
+                    !outageStatus.flagNonService &&
+                self.shortcutItem == .reportOutage {
+                self.performSegue(withIdentifier: "reportOutageSegue", sender: self)
+            }
+            self.shortcutItem = .none
             }, onError: { [weak self] serviceError in
+                self?.shortcutItem = .none
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.configureState(.noNetwork)
                 } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
                    self?.configureState(.unavailable)
                 }
             }, onMaintenance: { [weak self] in
+                self?.shortcutItem = .none
                 self?.configureState(.maintenance)
         })
     }

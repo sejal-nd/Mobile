@@ -60,9 +60,9 @@
                                     <segue destination="0Fe-s3-Gze" kind="embed" id="1b2-lO-jai"/>
                                 </connections>
                             </containerView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="aBU-xp-OAP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aBU-xp-OAP">
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="cSo-uG-Isi">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
@@ -72,12 +72,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYC-zf-UYb">
+                                            <rect key="frame" x="20" y="349" width="355" height="1"/>
+                                            <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="zkl-GT-d6P"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="g02-Sk-O1R" firstAttribute="top" secondItem="cSo-uG-Isi" secondAttribute="top" id="JRh-LW-dN1"/>
                                         <constraint firstAttribute="bottom" secondItem="g02-Sk-O1R" secondAttribute="bottom" id="Sk5-Jy-ong"/>
+                                        <constraint firstAttribute="trailing" secondItem="aYC-zf-UYb" secondAttribute="trailing" id="VJj-Qe-cDp"/>
+                                        <constraint firstItem="aYC-zf-UYb" firstAttribute="leading" secondItem="cSo-uG-Isi" secondAttribute="leading" constant="20" id="cfb-z1-Ktm"/>
                                         <constraint firstAttribute="trailing" secondItem="g02-Sk-O1R" secondAttribute="trailing" id="krd-kJ-cTR"/>
+                                        <constraint firstAttribute="bottom" secondItem="aYC-zf-UYb" secondAttribute="bottom" id="pc0-ZC-byv"/>
                                         <constraint firstItem="g02-Sk-O1R" firstAttribute="leading" secondItem="cSo-uG-Isi" secondAttribute="leading" id="z3L-Ub-xHS"/>
                                     </constraints>
                                 </view>
@@ -85,6 +95,13 @@
                                     <rect key="frame" x="0.0" y="350" width="375" height="124"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swc-kr-MSb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                            <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="LBq-k6-ocN"/>
+                                            </constraints>
+                                        </view>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waI-lA-BTk" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="16" y="8" width="343" height="108"/>
                                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
@@ -96,9 +113,12 @@
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="waI-lA-BTk" firstAttribute="leading" secondItem="dh1-oj-yyK" secondAttribute="leadingMargin" constant="8" id="5U3-Uc-df1"/>
+                                        <constraint firstAttribute="trailing" secondItem="swc-kr-MSb" secondAttribute="trailing" id="7aP-JF-KI1"/>
                                         <constraint firstAttribute="bottom" secondItem="waI-lA-BTk" secondAttribute="bottom" constant="8" id="8Oe-4s-qKD"/>
                                         <constraint firstItem="waI-lA-BTk" firstAttribute="top" secondItem="dh1-oj-yyK" secondAttribute="top" constant="8" id="T5d-yT-34E"/>
+                                        <constraint firstItem="swc-kr-MSb" firstAttribute="top" secondItem="dh1-oj-yyK" secondAttribute="top" id="WUw-9n-h8y"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="waI-lA-BTk" secondAttribute="trailing" constant="8" id="jbT-5C-XiS"/>
+                                        <constraint firstItem="swc-kr-MSb" firstAttribute="leading" secondItem="dh1-oj-yyK" secondAttribute="leading" id="pAY-gS-3u5"/>
                                     </constraints>
                                 </view>
                                 <connections>

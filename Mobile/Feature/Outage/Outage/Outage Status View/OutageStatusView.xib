@@ -96,6 +96,11 @@
                                 <constraint firstAttribute="height" constant="45" id="k3g-99-56t"/>
                             </constraints>
                             <state key="normal" title="Button"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="buttonPress:" destination="-1" eventType="touchUpInside" id="PcG-SR-r8J"/>
                             </connections>
