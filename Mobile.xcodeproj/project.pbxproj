@@ -287,9 +287,9 @@
 		359BDB4C22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4E22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
-		359BDB5D22D8DCA2007002B0 /* NewOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* NewOutageViewController.swift */; };
-		359BDB5E22D8DCA2007002B0 /* NewOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* NewOutageViewController.swift */; };
-		359BDB5F22D8DCA2007002B0 /* NewOutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* NewOutageViewController.swift */; };
+		359BDB5D22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
+		359BDB5E22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
+		359BDB5F22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
 		359BDB6222D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB6122D8DCC1007002B0 /* TitleSubTitleRow.swift */; };
 		359BDB6322D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB6122D8DCC1007002B0 /* TitleSubTitleRow.swift */; };
 		359BDB6422D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB6122D8DCC1007002B0 /* TitleSubTitleRow.swift */; };
@@ -311,9 +311,9 @@
 		359BDB7B22D8F9B2007002B0 /* outage_on.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB7422D8F9B2007002B0 /* outage_on.json */; };
 		359BDB7C22D8F9B2007002B0 /* outage_on.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB7422D8F9B2007002B0 /* outage_on.json */; };
 		359BDB7D22D8F9B2007002B0 /* outage_on.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDB7422D8F9B2007002B0 /* outage_on.json */; };
-		359BDB7F22DCBAAF007002B0 /* NewOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* NewOutageViewModel.swift */; };
-		359BDB8022DCBAAF007002B0 /* NewOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* NewOutageViewModel.swift */; };
-		359BDB8122DCBAAF007002B0 /* NewOutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* NewOutageViewModel.swift */; };
+		359BDB7F22DCBAAF007002B0 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
+		359BDB8022DCBAAF007002B0 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
+		359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
 		359BDB8422DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
 		359BDB8522DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
@@ -2637,7 +2637,7 @@
 		359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleNavigationController.swift; sourceTree = "<group>"; };
 		359BDB3F22D50F90007002B0 /* StickyFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyFooterView.swift; sourceTree = "<group>"; };
 		359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddCloseButton.swift"; sourceTree = "<group>"; };
-		359BDB5C22D8DCA2007002B0 /* NewOutageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOutageViewController.swift; sourceTree = "<group>"; };
+		359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageViewController.swift; sourceTree = "<group>"; };
 		359BDB6122D8DCC1007002B0 /* TitleSubTitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubTitleRow.swift; sourceTree = "<group>"; };
 		359BDB6522D8DCD1007002B0 /* TitleSubTitleRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubTitleRow.xib; sourceTree = "<group>"; };
 		359BDB6A22D8DCEC007002B0 /* OutageStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutageStatusView.xib; sourceTree = "<group>"; };
@@ -2645,7 +2645,7 @@
 		359BDB7222D8F9B2007002B0 /* outage_off.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_off.json; sourceTree = "<group>"; };
 		359BDB7322D8F9B2007002B0 /* outage_reported.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_reported.json; sourceTree = "<group>"; };
 		359BDB7422D8F9B2007002B0 /* outage_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on.json; sourceTree = "<group>"; };
-		359BDB7E22DCBAAF007002B0 /* NewOutageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOutageViewModel.swift; sourceTree = "<group>"; };
+		359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageViewModel.swift; sourceTree = "<group>"; };
 		359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasOnlyViewController.swift; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
@@ -3732,8 +3732,8 @@
 		359BDB5B22D8DC5E007002B0 /* Outage */ = {
 			isa = PBXGroup;
 			children = (
-				359BDB5C22D8DCA2007002B0 /* NewOutageViewController.swift */,
-				359BDB7E22DCBAAF007002B0 /* NewOutageViewModel.swift */,
+				359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */,
+				359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */,
 				359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */,
 				2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */,
 				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
@@ -7536,7 +7536,7 @@
 				826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */,
-				359BDB5D22D8DCA2007002B0 /* NewOutageViewController.swift in Sources */,
+				359BDB5D22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				54AE06B51ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
 				E873DA7C1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				CEA215221F7900CC00689422 /* HomeBillCardView.swift in Sources */,
@@ -7791,7 +7791,7 @@
 				B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				82AC2A231FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
-				359BDB7F22DCBAAF007002B0 /* NewOutageViewModel.swift in Sources */,
+				359BDB7F22DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				44A373431F211521005E227B /* TemplateCardView.swift in Sources */,
 				B0CB1CB7228487020081F99B /* InfoAlertController.swift in Sources */,
 				B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
@@ -8011,7 +8011,7 @@
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3361F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
-				359BDB8122DCBAAF007002B0 /* NewOutageViewModel.swift in Sources */,
+				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
 				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
@@ -8096,7 +8096,7 @@
 				E827D23E1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				E8EEF7181E566FD8006804D4 /* BiometricsService.swift in Sources */,
 				82A18E5E1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
-				359BDB5F22D8DCA2007002B0 /* NewOutageViewController.swift in Sources */,
+				359BDB5F22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				E882B7EF1EA93FA600EA3C13 /* BudgetBillingViewController.swift in Sources */,
 				44A373441F211522005E227B /* TemplateCardView.swift in Sources */,
 				B0CB1C8D227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
@@ -8297,7 +8297,7 @@
 				8FD5AE8A1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				825171B61F1D25130020A6CA /* HomeViewModel.swift in Sources */,
 				E8FF085B1F7EDC240030F1BF /* BillingHistoryViewModel.swift in Sources */,
-				359BDB5E22D8DCA2007002B0 /* NewOutageViewController.swift in Sources */,
+				359BDB5E22D8DCA2007002B0 /* OutageViewController.swift in Sources */,
 				82EAB3451F97F01B008B55B1 /* MyHomeProfileViewController.swift in Sources */,
 				CEA215231F7900CC00689422 /* HomeBillCardView.swift in Sources */,
 				B0336FEB21762FB400751430 /* EventStore.swift in Sources */,
@@ -8552,7 +8552,7 @@
 				E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */,
 				B56DD4A31ED87AE200F0198B /* CreditCard.swift in Sources */,
 				82AC2A241FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
-				359BDB8022DCBAAF007002B0 /* NewOutageViewModel.swift in Sources */,
+				359BDB8022DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				821898971F33AB300077D7A1 /* MockPaymentService.swift in Sources */,
 				B0CB1CB8228487020081F99B /* InfoAlertController.swift in Sources */,
 				B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class NewOutageViewModel {
+class OutageViewModel {
     let disposeBag = DisposeBag()
     
     private var accountService: AccountService

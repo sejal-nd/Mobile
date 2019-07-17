@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewOutageViewController: AccountPickerViewController {
+class OutageViewController: AccountPickerViewController {
     enum State {
         case normal
         case loading
@@ -36,7 +36,7 @@ class NewOutageViewController: AccountPickerViewController {
         return refreshControl
     }()
     
-    private let viewModel = NewOutageViewModel(accountService: ServiceFactory.createAccountService(),
+    private let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(),
                                             outageService: ServiceFactory.createOutageService(),
                                             authService: ServiceFactory.createAuthenticationService())
     // MARK: - View Life Cycle
@@ -202,7 +202,7 @@ class NewOutageViewController: AccountPickerViewController {
 
 // MARK: - Table View Data Source
 
-extension NewOutageViewController: UITableViewDataSource {
+extension OutageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -234,7 +234,7 @@ extension NewOutageViewController: UITableViewDataSource {
 
 // MARK: - Table View Delegate
 
-extension NewOutageViewController: UITableViewDelegate {
+extension OutageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? TitleSubTitleRow, cell.isEnabled else { return }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -257,7 +257,7 @@ extension NewOutageViewController: UITableViewDelegate {
 
 // MARK: - Account Picker Delegate
 
-extension NewOutageViewController: AccountPickerDelegate {
+extension OutageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         configureState(.loading)
         loadOutageStatus()
@@ -267,7 +267,7 @@ extension NewOutageViewController: AccountPickerDelegate {
 
 // MARK: - Outage Status View Button Delegate
 
-extension NewOutageViewController: OutageStatusDelegate {
+extension OutageViewController: OutageStatusDelegate {
     func didPressButton(button: UIButton, outageState: OutageState) {
         switch outageState {
         case .powerStatus(_), .reported, .unavailable:
@@ -284,7 +284,7 @@ extension NewOutageViewController: OutageStatusDelegate {
 
 // MARK: - Text View Link Delegate
 
-extension NewOutageViewController: DataDetectorTextViewLinkTapDelegate {
+extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
         Analytics.log(event: .outageAuthEmergencyCall)
     }

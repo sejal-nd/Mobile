@@ -18,10 +18,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--New Outage View Controller-->
+        <!--Outage View Controller-->
         <scene sceneID="uB5-wi-GsB">
             <objects>
-                <viewController id="yf6-8Y-4nw" customClass="NewOutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yf6-8Y-4nw" customClass="OutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W6a-Rg-J5C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
