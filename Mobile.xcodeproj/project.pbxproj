@@ -4269,7 +4269,6 @@
 				9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */,
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 				359BDB3F22D50F90007002B0 /* StickyFooterView.swift */,
-				359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -4452,6 +4451,7 @@
 				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
 				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
 				E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */,
+				359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */,
 				E87C412E1FAA520A00448F86 /* Alerts */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
 				2FA5D8621F17D85A00A8B16B /* Home */,
