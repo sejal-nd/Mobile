@@ -896,7 +896,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <!--Large Title Navigation Controller-->
         <scene sceneID="i6p-R0-oOz">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tYP-Cc-LDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ZqT-yH-4xH" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SJF-Ly-Jd4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -906,6 +905,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <segue destination="ZP7-Zq-dNg" kind="relationship" relationship="rootViewController" id="4jJ-Jf-wrH"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tYP-Cc-LDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2548" y="-675"/>
         </scene>
@@ -2276,7 +2276,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="instructionLabel" destination="ZeV-FD-M8z" id="gYu-Eb-a0M"/>
                         <outlet property="phoneNumberTextField" destination="eqT-Hr-cpE" id="edL-jJ-k4Z"/>
                         <outlet property="scrollView" destination="6R8-17-SHG" id="fJg-d7-EOM"/>
-                        <outlet property="stickyFooterBottomConstraint" destination="Z8v-xn-uFb" id="hcL-Md-dHr"/>
+                        <outlet property="stickyFooterBottomConstraint" destination="Z8v-xn-uFb" id="FGg-OD-aVI"/>
                         <segue destination="mMA-KZ-eGK" kind="show" identifier="bgeAccountNumberSegue" id="rXp-1z-U5u"/>
                         <segue destination="F1v-ea-6RO" kind="show" identifier="forgotUsernameResultSegue" id="6eI-mv-PAf"/>
                     </connections>

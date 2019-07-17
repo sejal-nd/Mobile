@@ -13,14 +13,13 @@ protocol ForgotPasswordViewControllerDelegate: class {
     func forgotPasswordViewControllerDidSubmit(_ viewController: UIViewController)
 }
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     weak var delegate: ForgotPasswordViewControllerDelegate?
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var usernameTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var forgotUsernameButton: UIButton!
-    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: PrimaryButtonNew!
     
     let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
@@ -31,10 +30,7 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
 
         title = NSLocalizedString("Forgot Password", comment: "")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+
         viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
@@ -63,10 +59,6 @@ class ForgotPasswordViewController: UIViewController {
         
         forgotUsernameButton.setTitle(NSLocalizedString("Forgot Username?", comment: ""), for: .normal)
         forgotUsernameButton.setTitleColor(.actionBlue, for: .normal)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     private func accessibilityErrorLabel() {
@@ -124,24 +116,4 @@ class ForgotPasswordViewController: UIViewController {
         navController.setViewControllers(vcStack, animated: true)
     }
     
-    // MARK: - ScrollView
-    
-    @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
-            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
-        
-        let keyboardHeight: CGFloat
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
-        } else {
-            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
-        }
-        
-        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
-        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-            self.stickyFooterBottomConstraint.constant = keyboardHeight
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
 }

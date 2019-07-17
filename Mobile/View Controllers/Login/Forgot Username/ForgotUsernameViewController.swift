@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ForgotUsernameViewController: UIViewController {
+class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var instructionLabel: UILabel!
@@ -25,7 +25,6 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var accountLookupToolButton: UIButton!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
-    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var continueButton: PrimaryButtonNew!
     
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
@@ -34,9 +33,6 @@ class ForgotUsernameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
@@ -145,10 +141,6 @@ class ForgotUsernameViewController: UIViewController {
         accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     private func accessibilityErrorLabel() {
         var message = ""
         message += phoneNumberTextField.getError()
@@ -213,27 +205,6 @@ class ForgotUsernameViewController: UIViewController {
                     self?.view.endEditing(true)
                 }
             }).disposed(by: disposeBag)
-    }
-    
-    // MARK: - ScrollView
-    
-    @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
-            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
-        
-        let keyboardHeight: CGFloat
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
-        } else {
-            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
-        }
-        
-        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
-        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-            self.stickyFooterBottomConstraint.constant = keyboardHeight
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
     
     // MARK: - Navigation
