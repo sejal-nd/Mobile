@@ -14,7 +14,7 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleSubTitleRow" rowHeight="55" id="tbI-2c-SB9" customClass="TitleSubTitleRow" customModule="BGE" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tbI-2c-SB9" id="ELe-YG-L63">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tbI-2c-SB9" id="ELe-YG-L63">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -35,7 +35,7 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40.329999999999998" id="xir-Wd-oZO"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="xir-Wd-oZO"/>
                         </constraints>
                     </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="TvI-du-bVW">
@@ -59,8 +59,8 @@
                     <constraint firstItem="vbN-uS-o54" firstAttribute="leading" secondItem="ELe-YG-L63" secondAttribute="leadingMargin" id="AFM-aY-wGo"/>
                     <constraint firstAttribute="trailingMargin" secondItem="TvI-du-bVW" secondAttribute="trailing" id="ONd-fA-e2p"/>
                     <constraint firstItem="Ko8-9X-HKo" firstAttribute="leading" secondItem="vbN-uS-o54" secondAttribute="trailing" constant="8" id="Q0q-qe-6rx"/>
-                    <constraint firstItem="Ko8-9X-HKo" firstAttribute="top" secondItem="ELe-YG-L63" secondAttribute="top" constant="7" id="aTp-zn-Dxd"/>
-                    <constraint firstAttribute="bottom" secondItem="Ko8-9X-HKo" secondAttribute="bottom" constant="7" id="ey8-JV-FnX"/>
+                    <constraint firstItem="Ko8-9X-HKo" firstAttribute="top" secondItem="ELe-YG-L63" secondAttribute="top" priority="999" constant="7" id="aTp-zn-Dxd"/>
+                    <constraint firstAttribute="bottom" secondItem="Ko8-9X-HKo" secondAttribute="bottom" priority="999" constant="7" id="ey8-JV-FnX"/>
                     <constraint firstItem="TvI-du-bVW" firstAttribute="centerY" secondItem="ELe-YG-L63" secondAttribute="centerY" id="idx-gF-KwJ"/>
                 </constraints>
             </tableViewCellContentView>

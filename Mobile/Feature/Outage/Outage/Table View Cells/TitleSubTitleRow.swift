@@ -54,7 +54,7 @@ class TitleSubTitleRow: UITableViewCell {
         
         // Cell Selection Color
         let backgroundView = UIView()
-        backgroundView.backgroundColor = .softGray
+        backgroundView.backgroundColor = .accentGray
         selectedBackgroundView = backgroundView
     }
 }

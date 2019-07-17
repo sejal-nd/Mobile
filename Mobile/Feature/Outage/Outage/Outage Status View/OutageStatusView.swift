@@ -183,6 +183,7 @@ extension OutageStatusView {
             statusHeightConstraint.constant = 125
             statusWidthConstraint.constant = 125
             
+            titleLabel.text = NSLocalizedString("Outage Unavailable", comment: "")
             titleDescriptionLabel.isHidden = true
             descriptionLabel.isHidden = false
             detailDescriptionLabel.isHidden = true
@@ -194,6 +195,7 @@ extension OutageStatusView {
             statusHeightConstraint.constant = 125
             statusWidthConstraint.constant = 125
             
+            titleLabel.text = NSLocalizedString("Outage Unavailable", comment: "")
             titleDescriptionLabel.isHidden = true
             descriptionLabel.isHidden = false
             detailDescriptionLabel.isHidden = true

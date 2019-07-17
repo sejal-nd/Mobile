@@ -41,6 +41,7 @@ class OutageMapViewController: UIViewController {
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        webView.scrollView.isScrollEnabled = false
         webView.isHidden = true
         
         webView.load(URLRequest(url: url))

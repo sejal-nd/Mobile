@@ -8,7 +8,6 @@
 
 import UIKit
 
-// Ensure we test of all phone sizes + ipad + orientations
 class NewOutageViewController: AccountPickerViewController {
     enum State {
         case normal
@@ -19,22 +18,21 @@ class NewOutageViewController: AccountPickerViewController {
         case unavailable
     }
     
-    // Note create these view controller / revamps last...
-    @IBOutlet weak var maintenanceModeContainerView: UIView! // we are going to create a UIViewController for error state, this can be used for all VC's in the future
-    @IBOutlet weak var NoNetworkConnectionContainerView: UIView! // enum on error state.
-    @IBOutlet weak var loadingContainerView: UIView! // we are going to create a UIViewController for loading, this can be used for all VC's in the future
+    @IBOutlet weak var maintenanceModeContainerView: UIView!
+    @IBOutlet weak var NoNetworkConnectionContainerView: UIView!
+    @IBOutlet weak var loadingContainerView: UIView!
     @IBOutlet weak var gasOnlyContainerView: UIView!
     @IBOutlet weak var notAvailableContainerView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var outageStatusView: OutageStatusView!
-    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView! // may be special text view
+    @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
-    // todo: this is not appearing for some reason...
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
         refreshControl.tintColor = .primaryColor
+        refreshControl.backgroundColor = .softGray
         return refreshControl
     }()
     
@@ -45,30 +43,15 @@ class NewOutageViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        outageStatusView.delegate = self
-        
-        // BEGIN REFACTOR - todo
-        accountPicker.delegate = self
-        accountPicker.parentViewController = self
-        
-        
-        // We should move this to a subclass....
-        footerTextView.attributedText = viewModel.footerTextViewText
-        footerTextView.textColor = .blackText
-        footerTextView.tintColor = .actionBlue // For the phone numbers
-        footerTextView.attributedText = viewModel.footerTextViewText
-        footerTextView.linkTapDelegate = self
 
-        // END REFACTOR - todo
+        configureAccountPicker()
         
         configureTableView()
+        
+        configureTableHeaderFooterView()
 
         configureState(.loading)
-        
         loadOutageStatus()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,21 +99,37 @@ class NewOutageViewController: AccountPickerViewController {
     
     // MARK: - Helper
     
+    private func configureAccountPicker() {
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
+    }
+    
     private func configureTableView() {
         let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
         tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
-        tableView.refreshControl = refreshControl
+        
+        tableView.addSubview(refreshControl)
+
         tableView.reloadData()
+    }
+    
+    private func configureTableHeaderFooterView() {
+        // Header
+        outageStatusView.delegate = self
+
+        // Footer
+        footerTextView.attributedText = viewModel.footerTextViewText
+        footerTextView.textColor = .blackText
+        footerTextView.tintColor = .actionBlue // For the phone numbers
+        footerTextView.attributedText = viewModel.footerTextViewText
+        footerTextView.linkTapDelegate = self
     }
     
     @objc
     private func loadOutageStatus(sender: UIRefreshControl? = nil) {
         viewModel.fetchData(onSuccess: { [weak self] outageStatus in
             
-            DispatchQueue.main.async {
-//                print("sender:\(sender)")
-//                sender?.endRefreshing()
-            }
+            sender?.endRefreshing()
             
             guard let `self` = self else { return }
             if outageStatus.flagGasOnly {
@@ -198,10 +197,6 @@ class NewOutageViewController: AccountPickerViewController {
             notAvailableContainerView.isHidden = false
         }
     }
-    
-    
-    // MARK: - Actions
-    
 }
 
 
@@ -214,7 +209,8 @@ extension NewOutageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TitleSubTitleRow.className, for: indexPath) as? TitleSubTitleRow else { fatalError("Invalid cell type.") }
-
+        cell.backgroundColor = .softGray
+        
         switch indexPath {
         case IndexPath(row: 0, section: 0):
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: nil)
