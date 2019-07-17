@@ -28,8 +28,8 @@ class ForgotUsernameViewModel {
     }
     
     func validateAccount(onSuccess: @escaping () -> Void, onNeedAccountNumber: @escaping () -> Void, onError: @escaping (String, String) -> Void) {
-        let acctNum: String? = accountNumber.value.count > 0 ? accountNumber.value : nil
-        let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
+        let acctNum: String? = accountNumber.value.isEmpty ? nil : accountNumber.value
+        let identifier: String? = identifierNumber.value.isEmpty ? nil : identifierNumber.value
         authService.recoverMaskedUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { usernames in
@@ -74,7 +74,7 @@ class ForgotUsernameViewModel {
         return maskedUsernames[selectedUsernameIndex].question!
     }
     
-    private(set) lazy var nextButtonEnabled: Driver<Bool> = {
+    private(set) lazy var continueButtonEnabled: Driver<Bool> = {
         if Environment.shared.opco == .bge {
             return Driver.combineLatest(self.phoneNumberHasTenDigits, self.identifierHasFourDigits, self.identifierIsNumeric)
             { $0 && $1 && $2 }

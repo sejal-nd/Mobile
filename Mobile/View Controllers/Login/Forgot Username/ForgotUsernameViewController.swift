@@ -25,16 +25,18 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var accountLookupToolButton: UIButton!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
+    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var continueButton: PrimaryButtonNew!
+    
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
-    var nextButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
@@ -44,15 +46,11 @@ class ForgotUsernameViewController: UIViewController {
             identifierContainerView.isHidden = true
         }
         
-        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        navigationItem.rightBarButtonItem = nextButton
-        viewModel.nextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.continueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .blackText
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        instructionLabel.textColor = .deepGray
+        instructionLabel.font = SystemFont.regular.of(textStyle: .body)
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
-        identifierDescriptionLabel?.font = SystemFont.regular.of(textStyle: .subheadline)
-        identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
         phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
@@ -79,6 +77,10 @@ class ForgotUsernameViewController: UIViewController {
             self?.phoneNumberTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
+        
+        identifierDescriptionLabel.textColor = .deepGray
+        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
         identifierTextField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
         identifierTextField.textField.autocorrectionType = .no
@@ -157,9 +159,9 @@ class ForgotUsernameViewController: UIViewController {
         }
         
         if message.isEmpty {
-            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
         } else {
-            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
+            continueButton.accessibilityLabel = String(format: NSLocalizedString("%@ Continue", comment: ""), message)
         }
     }
     
@@ -169,7 +171,7 @@ class ForgotUsernameViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @objc func onNextPress() {
+    @objc func onContinuePress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -198,15 +200,15 @@ class ForgotUsernameViewController: UIViewController {
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
         }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
     @objc func onIdentifierAccountNumberKeyboardDonePress() {
-        viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+        viewModel.continueButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] enabled in
                 if enabled {
-                    self?.onNextPress()
+                    self?.onContinuePress()
                 } else {
                     self?.view.endEditing(true)
                 }
@@ -215,19 +217,23 @@ class ForgotUsernameViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
         
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
+        let keyboardHeight: CGFloat
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
+        } else {
+            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
+        }
+        
+        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.stickyFooterBottomConstraint.constant = keyboardHeight
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     // MARK: - Navigation

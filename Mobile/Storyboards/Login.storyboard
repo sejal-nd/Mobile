@@ -2062,8 +2062,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6R8-17-SHG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6R8-17-SHG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eu-3a-q17" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="454"/>
@@ -2113,19 +2113,22 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 <rect key="frame" x="0.0" y="290" width="335" height="144"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="dQy-ah-33p" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="41" width="335" height="55"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjn-bu-k9w">
-                                                                        <rect key="frame" x="284" y="45.5" width="51" height="51"/>
+                                                                        <rect key="frame" x="284" y="2" width="51" height="51"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="51" id="28d-RB-XeW"/>
                                                                             <constraint firstAttribute="height" constant="51" id="CJJ-VM-3zD"/>
                                                                         </constraints>
-                                                                        <state key="normal" image="ic_question"/>
+                                                                        <state key="normal" image="ic_tooltip"/>
+                                                                        <connections>
+                                                                            <action selector="onAccountNumberTooltipPress" destination="y1x-Kb-kau" eventType="touchUpInside" id="lkK-Nf-8Hy"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-JA-L8m">
-                                                                        <rect key="frame" x="154" y="110" width="181" height="34"/>
+                                                                        <rect key="frame" x="154" y="69" width="181" height="75"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                         <state key="normal" title="Account Lookup Tool"/>
                                                                         <connections>
@@ -2135,11 +2138,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="bjn-bu-k9w" firstAttribute="centerY" secondItem="dQy-ah-33p" secondAttribute="centerY" id="1T2-UJ-9ZD"/>
+                                                                    <constraint firstItem="dQy-ah-33p" firstAttribute="top" secondItem="BdQ-n3-Axf" secondAttribute="top" id="7e0-NA-FDu"/>
                                                                     <constraint firstItem="dQy-ah-33p" firstAttribute="leading" secondItem="BdQ-n3-Axf" secondAttribute="leading" id="R7g-pJ-o2N"/>
                                                                     <constraint firstAttribute="bottom" secondItem="BTX-JA-L8m" secondAttribute="bottom" id="TBa-GP-q4a"/>
                                                                     <constraint firstAttribute="trailing" secondItem="dQy-ah-33p" secondAttribute="trailing" id="WOA-aU-uRE"/>
                                                                     <constraint firstAttribute="trailing" secondItem="BTX-JA-L8m" secondAttribute="trailing" id="kHt-eQ-N3R"/>
-                                                                    <constraint firstItem="bjn-bu-k9w" firstAttribute="top" secondItem="dQy-ah-33p" secondAttribute="top" constant="4.5" id="nmw-hH-roP"/>
                                                                     <constraint firstItem="BTX-JA-L8m" firstAttribute="top" secondItem="dQy-ah-33p" secondAttribute="bottom" constant="14" id="tkE-pi-ywN"/>
                                                                     <constraint firstItem="bjn-bu-k9w" firstAttribute="trailing" secondItem="dQy-ah-33p" secondAttribute="trailing" id="w4j-A4-lC4"/>
                                                                 </constraints>
@@ -2176,13 +2180,38 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                     <constraint firstItem="3eu-3a-q17" firstAttribute="centerX" secondItem="6R8-17-SHG" secondAttribute="centerX" id="vaL-Dh-8zC"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOW-6m-l0b" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="582" width="375" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3M8-s0-5mg" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="335" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="i4b-EN-QK8"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="oaT-9k-VoE"/>
+                                        </constraints>
+                                        <state key="normal" title="Continue"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="gZx-qU-YyM" firstAttribute="trailing" secondItem="3M8-s0-5mg" secondAttribute="trailing" priority="999" constant="20" id="6W3-H1-CeJ"/>
+                                    <constraint firstItem="3M8-s0-5mg" firstAttribute="leading" secondItem="gZx-qU-YyM" secondAttribute="leading" priority="999" constant="20" id="HiA-on-AaL"/>
+                                    <constraint firstItem="3M8-s0-5mg" firstAttribute="centerX" secondItem="gZx-qU-YyM" secondAttribute="centerX" id="IN9-ia-ee3"/>
+                                    <constraint firstItem="3M8-s0-5mg" firstAttribute="top" secondItem="IOW-6m-l0b" secondAttribute="top" constant="15" id="Row-jK-BYh"/>
+                                    <constraint firstItem="gZx-qU-YyM" firstAttribute="bottom" secondItem="3M8-s0-5mg" secondAttribute="bottom" constant="15" id="tTe-hu-KeJ"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="gZx-qU-YyM"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="6R8-17-SHG" secondAttribute="bottom" id="10W-Yd-3wf"/>
                             <constraint firstItem="6R8-17-SHG" firstAttribute="leading" secondItem="7Q2-Eq-2zT" secondAttribute="leading" id="M6S-q3-FlP"/>
+                            <constraint firstAttribute="bottom" secondItem="IOW-6m-l0b" secondAttribute="bottom" id="Z8v-xn-uFb"/>
+                            <constraint firstItem="IOW-6m-l0b" firstAttribute="trailing" secondItem="7Q2-Eq-2zT" secondAttribute="trailing" id="e0c-IQ-bjZ"/>
+                            <constraint firstItem="IOW-6m-l0b" firstAttribute="top" secondItem="6R8-17-SHG" secondAttribute="bottom" id="gCb-3z-Ti9"/>
                             <constraint firstItem="6R8-17-SHG" firstAttribute="top" secondItem="S7y-mx-DdX" secondAttribute="top" id="oHB-B4-qvP"/>
                             <constraint firstItem="7Q2-Eq-2zT" firstAttribute="trailing" secondItem="6R8-17-SHG" secondAttribute="trailing" id="rZJ-25-pYE"/>
+                            <constraint firstItem="IOW-6m-l0b" firstAttribute="leading" secondItem="7Q2-Eq-2zT" secondAttribute="leading" id="vdP-IH-glV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Q2-Eq-2zT"/>
                     </view>
@@ -2195,19 +2224,21 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="accountNumberContainerView" destination="BdQ-n3-Axf" id="Kg1-Jh-g55"/>
                         <outlet property="accountNumberTextField" destination="dQy-ah-33p" id="kJL-ix-uM3"/>
                         <outlet property="accountNumberTooltipButton" destination="bjn-bu-k9w" id="sFy-gb-BHc"/>
+                        <outlet property="continueButton" destination="3M8-s0-5mg" id="wrJ-wq-JeD"/>
                         <outlet property="identifierContainerView" destination="T3e-ya-rKi" id="qsH-GN-Acc"/>
                         <outlet property="identifierDescriptionLabel" destination="BNv-3A-kPt" id="HSB-IM-p2H"/>
                         <outlet property="identifierTextField" destination="kBc-R9-B0u" id="yFj-E4-Vnh"/>
                         <outlet property="instructionLabel" destination="ZeV-FD-M8z" id="gYu-Eb-a0M"/>
                         <outlet property="phoneNumberTextField" destination="eqT-Hr-cpE" id="edL-jJ-k4Z"/>
                         <outlet property="scrollView" destination="6R8-17-SHG" id="fJg-d7-EOM"/>
+                        <outlet property="stickyFooterBottomConstraint" destination="Z8v-xn-uFb" id="hcL-Md-dHr"/>
                         <segue destination="mMA-KZ-eGK" kind="show" identifier="bgeAccountNumberSegue" id="rXp-1z-U5u"/>
                         <segue destination="F1v-ea-6RO" kind="show" identifier="forgotUsernameResultSegue" id="6eI-mv-PAf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GpE-gG-3Tq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2548" y="53"/>
+            <point key="canvasLocation" x="2548" y="52.623688155922046"/>
         </scene>
         <!--BGE Account Number-->
         <scene sceneID="2Q9-e3-PU7">
@@ -3465,6 +3496,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <image name="ic_eyeball_disabled" width="24" height="24"/>
         <image name="ic_question" width="17" height="17"/>
         <image name="ic_reload" width="18" height="22"/>
+        <image name="ic_tooltip" width="24" height="24"/>
         <image name="ic_touchid" width="20" height="23"/>
         <image name="ic_wires" width="107" height="72"/>
         <image name="img_confirmation_green" width="206" height="136"/>
