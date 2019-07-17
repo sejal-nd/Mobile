@@ -893,6 +893,22 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             </objects>
             <point key="canvasLocation" x="2056" y="-894"/>
         </scene>
+        <!--Large Title Navigation Controller-->
+        <scene sceneID="i6p-R0-oOz">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tYP-Cc-LDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="ZqT-yH-4xH" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SJF-Ly-Jd4">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZP7-Zq-dNg" kind="relationship" relationship="rootViewController" id="4jJ-Jf-wrH"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="2548" y="-675"/>
+        </scene>
         <!--Landing View Controller-->
         <scene sceneID="LmY-Jb-a4W">
             <objects>
@@ -1772,44 +1788,36 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             </objects>
             <point key="canvasLocation" x="1886" y="851"/>
         </scene>
-        <!--Account Lookup Tool View Controller-->
+        <!--Account Lookup-->
         <scene sceneID="6VS-rO-B5F">
             <objects>
-                <viewController id="ZP7-Zq-dNg" customClass="AccountLookupToolViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="ZP7-Zq-dNg" customClass="AccountLookupToolViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JnB-H4-HkG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsZ-KD-2dd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qsZ-KD-2dd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13E-Wv-wr7" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="204.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="194.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRu-ra-TFH" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="0.0" width="317" height="204.5"/>
+                                                <rect key="frame" x="29" y="0.0" width="317" height="194.5"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="959-0h-wAH" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="30" width="317" height="60"/>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="959-0h-wAH" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="30" width="317" height="55"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Lh6-HB-s63"/>
-                                                            <constraint firstAttribute="height" priority="250" constant="60" id="mKx-xE-teC"/>
-                                                        </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits of blah blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RI2-Y2-7G4">
-                                                        <rect key="frame" x="0.0" y="120" width="317" height="14.5"/>
+                                                        <rect key="frame" x="0.0" y="115" width="317" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdq-tl-VsL" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="144.5" width="317" height="60"/>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="gdq-tl-VsL" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="139.5" width="317" height="55"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" priority="250" constant="60" id="QfI-BT-mFb"/>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="mjX-gG-dZ1"/>
-                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1847,38 +1855,72 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                     <constraint firstItem="13E-Wv-wr7" firstAttribute="centerX" secondItem="qsZ-KD-2dd" secondAttribute="centerX" id="oti-m5-z0C"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vd8-WN-V7e" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="582" width="375" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XsC-fE-eFL" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="335" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ZUM-xo-fVc"/>
+                                            <constraint firstAttribute="height" constant="55" id="vAb-zY-ZCX"/>
+                                        </constraints>
+                                        <state key="normal" title="Search"/>
+                                        <connections>
+                                            <action selector="onSearchPress" destination="ZP7-Zq-dNg" eventType="touchUpInside" id="mwd-Rl-ABd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="XsC-fE-eFL" firstAttribute="leading" secondItem="epe-Jl-Ork" secondAttribute="leading" priority="999" constant="20" id="5mz-ne-3b6"/>
+                                    <constraint firstItem="XsC-fE-eFL" firstAttribute="top" secondItem="Vd8-WN-V7e" secondAttribute="top" constant="15" id="FSS-Wi-FQa"/>
+                                    <constraint firstItem="epe-Jl-Ork" firstAttribute="trailing" secondItem="XsC-fE-eFL" secondAttribute="trailing" priority="999" constant="20" id="J6K-3B-wzO"/>
+                                    <constraint firstItem="epe-Jl-Ork" firstAttribute="bottom" secondItem="XsC-fE-eFL" secondAttribute="bottom" constant="15" id="Jqj-dg-U8x"/>
+                                    <constraint firstItem="XsC-fE-eFL" firstAttribute="centerX" secondItem="epe-Jl-Ork" secondAttribute="centerX" id="m3d-S4-SVg"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="epe-Jl-Ork"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qsZ-KD-2dd" firstAttribute="leading" secondItem="WBc-eD-jqb" secondAttribute="leading" id="3Tf-Yl-gix"/>
+                            <constraint firstItem="WBc-eD-jqb" firstAttribute="trailing" secondItem="Vd8-WN-V7e" secondAttribute="trailing" id="BAE-qb-q9E"/>
                             <constraint firstItem="WBc-eD-jqb" firstAttribute="trailing" secondItem="qsZ-KD-2dd" secondAttribute="trailing" id="Qog-Dn-ihQ"/>
-                            <constraint firstAttribute="bottom" secondItem="qsZ-KD-2dd" secondAttribute="bottom" id="uZz-iH-FLA"/>
-                            <constraint firstItem="qsZ-KD-2dd" firstAttribute="top" secondItem="WBc-eD-jqb" secondAttribute="top" id="wEI-ie-yNv"/>
+                            <constraint firstItem="Vd8-WN-V7e" firstAttribute="top" secondItem="qsZ-KD-2dd" secondAttribute="bottom" id="ioU-dV-LMH"/>
+                            <constraint firstAttribute="bottom" secondItem="Vd8-WN-V7e" secondAttribute="bottom" id="lzc-Wj-Iwu"/>
+                            <constraint firstItem="Vd8-WN-V7e" firstAttribute="leading" secondItem="WBc-eD-jqb" secondAttribute="leading" id="rU5-TV-cWv"/>
+                            <constraint firstItem="qsZ-KD-2dd" firstAttribute="top" secondItem="JnB-H4-HkG" secondAttribute="top" id="wEI-ie-yNv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WBc-eD-jqb"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Account Lookup" id="TlT-DB-R2E">
+                        <barButtonItem key="backBarButtonItem" title=" " id="esb-iI-ENx"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="identifierDescriptionLabel" destination="RI2-Y2-7G4" id="cN1-xW-R24"/>
                         <outlet property="identifierTextField" destination="gdq-tl-VsL" id="41G-yl-Ree"/>
                         <outlet property="phoneNumberTextField" destination="959-0h-wAH" id="U0G-S7-m12"/>
                         <outlet property="scrollView" destination="qsZ-KD-2dd" id="yym-s0-iF0"/>
+                        <outlet property="searchButton" destination="XsC-fE-eFL" id="cLE-5F-hHv"/>
+                        <outlet property="stickyFooterBottomConstraint" destination="lzc-Wj-Iwu" id="Bjt-Yv-Q2b"/>
                         <segue destination="2Td-2q-g6V" kind="show" identifier="accountLookupToolResultSegue" id="XCS-cx-2gD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdG-dF-Jto" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2548" y="-674"/>
+            <point key="canvasLocation" x="3372" y="-675"/>
         </scene>
         <!--Account Lookup Tool Result View Controller-->
         <scene sceneID="yCv-0D-J5l">
             <objects>
                 <viewController id="2Td-2q-g6V" customClass="AccountLookupToolResultViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GQe-xF-0jV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XJ3-Td-XaZ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="kqo-vO-xQE"/>
@@ -2052,7 +2094,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjO-bG-B0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3372" y="-674"/>
+            <point key="canvasLocation" x="4196" y="-675"/>
         </scene>
         <!--Forgot Username-->
         <scene sceneID="BWR-Nu-5dj">
@@ -2132,7 +2174,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                                         <state key="normal" title="Account Lookup Tool"/>
                                                                         <connections>
-                                                                            <segue destination="ZP7-Zq-dNg" kind="show" id="MQ9-mK-gC8"/>
+                                                                            <segue destination="ZqT-yH-4xH" kind="presentation" id="MLI-e8-fYg"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -2190,6 +2232,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="oaT-9k-VoE"/>
                                         </constraints>
                                         <state key="normal" title="Continue"/>
+                                        <connections>
+                                            <action selector="onContinuePress" destination="y1x-Kb-kau" eventType="touchUpInside" id="HHf-9X-nFv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

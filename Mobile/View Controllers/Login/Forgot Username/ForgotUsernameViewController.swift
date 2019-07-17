@@ -171,7 +171,7 @@ class ForgotUsernameViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @objc func onContinuePress() {
+    @IBAction func onContinuePress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -244,7 +244,8 @@ class ForgotUsernameViewController: UIViewController {
         if let vc = segue.destination as? ForgotUsernameBGEAccountNumberViewController {
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
-        } else if let vc = segue.destination as? AccountLookupToolViewController {
+        } else if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? AccountLookupToolViewController {
             vc.delegate = self
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
         } else if let vc = segue.destination as? ForgotUsernameResultViewController {

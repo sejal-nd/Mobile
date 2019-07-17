@@ -18,32 +18,29 @@ class AccountLookupToolViewController: UIViewController {
     weak var delegate: AccountLookupToolResultViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
-    @IBOutlet weak var identifierTextField: FloatLabelTextField!
+    @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchButton: PrimaryButtonNew!
     
-    var searchButton = UIBarButtonItem()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        addCloseButton()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         title = NSLocalizedString("Account Lookup", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        searchButton = UIBarButtonItem(title: NSLocalizedString("Search", comment: ""), style: .done, target: self, action: #selector(onSearchPress))
         searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = searchButton
-        navigationItem.rightBarButtonItem?.accessibilityLabel = NSLocalizedString("Search", comment: "")
         viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
         
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
         
-        phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -68,7 +65,7 @@ class AccountLookupToolViewController: UIViewController {
         
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd) // Load the passed phone number from view model
         
-        identifierTextField.textField.placeholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
+        identifierTextField.placeholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
         identifierTextField.textField.autocorrectionType = .no
         identifierTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIndentifierKeyboardDonePress))
         identifierTextField.textField.delegate = self
@@ -105,12 +102,8 @@ class AccountLookupToolViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
-    }
     
-    @objc func onSearchPress() {
+    @IBAction func onSearchPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -120,7 +113,7 @@ class AccountLookupToolViewController: UIViewController {
             if self.viewModel.accountLookupResults.count == 1 {
                 let selectedAccount = self.viewModel.accountLookupResults.first!
                 self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
-                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true, completion: nil)
             } else {
                 self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
             }
@@ -147,19 +140,23 @@ class AccountLookupToolViewController: UIViewController {
     
     // MARK: - ScrollView
     
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
         
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
+        let keyboardHeight: CGFloat
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
+        } else {
+            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
+        }
+        
+        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.stickyFooterBottomConstraint.constant = keyboardHeight
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     // MARK: - Navigation
