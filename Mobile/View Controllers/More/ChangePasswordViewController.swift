@@ -114,9 +114,9 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .body)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
-            label.font = SystemFont.regular.of(textStyle: .body)
+            label.font = SystemFont.regular.of(textStyle: .headline)
         }
         
         // Bind to the view model

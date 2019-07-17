@@ -34,7 +34,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
-        instructionLabel.font = SystemFont.regular.of(textStyle: .body)
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.textColor = .deepGray
         instructionLabel.setLineHeight(lineHeight: 24)
         
