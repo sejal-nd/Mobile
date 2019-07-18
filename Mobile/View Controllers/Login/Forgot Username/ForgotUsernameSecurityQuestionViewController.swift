@@ -12,36 +12,35 @@ protocol ForgotUsernameSecurityQuestionViewControllerDelegate: class {
     func forgotUsernameSecurityQuestionViewController(_ forgotUsernameSecurityQuestionViewController: ForgotUsernameSecurityQuestionViewController, didUnmaskUsername username: String)
 }
 
-class ForgotUsernameSecurityQuestionViewController: UIViewController {
+class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooterViewController {
     
     weak var delegate: ForgotUsernameSecurityQuestionViewControllerDelegate?
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var answerTextField: FloatLabelTextField!
+    @IBOutlet weak var answerTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var submitButton: PrimaryButtonNew!
     
     var viewModel: ForgotUsernameViewModel!
     
     let disposeBag = DisposeBag()
-    var submitButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        navigationItem.rightBarButtonItem = submitButton
         viewModel.securityQuestionAnswerNotEmpty.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .blackText
+        instructionLabel.textColor = .deepGray
         instructionLabel.text = NSLocalizedString("Please answer the security question.", comment: "")
-        instructionLabel.font = SystemFont.bold.of(textStyle: .headline)
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
+        questionLabel.textColor = .deepGray
         questionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         questionLabel.text = viewModel.getSecurityQuestion()
         
-        answerTextField.textField.placeholder = NSLocalizedString("Your Answer*", comment: "")
+        answerTextField.placeholder = NSLocalizedString("Your Answer*", comment: "")
         answerTextField.textField.autocorrectionType = .no
         answerTextField.textField.returnKeyType = .done
         answerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityQuestionAnswer).disposed(by: disposeBag)
@@ -60,7 +59,6 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         answerTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
             self?.answerTextField.setError(nil)
             self?.accessibilityErrorLabel()
-            
         }).disposed(by: disposeBag)
     }
     
@@ -73,7 +71,7 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
         }
     }
     
-    @objc func onSubmitPress() {
+    @IBAction func onSubmitPress() {
         view.endEditing(true)
         
         LoadingView.show()
