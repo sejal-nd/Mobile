@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountInfoBarNew" customModule="BGE" customModuleProvider="target">
+            <connections>
+                <outlet property="accountNumberLabel" destination="BwO-Tq-Ifo" id="sDB-2j-Jud"/>
+                <outlet property="addressLabel" destination="mwa-kd-CjD" id="I8N-nm-YIL"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="HA1-tj-kBs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Keq-1x-w5B">
+                    <rect key="frame" x="88.5" y="8" width="237" height="51"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1234567890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwO-Tq-Ifo">
+                            <rect key="frame" x="8" y="17" width="83.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5109 Sprint Garden St" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwa-kd-CjD">
+                            <rect key="frame" x="93.5" y="17" width="143.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="mwa-kd-CjD" secondAttribute="trailing" id="OmC-tT-D7P"/>
+                        <constraint firstItem="BwO-Tq-Ifo" firstAttribute="centerY" secondItem="Keq-1x-w5B" secondAttribute="centerY" id="RTR-8I-B0A"/>
+                        <constraint firstItem="BwO-Tq-Ifo" firstAttribute="leading" secondItem="Keq-1x-w5B" secondAttribute="leading" constant="8" id="TPD-tJ-l1Y"/>
+                        <constraint firstItem="mwa-kd-CjD" firstAttribute="leading" secondItem="BwO-Tq-Ifo" secondAttribute="trailing" constant="2" id="Ue6-iU-8f1"/>
+                        <constraint firstItem="mwa-kd-CjD" firstAttribute="centerY" secondItem="Keq-1x-w5B" secondAttribute="centerY" id="brI-bB-xbV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Keq-1x-w5B" secondAttribute="trailing" id="0Vy-ol-K0S"/>
+                <constraint firstItem="Keq-1x-w5B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="chb-EY-tWo"/>
+                <constraint firstItem="Keq-1x-w5B" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nZk-hd-oWb"/>
+                <constraint firstAttribute="bottom" secondItem="Keq-1x-w5B" secondAttribute="bottom" constant="8" id="pWs-DW-Lpc"/>
+                <constraint firstItem="Keq-1x-w5B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="set-xz-r4s"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="131.8840579710145" y="402.12053571428572"/>
+        </view>
+    </objects>
+</document>

@@ -317,6 +317,12 @@
 		359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
 		359BDB8422DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
 		359BDB8522DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */; };
+		359BDBA822E09D80007002B0 /* AccountInfoBarNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */; };
+		359BDBA922E09D80007002B0 /* AccountInfoBarNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */; };
+		359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */; };
+		359BDBAC22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */; };
+		359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */; };
+		359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -2647,6 +2653,8 @@
 		359BDB7422D8F9B2007002B0 /* outage_on.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_on.json; sourceTree = "<group>"; };
 		359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageViewModel.swift; sourceTree = "<group>"; };
 		359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasOnlyViewController.swift; sourceTree = "<group>"; };
+		359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoBarNew.swift; sourceTree = "<group>"; };
+		359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoBarNew.xib; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -3761,6 +3769,15 @@
 			path = "Outage Status View";
 			sourceTree = "<group>";
 		};
+		359BDBA622E09D64007002B0 /* Account Info Bar */ = {
+			isa = PBXGroup;
+			children = (
+				359BDBA722E09D80007002B0 /* AccountInfoBarNew.swift */,
+				359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */,
+			);
+			path = "Account Info Bar";
+			sourceTree = "<group>";
+		};
 		35A6C6BC211C6FD100C2A58F /* TitleTableViewHeaderView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4327,6 +4344,7 @@
 		82A18EB01EBA667900BE9F21 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				359BDBA622E09D64007002B0 /* Account Info Bar */,
 				9CD3531B22CABBB700165F87 /* DataDetectorTextView */,
 				9C62446622C42AF100F14DA0 /* FloatLabelTextViewNew */,
 				9C62445922C1717E00F14DA0 /* FloatLabelTextFieldNew */,
@@ -6083,6 +6101,7 @@
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
+				359BDBAC22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				B08957262217496D00A97965 /* bill_pdf.json in Resources */,
 				359BDB6622D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
@@ -6243,6 +6262,7 @@
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				359BDB6822D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -6403,6 +6423,7 @@
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
+				359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
@@ -7445,6 +7466,7 @@
 				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
 				E8C453231EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
+				359BDBA822E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				B06B40F920D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
 				820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
@@ -7946,6 +7968,7 @@
 				5492E0211EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
+				359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
 				35376C6A20F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
@@ -8206,6 +8229,7 @@
 				82AC2A1F1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
 				54C1DEF71F01EBF900290FE5 /* BGEasyViewController.swift in Sources */,
 				E857C5221F269FF6002A8E94 /* TemplateCardView.swift in Sources */,
+				359BDBA922E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
 				E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
 				B06B40FA20D0723100F37FE8 /* BorderedFloatLabeledTextView.swift in Sources */,
 				820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,

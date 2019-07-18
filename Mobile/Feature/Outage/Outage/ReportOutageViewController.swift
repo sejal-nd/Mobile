@@ -15,7 +15,7 @@ class ReportOutageViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBar!
+    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
     
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
@@ -42,13 +42,13 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var reportFormStackView: UIStackView!
     @IBOutlet weak var areYourLightsOutView: UIView!
     @IBOutlet weak var areYourLightsOutLabel: UILabel!
-    @IBOutlet weak var segmentedControl: SegmentedControl!
+    @IBOutlet weak var segmentedControl: SegmentedControlNew!
     @IBOutlet weak var howCanWeContactYouLabel: UILabel!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var phoneExtensionContainerView: UIView!
-    @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneExtensionTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var commentView: UIView!
-    @IBOutlet weak var commentTextView: FloatLabelTextView!
+    @IBOutlet weak var commentTextView: FloatLabelTextViewNew!
     @IBOutlet weak var commentLabel: UILabel!
     
     // Footer View
@@ -56,13 +56,12 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
+    @IBOutlet weak var submitButton: PrimaryButtonNew!
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
     let opco = Environment.shared.opco
     
     let disposeBag = DisposeBag()
-    
-    var submitButton = UIBarButtonItem()
     
     var unauthenticatedExperience = false // `true` passed from UnauthenticatedOutageStatusViewController
 
@@ -71,23 +70,20 @@ class ReportOutageViewController: UIViewController {
         
         title = NSLocalizedString("Report Outage", comment: "")
 
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = submitButton
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        if unauthenticatedExperience {
-            accountInfoBar.update(accountNumber: viewModel.outageStatus!.maskedAccountNumber, address: viewModel.outageStatus!.maskedAddress)
+        if unauthenticatedExperience,
+            let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
+            let addressText = viewModel.outageStatus?.maskedAddress {
+            accountInfoBar.configure(accountNumberText: accountNumberText, addressText: addressText)
         }
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            bg.backgroundColor = .softGray
             bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
             meterPingStackView.addSubview(bg)
             meterPingStackView.sendSubviewToBack(bg)
@@ -158,10 +154,6 @@ class ReportOutageViewController: UIViewController {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
         }
         
-        areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .headline)
-        howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .headline)
-        commentLabel.font = SystemFont.regular.of(textStyle: .headline)
-        
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
@@ -197,15 +189,12 @@ class ReportOutageViewController: UIViewController {
             phoneExtensionContainerView.isHidden = true
         }
         
-        footerBackgroundView.backgroundColor = .softGray
-        footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
-        
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
-        commentTextView.textView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
+        commentTextView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
@@ -331,12 +320,26 @@ class ReportOutageViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    
+    // MARK: - Helper
+    
+    private func style() {
+        areYourLightsOutLabel.textColor = .deepGray
+        areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .body)
+        howCanWeContactYouLabel.textColor = .deepGray
+        howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .body)
+        commentLabel.textColor = .deepGray
+        commentLabel.font = SystemFont.regular.of(textStyle: .body)
+    }
+
+    
+    // MARK: - Actions
+    
     @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func onSubmitPress() {
-        guard submitButton.isEnabled else { return }
+    @IBAction func submitButtonPress(_ sender: Any? = nil) {
         view.endEditing(true)
         
         let errorBlock = { [weak self] (errorMessage: String) in
@@ -353,7 +356,7 @@ class ReportOutageViewController: UIViewController {
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
-            }, onError: errorBlock)
+                }, onError: errorBlock)
             Analytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
@@ -361,13 +364,12 @@ class ReportOutageViewController: UIViewController {
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
                 self.navigationController?.popViewController(animated: true)
-            }, onError: errorBlock)
+                }, onError: errorBlock)
             Analytics.log(event: .reportOutageAuthSubmit)
         }
         
-
     }
-    
+
     @IBAction func switchPressed(sender: AnyObject) {
         if sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn {
             Analytics.log(event: .reportOutageAuthCircuitBreak)
