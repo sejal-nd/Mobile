@@ -11,13 +11,19 @@ import RxCocoa
 
 class ForgotUsernameResultViewController: UIViewController {
     
-    @IBOutlet weak var topTextView: ZeroInsetDataDetectorTextView!
-    @IBOutlet weak var topTextViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topLabel1: UILabel!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var topLabel2: UILabel!
+    @IBOutlet weak var topLabel3: UILabel!
+    
+    @IBOutlet weak var singleAccountView: UIView!
+    @IBOutlet weak var usernameEmailLabel: UILabel!
+    @IBOutlet weak var singleAccountValueLabel: UILabel!
+    
     @IBOutlet weak var selectLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var answerSecurityQuestionButton: PrimaryButton!
-    @IBOutlet weak var backToSignInButton: UIButton!
+    @IBOutlet weak var tableView: IntrinsicHeightTableView!
+    
+    @IBOutlet weak var answerSecurityQuestionButton: PrimaryButtonNew!
     
     var viewModel: ForgotUsernameViewModel!
     
@@ -28,53 +34,50 @@ class ForgotUsernameResultViewController: UIViewController {
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        styleTopTextView()
+        styleTopLabels()
         
-        selectLabel.textColor = .blackText
-        selectLabel.text = viewModel.maskedUsernames.count > 1 ? NSLocalizedString("Select Username / Email Address:", comment: "") : NSLocalizedString("Username / Email Address:", comment: "")
-        selectLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+        selectLabel.textColor = .deepGray
+        selectLabel.text = NSLocalizedString("Select Username / Email Address", comment: "")
+        selectLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        tableView.separatorInset = .zero
-        tableViewHeightConstraint.constant = CGFloat(53 * viewModel.maskedUsernames.count) - 1
+        if viewModel.maskedUsernames.count > 1 {
+            singleAccountView.isHidden = true
+        } else {
+            selectLabel.isHidden = true
+            tableView.isHidden = true
+        }
         
-        answerSecurityQuestionButton.isEnabled = viewModel.maskedUsernames.count <= 1
-        tableView.rx.itemSelected.asDriver().drive(onNext: { [weak self] indexPath in
-            guard let self = self else { return }
-            if self.viewModel.maskedUsernames.count > 1 {
-                self.viewModel.selectedUsernameIndex = indexPath.row
-                self.answerSecurityQuestionButton.isEnabled = true
-            } else {
-                self.tableView.deselectRow(at: indexPath, animated: false)
-            }
-        }).disposed(by: disposeBag)
+        singleAccountView.layer.borderWidth = 1
+        singleAccountView.layer.borderColor = UIColor.accentGray.cgColor
+        usernameEmailLabel.textColor = .deepGray
+        usernameEmailLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        singleAccountValueLabel.textColor = .deepGray
+        singleAccountValueLabel.font = OpenSans.regular.of(textStyle: .headline)
+        singleAccountValueLabel.text = viewModel.maskedUsernames.first?.email
         
-        backToSignInButton.tintColor = .actionBlue
-        backToSignInButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+        tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ForgotUsernameCell")
+        tableView.estimatedRowHeight = 51
+        
+        if viewModel.maskedUsernames.count > 1 {
+            answerSecurityQuestionButton.isEnabled = false
+        }
     }
     
-    func styleTopTextView() {
-        let localizedString = NSLocalizedString("You can sign in if you remember your username or you can answer a security question to view your full username.", comment: "")
+    func styleTopLabels() {
+        topLabel1.textColor = .deepGray
+        topLabel1.font = SystemFont.regular.of(textStyle: .headline)
         
-        let attrString = NSMutableAttributedString(string: localizedString)
-        let fullRange = NSMakeRange(0, attrString.length)
+        signInButton.tintColor = .actionBlue
+        signInButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 24 // Line height
-        attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: fullRange)
+        topLabel2.textColor = .deepGray
+        topLabel2.font = SystemFont.regular.of(textStyle: .headline)
         
-        attrString.addAttribute(.font, value: SystemFont.semibold.of(textStyle: .subheadline), range: fullRange)
-        attrString.addAttribute(.foregroundColor, value: UIColor.blackText, range: fullRange)
-        
-        topTextView.attributedText = attrString
-        topTextView.tintColor = .actionBlue
-        
-        // In case the localized string needs to grow the text view:
-        topTextView.sizeToFit()
-        topTextView.layoutIfNeeded()
-        topTextViewHeightConstraint.constant = topTextView.sizeThatFits(CGSize(width: topTextView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)).height
+        topLabel3.textColor = .deepGray
+        topLabel3.font = SystemFont.regular.of(textStyle: .headline)
     }
     
-    @IBAction func onBackToSignInPress() {
+    @IBAction func onSignInPress() {
         for vc in (navigationController?.viewControllers)! {
             if let dest = vc as? LoginViewController {
                 navigationController?.popToViewController(dest, animated: true)
@@ -87,17 +90,13 @@ class ForgotUsernameResultViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ForgotUsernameSecurityQuestionViewController {
-            vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
-            vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
-            vc.viewModel.accountNumber.value = viewModel.accountNumber.value
-            vc.viewModel.maskedUsernames = viewModel.maskedUsernames
-            vc.viewModel.selectedUsernameIndex = viewModel.selectedUsernameIndex
+            vc.viewModel = viewModel
         }
     }
 
 }
 
-extension ForgotUsernameResultViewController: UITableViewDelegate {
+extension ForgotUsernameResultViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -106,12 +105,13 @@ extension ForgotUsernameResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.maskedUsernames.count
     }
-}
-
-extension ForgotUsernameResultViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ForgotUsernameCell", for: indexPath) as! ForgotUsernameTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ForgotUsernameCell", for: indexPath) as! RadioSelectionTableViewCell
         
         let maskedUsername = viewModel.maskedUsernames[indexPath.row]
         
@@ -120,4 +120,8 @@ extension ForgotUsernameResultViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectedUsernameIndex = indexPath.row
+        answerSecurityQuestionButton.isEnabled = true
+    }
 }

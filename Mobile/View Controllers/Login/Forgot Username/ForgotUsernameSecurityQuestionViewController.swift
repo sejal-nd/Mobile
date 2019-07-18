@@ -20,7 +20,7 @@ class ForgotUsernameSecurityQuestionViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerTextField: FloatLabelTextField!
     
-    let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
+    var viewModel: ForgotUsernameViewModel!
     
     let disposeBag = DisposeBag()
     var submitButton = UIBarButtonItem()

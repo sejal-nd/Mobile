@@ -51,12 +51,16 @@ class ForgotUsernameViewModel {
     
     func submitSecurityQuestionAnswer(onSuccess: @escaping (String) -> Void, onAnswerNoMatch: @escaping (String) -> Void, onError: @escaping (String) -> Void) {
         let maskedUsername = maskedUsernames[selectedUsernameIndex]
-        let cipher = maskedUsername.cipher
         let acctNum: String? = accountNumber.value.count > 0 ? accountNumber.value : nil
         let identifier: String? = identifierNumber.value.count > 0 ? identifierNumber.value : nil
         GoogleAnalytics.log(event: .forgotUsernameSecuritySubmit)
         
-        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value), identifier: identifier, accountNumber: acctNum, questionId: maskedUsername.questionId, questionResponse: securityQuestionAnswer.value, cipher: cipher)
+        authService.recoverUsername(phone: extractDigitsFrom(phoneNumber.value),
+                                    identifier: identifier,
+                                    accountNumber: acctNum,
+                                    questionId: maskedUsername.questionId,
+                                    questionResponse: securityQuestionAnswer.value,
+                                    cipher: maskedUsername.cipher)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { username in
                 onSuccess(username)
