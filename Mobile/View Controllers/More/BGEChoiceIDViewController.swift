@@ -40,30 +40,32 @@ class BGEChoiceIDViewController: AccountPickerViewController {
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
-        headerLabel.textColor = .blackText
-        headerLabel.font = OpenSans.regular.of(textStyle: .headline)
+        headerLabel.textColor = .deepGray
+        headerLabel.font = SystemFont.regular.of(textStyle: .body)
         headerLabel.text = NSLocalizedString("All customers in the BGE service area have the opportunity to choose their electricity or natural gas supplier. Research your options, but before choosing a new supplier, be certain the company is licensed by the PSC and registered with BGE.", comment: "")
-    
-        choiceIdBox.backgroundColor = .softGray
+        headerLabel.setLineHeight(lineHeight: 24)
         
-        electricTitleLabel.textColor = .blackText
+        choiceIdBox.layer.borderColor = UIColor.accentGray.cgColor
+        choiceIdBox.layer.borderWidth = 1
+        
+        electricTitleLabel.textColor = .deepGray
         electricTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         electricTitleLabel.text = NSLocalizedString("Electric Choice ID", comment: "")
-        electricValueTextView.textColor = .blackText
+        electricValueTextView.textColor = .deepGray
         electricValueTextView.font = SystemFont.regular.of(textStyle: .subheadline)
         electricValueTextView.dataDetectorTypes.remove(.all)
         
         dividerLine.backgroundColor = .accentGray
         
-        gasTitleLabel.textColor = .blackText
+        gasTitleLabel.textColor = .deepGray
         gasTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         gasTitleLabel.text = NSLocalizedString("Gas Choice ID", comment: "")
-        gasValueTextView.textColor = .blackText
+        gasValueTextView.textColor = .deepGray
         gasValueTextView.font = SystemFont.regular.of(textStyle: .subheadline)
         gasValueTextView.dataDetectorTypes.remove(.all)
         
-        errorEmptyStateLabel.textColor = .blackText
-        errorEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
+        errorEmptyStateLabel.textColor = .deepGray
+        errorEmptyStateLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorEmptyStateLabel.text = NSLocalizedString("Your Choice ID could not be retrieved at this time.", comment: "")
         
         bindViewModel()
@@ -74,7 +76,6 @@ class BGEChoiceIDViewController: AccountPickerViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
 
     private func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: disposeBag)
