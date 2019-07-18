@@ -24,23 +24,19 @@ class ReportOutageViewController: UIViewController {
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
     
-    @IBOutlet weak var meterPingCurrentStatusCheckImageView: UIImageView!
-    @IBOutlet weak var meterPingCurrentStatusLoadingView: UIView!
+    @IBOutlet weak var meterPingCurrentStatusAnimationView: UIView!
     @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
     
-    @IBOutlet weak var meterPingPowerStatusView: UIView!
-    @IBOutlet weak var meterPingPowerStatusImageView: UIImageView!
-    @IBOutlet weak var meterPingPowerStatusLabel: UILabel!
-    
-    @IBOutlet weak var meterPingVoltageStatusView: UIView!
-    @IBOutlet weak var meterPingVoltageStatusImageView: UIImageView!
-    @IBOutlet weak var meterPingVoltageStatusLabel: UILabel!
-    
-    @IBOutlet weak var meterPingResultLabel: UILabel!
+    @IBOutlet weak var meterPingStatusView: UIView!
+    @IBOutlet weak var meterPingStatusTitleLabel: UILabel!
+    @IBOutlet weak var meterPingStatusDescriptionLabel: UILabel!
     
     @IBOutlet weak var meterPingFuseBoxView: UIView!
     @IBOutlet weak var meterPingFuseBoxSwitch: Switch!
     @IBOutlet weak var meterPingFuseBoxLabel: UILabel!
+    
+    @IBOutlet weak var meterPingSeparatorView: UIView!
+    
     
     // Report Form
     @IBOutlet weak var reportFormStackView: UIStackView!
@@ -63,6 +59,8 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: PrimaryButtonNew!
     
+    private var lottieAnimationView: LOTAnimationView?
+    
     var delegate: ReportOutageDelegate?
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
     let opco = Environment.shared.opco
@@ -76,6 +74,8 @@ class ReportOutageViewController: UIViewController {
         
         title = NSLocalizedString("Report Outage", comment: "")
 
+        style()
+        
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -96,12 +96,11 @@ class ReportOutageViewController: UIViewController {
             
             meterPingStackView.spacing = 20
             meterPingStackView.isHidden = false
-
+            meterPingSeparatorView.isHidden = false
+            
             footerContainerView.isHidden = true
             
-            meterPingPowerStatusView.isHidden = true
-            meterPingVoltageStatusView.isHidden = true
-            meterPingResultLabel.isHidden = true
+            meterPingStatusView.isHidden = true
             meterPingFuseBoxView.isHidden = true
             
             meterPingFuseBoxSwitch.rx.isOn.asDriver().map(!).drive(viewModel.reportFormHidden).disposed(by: disposeBag)
@@ -117,37 +116,19 @@ class ReportOutageViewController: UIViewController {
             
             viewModel.reportFormHidden.value = true
 
-            meterPingCurrentStatusLabel.font = SystemFont.medium.of(textStyle: .headline)
-            meterPingCurrentStatusLabel.textColor = .blackText
             meterPingCurrentStatusLabel.text = NSLocalizedString("Checking meter status...", comment: "")
             
-            meterPingPowerStatusImageView.isAccessibilityElement = true
-            meterPingPowerStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
-            meterPingPowerStatusLabel.textColor = .blackText
-            
-            meterPingVoltageStatusImageView.isAccessibilityElement = true
-            meterPingVoltageStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
-            meterPingVoltageStatusLabel.textColor = .blackText
-            
-            meterPingResultLabel.font = SystemFont.regular.of(textStyle: .body)
-            meterPingResultLabel.textColor = .deepGray
-            meterPingFuseBoxLabel.font = OpenSans.regular.of(textStyle: .headline)
-            meterPingFuseBoxLabel.textColor = .middleGray
-            meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
             meterPingFuseBoxLabel.text = NSLocalizedString("I have checked my circuit breakers or fuse box and I would still like to report an outage.", comment: "")
             meterPingFuseBoxLabel.isAccessibilityElement = false
             meterPingFuseBoxSwitch.accessibilityLabel = meterPingFuseBoxLabel.text
             
-            let lottieAnimation = LOTAnimationView(name: "loading_blue")
-            lottieAnimation.frame = CGRect(x: 0, y: 0, width: 33, height: 33)
-            lottieAnimation.loopAnimation = true
-            lottieAnimation.contentMode = .scaleToFill
-            meterPingCurrentStatusLoadingView.addSubview(lottieAnimation)
-            lottieAnimation.play()
+            // Add Lottie Animation
+            self.setLottieAnimation(for: "smallcircleload_blue", shouldLoop: true)
         } else {
             meterPingStackView.isHidden = true
             meterPingFuseBoxView.isHidden = true
             viewModel.reportFormHidden.value = false
+            meterPingSeparatorView.isHidden = true
         }
 
         if opco != .comEd {
@@ -248,45 +229,28 @@ class ReportOutageViewController: UIViewController {
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Checking meter status", comment: ""))
             })
             
-            viewModel.meterPingGetStatus(onComplete: { meterPingInfo in
-                self.meterPingCurrentStatusLoadingView.isHidden = true
-                self.meterPingCurrentStatusCheckImageView.isHidden = false
+            viewModel.meterPingGetStatus(onComplete: { [weak self] meterPingInfo in
+                guard let `self` = self else { return }
+                
+                // Add Lottie Animation
+                self.setLottieAnimation(for: "checkmark_blue")
                 
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
+                self.meterPingStatusView.isHidden = false
                 
-                var problemsFound = false
-                if meterPingInfo.pingResult {
-                    self.meterPingPowerStatusView.isHidden = false
-                    self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
-                    self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Successful", comment: "")
-                } else {
-                    problemsFound = true
-                    self.meterPingPowerStatusView.isHidden = false
-                    self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
-                    self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
-                    self.meterPingVoltageStatusView.isHidden = true
-                }
-                
+                var problemsFound = !meterPingInfo.pingResult
                 if meterPingInfo.voltageResult {
-                    if meterPingInfo.pingResult {
-                        self.meterPingVoltageStatusView.isHidden = false
-                    }
                     if let voltageReads = meterPingInfo.voltageReads,
                         !voltageReads.lowercased().contains("improper"),
                         voltageReads.lowercased().contains("proper") {
-                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
-                        self.meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Successful", comment: "")
                     } else {
                         problemsFound = true
-                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
-                        self.meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
                     }
                 }
-
+                
                 if problemsFound {
-                    self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
-                    self.meterPingResultLabel.isHidden = false
-                    self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                    self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
                     
                     self.areYourLightsOutView.isHidden = true
                     self.viewModel.reportFormHidden.value = false
@@ -299,18 +263,15 @@ class ReportOutageViewController: UIViewController {
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
-            }, onError: {
-                self.meterPingCurrentStatusLoadingView.isHidden = true
-                self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
-                self.meterPingCurrentStatusCheckImageView.isHidden = false
+            }, onError: { [weak self] in
+                guard let `self` = self else { return }
+                self.setLottieAnimation(for: "checkmark_blue")
+                
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
-                self.meterPingPowerStatusView.isHidden = false
-                self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
-                self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
-                
-                self.meterPingResultLabel.isHidden = false
-                self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                self.meterPingStatusView.isHidden = false
+                self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
+                self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
                 
                 self.areYourLightsOutView.isHidden = true
                 self.viewModel.reportFormHidden.value = false
@@ -330,12 +291,42 @@ class ReportOutageViewController: UIViewController {
     // MARK: - Helper
     
     private func style() {
+        // Meter Ping
+        meterPingCurrentStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        meterPingCurrentStatusLabel.textColor = .deepGray
+        
+        // Status View
+        meterPingStatusView.layer.borderWidth = 1.0
+        meterPingStatusView.layer.borderColor = UIColor.accentGray.cgColor
+        meterPingStatusTitleLabel.textColor = .deepGray
+        meterPingStatusTitleLabel.font = SystemFont.semibold.of(textStyle: .body)
+        meterPingStatusDescriptionLabel.textColor = .deepGray
+        meterPingStatusDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        // Fuse Box
+        meterPingFuseBoxLabel.textColor = .deepGray
+        meterPingFuseBoxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
+        
+        // Form
         areYourLightsOutLabel.textColor = .deepGray
         areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .body)
         howCanWeContactYouLabel.textColor = .deepGray
         howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .body)
         commentLabel.textColor = .deepGray
         commentLabel.font = SystemFont.regular.of(textStyle: .body)
+    }
+    
+    private func setLottieAnimation(for name: String, shouldLoop: Bool = false) {
+        self.lottieAnimationView?.removeFromSuperview()
+        self.lottieAnimationView = LOTAnimationView(name: name)
+        self.lottieAnimationView?.frame = CGRect(x: 0, y: 0, width: 33, height: 33)
+        self.lottieAnimationView?.loopAnimation = shouldLoop
+        self.lottieAnimationView?.contentMode = .scaleToFill
+        if let animationView = self.lottieAnimationView {
+            self.meterPingCurrentStatusAnimationView.addSubview(animationView)
+            animationView.play()
+        }
     }
 
     
