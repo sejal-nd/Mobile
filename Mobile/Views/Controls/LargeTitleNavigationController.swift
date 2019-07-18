@@ -51,10 +51,11 @@ class LargeTitleNavigationController: UINavigationController {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    // If presenting an InfoModalViewController, first wrap it in a LargeTitleNavigationController
-    // so that we get the styled large title nav bar
+    // If presenting an InfoModalViewController or WebViewController, first wrap it in a
+    // LargeTitleNavigationController so that we get the styled large title nav bar
     override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        if viewControllerToPresent is InfoModalViewController {
+        if viewControllerToPresent is InfoModalViewController ||
+            viewControllerToPresent is WebViewController {
             let newNavController = LargeTitleNavigationController(rootViewController: viewControllerToPresent)
             newNavController.modalPresentationStyle = .formSheet
             present(newNavController, animated: flag, completion: completion)

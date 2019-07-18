@@ -69,7 +69,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                 let breakHeight = self.opcoLogoView.frame.size.height - 110
                 if yOffset <= 0 {
                     self.backgroundViewBottomConstraint.constant = yOffset
-                } else if yOffset > breakHeight {
+                }
+                if yOffset > breakHeight {
                     self.opcoLogo.alpha = self.lerp(1, 0, (yOffset - breakHeight) / 10.0)
                 } else {
                     self.opcoLogo.alpha = 1

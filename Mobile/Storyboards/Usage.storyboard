@@ -703,6 +703,9 @@
                             <constraint firstItem="VT3-VG-S91" firstAttribute="top" secondItem="XYL-Pl-2wH" secondAttribute="bottom" id="zG4-yN-n8F"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Xky-OI-AF6">
+                        <barButtonItem key="backBarButtonItem" title=" " id="VbN-2t-IC7"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1350"/>
                     <connections>
@@ -786,24 +789,32 @@
             </objects>
             <point key="canvasLocation" x="1349" y="-830"/>
         </scene>
-        <!--Usage-->
+        <!--Usage Web View-->
         <scene sceneID="HqV-bn-ZSj">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="bLA-dG-dNI" customClass="UsageWebViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="bLA-dG-dNI" userLabel="Usage Web View" customClass="UsageWebViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ONQ-AV-DZu"/>
                         <viewControllerLayoutGuide type="bottom" id="bxi-he-wME"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zBk-bW-Jpa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZP-ao-iBr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="31s-yW-Kax" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="295.5" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7X-BP-57O">
-                                <rect key="frame" x="29" y="291.5" width="317" height="20.5"/>
+                                <rect key="frame" x="29" y="323.5" width="317" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="3SL-Mj-RLv"/>
                                 </constraints>
@@ -814,11 +825,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="4ZP-ao-iBr" firstAttribute="leading" secondItem="zBk-bW-Jpa" secondAttribute="leading" id="2L6-We-328"/>
+                            <constraint firstAttribute="bottom" secondItem="4ZP-ao-iBr" secondAttribute="bottom" id="JY4-PJ-Jg2"/>
                             <constraint firstItem="Z7X-BP-57O" firstAttribute="centerY" secondItem="zBk-bW-Jpa" secondAttribute="centerY" id="Mgj-L3-ceN"/>
                             <constraint firstItem="Z7X-BP-57O" firstAttribute="centerX" secondItem="zBk-bW-Jpa" secondAttribute="centerX" id="SUM-Jd-HMg"/>
+                            <constraint firstItem="4ZP-ao-iBr" firstAttribute="top" secondItem="zBk-bW-Jpa" secondAttribute="top" id="VD3-RN-PHJ"/>
                             <constraint firstItem="Z7X-BP-57O" firstAttribute="leading" secondItem="zBk-bW-Jpa" secondAttribute="leading" priority="999" constant="29" id="YZ8-JO-Jlx"/>
                             <constraint firstItem="31s-yW-Kax" firstAttribute="centerY" secondItem="zBk-bW-Jpa" secondAttribute="centerY" id="avt-Xd-GPX"/>
                             <constraint firstItem="31s-yW-Kax" firstAttribute="centerX" secondItem="zBk-bW-Jpa" secondAttribute="centerX" id="opT-hM-We4"/>
+                            <constraint firstAttribute="trailing" secondItem="4ZP-ao-iBr" secondAttribute="trailing" id="pGn-nu-9dd"/>
                             <constraint firstAttribute="trailing" secondItem="Z7X-BP-57O" secondAttribute="trailing" priority="999" constant="29" id="spZ-e7-z6q"/>
                         </constraints>
                     </view>
@@ -827,6 +842,7 @@
                     <connections>
                         <outlet property="errorLabel" destination="Z7X-BP-57O" id="dFo-Wa-kw4"/>
                         <outlet property="loadingIndicator" destination="31s-yW-Kax" id="70t-Bm-Uhd"/>
+                        <outlet property="webView" destination="4ZP-ao-iBr" id="aQ3-tO-fQd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Peb-ph-qaD" userLabel="First Responder" sceneMemberID="firstResponder"/>

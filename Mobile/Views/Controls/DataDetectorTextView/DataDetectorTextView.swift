@@ -39,7 +39,7 @@ class DataDetectorTextView: UITextView, UITextViewDelegate {
         
         didChangeVoiceOver()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeVoiceOver), name: NSNotification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeVoiceOver), name: UIAccessibility.voiceOverStatusDidChangeNotification, object: nil)
     }
     
     deinit {

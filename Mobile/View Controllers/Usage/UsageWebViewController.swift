@@ -13,10 +13,9 @@ class UsageWebViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
+    @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    
-    let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
     
     let accountService = ServiceFactory.createAccountService()
     
@@ -36,12 +35,6 @@ class UsageWebViewController: UIViewController {
         infoButton.accessibilityLabel = "Tooltip"
         navigationItem.rightBarButtonItem = infoButton
 
-        view.insertSubview(webView, belowSubview: loadingIndicator)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         webView.navigationDelegate = self
         webView.isHidden = true
         
