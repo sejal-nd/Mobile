@@ -622,6 +622,7 @@
                                         <state key="normal" title="Report Outage"/>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="cao-Mv-vl9" firstAttribute="centerY" secondItem="jsB-ay-j4n" secondAttribute="centerY" id="Kwe-GL-ztA"/>
                                     <constraint firstItem="cao-Mv-vl9" firstAttribute="top" secondItem="xGU-6r-NJE" secondAttribute="top" constant="15" id="nai-Yt-WIj"/>
@@ -639,7 +640,7 @@
                             <constraint firstItem="jsB-ay-j4n" firstAttribute="top" secondItem="Zz7-Yi-MtH" secondAttribute="bottom" id="MK5-xR-cHb"/>
                             <constraint firstItem="jsB-ay-j4n" firstAttribute="leading" secondItem="obc-d4-nlp" secondAttribute="leading" id="NpX-e9-i9T"/>
                             <constraint firstItem="Zz7-Yi-MtH" firstAttribute="leading" secondItem="JvH-nV-6nr" secondAttribute="leading" id="Y4H-M3-v8D"/>
-                            <constraint firstItem="JvH-nV-6nr" firstAttribute="bottom" secondItem="jsB-ay-j4n" secondAttribute="bottom" id="iqR-7k-mgP"/>
+                            <constraint firstAttribute="bottom" secondItem="jsB-ay-j4n" secondAttribute="bottom" id="iqR-7k-mgP"/>
                             <constraint firstAttribute="topMargin" secondItem="Zz7-Yi-MtH" secondAttribute="top" id="u6I-rp-Ks0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JvH-nV-6nr"/>
@@ -679,6 +680,7 @@
                         <outlet property="reportFormStackView" destination="5lr-vG-MUZ" id="VIK-3b-3yU"/>
                         <outlet property="scrollView" destination="Zz7-Yi-MtH" id="9Pc-1Q-rCn"/>
                         <outlet property="segmentedControl" destination="afa-KO-KaI" id="cPU-uk-gv1"/>
+                        <outlet property="stickyFooterBottomConstraint" destination="iqR-7k-mgP" id="930-V3-82S"/>
                         <outlet property="submitButton" destination="cao-Mv-vl9" id="qcE-vg-GJG"/>
                     </connections>
                 </viewController>

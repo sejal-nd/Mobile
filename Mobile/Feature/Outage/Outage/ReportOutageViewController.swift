@@ -56,6 +56,7 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
+    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: PrimaryButtonNew!
     
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
@@ -72,8 +73,8 @@ class ReportOutageViewController: UIViewController {
 
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         if unauthenticatedExperience,
             let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
@@ -376,21 +377,26 @@ class ReportOutageViewController: UIViewController {
         }
     }
     
+    
     // MARK: - ScrollView
     
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
         
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
+        let keyboardHeight: CGFloat
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
+        } else {
+            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
+        }
+        
+        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.stickyFooterBottomConstraint.constant = keyboardHeight
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 
 }
