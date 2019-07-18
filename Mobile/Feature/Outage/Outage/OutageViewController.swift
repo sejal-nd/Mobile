@@ -78,28 +78,10 @@ class OutageViewController: AccountPickerViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let vc = segue.destination as? ReportOutageViewController {
-//            vc.viewModel.outageStatus = viewModel.currentOutageStatus!
-//            if let phone = viewModel.currentOutageStatus!.contactHomeNumber {
-//                vc.viewModel.phoneNumber.value = phone
-//            }
-//
-//            // Show a toast only after an outage is reported from this workflow
-//            RxNotifications.shared.outageReported.asDriver(onErrorDriveWith: .empty())
-//                .drive(onNext: { [weak self] in
-//                    guard let this = self else { return }
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-//                        this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-//                        Analytics.log(event: .reportOutageAuthComplete)
-//                    })
-//                })
-//                .disposed(by: vc.disposeBag)
-//        
-//            
-            
         if let vc = segue.destination as? ReportOutageViewController {
             if let outageStatus = viewModel.outageStatus {
                 vc.viewModel.outageStatus = outageStatus
+                vc.delegate = self
             }
         } else if let vc = segue.destination as? OutageMapViewController, let hasPressedStreetlightOutageMapButton = sender as? Bool {
             vc.hasPressedStreetlightOutageMapButton = hasPressedStreetlightOutageMapButton
@@ -235,7 +217,8 @@ extension OutageViewController: UITableViewDataSource {
         
         switch indexPath {
         case IndexPath(row: 0, section: 0):
-            cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: nil)
+            let detailText = viewModel.reportedOutage != nil ? viewModel.outageReportedDateString : nil
+            cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
             cell.configure(image: UIImage(named: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
         case IndexPath(row: 2, section: 0):
@@ -309,5 +292,20 @@ extension OutageViewController: OutageStatusDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
         Analytics.log(event: .outageAuthEmergencyCall)
+    }
+}
+
+
+// MARK: - Report Outage Delegate
+
+extension OutageViewController: ReportOutageDelegate {
+    func didReportOutage() {
+        // Show Toast
+        view.showToast(NSLocalizedString("Outage report received", comment: ""))
+        Analytics.log(event: .reportOutageAuthComplete)
+        
+        // Update Report Outage Cell
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow else { return }
+        cell.updateSubTitle(viewModel.outageReportedDateString)
     }
 }

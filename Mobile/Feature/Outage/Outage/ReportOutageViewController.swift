@@ -11,6 +11,10 @@ import RxSwift
 import RxCocoa
 import Lottie
 
+protocol ReportOutageDelegate: class {
+    func didReportOutage()
+}
+
 class ReportOutageViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -59,6 +63,7 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: PrimaryButtonNew!
     
+    var delegate: ReportOutageDelegate?
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
     let opco = Environment.shared.opco
     
@@ -356,6 +361,7 @@ class ReportOutageViewController: UIViewController {
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
+                self.delegate?.didReportOutage()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             Analytics.log(event: .reportAnOutageUnAuthSubmit)
@@ -364,6 +370,7 @@ class ReportOutageViewController: UIViewController {
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
+                self.delegate?.didReportOutage()
                 self.navigationController?.popViewController(animated: true)
                 }, onError: errorBlock)
             Analytics.log(event: .reportOutageAuthSubmit)

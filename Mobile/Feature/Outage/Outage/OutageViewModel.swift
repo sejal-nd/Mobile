@@ -93,7 +93,6 @@ class OutageViewModel {
         return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
     }
     
-    // todo
     var outageReportedDateString: String {
         if let reportedOutage = reportedOutage {
             let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)

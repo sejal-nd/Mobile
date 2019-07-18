@@ -620,6 +620,9 @@
                                             <constraint firstAttribute="height" constant="55" id="AmI-0h-9Iv"/>
                                         </constraints>
                                         <state key="normal" title="Report Outage"/>
+                                        <connections>
+                                            <action selector="submitButtonPress:" destination="ZQH-GI-7Fc" eventType="touchUpInside" id="Vpz-EX-0aG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
