@@ -195,6 +195,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     @objc func onIdentifierKeyboardDonePress() {
@@ -238,11 +239,6 @@ class RegistrationValidateAccountViewController: UIViewController {
             self?.present(alertController, animated: true, completion: nil)
         })
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
 
     // MARK: - ScrollView
     

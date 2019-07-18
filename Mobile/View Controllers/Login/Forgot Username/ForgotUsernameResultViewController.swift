@@ -75,6 +75,12 @@ class ForgotUsernameResultViewController: UIViewController {
         
         topLabel3.textColor = .deepGray
         topLabel3.font = SystemFont.regular.of(textStyle: .headline)
+        
+        if UIScreen.main.bounds.width < 375 {
+            // Prevent text from getting cut off on iPhone 5/SE with dynamic font all the way up
+            topLabel2.text = NSLocalizedString("if you remember", comment: "")
+            topLabel3.text = NSLocalizedString("your username or you can answer a security question to view your full username", comment: "")
+        }
     }
     
     @IBAction func onSignInPress() {
