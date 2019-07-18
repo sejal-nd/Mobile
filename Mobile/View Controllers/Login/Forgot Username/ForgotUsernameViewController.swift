@@ -10,43 +10,45 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ForgotUsernameViewController: UIViewController {
+class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
-    @IBOutlet weak var identifierDescriptionLabel: UILabel?
-    @IBOutlet weak var identifierTextField: FloatLabelTextField?
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextField?
-    @IBOutlet weak var accountLookupToolButton: UIButton?
-    @IBOutlet weak var accountNumberTooltipButton: UIButton?
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
+    
+    @IBOutlet weak var identifierContainerView: UIView!
+    @IBOutlet weak var identifierDescriptionLabel: UILabel!
+    @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
+    
+    @IBOutlet weak var accountNumberContainerView: UIView!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var accountLookupToolButton: UIButton!
+    @IBOutlet weak var accountNumberTooltipButton: UIButton!
+    
+    @IBOutlet weak var continueButton: PrimaryButtonNew!
     
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
-    var nextButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = nextButton
-        viewModel.nextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
+        if Environment.shared.opco == .bge {
+            accountNumberContainerView.isHidden = true
+        } else {
+            identifierContainerView.isHidden = true
+        }
         
-        instructionLabel.textColor = .blackText
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        viewModel.continueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
+        
+        instructionLabel.textColor = .deepGray
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
-        identifierDescriptionLabel?.font = SystemFont.regular.of(textStyle: .subheadline)
-        identifierDescriptionLabel?.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
-        phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -72,83 +74,86 @@ class ForgotUsernameViewController: UIViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        identifierTextField?.textField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
-        identifierTextField?.textField.autocorrectionType = .no
-        identifierTextField?.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierAccountNumberKeyboardDonePress))
-        identifierTextField?.textField.delegate = self
-        identifierTextField?.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
+        identifierDescriptionLabel.textColor = .deepGray
+        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
-        identifierTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
+        identifierTextField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
+        identifierTextField.textField.autocorrectionType = .no
+        identifierTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierAccountNumberKeyboardDonePress))
+        identifierTextField.textField.delegate = self
+        identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
+        
+        identifierTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.identifierNumber.asDriver(), viewModel.identifierHasFourDigits, viewModel.identifierIsNumeric))
             .drive(onNext: { [weak self] identifierNumber, hasFourDigits, isNumeric in
                 guard let self = self else { return }
                 if !identifierNumber.isEmpty {
                     if !hasFourDigits {
-                        self.identifierTextField?.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
+                        self.identifierTextField.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
                     } else if !isNumeric {
-                        self.identifierTextField?.setError(NSLocalizedString("This number must be numeric", comment: ""))
+                        self.identifierTextField.setError(NSLocalizedString("This number must be numeric", comment: ""))
                     } else {
-                        self.identifierTextField?.setError(nil)
+                        self.identifierTextField.setError(nil)
                     }
                 }
                 self.accessibilityErrorLabel()
             })
             .disposed(by: disposeBag)
         
-        identifierTextField?.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] _ in
-            self?.identifierTextField?.setError(nil)
+        identifierTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] _ in
+            self?.identifierTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        accountNumberTextField?.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
-        accountNumberTextField?.textField.autocorrectionType = .no
-        accountNumberTextField?.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierAccountNumberKeyboardDonePress))
-        accountNumberTextField?.textField.delegate = self
-        accountNumberTextField?.textField.isShowingAccessory = true
-        accountNumberTextField?.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
+        accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.textField.autocorrectionType = .no
+        accountNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierAccountNumberKeyboardDonePress))
+        accountNumberTextField.textField.delegate = self
+        accountNumberTextField.textField.isShowingAccessory = true
+        accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
         
-        accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
+        accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
             .drive(onNext: { [weak self] accountNumber, hasTenDigits in
                 guard let self = self else { return }
                 if !accountNumber.isEmpty {
                     if !hasTenDigits {
-                        self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
+                        self.accountNumberTextField.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
                     } else {
-                        self.accountNumberTextField?.setError(nil)
+                        self.accountNumberTextField.setError(nil)
                     }
                 }
                 self.accessibilityErrorLabel()
             })
             .disposed(by: disposeBag)
         
-        accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] _ in
-            self?.accountNumberTextField?.setError(nil)
+        accountNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] _ in
+            self?.accountNumberTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        accountNumberTooltipButton?.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
+        accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool Tip", comment: "")
         
-        accountLookupToolButton?.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
-        accountLookupToolButton?.setTitleColor(.actionBlue, for: .normal)
-        accountLookupToolButton?.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        accountLookupToolButton?.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+        accountLookupToolButton.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
+        accountLookupToolButton.setTitleColor(.actionBlue, for: .normal)
+        accountLookupToolButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")
     }
     
     private func accessibilityErrorLabel() {
         var message = ""
         message += phoneNumberTextField.getError()
-        message += identifierTextField != nil ? (identifierTextField?.getError())! : ""
-        message += accountNumberTextField != nil ? (accountNumberTextField?.getError())! : ""
+        if Environment.shared.opco == .bge {
+            message += identifierTextField.getError()
+        } else {
+            message += accountNumberTextField.getError()
+        }
         
         if message.isEmpty {
-            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
         } else {
-            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
+            continueButton.accessibilityLabel = String(format: NSLocalizedString("%@ Continue", comment: ""), message)
         }
     }
     
@@ -158,19 +163,7 @@ class ForgotUsernameViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @objc func onCancelPress() {
-        // We do this to cover the case where we push ForgotUsernameViewController from ForgotPasswordViewController.
-        // When that happens, we want the cancel action to go straight back to LoginViewController.
-        for vc in (navigationController?.viewControllers)! {
-            guard let loginVC = vc as? LoginViewController else {
-                continue
-            }
-            navigationController?.popToViewController(loginVC, animated: true)
-            break
-        }
-    }
-    
-    @objc func onNextPress() {
+    @IBAction func onContinuePress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -199,40 +192,19 @@ class ForgotUsernameViewController: UIViewController {
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
         }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
     @objc func onIdentifierAccountNumberKeyboardDonePress() {
-        viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+        viewModel.continueButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] enabled in
                 if enabled {
-                    self?.onNextPress()
+                    self?.onContinuePress()
                 } else {
                     self?.view.endEditing(true)
                 }
             }).disposed(by: disposeBag)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
     
     // MARK: - Navigation
@@ -243,7 +215,8 @@ class ForgotUsernameViewController: UIViewController {
         if let vc = segue.destination as? ForgotUsernameBGEAccountNumberViewController {
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
             vc.viewModel.identifierNumber.value = viewModel.identifierNumber.value
-        } else if let vc = segue.destination as? AccountLookupToolViewController {
+        } else if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? AccountLookupToolViewController {
             vc.delegate = self
             vc.viewModel.phoneNumber.value = viewModel.phoneNumber.value
         } else if let vc = segue.destination as? ForgotUsernameResultViewController {
@@ -259,8 +232,8 @@ extension ForgotUsernameViewController: AccountLookupToolResultViewControllerDel
         phoneNumberTextField.textField.text = phoneNumber
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd)
         
-        accountNumberTextField?.textField.text = accountNumber
-        accountNumberTextField?.textField.sendActions(for: .editingDidEnd)
+        accountNumberTextField.textField.text = accountNumber
+        accountNumberTextField.textField.sendActions(for: .editingDidEnd)
     }
     
 }
@@ -300,9 +273,9 @@ extension ForgotUsernameViewController: UITextFieldDelegate {
             textField.sendActions(for: .valueChanged) // Send rx events
             
             return false
-        } else if textField == identifierTextField?.textField {
+        } else if textField == identifierTextField.textField {
             return newString.count <= 4
-        } else if textField == accountNumberTextField?.textField {
+        } else if textField == accountNumberTextField.textField {
             let characterSet = CharacterSet(charactersIn: string)
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 10
         }

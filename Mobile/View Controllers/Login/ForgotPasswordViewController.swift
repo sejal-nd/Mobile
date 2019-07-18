@@ -13,41 +13,35 @@ protocol ForgotPasswordViewControllerDelegate: class {
     func forgotPasswordViewControllerDidSubmit(_ viewController: UIViewController)
 }
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     weak var delegate: ForgotPasswordViewControllerDelegate?
     
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var usernameTextField: FloatLabelTextField!
+    @IBOutlet weak var usernameTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var forgotUsernameButton: UIButton!
+    @IBOutlet weak var submitButton: PrimaryButtonNew!
     
     let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
     
     let disposeBag = DisposeBag()
     
-    var submitButton = UIBarButtonItem()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = NSLocalizedString("Forgot Password", comment: "")
-        
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = submitButton
+
         viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.text = viewModel.getInstructionLabelText()
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.textColor = .deepGray
+        instructionLabel.setLineHeight(lineHeight: 24)
         
-        if #available(iOS 11, *) {
-            usernameTextField.textField.textContentType = .username
-        }
-        
-        usernameTextField.textField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
+        usernameTextField.placeholder = NSLocalizedString("Username / Email Address", comment: "")
         usernameTextField.textField.autocorrectionType = .no
         usernameTextField.textField.returnKeyType = .done
+        usernameTextField.textField.textContentType = .username
         
         usernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
@@ -83,10 +77,6 @@ class ForgotPasswordViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @objc func onCancelPress() {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
     @objc func onSubmitPress() {
         view.endEditing(true)
         
@@ -112,17 +102,18 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @IBAction func onForgotUsernamePress() {
-        for vc in (navigationController?.viewControllers)! {
-            guard let loginVC = vc as? LoginViewController else {
-                continue
-            }
-            loginVC.forgotUsername()
-            break
-        }
+        guard let navController = navigationController else { return }
+        
+        let sb = UIStoryboard(name: "Login", bundle: nil)
+        let forgotUsernameVC = sb.instantiateViewController(withIdentifier: "forgotUsername")
+        
+        // Replace ForgotPassword with ForgotUsername in the nav stack, so that popping
+        // ForgotUsername goes straight back to Login
+        var vcStack = navController.viewControllers
+        _ = vcStack.popLast()
+        vcStack.append(forgotUsernameVC)
+        
+        navController.setViewControllers(vcStack, animated: true)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
 }

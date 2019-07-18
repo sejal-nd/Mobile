@@ -129,14 +129,7 @@ fileprivate class BasePickerView: UIView {
         addSubview(mainContainer)
         mainContainer.addTabletWidthConstraints(horizontalPadding: 8)
         
-        let bottom: NSLayoutYAxisAnchor
-        if #available(iOS 11, *) {
-            bottom = safeAreaLayoutGuide.bottomAnchor
-        } else {
-            bottom = bottomAnchor
-        }
-        
-        shownConstraint = mainContainer.bottomAnchor.constraint(equalTo: bottom, constant: -13)
+        shownConstraint = mainContainer.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -13)
         hiddenConstraint = mainContainer.topAnchor.constraint(equalTo: bottomAnchor)
         shownConstraint.isActive = false
         hiddenConstraint.isActive = true

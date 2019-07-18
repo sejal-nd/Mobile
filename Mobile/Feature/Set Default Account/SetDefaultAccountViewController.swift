@@ -28,6 +28,8 @@ class SetDefaultAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = NSLocalizedString("Set Default Account", comment: "")
+        
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_tooltip.pdf"), style: .plain, target: self, action: #selector(infoButtonPressed))
         navigationItem.rightBarButtonItem = infoButton
         infoButton.isAccessibilityElement = true

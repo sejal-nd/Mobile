@@ -1029,6 +1029,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAa-Ko-ifg" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="319" height="55"/>
+                                        <accessibility key="accessibilityConfiguration" label="Save Password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="2V2-Xi-10j"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="7PG-Jh-eUX"/>
@@ -1149,7 +1150,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lAt-M9-a3a"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Default Account" id="hRf-0Y-QhX"/>
+                    <navigationItem key="navigationItem" title="Set Default Account" id="hRf-0Y-QhX"/>
                     <connections>
                         <outlet property="saveButton" destination="fS0-OZ-rVd" id="Bzn-LF-f16"/>
                         <outlet property="tableView" destination="iB6-T0-pnB" id="V8K-H6-YJt"/>

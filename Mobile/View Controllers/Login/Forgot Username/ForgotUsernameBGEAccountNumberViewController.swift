@@ -10,31 +10,30 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ForgotUsernameBGEAccountNumberViewController: UIViewController {
+class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooterViewController {
     
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
 
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
-    let disposeBag = DisposeBag()
+    @IBOutlet weak var continueButton: PrimaryButtonNew!
     
-    var nextButton = UIBarButtonItem()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = NSLocalizedString("Forgot Username", comment: "")
         
-        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        navigationItem.rightBarButtonItem = nextButton
-        viewModel.accountNumberHasTenDigits.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.accountNumberHasTenDigits.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        instructionLabel.textColor = .blackText
+        instructionLabel.textColor = .deepGray
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.text = NSLocalizedString("The information entered is associated with multiple accounts. Please enter the account number you would like to proceed with.", comment: "")
 
-        accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
         accountNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onAccountNumberKeyboardDonePress))
         accountNumberTextField.textField.delegate = self
@@ -68,13 +67,13 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
         let message = accountNumberTextField.getError()
         
         if message.isEmpty {
-            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
         } else {
-            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
+            continueButton.accessibilityLabel = String(format: NSLocalizedString("%@ Continue", comment: ""), message)
         }
     }
     
-    @objc func onNextPress() {
+    @IBAction func onContinuePress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -94,7 +93,7 @@ class ForgotUsernameBGEAccountNumberViewController: UIViewController {
     @objc func onAccountNumberKeyboardDonePress() {
         viewModel.accountNumberHasTenDigits.asObservable().take(1).asDriver(onErrorDriveWith: .empty()).drive(onNext: { [weak self] valid in
             if valid {
-                self?.onNextPress()
+                self?.onContinuePress()
             } else {
                 self?.view.endEditing(true)
             }

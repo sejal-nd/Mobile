@@ -14,7 +14,7 @@ protocol ChangePasswordViewControllerDelegate: class {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController)
 }
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     weak var delegate: ChangePasswordViewControllerDelegate?
     weak var forgotPasswordDelegate: ForgotPasswordViewControllerDelegate?
@@ -46,7 +46,6 @@ class ChangePasswordViewController: UIViewController {
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     
-    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submitButton: PrimaryButtonNew!
     
     let disposeBag = DisposeBag()
@@ -72,9 +71,6 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
         
         title = NSLocalizedString("Change Password", comment: "")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         setupValidation()
         
@@ -118,9 +114,9 @@ class ChangePasswordViewController: UIViewController {
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
         
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .body)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
-            label.font = SystemFont.regular.of(textStyle: .body)
+            label.font = SystemFont.regular.of(textStyle: .headline)
         }
         
         // Bind to the view model
@@ -188,11 +184,6 @@ class ChangePasswordViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         GoogleAnalytics.log(event: .changePasswordOffer)
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     
     // MARK: - Actions
     
@@ -290,9 +281,9 @@ class ChangePasswordViewController: UIViewController {
         message += confirmPasswordTextField.getError()
         
         if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Save Password", comment: "")
         } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save Password", comment: ""), message)
         }
     }
     
@@ -378,28 +369,6 @@ class ChangePasswordViewController: UIViewController {
         })
     }
     
-    
-    // MARK: - ScrollView
-    
-    @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
-            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
-
-        let keyboardHeight: CGFloat
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
-        } else {
-            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
-        }
-        
-        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
-        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-            self.stickyFooterBottomConstraint.constant = keyboardHeight
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-
 }
 
 
