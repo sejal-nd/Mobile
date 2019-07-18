@@ -2086,6 +2086,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EK-N7-Mft" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ITP-Ji-xyY"/>
                                             <constraint firstAttribute="height" constant="55" id="iRv-eO-T0h"/>
                                         </constraints>
                                         <state key="normal" title="Select Account"/>
