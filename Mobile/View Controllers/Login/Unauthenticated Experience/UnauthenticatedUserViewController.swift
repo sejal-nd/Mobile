@@ -138,11 +138,11 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 0:
             switch indexPath.row {
             case 0:
-                cell.configure(image: #imageLiteral(resourceName: "ic_reportoutage"), text: NSLocalizedString("Report Outage", comment: ""))
+                cell.configure(image: UIImage(named: "ic_reportoutagewhite"), text: NSLocalizedString("Report Outage", comment: ""))
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_checkoutage"), text: NSLocalizedString("Check My Outage Status", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_mapoutage"), text: NSLocalizedString("View Outage Map", comment: ""))
+                cell.configure(image: UIImage(named: "ic_mapoutagewhite"), text: NSLocalizedString("View Outage Map", comment: ""))
             default:
                 return UITableViewCell()
             }

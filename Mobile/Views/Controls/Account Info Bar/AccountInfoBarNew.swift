@@ -33,6 +33,7 @@ class AccountInfoBarNew: UIView {
         
         style()
         
+        guard AccountsStore.shared.accounts != nil else { return }
         let currentAccount = AccountsStore.shared.currentAccount
         configure(accountNumberText: currentAccount.accountNumber, addressText: currentAccount.address)
     }

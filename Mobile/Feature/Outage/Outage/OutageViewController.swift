@@ -43,7 +43,7 @@ class OutageViewController: AccountPickerViewController {
         return refreshControl
     }()
     
-    private let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(),
+    let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(),
                                             outageService: ServiceFactory.createOutageService(),
                                             authService: ServiceFactory.createAuthenticationService())
     
@@ -92,6 +92,7 @@ class OutageViewController: AccountPickerViewController {
                 vc.viewModel.outageStatus = outageStatus
                 vc.delegate = self
             }
+            vc.unauthenticatedExperience = userState == .unauthenticated ? true : false
         } else if let vc = segue.destination as? OutageMapViewController, let hasPressedStreetlightOutageMapButton = sender as? Bool {
             vc.hasPressedStreetlightOutageMapButton = hasPressedStreetlightOutageMapButton
         }
@@ -123,7 +124,6 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.linkTapDelegate = self
     }
     
-    // todo we need to re think this for unauth which has no loading.
     @objc
     private func loadOutageStatus(sender: UIRefreshControl? = nil) {
         viewModel.fetchData(onSuccess: { [weak self] outageStatus in
@@ -192,7 +192,18 @@ class OutageViewController: AccountPickerViewController {
             
             navigationController?.setNavigationBarHidden(false, animated: true)
             accountPicker.isHidden = true
+            shouldLoadAccounts = false
             accountInfoBar.isHidden = false
+            
+            guard let outageStatus = viewModel.outageStatus else { return }
+            
+            // Account Info Bar
+            if let accountNumberText = outageStatus.maskedAccountNumber,
+                let addressText = outageStatus.maskedAddress {
+                accountInfoBar.configure(accountNumberText: accountNumberText, addressText: addressText)
+            }
+            // Outage Status View
+            configureUnauthenticatedOutageStatus(outageStatus)
         }
     }
     
@@ -237,28 +248,23 @@ class OutageViewController: AccountPickerViewController {
         }
     }
     
-    // todo need to revists, implement in unauth switch, and implement in load outage state
-    private func configureOutageStatus(_ outageStatus: OutageStatus) {
-        if outageStatus.flagGasOnly {
-            self.configureState(.gasOnly)
-        } else {
-            self.configureState(.normal)
-            
-            // Enable / Disable Report Outage Cell
-            if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
-                if outageStatus.flagNoPay  || outageStatus.flagFinaled || outageStatus.flagNonService {
-                    cell.isEnabled = false
-                } else {
-                    cell.isEnabled = true
-                }
-                
-                cell.isEnabled = !outageStatus.flagNoPay
+    private func configureUnauthenticatedOutageStatus(_ outageStatus: OutageStatus) {
+        self.configureState(.normal)
+        
+        // Enable / Disable Report Outage Cell
+        if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
+            if outageStatus.flagNoPay  || outageStatus.flagFinaled || outageStatus.flagNonService {
+                cell.isEnabled = false
+            } else {
+                cell.isEnabled = true
             }
             
-            self.outageStatusView.setOutageStatus(outageStatus,
-                                                  reportedResults: self.viewModel.reportedOutage,
-                                                  hasJustReported: self.viewModel.hasJustReportedOutage)
+            cell.isEnabled = !outageStatus.flagNoPay
         }
+        
+        self.outageStatusView.setOutageStatus(outageStatus,
+                                              reportedResults: self.viewModel.reportedOutage,
+                                              hasJustReported: self.viewModel.hasJustReportedOutage)
     }
 }
 

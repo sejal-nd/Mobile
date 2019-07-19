@@ -113,14 +113,14 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
                 }))
                 self.present(alertVc, animated: true, completion: nil)
             } else {
-                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+                self.performSegue(withIdentifier: "presentOutage", sender: self)
             }
         } else if let accountNumber = selectedOutageStatus.accountNumber {
             LoadingView.show()
             viewModel.fetchOutageStatus(overrideAccountNumber: accountNumber, onSuccess: { [weak self] in
                 guard let self = self else { return }
                 LoadingView.hide()
-                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+                self.performSegue(withIdentifier: "presentOutage", sender: self)
             }, onError: { [weak self] errTitle, errMessage in
                 guard let self = self else { return }
                 LoadingView.hide()
@@ -152,9 +152,10 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UnauthenticatedOutageStatusViewController {
-            vc.viewModel = viewModel
-            vc.analyticsSource = analyticsSource
+        if let vc = segue.destination as? OutageViewController {
+            vc.userState = .unauthenticated
+            vc.viewModel.outageStatus = viewModel.selectedOutageStatus.value
+            vc.viewModel.accountNumber = viewModel.accountNumber.value
             
             switch analyticsSource {
             case .report?:

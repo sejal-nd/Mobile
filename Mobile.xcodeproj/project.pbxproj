@@ -287,6 +287,12 @@
 		359BDB4C22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4E22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
+		359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5322D8C36D007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
+		359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
 		359BDB5D22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
 		359BDB5E22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
 		359BDB5F22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
@@ -329,12 +335,6 @@
 		359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB622E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB722E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
-		359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
-		359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
-		359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
-		359BDB5322D8C36D007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
-		359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
-		359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4F22D77073007002B0 /* FirebaseUtility.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -2054,9 +2054,6 @@
 		E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8BCB9BD1EFAE79A00779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8C0B4C91F55F692006DC694 /* BGEAutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */; };
-		E8C29C731F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C29C721F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift */; };
-		E8C29C741F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C29C721F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift */; };
-		E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C29C721F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift */; };
 		E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C29C771F630FC100DB73FC /* OutageStatusButton.xib */; };
 		E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C29C771F630FC100DB73FC /* OutageStatusButton.xib */; };
 		E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8C29C771F630FC100DB73FC /* OutageStatusButton.xib */; };
@@ -2652,6 +2649,7 @@
 		359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleNavigationController.swift; sourceTree = "<group>"; };
 		359BDB3F22D50F90007002B0 /* StickyFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyFooterView.swift; sourceTree = "<group>"; };
 		359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddCloseButton.swift"; sourceTree = "<group>"; };
+		359BDB4F22D77073007002B0 /* FirebaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageViewController.swift; sourceTree = "<group>"; };
 		359BDB6122D8DCC1007002B0 /* TitleSubTitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubTitleRow.swift; sourceTree = "<group>"; };
 		359BDB6522D8DCD1007002B0 /* TitleSubTitleRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubTitleRow.xib; sourceTree = "<group>"; };
@@ -2666,7 +2664,6 @@
 		359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoBarNew.xib; sourceTree = "<group>"; };
 		359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smallcircleload_blue.json; sourceTree = "<group>"; };
 		359BDBB422E0E6EA007002B0 /* checkmark_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark_blue.json; sourceTree = "<group>"; };
-		359BDB4F22D77073007002B0 /* FirebaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -3319,7 +3316,6 @@
 		E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModel.swift; sourceTree = "<group>"; };
 		E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModel.swift; sourceTree = "<group>"; };
 		E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModelTests.swift; sourceTree = "<group>"; };
-		E8C29C721F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedOutageStatusViewController.swift; sourceTree = "<group>"; };
 		E8C29C771F630FC100DB73FC /* OutageStatusButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutageStatusButton.xib; sourceTree = "<group>"; };
 		E8C29C7B1F630FD200DB73FC /* OutageStatusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageStatusButton.swift; sourceTree = "<group>"; };
 		E8C453141EF3293600F5C781 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -5415,7 +5411,6 @@
 				389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */,
 				E881B14E1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift */,
 				E89983E01F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift */,
-				E8C29C721F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift */,
 			);
 			path = "Unauthenticated Experience";
 			sourceTree = "<group>";
@@ -6392,7 +6387,6 @@
 				9C62446922C42B4200F14DA0 /* FloatLabelTextViewNew.xib in Resources */,
 				351241F022B3DB8700E8BD25 /* AccountSheet.storyboard in Resources */,
 				359BDB7922D8F9B2007002B0 /* outage_reported.json in Resources */,
-				826DCCFF1F0E87030063D47E /* AdvancedAccountPickerTableViewCell.xib in Resources */,
 				E86334681E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */,
 				B0B12603221B0D6C00AF4DC4 /* peak_rewards_overrides.json in Resources */,
@@ -7578,7 +7572,6 @@
 				B068DB5E20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				B0728E40215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				826413791EAEAE5E007F4615 /* Fonts.swift in Sources */,
-				E8C29C731F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */,
 				825171B51F1D25130020A6CA /* HomeViewModel.swift in Sources */,
@@ -7954,7 +7947,6 @@
 				B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
-				E8C29C751F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
@@ -8341,7 +8333,6 @@
 				35A6C7012121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				B0728E41215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
-				E8C29C741F62D5A900DB73FC /* UnauthenticatedOutageStatusViewController.swift in Sources */,
 				E873DA761EE8699600020D1B /* RadioSelectionTableViewCell.swift in Sources */,
 				35ACCB4820EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
 				B54846981E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,

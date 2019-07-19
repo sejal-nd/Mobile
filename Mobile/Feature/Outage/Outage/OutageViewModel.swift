@@ -21,6 +21,9 @@ class OutageViewModel {
     var outageStatus: OutageStatus?
     var hasJustReportedOutage = false
     
+    // Passed from unauthenticated experience
+    var accountNumber: String?
+    
     required init(accountService: AccountService,
                   outageService: OutageService,
                   authService: AuthenticationService) {
@@ -90,7 +93,11 @@ class OutageViewModel {
     
     
     var reportedOutage: ReportedOutageResult? {
-        return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        if let accountNumber = accountNumber {
+            return outageService.getReportedOutageResult(accountNumber: accountNumber)
+        } else {
+            return outageService.getReportedOutageResult(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        }
     }
     
     var outageReportedDateString: String {
@@ -98,7 +105,7 @@ class OutageViewModel {
             let timeString = DateFormatter.outageOpcoDateFormatter.string(from: reportedOutage.reportedTime)
             return String(format: NSLocalizedString("Reported %@", comment: ""), timeString)
         }
-        
+
         return NSLocalizedString("Reported", comment: "")
     }
     

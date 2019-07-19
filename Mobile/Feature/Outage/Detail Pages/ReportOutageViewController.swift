@@ -66,7 +66,7 @@ class ReportOutageViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    var unauthenticatedExperience = false // `true` passed from UnauthenticatedOutageStatusViewController
+    var unauthenticatedExperience = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
