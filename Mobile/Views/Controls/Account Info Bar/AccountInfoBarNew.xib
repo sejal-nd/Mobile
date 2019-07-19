@@ -22,39 +22,28 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Keq-1x-w5B">
-                    <rect key="frame" x="88.5" y="8" width="237" height="51"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1234567890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwO-Tq-Ifo">
-                            <rect key="frame" x="8" y="17" width="83.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5109 Sprint Garden St" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwa-kd-CjD">
-                            <rect key="frame" x="93.5" y="17" width="143.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="mwa-kd-CjD" secondAttribute="trailing" id="OmC-tT-D7P"/>
-                        <constraint firstItem="BwO-Tq-Ifo" firstAttribute="centerY" secondItem="Keq-1x-w5B" secondAttribute="centerY" id="RTR-8I-B0A"/>
-                        <constraint firstItem="BwO-Tq-Ifo" firstAttribute="leading" secondItem="Keq-1x-w5B" secondAttribute="leading" constant="8" id="TPD-tJ-l1Y"/>
-                        <constraint firstItem="mwa-kd-CjD" firstAttribute="leading" secondItem="BwO-Tq-Ifo" secondAttribute="trailing" constant="2" id="Ue6-iU-8f1"/>
-                        <constraint firstItem="mwa-kd-CjD" firstAttribute="centerY" secondItem="Keq-1x-w5B" secondAttribute="centerY" id="brI-bB-xbV"/>
-                    </constraints>
-                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwO-Tq-Ifo">
+                    <rect key="frame" x="20" y="8" width="83.5" height="51"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="5109 Sprint Garden St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwa-kd-CjD">
+                    <rect key="frame" x="111.5" y="8" width="282.5" height="51"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Keq-1x-w5B" secondAttribute="trailing" id="0Vy-ol-K0S"/>
-                <constraint firstItem="Keq-1x-w5B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="chb-EY-tWo"/>
-                <constraint firstItem="Keq-1x-w5B" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nZk-hd-oWb"/>
-                <constraint firstAttribute="bottom" secondItem="Keq-1x-w5B" secondAttribute="bottom" constant="8" id="pWs-DW-Lpc"/>
-                <constraint firstItem="Keq-1x-w5B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="set-xz-r4s"/>
+                <constraint firstItem="BwO-Tq-Ifo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="4GR-fu-8B0"/>
+                <constraint firstItem="mwa-kd-CjD" firstAttribute="leading" secondItem="BwO-Tq-Ifo" secondAttribute="trailing" constant="8" id="8ER-m1-gXQ"/>
+                <constraint firstItem="BwO-Tq-Ifo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="ACX-op-Jfb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mwa-kd-CjD" secondAttribute="trailing" constant="20" id="CvC-g7-oep"/>
+                <constraint firstAttribute="bottom" secondItem="mwa-kd-CjD" secondAttribute="bottom" constant="8" id="WFw-Ij-X7o"/>
+                <constraint firstItem="mwa-kd-CjD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="auZ-qi-BDs"/>
+                <constraint firstAttribute="bottom" secondItem="BwO-Tq-Ifo" secondAttribute="bottom" constant="8" id="oKX-Am-cjy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

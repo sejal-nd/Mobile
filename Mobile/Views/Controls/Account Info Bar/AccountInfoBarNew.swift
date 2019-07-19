@@ -50,7 +50,7 @@ class AccountInfoBarNew: UIView {
 
 extension AccountInfoBarNew {
     public func configure(accountNumberText: String, addressText: String?) {
-        accountNumberLabel.text = NSLocalizedString("Account \(accountNumberText)", comment: "")
+        accountNumberLabel.text = NSLocalizedString("ACCOUNT \(accountNumberText)", comment: "")
         accountNumberLabel.accessibilityLabel = "Account number: \(accountNumberText)"
         addressLabel.text = NSLocalizedString("\(addressText ?? "")", comment: "")
         if let addressText = addressText {

@@ -9,6 +9,12 @@
 import UIKit
 
 class OutageViewController: AccountPickerViewController {
+    
+    enum UserState {
+        case authenticated
+        case unauthenticated
+    }
+    
     enum State {
         case normal
         case loading
@@ -18,6 +24,7 @@ class OutageViewController: AccountPickerViewController {
         case unavailable
     }
     
+    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
     @IBOutlet weak var maintenanceModeContainerView: UIView!
     @IBOutlet weak var NoNetworkConnectionContainerView: UIView!
     @IBOutlet weak var loadingContainerView: UIView!
@@ -40,6 +47,8 @@ class OutageViewController: AccountPickerViewController {
                                             outageService: ServiceFactory.createOutageService(),
                                             authService: ServiceFactory.createAuthenticationService())
     
+    var userState: UserState = .authenticated
+    
     var shortcutItem: ShortcutItem = .none
     
     
@@ -53,7 +62,7 @@ class OutageViewController: AccountPickerViewController {
         configureTableView()
         
         configureTableHeaderFooterView()
-
+        
         configureState(.loading)
         loadOutageStatus()
     }
@@ -61,7 +70,7 @@ class OutageViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        configureUserState(userState)
     }
     
     override func viewDidLayoutSubviews() {
@@ -131,6 +140,12 @@ class OutageViewController: AccountPickerViewController {
                 
                 // Enable / Disable Report Outage Cell
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
+                    if outageStatus.flagNoPay  || outageStatus.flagFinaled || outageStatus.flagNonService {
+                        cell.isEnabled = false
+                    } else {
+                        cell.isEnabled = true
+                    }
+                    
                     cell.isEnabled = !outageStatus.flagNoPay
                 }
                 
@@ -153,12 +168,28 @@ class OutageViewController: AccountPickerViewController {
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.configureState(.noNetwork)
                 } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                    
                    self?.configureState(.unavailable)
                 }
             }, onMaintenance: { [weak self] in
                 self?.shortcutItem = .none
                 self?.configureState(.maintenance)
         })
+    }
+    
+    private func configureUserState(_ userState: UserState) {
+        switch userState {
+        case .authenticated:
+            navigationController?.setNavigationBarHidden(true, animated: true)
+            accountPicker.isHidden = false
+            accountInfoBar.isHidden = true
+        case .unauthenticated:
+            title = "Outage"
+            
+            navigationController?.setNavigationBarHidden(false, animated: true)
+            accountPicker.isHidden = true
+            accountInfoBar.isHidden = false
+        }
     }
     
     private func configureState(_ state: State) {

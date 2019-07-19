@@ -24,10 +24,10 @@ class TitleSubTitleRow: UITableViewCell {
                 
                 selectionStyle = .default
             } else {
-                iconImageView.alpha = 0.7
-                titleLabel.alpha = 0.7
-                subTitleLabel.alpha = 0.7
-                disclosureIndicatorImageView.alpha = 0.7
+                iconImageView.alpha = 0.4
+                titleLabel.alpha = 0.4
+                subTitleLabel.alpha = 0.4
+                disclosureIndicatorImageView.alpha = 0.4
                 
                 selectionStyle = .none
             }

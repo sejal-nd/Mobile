@@ -37,7 +37,6 @@ class ReportOutageViewController: UIViewController {
     
     @IBOutlet weak var meterPingSeparatorView: UIView!
     
-    
     // Report Form
     @IBOutlet weak var reportFormStackView: UIStackView!
     @IBOutlet weak var areYourLightsOutView: UIView!
