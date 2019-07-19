@@ -287,7 +287,6 @@
 		359BDB4C22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
 		359BDB4E22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */; };
-<<<<<<< HEAD
 		359BDB5D22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
 		359BDB5E22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
 		359BDB5F22D8DCA2007002B0 /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
@@ -2653,7 +2652,6 @@
 		359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitleNavigationController.swift; sourceTree = "<group>"; };
 		359BDB3F22D50F90007002B0 /* StickyFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyFooterView.swift; sourceTree = "<group>"; };
 		359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AddCloseButton.swift"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutageViewController.swift; sourceTree = "<group>"; };
 		359BDB6122D8DCC1007002B0 /* TitleSubTitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubTitleRow.swift; sourceTree = "<group>"; };
 		359BDB6522D8DCD1007002B0 /* TitleSubTitleRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubTitleRow.xib; sourceTree = "<group>"; };
