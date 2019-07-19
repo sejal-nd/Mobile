@@ -22,17 +22,17 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var headerLabel: UILabel!
     
     @IBOutlet weak var homeTypeInfoLabel: UILabel!
-    @IBOutlet weak var homeTypeButton: DisclosureButton!
+    @IBOutlet weak var homeTypeButton: DisclosureButtonNew!
     
     @IBOutlet weak var heatingFuelInfoLabel: UILabel!
-    @IBOutlet weak var heatingFuelButton: DisclosureButton!
+    @IBOutlet weak var heatingFuelButton: DisclosureButtonNew!
     
     @IBOutlet weak var numberOfResidentsInfoLabel: UILabel!
-    @IBOutlet weak var numberOfAdultsButton: DisclosureButton!
-    @IBOutlet weak var numberOfChildrenButton: DisclosureButton!
+    @IBOutlet weak var numberOfAdultsButton: DisclosureButtonNew!
+    @IBOutlet weak var numberOfChildrenButton: DisclosureButtonNew!
     
     @IBOutlet weak var homeSizeInfoLabel: UILabel!
-    @IBOutlet weak var homeSizeTextField: FloatLabelTextField!
+    @IBOutlet weak var homeSizeTextField: FloatLabelTextFieldNew!
     
     @IBOutlet weak var saveButton: PrimaryButtonNew!
     
@@ -67,19 +67,19 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     }
 
     func styleViews() {
-        headerLabel.numberOfLines = 0
+        headerLabel.textColor = .deepGray
         headerLabel.font = SystemFont.regular.of(textStyle: .headline)
         headerLabel.setLineHeight(lineHeight: 24)
-        homeTypeInfoLabel.numberOfLines = 0
+        homeTypeInfoLabel.textColor = .deepGray
         homeTypeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        heatingFuelInfoLabel.numberOfLines = 0
+        heatingFuelInfoLabel.textColor = .deepGray
         heatingFuelInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        numberOfResidentsInfoLabel.numberOfLines = 0
+        numberOfResidentsInfoLabel.textColor = .deepGray
         numberOfResidentsInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        homeSizeInfoLabel.numberOfLines = 0
+        homeSizeInfoLabel.textColor = .deepGray
         homeSizeInfoLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        homeSizeTextField.textField.placeholder = NSLocalizedString("Home Size (sq. ft)*", comment: "")
+        homeSizeTextField.placeholder = NSLocalizedString("Home Size (sq. ft)*", comment: "")
         homeSizeTextField.textField.delegate = self
         homeSizeTextField.textField.returnKeyType = .done
         
@@ -97,23 +97,23 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                 self?.errorLabel.isHidden = true
                 self?.loadingIndicator.isHidden = true
                 
-                self?.homeTypeButton.setDetailLabel(text: homeProfile.homeType?.displayString, checkHidden: true)
+                self?.homeTypeButton.valueText = homeProfile.homeType?.displayString
                 if let homeType = homeProfile.homeType {
                     self?.viewModel.homeType.value = homeType
                 }
                 
-                self?.heatingFuelButton.setDetailLabel(text: homeProfile.heatType?.displayString, checkHidden: true)
+                self?.heatingFuelButton.valueText = homeProfile.heatType?.displayString
                 if let heatType = homeProfile.heatType {
                     self?.viewModel.heatType.value = heatType
                 }
                 
                 if let numberOfAdults = homeProfile.numberOfAdults {
-                    self?.numberOfAdultsButton.setDetailLabel(text: "\(numberOfAdults)", checkHidden: true)
+                    self?.numberOfAdultsButton.valueText = "\(numberOfAdults)"
                     self?.viewModel.numberOfAdults.value = numberOfAdults
                 }
                 
                 if let numberOfChildren = homeProfile.numberOfChildren {
-                    self?.numberOfChildrenButton.setDetailLabel(text: "\(numberOfChildren)", checkHidden: true)
+                    self?.numberOfChildrenButton.valueText = "\(numberOfChildren)"
                     self?.viewModel.numberOfChildren.value = numberOfChildren
                 }
                 
@@ -151,7 +151,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 data: HomeType.allCases.map { $0.displayString },
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
-                                    self?.homeTypeButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.homeTypeButton.valueText = value
                                     self?.viewModel.homeType.value = HomeType(rawValue: index)
                                 },
                                 onCancel: nil)
@@ -174,7 +174,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 data: HeatType.allCases.map { $0.displayString },
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
-                                    self?.heatingFuelButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.heatingFuelButton.valueText = value
                                     self?.viewModel.heatType.value = HeatType(rawValue: index)
                                 },
                                 onCancel: nil)
@@ -197,7 +197,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 data: self.viewModel.numberOfAdultsDisplayOptions,
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
-                                    self?.numberOfAdultsButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.numberOfAdultsButton.valueText = value
                                     self?.viewModel.numberOfAdults.value = self?.viewModel.numberOfAdultsOptions[index]
                                 },
                                 onCancel: nil)
@@ -220,7 +220,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                                 data: self.viewModel.numberOfChildrenDisplayOptions,
                                 selectedIndex: selectedIndex,
                                 onDone: { [weak self] value, index in
-                                    self?.numberOfChildrenButton.setDetailLabel(text: value, checkHidden: true)
+                                    self?.numberOfChildrenButton.valueText = value
                                     self?.viewModel.numberOfChildren.value = self?.viewModel.numberOfChildrenOptions[index]
                                 },
                                 onCancel: nil)

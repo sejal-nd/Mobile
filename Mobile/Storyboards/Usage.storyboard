@@ -938,111 +938,111 @@
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="Hz7-8N-if4" customClass="MyHomeProfileViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Sa-mH-GcG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jht-Fq-yF3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="815"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GfZ-hr-6AZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="617.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="705"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="tEp-Fz-iom">
-                                                <rect key="frame" x="20" y="20" width="335" height="567.5"/>
+                                                <rect key="frame" x="20" y="20" width="335" height="655"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update your home's profile and get more powerful and personalized insights into your energy use." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI7-PD-ahI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update your home's profile and get more powerful and personalized insights into your energy use." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tI7-PD-ahI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="57.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="atn-bn-yB2">
-                                                        <rect key="frame" x="0.0" y="49.5" width="335" height="87"/>
+                                                        <rect key="frame" x="0.0" y="87.5" width="335" height="87"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the type of home in which you live." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDM-Wu-ffs">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the type of home in which you live." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDM-Wu-ffs">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36E-Vt-Mb8" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36E-Vt-Mb8" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="27" width="335" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="K6p-ro-EE7"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Home Type*"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="descriptionText" value="Home Type*"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ADc-Rt-AVf">
-                                                        <rect key="frame" x="0.0" y="166.5" width="335" height="87"/>
+                                                        <rect key="frame" x="0.0" y="204.5" width="335" height="103.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the source of your heat and can have a significant impact on your energy costs." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJt-Qf-Cdj">
-                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the source of your heat and can have a significant impact on your energy costs." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJt-Qf-Cdj">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-uI-1yE" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="27" width="335" height="60"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-uI-1yE" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="43.5" width="335" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="Ve7-mn-iyY"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Heating Fuel*"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="descriptionText" value="Heating Fuel*"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dfd-QG-qJ5">
-                                                        <rect key="frame" x="0.0" y="283.5" width="335" height="167"/>
+                                                        <rect key="frame" x="0.0" y="338" width="335" height="183.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number or residents living in your home most of the year." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9D-dt-bkz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number or residents living in your home most of the year." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9D-dt-bkz">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-qc-yXZ" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="27" width="335" height="60"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-qc-yXZ" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="43.5" width="335" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="AaA-eV-aN8"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Number of Adults*"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="descriptionText" value="Number of Adults*"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99w-q7-TNV" userLabel="Spacer">
-                                                                <rect key="frame" x="0.0" y="97" width="335" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="113.5" width="335" height="0.0"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="yaz-ec-Gqu"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6q-N0-rQx" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="107" width="335" height="60"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6q-N0-rQx" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="123.5" width="335" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="60" id="OhM-y5-dTm"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Number of Children*"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="descriptionText" value="Number of Children*"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pVP-Nk-U6g">
-                                                        <rect key="frame" x="0.0" y="480.5" width="335" height="87"/>
+                                                        <rect key="frame" x="0.0" y="551.5" width="335" height="103.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home size in square feet. Heated and air conditioned space only." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96e-H0-VzF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home size in square feet. Heated and air conditioned space only." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96e-H0-VzF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="33.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-N8-APa" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="27" width="335" height="60"/>
+                                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-N8-APa" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="43.5" width="335" height="60"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
@@ -1072,7 +1072,7 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-i3-nXX" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="582" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="815" width="375" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHW-w3-9OX" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="335" height="55"/>
@@ -1095,11 +1095,11 @@
                                 <viewLayoutGuide key="safeArea" id="fW0-ra-VGR"/>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="CMj-S6-iYy" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="444" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWO-Nf-DQf">
-                                <rect key="frame" x="45" y="313" width="285" height="41"/>
+                                <rect key="frame" x="45" y="429.5" width="285" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="PS7-hL-eIU"/>
                                     <constraint firstAttribute="width" priority="750" constant="460" id="ppI-Os-wA7"/>
@@ -1131,6 +1131,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Home Profile" id="miD-if-yCC"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="errorLabel" destination="eWO-Nf-DQf" id="nYZ-wN-qH3"/>
                         <outlet property="headerLabel" destination="tI7-PD-ahI" id="i2O-H4-hwZ"/>
@@ -1151,7 +1152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1Y-Ie-gTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="1668.2158920539732"/>
+            <point key="canvasLocation" x="953" y="1774"/>
         </scene>
         <!--Hourly Pricing-->
         <scene sceneID="mJJ-3u-zYV">
