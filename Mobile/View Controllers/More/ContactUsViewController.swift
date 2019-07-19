@@ -20,8 +20,10 @@ class ContactUsViewController: UIViewController {
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
     @IBOutlet weak var bgeOnlySpacer: UIView!
     @IBOutlet weak var bgeOnlyStackView: UIStackView!
+    @IBOutlet weak var bgeGasNumberLabel: UILabel!
     @IBOutlet weak var bgeGasNumber1TextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var bgeGasNumber2TextView: ZeroInsetDataDetectorTextView!
+    @IBOutlet weak var bgePowerLineLabel: UILabel!
     @IBOutlet weak var bgePowerLineNumber1TextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var bgePowerLineNumber2TextView: ZeroInsetDataDetectorTextView!
     
@@ -83,12 +85,14 @@ class ContactUsViewController: UIViewController {
         } else {
             bgeOnlyStackView.isHidden = true
         }
+        bgeGasNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         bgeGasNumber1TextView.text = viewModel.bgeGasNumber1
         bgeGasNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber1TextView.linkTapDelegate = self
         bgeGasNumber2TextView.text = viewModel.bgeGasNumber2
         bgeGasNumber2TextView.tintColor = .actionBlue // Color of the phone numbers
         bgeGasNumber2TextView.linkTapDelegate = self
+        bgePowerLineLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         bgePowerLineNumber1TextView.text = viewModel.bgePowerLineNumber1
         bgePowerLineNumber1TextView.tintColor = .actionBlue // Color of the phone numbers
         bgePowerLineNumber1TextView.linkTapDelegate = self
