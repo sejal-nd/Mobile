@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MyHomeProfileViewController: UIViewController {
+class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     
     let disposeBag = DisposeBag()
 
@@ -34,10 +34,7 @@ class MyHomeProfileViewController: UIViewController {
     @IBOutlet weak var homeSizeInfoLabel: UILabel!
     @IBOutlet weak var homeSizeTextField: FloatLabelTextField!
     
-    let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""),
-                                     style: .done,
-                                     target: self,
-                                     action: nil)
+    @IBOutlet weak var saveButton: PrimaryButtonNew!
     
     var accountDetail: AccountDetail!
     
@@ -55,8 +52,6 @@ class MyHomeProfileViewController: UIViewController {
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
         GoogleAnalytics.log(event: .viewHomeProfile,
                              dimensions: [.residentialAMI: residentialAMIString])
-        
-        navigationItem.rightBarButtonItem = saveButton
         
         styleViews()
         initialLoadSetup()
@@ -242,28 +237,6 @@ class MyHomeProfileViewController: UIViewController {
     func bindTextField() {
         homeSizeTextField.textField.delegate = self
         homeSizeTextField.setKeyboardType(.numberPad)
-        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] notification in
-                guard let self = self,
-                    let endFrameRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-                        return
-                }
-                
-                let safeAreaBottomInset = self.view.safeAreaInsets.bottom
-                let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-                self.scrollView.contentInset = insets
-                self.scrollView.scrollIndicatorInsets = insets
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
-            .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: { [weak self] _ in
-                self?.scrollView.contentInset = .zero
-                self?.scrollView.scrollIndicatorInsets = .zero
-            })
-            .disposed(by: disposeBag)
         
         homeSizeTextField.textField.rx.text
             .asObservable()
@@ -281,8 +254,6 @@ class MyHomeProfileViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
-        
     }
     
     func bindSaveResults() {
