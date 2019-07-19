@@ -48,7 +48,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .registerOffer)
+        GoogleAnalytics.log(event: .registerOffer)
     }
     
     /// Helpers
@@ -195,6 +195,7 @@ class RegistrationValidateAccountViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     @objc func onIdentifierKeyboardDonePress() {
@@ -223,11 +224,11 @@ class RegistrationValidateAccountViewController: UIViewController {
         
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .registerAccountValidation)
+            GoogleAnalytics.log(event: .registerAccountValidation)
             self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
-            Analytics.log(event: .registerAccountValidation)
+            GoogleAnalytics.log(event: .registerAccountValidation)
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()
@@ -238,11 +239,6 @@ class RegistrationValidateAccountViewController: UIViewController {
             self?.present(alertController, animated: true, completion: nil)
         })
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
 
     // MARK: - ScrollView
     
@@ -283,7 +279,7 @@ class RegistrationValidateAccountViewController: UIViewController {
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
         }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         
         navigationController?.present(infoModal, animated: true, completion: nil)
     }

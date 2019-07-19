@@ -11,7 +11,7 @@ import WebKit
 
 class OutageMapViewController: UIViewController {
 
-    let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+    @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     let opco = Environment.shared.opco
     
@@ -35,13 +35,6 @@ class OutageMapViewController: UIViewController {
         }
             
         webView.navigationDelegate = self
-        view.addSubview(webView)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        webView.scrollView.isScrollEnabled = false
         webView.isHidden = true
         
         webView.load(URLRequest(url: url))
@@ -58,8 +51,8 @@ class OutageMapViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if(unauthenticatedExperience) {
-            Analytics.log(event: .viewOutageMapUnAuthOfferComplete)
+        if unauthenticatedExperience {
+            GoogleAnalytics.log(event: .viewOutageMapUnAuthOfferComplete)
         }
     }
 

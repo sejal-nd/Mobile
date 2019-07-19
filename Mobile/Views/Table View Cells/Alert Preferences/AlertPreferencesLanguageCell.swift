@@ -23,11 +23,11 @@ class AlertPreferencesLanguageCell: UITableViewCell {
         label.font = SystemFont.bold.of(textStyle: .subheadline)
         
         englishRadioSelectControl.rx.controlEvent(.touchUpInside)
-            .subscribe(onNext: { Analytics.log(event: .alertsEnglish) })
+            .subscribe(onNext: { GoogleAnalytics.log(event: .alertsEnglish) })
             .disposed(by: disposeBag)
         
         spanishRadioSelectControl.rx.controlEvent(.touchUpInside)
-            .subscribe(onNext: { Analytics.log(event: .alertsSpanish) })
+            .subscribe(onNext: { GoogleAnalytics.log(event: .alertsSpanish) })
             .disposed(by: disposeBag)
     }
     

@@ -14,11 +14,11 @@ import SafariServices
 class ContactUsViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var containerStack: UIStackView!
     
     @IBOutlet weak var emergencyNumberTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var emergencyDescriptionLabel: UILabel!
+    @IBOutlet weak var bgeOnlySpacer: UIView!
     @IBOutlet weak var bgeOnlyStackView: UIStackView!
     @IBOutlet weak var bgeGasNumber1TextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var bgeGasNumber2TextView: ZeroInsetDataDetectorTextView!
@@ -48,11 +48,6 @@ class ContactUsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .primaryColor
-        
-        cardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        cardView.layer.cornerRadius = 10.0
         
         for line in dividerLines {
             line.backgroundColor = .accentGray
@@ -84,6 +79,7 @@ class ContactUsViewController: UIViewController {
         
         if Environment.shared.opco == .bge {
             emergencyNumberTextView.isHidden = true
+            bgeOnlySpacer.isHidden = true
         } else {
             bgeOnlyStackView.isHidden = true
         }
@@ -109,7 +105,8 @@ class ContactUsViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 
-                Analytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
+                GoogleAnalytics.log(event: self.unauthenticatedExperience ? .unAuthContactUsForm : .contactUsForm)
+                FirebaseUtility.logEvent(.contactUs, parameters:[EventParameter(parameterName: .action, value: .online_form)])
                 
                 let safariVC = SFSafariViewController.createWithCustomStyle(url: self.viewModel.onlineFormUrl)
                 self.present(safariVC, animated: true, completion: nil)
@@ -152,12 +149,13 @@ class ContactUsViewController: UIViewController {
     func socialMediaButtonsSetup() {
         // create buttons
         var buttons: [UIView] = viewModel.buttonInfoList
-            .map { (urlString, image, accessibilityLabel) -> UIButton in
+            .map { (urlString, image, accessibilityLabel, analyticParam) -> UIButton in
                 let button = UIButton(type: .custom)
                 button.accessibilityLabel = accessibilityLabel
                 button.setImage(image, for: .normal)
                 button.rx.tap.asDriver()
                     .drive(onNext: {
+                        FirebaseUtility.logEvent(.contactUs, parameters:[EventParameter(parameterName: .action, value: analyticParam)])
                         guard let urlString = urlString else { return }
                         UIApplication.shared.openUrlIfCan(string: urlString)
                     })
@@ -190,13 +188,13 @@ class ContactUsViewController: UIViewController {
         socialMediaButtonsStack.distribution = .fill
         socialMediaButtonsStack.spacing = 22
         containerStack.addArrangedSubview(socialMediaButtonsStack)
-        socialMediaButtonsStack.leadingAnchor.constraint(equalTo: containerStack.leadingAnchor, constant: 22).isActive = true
-        socialMediaButtonsStack.trailingAnchor.constraint(equalTo: containerStack.trailingAnchor, constant: -22).isActive = true
-    }
-    
-    // Prevents status bar color flash when pushed from MoreViewController
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        
+        let leadingConstraint = socialMediaButtonsStack.leadingAnchor.constraint(equalTo: containerStack.leadingAnchor, constant: 22)
+        leadingConstraint.priority = UILayoutPriority(rawValue: 999)
+        let trailingConstraint = socialMediaButtonsStack.trailingAnchor.constraint(equalTo: containerStack.trailingAnchor, constant: -22)
+        trailingConstraint.priority = UILayoutPriority(rawValue: 999)
+        let widthConstraint = socialMediaButtonsStack.widthAnchor.constraint(lessThanOrEqualToConstant: 430) // 460 - 30 padding
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, widthConstraint])
     }
     
 }
@@ -204,9 +202,7 @@ class ContactUsViewController: UIViewController {
 extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
         var dimensionValue: String?
-        
         switch textView {
         case emergencyNumberTextView, bgeGasNumber1TextView,
              bgeGasNumber2TextView, bgePowerLineNumber1TextView,
@@ -219,11 +215,38 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         case thirdNumberTextView:
             dimensionValue = "TTY/TTD"
         default:
-            dimensionValue = "" // Won't happen
+            dimensionValue = nil
+        }
+
+        if let value = dimensionValue {
+            let screenName: GoogleAnalyticsEvent = unauthenticatedExperience ? .contactUsUnAuthCall : .contactUsAuthCall
+            GoogleAnalytics.log(event: screenName, dimensions: [.link: value])
         }
         
-        if let value = dimensionValue {
-            Analytics.log(event: screenName, dimensions: [.link: value])
+        let paramValue: EventParameter.Value?
+        switch textView {
+        case emergencyNumberTextView:
+            paramValue = .emergency_number
+        case bgeGasNumber1TextView:
+            paramValue = .phone_number_gas_1
+        case bgeGasNumber2TextView:
+            paramValue = .phone_number_gas_2
+        case bgePowerLineNumber1TextView:
+            paramValue = .phone_number_electric_1
+        case bgePowerLineNumber2TextView:
+            paramValue = .phone_number_electric_2
+        case firstNumberTextView:
+            paramValue = .customer_service_residential
+        case secondNumberTextView:
+            paramValue = .customer_service_business
+        case thirdNumberTextView:
+            paramValue = .customer_service_tty_ttd
+        default:
+            paramValue = nil
+        }
+        
+        if let paramVal = paramValue {
+            FirebaseUtility.logEvent(.contactUs, parameters:[EventParameter(parameterName: .action, value: paramVal)])
         }
     }
 }

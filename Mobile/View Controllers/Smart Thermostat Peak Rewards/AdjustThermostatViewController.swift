@@ -191,7 +191,7 @@ class AdjustThermostatViewController: UIViewController {
         // Bind to view model
         permanentHoldSwitch.rx.isOn.distinctUntilChanged()
             .do(onNext: {
-                Analytics.log(event: $0 ? .permanentHoldOn : .permanentHoldOff)
+                GoogleAnalytics.log(event: $0 ? .permanentHoldOn : .permanentHoldOff)
             })
             .bind(to: viewModel.hold)
             .disposed(by: disposeBag)
@@ -202,11 +202,11 @@ class AdjustThermostatViewController: UIViewController {
             .do(onNext: {
                 switch $0 {
                 case .cool:
-                    Analytics.log(event: .systemCool)
+                    GoogleAnalytics.log(event: .systemCool)
                 case .heat:
-                    Analytics.log(event: .systemHeat)
+                    GoogleAnalytics.log(event: .systemHeat)
                 case .off:
-                    Analytics.log(event: .systemOff)
+                    GoogleAnalytics.log(event: .systemOff)
                 }
             })
             .bind(to: viewModel.mode)
@@ -218,11 +218,11 @@ class AdjustThermostatViewController: UIViewController {
             .do(onNext: {
                 switch $0 {
                 case .auto:
-                    Analytics.log(event: .fanAuto)
+                    GoogleAnalytics.log(event: .fanAuto)
                 case .circulate:
-                    Analytics.log(event: .fanCirculate)
+                    GoogleAnalytics.log(event: .fanCirculate)
                 case .on:
-                    Analytics.log(event: .fanOn)
+                    GoogleAnalytics.log(event: .fanOn)
                 }
             })
             .bind(to: viewModel.fan)

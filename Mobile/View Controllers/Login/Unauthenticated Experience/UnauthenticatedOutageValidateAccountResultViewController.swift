@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class UnauthenticatedOutageValidateAccountResultViewController: UIViewController {
     
@@ -16,11 +17,14 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     @IBOutlet weak var col2HeaderLabel: UILabel!
     @IBOutlet weak var col3HeaderLabel: UILabel!
     @IBOutlet weak var firstSeparatorView: UIView!
+    @IBOutlet weak var selectAccountButton: PrimaryButtonNew!
     
     var analyticsSource: AnalyticsOutageSource!
     var viewModel: UnauthenticatedOutageViewModel! // Passed from UnauthenticatedOutageValidateAccountViewController
     
     var singleMultipremiseAccount = false
+    
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,31 +35,31 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         
         title = singleMultipremiseAccount ? NSLocalizedString("Select an Address", comment: "") : NSLocalizedString("Select an Account", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        navigationItem.leftBarButtonItem = cancelButton
+        instructionLabel.textColor = .deepGray
+        instructionLabel.text = NSLocalizedString("Please select your account", comment: "")
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        instructionLabel.textColor = .blackText
-        instructionLabel.text = singleMultipremiseAccount ? NSLocalizedString("Please select your address:", comment: "") : NSLocalizedString("Please select your account:", comment: "")
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        
-        col1HeaderLabel.textColor = .middleGray
+        col1HeaderLabel.textColor = .deepGray
         col1HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        col1HeaderLabel.text = NSLocalizedString("Account Number", comment: "")
+        col1HeaderLabel.text = NSLocalizedString("Account #", comment: "")
         if singleMultipremiseAccount {
             col1HeaderLabel.text = nil
         }
         
-        col2HeaderLabel.textColor = .middleGray
+        col2HeaderLabel.textColor = .deepGray
         col2HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        col2HeaderLabel.text = singleMultipremiseAccount ? NSLocalizedString("Street Address", comment: "") : NSLocalizedString("Street Number", comment: "")
+        col2HeaderLabel.text = NSLocalizedString("Street #", comment: "")
         
-        col3HeaderLabel.textColor = .middleGray
+        col3HeaderLabel.textColor = .deepGray
         col3HeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        col3HeaderLabel.text = NSLocalizedString("Unit Number", comment: "")
+        col3HeaderLabel.text = NSLocalizedString("Unit #", comment: "")
         
         firstSeparatorView.backgroundColor = tableView.separatorColor
         
         tableView.isHidden = true
+        tableView.tableFooterView = UIView() // Hides extra separators
+        
+        viewModel.selectAccountButtonEnabled.drive(selectAccountButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +83,9 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        let indexPath = tableView.indexPathForSelectedRow
         tableView.reloadData() // To properly set the width constraints
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         
         // Dynamic sizing for the table header view
         if let headerView = tableView.tableHeaderView {
@@ -95,8 +101,54 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         }
     }
     
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
+    @IBAction func onSelectAccountPress() {
+        guard let selectedOutageStatus = viewModel.selectedOutageStatus.value else { return }
+        if selectedOutageStatus.multipremiseAccount {
+            // No need to query again for a multipremise account because it would just return us an array of the status info we already have
+            if selectedOutageStatus.flagGasOnly {
+                let alertVc = UIAlertController(title: NSLocalizedString("Outage status unavailable", comment: ""), message: NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""), preferredStyle: .alert)
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
+                    UIApplication.shared.openPhoneNumberIfCan("1-800-685-0123")
+                }))
+                self.present(alertVc, animated: true, completion: nil)
+            } else {
+                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+            }
+        } else if let accountNumber = selectedOutageStatus.accountNumber {
+            LoadingView.show()
+            viewModel.fetchOutageStatus(overrideAccountNumber: accountNumber, onSuccess: { [weak self] in
+                guard let self = self else { return }
+                LoadingView.hide()
+                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+            }, onError: { [weak self] errTitle, errMessage in
+                guard let self = self else { return }
+                LoadingView.hide()
+                
+                let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
+                
+                if errTitle == NSLocalizedString("Cut for non pay", comment: "") {
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
+                        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                        let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
+                        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+                        self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+                    }))
+                } else if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
+                    // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
+                    // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
+                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
+                    }))
+                } else {
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                }
+                
+                self.present(alertVc, animated: true, completion: nil)
+            })
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,9 +158,9 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
             
             switch analyticsSource {
             case .report?:
-                Analytics.log(event: .reportAnOutageUnAuthSubmitAcctSelection)
+                GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmitAcctSelection)
             case .status?:
-                Analytics.log(event: .outageStatusUnAuthAcctSelect)
+                GoogleAnalytics.log(event: .outageStatusUnAuthAcctSelect)
             default:
                 break
             }
@@ -118,7 +170,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
 
 }
 
-extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewDelegate {
+extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -126,9 +178,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.outageStatusArray!.count
     }
-}
 
-extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LookupToolResultCell", for: indexPath) as! AccountLookupToolResultCell
 
@@ -174,56 +224,7 @@ extension UnauthenticatedOutageValidateAccountResultViewController: UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedOutageStatus = viewModel.outageStatusArray![indexPath.row]
-        if selectedOutageStatus.multipremiseAccount {
-            // No need to query again for a multipremise account because it would just return us an array of the status info we already have
-            if selectedOutageStatus.flagGasOnly {
-                let alertVc = UIAlertController(title: NSLocalizedString("Outage status unavailable", comment: ""), message: NSLocalizedString("This account receives gas service only. We currently do not allow reporting of gas issues online but want to hear from you right away.\n\nTo report a gas emergency or a downed or sparking power line, please call 1-800-685-0123.", comment: ""), preferredStyle: .alert)
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
-                    UIApplication.shared.openPhoneNumberIfCan("1-800-685-0123")
-                }))
-                self.present(alertVc, animated: true, completion: nil)
-            } else {
-                viewModel.selectedOutageStatus = selectedOutageStatus
-                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
-            }
-        } else if let accountNumber = selectedOutageStatus.accountNumber {
-            LoadingView.show()
-            viewModel.fetchOutageStatus(overrideAccountNumber: accountNumber, onSuccess: { [weak self] in
-                guard let self = self else { return }
-                LoadingView.hide()
-                if self.viewModel.selectedOutageStatus != nil {
-                    self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
-                }
-            }, onError: { [weak self] errTitle, errMessage in
-                guard let self = self else { return }
-                LoadingView.hide()
-                
-                let alertVc = UIAlertController(title: errTitle, message: errMessage, preferredStyle: .alert)
-                
-                if errTitle == NSLocalizedString("Cut for non pay", comment: "") {
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Pay Bill", comment: ""), style: .default, handler: { [weak self] _ in
-                        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                        let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
-                        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                        self?.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
-                    }))
-                } else if let phoneRange = errMessage.range(of:"1-\\d{3}-\\d{3}-\\d{4}", options: .regularExpression) {
-                    // use regular expression to check the US phone number format: start with 1, then -, then 3 3 4 digits grouped together that separated by dash
-                    // e.g: 1-111-111-1111 is valid while 1-1111111111 and 111-111-1111 are not
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil))
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("Contact Us", comment: ""), style: .default, handler: { _ in
-                        UIApplication.shared.openPhoneNumberIfCan(String(errMessage[phoneRange]))
-                    }))
-                } else {
-                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                }
-                
-                self.present(alertVc, animated: true, completion: nil)
-            })
-        }
+        viewModel.selectedOutageStatus.value = viewModel.outageStatusArray![indexPath.row]
     }
 }
 

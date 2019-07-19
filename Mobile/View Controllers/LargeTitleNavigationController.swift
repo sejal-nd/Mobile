@@ -11,20 +11,25 @@ import UIKit
 class LargeTitleNavigationController: UINavigationController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+        commonInit()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         commonInit()
     }
     
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        
         commonInit()
     }
     
-    
     private func commonInit() {
         navigationBar.barStyle = .default
-        navigationBar.barTintColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        
+        let color: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        navigationBar.backgroundColor = color
+        navigationBar.barTintColor = color
         navigationBar.tintColor = .actionBlue
         navigationBar.isTranslucent = false
         
@@ -44,5 +49,18 @@ class LargeTitleNavigationController: UINavigationController {
         ]
         
         setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    // If presenting an InfoModalViewController or WebViewController, first wrap it in a
+    // LargeTitleNavigationController so that we get the styled large title nav bar
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        if viewControllerToPresent is InfoModalViewController ||
+            viewControllerToPresent is WebViewController {
+            let newNavController = LargeTitleNavigationController(rootViewController: viewControllerToPresent)
+            newNavController.modalPresentationStyle = .formSheet
+            present(newNavController, animated: flag, completion: completion)
+        } else {
+            super.present(viewControllerToPresent, animated: flag, completion: completion)
+        }
     }
 }

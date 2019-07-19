@@ -89,10 +89,10 @@ class MoreViewController: UIViewController {
     @objc func toggleBiometrics(_ sender: UISwitch) {
         if sender.isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
-            Analytics.log(event: .touchIDEnable)
+            GoogleAnalytics.log(event: .touchIDEnable)
         } else {
             viewModel.disableBiometrics()
-            Analytics.log(event: .touchIDDisable)
+            GoogleAnalytics.log(event: .touchIDDisable)
         }
     }
     
@@ -178,6 +178,8 @@ class MoreViewController: UIViewController {
         case let vc as ChangePasswordViewController:
             vc.delegate = self
         case let vc as PECOReleaseOfInfoViewController:
+            vc.delegate = self
+        case let vc as SetDefaultAccountViewController:
             vc.delegate = self
         default:
             break
@@ -382,7 +384,7 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
     func changePasswordViewControllerDidChangePassword(_ changePasswordViewController: ChangePasswordViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Password changed", comment: ""))
-            Analytics.log(event: .changePasswordComplete)
+            GoogleAnalytics.log(event: .changePasswordComplete)
         })
     }
     
@@ -394,10 +396,20 @@ extension MoreViewController: ChangePasswordViewControllerDelegate {
 extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     
     func pecoReleaseOfInfoViewControllerDidUpdate(_ vc: PECOReleaseOfInfoViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+        DispatchQueue.main.asyncAfter(deadline:  .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Release of information updated", comment: ""))
-            Analytics.log(event: .releaseInfoComplete)
+            GoogleAnalytics.log(event: .releaseInfoComplete)
         })
     }
     
+}
+
+extension MoreViewController: SetDefaultAccountViewControllerDelegate {
+    
+    func setDefaultAccountViewControllerDidFinish(_ setDefaultAccountViewController: SetDefaultAccountViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            self.view.showToast(NSLocalizedString("Default account changed", comment: ""))
+            FirebaseUtility.logEvent(.more, parameters: [.init(parameterName: .action, value: .set_default_account_complete)])
+        })
+    }
 }

@@ -207,7 +207,7 @@ class UsageViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -316,7 +316,7 @@ class UsageViewController: AccountPickerViewController {
                      previousBillButton.rx.tap.asDriver().mapTo(true))
             .drive(onNext: { [weak self] isPreviousBill in
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
-                Analytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
+                GoogleAnalytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
             })
             .disposed(by: disposeBag)
         
@@ -420,9 +420,9 @@ class UsageViewController: AccountPickerViewController {
             .distinctUntilChanged()
             .subscribe(onNext: { index in
                 if index == 0 {
-                    Analytics.log(event: .billElectricityToggle)
+                    GoogleAnalytics.log(event: .billElectricityToggle)
                 } else {
-                    Analytics.log(event: .billGasToggle)
+                    GoogleAnalytics.log(event: .billGasToggle)
                 }
             })
             .disposed(by: disposeBag)
@@ -830,18 +830,18 @@ class UsageViewController: AccountPickerViewController {
         case .homeProfile:
             performSegue(withIdentifier: "updateYourHomeProfileSegue", sender: accountDetail)
         case .peakRewards:
-            Analytics.log(event: .viewUsagePeakRewards)
+            GoogleAnalytics.log(event: .viewUsagePeakRewards)
             performSegue(withIdentifier: "peakRewardsSegue", sender: accountDetail)
         case .smartEnergyRewards:
-            Analytics.log(event: .viewSmartEnergyRewards)
+            GoogleAnalytics.log(event: .viewSmartEnergyRewards)
             performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
         case .hourlyPricing:
             if accountDetail.isHourlyPricing {
-                Analytics.log(event: .hourlyPricing,
+                GoogleAnalytics.log(event: .hourlyPricing,
                               dimensions: [.hourlyPricingEnrollment: "enrolled"])
                 performSegue(withIdentifier: "hourlyPricingSegue", sender: accountDetail)
             } else {
-                Analytics.log(event: .hourlyPricing,
+                GoogleAnalytics.log(event: .hourlyPricing,
                               dimensions: [.hourlyPricingEnrollment: "unenrolled"])
                 let safariVc = SFSafariViewController
                     .createWithCustomStyle(url: URL(string: "https://hourlypricing.comed.com")!)
@@ -849,11 +849,11 @@ class UsageViewController: AccountPickerViewController {
             }
         case .peakTimeSavings:
             if accountDetail.isAMIAccount && !accountDetail.isPTSAccount {
-                Analytics.log(event: .peakTimePromo)
+                GoogleAnalytics.log(event: .peakTimePromo)
                 let safariVc = SFSafariViewController.createWithCustomStyle(url: URL(string: "http://comed.com/PTS")!)
                 present(safariVc, animated: true, completion: nil)
             } else {
-                Analytics.log(event: .viewPeakTimeSavings)
+                GoogleAnalytics.log(event: .viewPeakTimeSavings)
                 performSegue(withIdentifier: "smartEnergyRewardsSegue", sender: accountDetail)
             }
         }

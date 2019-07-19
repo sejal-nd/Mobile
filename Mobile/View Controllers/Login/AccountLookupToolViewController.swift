@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class AccountLookupToolViewController: UIViewController {
+class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewController {
     
     let disposeBag = DisposeBag()
     
@@ -18,32 +18,25 @@ class AccountLookupToolViewController: UIViewController {
     weak var delegate: AccountLookupToolResultViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
-    @IBOutlet weak var identifierTextField: FloatLabelTextField!
+    @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var searchButton: PrimaryButtonNew!
     
-    var searchButton = UIBarButtonItem()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
-        title = NSLocalizedString("Account Lookup", comment: "")
+        addCloseButton()
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        searchButton = UIBarButtonItem(title: NSLocalizedString("Search", comment: ""), style: .done, target: self, action: #selector(onSearchPress))
-        searchButton.accessibilityLabel = NSLocalizedString("Search", comment: "")
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = searchButton
-        navigationItem.rightBarButtonItem?.accessibilityLabel = NSLocalizedString("Search", comment: "")
+        title = NSLocalizedString("Account Lookup Tool", comment: "")
+        
         viewModel.searchButtonEnabled.drive(searchButton.rx.isEnabled).disposed(by: disposeBag)
         
+        identifierDescriptionLabel.textColor = .deepGray
         identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, or Business Tax ID", comment: "")
         
-        phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -68,7 +61,7 @@ class AccountLookupToolViewController: UIViewController {
         
         phoneNumberTextField.textField.sendActions(for: .editingDidEnd) // Load the passed phone number from view model
         
-        identifierTextField.textField.placeholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
+        identifierTextField.placeholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
         identifierTextField.textField.autocorrectionType = .no
         identifierTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIndentifierKeyboardDonePress))
         identifierTextField.textField.delegate = self
@@ -102,15 +95,7 @@ class AccountLookupToolViewController: UIViewController {
         }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func onSearchPress() {
+    @IBAction func onSearchPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -120,7 +105,7 @@ class AccountLookupToolViewController: UIViewController {
             if self.viewModel.accountLookupResults.count == 1 {
                 let selectedAccount = self.viewModel.accountLookupResults.first!
                 self.delegate?.accountLookupToolDidSelectAccount(accountNumber: selectedAccount.accountNumber!, phoneNumber: self.viewModel.phoneNumber.value)
-                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true, completion: nil)
             } else {
                 self.performSegue(withIdentifier: "accountLookupToolResultSegue", sender: self)
             }
@@ -145,28 +130,12 @@ class AccountLookupToolViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AccountLookupToolResultViewController {
             vc.viewModel = viewModel
+            vc.delegate = delegate
         }
     }
     

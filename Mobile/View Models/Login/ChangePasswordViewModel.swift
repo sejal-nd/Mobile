@@ -167,6 +167,8 @@ class ChangePasswordViewModel {
                         }
                     }
                     
+                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
+                    
                     onSuccess()
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
@@ -181,7 +183,6 @@ class ChangePasswordViewModel {
         } else {
             authService.changePassword(currentPassword: currentPassword.value, newPassword: newPassword.value)
                 .observeOn(MainScheduler.instance)
-                .asObservable()
                 .subscribe(onNext: { [weak self] _ in
                     guard let self = self else { return }
                     if self.biometricsService.isBiometricsEnabled() { // Store the new password in the keychain
@@ -196,11 +197,12 @@ class ChangePasswordViewModel {
                         }
                     }
                     
+                    FirebaseUtility.logEvent(.changePasswordNetworkComplete)
+                    
                     onSuccess()
                 }, onError: { (error: Error) in
                     let serviceError = error as! ServiceError
-                    
-                    if(serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue) {
+                    if serviceError.serviceCode == ServiceErrorCode.fNPwdNoMatch.rawValue {
                         onPasswordNoMatch()
                     } else {
                         onError(error.localizedDescription)

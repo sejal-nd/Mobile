@@ -370,7 +370,7 @@ extension WalletViewController: PaymentusFormViewControllerDelegate {
     }
     
     func didAddWalletItem(_ walletItem: WalletItem) {
-        Analytics.log(event: .addWalletComplete)
+        GoogleAnalytics.log(event: .addWalletComplete)
 
         let toastMessage = walletItem.bankOrCard == .bank ?
             NSLocalizedString("Bank account added", comment: "") :

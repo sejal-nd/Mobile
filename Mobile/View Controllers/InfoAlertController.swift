@@ -75,9 +75,7 @@ class InfoAlertController: UIViewController {
         if let icon = icon {
             iconImageView.image = icon
             stackView.addArrangedSubview(iconImageView)
-            if #available(iOS 11, *) { // iOS 10 users will suffer the extra 8 points
-                stackView.setCustomSpacing(12, after: iconImageView)
-            }
+            stackView.setCustomSpacing(12, after: iconImageView)
         }
         
         stackView.addArrangedSubview(titleLabel)

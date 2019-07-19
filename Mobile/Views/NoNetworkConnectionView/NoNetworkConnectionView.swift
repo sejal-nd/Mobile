@@ -154,7 +154,7 @@ class NoNetworkConnectionView: UIView {
         }
         
         if let phone = phone, let url = URL(string: "telprompt://\(phone)"), UIApplication.shared.canOpenURL(url) {
-            Analytics.log(event: .outageAuthEmergencyCall)
+            GoogleAnalytics.log(event: .outageAuthEmergencyCall)
             UIApplication.shared.open(url)
         }
     }

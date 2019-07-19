@@ -11,43 +11,44 @@ import RxSwift
 import RxCocoa
 import Lottie
 
-protocol ReportOutageDelegate: class {
-    func didReportOutage()
-}
-
 class ReportOutageViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    @IBOutlet weak var accountInfoBar: AccountInfoBar!
     
     // Meter Ping
     @IBOutlet weak var meterPingStackView: UIStackView!
     
-    @IBOutlet weak var meterPingCurrentStatusAnimationView: UIView!
+    @IBOutlet weak var meterPingCurrentStatusCheckImageView: UIImageView!
+    @IBOutlet weak var meterPingCurrentStatusLoadingView: UIView!
     @IBOutlet weak var meterPingCurrentStatusLabel: UILabel!
     
-    @IBOutlet weak var meterPingStatusView: UIView!
-    @IBOutlet weak var meterPingStatusTitleLabel: UILabel!
-    @IBOutlet weak var meterPingStatusDescriptionLabel: UILabel!
+    @IBOutlet weak var meterPingPowerStatusView: UIView!
+    @IBOutlet weak var meterPingPowerStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingPowerStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingVoltageStatusView: UIView!
+    @IBOutlet weak var meterPingVoltageStatusImageView: UIImageView!
+    @IBOutlet weak var meterPingVoltageStatusLabel: UILabel!
+    
+    @IBOutlet weak var meterPingResultLabel: UILabel!
     
     @IBOutlet weak var meterPingFuseBoxView: UIView!
     @IBOutlet weak var meterPingFuseBoxSwitch: Switch!
     @IBOutlet weak var meterPingFuseBoxLabel: UILabel!
     
-    @IBOutlet weak var meterPingSeparatorView: UIView!
-    
     // Report Form
     @IBOutlet weak var reportFormStackView: UIStackView!
     @IBOutlet weak var areYourLightsOutView: UIView!
     @IBOutlet weak var areYourLightsOutLabel: UILabel!
-    @IBOutlet weak var segmentedControl: SegmentedControlNew!
+    @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var howCanWeContactYouLabel: UILabel!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionContainerView: UIView!
-    @IBOutlet weak var phoneExtensionTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var phoneExtensionTextField: FloatLabelTextField!
     @IBOutlet weak var commentView: UIView!
-    @IBOutlet weak var commentTextView: FloatLabelTextViewNew!
+    @IBOutlet weak var commentTextView: FloatLabelTextView!
     @IBOutlet weak var commentLabel: UILabel!
     
     // Footer View
@@ -55,16 +56,13 @@ class ReportOutageViewController: UIViewController {
     @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
-    @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var submitButton: PrimaryButtonNew!
     
-    private var lottieAnimationView: LOTAnimationView?
-    
-    var delegate: ReportOutageDelegate?
     let viewModel = ReportOutageViewModel(outageService: ServiceFactory.createOutageService())
     let opco = Environment.shared.opco
     
     let disposeBag = DisposeBag()
+    
+    var submitButton = UIBarButtonItem()
     
     var unauthenticatedExperience = false // `true` passed from UnauthenticatedOutageStatusViewController
 
@@ -73,33 +71,35 @@ class ReportOutageViewController: UIViewController {
         
         title = NSLocalizedString("Report Outage", comment: "")
 
-        style()
-        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
+        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = submitButton
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        if unauthenticatedExperience,
-            let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
-            let addressText = viewModel.outageStatus?.maskedAddress {
-            accountInfoBar.configure(accountNumberText: accountNumberText, addressText: addressText)
+        if unauthenticatedExperience {
+            accountInfoBar.update(accountNumber: viewModel.outageStatus!.maskedAccountNumber, address: viewModel.outageStatus!.maskedAddress)
         }
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
             let bg = UIView(frame: meterPingStackView.bounds)
             bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            bg.backgroundColor = .softGray
             bg.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
             meterPingStackView.addSubview(bg)
             meterPingStackView.sendSubviewToBack(bg)
             
             meterPingStackView.spacing = 20
             meterPingStackView.isHidden = false
-            meterPingSeparatorView.isHidden = false
-            
+
             footerContainerView.isHidden = true
             
-            meterPingStatusView.isHidden = true
+            meterPingPowerStatusView.isHidden = true
+            meterPingVoltageStatusView.isHidden = true
+            meterPingResultLabel.isHidden = true
             meterPingFuseBoxView.isHidden = true
             
             meterPingFuseBoxSwitch.rx.isOn.asDriver().map(!).drive(viewModel.reportFormHidden).disposed(by: disposeBag)
@@ -115,19 +115,37 @@ class ReportOutageViewController: UIViewController {
             
             viewModel.reportFormHidden.value = true
 
+            meterPingCurrentStatusLabel.font = SystemFont.medium.of(textStyle: .headline)
+            meterPingCurrentStatusLabel.textColor = .blackText
             meterPingCurrentStatusLabel.text = NSLocalizedString("Checking meter status...", comment: "")
             
+            meterPingPowerStatusImageView.isAccessibilityElement = true
+            meterPingPowerStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
+            meterPingPowerStatusLabel.textColor = .blackText
+            
+            meterPingVoltageStatusImageView.isAccessibilityElement = true
+            meterPingVoltageStatusLabel.font = SystemFont.medium.of(textStyle: .title1)
+            meterPingVoltageStatusLabel.textColor = .blackText
+            
+            meterPingResultLabel.font = SystemFont.regular.of(textStyle: .body)
+            meterPingResultLabel.textColor = .deepGray
+            meterPingFuseBoxLabel.font = OpenSans.regular.of(textStyle: .headline)
+            meterPingFuseBoxLabel.textColor = .middleGray
+            meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
             meterPingFuseBoxLabel.text = NSLocalizedString("I have checked my circuit breakers or fuse box and I would still like to report an outage.", comment: "")
             meterPingFuseBoxLabel.isAccessibilityElement = false
             meterPingFuseBoxSwitch.accessibilityLabel = meterPingFuseBoxLabel.text
             
-            // Add Lottie Animation
-            self.setLottieAnimation(for: "smallcircleload_blue", shouldLoop: true)
+            let lottieAnimation = LOTAnimationView(name: "loading_blue")
+            lottieAnimation.frame = CGRect(x: 0, y: 0, width: 33, height: 33)
+            lottieAnimation.loopAnimation = true
+            lottieAnimation.contentMode = .scaleToFill
+            meterPingCurrentStatusLoadingView.addSubview(lottieAnimation)
+            lottieAnimation.play()
         } else {
             meterPingStackView.isHidden = true
             meterPingFuseBoxView.isHidden = true
             viewModel.reportFormHidden.value = false
-            meterPingSeparatorView.isHidden = true
         }
 
         if opco != .comEd {
@@ -139,6 +157,10 @@ class ReportOutageViewController: UIViewController {
         } else {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
         }
+        
+        areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .headline)
+        howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .headline)
+        commentLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
@@ -175,12 +197,15 @@ class ReportOutageViewController: UIViewController {
             phoneExtensionContainerView.isHidden = true
         }
         
+        footerBackgroundView.backgroundColor = .softGray
+        footerBackgroundView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 1.5)
+        
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
-        commentTextView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
+        commentTextView.textView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
         
         // Data binding
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
@@ -218,9 +243,9 @@ class ReportOutageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if unauthenticatedExperience {
-            Analytics.log(event: .reportAnOutageUnAuthScreenView)
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthScreenView)
         } else {
-            Analytics.log(event: .reportOutageAuthOffer)
+            GoogleAnalytics.log(event: .reportOutageAuthOffer)
         }
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
@@ -228,28 +253,45 @@ class ReportOutageViewController: UIViewController {
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Checking meter status", comment: ""))
             })
             
-            viewModel.meterPingGetStatus(onComplete: { [weak self] meterPingInfo in
-                guard let `self` = self else { return }
-                
-                // Add Lottie Animation
-                self.setLottieAnimation(for: "checkmark_blue")
+            viewModel.meterPingGetStatus(onComplete: { meterPingInfo in
+                self.meterPingCurrentStatusLoadingView.isHidden = true
+                self.meterPingCurrentStatusCheckImageView.isHidden = false
                 
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
-                self.meterPingStatusView.isHidden = false
                 
-                var problemsFound = !meterPingInfo.pingResult
+                var problemsFound = false
+                if meterPingInfo.pingResult {
+                    self.meterPingPowerStatusView.isHidden = false
+                    self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                    self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Successful", comment: "")
+                } else {
+                    problemsFound = true
+                    self.meterPingPowerStatusView.isHidden = false
+                    self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                    self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
+                    self.meterPingVoltageStatusView.isHidden = true
+                }
+                
                 if meterPingInfo.voltageResult {
+                    if meterPingInfo.pingResult {
+                        self.meterPingVoltageStatusView.isHidden = false
+                    }
                     if let voltageReads = meterPingInfo.voltageReads,
                         !voltageReads.lowercased().contains("improper"),
                         voltageReads.lowercased().contains("proper") {
+                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_successcheckcircle")
+                        self.meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Successful", comment: "")
                     } else {
                         problemsFound = true
+                        self.meterPingVoltageStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                        self.meterPingVoltageStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
                     }
                 }
-                
+
                 if problemsFound {
-                    self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                    self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                    self.meterPingResultLabel.isHidden = false
+                    self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
                     
                     self.areYourLightsOutView.isHidden = true
                     self.viewModel.reportFormHidden.value = false
@@ -262,15 +304,18 @@ class ReportOutageViewController: UIViewController {
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
-            }, onError: { [weak self] in
-                guard let `self` = self else { return }
-                self.setLottieAnimation(for: "checkmark_blue")
-                
+            }, onError: {
+                self.meterPingCurrentStatusLoadingView.isHidden = true
+                self.meterPingCurrentStatusCheckImageView.image = #imageLiteral(resourceName: "ic_check_meterping_fail")
+                self.meterPingCurrentStatusCheckImageView.isHidden = false
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
                 
-                self.meterPingStatusView.isHidden = false
-                self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                self.meterPingPowerStatusView.isHidden = false
+                self.meterPingPowerStatusImageView.image = #imageLiteral(resourceName: "ic_failxcircle")
+                self.meterPingPowerStatusImageView.accessibilityLabel = NSLocalizedString("Failed", comment: "")
+                
+                self.meterPingResultLabel.isHidden = false
+                self.meterPingResultLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
                 
                 self.areYourLightsOutView.isHidden = true
                 self.viewModel.reportFormHidden.value = false
@@ -286,56 +331,12 @@ class ReportOutageViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    
-    // MARK: - Helper
-    
-    private func style() {
-        // Meter Ping
-        meterPingCurrentStatusLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        meterPingCurrentStatusLabel.textColor = .deepGray
-        
-        // Status View
-        meterPingStatusView.layer.borderWidth = 1.0
-        meterPingStatusView.layer.borderColor = UIColor.accentGray.cgColor
-        meterPingStatusTitleLabel.textColor = .deepGray
-        meterPingStatusTitleLabel.font = SystemFont.semibold.of(textStyle: .body)
-        meterPingStatusDescriptionLabel.textColor = .deepGray
-        meterPingStatusDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        
-        // Fuse Box
-        meterPingFuseBoxLabel.textColor = .deepGray
-        meterPingFuseBoxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        meterPingFuseBoxLabel.setLineHeight(lineHeight: 25)
-        
-        // Form
-        areYourLightsOutLabel.textColor = .deepGray
-        areYourLightsOutLabel.font = SystemFont.regular.of(textStyle: .body)
-        howCanWeContactYouLabel.textColor = .deepGray
-        howCanWeContactYouLabel.font = SystemFont.regular.of(textStyle: .body)
-        commentLabel.textColor = .deepGray
-        commentLabel.font = SystemFont.regular.of(textStyle: .body)
-    }
-    
-    private func setLottieAnimation(for name: String, shouldLoop: Bool = false) {
-        self.lottieAnimationView?.removeFromSuperview()
-        self.lottieAnimationView = LOTAnimationView(name: name)
-        self.lottieAnimationView?.frame = CGRect(x: 0, y: 0, width: 33, height: 33)
-        self.lottieAnimationView?.loopAnimation = shouldLoop
-        self.lottieAnimationView?.contentMode = .scaleToFill
-        if let animationView = self.lottieAnimationView {
-            self.meterPingCurrentStatusAnimationView.addSubview(animationView)
-            animationView.play()
-        }
-    }
-
-    
-    // MARK: - Actions
-    
     @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func submitButtonPress(_ sender: Any? = nil) {
+    @objc func onSubmitPress() {
+        guard submitButton.isEnabled else { return }
         view.endEditing(true)
         
         let errorBlock = { [weak self] (errorMessage: String) in
@@ -351,49 +352,43 @@ class ReportOutageViewController: UIViewController {
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
-                self.delegate?.didReportOutage()
                 self.navigationController?.popViewController(animated: true)
-                }, onError: errorBlock)
-            Analytics.log(event: .reportAnOutageUnAuthSubmit)
+            }, onError: errorBlock)
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
-                self.delegate?.didReportOutage()
                 self.navigationController?.popViewController(animated: true)
-                }, onError: errorBlock)
-            Analytics.log(event: .reportOutageAuthSubmit)
+            }, onError: errorBlock)
+            GoogleAnalytics.log(event: .reportOutageAuthSubmit)
         }
         
-    }
 
-    @IBAction func switchPressed(sender: AnyObject) {
-        if sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn {
-            Analytics.log(event: .reportOutageAuthCircuitBreak)
-        }
     }
     
+    @IBAction func switchPressed(sender: AnyObject) {
+        if sender.isEqual(meterPingFuseBoxSwitch) && meterPingFuseBoxSwitch.isOn {
+            GoogleAnalytics.log(event: .reportOutageAuthCircuitBreak)
+        }
+    }
     
     // MARK: - ScrollView
     
-    @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
-            let curve = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
+    @objc func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        let keyboardHeight: CGFloat
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            keyboardHeight = 0 // view.endEditing() triggers keyboardWillHideNotification with a non-zero height
-        } else {
-            keyboardHeight = keyboardFrameValue.cgRectValue.size.height
-        }
-        
-        let options = UIView.AnimationOptions(rawValue: curve.uintValue<<16)
-        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-            self.stickyFooterBottomConstraint.constant = keyboardHeight
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        let safeAreaBottomInset = view.safeAreaInsets.bottom
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
+        scrollView.contentInset = insets
+        scrollView.scrollIndicatorInsets = insets
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
 
 }
@@ -443,10 +438,10 @@ extension ReportOutageViewController: UITextFieldDelegate {
 extension ReportOutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        let screenName: AnalyticsEvent = unauthenticatedExperience ?
+        let screenName: GoogleAnalyticsEvent = unauthenticatedExperience ?
             .reportAnOutageUnAuthEmergencyPhone :
             .reportOutageEmergencyCall
         
-        Analytics.log(event: screenName)
+        GoogleAnalytics.log(event: screenName)
     }
 }

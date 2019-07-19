@@ -43,7 +43,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Analytics.log(event: .registerAccountComplete)
+        GoogleAnalytics.log(event: .registerAccountComplete)
     }
     
     private var emailAddress: String {
@@ -79,7 +79,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
                 .subscribe(onNext: { [weak self] in
                     LoadingView.hide()
                     self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
-                    Analytics.log(event: .registerResendEmail)
+                    GoogleAnalytics.log(event: .registerResendEmail)
                 }, onError: { [weak self] err in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: err.localizedDescription, preferredStyle: .alert)

@@ -292,7 +292,7 @@ class HomeBillCardView: UIView {
         
         viewModel.showErrorState
             .filter { $0 }
-            .drive(onNext: { _ in Analytics.log(event: .checkBalanceError) })
+            .drive(onNext: { _ in GoogleAnalytics.log(event: .checkBalanceError) })
             .disposed(by: bag)
         
         viewModel.showErrorState.not().drive(errorStack.rx.isHidden).disposed(by: bag)
@@ -373,7 +373,7 @@ class HomeBillCardView: UIView {
         oneTouchSliderContainer.addGestureRecognizer(tutorialSwipe)
         
         Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
-                         NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
+                         NotificationCenter.default.rx.notification(UIAccessibility.voiceOverStatusDidChangeNotification, object: nil))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -387,7 +387,7 @@ class HomeBillCardView: UIView {
     }
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
-        .do(onNext: { Analytics.log(event: .viewBillBillCard) })
+        .do(onNext: { GoogleAnalytics.log(event: .viewBillBillCard) })
     
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
@@ -399,7 +399,7 @@ class HomeBillCardView: UIView {
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
-            Analytics.log(event: .oneTouchTermsView)
+            GoogleAnalytics.log(event: .oneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
         .unwrap()
@@ -507,7 +507,7 @@ class HomeBillCardView: UIView {
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true
             vc.shouldSetOneTouchPayByDefault = true
-            Analytics.log(event: .oneTouchEnabledBillCard)
+            GoogleAnalytics.log(event: .oneTouchEnabledBillCard)
             return vc
         }
         .asDriver(onErrorDriveWith: .empty())

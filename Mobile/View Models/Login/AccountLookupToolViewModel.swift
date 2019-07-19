@@ -18,6 +18,7 @@ class AccountLookupToolViewModel {
     let identifierNumber = Variable("")
     
     var accountLookupResults = [AccountLookupResult]()
+    let selectedAccount = Variable<AccountLookupResult?>(nil)
     
     required init(authService: AuthenticationService) {
         self.authService = authService
@@ -65,5 +66,8 @@ class AccountLookupToolViewModel {
     private func extractDigitsFrom(_ string: String) -> String {
         return string.components(separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
     }
+    
+    private(set) lazy var selectAccountButtonEnabled: Driver<Bool> =
+        self.selectedAccount.asDriver().isNil().not()
 
 }

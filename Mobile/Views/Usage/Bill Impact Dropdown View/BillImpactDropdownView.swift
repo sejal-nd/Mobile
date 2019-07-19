@@ -203,11 +203,11 @@ class BillImpactDropdownView: UIView {
         guard let viewModel = viewModel else { return }
         
         if sender.tag == 0 {
-            Analytics.log(event: .billPreviousReason)
+            GoogleAnalytics.log(event: .billPreviousReason)
         } else if sender.tag == 1 {
-            Analytics.log(event: .billWeatherReason)
+            GoogleAnalytics.log(event: .billWeatherReason)
         } else {
-            Analytics.log(event: .billOtherReason)
+            GoogleAnalytics.log(event: .billOtherReason)
         }
         
         viewModel.setLikelyReasonSelected(tag: sender.tag)

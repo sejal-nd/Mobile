@@ -61,14 +61,14 @@ class HomeBillCardViewModel {
             .subscribe(onNext: { oneTouchPayEvent, walletItem in
                 switch (walletItem.bankOrCard, oneTouchPayEvent.error) {
                 case (.bank, nil):
-                    Analytics.log(event: .oneTouchBankComplete)
+                    GoogleAnalytics.log(event: .oneTouchBankComplete)
                 case (.bank, let error):
-                    Analytics.log(event: .oneTouchBankError,
+                    GoogleAnalytics.log(event: .oneTouchBankError,
                                          dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 case (.card, nil):
-                    Analytics.log(event: .oneTouchCardComplete)
+                    GoogleAnalytics.log(event: .oneTouchCardComplete)
                 case (.card, let error):
-                    Analytics.log(event: .oneTouchCardError,
+                    GoogleAnalytics.log(event: .oneTouchCardError,
                                          dimensions: [.errorCode: (error as! ServiceError).serviceCode])
                 }
             })
@@ -112,9 +112,9 @@ class HomeBillCardViewModel {
         .do(onNext: { _, walletItem in
             switch walletItem.bankOrCard {
             case .bank:
-                Analytics.log(event: .oneTouchBankOffer)
+                GoogleAnalytics.log(event: .oneTouchBankOffer)
             case .card:
-                Analytics.log(event: .oneTouchCardOffer)
+                GoogleAnalytics.log(event: .oneTouchCardOffer)
             }
         })
         .map { accountDetail, walletItem in

@@ -10,26 +10,21 @@ import UIKit
 
 class InfoModalViewController: DismissableFormSheetViewController {
     
-    @IBOutlet weak var navBarView: UIView!
-    @IBOutlet weak var xButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    private var navTitle: String
     private var image: UIImage
     private var infoDescription: String
     private let onClose: (() -> ())?
     
-    init(title: String, image img: UIImage, description: String, onClose: (() -> ())? = nil) {
-        navTitle = title
-        image = img
-        infoDescription = description
+    init(title: String, image: UIImage, description: String, onClose: (() -> ())? = nil) {
+        self.image = image
+        self.infoDescription = description
         self.onClose = onClose
         
         super.init(nibName: "InfoModal", bundle: nil)
         
-        modalPresentationStyle = .formSheet // For iPad
+        self.title = title
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,14 +34,9 @@ class InfoModalViewController: DismissableFormSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBarView.translatesAutoresizingMaskIntoConstraints = false
-        navBarView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        extendedLayoutIncludesOpaqueBars = true
         
-        xButton.tintColor = .actionBlue
-        xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
-        
-        titleLabel.textColor = .blackText
-        titleLabel.text = navTitle
+        addCloseButton()
         
         imageView.image = image
 
@@ -56,8 +46,4 @@ class InfoModalViewController: DismissableFormSheetViewController {
         descriptionLabel.setLineHeight(lineHeight: 25)
     }
     
-    @IBAction func xAction(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: onClose)
-    }
-
 }

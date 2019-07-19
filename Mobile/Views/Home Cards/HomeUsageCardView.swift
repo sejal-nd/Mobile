@@ -352,12 +352,12 @@ class HomeUsageCardView: UIView {
             .disposed(by: disposeBag)
         
         viewModel.showSmartEnergyEmptyState
-            .do(onNext: { Analytics.log(event: .emptyStateSmartEnergyHome) })
+            .do(onNext: { GoogleAnalytics.log(event: .emptyStateSmartEnergyHome) })
             .drive(onNext: { [weak self] in self?.showSmartEnergyRewardsEmptyState() })
             .disposed(by: disposeBag)
         
         viewModel.showBillComparisonEmptyState
-            .do(onNext: { Analytics.log(event: .emptyStateUsageOverview) })
+            .do(onNext: { GoogleAnalytics.log(event: .emptyStateUsageOverview) })
             .drive(onNext: { [weak self] in self?.showBillComparisonEmptyState() })
             .disposed(by: disposeBag)
         
@@ -404,9 +404,9 @@ class HomeUsageCardView: UIView {
         segmentedControl.selectedIndex.asDriver().skip(1).distinctUntilChanged().drive(viewModel.electricGasSelectedSegmentIndex).disposed(by: disposeBag)
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
-                Analytics.log(event: .viewUsageElectricity)
+                GoogleAnalytics.log(event: .viewUsageElectricity)
             } else {
-                Analytics.log(event: .viewUsageGas)
+                GoogleAnalytics.log(event: .viewUsageGas)
             }
         }).disposed(by: disposeBag)
         

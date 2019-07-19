@@ -34,8 +34,6 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         return Variable([selectedCards, rejectedCards])
     }()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -43,9 +41,6 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         view.backgroundColor = .primaryColor
         collectionView?.backgroundColor = .clear
         collectionView?.collectionViewLayout = HomeEditFlowLayout()
-        
-        cancelButton.tintColor = .white
-        saveButton.tintColor = .white
         
         installsStandardGestureForInteractiveMovement = false
         collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
@@ -64,12 +59,6 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                 self?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
         
     }
     
@@ -286,12 +275,11 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left,
                           height: 67)
         default:
-
             let width = collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left
             let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
             let instructionsLabelHeight = (HomeEditSectionHeaderView.instructionsLabelString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .headline)], context: nil).height
             let cardsInUseLabelHeight = (cardsInUseString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .title1)], context: nil).height
-            topSectionHeaderHeight = instructionsLabelHeight + 20 + cardsInUseLabelHeight
+            topSectionHeaderHeight = instructionsLabelHeight + cardsInUseLabelHeight + 36 // 16 top padding + 20 space between labels
             return CGSize(width: width, height: topSectionHeaderHeight)
         }
     }

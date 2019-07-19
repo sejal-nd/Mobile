@@ -10,6 +10,8 @@ import UIKit
 
 class AccountLookupToolResultCell: UITableViewCell {
     
+    @IBOutlet weak var radioButtonImageView: UIImageView!
+    
     @IBOutlet weak var accountNumberLabel: UILabel!
     @IBOutlet weak var streetNumberLabel: UILabel!
     @IBOutlet weak var unitNumberLabel: UILabel!
@@ -23,13 +25,20 @@ class AccountLookupToolResultCell: UITableViewCell {
         
         selectionStyle = .none
         
-        accountNumberLabel.textColor = .blackText
-        streetNumberLabel.textColor = .deepGray
-        unitNumberLabel.textColor = .deepGray
+        accountNumberLabel.textColor = .deepGray
+        accountNumberLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
-        accountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
+        streetNumberLabel.textColor = .deepGray
         streetNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+        
+        unitNumberLabel.textColor = .deepGray
         unitNumberLabel.font = SystemFont.regular.of(textStyle: .headline)
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        radioButtonImageView.image = selected ? #imageLiteral(resourceName: "ic_radiobutton_selected") : #imageLiteral(resourceName: "ic_radiobutton_deselected")
     }
 
 }

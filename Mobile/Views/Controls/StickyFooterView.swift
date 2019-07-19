@@ -33,6 +33,6 @@ class StickyFooterView: UIView {
             strokeView.leadingAnchor.constraint(equalTo: leadingAnchor),
             strokeView.trailingAnchor.constraint(equalTo: trailingAnchor),
             strokeView.heightAnchor.constraint(equalToConstant: 1)
-            ])
+        ])
     }
 }
