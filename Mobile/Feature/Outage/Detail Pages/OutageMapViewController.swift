@@ -33,7 +33,7 @@ class OutageMapViewController: UIViewController {
             url = URL(string: Environment.shared.outageMapUrl)!
             a11yLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
         }
-            
+        
         webView.navigationDelegate = self
         webView.isHidden = true
         webView.load(URLRequest(url: url))
