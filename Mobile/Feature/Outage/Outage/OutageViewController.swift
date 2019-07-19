@@ -63,14 +63,14 @@ class OutageViewController: AccountPickerViewController {
         
         configureTableHeaderFooterView()
         
-        configureState(.loading)
-        loadOutageStatus()
+        configureUserState(userState)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        configureUserState(userState)
+        let shouldHideNavigationBar = userState == .authenticated ? true : false
+        navigationController?.setNavigationBarHidden(shouldHideNavigationBar, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -108,9 +108,6 @@ class OutageViewController: AccountPickerViewController {
     private func configureTableView() {
         let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
         tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
-        
-        tableView.addSubview(refreshControl)
-
         tableView.reloadData()
     }
     
@@ -126,6 +123,7 @@ class OutageViewController: AccountPickerViewController {
         footerTextView.linkTapDelegate = self
     }
     
+    // todo we need to re think this for unauth which has no loading.
     @objc
     private func loadOutageStatus(sender: UIRefreshControl? = nil) {
         viewModel.fetchData(onSuccess: { [weak self] outageStatus in
@@ -183,6 +181,12 @@ class OutageViewController: AccountPickerViewController {
             navigationController?.setNavigationBarHidden(true, animated: true)
             accountPicker.isHidden = false
             accountInfoBar.isHidden = true
+            
+            tableView.addSubview(refreshControl)
+
+            configureState(.loading)
+            
+            loadOutageStatus()
         case .unauthenticated:
             title = "Outage"
             
@@ -230,6 +234,30 @@ class OutageViewController: AccountPickerViewController {
             maintenanceModeContainerView.isHidden = true
             NoNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = false
+        }
+    }
+    
+    // todo need to revists, implement in unauth switch, and implement in load outage state
+    private func configureOutageStatus(_ outageStatus: OutageStatus) {
+        if outageStatus.flagGasOnly {
+            self.configureState(.gasOnly)
+        } else {
+            self.configureState(.normal)
+            
+            // Enable / Disable Report Outage Cell
+            if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
+                if outageStatus.flagNoPay  || outageStatus.flagFinaled || outageStatus.flagNonService {
+                    cell.isEnabled = false
+                } else {
+                    cell.isEnabled = true
+                }
+                
+                cell.isEnabled = !outageStatus.flagNoPay
+            }
+            
+            self.outageStatusView.setOutageStatus(outageStatus,
+                                                  reportedResults: self.viewModel.reportedOutage,
+                                                  hasJustReported: self.viewModel.hasJustReportedOutage)
         }
     }
 }
