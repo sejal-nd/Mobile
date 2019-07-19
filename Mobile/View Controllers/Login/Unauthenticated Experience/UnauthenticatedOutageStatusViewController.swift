@@ -28,11 +28,11 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
 
         title = NSLocalizedString("Outage", comment: "")
         
-        accountInfoBar.update(accountNumber: viewModel.selectedOutageStatus!.maskedAccountNumber, address: viewModel.selectedOutageStatus!.maskedAddress)
+        accountInfoBar.update(accountNumber: viewModel.selectedOutageStatus.value!.maskedAccountNumber, address: viewModel.selectedOutageStatus.value!.maskedAddress)
         
         outageStatusButton.delegate = self
         
-        let currentOutageStatus = viewModel.selectedOutageStatus!
+        let currentOutageStatus = viewModel.selectedOutageStatus.value!
         if currentOutageStatus.activeOutage {
             outageStatusButton.setOutageState(estimatedRestorationDateString: viewModel.estimatedRestorationDateString)
         } else { // Power is on
@@ -92,9 +92,9 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ReportOutageViewController {
             vc.unauthenticatedExperience = true
-            vc.viewModel.outageStatus = viewModel.selectedOutageStatus!
+            vc.viewModel.outageStatus = viewModel.selectedOutageStatus.value!
             vc.viewModel.accountNumber = viewModel.accountNumber.value.isEmpty ? nil : viewModel.accountNumber.value
-            if let phone = viewModel.selectedOutageStatus!.contactHomeNumber {
+            if let phone = viewModel.selectedOutageStatus.value!.contactHomeNumber {
                 vc.viewModel.phoneNumber.value = phone
             }
             
@@ -118,7 +118,7 @@ class UnauthenticatedOutageStatusViewController: UIViewController {
 extension UnauthenticatedOutageStatusViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
         GoogleAnalytics.log(event: .outageStatusUnAuthStatusButton)
-        if let message = viewModel.selectedOutageStatus!.outageDescription {
+        if let message = viewModel.selectedOutageStatus.value!.outageDescription {
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
