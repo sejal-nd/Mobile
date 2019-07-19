@@ -62,7 +62,8 @@ class SetDefaultAccountTableViewCell: UITableViewCell {
         accountNumberLabel.text = accountNumberText
         accountNumberLabel.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
-        addressLabel.text = account.address
+        // If no address, use " " so that all the cells maintain equal height (nil or empty would collapse StackView)
+        addressLabel.text = account.address ?? " "
 
         self.accessibilityLabel = "\(isSelected ? NSLocalizedString("Selected", comment: "") : ""), \(accountTypeImageView.accessibilityLabel ?? ""), \(accountNumberLabel.accessibilityLabel ?? "")"
     }

@@ -35,8 +35,8 @@ class SetDefaultAccountViewController: UIViewController {
         infoButton.isAccessibilityElement = true
         infoButton.accessibilityLabel = "Tooltip"
         
-        let nib = UINib(nibName: SetDefaultAccountTableViewCell.className, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: SetDefaultAccountTableViewCell.className)
+//        let nib = UINib(nibName: SetDefaultAccountTableViewCell.className, bundle: nil)
+//        tableView.register(nib, forCellReuseIdentifier: SetDefaultAccountTableViewCell.className)
         tableView.estimatedRowHeight = 56
         
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: bag)
@@ -53,7 +53,7 @@ class SetDefaultAccountViewController: UIViewController {
     }
     
     @objc func infoButtonPressed() {
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Default Account", comment: ""),
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Set Default Account", comment: ""),
                                                 image: #imageLiteral(resourceName: "bge_account_picker"),
                                                 description: NSLocalizedString("Your default account will display automatically when you sign in. You can change your default account at any time.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
@@ -89,7 +89,7 @@ extension SetDefaultAccountViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SetDefaultAccountTableViewCell.className, for: indexPath) as! SetDefaultAccountTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SetDefaultAccountTableViewCell", for: indexPath) as! SetDefaultAccountTableViewCell
 
         let account = AccountsStore.shared.accounts[indexPath.row]
 
