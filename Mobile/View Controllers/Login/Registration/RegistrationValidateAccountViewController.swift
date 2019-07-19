@@ -9,9 +9,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Toast_Swift
 
-class RegistrationValidateAccountViewController: UIViewController {
+class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
     
@@ -20,76 +19,30 @@ class RegistrationValidateAccountViewController: UIViewController {
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberView: UIView!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
-    @IBOutlet weak var ssNumberNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
 
     @IBOutlet weak var questionMarkButton: UIButton!
-    @IBOutlet weak var identifierDescriptionLabel: UILabel?
+    @IBOutlet weak var identifierDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var continueButton: PrimaryButtonNew!
 
     let viewModel = RegistrationViewModel(registrationService: ServiceFactory.createRegistrationService(), authenticationService: ServiceFactory.createAuthenticationService())
-
-    var nextButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNotificationCenter()
-        
         title = NSLocalizedString("Register", comment: "")
-
-        setupNavigationButtons()
         
-        populateHelperLabels()
+        viewModel.continueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        prepareTextFieldsForInput()
-        
-        viewModel.checkForMaintenance()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        GoogleAnalytics.log(event: .registerOffer)
-    }
-    
-    /// Helpers
-    func setupNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func setupNavigationButtons() {
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        viewModel.nextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
-
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = nextButton
-    }
-    
-    func populateHelperLabels() {
-        instructionLabel.textColor = .blackText
+        instructionLabel.textColor = .deepGray
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        var identifierString = "Last 4 Digits of primary account holder’s Social Security Number"
-        
-        if Environment.shared.opco == .bge {
-            identifierString.append(", Business Tax ID, or BGE Pin")
-        } else {
-            identifierString.append(" or Business Tax ID.")
-        }
-        
-        identifierDescriptionLabel?.text = NSLocalizedString(identifierString,
-                                                             comment: "")
-        identifierDescriptionLabel?.font = SystemFont.regular.of(textStyle: .subheadline)
-    }
-    
-    func prepareTextFieldsForInput() {
-        let opCo = Environment.shared.opco
-
-        // if opco is not BGE, then format it and ready it for usage; else hide it.
-        if opCo != .bge {
-            accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        if Environment.shared.opco != .bge {
+            accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
             accountNumberTextField.textField.autocorrectionType = .no
             accountNumberTextField.setKeyboardType(.numberPad)
             accountNumberTextField.textField.delegate = self
@@ -97,99 +50,92 @@ class RegistrationValidateAccountViewController: UIViewController {
             accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
             accountNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-			
-			accountNumberTextField?.textField.rx.controlEvent(.editingDidEnd).asDriver()
-				.withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
-				.drive(onNext: { [weak self] accountNumber, hasTenDigits in
-					guard let self = self else { return }
-					if !accountNumber.isEmpty && !hasTenDigits {
-						self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
-					}
-					self.accessibilityErrorLabel()
-				}).disposed(by: disposeBag)
+            
+            accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+                .withLatestFrom(Driver.zip(viewModel.accountNumber.asDriver(), viewModel.accountNumberHasTenDigits))
+                .drive(onNext: { [weak self] accountNumber, hasTenDigits in
+                    guard let self = self else { return }
+                    if !accountNumber.isEmpty && !hasTenDigits {
+                        self.accountNumberTextField?.setError(NSLocalizedString("Account number must be 10 digits long", comment: ""))
+                    }
+                    self.accessibilityErrorLabel()
+                }).disposed(by: disposeBag)
             
             accountNumberTextField?.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
                 self?.accountNumberTextField?.setError(nil)
                 self?.accessibilityErrorLabel()
-                
             }).disposed(by: disposeBag)
         } else {
             accountNumberView.isHidden = true
         }
         
-        phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
-		phoneNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-		
-		phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-			.withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
-			.drive(onNext: { [weak self] phoneNumber, hasTenDigits in
-				guard let self = self else { return }
-				if !phoneNumber.isEmpty && !hasTenDigits {
-					self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
-				}
-				self.accessibilityErrorLabel()
-			}).disposed(by: disposeBag)
+        phoneNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        
+        phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
+            .drive(onNext: { [weak self] phoneNumber, hasTenDigits in
+                guard let self = self else { return }
+                if !phoneNumber.isEmpty && !hasTenDigits {
+                    self.phoneNumberTextField.setError(NSLocalizedString("Phone number must be 10 digits long", comment: ""))
+                }
+                self.accessibilityErrorLabel()
+            }).disposed(by: disposeBag)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
             self?.phoneNumberTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-		let ssString: String
+        var identifierString = "Last 4 Digits of primary account holder’s Social Security Number"
         if Environment.shared.opco == .bge {
-			ssString = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
-		} else {
-			ssString = NSLocalizedString("SSN/Business Tax ID*", comment: "")
+            identifierString.append(", Business Tax ID, or BGE Pin")
+        } else {
+            identifierString.append(" or Business Tax ID.")
+        }
+        identifierDescriptionLabel.textColor = .deepGray
+        identifierDescriptionLabel.text = NSLocalizedString(identifierString, comment: "")
+        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        let identifierPlaceholder: String
+        if Environment.shared.opco == .bge {
+            identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
+        } else {
+            identifierPlaceholder = NSLocalizedString("SSN/Business Tax ID*", comment: "")
         }
         
-        ssNumberNumberTextField.textField.placeholder = NSLocalizedString(ssString, comment: "")
-        ssNumberNumberTextField.textField.autocorrectionType = .no
-        ssNumberNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierKeyboardDonePress))
-        ssNumberNumberTextField.textField.delegate = self
-        ssNumberNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
-		ssNumberNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-		
-		ssNumberNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
-			.withLatestFrom(Driver.zip(viewModel.identifierNumber.asDriver(), viewModel.identifierHasFourDigits, viewModel.identifierIsNumeric))
-			.drive(onNext: { [weak self] identifierNumber, hasFourDigits, isNumeric in
-				guard let self = self else { return }
-				if !identifierNumber.isEmpty {
-					if !hasFourDigits {
-						self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
-					} else if !isNumeric {
-						self.ssNumberNumberTextField.setError(NSLocalizedString("This number must be numeric", comment: ""))
-					}
-				}
-				self.accessibilityErrorLabel()
-			})
-			.disposed(by: disposeBag)
+        identifierTextField.placeholder = NSLocalizedString(identifierPlaceholder, comment: "")
+        identifierTextField.textField.autocorrectionType = .no
+        identifierTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierKeyboardDonePress))
+        identifierTextField.textField.delegate = self
+        identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
+        identifierTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        ssNumberNumberTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
-            self?.ssNumberNumberTextField?.setError(nil)
+        identifierTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
+            .withLatestFrom(Driver.zip(viewModel.identifierNumber.asDriver(), viewModel.identifierHasFourDigits, viewModel.identifierIsNumeric))
+            .drive(onNext: { [weak self] identifierNumber, hasFourDigits, isNumeric in
+                guard let self = self else { return }
+                if !identifierNumber.isEmpty {
+                    if !hasFourDigits {
+                        self.identifierTextField.setError(NSLocalizedString("This number must be 4 digits long", comment: ""))
+                    } else if !isNumeric {
+                        self.identifierTextField.setError(NSLocalizedString("This number must be numeric", comment: ""))
+                    }
+                }
+                self.accessibilityErrorLabel()
+            })
+            .disposed(by: disposeBag)
+        
+        identifierTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
+            self?.identifierTextField?.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-    
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    private func accessibilityErrorLabel() {
-        var message = ""
-        message += accountNumberTextField.getError()
-        message += phoneNumberTextField.getError()
-        message += ssNumberNumberTextField.getError()
         
-        if message.isEmpty {
-            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
-        } else {
-            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
-        }
+        viewModel.checkForMaintenance()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -198,26 +144,50 @@ class RegistrationValidateAccountViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        GoogleAnalytics.log(event: .registerOffer)
+    }
+    
+    private func accessibilityErrorLabel() {
+        var message = ""
+        message += accountNumberTextField.getError()
+        message += phoneNumberTextField.getError()
+        message += identifierTextField.getError()
+        
+        if message.isEmpty {
+            continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
+        } else {
+            continueButton.accessibilityLabel = String(format: NSLocalizedString("%@ Continue", comment: ""), message)
+        }
+    }
+    
     @objc func onIdentifierKeyboardDonePress() {
-		viewModel.nextButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+		viewModel.continueButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in
 				if enabled {
-					self?.onNextPress()
+					self?.onContinuePress()
 				} else {
 					self?.view.endEditing(true)
 				}
 			}).disposed(by: disposeBag)
     }
-
-    @objc func onCancelPress() {
-        // We do this to cover the case where we push RegistrationViewController from LandingViewController.
-        // When that happens, we want the cancel action to go straight back to LandingViewController.
-        _ = navigationController?.popViewController(animated: true)
+    
+    @IBAction func onAccountNumberTooltipPress() {
+        let description: String
+        switch Environment.shared.opco {
+        case .bge:
+            description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
+        case .comEd:
+            description = NSLocalizedString("Your Account Number is located in the upper right portion of a residential bill and the upper center portion of a commercial bill. Please enter all 10 digits, including leading zeros, but no dashes.", comment: "")
+        case .peco:
+            description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
+        
+        navigationController?.present(infoModal, animated: true, completion: nil)
     }
     
-    @objc func onNextPress() {
-        guard nextButton.isEnabled else { return }
-        
+    @IBAction func onContinuePress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -239,23 +209,6 @@ class RegistrationValidateAccountViewController: UIViewController {
             self?.present(alertController, animated: true, completion: nil)
         })
     }
-
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
     
     // MARK: - Navigation
     
@@ -269,20 +222,6 @@ class RegistrationValidateAccountViewController: UIViewController {
         }
     }
     
-    @IBAction func onAccountNumberTooltipPress() {
-        let description: String
-        switch Environment.shared.opco {
-        case .bge:
-            description = NSLocalizedString("Your Customer Account Number may be found in the top right portion on your bill in the bill summary section. Please enter 10-digits including leading zeros.", comment: "")
-        case .comEd:
-            description = NSLocalizedString("Your Account Number is located in the upper right portion of a residential bill and the upper center portion of a commercial bill. Please enter all 10 digits, including leading zeros, but no dashes.", comment: "")
-        case .peco:
-            description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
-        }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
-        
-        navigationController?.present(infoModal, animated: true, completion: nil)
-    }
 }
 
 extension RegistrationValidateAccountViewController: UITextFieldDelegate {
@@ -320,7 +259,7 @@ extension RegistrationValidateAccountViewController: UITextFieldDelegate {
             textField.sendActions(for: .valueChanged) // Send rx events
             
             return false
-        } else if textField == ssNumberNumberTextField?.textField {
+        } else if textField == identifierTextField?.textField {
             let characterSet = CharacterSet(charactersIn: string)
             return CharacterSet.decimalDigits.isSuperset(of: characterSet) && newString.count <= 4
         } else if textField == accountNumberTextField?.textField {

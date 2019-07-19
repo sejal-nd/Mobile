@@ -205,8 +205,8 @@ class RegistrationViewModel {
             .disposed(by: disposeBag)
     }
 
-    // THIS IS FOR THE NEXT BUTTON ON THE FIRST STEP (VALIDATE ACCOUNT)
-	private(set) lazy var nextButtonEnabled: Driver<Bool> = {
+    // This is for the Continue button on the first step (Validate Account))
+	private(set) lazy var continueButtonEnabled: Driver<Bool> = {
 		if Environment.shared.opco == .bge {
 			return Driver.combineLatest(self.phoneNumberHasTenDigits,
 			                            self.identifierHasFourDigits,
