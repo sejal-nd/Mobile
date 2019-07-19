@@ -9,26 +9,26 @@
 import RxSwift
 import RxCocoa
 
-class UnauthenticatedOutageValidateAccountViewController: UIViewController {
+class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
-    
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
-    var submitButton: UIBarButtonItem!
+    @IBOutlet weak var stickyFooterView: StickyFooterView!
+    @IBOutlet weak var continueButton: PrimaryButtonNew!
+    
     var analyticsSource: AnalyticsOutageSource!
     
-    let viewModel = UnauthenticatedOutageViewModel(
-            authService: ServiceFactory.createAuthenticationService(),
-            outageService: ServiceFactory.createOutageService())
+    let viewModel = UnauthenticatedOutageViewModel(authService: ServiceFactory.createAuthenticationService(),
+                                                   outageService: ServiceFactory.createOutageService())
 
     let disposeBag = DisposeBag()
 
@@ -37,45 +37,28 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
 
         title = NSLocalizedString("Outage", comment: "")
         
-        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
-        navigationItem.rightBarButtonItem = submitButton
-        
-        headerLabel.textColor = .blackText
-        headerLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        headerLabel.textColor = .deepGray
+        headerLabel.font = SystemFont.regular.of(textStyle: .headline)
         headerLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
-        phoneNumberTextField.textField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad, doneActionTarget: self, doneActionSelector: #selector(onKeyboardDonePress))
         phoneNumberTextField.textField.delegate = self
         
-        accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.autocorrectionType = .no
         accountNumberTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onKeyboardDonePress))
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        footerView.backgroundColor = .softGray
-        footerTextView.textColor = .blackText
+        footerView.addTopBorder(color: .accentGray, width: 1)
+        footerTextView.textColor = .deepGray
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.linkTapDelegate = self
         
         maintenanceModeView.isHidden = true
-        
-        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
-            .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: { [weak self] in
-                self?.keyboardWillShow(notification: $0)
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
-            .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: { [weak self] in
-                self?.keyboardWillHide(notification: $0)
-            })
-            .disposed(by: disposeBag)
         
         bindViewModel()
         bindValidation()
@@ -93,7 +76,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         loadingIndicator.isHidden = false
         maintenanceModeView.isHidden = true
         scrollView.isHidden = true
-        footerView.isHidden = true
+        stickyFooterView.isHidden = true
         navigationItem.rightBarButtonItem = nil
         
         viewModel.checkForMaintenance(
@@ -101,14 +84,12 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
                 self?.loadingIndicator.isHidden = true
                 self?.maintenanceModeView.isHidden = false
                 self?.scrollView.isHidden = true
-                self?.footerView.isHidden = true
-                self?.navigationItem.rightBarButtonItem = nil
+                self?.stickyFooterView.isHidden = true
             }, onNeither: { [weak self] in
                 self?.loadingIndicator.isHidden = true
                 self?.maintenanceModeView.isHidden = true
                 self?.scrollView.isHidden = false
-                self?.footerView.isHidden = false
-                self?.navigationItem.rightBarButtonItem = self?.submitButton
+                self?.stickyFooterView.isHidden = false
             })
     }
     
@@ -130,7 +111,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
     }
     
     func bindValidation() {
-        viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.continueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
@@ -173,28 +154,26 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         message += accountNumberTextField.getError()
         
         if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
         } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
+            continueButton.accessibilityLabel = String(format: NSLocalizedString("%@ Continue", comment: ""), message)
         }
     }
     
     @objc func onKeyboardDonePress() {
-        viewModel.submitButtonEnabled.asObservable()
+        viewModel.continueButtonEnabled.asObservable()
             .take(1)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] enabled in
                 if enabled {
-                    self?.onSubmitPress()
+                    self?.onContinuePress()
                 } else {
                     self?.view.endEditing(true)
                 }
             }).disposed(by: disposeBag)
     }
     
-    @objc func onSubmitPress() {
-        guard submitButton.isEnabled else { return }
-        
+    @IBAction func onContinuePress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -202,7 +181,7 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
             guard let self = self else { return }
             LoadingView.hide()
             
-            if self.viewModel.selectedOutageStatus != nil {
+            if self.viewModel.selectedOutageStatus.value != nil {
                 self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
             } else {
                 self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
@@ -255,24 +234,8 @@ class UnauthenticatedOutageValidateAccountViewController: UIViewController {
         case .peco:
             description = NSLocalizedString("Your Account Number is located in the upper left portion of your bill. Please enter all 10 digits, including leading zeroes, but no dashes. If \"SUMM\" appears after your name on your bill, please enter any account from your list of individual accounts.", comment: "")
         }
-        let infoModal = InfoModalViewController(title: NSLocalizedString("Where to Look for Your Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Find Account Number", comment: ""), image: #imageLiteral(resourceName: "bill_infographic"), description: description)
         navigationController?.present(infoModal, animated: true, completion: nil)
-    }
-    
-    // MARK: - ScrollView
-    
-    func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - footerView.frame.size.height, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
