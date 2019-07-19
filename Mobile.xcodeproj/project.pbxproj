@@ -656,9 +656,6 @@
 		82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		82A18E991EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
 		82A18E9A1EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */; };
-		82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
-		82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
-		82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
 		82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
 		82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
 		82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */; };
@@ -851,9 +848,18 @@
 		9C10B4D322DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D522DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
-		9C10B4D922E216DA00B0851B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
-		9C10B4DA22E216DA00B0851B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
-		9C10B4DB22E216DA00B0851B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */; };
+		9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		9C10B4E022E23AAA00B0851B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		9C10B4E122E23AAB00B0851B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		9C10B4E222E23AAB00B0851B /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */; };
+		9C10B4E322E23ABB00B0851B /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
+		9C10B4E422E23ABC00B0851B /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
+		9C10B4E522E23ABC00B0851B /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
+		9C10B4E622E23AC700B0851B /* SetDefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */; };
+		9C10B4E722E23AC800B0851B /* SetDefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */; };
+		9C10B4E822E23AC800B0851B /* SetDefaultAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */; };
 		9C119F6421FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
 		9C119F6521FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
 		9C119F6621FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
@@ -7446,6 +7452,7 @@
 				E84705ED202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
+				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				82A18E681EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */,
@@ -7737,7 +7744,6 @@
 				B0A8308D2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
 				B0882CAD210B938700EB756B /* UsageToolTopCardView.swift in Sources */,
 				B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
-				82A18E9B1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				82AC2A231FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
 				44A373431F211521005E227B /* TemplateCardView.swift in Sources */,
 				B0CB1CB7228487020081F99B /* InfoAlertController.swift in Sources */,
@@ -7782,6 +7788,7 @@
 				9C10B4D522DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				B06B40FF20D2BBFE00F37FE8 /* HomeEditViewController.swift in Sources */,
 				82EAB3421F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
+				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
 				9C62447222C42B4900F14DA0 /* FloatLabelTextViewNew.swift in Sources */,
@@ -8109,7 +8116,6 @@
 				826DCCEB1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
 				225FF85C1EC56B480079010C /* Date.swift in Sources */,
 				B58B5B121E515BD50051FD5F /* AppDelegate.swift in Sources */,
-				82A18E9D1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				825171A51F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FFD1EFB0426004DB789 /* MCSPaymentService.swift in Sources */,
 				B0A8308F2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
@@ -8203,6 +8209,7 @@
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
+				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
 				E803A0011EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
@@ -8487,7 +8494,6 @@
 				826DCCEA1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
 				225FF85B1EC56B480079010C /* Date.swift in Sources */,
 				B58B5B231E515C840051FD5F /* AppDelegate.swift in Sources */,
-				82A18E9C1EB919B300BE9F21 /* ForgotPasswordViewModel.swift in Sources */,
 				825171A41F1D1D4F0020A6CA /* RadioSelectControl.swift in Sources */,
 				E8039FFC1EFB0426004DB789 /* MCSPaymentService.swift in Sources */,
 				B0A8308E2146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
@@ -8545,7 +8551,6 @@
 				E89399401F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
-				9C10B4D922E216DA00B0851B /* ChangePasswordViewController.swift in Sources */,
 				826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				B0B0840B21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246B21E4F433006D83B0 /* Logger.swift in Sources */,
@@ -8603,6 +8608,7 @@
 				824004CD1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				B0D84D592203794000C70A6F /* MockAppState.swift in Sources */,
 				B0649A62214834380041B299 /* StormModeStatus.swift in Sources */,
+				9C10B4E022E23AAA00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				E881B1561F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				E8EC0F8E2028FA3C00956ABD /* WalletViewModelTests.swift in Sources */,
 				E84705FA2025160F00A749A3 /* MockRegistrationService.swift in Sources */,
@@ -8622,6 +8628,7 @@
 				E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				E83F02731FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B039DB7C225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
+				9C10B4E622E23AC700B0851B /* SetDefaultAccountViewModel.swift in Sources */,
 				E895E9B21EBB84B7003B38A1 /* LoginViewModel.swift in Sources */,
 				B094A35020D9442400E81303 /* HomeCard.swift in Sources */,
 				E882B7FE1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
@@ -8657,6 +8664,7 @@
 				B0472B242110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				E841F3B61F030EE7007BFA82 /* BillingHistoryItem.swift in Sources */,
 				82A18F1B1EC0E83800BE9F21 /* NibViews.swift in Sources */,
+				9C10B4E322E23ABB00B0851B /* BGEChoiceIDViewModel.swift in Sources */,
 				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				E8EDC5521F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				B0D786102285C400007C551F /* CommercialUsageAlertStore.swift in Sources */,
@@ -8781,7 +8789,6 @@
 				E8F62B4A200924410077B3DA /* OutageStatus.swift in Sources */,
 				35A6C6F0211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */,
 				E8F62B4B200924410077B3DA /* UIViewDashedBorders.swift in Sources */,
-				9C10B4DA22E216DA00B0851B /* ChangePasswordViewController.swift in Sources */,
 				E8F62B4C200924410077B3DA /* Control.swift in Sources */,
 				B0B0840C21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246C21E4F434006D83B0 /* Logger.swift in Sources */,
@@ -8839,6 +8846,7 @@
 				82B20A36203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
 				B0D84D5A2203794000C70A6F /* MockAppState.swift in Sources */,
 				B0649A63214834380041B299 /* StormModeStatus.swift in Sources */,
+				9C10B4E122E23AAB00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				E8F62B72200924410077B3DA /* TemplateCardViewModel.swift in Sources */,
 				E8F62B73200924410077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,
 				E8EC0F8F2028FA3C00956ABD /* WalletViewModelTests.swift in Sources */,
@@ -8858,6 +8866,7 @@
 				E8F62B82200924410077B3DA /* AutoPayViewModel.swift in Sources */,
 				E8F62B83200924410077B3DA /* AccountsStore.swift in Sources */,
 				B039DB7D225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
+				9C10B4E722E23AC800B0851B /* SetDefaultAccountViewModel.swift in Sources */,
 				E8F62B86200924410077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62B88200924410077B3DA /* LoginViewModel.swift in Sources */,
 				B094A35120D9442400E81303 /* HomeCard.swift in Sources */,
@@ -8893,6 +8902,7 @@
 				E8F62BA0200924410077B3DA /* GoogleAnalytics.swift in Sources */,
 				B0472B222110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				E8F62BA1200924410077B3DA /* BillingHistoryItem.swift in Sources */,
+				9C10B4E422E23ABC00B0851B /* BGEChoiceIDViewModel.swift in Sources */,
 				E8F62BA3200924410077B3DA /* NibViews.swift in Sources */,
 				E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				B0D786112285C401007C551F /* CommercialUsageAlertStore.swift in Sources */,
@@ -8971,7 +8981,6 @@
 				E8F62BFF200924570077B3DA /* OutageStatus.swift in Sources */,
 				35A6C6F1211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */,
 				E8F62C00200924570077B3DA /* UIViewDashedBorders.swift in Sources */,
-				9C10B4DB22E216DA00B0851B /* ChangePasswordViewController.swift in Sources */,
 				E8F62C01200924570077B3DA /* Control.swift in Sources */,
 				B0B0840D21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246D21E4F435006D83B0 /* Logger.swift in Sources */,
@@ -9029,6 +9038,7 @@
 				82B20A37203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
 				B0D84D5B2203794000C70A6F /* MockAppState.swift in Sources */,
 				B0649A64214834380041B299 /* StormModeStatus.swift in Sources */,
+				9C10B4E222E23AAB00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				E8F62C27200924570077B3DA /* TemplateCardViewModel.swift in Sources */,
 				E8F62C28200924570077B3DA /* UnauthenticatedOutageViewModel.swift in Sources */,
 				E8EC0F902028FA3C00956ABD /* WalletViewModelTests.swift in Sources */,
@@ -9048,6 +9058,7 @@
 				E8F62C37200924570077B3DA /* AutoPayViewModel.swift in Sources */,
 				E8F62C38200924570077B3DA /* AccountsStore.swift in Sources */,
 				B039DB7E225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
+				9C10B4E822E23AC800B0851B /* SetDefaultAccountViewModel.swift in Sources */,
 				E8F62C3B200924570077B3DA /* AlertPreferences.swift in Sources */,
 				E8F62C3D200924570077B3DA /* LoginViewModel.swift in Sources */,
 				B094A35220D9442400E81303 /* HomeCard.swift in Sources */,
@@ -9083,6 +9094,7 @@
 				E8F62C55200924570077B3DA /* GoogleAnalytics.swift in Sources */,
 				B0472B232110F2770048C1A7 /* UsageViewModel.swift in Sources */,
 				E8F62C56200924570077B3DA /* BillingHistoryItem.swift in Sources */,
+				9C10B4E522E23ABC00B0851B /* BGEChoiceIDViewModel.swift in Sources */,
 				E8F62C58200924570077B3DA /* NibViews.swift in Sources */,
 				E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				B0D786122285C401007C551F /* CommercialUsageAlertStore.swift in Sources */,
