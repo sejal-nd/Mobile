@@ -84,7 +84,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="LBq-k6-ocN"/>
                                             </constraints>
                                         </view>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="waI-lA-BTk" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="waI-lA-BTk" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                             <rect key="frame" x="16" y="16" width="343" height="92"/>
                                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
@@ -198,6 +198,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QN3-AZ-dBV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="RA2-uD-xmP" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="327.5" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -206,7 +214,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RA2-uD-xmP" firstAttribute="centerY" secondItem="VPU-dC-Rn2" secondAttribute="centerY" id="1mg-Ru-anO"/>
+                            <constraint firstItem="QN3-AZ-dBV" firstAttribute="trailing" secondItem="rkL-Al-sdV" secondAttribute="trailing" id="3Gz-Mx-RS7"/>
                             <constraint firstItem="RA2-uD-xmP" firstAttribute="centerX" secondItem="rkL-Al-sdV" secondAttribute="centerX" id="DyE-nP-Ahd"/>
+                            <constraint firstItem="QN3-AZ-dBV" firstAttribute="top" secondItem="rkL-Al-sdV" secondAttribute="top" id="FeY-zh-Es7"/>
+                            <constraint firstItem="QN3-AZ-dBV" firstAttribute="leading" secondItem="rkL-Al-sdV" secondAttribute="leading" id="QcM-Rd-bFn"/>
+                            <constraint firstItem="QN3-AZ-dBV" firstAttribute="bottom" secondItem="rkL-Al-sdV" secondAttribute="bottom" id="Tlx-Ay-v8D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rkL-Al-sdV"/>
                     </view>
@@ -216,11 +228,12 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="RA2-uD-xmP" id="NEp-8d-bud"/>
+                        <outlet property="webView" destination="QN3-AZ-dBV" id="Sey-cC-J1H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g2R-Yw-vCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4558" y="2437"/>
+            <point key="canvasLocation" x="4557.6000000000004" y="2436.4317841079464"/>
         </scene>
         <!--Report Outage-->
         <scene sceneID="aWI-55-Z7u">

@@ -307,10 +307,10 @@ extension OutageViewController: UITableViewDelegate {
         case 0:
             performSegue(withIdentifier: "reportOutageSegue", sender: self)
         case 1:
-            Analytics.log(event: .viewStreetlightMapOfferComplete)
+            GoogleAnalytics.log(event: .viewStreetlightMapOfferComplete)
             performSegue(withIdentifier: "outageMapSegue", sender: true)
         case 2:
-            Analytics.log(event: .viewMapOfferComplete)
+            GoogleAnalytics.log(event: .viewMapOfferComplete)
             performSegue(withIdentifier: "outageMapSegue", sender: false)
         default:
             break
@@ -350,7 +350,7 @@ extension OutageViewController: OutageStatusDelegate {
 
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics.log(event: .outageAuthEmergencyCall)
+        GoogleAnalytics.log(event: .outageAuthEmergencyCall)
     }
 }
 
@@ -361,7 +361,7 @@ extension OutageViewController: ReportOutageDelegate {
     func didReportOutage() {
         // Show Toast
         view.showToast(NSLocalizedString("Outage report received", comment: ""))
-        Analytics.log(event: .reportOutageAuthComplete)
+        GoogleAnalytics.log(event: .reportOutageAuthComplete)
         
         // Update Report Outage Cell
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow else { return }

@@ -36,7 +36,6 @@ class OutageMapViewController: UIViewController {
             
         webView.navigationDelegate = self
         webView.isHidden = true
-        
         webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
         webView.accessibilityLabel = a11yLabel
