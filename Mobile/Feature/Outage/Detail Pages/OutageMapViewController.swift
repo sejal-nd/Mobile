@@ -39,6 +39,7 @@ class OutageMapViewController: UIViewController {
         webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
         webView.accessibilityLabel = a11yLabel
+        webView.scrollView.isScrollEnabled = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
