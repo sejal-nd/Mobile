@@ -24,9 +24,12 @@ class AccountPickerViewController: UIViewController {
     
     var defaultStatusBarStyle: UIStatusBarStyle { return .default }
     var safeAreaTop: CGFloat = 0
+    var shouldLoadAccounts = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        guard shouldLoadAccounts else { return }
         
         if AccountsStore.shared.currentIndex == nil {
             fetchAccounts()
