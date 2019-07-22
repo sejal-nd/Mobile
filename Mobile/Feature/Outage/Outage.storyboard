@@ -171,6 +171,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rLJ-mF-oEY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="p1d-ZC-ZDx">
+                        <barButtonItem key="backBarButtonItem" title=" " id="v95-ee-yb3"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="NoNetworkConnectionContainerView" destination="kBP-rF-ByC" id="17C-Uf-CgA"/>
                         <outlet property="accountInfoBar" destination="s3d-Cf-EwG" id="9fw-wD-lFK"/>
@@ -238,13 +241,13 @@
         <!--Report Outage-->
         <scene sceneID="aWI-55-Z7u">
             <objects>
-                <viewController storyboardIdentifier="ReportOutageViewController" hidesBottomBarWhenPushed="YES" id="ZQH-GI-7Fc" customClass="ReportOutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReportOutageViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="ZQH-GI-7Fc" customClass="ReportOutageViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="obc-d4-nlp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-Yi-MtH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="1095"/>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zz7-Yi-MtH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1115"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4y-Cq-6p7" customClass="AccountInfoBarNew" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -641,11 +644,12 @@
                             <constraint firstItem="jsB-ay-j4n" firstAttribute="leading" secondItem="obc-d4-nlp" secondAttribute="leading" id="NpX-e9-i9T"/>
                             <constraint firstItem="Zz7-Yi-MtH" firstAttribute="leading" secondItem="JvH-nV-6nr" secondAttribute="leading" id="Y4H-M3-v8D"/>
                             <constraint firstAttribute="bottom" secondItem="jsB-ay-j4n" secondAttribute="bottom" id="iqR-7k-mgP"/>
-                            <constraint firstAttribute="topMargin" secondItem="Zz7-Yi-MtH" secondAttribute="top" id="u6I-rp-Ks0"/>
+                            <constraint firstAttribute="top" secondItem="Zz7-Yi-MtH" secondAttribute="top" id="u6I-rp-Ks0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JvH-nV-6nr"/>
                     </view>
                     <navigationItem key="navigationItem" title="Report Outage" id="IsK-az-qit"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1200"/>
