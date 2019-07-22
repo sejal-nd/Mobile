@@ -38,14 +38,14 @@ class LargeTitleNavigationController: UINavigationController {
         
         navigationBar.largeTitleTextAttributes = [
             .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
-            .font: OpenSans.bold.of(size: 20)
+            .font: OpenSans.semibold.of(size: 20)
         ]
         navigationItem.largeTitleDisplayMode = .always
         navigationBar.prefersLargeTitles = true
         
         navigationBar.titleTextAttributes = [
             .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
-            .font: OpenSans.bold.of(size: 18)
+            .font: OpenSans.semibold.of(size: 18)
         ]
         
         setNeedsStatusBarAppearanceUpdate()

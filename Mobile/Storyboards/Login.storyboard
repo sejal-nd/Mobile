@@ -332,8 +332,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eeX-vd-Qf0"/>
                     </view>
-                    <navigationItem key="navigationItem" id="65l-2G-tKv">
-                        <barButtonItem key="backBarButtonItem" title=" " id="h4h-6u-Lyx"/>
+                    <navigationItem key="navigationItem" id="Vcf-BO-Yhi">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Nee-Ha-7qr"/>
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
