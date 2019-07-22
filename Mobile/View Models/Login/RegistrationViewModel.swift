@@ -205,8 +205,7 @@ class RegistrationViewModel {
             .disposed(by: disposeBag)
     }
 
-    // This is for the Continue button on the first step (Validate Account))
-	private(set) lazy var continueButtonEnabled: Driver<Bool> = {
+	private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
 		if Environment.shared.opco == .bge {
 			return Driver.combineLatest(self.phoneNumberHasTenDigits,
 			                            self.identifierHasFourDigits,
@@ -407,8 +406,7 @@ class RegistrationViewModel {
     private(set) lazy var confirmPasswordMatches: Driver<Bool> =
         Driver.combineLatest(self.confirmPassword.asDriver(), self.newPassword.asDriver(), resultSelector: ==)
     
-    // THIS IS FOR THE NEXT BUTTON ON THE SECOND STEP (CREATE SIGN IN CREDENTIALS)
-    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver
+    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Driver
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     

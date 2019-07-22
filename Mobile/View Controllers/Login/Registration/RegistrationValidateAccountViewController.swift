@@ -35,7 +35,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         
         title = NSLocalizedString("Register", comment: "")
         
-        viewModel.continueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
         instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
@@ -162,7 +162,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
     }
     
     @objc func onIdentifierKeyboardDonePress() {
-		viewModel.continueButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+		viewModel.validateAccountContinueEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
 			.drive(onNext: { [weak self] enabled in
 				if enabled {
 					self?.onContinuePress()
