@@ -151,7 +151,7 @@ class LandingViewController: UIViewController {
         NotificationCenter.default.rx.notification(.AVPlayerItemDidPlayToEndTime)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: {
-                ($0.object as? AVPlayerItem)?.seek(to: .zero)
+                ($0.object as? AVPlayerItem)?.seek(to: .zero, completionHandler: nil)
             })
             .disposed(by: disposeBag)
         

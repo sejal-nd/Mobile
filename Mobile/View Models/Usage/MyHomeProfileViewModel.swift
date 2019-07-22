@@ -41,7 +41,6 @@ class MyHomeProfileViewModel {
         
         initialHomeProfile = usageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .share(replay: 1)
-        
     }
     
     private(set) lazy var homeSizeError: Observable<String?> = self.homeSizeEntry.asObservable()

@@ -283,7 +283,7 @@ class HomeViewController: AccountPickerViewController {
         
         if Environment.shared.environmentName != .aut {
             let authOptions: UNAuthorizationOptions
-            if #available(iOS 12, *) {
+            if #available(iOS 12.0, *) {
                 authOptions = [.badge, .alert, .sound, .providesAppNotificationSettings]
             } else {
                 authOptions = [.badge, .alert, .sound]

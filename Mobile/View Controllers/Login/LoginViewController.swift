@@ -69,7 +69,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                 let breakHeight = self.opcoLogoView.frame.size.height - 110
                 if yOffset <= 0 {
                     self.backgroundViewBottomConstraint.constant = yOffset
-                } else if yOffset > breakHeight {
+                }
+                if yOffset > breakHeight {
                     self.opcoLogo.alpha = self.lerp(1, 0, (yOffset - breakHeight) / 10.0)
                 } else {
                     self.opcoLogo.alpha = 1
@@ -365,19 +366,13 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func forgotUsername() {
         FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .forgot_username_press)])
         GoogleAnalytics.log(event: .forgotUsernameOffer)
-        if Environment.shared.opco == .bge {
-            performSegue(withIdentifier: "forgotUsernameSegueBGE", sender: self)
-        } else {
-            performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
-        }
-
+        performSegue(withIdentifier: "forgotUsernameSegue", sender: self)
     }
 
     func forgotPassword() {
         FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .forgot_password_press)])
         GoogleAnalytics.log(event: .forgotPasswordOffer)
         performSegue(withIdentifier: "forgotPasswordSegue", sender: self)
-
     }
 
     @IBAction func onEyeballPress(_ sender: UIButton) {

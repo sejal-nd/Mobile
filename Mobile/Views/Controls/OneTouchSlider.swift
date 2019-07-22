@@ -183,7 +183,7 @@ class OneTouchSlider: UIControl {
         accessibilityLabel = sliderText
         
         Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
-                         NotificationCenter.default.rx.notification(Notification.Name(rawValue: UIAccessibilityVoiceOverStatusChanged), object: nil))
+                         NotificationCenter.default.rx.notification(UIAccessibility.voiceOverStatusDidChangeNotification, object: nil))
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 self?.accessibilityButton.isHidden = !UIAccessibility.isVoiceOverRunning && !UIAccessibility.isSwitchControlRunning

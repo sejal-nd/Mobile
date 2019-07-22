@@ -220,23 +220,21 @@ class MiniWalletViewController: UIViewController {
             let actionSheet = UIAlertController
                 .saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
                     self?.presentPaymentusForm(bankOrCard: .bank, temporary: false)
-                    }, dontSaveHandler: { [weak self] _ in
-                        self?.presentPaymentusForm(bankOrCard: .bank, temporary: true)
+                }, dontSaveHandler: { [weak self] _ in
+                    self?.presentPaymentusForm(bankOrCard: .bank, temporary: true)
                 })
-            
             present(actionSheet, animated: true, completion: nil)
         } else {
             presentPaymentusForm(bankOrCard: .bank, temporary: false)
         }
-        
     }
     
     @objc private func onAddCreditCardPress() {
         let actionSheet = UIAlertController
             .saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
                 self?.presentPaymentusForm(bankOrCard: .card, temporary: false)
-                }, dontSaveHandler: { [weak self] _ in
-                    self?.presentPaymentusForm(bankOrCard: .card, temporary: true)
+            }, dontSaveHandler: { [weak self] _ in
+                self?.presentPaymentusForm(bankOrCard: .card, temporary: true)
             })
         present(actionSheet, animated: true, completion: nil)
     }

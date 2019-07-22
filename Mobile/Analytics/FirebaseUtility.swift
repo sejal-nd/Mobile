@@ -191,6 +191,7 @@ struct EventParameter {
         case edit_payment_method
         case scan_with_camera
         
+        case emergency_number
         case phone_number_gas_1
         case phone_number_gas_2
         case phone_number_electric_1
@@ -232,6 +233,8 @@ struct EventParameter {
         case youtube
         case linkedin
         case flickr
+        case instagram
+        case pinterest
         
         case personalize_banner
         case personalize_button
