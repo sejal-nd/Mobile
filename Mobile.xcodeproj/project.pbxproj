@@ -262,6 +262,9 @@
 		358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
 		358BD21920F8FDAE00DA2012 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
+		358BD97322E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
+		358BD97422E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
+		358BD97522E625D8001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		358D677321961BC400395D0F /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		358DE0A521021471002C544E /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
@@ -7562,7 +7565,6 @@
 				9CCE3E4621B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B094A35420D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				9C10B4DF22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
-				82A18E681EB9191E00BE9F21 /* OutageViewModel.swift in Sources */,
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */,
 				E801BAD51E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
@@ -8734,6 +8736,7 @@
 				B0B083A4216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */,
 				E81CFFF71EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
+				358BD97322E625D7001F0929 /* OutageViewModel.swift in Sources */,
 				E8C0B4C91F55F692006DC694 /* BGEAutoPayViewModelTests.swift in Sources */,
 				E8400E641FE05ED70064E242 /* MockWalletService.swift in Sources */,
 				E841F3B51F030EE5007BFA82 /* BillingHistory.swift in Sources */,
@@ -8971,6 +8974,7 @@
 				B0B083A5216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8F62B77200924410077B3DA /* PaperlessEBillViewModelTests.swift in Sources */,
 				E8F62B78200924410077B3DA /* ForgotUsernameViewModelTests.swift in Sources */,
+				358BD97422E625D7001F0929 /* OutageViewModel.swift in Sources */,
 				E8F62B79200924410077B3DA /* ViewBillViewModel.swift in Sources */,
 				E8F62B7A200924410077B3DA /* BGEAutoPayViewModelTests.swift in Sources */,
 				E8F62B7B200924410077B3DA /* MockWalletService.swift in Sources */,
@@ -9162,6 +9166,7 @@
 				B0B083A6216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				E8F62C2C200924570077B3DA /* PaperlessEBillViewModelTests.swift in Sources */,
 				E8F62C2D200924570077B3DA /* ForgotUsernameViewModelTests.swift in Sources */,
+				358BD97522E625D8001F0929 /* OutageViewModel.swift in Sources */,
 				E8F62C2E200924570077B3DA /* ViewBillViewModel.swift in Sources */,
 				E8F62C2F200924570077B3DA /* BGEAutoPayViewModelTests.swift in Sources */,
 				E8F62C30200924570077B3DA /* MockWalletService.swift in Sources */,
