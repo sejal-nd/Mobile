@@ -42,36 +42,6 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-gg-gb1">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <connections>
-                                    <segue destination="vck-Zw-W0A" kind="embed" id="1Wx-JL-0Dy"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBP-rF-ByC">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <connections>
-                                    <segue destination="FJs-Ee-VCt" kind="embed" id="7d6-G5-Yhi"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haH-7e-9Oh">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
-                                <connections>
-                                    <segue destination="OGh-C5-F8o" kind="embed" id="cSb-qH-bpK"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndp-bw-rV5">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
-                                <connections>
-                                    <segue destination="azb-k7-oxC" kind="embed" id="57z-TP-Qxs"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hW1-hm-7uS">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
-                                <connections>
-                                    <segue destination="0Fe-s3-Gze" kind="embed" id="1b2-lO-jai"/>
-                                </connections>
-                            </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aBU-xp-OAP">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -138,6 +108,36 @@
                                     <outlet property="delegate" destination="yf6-8Y-4nw" id="6SF-46-joI"/>
                                 </connections>
                             </tableView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-gg-gb1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="vck-Zw-W0A" kind="embed" id="1Wx-JL-0Dy"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBP-rF-ByC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="FJs-Ee-VCt" kind="embed" id="7d6-G5-Yhi"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haH-7e-9Oh">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <connections>
+                                    <segue destination="OGh-C5-F8o" kind="embed" id="cSb-qH-bpK"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndp-bw-rV5">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <connections>
+                                    <segue destination="azb-k7-oxC" kind="embed" id="57z-TP-Qxs"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hW1-hm-7uS">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <connections>
+                                    <segue destination="0Fe-s3-Gze" kind="embed" id="1b2-lO-jai"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -614,6 +614,7 @@
                                         <rect key="frame" x="28" y="15" width="319" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="AmI-0h-9Iv"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="a62-By-fij"/>
                                         </constraints>
                                         <state key="normal" title="Report Outage"/>
                                         <connections>
@@ -623,10 +624,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="cao-Mv-vl9" firstAttribute="centerY" secondItem="jsB-ay-j4n" secondAttribute="centerY" id="Kwe-GL-ztA"/>
+                                    <constraint firstItem="cao-Mv-vl9" firstAttribute="centerX" secondItem="jsB-ay-j4n" secondAttribute="centerX" id="O8T-oH-xOj"/>
                                     <constraint firstItem="cao-Mv-vl9" firstAttribute="top" secondItem="xGU-6r-NJE" secondAttribute="top" constant="15" id="nai-Yt-WIj"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="cao-Mv-vl9" secondAttribute="trailing" constant="20" id="rc2-6V-Ljk"/>
-                                    <constraint firstItem="cao-Mv-vl9" firstAttribute="leading" secondItem="jsB-ay-j4n" secondAttribute="leadingMargin" constant="20" id="v6y-64-Dku"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="cao-Mv-vl9" secondAttribute="trailing" priority="999" constant="20" id="rc2-6V-Ljk"/>
+                                    <constraint firstItem="cao-Mv-vl9" firstAttribute="leading" secondItem="jsB-ay-j4n" secondAttribute="leadingMargin" priority="999" constant="20" id="v6y-64-Dku"/>
                                     <constraint firstItem="xGU-6r-NJE" firstAttribute="bottom" secondItem="cao-Mv-vl9" secondAttribute="bottom" constant="15" id="wY0-cg-Bb4"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="xGU-6r-NJE"/>

@@ -139,6 +139,7 @@ extension OutageStatusView {
     private func configureOutageState(_ outageState: OutageState) {
         switch outageState {
         case .powerStatus(let isOn):
+            lottieAnimationView?.removeFromSuperview()
             if isOn {
                 lottieAnimationView = LOTAnimationView(name: "outage_on")
                 titleLabel.text = NSLocalizedString("POWER IS ON", comment: "")
@@ -163,6 +164,7 @@ extension OutageStatusView {
                 self.button.layoutIfNeeded()
             }
         case .reported:
+            lottieAnimationView?.removeFromSuperview()
             lottieAnimationView = LOTAnimationView(name: "outage_reported")
             statusImageView.isHidden = true
             statusHeightConstraint.constant = 107

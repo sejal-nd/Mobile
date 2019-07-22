@@ -128,7 +128,11 @@ class OutageViewController: AccountPickerViewController {
     private func loadOutageStatus(sender: UIRefreshControl? = nil) {
         viewModel.fetchData(onSuccess: { [weak self] outageStatus in
             
-            sender?.endRefreshing()
+            // Pull to Refresh
+            if sender != nil {
+                sender?.endRefreshing()
+                self?.viewModel.hasJustReportedOutage = false
+            }
             
             guard let `self` = self else { return }
             if outageStatus.flagGasOnly {
@@ -138,13 +142,11 @@ class OutageViewController: AccountPickerViewController {
                 
                 // Enable / Disable Report Outage Cell
                 if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow {
-                    if outageStatus.flagNoPay  || outageStatus.flagFinaled || outageStatus.flagNonService {
+                    if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
                         cell.isEnabled = false
                     } else {
                         cell.isEnabled = true
                     }
-                    
-                    cell.isEnabled = !outageStatus.flagNoPay
                 }
                 
                 self.outageStatusView.setOutageStatus(outageStatus,
@@ -372,5 +374,12 @@ extension OutageViewController: ReportOutageDelegate {
         // Update Report Outage Cell
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow else { return }
         cell.updateSubTitle(viewModel.outageReportedDateString)
+        
+        // Enable Reported Outage State
+        viewModel.hasJustReportedOutage = true
+        guard let outageStatus = viewModel.outageStatus else { return }
+        outageStatusView.setOutageStatus(outageStatus,
+                                         reportedResults: viewModel.reportedOutage,
+                                         hasJustReported: viewModel.hasJustReportedOutage)
     }
 }
