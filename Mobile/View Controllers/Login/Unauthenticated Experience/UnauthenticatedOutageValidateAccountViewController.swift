@@ -182,7 +182,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
             LoadingView.hide()
             
             if self.viewModel.selectedOutageStatus.value != nil {
-                self.performSegue(withIdentifier: "outageStatusSegue", sender: self)
+                self.performSegue(withIdentifier: "presentOutage", sender: self)
             } else {
                 self.performSegue(withIdentifier: "outageValidateAccountResultSegue", sender: self)
             }
@@ -225,6 +225,8 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     }
     
     @IBAction func onAccountNumberTooltipPress() {
+        FirebaseUtility.logEvent(.unauthOutage, parameters: [EventParameter(parameterName: .action, value: .account_number_help)])
+        
         let description: String
         switch Environment.shared.opco {
         case .bge:
@@ -242,9 +244,10 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountResultViewController {
             vc.viewModel = viewModel
             vc.analyticsSource = analyticsSource
-        } else if let vc = segue.destination as? UnauthenticatedOutageStatusViewController {
-            vc.viewModel = viewModel
-            vc.analyticsSource = analyticsSource
+        } else if let vc = segue.destination as? OutageViewController {
+            vc.userState = .unauthenticated
+            vc.viewModel.outageStatus = viewModel.selectedOutageStatus.value
+            vc.viewModel.accountNumber = viewModel.accountNumber.value
         }
     }
 

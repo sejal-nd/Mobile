@@ -40,7 +40,7 @@ struct OutageStatus: Mappable {
     let addressNumber: String?
     let unitNumber: String?
     var multipremiseAccount: Bool = false // Set locally for use in unauthenticated logic
-    
+
     init(map: Mapper) throws {
         flagGasOnly = map.optionalFrom("flagGasOnly") ?? false
         contactHomeNumber = map.optionalFrom("contactHomeNumber")
@@ -61,6 +61,31 @@ struct OutageStatus: Mappable {
         unitNumber = map.optionalFrom("apartmentUnitNumber")
     }
     
+    
+    // MARK: - Outage State
+    
+    static func getOutageState(_ outageStatus: OutageStatus,
+                               reportedResults: ReportedOutageResult? = nil,
+                               hasJustReported: Bool = false) -> OutageState {
+        
+        if hasJustReported && reportedResults != nil {
+            return .reported
+        } else if outageStatus.flagFinaled || outageStatus.flagNonService {
+            return .unavailable
+        } else if outageStatus.flagNoPay {
+            return .nonPayment
+        }
+        
+        return .powerStatus(!outageStatus.activeOutage)
+    }
+    
+}
+
+enum OutageState {
+    case powerStatus(Bool)
+    case reported
+    case unavailable
+    case nonPayment
 }
 
 struct MeterPingInfo: Mappable {

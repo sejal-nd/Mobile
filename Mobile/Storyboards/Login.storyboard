@@ -549,7 +549,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="stickyFooterBottomConstraint" destination="aoe-qp-hfl" id="HKy-e0-n3H"/>
                         <outlet property="stickyFooterView" destination="vEh-O9-41p" id="AMY-hD-eAr"/>
                         <segue destination="Qkc-QN-Mot" kind="show" identifier="outageValidateAccountResultSegue" id="QX9-7H-mNK"/>
-                        <segue destination="gnh-hn-ZmO" kind="show" identifier="outageStatusSegue" id="mO8-br-Aqn"/>
+                        <segue destination="bM7-iQ-w5Y" kind="show" identifier="presentOutage" id="FRl-VV-zAb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7q-g3-d5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -773,7 +773,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <outlet property="instructionLabel" destination="WWu-Nj-Lf5" id="JYM-Hx-uYb"/>
                         <outlet property="selectAccountButton" destination="z1J-FW-laK" id="HsV-pa-ndF"/>
                         <outlet property="tableView" destination="tLg-Wo-NCZ" id="E7z-M8-3Oz"/>
-                        <segue destination="gnh-hn-ZmO" kind="show" identifier="outageStatusSegue" id="imT-Ig-8hn"/>
+                        <segue destination="bM7-iQ-w5Y" kind="show" identifier="presentOutage" id="v05-55-ixL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWJ-RW-mSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -781,143 +781,12 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
             <point key="canvasLocation" x="3309.5999999999999" y="-1401.049475262369"/>
         </scene>
         <!--Outage-->
-        <scene sceneID="lrG-u7-Lej">
+        <scene sceneID="wq7-Xe-HDP">
             <objects>
-                <viewController id="gnh-hn-ZmO" customClass="UnauthenticatedOutageStatusViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kt2-qb-mrB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwp-HU-286">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYw-aP-xdY" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLD-E0-iMr" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="P95-lV-oyR"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="100" placeholderIntrinsicWidth="267" placeholderIntrinsicHeight="267" translatesAutoresizingMaskIntoConstraints="NO" id="Kuy-ht-Q3x" customClass="OutageStatusButton" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="54" y="71" width="267" height="267"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjr-tL-pFh" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="360" width="317" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <accessibility key="accessibilityConfiguration" label="Report outage"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="BXJ-45-OVF"/>
-                                                    <constraint firstAttribute="height" constant="60" id="L3e-Jr-USw"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Report Outage"/>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="onReportOutagePress" destination="gnh-hn-ZmO" eventType="touchUpInside" id="qMn-1B-mNK"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of0-TU-uY3" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="430" width="317" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <accessibility key="accessibilityConfiguration" label="View outage map"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="SqT-eT-eHx"/>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gOY-hB-zIT"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="View Outage Map"/>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="onViewOutageMapPress" destination="gnh-hn-ZmO" eventType="touchUpInside" id="u41-6Q-37X"/>
-                                                </connections>
-                                            </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="To report a gas emergency or a downed or sparking power line, please call 1-800-685-0123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NCZ-xQ-xbF" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="29" y="500" width="317" height="45"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cGe-OA-ryI"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
-                                            </textView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="of0-TU-uY3" firstAttribute="centerX" secondItem="XYw-aP-xdY" secondAttribute="centerX" id="0Cc-7i-ztb"/>
-                                            <constraint firstItem="Zjr-tL-pFh" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" priority="999" constant="29" id="AvQ-is-RiR"/>
-                                            <constraint firstItem="Zjr-tL-pFh" firstAttribute="centerX" secondItem="XYw-aP-xdY" secondAttribute="centerX" id="Bda-xh-J5X"/>
-                                            <constraint firstItem="Kuy-ht-Q3x" firstAttribute="top" secondItem="LLD-E0-iMr" secondAttribute="bottom" constant="21" id="DCp-H1-hfC"/>
-                                            <constraint firstAttribute="bottom" secondItem="NCZ-xQ-xbF" secondAttribute="bottom" constant="12" id="DFH-b5-49f"/>
-                                            <constraint firstItem="Zjr-tL-pFh" firstAttribute="top" secondItem="Kuy-ht-Q3x" secondAttribute="bottom" constant="22" id="F8s-Ao-NAu"/>
-                                            <constraint firstItem="NCZ-xQ-xbF" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" priority="999" constant="29" id="JPg-pO-BTu"/>
-                                            <constraint firstAttribute="trailing" secondItem="of0-TU-uY3" secondAttribute="trailing" priority="999" constant="29" id="NDr-Ee-zva"/>
-                                            <constraint firstAttribute="trailing" secondItem="LLD-E0-iMr" secondAttribute="trailing" id="Oeh-JS-FPE"/>
-                                            <constraint firstItem="of0-TU-uY3" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" priority="999" constant="29" id="PrF-ST-xbr"/>
-                                            <constraint firstAttribute="trailing" secondItem="NCZ-xQ-xbF" secondAttribute="trailing" priority="999" constant="29" id="Uvr-IL-C6W"/>
-                                            <constraint firstItem="NCZ-xQ-xbF" firstAttribute="top" secondItem="of0-TU-uY3" secondAttribute="bottom" constant="10" id="YnF-0D-jLw"/>
-                                            <constraint firstItem="LLD-E0-iMr" firstAttribute="leading" secondItem="XYw-aP-xdY" secondAttribute="leading" id="ZVK-Y1-E1B"/>
-                                            <constraint firstAttribute="trailing" secondItem="Zjr-tL-pFh" secondAttribute="trailing" priority="999" constant="29" id="c8T-3j-aUU"/>
-                                            <constraint firstItem="Kuy-ht-Q3x" firstAttribute="centerX" secondItem="XYw-aP-xdY" secondAttribute="centerX" id="lRd-H3-4ub"/>
-                                            <constraint firstItem="NCZ-xQ-xbF" firstAttribute="centerX" secondItem="XYw-aP-xdY" secondAttribute="centerX" id="nR3-P2-bNX"/>
-                                            <constraint firstItem="LLD-E0-iMr" firstAttribute="top" secondItem="XYw-aP-xdY" secondAttribute="top" id="osS-yb-LYt"/>
-                                            <constraint firstItem="of0-TU-uY3" firstAttribute="top" secondItem="Zjr-tL-pFh" secondAttribute="bottom" constant="10" id="xkv-yx-HLn"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="XYw-aP-xdY" secondAttribute="bottom" id="0IL-rj-wtA"/>
-                                    <constraint firstItem="XYw-aP-xdY" firstAttribute="centerX" secondItem="mwp-HU-286" secondAttribute="centerX" id="DPk-np-uAY"/>
-                                    <constraint firstAttribute="trailing" secondItem="XYw-aP-xdY" secondAttribute="trailing" id="iZQ-k9-LSf"/>
-                                    <constraint firstItem="XYw-aP-xdY" firstAttribute="leading" secondItem="mwp-HU-286" secondAttribute="leading" id="mEa-AF-Ugy"/>
-                                    <constraint firstItem="XYw-aP-xdY" firstAttribute="top" secondItem="mwp-HU-286" secondAttribute="top" id="v8p-H0-8E9"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wMz-US-dWJ" firstAttribute="trailing" secondItem="mwp-HU-286" secondAttribute="trailing" id="I8P-XT-oXa"/>
-                            <constraint firstItem="mwp-HU-286" firstAttribute="top" secondItem="wMz-US-dWJ" secondAttribute="top" id="LgL-lL-mt1"/>
-                            <constraint firstItem="mwp-HU-286" firstAttribute="leading" secondItem="wMz-US-dWJ" secondAttribute="leading" id="PRz-qk-3ii"/>
-                            <constraint firstAttribute="bottom" secondItem="mwp-HU-286" secondAttribute="bottom" id="a25-nu-IJH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="wMz-US-dWJ"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Outage" id="EVM-zc-P4J"/>
-                    <connections>
-                        <outlet property="accountInfoBar" destination="LLD-E0-iMr" id="Qa4-q7-Y5H"/>
-                        <outlet property="footerTextView" destination="NCZ-xQ-xbF" id="ejo-uB-rU8"/>
-                        <outlet property="outageStatusButton" destination="Kuy-ht-Q3x" id="fHd-O4-oxQ"/>
-                        <outlet property="reportOutageButton" destination="Zjr-tL-pFh" id="PGM-rR-XFV"/>
-                        <outlet property="viewOutageMapButton" destination="of0-TU-uY3" id="4X9-VW-lcy"/>
-                        <segue destination="vnJ-pu-AdP" kind="show" identifier="outageMapSegue" id="KWC-1c-bJW"/>
-                        <segue destination="ywr-2K-YNQ" kind="show" identifier="reportOutageSegue" id="0Tx-ji-Fvz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lLN-d8-EtJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Outage" id="bM7-iQ-w5Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dNN-ag-74s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4050.4000000000001" y="-1401.4992503748126"/>
-        </scene>
-        <!--ReportOutageViewController-->
-        <scene sceneID="CdO-Ov-Pzv">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="ywr-2K-YNQ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pJ6-Ug-umY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4780" y="-1446"/>
-        </scene>
-        <!--OutageMapViewController-->
-        <scene sceneID="rO8-81-AI3">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="vnJ-pu-AdP" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ePV-rh-2HI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4768" y="-1356"/>
+            <point key="canvasLocation" x="4027" y="-1424"/>
         </scene>
         <!--ContactUsViewController-->
         <scene sceneID="vEs-1y-YfA">
@@ -980,13 +849,13 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAP-dP-E5T" userLabel="Logo Background">
-                                <rect key="frame" x="0.0" y="92" width="375" height="57"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="121"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYp-HC-CYV">
-                                        <rect key="frame" x="19" y="0.0" width="337" height="57"/>
+                                        <rect key="frame" x="19" y="0.0" width="337" height="121"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="oRl-ty-kRc">
-                                                <rect key="frame" x="321" y="21" width="16" height="16"/>
+                                                <rect key="frame" x="86" y="21" width="251" height="80"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <bool key="isElement" value="YES"/>
                                                 </accessibility>
@@ -1076,7 +945,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version x.x.x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwh-jf-fVT">
-                                <rect key="frame" x="278" y="632" width="68" height="14"/>
+                                <rect key="frame" x="275.5" y="629.5" width="70.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1258,7 +1127,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                         <rect key="frame" x="30" y="0.0" width="315" height="197"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="NYS-Lm-p3Z">
-                                                                <rect key="frame" x="299" y="161" width="16" height="16"/>
+                                                                <rect key="frame" x="64" y="97" width="251" height="80"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3743,7 +3612,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
     <inferredMetricsTieBreakers>
         <segue reference="GYT-tJ-2IP"/>
         <segue reference="6eI-mv-PAf"/>
-        <segue reference="imT-Ig-8hn"/>
+        <segue reference="v05-55-ixL"/>
         <segue reference="cyl-oL-1Pd"/>
     </inferredMetricsTieBreakers>
 </document>
