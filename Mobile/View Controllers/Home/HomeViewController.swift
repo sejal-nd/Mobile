@@ -93,6 +93,13 @@ class HomeViewController: AccountPickerViewController {
                 self?.scrollView!.alwaysBounceVertical = true
             })
             .disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOff)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.viewModel.fetchData.onNext(.switchAccount)
+            })
+            .disposed(by: bag)
     }
     
     func viewSetup() {
