@@ -142,7 +142,7 @@ class ReportOutageViewController: UIViewController {
             segmentedControl.items = [NSLocalizedString("Yes", comment: ""), NSLocalizedString("Partially", comment: "")]
         }
         
-        phoneNumberTextField.textField.placeholder = NSLocalizedString("Contact Number*", comment: "")
+        phoneNumberTextField.placeholder = NSLocalizedString("Contact Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
@@ -168,7 +168,7 @@ class ReportOutageViewController: UIViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        phoneExtensionTextField.textField.placeholder = NSLocalizedString("Contact # Ext. (Opt.)", comment: "")
+        phoneExtensionTextField.placeholder = NSLocalizedString("Contact # Ext. (Opt.)", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
