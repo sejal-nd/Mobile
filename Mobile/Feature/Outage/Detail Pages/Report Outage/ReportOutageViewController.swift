@@ -71,6 +71,8 @@ class ReportOutageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FirebaseUtility.logEvent(.reportOutageStart)
+        
         title = NSLocalizedString("Report Outage", comment: "")
         
         style()
@@ -249,7 +251,7 @@ class ReportOutageViewController: UIViewController {
                 
                 if problemsFound {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                     
                     self.areYourLightsOutView.isHidden = true
                     self.viewModel.reportFormHidden.value = false
@@ -270,7 +272,7 @@ class ReportOutageViewController: UIViewController {
                     
                     self.meterPingStatusView.isHidden = false
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                     
                     self.areYourLightsOutView.isHidden = true
                     self.viewModel.reportFormHidden.value = false
@@ -336,6 +338,8 @@ class ReportOutageViewController: UIViewController {
     }
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
+        FirebaseUtility.logEvent(.reportOutageSubmit)
+        
         view.endEditing(true)
         
         let errorBlock = { [weak self] (errorMessage: String) in
@@ -348,6 +352,7 @@ class ReportOutageViewController: UIViewController {
         LoadingView.show()
         if unauthenticatedExperience {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
+                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -357,6 +362,7 @@ class ReportOutageViewController: UIViewController {
             GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
+                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())

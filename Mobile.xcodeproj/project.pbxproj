@@ -3781,7 +3781,7 @@
 			children = (
 				359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */,
 				2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */,
-				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
+				35C9138A22E754C8009DD71A /* Report Outage */,
 			);
 			path = "Detail Pages";
 			sourceTree = "<group>";
@@ -3828,6 +3828,15 @@
 				35A6C6FB2121D64C00C2A58F /* ToggleTableViewCell.swift */,
 			);
 			path = ToggleTableViewCell;
+			sourceTree = "<group>";
+		};
+		35C9138A22E754C8009DD71A /* Report Outage */ = {
+			isa = PBXGroup;
+			children = (
+				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
+				82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */,
+			);
+			path = "Report Outage";
 			sourceTree = "<group>";
 		};
 		35E7C79021907EA200BA13C6 /* PECO_WatchOS */ = {
@@ -4312,14 +4321,6 @@
 				E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */,
 			);
 			path = Bill;
-			sourceTree = "<group>";
-		};
-		82A18E651EB918D400BE9F21 /* Outage */ = {
-			isa = PBXGroup;
-			children = (
-				82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */,
-			);
-			path = Outage;
 			sourceTree = "<group>";
 		};
 		82A18E6E1EB9192500BE9F21 /* Login */ = {
@@ -5568,7 +5569,6 @@
 				82AC2A211FAB71CC00EACB3B /* Peak Rewards */,
 				82A18E6E1EB9192500BE9F21 /* Login */,
 				82A18E6F1EB9192B00BE9F21 /* More */,
-				82A18E651EB918D400BE9F21 /* Outage */,
 				0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */,
 				E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */,
 			);

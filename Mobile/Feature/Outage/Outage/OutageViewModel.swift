@@ -91,6 +91,36 @@ class OutageViewModel {
             })
     }
     
+    func trackPhoneNumberAnalytics(isAuthenticated: Bool, for URL: URL) {
+        let urlString = URL.absoluteString
+        
+        // Determine Auth / Unauth
+        let event: FirebaseUtility.Event
+        if isAuthenticated {
+            event = .authOutage
+        } else {
+            event = .unauthOutage
+        }
+        
+        switch Environment.shared.opco {
+        case .bge:
+            switch urlString {
+            case "tel:1-800-685-0123":
+                FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
+            case "tel:1-877-778-7798":
+                FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_emergency_gas)])
+            case "tel:1-877-778-2222":
+                FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_emergency_electric)])
+            default:
+                break
+            }
+        case .comEd:
+            FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
+        case .peco:
+            FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .phone_number_main)])
+        }
+    }
+    
     
     var reportedOutage: ReportedOutageResult? {
         if let accountNumber = accountNumber {

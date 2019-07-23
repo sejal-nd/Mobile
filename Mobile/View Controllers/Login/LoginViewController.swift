@@ -390,6 +390,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @IBAction func onBiometricsButtonPress() {
+        FirebaseUtility.logEvent(.login, parameters: [EventParameter(parameterName: .action, value: .biometrics_press)])
+        
         navigationController?.view.isUserInteractionEnabled = false
 
         // This delay is necessary to make setting isUserInteractionEnabled work properly -- do not remove

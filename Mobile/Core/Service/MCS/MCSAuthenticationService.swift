@@ -110,7 +110,7 @@ struct MCSAuthenticationService : AuthenticationService {
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
                 
                 #if os(iOS)
-                FirebaseUtility.logEvent(.loginTokenNetworkComplete)
+                FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
                 #endif
                 
                 return response

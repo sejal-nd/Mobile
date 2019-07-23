@@ -316,9 +316,11 @@ extension OutageViewController: UITableViewDelegate {
             performSegue(withIdentifier: "reportOutageSegue", sender: self)
         case 1:
             GoogleAnalytics.log(event: .viewStreetlightMapOfferComplete)
+            FirebaseUtility.logEvent(userState == .authenticated ? .authOutage : .unauthOutage, parameters: [EventParameter(parameterName: .action, value: .streetlight_map)])
             performSegue(withIdentifier: "outageMapSegue", sender: true)
         case 2:
             GoogleAnalytics.log(event: .viewMapOfferComplete)
+            FirebaseUtility.logEvent(userState == .authenticated ? .authOutage : .unauthOutage, parameters: [EventParameter(parameterName: .action, value: .map)])
             performSegue(withIdentifier: "outageMapSegue", sender: false)
         default:
             break
@@ -341,6 +343,8 @@ extension OutageViewController: AccountPickerDelegate {
 
 extension OutageViewController: OutageStatusDelegate {
     func didPressButton(button: UIButton, outageState: OutageState) {
+        FirebaseUtility.logEvent(userState == .authenticated ? .authOutage : .unauthOutage, parameters: [EventParameter(parameterName: .action, value: .view_details)])
+        
         switch outageState {
         case .powerStatus(_), .reported, .unavailable:
             guard let message = viewModel.outageStatus?.outageDescription else { return }
@@ -358,7 +362,10 @@ extension OutageViewController: OutageStatusDelegate {
 
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
+        // Analytics
         GoogleAnalytics.log(event: .outageAuthEmergencyCall)
+        FirebaseUtility.logEvent(userState == .authenticated ? .authOutage : .unauthOutage, parameters: [EventParameter(parameterName: .action, value: .emergency_number)])
+        viewModel.trackPhoneNumberAnalytics(isAuthenticated: userState == .authenticated, for: URL)
     }
 }
 
@@ -381,5 +388,14 @@ extension OutageViewController: ReportOutageDelegate {
         outageStatusView.setOutageStatus(outageStatus,
                                          reportedResults: viewModel.reportedOutage,
                                          hasJustReported: viewModel.hasJustReportedOutage)
+        
+        // Analytics
+        let event: FirebaseUtility.Event
+        if userState == .authenticated {
+            event = .authOutage
+        } else {
+            event = .unauthOutage
+        }
+        FirebaseUtility.logEvent(event, parameters: [EventParameter(parameterName: .action, value: .report_complete)])
     }
 }
