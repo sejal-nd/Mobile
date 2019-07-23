@@ -42,10 +42,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUs-jP-wTI">
-                                <rect key="frame" x="29" y="218" width="317" height="16"/>
+                                <rect key="frame" x="29" y="218" width="317" height="80"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="KbH-nF-LSv">
-                                        <rect key="frame" x="301" y="0.0" width="16" height="16"/>
+                                        <rect key="frame" x="66" y="0.0" width="251" height="80"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -92,22 +92,22 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gI-bY-LIR">
-                                <rect key="frame" x="29" y="163" width="317" height="341"/>
+                                <rect key="frame" x="29" y="130.5" width="317" height="406.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="S7q-8S-Oz3">
-                                        <rect key="frame" x="307" y="0.0" width="16" height="16"/>
+                                        <rect key="frame" x="72" y="0.0" width="251" height="80"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="dmS-k7-4Rh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="126.5" y="41" width="64.5" height="20.5"/>
+                                        <rect key="frame" x="125.5" y="105" width="66.5" height="22"/>
                                         <subviews>
                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Xz-UO-s4e">
-                                                <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="22"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_reload" translatesAutoresizingMaskIntoConstraints="NO" id="8BE-xm-WFA" userLabel="Reload Image">
-                                                        <rect key="frame" x="0.0" y="2.5" width="16" height="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="18" height="22"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Retry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVv-m7-Ir4" userLabel="Reload Label">
-                                                        <rect key="frame" x="24" y="0.0" width="40.5" height="20.5"/>
+                                                        <rect key="frame" x="26" y="0.5" width="40.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -133,7 +133,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wp4-Rx-Szm">
-                                        <rect key="frame" x="0.0" y="86.5" width="317" height="254.5"/>
+                                        <rect key="frame" x="0.0" y="152" width="317" height="254.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We’re unable to load the app at this time. Please try again later or visit us at PECO.com." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmW-i8-t3P">
                                                 <rect key="frame" x="22" y="25" width="172" height="67"/>
@@ -142,7 +142,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_wires" translatesAutoresizingMaskIntoConstraints="NO" id="ZVJ-R9-uEY">
-                                                <rect key="frame" x="199" y="20" width="107" height="72"/>
+                                                <rect key="frame" x="199" y="20" width="107.00000000000003" height="72"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="107" id="D1h-F8-Nah"/>
                                                     <constraint firstAttribute="height" constant="72" id="PjH-zT-mW7"/>
@@ -1787,66 +1787,110 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <!--RegistrationBGE Account Number View Controller-->
         <scene sceneID="Ebq-A6-6CT">
             <objects>
-                <viewController id="Y17-A0-L8c" customClass="RegistrationBGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Y17-A0-L8c" customClass="RegistrationBGEAccountNumberViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xW1-YR-KGz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits of blah blah blah" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uO3-lH-MQo">
-                                <rect key="frame" x="29" y="30" width="317" height="14.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="vgl-5v-oNH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CO2-QY-vKu" userLabel="Account Number View">
-                                <rect key="frame" x="29" y="74.5" width="317" height="60"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyT-bb-GYJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhO-LR-ZR8" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LW0-3l-qiA">
+                                        <rect key="frame" x="20" y="0.0" width="335" height="139.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 4 Digits of blah blah blah" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uO3-lH-MQo">
+                                                <rect key="frame" x="0.0" y="20" width="335" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CO2-QY-vKu" userLabel="Account Number View">
+                                                <rect key="frame" x="0.0" y="64.5" width="335" height="55"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="uhO-LR-ZR8" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-V7-E2y">
+                                                        <rect key="frame" x="284" y="2" width="51" height="51"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="51" id="3d2-hp-cdH"/>
+                                                            <constraint firstAttribute="height" constant="51" id="Wk0-WA-Xxx"/>
+                                                        </constraints>
+                                                        <state key="normal" image="ic_tooltip"/>
+                                                        <connections>
+                                                            <action selector="onAccountNumberTooltipPress" destination="Y17-A0-L8c" eventType="touchUpInside" id="07u-Ko-sXX"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="zdg-V7-E2y" firstAttribute="centerY" secondItem="uhO-LR-ZR8" secondAttribute="centerY" id="JHF-kW-ZsJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zdg-V7-E2y" secondAttribute="trailing" id="Vkn-S4-maI"/>
+                                                    <constraint firstItem="uhO-LR-ZR8" firstAttribute="leading" secondItem="CO2-QY-vKu" secondAttribute="leading" id="Zn7-Uf-ypF"/>
+                                                    <constraint firstItem="uhO-LR-ZR8" firstAttribute="top" secondItem="CO2-QY-vKu" secondAttribute="top" id="cjp-LT-fYZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uhO-LR-ZR8" secondAttribute="trailing" id="kYL-hF-FPi"/>
+                                                    <constraint firstAttribute="bottom" secondItem="uhO-LR-ZR8" secondAttribute="bottom" id="xhQ-39-sSu"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="60" id="y6J-Lb-hu1"/>
+                                            <constraint firstItem="CO2-QY-vKu" firstAttribute="leading" secondItem="LW0-3l-qiA" secondAttribute="leading" id="G53-a2-FiR"/>
+                                            <constraint firstItem="CO2-QY-vKu" firstAttribute="top" secondItem="uO3-lH-MQo" secondAttribute="bottom" constant="30" id="GpZ-Is-Ttn"/>
+                                            <constraint firstAttribute="trailing" secondItem="CO2-QY-vKu" secondAttribute="trailing" id="T9a-wD-0sN"/>
+                                            <constraint firstAttribute="bottom" secondItem="CO2-QY-vKu" secondAttribute="bottom" constant="20" id="XRW-X4-HOr"/>
+                                            <constraint firstItem="uO3-lH-MQo" firstAttribute="top" secondItem="LW0-3l-qiA" secondAttribute="top" constant="20" id="bEE-yJ-8ov"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="jDL-v4-zDf"/>
+                                            <constraint firstAttribute="trailing" secondItem="uO3-lH-MQo" secondAttribute="trailing" id="l0f-P6-wAu"/>
+                                            <constraint firstItem="uO3-lH-MQo" firstAttribute="leading" secondItem="LW0-3l-qiA" secondAttribute="leading" id="lnz-R2-rdG"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-V7-E2y">
-                                        <rect key="frame" x="266" y="4.5" width="51" height="51"/>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="LW0-3l-qiA" firstAttribute="top" secondItem="KyT-bb-GYJ" secondAttribute="top" id="28z-Uz-zsj"/>
+                                    <constraint firstItem="LW0-3l-qiA" firstAttribute="centerX" secondItem="KyT-bb-GYJ" secondAttribute="centerX" id="3n2-dw-dUK"/>
+                                    <constraint firstItem="LW0-3l-qiA" firstAttribute="leading" secondItem="KyT-bb-GYJ" secondAttribute="leading" priority="999" constant="20" id="BS3-xa-ieq"/>
+                                    <constraint firstAttribute="bottom" secondItem="LW0-3l-qiA" secondAttribute="bottom" id="BTa-6f-mBD"/>
+                                    <constraint firstAttribute="trailing" secondItem="LW0-3l-qiA" secondAttribute="trailing" priority="999" constant="20" id="Dz7-le-yIl"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AHF-Th-f75" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="582" width="375" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tay-63-69A" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="335" height="55"/>
+                                        <accessibility key="accessibilityConfiguration" label="Continue"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="51" id="3d2-hp-cdH"/>
-                                            <constraint firstAttribute="height" constant="51" id="Wk0-WA-Xxx"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="TuG-RN-i23"/>
+                                            <constraint firstAttribute="height" constant="55" id="oGC-qy-xGA"/>
                                         </constraints>
-                                        <state key="normal" image="ic_question"/>
+                                        <state key="normal" title="Continue"/>
                                         <connections>
-                                            <action selector="onAccountNumberTooltipPress" destination="Y17-A0-L8c" eventType="touchUpInside" id="07u-Ko-sXX"/>
+                                            <action selector="onContinuePress" destination="Y17-A0-L8c" eventType="touchUpInside" id="MJz-sI-bAE"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="1rH-A9-Y7C"/>
-                                    <constraint firstItem="zdg-V7-E2y" firstAttribute="top" secondItem="CO2-QY-vKu" secondAttribute="top" constant="4.5" id="B6B-iD-HBw"/>
-                                    <constraint firstAttribute="trailing" secondItem="zdg-V7-E2y" secondAttribute="trailing" id="Vkn-S4-maI"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="YsC-EY-Qrc"/>
-                                    <constraint firstItem="uhO-LR-ZR8" firstAttribute="leading" secondItem="CO2-QY-vKu" secondAttribute="leading" id="Zn7-Uf-ypF"/>
-                                    <constraint firstItem="uhO-LR-ZR8" firstAttribute="top" secondItem="CO2-QY-vKu" secondAttribute="top" id="cjp-LT-fYZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="uhO-LR-ZR8" secondAttribute="trailing" id="kYL-hF-FPi"/>
-                                    <constraint firstAttribute="height" priority="250" constant="60" id="u7M-cg-04X"/>
-                                    <constraint firstAttribute="bottom" secondItem="uhO-LR-ZR8" secondAttribute="bottom" id="xhQ-39-sSu"/>
+                                    <constraint firstItem="tay-63-69A" firstAttribute="centerX" secondItem="hWP-Ai-Mos" secondAttribute="centerX" id="11p-px-u2m"/>
+                                    <constraint firstItem="hWP-Ai-Mos" firstAttribute="trailing" secondItem="tay-63-69A" secondAttribute="trailing" priority="999" constant="20" id="J1r-qG-Nkr"/>
+                                    <constraint firstItem="tay-63-69A" firstAttribute="leading" secondItem="hWP-Ai-Mos" secondAttribute="leading" priority="999" constant="20" id="WlG-Xh-YjZ"/>
+                                    <constraint firstItem="hWP-Ai-Mos" firstAttribute="bottom" secondItem="tay-63-69A" secondAttribute="bottom" constant="15" id="aJm-kC-XG6"/>
+                                    <constraint firstItem="tay-63-69A" firstAttribute="top" secondItem="AHF-Th-f75" secondAttribute="top" constant="15" id="bip-iy-301"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="hWP-Ai-Mos"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uO3-lH-MQo" firstAttribute="centerX" secondItem="bM3-iU-eJq" secondAttribute="centerX" id="740-k7-vA9"/>
-                            <constraint firstItem="uO3-lH-MQo" firstAttribute="leading" secondItem="bM3-iU-eJq" secondAttribute="leading" priority="999" constant="29" id="AfU-f2-Hp8"/>
-                            <constraint firstItem="bM3-iU-eJq" firstAttribute="trailing" secondItem="uO3-lH-MQo" secondAttribute="trailing" priority="999" constant="29" id="Bel-lE-akz"/>
-                            <constraint firstItem="uO3-lH-MQo" firstAttribute="top" secondItem="bM3-iU-eJq" secondAttribute="top" constant="30" id="H5h-hB-IKx"/>
-                            <constraint firstItem="CO2-QY-vKu" firstAttribute="top" secondItem="uO3-lH-MQo" secondAttribute="bottom" constant="30" id="TqK-hY-u4V"/>
-                            <constraint firstItem="CO2-QY-vKu" firstAttribute="leading" secondItem="bM3-iU-eJq" secondAttribute="leading" priority="999" constant="29" id="qHW-lM-bv3"/>
-                            <constraint firstItem="bM3-iU-eJq" firstAttribute="trailing" secondItem="CO2-QY-vKu" secondAttribute="trailing" priority="999" constant="29" id="tSP-5g-gI0"/>
-                            <constraint firstItem="CO2-QY-vKu" firstAttribute="centerX" secondItem="bM3-iU-eJq" secondAttribute="centerX" id="v3Q-HK-O1v"/>
+                            <constraint firstItem="bM3-iU-eJq" firstAttribute="trailing" secondItem="AHF-Th-f75" secondAttribute="trailing" id="5Pr-HJ-YGh"/>
+                            <constraint firstItem="AHF-Th-f75" firstAttribute="leading" secondItem="bM3-iU-eJq" secondAttribute="leading" id="88m-5A-eHc"/>
+                            <constraint firstItem="KyT-bb-GYJ" firstAttribute="top" secondItem="xW1-YR-KGz" secondAttribute="top" id="IvL-XY-sLs"/>
+                            <constraint firstItem="KyT-bb-GYJ" firstAttribute="leading" secondItem="xW1-YR-KGz" secondAttribute="leading" id="Nuz-Ut-sv5"/>
+                            <constraint firstAttribute="bottom" secondItem="AHF-Th-f75" secondAttribute="bottom" id="kH8-2z-BkC"/>
+                            <constraint firstAttribute="trailing" secondItem="KyT-bb-GYJ" secondAttribute="trailing" id="syr-O3-SLA"/>
+                            <constraint firstItem="AHF-Th-f75" firstAttribute="top" secondItem="KyT-bb-GYJ" secondAttribute="bottom" id="xyH-mJ-yEY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bM3-iU-eJq"/>
                     </view>
@@ -1855,14 +1899,16 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="accountNumberTextField" destination="uhO-LR-ZR8" id="0vU-EN-iMH"/>
+                        <outlet property="continueButton" destination="tay-63-69A" id="Eso-Mc-vBr"/>
                         <outlet property="instructionLabel" destination="uO3-lH-MQo" id="iAY-Zv-0t1"/>
                         <outlet property="questionMarkButton" destination="zdg-V7-E2y" id="EWz-rc-r4v"/>
+                        <outlet property="stickyFooterBottomConstraint" destination="kH8-2z-BkC" id="8oQ-ZP-L3w"/>
                         <segue destination="OB4-E6-Bvv" kind="show" identifier="createCredentialsSegue" id="GYT-tJ-2IP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-cA-6tr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886" y="851"/>
+            <point key="canvasLocation" x="1885.5999999999999" y="850.52473763118451"/>
         </scene>
         <!--Account Lookup Tool-->
         <scene sceneID="6VS-rO-B5F">
@@ -3600,22 +3646,22 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uca-EY-U9e" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="203.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-w0-3zh" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="0.0" width="317" height="203.5"/>
+                                                <rect key="frame" x="29" y="0.0" width="317" height="330"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation_green" translatesAutoresizingMaskIntoConstraints="NO" id="cIh-fu-Toz">
-                                                        <rect key="frame" x="0.0" y="10" width="317" height="16"/>
+                                                        <rect key="frame" x="0.0" y="10" width="317.00000000000006" height="136"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGO-py-Dmb">
-                                                        <rect key="frame" x="0.0" y="36" width="317" height="37.5"/>
+                                                        <rect key="frame" x="0.0" y="156" width="317" height="44"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-HE-SDA" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="113.5" width="317" height="60"/>
+                                                        <rect key="frame" x="0.0" y="240" width="317" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="s0P-Xe-fHy"/>
                                                         </constraints>
@@ -3688,7 +3734,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
         <image name="ic_check" width="13" height="10"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_eyeball_disabled" width="24" height="24"/>
-        <image name="ic_question" width="17" height="17"/>
         <image name="ic_radiobutton_deselected" width="24" height="24"/>
         <image name="ic_reload" width="18" height="22"/>
         <image name="ic_tooltip" width="24" height="24"/>
