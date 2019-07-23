@@ -35,8 +35,6 @@ class SetDefaultAccountViewController: UIViewController {
         infoButton.isAccessibilityElement = true
         infoButton.accessibilityLabel = "Tooltip"
         
-//        let nib = UINib(nibName: SetDefaultAccountTableViewCell.className, bundle: nil)
-//        tableView.register(nib, forCellReuseIdentifier: SetDefaultAccountTableViewCell.className)
         tableView.estimatedRowHeight = 56
         
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: bag)
