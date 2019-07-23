@@ -232,13 +232,13 @@ extension ContactUsViewController: DataDetectorTextViewLinkTapDelegate {
         case emergencyNumberTextView:
             paramValue = .emergency_number
         case bgeGasNumber1TextView:
-            paramValue = .phone_number_gas_1
+            paramValue = .phone_number_main
         case bgeGasNumber2TextView:
-            paramValue = .phone_number_gas_2
+            paramValue = .phone_number_emergency_gas
         case bgePowerLineNumber1TextView:
-            paramValue = .phone_number_electric_1
+            paramValue = .phone_number_main
         case bgePowerLineNumber2TextView:
-            paramValue = .phone_number_electric_2
+            paramValue = .phone_number_emergency_electric
         case firstNumberTextView:
             paramValue = .customer_service_residential
         case secondNumberTextView:

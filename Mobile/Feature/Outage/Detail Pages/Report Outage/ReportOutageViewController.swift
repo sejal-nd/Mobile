@@ -251,7 +251,7 @@ class ReportOutageViewController: UIViewController {
                 
                 if problemsFound {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                     
                     self.areYourLightsOutView.isHidden = true
                     self.viewModel.reportFormHidden.value = false
@@ -272,7 +272,7 @@ class ReportOutageViewController: UIViewController {
                     
                     self.meterPingStatusView.isHidden = false
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Problems Found. Please tap \"Submit\" to report an outage.", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                     
                     self.areYourLightsOutView.isHidden = true
                     self.viewModel.reportFormHidden.value = false

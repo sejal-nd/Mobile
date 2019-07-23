@@ -192,10 +192,9 @@ struct EventParameter {
         case scan_with_camera
         
         case emergency_number // done
-        case phone_number_gas_1
-        case phone_number_gas_2
-        case phone_number_electric_1
-        case phone_number_electric_2
+        case phone_number_main // done
+        case phone_number_emergency_gas // done
+        case phone_number_emergency_electric // done
         case view_details // done
         case report_complete // done
         case map // done

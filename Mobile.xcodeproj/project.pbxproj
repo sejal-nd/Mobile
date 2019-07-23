@@ -404,6 +404,9 @@
 		35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
 		35B960C022C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
 		35B960C122C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
+		35C9138B22E758D5009DD71A /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
+		35C9138C22E758D5009DD71A /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
+		35C9138D22E758D6009DD71A /* OutageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB5C22D8DCA2007002B0 /* OutageViewController.swift */; };
 		35E7C79C21907EA400BA13C6 /* PECO_WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO_WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -3781,7 +3784,7 @@
 			children = (
 				359BDB8222DCDDCA007002B0 /* GasOnlyViewController.swift */,
 				2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */,
-				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
+				35C9138A22E754C8009DD71A /* Report Outage */,
 			);
 			path = "Detail Pages";
 			sourceTree = "<group>";
@@ -3828,6 +3831,15 @@
 				35A6C6FB2121D64C00C2A58F /* ToggleTableViewCell.swift */,
 			);
 			path = ToggleTableViewCell;
+			sourceTree = "<group>";
+		};
+		35C9138A22E754C8009DD71A /* Report Outage */ = {
+			isa = PBXGroup;
+			children = (
+				E8542FF61E7ADADA0054AC53 /* ReportOutageViewController.swift */,
+				82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */,
+			);
+			path = "Report Outage";
 			sourceTree = "<group>";
 		};
 		35E7C79021907EA200BA13C6 /* PECO_WatchOS */ = {
@@ -4312,14 +4324,6 @@
 				E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */,
 			);
 			path = Bill;
-			sourceTree = "<group>";
-		};
-		82A18E651EB918D400BE9F21 /* Outage */ = {
-			isa = PBXGroup;
-			children = (
-				82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */,
-			);
-			path = Outage;
 			sourceTree = "<group>";
 		};
 		82A18E6E1EB9192500BE9F21 /* Login */ = {
@@ -5568,7 +5572,6 @@
 				82AC2A211FAB71CC00EACB3B /* Peak Rewards */,
 				82A18E6E1EB9192500BE9F21 /* Login */,
 				82A18E6F1EB9192B00BE9F21 /* More */,
-				82A18E651EB918D400BE9F21 /* Outage */,
 				0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */,
 				E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */,
 			);
@@ -8674,6 +8677,7 @@
 				826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				B0B0840B21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246B21E4F433006D83B0 /* Logger.swift in Sources */,
+				35C9138B22E758D5009DD71A /* OutageViewController.swift in Sources */,
 				82B20A39203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
 				E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */,
 				B08BBFC621C8539000A899FC /* SERResult.swift in Sources */,
@@ -8912,6 +8916,7 @@
 				E8F62B4C200924410077B3DA /* Control.swift in Sources */,
 				B0B0840C21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246C21E4F434006D83B0 /* Logger.swift in Sources */,
+				35C9138C22E758D5009DD71A /* OutageViewController.swift in Sources */,
 				E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				B08BBFC721C8539000A899FC /* SERResult.swift in Sources */,
@@ -9104,6 +9109,7 @@
 				E8F62C01200924570077B3DA /* Control.swift in Sources */,
 				B0B0840D21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246D21E4F435006D83B0 /* Logger.swift in Sources */,
+				35C9138D22E758D6009DD71A /* OutageViewController.swift in Sources */,
 				E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				B08BBFC821C8539000A899FC /* SERResult.swift in Sources */,
