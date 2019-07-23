@@ -10,24 +10,19 @@ import UIKit
 
 class RegistrationSecurityQuestionListViewController: UITableViewController {
     
+    // Passed from RegistrationSecuriyQuestionsViewController
     var viewModel: RegistrationViewModel!
+    var questionNumber: Int!
     
     var viewableQuestions: [String]!
     
-    var questionNumber: Int! // Passed from RegistrationSecuriyQuestionsViewController
-    
-    //var previouslySelectedQuestion: String!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addCloseButton()
 
         title = NSLocalizedString("Select Question", comment: "")
-        
-//        if viewableQuestions.count > 0 {
-//            viewableQuestions.removeAll()
-//        }
+
         let questions = viewModel.securityQuestions!
         viewableQuestions = questions.filter({ question -> Bool in
             if questionNumber == 1 {
@@ -44,7 +39,7 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
         tableView.estimatedRowHeight = 51
     }
 
-    // MARK: - Table view data source
+    // MARK: - TableView Delegate/DataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -71,21 +66,8 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // do stuff here to identify the question selected, and pop back out to the question/answer view controller
         let question = viewableQuestions[indexPath.row]
         
-//        for question in viewModel.securityQuestions.value {
-//            if question.securityQuestion == securityQuestion {
-//                question.selected = true
-//            } else {
-//                if let previouslySelectedQuestion = previouslySelectedQuestion,
-//                    previouslySelectedQuestion == question.securityQuestion {
-//                    //
-//                    question.selected = false
-//                    viewModel.selectedQuestionChanged.value = true
-//                }
-//            }
-//        }
         if questionNumber == 1 {
             viewModel.securityQuestion1.value = question
         } else if questionNumber == 2 {
@@ -94,7 +76,7 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
             viewModel.securityQuestion3.value = question
         }
         
-        //navigationController?.popViewController(animated: true)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
