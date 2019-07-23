@@ -19,22 +19,13 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var instructionLabel: UILabel!
-    
-//    @IBOutlet weak var question1ViewWrapper: UIView!
-//    @IBOutlet weak var question1Label: UILabel!
-//    @IBOutlet weak var question1ContentLabel: UILabel!
+
     @IBOutlet weak var question1QuestionButton: DisclosureButtonNew!
     @IBOutlet weak var question1AnswerTextField: FloatLabelTextFieldNew!
 
-//    @IBOutlet weak var question2ViewWrapper: UIView!
-//    @IBOutlet weak var question2Label: UILabel!
-//    @IBOutlet weak var question2ContentLabel: UILabel!
     @IBOutlet weak var question2QuestionButton: DisclosureButtonNew!
     @IBOutlet weak var question2AnswerTextField: FloatLabelTextFieldNew!
     
-//    @IBOutlet weak var question3ViewWrapper: UIView!
-//    @IBOutlet weak var question3Label: UILabel!
-//    @IBOutlet weak var question3ContentLabel: UILabel!
     @IBOutlet weak var question3QuestionButton: DisclosureButtonNew!
     @IBOutlet weak var question3AnswerTextField: FloatLabelTextFieldNew!
     
@@ -77,7 +68,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         
         populateAccountListingLabels()
         
-        setupValidation()
+        bindViewModel()
         
         if Environment.shared.opco == .bge {
             // BGE users only need to answer 2 questions
@@ -85,7 +76,14 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
             question3AnswerTextField.isHidden = true
         }
         
-        prepareTextFieldsForInput()
+        question1AnswerTextField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
+        question1AnswerTextField.textField.autocorrectionType = .no
+        
+        question2AnswerTextField.placeholder = NSLocalizedString("Security Answer 2*", comment: "")
+        question2AnswerTextField.textField.autocorrectionType = .no
+        
+        question3AnswerTextField.placeholder = NSLocalizedString("Security Answer 3*", comment: "")
+        question3AnswerTextField.textField.autocorrectionType = .no
         
         setupAccessibility()
         
@@ -158,52 +156,32 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     }
     
     func populateAccountListingLabels() {
-        accountListInstructionsLabel.textColor = .blackText
+        accountListInstructionsLabel.textColor = .deepGray
         accountListInstructionsLabel.text = NSLocalizedString("The following accounts will be enrolled for Paperless eBill.", comment:"")
-        accountListInstructionsLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        accountListInstructionsLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        accountNumColHeaderLabel.textColor = .blackText
+        accountNumColHeaderLabel.textColor = .deepGray
         accountNumColHeaderLabel.text = NSLocalizedString("Account #", comment: "")
         accountNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        streetNumColHeaderLabel.textColor = .blackText
+        streetNumColHeaderLabel.textColor = .deepGray
         streetNumColHeaderLabel.text = NSLocalizedString("Street #", comment: "")
         streetNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        unitNumColHeaderLabel.textColor = .blackText
+        unitNumColHeaderLabel.textColor = .deepGray
         unitNumColHeaderLabel.text = NSLocalizedString("Unit #", comment: "")
         unitNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
     }
-    
-    func prepareTextFieldsForInput() {
-        question1AnswerTextField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
-        question1AnswerTextField.textField.autocorrectionType = .no
-        question1AnswerTextField.textField.returnKeyType = .next
-        question1AnswerTextField.textField.isShowingAccessory = true
-        question1AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        question1AnswerTextField.setEnabled(false)
-        
-        question2AnswerTextField.placeholder = NSLocalizedString("Security Answer 2*", comment: "")
-        question2AnswerTextField.textField.autocorrectionType = .no
-        question2AnswerTextField.textField.returnKeyType = .next
-        question2AnswerTextField.textField.isShowingAccessory = true
-        question2AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        question2AnswerTextField.setEnabled(false)
-        
-        question3AnswerTextField.placeholder = NSLocalizedString("Security Answer 3*", comment: "")
-        question3AnswerTextField.textField.autocorrectionType = .no
-        question3AnswerTextField.textField.returnKeyType = .next
-        question3AnswerTextField.textField.isShowingAccessory = true
-        question3AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        question3AnswerTextField.setEnabled(false)
-    }
-    
-    func setupValidation() {
+
+    func bindViewModel() {
         viewModel.securityQuestion1.asDriver().isNil().not().drive(self.question1AnswerTextField.rx.isEnabled).disposed(by: disposeBag)
         viewModel.securityQuestion2.asDriver().isNil().not().drive(self.question2AnswerTextField.rx.isEnabled).disposed(by: disposeBag)
         viewModel.securityQuestion3.asDriver().isNil().not().drive(self.question3AnswerTextField.rx.isEnabled).disposed(by: disposeBag)
+        
+        viewModel.securityQuestion1.asDriver().filter { $0 != nil }.drive(self.question1QuestionButton.rx.valueText).disposed(by: disposeBag)
+        viewModel.securityQuestion2.asDriver().filter { $0 != nil }.drive(self.question2QuestionButton.rx.valueText).disposed(by: disposeBag)
+        viewModel.securityQuestion3.asDriver().filter { $0 != nil }.drive(self.question3QuestionButton.rx.valueText).disposed(by: disposeBag)
 
-        // Bind to the view model
         question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).disposed(by: disposeBag)
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).disposed(by: disposeBag)
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).disposed(by: disposeBag)
@@ -221,7 +199,8 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     
     func buildAccountListing() {
         accountListView.isHidden = false
-        accountListView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        accountListView.layer.borderWidth = 1
+        accountListView.layer.borderColor = UIColor.accentGray.cgColor
         
         var accountDetailViews = [AccountDetailsView]()
         
@@ -309,24 +288,4 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         }
     }
 
-    
-//    @objc func question1Tapped() {
-//        loadSecretQuestionList(forRow: 1, question: viewModel.securityQuestion1.value)
-//    }
-//
-//    @objc func question2Tapped() {
-//        loadSecretQuestionList(forRow: 2, question: viewModel.securityQuestion2.value)
-//    }
-//
-//    @objc func question3Tapped() {
-//        loadSecretQuestionList(forRow: 3, question: viewModel.securityQuestion3.value)
-//    }
-//
-//    func loadSecretQuestionList(forRow row: Int, question: String) {
-//        viewModel.selectedQuestionRow = row
-//        viewModel.selectedQuestion = question
-//        viewModel.selectedQuestionChanged.value = false
-//
-//        self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
-//    }
 }

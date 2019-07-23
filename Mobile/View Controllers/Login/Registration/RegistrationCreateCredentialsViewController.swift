@@ -157,21 +157,11 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         createUsernameTextField.setError(nil)
         accessibilityErrorLabel()
         
-        createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        
         viewModel.newUsernameIsValid.drive(onNext: { [weak self] errorMessage in
             self?.createUsernameTextField.setError(errorMessage)
             self?.accessibilityErrorLabel()
             
         }).disposed(by: self.disposeBag)
-        
-        createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
-            guard let self = self else { return }
-            if self.createUsernameTextField.errorState {
-                self.createUsernameTextField.setError(nil)
-            }
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
         
         viewModel.newPasswordIsValid.drive(onNext: { [weak self] valid in
             self?.createPasswordTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
@@ -181,7 +171,6 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         createPasswordTextField.textField.isSecureTextEntry = true
         createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
-        createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         if #available(iOS 12.0, *) {
             createPasswordTextField.textField.textContentType = .newPassword
@@ -198,7 +187,6 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
-        confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
         createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).disposed(by: disposeBag)
@@ -212,7 +200,6 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
                     self.createUsernameTextField.setError(nil)
                 }
                 self.accessibilityErrorLabel()
-                
             }).disposed(by: disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
@@ -223,7 +210,6 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.scrollView.setContentOffset(self.createPasswordTextField.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = false
                 })

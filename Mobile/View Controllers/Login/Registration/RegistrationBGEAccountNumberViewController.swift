@@ -55,7 +55,6 @@ class RegistrationBGEAccountNumberViewController: UIViewController {
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
-        accountNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
 		questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 		
 		accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()

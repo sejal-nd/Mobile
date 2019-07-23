@@ -41,12 +41,7 @@ class RegistrationViewModel {
     
     var isPaperlessEbillEligible = false
     
-    let loadSecurityQuestionsData = PublishSubject<Void>()
-    
     var securityQuestions: [String]?
-//    var selectedQuestion = ""
-//    var selectedQuestionRow = 0
-//    var selectedQuestionChanged = Variable<Bool>(false)
     
     var accounts = Variable<[AccountLookupResult]>([])
     
@@ -410,14 +405,6 @@ class RegistrationViewModel {
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     
-//    private(set) lazy var question1Selected: Driver<Bool> = self.securityQuestion1.asDriver().map { !$0.isEmpty }
-//    private(set) lazy var question2Selected: Driver<Bool> = self.securityQuestion2.asDriver().map { !$0.isEmpty }
-//    private(set) lazy var question3Selected: Driver<Bool> = self.securityQuestion3.asDriver().map { !$0.isEmpty }
-//    private(set) lazy var question1Answered: Driver<Bool> = self.securityAnswer1.asDriver().map { !$0.isEmpty }
-//    private(set) lazy var question2Answered: Driver<Bool> = self.securityAnswer2.asDriver().map { !$0.isEmpty }
-//    private(set) lazy var question3Answered: Driver<Bool> = self.securityAnswer3.asDriver().map { !$0.isEmpty }
-//    private(set) lazy var securityQuestionChanged: Driver<Bool> = self.selectedQuestionChanged.asDriver()
-	
 	private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
         let driverArray: [Driver<String>]
         let count: Int

@@ -120,13 +120,13 @@ extension Reactive where Base: DisclosureButtonNew {
     
     var descriptionText: Binder<String?> {
         return Binder(base) { button, text in
-            button.descriptionLabel.text = text
+            button.descriptionText = text
         }
     }
     
     var valueText: Binder<String?> {
         return Binder(base) { button, text in
-            button.valueLabel.text = text
+            button.valueText = text
         }
     }
     

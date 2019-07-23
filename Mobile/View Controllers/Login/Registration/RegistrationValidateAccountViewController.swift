@@ -48,7 +48,6 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
             accountNumberTextField.textField.delegate = self
             accountNumberTextField.textField.isShowingAccessory = true
             accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: disposeBag)
-            accountNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
             questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
             
             accountNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
@@ -74,7 +73,6 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         phoneNumberTextField.setKeyboardType(.phonePad)
         phoneNumberTextField.textField.delegate = self
         phoneNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.phoneNumber).disposed(by: disposeBag)
-        phoneNumberTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         phoneNumberTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.phoneNumber.asDriver(), viewModel.phoneNumberHasTenDigits))
@@ -113,7 +111,6 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         identifierTextField.setKeyboardType(.numberPad, doneActionTarget: self, doneActionSelector: #selector(onIdentifierKeyboardDonePress))
         identifierTextField.textField.delegate = self
         identifierTextField.textField.rx.text.orEmpty.bind(to: viewModel.identifierNumber).disposed(by: disposeBag)
-        identifierTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         identifierTextField.textField.rx.controlEvent(.editingDidEnd).asDriver()
             .withLatestFrom(Driver.zip(viewModel.identifierNumber.asDriver(), viewModel.identifierHasFourDigits, viewModel.identifierIsNumeric))
