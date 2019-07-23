@@ -34,18 +34,18 @@ class LargeTitleNavigationController: UINavigationController {
         navigationBar.isTranslucent = false
         
         navigationBar.setBackgroundImage(nil, for: .default)
-        navigationBar.shadowImage = UIColor.primaryColor.image()
+        navigationBar.shadowImage = UIColor.primaryColor.navBarShadowImage()
         
         navigationBar.largeTitleTextAttributes = [
             .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
-            .font: OpenSans.semibold.of(size: 20)
+            .font: OpenSans.semibold.of(size: 24)
         ]
         navigationItem.largeTitleDisplayMode = .always
         navigationBar.prefersLargeTitles = true
         
         navigationBar.titleTextAttributes = [
             .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
-            .font: OpenSans.semibold.of(size: 18)
+            .font: OpenSans.semibold.of(size: 15)
         ]
         
         setNeedsStatusBarAppearanceUpdate()
