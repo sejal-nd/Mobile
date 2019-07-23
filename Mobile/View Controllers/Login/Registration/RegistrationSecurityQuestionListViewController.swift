@@ -1,4 +1,4 @@
-    //
+//
 //  SecurityQuestionListViewController.swift
 //  Mobile
 //
@@ -7,39 +7,41 @@
 //
 
 import UIKit
-import Toast_Swift
 
 class RegistrationSecurityQuestionListViewController: UITableViewController {
     
     var viewModel: RegistrationViewModel!
-    var viewableQuestions = [SecurityQuestion]()
     
-    var previouslySelectedQuestion: String!
+    var viewableQuestions: [String]!
+    
+    var questionNumber: Int! // Passed from RegistrationSecuriyQuestionsViewController
+    
+    //var previouslySelectedQuestion: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addCloseButton()
 
         title = NSLocalizedString("Select Question", comment: "")
         
-        if viewableQuestions.count > 0 {
-            viewableQuestions.removeAll()
-        }
-        
-        for question in viewModel.securityQuestions.value {
-            if question.selected {
-                if question.securityQuestion == viewModel.selectedQuestion {
-                    viewableQuestions.append(question)
-                }
-                
-                continue
+//        if viewableQuestions.count > 0 {
+//            viewableQuestions.removeAll()
+//        }
+        let questions = viewModel.securityQuestions!
+        viewableQuestions = questions.filter({ question -> Bool in
+            if questionNumber == 1 {
+                return question != viewModel.securityQuestion2.value && question != viewModel.securityQuestion3.value
+            } else if questionNumber == 2 {
+                return question != viewModel.securityQuestion1.value && question != viewModel.securityQuestion3.value
+            } else if questionNumber == 3 {
+                return question != viewModel.securityQuestion1.value && question != viewModel.securityQuestion2.value
             }
-            
-            viewableQuestions.append(question)
-        }
+            return false
+        })
         
         tableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "RadioSelectionCell")
         tableView.estimatedRowHeight = 51
-        
     }
 
     // MARK: - Table view data source
@@ -57,46 +59,42 @@ class RegistrationSecurityQuestionListViewController: UITableViewController {
 
         let question = viewableQuestions[indexPath.row]
         
-        cell.label.text = question.securityQuestion
+        cell.label.text = question
         
-        if question.selected {
-            previouslySelectedQuestion = question.securityQuestion
-
+        if (questionNumber == 1 && viewModel.securityQuestion1.value == question) ||
+            (questionNumber == 2 && viewModel.securityQuestion2.value == question) ||
+            (questionNumber == 3 && viewModel.securityQuestion3.value == question) {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
-
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // do stuff here to identify the question selected, and pop back out to the question/answer view controller
-        let securityQuestion = viewableQuestions[indexPath.row].securityQuestion
+        let question = viewableQuestions[indexPath.row]
         
-        for question in viewModel.securityQuestions.value {
-            if question.securityQuestion == securityQuestion {
-                question.selected = true
-            } else {
-                if let previouslySelectedQuestion = previouslySelectedQuestion,
-                    previouslySelectedQuestion == question.securityQuestion {
-                    //
-                    question.selected = false
-                    viewModel.selectedQuestionChanged.value = true
-                }
-            }
+//        for question in viewModel.securityQuestions.value {
+//            if question.securityQuestion == securityQuestion {
+//                question.selected = true
+//            } else {
+//                if let previouslySelectedQuestion = previouslySelectedQuestion,
+//                    previouslySelectedQuestion == question.securityQuestion {
+//                    //
+//                    question.selected = false
+//                    viewModel.selectedQuestionChanged.value = true
+//                }
+//            }
+//        }
+        if questionNumber == 1 {
+            viewModel.securityQuestion1.value = question
+        } else if questionNumber == 2 {
+            viewModel.securityQuestion2.value = question
+        } else if questionNumber == 3 {
+            viewModel.securityQuestion3.value = question
         }
         
-        switch(viewModel.selectedQuestionRow) {
-        case 1:
-            viewModel.securityQuestion1.value = securityQuestion
-        case 2:
-            viewModel.securityQuestion2.value = securityQuestion
-        case 3:
-            viewModel.securityQuestion3.value = securityQuestion
-        default:
-            viewModel.securityQuestion1.value = securityQuestion
-        }
-        
-        navigationController?.popViewController(animated: true)
+        //navigationController?.popViewController(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

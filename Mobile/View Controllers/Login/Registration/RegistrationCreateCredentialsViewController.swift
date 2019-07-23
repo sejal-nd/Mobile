@@ -340,23 +340,6 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
             vc.viewModel = viewModel
         }
     }
- 
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
     
 }
 

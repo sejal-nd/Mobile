@@ -9,11 +9,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Toast_Swift
-import Mapper
 
-
-class RegistrationSecurityQuestionsViewController: UIViewController {
+class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
     
@@ -23,20 +20,23 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     @IBOutlet weak var instructionLabel: UILabel!
     
-    @IBOutlet weak var question1ViewWrapper: UIView!
-    @IBOutlet weak var question1Label: UILabel!
-    @IBOutlet weak var question1ContentLabel: UILabel!
-    @IBOutlet weak var question1AnswerTextField: FloatLabelTextField!
+//    @IBOutlet weak var question1ViewWrapper: UIView!
+//    @IBOutlet weak var question1Label: UILabel!
+//    @IBOutlet weak var question1ContentLabel: UILabel!
+    @IBOutlet weak var question1QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question1AnswerTextField: FloatLabelTextFieldNew!
 
-    @IBOutlet weak var question2ViewWrapper: UIView!
-    @IBOutlet weak var question2Label: UILabel!
-    @IBOutlet weak var question2ContentLabel: UILabel!
-    @IBOutlet weak var question2AnswerTextField: FloatLabelTextField!
+//    @IBOutlet weak var question2ViewWrapper: UIView!
+//    @IBOutlet weak var question2Label: UILabel!
+//    @IBOutlet weak var question2ContentLabel: UILabel!
+    @IBOutlet weak var question2QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question2AnswerTextField: FloatLabelTextFieldNew!
     
-    @IBOutlet weak var question3ViewWrapper: UIView!
-    @IBOutlet weak var question3Label: UILabel!
-    @IBOutlet weak var question3ContentLabel: UILabel!
-    @IBOutlet weak var question3AnswerTextField: FloatLabelTextField!
+//    @IBOutlet weak var question3ViewWrapper: UIView!
+//    @IBOutlet weak var question3Label: UILabel!
+//    @IBOutlet weak var question3ContentLabel: UILabel!
+    @IBOutlet weak var question3QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question3AnswerTextField: FloatLabelTextFieldNew!
     
     @IBOutlet weak var eBillSwitchView: UIView!
     @IBOutlet weak var enrollIneBillSwitch: Switch!
@@ -53,6 +53,8 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     
     @IBOutlet weak var accountDataStackView: UIStackView!
     
+    @IBOutlet weak var registerButton: PrimaryButtonNew!
+    
     var viewModel: RegistrationViewModel!
     
     var loadAccountsError = false
@@ -62,34 +64,35 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        loadSecurityQuestions()
-        
-        setupNavigationButtons()
-
         title = NSLocalizedString("Register", comment: "")
         
-        setupNavigationButtons()
+        instructionLabel.textColor = .deepGray
+        instructionLabel.text = NSLocalizedString("Please select your security questions and enter each corresponding answer. All security answers are case insensitive.", comment: "")
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        instructionLabel.setLineHeight(lineHeight: 24)
         
-        populateHelperLabels()
+        eBillSwitchInstructions.textColor = .deepGray
+        eBillSwitchInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
+        eBillSwitchInstructions.font = SystemFont.regular.of(textStyle: .subheadline)
         
         populateAccountListingLabels()
         
         setupValidation()
         
-        prepareQuestions()
+        if Environment.shared.opco == .bge {
+            // BGE users only need to answer 2 questions
+            question3QuestionButton.isHidden = true
+            question3AnswerTextField.isHidden = true
+        }
         
         prepareTextFieldsForInput()
         
         setupAccessibility()
         
         viewModel.paperlessEbill.value = true
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+        viewModel.allQuestionsAnswered.drive(registerButton.rx.isEnabled).disposed(by: disposeBag)
+        
+        loadSecurityQuestions()
     }
     
     func loadSecurityQuestions() {
@@ -154,24 +157,6 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func setupNavigationButtons() {
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
-        
-        viewModel.allQuestionsAnswered.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-        
-        navigationItem.rightBarButtonItem = submitButton
-    }
-    
-    func populateHelperLabels() {
-        instructionLabel.textColor = .blackText
-        instructionLabel.text = NSLocalizedString("Please select your security questions and enter each corresponding answer. All security answers are case insensitive.", comment: "")
-        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
-        
-        eBillSwitchInstructions.textColor = .blackText
-        eBillSwitchInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
-        eBillSwitchInstructions.font = SystemFont.regular.of(textStyle: .headline)
-    }
-    
     func populateAccountListingLabels() {
         accountListInstructionsLabel.textColor = .blackText
         accountListInstructionsLabel.text = NSLocalizedString("The following accounts will be enrolled for Paperless eBill.", comment:"")
@@ -190,117 +175,48 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         unitNumColHeaderLabel.font = SystemFont.regular.of(textStyle: .footnote)
     }
     
-    func prepareQuestions() {
-        question1Label.text = NSLocalizedString("Security Question 1*", comment: "")
-        question1Label.font = SystemFont.regular.of(textStyle: .title1)
-        question1ContentLabel.isHidden = true
-        question1ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        question1ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        
-        let tap1 = UITapGestureRecognizer(target: self, action: #selector(question1Tapped))
-        question1ViewWrapper.isUserInteractionEnabled = true
-        question1ViewWrapper.addGestureRecognizer(tap1)
-        
-        question2Label.text = NSLocalizedString("Security Question 2*", comment: "")
-        question2Label.font = SystemFont.regular.of(textStyle: .title1)
-        question2ContentLabel.isHidden = true
-        question2ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        question2ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(question2Tapped))
-        question2ViewWrapper.isUserInteractionEnabled = true
-        question2ViewWrapper.addGestureRecognizer(tap2)
-
-        // if opco is not BGE, then format it and ready it for usage; else hide it.
-        if Environment.shared.opco != .bge {
-            question3Label.text = NSLocalizedString("Security Question 3*", comment: "")
-            question3Label.font = SystemFont.regular.of(textStyle: .title1)
-            question3ContentLabel.isHidden = true
-            question3ContentLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-            question3ViewWrapper.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-            
-            let tap3 = UITapGestureRecognizer(target: self, action: #selector(question3Tapped))
-            question3ViewWrapper.isUserInteractionEnabled = true
-            question3ViewWrapper.addGestureRecognizer(tap3)
-        } else {
-            question3ViewWrapper.isHidden = true
-        }
-}
-    
     func prepareTextFieldsForInput() {
-        question1AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
+        question1AnswerTextField.placeholder = NSLocalizedString("Security Answer 1*", comment: "")
         question1AnswerTextField.textField.autocorrectionType = .no
         question1AnswerTextField.textField.returnKeyType = .next
         question1AnswerTextField.textField.isShowingAccessory = true
         question1AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question1AnswerTextField.setEnabled(false)
         
-        question2AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 2*", comment: "")
+        question2AnswerTextField.placeholder = NSLocalizedString("Security Answer 2*", comment: "")
         question2AnswerTextField.textField.autocorrectionType = .no
         question2AnswerTextField.textField.returnKeyType = .next
         question2AnswerTextField.textField.isShowingAccessory = true
         question2AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         question2AnswerTextField.setEnabled(false)
-
-        if Environment.shared.opco != .bge {
-            question3AnswerTextField.textField.placeholder = NSLocalizedString("Security Answer 3*", comment: "")
-            question3AnswerTextField.textField.autocorrectionType = .no
-            question3AnswerTextField.textField.returnKeyType = .next
-            question3AnswerTextField.textField.isShowingAccessory = true
-            question3AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-            question3AnswerTextField.setEnabled(false)
-        } else {
-            question3AnswerTextField.isHidden = true
-        }
+        
+        question3AnswerTextField.placeholder = NSLocalizedString("Security Answer 3*", comment: "")
+        question3AnswerTextField.textField.autocorrectionType = .no
+        question3AnswerTextField.textField.returnKeyType = .next
+        question3AnswerTextField.textField.isShowingAccessory = true
+        question3AnswerTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
+        question3AnswerTextField.setEnabled(false)
     }
     
     func setupValidation() {
-        viewModel.question1Selected
-            .drive(onNext: { [weak self] valid in
-                guard let self = self else { return }
-                self.question1ContentLabel.isHidden = !valid
-                self.question1ContentLabel.text = self.viewModel.securityQuestion1.value
-                
-                self.question1AnswerTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
-
-        viewModel.question2Selected
-            .drive(onNext: { [weak self] valid in
-                guard let self = self else { return }
-                self.question2ContentLabel.isHidden = !valid
-                self.question2ContentLabel.text = self.viewModel.securityQuestion2.value
-                
-                self.question2AnswerTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
-        
-        viewModel.question3Selected
-            .drive(onNext: { [weak self] valid in
-                guard let self = self else { return }
-                self.question3ContentLabel.isHidden = !valid
-                self.question3ContentLabel.text = self.viewModel.securityQuestion3.value
-                
-                self.question3AnswerTextField.setEnabled(valid)
-            }).disposed(by: disposeBag)
+        viewModel.securityQuestion1.asDriver().isNil().not().drive(self.question1AnswerTextField.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.securityQuestion2.asDriver().isNil().not().drive(self.question2AnswerTextField.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.securityQuestion3.asDriver().isNil().not().drive(self.question3AnswerTextField.rx.isEnabled).disposed(by: disposeBag)
 
         // Bind to the view model
         question1AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer1).disposed(by: disposeBag)
         question2AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer2).disposed(by: disposeBag)
         question3AnswerTextField.textField.rx.text.orEmpty.bind(to: viewModel.securityAnswer3).disposed(by: disposeBag)
         
-        viewModel.securityQuestionChanged
-            .drive(onNext: { [weak self] valid in
-                guard let self = self else { return }
-                switch (self.viewModel.selectedQuestionRow) {
-                case 1:
-                    self.question1AnswerTextField.textField.text = ""
-                case 2:
-                    self.question2AnswerTextField.textField.text = ""
-                case 3:
-                    self.question3AnswerTextField.textField.text = ""
-                default:
-                    break
-                }
-            }).disposed(by: disposeBag)
+        viewModel.securityQuestion1.asDriver().distinctUntilChanged().drive(onNext: { _ in
+            self.question1AnswerTextField.textField.text = ""
+        }).disposed(by: disposeBag)
+        viewModel.securityQuestion2.asDriver().distinctUntilChanged().drive(onNext: { _ in
+            self.question2AnswerTextField.textField.text = ""
+        }).disposed(by: disposeBag)
+        viewModel.securityQuestion3.asDriver().distinctUntilChanged().drive(onNext: { _ in
+            self.question3AnswerTextField.textField.text = ""
+        }).disposed(by: disposeBag)
     }
     
     func buildAccountListing() {
@@ -322,32 +238,16 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
     }
     
     func setupAccessibility() {
-        
         eBillSwitchInstructions.isAccessibilityElement = false
         enrollIneBillSwitch.isAccessibilityElement = true
         enrollIneBillSwitch.accessibilityLabel = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
-        question1Label.accessibilityTraits = .button
-        question2Label.accessibilityTraits = .button
-        
-        if Environment.shared.opco == .bge {
-           question3Label.accessibilityTraits = .button 
-        }
-        
     }
     
     func toggleAccountListing(_ isVisible: Bool) {
         accountListView.isHidden = !isVisible
     }
     
-    func onCancelPress() {
-        // We do this to cover the case where we push RegistrationViewController from LandingViewController.
-        // When that happens, we want the cancel action to go straight back to LandingViewController.
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
-        guard submitButton.isEnabled else { return }
-        
+    @IBAction func onRegisterPress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -383,59 +283,50 @@ class RegistrationSecurityQuestionsViewController: UIViewController {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
-    
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
+    @IBAction func onQuestionButtonPress(_ sender: Any) {
+        self.performSegue(withIdentifier: "securityQuestionSegue", sender: sender)
     }
     
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? RegistrationSecurityQuestionListViewController {
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? RegistrationSecurityQuestionListViewController {
             vc.viewModel = viewModel
+            switch sender as? DisclosureButtonNew {
+            case question1QuestionButton?:
+                vc.questionNumber = 1
+            case question2QuestionButton?:
+                vc.questionNumber = 2
+            case question3QuestionButton?:
+                vc.questionNumber = 3
+            default:
+                vc.questionNumber = 0
+            }
         } else if let vc = segue.destination as? RegistrationConfirmationViewController {
             vc.registeredUsername = viewModel.username.value
         }
     }
 
     
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-    @objc func question1Tapped() {
-        loadSecretQuestionList(forRow: 1, question: viewModel.securityQuestion1.value)
-    }
-
-    @objc func question2Tapped() {
-        loadSecretQuestionList(forRow: 2, question: viewModel.securityQuestion2.value)
-    }
-
-    @objc func question3Tapped() {
-        loadSecretQuestionList(forRow: 3, question: viewModel.securityQuestion3.value)
-    }
-    
-    func loadSecretQuestionList(forRow row: Int, question: String) {
-        viewModel.selectedQuestionRow = row
-        viewModel.selectedQuestion = question
-        viewModel.selectedQuestionChanged.value = false
-        
-        self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
-        
-    }
+//    @objc func question1Tapped() {
+//        loadSecretQuestionList(forRow: 1, question: viewModel.securityQuestion1.value)
+//    }
+//
+//    @objc func question2Tapped() {
+//        loadSecretQuestionList(forRow: 2, question: viewModel.securityQuestion2.value)
+//    }
+//
+//    @objc func question3Tapped() {
+//        loadSecretQuestionList(forRow: 3, question: viewModel.securityQuestion3.value)
+//    }
+//
+//    func loadSecretQuestionList(forRow row: Int, question: String) {
+//        viewModel.selectedQuestionRow = row
+//        viewModel.selectedQuestion = question
+//        viewModel.selectedQuestionChanged.value = false
+//
+//        self.performSegue(withIdentifier: "loadSecretQuestionListSegue", sender: self)
+//    }
 }
