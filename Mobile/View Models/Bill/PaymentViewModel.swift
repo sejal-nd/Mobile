@@ -241,6 +241,11 @@ class PaymentViewModel {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
         
+        if paymentId.value != nil && date.isInToday(calendar: .opCo) {
+            // 193496: Paymentus does not allow a scheduled payment to be updated to today's date
+            return false
+        }
+        
         let today = Calendar.opCo.startOfDay(for: .now)
         switch Environment.shared.opco {
         case .bge:
@@ -275,6 +280,11 @@ class PaymentViewModel {
                 return true
             }
             return self.shouldCalendarDateBeEnabled(paymentDate)
+        }
+    
+    private(set) lazy var shouldShowSameDayPaymentWarning: Driver<Bool> =
+        self.paymentDate.asDriver().map { date in
+            return date.isInToday(calendar: .opCo)
         }
     
     // MARK: - Shared Drivers

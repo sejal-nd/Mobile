@@ -79,6 +79,7 @@ class MaintenanceModeViewController: UIViewController {
             guard let self = self else { return }
             self.presentingViewController?.view.isUserInteractionEnabled = true
             if !isMaintenance {
+                NotificationCenter.default.post(name: .didMaintenanceModeTurnOff, object: nil)
                 self.presentingViewController?.dismiss(animated: true, completion: {
                     dLog("Dismissed MM")
                 })

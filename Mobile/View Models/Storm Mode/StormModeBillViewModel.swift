@@ -10,18 +10,18 @@ import RxSwift
 import RxCocoa
 
 class StormModeBillViewModel {
-    
+
     let fetchData = PublishSubject<FetchingAccountState>()
     let fetchDataObservable: Observable<FetchingAccountState>
-    
+
     private let accountService: AccountService
     private let walletService: WalletService
     private let paymentService: PaymentService
     private let authService: AuthenticationService
-    
+
     private let refreshTracker = ActivityTracker()
     private let switchAccountTracker = ActivityTracker()
-    
+
     required init(accountService: AccountService,
                   walletService: WalletService,
                   paymentService: PaymentService,
@@ -32,7 +32,7 @@ class StormModeBillViewModel {
         self.paymentService = paymentService
         self.authService = authService
     }
-    
+
     private(set) lazy var billCardViewModel =
         HomeBillCardViewModel(fetchData: fetchDataObservable,
                               fetchDataMMEvents: fetchDataObservable.mapTo(Maintenance.from([:])!).materialize(),
@@ -43,7 +43,7 @@ class StormModeBillViewModel {
                               authService: authService,
                               refreshFetchTracker: refreshTracker,
                               switchAccountFetchTracker: switchAccountTracker)
-    
+
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = fetchData
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let self = self else { return nil }
@@ -57,7 +57,7 @@ class StormModeBillViewModel {
             guard let self = self else { return .empty() }
             return self.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         })
-    
+
     private(set) lazy var scheduledPaymentEvents: Observable<Event<PaymentItem?>> = fetchData
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
@@ -71,28 +71,29 @@ class StormModeBillViewModel {
             guard let this = self else { return .empty() }
             return this.accountService.fetchScheduledPayments(accountNumber: AccountsStore.shared.currentAccount.accountNumber).map { $0.last }
         })
-    
+
     private lazy var accountDetail = accountDetailEvents.elements()
     private lazy var scheduledPayment = scheduledPaymentEvents.elements()
-    
+
     private(set) lazy var didFinishRefresh: Driver<Void> = refreshTracker
         .asDriver()
         .filter(!)
         .mapTo(())
-    
+
     private(set) lazy var isSwitchingAccounts: Driver<Bool> = switchAccountTracker
         .asDriver()
         .distinctUntilChanged()
-    
+
     private(set) lazy var showBillCard: Driver<Bool> = Observable
         .combineLatest(switchAccountTracker.asObservable(),
                        accountDetailEvents)
         { isLoading, accountDetailEvent in
             isLoading || accountDetailEvent.element?.prepaidStatus != .active
         }
+        .startWith(true)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
-    
+
     private(set) lazy var showButtonStack: Driver<Bool> = Observable
         .combineLatest(switchAccountTracker.asObservable(),
                        accountDetailEvents)
@@ -103,7 +104,7 @@ class StormModeBillViewModel {
         .startWith(false)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
-    
+
     private(set) lazy var showPrepaidCard: Driver<Bool> = Observable
         .combineLatest(switchAccountTracker.asObservable(),
                        accountDetailEvents)
@@ -113,23 +114,23 @@ class StormModeBillViewModel {
         .startWith(false)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
-    
+
     private(set) lazy var showMakeAPaymentButton: Driver<Bool> = accountDetail
         .map { $0.billingInfo.netDueAmount ?? 0 > 0 || Environment.shared.opco == .bge }
         .asDriver(onErrorDriveWith: .empty())
-    
+
     private lazy var accountDetailNoNetwork: Observable<Bool> = accountDetailEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
-    
+
     private lazy var recentPaymentsNoNetwork: Observable<Bool> = scheduledPaymentEvents
         .map { ($0.error as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }
-    
+
     private(set) lazy var showNoNetworkConnectionView: Driver<Bool> = Observable
         .combineLatest(accountDetailNoNetwork, recentPaymentsNoNetwork) { $0 || $1 }
         .startWith(false)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
-    
+
     private(set) lazy var makePaymentScheduledPaymentAlertInfo: Observable<(String?, String?, AccountDetail)> = Observable
         .combineLatest(accountDetail, scheduledPayment)
         .map { accountDetail, scheduledPayment in
