@@ -75,7 +75,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         }).disposed(by: disposeBag)
         
         identifierDescriptionLabel.textColor = .deepGray
-        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .headline)
+        identifierDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         identifierDescriptionLabel.text = NSLocalizedString("Last 4 Digits of primary account holder’s Social Security Number, Business Tax ID, or BGE PIN", comment: "")
         
         identifierTextField.placeholder = NSLocalizedString("SSN/Business Tax ID/BGE Pin*", comment: "")
