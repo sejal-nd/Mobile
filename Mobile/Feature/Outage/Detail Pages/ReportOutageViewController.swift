@@ -71,6 +71,8 @@ class ReportOutageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FirebaseUtility.logEvent(.reportOutageStart)
+        
         title = NSLocalizedString("Report Outage", comment: "")
         
         style()
@@ -336,6 +338,8 @@ class ReportOutageViewController: UIViewController {
     }
     
     @IBAction func submitButtonPress(_ sender: Any? = nil) {
+        FirebaseUtility.logEvent(.reportOutageSubmit)
+        
         view.endEditing(true)
         
         let errorBlock = { [weak self] (errorMessage: String) in
@@ -348,6 +352,7 @@ class ReportOutageViewController: UIViewController {
         LoadingView.show()
         if unauthenticatedExperience {
             viewModel.reportOutageAnon(onSuccess: { [weak self] reportedOutage in
+                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())
@@ -357,6 +362,7 @@ class ReportOutageViewController: UIViewController {
             GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmit)
         } else {
             viewModel.reportOutage(onSuccess: { [weak self] in
+                FirebaseUtility.logEvent(.reportOutageNetworkComplete)
                 LoadingView.hide()
                 guard let self = self else { return }
                 RxNotifications.shared.outageReported.onNext(())

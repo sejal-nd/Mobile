@@ -27,8 +27,8 @@ struct FirebaseUtility {
         case bill
         case payment
         case wallet
-        case authOutage
-        case unauthOutage
+        case authOutage // done
+        case unauthOutage // done
         case usage
         case more
         case biometricsToggle
@@ -50,9 +50,9 @@ struct FirebaseUtility {
         case changePasswordSubmit // done
         case changePasswordNetworkComplete // done
         
-        case reportOutageStart
-        case reportOutageSubmit
-        case reportOutageNetworkComplete
+        case reportOutageStart // done
+        case reportOutageSubmit // done
+        case reportOutageNetworkComplete // done
         case makePaymentStart
         case makePaymentNext
         case reviewPaymentSubmit
@@ -191,17 +191,16 @@ struct EventParameter {
         case edit_payment_method
         case scan_with_camera
         
-        case emergency_number
+        case emergency_number // done
         case phone_number_gas_1
         case phone_number_gas_2
         case phone_number_electric_1
         case phone_number_electric_2
-        case power_status_animation_press
-        case report_complete
-        case map
-        case streetlight_map
-        
-        case account_number_help
+        case view_details // done
+        case report_complete // done
+        case map // done
+        case streetlight_map // done
+        case account_number_help // done
         
         case electric_segment_press
         case gas_segment_press
