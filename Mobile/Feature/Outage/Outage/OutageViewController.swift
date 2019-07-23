@@ -365,7 +365,7 @@ extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
         // Analytics
         GoogleAnalytics.log(event: .outageAuthEmergencyCall)
         FirebaseUtility.logEvent(userState == .authenticated ? .authOutage : .unauthOutage, parameters: [EventParameter(parameterName: .action, value: .emergency_number)])
-        viewModel.trackPhoneNumberAnalytics(userState: userState, for: URL)
+        viewModel.trackPhoneNumberAnalytics(isAuthenticated: userState == .authenticated, for: URL)
     }
 }
 

@@ -91,12 +91,12 @@ class OutageViewModel {
             })
     }
     
-    func trackPhoneNumberAnalytics(userState: OutageViewController.UserState, for URL: URL) {
+    func trackPhoneNumberAnalytics(isAuthenticated: Bool, for URL: URL) {
         let urlString = URL.absoluteString
         
         // Determine Auth / Unauth
         let event: FirebaseUtility.Event
-        if userState == .authenticated {
+        if isAuthenticated {
             event = .authOutage
         } else {
             event = .unauthOutage
