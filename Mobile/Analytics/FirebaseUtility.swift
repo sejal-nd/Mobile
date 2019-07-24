@@ -102,6 +102,10 @@ struct FirebaseUtility {
     ///   - event: Name of the event being sent to Firebase
     ///   - parameters: Dict of parameters to be sent along with the event name
     public static func logEvent(_ event: Event, parameters: [EventParameter]? = nil) {
+        #if DEBUG
+        NSLog("📊 Firebase Event: \(event.rawValue)")
+        #endif
+        
         // Convert Event Parameter into dict if it exists
         let parametersDict = parameters?.reduce([String: Any]()) { (dict, eventParameter) -> [String: Any] in
             var dict = dict
@@ -126,6 +130,10 @@ struct FirebaseUtility {
     ///   - userProperty: Name of the user property
     ///   - value: `String` value of property
     public static func setUserPropety(_ userProperty: UserProperty, value: String? = nil) {
+        #if DEBUG
+        NSLog("👤 Set User Property: \(userProperty.rawValue)")
+        #endif
+        
         Analytics.setUserProperty(value, forName: userProperty.rawValue)
     }
 }
