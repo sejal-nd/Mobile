@@ -908,6 +908,9 @@
 		9C119F6721FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
 		9C119F6821FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
 		9C119F6921FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */; };
+		9C153DC922E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
+		9C153DCA22E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
+		9C153DCB22E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
@@ -2944,6 +2947,7 @@
 		99C898A9F3F572B258B68313 /* Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingStickyFooterViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
+		9C153DC822E8F6CE002DA062 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
@@ -4371,6 +4375,7 @@
 				9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */,
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 				359BDB3F22D50F90007002B0 /* StickyFooterView.swift */,
+				9C153DC822E8F6CE002DA062 /* Checkbox.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -7556,6 +7561,7 @@
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				35A6C6DB211CC09C00C2A58F /* UpdatesViewModel.swift in Sources */,
 				826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
+				9C153DC922E8F6CE002DA062 /* Checkbox.swift in Sources */,
 				B0336FE621751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				B574BAEB1E785A5F001E8A44 /* OutageService.swift in Sources */,
@@ -7958,6 +7964,7 @@
 				E801BAD71E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
 				B0882CA1210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */,
+				9C153DCB22E8F6CE002DA062 /* Checkbox.swift in Sources */,
 				E840BD411EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				359BDB2A22D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				E8CA07E71E9D391400A1D431 /* ForgotUsername.swift in Sources */,
@@ -8319,6 +8326,7 @@
 				B0336FE721751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				E8C453161EF3293600F5C781 /* ToastView.swift in Sources */,
 				2FA5D8651F17D88500A8B16B /* HomeViewController.swift in Sources */,
+				9C153DCA22E8F6CE002DA062 /* Checkbox.swift in Sources */,
 				2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EE202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				B094A35520D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
