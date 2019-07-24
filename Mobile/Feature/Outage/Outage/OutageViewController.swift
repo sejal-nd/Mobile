@@ -202,7 +202,7 @@ class OutageViewController: AccountPickerViewController {
             // Account Info Bar
             if let accountNumberText = outageStatus.maskedAccountNumber,
                 let addressText = outageStatus.maskedAddress {
-                accountInfoBar.configure(accountNumberText: accountNumberText, addressText: addressText)
+                accountInfoBar.configure(accountNumberText: accountNumberText, addressText: "\(addressText)...")
             }
             // Outage Status View
             configureUnauthenticatedOutageStatus(outageStatus)
