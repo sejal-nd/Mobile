@@ -42,10 +42,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AUs-jP-wTI">
-                                <rect key="frame" x="29" y="218" width="317" height="16"/>
+                                <rect key="frame" x="29" y="218" width="317" height="80"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="KbH-nF-LSv">
-                                        <rect key="frame" x="301" y="0.0" width="16" height="16"/>
+                                        <rect key="frame" x="66" y="0.0" width="251" height="80"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -92,22 +92,22 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gI-bY-LIR">
-                                <rect key="frame" x="29" y="163" width="317" height="341"/>
+                                <rect key="frame" x="29" y="130.5" width="317" height="406.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="S7q-8S-Oz3">
-                                        <rect key="frame" x="307" y="0.0" width="16" height="16"/>
+                                        <rect key="frame" x="72" y="0.0" width="251" height="80"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" restorationIdentifier="Reload View" translatesAutoresizingMaskIntoConstraints="NO" id="dmS-k7-4Rh" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="126.5" y="41" width="64.5" height="20.5"/>
+                                        <rect key="frame" x="125.5" y="105" width="66.5" height="22"/>
                                         <subviews>
                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Xz-UO-s4e">
-                                                <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="22"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_reload" translatesAutoresizingMaskIntoConstraints="NO" id="8BE-xm-WFA" userLabel="Reload Image">
-                                                        <rect key="frame" x="0.0" y="2.5" width="16" height="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="18" height="22"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" text="Retry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVv-m7-Ir4" userLabel="Reload Label">
-                                                        <rect key="frame" x="24" y="0.0" width="40.5" height="20.5"/>
+                                                        <rect key="frame" x="26" y="0.5" width="40.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -133,7 +133,7 @@
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wp4-Rx-Szm">
-                                        <rect key="frame" x="0.0" y="86.5" width="317" height="254.5"/>
+                                        <rect key="frame" x="0.0" y="152" width="317" height="254.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We’re unable to load the app at this time. Please try again later or visit us at PECO.com." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmW-i8-t3P">
                                                 <rect key="frame" x="22" y="25" width="172" height="67"/>
@@ -142,7 +142,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_wires" translatesAutoresizingMaskIntoConstraints="NO" id="ZVJ-R9-uEY">
-                                                <rect key="frame" x="199" y="20" width="107" height="72"/>
+                                                <rect key="frame" x="199" y="20" width="107.00000000000003" height="72"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="107" id="D1h-F8-Nah"/>
                                                     <constraint firstAttribute="height" constant="72" id="PjH-zT-mW7"/>
@@ -997,7 +997,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0e-it-1C9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="534"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="519"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -1005,19 +1005,20 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mr-pS-i57">
-                                <rect key="frame" x="0.0" y="534" width="375" height="133"/>
+                                <rect key="frame" x="0.0" y="519" width="375" height="148"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ysV-1o-zls">
-                                        <rect key="frame" x="16" y="16" width="343" height="103"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ysV-1o-zls">
+                                        <rect key="frame" x="16" y="15" width="343" height="119"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="swp-ng-RpP">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                                 <subviews>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="STf-Fi-lUb" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
-                                                    </switch>
+                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-u1-xrO" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I agree to PECO's Terms and Conditions" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s57-Nu-gGZ">
-                                                        <rect key="frame" x="61" y="6.5" width="282" height="18"/>
+                                                        <rect key="frame" x="56" y="13" width="287" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1025,7 +1026,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2d-t3-Jmn" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="43" width="343" height="60"/>
+                                                <rect key="frame" x="0.0" y="59" width="343" height="60"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="CBM-Ge-Cdu"/>
@@ -1037,17 +1038,14 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" priority="999" constant="460" id="cVz-KM-J7p"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="kJk-zh-Nf4"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ysV-1o-zls" secondAttribute="trailing" constant="16" id="0Ho-cI-9DN"/>
-                                    <constraint firstItem="ysV-1o-zls" firstAttribute="top" secondItem="5mr-pS-i57" secondAttribute="top" constant="16" id="7WM-18-qxk"/>
+                                    <constraint firstItem="ysV-1o-zls" firstAttribute="top" secondItem="5mr-pS-i57" secondAttribute="top" constant="15" id="7WM-18-qxk"/>
                                     <constraint firstAttribute="trailing" secondItem="ysV-1o-zls" secondAttribute="trailing" priority="999" constant="16" id="Bgl-yu-5vF"/>
-                                    <constraint firstItem="ysV-1o-zls" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5mr-pS-i57" secondAttribute="leading" constant="16" id="WNL-ak-azr"/>
                                     <constraint firstItem="ysV-1o-zls" firstAttribute="centerX" secondItem="5mr-pS-i57" secondAttribute="centerX" id="WkT-WB-RbH"/>
                                     <constraint firstItem="ysV-1o-zls" firstAttribute="leading" secondItem="5mr-pS-i57" secondAttribute="leading" priority="999" constant="16" id="eOJ-RZ-TQR"/>
                                 </constraints>
@@ -1068,8 +1066,8 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     </view>
                     <navigationItem key="navigationItem" title="Policies and Terms" id="EH4-ec-m7z"/>
                     <connections>
+                        <outlet property="agreeCheckbox" destination="cWQ-u1-xrO" id="4C1-b7-PPj"/>
                         <outlet property="agreeLabel" destination="s57-Nu-gGZ" id="dUy-LM-Hqx"/>
-                        <outlet property="agreeSwitch" destination="STf-Fi-lUb" id="MBP-U7-G8X"/>
                         <outlet property="agreeView" destination="5mr-pS-i57" id="vLz-ZC-p8z"/>
                         <outlet property="continueButton" destination="T2d-t3-Jmn" id="Wz7-t5-9NI"/>
                         <outlet property="webView" destination="m0e-it-1C9" id="BDK-Tg-ZGE"/>
@@ -3542,22 +3540,22 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uca-EY-U9e" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="203.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSL-w0-3zh" userLabel="Tablet View">
-                                                <rect key="frame" x="29" y="0.0" width="317" height="203.5"/>
+                                                <rect key="frame" x="29" y="0.0" width="317" height="330"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="249" image="img_confirmation_green" translatesAutoresizingMaskIntoConstraints="NO" id="cIh-fu-Toz">
-                                                        <rect key="frame" x="0.0" y="10" width="317" height="16"/>
+                                                        <rect key="frame" x="0.0" y="10" width="317.00000000000006" height="136"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGO-py-Dmb">
-                                                        <rect key="frame" x="0.0" y="36" width="317" height="37.5"/>
+                                                        <rect key="frame" x="0.0" y="156" width="317" height="44"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKQ-HE-SDA" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="113.5" width="317" height="60"/>
+                                                        <rect key="frame" x="0.0" y="240" width="317" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="s0P-Xe-fHy"/>
                                                         </constraints>
