@@ -202,7 +202,7 @@ class OutageViewController: AccountPickerViewController {
             // Account Info Bar
             if let accountNumberText = outageStatus.maskedAccountNumber,
                 let addressText = outageStatus.maskedAddress {
-                accountInfoBar.configure(accountNumberText: accountNumberText, addressText: addressText)
+                accountInfoBar.configure(accountNumberText: accountNumberText, addressText: "\(addressText)...")
             }
             // Outage Status View
             configureUnauthenticatedOutageStatus(outageStatus)
@@ -348,9 +348,16 @@ extension OutageViewController: OutageStatusDelegate {
         switch outageState {
         case .powerStatus(_), .reported, .unavailable:
             guard let message = viewModel.outageStatus?.outageDescription else { return }
-            let alert = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
+            let alertViewController = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
                                             message: message)
-            tabBarController?.present(alert, animated: true)
+            
+            if let tabBarController = tabBarController {
+                // Auth
+                tabBarController.present(alertViewController, animated: true)
+            } else {
+                // Unauth
+                navigationController?.present(alertViewController, animated: true)
+            }
         case .nonPayment:
             tabBarController?.selectedIndex = 1
         }
