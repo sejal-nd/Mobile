@@ -121,7 +121,6 @@ class OutageViewModel {
         }
     }
     
-    
     var reportedOutage: ReportedOutageResult? {
         if let accountNumber = accountNumber {
             return outageService.getReportedOutageResult(accountNumber: accountNumber)

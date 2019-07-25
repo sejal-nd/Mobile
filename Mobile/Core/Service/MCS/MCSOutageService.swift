@@ -125,7 +125,7 @@ class MCSOutageService: OutageService {
                     let reportedOutage = ReportedOutageResult.from(dict) else {
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
-                
+
                 ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutage
                 return reportedOutage
             }
