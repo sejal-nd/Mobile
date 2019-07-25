@@ -489,9 +489,6 @@
 		54DF4BCC1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */; };
 		54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */; };
 		54DF4BCE1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */; };
-		54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
-		54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
-		54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */; };
 		54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */; };
 		54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */; };
@@ -2026,7 +2023,6 @@
 		E89E2B5F20333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
 		E89E2B6020333C45004DA072 /* HomeBillCardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E2B5D20333C45004DA072 /* HomeBillCardUITests.swift */; };
 		E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F493D1F9685120060D084 /* BillBreakdownViewModelTests.swift */; };
-		E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		E8B4F4AB1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AC1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
 		E8B4F4AD1E5C950A0031D934 /* MainBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */; };
@@ -2252,7 +2248,6 @@
 		E8F62B92200924410077B3DA /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		E8F62B93200924410077B3DA /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
 		E8F62B95200924410077B3DA /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */; };
-		E8F62B96200924410077B3DA /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */; };
 		E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */; };
 		E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */; };
@@ -2365,7 +2360,6 @@
 		E8F62C47200924570077B3DA /* EnergyTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E22B571F9FC70A001F1A1B /* EnergyTip.swift */; };
 		E8F62C48200924570077B3DA /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56DD49C1ED87AD800F0198B /* BankAccount.swift */; };
 		E8F62C4A200924570077B3DA /* ChangePasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E800435E1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift */; };
-		E8F62C4B200924570077B3DA /* SecurityQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */; };
 		E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E840CB371F82D13A00357780 /* AutoPayViewModelTests.swift */; };
 		E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51EEC1ECA51360080AB3E /* BillViewModelTests.swift */; };
 		E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */; };
@@ -2763,7 +2757,6 @@
 		54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorSpaceView.swift; sourceTree = "<group>"; };
 		54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionsViewController.swift; sourceTree = "<group>"; };
 		54DF4BCB1EE848F3008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameSecurityQuestionViewController.swift; sourceTree = "<group>"; };
-		54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityQuestion.swift; sourceTree = "<group>"; };
 		54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationSecurityQuestionListViewController.swift; sourceTree = "<group>"; };
 		54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsView.swift; sourceTree = "<group>"; };
 		54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountDetailsView.xib; sourceTree = "<group>"; };
@@ -3634,6 +3627,7 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				9C153DB522E8F410002DA062 /* Registration */,
 				359BDB5922D8DC43007002B0 /* Outage */,
 				9C10B4DC22E2177A00B0851B /* BGE Choice ID */,
 				9C10B4D822E216BF00B0851B /* Change Password */,
@@ -4326,7 +4320,6 @@
 		82A18E6E1EB9192500BE9F21 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */,
 				82A18E941EB919B300BE9F21 /* LoginViewModel.swift */,
 				E881B1521F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift */,
 			);
@@ -4709,6 +4702,20 @@
 				9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */,
 			);
 			path = "BGE Choice ID";
+			sourceTree = "<group>";
+		};
+		9C153DB522E8F410002DA062 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */,
+				54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */,
+				54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */,
+				54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */,
+				54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */,
+				54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */,
+				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		9C62445922C1717E00F14DA0 /* FloatLabelTextFieldNew */ = {
@@ -5219,7 +5226,6 @@
 				54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */,
 				B56DD49C1ED87AD800F0198B /* BankAccount.swift */,
 				B56DD4A11ED87AE200F0198B /* CreditCard.swift */,
-				54DF4BD01EE88D67008CF7AD /* SecurityQuestion.swift */,
 				E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */,
 				2FEC69401F056EEB00C059DC /* Premise.swift */,
 				0D79C6D01F1FB761004793DD /* Maintenance.swift */,
@@ -5508,12 +5514,6 @@
 		E8B8A9F41EE2132D0002328C /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				54AE06A91ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift */,
-				54B31A6F1EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift */,
-				54AE06B41ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift */,
-				54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */,
-				54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */,
-				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -7736,7 +7736,6 @@
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
-				54DF4BD11EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				358BD21920F8FDAE00DA2012 /* BillImpactDropdownView.swift in Sources */,
 				9C28D388227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
@@ -8067,7 +8066,6 @@
 				9CCE3E4121B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				E8EDC5511F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
-				54DF4BD31EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				82AC2A2C1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1911F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B11F311524002B5674 /* GoogleAnalytics.swift in Sources */,
@@ -8451,7 +8449,6 @@
 				B0649A60214834380041B299 /* StormModeStatus.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
-				54DF4BD21EE88D67008CF7AD /* SecurityQuestion.swift in Sources */,
 				82AC2A2B1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B01F311524002B5674 /* GoogleAnalytics.swift in Sources */,
@@ -8768,7 +8765,6 @@
 				82E22B651F9FC7D8001F1A1B /* EnergyTip.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
-				E8AD93911EEF2AFB00882444 /* SecurityQuestion.swift in Sources */,
 				3577573A2113582700E73542 /* DateParser.swift in Sources */,
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
@@ -9007,7 +9003,6 @@
 				E8F62B92200924410077B3DA /* EnergyTip.swift in Sources */,
 				E8F62B93200924410077B3DA /* BankAccount.swift in Sources */,
 				E8F62B95200924410077B3DA /* ChangePasswordViewModelTests.swift in Sources */,
-				E8F62B96200924410077B3DA /* SecurityQuestion.swift in Sources */,
 				3577573B2113582700E73542 /* DateParser.swift in Sources */,
 				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */,
@@ -9199,7 +9194,6 @@
 				E8F62C47200924570077B3DA /* EnergyTip.swift in Sources */,
 				E8F62C48200924570077B3DA /* BankAccount.swift in Sources */,
 				E8F62C4A200924570077B3DA /* ChangePasswordViewModelTests.swift in Sources */,
-				E8F62C4B200924570077B3DA /* SecurityQuestion.swift in Sources */,
 				3577573C2113582800E73542 /* DateParser.swift in Sources */,
 				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */,

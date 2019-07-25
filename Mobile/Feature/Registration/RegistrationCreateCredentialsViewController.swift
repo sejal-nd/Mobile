@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Toast_Swift
 
-class RegistrationCreateCredentialsViewController: UIViewController {
+class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterViewController {
 
     let disposeBag = DisposeBag()
 
@@ -19,10 +19,9 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     
     @IBOutlet weak var instructionLabel: UILabel!
     
-    @IBOutlet weak var createUsernameTextField: FloatLabelTextField!
-    @IBOutlet weak var createPasswordContainerView: UIView!
-    @IBOutlet weak var createPasswordTextField: FloatLabelTextField!
-    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
+    @IBOutlet weak var createUsernameTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var createPasswordTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextFieldNew!
         
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     @IBOutlet var mustAlsoContainLabel: UILabel!
@@ -41,9 +40,9 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     @IBOutlet weak var primaryProfileLabel: UILabel!
     @IBOutlet weak var primaryProfileSwitch: Switch!
     
-    var viewModel: RegistrationViewModel!
+    @IBOutlet weak var continueButton: PrimaryButtonNew!
     
-    var nextButton = UIBarButtonItem()
+    var viewModel: RegistrationViewModel!
     
     lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
@@ -57,30 +56,45 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         return toolbar
     }()
     
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNotificationCenter()
-        
         title = NSLocalizedString("Register", comment: "")
         
-        setupNavigationButtons()
+        instructionLabel.textColor = .deepGray
+        instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
+        instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        populateHelperLabels()
+        passwordStrengthLabel.textColor = .deepGray
+        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        mustAlsoContainLabel.textColor = .deepGray
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        for label in passwordRequirementLabels {
+            label.textColor = .deepGray
+            label.font = SystemFont.regular.of(textStyle: .subheadline)
+        }
         
         setupValidation()
-        
         prepareTextFieldsForInput()
         
+        passwordStrengthView.isHidden = true
+        
+        if Environment.shared.opco == .bge || viewModel.accountType.value == "residential" {
+            primaryProfileSwitchView.isHidden = true
+        }
+        
+        primaryProfileLabel.textColor = .deepGray
+        primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
+        
+        primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
+        
+        primaryProfileLabel.isAccessibilityElement = false
+        primaryProfileSwitch.isAccessibilityElement = true
+        primaryProfileSwitch.accessibilityLabel = NSLocalizedString("Set as primary profile for this account", comment: "")
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     
     // MARK: - Actions
     
@@ -88,9 +102,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         viewModel.primaryProfile.value = !viewModel.primaryProfile.value
     }
     
-    @objc func onNextPress() {
-        guard nextButton.isEnabled else { return }
-        
+    @IBAction func onContinuePress() {
         view.endEditing(true)
         
         LoadingView.show()
@@ -136,11 +148,8 @@ class RegistrationCreateCredentialsViewController: UIViewController {
     // MARK: - Helper
 
     func prepareTextFieldsForInput() {
-
-        passwordStrengthView.isHidden = true
-        
         createUsernameTextField.textField.textContentType = .username
-        createUsernameTextField.textField.placeholder = NSLocalizedString("Email Address*", comment: "")
+        createUsernameTextField.placeholder = NSLocalizedString("Email Address*", comment: "")
         createUsernameTextField.setKeyboardType(.emailAddress)
         createUsernameTextField.textField.returnKeyType = .next
         createUsernameTextField.textField.delegate = self
@@ -148,31 +157,20 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createUsernameTextField.setError(nil)
         accessibilityErrorLabel()
         
-        createUsernameTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
-        
         viewModel.newUsernameIsValid.drive(onNext: { [weak self] errorMessage in
             self?.createUsernameTextField.setError(errorMessage)
             self?.accessibilityErrorLabel()
             
         }).disposed(by: self.disposeBag)
         
-        createUsernameTextField.textField.rx.controlEvent(.editingDidBegin).asDriver().drive(onNext: { [weak self] in
-            guard let self = self else { return }
-            if self.createUsernameTextField.errorState {
-                self.createUsernameTextField.setError(nil)
-            }
-            self.accessibilityErrorLabel()
-        }).disposed(by: disposeBag)
-        
         viewModel.newPasswordIsValid.drive(onNext: { [weak self] valid in
             self?.createPasswordTextField.setValidated(valid, accessibilityLabel: NSLocalizedString("Minimum password criteria met", comment: ""))
         }).disposed(by: disposeBag)
 
-        createPasswordTextField.textField.placeholder = NSLocalizedString("Password*", comment: "")
+        createPasswordTextField.placeholder = NSLocalizedString("Password*", comment: "")
         createPasswordTextField.textField.isSecureTextEntry = true
         createPasswordTextField.textField.returnKeyType = .next
         createPasswordTextField.textField.delegate = self
-        createPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
         if #available(iOS 12.0, *) {
             createPasswordTextField.textField.textContentType = .newPassword
@@ -185,15 +183,12 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             confirmPasswordTextField.textField.inputAccessoryView = toolbar
         }
         
-        confirmPasswordTextField.textField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
+        confirmPasswordTextField.placeholder = NSLocalizedString("Confirm Password*", comment: "")
         confirmPasswordTextField.textField.isSecureTextEntry = true
         confirmPasswordTextField.textField.returnKeyType = .done
         confirmPasswordTextField.textField.delegate = self
-        confirmPasswordTextField.textField.font = SystemFont.regular.of(textStyle: .title2)
         
-        // Bind to the view model
         createUsernameTextField.textField.rx.text.orEmpty.bind(to: viewModel.username).disposed(by: disposeBag)
-        
         createPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.newPassword).disposed(by: disposeBag)
         confirmPasswordTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmPassword).disposed(by: disposeBag)
         
@@ -205,7 +200,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                     self.createUsernameTextField.setError(nil)
                 }
                 self.accessibilityErrorLabel()
-                
             }).disposed(by: disposeBag)
         
         createUsernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver()
@@ -216,7 +210,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         createPasswordTextField.textField.rx.controlEvent(.editingDidBegin).asDriver()
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.scrollView.setContentOffset(self.createPasswordContainerView.frame.origin, animated: true)
                 UIView.animate(withDuration: 0.5, animations: {
                     self.passwordStrengthView.isHidden = false
                 })
@@ -249,30 +242,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
                     self.view.layoutIfNeeded()
                 })
             }).disposed(by: disposeBag)
-        
-        let opCo = Environment.shared.opco
-        
-        if opCo == .bge || viewModel.accountType.value == "residential" {
-            primaryProfileSwitchView.isHidden = true
-        }
-        
-        primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
-        primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
-        
-        primaryProfileLabel.isAccessibilityElement = false
-        primaryProfileSwitch.isAccessibilityElement = true
-        primaryProfileSwitch.accessibilityLabel = NSLocalizedString("Set as primary profile for this account", comment: "")
-        
-    }
-    
-    func setupNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func setupNavigationButtons() {
-        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        navigationItem.rightBarButtonItem = nextButton
     }
     
     func setupValidation() {
@@ -304,7 +273,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
         }).disposed(by: disposeBag)
         
-        
         // Password cannot match email
         viewModel.passwordMatchesUsername
             .drive(onNext: { [weak self] matches in
@@ -335,20 +303,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        viewModel.doneButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
-    }
-    
-    func populateHelperLabels() {
-        instructionLabel.textColor = .blackText
-        instructionLabel.text = NSLocalizedString("Please create your sign in credentials", comment: "")
-        instructionLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        
-        passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        
-        for label in passwordRequirementLabels {
-            label.font = SystemFont.regular.of(textStyle: .subheadline)
-        }
+        viewModel.createCredentialsContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
     }
     
     private func accessibilityErrorLabel() {
@@ -358,12 +313,11 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         message += confirmPasswordTextField.getError()
         
         if message.isEmpty {
-            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
         } else {
-            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
+            continueButton.accessibilityLabel = String(format: NSLocalizedString("%@ Continue", comment: ""), message)
         }
     }
-    
     
     // MARK: - Navigation
 
@@ -371,23 +325,6 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         if let vc = segue.destination as? RegistrationSecurityQuestionsViewController {
             vc.viewModel = viewModel
         }
-    }
- 
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
     
 }
@@ -423,16 +360,15 @@ extension RegistrationCreateCredentialsViewController: UITextFieldDelegate {
                 createUsernameTextField.textField.becomeFirstResponder()
             }
         } else if textField == confirmPasswordTextField.textField {
-            viewModel.doneButtonEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
+            viewModel.createCredentialsContinueEnabled.asObservable().take(1).asDriver(onErrorDriveWith: .empty())
                 .drive(onNext: { [weak self] enabled in
                     if enabled {
-                        self?.onNextPress()
+                        self?.onContinuePress()
                     } else {
                         self?.view.endEditing(true)
                     }
                 }).disposed(by: disposeBag)
         }
-        
         return false
     }
     
