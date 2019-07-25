@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-@IBDesignable
 class Checkbox: UIControl {
     
     private var imageView: UIImageView!
@@ -35,7 +34,9 @@ class Checkbox: UIControl {
     }
     
     func commonInit() {
-        imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 24, height: 24))
+        backgroundColor = .clear
+        
+        imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 24, height: 24))
         imageView.image = #imageLiteral(resourceName: "ic_checkbox_deselected.pdf")
         addSubview(imageView)
     }
