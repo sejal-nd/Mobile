@@ -12,12 +12,11 @@ import AVFoundation
 import PDTSimpleCalendar
 import UIKit
 
-class MakePaymentViewController: UIViewController {
+class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
@@ -81,15 +80,15 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var walletFooterLabel: UILabel!
     
     @IBOutlet weak var stickyPaymentFooterStackView: UIStackView!
-    @IBOutlet weak var stickyPaymentFooterView: UIView!
+    @IBOutlet weak var stickyPaymentFooterView: StickyFooterView!
     @IBOutlet weak var stickyPaymentFooterTextContainer: UIView!
-    @IBOutlet weak var stickyPaymentFooterPaymentLabel: UILabel!
+    @IBOutlet weak var stickyPaymentFooterTotalPaymentLabel: UILabel!
+    @IBOutlet weak var stickyPaymentFooterAmountLabel: UILabel!
     @IBOutlet weak var stickyPaymentFooterFeeLabel: UILabel!
+    @IBOutlet weak var continueButton: PrimaryButtonNew!
 
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    
-    var nextButton = UIBarButtonItem()
     
     var viewModel: PaymentViewModel!
     var accountDetail: AccountDetail! // Passed in from presenting view
@@ -102,27 +101,13 @@ class MakePaymentViewController: UIViewController {
         
         viewModel = PaymentViewModel(walletService: ServiceFactory.createWalletService(), paymentService: ServiceFactory.createPaymentService(), accountDetail: accountDetail, billingHistoryItem: billingHistoryItem)
         
-        view.backgroundColor = .softGray
-        
-        // Put white background on stack view
-        let bg = UIView(frame: stackView.bounds)
-        bg.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        bg.backgroundColor = .white
-        stackView.addSubview(bg)
-        stackView.sendSubviewToBack(bg)
-        
         if billingHistoryItem != nil {
             title = NSLocalizedString("Edit Payment", comment: "")
         } else {
             title = NSLocalizedString("Make a Payment", comment: "")
         }
         
-        nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(onNextPress))
-        navigationItem.rightBarButtonItem = nextButton
-        viewModel.makePaymentNextButtonEnabled.drive(nextButton.rx.isEnabled).disposed(by: disposeBag)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        viewModel.makePaymentContinueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -226,15 +211,15 @@ class MakePaymentViewController: UIViewController {
         cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
         cancelPaymentLabel.textColor = .actionBlue
         
-        walletFooterView.backgroundColor = .softGray
         walletFooterLabel.textColor = .deepGray
         walletFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        stickyPaymentFooterView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -2), radius: 2.5)
-        stickyPaymentFooterPaymentLabel.textColor = .blackText
-        stickyPaymentFooterPaymentLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        stickyPaymentFooterTotalPaymentLabel.textColor = .blackText
+        stickyPaymentFooterTotalPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        stickyPaymentFooterAmountLabel.textColor = .blackText
+        stickyPaymentFooterAmountLabel.font = SystemFont.semibold.of(textStyle: .title1)
         stickyPaymentFooterFeeLabel.textColor = .deepGray
-        stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .blackText
@@ -251,10 +236,6 @@ class MakePaymentViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 
     override func updateViewConstraints() {
@@ -444,8 +425,8 @@ class MakePaymentViewController: UIViewController {
         walletFooterLabel.text = viewModel.walletFooterLabelText
         
         // Sticky Footer Payment View
-        viewModel.totalPaymentDisplayString.map { String(format: NSLocalizedString("Total Payment: %@", comment: ""), $0 ?? "--") }
-            .drive(stickyPaymentFooterPaymentLabel.rx.text)
+        viewModel.totalPaymentDisplayString.map { $0 ?? "--" }
+            .drive(stickyPaymentFooterAmountLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.paymentAmountFeeFooterLabelText.drive(stickyPaymentFooterFeeLabel.rx.text).disposed(by: disposeBag)
@@ -526,15 +507,13 @@ class MakePaymentViewController: UIViewController {
     private func accessibilityErrorLabel() {
         let message = paymentAmountTextField.getError()
         if message.isEmpty {
-            nextButton.accessibilityLabel = NSLocalizedString("Next", comment: "")
+            continueButton.accessibilityLabel = NSLocalizedString("Continue", comment: "")
         } else {
-            nextButton.accessibilityLabel = String(format: NSLocalizedString("%@ Next", comment: ""), message)
+            continueButton.accessibilityLabel = String(format: NSLocalizedString("%@ Continue", comment: ""), message)
         }
     }
     
-    @objc func onNextPress() {
-        guard nextButton.isEnabled else { return }
-        
+    @IBAction func onContinuePress() {
         view.endEditing(true)
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard {
@@ -586,27 +565,6 @@ class MakePaymentViewController: UIViewController {
         if let vc = segue.destination as? ReviewPaymentViewController {
             vc.viewModel = viewModel
         }
-    }
-        
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - stickyPaymentFooterView.frame.size.height, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
     
 }

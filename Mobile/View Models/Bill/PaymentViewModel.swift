@@ -299,7 +299,7 @@ class PaymentViewModel {
 
     // MARK: - Other Make Payment Drivers
     
-    private(set) lazy var makePaymentNextButtonEnabled: Driver<Bool> = Driver
+    private(set) lazy var makePaymentContinueButtonEnabled: Driver<Bool> = Driver
         .combineLatest(selectedWalletItem.asDriver(), paymentFieldsValid) {
             return $0 != nil && $1
         }

@@ -2261,7 +2261,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bill" id="l6Q-Py-wRt">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="uJc-vy-HD0"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="uJc-vy-HD0"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="2066"/>
