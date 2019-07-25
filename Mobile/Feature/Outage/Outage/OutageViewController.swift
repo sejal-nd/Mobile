@@ -51,6 +51,8 @@ class OutageViewController: AccountPickerViewController {
     
     var shortcutItem: ShortcutItem = .none
     
+    var accountsLoaded = false
+    
     
     // MARK: - View Life Cycle
     
@@ -188,8 +190,6 @@ class OutageViewController: AccountPickerViewController {
             tableView.addSubview(refreshControl)
 
             configureState(.loading)
-            
-            loadOutageStatus()
         case .unauthenticated:
             title = "Outage"
             
@@ -285,7 +285,7 @@ extension OutageViewController: UITableViewDataSource {
         
         switch indexPath {
         case IndexPath(row: 0, section: 0):
-            let detailText = viewModel.reportedOutage != nil ? viewModel.outageReportedDateString : nil
+            let detailText = (accountsLoaded && viewModel.reportedOutage != nil) ? viewModel.outageReportedDateString : nil
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
             cell.configure(image: UIImage(named: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
@@ -334,6 +334,7 @@ extension OutageViewController: UITableViewDelegate {
 
 extension OutageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        accountsLoaded = true
         configureState(.loading)
         loadOutageStatus()
     }
