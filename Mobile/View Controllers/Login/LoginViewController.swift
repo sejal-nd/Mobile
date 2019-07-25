@@ -206,31 +206,33 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func onLoginPress() {
         view.endEditing(true)
 
-        if Environment.shared.opco != .bge && !viewModel.usernameIsValidEmailAddress {
-            // ComEd/PECO only email validation. If not valid email then fail before making the call
-            let message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
-            showErrorAlertWith(title: nil, message: message)
-            return
-        }
-
-        if !viewModel.passwordMeetsRequirements {
-            let alert = UIAlertController(
-                title: NSLocalizedString("Sign In Error", comment: ""),
-                message: NSLocalizedString("To provide increased protection of your account, passwords must now meet new complexity standards.", comment: ""),
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Change Password", comment: ""), style: .default, handler: { _ in
-                let storyboard = UIStoryboard(name: "More", bundle: nil)
-                let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
-                changePwVc.delegate = self
-                changePwVc.forgotPasswordDelegate = self
-                changePwVc.resetPasswordWorkflow = true
-                changePwVc.resetPasswordUsername = self.viewModel.username.value
-                self.navigationController?.pushViewController(changePwVc, animated: true)
-            }))
-            present(alert, animated: true, completion: nil)
-            return
+        if Environment.shared.environmentName != .aut { // Otherwise all our mock data usernames would fail
+            if Environment.shared.opco != .bge && !viewModel.usernameIsValidEmailAddress {
+                // ComEd/PECO only email validation. If not valid email then fail before making the call
+                let message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
+                showErrorAlertWith(title: nil, message: message)
+                return
+            }
+            
+            if !viewModel.passwordMeetsRequirements {
+                let alert = UIAlertController(
+                    title: NSLocalizedString("Sign In Error", comment: ""),
+                    message: NSLocalizedString("To provide increased protection of your account, passwords must now meet new complexity standards.", comment: ""),
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Change Password", comment: ""), style: .default, handler: { _ in
+                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
+                    changePwVc.delegate = self
+                    changePwVc.forgotPasswordDelegate = self
+                    changePwVc.resetPasswordWorkflow = true
+                    changePwVc.resetPasswordUsername = self.viewModel.username.value
+                    self.navigationController?.pushViewController(changePwVc, animated: true)
+                }))
+                present(alert, animated: true, completion: nil)
+                return
+            }
         }
 
         FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInCheckbox.isChecked.description)])
