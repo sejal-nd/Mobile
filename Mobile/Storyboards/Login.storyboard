@@ -999,39 +999,50 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0e-it-1C9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="517"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mr-pS-i57">
-                                <rect key="frame" x="0.0" y="519" width="375" height="148"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mr-pS-i57" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="517" width="375" height="150"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ysV-1o-zls">
-                                        <rect key="frame" x="16" y="15" width="343" height="119"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ysV-1o-zls">
+                                        <rect key="frame" x="20" y="15" width="335" height="120"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="swp-ng-RpP">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2P-iG-ujU">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-u1-xrO" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="cWQ-u1-xrO" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="6" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I agree to PECO's Terms and Conditions" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s57-Nu-gGZ">
-                                                        <rect key="frame" x="56" y="13" width="287" height="18"/>
+                                                        <rect key="frame" x="34" y="14" width="301" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                            </stackView>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="s57-Nu-gGZ" secondAttribute="trailing" id="2l3-1t-U54"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s57-Nu-gGZ" secondAttribute="bottom" id="4IP-Io-AgT"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cWQ-u1-xrO" secondAttribute="bottom" id="GZa-iE-kES"/>
+                                                    <constraint firstItem="s57-Nu-gGZ" firstAttribute="leading" secondItem="cWQ-u1-xrO" secondAttribute="trailing" constant="-10" id="I6V-H6-c4O"/>
+                                                    <constraint firstItem="cWQ-u1-xrO" firstAttribute="leading" secondItem="G2P-iG-ujU" secondAttribute="leading" id="d13-74-upF"/>
+                                                    <constraint firstItem="s57-Nu-gGZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G2P-iG-ujU" secondAttribute="top" id="fMd-ch-nsU"/>
+                                                    <constraint firstItem="cWQ-u1-xrO" firstAttribute="top" secondItem="s57-Nu-gGZ" secondAttribute="top" constant="-8" id="nPf-Je-rmf"/>
+                                                    <constraint firstItem="cWQ-u1-xrO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G2P-iG-ujU" secondAttribute="top" id="zSU-b9-TbC"/>
+                                                </constraints>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2d-t3-Jmn" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="59" width="343" height="60"/>
+                                                <rect key="frame" x="0.0" y="65" width="335" height="55"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="CBM-Ge-Cdu"/>
+                                                    <constraint firstAttribute="height" constant="55" id="CBM-Ge-Cdu"/>
                                                 </constraints>
                                                 <state key="normal" title="Continue"/>
                                                 <connections>
@@ -1047,9 +1058,9 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ysV-1o-zls" firstAttribute="top" secondItem="5mr-pS-i57" secondAttribute="top" constant="15" id="7WM-18-qxk"/>
-                                    <constraint firstAttribute="trailing" secondItem="ysV-1o-zls" secondAttribute="trailing" priority="999" constant="16" id="Bgl-yu-5vF"/>
+                                    <constraint firstAttribute="trailing" secondItem="ysV-1o-zls" secondAttribute="trailing" priority="999" constant="20" id="Bgl-yu-5vF"/>
                                     <constraint firstItem="ysV-1o-zls" firstAttribute="centerX" secondItem="5mr-pS-i57" secondAttribute="centerX" id="WkT-WB-RbH"/>
-                                    <constraint firstItem="ysV-1o-zls" firstAttribute="leading" secondItem="5mr-pS-i57" secondAttribute="leading" priority="999" constant="16" id="eOJ-RZ-TQR"/>
+                                    <constraint firstItem="ysV-1o-zls" firstAttribute="leading" secondItem="5mr-pS-i57" secondAttribute="leading" priority="999" constant="20" id="eOJ-RZ-TQR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1060,7 +1071,7 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                             <constraint firstItem="m0e-it-1C9" firstAttribute="top" secondItem="dDU-GJ-Gqf" secondAttribute="top" id="a3g-ig-nDP"/>
                             <constraint firstItem="m0e-it-1C9" firstAttribute="leading" secondItem="H8r-X0-ZfQ" secondAttribute="leading" id="aWS-YQ-lnw"/>
                             <constraint firstItem="5mr-pS-i57" firstAttribute="top" secondItem="m0e-it-1C9" secondAttribute="bottom" id="b7X-4f-hEy"/>
-                            <constraint firstItem="H8r-X0-ZfQ" firstAttribute="bottom" secondItem="ysV-1o-zls" secondAttribute="bottom" constant="14" id="jMX-2T-ovk"/>
+                            <constraint firstItem="H8r-X0-ZfQ" firstAttribute="bottom" secondItem="ysV-1o-zls" secondAttribute="bottom" constant="15" id="jMX-2T-ovk"/>
                             <constraint firstItem="H8r-X0-ZfQ" firstAttribute="trailing" secondItem="m0e-it-1C9" secondAttribute="trailing" id="kI9-5r-O0u"/>
                             <constraint firstAttribute="bottom" secondItem="5mr-pS-i57" secondAttribute="bottom" id="zRT-pk-NoS"/>
                         </constraints>
@@ -1070,7 +1081,6 @@ If your power is out, please call 1-877-778-2222 to report your outage.</string>
                     <connections>
                         <outlet property="agreeCheckbox" destination="cWQ-u1-xrO" id="4C1-b7-PPj"/>
                         <outlet property="agreeLabel" destination="s57-Nu-gGZ" id="dUy-LM-Hqx"/>
-                        <outlet property="agreeView" destination="5mr-pS-i57" id="vLz-ZC-p8z"/>
                         <outlet property="continueButton" destination="T2d-t3-Jmn" id="Wz7-t5-9NI"/>
                         <outlet property="webView" destination="m0e-it-1C9" id="BDK-Tg-ZGE"/>
                     </connections>

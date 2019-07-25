@@ -13,6 +13,8 @@ import RxCocoa
 class Checkbox: UIControl {
     
     private var imageView: UIImageView!
+
+    private var justToggled = false
     
     var isChecked: Bool = false {
         didSet {
@@ -47,7 +49,27 @@ class Checkbox: UIControl {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.isChecked = !isChecked
+        justToggled = true
     }
+    
+    private var accessibilityLabelInternal: String?
+    override var accessibilityLabel: String? {
+        set {
+            self.accessibilityLabelInternal = newValue
+        }
+        get {
+            let checkedState = isChecked ? "Checked" : "Unchecked"
+            if justToggled { // Prevent duplicate readings of the full label (matches UISwitch behavior)
+                justToggled = false
+                return checkedState
+            }
+            if let label = self.accessibilityLabelInternal {
+                return "\(label), Checkbox, \(checkedState)"
+            }
+            return "Checkbox, \(checkedState)"
+        }
+    }
+
 }
 
 extension Reactive where Base: Checkbox {
