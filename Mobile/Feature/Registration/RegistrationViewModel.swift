@@ -28,25 +28,20 @@ class RegistrationViewModel {
     
     var primaryProfile = Variable<Bool>(false)
     
-    let securityQuestion1 = Variable("")
+    let securityQuestion1 = Variable<String?>(nil)
     let securityAnswer1 = Variable("")
     
-    let securityQuestion2 = Variable("")
+    let securityQuestion2 = Variable<String?>(nil)
     let securityAnswer2 = Variable("")
     
-    let securityQuestion3 = Variable("")
+    let securityQuestion3 = Variable<String?>(nil)
     let securityAnswer3 = Variable("")
     
     var paperlessEbill = Variable<Bool>(true)
     
     var isPaperlessEbillEligible = false
     
-    let loadSecurityQuestionsData = PublishSubject<Void>()
-    
-    var securityQuestions = Variable<[SecurityQuestion]>([])
-    var selectedQuestion = ""
-    var selectedQuestionRow = 0
-    var selectedQuestionChanged = Variable<Bool>(false)
+    var securityQuestions: [String]?
     
     var accounts = Variable<[AccountLookupResult]>([])
     
@@ -129,11 +124,11 @@ class RegistrationViewModel {
                                              accountNum: accountNumber.value,
                                              identifier: identifierNumber.value,
                                              phone: extractDigitsFrom(phoneNumber.value),
-                                             question1: securityQuestion1.value,
+                                             question1: securityQuestion1.value!,
                                              answer1: securityAnswer1.value,
-                                             question2: securityQuestion2.value,
+                                             question2: securityQuestion2.value!,
                                              answer2: securityAnswer2.value,
-                                             question3: securityQuestion3.value,
+                                             question3: securityQuestion3.value!,
                                              answer3: securityAnswer3.value,
                                              isPrimary: primaryProfile.value ? "true" : "false",
                                              isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")
@@ -174,7 +169,7 @@ class RegistrationViewModel {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] array in
                 guard let self = self else { return }
-                self.securityQuestions.value = array.map(SecurityQuestion.init)
+                self.securityQuestions = array
                 onSuccess()
             }, onError: { error in
                 onError(NSLocalizedString("Error", comment: ""), error.localizedDescription)
@@ -205,8 +200,7 @@ class RegistrationViewModel {
             .disposed(by: disposeBag)
     }
 
-    // THIS IS FOR THE NEXT BUTTON ON THE FIRST STEP (VALIDATE ACCOUNT)
-	private(set) lazy var nextButtonEnabled: Driver<Bool> = {
+	private(set) lazy var validateAccountContinueEnabled: Driver<Bool> = {
 		if Environment.shared.opco == .bge {
 			return Driver.combineLatest(self.phoneNumberHasTenDigits,
 			                            self.identifierHasFourDigits,
@@ -407,38 +401,27 @@ class RegistrationViewModel {
     private(set) lazy var confirmPasswordMatches: Driver<Bool> =
         Driver.combineLatest(self.confirmPassword.asDriver(), self.newPassword.asDriver(), resultSelector: ==)
     
-    // THIS IS FOR THE NEXT BUTTON ON THE SECOND STEP (CREATE SIGN IN CREDENTIALS)
-    private(set) lazy var doneButtonEnabled: Driver<Bool> = Driver
+    private(set) lazy var createCredentialsContinueEnabled: Driver<Bool> = Driver
         .combineLatest(everythingValid, confirmPasswordMatches, newPasswordHasText)
         { $0 && $1 && $2 }
     
-	private(set) lazy var question1Selected: Driver<Bool> = self.securityQuestion1.asDriver().map { !$0.isEmpty }
-	private(set) lazy var question2Selected: Driver<Bool> = self.securityQuestion2.asDriver().map { !$0.isEmpty }
-	private(set) lazy var question3Selected: Driver<Bool> = self.securityQuestion3.asDriver().map { !$0.isEmpty }
-	private(set) lazy var question1Answered: Driver<Bool> = self.securityAnswer1.asDriver().map { !$0.isEmpty }
-	private(set) lazy var question2Answered: Driver<Bool> = self.securityAnswer2.asDriver().map { !$0.isEmpty }
-	private(set) lazy var question3Answered: Driver<Bool> = self.securityAnswer3.asDriver().map { !$0.isEmpty }
-	private(set) lazy var securityQuestionChanged: Driver<Bool> = self.selectedQuestionChanged.asDriver()
-	
 	private(set) lazy var allQuestionsAnswered: Driver<Bool> = {
-		var inArray = [self.question1Selected,
-		               self.question1Answered,
-		               self.question2Selected,
-		               self.question2Answered]
-		
-        var count = 4
-		
-        if Environment.shared.opco != .bge {
-            inArray.append(self.question3Selected)
-            inArray.append(self.question3Answered)
-            
-            count = 6
+        let driverArray: [Driver<String>]
+        let count: Int
+        if Environment.shared.opco == .bge {
+            driverArray = [self.securityAnswer1.asDriver(),
+                           self.securityAnswer2.asDriver()]
+            count = 2
+        } else {
+            driverArray = [self.securityAnswer1.asDriver(),
+                           self.securityAnswer2.asDriver(),
+                           self.securityAnswer3.asDriver()]
+            count = 3
         }
         
-        return Driver.combineLatest(inArray) { outArray in
-            let otherArray = outArray[0..<count].filter{ $0 }
-            
-            return otherArray.count == count
+        return Driver.combineLatest(driverArray) { outArray in
+            let emptiesRemoved = outArray.filter { !$0.isEmpty }
+            return emptiesRemoved.count == count
         }
     }()
 }

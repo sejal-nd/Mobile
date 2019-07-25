@@ -155,8 +155,8 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         if let vc = segue.destination as? OutageViewController {
             vc.userState = .unauthenticated
             vc.viewModel.outageStatus = viewModel.selectedOutageStatus.value
-            vc.viewModel.accountNumber = viewModel.accountNumber.value
-            
+            vc.viewModel.accountNumber = viewModel.selectedOutageStatus.value?.accountNumber
+
             switch analyticsSource {
             case .report?:
                 GoogleAnalytics.log(event: .reportAnOutageUnAuthSubmitAcctSelection)
