@@ -53,8 +53,8 @@ class OutageViewModel {
                 } else {
                     self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
                 }
-                }, onError: { [weak self] _ in
-                    self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
+            }, onError: { [weak self] _ in
+                self?.getOutageStatus(onSuccess: onSuccess, onError: onError)
             })
     }
     
