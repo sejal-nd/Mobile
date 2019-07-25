@@ -174,6 +174,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         FirebaseUtility.logEvent(.loginPageStart)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationController?.interactivePopGestureRecognizer?.delegate = self
 
         // Reset the view for when user pops back from ChangePasswordViewController
