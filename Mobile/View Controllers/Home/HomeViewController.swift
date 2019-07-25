@@ -596,6 +596,17 @@ class HomeViewController: AccountPickerViewController {
         viewModel.fetchData.onNext(.refresh)
     }
     
+    @IBAction func pressButtn() {
+        guard let vc = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
+//        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        if let tabBarController = tabBarController {
+            tabBarController.present(vc, animated: false, completion: nil)
+        } else {
+            present(vc, animated: false, completion: nil)
+        }
+    }
+    
     func bindLoadingStates() {
         viewModel.refreshFetchTracker.asObservable()
             .subscribe(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })

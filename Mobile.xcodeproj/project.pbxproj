@@ -404,6 +404,21 @@
 		35B960BF22C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
 		35B960C022C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
 		35B960C122C2A15A003BCC97 /* AccountListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B960BE22C2A15A003BCC97 /* AccountListRow.swift */; };
+		35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
+		35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
+		35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
+		35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */; };
+		35C9139722E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */; };
+		35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */; };
+		35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */; };
+		35C9139C22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */; };
+		35C9139D22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */; };
+		35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */; };
+		35C913A022E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */; };
+		35C913A122E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */; };
+		35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */; };
+		35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */; };
+		35C913A522EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */; };
 		35E7C79C21907EA400BA13C6 /* PECO_WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO_WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -2691,6 +2706,11 @@
 		35B9609822B7BC61003BCC97 /* PremiseListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PremiseListRow.xib; sourceTree = "<group>"; };
 		35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiseListRow.swift; sourceTree = "<group>"; };
 		35B960BE22C2A15A003BCC97 /* AccountListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListRow.swift; sourceTree = "<group>"; };
+		35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniWalletSheet.storyboard; sourceTree = "<group>"; };
+		35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewController.swift; sourceTree = "<group>"; };
+		35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletItemRow.swift; sourceTree = "<group>"; };
+		35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniWalletItemRow.xib; sourceTree = "<group>"; };
+		35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewModel.swift; sourceTree = "<group>"; };
 		35CE69D421122F50007EB844 /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		35CE69D521122F50007EB844 /* PECO-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-TEST.entitlements"; sourceTree = "<group>"; };
 		35CE69D621122F50007EB844 /* ComEd-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-TEST.entitlements"; sourceTree = "<group>"; };
@@ -3634,6 +3654,7 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				35C9138E22E9E965009DD71A /* Shared */,
 				359BDB5922D8DC43007002B0 /* Outage */,
 				9C10B4DC22E2177A00B0851B /* BGE Choice ID */,
 				9C10B4D822E216BF00B0851B /* Change Password */,
@@ -3837,6 +3858,45 @@
 				82A18E671EB9191E00BE9F21 /* ReportOutageViewModel.swift */,
 			);
 			path = "Report Outage";
+			sourceTree = "<group>";
+		};
+		35C9138E22E9E965009DD71A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				35C9138F22E9E96E009DD71A /* Mini Wallet */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		35C9138F22E9E96E009DD71A /* Mini Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				35C9139022E9E9A8009DD71A /* Mini Wallet Sheet */,
+			);
+			path = "Mini Wallet";
+			sourceTree = "<group>";
+		};
+		35C9139022E9E9A8009DD71A /* Mini Wallet Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */,
+				E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */,
+				35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */,
+				35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */,
+				35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */,
+				35C9139922E9EF70009DD71A /* Table View Cells */,
+			);
+			path = "Mini Wallet Sheet";
+			sourceTree = "<group>";
+		};
+		35C9139922E9EF70009DD71A /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
+				35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */,
+				35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */,
+			);
+			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		35E7C79021907EA200BA13C6 /* PECO_WatchOS */ = {
@@ -4398,7 +4458,6 @@
 				E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */,
 				82A18EC91EBA681800BE9F21 /* SettingsTableViewCell */,
 				9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */,
-				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */,
 				826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */,
@@ -5393,7 +5452,6 @@
 			isa = PBXGroup;
 			children = (
 				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
-				E8C4532A1EF435F700F5C781 /* MiniWalletViewController.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -5402,7 +5460,6 @@
 			isa = PBXGroup;
 			children = (
 				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
-				E803A0031EFC12BB004DB789 /* MiniWalletViewModel.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -6074,6 +6131,7 @@
 				B07E18042211D31700B6E3C7 /* outage_status.json in Resources */,
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */,
+				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043381E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532722CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2763215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -6174,6 +6232,7 @@
 				8FD5AE9D1E54EAB8003F640D /* loading.json in Resources */,
 				E80043351E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
+				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				E8B8C8481F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
 				B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
@@ -6235,6 +6294,7 @@
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */,
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
+				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2765215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -6335,6 +6395,7 @@
 				E800433D1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA7A1EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
+				35C913A122E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
@@ -6396,6 +6457,7 @@
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */,
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
+				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
 				B0DB2764215ECF5100CD703B /* AccountInfoBarCell.xib in Resources */,
@@ -6496,6 +6558,7 @@
 				356C7FAB2190D940003E8A90 /* environment.plist in Resources */,
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
+				35C913A022E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
@@ -7615,6 +7678,7 @@
 				B0CB1C7E227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
 				82E22B5E1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift in Sources */,
 				9CB8A5ED21DEBF3D00880DE9 /* Logger.swift in Sources */,
+				35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				9C28D39C2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
@@ -7674,6 +7738,7 @@
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269352127579C009B2BFF /* HomeUpdateView.swift in Sources */,
+				35C9139622E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				E87926DA1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
@@ -7804,6 +7869,7 @@
 				82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				9C62447022C42B4900F14DA0 /* FloatLabelTextViewNew.swift in Sources */,
+				35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
@@ -8024,6 +8090,7 @@
 				B0CB1C212270DE250081F99B /* MockPeakRewardsService.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				B07E17C02208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
+				35C913A522EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				B0DB2759215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				35277AFF2102686100411297 /* UsageTool.swift in Sources */,
 				9C72424E21E5061900E5946B /* GovWeatherService.swift in Sources */,
@@ -8082,6 +8149,7 @@
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
+				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
@@ -8120,6 +8188,7 @@
 				E8C453251EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
+				35C9139D22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
 				9CD3532322CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
@@ -8378,6 +8447,7 @@
 				224EFF19216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
 				9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */,
 				B0CB1C7F227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
+				35C9139C22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
@@ -8437,6 +8507,7 @@
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
+				35C9139722E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				B085C44820FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
 				B574BAE01E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				357757412113582D00E73542 /* DateParser.swift in Sources */,
@@ -8567,6 +8638,7 @@
 				B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
 				9C62447122C42B4900F14DA0 /* FloatLabelTextViewNew.swift in Sources */,
+				35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,

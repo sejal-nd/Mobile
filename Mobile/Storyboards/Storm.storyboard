@@ -727,6 +727,13 @@
                                     <constraint firstAttribute="bottom" secondItem="Wuk-bq-YQH" secondAttribute="bottom" id="xQl-QW-bLz"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpA-gA-Upa">
+                                <rect key="frame" x="164.5" y="1185" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pressButtn" destination="7nx-bF-5mO" eventType="touchUpInside" id="xS8-8k-G0R"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901960784313" green="0.14901960784313725" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -734,7 +741,9 @@
                             <constraint firstItem="FxF-xR-Hyf" firstAttribute="top" secondItem="jT6-gQ-uaJ" secondAttribute="bottom" id="5Bz-fk-Hra"/>
                             <constraint firstItem="NPq-OC-mEq" firstAttribute="trailing" secondItem="jT6-gQ-uaJ" secondAttribute="trailing" id="8sL-Dg-4ha"/>
                             <constraint firstItem="jT6-gQ-uaJ" firstAttribute="top" secondItem="NPq-OC-mEq" secondAttribute="top" id="Bsw-YN-syF"/>
+                            <constraint firstItem="lpA-gA-Upa" firstAttribute="centerX" secondItem="y2F-qh-7Mk" secondAttribute="centerX" id="DEK-CZ-Gbe"/>
                             <constraint firstItem="jT6-gQ-uaJ" firstAttribute="leading" secondItem="NPq-OC-mEq" secondAttribute="leading" id="HbZ-oX-xkt"/>
+                            <constraint firstItem="lpA-gA-Upa" firstAttribute="centerY" secondItem="y2F-qh-7Mk" secondAttribute="centerY" id="IpX-Fg-hZl"/>
                             <constraint firstAttribute="bottom" secondItem="Ybl-Tq-eQ9" secondAttribute="bottom" id="NM1-Vg-Xtt"/>
                             <constraint firstItem="NPq-OC-mEq" firstAttribute="trailing" secondItem="FxF-xR-Hyf" secondAttribute="trailing" id="RDf-je-OWs"/>
                             <constraint firstItem="Wuk-bq-YQH" firstAttribute="width" secondItem="y2F-qh-7Mk" secondAttribute="width" id="RkX-zJ-aTO"/>
