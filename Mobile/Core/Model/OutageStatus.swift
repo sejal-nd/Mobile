@@ -67,8 +67,7 @@ struct OutageStatus: Mappable {
     static func getOutageState(_ outageStatus: OutageStatus,
                                reportedResults: ReportedOutageResult? = nil,
                                hasJustReported: Bool = false) -> OutageState {
-        
-        if hasJustReported && reportedResults != nil {
+        if hasJustReported { 
             return .reported
         } else if outageStatus.flagFinaled || outageStatus.flagNonService {
             return .unavailable

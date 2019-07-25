@@ -90,6 +90,7 @@ class OutageViewController: AccountPickerViewController {
         if let vc = segue.destination as? ReportOutageViewController {
             if let outageStatus = viewModel.outageStatus {
                 vc.viewModel.outageStatus = outageStatus
+                vc.viewModel.phoneNumber.value = outageStatus.contactHomeNumber ?? ""
                 vc.delegate = self
             }
             vc.unauthenticatedExperience = userState == .unauthenticated ? true : false
@@ -384,18 +385,18 @@ extension OutageViewController: ReportOutageDelegate {
         // Show Toast
         view.showToast(NSLocalizedString("Outage report received", comment: ""))
         GoogleAnalytics.log(event: .reportOutageAuthComplete)
-        
+
         // Update Report Outage Cell
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow else { return }
         cell.updateSubTitle(viewModel.outageReportedDateString)
-        
+
         // Enable Reported Outage State
         viewModel.hasJustReportedOutage = true
         guard let outageStatus = viewModel.outageStatus else { return }
         outageStatusView.setOutageStatus(outageStatus,
                                          reportedResults: viewModel.reportedOutage,
                                          hasJustReported: viewModel.hasJustReportedOutage)
-        
+  
         // Analytics
         let event: FirebaseUtility.Event
         if userState == .authenticated {
