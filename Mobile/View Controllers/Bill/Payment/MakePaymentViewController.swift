@@ -17,17 +17,10 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
-    
-    @IBOutlet weak var paymentAccountView: UIView! // Contains paymentAccountLabel and paymentAccountButton
-    @IBOutlet weak var paymentAccountLabel: UILabel! // Label that says "Payment Method" above the button
-    @IBOutlet weak var paymentAccountButton: ButtonControl!
-    @IBOutlet weak var paymentAccountImageView: UIImageView!
-    @IBOutlet weak var paymentAccountAccountNumberLabel: UILabel!
-    @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
-    @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
     
     // Contains Total Amount Due and Due Date information
     @IBOutlet weak var billInfoBox: UIView!
@@ -37,11 +30,21 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var dueDateTextLabel: UILabel!
     @IBOutlet weak var dueDateDateLabel: UILabel!
     
+    @IBOutlet weak var paymentMethodContainerView: UIView!
+    @IBOutlet weak var paymentMethodButton: ButtonControl!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
+    @IBOutlet weak var paymentMethodImageView: UIImageView!
+    @IBOutlet weak var paymentMethodAccountNumberLabel: UILabel!
+    @IBOutlet weak var paymentMethodNicknameLabel: UILabel!
+    
+    @IBOutlet weak var paymentMethodExpiredButton: ButtonControl!
+    @IBOutlet weak var paymentMethodExpiredSelectLabel: UILabel!
+    
     @IBOutlet weak var paymentAmountView: UIView! // Contains paymentAmountFeeLabel and paymentAmountTextField
     @IBOutlet private weak var selectPaymentAmountStack: UIStackView!
     @IBOutlet private weak var selectPaymentAmountLabel: UILabel!
     @IBOutlet private weak var paymentAmountsStack: UIStackView!
-    @IBOutlet weak var paymentAmountFeeLabel: UILabel!
+    @IBOutlet weak var paymentMethodFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
     @IBOutlet weak var paymentDateView: UIView!
@@ -109,28 +112,34 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         
         viewModel.makePaymentContinueButtonEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
-        activeSeveranceLabel.textColor = .blackText
+        activeSeveranceLabel.textColor = .deepGray
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
         activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, online payments are limited to the current date. Payments also may not be edited or deleted.", comment: "")
         
-        bankAccountsUnavailableLabel.textColor = .blackText
+        bankAccountsUnavailableLabel.textColor = .deepGray
         bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
         bankAccountsUnavailableLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
 
-        paymentAccountLabel.text = NSLocalizedString("Payment Method", comment: "")
-        paymentAccountLabel.textColor = .deepGray
-        paymentAccountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentMethodLabel.text = NSLocalizedString("Payment Method*", comment: "")
+        paymentMethodLabel.textColor = .middleGray
+        paymentMethodLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         
-        paymentAccountButton.layer.cornerRadius = 10
-        paymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        paymentAccountButton.backgroundColorOnPress = .softGray
-        paymentAccountAccountNumberLabel.textColor = .blackText
-        paymentAccountAccountNumberLabel.font = SystemFont.medium.of(textStyle: .headline)
-        paymentAccountNicknameLabel.textColor = .middleGray
-        paymentAccountNicknameLabel.font = SystemFont.medium.of(textStyle: .footnote)
+        paymentMethodButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
+        paymentMethodButton.backgroundColorOnPress = .softGray
+        paymentMethodAccountNumberLabel.textColor = .deepGray
+        paymentMethodAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodNicknameLabel.textColor = .middleGray
+        paymentMethodNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
+        paymentMethodExpiredButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
+        paymentMethodExpiredButton.backgroundColorOnPress = .softGray
+        paymentMethodExpiredSelectLabel.textColor = .deepGray
+        paymentMethodExpiredSelectLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodExpiredSelectLabel.text = NSLocalizedString("Select Payment Method", comment: "")
         
         billInfoBox.layer.borderColor = UIColor.accentGray.cgColor
         billInfoBox.layer.borderWidth = 1
+        stackView.setCustomSpacing(40, after: billInfoBox)
         amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -146,8 +155,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         selectPaymentAmountLabel.textColor = .blackText
         selectPaymentAmountLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         
-        paymentAmountFeeLabel.textColor = .blackText
-        paymentAmountFeeLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentMethodFeeLabel.textColor = .deepGray
+        paymentMethodFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.text = viewModel.paymentAmount.value.currencyString
         paymentAmountTextField.setKeyboardType(.decimalPad)
@@ -259,38 +268,38 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     
     func bindViewHiding() {
         // Loading
-        viewModel.isFetching.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isFetching.asDriver().not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Active Severance Label
-        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isActiveSeveranceUser.not().drive(activeSeveranceLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Cash Only Bank Accounts Unavailable Label
-        viewModel.isCashOnlyUser.map(!).drive(bankAccountsUnavailableLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isCashOnlyUser.not().drive(bankAccountsUnavailableLabel.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Method
-        viewModel.shouldShowPaymentAccountView.map(!).drive(paymentAccountView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.wouldBeSelectedWalletItemIsExpired.asDriver().not().drive(paymentAccountExpiredSelectLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPaymentMethodButton.not().drive(paymentMethodContainerView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPaymentMethodExpiredButton.not().drive(paymentMethodExpiredButton.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Amount Text Field
-        viewModel.shouldShowPaymentAmountTextField.map(!).drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPaymentAmountTextField.not().drive(paymentAmountView.rx.isHidden).disposed(by: disposeBag)
         
         // Payment Date
-        viewModel.shouldShowPaymentDateView.map(!).drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowPastDueLabel.map(!).drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPaymentDateView.not().drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPastDueLabel.not().drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.isPaymentDateValid.drive(paymentDateErrorView.rx.isHidden).disposed(by: disposeBag)
         paymentDateButtonView.isHidden = !viewModel.canEditPaymentDate
         paymentDateFixedDateLabel.isHidden = viewModel.canEditPaymentDate
         viewModel.shouldShowSameDayPaymentWarning.not().drive(sameDayPaymentWarningView.rx.isHidden).disposed(by: disposeBag)
         
         // Add bank/credit card empty wallet state
-        viewModel.shouldShowAddPaymentMethodView.map(!).drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowAddBankAccount.map(!).drive(addBankAccountButton.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowAddCreditCard.map(!).drive(addCreditCardButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddPaymentMethodView.not().drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddBankAccount.not().drive(addBankAccountButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowAddCreditCard.not().drive(addCreditCardButton.rx.isHidden).disposed(by: disposeBag)
         
         // Cancel Payment
-        viewModel.shouldShowCancelPaymentButton.map(!).drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowCancelPaymentButton.not().drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
             if Environment.shared.opco != .bge && self?.billingHistoryItem != nil {
@@ -317,11 +326,11 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     
     func bindViewContent() {
         // Selected Wallet Item
-        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
-        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountAccountNumberLabel.rx.text).disposed(by: disposeBag)
-        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
-        viewModel.showSelectedWalletItemNickname.not().drive(paymentAccountNicknameLabel.rx.isHidden).disposed(by: disposeBag)
-        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.selectedWalletItemImage.drive(paymentMethodImageView.rx.image).disposed(by: disposeBag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentMethodAccountNumberLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemNickname.drive(paymentMethodNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.showSelectedWalletItemNickname.not().drive(paymentMethodNicknameLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(paymentMethodButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
@@ -388,8 +397,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         }).disposed(by: disposeBag)
         
         // Payment Amount Text Field
-        viewModel.paymentAmountFeeLabelText.asDriver()
-            .drive(paymentAmountFeeLabel.rx.text)
+        viewModel.paymentMethodFeeLabelText.asDriver()
+            .drive(paymentMethodFeeLabel.rx.text)
             .disposed(by: disposeBag)
         
         paymentAmountTextField.textField.rx.text.orEmpty.asObservable()
@@ -434,24 +443,26 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     func bindButtonTaps() {
-        paymentAccountButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            guard let self = self else { return }
-            self.view.endEditing(true)
-            let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
-            miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
-            if let selectedItem = self.viewModel.selectedWalletItem.value {
-                miniWalletVC.viewModel.selectedItem.value = selectedItem
-                if selectedItem.isTemporary {
-                    miniWalletVC.viewModel.temporaryItem.value = selectedItem
-                } else if selectedItem.isEditingItem {
-                    miniWalletVC.viewModel.editingItem.value = selectedItem
+        Driver.merge(paymentMethodButton.rx.touchUpInside.asDriver(),
+                     paymentMethodExpiredButton.rx.touchUpInside.asDriver())
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.view.endEditing(true)
+                let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
+                miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
+                if let selectedItem = self.viewModel.selectedWalletItem.value {
+                    miniWalletVC.viewModel.selectedItem.value = selectedItem
+                    if selectedItem.isTemporary {
+                        miniWalletVC.viewModel.temporaryItem.value = selectedItem
+                    } else if selectedItem.isEditingItem {
+                        miniWalletVC.viewModel.editingItem.value = selectedItem
+                    }
                 }
-            }
-            miniWalletVC.accountDetail = self.viewModel.accountDetail.value
-            miniWalletVC.popToViewController = self
-            miniWalletVC.delegate = self
-            self.navigationController?.pushViewController(miniWalletVC, animated: true)
-        }).disposed(by: disposeBag)
+                miniWalletVC.accountDetail = self.viewModel.accountDetail.value
+                miniWalletVC.popToViewController = self
+                miniWalletVC.delegate = self
+                self.navigationController?.pushViewController(miniWalletVC, animated: true)
+            }).disposed(by: disposeBag)
         
         paymentDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             guard let self = self else { return }

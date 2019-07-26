@@ -313,15 +313,11 @@ class PaymentViewModel {
                              self.isError.asDriver())
         { !$0 && !$1 }
 
-    private(set) lazy var shouldShowPaymentAccountView: Driver<Bool> =
-        Driver.combineLatest(self.selectedWalletItem.asDriver(),
-                             self.wouldBeSelectedWalletItemIsExpired.asDriver())
-        {
-            if $1 {
-                return true
-            }
-            return $0 != nil
-        }
+    private(set) lazy var shouldShowPaymentMethodButton: Driver<Bool> =
+        self.selectedWalletItem.asDriver().isNil().not()
+    
+    private(set) lazy var shouldShowPaymentMethodExpiredButton: Driver<Bool> =
+        self.wouldBeSelectedWalletItemIsExpired.asDriver()
 
     private(set) lazy var hasWalletItems: Driver<Bool> =
         Driver.combineLatest(self.walletItems.asDriver(),
@@ -493,7 +489,7 @@ class PaymentViewModel {
         return amounts
     }()
 
-    private(set) lazy var paymentAmountFeeLabelText: Driver<String?> =
+    private(set) lazy var paymentMethodFeeLabelText: Driver<String?> =
         self.selectedWalletItem.asDriver().map { [weak self] in
             guard let self = self, let walletItem = $0 else { return nil }
             if walletItem.bankOrCard == .bank {
@@ -534,14 +530,10 @@ class PaymentViewModel {
     private(set) lazy var showSelectedWalletItemNickname: Driver<Bool> = selectedWalletItemNickname.isNil().not()
 
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> =
-        Driver.combineLatest(selectedWalletItem.asDriver(),
-                             wouldBeSelectedWalletItemIsExpired.asDriver()) {
-        guard let walletItem: WalletItem = $0 else { return "" }
-        if $1 {
-            return NSLocalizedString("Select Payment Method", comment: "")
+        self.selectedWalletItem.asDriver().map {
+            guard let walletItem: WalletItem = $0 else { return "" }
+            return walletItem.accessibilityDescription()
         }
-        return walletItem.accessibilityDescription()
-    }
 
     var convenienceFee: Double {
         return accountDetail.value.billingInfo.convenienceFee
