@@ -84,11 +84,15 @@ class MiniWalletSheetViewController: UIViewController {
     
     weak var delegate: MiniWalletViewControllerDelegate?
     weak var popToViewController: UIViewController? // Pop to this view controller on new item save
-    var pushBankOnEmpty = false
-    var bankAccountsDisabled = false
-    var creditCardsDisabled = false
-    var allowTemporaryItems = true
-    var accountDetail: AccountDetail!
+    
+    // are these used? if so what for?
+    var pushBankOnEmpty = false // unsure if we need this variable since we dont fetch wallet items in this vc anymore
+    var isBankAccountDisabled: Bool {
+        return accountDetail.isCashOnly
+    }
+    var isCreditCardDisabled = false // Disabled from BGE AutoPay
+    var allowTemporaryItems = true // Disabled from BGE AutoPay
+    var accountDetail: AccountDetail! // passed in?
     
     
     // MARK: - View Life Cycle
@@ -164,7 +168,7 @@ class MiniWalletSheetViewController: UIViewController {
     private func presentPaymentusForm(bankOrCard: BankOrCard, temporary: Bool) {
         let paymentusVC = PaymentusFormViewController(bankOrCard: bankOrCard,
                                                       temporary: temporary,
-                                                      isWalletEmpty: viewModel.walletItems.isEmpty)
+                                                      isWalletEmpty: viewModel.tableViewWalletItems.isEmpty)
         paymentusVC.delegate = delegate as? PaymentusFormViewControllerDelegate
         paymentusVC.popToViewController = popToViewController
         navigationController?.pushViewController(paymentusVC, animated: true)
@@ -286,14 +290,17 @@ class MiniWalletSheetViewController: UIViewController {
     }
     
     private func configureTableView() {
-        let accountListCell = UINib(nibName: AccountListRow.className, bundle: nil)
-        tableView.register(accountListCell, forCellReuseIdentifier: AccountListRow.className)
+        let walletRow = UINib(nibName: MiniWalletItemRow.className, bundle: nil)
+        tableView.register(walletRow, forCellReuseIdentifier: MiniWalletItemRow.className)
+        
+        let buttonRow = UINib(nibName: ButtonRow.className, bundle: nil)
+        tableView.register(buttonRow, forCellReuseIdentifier: ButtonRow.className)
         
         tableView.tableFooterView = UIView()
         
         // Determine selected indexPath
         if let selectedWalletItem = viewModel.selectedWalletItem,
-            let row = viewModel.walletItems.firstIndex(of: selectedWalletItem) {
+            let row = viewModel.tableViewWalletItems.firstIndex(of: selectedWalletItem) {
             selectedIndexPath = IndexPath(row: row, section: 0)
         }
         tableView.reloadData()
@@ -344,27 +351,24 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
 
-        if viewModel.tableViewWalletItems.indices.contains(indexPath.row) {
-            // Select Wallet Item
-            didSelectWalletItem(indexPath: indexPath)
+        let walletItems = viewModel.tableViewWalletItems
+        let walletItem = viewModel.tableViewWalletItems[indexPath.row]
+
+        if walletItems.count - 1 >= indexPath.row && !walletItem.isExpired {
+            // Wallet Item
+            didSelectWalletItem(walletItem, at: indexPath)
+        } else if walletItems.count == indexPath.row && !isBankAccountDisabled {
+            // Bank Button
+            onAddBankAccountPress()
+        } else if walletItems.count + 1 == indexPath.row && !isCreditCardDisabled {
+            // Card Button
+            onAddCreditCardPress()
         } else {
-            // Select Button
-            
-            // todo: button table view cell will have a var in them bank or card.
-//            var paymentMethodType: BankOrCard!
-//            switch paymentMethodType {
-//            case .card:
-//                onAddCreditCardPress()
-//            case .bank:
-//                onAddBankAccountPress()
-//            }
+            fatalError("Invalid IndexPath Selected")
         }
     }
     
-    func didSelectWalletItem(indexPath: IndexPath) {
-        
-        
-        // TODO: Only if its a wallet item....
+    func didSelectWalletItem(_ walletItem: WalletItem, at indexPath: IndexPath) {
         // Single Cell Selection
         
         // Same row selected -> return
@@ -373,25 +377,28 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
         }
         
         // Toggle new checkmark on
-//        guard let newCell = tableView.cellForRow(at: indexPath) as? MiniWalletItemRow else {
-//            return }
-//        if newCell.checkmarkImageView.isHidden {
-//            newCell.checkmarkImageView.isHidden = false
-//        }
-//
-//        // Toggle old checkmark off
-//        if let unwrappedSelectedIndexPath = selectedIndexPath,
-//            let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? MiniWalletItemRow {
-//            if !oldCell.checkmarkImageView.isHidden {
-//                oldCell.checkmarkImageView.isHidden = true
-//            }
-//        }
+        guard let newCell = tableView.cellForRow(at: indexPath) as? MiniWalletItemRow else {
+            return }
+        if newCell.checkmarkImageView.isHidden {
+            newCell.checkmarkImageView.isHidden = false
+        }
+
+        // Toggle old checkmark off
+        if let unwrappedSelectedIndexPath = selectedIndexPath,
+            let oldCell = tableView.cellForRow(at: unwrappedSelectedIndexPath) as? MiniWalletItemRow {
+            if !oldCell.checkmarkImageView.isHidden {
+                oldCell.checkmarkImageView.isHidden = true
+            }
+        }
         
         selectedIndexPath = indexPath
         
         // Selection Action
-        let walletItem = viewModel.walletItems[indexPath.row]
-//        delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
+
+        // Only trigger delegate if not the editing item
+        if walletItem != viewModel.editingWalletItem {
+            //        delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
+        }
 
         // Close Sheet
         lastSheetLevel = .closed
@@ -404,14 +411,41 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
 
 extension MiniWalletSheetViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tableViewWalletItems.count
+        return viewModel.tableViewWalletItems.count + 2 // + 2 for Button Rows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AccountListRow.className, for: indexPath) as! AccountListRow
-        let walletItem = viewModel.tableViewWalletItems[indexPath.row]
-//        cell.configure(withAccount: account, indexPath: indexPath, selectedIndexPath: selectedIndexPath, delegate: self)
-        return cell
+        let walletItems = viewModel.tableViewWalletItems
+
+        if walletItems.count - 1 >= indexPath.row {
+            // Wallet Item
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MiniWalletItemRow.className, for: indexPath) as? MiniWalletItemRow else { fatalError("Incorrect Cell Type") }
+            let walletItem = walletItems[indexPath.row]
+            
+            if walletItem == viewModel.editingWalletItem {
+                cell.configure(with: walletItem, indexPath: indexPath, selectedIndexPath: selectedIndexPath, nickNameOverride: "Current Item")
+                // todo override string
+            } else if walletItem == viewModel.temporaryWalletItem {
+                cell.configure(with: walletItem, indexPath: indexPath, selectedIndexPath: selectedIndexPath, nickNameOverride: "Temporary Item")
+                // todo override string
+            } else {
+                cell.configure(with: walletItem, indexPath: indexPath, selectedIndexPath: selectedIndexPath)
+            }
+            
+            return cell
+        } else if walletItems.count == indexPath.row {
+            // Bank Button
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonRow.className, for: indexPath) as? ButtonRow else { fatalError("Incorrect Cell Type") }
+            cell.configure(image: UIImage(named: "ic_add"), title: "Add Bank Account", isEnabled: false)
+            return cell
+        } else if walletItems.count + 1 == indexPath.row {
+            // Card Button
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonRow.className, for: indexPath) as? ButtonRow else { fatalError("Incorrect Cell Type") }
+            cell.configure(image: UIImage(named: "ic_add"), title: "Add Credit/Debit Card", isEnabled: !isCreditCardDisabled)
+            return cell
+        } else {
+            fatalError("Invalid IndexPath")
+        }
     }
 }
 

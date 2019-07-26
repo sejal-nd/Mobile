@@ -9,18 +9,28 @@
 import Foundation
 
 class MiniWalletSheetViewModel {
-    let walletItems = [WalletItem]()
-    var selectedWalletItem: WalletItem?
+    var walletItems = [WalletItem]()
+    var selectedWalletItem: WalletItem? // we may not need this variable.
     var temporaryWalletItem: WalletItem?
     var editingWalletItem: WalletItem?
 
     var tableViewWalletItems: [WalletItem] {
         var items = walletItems
+        
+        // Temp
         if let temporaryWalletItem = temporaryWalletItem {
             if !items.contains(temporaryWalletItem) {
                 items.insert(temporaryWalletItem, at: 0)
             }
         }
+        
+        // Editing
+        if let editingWalletItem = editingWalletItem {
+            if !items.contains(editingWalletItem) {
+                items.insert(editingWalletItem, at: 0)
+            }
+        }
+        
         return items
     }
 }

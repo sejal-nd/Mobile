@@ -419,6 +419,12 @@
 		35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */; };
 		35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */; };
 		35C913A522EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */; };
+		35C913A922EB6A98009DD71A /* ButtonRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C913A822EB6A98009DD71A /* ButtonRow.xib */; };
+		35C913AA22EB6A98009DD71A /* ButtonRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C913A822EB6A98009DD71A /* ButtonRow.xib */; };
+		35C913AB22EB6A98009DD71A /* ButtonRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35C913A822EB6A98009DD71A /* ButtonRow.xib */; };
+		35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913AC22EB6AA3009DD71A /* ButtonRow.swift */; };
+		35C913AE22EB6AA3009DD71A /* ButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913AC22EB6AA3009DD71A /* ButtonRow.swift */; };
+		35C913AF22EB6AA3009DD71A /* ButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C913AC22EB6AA3009DD71A /* ButtonRow.swift */; };
 		35E7C79C21907EA400BA13C6 /* PECO_WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO_WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -2711,6 +2717,8 @@
 		35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletItemRow.swift; sourceTree = "<group>"; };
 		35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniWalletItemRow.xib; sourceTree = "<group>"; };
 		35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewModel.swift; sourceTree = "<group>"; };
+		35C913A822EB6A98009DD71A /* ButtonRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonRow.xib; sourceTree = "<group>"; };
+		35C913AC22EB6AA3009DD71A /* ButtonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRow.swift; sourceTree = "<group>"; };
 		35CE69D421122F50007EB844 /* BGE-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-PROD.entitlements"; sourceTree = "<group>"; };
 		35CE69D521122F50007EB844 /* PECO-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-TEST.entitlements"; sourceTree = "<group>"; };
 		35CE69D621122F50007EB844 /* ComEd-TEST.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-TEST.entitlements"; sourceTree = "<group>"; };
@@ -3892,11 +3900,29 @@
 		35C9139922E9EF70009DD71A /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				35C913A722EB6A8C009DD71A /* Button Row */,
+				35C913A622EB6A76009DD71A /* Mini Wallet Row */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		35C913A622EB6A76009DD71A /* Mini Wallet Row */ = {
+			isa = PBXGroup;
+			children = (
 				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
 				35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */,
 				35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */,
 			);
-			path = "Table View Cells";
+			path = "Mini Wallet Row";
+			sourceTree = "<group>";
+		};
+		35C913A722EB6A8C009DD71A /* Button Row */ = {
+			isa = PBXGroup;
+			children = (
+				35C913AC22EB6AA3009DD71A /* ButtonRow.swift */,
+				35C913A822EB6A98009DD71A /* ButtonRow.xib */,
+			);
+			path = "Button Row";
 			sourceTree = "<group>";
 		};
 		35E7C79021907EA200BA13C6 /* PECO_WatchOS */ = {
@@ -6141,6 +6167,7 @@
 				E8B4F4AF1E5C957A0031D934 /* More.storyboard in Resources */,
 				B0726939212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				822BBBA41EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				35C913A922EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				B0DB275A215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				B039DB75225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
 				E80043261E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -6304,6 +6331,7 @@
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
+				35C913AB22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				B0DB275C215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
 				E86334691E5F6A150091E6FE /* FloatLabelTextField.xib in Resources */,
 				B039DB77225BD02B00BB5479 /* HomePrepaidCardView.xib in Resources */,
@@ -6467,6 +6495,7 @@
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
+				35C913AA22EB6A98009DD71A /* ButtonRow.xib in Resources */,
 				825FEE041FDF370C00DC1961 /* landing_video.mp4 in Resources */,
 				384F86A31F310B8600A85557 /* TermPolicies.html in Resources */,
 				B0DB275B215EBEE600CD703B /* AlertPreferencesLanguageCell.xib in Resources */,
@@ -7618,6 +7647,7 @@
 				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				35A6C6DB211CC09C00C2A58F /* UpdatesViewModel.swift in Sources */,
+				35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE621751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -8209,6 +8239,7 @@
 				359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
+				35C913AF22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
 				B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
@@ -8387,6 +8418,7 @@
 				8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE721751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				E8C453161EF3293600F5C781 /* ToastView.swift in Sources */,
+				35C913AE22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				2FA5D8651F17D88500A8B16B /* HomeViewController.swift in Sources */,
 				2FA5D8601F17D2A300A8B16B /* OneTouchSlider.swift in Sources */,
 				E84705EE202514CB00A749A3 /* MockUsageService.swift in Sources */,
