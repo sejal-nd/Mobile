@@ -29,9 +29,9 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     @IBOutlet weak var question3QuestionButton: DisclosureButtonNew!
     @IBOutlet weak var question3AnswerTextField: FloatLabelTextFieldNew!
     
-    @IBOutlet weak var eBillSwitchView: UIView!
-    @IBOutlet weak var enrollIneBillSwitch: Switch!
-    @IBOutlet weak var eBillSwitchInstructions: UILabel!
+    @IBOutlet weak var eBillEnrollView: UIView!
+    @IBOutlet weak var eBillEnrollCheckbox: Checkbox!
+    @IBOutlet weak var eBillEnrollInstructions: UILabel!
     
     @IBOutlet weak var accountListView: UIView!
     @IBOutlet weak var accountListStackView: UIStackView!
@@ -62,9 +62,9 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         instructionLabel.setLineHeight(lineHeight: 24)
         
-        eBillSwitchInstructions.textColor = .deepGray
-        eBillSwitchInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
-        eBillSwitchInstructions.font = SystemFont.regular.of(textStyle: .subheadline)
+        eBillEnrollInstructions.textColor = .deepGray
+        eBillEnrollInstructions.text = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
+        eBillEnrollInstructions.font = SystemFont.regular.of(textStyle: .headline)
         
         populateAccountListingLabels()
         
@@ -107,7 +107,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
                 self.loadingIndicator.isHidden = true
                 
                 self.toggleAccountListing(false)
-                self.eBillSwitchView.isHidden = true
+                self.eBillEnrollView.isHidden = true
             }
         }, onError: { [weak self] (securityTitle, securityMessage) in
             self?.loadErrorMessage(securityTitle, message: securityMessage)
@@ -125,7 +125,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
                 self.loadingIndicator.isHidden = true
                 
                 self.toggleAccountListing(false)
-                self.eBillSwitchView.isHidden = true
+                self.eBillEnrollView.isHidden = true
                 
                 return
             }
@@ -213,13 +213,13 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
             accountDataStackView.addArrangedSubview(detailView)
         }
         
-        enrollIneBillSwitch.rx.isOn.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
+        eBillEnrollCheckbox.rx.isChecked.bind(to: viewModel.paperlessEbill).disposed(by: disposeBag)
     }
     
     func setupAccessibility() {
-        eBillSwitchInstructions.isAccessibilityElement = false
-        enrollIneBillSwitch.isAccessibilityElement = true
-        enrollIneBillSwitch.accessibilityLabel = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
+        eBillEnrollInstructions.isAccessibilityElement = false
+        eBillEnrollCheckbox.isAccessibilityElement = true
+        eBillEnrollCheckbox.accessibilityLabel = NSLocalizedString("I would like to enroll in Paperless eBill - a fast, easy, and secure way to receive and pay for bills online.", comment: "")
     }
     
     func toggleAccountListing(_ isVisible: Bool) {
@@ -257,7 +257,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
-        if(enrollIneBillSwitch.isOn) {
+        if eBillEnrollCheckbox.isChecked {
             GoogleAnalytics.log(event: .registerEBillEnroll)
         }
     }

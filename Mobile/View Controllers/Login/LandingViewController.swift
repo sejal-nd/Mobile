@@ -30,7 +30,6 @@ class LandingViewController: UIViewController {
     
     private var viewDidAppear = false
 
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -82,7 +81,7 @@ class LandingViewController: UIViewController {
         
         avPlayer?.play()
         
-        if (!UserDefaults.standard.bool(forKey: UserDefaultKeys.hasAcceptedTerms)) {
+        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.hasAcceptedTerms) {
             performSegue(withIdentifier: "termsPoliciesModalSegue", sender: self)
         }
         

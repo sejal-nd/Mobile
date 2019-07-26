@@ -38,7 +38,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
     
     @IBOutlet weak var primaryProfileSwitchView: UIView!
     @IBOutlet weak var primaryProfileLabel: UILabel!
-    @IBOutlet weak var primaryProfileSwitch: Switch!
+    @IBOutlet weak var primaryProfileCheckbox: Checkbox!
     
     @IBOutlet weak var continueButton: PrimaryButtonNew!
     
@@ -89,11 +89,11 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         primaryProfileLabel.textColor = .deepGray
         primaryProfileLabel.font = SystemFont.regular.of(textStyle: .headline)
         
-        primaryProfileSwitch.rx.isOn.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
+        primaryProfileCheckbox.rx.isChecked.bind(to: viewModel.primaryProfile).disposed(by: disposeBag)
         
         primaryProfileLabel.isAccessibilityElement = false
-        primaryProfileSwitch.isAccessibilityElement = true
-        primaryProfileSwitch.accessibilityLabel = NSLocalizedString("Set as primary profile for this account", comment: "")
+        primaryProfileCheckbox.isAccessibilityElement = true
+        primaryProfileCheckbox.accessibilityLabel = NSLocalizedString("Set as primary profile for this account", comment: "")
     }
     
     // MARK: - Actions

@@ -101,7 +101,7 @@ class TemplateCardViewModel {
             }
         }
         .asDriver(onErrorDriveWith: .empty())
-    
+     
     //Set body content string
     private(set) lazy var bodyString: Driver<String?> = self.accountDetailEvents.elements()
         .map { accountDetail -> String? in
