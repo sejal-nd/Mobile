@@ -184,7 +184,7 @@ class BGEAutoPayViewModel {
             if let walletItem = $0 {
                 return walletItem.paymentMethodType.imageMini
             } else {
-                return #imageLiteral(resourceName: "bank_building_mini_white_bg")
+                return #imageLiteral(resourceName: "bank_building_mini")
             }
         }
     

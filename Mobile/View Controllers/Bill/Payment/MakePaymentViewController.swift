@@ -29,9 +29,13 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
     @IBOutlet weak var paymentAccountExpiredSelectLabel: UILabel!
     
-    @IBOutlet weak var amountDueView: UIView! // Contains amountDueTextLabel and amountDueValueLabel
+    // Contains Total Amount Due and Due Date information
+    @IBOutlet weak var billInfoBox: UIView!
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
+    @IBOutlet weak var billInfoBoxDivider: UIView!
+    @IBOutlet weak var dueDateTextLabel: UILabel!
+    @IBOutlet weak var dueDateDateLabel: UILabel!
     
     @IBOutlet weak var paymentAmountView: UIView! // Contains paymentAmountFeeLabel and paymentAmountTextField
     @IBOutlet private weak var selectPaymentAmountStack: UIStackView!
@@ -39,10 +43,6 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet private weak var paymentAmountsStack: UIStackView!
     @IBOutlet weak var paymentAmountFeeLabel: UILabel!
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
-    
-    @IBOutlet weak var dueDateView: UIView!
-    @IBOutlet weak var dueDateTextLabel: UILabel!
-    @IBOutlet weak var dueDateDateLabel: UILabel!
     
     @IBOutlet weak var paymentDateView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
@@ -76,7 +76,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var cancelPaymentLabel: UILabel!
     
     @IBOutlet weak var walletFooterSpacerView: UIView! // Only used for spacing when footerView is hidden
-    @IBOutlet weak var walletFooterView: UIView!
+    @IBOutlet weak var walletFooterView: StickyFooterView!
     @IBOutlet weak var walletFooterLabel: UILabel!
     
     @IBOutlet weak var stickyPaymentFooterStackView: UIStackView!
@@ -129,11 +129,19 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         paymentAccountNicknameLabel.textColor = .middleGray
         paymentAccountNicknameLabel.font = SystemFont.medium.of(textStyle: .footnote)
         
+        billInfoBox.layer.borderColor = UIColor.accentGray.cgColor
+        billInfoBox.layer.borderWidth = 1
         amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountDueValueLabel.textColor = .blackText
-        amountDueValueLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        amountDueValueLabel.textColor = .deepGray
+        amountDueValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        billInfoBoxDivider.backgroundColor = .accentGray
+        dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
+        dueDateTextLabel.textColor = .deepGray
+        dueDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        dueDateDateLabel.textColor = .deepGray
+        dueDateDateLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
         selectPaymentAmountLabel.textColor = .blackText
         selectPaymentAmountLabel.font = SystemFont.bold.of(textStyle: .subheadline)
@@ -147,12 +155,6 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             self?.paymentAmountTextField.setError(errorMessage)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-        
-        dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
-        dueDateTextLabel.textColor = .deepGray
-        dueDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        dueDateDateLabel.textColor = .blackText
-        dueDateDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
         
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
         paymentDateTextLabel.textColor = .deepGray
@@ -188,22 +190,22 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         }
         
         addPaymentMethodLabel.textColor = .deepGray
-        addPaymentMethodLabel.font = OpenSans.semibold.of(textStyle: .title2)
-        addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method:", comment: "")
+        addPaymentMethodLabel.font = OpenSans.regular.of(textStyle: .headline)
+        addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method", comment: "")
 
-        addBankAccountButton.layer.cornerRadius = 10
-        addBankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        addBankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         addBankAccountButton.backgroundColorOnPress = .softGray
         addBankAccountButton.accessibilityLabel = NSLocalizedString("Add bank account", comment: "")
         
-        addBankAccountLabel.font = SystemFont.medium.of(textStyle: .title1)
+        addBankAccountLabel.textColor = .deepGray
+        addBankAccountLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        addCreditCardButton.layer.cornerRadius = 10
-        addCreditCardButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        addCreditCardButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         addCreditCardButton.backgroundColorOnPress = .softGray
         addCreditCardButton.accessibilityLabel = NSLocalizedString("Add credit/debit card", comment: "")
         
-        addCreditCardLabel.font = SystemFont.medium.of(textStyle: .title1)
+        addCreditCardLabel.textColor = .deepGray
+        addCreditCardLabel.font = SystemFont.regular.of(textStyle: .callout)
         
         let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
@@ -305,8 +307,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         
         // Edit Payment Stuff
         if let billingHistoryItem = billingHistoryItem {
-            amountDueView.isHidden = true
-            dueDateView.isHidden = true
+            billInfoBox.isHidden = true
             paymentStatusView.isHidden = billingHistoryItem.statusString == nil
             confirmationNumberView.isHidden = billingHistoryItem.confirmationNumber == nil
         } else {
