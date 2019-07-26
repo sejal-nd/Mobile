@@ -352,7 +352,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     func buildGroup2Button2() -> UIStackView {
         beforeDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
+        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Days", comment: "")
         
         beforeDueDateButtonStackView.addArrangedSubview(beforeDueDateRadioControl)
         
@@ -386,7 +386,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         beforeDueDateDetailsLabel.text = "Your payment will be processed on your selected number of days before each bill's due date or the next business day. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary."
         if numDays == 0 {
-            beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
+            beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Days", comment: "")
         } else {
             beforeDueDateRadioControl.detailButtonTitle = String.localizedStringWithFormat("%@ Day%@", String(numDays), numDaysPlural)
         }
@@ -403,7 +403,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
             guard let self = self else { return }
             let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == 0 ?
                 0 : (self.viewModel.numberOfDaysBeforeDueDate.value - 1)
-            PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
+            PickerView.showStringPicker(withTitle: NSLocalizedString("Select Days", comment: ""),
                                         data: (1...10).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
                                         selectedIndex: selectedIndex,
                                         onDone: { [weak self] value, index in

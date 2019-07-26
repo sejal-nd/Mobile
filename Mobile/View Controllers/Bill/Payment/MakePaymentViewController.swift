@@ -53,6 +53,8 @@ class MakePaymentViewController: UIViewController {
     @IBOutlet weak var paymentDateErrorLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
     @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
+    @IBOutlet weak var sameDayPaymentWarningView: UIView!
+    @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
     
     @IBOutlet weak var editPaymentDetailView: UIView!
     @IBOutlet weak var paymentStatusView: UIView!
@@ -180,6 +182,10 @@ class MakePaymentViewController: UIViewController {
         paymentDateFixedDatePastDueLabel.textColor = .blackText
         paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
+        sameDayPaymentWarningLabel.textColor = .blackText
+        sameDayPaymentWarningLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        sameDayPaymentWarningLabel.text = NSLocalizedString("Same day payments cannot be edited or canceled after submission.", comment: "")
+        
         // Edit Payment
         paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
         paymentStatusTextLabel.textColor = .deepGray
@@ -190,6 +196,7 @@ class MakePaymentViewController: UIViewController {
         confirmationNumberTextLabel.textColor = .deepGray
         confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberValueTextView.textColor = .blackText
+        confirmationNumberValueTextView.dataDetectorTypes.remove(.all) // Some confirmation numbers are detected as phone numbers
         confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle:.title1)
         for line in editPaymentDividerLines {
             line.backgroundColor = .accentGray
@@ -292,6 +299,7 @@ class MakePaymentViewController: UIViewController {
         viewModel.isPaymentDateValid.drive(paymentDateErrorView.rx.isHidden).disposed(by: disposeBag)
         paymentDateButtonView.isHidden = !viewModel.canEditPaymentDate
         paymentDateFixedDateLabel.isHidden = viewModel.canEditPaymentDate
+        viewModel.shouldShowSameDayPaymentWarning.not().drive(sameDayPaymentWarningView.rx.isHidden).disposed(by: disposeBag)
         
         // Add bank/credit card empty wallet state
         viewModel.shouldShowAddPaymentMethodView.map(!).drive(addPaymentMethodView.rx.isHidden).disposed(by: disposeBag)

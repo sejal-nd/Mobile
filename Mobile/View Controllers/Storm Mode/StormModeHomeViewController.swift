@@ -522,13 +522,13 @@ class StormModeHomeViewController: AccountPickerViewController {
             outageStatusButton.isHidden = true
             outageSectionContainer.isHidden = true
         } else {
+            finalPayView.isHidden = true
             gasOnlyView.isHidden = true
             footerStackView.isHidden = false
             outageSectionContainer.isHidden = false
             loadingContentView.isHidden = false
             outageStatusButton.onLottieAnimation?.animationProgress = 0.0
             outageStatusButton.onLottieAnimation?.play()
-            
             outageStatusButton.isHidden = false
         }
         
