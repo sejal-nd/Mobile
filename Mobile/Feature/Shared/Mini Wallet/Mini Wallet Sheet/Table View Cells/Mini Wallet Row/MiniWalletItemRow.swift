@@ -64,7 +64,7 @@ class MiniWalletItemRow: UITableViewCell {
                    selectedIndexPath: IndexPath?,
                    nickNameOverride: String? = nil) {
         
-        isEnabled = walletItem.isExpired
+        isEnabled = !walletItem.isExpired
         
         // Checkmark
         if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
