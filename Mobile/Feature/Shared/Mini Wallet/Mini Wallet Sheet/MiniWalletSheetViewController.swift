@@ -352,10 +352,11 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
 
         let walletItems = viewModel.tableViewWalletItems
-        let walletItem = viewModel.tableViewWalletItems[indexPath.row]
 
-        if walletItems.count - 1 >= indexPath.row && !walletItem.isExpired {
+        if walletItems.count - 1 >= indexPath.row {
             // Wallet Item
+            let walletItem = viewModel.tableViewWalletItems[indexPath.row]
+            guard !walletItem.isExpired else { return }
             didSelectWalletItem(walletItem, at: indexPath)
         } else if walletItems.count == indexPath.row && !isBankAccountDisabled {
             // Bank Button
