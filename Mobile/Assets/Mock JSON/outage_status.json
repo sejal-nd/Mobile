@@ -2,7 +2,7 @@
     "default": {
         "accountNumber": "1234567890",
         "status": "NOT ACTIVE",
-        "smartMeterStatus": true,
+        "smartMeterStatus": false,
         "outageReported": "test power on message",
         "contactHomeNumber": "5555550123"
     },
