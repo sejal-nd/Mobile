@@ -299,8 +299,11 @@ extension OutageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard indexPath.row == 1 else { return UITableView.automaticDimension }
-        return Environment.shared.opco == .comEd ? UITableView.automaticDimension : 0
+        if indexPath.row == 1 && (Environment.shared.opco != .comEd || userState == .unauthenticated) {
+            // Only authenticated ComEd users get the Report Streetlight Outage row
+            return 0
+        }
+        return UITableView.automaticDimension
     }
 }
 
