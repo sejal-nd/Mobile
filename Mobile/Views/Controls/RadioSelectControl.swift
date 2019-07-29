@@ -12,12 +12,11 @@ import RxCocoa
 
 class RadioSelectControl: ButtonControl {
 	
+    let selectedImageView = UIImageView(image: #imageLiteral(resourceName: "ic_radiobutton_deselected")).usingAutoLayout()
 	let titleLabel = UILabel().usingAutoLayout()
-	let selectedImageView = UIImageView(image: #imageLiteral(resourceName: "ic_radiobutton_deselected")).usingAutoLayout()
-	let detailButton = UIButton(type: .system).usingAutoLayout()
     let detailLabel = UILabel().usingAutoLayout()
+    let detailButton = UIButton(type: .system).usingAutoLayout()
     let separatorView = UIView().usingAutoLayout()
-    var detailBottomPadding: NSLayoutConstraint?
     
     @IBInspectable var title: String = "" {
         didSet {
@@ -28,13 +27,7 @@ class RadioSelectControl: ButtonControl {
     @IBInspectable var subtitle: String = "" {
         didSet {
             detailLabel.text = subtitle
-            if subtitle.isEmpty {
-                detailBottomPadding?.constant = 14
-                detailLabel.isHidden = true
-            } else {
-                detailBottomPadding?.constant = 6
-                detailLabel.isHidden = false
-            }
+            detailLabel.isHidden = subtitle.isEmpty
         }
     }
     
@@ -84,7 +77,7 @@ class RadioSelectControl: ButtonControl {
 		titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 		titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        titleLabel.textColor = .blackText
+        titleLabel.textColor = .deepGray
         titleLabel.numberOfLines = 2
 		
 		detailButton.setTitleColor(.actionBlue, for: .normal)
@@ -96,7 +89,7 @@ class RadioSelectControl: ButtonControl {
 		detailButton.setContentHuggingPriority(.required, for: .vertical)
         
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        detailLabel.textColor = .blackText
+        detailLabel.textColor = .deepGray
         
         separatorView.backgroundColor = .accentGray
         
@@ -116,10 +109,9 @@ class RadioSelectControl: ButtonControl {
 		addSubview(selectedImageView)
 		addSubview(detailStack)
 		
-		selectedImageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        detailStack.topAnchor.constraint(equalTo: topAnchor, constant: 14).isActive = true
-        detailBottomPadding = bottomAnchor.constraint(equalTo: detailStack.bottomAnchor, constant: 14)
-        detailBottomPadding?.isActive = true
+		selectedImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        detailStack.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
+        detailStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
 
 		selectedImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
 		detailStack.leadingAnchor.constraint(equalTo: selectedImageView.trailingAnchor, constant: 10).isActive = true

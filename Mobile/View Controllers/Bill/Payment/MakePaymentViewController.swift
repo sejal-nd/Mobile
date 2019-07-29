@@ -168,6 +168,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         
         paymentDatePastDueLabel.textColor = .deepGray
         paymentDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentDatePastDueLabel.text = NSLocalizedString("Past due payments cannot be scheduled.", comment: "")
         
         sameDayPaymentWarningLabel.textColor = .deepGray
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(textStyle: .footnote)
