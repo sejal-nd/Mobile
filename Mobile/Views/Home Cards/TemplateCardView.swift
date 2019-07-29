@@ -21,9 +21,7 @@ class TemplateCardView: UIView {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
-    @IBOutlet private weak var callToActionButton: ButtonControl!
-    @IBOutlet private weak var callToActionLabel: UILabel!
-    
+    @IBOutlet private weak var callToActionButton: UIButton!
     @IBOutlet private weak var errorStack: UIStackView!
     @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var errorLabel: UILabel!
@@ -48,9 +46,9 @@ class TemplateCardView: UIView {
         layer.cornerRadius = 10
         addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         clippingView.layer.cornerRadius = 10
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        bodyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        callToActionLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        titleLabel.font = OpenSans.regular.of(textStyle: .body)
+        bodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
         
         errorLabel.font = OpenSans.regular.of(textStyle: .title1)
         errorLabel.textAlignment = .center
@@ -83,7 +81,8 @@ class TemplateCardView: UIView {
             .map { $0?.attributedString(textAlignment: .left, lineHeight: 18) }
             .drive(bodyLabel.rx.attributedText).disposed(by: bag)
         viewModel.bodyStringA11yLabel.drive(bodyLabel.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.ctaString.drive(callToActionLabel.rx.text).disposed(by: bag)
+        viewModel.ctaString.drive(callToActionButton.rx.title(for: .normal)).disposed(by: bag)
+//        viewModel.ctaString.drive(callToActionLabel.rx.text).disposed(by: bag)
         viewModel.ctaString.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
         
         let attributedErrorText = viewModel.errorLabelText.attributedString(textAlignment: .center, lineHeight: 26)
