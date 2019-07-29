@@ -195,11 +195,11 @@ this time.</string>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5G2-NY-94Q">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mT4-Ws-43W" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
+                                    <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mT4-Ws-43W" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="24" width="375" height="166"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="q5E-k8-MLX">
-                                                <rect key="frame" x="16" y="4" width="343" height="122"/>
+                                                <rect key="frame" x="24" y="4" width="327" height="122"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a title that will take at least 2 lines to display" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8k-gq-1I0">
                                                         <rect key="frame" x="0.0" y="0.0" width="314.5" height="41"/>
@@ -208,7 +208,7 @@ this time.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There will be a planned outage or something soon. Please prepare to not have power. It will be totally gone. Soon." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuC-ay-LSk">
-                                                        <rect key="frame" x="0.0" y="61" width="343" height="61"/>
+                                                        <rect key="frame" x="0.0" y="61" width="305.5" height="61"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -223,8 +223,8 @@ this time.</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="q5E-k8-MLX" firstAttribute="centerX" secondItem="mT4-Ws-43W" secondAttribute="centerX" id="6nf-sv-Ba0"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="q5E-k8-MLX" secondAttribute="trailing" constant="16" id="Dhf-ee-LRs"/>
-                                            <constraint firstItem="q5E-k8-MLX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mT4-Ws-43W" secondAttribute="leading" constant="16" id="Njy-mO-KE5"/>
+                                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="q5E-k8-MLX" secondAttribute="trailing" constant="16" id="Dhf-ee-LRs"/>
+                                            <constraint firstItem="q5E-k8-MLX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mT4-Ws-43W" secondAttribute="leadingMargin" constant="16" id="Njy-mO-KE5"/>
                                             <constraint firstAttribute="bottom" secondItem="q5E-k8-MLX" secondAttribute="bottom" constant="40" id="Nwe-Ni-JSB"/>
                                             <constraint firstItem="q5E-k8-MLX" firstAttribute="top" secondItem="mT4-Ws-43W" secondAttribute="top" constant="4" id="bRG-j8-fF4"/>
                                         </constraints>
@@ -234,7 +234,7 @@ this time.</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mT4-Ws-43W" secondAttribute="trailing" id="Ec3-ox-rdS"/>
                                     <constraint firstAttribute="bottom" secondItem="mT4-Ws-43W" secondAttribute="bottom" id="JvK-oU-Khu"/>
-                                    <constraint firstItem="mT4-Ws-43W" firstAttribute="top" secondItem="5G2-NY-94Q" secondAttribute="top" id="RR7-On-tC3"/>
+                                    <constraint firstItem="mT4-Ws-43W" firstAttribute="top" secondItem="5G2-NY-94Q" secondAttribute="top" constant="24" id="RR7-On-tC3"/>
                                     <constraint firstItem="mT4-Ws-43W" firstAttribute="leading" secondItem="5G2-NY-94Q" secondAttribute="leading" id="dVT-Ls-lY1"/>
                                 </constraints>
                             </scrollView>
