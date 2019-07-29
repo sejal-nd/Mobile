@@ -501,17 +501,6 @@ class StormModeHomeViewController: AccountPickerViewController {
         })
     }
     
-    @IBAction func pressButtn() {
-        guard let vc = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
-        //        vc.delegate = self
-        vc.modalPresentationStyle = .overCurrentContext
-        if let tabBarController = tabBarController {
-            tabBarController.present(vc, animated: false, completion: nil)
-        } else {
-            present(vc, animated: false, completion: nil)
-        }
-    }
-    
     @IBAction func accountpress(_ sender: Any) {
         guard let vc = UIStoryboard(name: "AccountSheet", bundle: .main).instantiateInitialViewController() else { return }
         vc.modalPresentationStyle = .overCurrentContext
