@@ -30,7 +30,7 @@ class UpdatesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        styleViews()
+        style()
         
         bindViewModel()
         
@@ -46,10 +46,8 @@ class UpdatesViewController: UIViewController {
     
     // MARK: - Helper
     
-    private func styleViews() {
+    private func style() {
         title = NSLocalizedString("News and Updates", comment: "")
-        
-        view.backgroundColor = .softGray
         
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         

@@ -16,7 +16,8 @@ class HomeUpdateView: UIView {
     @IBOutlet weak var button: ButtonControl! {
         didSet {
             button.layer.cornerRadius = 10
-            button.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+            button.layer.borderColor = UIColor.accentGray.cgColor
+            button.layer.borderWidth = 1
         }
     }
     
