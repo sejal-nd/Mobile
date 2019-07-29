@@ -291,7 +291,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ele-wa-cpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2071" y="-687"/>
+            <point key="canvasLocation" x="2241" y="-467"/>
         </scene>
         <!--UpdatesDetailViewController-->
         <scene sceneID="g5d-Cq-yGf">
@@ -845,7 +845,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Mv-Fh-LW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="-686"/>
+            <point key="canvasLocation" x="1441" y="-466"/>
         </scene>
         <!--Appointments View Controller-->
         <scene sceneID="4NA-aG-10r">

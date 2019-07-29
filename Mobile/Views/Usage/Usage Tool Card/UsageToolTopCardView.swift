@@ -37,7 +37,8 @@ class UsageToolTopCardView: ButtonControl {
         // Card Style
         containerView.backgroundColor = .clear
         layer.cornerRadius = 10
-        addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        layer.borderColor = UIColor.accentGray.cgColor
+        layer.borderWidth = 1
         
         // Label
         titleLabel.textColor = .actionBlue

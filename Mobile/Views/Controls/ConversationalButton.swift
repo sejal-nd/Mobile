@@ -25,7 +25,8 @@ class ConversationalButton: ButtonControl {
         backgroundColorOnPress = .softGray
         normalBackgroundColor = .white
         layer.cornerRadius = 10
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.accentGray.cgColor
         
         titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         titleLabel.textColor = .actionBlue

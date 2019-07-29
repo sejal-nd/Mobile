@@ -135,7 +135,8 @@ class HomeBillCardView: UIView {
     }
     
     private func styleViews() {
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 13)
+        layer.borderColor = UIColor.accentGray.cgColor
+        layer.borderWidth = 1
         layer.cornerRadius = 10
         clippingView.layer.cornerRadius = 10
         
