@@ -156,7 +156,8 @@ class HomeUsageCardView: UIView {
     }
     
     private func styleBillComparison() {
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        layer.borderColor = UIColor.accentGray.cgColor
+        layer.borderWidth = 1
         layer.cornerRadius = 10
         
         usageOverviewLabel.textColor = .blackText

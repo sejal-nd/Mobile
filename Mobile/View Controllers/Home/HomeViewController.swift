@@ -17,6 +17,7 @@ fileprivate let editHomeSegueId = "editHomeSegue"
 
 class HomeViewController: AccountPickerViewController {
     
+    @IBOutlet weak var colorBackgroundView: UIView!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var accountDisallowView: UIView!
@@ -226,10 +227,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         // Bottom personalize button setup
-        personalizeButton.setTitleColor(.white, for: .normal)
-        personalizeButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
-        personalizeButton.titleLabel?.numberOfLines = 0
-        personalizeButton.titleLabel?.textAlignment = .center
+        personalizeButton.setTitleColor(.actionBlue, for: .normal)
         personalizeButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 guard let this = self else { return }
@@ -321,7 +319,8 @@ class HomeViewController: AccountPickerViewController {
     }
     
     func styleViews() {
-        view.backgroundColor = .primaryColorAccountPicker
+        view.backgroundColor = .softGray        
+        colorBackgroundView.backgroundColor = .primaryColor
     }
     
     func setCards(oldCards: [HomeCard], newCards: [HomeCard]) {

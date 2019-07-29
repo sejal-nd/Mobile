@@ -291,7 +291,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ele-wa-cpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2071" y="-687"/>
+            <point key="canvasLocation" x="2241" y="-467"/>
         </scene>
         <!--UpdatesDetailViewController-->
         <scene sceneID="g5d-Cq-yGf">
@@ -342,6 +342,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xox-Qe-bTR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="386"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="386" id="bpM-md-sv8"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -354,13 +361,13 @@
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-go-05Y" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="533"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UPV-GL-s03" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="518"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="xaj-LQ-p93">
-                                                        <rect key="frame" x="16" y="0.0" width="343" height="56"/>
+                                                        <rect key="frame" x="16" y="0.0" width="343" height="71"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Opk-mo-Gnw" userLabel="Card Stack View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="0.0"/>
@@ -369,20 +376,28 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxd-b0-qbk">
-                                                                <rect key="frame" x="0.0" y="25" width="343" height="31"/>
+                                                                <rect key="frame" x="0.0" y="25" width="343" height="46"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JqW-8P-SEa">
-                                                                        <rect key="frame" x="66" y="1" width="211" height="30"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JqW-8P-SEa" customClass="SecondaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="53" y="1" width="237" height="45"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="PQj-DQ-Cyc"/>
+                                                                        </constraints>
                                                                         <state key="normal" title="Personalize Your Home Screen"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
+                                                                                <integer key="value" value="2"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JqW-8P-SEa" secondAttribute="trailing" id="3oI-ux-97u"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="JqW-8P-SEa" secondAttribute="trailing" constant="53" id="3oI-ux-97u"/>
                                                                     <constraint firstAttribute="bottom" secondItem="JqW-8P-SEa" secondAttribute="bottom" priority="999" id="Wk2-Ay-SzZ"/>
                                                                     <constraint firstItem="JqW-8P-SEa" firstAttribute="top" secondItem="rxd-b0-qbk" secondAttribute="top" priority="999" constant="1" id="g5r-z4-8EN"/>
                                                                     <constraint firstItem="JqW-8P-SEa" firstAttribute="centerX" secondItem="rxd-b0-qbk" secondAttribute="centerX" id="hWN-ZF-5Kc"/>
-                                                                    <constraint firstItem="JqW-8P-SEa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rxd-b0-qbk" secondAttribute="leading" id="tXk-IA-pa7"/>
+                                                                    <constraint firstItem="JqW-8P-SEa" firstAttribute="leading" secondItem="rxd-b0-qbk" secondAttribute="leading" constant="53" id="tXk-IA-pa7"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -392,7 +407,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErJ-ar-hFE">
-                                                        <rect key="frame" x="0.0" y="56" width="375" height="447"/>
+                                                        <rect key="frame" x="0.0" y="71" width="375" height="447"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dne-fe-jfO">
                                                                 <rect key="frame" x="0.0" y="101.5" width="375" height="244.5"/>
@@ -467,6 +482,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Xox-Qe-bTR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="0S8-l1-0ED"/>
                             <constraint firstItem="tbt-1n-lFy" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="3BN-ku-b8G"/>
                             <constraint firstItem="tbt-1n-lFy" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="3Pw-0U-fm8"/>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="5Cn-0L-f8J"/>
@@ -475,6 +491,8 @@
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="bottom" id="HBG-DW-3ss"/>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="HbX-4w-z3I"/>
                             <constraint firstAttribute="trailing" secondItem="tbt-1n-lFy" secondAttribute="trailing" id="Orn-rs-JBN"/>
+                            <constraint firstAttribute="trailing" secondItem="Xox-Qe-bTR" secondAttribute="trailing" id="dJN-tx-hM7"/>
+                            <constraint firstItem="Xox-Qe-bTR" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="eFE-s0-vck"/>
                             <constraint firstAttribute="trailing" secondItem="mzY-0e-rXR" secondAttribute="trailing" id="f6Y-5u-y4u"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="kwX-DU-XYv"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="dh2-eA-K7U" secondAttribute="bottom" id="mSC-yd-SiM"/>
@@ -492,6 +510,7 @@
                         <outlet property="accountDisallowView" destination="ErJ-ar-hFE" id="18H-J0-YQv"/>
                         <outlet property="accountPicker" destination="tbt-1n-lFy" id="6iu-lp-I83"/>
                         <outlet property="cardStackView" destination="Opk-mo-Gnw" id="4fa-tb-ffm"/>
+                        <outlet property="colorBackgroundView" destination="Xox-Qe-bTR" id="vYM-Qw-hTL"/>
                         <outlet property="contentStackView" destination="xaj-LQ-p93" id="sVw-dZ-BvQ"/>
                         <outlet property="headerContentView" destination="QgD-go-05Y" id="p1j-X0-Ik8"/>
                         <outlet property="mainStackView" destination="UPV-GL-s03" id="ZuN-Jr-0oO"/>
@@ -826,7 +845,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Mv-Fh-LW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="-686"/>
+            <point key="canvasLocation" x="1441" y="-466"/>
         </scene>
         <!--Appointments View Controller-->
         <scene sceneID="4NA-aG-10r">
