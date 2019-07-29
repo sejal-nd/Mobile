@@ -23,16 +23,19 @@ class UpdatesTableViewCell: UITableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         
+        // Rounded
         innerContentView.layer.cornerRadius = 10.0
         innerContentView.layer.masksToBounds = true
         
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 2.0)
+        // Stroke
+        innerContentView.layer.borderColor = UIColor.accentGray.cgColor
+        innerContentView.layer.borderWidth = 2
         
-        titleLabel.textColor = .blackText
-        titleLabel.font = SystemFont.bold.of(textStyle: .headline)
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
         detailLabel.textColor = .deepGray
-        detailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
     }
     
     

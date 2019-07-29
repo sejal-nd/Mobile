@@ -3631,6 +3631,7 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				35A6C6DC211CC0A300C2A58F /* Updates */,
 				9C153DB522E8F410002DA062 /* Registration */,
 				359BDB5922D8DC43007002B0 /* Outage */,
 				9C10B4DC22E2177A00B0851B /* BGE Choice ID */,
@@ -3802,18 +3803,13 @@
 			path = TitleTableViewCell;
 			sourceTree = "<group>";
 		};
-		35A6C6D9211CC08B00C2A58F /* Updates */ = {
-			isa = PBXGroup;
-			children = (
-				35A6C6DA211CC09C00C2A58F /* UpdatesViewModel.swift */,
-			);
-			path = Updates;
-			sourceTree = "<group>";
-		};
 		35A6C6DC211CC0A300C2A58F /* Updates */ = {
 			isa = PBXGroup;
 			children = (
+				35A6C6DF211CC11E00C2A58F /* Updates.storyboard */,
 				35A6C6DD211CC0C900C2A58F /* UpdatesViewController.swift */,
+				35A6C6DA211CC09C00C2A58F /* UpdatesViewModel.swift */,
+				E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */,
 				E83F027E1FB247B30062A348 /* UpdatesDetailViewController.swift */,
 			);
 			path = Updates;
@@ -4398,7 +4394,6 @@
 				9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */,
 				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
-				E87C41461FAB72E700448F86 /* UpdatesTableViewCell.swift */,
 				826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */,
 			);
 			path = "Table View Cells";
@@ -4526,7 +4521,6 @@
 				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
 				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
 				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
-				35A6C6DF211CC11E00C2A58F /* Updates.storyboard */,
 				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
 				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
 				9C472AB9220CE05D008C882B /* Payment.storyboard */,
@@ -4550,7 +4544,6 @@
 				359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */,
 				9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */,
 				E87C412E1FAA520A00448F86 /* Alerts */,
-				35A6C6DC211CC0A300C2A58F /* Updates */,
 				2FA5D8621F17D85A00A8B16B /* Home */,
 				E82FF1E41F97CB6B00C50F8F /* Usage */,
 				82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */,
@@ -5567,7 +5560,6 @@
 			children = (
 				B01748952135D3550039D0C6 /* Storm Mode */,
 				E87C413C1FAA6BF800448F86 /* Alerts */,
-				35A6C6D9211CC08B00C2A58F /* Updates */,
 				82A18E581EB9186000BE9F21 /* Bill */,
 				2FA5D8671F17DB5400A8B16B /* Home */,
 				82EAB3321F97E052008B55B1 /* Usage */,
