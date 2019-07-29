@@ -595,27 +595,7 @@ class HomeViewController: AccountPickerViewController {
     @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(.refresh)
     }
-    
-    @IBAction func pressButtn() {
-        ServiceFactory.createWalletService().fetchWalletItems()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] walletItems in
-                guard let self = self else { return }
-                
-                guard let vc = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
-                //        vc.delegate = self
-                vc.viewModel.walletItems = walletItems
-                vc.modalPresentationStyle = .overCurrentContext
-                if let tabBarController = self.tabBarController {
-                    tabBarController.present(vc, animated: false, completion: nil)
-                } else {
-                    self.present(vc, animated: false, completion: nil)
-                }
-                
-                }, onError: { [weak self] err in
-            })
-    }
-    
+
     func bindLoadingStates() {
         viewModel.refreshFetchTracker.asObservable()
             .subscribe(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })

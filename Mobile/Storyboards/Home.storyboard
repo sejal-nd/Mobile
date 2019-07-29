@@ -464,13 +464,6 @@
                                     <constraint firstItem="ErJ-ar-hFE" firstAttribute="height" secondItem="mzY-0e-rXR" secondAttribute="height" priority="999" constant="-150" id="zdM-Fz-PCa"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9S-7U-EoF">
-                                <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="pressButtn" destination="GkP-jV-MfK" eventType="touchUpInside" id="eT3-p9-CXO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -478,9 +471,7 @@
                             <constraint firstItem="tbt-1n-lFy" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="3Pw-0U-fm8"/>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="5Cn-0L-f8J"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="top" secondItem="tbt-1n-lFy" secondAttribute="bottom" id="7zw-ae-FJq"/>
-                            <constraint firstItem="x9S-7U-EoF" firstAttribute="centerX" secondItem="5uc-ch-d5G" secondAttribute="centerX" id="BMO-6V-Ph7"/>
                             <constraint firstAttribute="trailing" secondItem="dh2-eA-K7U" secondAttribute="trailing" id="Dav-Ba-dta"/>
-                            <constraint firstItem="x9S-7U-EoF" firstAttribute="centerY" secondItem="5uc-ch-d5G" secondAttribute="centerY" id="Go6-kG-XFk"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="bottom" id="HBG-DW-3ss"/>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="HbX-4w-z3I"/>
                             <constraint firstAttribute="trailing" secondItem="tbt-1n-lFy" secondAttribute="trailing" id="Orn-rs-JBN"/>
