@@ -29,7 +29,7 @@ class UpdatesTableViewCell: UITableViewCell {
         
         // Stroke
         innerContentView.layer.borderColor = UIColor.accentGray.cgColor
-        innerContentView.layer.borderWidth = 2
+        innerContentView.layer.borderWidth = 1
         
         titleLabel.textColor = .deepGray
         titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
