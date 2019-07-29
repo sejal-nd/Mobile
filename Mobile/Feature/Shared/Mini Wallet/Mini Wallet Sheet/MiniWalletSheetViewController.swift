@@ -88,7 +88,8 @@ class MiniWalletSheetViewController: UIViewController {
     // are these used? if so what for?
     var pushBankOnEmpty = false // unsure if we need this variable since we dont fetch wallet items in this vc anymore
     var isBankAccountDisabled: Bool {
-        return accountDetail.isCashOnly
+        return true
+        //return accountDetail.isCashOnly
     }
     var isCreditCardDisabled = false // Disabled from BGE AutoPay
     var allowTemporaryItems = true // Disabled from BGE AutoPay
@@ -352,7 +353,7 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
 
         let walletItems = viewModel.tableViewWalletItems
-
+        
         if walletItems.count - 1 >= indexPath.row {
             // Wallet Item
             let walletItem = viewModel.tableViewWalletItems[indexPath.row]
@@ -364,8 +365,6 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
         } else if walletItems.count + 1 == indexPath.row && !isCreditCardDisabled {
             // Card Button
             onAddCreditCardPress()
-        } else {
-            fatalError("Invalid IndexPath Selected")
         }
     }
     
@@ -437,7 +436,7 @@ extension MiniWalletSheetViewController: UITableViewDataSource {
         } else if walletItems.count == indexPath.row {
             // Bank Button
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonRow.className, for: indexPath) as? ButtonRow else { fatalError("Incorrect Cell Type") }
-            cell.configure(image: UIImage(named: "ic_add"), title: "Add Bank Account", isEnabled: false)
+            cell.configure(image: UIImage(named: "ic_add"), title: "Add Bank Account", isEnabled: !isBankAccountDisabled)
             return cell
         } else if walletItems.count + 1 == indexPath.row {
             // Card Button
