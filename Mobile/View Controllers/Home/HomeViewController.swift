@@ -595,7 +595,7 @@ class HomeViewController: AccountPickerViewController {
     @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(.refresh)
     }
-    
+
     func bindLoadingStates() {
         viewModel.refreshFetchTracker.asObservable()
             .subscribe(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
