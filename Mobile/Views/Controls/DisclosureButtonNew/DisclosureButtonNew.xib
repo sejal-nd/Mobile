@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="caretAccessory" destination="KsY-Hs-M3n" id="HHl-qJ-F39"/>
-                <outlet property="checkImage" destination="wgW-sA-4SD" id="gvh-35-Bxq"/>
                 <outlet property="descriptionLabel" destination="fAq-I6-Jhg" id="jK2-PK-GFL"/>
                 <outlet property="valueLabel" destination="EgK-Xb-vxA" id="SnB-6J-Gln"/>
                 <outlet property="view" destination="iN0-l3-epB" id="NJw-u0-KU2"/>
@@ -30,50 +29,35 @@
                         <constraint firstAttribute="width" constant="8" id="vfO-sb-B9b"/>
                     </constraints>
                 </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="u4r-eK-FJj">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sik-2v-qbl">
                     <rect key="frame" x="16" y="10.5" width="267" height="39"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_outage" translatesAutoresizingMaskIntoConstraints="NO" id="wgW-sA-4SD">
-                            <rect key="frame" x="0.0" y="11.5" width="19" height="16"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="19" id="9uV-vL-ZM0"/>
-                                <constraint firstAttribute="height" priority="999" constant="16" id="bWb-RE-IFF"/>
-                            </constraints>
-                        </imageView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sik-2v-qbl">
-                            <rect key="frame" x="33" y="0.0" width="234" height="39"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the description label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-I6-Jhg">
-                                    <rect key="frame" x="0.0" y="0.0" width="234" height="14.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is the value label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgK-Xb-vxA">
-                                    <rect key="frame" x="0.0" y="17.5" width="234" height="21.5"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                    <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="EgK-Xb-vxA" firstAttribute="leading" secondItem="sik-2v-qbl" secondAttribute="leading" id="ICi-A6-lHe"/>
-                                <constraint firstItem="fAq-I6-Jhg" firstAttribute="leading" secondItem="sik-2v-qbl" secondAttribute="leading" id="VOM-bA-N0H"/>
-                            </constraints>
-                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the description label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-I6-Jhg">
+                            <rect key="frame" x="0.0" y="0.0" width="267" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is the value label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgK-Xb-vxA">
+                            <rect key="frame" x="0.0" y="17.5" width="267" height="21.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                            <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="wgW-sA-4SD" firstAttribute="leading" secondItem="u4r-eK-FJj" secondAttribute="leading" id="j4B-w9-HiW"/>
+                        <constraint firstItem="EgK-Xb-vxA" firstAttribute="leading" secondItem="sik-2v-qbl" secondAttribute="leading" id="ICi-A6-lHe"/>
+                        <constraint firstItem="fAq-I6-Jhg" firstAttribute="leading" secondItem="sik-2v-qbl" secondAttribute="leading" id="VOM-bA-N0H"/>
                     </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="u4r-eK-FJj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" priority="999" id="7Ms-l8-OeZ"/>
-                <constraint firstItem="u4r-eK-FJj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="C16-39-AvB"/>
+                <constraint firstItem="sik-2v-qbl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ApJ-EX-Vd2"/>
                 <constraint firstAttribute="trailing" secondItem="KsY-Hs-M3n" secondAttribute="trailing" constant="18" id="LWP-dx-GFt"/>
+                <constraint firstItem="sik-2v-qbl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LXC-rk-Zx0"/>
                 <constraint firstItem="KsY-Hs-M3n" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" priority="999" id="a1U-qr-fdk"/>
-                <constraint firstItem="KsY-Hs-M3n" firstAttribute="leading" secondItem="u4r-eK-FJj" secondAttribute="trailing" constant="8" id="e67-S0-DNe"/>
+                <constraint firstItem="KsY-Hs-M3n" firstAttribute="leading" secondItem="sik-2v-qbl" secondAttribute="trailing" constant="8" id="ejY-Y4-s7x"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -84,6 +68,5 @@
     </objects>
     <resources>
         <image name="ic_caret" width="8" height="13"/>
-        <image name="ic_check_outage" width="19" height="16"/>
     </resources>
 </document>

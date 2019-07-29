@@ -13,7 +13,6 @@ import RxCocoa
 class DisclosureButtonNew: UIButton {
     
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var checkImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var caretAccessory: UIImageView!
@@ -65,14 +64,8 @@ class DisclosureButtonNew: UIButton {
         
         valueLabel.font = SystemFont.regular.of(textStyle: .headline)
         valueLabel.textColor = .deepGray
-        
-        checkImage.isHidden = true
-        
+
         updateLabels()
-    }
-    
-    public func setHideCheck(checkHidden: Bool) {
-        checkImage.isHidden = checkHidden
     }
     
     public func setHideCaret(caretHidden: Bool) {
@@ -104,8 +97,19 @@ class DisclosureButtonNew: UIButton {
     
     override var isEnabled: Bool {
         didSet {
-            alpha = isEnabled ? 1 : 0.5
-            accessibilityTraits = isEnabled ? .button : [.button, .notEnabled]
+            if isEnabled {
+                view.backgroundColor = stormTheme ? .stormModeGray : .white
+                descriptionLabel.textColor = .middleGray
+                valueLabel.textColor = .deepGray
+                caretAccessory.alpha = 1
+                accessibilityTraits = .button
+            } else {
+                view.backgroundColor = stormTheme ? UIColor.stormModeGray.darker(by: 10) : .softGray
+                descriptionLabel.textColor = UIColor.middleGray.withAlphaComponent(0.5)
+                valueLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
+                caretAccessory.alpha = 0.5
+                accessibilityTraits = [.button, .notEnabled]
+            }
         }
     }
     
