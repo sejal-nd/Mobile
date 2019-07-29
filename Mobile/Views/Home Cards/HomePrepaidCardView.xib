@@ -68,48 +68,25 @@
                                         <constraint firstAttribute="height" constant="20" id="7Wm-4Z-EzW"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjC-vv-eIH" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="188" width="414" height="50"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue Enrollment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zi-jK-TEQ">
-                                            <rect key="frame" x="121" y="14.5" width="172" height="21.5"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                            <color key="textColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Fs-Ae-VH2" userLabel="Gray Line">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
-                                            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="wZs-YY-5rG"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idc-1Z-Kyu">
+                                    <rect key="frame" x="184" y="188" width="46" height="50"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="7Kb-o2-Yvf"/>
-                                        <constraint firstAttribute="trailing" secondItem="1Fs-Ae-VH2" secondAttribute="trailing" id="7nZ-DO-ngL"/>
-                                        <constraint firstItem="1Fs-Ae-VH2" firstAttribute="top" secondItem="jjC-vv-eIH" secondAttribute="top" id="Ff1-P3-Hs7"/>
-                                        <constraint firstItem="1Fs-Ae-VH2" firstAttribute="leading" secondItem="jjC-vv-eIH" secondAttribute="leading" id="dhe-No-0Tg"/>
-                                        <constraint firstItem="8Zi-jK-TEQ" firstAttribute="centerY" secondItem="jjC-vv-eIH" secondAttribute="centerY" id="rKS-82-R5Q"/>
-                                        <constraint firstItem="8Zi-jK-TEQ" firstAttribute="centerX" secondItem="jjC-vv-eIH" secondAttribute="centerX" id="zPN-by-V01"/>
+                                        <constraint firstAttribute="height" constant="50" id="C52-dE-Tde"/>
                                     </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
-                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorOnPress">
-                                            <color key="value" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
+                                    <state key="normal" title="Button">
+                                        <color key="titleColor" red="0.0" green="0.34901960780000002" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="callToActionPress:" destination="iN0-l3-epB" eventType="touchUpInside" id="w4T-yd-blL"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="jjC-vv-eIH" secondAttribute="trailing" id="Ui6-5S-Jlx"/>
+                                <constraint firstItem="Idc-1Z-Kyu" firstAttribute="centerX" secondItem="iZi-Fe-6eW" secondAttribute="centerX" id="9pG-ok-qBp"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Idc-1Z-Kyu" secondAttribute="trailing" constant="30" id="JBV-iL-6gQ"/>
+                                <constraint firstItem="Idc-1Z-Kyu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iZi-Fe-6eW" secondAttribute="leading" constant="30" id="Sjh-uA-CZf"/>
                                 <constraint firstItem="RQx-Yy-A8a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iZi-Fe-6eW" secondAttribute="leading" constant="21" id="mpj-UQ-CNY"/>
                                 <constraint firstItem="WmA-iz-4VS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iZi-Fe-6eW" secondAttribute="leading" constant="21" id="qAx-pH-dVv"/>
-                                <constraint firstItem="jjC-vv-eIH" firstAttribute="leading" secondItem="iZi-Fe-6eW" secondAttribute="leading" id="xk7-2z-jrM"/>
                             </constraints>
                         </stackView>
                     </subviews>
@@ -134,8 +111,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="bottomButton" destination="jjC-vv-eIH" id="sxO-9o-PA6"/>
-                <outlet property="bottomButtonLabel" destination="8Zi-jK-TEQ" id="L7c-kE-b7z"/>
+                <outlet property="callToActionButton" destination="Idc-1Z-Kyu" id="X5u-lV-spY"/>
                 <outlet property="clippingView" destination="Ojf-4D-Bwn" id="use-Ic-x2E"/>
                 <outlet property="detailLabel" destination="RQx-Yy-A8a" id="gNO-VE-Zkk"/>
                 <outlet property="headerLabel" destination="WmA-iz-4VS" id="9Fh-Ak-5xf"/>
