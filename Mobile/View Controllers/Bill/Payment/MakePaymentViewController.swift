@@ -36,16 +36,17 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var paymentMethodImageView: UIImageView!
     @IBOutlet weak var paymentMethodAccountNumberLabel: UILabel!
     @IBOutlet weak var paymentMethodNicknameLabel: UILabel!
+    @IBOutlet weak var paymentMethodFeeLabel: UILabel!
     
     @IBOutlet weak var paymentMethodExpiredButton: ButtonControl!
     @IBOutlet weak var paymentMethodExpiredSelectLabel: UILabel!
     
-    @IBOutlet weak var paymentAmountView: UIView! // Contains paymentAmountFeeLabel and paymentAmountTextField
+    @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet private weak var selectPaymentAmountStack: UIStackView!
     @IBOutlet private weak var selectPaymentAmountLabel: UILabel!
     @IBOutlet private weak var paymentAmountsStack: UIStackView!
-    @IBOutlet weak var paymentMethodFeeLabel: UILabel!
-    @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
+
+    @IBOutlet weak var paymentAmountTextField: FloatLabelTextFieldNew!
     
     @IBOutlet weak var paymentDateView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
@@ -120,6 +121,21 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         bankAccountsUnavailableLabel.font = SystemFont.semibold.of(textStyle: .headline)
         bankAccountsUnavailableLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
 
+        billInfoBox.layer.borderColor = UIColor.accentGray.cgColor
+        billInfoBox.layer.borderWidth = 1
+        stackView.setCustomSpacing(40, after: billInfoBox)
+        amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
+        amountDueTextLabel.textColor = .deepGray
+        amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountDueValueLabel.textColor = .deepGray
+        amountDueValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        billInfoBoxDivider.backgroundColor = .accentGray
+        dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
+        dueDateTextLabel.textColor = .deepGray
+        dueDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        dueDateDateLabel.textColor = .deepGray
+        dueDateDateLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        
         paymentMethodLabel.text = NSLocalizedString("Payment Method*", comment: "")
         paymentMethodLabel.textColor = .middleGray
         paymentMethodLabel.font = SystemFont.semibold.of(textStyle: .caption2)
@@ -137,27 +153,13 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         paymentMethodExpiredSelectLabel.font = SystemFont.regular.of(textStyle: .callout)
         paymentMethodExpiredSelectLabel.text = NSLocalizedString("Select Payment Method", comment: "")
         
-        billInfoBox.layer.borderColor = UIColor.accentGray.cgColor
-        billInfoBox.layer.borderWidth = 1
-        stackView.setCustomSpacing(40, after: billInfoBox)
-        amountDueTextLabel.text = NSLocalizedString("Total Amount Due", comment: "")
-        amountDueTextLabel.textColor = .deepGray
-        amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountDueValueLabel.textColor = .deepGray
-        amountDueValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        billInfoBoxDivider.backgroundColor = .accentGray
-        dueDateTextLabel.text = NSLocalizedString("Due Date", comment: "")
-        dueDateTextLabel.textColor = .deepGray
-        dueDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        dueDateDateLabel.textColor = .deepGray
-        dueDateDateLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
-        
-        selectPaymentAmountLabel.textColor = .blackText
-        selectPaymentAmountLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        
         paymentMethodFeeLabel.textColor = .deepGray
         paymentMethodFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        paymentAmountTextField.textField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
+        
+        selectPaymentAmountLabel.textColor = .deepGray
+        selectPaymentAmountLabel.font = OpenSans.regular.of(textStyle: .headline)
+        
+        paymentAmountTextField.placeholder = NSLocalizedString("Payment Amount*", comment: "")
         paymentAmountTextField.textField.text = viewModel.paymentAmount.value.currencyString
         paymentAmountTextField.setKeyboardType(.decimalPad)
         viewModel.paymentAmountErrorMessage.asDriver().drive(onNext: { [weak self] errorMessage in

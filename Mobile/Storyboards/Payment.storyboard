@@ -34,7 +34,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1638.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HTg-Wg-dRf" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1462.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1457.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qaq-lY-eSq" customClass="AccountInfoBarNew" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
@@ -44,7 +44,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Zir-PU-PbH">
-                                                <rect key="frame" x="0.0" y="55" width="375" height="1407.5"/>
+                                                <rect key="frame" x="0.0" y="55" width="375" height="1402.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active severance text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBL-4f-kYg">
                                                         <rect key="frame" x="20" y="0.0" width="335" height="19.5"/>
@@ -243,10 +243,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mu0-Rp-UjR">
-                                                        <rect key="frame" x="20" y="446" width="335" height="85"/>
+                                                        <rect key="frame" x="20" y="446" width="335" height="80"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="o4D-Ir-pwZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="85"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="80"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gfW-hV-qhX">
                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
@@ -262,8 +262,8 @@
                                                                             </stackView>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="Tmx-Ej-HeH" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="25" width="335" height="60"/>
+                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="Tmx-Ej-HeH" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="25" width="335" height="55"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                 </subviews>
@@ -279,7 +279,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohi-h3-h9Z">
-                                                        <rect key="frame" x="20" y="551" width="335" height="245"/>
+                                                        <rect key="frame" x="20" y="546" width="335" height="245"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syC-xm-ydT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="90.5" height="17"/>
@@ -374,7 +374,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaK-FS-Vn3">
-                                                        <rect key="frame" x="0.0" y="816" width="375" height="155"/>
+                                                        <rect key="frame" x="0.0" y="811" width="375" height="155"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ref-H9-9t1">
                                                                 <rect key="frame" x="20" y="0.0" width="355" height="155"/>
@@ -463,7 +463,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9W1-PG-1MI">
-                                                        <rect key="frame" x="20" y="991" width="335" height="180.5"/>
+                                                        <rect key="frame" x="20" y="986" width="335" height="180.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a payment method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uN1-qY-JTy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
@@ -546,7 +546,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfM-gq-ctI" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="107" y="1191.5" width="161.5" height="28"/>
+                                                        <rect key="frame" x="107" y="1186.5" width="161.5" height="28"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_delete" translatesAutoresizingMaskIntoConstraints="NO" id="UPe-3R-edc">
                                                                 <rect key="frame" x="8" y="4" width="20" height="20"/>
@@ -580,14 +580,14 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tAA-0M-q1X">
-                                                        <rect key="frame" x="67.5" y="1239.5" width="240" height="20"/>
+                                                        <rect key="frame" x="67.5" y="1234.5" width="240" height="20"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="999" constant="20" id="tVX-c0-QHg"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAo-pD-iqA" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="1279.5" width="375" height="128"/>
+                                                        <rect key="frame" x="0.0" y="1274.5" width="375" height="128"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Up to three payment method blah blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATT-Pv-XiX">
                                                                 <rect key="frame" x="29" y="30" width="317" height="68"/>
@@ -1384,16 +1384,16 @@
                                                                 </constraints>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes, I have read, understand, and agree to the terms and conditions provided below:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztd-2d-pYz">
-                                                                <rect key="frame" x="61" y="0.0" width="274" height="67"/>
+                                                                <rect key="frame" x="61" y="0.0" width="274" height="57.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="eoD-Nw-KsK" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="61" y="80" width="202.5" height="20.5"/>
+                                                                <rect key="frame" x="61" y="70.5" width="202.5" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpR-07-8tF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
