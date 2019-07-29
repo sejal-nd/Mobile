@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var loginFormView: UIView!
     @IBOutlet weak var usernameTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var passwordTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var keepMeSignedInSwitch: Switch!
+    @IBOutlet weak var keepMeSignedInCheckbox: Checkbox!
     @IBOutlet weak var keepMeSignedInLabel: UILabel!
     @IBOutlet weak var signInButton: PrimaryButtonNew!
     @IBOutlet weak var forgotUsernamePasswordButton: UIButton!
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         // Update the text field appearance in case data binding autofilled text
         usernameTextField.textField.sendActions(for: .editingDidEnd)
 
-        keepMeSignedInSwitch.rx.isOn.bind(to: viewModel.keepMeSignedIn).disposed(by: disposeBag)
+        keepMeSignedInCheckbox.rx.isChecked.bind(to: viewModel.keepMeSignedIn).disposed(by: disposeBag)
 
         usernameTextField.textField.rx.controlEvent(.editingDidEndOnExit).asDriver().drive(onNext: { [weak self] _ in
             self?.passwordTextField.textField.becomeFirstResponder()
@@ -147,8 +147,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         biometricButton.accessibilityLabel = biometricsString
 
         keepMeSignedInLabel.isAccessibilityElement = false
-        keepMeSignedInSwitch.isAccessibilityElement = true
-        keepMeSignedInSwitch.accessibilityLabel = keepMeSignedInLabel.text
+        keepMeSignedInCheckbox.isAccessibilityElement = true
+        keepMeSignedInCheckbox.accessibilityLabel = keepMeSignedInLabel.text
 
         viewModel.checkForMaintenance(onCompletion: { [weak self] in
             if let guid = UserDefaults.standard.string(forKey: UserDefaultKeys.accountVerificationDeepLinkGuid) {
@@ -206,37 +206,39 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func onLoginPress() {
         view.endEditing(true)
 
-        if Environment.shared.opco != .bge && !viewModel.usernameIsValidEmailAddress {
-            // ComEd/PECO only email validation. If not valid email then fail before making the call
-            let message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
-            showErrorAlertWith(title: nil, message: message)
-            return
+        if Environment.shared.environmentName != .aut { // Otherwise all our mock data usernames would fail
+            if Environment.shared.opco != .bge && !viewModel.usernameIsValidEmailAddress {
+                // ComEd/PECO only email validation. If not valid email then fail before making the call
+                let message = NSLocalizedString("FN-FAIL-LOGIN", tableName: "ErrorMessages", comment: "")
+                showErrorAlertWith(title: nil, message: message)
+                return
+            }
+            
+            if !viewModel.passwordMeetsRequirements {
+                let alert = UIAlertController(
+                    title: NSLocalizedString("Sign In Error", comment: ""),
+                    message: NSLocalizedString("To provide increased protection of your account, passwords must now meet new complexity standards.", comment: ""),
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Change Password", comment: ""), style: .default, handler: { _ in
+                    let storyboard = UIStoryboard(name: "More", bundle: nil)
+                    let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
+                    changePwVc.delegate = self
+                    changePwVc.forgotPasswordDelegate = self
+                    changePwVc.resetPasswordWorkflow = true
+                    changePwVc.resetPasswordUsername = self.viewModel.username.value
+                    self.navigationController?.pushViewController(changePwVc, animated: true)
+                }))
+                present(alert, animated: true, completion: nil)
+                return
+            }
         }
 
-        if !viewModel.passwordMeetsRequirements {
-            let alert = UIAlertController(
-                title: NSLocalizedString("Sign In Error", comment: ""),
-                message: NSLocalizedString("To provide increased protection of your account, passwords must now meet new complexity standards.", comment: ""),
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Try Again", comment: ""), style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Change Password", comment: ""), style: .default, handler: { _ in
-                let storyboard = UIStoryboard(name: "More", bundle: nil)
-                let changePwVc = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
-                changePwVc.delegate = self
-                changePwVc.forgotPasswordDelegate = self
-                changePwVc.resetPasswordWorkflow = true
-                changePwVc.resetPasswordUsername = self.viewModel.username.value
-                self.navigationController?.pushViewController(changePwVc, animated: true)
-            }))
-            present(alert, animated: true, completion: nil)
-            return
-        }
-
-        FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInSwitch.isOn.description)])
+        FirebaseUtility.logEvent(.keepMeSignedIn, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: keepMeSignedInCheckbox.isChecked.description)])
         
         GoogleAnalytics.log(event: .loginOffer, dimensions: [
-            .keepMeSignedIn: keepMeSignedInSwitch.isOn ? "true" : "false",
+            .keepMeSignedIn: keepMeSignedInCheckbox.isChecked ? "true" : "false",
             .fingerprintUsed: "disabled"
         ])
 
@@ -438,7 +440,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             guard let self = self else { return }
 
             GoogleAnalytics.log(event: .loginOffer,
-                                 dimensions: [.keepMeSignedIn: self.keepMeSignedInSwitch.isOn ? "true":"false",
+                                 dimensions: [.keepMeSignedIn: self.keepMeSignedInCheckbox.isChecked ? "true":"false",
                                               .fingerprintUsed: "enabled"])
 
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {

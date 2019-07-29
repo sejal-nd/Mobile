@@ -51,6 +51,8 @@ class OutageViewController: AccountPickerViewController {
     
     var shortcutItem: ShortcutItem = .none
     
+    var accountsLoaded = false
+    
     
     // MARK: - View Life Cycle
     
@@ -188,8 +190,6 @@ class OutageViewController: AccountPickerViewController {
             tableView.addSubview(refreshControl)
 
             configureState(.loading)
-            
-            loadOutageStatus()
         case .unauthenticated:
             title = "Outage"
             
@@ -285,7 +285,7 @@ extension OutageViewController: UITableViewDataSource {
         
         switch indexPath {
         case IndexPath(row: 0, section: 0):
-            let detailText = viewModel.reportedOutage != nil ? viewModel.outageReportedDateString : nil
+            let detailText = (accountsLoaded && viewModel.reportedOutage != nil) ? viewModel.outageReportedDateString : nil
             cell.configure(image: UIImage(named: "ic_reportoutage"), title: "Report Outage", detail: detailText)
         case IndexPath(row: 1, section: 0):
             cell.configure(image: UIImage(named: "ic_streetlightoutage"), title: "Report Streetlight Outage", detail: nil)
@@ -299,8 +299,11 @@ extension OutageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard indexPath.row == 1 else { return UITableView.automaticDimension }
-        return Environment.shared.opco == .comEd ? UITableView.automaticDimension : 0
+        if indexPath.row == 1 && (Environment.shared.opco != .comEd || userState == .unauthenticated) {
+            // Only authenticated ComEd users get the Report Streetlight Outage row
+            return 0
+        }
+        return UITableView.automaticDimension
     }
 }
 
@@ -334,6 +337,7 @@ extension OutageViewController: UITableViewDelegate {
 
 extension OutageViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        accountsLoaded = true
         configureState(.loading)
         loadOutageStatus()
     }
