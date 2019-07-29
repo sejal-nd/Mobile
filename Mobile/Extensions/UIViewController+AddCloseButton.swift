@@ -22,8 +22,7 @@ extension UIViewController {
     
     // MARK: - Action
     
-    @objc
-    private func dismissModal() {
+    @objc func dismissModal() {
         dismiss(animated: true, completion: nil)
     }
 }

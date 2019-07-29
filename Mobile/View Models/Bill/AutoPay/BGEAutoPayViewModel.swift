@@ -24,13 +24,16 @@ class BGEAutoPayViewModel {
     let disposeBag = DisposeBag()
     
     private var paymentService: PaymentService
+    private var walletService: WalletService
 
-    let isFetchingAutoPayInfo = Variable(false)
+    let isLoading = Variable(false)
     let isError = Variable(false)
     
     let accountDetail: AccountDetail
     let initialEnrollmentStatus: Variable<EnrollmentStatus>
     var confirmationNumber: String?
+    
+    var walletItems: [WalletItem]?
     let selectedWalletItem = Variable<WalletItem?>(nil)
     
     // --- Settings --- //
@@ -45,21 +48,51 @@ class BGEAutoPayViewModel {
     let numberOfDaysBeforeDueDate = Variable(0)
     // ---------------- //
 
-    required init(paymentService: PaymentService, accountDetail: AccountDetail) {
+    required init(paymentService: PaymentService, walletService: WalletService, accountDetail: AccountDetail) {
         self.paymentService = paymentService
+        self.walletService = walletService
         self.accountDetail = accountDetail
+
         initialEnrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
     }
     
-    func getAutoPayInfo(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
-        isFetchingAutoPayInfo.value = true
-        self.isError.value = false
-        paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+    func fetchData(onSuccess: (() -> Void)?, onError: ((String) -> Void)?) {
+        var observables = [fetchWalletItems()]
+        if initialEnrollmentStatus.value == .enrolled {
+            observables.append(fetchAutoPayInfo())
+        }
+        
+        isLoading.value = true
+        isError.value = false
+        Observable.zip(observables)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] (autoPayInfo: BGEAutoPayInfo) in
+            .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                self.isFetchingAutoPayInfo.value = false
+                self.isLoading.value = false
                 self.isError.value = false
+                onSuccess?()
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                self.isLoading.value = false
+                self.isError.value = true
+                onError?(error.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchWalletItems() -> Observable<Void> {
+        return walletService.fetchWalletItems()
+            .observeOn(MainScheduler.instance)
+            .do(onNext: { [weak self] walletItems in
+                self?.walletItems = walletItems
+            })
+            .mapTo(())
+    }
+    
+    func fetchAutoPayInfo() -> Observable<Void> {
+        return paymentService.fetchBGEAutoPayInfo(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            .observeOn(MainScheduler.instance)
+            .do(onNext: { autoPayInfo in
                 self.confirmationNumber = autoPayInfo.confirmationNumber
                 
                 // Sync up our view model with the existing AutoPay settings
@@ -86,15 +119,8 @@ class BGEAutoPayViewModel {
                     self.numberOfDaysBeforeDueDate.value = paymentDaysBeforeDue
                     self.whenToPay.value = paymentDaysBeforeDue == 0 ? .onDueDate : .beforeDueDate
                 }
-                
-                onSuccess?()
-            }, onError: { [weak self] error in
-                    guard let self = self else { return }
-                    self.isFetchingAutoPayInfo.value = false
-                    self.isError.value = true
-                    onError?(error.localizedDescription)
             })
-            .disposed(by: disposeBag)
+            .mapTo(())
     }
     
     func enroll(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -142,7 +168,7 @@ class BGEAutoPayViewModel {
     }
     
     private(set) lazy var showBottomLabel: Driver<Bool> =
-        Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.initialEnrollmentStatus.asDriver()) {
+        Driver.combineLatest(self.isLoading.asDriver(), self.initialEnrollmentStatus.asDriver()) {
             return !$0 && $1 != .enrolled
     }
     
@@ -172,7 +198,7 @@ class BGEAutoPayViewModel {
         $0 == .enrolled
     }
     
-    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isFetchingAutoPayInfo.asDriver(), self.isError.asDriver()) {
+    private(set) lazy var shouldShowContent: Driver<Bool> = Driver.combineLatest(self.isLoading.asDriver(), self.isError.asDriver()) {
         return !$0 && !$1
     }
     

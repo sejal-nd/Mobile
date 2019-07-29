@@ -46,4 +46,9 @@ class InfoModalViewController: DismissableFormSheetViewController {
         descriptionLabel.setLineHeight(lineHeight: 25)
     }
     
+    override func dismissModal() {
+        onClose?()
+        super.dismissModal()
+    }
+    
 }

@@ -452,7 +452,6 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                     }
                 }
                 miniWalletVC.accountDetail = self.viewModel.accountDetail.value
-                //miniWalletVC.popToViewController = self
                 miniWalletVC.delegate = self
 
                 self.present(miniWalletVC, animated: false, completion: nil)
@@ -509,7 +508,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                                                       isWalletEmpty: viewModel.walletItems.value!.isEmpty)
         paymentusVC.delegate = self
         let largeTitleNavController = LargeTitleNavigationController(rootViewController: paymentusVC)
-        self.present(largeTitleNavController, animated: true, completion: nil)
+        present(largeTitleNavController, animated: true, completion: nil)
     }
     
     private func accessibilityErrorLabel() {
