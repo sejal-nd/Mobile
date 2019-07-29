@@ -10,6 +10,8 @@ import UIKit
 
 protocol MiniWalletSheetViewControllerDelegate: class {
     func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem)
+    func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController)
+    func miniWalletSheetViewControllerDidSelectAddCard(_ miniWalletSheetViewController: MiniWalletSheetViewController)
 }
 
 class MiniWalletSheetViewController: UIViewController {
@@ -77,8 +79,8 @@ class MiniWalletSheetViewController: UIViewController {
             guard lastSheetLevel == .closed else { return }
             UIView.animate(withDuration: 0.3, animations: { [unowned self] in
                 self.backgroundView.alpha = 0.0
-                }, completion: { [unowned self] _ in
-                    self.dismiss(animated: false, completion: nil)
+            }, completion: { [unowned self] _ in
+                self.dismiss(animated: false, completion: nil)
             })
         }
     }
@@ -87,18 +89,13 @@ class MiniWalletSheetViewController: UIViewController {
     let viewModel = MiniWalletSheetViewModel()
     
     weak var delegate: MiniWalletSheetViewControllerDelegate?
-    weak var popToViewController: UIViewController? // Pop to this view controller on new item save
     
-    // are these used? if so what for?
-    var pushBankOnEmpty = false // unsure if we need this variable since we dont fetch wallet items in this vc anymore
     var isBankAccountDisabled: Bool {
-        return true
-        //return accountDetail.isCashOnly
+        return accountDetail.isCashOnly
     }
     var isCreditCardDisabled = false // Disabled from BGE AutoPay
     var allowTemporaryItems = true // Disabled from BGE AutoPay
-    var accountDetail: AccountDetail! // passed in?
-    
+    var accountDetail: AccountDetail!
     
     // MARK: - View Life Cycle
     
@@ -139,47 +136,7 @@ class MiniWalletSheetViewController: UIViewController {
             lastSheetLevel = .middle
         }
     }
-    
-    
-    // MARK: - Actions
-    
-    private func onAddBankAccountPress() {
-        if allowTemporaryItems {
-            let actionSheet = UIAlertController
-                .saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
-                    self?.presentPaymentusForm(bankOrCard: .bank, temporary: false)
-                    }, dontSaveHandler: { [weak self] _ in
-                        self?.presentPaymentusForm(bankOrCard: .bank, temporary: true)
-                })
-            present(actionSheet, animated: true, completion: nil)
-        } else {
-            presentPaymentusForm(bankOrCard: .bank, temporary: false)
-        }
-    }
-    
-    private func onAddCreditCardPress() {
-        let actionSheet = UIAlertController
-            .saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
-                self?.presentPaymentusForm(bankOrCard: .card, temporary: false)
-                }, dontSaveHandler: { [weak self] _ in
-                    self?.presentPaymentusForm(bankOrCard: .card, temporary: true)
-            })
-        present(actionSheet, animated: true, completion: nil)
-    }
-    
-    
-    // MARK: - Helper
-    
-    private func presentPaymentusForm(bankOrCard: BankOrCard, temporary: Bool) {
-        let paymentusVC = PaymentusFormViewController(bankOrCard: bankOrCard,
-                                                      temporary: temporary,
-                                                      isWalletEmpty: viewModel.tableViewWalletItems.isEmpty)
-        paymentusVC.delegate = delegate as? PaymentusFormViewControllerDelegate
-        paymentusVC.popToViewController = popToViewController
-        navigationController?.pushViewController(paymentusVC, animated: true)
-    }
-    
-    
+
     // MARK: - Actions - Sheet
     
     @objc
@@ -358,28 +315,20 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
 
         let walletItems = viewModel.tableViewWalletItems
         
-        if walletItems.count - 1 >= indexPath.row {
-            // Wallet Item
+        if walletItems.count - 1 >= indexPath.row { // Wallet Item
             let walletItem = walletItems[indexPath.row]
             guard !walletItem.isExpired else { return }
             didSelectWalletItem(walletItem, at: indexPath)
-        } else if walletItems.count == indexPath.row && !isBankAccountDisabled {
-            // Bank Button
-            onAddBankAccountPress()
-        } else if walletItems.count + 1 == indexPath.row && !isCreditCardDisabled {
-            // Card Button
-            onAddCreditCardPress()
+        } else if walletItems.count == indexPath.row && !isBankAccountDisabled { // Bank Button
+            lastSheetLevel = .closed // Close Sheet
+            delegate?.miniWalletSheetViewControllerDidSelectAddBank(self)
+        } else if walletItems.count + 1 == indexPath.row && !isCreditCardDisabled { // Card Button
+            lastSheetLevel = .closed // Close Sheet
+            delegate?.miniWalletSheetViewControllerDidSelectAddCard(self)
         }
     }
     
     func didSelectWalletItem(_ walletItem: WalletItem, at indexPath: IndexPath) {
-        // Single Cell Selection
-        
-        // Same row selected -> return
-        if indexPath == selectedIndexPath {
-            return
-        }
-        
         // Toggle new checkmark on
         guard let newCell = tableView.cellForRow(at: indexPath) as? MiniWalletItemRow else {
             return }
@@ -397,13 +346,11 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
         
         selectedIndexPath = indexPath
         
-        // Selection Action
-
         // Only trigger delegate if not the editing item
         if walletItem != viewModel.editingWalletItem {
             delegate?.miniWalletSheetViewController(self, didSelect: walletItem)
         }
-
+        
         // Close Sheet
         lastSheetLevel = .closed
     }

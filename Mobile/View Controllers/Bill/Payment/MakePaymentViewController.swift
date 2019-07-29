@@ -439,21 +439,23 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
-//                // TODO: Mini Wallet Integration
-//                let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
-//                miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
-//                if let selectedItem = self.viewModel.selectedWalletItem.value {
-//                    miniWalletVC.viewModel.selectedItem.value = selectedItem
-//                    if selectedItem.isTemporary {
-//                        miniWalletVC.viewModel.temporaryItem.value = selectedItem
-//                    } else if selectedItem.isEditingItem {
-//                        miniWalletVC.viewModel.editingItem.value = selectedItem
-//                    }
-//                }
-//                miniWalletVC.accountDetail = self.viewModel.accountDetail.value
-//                miniWalletVC.popToViewController = self
-//                miniWalletVC.delegate = self
-//                self.navigationController?.pushViewController(miniWalletVC, animated: true)
+                guard let miniWalletVC = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
+                miniWalletVC.modalPresentationStyle = .overCurrentContext
+                
+                miniWalletVC.viewModel.walletItems = self.viewModel.walletItems.value!
+                if let selectedItem = self.viewModel.selectedWalletItem.value {
+                    miniWalletVC.viewModel.selectedWalletItem = selectedItem
+                    if selectedItem.isTemporary {
+                        miniWalletVC.viewModel.temporaryWalletItem = selectedItem
+                    } else if selectedItem.isEditingItem {
+                        miniWalletVC.viewModel.editingWalletItem = selectedItem
+                    }
+                }
+                miniWalletVC.accountDetail = self.viewModel.accountDetail.value
+                //miniWalletVC.popToViewController = self
+                miniWalletVC.delegate = self
+
+                self.present(miniWalletVC, animated: false, completion: nil)
             }).disposed(by: disposeBag)
 
         paymentDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
@@ -474,16 +476,12 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             .do(onNext: { GoogleAnalytics.log(event: .addBankNewWallet) })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
-                    guard let self = self else { return }
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-                    paymentusVC.delegate = self
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }, dontSaveHandler: { [weak self] _ in
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: true)
-                    paymentusVC.delegate = self
-                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
-                })
+                let actionSheet = UIAlertController
+                    .saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                        self?.presentPaymentusForm(bankOrCard: .bank, temporary: false)
+                    }, dontSaveHandler: { [weak self] _ in
+                        self?.presentPaymentusForm(bankOrCard: .bank, temporary: true)
+                    })
                 self.present(actionSheet, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
@@ -491,22 +489,27 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             .do(onNext: { GoogleAnalytics.log(event: .addCardNewWallet) })
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                let actionSheet = UIAlertController.saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
-                    guard let self = self else { return }
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
-                    paymentusVC.delegate = self
-                    self.navigationController?.pushViewController(paymentusVC, animated: true)
-                }, dontSaveHandler: { [weak self] _ in
-                    let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: true)
-                    paymentusVC.delegate = self
-                    self?.navigationController?.pushViewController(paymentusVC, animated: true)
-                })
+                let actionSheet = UIAlertController
+                    .saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                        self?.presentPaymentusForm(bankOrCard: .card, temporary: false)
+                    }, dontSaveHandler: { [weak self] _ in
+                        self?.presentPaymentusForm(bankOrCard: .card, temporary: true)
+                    })
                 self.present(actionSheet, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
         cancelPaymentButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             self?.onCancelPaymentPress()
         }).disposed(by: disposeBag)
+    }
+    
+    private func presentPaymentusForm(bankOrCard: BankOrCard, temporary: Bool) {
+        let paymentusVC = PaymentusFormViewController(bankOrCard: bankOrCard,
+                                                      temporary: temporary,
+                                                      isWalletEmpty: viewModel.walletItems.value!.isEmpty)
+        paymentusVC.delegate = self
+        let largeTitleNavController = LargeTitleNavigationController(rootViewController: paymentusVC)
+        self.present(largeTitleNavController, animated: true, completion: nil)
     }
     
     private func accessibilityErrorLabel() {
@@ -610,6 +613,27 @@ extension MakePaymentViewController: MiniWalletSheetViewControllerDelegate {
     func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem) {
         viewModel.selectedWalletItem.value = walletItem
     }
+    
+    func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
+        let actionSheet = UIAlertController
+            .saveToWalletActionSheet(bankOrCard: .bank, saveHandler: { [weak self] _ in
+                self?.presentPaymentusForm(bankOrCard: .bank, temporary: false)
+            }, dontSaveHandler: { [weak self] _ in
+                self?.presentPaymentusForm(bankOrCard: .bank, temporary: true)
+            })
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func miniWalletSheetViewControllerDidSelectAddCard(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
+        let actionSheet = UIAlertController
+            .saveToWalletActionSheet(bankOrCard: .card, saveHandler: { [weak self] _ in
+                self?.presentPaymentusForm(bankOrCard: .card, temporary: false)
+            }, dontSaveHandler: { [weak self] _ in
+                self?.presentPaymentusForm(bankOrCard: .card, temporary: true)
+            })
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - PaymentusFormViewControllerDelegate

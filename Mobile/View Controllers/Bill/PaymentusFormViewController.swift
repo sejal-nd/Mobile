@@ -75,6 +75,11 @@ class PaymentusFormViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
+        if presentingViewController != nil { // When presented modally
+            extendedLayoutIncludesOpaqueBars = true
+            addCloseButton()
+        }
+        
         view.backgroundColor = .white
         
         let contentController = WKUserContentController()
@@ -241,7 +246,9 @@ extension PaymentusFormViewController: WKScriptMessageHandler {
                         RxNotifications.shared.defaultWalletItemUpdated.onNext(())
                     }
                     
-                    if shouldPopToRootOnSave {
+                    if presentingViewController != nil {
+                        dismiss(animated: true, completion: nil)
+                    } else if shouldPopToRootOnSave {
                         if StormModeStatus.shared.isOn {
                             if let dest = self.navigationController?.viewControllers
                                 .first(where: { $0 is StormModeBillViewController }) {
