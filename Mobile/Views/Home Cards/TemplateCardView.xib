@@ -79,9 +79,11 @@
                                     <constraints>
                                         <constraint firstItem="qtL-F9-z1e" firstAttribute="centerX" secondItem="gEK-2F-6Zv" secondAttribute="centerX" id="HkA-8p-akj"/>
                                         <constraint firstAttribute="trailing" secondItem="NHJ-XG-xSz" secondAttribute="trailing" id="PYJ-w7-mHg"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qtL-F9-z1e" secondAttribute="trailing" constant="30" id="Rb3-ZY-isE"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oy3-8x-Exf" secondAttribute="trailing" constant="21" id="XuB-QL-sic"/>
                                         <constraint firstItem="Oy3-8x-Exf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gEK-2F-6Zv" secondAttribute="leading" constant="21" id="c2H-Ae-xgw"/>
                                         <constraint firstItem="NHJ-XG-xSz" firstAttribute="leading" secondItem="gEK-2F-6Zv" secondAttribute="leading" id="nYO-Bp-ckQ"/>
+                                        <constraint firstItem="qtL-F9-z1e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gEK-2F-6Zv" secondAttribute="leading" constant="30" id="rJH-P4-F3o"/>
                                         <constraint firstItem="Hhm-qC-Elk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gEK-2F-6Zv" secondAttribute="leading" constant="21" id="uxZ-VF-9WI"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hhm-qC-Elk" secondAttribute="trailing" constant="21" id="vTC-a5-25b"/>
                                     </constraints>
