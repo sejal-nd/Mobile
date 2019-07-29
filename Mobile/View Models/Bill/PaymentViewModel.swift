@@ -186,7 +186,7 @@ class PaymentViewModel {
     }
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
-    var canEditPaymentDate: Bool {        
+    var canEditPaymentDate: Bool {
         let accountDetail = self.accountDetail.value
         let billingInfo = accountDetail.billingInfo
         

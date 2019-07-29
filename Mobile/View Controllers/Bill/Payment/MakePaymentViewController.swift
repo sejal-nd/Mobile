@@ -49,13 +49,10 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextFieldNew!
     
     @IBOutlet weak var paymentDateView: UIView!
-    @IBOutlet weak var paymentDateTextLabel: UILabel!
-    @IBOutlet weak var paymentDateButtonView: UIView!
-    @IBOutlet weak var paymentDateButton: DisclosureButton!
+    @IBOutlet weak var paymentDateButton: DisclosureButtonNew!
     @IBOutlet weak var paymentDateErrorView: UIView!
     @IBOutlet weak var paymentDateErrorLabel: UILabel!
-    @IBOutlet weak var paymentDateFixedDateLabel: UILabel!
-    @IBOutlet weak var paymentDateFixedDatePastDueLabel: UILabel!
+    @IBOutlet weak var paymentDatePastDueLabel: UILabel!
     @IBOutlet weak var sameDayPaymentWarningView: UIView!
     @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
     
@@ -79,9 +76,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var cancelPaymentButton: ButtonControl!
     @IBOutlet weak var cancelPaymentLabel: UILabel!
     
-    @IBOutlet weak var walletFooterSpacerView: UIView! // Only used for spacing when footerView is hidden
-    @IBOutlet weak var walletFooterView: StickyFooterView!
-    @IBOutlet weak var walletFooterLabel: UILabel!
+    @IBOutlet weak var footerLabel: UILabel!
     
     @IBOutlet weak var stickyPaymentFooterStackView: UIStackView!
     @IBOutlet weak var stickyPaymentFooterView: StickyFooterView!
@@ -167,20 +162,14 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
-        paymentDateTextLabel.textColor = .deepGray
-        paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        
         paymentDateErrorLabel.textColor = .errorRed
         paymentDateErrorLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentDateErrorLabel.text = NSLocalizedString("Error: Invalid payment date.", comment: "")
         
-        paymentDateFixedDateLabel.textColor = .blackText
-        paymentDateFixedDateLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        paymentDateFixedDatePastDueLabel.textColor = .blackText
-        paymentDateFixedDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentDatePastDueLabel.textColor = .deepGray
+        paymentDatePastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        sameDayPaymentWarningLabel.textColor = .blackText
+        sameDayPaymentWarningLabel.textColor = .deepGray
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(textStyle: .footnote)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same day payments cannot be edited or canceled after submission.", comment: "")
         
@@ -224,8 +213,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
         cancelPaymentLabel.textColor = .actionBlue
         
-        walletFooterLabel.textColor = .deepGray
-        walletFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.textColor = .deepGray
+        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         stickyPaymentFooterTotalPaymentLabel.textColor = .blackText
         stickyPaymentFooterTotalPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
@@ -289,10 +278,10 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         
         // Payment Date
         viewModel.shouldShowPaymentDateView.not().drive(paymentDateView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.shouldShowPastDueLabel.not().drive(paymentDateFixedDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowPastDueLabel.not().drive(paymentDatePastDueLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.isPaymentDateValid.drive(paymentDateErrorView.rx.isHidden).disposed(by: disposeBag)
-        paymentDateButtonView.isHidden = !viewModel.canEditPaymentDate
-        paymentDateFixedDateLabel.isHidden = viewModel.canEditPaymentDate
+        paymentDateButton.descriptionText = NSLocalizedString("Payment Date*", comment: "")
+        paymentDateButton.isEnabled = viewModel.canEditPaymentDate
         viewModel.shouldShowSameDayPaymentWarning.not().drive(sameDayPaymentWarningView.rx.isHidden).disposed(by: disposeBag)
         
         // Add bank/credit card empty wallet state
@@ -425,16 +414,14 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.dueDate.asDriver().drive(dueDateDateLabel.rx.text).disposed(by: disposeBag)
         
         // Payment Date
-        viewModel.paymentDateString.asDriver().drive(paymentDateButton.label.rx.text).disposed(by: disposeBag)
-        viewModel.paymentDateString.asDriver().drive(paymentDateFixedDateLabel.rx.text).disposed(by: disposeBag)
+        viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.valueText).disposed(by: disposeBag)
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Edit Payment Detail View
         paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
         confirmationNumberValueTextView.text = billingHistoryItem?.confirmationNumber
         
-        // Wallet Footer Label
-        walletFooterLabel.text = viewModel.walletFooterLabelText
+        footerLabel.text = viewModel.walletFooterLabelText
         
         // Sticky Footer Payment View
         viewModel.totalPaymentDisplayString.map { $0 ?? "--" }
@@ -471,6 +458,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             self.view.endEditing(true)
             
             let calendarVC = PDTSimpleCalendarViewController()
+            calendarVC.extendedLayoutIncludesOpaqueBars = true
             calendarVC.calendar = .opCo
             calendarVC.delegate = self
             calendarVC.title = NSLocalizedString("Select Payment Date", comment: "")
