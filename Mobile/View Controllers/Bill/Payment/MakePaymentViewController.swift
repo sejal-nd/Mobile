@@ -455,20 +455,21 @@ class MakePaymentViewController: UIViewController {
         paymentAccountButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             guard let self = self else { return }
             self.view.endEditing(true)
-            let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
-            miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
-            if let selectedItem = self.viewModel.selectedWalletItem.value {
-                miniWalletVC.viewModel.selectedItem.value = selectedItem
-                if selectedItem.isTemporary {
-                    miniWalletVC.viewModel.temporaryItem.value = selectedItem
-                } else if selectedItem.isEditingItem {
-                    miniWalletVC.viewModel.editingItem.value = selectedItem
-                }
-            }
-            miniWalletVC.accountDetail = self.viewModel.accountDetail.value
-            miniWalletVC.popToViewController = self
-            miniWalletVC.delegate = self
-            self.navigationController?.pushViewController(miniWalletVC, animated: true)
+            // todo: Mini Wallet Integration
+//            let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
+//            miniWalletVC.viewModel.walletItems.value = self.viewModel.walletItems.value
+//            if let selectedItem = self.viewModel.selectedWalletItem.value {
+//                miniWalletVC.viewModel.selectedItem.value = selectedItem
+//                if selectedItem.isTemporary {
+//                    miniWalletVC.viewModel.temporaryItem.value = selectedItem
+//                } else if selectedItem.isEditingItem {
+//                    miniWalletVC.viewModel.editingItem.value = selectedItem
+//                }
+//            }
+//            miniWalletVC.accountDetail = self.viewModel.accountDetail.value
+//            miniWalletVC.popToViewController = self
+//            miniWalletVC.delegate = self
+//            self.navigationController?.pushViewController(miniWalletVC, animated: true)
         }).disposed(by: disposeBag)
         
         paymentDateButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
@@ -643,12 +644,10 @@ extension MakePaymentViewController: UITextFieldDelegate {
 
 // MARK: - MiniWalletViewControllerDelegate
 
-extension MakePaymentViewController: MiniWalletViewControllerDelegate {
-    
-    func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
+extension MakePaymentViewController: MiniWalletSheetViewControllerDelegate {
+    func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem) {
         viewModel.selectedWalletItem.value = walletItem
     }
-    
 }
 
 // MARK: - PaymentusFormViewControllerDelegate

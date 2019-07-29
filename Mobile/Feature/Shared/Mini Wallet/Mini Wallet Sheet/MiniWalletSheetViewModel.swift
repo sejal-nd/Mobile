@@ -10,7 +10,7 @@ import Foundation
 
 class MiniWalletSheetViewModel {
     var walletItems = [WalletItem]()
-    var selectedWalletItem: WalletItem? // we may not need this variable.
+    var selectedWalletItem: WalletItem?
     var temporaryWalletItem: WalletItem?
     var editingWalletItem: WalletItem?
 

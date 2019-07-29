@@ -308,21 +308,22 @@ class BGEAutoPayViewController: UIViewController {
     }
 
     @IBAction func onSelectBankAccountPress() {
-        let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
-        miniWalletVC.accountDetail = viewModel.accountDetail
-        miniWalletVC.pushBankOnEmpty = true
-        miniWalletVC.creditCardsDisabled = true
-        miniWalletVC.popToViewController = self
-        miniWalletVC.allowTemporaryItems = false
-        miniWalletVC.delegate = self
-        
-        if accountDetail.isAutoPay {
-            GoogleAnalytics.log(event: .autoPayModifyWallet)
-        } else {
-            GoogleAnalytics.log(event: .autoPayEnrollSelectBank)
-        }
-        
-        navigationController?.pushViewController(miniWalletVC, animated: true)
+        // todo: Mini Wallet Integration
+//        let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
+//        miniWalletVC.accountDetail = viewModel.accountDetail
+//        miniWalletVC.pushBankOnEmpty = true
+//        miniWalletVC.creditCardsDisabled = true
+//        miniWalletVC.popToViewController = self
+//        miniWalletVC.allowTemporaryItems = false
+//        miniWalletVC.delegate = self
+//
+//        if accountDetail.isAutoPay {
+//            GoogleAnalytics.log(event: .autoPayModifyWallet)
+//        } else {
+//            GoogleAnalytics.log(event: .autoPayEnrollSelectBank)
+//        }
+//
+//        navigationController?.pushViewController(miniWalletVC, animated: true)
     }
     
     @IBAction func onSettingsPress() {
@@ -357,15 +358,12 @@ class BGEAutoPayViewController: UIViewController {
 
 }
 
-extension BGEAutoPayViewController: MiniWalletViewControllerDelegate {
-    
-    func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
-        if walletItem != viewModel.selectedWalletItem.value {
-            viewModel.userDidChangeBankAccount.value = true
-            viewModel.selectedWalletItem.value = walletItem
-        }
+extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
+    func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem) {
+        guard walletItem != viewModel.selectedWalletItem.value else { return }
+        viewModel.userDidChangeBankAccount.value = true
+        viewModel.selectedWalletItem.value = walletItem
     }
-    
 }
 
 extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {

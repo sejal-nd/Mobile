@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MiniWalletSheetViewControllerDelegate: class {
+    func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem)
+}
+
 class MiniWalletSheetViewController: UIViewController {
     enum SheetLevel {
         case top
@@ -82,7 +86,7 @@ class MiniWalletSheetViewController: UIViewController {
     
     let viewModel = MiniWalletSheetViewModel()
     
-    weak var delegate: MiniWalletViewControllerDelegate?
+    weak var delegate: MiniWalletSheetViewControllerDelegate?
     weak var popToViewController: UIViewController? // Pop to this view controller on new item save
     
     // are these used? if so what for?
@@ -397,7 +401,7 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
 
         // Only trigger delegate if not the editing item
         if walletItem != viewModel.editingWalletItem {
-            //        delegate?.miniWalletViewController(self, didSelectWalletItem: walletItem)
+            delegate?.miniWalletSheetViewController(self, didSelect: walletItem)
         }
 
         // Close Sheet

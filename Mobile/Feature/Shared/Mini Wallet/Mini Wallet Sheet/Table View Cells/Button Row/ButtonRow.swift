@@ -49,8 +49,6 @@ class ButtonRow: UITableViewCell {
         selectedBackgroundView = backgroundView
     }
     
-    
-    // todo: implement enable / disable state:  determined by account details
     func configure(image: UIImage?, title: String, isEnabled: Bool) {
         iconImageView.image = image
         titleLabel.text = title
