@@ -9,25 +9,20 @@
 import UIKit
 
 class UpdatesDetailViewController: UIViewController {
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var label: UILabel!
     
     var opcoUpdate: OpcoUpdate!
 
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Update", comment: "")
-
-        titleLabel.textColor = .blackText
-        titleLabel.font = OpenSans.bold.of(textStyle: .title1)
-        titleLabel.attributedText = opcoUpdate.title
-            .attributedString(lineHeight: 28)
+        setValues()
         
-        label.textColor = .blackText
-        label.font = OpenSans.regular.of(textStyle: .body)
-        label.text = opcoUpdate.message
+        style()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,5 +30,24 @@ class UpdatesDetailViewController: UIViewController {
     
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
+    
+    
+    // MARK: - Helper
+    
+    private func style() {
+        titleLabel.textColor = .deepGray
+        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        
+        label.textColor = .deepGray
+        label.font = OpenSans.regular.of(textStyle: .body)
+    }
+    
+    private func setValues() {
+        title = NSLocalizedString("Update", comment: "")
+        
+        titleLabel.attributedText = opcoUpdate.title
+            .attributedString(lineHeight: 28)
+        
+        label.text = opcoUpdate.message
+    }
 }
