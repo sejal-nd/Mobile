@@ -50,11 +50,12 @@ class TemplateCardView: UIView {
         bodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
         
-        errorLabel.font = OpenSans.regular.of(textStyle: .title1)
-        errorLabel.textAlignment = .center
+        errorTitleLabel.textColor = .deepGray
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
         
-        errorTitleLabel.textColor = .blackText
-        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        errorLabel.textColor = .deepGray
+        errorLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        errorLabel.textAlignment = .center
     }
     
     private func bindViewModel() {
