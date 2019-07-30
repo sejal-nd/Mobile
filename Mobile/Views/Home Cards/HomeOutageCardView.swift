@@ -24,10 +24,10 @@ class HomeOutageCardView: UIView {
     @IBOutlet private weak var powerStatusLabel: UILabel!
     @IBOutlet private weak var restorationView: UIView!
     @IBOutlet private weak var restorationStatusLabel: UILabel!
+    @IBOutlet private weak var restorationStatusValueLabel: UILabel!
     @IBOutlet private weak var outageReportedView: UIView!
     @IBOutlet private weak var outageReportedLabel: UILabel!
-    @IBOutlet private weak var callToActionButton: ButtonControl!
-    @IBOutlet private weak var buttonControlLabel: UILabel!
+    @IBOutlet weak var callToActionButton: UIButton!
     
     // Custom Error View
     @IBOutlet private weak var customErrorView: UIView!
@@ -85,28 +85,48 @@ class HomeOutageCardView: UIView {
         clippingView.layer.masksToBounds = true
         
         // Content View
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        powerStatusTitleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        powerStatusLabel.font = OpenSans.bold.of(size: 22)
-        restorationStatusLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        outageReportedLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        buttonControlLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        callToActionButton.backgroundColorOnPress = .softGray
+        titleLabel.textColor = .deepGray
+        titleLabel.font = OpenSans.regular.of(textStyle: .body)
+        
+        powerStatusTitleLabel.textColor = .deepGray
+        powerStatusTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        powerStatusLabel.textColor = .deepGray
+        powerStatusLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        
+        restorationStatusLabel.textColor = .deepGray
+        restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
+        restorationStatusLabel.textColor = .deepGray
+        restorationStatusLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
+        outageReportedLabel.textColor = .deepGray
+        outageReportedLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        
+        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
         
         // Custom Error View
-        customErrorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        gasOnlyLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        gasOnlySublabel.font = OpenSans.regular.of(textStyle: .footnote)
+        customErrorTitleLabel.textColor = .deepGray
+        customErrorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+
+        gasOnlyLabel.textColor = .deepGray
+        gasOnlyLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        
+        gasOnlySublabel.textColor = .deepGray
+        gasOnlySublabel.font = SystemFont.regular.of(textStyle: .caption1)
+
         nonPayFinaledTextView.tintColor = .actionBlue // For phone numbers
         
         // Maintenance Mode View
-        maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
+        maintenanceModeLabel.textColor = .deepGray
+        maintenanceModeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         // Generic Error View
-        errorLabel.font = OpenSans.regular.of(textStyle: .title1)
+        errorTitleLabel.textColor = .deepGray
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
         
-        errorTitleLabel.textColor = .blackText
-        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        errorLabel.textColor = .deepGray
+        errorLabel.font = SystemFont.regular.of(textStyle: .caption1)
     }
     
     private func showLoadingState() {
@@ -211,7 +231,7 @@ class HomeOutageCardView: UIView {
         
         viewModel.etrText
             .map { $0.attributedString(textAlignment: .center, lineHeight: 20) }
-            .drive(restorationStatusLabel.rx.attributedText)
+            .drive(restorationStatusValueLabel.rx.attributedText)
             .disposed(by: bag)
         
         viewModel.reportedOutageTime.drive(outageReportedLabel.rx.text).disposed(by: bag)
@@ -220,7 +240,7 @@ class HomeOutageCardView: UIView {
             .drive(nonPayFinaledTextView.rx.attributedText)
             .disposed(by: bag)
         
-        viewModel.callToActionButtonText.drive(buttonControlLabel.rx.text).disposed(by: bag)
+        viewModel.callToActionButtonText.drive(callToActionButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.callToActionButtonText.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
     }
     
