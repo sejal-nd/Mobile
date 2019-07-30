@@ -17,6 +17,7 @@ fileprivate let editHomeSegueId = "editHomeSegue"
 
 class HomeViewController: AccountPickerViewController {
     
+    @IBOutlet weak var accountPickerBackgroundView: UIView!
     @IBOutlet weak var colorBackgroundView: UIView!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
@@ -321,6 +322,7 @@ class HomeViewController: AccountPickerViewController {
     func styleViews() {
         view.backgroundColor = .softGray        
         colorBackgroundView.backgroundColor = .primaryColor
+        accountPickerBackgroundView.backgroundColor = .primaryColor
     }
     
     func setCards(oldCards: [HomeCard], newCards: [HomeCard]) {
@@ -580,6 +582,7 @@ class HomeViewController: AccountPickerViewController {
             refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
             refreshControl?.tintColor = .white
+            refreshControl?.backgroundColor = .primaryColor
             scrollView!.insertSubview(refreshControl!, at: 0)
         } else {
             if let rc = refreshControl {
