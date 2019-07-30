@@ -43,7 +43,6 @@ class MiniWalletItemRow: UITableViewCell {
         style()
     }
     
-    
     // MARK: - Helper
     
     private func style() {
@@ -61,8 +60,7 @@ class MiniWalletItemRow: UITableViewCell {
     
     func configure(with walletItem: WalletItem,
                    indexPath: IndexPath,
-                   selectedIndexPath: IndexPath?,
-                   nickNameOverride: String? = nil) {
+                   selectedIndexPath: IndexPath?) {
         
         isEnabled = !walletItem.isExpired
         
@@ -77,12 +75,7 @@ class MiniWalletItemRow: UITableViewCell {
         
         paymentTypeImageView.image = walletItem.paymentMethodType.imageMini
         titleLabel.text = "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
-        
-        if let nickNameOverride = nickNameOverride {
-            subtitleLabel.text = nickNameOverride
-        } else {
-            subtitleLabel.text = walletItem.nickName
-        }
+        subtitleLabel.text = walletItem.nickName
         
         // Accessibility
         self.accessibilityLabel = "\(checkmarkImageView.accessibilityLabel ?? ""), \(paymentTypeImageView.accessibilityLabel ?? ""), \(titleLabel.accessibilityLabel ?? ""), \(subtitleLabel.accessibilityLabel ?? "")"

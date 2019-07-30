@@ -1765,9 +1765,6 @@
 		E8039FFB1EFB0421004DB789 /* PaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF01EFB0405004DB789 /* PaymentService.swift */; };
 		E8039FFC1EFB0426004DB789 /* MCSPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF21EFB040E004DB789 /* MCSPaymentService.swift */; };
 		E8039FFD1EFB0426004DB789 /* MCSPaymentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FF21EFB040E004DB789 /* MCSPaymentService.swift */; };
-		E803A0001EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */; };
-		E803A0011EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */; };
-		E803A0021EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */; };
 		E8052D911F477CBC00410D64 /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
 		E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8067C901EC3C257004C2724 /* SplashViewController.swift */; };
@@ -3234,7 +3231,6 @@
 		E8039FF01EFB0405004DB789 /* PaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentService.swift; sourceTree = "<group>"; };
 		E8039FF21EFB040E004DB789 /* MCSPaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCSPaymentService.swift; sourceTree = "<group>"; };
 		E8039FF41EFB0416004DB789 /* BGEAutoPayInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayInfo.swift; sourceTree = "<group>"; };
-		E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniWalletTableViewCell.swift; sourceTree = "<group>"; };
 		E8067C901EC3C257004C2724 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		E80CBD0E1F98EC930039D9E7 /* SSOData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSOData.swift; sourceTree = "<group>"; };
 		E80D2E161E721668002626C9 /* MaskedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskedString.swift; sourceTree = "<group>"; };
@@ -3854,20 +3850,12 @@
 		35C9138F22E9E96E009DD71A /* Mini Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				35C9139022E9E9A8009DD71A /* Mini Wallet Sheet */,
-			);
-			path = "Mini Wallet";
-			sourceTree = "<group>";
-		};
-		35C9139022E9E9A8009DD71A /* Mini Wallet Sheet */ = {
-			isa = PBXGroup;
-			children = (
 				35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */,
 				35C913A222EA203A009DD71A /* MiniWalletSheetViewModel.swift */,
 				35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */,
 				35C9139922E9EF70009DD71A /* Table View Cells */,
 			);
-			path = "Mini Wallet Sheet";
+			path = "Mini Wallet";
 			sourceTree = "<group>";
 		};
 		35C9139922E9EF70009DD71A /* Table View Cells */ = {
@@ -3882,7 +3870,6 @@
 		35C913A622EB6A76009DD71A /* Mini Wallet Row */ = {
 			isa = PBXGroup;
 			children = (
-				E8039FFF1EFB0D09004DB789 /* MiniWalletTableViewCell.swift */,
 				35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */,
 				35C9139E22E9EFFB009DD71A /* MiniWalletItemRow.xib */,
 			);
@@ -7841,7 +7828,6 @@
 				B55ABC351E537EAF00F9CD28 /* ServiceFactory.swift in Sources */,
 				E83F027F1FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
 				B0AD7FEE205841C80090B40D /* SequenceForEach.swift in Sources */,
-				E803A0001EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				54EDD2D51ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
@@ -8014,7 +8000,6 @@
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
 				E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				82A18EC01EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
-				E803A0021EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518751F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
@@ -8403,7 +8388,6 @@
 				82A18EBF1EBA676700BE9F21 /* SecondaryButton.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
-				E803A0011EFB0D09004DB789 /* MiniWalletTableViewCell.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCE1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				B0DB2761215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,

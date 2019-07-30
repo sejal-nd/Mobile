@@ -367,30 +367,15 @@ extension MiniWalletSheetViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let walletItems = viewModel.tableViewWalletItems
-
-        if walletItems.count - 1 >= indexPath.row {
-            // Wallet Item
+        if walletItems.count - 1 >= indexPath.row { // Wallet Item
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MiniWalletItemRow.className, for: indexPath) as? MiniWalletItemRow else { fatalError("Incorrect Cell Type") }
-            let walletItem = walletItems[indexPath.row]
-            
-            if walletItem == viewModel.editingWalletItem {
-                cell.configure(with: walletItem, indexPath: indexPath, selectedIndexPath: selectedIndexPath, nickNameOverride: "Current Item")
-                // todo override string
-            } else if walletItem == viewModel.temporaryWalletItem {
-                cell.configure(with: walletItem, indexPath: indexPath, selectedIndexPath: selectedIndexPath, nickNameOverride: "Temporary Item")
-                // todo override string
-            } else {
-                cell.configure(with: walletItem, indexPath: indexPath, selectedIndexPath: selectedIndexPath)
-            }
-            
+            cell.configure(with: walletItems[indexPath.row], indexPath: indexPath, selectedIndexPath: selectedIndexPath)
             return cell
-        } else if walletItems.count == indexPath.row {
-            // Bank Button
+        } else if walletItems.count == indexPath.row { // Bank Button
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonRow.className, for: indexPath) as? ButtonRow else { fatalError("Incorrect Cell Type") }
             cell.configure(image: UIImage(named: "ic_add"), title: "Add Bank Account", isEnabled: !isBankAccountDisabled)
             return cell
-        } else if walletItems.count + 1 == indexPath.row {
-            // Card Button
+        } else if walletItems.count + 1 == indexPath.row { // Card Button
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonRow.className, for: indexPath) as? ButtonRow else { fatalError("Incorrect Cell Type") }
             cell.configure(image: UIImage(named: "ic_add"), title: "Add Credit/Debit Card", isEnabled: !isCreditCardDisabled)
             return cell

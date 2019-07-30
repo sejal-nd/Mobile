@@ -25,30 +25,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" image="ic_check" translatesAutoresizingMaskIntoConstraints="NO" id="cs2-ic-zlZ">
-                                        <rect key="frame" x="16" y="22.5" width="14" height="10"/>
+                                        <rect key="frame" x="16" y="22.5" width="13" height="10"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="14" id="UZs-zB-V99"/>
+                                            <constraint firstAttribute="width" constant="13" id="UZs-zB-V99"/>
                                             <constraint firstAttribute="height" constant="10" id="pBa-cs-dYJ"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QG0-6I-qIG">
-                                        <rect key="frame" x="38" y="17" width="21" height="21"/>
+                                        <rect key="frame" x="37" y="17" width="21" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="7Tq-nV-gkt"/>
                                             <constraint firstAttribute="width" constant="21" id="sfc-ep-bg3"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="tj9-oB-qTn">
-                                        <rect key="frame" x="67" y="7" width="270" height="40.5"/>
+                                        <rect key="frame" x="66" y="7" width="271" height="40.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dac-5a-nsZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="270" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="271" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyG-Aa-rsc">
-                                                <rect key="frame" x="0.0" y="23.5" width="270" height="17"/>
+                                                <rect key="frame" x="0.0" y="23.5" width="271" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>

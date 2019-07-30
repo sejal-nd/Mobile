@@ -50,6 +50,7 @@ class PaymentViewModel {
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.value = billingHistoryItem.paymentId
             selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
+                                                  nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                   paymentMethodType: billingHistoryItem.paymentMethodType,
                                                   isEditingItem: true)
         }
