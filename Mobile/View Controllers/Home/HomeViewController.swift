@@ -600,7 +600,6 @@ class HomeViewController: AccountPickerViewController {
             refreshControl = UIRefreshControl()
             refreshControl!.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
             refreshControl?.tintColor = .white
-            refreshControl?.backgroundColor = .primaryColor
             scrollView!.insertSubview(refreshControl!, at: 0)
         } else {
             if let rc = refreshControl {
