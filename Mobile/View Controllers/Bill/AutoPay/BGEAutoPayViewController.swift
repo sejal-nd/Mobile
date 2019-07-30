@@ -57,6 +57,7 @@ class BGEAutoPayViewController: UIViewController {
     var accountDetail: AccountDetail! // Passed from BillViewController
     
     lazy var viewModel: BGEAutoPayViewModel = BGEAutoPayViewModel(paymentService: ServiceFactory.createPaymentService(),
+                                                                  walletService: ServiceFactory.createWalletService(),
                                                                   accountDetail: accountDetail)
     
     override func viewDidLoad() {
@@ -81,14 +82,15 @@ class BGEAutoPayViewController: UIViewController {
         case .enrolled:
             termsStackView.isHidden = true
             termsStackView.alpha = 0
-            viewModel.getAutoPayInfo(onSuccess: { [weak self] in
-                guard let self = self else { return }
-                UIAccessibility.post(notification: .screenChanged, argument: self.view)
-                }, onError: { [weak self] _ in
-                    guard let self = self else { return }
-                    UIAccessibility.post(notification: .screenChanged, argument: self.view)
-            })
         }
+        
+        viewModel.fetchData(onSuccess: { [weak self] in
+            guard let self = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+        }, onError: { [weak self] _ in
+            guard let self = self else { return }
+            UIAccessibility.post(notification: .screenChanged, argument: self.view)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -169,7 +171,7 @@ class BGEAutoPayViewController: UIViewController {
     
     func setupBindings() {
         viewModel.shouldShowContent.not().drive(mainStackView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isFetchingAutoPayInfo.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isLoading.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowWalletItem.map(!).drive(bankAccountButtonAccountNumberLabel.rx.isHidden).disposed(by: disposeBag)
@@ -235,9 +237,9 @@ class BGEAutoPayViewController: UIViewController {
                 }
                 
                 self.navigationController?.present(infoModal, animated: true)
-                }, onError: { [weak self] errMessage in
-                    LoadingView.hide()
-                    self?.showErrorAlert(message: errMessage)
+            }, onError: { [weak self] errMessage in
+                LoadingView.hide()
+                self?.showErrorAlert(message: errMessage)
             })
         }))
         
@@ -275,9 +277,9 @@ class BGEAutoPayViewController: UIViewController {
             }
             
             self.navigationController?.present(infoModal, animated: true)
-            }, onError: { [weak self] errMessage in
-                LoadingView.hide()
-                self?.showErrorAlert(message: errMessage)
+        }, onError: { [weak self] errMessage in
+            LoadingView.hide()
+            self?.showErrorAlert(message: errMessage)
         })
     }
     
@@ -290,9 +292,9 @@ class BGEAutoPayViewController: UIViewController {
             guard let self = self else { return }
             self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
             self.navigationController?.popViewController(animated: true)
-            }, onError: { [weak self] errMessage in
-                LoadingView.hide()
-                self?.showErrorAlert(message: errMessage)
+        }, onError: { [weak self] errMessage in
+            LoadingView.hide()
+            self?.showErrorAlert(message: errMessage)
         })
     }
     
@@ -308,21 +310,22 @@ class BGEAutoPayViewController: UIViewController {
     }
 
     @IBAction func onSelectBankAccountPress() {
-        let miniWalletVC = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "miniWallet") as! MiniWalletViewController
+        guard let miniWalletVC = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
+        miniWalletVC.modalPresentationStyle = .overCurrentContext
+        
+        miniWalletVC.viewModel.walletItems = self.viewModel.walletItems ?? []
         miniWalletVC.accountDetail = viewModel.accountDetail
-        miniWalletVC.pushBankOnEmpty = true
-        miniWalletVC.creditCardsDisabled = true
-        miniWalletVC.popToViewController = self
+        miniWalletVC.isCreditCardDisabled = true
         miniWalletVC.allowTemporaryItems = false
         miniWalletVC.delegate = self
-        
+
         if accountDetail.isAutoPay {
             GoogleAnalytics.log(event: .autoPayModifyWallet)
         } else {
             GoogleAnalytics.log(event: .autoPayEnrollSelectBank)
         }
         
-        navigationController?.pushViewController(miniWalletVC, animated: true)
+        self.present(miniWalletVC, animated: false, completion: nil)
     }
     
     @IBAction func onSettingsPress() {
@@ -334,6 +337,16 @@ class BGEAutoPayViewController: UIViewController {
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
+    
+    private func presentPaymentusForm(bankOrCard: BankOrCard, temporary: Bool) {
+        let paymentusVC = PaymentusFormViewController(bankOrCard: bankOrCard,
+                                                      temporary: temporary,
+                                                      isWalletEmpty: (viewModel.walletItems ?? []).isEmpty)
+        paymentusVC.delegate = self
+        let largeTitleNavController = LargeTitleNavigationController(rootViewController: paymentusVC)
+        present(largeTitleNavController, animated: true, completion: nil)
+    }
+    
     
     // MARK: - Navigation
     
@@ -357,13 +370,19 @@ class BGEAutoPayViewController: UIViewController {
 
 }
 
-extension BGEAutoPayViewController: MiniWalletViewControllerDelegate {
+extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
+    func miniWalletSheetViewController(_ miniWalletSheetViewController: MiniWalletSheetViewController, didSelect walletItem: WalletItem) {
+        guard walletItem != viewModel.selectedWalletItem.value else { return }
+        viewModel.userDidChangeBankAccount.value = true
+        viewModel.selectedWalletItem.value = walletItem
+    }
     
-    func miniWalletViewController(_ miniWalletViewController: MiniWalletViewController, didSelectWalletItem walletItem: WalletItem) {
-        if walletItem != viewModel.selectedWalletItem.value {
-            viewModel.userDidChangeBankAccount.value = true
-            viewModel.selectedWalletItem.value = walletItem
-        }
+    func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
+        presentPaymentusForm(bankOrCard: .bank, temporary: false)
+    }
+    
+    func miniWalletSheetViewControllerDidSelectAddCard(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
+        // Will never get called because we pass `creditCardsDisabled = true` from this VC
     }
     
 }

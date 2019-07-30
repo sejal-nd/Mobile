@@ -50,6 +50,7 @@ class PaymentViewModel {
         if let billingHistoryItem = billingHistoryItem { // Editing a payment
             paymentId.value = billingHistoryItem.paymentId
             selectedWalletItem.value = WalletItem(maskedWalletItemAccountNumber: billingHistoryItem.maskedWalletItemAccountNumber,
+                                                  nickName: NSLocalizedString("Current Payment Method", comment: ""),
                                                   paymentMethodType: billingHistoryItem.paymentMethodType,
                                                   isEditingItem: true)
         }
@@ -75,7 +76,6 @@ class PaymentViewModel {
                 self.isFetching.value = false
                 
                 self.walletItems.value = walletItems
-                guard let walletItems = self.walletItems.value else { return }
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
@@ -186,7 +186,7 @@ class PaymentViewModel {
     }
     
     // See the "Billing Scenarios (Grid View)" document on Confluence for these rules
-    var canEditPaymentDate: Bool {        
+    var canEditPaymentDate: Bool {
         let accountDetail = self.accountDetail.value
         let billingInfo = accountDetail.billingInfo
         
@@ -299,7 +299,7 @@ class PaymentViewModel {
 
     // MARK: - Other Make Payment Drivers
     
-    private(set) lazy var makePaymentNextButtonEnabled: Driver<Bool> = Driver
+    private(set) lazy var makePaymentContinueButtonEnabled: Driver<Bool> = Driver
         .combineLatest(selectedWalletItem.asDriver(), paymentFieldsValid) {
             return $0 != nil && $1
         }
@@ -313,15 +313,11 @@ class PaymentViewModel {
                              self.isError.asDriver())
         { !$0 && !$1 }
 
-    private(set) lazy var shouldShowPaymentAccountView: Driver<Bool> =
-        Driver.combineLatest(self.selectedWalletItem.asDriver(),
-                             self.wouldBeSelectedWalletItemIsExpired.asDriver())
-        {
-            if $1 {
-                return true
-            }
-            return $0 != nil
-        }
+    private(set) lazy var shouldShowPaymentMethodButton: Driver<Bool> =
+        self.selectedWalletItem.asDriver().isNil().not()
+    
+    private(set) lazy var shouldShowPaymentMethodExpiredButton: Driver<Bool> =
+        self.wouldBeSelectedWalletItemIsExpired.asDriver()
 
     private(set) lazy var hasWalletItems: Driver<Bool> =
         Driver.combineLatest(self.walletItems.asDriver(),
@@ -493,7 +489,7 @@ class PaymentViewModel {
         return amounts
     }()
 
-    private(set) lazy var paymentAmountFeeLabelText: Driver<String?> =
+    private(set) lazy var paymentMethodFeeLabelText: Driver<String?> =
         self.selectedWalletItem.asDriver().map { [weak self] in
             guard let self = self, let walletItem = $0 else { return nil }
             if walletItem.bankOrCard == .bank {
@@ -534,14 +530,10 @@ class PaymentViewModel {
     private(set) lazy var showSelectedWalletItemNickname: Driver<Bool> = selectedWalletItemNickname.isNil().not()
 
     private(set) lazy var selectedWalletItemA11yLabel: Driver<String> =
-        Driver.combineLatest(selectedWalletItem.asDriver(),
-                             wouldBeSelectedWalletItemIsExpired.asDriver()) {
-        guard let walletItem: WalletItem = $0 else { return "" }
-        if $1 {
-            return NSLocalizedString("Select Payment Method", comment: "")
+        self.selectedWalletItem.asDriver().map {
+            guard let walletItem: WalletItem = $0 else { return "" }
+            return walletItem.accessibilityDescription()
         }
-        return walletItem.accessibilityDescription()
-    }
 
     var convenienceFee: Double {
         return accountDetail.value.billingInfo.convenienceFee

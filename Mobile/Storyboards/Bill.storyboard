@@ -251,25 +251,25 @@
                                                                         <rect key="frame" x="0.0" y="33.5" width="356" height="60"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="opco_bank_mini" translatesAutoresizingMaskIntoConstraints="NO" id="jpT-Wu-pEI">
-                                                                                <rect key="frame" x="12" y="12" width="45" height="36"/>
+                                                                                <rect key="frame" x="20" y="12" width="45" height="36"/>
                                                                             </imageView>
                                                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="TVa-ce-thh">
-                                                                                <rect key="frame" x="69" y="0.0" width="249" height="60.5"/>
+                                                                                <rect key="frame" x="80" y="0.0" width="238" height="60.5"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Select Bank Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1l-mI-oxf">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="249" height="20.5"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="238" height="20.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 4321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybl-7e-krV">
-                                                                                        <rect key="frame" x="0.0" y="23.5" width="249" height="19.5"/>
+                                                                                        <rect key="frame" x="0.0" y="23.5" width="238" height="19.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4w-cn-94i">
-                                                                                        <rect key="frame" x="0.0" y="46" width="249" height="14.5"/>
+                                                                                        <rect key="frame" x="0.0" y="46" width="238" height="14.5"/>
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
@@ -288,12 +288,12 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="trailing" secondItem="amG-et-Sxv" secondAttribute="trailing" constant="18" id="9ry-nz-Fsz"/>
                                                                             <constraint firstItem="jpT-Wu-pEI" firstAttribute="centerY" secondItem="OXW-RY-0Ab" secondAttribute="centerY" id="KBz-AJ-Wt2"/>
-                                                                            <constraint firstItem="jpT-Wu-pEI" firstAttribute="leading" secondItem="OXW-RY-0Ab" secondAttribute="leading" constant="12" id="aRr-9b-QIh"/>
+                                                                            <constraint firstItem="jpT-Wu-pEI" firstAttribute="leading" secondItem="OXW-RY-0Ab" secondAttribute="leading" constant="20" id="aRr-9b-QIh"/>
                                                                             <constraint firstItem="amG-et-Sxv" firstAttribute="leading" secondItem="TVa-ce-thh" secondAttribute="trailing" constant="12" id="bBX-zu-pb1"/>
                                                                             <constraint firstAttribute="height" priority="999" constant="60" id="bqZ-PB-vi0"/>
                                                                             <constraint firstItem="amG-et-Sxv" firstAttribute="centerY" secondItem="OXW-RY-0Ab" secondAttribute="centerY" id="cMP-EE-nXb"/>
                                                                             <constraint firstItem="TVa-ce-thh" firstAttribute="centerY" secondItem="OXW-RY-0Ab" secondAttribute="centerY" id="gR1-I4-hl6"/>
-                                                                            <constraint firstItem="TVa-ce-thh" firstAttribute="leading" secondItem="jpT-Wu-pEI" secondAttribute="trailing" constant="12" id="uCt-sG-Ism"/>
+                                                                            <constraint firstItem="TVa-ce-thh" firstAttribute="leading" secondItem="jpT-Wu-pEI" secondAttribute="trailing" constant="15" id="uCt-sG-Ism"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <action selector="onSelectBankAccountPress" destination="Zhu-5c-ibe" eventType="touchUpInside" id="Ig1-u6-RF0"/>
@@ -2261,7 +2261,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bill" id="l6Q-Py-wRt">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="uJc-vy-HD0"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="uJc-vy-HD0"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="2066"/>
