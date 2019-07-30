@@ -12,8 +12,7 @@ final class HomePrepaidCardView: UIView {
     @IBOutlet private weak var clippingView: UIView!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
-    @IBOutlet weak var bottomButton: ButtonControl!
-    @IBOutlet private weak var bottomButtonLabel: UILabel!
+    @IBOutlet weak var callToActionButton: UIButton!
     
     private var viewModel: HomePrepaidCardViewModel! {
         didSet {
@@ -34,22 +33,25 @@ final class HomePrepaidCardView: UIView {
         layer.borderWidth = 1
         clippingView.layer.cornerRadius = 10
         
-        detailLabel.textColor = .deepGray
-        detailLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        headerLabel.textColor = .deepGray
+        headerLabel.font = OpenSans.regular.of(textStyle: .callout)
         
-        bottomButtonLabel.textColor = .actionBlue
-        bottomButtonLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        detailLabel.textColor = .deepGray
+        detailLabel.font = OpenSans.regular.of(textStyle: .caption1)
+        
+        callToActionButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .body)
     }
     
     func bindViewModel() {
         headerLabel.attributedText = viewModel.headerText
         detailLabel.text = viewModel.detailText
-        bottomButtonLabel.text = viewModel.buttonText
-        bottomButton.accessibilityLabel = viewModel.buttonText
-        bottomButton.addTarget(self, action: #selector(openUrl), for: .touchUpInside)
+        UIView.performWithoutAnimation { [weak self]
+ in
+            guard let `self` = self else { return }
+            self.callToActionButton.setTitle(self.viewModel.buttonText, for: .normal)
+        }
     }
-    
-    @objc private func openUrl() {
+    @IBAction func callToActionPress(_ sender: Any) {
         if viewModel.isActive {
             GoogleAnalytics.log(event: .prePaidEnrolled)
         } else {
