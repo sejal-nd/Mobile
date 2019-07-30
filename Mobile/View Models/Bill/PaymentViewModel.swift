@@ -76,7 +76,6 @@ class PaymentViewModel {
                 self.isFetching.value = false
                 
                 self.walletItems.value = walletItems
-                guard let walletItems = self.walletItems.value else { return }
                 let defaultWalletItem = walletItems.first(where: { $0.isDefault })
 
                 if initialFetch {
