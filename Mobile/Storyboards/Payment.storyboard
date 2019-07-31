@@ -814,21 +814,17 @@
         <!--Review Payment-->
         <scene sceneID="j0X-h3-aw1">
             <objects>
-                <viewController id="6kZ-1f-4Jk" customClass="ReviewPaymentViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="6kZ-1f-4Jk" customClass="ReviewPaymentViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vMZ-eo-OSw"/>
                         <viewControllerLayoutGuide type="bottom" id="GfN-aG-uRn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MNM-Qq-gbD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1112"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-Il-9UU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1112"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsq-gd-Jbo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1112"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nsq-gd-Jbo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1081"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAE-xu-8vr" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1092.5"/>
@@ -1344,16 +1340,16 @@
                                                                 </constraints>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes, I have read, understand, and agree to the terms and conditions provided below:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztd-2d-pYz">
-                                                                <rect key="frame" x="61" y="0.0" width="274" height="57.5"/>
+                                                                <rect key="frame" x="61" y="0.0" width="274" height="67"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" translatesAutoresizingMaskIntoConstraints="NO" id="eoD-Nw-KsK" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="61" y="70.5" width="202.5" height="30"/>
+                                                                <rect key="frame" x="61" y="80" width="202.5" height="20.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpR-07-8tF">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="202.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1446,17 +1442,42 @@
                                     <constraint firstAttribute="bottom" secondItem="aAE-xu-8vr" secondAttribute="bottom" id="qAE-4h-htw"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb7-Ho-BWi" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="1081" width="375" height="119"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZ7-gc-eKE" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="335" height="55"/>
+                                        <accessibility key="accessibilityConfiguration" label="Submit Payment"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="1xl-x3-Iok"/>
+                                            <constraint firstAttribute="height" constant="55" id="iHR-Lt-MFo"/>
+                                        </constraints>
+                                        <state key="normal" title="Submit Payment"/>
+                                        <connections>
+                                            <action selector="onSubmitPress" destination="6kZ-1f-4Jk" eventType="touchUpInside" id="396-Kt-eZm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Sdh-an-GLL" firstAttribute="bottom" secondItem="CZ7-gc-eKE" secondAttribute="bottom" constant="15" id="7TO-Iq-GjF"/>
+                                    <constraint firstAttribute="trailing" secondItem="CZ7-gc-eKE" secondAttribute="trailing" priority="999" constant="20" id="eAZ-AS-9BK"/>
+                                    <constraint firstItem="CZ7-gc-eKE" firstAttribute="leading" secondItem="bb7-Ho-BWi" secondAttribute="leading" priority="999" constant="20" id="f9F-fv-nhY"/>
+                                    <constraint firstItem="CZ7-gc-eKE" firstAttribute="centerX" secondItem="Sdh-an-GLL" secondAttribute="centerX" id="lqw-93-ZoV"/>
+                                    <constraint firstItem="CZ7-gc-eKE" firstAttribute="top" secondItem="bb7-Ho-BWi" secondAttribute="top" constant="15" id="ygI-TF-jZQ"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="Sdh-an-GLL"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZBF-Il-9UU" firstAttribute="leading" secondItem="MNM-Qq-gbD" secondAttribute="leading" id="8Vk-6K-owM"/>
-                            <constraint firstAttribute="bottom" secondItem="Nsq-gd-Jbo" secondAttribute="bottom" id="AvU-ay-nWb"/>
                             <constraint firstAttribute="trailing" secondItem="Nsq-gd-Jbo" secondAttribute="trailing" id="CbJ-od-kUV"/>
-                            <constraint firstAttribute="trailing" secondItem="ZBF-Il-9UU" secondAttribute="trailing" id="CvA-Bi-gDi"/>
                             <constraint firstItem="Nsq-gd-Jbo" firstAttribute="leading" secondItem="MNM-Qq-gbD" secondAttribute="leading" id="EpX-TX-40q"/>
-                            <constraint firstAttribute="bottom" secondItem="ZBF-Il-9UU" secondAttribute="bottom" id="PyB-ra-JlV"/>
-                            <constraint firstItem="ZBF-Il-9UU" firstAttribute="top" secondItem="MNM-Qq-gbD" secondAttribute="top" id="jwX-Z2-QxY"/>
-                            <constraint firstItem="Nsq-gd-Jbo" firstAttribute="top" secondItem="Gl5-lM-FvF" secondAttribute="top" id="tPH-M3-rJl"/>
+                            <constraint firstItem="bb7-Ho-BWi" firstAttribute="leading" secondItem="Gl5-lM-FvF" secondAttribute="leading" id="Spc-aa-Rlz"/>
+                            <constraint firstAttribute="bottom" secondItem="bb7-Ho-BWi" secondAttribute="bottom" id="odm-TN-wdJ"/>
+                            <constraint firstItem="Nsq-gd-Jbo" firstAttribute="top" secondItem="MNM-Qq-gbD" secondAttribute="top" id="tPH-M3-rJl"/>
+                            <constraint firstItem="Gl5-lM-FvF" firstAttribute="trailing" secondItem="bb7-Ho-BWi" secondAttribute="trailing" id="wMK-00-Csn"/>
+                            <constraint firstItem="bb7-Ho-BWi" firstAttribute="top" secondItem="Nsq-gd-Jbo" secondAttribute="bottom" id="wOV-gM-2q4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gl5-lM-FvF"/>
                     </view>
@@ -1483,7 +1504,6 @@
                         <outlet property="dueDateValueLabel" destination="0F9-wK-SZp" id="iEU-o1-Wtv"/>
                         <outlet property="footerLabel" destination="KK9-YL-EWP" id="eCL-Ki-JTx"/>
                         <outlet property="footerView" destination="x4Z-6u-eyD" id="yEJ-Kz-Vl6"/>
-                        <outlet property="gradientView" destination="ZBF-Il-9UU" id="tdx-rh-Dvc"/>
                         <outlet property="overpayingSwitch" destination="3dw-cg-RpT" id="1aL-jp-8h1"/>
                         <outlet property="overpayingSwitchLabel" destination="P0M-fs-5Gv" id="Mdb-qN-Eqy"/>
                         <outlet property="overpayingSwitchView" destination="gr0-XX-eAz" id="5ln-SV-s3b"/>
@@ -1499,6 +1519,7 @@
                         <outlet property="paymentDateValueLabel" destination="nWz-L3-AdS" id="McO-R8-9P7"/>
                         <outlet property="receiptView" destination="V2p-Ap-Ww7" id="Bxm-LO-taU"/>
                         <outlet property="scrollView" destination="Nsq-gd-Jbo" id="RiQ-ox-5Ji"/>
+                        <outlet property="submitPaymentButton" destination="CZ7-gc-eKE" id="amQ-fJ-KzV"/>
                         <outlet property="termsConditionsButton" destination="eoD-Nw-KsK" id="ISk-wr-DzH"/>
                         <outlet property="termsConditionsButtonLabel" destination="kpR-07-8tF" id="NMU-OT-DAn"/>
                         <outlet property="termsConditionsSwitch" destination="sTk-jf-eOH" id="32x-t6-C5R"/>
@@ -1512,7 +1533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uAr-EM-UHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1693.5999999999999" y="-228.48575712143929"/>
+            <point key="canvasLocation" x="1693.4782608695652" y="-229.01785714285714"/>
         </scene>
         <!--Payment Confirmation View Controller-->
         <scene sceneID="WSg-P7-HcY">

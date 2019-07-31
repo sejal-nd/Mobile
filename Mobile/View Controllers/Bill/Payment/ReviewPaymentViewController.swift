@@ -15,9 +15,7 @@ class ReviewPaymentViewController: UIViewController {
     var viewModel: PaymentViewModel! // Passed from MakePaymentViewController
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var gradientView: UIView!
-    var gradientLayer = CAGradientLayer()
-    
+
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var overpaymentLabel: UILabel!
     
@@ -73,24 +71,14 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
+    @IBOutlet weak var submitPaymentButton: PrimaryButtonNew!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .softGray
-
         title = NSLocalizedString("Review Payment", comment: "")
         
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
-        navigationItem.rightBarButtonItem = submitButton
-        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-        
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [
-            UIColor.softGray.cgColor,
-            UIColor.white.cgColor,
-        ]
-
-        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitPaymentButton.rx.isEnabled).disposed(by: disposeBag)
         
         activeSeveranceLabel.textColor = .blackText
         activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -191,15 +179,6 @@ class ReviewPaymentViewController: UIViewController {
         bindButtonTaps()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer.frame = gradientView.bounds
-    }
-    
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = gradientView.bounds
-    }
-    
     func bindViewHiding() {
         viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.isOverpaying.map(!).drive(overpaymentLabel.rx.isHidden).disposed(by: disposeBag)
@@ -252,9 +231,7 @@ class ReviewPaymentViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
-        guard submitButton.isEnabled else { return }
-        
+    @IBAction func onSubmitPress() {
         LoadingView.show()
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
