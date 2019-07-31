@@ -68,7 +68,6 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var activeSeveranceSwitch: Switch!
     @IBOutlet weak var activeSeveranceSwitchLabel: UILabel!
     
-    @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
     @IBOutlet weak var submitPaymentButton: PrimaryButtonNew!
@@ -169,9 +168,8 @@ class ReviewPaymentViewController: UIViewController {
         activeSeveranceSwitchLabel.isAccessibilityElement = false
         activeSeveranceSwitch.accessibilityLabel = activeSeveranceSwitchLabel.text!
         
-        footerView.backgroundColor = .softGray
-        footerLabel.textColor = .blackText
-        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.textColor = .deepGray
+        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         footerLabel.text = viewModel.reviewPaymentFooterLabelText
         
         bindViewHiding()

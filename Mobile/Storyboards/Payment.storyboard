@@ -1381,7 +1381,7 @@
                                                             <constraint firstItem="ztd-2d-pYz" firstAttribute="top" secondItem="lOb-Vo-ahE" secondAttribute="top" id="z9J-mZ-7y3"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4Z-6u-eyD">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4Z-6u-eyD" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="944.5" width="375" height="128"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KK9-YL-EWP">
@@ -1469,7 +1469,7 @@
                                 <viewLayoutGuide key="safeArea" id="Sdh-an-GLL"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Nsq-gd-Jbo" secondAttribute="trailing" id="CbJ-od-kUV"/>
                             <constraint firstItem="Nsq-gd-Jbo" firstAttribute="leading" secondItem="MNM-Qq-gbD" secondAttribute="leading" id="EpX-TX-40q"/>
@@ -1503,7 +1503,6 @@
                         <outlet property="dueDateTextLabel" destination="pEX-eP-hX6" id="G18-Ux-8va"/>
                         <outlet property="dueDateValueLabel" destination="0F9-wK-SZp" id="iEU-o1-Wtv"/>
                         <outlet property="footerLabel" destination="KK9-YL-EWP" id="eCL-Ki-JTx"/>
-                        <outlet property="footerView" destination="x4Z-6u-eyD" id="yEJ-Kz-Vl6"/>
                         <outlet property="overpayingSwitch" destination="3dw-cg-RpT" id="1aL-jp-8h1"/>
                         <outlet property="overpayingSwitchLabel" destination="P0M-fs-5Gv" id="Mdb-qN-Eqy"/>
                         <outlet property="overpayingSwitchView" destination="gr0-XX-eAz" id="5ln-SV-s3b"/>
