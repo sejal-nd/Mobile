@@ -56,7 +56,7 @@ class UpdatesViewController: UIViewController {
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
 
         updatesEmptyStateLabel.textColor = .middleGray
-        updatesEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        updatesEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
         updatesEmptyStateLabel.text = NSLocalizedString("There are no updates at\nthis time.", comment: "")
     }
 

@@ -24,8 +24,8 @@ class PrimaryButtonNew: UIButton {
     
     @IBInspectable var condensed: Bool = false {
         didSet {
-            titleLabel?.font = condensed ? SystemFont.semibold.of(textStyle: .headline) :
-                SystemFont.semibold.of(textStyle: .title1)
+            titleLabel?.font = condensed ? SystemFont.semibold.of(textStyle: .subheadline) :
+                SystemFont.semibold.of(textStyle: .headline)
         }
     }
     
@@ -42,7 +42,7 @@ class PrimaryButtonNew: UIButton {
     }
     
     func commonInit() {
-        titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         layer.cornerRadius = frame.size.height / 2
         
         updateTitleColors()
