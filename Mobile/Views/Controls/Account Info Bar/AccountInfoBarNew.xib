@@ -19,17 +19,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1234567890" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwO-Tq-Ifo">
-                    <rect key="frame" x="20" y="8" width="83.5" height="51"/>
+                    <rect key="frame" x="20" y="10" width="83.5" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="5109 Sprint Garden St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwa-kd-CjD">
-                    <rect key="frame" x="111.5" y="8" width="282.5" height="51"/>
+                    <rect key="frame" x="111.5" y="10" width="282.5" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -37,17 +37,17 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="BwO-Tq-Ifo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="4GR-fu-8B0"/>
+                <constraint firstItem="BwO-Tq-Ifo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="4GR-fu-8B0"/>
                 <constraint firstItem="mwa-kd-CjD" firstAttribute="leading" secondItem="BwO-Tq-Ifo" secondAttribute="trailing" constant="8" id="8ER-m1-gXQ"/>
                 <constraint firstItem="BwO-Tq-Ifo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="ACX-op-Jfb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mwa-kd-CjD" secondAttribute="trailing" constant="20" id="CvC-g7-oep"/>
-                <constraint firstAttribute="bottom" secondItem="mwa-kd-CjD" secondAttribute="bottom" constant="8" id="WFw-Ij-X7o"/>
-                <constraint firstItem="mwa-kd-CjD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="auZ-qi-BDs"/>
-                <constraint firstAttribute="bottom" secondItem="BwO-Tq-Ifo" secondAttribute="bottom" constant="8" id="oKX-Am-cjy"/>
+                <constraint firstAttribute="bottom" secondItem="mwa-kd-CjD" secondAttribute="bottom" constant="10" id="WFw-Ij-X7o"/>
+                <constraint firstItem="mwa-kd-CjD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="auZ-qi-BDs"/>
+                <constraint firstAttribute="bottom" secondItem="BwO-Tq-Ifo" secondAttribute="bottom" constant="10" id="oKX-Am-cjy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="131.8840579710145" y="402.12053571428572"/>
+            <point key="canvasLocation" x="168" y="134"/>
         </view>
     </objects>
 </document>

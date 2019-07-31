@@ -47,7 +47,6 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var bankOverpayingTextLabel: UILabel!
     @IBOutlet weak var bankOverpayingValueLabel: UILabel!
     
-    @IBOutlet weak var totalPaymentView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
     @IBOutlet weak var paymentDateValueLabel: UILabel!
     @IBOutlet weak var totalPaymentTextLabel: UILabel!
@@ -90,15 +89,15 @@ class ReviewPaymentViewController: UIViewController {
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
         paymentMethodTextLabel.textColor = .deepGray
-        //paymentMethodTextLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentMethodTextLabel.font = SystemFont.regular.of(textStyle: .footnote)
         paymentMethodTextLabel.text = NSLocalizedString("Payment Method", comment: "")
         paymentMethodMaskedAccountNumberLabel.textColor = .deepGray
-        //paymentMethodMaskedAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodMaskedAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
         paymentMethodNicknameLabel.textColor = .middleGray
-        //paymentMethodNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        paymentMethodNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        receiptView.layer.cornerRadius = 10
-        receiptView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        receiptView.layer.borderWidth = 1
+        receiptView.layer.borderColor = UIColor.accentGray.cgColor
         
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -111,7 +110,6 @@ class ReviewPaymentViewController: UIViewController {
         dueDateValueLabel.textColor = .deepGray
         dueDateValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        convenienceFeeView.backgroundColor = .softGray
         paymentAmountTextLabel.textColor = .deepGray
         paymentAmountTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
@@ -135,22 +133,21 @@ class ReviewPaymentViewController: UIViewController {
         bankOverpayingValueLabel.textColor = .deepGray
         bankOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        totalPaymentView.backgroundColor = .softGray
-        paymentDateTextLabel.textColor = .blackText
-        paymentDateTextLabel.font = SystemFont.medium.of(textStyle: .headline)
+        paymentDateTextLabel.textColor = .deepGray
+        paymentDateTextLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
-        paymentDateValueLabel.textColor = .blackText
-        paymentDateValueLabel.font = SystemFont.medium.of(textStyle: .headline)
-        totalPaymentTextLabel.textColor = .blackText
-        totalPaymentTextLabel.font = SystemFont.medium.of(textStyle: .headline)
-        totalPaymentValueLabel.textColor = .blackText
-        totalPaymentValueLabel.font = SystemFont.medium.of(textStyle: .headline)
+        paymentDateValueLabel.textColor = .deepGray
+        paymentDateValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        totalPaymentTextLabel.textColor = .deepGray
+        totalPaymentTextLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        totalPaymentValueLabel.textColor = .deepGray
+        totalPaymentValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
         termsConditionsSwitchLabel.textColor = .deepGray
-        termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
+        termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
-        termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
-        termsConditionsButtonLabel.font = SystemFont.bold.of(textStyle: .headline)
+        //termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
+        termsConditionsButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         termsConditionsButtonLabel.textColor = .actionBlue
         termsConditionsButtonLabel.text = NSLocalizedString("View terms and conditions", comment: "")
         termsConditionsButton.accessibilityLabel = termsConditionsButtonLabel.text
@@ -158,16 +155,16 @@ class ReviewPaymentViewController: UIViewController {
         termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
         
         overpayingSwitchLabel.textColor = .deepGray
-        overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
+        overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
-        overpayingSwitchLabel.setLineHeight(lineHeight: 25)
+        //overpayingSwitchLabel.setLineHeight(lineHeight: 25)
         overpayingSwitchLabel.isAccessibilityElement = false
         overpayingSwitch.accessibilityLabel = overpayingSwitchLabel.text!
         
         activeSeveranceSwitchLabel.textColor = .deepGray
-        activeSeveranceSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
+        activeSeveranceSwitchLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         activeSeveranceSwitchLabel.text = NSLocalizedString("I acknowledge I will not be able to edit or delete this payment once submitted.", comment: "")
-        activeSeveranceSwitchLabel.setLineHeight(lineHeight: 25)
+        //activeSeveranceSwitchLabel.setLineHeight(lineHeight: 25)
         activeSeveranceSwitchLabel.isAccessibilityElement = false
         activeSeveranceSwitch.accessibilityLabel = activeSeveranceSwitchLabel.text!
         

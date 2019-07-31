@@ -217,10 +217,10 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         footerLabel.textColor = .deepGray
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        stickyPaymentFooterTotalPaymentLabel.textColor = .blackText
+        stickyPaymentFooterTotalPaymentLabel.textColor = .deepGray
         stickyPaymentFooterTotalPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-        stickyPaymentFooterAmountLabel.textColor = .blackText
-        stickyPaymentFooterAmountLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        stickyPaymentFooterAmountLabel.textColor = .deepGray
+        stickyPaymentFooterAmountLabel.font = SystemFont.semibold.of(textStyle: .callout)
         stickyPaymentFooterFeeLabel.textColor = .deepGray
         stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
