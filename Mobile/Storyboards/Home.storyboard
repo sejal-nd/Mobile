@@ -343,10 +343,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xox-Qe-bTR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="386"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="342"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="386" id="bpM-md-sv8"/>
+                                    <constraint firstAttribute="height" constant="342" id="bpM-md-sv8"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="tbt-1n-lFy" customClass="AccountPicker" customModule="BGE" customModuleProvider="target">
@@ -482,17 +482,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Xox-Qe-bTR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="0S8-l1-0ED"/>
                             <constraint firstItem="tbt-1n-lFy" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="3BN-ku-b8G"/>
                             <constraint firstItem="tbt-1n-lFy" firstAttribute="top" secondItem="jWa-SC-zWM" secondAttribute="bottom" id="3Pw-0U-fm8"/>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="5Cn-0L-f8J"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="top" secondItem="tbt-1n-lFy" secondAttribute="bottom" id="7zw-ae-FJq"/>
                             <constraint firstAttribute="trailing" secondItem="dh2-eA-K7U" secondAttribute="trailing" id="Dav-Ba-dta"/>
+                            <constraint firstItem="Xox-Qe-bTR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="FcZ-h8-0zy"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="mzY-0e-rXR" secondAttribute="bottom" id="HBG-DW-3ss"/>
                             <constraint firstItem="dh2-eA-K7U" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="HbX-4w-z3I"/>
+                            <constraint firstItem="Xox-Qe-bTR" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="HvN-9s-mGa"/>
+                            <constraint firstAttribute="trailing" secondItem="Xox-Qe-bTR" secondAttribute="trailing" id="Kba-oI-pWu"/>
                             <constraint firstAttribute="trailing" secondItem="tbt-1n-lFy" secondAttribute="trailing" id="Orn-rs-JBN"/>
-                            <constraint firstAttribute="trailing" secondItem="Xox-Qe-bTR" secondAttribute="trailing" id="dJN-tx-hM7"/>
-                            <constraint firstItem="Xox-Qe-bTR" firstAttribute="top" secondItem="5uc-ch-d5G" secondAttribute="top" id="eFE-s0-vck"/>
                             <constraint firstAttribute="trailing" secondItem="mzY-0e-rXR" secondAttribute="trailing" id="f6Y-5u-y4u"/>
                             <constraint firstItem="mzY-0e-rXR" firstAttribute="leading" secondItem="5uc-ch-d5G" secondAttribute="leading" id="kwX-DU-XYv"/>
                             <constraint firstItem="NGU-uh-WyU" firstAttribute="top" secondItem="dh2-eA-K7U" secondAttribute="bottom" id="mSC-yd-SiM"/>
@@ -510,6 +510,7 @@
                         <outlet property="accountDisallowView" destination="ErJ-ar-hFE" id="18H-J0-YQv"/>
                         <outlet property="accountPicker" destination="tbt-1n-lFy" id="6iu-lp-I83"/>
                         <outlet property="cardStackView" destination="Opk-mo-Gnw" id="4fa-tb-ffm"/>
+                        <outlet property="colorBackgroundHeightConstraint" destination="bpM-md-sv8" id="NVU-Ob-uTy"/>
                         <outlet property="colorBackgroundView" destination="Xox-Qe-bTR" id="vYM-Qw-hTL"/>
                         <outlet property="contentStackView" destination="xaj-LQ-p93" id="sVw-dZ-BvQ"/>
                         <outlet property="headerContentView" destination="QgD-go-05Y" id="p1j-X0-Ik8"/>

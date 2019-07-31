@@ -14,10 +14,12 @@ import UserNotifications
 import SafariServices
 
 fileprivate let editHomeSegueId = "editHomeSegue"
+fileprivate let colorBackgroundViewHeight: CGFloat = 342
 
 class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var colorBackgroundView: UIView!
+    @IBOutlet weak var colorBackgroundHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var accountDisallowView: UIView!
@@ -63,6 +65,9 @@ class HomeViewController: AccountPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        colorBackgroundHeightConstraint.constant = colorBackgroundViewHeight
+        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
                 
@@ -321,6 +326,21 @@ class HomeViewController: AccountPickerViewController {
     func styleViews() {
         view.backgroundColor = .softGray        
         colorBackgroundView.backgroundColor = .primaryColor
+        
+        // We want the colored background view to scroll with the content, but that view also
+        // provides the color for the safe area/account picker background. This driver
+        // makes the height grow when pulling down to refresh, and shrinks the height while
+        // scrolling the content (but never shrinks it past the account picker)
+        scrollView?.rx.contentOffset.asDriver()
+            .distinctUntilChanged()
+            .map { [weak self] offset in
+                guard let self = self else { return colorBackgroundViewHeight }
+                let minimumHeight = self.view.safeAreaInsets.top + self.accountPicker.frame.size.height
+                let heightMinusScrollOffset = colorBackgroundViewHeight - offset.y
+                return max(minimumHeight, heightMinusScrollOffset)
+            }
+            .drive(colorBackgroundHeightConstraint.rx.constant)
+            .disposed(by: bag)
     }
     
     func setCards(oldCards: [HomeCard], newCards: [HomeCard]) {
