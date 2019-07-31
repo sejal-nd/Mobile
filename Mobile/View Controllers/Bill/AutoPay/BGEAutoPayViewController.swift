@@ -132,7 +132,7 @@ class BGEAutoPayViewController: UIViewController {
         bankAccountButton.layer.cornerRadius = 10
         bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
-        bankAccountButtonSelectLabel.font = SystemFont.medium.of(textStyle: .title1)
+        bankAccountButtonSelectLabel.font = SystemFont.medium.of(textStyle: .headline)
         bankAccountButtonSelectLabel.textColor = .blackText
         bankAccountButtonSelectLabel.text = NSLocalizedString("Select Bank Account", comment: "")
         

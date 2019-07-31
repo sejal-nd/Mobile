@@ -80,7 +80,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         viewModel.biometricsEnabled.asDriver().not().drive(biometricButton.rx.isHidden).disposed(by: disposeBag)
 
-        keepMeSignedInLabel.font = OpenSans.regular.of(textStyle: .headline)
+        keepMeSignedInLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         keepMeSignedInLabel.textColor = .deepGray
         keepMeSignedInLabel.text = NSLocalizedString("Keep me signed in", comment: "")
 
@@ -130,7 +130,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         }).disposed(by: disposeBag)
 
         forgotUsernamePasswordButton.tintColor = .actionBlue
-        forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        forgotUsernamePasswordButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         forgotUsernamePasswordButton.titleLabel?.numberOfLines = 0
         forgotUsernamePasswordButton.titleLabel?.textAlignment = .center
         UIView.performWithoutAnimation { // Prevents ugly setTitle animation

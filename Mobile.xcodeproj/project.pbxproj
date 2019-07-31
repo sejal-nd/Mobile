@@ -743,12 +743,6 @@
 		82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
 		82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
 		82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
-		82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */; };
-		82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */; };
-		82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */; };
-		82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */; };
-		82A18ED01EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */; };
-		82A18ED11EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */; };
 		82A18ED71EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
 		82A18ED81EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
 		82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */; };
@@ -2894,8 +2888,6 @@
 		82A18EB51EBA676700BE9F21 /* SecondaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		82A18EB71EBA676700BE9F21 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
-		82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
 		82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
 		82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaperlessEBillAccountView.xib; sourceTree = "<group>"; };
@@ -4442,7 +4434,6 @@
 				82E22B5B1F9FC798001F1A1B /* EnergyTipTableViewCell */,
 				E84D42C41F4211A400783708 /* BillingHistoryTableViewCell */,
 				E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */,
-				82A18EC91EBA681800BE9F21 /* SettingsTableViewCell */,
 				9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */,
@@ -4457,15 +4448,6 @@
 				82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */,
 			);
 			path = PaperlessEBillAccountView;
-			sourceTree = "<group>";
-		};
-		82A18EC91EBA681800BE9F21 /* SettingsTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				82A18ECA1EBA684700BE9F21 /* SettingsTableViewCell.swift */,
-				82A18ECB1EBA684700BE9F21 /* SettingsTableViewCell.xib */,
-			);
-			path = SettingsTableViewCell;
 			sourceTree = "<group>";
 		};
 		82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */ = {
@@ -6163,7 +6145,6 @@
 				35A6C6E0211CC11E00C2A58F /* Updates.storyboard in Resources */,
 				B0882CB4210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
-				82A18ECF1EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */,
@@ -6324,7 +6305,6 @@
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
-				82A18ED11EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				B089573D22175FDC00A97965 /* alert_preferences.json in Resources */,
 				E8B4F4B91E5C99A00031D934 /* Outage.storyboard in Resources */,
 				E800432E1E65FF70005CF531 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -6493,7 +6473,6 @@
 				35A6C6E3211CC17100C2A58F /* Updates.storyboard in Resources */,
 				B0882CB5210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
 				B574BAD01E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
-				82A18ED01EBA684700BE9F21 /* SettingsTableViewCell.xib in Resources */,
 				359BDBB222E0E6E4007002B0 /* smallcircleload_blue.json in Resources */,
 				E8B4F4B81E5C99A00031D934 /* Outage.storyboard in Resources */,
 				359BB2812148518C00FBAD83 /* sm_outage_loading.json in Resources */,
@@ -7780,7 +7759,6 @@
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B0B083AF216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
-				82A18ECC1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				823694311FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,
@@ -8147,7 +8125,6 @@
 				82A18EF21EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				35B960C122C2A15A003BCC97 /* AccountListRow.swift in Sources */,
 				0D79C6CF1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
-				82A18ECE1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				54DF4BDC1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				B0B083B1216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE81EC9F8570080AB3E /* MockBillService.swift in Sources */,
@@ -8533,7 +8510,6 @@
 				E8EEF72A1E5777BA006804D4 /* MoreViewController.swift in Sources */,
 				82A18EF11EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				0D79C6CE1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
-				82A18ECD1EBA684700BE9F21 /* SettingsTableViewCell.swift in Sources */,
 				359BDB4122D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,

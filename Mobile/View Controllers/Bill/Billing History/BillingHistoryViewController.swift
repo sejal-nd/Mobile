@@ -50,7 +50,7 @@ class BillingHistoryViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: disposeBag)
         
-        emptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        emptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
         emptyStateLabel.textColor = .middleGray
         var emptyStateText = NSLocalizedString("Once you receive your bill or make a payment, details about those activities can be accessed here.", comment: "")
         if viewModel.shouldShowAutoPayCellDetailLabel {

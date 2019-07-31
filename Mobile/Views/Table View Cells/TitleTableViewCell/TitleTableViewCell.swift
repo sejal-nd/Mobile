@@ -19,7 +19,7 @@ class TitleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = .white
-            titleLabel.font = SystemFont.medium.of(textStyle: .headline)
+            titleLabel.font = SystemFont.regular.of(textStyle: .callout)
         }
     }
     @IBOutlet weak var detailLabel: UILabel! {

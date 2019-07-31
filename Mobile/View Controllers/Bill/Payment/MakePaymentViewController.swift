@@ -179,13 +179,13 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         paymentStatusTextLabel.textColor = .deepGray
         paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentStatusValueLabel.textColor = .blackText
-        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle:.title1)
+        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle: .headline)
         confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
         confirmationNumberTextLabel.textColor = .deepGray
-        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .headline)
         confirmationNumberValueTextView.textColor = .blackText
         confirmationNumberValueTextView.dataDetectorTypes.remove(.all) // Some confirmation numbers are detected as phone numbers
-        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle:.title1)
+        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle: .headline)
         for line in editPaymentDividerLines {
             line.backgroundColor = .accentGray
         }

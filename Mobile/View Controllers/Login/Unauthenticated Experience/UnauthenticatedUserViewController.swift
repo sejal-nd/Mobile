@@ -34,14 +34,14 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     
     @IBOutlet weak var headerViewTitleLabel: UILabel! {
         didSet {
-            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .headline)
+            headerViewTitleLabel.font = OpenSans.semibold.of(textStyle: .callout)
             headerViewTitleLabel.textColor = .actionBlue
         }
     }
     
     @IBOutlet weak var headerViewDescriptionLabel: UILabel! {
         didSet {
-            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            headerViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
             headerViewDescriptionLabel.textColor = .blackText
         }
     }
