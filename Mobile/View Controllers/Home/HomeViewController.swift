@@ -533,7 +533,7 @@ class HomeViewController: AccountPickerViewController {
     func bindProjectedBillCard() {
         guard let projectedBillCardView = projectedBillCardView else { return }
         
-        projectedBillCardView.viewMoreButton.rx.touchUpInside.asDriver()
+        projectedBillCardView.callToActionButton.rx.touchUpInside.asDriver()
             .withLatestFrom(Driver.combineLatest(viewModel.projectedBillCardViewModel.isGas,
                                                  viewModel.projectedBillCardViewModel.projectionNotAvailable))
             .drive(onNext: { [weak self] isGas, projectionNotAvailable in

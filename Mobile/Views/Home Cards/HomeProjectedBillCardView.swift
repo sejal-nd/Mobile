@@ -25,7 +25,7 @@ class HomeProjectedBillCardView: UIView {
     
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var segmentedControlContainer: UIView!
-    @IBOutlet private weak var segmentedControl: BillAnalysisSegmentedControl!
+    @IBOutlet private weak var segmentedControl: SegmentedControlNew!
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var projectionLabelTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private weak var projectionLabel: UILabel!
@@ -33,9 +33,7 @@ class HomeProjectedBillCardView: UIView {
     @IBOutlet private weak var projectionSubLabel: UILabel!
     @IBOutlet private weak var projectionFooterLabel: UILabel!
     
-    @IBOutlet weak var viewMoreButton: ButtonControl!
-    @IBOutlet private weak var viewMoreButtonLabel: UILabel!
-    
+    @IBOutlet weak var callToActionButton: UIButton!
     @IBOutlet private weak var emptyStateView: UIView!
     @IBOutlet private weak var emptyStateTitleLabel: UILabel!
     @IBOutlet private weak var emptyStateDescriptionLabel: UILabel!
@@ -68,45 +66,42 @@ class HomeProjectedBillCardView: UIView {
         
         clippingView.layer.cornerRadius = 10
         
-        titleLabel.textColor = .blackText
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        titleLabel.textColor = .deepGray
+        titleLabel.font = OpenSans.regular.of(textStyle: .body)
         
-        emptyStateTitleLabel.textColor = .blackText
-        emptyStateTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        emptyStateDescriptionLabel.textColor = .middleGray
-        emptyStateDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
+        emptyStateTitleLabel.textColor = .deepGray
+        emptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        
+        emptyStateDescriptionLabel.textColor = .deepGray
+        emptyStateDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         emptyStateDescriptionLabel.attributedText = NSLocalizedString("Projected bill is not available for this account.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
         
-        errorTitleLabel.textColor = .blackText
+        errorTitleLabel.textColor = .deepGray
         errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        errorDescriptionLabel.textColor = .middleGray
-        errorDescriptionLabel.font = OpenSans.regular.of(textStyle: .title1)
+        
+        errorDescriptionLabel.textColor = .deepGray
+        errorDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         errorDescriptionLabel.attributedText = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
             .attributedString(textAlignment: .center, lineHeight: 26)
         
-        segmentedControl.setItems(leftLabel: NSLocalizedString("Electric", comment: ""),
-                                  rightLabel: NSLocalizedString("Gas", comment: ""),
-                                  initialSelectedIndex: 0)
-        stackView.bringSubviewToFront(segmentedControlContainer)
+        segmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
+        segmentedControl.selectedIndex.value = 0
         
+        stackView.bringSubviewToFront(segmentedControlContainer)
+
         infoButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        projectionLabel.textColor = .blackText
-        projectionLabel.font = OpenSans.semiboldItalic.of(size: 34)
+        projectionLabel.textColor = .deepGray
+        projectionLabel.font = OpenSans.semiboldItalic.of(textStyle: .title1)
+        
         projectionSubLabel.textColor = .deepGray
-        projectionSubLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        projectionSubLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
         projectionFooterLabel.textColor = .deepGray
-        projectionFooterLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        projectionFooterLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        viewMoreButtonLabel.textColor = .actionBlue
-        viewMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        viewMoreButtonLabel.text = NSLocalizedString("View More", comment: "")
-        
-        viewMoreButton.addTopBorder(color: UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1), width: 1)
-        viewMoreButton.roundCorners([.bottomLeft, .bottomRight], radius: 10)
-        viewMoreButton.backgroundColorOnPress = .softGray
-        viewMoreButton.accessibilityLabel = NSLocalizedString("View More", comment: "")
+        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
     }
     
     private func showContent() {
@@ -170,7 +165,6 @@ class HomeProjectedBillCardView: UIView {
             .disposed(by: disposeBag)
         
         viewModel.shouldShowElectricGasSegmentedControl.drive(onNext: { [weak self] shouldShow in
-            self?.contentView.backgroundColor = shouldShow ? UIColor.softGray : UIColor.white
             self?.projectionLabelTopSpaceConstraint.constant = shouldShow ? 31 : 16
         }).disposed(by: disposeBag)
         
