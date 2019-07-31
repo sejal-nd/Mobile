@@ -15,7 +15,7 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
-            signOutButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+            signOutButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
             signOutButton.setTitleColor(.white, for: .normal)
         }
     }

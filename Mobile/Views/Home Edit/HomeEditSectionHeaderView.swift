@@ -19,7 +19,7 @@ class HomeEditSectionHeaderView: UICollectionReusableView {
         super.awakeFromNib()
         instructionsLabel.font = OpenSans.regular.of(textStyle: .headline)
         instructionsLabel.text = HomeEditSectionHeaderView.instructionsLabelString
-        label.font = OpenSans.semibold.of(textStyle: .title1)
+        label.font = OpenSans.regular.of(textStyle: .headline)
     }
     
 }

@@ -38,7 +38,7 @@ class LandingViewController: UIViewController {
         signInButton.setTitle(NSLocalizedString("Sign In", comment: ""), for: .normal)
         registerButton.setTitle(NSLocalizedString("Register", comment: ""), for: .normal)
         continueAsGuestButon.setTitle(NSLocalizedString("Continue as Guest", comment: ""), for: .normal)
-        continueAsGuestButon.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        continueAsGuestButon.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
 
         logoBackgroundView.backgroundColor = .primaryColor
         view.backgroundColor = .primaryColor

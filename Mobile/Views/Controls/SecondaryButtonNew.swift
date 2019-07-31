@@ -28,11 +28,11 @@ class SecondaryButtonNew: UIButton {
             let condensation = SecondaryButtonCondensation(rawValue: condensationValue) ?? .none
             switch condensation {
             case .none:
-                titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-            case .condensed:
                 titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
-            case .supercondensed:
+            case .condensed:
                 titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            case .supercondensed:
+                titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
             }
         }
     }
@@ -50,7 +50,7 @@ class SecondaryButtonNew: UIButton {
     }
     
     func commonInit() {
-        titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         layer.borderWidth = 1
         layer.cornerRadius = frame.size.height / 2
         

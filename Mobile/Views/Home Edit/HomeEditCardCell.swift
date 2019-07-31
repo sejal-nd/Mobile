@@ -27,7 +27,7 @@ class HomeEditCardCell: UICollectionViewCell {
     
     func configure(withCard card: HomeCard, isActive: Bool, addRemoveTapped: @escaping ()->()) {
         nameLabel.text = card.displayString
-        nameLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        nameLabel.font = SystemFont.regular.of(textStyle: .callout)
         subLabel.isHidden = card.isAlwaysAvailable
         gripView.isHidden = !isActive
         addRemoveButton.setImage(isActive ? #imageLiteral(resourceName: "ic_remove"):#imageLiteral(resourceName: "ic_add"), for: .normal)

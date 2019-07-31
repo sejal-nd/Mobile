@@ -240,7 +240,7 @@ class BillViewController: AccountPickerViewController {
         pendingPaymentAmountLabel.font = OpenSans.semiboldItalic.of(textStyle: .headline)
         pendingPaymentAmountLabel.textColor = .middleGray
         
-        billBreakdownLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        billBreakdownLabel.font = OpenSans.semibold.of(textStyle: .headline)
         
         viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
 
