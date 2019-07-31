@@ -19,11 +19,11 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var overpaymentLabel: UILabel!
     
-    @IBOutlet weak var paymentAccountTextLabel: UILabel!
-    @IBOutlet weak var paymentAccountA11yView: UIView!
-    @IBOutlet weak var paymentAccountImageView: UIImageView!
-    @IBOutlet weak var paymentAccountMaskedAccountNumberLabel: UILabel!
-    @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
+    @IBOutlet weak var paymentMethodTextLabel: UILabel!
+    @IBOutlet weak var paymentMethodA11yView: UIView!
+    @IBOutlet weak var paymentMethodImageView: UIImageView!
+    @IBOutlet weak var paymentMethodMaskedAccountNumberLabel: UILabel!
+    @IBOutlet weak var paymentMethodNicknameLabel: UILabel!
     
     // -- Receipt View -- //
     @IBOutlet weak var receiptView: UIView!
@@ -79,20 +79,23 @@ class ReviewPaymentViewController: UIViewController {
         
         viewModel.reviewPaymentSubmitButtonEnabled.drive(submitPaymentButton.rx.isEnabled).disposed(by: disposeBag)
         
-        activeSeveranceLabel.textColor = .blackText
-        activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        activeSeveranceLabel.textColor = .deepGray
+        activeSeveranceLabel.font = SystemFont.regular.of(textStyle: .headline)
         activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, this payment cannot be edited or deleted once it is submitted.", comment: "")
         activeSeveranceLabel.setLineHeight(lineHeight: 24)
         
-        overpaymentLabel.textColor = .blackText
-        overpaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        overpaymentLabel.textColor = .deepGray
+        overpaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
-        paymentAccountTextLabel.textColor = .deepGray
-        paymentAccountTextLabel.text = NSLocalizedString("Payment Method", comment: "")
-        paymentAccountMaskedAccountNumberLabel.textColor = .blackText
-        paymentAccountNicknameLabel.textColor = .middleGray
+        paymentMethodTextLabel.textColor = .deepGray
+        //paymentMethodTextLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentMethodTextLabel.text = NSLocalizedString("Payment Method", comment: "")
+        paymentMethodMaskedAccountNumberLabel.textColor = .deepGray
+        //paymentMethodMaskedAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodNicknameLabel.textColor = .middleGray
+        //paymentMethodNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         receiptView.layer.cornerRadius = 10
         receiptView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
@@ -189,10 +192,10 @@ class ReviewPaymentViewController: UIViewController {
     
     func bindViewContent() {
         // Payment Method
-        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
-        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
-        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
-        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountA11yView.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.selectedWalletItemImage.drive(paymentMethodImageView.rx.image).disposed(by: disposeBag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentMethodMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemNickname.drive(paymentMethodNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(paymentMethodA11yView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)

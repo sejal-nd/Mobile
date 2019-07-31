@@ -1507,15 +1507,15 @@
                         <outlet property="overpayingSwitchLabel" destination="P0M-fs-5Gv" id="Mdb-qN-Eqy"/>
                         <outlet property="overpayingSwitchView" destination="gr0-XX-eAz" id="5ln-SV-s3b"/>
                         <outlet property="overpaymentLabel" destination="V2J-70-Ob5" id="nhz-dM-oos"/>
-                        <outlet property="paymentAccountA11yView" destination="gFV-FK-poA" id="7eE-nz-7nZ"/>
-                        <outlet property="paymentAccountImageView" destination="LmJ-QL-Phe" id="tKw-zu-5RF"/>
-                        <outlet property="paymentAccountMaskedAccountNumberLabel" destination="Xal-nq-gNi" id="rVM-WI-LU7"/>
-                        <outlet property="paymentAccountNicknameLabel" destination="TOl-wf-vMo" id="NRR-Uu-1jb"/>
-                        <outlet property="paymentAccountTextLabel" destination="ObB-8v-rhR" id="cEx-8M-J6d"/>
                         <outlet property="paymentAmountTextLabel" destination="AI6-yq-P8b" id="6HV-2e-FA8"/>
                         <outlet property="paymentAmountValueLabel" destination="F1m-DH-j5C" id="DiD-Sd-fLn"/>
                         <outlet property="paymentDateTextLabel" destination="xYh-wf-EuS" id="fS4-BF-3KR"/>
                         <outlet property="paymentDateValueLabel" destination="nWz-L3-AdS" id="McO-R8-9P7"/>
+                        <outlet property="paymentMethodA11yView" destination="gFV-FK-poA" id="7eE-nz-7nZ"/>
+                        <outlet property="paymentMethodImageView" destination="LmJ-QL-Phe" id="tKw-zu-5RF"/>
+                        <outlet property="paymentMethodMaskedAccountNumberLabel" destination="Xal-nq-gNi" id="rVM-WI-LU7"/>
+                        <outlet property="paymentMethodNicknameLabel" destination="TOl-wf-vMo" id="NRR-Uu-1jb"/>
+                        <outlet property="paymentMethodTextLabel" destination="ObB-8v-rhR" id="cEx-8M-J6d"/>
                         <outlet property="receiptView" destination="V2p-Ap-Ww7" id="Bxm-LO-taU"/>
                         <outlet property="scrollView" destination="Nsq-gd-Jbo" id="RiQ-ox-5Ji"/>
                         <outlet property="submitPaymentButton" destination="CZ7-gc-eKE" id="amQ-fJ-KzV"/>
