@@ -351,13 +351,13 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="69.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-PZ-gZF">
-                                                                                <rect key="frame" x="9" y="13" width="101.5" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="13" width="101.5" height="17"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scheduled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZV-GL-8wE">
-                                                                                <rect key="frame" x="9" y="33" width="90" height="21.5"/>
+                                                                                <rect key="frame" x="0.0" y="33" width="90" height="21.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -375,8 +375,8 @@
                                                                             <constraint firstAttribute="trailing" secondItem="GzY-bw-HjB" secondAttribute="trailing" id="5KK-dJ-JGl"/>
                                                                             <constraint firstAttribute="bottom" secondItem="GzY-bw-HjB" secondAttribute="bottom" id="62F-MK-utu"/>
                                                                             <constraint firstItem="GzY-bw-HjB" firstAttribute="leading" secondItem="sbt-N2-z80" secondAttribute="leading" id="6pp-eQ-k2W"/>
-                                                                            <constraint firstItem="AZV-GL-8wE" firstAttribute="leading" secondItem="sbt-N2-z80" secondAttribute="leading" constant="9" id="Atc-cR-f5h"/>
-                                                                            <constraint firstItem="ED3-PZ-gZF" firstAttribute="leading" secondItem="sbt-N2-z80" secondAttribute="leading" constant="9" id="MZ2-6f-lS3"/>
+                                                                            <constraint firstItem="AZV-GL-8wE" firstAttribute="leading" secondItem="sbt-N2-z80" secondAttribute="leading" id="Atc-cR-f5h"/>
+                                                                            <constraint firstItem="ED3-PZ-gZF" firstAttribute="leading" secondItem="sbt-N2-z80" secondAttribute="leading" id="MZ2-6f-lS3"/>
                                                                             <constraint firstItem="ED3-PZ-gZF" firstAttribute="top" secondItem="sbt-N2-z80" secondAttribute="top" constant="13" id="VWa-1I-jN5"/>
                                                                             <constraint firstItem="GzY-bw-HjB" firstAttribute="top" secondItem="AZV-GL-8wE" secondAttribute="bottom" constant="14" id="ooG-Mr-Vi1"/>
                                                                             <constraint firstItem="AZV-GL-8wE" firstAttribute="top" secondItem="ED3-PZ-gZF" secondAttribute="bottom" constant="3" id="yFu-mp-dR4"/>
@@ -386,13 +386,13 @@
                                                                         <rect key="frame" x="0.0" y="69.5" width="355" height="85.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmation Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQk-Gu-vuh">
-                                                                                <rect key="frame" x="9" y="13" width="139.5" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="13" width="139.5" height="17"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="l5T-Ny-dZ6" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="9" y="33" width="337" height="37.5"/>
+                                                                                <rect key="frame" x="0.0" y="33" width="335" height="37.5"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -411,11 +411,11 @@
                                                                             <constraint firstItem="0HM-B3-uO6" firstAttribute="leading" secondItem="jRa-PL-UU4" secondAttribute="leading" id="HQX-xw-WA2"/>
                                                                             <constraint firstAttribute="trailing" secondItem="0HM-B3-uO6" secondAttribute="trailing" id="KnK-hl-PqF"/>
                                                                             <constraint firstAttribute="bottom" secondItem="0HM-B3-uO6" secondAttribute="bottom" id="MV4-to-jhv"/>
-                                                                            <constraint firstItem="HQk-Gu-vuh" firstAttribute="leading" secondItem="jRa-PL-UU4" secondAttribute="leading" constant="9" id="Rom-Jz-WWX"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="l5T-Ny-dZ6" secondAttribute="trailing" constant="9" id="WF8-Qz-ESU"/>
+                                                                            <constraint firstItem="HQk-Gu-vuh" firstAttribute="leading" secondItem="jRa-PL-UU4" secondAttribute="leading" id="Rom-Jz-WWX"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="l5T-Ny-dZ6" secondAttribute="trailing" constant="20" id="WF8-Qz-ESU"/>
                                                                             <constraint firstItem="0HM-B3-uO6" firstAttribute="top" secondItem="l5T-Ny-dZ6" secondAttribute="bottom" constant="14" id="WOx-gt-wX2"/>
                                                                             <constraint firstItem="HQk-Gu-vuh" firstAttribute="top" secondItem="jRa-PL-UU4" secondAttribute="top" constant="13" id="Z5L-Eg-g9c"/>
-                                                                            <constraint firstItem="l5T-Ny-dZ6" firstAttribute="leading" secondItem="jRa-PL-UU4" secondAttribute="leading" constant="9" id="lCl-AE-gJb"/>
+                                                                            <constraint firstItem="l5T-Ny-dZ6" firstAttribute="leading" secondItem="jRa-PL-UU4" secondAttribute="leading" id="lCl-AE-gJb"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
