@@ -2,14 +2,40 @@
 //  SecondaryButton.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 2/13/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Marc Shilling on 6/24/19.
+//  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
-import Lottie
 
 class SecondaryButton: UIButton {
+    
+    private enum SecondaryButtonCondensation: Int {
+        case none
+        case condensed
+        case supercondensed
+    }
+    
+    @IBInspectable var tintWhite: Bool = false {
+        didSet {
+            updateTitleColors()
+            updateEnabledState()
+        }
+    }
+    
+    @IBInspectable var condensationValue: Int = 0 {
+        didSet {
+            let condensation = SecondaryButtonCondensation(rawValue: condensationValue) ?? .none
+            switch condensation {
+            case .none:
+                titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+            case .condensed:
+                titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            case .supercondensed:
+                titleLabel?.font = SystemFont.semibold.of(textStyle: .caption1)
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,40 +50,57 @@ class SecondaryButton: UIButton {
     }
     
     func commonInit() {
-        backgroundColor = .white
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        layer.masksToBounds = false
+        titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        layer.borderWidth = 1
+        layer.cornerRadius = frame.size.height / 2
         
-        titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
-        setTitleColor(.actionBlue, for: .normal)
-        setTitleColor(.actionBlue, for: .highlighted)
-        setTitleColor(.middleGray, for: .disabled)
-        
-        layer.cornerRadius = 10.0
+        updateTitleColors()
+        updateEnabledState()
     }
     
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                layer.shadowOpacity = 0
-                backgroundColor = .softGray
+                backgroundColor = tintWhite ? UIColor.white.withAlphaComponent(0.2) : .softGray
             } else {
-                layer.shadowOpacity = 0.2
-                backgroundColor = .white
+                backgroundColor = tintWhite ? .clear : .white
             }
         }
     }
     
     override var isEnabled: Bool {
         didSet {
-            if isEnabled {
-                layer.shadowOpacity = 0.2
-                backgroundColor = .white
-                accessibilityTraits = .button
-            } else {
-                layer.shadowOpacity = 0
-                backgroundColor = .softGray
-                accessibilityTraits = [.button, .notEnabled]
+            updateEnabledState()
+        }
+    }
+    
+    private func updateTitleColors() {
+        let titleColor: UIColor, highlightColor: UIColor, disabledColor: UIColor
+        
+        if tintWhite {
+            titleColor = .white
+            highlightColor = .white
+            disabledColor = UIColor.white.withAlphaComponent(0.5)
+        } else {
+            titleColor = .actionBlue
+            highlightColor = .actionBlue
+            disabledColor = UIColor.deepGray.withAlphaComponent(0.4)
+        }
+        
+        setTitleColor(titleColor, for: .normal)
+        setTitleColor(highlightColor, for: .highlighted)
+        setTitleColor(disabledColor, for: .disabled)
+    }
+    
+    private func updateEnabledState() {
+        backgroundColor = tintWhite ? .clear : .white
+        layer.borderColor = tintWhite ? UIColor.white.cgColor : UIColor.accentGray.cgColor
+        if isEnabled {
+            accessibilityTraits = .button
+        } else {
+            accessibilityTraits = [.button, .notEnabled]
+            if tintWhite {
+                layer.borderColor = UIColor.white.withAlphaComponent(0.3).cgColor
             }
         }
     }

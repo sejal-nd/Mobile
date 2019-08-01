@@ -13,7 +13,8 @@ class PaymentConfirmationViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var xButton: UIButton!
-    @IBOutlet weak var navBarTitleLabel: UILabel!
+    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var confirmationLabel: UILabel!
 
     @IBOutlet weak var paymentInfoView: UIView!
@@ -31,7 +32,7 @@ class PaymentConfirmationViewController: UIViewController {
     @IBOutlet weak var autoPayLabel: UILabel!
     @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
     
-    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerView: StickyFooterView!
     @IBOutlet weak var footerLabel: UILabel!
     
     var presentingNavController: UINavigationController! // Passed from ReviewPaymentViewController
@@ -44,51 +45,44 @@ class PaymentConfirmationViewController: UIViewController {
         xButton.tintColor = .actionBlue
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
 
-        navBarTitleLabel.textColor = .blackText
-        navBarTitleLabel.text = NSLocalizedString("Payment Confirmation", comment: "")
+        titleLabel.textColor = .deepGray
+        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        titleLabel.text = viewModel.paymentId.value != nil ?
+            NSLocalizedString("Thank you for modifying your payment.", comment: "") :
+            NSLocalizedString("Thank you for your payment", comment: "")
         
-        confirmationLabel.textColor = .blackText
-        confirmationLabel.font = OpenSans.regular.of(textStyle: .body)
-        var confirmationMessage = ""
-        if viewModel.paymentId.value != nil {
-            confirmationMessage += NSLocalizedString("Thank you for modifying your payment.", comment: "")
-        } else {
-            confirmationMessage += NSLocalizedString("Thank you for your payment.", comment: "")
-        }
-        if Environment.shared.opco != .bge {
-            confirmationMessage += NSLocalizedString(" A confirmation email will be sent to you shortly.", comment: "")
-        }
-        confirmationLabel.text = confirmationMessage
+        confirmationLabel.textColor = .deepGray
+        confirmationLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        confirmationLabel.text = NSLocalizedString("A confirmation email will be sent to you shortly.", comment: "")
         
-        convenienceFeeLabel.textColor = .blackText
-        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        paymentInfoView.layer.borderColor = UIColor.accentGray.cgColor
+        paymentInfoView.layer.borderWidth = 1
         
-        paymentInfoView.backgroundColor = .softGray
-        
-        paymentDateTextLabel.textColor = .blackText
+        paymentDateTextLabel.textColor = .deepGray
         paymentDateTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
-        paymentDateValueLabel.textColor = .blackText
+        paymentDateValueLabel.textColor = .deepGray
         paymentDateValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountPaidTextLabel.textColor = .blackText
+        amountPaidTextLabel.textColor = .deepGray
         amountPaidTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountPaidTextLabel.text = NSLocalizedString("Amount Paid", comment: "")
-        amountPaidValueLabel.textColor = .blackText
+        amountPaidValueLabel.textColor = .deepGray
         amountPaidValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        confirmationNumberTextLabel.textColor = .blackText
+        confirmationNumberTextLabel.textColor = .deepGray
         confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
         confirmationNumberValueLabel.contentInset = .zero
         confirmationNumberValueLabel.textContainerInset = .zero
-        confirmationNumberValueLabel.textColor = .blackText
+        confirmationNumberValueLabel.textColor = .deepGray
         confirmationNumberValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        autoPayLabel.textColor = .deepGray
-        autoPayLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
-        enrollAutoPayButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
+        convenienceFeeLabel.textColor = .deepGray
+        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .caption1)
         
-        footerView.backgroundColor = .softGray
+        autoPayLabel.textColor = .deepGray
+        autoPayLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        autoPayLabel.text = NSLocalizedString("Would you like to set up Automatic Payments?", comment: "")
+        
         footerLabel.attributedText = viewModel.confirmationFooterText
         footerView.isHidden = !viewModel.showConfirmationFooterText
         
@@ -154,7 +148,6 @@ class PaymentConfirmationViewController: UIViewController {
         for vc in presentingNavController.viewControllers {
             if let dest = vc as? BillViewController {
                 presentingNavController.popToViewController(dest, animated: false)
-                //dest.viewModel.fetchAccountDetail(isRefresh: false) // Can't do this because currentAccountDetail will be nil in prepareForSegue
                 presentingNavController.dismiss(animated: true, completion: { [weak self] in
                     NotificationCenter.default.post(name: .didSelectEnrollInAutoPay, object: self?.viewModel.accountDetail.value)
                 })

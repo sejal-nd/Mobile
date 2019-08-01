@@ -51,7 +51,7 @@ class DisclosureButton: UIButton {
         view.isUserInteractionEnabled = false
         addSubview(view)
 
-        label.font = SystemFont.medium.of(textStyle: .title1)
+        label.font = SystemFont.medium.of(textStyle: .headline)
         label.textColor = .blackText
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         detailLabel.textColor = .middleGray
@@ -65,7 +65,6 @@ class DisclosureButton: UIButton {
         detailLabel.text = text
         detailLabel.isHidden = (text ?? "").isEmpty
         checkImage.isHidden = checkHidden
-        label.font = SystemFont.medium.of(textStyle: ((text ?? "").isEmpty ? .title1: .headline))
     }
     
     public func setHideCaret(caretHidden: Bool) {

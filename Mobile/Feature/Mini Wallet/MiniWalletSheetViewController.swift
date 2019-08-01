@@ -248,7 +248,10 @@ class MiniWalletSheetViewController: UIViewController {
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
         
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.font: SystemFont.semibold.of(textStyle: .title3)]
+        navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.deepGray,
+            NSAttributedString.Key.font: SystemFont.semibold.of(textStyle: .headline)
+        ]
     }
     
     private func configureTableView() {

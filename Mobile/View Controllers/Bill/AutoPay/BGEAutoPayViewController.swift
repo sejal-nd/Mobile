@@ -230,7 +230,7 @@ class BGEAutoPayViewController: UIViewController {
                 let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
                 let description = NSLocalizedString("You have successfully unenrolled from AutoPay. If you have an upcoming automatic payment for your current balance, it may be viewed or canceled in Bill & Payment Activity.", comment: "")
                 let infoModal = InfoModalViewController(title: title,
-                                                        image: #imageLiteral(resourceName: "img_confirmation_green"),
+                                                        image: #imageLiteral(resourceName: "img_confirmation"),
                                                         description: description)
                 { [weak self] in
                     self?.navigationController?.popViewController(animated: true)
@@ -270,7 +270,7 @@ class BGEAutoPayViewController: UIViewController {
                 description = NSLocalizedString("You are successfully enrolled in AutoPay and will begin with your next bill. Upon payment you will receive a payment confirmation for your records.", comment: "")
             }
             let infoModal = InfoModalViewController(title: title,
-                                                    image: #imageLiteral(resourceName: "img_confirmation_green"),
+                                                    image: #imageLiteral(resourceName: "img_confirmation"),
                                                     description: description)
             { [weak self] in
                 self?.navigationController?.popViewController(animated: true)

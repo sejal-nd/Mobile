@@ -15,17 +15,15 @@ class ReviewPaymentViewController: UIViewController {
     var viewModel: PaymentViewModel! // Passed from MakePaymentViewController
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var gradientView: UIView!
-    var gradientLayer = CAGradientLayer()
-    
+
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var overpaymentLabel: UILabel!
     
-    @IBOutlet weak var paymentAccountTextLabel: UILabel!
-    @IBOutlet weak var paymentAccountA11yView: UIView!
-    @IBOutlet weak var paymentAccountImageView: UIImageView!
-    @IBOutlet weak var paymentAccountMaskedAccountNumberLabel: UILabel!
-    @IBOutlet weak var paymentAccountNicknameLabel: UILabel!
+    @IBOutlet weak var paymentMethodTextLabel: UILabel!
+    @IBOutlet weak var paymentMethodA11yView: UIView!
+    @IBOutlet weak var paymentMethodImageView: UIImageView!
+    @IBOutlet weak var paymentMethodMaskedAccountNumberLabel: UILabel!
+    @IBOutlet weak var paymentMethodNicknameLabel: UILabel!
     
     // -- Receipt View -- //
     @IBOutlet weak var receiptView: UIView!
@@ -49,66 +47,55 @@ class ReviewPaymentViewController: UIViewController {
     @IBOutlet weak var bankOverpayingTextLabel: UILabel!
     @IBOutlet weak var bankOverpayingValueLabel: UILabel!
     
-    @IBOutlet weak var totalPaymentView: UIView!
     @IBOutlet weak var paymentDateTextLabel: UILabel!
     @IBOutlet weak var paymentDateValueLabel: UILabel!
     @IBOutlet weak var totalPaymentTextLabel: UILabel!
     @IBOutlet weak var totalPaymentValueLabel: UILabel!
     // ------------------ //
     
-    @IBOutlet weak var termsConditionsSwitchView: UIView!
-    @IBOutlet weak var termsConditionsSwitch: Switch!
-    @IBOutlet weak var termsConditionsSwitchLabel: UILabel!
-    @IBOutlet weak var termsConditionsButton: ButtonControl!
-    @IBOutlet weak var termsConditionsButtonLabel: UILabel!
+    @IBOutlet weak var termsConditionsCheckbox: Checkbox!
+    @IBOutlet weak var termsConditionsCheckboxLabel: UILabel!
+    @IBOutlet weak var termsConditionsButton: UIButton!
     
-    @IBOutlet weak var overpayingSwitchView: UIView!
-    @IBOutlet weak var overpayingSwitch: Switch!
-    @IBOutlet weak var overpayingSwitchLabel: UILabel!
+    @IBOutlet weak var overpayingCheckboxView: UIView!
+    @IBOutlet weak var overpayingCheckbox: Checkbox!
+    @IBOutlet weak var overpayingCheckboxLabel: UILabel!
     
-    @IBOutlet weak var activeSeveranceSwitchView: UIView!
-    @IBOutlet weak var activeSeveranceSwitch: Switch!
-    @IBOutlet weak var activeSeveranceSwitchLabel: UILabel!
+    @IBOutlet weak var activeSeveranceCheckboxView: UIView!
+    @IBOutlet weak var activeSeveranceCheckbox: Checkbox!
+    @IBOutlet weak var activeSeveranceCheckboxLabel: UILabel!
     
-    @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
+    
+    @IBOutlet weak var submitPaymentButton: PrimaryButtonNew!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .softGray
-
         title = NSLocalizedString("Review Payment", comment: "")
         
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
-        navigationItem.rightBarButtonItem = submitButton
-        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.reviewPaymentSubmitButtonEnabled.drive(submitPaymentButton.rx.isEnabled).disposed(by: disposeBag)
         
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [
-            UIColor.softGray.cgColor,
-            UIColor.white.cgColor,
-        ]
-
-        gradientView.layer.insertSublayer(gradientLayer, at: 0)
-        
-        activeSeveranceLabel.textColor = .blackText
-        activeSeveranceLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        activeSeveranceLabel.textColor = .deepGray
+        activeSeveranceLabel.font = SystemFont.regular.of(textStyle: .headline)
         activeSeveranceLabel.text = NSLocalizedString("Due to the status of this account, this payment cannot be edited or deleted once it is submitted.", comment: "")
         activeSeveranceLabel.setLineHeight(lineHeight: 24)
         
-        overpaymentLabel.textColor = .blackText
-        overpaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        overpaymentLabel.textColor = .deepGray
+        overpaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
         overpaymentLabel.text = NSLocalizedString("You are scheduling a payment that may result in overpaying your total amount due.", comment: "")
         overpaymentLabel.setLineHeight(lineHeight: 24)
         
-        paymentAccountTextLabel.textColor = .deepGray
-        paymentAccountTextLabel.text = NSLocalizedString("Payment Method", comment: "")
-        paymentAccountMaskedAccountNumberLabel.textColor = .blackText
-        paymentAccountNicknameLabel.textColor = .middleGray
+        paymentMethodTextLabel.textColor = .deepGray
+        paymentMethodTextLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentMethodTextLabel.text = NSLocalizedString("Payment Method", comment: "")
+        paymentMethodMaskedAccountNumberLabel.textColor = .deepGray
+        paymentMethodMaskedAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
+        paymentMethodNicknameLabel.textColor = .middleGray
+        paymentMethodNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        receiptView.layer.cornerRadius = 10
-        receiptView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        receiptView.layer.borderWidth = 1
+        receiptView.layer.borderColor = UIColor.accentGray.cgColor
         
         amountDueTextLabel.textColor = .deepGray
         amountDueTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -121,7 +108,6 @@ class ReviewPaymentViewController: UIViewController {
         dueDateValueLabel.textColor = .deepGray
         dueDateValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        convenienceFeeView.backgroundColor = .softGray
         paymentAmountTextLabel.textColor = .deepGray
         paymentAmountTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         paymentAmountTextLabel.text = NSLocalizedString("Payment Amount", comment: "")
@@ -145,59 +131,44 @@ class ReviewPaymentViewController: UIViewController {
         bankOverpayingValueLabel.textColor = .deepGray
         bankOverpayingValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
-        totalPaymentView.backgroundColor = .softGray
-        paymentDateTextLabel.textColor = .blackText
-        paymentDateTextLabel.font = SystemFont.medium.of(textStyle: .headline)
+        paymentDateTextLabel.textColor = .deepGray
+        paymentDateTextLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         paymentDateTextLabel.text = NSLocalizedString("Payment Date", comment: "")
-        paymentDateValueLabel.textColor = .blackText
-        paymentDateValueLabel.font = SystemFont.medium.of(textStyle: .headline)
-        totalPaymentTextLabel.textColor = .blackText
-        totalPaymentTextLabel.font = SystemFont.medium.of(textStyle: .headline)
-        totalPaymentValueLabel.textColor = .blackText
-        totalPaymentValueLabel.font = SystemFont.medium.of(textStyle: .headline)
+        paymentDateValueLabel.textColor = .deepGray
+        paymentDateValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        totalPaymentTextLabel.textColor = .deepGray
+        totalPaymentTextLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        totalPaymentValueLabel.textColor = .deepGray
+        totalPaymentValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
-        termsConditionsSwitchLabel.textColor = .deepGray
-        termsConditionsSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        termsConditionsSwitchLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
-        termsConditionsSwitchLabel.setLineHeight(lineHeight: 25)
-        termsConditionsButtonLabel.font = SystemFont.bold.of(textStyle: .headline)
-        termsConditionsButtonLabel.textColor = .actionBlue
-        termsConditionsButtonLabel.text = NSLocalizedString("View terms and conditions", comment: "")
-        termsConditionsButton.accessibilityLabel = termsConditionsButtonLabel.text
-        termsConditionsSwitchLabel.isAccessibilityElement = false
-        termsConditionsSwitch.accessibilityLabel = termsConditionsSwitchLabel.text!
+        termsConditionsCheckboxLabel.textColor = .deepGray
+        termsConditionsCheckboxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        termsConditionsCheckboxLabel.text = NSLocalizedString("Yes, I have read, understand, and agree to the terms and conditions provided below:", comment: "")
+        termsConditionsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        termsConditionsButton.setTitleColor(.actionBlue, for: .normal)
+        termsConditionsButton.setTitle(NSLocalizedString("View terms and conditions", comment: ""), for: .normal)
+        termsConditionsButton.accessibilityLabel = termsConditionsButton.titleLabel?.text
+        termsConditionsCheckboxLabel.isAccessibilityElement = false
+        termsConditionsCheckbox.accessibilityLabel = termsConditionsCheckboxLabel.text!
         
-        overpayingSwitchLabel.textColor = .deepGray
-        overpayingSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        overpayingSwitchLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
-        overpayingSwitchLabel.setLineHeight(lineHeight: 25)
-        overpayingSwitchLabel.isAccessibilityElement = false
-        overpayingSwitch.accessibilityLabel = overpayingSwitchLabel.text!
+        overpayingCheckboxLabel.textColor = .deepGray
+        overpayingCheckboxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        overpayingCheckboxLabel.text = NSLocalizedString("Yes, I acknowledge I am scheduling a payment for more than is currently due on my account.", comment: "")
+        overpayingCheckboxLabel.isAccessibilityElement = false
+        overpayingCheckbox.accessibilityLabel = overpayingCheckboxLabel.text!
         
-        activeSeveranceSwitchLabel.textColor = .deepGray
-        activeSeveranceSwitchLabel.font = SystemFont.regular.of(textStyle: .headline)
-        activeSeveranceSwitchLabel.text = NSLocalizedString("I acknowledge I will not be able to edit or delete this payment once submitted.", comment: "")
-        activeSeveranceSwitchLabel.setLineHeight(lineHeight: 25)
-        activeSeveranceSwitchLabel.isAccessibilityElement = false
-        activeSeveranceSwitch.accessibilityLabel = activeSeveranceSwitchLabel.text!
+        activeSeveranceCheckboxLabel.textColor = .deepGray
+        activeSeveranceCheckboxLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        activeSeveranceCheckboxLabel.text = NSLocalizedString("I acknowledge I will not be able to edit or delete this payment once submitted.", comment: "")
+        activeSeveranceCheckboxLabel.isAccessibilityElement = false
+        activeSeveranceCheckbox.accessibilityLabel = activeSeveranceCheckboxLabel.text!
         
-        footerView.backgroundColor = .softGray
-        footerLabel.textColor = .blackText
-        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.textColor = .deepGray
+        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         footerLabel.text = viewModel.reviewPaymentFooterLabelText
         
         bindViewHiding()
         bindViewContent()
-        bindButtonTaps()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer.frame = gradientView.bounds
-    }
-    
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = gradientView.bounds
     }
     
     func bindViewHiding() {
@@ -206,16 +177,16 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.isOverpayingCard.map(!).drive(cardOverpayingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.isOverpayingBank.map(!).drive(bankOverpayingView.rx.isHidden).disposed(by: disposeBag)
         viewModel.reviewPaymentShouldShowConvenienceFeeBox.map(!).drive(convenienceFeeView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isOverpaying.map(!).drive(overpayingSwitchView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceSwitchView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isOverpaying.map(!).drive(overpayingCheckboxView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.isActiveSeveranceUser.map(!).drive(activeSeveranceCheckboxView.rx.isHidden).disposed(by: disposeBag)
     }
     
     func bindViewContent() {
         // Payment Method
-        viewModel.selectedWalletItemImage.drive(paymentAccountImageView.rx.image).disposed(by: disposeBag)
-        viewModel.selectedWalletItemMaskedAccountString.drive(paymentAccountMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
-        viewModel.selectedWalletItemNickname.drive(paymentAccountNicknameLabel.rx.text).disposed(by: disposeBag)
-        viewModel.selectedWalletItemA11yLabel.drive(paymentAccountA11yView.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.selectedWalletItemImage.drive(paymentMethodImageView.rx.image).disposed(by: disposeBag)
+        viewModel.selectedWalletItemMaskedAccountString.drive(paymentMethodMaskedAccountNumberLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemNickname.drive(paymentMethodNicknameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.selectedWalletItemA11yLabel.drive(paymentMethodA11yView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Amount Due
         viewModel.amountDueCurrencyString.asDriver().drive(amountDueValueLabel.rx.text).disposed(by: disposeBag)
@@ -241,20 +212,12 @@ class ReviewPaymentViewController: UIViewController {
         viewModel.totalPaymentDisplayString.drive(totalPaymentValueLabel.rx.text).disposed(by: disposeBag)
         
         // Switches
-        termsConditionsSwitch.rx.isOn.bind(to: viewModel.termsConditionsSwitchValue).disposed(by: disposeBag)
-        overpayingSwitch.rx.isOn.bind(to: viewModel.overpayingSwitchValue).disposed(by: disposeBag)
-        activeSeveranceSwitch.rx.isOn.bind(to: viewModel.activeSeveranceSwitchValue).disposed(by: disposeBag)
+        termsConditionsCheckbox.rx.isChecked.bind(to: viewModel.termsConditionsSwitchValue).disposed(by: disposeBag)
+        overpayingCheckbox.rx.isChecked.bind(to: viewModel.overpayingSwitchValue).disposed(by: disposeBag)
+        activeSeveranceCheckbox.rx.isChecked.bind(to: viewModel.activeSeveranceSwitchValue).disposed(by: disposeBag)
     }
     
-    func bindButtonTaps() {
-        termsConditionsButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.onTermsConditionsPress()
-        }).disposed(by: disposeBag)
-    }
-    
-    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
-        guard submitButton.isEnabled else { return }
-        
+    @IBAction func onSubmitPress() {
         LoadingView.show()
         
         if let bankOrCard = viewModel.selectedWalletItem.value?.bankOrCard, let temp = viewModel.selectedWalletItem.value?.isTemporary {
@@ -336,7 +299,7 @@ class ReviewPaymentViewController: UIViewController {
         }
     }
     
-    func onTermsConditionsPress() {
+    @IBAction func onTermsConditionsPress() {
         let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)

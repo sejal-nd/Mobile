@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AZV-s1-3lG">
-                    <rect key="frame" x="40" y="74" width="237" height="337"/>
+                    <rect key="frame" x="40" y="30" width="237" height="415"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hso-YC-BF1">
                             <rect key="frame" x="65" y="0.0" width="107" height="107"/>
@@ -50,7 +46,7 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1TH-k6-XfF">
-                            <rect key="frame" x="84" y="128" width="69.5" height="51.5"/>
+                            <rect key="frame" x="84" y="147.5" width="69.5" height="51.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlR-nO-zha">
                                     <rect key="frame" x="0.0" y="0.0" width="69.5" height="18"/>
@@ -67,13 +63,13 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIN-zU-kOq">
-                            <rect key="frame" x="100" y="200.5" width="37.5" height="18"/>
+                            <rect key="frame" x="100" y="239.5" width="37.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e08-9m-ZyA">
-                            <rect key="frame" x="56.5" y="239.5" width="124.5" height="31.5"/>
+                            <rect key="frame" x="56.5" y="298" width="124.5" height="31.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated Restoration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N63-As-aAp">
                                     <rect key="frame" x="0.0" y="0.0" width="124.5" height="14.5"/>
@@ -89,8 +85,8 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NL-hr-K7U" customClass="SecondaryButtonNew" customModule="BGE" customModuleProvider="target">
-                            <rect key="frame" x="18.5" y="292" width="200" height="45"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NL-hr-K7U" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                            <rect key="frame" x="18.5" y="370" width="200" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="abJ-Rv-52F"/>
                                 <constraint firstAttribute="height" constant="45" id="k3g-99-56t"/>

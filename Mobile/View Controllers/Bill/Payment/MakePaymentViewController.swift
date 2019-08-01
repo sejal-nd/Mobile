@@ -178,12 +178,12 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
         paymentStatusTextLabel.textColor = .deepGray
         paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentStatusValueLabel.textColor = .blackText
+        paymentStatusValueLabel.textColor = .deepGray
         paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle: .headline)
         confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
         confirmationNumberTextLabel.textColor = .deepGray
-        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .headline)
-        confirmationNumberValueTextView.textColor = .blackText
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberValueTextView.textColor = .deepGray
         confirmationNumberValueTextView.dataDetectorTypes.remove(.all) // Some confirmation numbers are detected as phone numbers
         confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle: .headline)
         for line in editPaymentDividerLines {
@@ -217,15 +217,15 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         footerLabel.textColor = .deepGray
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        stickyPaymentFooterTotalPaymentLabel.textColor = .blackText
+        stickyPaymentFooterTotalPaymentLabel.textColor = .deepGray
         stickyPaymentFooterTotalPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-        stickyPaymentFooterAmountLabel.textColor = .blackText
-        stickyPaymentFooterAmountLabel.font = SystemFont.semibold.of(textStyle: .title1)
+        stickyPaymentFooterAmountLabel.textColor = .deepGray
+        stickyPaymentFooterAmountLabel.font = SystemFont.semibold.of(textStyle: .callout)
         stickyPaymentFooterFeeLabel.textColor = .deepGray
         stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
+        errorLabel.textColor = .deepGray
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         
         bindViewHiding()
@@ -294,12 +294,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.shouldShowCancelPaymentButton.not().drive(cancelPaymentButton.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.shouldShowStickyFooterView.drive(onNext: { [weak self] shouldShow in
-            if Environment.shared.opco != .bge && self?.billingHistoryItem != nil {
-                // ePay R1 ComEd/PECO modify tweaks
-                self?.stickyPaymentFooterView.isHidden = true
-            } else {
-                self?.stickyPaymentFooterView.isHidden = !shouldShow
-            }
+            self?.stickyPaymentFooterView.isHidden = !shouldShow
             
             // Needed for correct sizing
             self?.stickyPaymentFooterStackView.setNeedsLayout()

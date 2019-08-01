@@ -18,7 +18,7 @@ class LandingViewController: UIViewController {
     @IBOutlet weak var logoBackgroundView: UIView!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var signInButton: PrimaryButtonNew!
-    @IBOutlet weak var registerButton: SecondaryButtonNew!
+    @IBOutlet weak var registerButton: SecondaryButton!
     @IBOutlet weak var continueAsGuestButon: UIButton!
     @IBOutlet weak var tabletView: UIView!
     @IBOutlet weak var versionLabel: UILabel!
