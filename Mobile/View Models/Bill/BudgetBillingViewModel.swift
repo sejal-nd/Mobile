@@ -16,11 +16,11 @@ class BudgetBillingViewModel {
     private var alertsService: AlertsService
 
     let accountDetail: AccountDetail!
-    let currentEnrollment: Variable<Bool>!
+    //let currentEnrollment: Variable<Bool>!
     var averageMonthlyBill: String?
     
-    let enrolling = Variable(false)
-    let unenrolling = Variable(false)
+//    let enrolling = Variable(false)
+//    let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
     
     required init(accountDetail: AccountDetail, billService: BillService, alertsService: AlertsService) {
@@ -28,18 +28,18 @@ class BudgetBillingViewModel {
         self.billService = billService
         self.alertsService = alertsService
         
-        let initialEnrollment = accountDetail.isBudgetBillEnrollment
-        currentEnrollment = Variable(initialEnrollment)
+//        let initialEnrollment = accountDetail.isBudgetBillEnrollment
+//        currentEnrollment = Variable(initialEnrollment)
         
-        currentEnrollment.asObservable()
-            .map { !initialEnrollment && $0 }
-            .bind(to: enrolling)
-            .disposed(by: disposeBag)
-        
-        currentEnrollment.asObservable()
-            .map { initialEnrollment && !$0 }
-            .bind(to: unenrolling)
-            .disposed(by: disposeBag)
+//        currentEnrollment.asObservable()
+//            .map { !initialEnrollment && $0 }
+//            .bind(to: enrolling)
+//            .disposed(by: disposeBag)
+//
+//        currentEnrollment.asObservable()
+//            .map { initialEnrollment && !$0 }
+//            .bind(to: unenrolling)
+//            .disposed(by: disposeBag)
     }
     
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
@@ -91,17 +91,17 @@ class BudgetBillingViewModel {
             .disposed(by: disposeBag)
     }
     
-    func submitButtonEnabled() -> Observable<Bool> {
-        return Observable.combineLatest(enrolling.asObservable(), unenrolling.asObservable(), selectedUnenrollmentReason.asObservable()) {
-            if $0 { return true }
-            if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
-                if $1 && $2 != -1 { return true }
-            } else { // BGE
-                if $1 { return true }
-            }
-            return false
-        }
-    }
+//    func submitButtonEnabled() -> Observable<Bool> {
+//        return Observable.combineLatest(enrolling.asObservable(), unenrolling.asObservable(), selectedUnenrollmentReason.asObservable()) {
+//            if $0 { return true }
+//            if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
+//                if $1 && $2 != -1 { return true }
+//            } else { // BGE
+//                if $1 { return true }
+//            }
+//            return false
+//        }
+//    }
     
     var amountDescriptionText: String {
         switch Environment.shared.opco {
