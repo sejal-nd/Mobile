@@ -30,7 +30,7 @@ class PaymentConfirmationViewController: UIViewController {
     
     @IBOutlet weak var autoPayView: UIView!
     @IBOutlet weak var autoPayLabel: UILabel!
-    @IBOutlet weak var enrollAutoPayButton: SecondaryButtonNew!
+    @IBOutlet weak var enrollAutoPayButton: SecondaryButton!
     
     @IBOutlet weak var footerView: StickyFooterView!
     @IBOutlet weak var footerLabel: UILabel!

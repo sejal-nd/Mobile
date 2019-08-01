@@ -19,7 +19,7 @@ class BillingHistoryViewController: UIViewController {
     
     @IBOutlet weak var emptyStateView: UIView!
     @IBOutlet weak var emptyStateLabel: UILabel!
-    @IBOutlet weak var emptyStateAutoPayButton: SecondaryButtonNew!
+    @IBOutlet weak var emptyStateAutoPayButton: SecondaryButton!
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     

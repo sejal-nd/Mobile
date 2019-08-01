@@ -1,5 +1,5 @@
 //
-//  SecondaryButtonNew.swift
+//  SecondaryButton.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 6/24/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondaryButtonNew: UIButton {
+class SecondaryButton: UIButton {
     
     private enum SecondaryButtonCondensation: Int {
         case none

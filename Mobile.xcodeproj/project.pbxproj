@@ -942,9 +942,9 @@
 		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
-		9C62445622C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
-		9C62445722C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
-		9C62445822C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */; };
+		9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButton.swift */; };
+		9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButton.swift */; };
+		9C62445822C1624900F14DA0 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButton.swift */; };
 		9C62445C22C171C900F14DA0 /* FloatLabelTextFieldNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62445A22C171C800F14DA0 /* FloatLabelTextFieldNew.xib */; };
 		9C62445D22C171C900F14DA0 /* FloatLabelTextFieldNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62445A22C171C800F14DA0 /* FloatLabelTextFieldNew.xib */; };
 		9C62445E22C171C900F14DA0 /* FloatLabelTextFieldNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62445A22C171C800F14DA0 /* FloatLabelTextFieldNew.xib */; };
@@ -2955,7 +2955,7 @@
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
-		9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonNew.swift; sourceTree = "<group>"; };
+		9C62445522C1624900F14DA0 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		9C62445A22C171C800F14DA0 /* FloatLabelTextFieldNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextFieldNew.xib; sourceTree = "<group>"; };
 		9C62445B22C171C800F14DA0 /* FloatLabelTextFieldNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextFieldNew.swift; sourceTree = "<group>"; };
 		9C62446222C28A4600F14DA0 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
@@ -4394,7 +4394,7 @@
 				825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */,
 				82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */,
 				9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */,
-				9C62445522C1624900F14DA0 /* SecondaryButtonNew.swift */,
+				9C62445522C1624900F14DA0 /* SecondaryButton.swift */,
 				82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */,
 				82A18EB71EBA676700BE9F21 /* Switch.swift */,
 				54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */,
@@ -7825,7 +7825,7 @@
 				E8EEF7451E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				2FEC69411F056EEB00C059DC /* Premise.swift in Sources */,
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
-				9C62445622C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */,
+				9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */,
@@ -8253,7 +8253,7 @@
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				357757572114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
-				9C62445822C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */,
+				9C62445822C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
 				B596062C1F7C1F4A00515B72 /* AppRating.swift in Sources */,
@@ -8586,7 +8586,7 @@
 				54C1DEFD1F02B8FB00290FE5 /* BillingHistoryViewController.swift in Sources */,
 				35A6C6E1211CC16C00C2A58F /* UpdatesViewController.swift in Sources */,
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
-				9C62445722C1624900F14DA0 /* SecondaryButtonNew.swift in Sources */,
+				9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */,
