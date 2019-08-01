@@ -89,8 +89,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
     @IBOutlet private weak var oneTouchPayTCButtonLabel: UILabel!
     
-    @IBOutlet private weak var viewBillButton: ButtonControl!
-    @IBOutlet private weak var viewBillButtonLabel: UILabel!
+    @IBOutlet private weak var viewBillButton: UIButton!
     
     @IBOutlet private weak var billNotReadyStack: UIStackView!
     @IBOutlet private weak var billNotReadyImageView: UIImageView!
@@ -140,63 +139,88 @@ class HomeBillCardView: UIView {
         layer.cornerRadius = 10
         clippingView.layer.cornerRadius = 10
         
-        headerView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
+        headerView.layer.borderColor = UIColor.accentGray.cgColor
+        headerView.layer.borderWidth = 1
         
-        reinstatementFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        headerLabel.textColor = .deepGray
+        headerLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        
+        reinstatementFeeLabel.textColor = .deepGray
+        reinstatementFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         reinstatementFeeLabel.setLineHeight(lineHeight: 16)
         
-        bankCreditNumberButton.layer.borderColor = UIColor.errorRed.cgColor
-        bankCreditNumberButton.layer.cornerRadius = 3
-        bankCreditNumberButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
-        bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
+        bankCreditNumberButton.layer.borderWidth = 1
+        bankCreditNumberButton.layer.cornerRadius = 15
+
+        bankCreditCardNumberLabel.textColor = .deepGray
+        bankCreditCardNumberLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        
+        expiredLabel.textColor = .deepGray
+        expiredLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
         saveAPaymentAccountButton.layer.cornerRadius = 3
-        saveAPaymentAccountButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 2)
-        saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        saveAPaymentAccountButton.layer.borderWidth = 1
+        saveAPaymentAccountButton.layer.borderColor = UIColor.accentGray.cgColor
+        saveAPaymentAccountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
         a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
         a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
         
-        dueDateLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+        paymentDescriptionLabel.textColor = .deepGray
+        paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .body)
         
-        //TODO: Remove this check when BGE switches to Paymentus
-        switch Environment.shared.opco {
-        case .bge:
-            slideToPayConfirmationDetailLabel.isSelectable = false
-            slideToPayConfirmationDetailLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        case .comEd, .peco:
-            slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        }
+        minimumPaymentLabel.textColor = .deepGray
+        minimumPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        
+        amountLabel.textColor = .deepGray
+        amountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
+        
+        dueDateLabel.textColor = .deepGray
+        dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+
+        slideToPayConfirmationDetailLabel.textColor = .deepGray
+        slideToPayConfirmationDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         bankCreditCardNumberLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        convenienceFeeLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        walletItemInfoBox.layer.cornerRadius = 6
-        walletItemInfoBox.backgroundColor = .softGray
+        convenienceFeeLabel.textColor = .deepGray
+        convenienceFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         scheduledPaymentBox.layer.cornerRadius = 6
-        thankYouForSchedulingButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
+        scheduledPaymentBox.layer.borderColor = UIColor.accentGray.cgColor
+        scheduledPaymentBox.layer.borderWidth = 1
+        thankYouForSchedulingButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         thankYouForSchedulingButton.titleLabel?.numberOfLines = 0
         
         autoPayBox.layer.cornerRadius = 6
-        autoPayButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .subheadline)
+        autoPayBox.layer.borderColor = UIColor.accentGray.cgColor
+        autoPayBox.layer.borderWidth = 1
+        autoPayButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         autoPayButton.titleLabel?.numberOfLines = 0
         
-        oneTouchPayTCButtonLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        oneTouchPayTCButtonLabel.textColor = .actionBlue
+        oneTouchPayTCButtonLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         oneTouchPayTCButtonLabel.text = NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions.", comment: "")
         oneTouchPayTCButton.accessibilityLabel = oneTouchPayTCButtonLabel.text
-        oneTouchPayTCButtonLabel.textColor = .actionBlue
         
-        viewBillButtonLabel.font = SystemFont.semibold.of(textStyle: .title1)
-        viewBillButton.accessibilityLabel = NSLocalizedString("View Bill Details", comment: "")
+        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
         
-        billNotReadyLabel.font = OpenSans.regular.of(textStyle: .title1)
+        // Bill Not Ready
+        billNotReadyLabel.textColor = .deepGray
+        billNotReadyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         billNotReadyLabel.setLineHeight(lineHeight: 26)
         billNotReadyLabel.textAlignment = .center
-        errorLabel.font = OpenSans.regular.of(textStyle: .title1)
+        
+        // Error State
+        errorTitleLabel.textColor = .deepGray
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        
+        errorLabel.textColor = .deepGray
+        errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         errorLabel.setLineHeight(lineHeight: 26)
         errorLabel.textAlignment = .center
         if let errorLabelText = errorLabel.text {
@@ -204,10 +228,9 @@ class HomeBillCardView: UIView {
             errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, errorLabelText)
         }
         
-        errorTitleLabel.textColor = .blackText
-        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        
-        maintenanceModeLabel.font = OpenSans.regular.of(textStyle: .title1)
+        // Maintenance Mode
+        maintenanceModeLabel.textColor = .deepGray
+        maintenanceModeLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         // Accessibility
         alertAnimation.isAccessibilityElement = true
@@ -323,7 +346,17 @@ class HomeBillCardView: UIView {
         viewModel.showBankCreditNumberButton.not().drive(bankCreditNumberButton.rx.isHidden).disposed(by: bag)
         viewModel.bankCreditButtonBorderWidth.drive(bankCreditNumberButton.rx.borderWidth).disposed(by: bag)
         viewModel.showBankCreditExpiredLabel.not().drive(bankCreditCardExpiredContainer.rx.isHidden).disposed(by: bag)
+       
+        viewModel.showBankCreditExpiredLabel.asObservable().subscribe(onNext: { [weak self] show in
+            if show {
+                self?.bankCreditNumberButton.layer.borderColor = UIColor.primaryColor.cgColor
+            } else {
+                self?.bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
+            }
+        }).disposed(by: bag)
+        
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
+        
         viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
             let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
             self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
@@ -404,8 +437,7 @@ class HomeBillCardView: UIView {
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
         .unwrap()
-        .map { (NSLocalizedString("Terms and Conditions", comment: ""), $0) }
-        .map(WebViewController.init)
+        .map { (LargeTitleNavigationController(rootViewController: WebViewController.init(title: NSLocalizedString("Terms and Conditions", comment: ""), url: $0))) }
         .asDriver(onErrorDriveWith: .empty())
     
     private lazy var oneTouchPayErrorAlert: Driver<UIViewController> = self.viewModel.oneTouchPayResult.errors()
