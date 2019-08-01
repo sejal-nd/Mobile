@@ -55,10 +55,10 @@
                                                             <rect key="frame" x="0.0" y="45" width="505" height="398"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UJ5-gS-ygZ">
-                                                                    <rect key="frame" x="152.5" y="44" width="200" height="200.5"/>
+                                                                    <rect key="frame" x="152.5" y="20" width="200" height="224.5"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XgB-5d-WQI" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="81.5" width="60" height="119"/>
+                                                                            <rect key="frame" x="0.0" y="105.5" width="60" height="119"/>
                                                                             <subviews>
                                                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nyt-T9-ZZv">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="98"/>
@@ -102,7 +102,7 @@
                                                                             </connections>
                                                                         </view>
                                                                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdD-dY-oPl" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="70" y="23.5" width="60" height="177"/>
+                                                                            <rect key="frame" x="70" y="47.5" width="60" height="177"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hw1-Az-igH">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
@@ -143,7 +143,7 @@
                                                                             </connections>
                                                                         </view>
                                                                         <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEB-lb-OVj" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                            <rect key="frame" x="140" y="23.5" width="60" height="177"/>
+                                                                            <rect key="frame" x="140" y="47.5" width="60" height="177"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESH-wW-gIi">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="17"/>
@@ -283,7 +283,7 @@
                                                                 <constraint firstItem="n08-7D-H4N" firstAttribute="top" secondItem="UJ5-gS-ygZ" secondAttribute="bottom" priority="999" constant="8" id="CAK-jd-6EB"/>
                                                                 <constraint firstItem="UJ5-gS-ygZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xPo-rA-9qq" secondAttribute="leading" constant="29" id="pG1-Ky-8Ig"/>
                                                                 <constraint firstItem="n08-7D-H4N" firstAttribute="centerX" secondItem="xPo-rA-9qq" secondAttribute="centerX" id="sRB-pp-QJS"/>
-                                                                <constraint firstItem="UJ5-gS-ygZ" firstAttribute="top" secondItem="xPo-rA-9qq" secondAttribute="top" priority="999" constant="44" id="wFA-Ty-wVe"/>
+                                                                <constraint firstItem="UJ5-gS-ygZ" firstAttribute="top" secondItem="xPo-rA-9qq" secondAttribute="top" priority="999" constant="20" id="wFA-Ty-wVe"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7G-aF-Kbc">
