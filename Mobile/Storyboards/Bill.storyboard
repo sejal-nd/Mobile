@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -33,10 +34,6 @@
         <scene sceneID="mpU-Vk-crp">
             <objects>
                 <viewController storyboardIdentifier="BGEasy" id="VY7-IV-VDc" customClass="BGEasyViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Zn1-je-maK"/>
-                        <viewControllerLayoutGuide type="bottom" id="kfi-S8-eRB"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nL0-Dp-GVd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,13 +177,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Ag7-4H-wgn" secondAttribute="bottom" id="5ha-gJ-1Zs"/>
-                            <constraint firstAttribute="trailing" secondItem="buj-mn-TKo" secondAttribute="trailing" id="AHD-wn-VtX"/>
-                            <constraint firstAttribute="trailing" secondItem="Ag7-4H-wgn" secondAttribute="trailing" id="OjK-1c-jaw"/>
+                            <constraint firstItem="bDc-br-Hqe" firstAttribute="trailing" secondItem="buj-mn-TKo" secondAttribute="trailing" id="AHD-wn-VtX"/>
+                            <constraint firstItem="bDc-br-Hqe" firstAttribute="trailing" secondItem="Ag7-4H-wgn" secondAttribute="trailing" id="OjK-1c-jaw"/>
                             <constraint firstItem="Ag7-4H-wgn" firstAttribute="top" secondItem="buj-mn-TKo" secondAttribute="bottom" id="WiF-zu-qMD"/>
                             <constraint firstItem="buj-mn-TKo" firstAttribute="top" secondItem="nL0-Dp-GVd" secondAttribute="topMargin" id="bBD-Ez-S5Y"/>
-                            <constraint firstItem="Ag7-4H-wgn" firstAttribute="leading" secondItem="nL0-Dp-GVd" secondAttribute="leading" id="hVG-Gg-2d6"/>
-                            <constraint firstItem="buj-mn-TKo" firstAttribute="leading" secondItem="nL0-Dp-GVd" secondAttribute="leading" id="qmW-sx-xbX"/>
+                            <constraint firstItem="Ag7-4H-wgn" firstAttribute="leading" secondItem="bDc-br-Hqe" secondAttribute="leading" id="hVG-Gg-2d6"/>
+                            <constraint firstItem="buj-mn-TKo" firstAttribute="leading" secondItem="bDc-br-Hqe" secondAttribute="leading" id="qmW-sx-xbX"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bDc-br-Hqe"/>
                     </view>
                     <connections>
                         <outlet property="bullet1Label" destination="qgW-Mn-2OC" id="eDD-Tl-oZS"/>
@@ -208,10 +206,6 @@
         <scene sceneID="2rX-fB-kC7">
             <objects>
                 <viewController storyboardIdentifier="BGEAutoPay" hidesBottomBarWhenPushed="YES" id="Zhu-5c-ibe" userLabel="BGE Auto Pay View Controller" customClass="BGEAutoPayViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0V4-4r-1Ym"/>
-                        <viewControllerLayoutGuide type="bottom" id="TZy-P2-Akr"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LEx-8H-no4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -545,20 +539,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="78M-KI-pKV" firstAttribute="centerY" secondItem="em4-P8-gSz" secondAttribute="centerY" id="10h-HR-Gg4"/>
-                            <constraint firstItem="TZy-P2-Akr" firstAttribute="top" secondItem="wdJ-C6-qgB" secondAttribute="bottom" id="5e0-H2-iuW"/>
-                            <constraint firstItem="CVS-Em-9Iu" firstAttribute="leading" secondItem="LEx-8H-no4" secondAttribute="leading" id="C4n-Hy-dmO"/>
-                            <constraint firstItem="uqw-F0-A6U" firstAttribute="centerX" secondItem="LEx-8H-no4" secondAttribute="centerX" id="E5C-TR-lcr"/>
-                            <constraint firstAttribute="trailing" secondItem="em4-P8-gSz" secondAttribute="trailing" id="FY0-ux-NUV"/>
-                            <constraint firstItem="em4-P8-gSz" firstAttribute="leading" secondItem="LEx-8H-no4" secondAttribute="leading" id="H5J-SO-HLo"/>
-                            <constraint firstAttribute="trailing" secondItem="CVS-Em-9Iu" secondAttribute="trailing" id="OZh-df-gDH"/>
+                            <constraint firstItem="7ph-SH-Hys" firstAttribute="bottom" secondItem="wdJ-C6-qgB" secondAttribute="bottom" id="5e0-H2-iuW"/>
+                            <constraint firstItem="CVS-Em-9Iu" firstAttribute="leading" secondItem="7ph-SH-Hys" secondAttribute="leading" id="C4n-Hy-dmO"/>
+                            <constraint firstItem="uqw-F0-A6U" firstAttribute="centerX" secondItem="7ph-SH-Hys" secondAttribute="centerX" id="E5C-TR-lcr"/>
+                            <constraint firstItem="7ph-SH-Hys" firstAttribute="trailing" secondItem="em4-P8-gSz" secondAttribute="trailing" id="FY0-ux-NUV"/>
+                            <constraint firstItem="em4-P8-gSz" firstAttribute="leading" secondItem="7ph-SH-Hys" secondAttribute="leading" id="H5J-SO-HLo"/>
+                            <constraint firstItem="7ph-SH-Hys" firstAttribute="trailing" secondItem="CVS-Em-9Iu" secondAttribute="trailing" id="OZh-df-gDH"/>
                             <constraint firstItem="em4-P8-gSz" firstAttribute="top" secondItem="CVS-Em-9Iu" secondAttribute="bottom" id="QYq-Pr-0Sv"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uqw-F0-A6U" secondAttribute="trailing" constant="29" id="gdA-tG-QMw"/>
-                            <constraint firstItem="CVS-Em-9Iu" firstAttribute="top" secondItem="0V4-4r-1Ym" secondAttribute="bottom" id="jmt-Ff-JUN"/>
-                            <constraint firstItem="uqw-F0-A6U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LEx-8H-no4" secondAttribute="leading" constant="29" id="lDh-4O-hKq"/>
-                            <constraint firstItem="78M-KI-pKV" firstAttribute="centerX" secondItem="LEx-8H-no4" secondAttribute="centerX" id="r0V-G4-7v0"/>
+                            <constraint firstItem="7ph-SH-Hys" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uqw-F0-A6U" secondAttribute="trailing" constant="29" id="gdA-tG-QMw"/>
+                            <constraint firstItem="CVS-Em-9Iu" firstAttribute="top" secondItem="7ph-SH-Hys" secondAttribute="top" id="jmt-Ff-JUN"/>
+                            <constraint firstItem="uqw-F0-A6U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ph-SH-Hys" secondAttribute="leading" constant="29" id="lDh-4O-hKq"/>
+                            <constraint firstItem="78M-KI-pKV" firstAttribute="centerX" secondItem="7ph-SH-Hys" secondAttribute="centerX" id="r0V-G4-7v0"/>
                             <constraint firstItem="uqw-F0-A6U" firstAttribute="centerY" secondItem="em4-P8-gSz" secondAttribute="centerY" id="rhC-DP-xk1"/>
                             <constraint firstAttribute="bottom" secondItem="em4-P8-gSz" secondAttribute="bottom" id="tkR-g5-8SV"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="7ph-SH-Hys"/>
                     </view>
                     <navigationItem key="navigationItem" title="AutoPay" id="XPa-ca-oJi">
                         <barButtonItem key="backBarButtonItem" title="Back" id="L1l-b7-fiq"/>
@@ -601,10 +596,6 @@
         <scene sceneID="5fT-QL-E36">
             <objects>
                 <viewController id="K4v-kg-55U" customClass="BGEAutoPaySettingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qqR-TJ-FyS"/>
-                        <viewControllerLayoutGuide type="bottom" id="hNH-Qz-SPV"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IGm-Kg-8L6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -673,11 +664,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="arL-OO-1wj" firstAttribute="top" secondItem="qqR-TJ-FyS" secondAttribute="bottom" id="7ve-K5-Vej"/>
-                            <constraint firstItem="arL-OO-1wj" firstAttribute="leading" secondItem="IGm-Kg-8L6" secondAttribute="leading" id="Pq7-gc-E8Y"/>
-                            <constraint firstAttribute="trailing" secondItem="arL-OO-1wj" secondAttribute="trailing" id="RO2-4P-0ZR"/>
+                            <constraint firstItem="arL-OO-1wj" firstAttribute="top" secondItem="cld-NZ-GlH" secondAttribute="top" id="7ve-K5-Vej"/>
+                            <constraint firstItem="arL-OO-1wj" firstAttribute="leading" secondItem="cld-NZ-GlH" secondAttribute="leading" id="Pq7-gc-E8Y"/>
+                            <constraint firstItem="cld-NZ-GlH" firstAttribute="trailing" secondItem="arL-OO-1wj" secondAttribute="trailing" id="RO2-4P-0ZR"/>
                             <constraint firstAttribute="bottomMargin" secondItem="arL-OO-1wj" secondAttribute="bottom" id="XHs-QX-H5s"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="cld-NZ-GlH"/>
                     </view>
                     <navigationItem key="navigationItem" title="AutoPay Settings" id="uW9-gE-e8y">
                         <barButtonItem key="backBarButtonItem" title="Back" id="PPK-nU-mAj"/>
@@ -703,10 +695,6 @@
         <scene sceneID="1xB-k3-2d5">
             <objects>
                 <viewController id="89T-hV-qed" customClass="AutoPayChangeBankViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e7Q-r8-8Wr"/>
-                        <viewControllerLayoutGuide type="bottom" id="QU4-Ry-Q3j"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eSR-UX-XMD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -847,11 +835,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wdW-TR-Ok5" firstAttribute="width" secondItem="eSR-UX-XMD" secondAttribute="width" id="MIE-DM-FYs"/>
-                            <constraint firstItem="H6B-ap-FEB" firstAttribute="leading" secondItem="eSR-UX-XMD" secondAttribute="leading" id="S41-pr-sHb"/>
-                            <constraint firstAttribute="trailing" secondItem="H6B-ap-FEB" secondAttribute="trailing" id="Wfj-Ky-a8S"/>
-                            <constraint firstItem="H6B-ap-FEB" firstAttribute="top" secondItem="e7Q-r8-8Wr" secondAttribute="bottom" id="caC-tA-3f4"/>
+                            <constraint firstItem="H6B-ap-FEB" firstAttribute="leading" secondItem="v1y-dg-LT3" secondAttribute="leading" id="S41-pr-sHb"/>
+                            <constraint firstItem="v1y-dg-LT3" firstAttribute="trailing" secondItem="H6B-ap-FEB" secondAttribute="trailing" id="Wfj-Ky-a8S"/>
+                            <constraint firstItem="H6B-ap-FEB" firstAttribute="top" secondItem="v1y-dg-LT3" secondAttribute="top" id="caC-tA-3f4"/>
                             <constraint firstAttribute="bottom" secondItem="H6B-ap-FEB" secondAttribute="bottom" id="kjX-b1-nMD"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="v1y-dg-LT3"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="750"/>
@@ -879,10 +868,6 @@
         <scene sceneID="xBx-Wk-jQb">
             <objects>
                 <viewController storyboardIdentifier="AutoPay" hidesBottomBarWhenPushed="YES" id="6jU-xv-e0p" customClass="AutoPayViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="It4-7b-jMW"/>
-                        <viewControllerLayoutGuide type="bottom" id="T3L-9P-iwp"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="N6O-j1-G4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1294,10 +1279,11 @@
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="6bK-OS-FDw" secondAttribute="bottom" id="3Od-He-arZ"/>
-                            <constraint firstItem="6bK-OS-FDw" firstAttribute="top" secondItem="It4-7b-jMW" secondAttribute="bottom" id="ZiN-L9-jJe"/>
-                            <constraint firstAttribute="trailing" secondItem="6bK-OS-FDw" secondAttribute="trailing" id="ryu-vp-dfD"/>
-                            <constraint firstItem="6bK-OS-FDw" firstAttribute="leading" secondItem="N6O-j1-G4v" secondAttribute="leading" id="s3g-dr-f2D"/>
+                            <constraint firstItem="6bK-OS-FDw" firstAttribute="top" secondItem="ZDI-Gr-nns" secondAttribute="top" id="ZiN-L9-jJe"/>
+                            <constraint firstItem="ZDI-Gr-nns" firstAttribute="trailing" secondItem="6bK-OS-FDw" secondAttribute="trailing" id="ryu-vp-dfD"/>
+                            <constraint firstItem="6bK-OS-FDw" firstAttribute="leading" secondItem="ZDI-Gr-nns" secondAttribute="leading" id="s3g-dr-f2D"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZDI-Gr-nns"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1500"/>
@@ -1339,10 +1325,6 @@
         <scene sceneID="Sv9-Up-KVk">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="DBY-ak-0eF" customClass="BillViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fEE-ve-WX2"/>
-                        <viewControllerLayoutGuide type="bottom" id="0O0-oV-nUS"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f8I-LW-4KU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="2066"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2242,23 +2224,24 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="NC9-vF-Qye" secondAttribute="trailing" id="2MU-nA-DPb"/>
-                            <constraint firstItem="0O0-oV-nUS" firstAttribute="top" secondItem="DL5-8p-VuX" secondAttribute="bottom" id="3bz-1B-EnB"/>
-                            <constraint firstItem="2BY-N0-MzF" firstAttribute="top" secondItem="fEE-ve-WX2" secondAttribute="bottom" id="4cU-it-A7R"/>
-                            <constraint firstAttribute="trailing" secondItem="kjt-Td-wx3" secondAttribute="trailing" id="BI5-vO-hUu"/>
-                            <constraint firstItem="kjt-Td-wx3" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="I54-li-gEM"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="trailing" secondItem="NC9-vF-Qye" secondAttribute="trailing" id="2MU-nA-DPb"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="bottom" secondItem="DL5-8p-VuX" secondAttribute="bottom" id="3bz-1B-EnB"/>
+                            <constraint firstItem="2BY-N0-MzF" firstAttribute="top" secondItem="kfU-af-bHI" secondAttribute="top" id="4cU-it-A7R"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="trailing" secondItem="kjt-Td-wx3" secondAttribute="trailing" id="BI5-vO-hUu"/>
+                            <constraint firstItem="kjt-Td-wx3" firstAttribute="leading" secondItem="kfU-af-bHI" secondAttribute="leading" id="I54-li-gEM"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="top" secondItem="2BY-N0-MzF" secondAttribute="bottom" id="JQv-Kb-mjW"/>
-                            <constraint firstItem="0O0-oV-nUS" firstAttribute="top" secondItem="52M-Kq-h1c" secondAttribute="bottom" priority="750" id="LwD-Fz-UH1"/>
-                            <constraint firstAttribute="trailing" secondItem="2BY-N0-MzF" secondAttribute="trailing" id="S5z-o7-xK4"/>
-                            <constraint firstItem="0O0-oV-nUS" firstAttribute="top" secondItem="kjt-Td-wx3" secondAttribute="bottom" id="UW3-u7-23E"/>
-                            <constraint firstItem="2BY-N0-MzF" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="Uwl-qf-6w7"/>
-                            <constraint firstItem="NC9-vF-Qye" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="Vni-HR-K23"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="bottom" secondItem="52M-Kq-h1c" secondAttribute="bottom" priority="750" id="LwD-Fz-UH1"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="trailing" secondItem="2BY-N0-MzF" secondAttribute="trailing" id="S5z-o7-xK4"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="bottom" secondItem="kjt-Td-wx3" secondAttribute="bottom" id="UW3-u7-23E"/>
+                            <constraint firstItem="2BY-N0-MzF" firstAttribute="leading" secondItem="kfU-af-bHI" secondAttribute="leading" id="Uwl-qf-6w7"/>
+                            <constraint firstItem="NC9-vF-Qye" firstAttribute="leading" secondItem="kfU-af-bHI" secondAttribute="leading" id="Vni-HR-K23"/>
                             <constraint firstItem="NC9-vF-Qye" firstAttribute="top" secondItem="f8I-LW-4KU" secondAttribute="top" id="W3R-Mf-aWW"/>
-                            <constraint firstItem="DL5-8p-VuX" firstAttribute="leading" secondItem="f8I-LW-4KU" secondAttribute="leading" id="da8-tO-DCY"/>
-                            <constraint firstAttribute="trailing" secondItem="DL5-8p-VuX" secondAttribute="trailing" id="osR-Xv-yKg"/>
+                            <constraint firstItem="DL5-8p-VuX" firstAttribute="leading" secondItem="kfU-af-bHI" secondAttribute="leading" id="da8-tO-DCY"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="trailing" secondItem="DL5-8p-VuX" secondAttribute="trailing" id="osR-Xv-yKg"/>
                             <constraint firstItem="kjt-Td-wx3" firstAttribute="top" secondItem="f8I-LW-4KU" secondAttribute="top" id="x0y-s4-1lF"/>
-                            <constraint firstItem="0O0-oV-nUS" firstAttribute="top" secondItem="NC9-vF-Qye" secondAttribute="bottom" id="zCr-Zm-tHX"/>
+                            <constraint firstItem="kfU-af-bHI" firstAttribute="bottom" secondItem="NC9-vF-Qye" secondAttribute="bottom" id="zCr-Zm-tHX"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="kfU-af-bHI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bill" id="l6Q-Py-wRt">
                         <barButtonItem key="backBarButtonItem" title=" " id="uJc-vy-HD0"/>
@@ -2346,10 +2329,6 @@
         <scene sceneID="DzK-iM-OMq">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="EyO-6F-Bx4" userLabel="Paperless eBill Commercial Modal" customClass="PaperlessEBillCommercialViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wA3-bk-chE"/>
-                        <viewControllerLayoutGuide type="bottom" id="JGY-dr-TuW"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DPz-xO-lBZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2466,13 +2445,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Zjg-J8-fXD" firstAttribute="top" secondItem="vjl-Sl-xgY" secondAttribute="bottom" id="Cnc-L0-f7z"/>
-                            <constraint firstItem="vjl-Sl-xgY" firstAttribute="leading" secondItem="DPz-xO-lBZ" secondAttribute="leading" id="Itq-GU-wOO"/>
-                            <constraint firstAttribute="trailing" secondItem="Zjg-J8-fXD" secondAttribute="trailing" id="Iw0-Yw-coT"/>
-                            <constraint firstItem="Zjg-J8-fXD" firstAttribute="leading" secondItem="DPz-xO-lBZ" secondAttribute="leading" id="ViL-Zu-azk"/>
-                            <constraint firstAttribute="trailing" secondItem="vjl-Sl-xgY" secondAttribute="trailing" id="ddY-5c-e8Q"/>
+                            <constraint firstItem="vjl-Sl-xgY" firstAttribute="leading" secondItem="lZD-XT-zy8" secondAttribute="leading" id="Itq-GU-wOO"/>
+                            <constraint firstItem="lZD-XT-zy8" firstAttribute="trailing" secondItem="Zjg-J8-fXD" secondAttribute="trailing" id="Iw0-Yw-coT"/>
+                            <constraint firstItem="Zjg-J8-fXD" firstAttribute="leading" secondItem="lZD-XT-zy8" secondAttribute="leading" id="ViL-Zu-azk"/>
+                            <constraint firstItem="lZD-XT-zy8" firstAttribute="trailing" secondItem="vjl-Sl-xgY" secondAttribute="trailing" id="ddY-5c-e8Q"/>
                             <constraint firstAttribute="bottom" secondItem="Zjg-J8-fXD" secondAttribute="bottom" id="klr-6f-2gg"/>
-                            <constraint firstItem="vjl-Sl-xgY" firstAttribute="top" secondItem="wA3-bk-chE" secondAttribute="bottom" id="vRU-ie-32h"/>
+                            <constraint firstItem="vjl-Sl-xgY" firstAttribute="top" secondItem="lZD-XT-zy8" secondAttribute="top" id="vRU-ie-32h"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="lZD-XT-zy8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Paperless eBill" id="jTH-kd-CmW">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jGH-ni-796">
@@ -2499,10 +2479,6 @@
         <scene sceneID="Psv-up-Yrs">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="BAJ-db-3nG" customClass="PaperlessEBillViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aTZ-vM-qxU"/>
-                        <viewControllerLayoutGuide type="bottom" id="Vq1-om-Cqu"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9b6-bb-TH1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2836,15 +2812,16 @@
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dIY-h8-nGr" firstAttribute="top" secondItem="vBu-OQ-0Av" secondAttribute="top" id="49C-Hm-WPB"/>
-                            <constraint firstAttribute="trailing" secondItem="VRG-Ou-QoU" secondAttribute="trailing" id="BNY-ph-5CQ"/>
-                            <constraint firstAttribute="trailing" secondItem="dIY-h8-nGr" secondAttribute="trailing" id="INq-lj-LFJ"/>
-                            <constraint firstItem="VRG-Ou-QoU" firstAttribute="leading" secondItem="9b6-bb-TH1" secondAttribute="leading" id="OWd-WA-dq4"/>
+                            <constraint firstItem="kxT-rm-PwO" firstAttribute="trailing" secondItem="VRG-Ou-QoU" secondAttribute="trailing" id="BNY-ph-5CQ"/>
+                            <constraint firstItem="kxT-rm-PwO" firstAttribute="trailing" secondItem="dIY-h8-nGr" secondAttribute="trailing" id="INq-lj-LFJ"/>
+                            <constraint firstItem="VRG-Ou-QoU" firstAttribute="leading" secondItem="kxT-rm-PwO" secondAttribute="leading" id="OWd-WA-dq4"/>
                             <constraint firstItem="dIY-h8-nGr" firstAttribute="height" secondItem="vBu-OQ-0Av" secondAttribute="height" constant="45" id="Rn0-nd-Txj"/>
                             <constraint firstItem="UOB-RI-gra" firstAttribute="width" secondItem="9b6-bb-TH1" secondAttribute="width" id="ifP-gD-7gc"/>
-                            <constraint firstItem="VRG-Ou-QoU" firstAttribute="top" secondItem="aTZ-vM-qxU" secondAttribute="bottom" id="qlJ-9Y-y0B"/>
+                            <constraint firstItem="VRG-Ou-QoU" firstAttribute="top" secondItem="kxT-rm-PwO" secondAttribute="top" id="qlJ-9Y-y0B"/>
                             <constraint firstAttribute="bottom" secondItem="VRG-Ou-QoU" secondAttribute="bottom" id="xU2-2P-f3n"/>
-                            <constraint firstItem="dIY-h8-nGr" firstAttribute="leading" secondItem="9b6-bb-TH1" secondAttribute="leading" id="ybT-22-tyj"/>
+                            <constraint firstItem="dIY-h8-nGr" firstAttribute="leading" secondItem="kxT-rm-PwO" secondAttribute="leading" id="ybT-22-tyj"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="kxT-rm-PwO"/>
                     </view>
                     <navigationItem key="navigationItem" title="Paperless eBill" id="Qsj-2z-uVD">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="WRh-Ah-euN">
@@ -2893,23 +2870,15 @@
         <scene sceneID="Bcp-SV-j2J">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="ea9-OX-qvD" customClass="BudgetBillingViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wx7-J4-JDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="LeU-Gd-Ug2"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1Ug-Ed-kim">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7d-Fm-kew">
-                                <rect key="frame" x="0.0" y="44" width="375" height="1403.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePv-bH-pSP">
-                                <rect key="frame" x="0.0" y="44" width="375" height="1356"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="1209"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Bq5-hO-8cE">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1403.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1308.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbC-QA-kFA" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -3023,55 +2992,8 @@
                                                     <constraint firstItem="URh-8u-YxT" firstAttribute="leading" secondItem="zan-Py-Jsh" secondAttribute="leading" priority="999" id="adw-3R-NtP"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yGp-Zz-hy8">
-                                                <rect key="frame" x="0.0" y="307.5" width="375" height="95"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oF-dm-AJo" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="51.5" y="50" width="272.5" height="25"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_budgetlearn" translatesAutoresizingMaskIntoConstraints="NO" id="7nW-pZ-a2S">
-                                                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="25" id="7I1-aH-JeA"/>
-                                                                    <constraint firstAttribute="height" constant="25" id="k3M-2y-PCe"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn more about Budget Billing" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evS-WD-Rt4">
-                                                                <rect key="frame" x="30" y="0.0" width="242.5" height="25"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="evS-WD-Rt4" firstAttribute="leading" secondItem="7nW-pZ-a2S" secondAttribute="trailing" constant="5" id="VlF-iC-RCt"/>
-                                                            <constraint firstItem="evS-WD-Rt4" firstAttribute="centerY" secondItem="7nW-pZ-a2S" secondAttribute="centerY" id="e8v-HG-1rT"/>
-                                                            <constraint firstAttribute="trailing" secondItem="evS-WD-Rt4" secondAttribute="trailing" id="hRV-vx-515"/>
-                                                            <constraint firstItem="evS-WD-Rt4" firstAttribute="top" secondItem="7oF-dm-AJo" secondAttribute="top" id="irM-np-4UP"/>
-                                                            <constraint firstItem="7nW-pZ-a2S" firstAttribute="leading" secondItem="7oF-dm-AJo" secondAttribute="leading" id="kj5-Xs-TXF"/>
-                                                            <constraint firstAttribute="bottom" secondItem="evS-WD-Rt4" secondAttribute="bottom" id="n1x-3W-O8N"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="YES"/>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorOnPress">
-                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="7oF-dm-AJo" firstAttribute="top" secondItem="yGp-Zz-hy8" secondAttribute="top" constant="50" id="7Rv-UY-WdE"/>
-                                                    <constraint firstAttribute="bottom" secondItem="7oF-dm-AJo" secondAttribute="bottom" constant="20" id="MKm-JC-UyF"/>
-                                                    <constraint firstItem="7oF-dm-AJo" firstAttribute="centerX" secondItem="yGp-Zz-hy8" secondAttribute="centerX" id="YYn-x9-tY7"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7oF-dm-AJo" secondAttribute="trailing" constant="30" id="cRW-GT-FnD"/>
-                                                    <constraint firstItem="7oF-dm-AJo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yGp-Zz-hy8" secondAttribute="leading" constant="30" id="p6V-bQ-Mld"/>
-                                                    <constraint firstAttribute="width" priority="999" constant="460" id="uDg-8S-G4U"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLW-Ig-viu">
-                                                <rect key="frame" x="0.0" y="402.5" width="375" height="350"/>
+                                                <rect key="frame" x="0.0" y="307.5" width="375" height="350"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pXz-ha-Q2l" customClass="IntrinsicHeightTableView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
@@ -3111,7 +3033,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsX-tV-aQC">
-                                                <rect key="frame" x="0.0" y="752.5" width="375" height="523"/>
+                                                <rect key="frame" x="0.0" y="657.5" width="375" height="523"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRX-Z2-eBX">
                                                         <rect key="frame" x="33" y="23" width="309" height="96.5"/>
@@ -3352,7 +3274,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VCO-pn-yaV">
-                                                <rect key="frame" x="0.0" y="1275.5" width="375" height="128"/>
+                                                <rect key="frame" x="0.0" y="1180.5" width="375" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STi-xp-uKC">
                                                         <rect key="frame" x="30" y="30" width="315" height="68"/>
@@ -3398,6 +3320,62 @@
                                     <constraint firstItem="Bq5-hO-8cE" firstAttribute="leading" secondItem="ePv-bH-pSP" secondAttribute="leading" id="wwy-gV-3YA"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gec-yx-RnL" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="1253" width="375" height="147"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8Tk-F4-fmi">
+                                        <rect key="frame" x="20" y="23" width="335" height="105"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tO-Ud-C5B" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
+                                                <accessibility key="accessibilityConfiguration" label="Enroll in Budget Billing"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="vD6-aT-1hc"/>
+                                                </constraints>
+                                                <state key="normal" title="Enroll in Budget Billing"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyn-cd-Qhg">
+                                                <rect key="frame" x="0.0" y="55" width="335" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking to end Budget Billing?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BS-TG-H1E">
+                                                        <rect key="frame" x="4" y="5" width="232" height="40"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0l-Gn-oty">
+                                                        <rect key="frame" x="246" y="10" width="85" height="30"/>
+                                                        <state key="normal" title="Unenroll"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="Y0l-Gn-oty" firstAttribute="centerY" secondItem="5BS-TG-H1E" secondAttribute="centerY" id="0V8-Rc-bhU"/>
+                                                    <constraint firstItem="Y0l-Gn-oty" firstAttribute="leading" secondItem="5BS-TG-H1E" secondAttribute="trailing" constant="10" id="G0E-bI-g5R"/>
+                                                    <constraint firstItem="5BS-TG-H1E" firstAttribute="top" secondItem="eyn-cd-Qhg" secondAttribute="top" constant="5" id="Iu2-th-nJJ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="5BS-TG-H1E" secondAttribute="bottom" constant="5" id="Qqh-9r-qTh"/>
+                                                    <constraint firstItem="5BS-TG-H1E" firstAttribute="leading" secondItem="eyn-cd-Qhg" secondAttribute="leading" constant="4" id="SWf-7A-j46"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Y0l-Gn-oty" secondAttribute="trailing" constant="4" id="qcS-jB-Zro"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="1tO-Ud-C5B" firstAttribute="leading" secondItem="8Tk-F4-fmi" secondAttribute="leading" id="Veg-j7-SiN"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="jMW-LZ-jWN"/>
+                                            <constraint firstAttribute="trailing" secondItem="1tO-Ud-C5B" secondAttribute="trailing" id="xE2-id-6DV"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="8Tk-F4-fmi" firstAttribute="bottom" secondItem="aEw-Nz-aVx" secondAttribute="bottom" constant="15" id="0cg-1R-ba3"/>
+                                    <constraint firstItem="8Tk-F4-fmi" firstAttribute="top" secondItem="gec-yx-RnL" secondAttribute="topMargin" constant="15" id="Vbq-dL-fOI"/>
+                                    <constraint firstItem="8Tk-F4-fmi" firstAttribute="leading" secondItem="aEw-Nz-aVx" secondAttribute="leading" priority="999" constant="20" id="aHn-UI-jFi"/>
+                                    <constraint firstItem="8Tk-F4-fmi" firstAttribute="centerX" secondItem="aEw-Nz-aVx" secondAttribute="centerX" id="eFj-Yz-hes"/>
+                                    <constraint firstItem="aEw-Nz-aVx" firstAttribute="trailing" secondItem="8Tk-F4-fmi" secondAttribute="trailing" priority="999" constant="20" id="rIT-zi-ITz"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="aEw-Nz-aVx"/>
+                            </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="00Q-SE-6jv" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="157.5" y="694" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3411,21 +3389,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gec-yx-RnL" firstAttribute="top" secondItem="ePv-bH-pSP" secondAttribute="bottom" id="0qt-aI-vv6"/>
                             <constraint firstItem="00Q-SE-6jv" firstAttribute="centerY" secondItem="1Ug-Ed-kim" secondAttribute="centerY" id="0xX-M7-D5C"/>
-                            <constraint firstAttribute="trailing" secondItem="ePv-bH-pSP" secondAttribute="trailing" id="GvA-ge-zgO"/>
-                            <constraint firstItem="s7d-Fm-kew" firstAttribute="height" secondItem="Bq5-hO-8cE" secondAttribute="height" id="OQy-HV-09F"/>
-                            <constraint firstItem="irq-1E-yq2" firstAttribute="centerX" secondItem="1Ug-Ed-kim" secondAttribute="centerX" id="VuP-4w-JNI"/>
-                            <constraint firstAttribute="trailing" secondItem="s7d-Fm-kew" secondAttribute="trailing" id="Wr0-H0-6u7"/>
-                            <constraint firstItem="00Q-SE-6jv" firstAttribute="centerX" secondItem="1Ug-Ed-kim" secondAttribute="centerX" id="YZs-a8-eyn"/>
-                            <constraint firstItem="ePv-bH-pSP" firstAttribute="leading" secondItem="1Ug-Ed-kim" secondAttribute="leading" id="i72-gX-CoI"/>
-                            <constraint firstAttribute="trailing" secondItem="irq-1E-yq2" secondAttribute="trailing" constant="29" id="nai-9k-jt8"/>
-                            <constraint firstItem="s7d-Fm-kew" firstAttribute="top" secondItem="Wx7-J4-JDJ" secondAttribute="bottom" id="sKZ-vk-gcb"/>
+                            <constraint firstItem="XXO-Yo-nQu" firstAttribute="trailing" secondItem="ePv-bH-pSP" secondAttribute="trailing" id="GvA-ge-zgO"/>
+                            <constraint firstItem="irq-1E-yq2" firstAttribute="centerX" secondItem="XXO-Yo-nQu" secondAttribute="centerX" id="VuP-4w-JNI"/>
+                            <constraint firstItem="00Q-SE-6jv" firstAttribute="centerX" secondItem="XXO-Yo-nQu" secondAttribute="centerX" id="YZs-a8-eyn"/>
+                            <constraint firstAttribute="bottom" secondItem="gec-yx-RnL" secondAttribute="bottom" id="fbx-Fy-2Qy"/>
+                            <constraint firstItem="ePv-bH-pSP" firstAttribute="leading" secondItem="XXO-Yo-nQu" secondAttribute="leading" id="i72-gX-CoI"/>
+                            <constraint firstItem="gec-yx-RnL" firstAttribute="leading" secondItem="XXO-Yo-nQu" secondAttribute="leading" id="jfY-nl-erR"/>
+                            <constraint firstItem="XXO-Yo-nQu" firstAttribute="trailing" secondItem="irq-1E-yq2" secondAttribute="trailing" constant="29" id="nai-9k-jt8"/>
                             <constraint firstItem="irq-1E-yq2" firstAttribute="centerY" secondItem="1Ug-Ed-kim" secondAttribute="centerY" id="tiK-TK-fJk"/>
-                            <constraint firstItem="s7d-Fm-kew" firstAttribute="leading" secondItem="1Ug-Ed-kim" secondAttribute="leading" id="wd9-mU-irW"/>
-                            <constraint firstItem="ePv-bH-pSP" firstAttribute="top" secondItem="Wx7-J4-JDJ" secondAttribute="bottom" id="ynU-YG-xLa"/>
-                            <constraint firstAttribute="bottom" secondItem="ePv-bH-pSP" secondAttribute="bottom" id="yuh-9v-b8C"/>
-                            <constraint firstItem="irq-1E-yq2" firstAttribute="leading" secondItem="1Ug-Ed-kim" secondAttribute="leading" constant="29" id="zIU-j6-7Qh"/>
+                            <constraint firstItem="XXO-Yo-nQu" firstAttribute="trailing" secondItem="gec-yx-RnL" secondAttribute="trailing" id="uTq-NR-EAX"/>
+                            <constraint firstItem="ePv-bH-pSP" firstAttribute="top" secondItem="XXO-Yo-nQu" secondAttribute="top" id="ynU-YG-xLa"/>
+                            <constraint firstItem="irq-1E-yq2" firstAttribute="leading" secondItem="XXO-Yo-nQu" secondAttribute="leading" constant="29" id="zIU-j6-7Qh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="XXO-Yo-nQu"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1400"/>
@@ -3439,16 +3417,14 @@
                         <outlet property="currentBalanceDescriptionLabel" destination="Jyd-ZP-GHX" id="lcd-Cg-qcw"/>
                         <outlet property="currentBalanceLabel" destination="5bS-Vv-dO6" id="xf0-Qr-cOk"/>
                         <outlet property="currentBalanceTitleLabel" destination="6L6-Jr-sSW" id="IAE-Gg-YyI"/>
+                        <outlet property="enrollButton" destination="1tO-Ud-C5B" id="z9s-Xh-oN7"/>
                         <outlet property="enrollSwitch" destination="acX-dM-gob" id="A2s-oK-cdx"/>
                         <outlet property="enrollmentLabel" destination="siF-Xh-4FK" id="gRI-QL-7Eo"/>
                         <outlet property="errorLabel" destination="irq-1E-yq2" id="2IH-zc-5YX"/>
                         <outlet property="footerLabel" destination="STi-xp-uKC" id="HuG-9w-XQ0"/>
                         <outlet property="footerView" destination="VCO-pn-yaV" id="Exc-sI-M81"/>
-                        <outlet property="gradientView" destination="s7d-Fm-kew" id="mE9-Bx-1tZ"/>
                         <outlet property="lastPaymentDateLabel" destination="MXG-t3-MmY" id="JvO-BN-xbM"/>
                         <outlet property="lastPaymentDateTitleLabel" destination="Vwj-Ez-DsA" id="yJx-7T-3Ts"/>
-                        <outlet property="learnMoreAboutBudgetBillingButton" destination="7oF-dm-AJo" id="oni-bA-Ear"/>
-                        <outlet property="learnMoreAboutBudgetBillingLabel" destination="evS-WD-Rt4" id="LQB-7g-Fql"/>
                         <outlet property="loadingIndicator" destination="00Q-SE-6jv" id="40L-Bh-i8x"/>
                         <outlet property="monthLabel" destination="WCi-o0-AZv" id="QA1-Yr-5IM"/>
                         <outlet property="monthlyAmountDescriptionLabel" destination="EbB-ZB-Yg5" id="3m9-lg-o86"/>
@@ -3464,6 +3440,8 @@
                         <outlet property="reasonForStoppingTableView" destination="pXz-ha-Q2l" id="DdB-W4-6Ea"/>
                         <outlet property="scrollView" destination="ePv-bH-pSP" id="JcS-Q5-SAG"/>
                         <outlet property="stackView" destination="Bq5-hO-8cE" id="7zL-1P-gTS"/>
+                        <outlet property="unenrollButton" destination="Y0l-Gn-oty" id="5fm-Az-ioy"/>
+                        <outlet property="unenrollButtonLabel" destination="5BS-TG-H1E" id="SXD-U1-wDq"/>
                         <outlet property="yourPaymentWouldBeLabel" destination="pmW-iP-LFe" id="LI3-i1-t6h"/>
                         <outletCollection property="bgeFooterCardViews" destination="KRX-Z2-eBX" collectionClass="NSMutableArray" id="zcR-SC-9zY"/>
                         <outletCollection property="bgeFooterCardViews" destination="oe5-6A-CRd" collectionClass="NSMutableArray" id="e2I-ze-Rsa"/>
@@ -3475,16 +3453,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2c-0C-jUg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2391.1999999999998" y="-868.06596701649187"/>
+            <point key="canvasLocation" x="2390.5797101449275" y="-868.52678571428567"/>
         </scene>
         <!--View Bill-->
         <scene sceneID="8dO-ND-kkF">
             <objects>
                 <viewController storyboardIdentifier="viewBill" hidesBottomBarWhenPushed="YES" id="LoQ-Uh-PUl" customClass="ViewBillViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="i5u-QZ-hKp"/>
-                        <viewControllerLayoutGuide type="bottom" id="ntx-oc-tE9"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gLx-Rs-dsr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3502,13 +3476,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="G0q-HP-5ag" firstAttribute="leading" secondItem="gLx-Rs-dsr" secondAttribute="leading" constant="29" id="EDd-Qi-6Ls"/>
-                            <constraint firstItem="czZ-D0-dom" firstAttribute="centerX" secondItem="gLx-Rs-dsr" secondAttribute="centerX" id="JIh-Qy-dVP"/>
-                            <constraint firstAttribute="trailing" secondItem="G0q-HP-5ag" secondAttribute="trailing" constant="29" id="ZFG-eD-nJH"/>
+                            <constraint firstItem="G0q-HP-5ag" firstAttribute="leading" secondItem="bYY-tl-YXh" secondAttribute="leading" constant="29" id="EDd-Qi-6Ls"/>
+                            <constraint firstItem="czZ-D0-dom" firstAttribute="centerX" secondItem="bYY-tl-YXh" secondAttribute="centerX" id="JIh-Qy-dVP"/>
+                            <constraint firstItem="bYY-tl-YXh" firstAttribute="trailing" secondItem="G0q-HP-5ag" secondAttribute="trailing" constant="29" id="ZFG-eD-nJH"/>
                             <constraint firstItem="G0q-HP-5ag" firstAttribute="centerY" secondItem="gLx-Rs-dsr" secondAttribute="centerY" id="dXZ-Qe-noH"/>
                             <constraint firstItem="czZ-D0-dom" firstAttribute="centerY" secondItem="gLx-Rs-dsr" secondAttribute="centerY" id="eld-qa-yBe"/>
-                            <constraint firstItem="G0q-HP-5ag" firstAttribute="centerX" secondItem="gLx-Rs-dsr" secondAttribute="centerX" id="hEE-kn-FaJ"/>
+                            <constraint firstItem="G0q-HP-5ag" firstAttribute="centerX" secondItem="bYY-tl-YXh" secondAttribute="centerX" id="hEE-kn-FaJ"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bYY-tl-YXh"/>
                     </view>
                     <navigationItem key="navigationItem" title="View Bill" id="agv-L5-kNn"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -3527,10 +3502,6 @@
         <scene sceneID="Luh-dg-AiZ">
             <objects>
                 <viewController storyboardIdentifier="billingHistoryDetails" id="MpQ-Zp-Bed" customClass="BillingHistoryDetailsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lQY-Ev-mkL"/>
-                        <viewControllerLayoutGuide type="bottom" id="CrB-ee-P5L"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qyT-bL-ygT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3956,11 +3927,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="844-zQ-P3R" secondAttribute="trailing" id="6SN-ar-7fY"/>
-                            <constraint firstItem="844-zQ-P3R" firstAttribute="leading" secondItem="qyT-bL-ygT" secondAttribute="leading" id="GhZ-O1-6sp"/>
+                            <constraint firstItem="M4A-SP-F6E" firstAttribute="trailing" secondItem="844-zQ-P3R" secondAttribute="trailing" id="6SN-ar-7fY"/>
+                            <constraint firstItem="844-zQ-P3R" firstAttribute="leading" secondItem="M4A-SP-F6E" secondAttribute="leading" id="GhZ-O1-6sp"/>
                             <constraint firstAttribute="bottom" secondItem="844-zQ-P3R" secondAttribute="bottom" id="dbT-aR-hQj"/>
-                            <constraint firstItem="844-zQ-P3R" firstAttribute="top" secondItem="lQY-Ev-mkL" secondAttribute="bottom" id="r1C-cI-hRf"/>
+                            <constraint firstItem="844-zQ-P3R" firstAttribute="top" secondItem="M4A-SP-F6E" secondAttribute="top" id="r1C-cI-hRf"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="M4A-SP-F6E"/>
                     </view>
                     <connections>
                         <outlet property="cancelPaymentButton" destination="FeM-ko-Kz6" id="uBH-rD-0bg"/>
@@ -4018,10 +3990,6 @@
         <scene sceneID="g0H-0E-Iut">
             <objects>
                 <viewController id="LY9-7N-Sv1" customClass="WhatIsBudgetBillingViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mxu-Pq-EyL"/>
-                        <viewControllerLayoutGuide type="bottom" id="wZi-vj-ABb"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f6X-Ue-izh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4393,14 +4361,15 @@ the year</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="sdN-SP-lZF" firstAttribute="leading" secondItem="f6X-Ue-izh" secondAttribute="leading" id="EWf-gT-zHv"/>
+                            <constraint firstItem="sdN-SP-lZF" firstAttribute="leading" secondItem="KvB-a1-mgA" secondAttribute="leading" id="EWf-gT-zHv"/>
                             <constraint firstItem="sdN-SP-lZF" firstAttribute="top" secondItem="Jo5-xI-0gc" secondAttribute="bottom" id="KXd-8D-Ig4"/>
-                            <constraint firstItem="Jo5-xI-0gc" firstAttribute="leading" secondItem="f6X-Ue-izh" secondAttribute="leading" id="PSx-4G-tx7"/>
-                            <constraint firstAttribute="trailing" secondItem="sdN-SP-lZF" secondAttribute="trailing" id="UG7-AK-OnX"/>
+                            <constraint firstItem="Jo5-xI-0gc" firstAttribute="leading" secondItem="KvB-a1-mgA" secondAttribute="leading" id="PSx-4G-tx7"/>
+                            <constraint firstItem="KvB-a1-mgA" firstAttribute="trailing" secondItem="sdN-SP-lZF" secondAttribute="trailing" id="UG7-AK-OnX"/>
                             <constraint firstAttribute="bottom" secondItem="sdN-SP-lZF" secondAttribute="bottom" id="bS5-ep-jqi"/>
-                            <constraint firstAttribute="trailing" secondItem="Jo5-xI-0gc" secondAttribute="trailing" id="bWg-Kz-mIl"/>
-                            <constraint firstItem="Jo5-xI-0gc" firstAttribute="top" secondItem="mxu-Pq-EyL" secondAttribute="bottom" id="nWO-Ux-A40"/>
+                            <constraint firstItem="KvB-a1-mgA" firstAttribute="trailing" secondItem="Jo5-xI-0gc" secondAttribute="trailing" id="bWg-Kz-mIl"/>
+                            <constraint firstItem="Jo5-xI-0gc" firstAttribute="top" secondItem="KvB-a1-mgA" secondAttribute="top" id="nWO-Ux-A40"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="KvB-a1-mgA"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1200"/>
@@ -4443,10 +4412,6 @@ the year</string>
         <scene sceneID="k5Q-U5-hEa">
             <objects>
                 <viewController storyboardIdentifier="billingHistory" hidesBottomBarWhenPushed="YES" id="fpw-21-1V8" userLabel="Billing History" customClass="BillingHistoryViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tJG-3h-bW3"/>
-                        <viewControllerLayoutGuide type="bottom" id="qc1-x3-7T7"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TRy-kI-749">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="712"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4509,19 +4474,20 @@ the year</string>
                         <constraints>
                             <constraint firstItem="5Wd-3s-aRM" firstAttribute="centerY" secondItem="TRy-kI-749" secondAttribute="centerY" id="4JV-KA-Ulx"/>
                             <constraint firstAttribute="bottom" secondItem="WyA-2k-Kom" secondAttribute="bottom" id="5w4-sx-J6J"/>
-                            <constraint firstAttribute="trailing" secondItem="K8A-sl-oov" secondAttribute="trailing" constant="29" id="Bg3-r8-wiI"/>
-                            <constraint firstItem="WyA-2k-Kom" firstAttribute="leading" secondItem="TRy-kI-749" secondAttribute="leading" id="CZl-rH-pak"/>
-                            <constraint firstAttribute="trailing" secondItem="WyA-2k-Kom" secondAttribute="trailing" id="JuZ-My-Mle"/>
-                            <constraint firstAttribute="trailing" secondItem="5Wd-3s-aRM" secondAttribute="trailing" priority="999" constant="35" id="Pt8-hJ-PQE"/>
+                            <constraint firstItem="EDn-lu-OU4" firstAttribute="trailing" secondItem="K8A-sl-oov" secondAttribute="trailing" constant="29" id="Bg3-r8-wiI"/>
+                            <constraint firstItem="WyA-2k-Kom" firstAttribute="leading" secondItem="EDn-lu-OU4" secondAttribute="leading" id="CZl-rH-pak"/>
+                            <constraint firstItem="EDn-lu-OU4" firstAttribute="trailing" secondItem="WyA-2k-Kom" secondAttribute="trailing" id="JuZ-My-Mle"/>
+                            <constraint firstItem="EDn-lu-OU4" firstAttribute="trailing" secondItem="5Wd-3s-aRM" secondAttribute="trailing" priority="999" constant="35" id="Pt8-hJ-PQE"/>
                             <constraint firstItem="K8A-sl-oov" firstAttribute="centerY" secondItem="TRy-kI-749" secondAttribute="centerY" id="agy-th-izJ"/>
-                            <constraint firstItem="K8A-sl-oov" firstAttribute="centerX" secondItem="TRy-kI-749" secondAttribute="centerX" id="d2j-U6-0TY"/>
-                            <constraint firstItem="5Wd-3s-aRM" firstAttribute="centerX" secondItem="TRy-kI-749" secondAttribute="centerX" id="gph-LH-Bmo"/>
-                            <constraint firstItem="KjS-5f-IeS" firstAttribute="centerX" secondItem="TRy-kI-749" secondAttribute="centerX" id="rji-ui-HLw"/>
-                            <constraint firstItem="WyA-2k-Kom" firstAttribute="top" secondItem="tJG-3h-bW3" secondAttribute="bottom" id="ron-CU-qWs"/>
-                            <constraint firstItem="5Wd-3s-aRM" firstAttribute="leading" secondItem="TRy-kI-749" secondAttribute="leading" priority="999" constant="35" id="tGC-Ie-0Rk"/>
-                            <constraint firstItem="K8A-sl-oov" firstAttribute="leading" secondItem="TRy-kI-749" secondAttribute="leading" constant="29" id="ugn-YE-d9z"/>
+                            <constraint firstItem="K8A-sl-oov" firstAttribute="centerX" secondItem="EDn-lu-OU4" secondAttribute="centerX" id="d2j-U6-0TY"/>
+                            <constraint firstItem="5Wd-3s-aRM" firstAttribute="centerX" secondItem="EDn-lu-OU4" secondAttribute="centerX" id="gph-LH-Bmo"/>
+                            <constraint firstItem="KjS-5f-IeS" firstAttribute="centerX" secondItem="EDn-lu-OU4" secondAttribute="centerX" id="rji-ui-HLw"/>
+                            <constraint firstItem="WyA-2k-Kom" firstAttribute="top" secondItem="EDn-lu-OU4" secondAttribute="top" id="ron-CU-qWs"/>
+                            <constraint firstItem="5Wd-3s-aRM" firstAttribute="leading" secondItem="EDn-lu-OU4" secondAttribute="leading" priority="999" constant="35" id="tGC-Ie-0Rk"/>
+                            <constraint firstItem="K8A-sl-oov" firstAttribute="leading" secondItem="EDn-lu-OU4" secondAttribute="leading" constant="29" id="ugn-YE-d9z"/>
                             <constraint firstItem="KjS-5f-IeS" firstAttribute="centerY" secondItem="TRy-kI-749" secondAttribute="centerY" id="vpN-Sk-RhU"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="EDn-lu-OU4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Bill &amp; Payment Activity" id="xjP-Eq-e48" userLabel="Activity">
                         <barButtonItem key="backBarButtonItem" title=" " id="kIq-HU-Gye"/>
@@ -4567,7 +4533,6 @@ the year</string>
         <image name="ic_autopaylearn" width="25" height="25"/>
         <image name="ic_billbreakdown" width="26" height="26"/>
         <image name="ic_billingcalc" width="37" height="51"/>
-        <image name="ic_budgetlearn" width="37" height="51"/>
         <image name="ic_calendar" width="56" height="55"/>
         <image name="ic_caret" width="8" height="13"/>
         <image name="ic_check_mini_white" width="14" height="11"/>

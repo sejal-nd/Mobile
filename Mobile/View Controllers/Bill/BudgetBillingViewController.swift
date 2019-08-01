@@ -23,10 +23,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var learnMoreAboutBudgetBillingButton: ButtonControl!
-    @IBOutlet weak var learnMoreAboutBudgetBillingLabel: UILabel!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var paymentAmountLabel: UILabel!
@@ -62,7 +59,9 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var accDifferenceLabel: UILabel!
     @IBOutlet weak var accDifferenceDescriptionLabel: UILabel!
     
-    var gradientLayer: CAGradientLayer!
+    @IBOutlet weak var enrollButton: PrimaryButtonNew!
+    @IBOutlet weak var unenrollButtonLabel: UILabel!
+    @IBOutlet weak var unenrollButton: UIButton!
     
     var accountDetail: AccountDetail!
     var viewModel: BudgetBillingViewModel!
@@ -76,29 +75,12 @@ class BudgetBillingViewController: UIViewController {
         
         title = NSLocalizedString("Budget Billing", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
-        navigationItem.leftBarButtonItem = cancelButton
-        // Submit button will be added after successful load
-        viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
+        let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_tooltip.pdf"), style: .plain, target: self, action: #selector(onTooltipPress))
+        navigationItem.rightBarButtonItem = infoButton
+        infoButton.isAccessibilityElement = true
+        infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
         
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [
-            UIColor.softGray.cgColor,
-            UIColor.white.cgColor,
-        ]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientView.layer.addSublayer(gradientLayer)
-
-        learnMoreAboutBudgetBillingButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            self?.performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
-        }).disposed(by: disposeBag)
-        learnMoreAboutBudgetBillingButton.accessibilityLabel = NSLocalizedString("Learn more about budget billing", comment: "")
-        
-        learnMoreAboutBudgetBillingLabel.textColor = .actionBlue
-        learnMoreAboutBudgetBillingLabel.text = NSLocalizedString("Learn more about Budget Billing", comment: "")
-        learnMoreAboutBudgetBillingLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        //viewModel.submitButtonEnabled().bind(to: submitButton.rx.isEnabled).disposed(by: disposeBag)
         
         yourPaymentWouldBeLabel.font = SystemFont.medium.of(textStyle: .footnote)
         yourPaymentWouldBeLabel.textColor = .deepGray
@@ -197,7 +179,6 @@ class BudgetBillingViewController: UIViewController {
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
         bgeFooterView.isHidden = true
-        gradientView.isHidden = true
         viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
             guard let self = self else { return }
             
@@ -208,11 +189,9 @@ class BudgetBillingViewController: UIViewController {
                 self.footerView.isHidden = true
             }
             
-            self.navigationItem.rightBarButtonItem = submitButton
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
             self.scrollView.isHidden = false
             self.loadingIndicator.isHidden = true
-            self.gradientView.isHidden = false
             
             if Environment.shared.opco == .bge && self.accountDetail.isBudgetBillEnrollment {
                 self.monthlyAmountLabel.text = budgetBillingInfo.budgetBill ?? budgetBillingInfo.averageMonthlyBill
@@ -254,8 +233,6 @@ class BudgetBillingViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        gradientLayer.frame = gradientView.frame
-        
         // Dynamic sizing for the table header view
         if let headerView = reasonForStoppingTableView.tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
@@ -270,24 +247,10 @@ class BudgetBillingViewController: UIViewController {
         }
     }
     
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = gradientView.frame
+    @objc func onTooltipPress() {
+        performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
     }
-        
-    @objc func onCancelPress() {
-        if viewModel.enrolling.value || viewModel.unenrolling.value {
-            let message = viewModel.enrolling.value ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
-            let alertVc = UIAlertController(title: NSLocalizedString("Exit Budget Billing", comment: ""), message: message, preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .default, handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            }))
-            present(alertVc, animated: true, completion: nil)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
-    }
-    
+            
     @objc func onSubmitPress(submitButton: UIBarButtonItem) {
         guard submitButton.isEnabled else { return }
         
