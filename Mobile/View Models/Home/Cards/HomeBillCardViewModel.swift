@@ -368,7 +368,7 @@ class HomeBillCardViewModel {
             switch billState {
             case .billPaid, .billPaidIntermediate:
                 let text = NSLocalizedString("Thank you for your payment", comment: "")
-                return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .title1),
+                return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .body),
                                                                      .foregroundColor: textColor])
             case .paymentPending:
                 let text: String
@@ -378,7 +378,7 @@ class HomeBillCardViewModel {
                 case .comEd, .peco:
                     text = NSLocalizedString("You have pending payments", comment: "")
                 }
-                return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .title1),
+                return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .body),
                                                                      .foregroundColor: textColor])
             default:
                 return nil
@@ -402,7 +402,7 @@ class HomeBillCardViewModel {
         let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed
         let style = NSMutableParagraphStyle()
         style.minimumLineHeight = 16
-        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.semibold.of(textStyle: .footnote),
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.semibold.of(textStyle: .caption1),
                                                         .paragraphStyle: style,
                                                         .foregroundColor: textColor]
 
@@ -536,10 +536,10 @@ class HomeBillCardViewModel {
     { accountDetail, billState in
         let grayAttributes: [NSAttributedString.Key: Any] =
             [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray,
-             .font: OpenSans.regular.of(textStyle: .subheadline)]
+             .font: SystemFont.regular.of(textStyle: .caption1)]
         let redAttributes: [NSAttributedString.Key: Any] =
             [.foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.errorRed,
-             .font: OpenSans.semibold.of(textStyle: .subheadline)]
+             .font: SystemFont.semibold.of(textStyle: .caption1)]
 
         switch billState {
         case .pastDue, .finaled, .restoreService, .avoidShutoff, .eligibleForCutoff, .catchUp:
@@ -672,16 +672,16 @@ class HomeBillCardViewModel {
         .map {
             switch $0 {
             case .billReady, .billReadyAutoPay, .billPaid, .billPaidIntermediate, .credit:
-                return OpenSans.regular.of(textStyle: .title1)
+                return OpenSans.regular.of(textStyle: .body)
             case .paymentPending:
-                return OpenSans.italic.of(textStyle: .title1)
+                return OpenSans.italic.of(textStyle: .body)
             default:
-                return OpenSans.regular.of(textStyle: .title1)
+                return OpenSans.regular.of(textStyle: .body)
             }
     }
 
     private(set) lazy var amountFont: Driver<UIFont> = billState
-        .map { $0 == .paymentPending ? OpenSans.semiboldItalic.of(size: 28): OpenSans.semibold.of(size: 36) }
+        .map { $0 == .paymentPending ? OpenSans.semibold.of(textStyle: .largeTitle): OpenSans.semibold.of(textStyle: .largeTitle) }
 
     private(set) lazy var automaticPaymentInfoButtonText: Driver<String> =
         Driver.combineLatest(accountDetailDriver, scheduledPaymentDriver)
