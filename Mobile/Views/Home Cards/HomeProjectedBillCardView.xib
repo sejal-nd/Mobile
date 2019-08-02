@@ -91,7 +91,7 @@
                                                                                         </label>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izL-VW-bDo">
                                                                                             <rect key="frame" x="116" y="31" width="27" height="46.5"/>
-                                                                                            <state key="normal" image="ic_question"/>
+                                                                                            <state key="normal" image="ic_tooltip"/>
                                                                                         </button>
                                                                                     </subviews>
                                                                                     <constraints>
@@ -331,6 +331,6 @@
         <image name="ic_home_error_opcocard" width="36" height="36"/>
         <image name="ic_maintenancemode_overall" width="125" height="90"/>
         <image name="ic_pbempty" width="179" height="65"/>
-        <image name="ic_question" width="17" height="17"/>
+        <image name="ic_tooltip" width="24" height="24"/>
     </resources>
 </document>

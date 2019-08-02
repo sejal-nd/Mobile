@@ -334,6 +334,7 @@
                                                                                 <constraint firstAttribute="trailing" secondItem="kpe-ey-17o" secondAttribute="trailing" constant="10" id="dDj-6N-P0e"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="kpe-ey-17o" secondAttribute="bottom" priority="999" constant="6" id="lv3-pY-p8f"/>
                                                                                 <constraint firstItem="kpe-ey-17o" firstAttribute="top" secondItem="fTc-qG-fne" secondAttribute="top" priority="999" constant="6" id="phW-DI-8AZ"/>
+                                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="ynH-Wh-EWV"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
