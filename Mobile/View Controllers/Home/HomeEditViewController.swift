@@ -49,14 +49,13 @@ class HomeEditViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
                                                                           action: #selector(handleDragToReorder(gesture:))))
         
-//        saveButton.rx.tap.asDriver()
-//            .drive(onNext: { [weak self] in
-//                guard let this = self, !this.isReordering.value else { return }
-//                HomeCardPrefsStore.shared.list = this.cards.value[0]
-//                self?.presentingViewController?.dismiss(animated: true, completion: nil)
-//            })
-//            .disposed(by: disposeBag)
-        
+        saveButton.rx.tap.asDriver()
+            .drive(onNext: { [weak self] in
+                guard let this = self, !this.isReordering.value else { return }
+                HomeCardPrefsStore.shared.list = this.cards.value[0]
+                self?.presentingViewController?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK - Drag Handling
