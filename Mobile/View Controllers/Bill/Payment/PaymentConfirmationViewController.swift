@@ -47,9 +47,6 @@ class PaymentConfirmationViewController: UIViewController {
 
         titleLabel.textColor = .deepGray
         titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
-        titleLabel.text = viewModel.paymentId.value != nil ?
-            NSLocalizedString("Thank you for modifying your payment.", comment: "") :
-            NSLocalizedString("Thank you for your payment", comment: "")
         
         confirmationLabel.textColor = .deepGray
         confirmationLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -88,6 +85,15 @@ class PaymentConfirmationViewController: UIViewController {
         
         bindViewHiding()
         bindViewContent()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // [iOS bug?] Need to set the text in here or the label doesn't wrap to 2 lines
+        titleLabel.text = viewModel.paymentId.value != nil ?
+            NSLocalizedString("Thank you for modifying your payment.", comment: "") :
+            NSLocalizedString("Thank you for your payment", comment: "")
     }
     
     func bindViewHiding() {
