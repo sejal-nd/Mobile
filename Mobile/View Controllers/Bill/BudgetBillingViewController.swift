@@ -10,8 +10,8 @@ import RxSwift
 import RxCocoa
 
 protocol BudgetBillingViewControllerDelegate: class {
-    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController, averageMonthlyBill: String?)
-    func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController)
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: UIViewController, averageMonthlyBill: String?)
+    func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: UIViewController)
 }
 
 class BudgetBillingViewController: UIViewController {
@@ -30,11 +30,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     @IBOutlet weak var amountDescriptionLabel: UILabel!
-    
-    @IBOutlet weak var reasonForStoppingContainer: UIView!
-    @IBOutlet weak var reasonForStoppingTableView: IntrinsicHeightTableView!
-    @IBOutlet weak var reasonForStoppingLabel: UILabel!
-    
+        
     @IBOutlet weak var bgeFooterView: UIView!
     @IBOutlet var bgeFooterCardViews: [UIView]!
     @IBOutlet weak var monthlyAmountTitleLabel: UILabel!
@@ -85,6 +81,7 @@ class BudgetBillingViewController: UIViewController {
         } else {
             descriptionHeaderLabel.text = NSLocalizedString("Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill. It’s a predictable monthly payment that eliminates montlhy or seasonal variation.", comment: "")
         }
+        descriptionHeaderLabel.setLineHeight(lineHeight: 24)
         
         paymentAmountView.layer.borderColor = UIColor.accentGray.cgColor
         paymentAmountView.layer.borderWidth = 1
@@ -108,12 +105,6 @@ class BudgetBillingViewController: UIViewController {
 //        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
 //        enrollSwitch.accessibilityLabel = enrollmentLabel.text
         
-        reasonForStoppingLabel.textColor = .blackText
-        reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (select one)", comment: "")
-        reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
-        reasonForStoppingTableView.estimatedRowHeight = 51
-        reasonForStoppingContainer.isHidden = true
 //        if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
 //            viewModel.unenrolling.asDriver().drive(onNext: { [weak self] unenrolling in
 //                UIView.animate(withDuration: 0.3, animations: {
@@ -248,23 +239,6 @@ class BudgetBillingViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // Dynamic sizing for the table header view
-        if let headerView = reasonForStoppingTableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
-            
-            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
-                reasonForStoppingTableView.tableHeaderView = headerView
-            }
-        }
-    }
-    
     @objc func onTooltipPress() {
         performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
     }
@@ -286,35 +260,43 @@ class BudgetBillingViewController: UIViewController {
     }
     
     @IBAction func onUnenrollPress() {
-        GoogleAnalytics.log(event: .budgetBillUnEnrollOffer)
-        var message = ""
-        if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
-            message = NSLocalizedString("You will see your regular bill amount on your next billing cycle. Any credit balance remaining in your account will be applied to your bill until used, and any negative account balance will become due with your next bill.", comment: "")
-        } else { // BGE
-            message = bgeDynamicUnenrollMessage ?? ""
+        if Environment.shared.opco == .bge {
+            GoogleAnalytics.log(event: .budgetBillUnEnrollOffer)
+            let message = bgeDynamicUnenrollMessage ?? ""
+            let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
+                GoogleAnalytics.log(event: .budgetBillUnEnrollCancel) }))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
+                LoadingView.show()
+                GoogleAnalytics.log(event: .budgetBillUnEnrollOK)
+                
+                guard let self = self else { return }
+                self.viewModel.unenroll(onSuccess: { [weak self] in
+                    LoadingView.hide()
+                    guard let self = self else { return }
+                    self.delegate?.budgetBillingViewControllerDidUnenroll(self)
+                    self.navigationController?.popViewController(animated: true)
+                }, onError: { [weak self] errMessage in
+                    LoadingView.hide()
+                    guard let self = self else { return }
+                    let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
+                    alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertVc, animated: true, completion: nil)
+                })
+            }))
+            present(alertVc, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "reasonForStoppingSegue", sender: nil)
         }
-        let alertVc = UIAlertController(title: NSLocalizedString("Unenroll from Budget Billing", comment: ""), message: message, preferredStyle: .alert)
-        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
-            GoogleAnalytics.log(event: .budgetBillUnEnrollCancel) }))
-        alertVc.addAction(UIAlertAction(title: NSLocalizedString("Unenroll", comment: ""), style: .destructive, handler: { [weak self] _ in
-            LoadingView.show()
-            GoogleAnalytics.log(event: .budgetBillUnEnrollOK)
-            
-            guard let self = self else { return }
-            self.viewModel.unenroll(onSuccess: { [weak self] in
-                LoadingView.hide()
-                guard let self = self else { return }
-                self.delegate?.budgetBillingViewControllerDidUnenroll(self)
-                self.navigationController?.popViewController(animated: true)
-            }, onError: { [weak self] errMessage in
-                LoadingView.hide()
-                guard let self = self else { return }
-                let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
-                alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self.present(alertVc, animated: true, completion: nil)
-            })
-        }))
-        present(alertVc, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? BudgetBillingReasonForStoppingViewController {
+            vc.viewModel = viewModel
+            vc.budgetBillingViewController = self
+            vc.delegate = delegate
+        }
     }
     
 //    // Prevents status bar color flash when pushed

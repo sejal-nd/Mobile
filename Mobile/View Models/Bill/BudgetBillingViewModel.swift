@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class BudgetBillingViewModel {
     
@@ -103,7 +104,16 @@ class BudgetBillingViewModel {
 //        }
 //    }
     
-    var amountDescriptionText: String {
+    private(set) lazy var reasonForStoppingUnenrollButtonEnabled: Driver<Bool> =
+        self.selectedUnenrollmentReason.asDriver().map { $0 != -1 }
+    
+    var amountDescriptionText: String? {
+        // If we move forward with the unified footer label, comment this back in, hide the footer view if its nil.
+        // Also, tack on all the strings in `footerText` below with a \n\n in between
+//        if accountDetail.isBudgetBillEnrollment {
+//            return nil
+//        }
+        
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
