@@ -17,30 +17,15 @@ class BudgetBillingViewModel {
     private var alertsService: AlertsService
 
     let accountDetail: AccountDetail!
-    //let currentEnrollment: Variable<Bool>!
+
     var averageMonthlyBill: String?
     
-//    let enrolling = Variable(false)
-//    let unenrolling = Variable(false)
     let selectedUnenrollmentReason = Variable(-1)
     
     required init(accountDetail: AccountDetail, billService: BillService, alertsService: AlertsService) {
         self.accountDetail = accountDetail
         self.billService = billService
         self.alertsService = alertsService
-        
-//        let initialEnrollment = accountDetail.isBudgetBillEnrollment
-//        currentEnrollment = Variable(initialEnrollment)
-        
-//        currentEnrollment.asObservable()
-//            .map { !initialEnrollment && $0 }
-//            .bind(to: enrolling)
-//            .disposed(by: disposeBag)
-//
-//        currentEnrollment.asObservable()
-//            .map { initialEnrollment && !$0 }
-//            .bind(to: unenrolling)
-//            .disposed(by: disposeBag)
     }
     
     func getBudgetBillingInfo(onSuccess: @escaping (BudgetBillingInfo) -> Void, onError: @escaping (String) -> Void) {
@@ -92,28 +77,32 @@ class BudgetBillingViewModel {
             .disposed(by: disposeBag)
     }
     
-//    func submitButtonEnabled() -> Observable<Bool> {
-//        return Observable.combineLatest(enrolling.asObservable(), unenrolling.asObservable(), selectedUnenrollmentReason.asObservable()) {
-//            if $0 { return true }
-//            if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
-//                if $1 && $2 != -1 { return true }
-//            } else { // BGE
-//                if $1 { return true }
-//            }
-//            return false
-//        }
-//    }
-    
     private(set) lazy var reasonForStoppingUnenrollButtonEnabled: Driver<Bool> =
         self.selectedUnenrollmentReason.asDriver().map { $0 != -1 }
     
+    var newFooterLabelText: String {
+        switch Environment.shared.opco {
+        case .bge:
+            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.\n\nBudget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
+        case .comEd:
+            var text = NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. The ComEd app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
+            if accountDetail.isSupplier && accountDetail.isDualBillOption {
+                text += NSLocalizedString("\n\nBudget Billing is available for your ComEd Delivery charges. Electric Supply charges from your Retail Electric Supplier will not be included in your Budget Billing plan.", comment: "")
+            }
+            return text
+        case .peco:
+            var text = NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. The PECO app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage.", comment: "")
+            if accountDetail.isSupplier && accountDetail.isDualBillOption {
+                text += NSLocalizedString("\n\nBudget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
+            } else {
+                text += NSLocalizedString("\n\nPECO bases the monthly Budget Billing amount on your average bill over the past 12 months. If your account has not yet been open for a year, your monthly Budget Billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your Budget Billing amount.", comment: "")
+            }
+            return text
+        }
+    }
+    
+    // TODO: Waiting on Mariko decision -- will be able to remove if we go with the combined footer
     var amountDescriptionText: String? {
-        // If we move forward with the unified footer label, comment this back in, hide the footer view if its nil.
-        // Also, tack on all the strings in `footerText` below with a \n\n in between
-//        if accountDetail.isBudgetBillEnrollment {
-//            return nil
-//        }
-        
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
@@ -124,6 +113,7 @@ class BudgetBillingViewModel {
         }
     }
     
+    // TODO: Waiting on Mariko decision -- will be able to remove if we go with the combined footer
     var footerText: String? {
         switch Environment.shared.opco {
         case .bge:

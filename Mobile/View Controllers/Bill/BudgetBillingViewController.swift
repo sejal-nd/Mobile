@@ -29,10 +29,13 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var paymentAmountView: UIView!
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
-    @IBOutlet weak var amountDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var newFooterContainerView: StickyFooterView!
+    @IBOutlet weak var newFooterLabel: UILabel!
         
-    @IBOutlet weak var bgeFooterView: UIView!
-    @IBOutlet var bgeFooterCardViews: [UIView]!
+    @IBOutlet weak var bgeEnrolledInfoContainerView: UIView!
+    @IBOutlet var bgeEnrolledInfoCardViews: [UIView]!
+    @IBOutlet var bgeEnrolledInfoCardDividers: [UIView]!
     @IBOutlet weak var monthlyAmountTitleLabel: UILabel!
     @IBOutlet weak var monthlyAmountLabel: UILabel!
     @IBOutlet weak var monthlyAmountDescriptionLabel: UILabel!
@@ -48,6 +51,7 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var accDifferenceLabel: UILabel!
     @IBOutlet weak var accDifferenceDescriptionLabel: UILabel!
     
+    // TODO: Delete these if we go with the unified label
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
@@ -92,76 +96,67 @@ class BudgetBillingViewController: UIViewController {
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = OpenSans.semibold.of(textStyle: .title1)
         
-        amountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        amountDescriptionLabel.textColor = .deepGray
-        amountDescriptionLabel.text = viewModel.amountDescriptionText
-        
-//        enrollmentLabel.textColor = .blackText
-//        enrollmentLabel.font = OpenSans.regular.of(textStyle: .headline)
-//        enrollmentLabel.text = NSLocalizedString("Budget Billing Enrollment Status", comment: "")
-//        enrollmentLabel.isAccessibilityElement = false
-//
-//        viewModel.currentEnrollment.asDriver().drive(enrollSwitch.rx.isOn).disposed(by: disposeBag)
-//        enrollSwitch.rx.isOn.bind(to: viewModel.currentEnrollment).disposed(by: disposeBag)
-//        enrollSwitch.accessibilityLabel = enrollmentLabel.text
-        
-//        if Environment.shared.opco == .comEd || Environment.shared.opco == .peco {
-//            viewModel.unenrolling.asDriver().drive(onNext: { [weak self] unenrolling in
-//                UIView.animate(withDuration: 0.3, animations: {
-//                    self?.reasonForStoppingContainer.isHidden = !unenrolling
-//                })
-//            }).disposed(by: disposeBag)
-//        }
+        newFooterLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        newFooterLabel.textColor = .deepGray
+        newFooterLabel.text = viewModel.newFooterLabelText
 
-        // BGE Footer View when user is enrolled
+        // When BGE user is enrolled they get a series of card views with information
         if Environment.shared.opco == .bge && accountDetail.isBudgetBillEnrollment {
-            for view in bgeFooterCardViews {
-                view.layer.cornerRadius = 10
-                view.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+            for card in bgeEnrolledInfoCardViews {
+                card.layer.borderColor = UIColor.accentGray.cgColor
+                card.layer.borderWidth = 1
+            }
+            for divider in bgeEnrolledInfoCardDividers {
+                divider.backgroundColor = .accentGray
             }
             
-            monthlyAmountTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
-            monthlyAmountTitleLabel.textColor = .blackText
+            monthlyAmountTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+            monthlyAmountTitleLabel.textColor = .deepGray
             monthlyAmountTitleLabel.text = NSLocalizedString("Monthly Budget Bill Amount", comment: "")
-            monthlyAmountLabel.textColor = .blackText
-            monthlyAmountDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            monthlyAmountLabel.font = OpenSans.semibold.of(textStyle: .title3)
+            monthlyAmountLabel.textColor = .deepGray
+            monthlyAmountDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
             monthlyAmountDescriptionLabel.textColor = .deepGray
             monthlyAmountDescriptionLabel.text = NSLocalizedString("The amount that you are billed for BGE gas and/or electric service each month. This charge appears on the first page of your bill under Charges/Adjustments this period.", comment: "")
             
-            lastPaymentDateTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
-            lastPaymentDateTitleLabel.textColor = .blackText
+            lastPaymentDateTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+            lastPaymentDateTitleLabel.textColor = .deepGray
             lastPaymentDateTitleLabel.text = NSLocalizedString("Last Payment Date", comment: "")
-            lastPaymentDateLabel.textColor = .blackText
+            lastPaymentDateLabel.font = OpenSans.semibold.of(textStyle: .title3)
+            lastPaymentDateLabel.textColor = .deepGray
             
-            payoffBalanceTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
-            payoffBalanceTitleLabel.textColor = .blackText
+            payoffBalanceTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+            payoffBalanceTitleLabel.textColor = .deepGray
             payoffBalanceTitleLabel.text = NSLocalizedString("Payoff Balance for BGE Service", comment: "")
-            payoffBalanceLabel.textColor = .blackText
-            payoffBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            payoffBalanceLabel.font = OpenSans.semibold.of(textStyle: .title3)
+            payoffBalanceLabel.textColor = .deepGray
+            payoffBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
             payoffBalanceDescriptionLabel.textColor = .deepGray
             payoffBalanceDescriptionLabel.text = NSLocalizedString("Total actual-usage charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            currentBalanceTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
-            currentBalanceTitleLabel.textColor = .blackText
+            currentBalanceTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+            currentBalanceTitleLabel.textColor = .deepGray
             currentBalanceTitleLabel.text = NSLocalizedString("Current Balance for BGE Service", comment: "")
-            currentBalanceLabel.textColor = .blackText
-            currentBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            currentBalanceLabel.font = OpenSans.semibold.of(textStyle: .title3)
+            currentBalanceLabel.textColor = .deepGray
+            currentBalanceDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
             currentBalanceDescriptionLabel.textColor = .deepGray
             currentBalanceDescriptionLabel.text = NSLocalizedString("Total billed charges for BGE gas and/or electric service after payments and adjustments.", comment: "")
             
-            accDifferenceTitleLabel.font = OpenSans.bold.of(textStyle: .footnote)
-            accDifferenceTitleLabel.textColor = .blackText
+            accDifferenceTitleLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+            accDifferenceTitleLabel.textColor = .deepGray
             accDifferenceTitleLabel.text = NSLocalizedString("Accumulated Difference for BGE Service", comment: "")
-            accDifferenceLabel.textColor = .blackText
-            accDifferenceDescriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+            accDifferenceLabel.font = OpenSans.semibold.of(textStyle: .title3)
+            accDifferenceLabel.textColor = .deepGray
+            accDifferenceDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
             accDifferenceDescriptionLabel.textColor = .deepGray
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
         }
 
-        footerView.backgroundColor = .softGray
-        bgeFooterView.backgroundColor = .softGray
         footerLabel.textColor = .deepGray
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        footerLabel.text = viewModel.footerText
+        footerView.isHidden = true // Always hide for now (TODO: waiting on Mariko decision)
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -177,7 +172,7 @@ class BudgetBillingViewController: UIViewController {
         if accountDetail.isBudgetBillEnrollment {
             yourPaymentWouldBeLabel.isHidden = true
             paymentAmountView.isHidden = true
-            amountDescriptionLabel.text = NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly budget billing payment is adjusted periodically based on your actual usage.", comment: "")
+            newFooterContainerView.isHidden = true
             enrollButton.isHidden = true
         } else {
             unenrollView.isHidden = true
@@ -185,17 +180,10 @@ class BudgetBillingViewController: UIViewController {
         
         scrollView.isHidden = true
         loadingIndicator.isHidden = false
-        bgeFooterView.isHidden = true
+        bgeEnrolledInfoContainerView.isHidden = true
         stickyFooterView.isHidden = true
         viewModel.getBudgetBillingInfo(onSuccess: { [weak self] (budgetBillingInfo: BudgetBillingInfo) in
             guard let self = self else { return }
-            
-            if let footerText = self.viewModel.footerText {
-                self.footerLabel.text = footerText
-                self.view.backgroundColor = .softGray
-            } else {
-                self.footerView.isHidden = true
-            }
             
             self.paymentAmountLabel.text = budgetBillingInfo.averageMonthlyBill
             self.scrollView.isHidden = false
@@ -208,7 +196,7 @@ class BudgetBillingViewController: UIViewController {
                 self.payoffBalanceLabel.text = budgetBillingInfo.budgetBillPayoff
                 self.currentBalanceLabel.text = budgetBillingInfo.budgetBillBalance
                 self.accDifferenceLabel.text = budgetBillingInfo.budgetBillDifference
-                self.bgeFooterView.isHidden = false
+                self.bgeEnrolledInfoContainerView.isHidden = false
                 
                 if let budgetBillDifference = budgetBillingInfo.budgetBillDifference {
                     if budgetBillingInfo.budgetBillDifferenceDecimal < 0 {
@@ -299,11 +287,6 @@ class BudgetBillingViewController: UIViewController {
         }
     }
     
-//    // Prevents status bar color flash when pushed
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
-
 }
 
 extension BudgetBillingViewController: UITableViewDelegate {
