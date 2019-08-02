@@ -321,6 +321,7 @@ class HomeViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         usageCardView?.superviewDidLayoutSubviews()
+        billCardView?.superviewDidLayoutSubviews()
     }
     
     func styleViews() {
