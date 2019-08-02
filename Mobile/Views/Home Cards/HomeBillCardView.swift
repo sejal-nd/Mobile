@@ -115,6 +115,12 @@ class HomeBillCardView: UIView {
         styleViews()
     }
     
+    func superviewDidLayoutSubviews() {
+        // Needed due to weird lifetime events... thanks RX Swift
+        saveAPaymentAccountButton.layer.cornerRadius = saveAPaymentAccountButton.bounds.height / 2
+    }
+    
+    
     static func create(withViewModel viewModel: HomeBillCardViewModel) -> HomeBillCardView {
         let view = Bundle.main.loadViewFromNib() as HomeBillCardView
         view.viewModel = viewModel
@@ -159,10 +165,9 @@ class HomeBillCardView: UIView {
         expiredLabel.textColor = .deepGray
         expiredLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
-        saveAPaymentAccountButton.layer.cornerRadius = 3
         saveAPaymentAccountButton.layer.borderWidth = 1
         saveAPaymentAccountButton.layer.borderColor = UIColor.accentGray.cgColor
-        saveAPaymentAccountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .caption1)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
         a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
