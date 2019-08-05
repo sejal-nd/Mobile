@@ -22,13 +22,19 @@ class HomeEditCardCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         cardView.layer.cornerRadius = 10
-        cardView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        cardView.layer.borderColor = UIColor.accentGray.cgColor
+        cardView.layer.borderWidth = 1.0
     }
     
     func configure(withCard card: HomeCard, isActive: Bool, addRemoveTapped: @escaping ()->()) {
         nameLabel.text = card.displayString
+        nameLabel.textColor = .deepGray
         nameLabel.font = SystemFont.regular.of(textStyle: .callout)
+        
+        subLabel.textColor = .middleGray
+        subLabel.font = SystemFont.regular.of(textStyle: .caption1)
         subLabel.isHidden = card.isAlwaysAvailable
+        
         gripView.isHidden = !isActive
         addRemoveButton.setImage(isActive ? #imageLiteral(resourceName: "ic_remove"):#imageLiteral(resourceName: "ic_add"), for: .normal)
         addRemoveButton.isHidden = !card.isOptional

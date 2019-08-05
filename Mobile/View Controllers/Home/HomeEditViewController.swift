@@ -12,17 +12,16 @@ import RxCocoa
 fileprivate var topSectionHeaderHeight: CGFloat = 120
 fileprivate let cardsInUseString = NSLocalizedString("Cards in Use", comment: "")
 
-class HomeEditViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
-    @IBOutlet private weak var cancelButton: UIBarButtonItem!
-    @IBOutlet private weak var saveButton: UIBarButtonItem!
+class HomeEditViewController: UIViewController {
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var saveButton: UIButton!
     
     private let disposeBag = DisposeBag()
     
-    let isReordering = Variable(false)
-    var reorderingCell: HomeEditCardCell?
+    private let isReordering = Variable(false)
+    private var reorderingCell: HomeEditCardCell?
     
-    lazy var cards: Variable<[[HomeCard]]> = {
+    lazy private var cards: Variable<[[HomeCard]]> = {
         let selectedCards = HomeCardPrefsStore.shared.list
         
         // generate the sorted array of rejected cards
@@ -34,39 +33,54 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         return Variable([selectedCards, rejectedCards])
     }()
     
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .primaryColor
-        collectionView?.backgroundColor = .clear
-        collectionView?.collectionViewLayout = HomeEditFlowLayout()
         
-        installsStandardGestureForInteractiveMovement = false
-        collectionView?.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
-                                                                          action: #selector(handleDragToReorder(gesture:))))
+        style()
         
-        cancelButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.presentingViewController?.dismiss(animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
+        configureCollectionView()
         
+        observerActions()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func configureCollectionView() {
+        collectionView.backgroundColor = .clear
+        collectionView.collectionViewLayout = HomeEditFlowLayout()
+        
+        collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                         action: #selector(handleDragToReorder(gesture:))))
+    }
+    
+    private func style() {
+        view.backgroundColor = .white        
+    }
+    
+    private func observerActions() {
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 guard let this = self, !this.isReordering.value else { return }
                 HomeCardPrefsStore.shared.list = this.cards.value[0]
-                self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                this.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
-        
     }
     
-    // MARK - Drag Handling
     
-    @objc func handleDragToReorder(gesture: UIGestureRecognizer) {
-        guard let collectionView = collectionView else { return }
-        
+    // MARK: - Drag Gesture Recognizer
+    
+    @objc private func handleDragToReorder(gesture: UIGestureRecognizer) {
         switch gesture.state {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)), selectedIndexPath.section == 0 else { break }
@@ -101,7 +115,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
-    func transformCardCell(pickUp: Bool) {
+    private func transformCardCell(pickUp: Bool) {
         guard let cell = reorderingCell else { return }
         
         if pickUp {
@@ -125,14 +139,17 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             })
         }
     }
+}
+
+
+// MARK: - Collection View Delegate + Data Source
     
-    // MARK: - Collection View Delegate
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 1 {
             return cards.value[section].count + 1
         } else {
@@ -140,7 +157,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 1 && indexPath.item == cards.value[1].count {
             return restoreDefaultCell(collectionView: collectionView, indexPath: indexPath)
         } else if indexPath.section == 1 && cards.value[1][0] == .nothing {
@@ -155,7 +172,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
-    func restoreDefaultCell(collectionView: UICollectionView, indexPath: IndexPath) -> HomeEditRestoreDefaultCell {
+    private func restoreDefaultCell(collectionView: UICollectionView, indexPath: IndexPath) -> HomeEditRestoreDefaultCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditRestoreDefaultCell.className, for: indexPath) as! HomeEditRestoreDefaultCell
         
         let isEnabled = cards.asDriver().map { $0[0] != HomeCardPrefsStore.defaultList }
@@ -175,12 +192,12 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
                         }
                         
                         this.cards.value = [selectedCards, rejectedCards]
-                        this.collectionView?.reloadData()
+                        this.collectionView.reloadData()
         })
         return cell
     }
     
-    func editCardCell(collectionView: UICollectionView, indexPath: IndexPath) -> HomeEditCardCell {
+    private func editCardCell(collectionView: UICollectionView, indexPath: IndexPath) -> HomeEditCardCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeEditCardCell.className,
                                                       for: indexPath) as! HomeEditCardCell
         let card = cards.value[indexPath.section][indexPath.item]
@@ -204,7 +221,7 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             let destinationIndexPath = IndexPath(item: destinationIndex, section: otherSection)
             this.cards.value[otherSection].insert(card, at: destinationIndex)
             
-            this.collectionView?.performBatchUpdates({
+            this.collectionView.performBatchUpdates({
                 this.isReordering.value = true
                 this.collectionView?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
             }, completion: { success in
@@ -238,20 +255,28 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
         return indexPath.section == 0
     }
     
-    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let name = cards.value[sourceIndexPath.section][sourceIndexPath.item]
         cards.value[sourceIndexPath.section].remove(at: sourceIndexPath.item)
         cards.value[destinationIndexPath.section].insert(name, at: destinationIndexPath.item)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeEditSectionHeaderView.className, for: indexPath) as! HomeEditSectionHeaderView
+            
+            // Style
+            headerView.instructionsLabel.textColor = .deepGray
+            headerView.instructionsLabel.font = SystemFont.regular.of(textStyle: .body)
+            
+            headerView.label.textColor = .deepGray
+            headerView.label.font = OpenSans.regular.of(textStyle: .body)
+            
             switch indexPath.section {
             case 0:
                 headerView.instructionsLabel.isHidden = false
@@ -268,7 +293,12 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             fatalError("\(kind) not supported.")
         }
     }
-    
+}
+
+
+// MARK: - Collection Delegate Flow Layout
+
+extension HomeEditViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
         case 1:
@@ -283,8 +313,10 @@ class HomeEditViewController: UICollectionViewController, UICollectionViewDelega
             return CGSize(width: width, height: topSectionHeaderHeight)
         }
     }
-    
 }
+    
+
+// MARK: - Gesture Recognizer Delegate
 
 extension HomeEditViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
