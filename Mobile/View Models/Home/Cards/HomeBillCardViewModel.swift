@@ -356,8 +356,9 @@ class HomeBillCardViewModel {
 
     private(set) lazy var showOneTouchPayTCButton: Driver<Bool> =
         Driver.combineLatest(showOneTouchPaySlider,
-                             showMinMaxPaymentAllowed)
-        { $0 && !$1 }
+                             showMinMaxPaymentAllowed,
+                             showSaveAPaymentAccountButton)
+        { $0 && !$1 && !$2}
         .distinctUntilChanged()
 
     // MARK: - View States

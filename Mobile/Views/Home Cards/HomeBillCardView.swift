@@ -64,6 +64,8 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var saveAPaymentAccountButton: ButtonControl!
     @IBOutlet private weak var saveAPaymentAccountLabel: UILabel!
+    @IBOutlet private weak var tutorialButton: UIButton!
+    @IBOutlet private weak var saveAPaymentDescriptionLabel: UILabel!
     
     @IBOutlet private weak var minimumPaymentContainer: UIView!
     @IBOutlet private weak var minimumPaymentLabel: UILabel!
@@ -88,6 +90,7 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
     @IBOutlet private weak var oneTouchPayTCButtonLabel: UILabel!
+    @IBOutlet weak var oneTouchPayTCSpacerView: UIView!
     
     @IBOutlet private weak var viewBillButton: UIButton!
     
@@ -100,8 +103,6 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
     
-    private let tutorialTap = UITapGestureRecognizer()
-    private let tutorialSwipe = UISwipeGestureRecognizer()
     
     private var viewModel: HomeBillCardViewModel! {
         didSet {
@@ -360,18 +361,21 @@ class HomeBillCardView: UIView {
             }
         }).disposed(by: bag)
         
-        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
-        
         viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
             let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
             self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
         }).disposed(by: bag)
         viewModel.showConvenienceFee.not().drive(convenienceFeeLabel.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
-        viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPay.not().drive(autoPayContainer.rx.isHidden).disposed(by: bag)
         viewModel.showOneTouchPayTCButton.not().drive(oneTouchPayTCButton.rx.isHidden).disposed(by: bag)
+        
+        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.not().drive(tutorialButton.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentDescriptionLabel.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showSaveAPaymentAccountButton.drive(oneTouchPayTCSpacerView.rx.isHidden).disposed(by: bag)
         
         // Subview States
         viewModel.paymentDescriptionText.drive(paymentDescriptionLabel.rx.attributedText).disposed(by: bag)
@@ -405,11 +409,6 @@ class HomeBillCardView: UIView {
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
             .disposed(by: bag)
-        
-        oneTouchSliderContainer.removeGestureRecognizer(tutorialTap)
-        oneTouchSliderContainer.removeGestureRecognizer(tutorialSwipe)
-        oneTouchSliderContainer.addGestureRecognizer(tutorialTap)
-        oneTouchSliderContainer.addGestureRecognizer(tutorialSwipe)
         
         Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
                          NotificationCenter.default.rx.notification(UIAccessibility.voiceOverStatusDidChangeNotification, object: nil))
@@ -486,11 +485,9 @@ class HomeBillCardView: UIView {
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             return alertController
     }
-    
+
     private(set) lazy var tutorialViewController: Driver<UIViewController> = Driver
-        .merge(tutorialTap.rx.event.asDriver().mapTo(()),
-               tutorialSwipe.rx.event.asDriver().mapTo(()),
-               a11yTutorialButton.rx.tap.asDriver())
+        .merge(tutorialButton.rx.tap.asDriver())
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .mapTo(())
