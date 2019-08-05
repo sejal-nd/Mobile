@@ -30,8 +30,8 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var yourPaymentWouldBeLabel: UILabel!
     @IBOutlet weak var paymentAmountLabel: UILabel!
     
-    @IBOutlet weak var newFooterContainerView: StickyFooterView!
-    @IBOutlet weak var newFooterLabel: UILabel!
+    @IBOutlet weak var footerContainerView: StickyFooterView!
+    @IBOutlet weak var footerLabel: UILabel!
         
     @IBOutlet weak var bgeEnrolledInfoContainerView: UIView!
     @IBOutlet var bgeEnrolledInfoCardViews: [UIView]!
@@ -50,10 +50,6 @@ class BudgetBillingViewController: UIViewController {
     @IBOutlet weak var accDifferenceTitleLabel: UILabel!
     @IBOutlet weak var accDifferenceLabel: UILabel!
     @IBOutlet weak var accDifferenceDescriptionLabel: UILabel!
-    
-    // TODO: Delete these if we go with the unified label
-    @IBOutlet weak var footerView: UIView!
-    @IBOutlet weak var footerLabel: UILabel!
     
     @IBOutlet weak var stickyFooterView: StickyFooterView!
     @IBOutlet weak var enrollButton: PrimaryButtonNew!
@@ -96,9 +92,9 @@ class BudgetBillingViewController: UIViewController {
         paymentAmountLabel.textColor = .deepGray
         paymentAmountLabel.font = OpenSans.semibold.of(textStyle: .title1)
         
-        newFooterLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        newFooterLabel.textColor = .deepGray
-        newFooterLabel.text = viewModel.newFooterLabelText
+        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        footerLabel.textColor = .deepGray
+        footerLabel.text = viewModel.footerLabelText
 
         // When BGE user is enrolled they get a series of card views with information
         if Environment.shared.opco == .bge && accountDetail.isBudgetBillEnrollment {
@@ -152,11 +148,6 @@ class BudgetBillingViewController: UIViewController {
             accDifferenceDescriptionLabel.textColor = .deepGray
             accDifferenceDescriptionLabel.text = NSLocalizedString("The difference between your Payoff Balance and your Current Balance for BGE Service.", comment: "")
         }
-
-        footerLabel.textColor = .deepGray
-        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        footerLabel.text = viewModel.footerText
-        footerView.isHidden = true // Always hide for now (TODO: waiting on Mariko decision)
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -172,7 +163,7 @@ class BudgetBillingViewController: UIViewController {
         if accountDetail.isBudgetBillEnrollment {
             yourPaymentWouldBeLabel.isHidden = true
             paymentAmountView.isHidden = true
-            newFooterContainerView.isHidden = true
+            footerContainerView.isHidden = true
             enrollButton.isHidden = true
         } else {
             unenrollView.isHidden = true

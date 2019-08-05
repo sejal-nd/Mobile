@@ -135,7 +135,7 @@ class HomeViewController: AccountPickerViewController {
         weatherView.didTapTemperatureTip
             .map(InfoModalViewController.init)
             .drive(onNext: { [weak self] in
-                self?.present($0, animated: true, completion: nil)
+                self?.navigationController?.present($0, animated: true, completion: nil)
             })
             .disposed(by: weatherView.bag)
         
