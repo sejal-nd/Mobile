@@ -38,16 +38,16 @@ class HomeEditViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         
         collectionView.backgroundColor = .clear
         collectionView.collectionViewLayout = HomeEditFlowLayout()
 
-        // todo revisit
-//        installsStandardGestureForInteractiveMovement = false
         collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
                                                                           action: #selector(handleDragToReorder(gesture:))))
+        
+        addCloseButton()
         
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
