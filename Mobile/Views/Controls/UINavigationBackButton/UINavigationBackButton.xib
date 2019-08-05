@@ -4,14 +4,16 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UINavigationBackButton" customModule="BGE" customModuleProvider="target">
             <connections>
-                <outlet property="arrowImage" destination="v8K-vc-WLU" id="OzR-l4-msm"/>
-                <outlet property="backLabel" destination="Asf-50-AZK" id="DFx-XL-kbY"/>
+                <outlet property="arrowImage" destination="v8K-vc-WLU" id="K1V-OR-evv"/>
+                <outlet property="arrowImageLeadingConstraint" destination="Rfh-N5-ZhV" id="jrk-5w-Yky"/>
+                <outlet property="backLabel" destination="Asf-50-AZK" id="9wQ-Z0-iJi"/>
                 <outlet property="view" destination="iN0-l3-epB" id="dKu-D2-QDv"/>
             </connections>
         </placeholder>

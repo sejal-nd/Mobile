@@ -12,11 +12,19 @@ class UINavigationBackButton: UIButton {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var arrowImage: UIImageView!
+    @IBOutlet weak var arrowImageLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var backLabel: UILabel!
     
     @IBInspectable var isLabelHidden: Bool = false {
         didSet {
             backLabel.isHidden = isLabelHidden
+        }
+    }
+    
+    @IBInspectable var tintWhite: Bool = false {
+        didSet {
+            arrowImage.tintColor = tintWhite ? .white : .actionBlue
+            backLabel.textColor = tintWhite ? .white : .actionBlue
         }
     }
     
@@ -30,6 +38,15 @@ class UINavigationBackButton: UIButton {
         commonInit()
     }
     
+    // When created in a Storyboard this isn't necessary (because it will lay out exactly as you
+    // specify), but when creating programatically to set a `navigationItem.leftBarButtonItem`,
+    // this leading constraint is necessary for proper apperance.
+    init() {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        commonInit()
+        arrowImageLeadingConstraint.constant = -8.5
+    }
+    
     func commonInit() {
         backgroundColor = .clear
         Bundle.main.loadNibNamed(className, owner: self, options: nil)
@@ -40,8 +57,8 @@ class UINavigationBackButton: UIButton {
         addSubview(view)
         
         arrowImage.image = arrowImage.image!.withRenderingMode(.alwaysTemplate)
-        arrowImage.tintColor = .white
-        backLabel.textColor = .white
+        arrowImage.tintColor = .actionBlue
+        backLabel.textColor = .actionBlue
     }
     
     override func layoutSubviews() {

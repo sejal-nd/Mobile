@@ -14,19 +14,10 @@ protocol PaperlessEBillViewControllerDelegate: class {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus)
 }
 
-class PaperlessEBillViewController: UIViewController {
-    @IBOutlet weak var submitButton: UIBarButtonItem!
+class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    // Background
-    @IBOutlet weak var topBackgroundView: UIView!
-    @IBOutlet weak var gradientBackgroundView: UIView!
-    private var gradientLayer: CAGradientLayer!
-    
-    // Content
-    @IBOutlet weak var accountInfoBar: AccountInfoBar!
-    @IBOutlet weak var learnMoreButton: ButtonControl!
-    @IBOutlet weak var learnMoreLabel: UILabel!
+    @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
     @IBOutlet weak var emailsWillBeSentToLabel: UILabel!
 	@IBOutlet weak var emailLabel: UILabel!
 	@IBOutlet weak var updateDetailsView: UIView!
@@ -42,8 +33,6 @@ class PaperlessEBillViewController: UIViewController {
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
-    @IBOutlet weak var bottomView: UIView!
-    
     @IBOutlet weak var detailsLabel: UILabel!
     
     var initialAccountDetail: AccountDetail!
@@ -60,6 +49,20 @@ class PaperlessEBillViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let systemBack = UINavigationBackButton()
+        systemBack.isLabelHidden = true
+        systemBack.addTarget(self, action: #selector(onBackPress), for: .touchUpInside)
+        let backButton = UIBarButtonItem(customView: systemBack)
+        backButton.isAccessibilityElement = true
+        backButton.accessibilityLabel = NSLocalizedString("Back", comment: "")
+        navigationItem.leftBarButtonItem = backButton
+        navigationController?.interactivePopGestureRecognizer?.delegate = self // Enable interactive pop
+        
+        let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_tooltip.pdf"), style: .plain, target: self, action: #selector(onTooltipPress))
+        infoButton.isAccessibilityElement = true
+        infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
+        navigationItem.rightBarButtonItem = infoButton
         
         colorAndShadowSetup()
         
@@ -106,9 +109,9 @@ class PaperlessEBillViewController: UIViewController {
             })
             .disposed(by: bag)
         
-        Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
-            .drive(submitButton.rx.isEnabled)
-            .disposed(by: bag)
+//        Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
+//            .drive(submitButton.rx.isEnabled)
+//            .disposed(by: bag)
         
         if viewModel.accounts.value.count == 1 {
             enrollAllAccountsHeaderView.isHidden = true
@@ -118,22 +121,6 @@ class PaperlessEBillViewController: UIViewController {
             accountInfoBar.isHidden = true
             singleAccountEnrollView.isHidden = true
         }
-        
-        learnMoreButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            let description: String
-            if Environment.shared.opco == .bge {
-                description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
-            } else {
-                description = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")
-            }
-            let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
-            self?.navigationController?.present(infoModal, animated: true, completion: nil)
-        }).disposed(by: bag)
-        learnMoreButton.accessibilityLabel = NSLocalizedString("Learn more about paperless e-bill", comment: "")
-        
-        learnMoreLabel.textColor = .actionBlue
-        learnMoreLabel.text = NSLocalizedString("Learn more about Paperless eBill", comment: "")
-        learnMoreLabel.font = SystemFont.semibold.of(textStyle: .headline)
         
         enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
     }
@@ -155,27 +142,6 @@ class PaperlessEBillViewController: UIViewController {
         enrollAllAccountsHeaderLabel.textColor = .blackText
         enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)
         enrollAllAccountsHeaderLabel.text = NSLocalizedString("Enrollment Status:", comment: "")
-        
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientBackgroundView.bounds
-        gradientLayer.colors = [
-            UIColor.softGray.cgColor,
-            UIColor.white.cgColor,
-        ]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientBackgroundView.layer.addSublayer(gradientLayer)
-        
-        bottomView.backgroundColor = .softGray
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        gradientLayer.frame = gradientBackgroundView.bounds
-    }
-    
-    override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        gradientLayer.frame = gradientBackgroundView.bounds
     }
     
     func add(accountDetail: AccountDetail, animated: Bool) {
@@ -197,7 +163,18 @@ class PaperlessEBillViewController: UIViewController {
         
     }
     
-    @IBAction func cancelAction() {
+    @IBAction func onTooltipPress() {
+        let description: String
+        if Environment.shared.opco == .bge {
+            description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
+        } else {
+            description = NSLocalizedString("Eliminate your paper bill and receive an email notification when your bill is ready to view online.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  Your preference will be updated with your next month’s bill.", comment: "")
+        }
+        let infoModal = InfoModalViewController(title: NSLocalizedString("Paperless eBill", comment: ""), image: #imageLiteral(resourceName: "paperless_modal"), description: description)
+        present(infoModal, animated: true, completion: nil)
+    }
+    
+    @objc func onBackPress() {
         if viewModel.enrollStatesChanged.value {
             let message = !viewModel.accountsToEnroll.value.isEmpty ? NSLocalizedString("Are you sure you want to exit this screen without completing enrollment?", comment: "") : NSLocalizedString("Are you sure you want to exit this screen without completing unenrollment?", comment: "")
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Paperless eBill", comment: ""), message: message, preferredStyle: .alert)
@@ -212,8 +189,6 @@ class PaperlessEBillViewController: UIViewController {
     }
 
     @IBAction func submitAction(_ sender: Any) {
-        guard submitButton.isEnabled else { return }
-        
         LoadingView.show()
         viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()
@@ -227,10 +202,5 @@ class PaperlessEBillViewController: UIViewController {
             self?.present(alertVc, animated: true, completion: nil)
         })
     }
-    
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+
 }
