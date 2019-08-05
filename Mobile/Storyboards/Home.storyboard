@@ -329,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HyB-6K-vcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2283" y="-466"/>
+            <point key="canvasLocation" x="1441" y="-669"/>
         </scene>
         <!--UpdatesDetailViewController-->
         <scene sceneID="g5d-Cq-yGf">
@@ -559,11 +559,11 @@
                         <outlet property="personalizeButton" destination="JqW-8P-SEa" id="6Z6-rp-KfJ"/>
                         <outlet property="scrollView" destination="mzY-0e-rXR" id="ejP-8Y-Dy4"/>
                         <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
-                        <segue destination="Ywc-8s-IBo" kind="presentation" identifier="editHomeSegue" id="6Qx-eL-PNO"/>
                         <segue destination="ho2-TI-3tb" kind="show" identifier="reportOutageSegue" id="P2D-Ry-Yj3"/>
                         <segue destination="9AE-d3-QcS" kind="show" identifier="outageMapSegue" id="PBt-yQ-MvG"/>
                         <segue destination="8XL-jd-5lL" kind="show" identifier="UpdatesDetailSegue" id="8bf-8e-LkE"/>
                         <segue destination="WSt-KO-Xq2" kind="show" identifier="appointmentDetailSegue" id="fxD-dY-2s2"/>
+                        <segue destination="jop-CG-TUs" kind="show" identifier="editHomeSegue" id="Sgl-vw-lAY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -868,24 +868,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDg-zb-1M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2964" y="-1242"/>
-        </scene>
-        <!--Large Title Navigation Controller-->
-        <scene sceneID="lfl-ym-K3d">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ywc-8s-IBo" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dNi-cQ-q0H">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="jop-CG-TUs" kind="relationship" relationship="rootViewController" id="pXN-aq-sAz"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Mv-Fh-LW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1441" y="-466"/>
         </scene>
         <!--Appointments View Controller-->
         <scene sceneID="4NA-aG-10r">

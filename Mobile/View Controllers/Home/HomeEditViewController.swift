@@ -46,6 +46,12 @@ class HomeEditViewController: UIViewController {
         observerActions()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     
     // MARK: - Helper
     
@@ -58,9 +64,7 @@ class HomeEditViewController: UIViewController {
     }
     
     private func style() {
-        view.backgroundColor = .white
-        
-        addCloseButton()
+        view.backgroundColor = .white        
     }
     
     private func observerActions() {
@@ -68,7 +72,7 @@ class HomeEditViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let this = self, !this.isReordering.value else { return }
                 HomeCardPrefsStore.shared.list = this.cards.value[0]
-                self?.presentingViewController?.dismiss(animated: true, completion: nil)
+                this.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
     }
