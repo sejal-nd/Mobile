@@ -126,14 +126,11 @@ class PaperlessEBillViewModel {
     }
     
     var footerText: String? {
-        switch Environment.shared.opco {
-        case .bge:
+        if Environment.shared.opco == .bge {
             return nil
-        case .comEd:
-            return NSLocalizedString("If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through ComEd.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
-        case .peco:
-            return NSLocalizedString("If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through PECO.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
         }
+        let opcoString = Environment.shared.opco.displayString
+        return String.localizedStringWithFormat("Your enrollment status for Paperless eBill will be updated by the next day.\n\nIf you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through %@.com, you will be automatically unenrolled from MyCheckFree.", opcoString)
     }
     
     func switched(accountDetail: AccountDetail, on: Bool) {

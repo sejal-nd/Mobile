@@ -20,8 +20,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
     @IBOutlet weak var emailsWillBeSentToLabel: UILabel!
 	@IBOutlet weak var emailLabel: UILabel!
-	@IBOutlet weak var updateDetailsView: UIView!
-    @IBOutlet weak var updateDetailsLabel: UILabel!
     @IBOutlet weak var singleAccountEnrollView: UIView!
     @IBOutlet weak var singleAccountEnrollLabel: UILabel!
     @IBOutlet weak var singleAccountEnrollSwitch: Switch!
@@ -33,7 +31,8 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
-    @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var footerContainer: StickyFooterView!
+    @IBOutlet weak var footerLabel: UILabel!
     
     var initialAccountDetail: AccountDetail!
     
@@ -64,9 +63,16 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
         navigationItem.rightBarButtonItem = infoButton
         
-        colorAndShadowSetup()
+        singleAccountEnrollLabel.textColor = .blackText
+        singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .headline)
+        singleAccountEnrollLabel.text = NSLocalizedString("Paperless eBill Enrollment Status", comment: "")
+        singleAccountEnrollLabel.isAccessibilityElement = false
         
-		updateDetailsView.isHidden = Environment.shared.opco == .bge
+        singleAccountEnrollSwitch.accessibilityLabel = singleAccountEnrollLabel.text
+        
+        enrollAllAccountsHeaderLabel.textColor = .blackText
+        enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        enrollAllAccountsHeaderLabel.text = NSLocalizedString("Enrollment Status:", comment: "")
         
         emailsWillBeSentToLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
@@ -74,11 +80,9 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         
         allAccountsLabel.font = SystemFont.medium.of(textStyle: .title1)
         
-        detailsLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        detailsLabel.text = viewModel.footerText
-        
-        updateDetailsLabel.font = SystemFont.regular.of(textStyle: .headline)
-        updateDetailsLabel.setLineHeight(lineHeight: 24)
+        footerLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        footerLabel.text = viewModel.footerText
+        footerContainer.isHidden = viewModel.footerText == nil
         
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
@@ -131,19 +135,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func colorAndShadowSetup() {
-        singleAccountEnrollLabel.textColor = .blackText
-        singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .headline)
-        singleAccountEnrollLabel.text = NSLocalizedString("Paperless eBill Enrollment Status", comment: "")
-        singleAccountEnrollLabel.isAccessibilityElement = false
-        
-        singleAccountEnrollSwitch.accessibilityLabel = singleAccountEnrollLabel.text
-        
-        enrollAllAccountsHeaderLabel.textColor = .blackText
-        enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        enrollAllAccountsHeaderLabel.text = NSLocalizedString("Enrollment Status:", comment: "")
-    }
-    
     func add(accountDetail: AccountDetail, animated: Bool) {
         let accountView = PaperlessEBillAccountView.create(withAccountDetail: accountDetail)
         
@@ -160,7 +151,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             .disposed(by: accountView.bag)
         
         accountsStackView.addArrangedSubview(accountView)
-        
     }
     
     @IBAction func onTooltipPress() {

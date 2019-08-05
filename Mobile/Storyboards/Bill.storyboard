@@ -2491,17 +2491,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOB-RI-gra" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="460.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YBl-k7-ozx" userLabel="Content Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="557"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="460.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="Ppx-Ua-IDa" customClass="AccountInfoBarNew" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vBu-OQ-0Av" userLabel="Top Stack">
-                                                        <rect key="frame" x="0.0" y="35" width="375" height="398.5"/>
+                                                        <rect key="frame" x="0.0" y="35" width="375" height="320"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-VF-Pwp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
@@ -2542,27 +2542,8 @@
                                                                     <constraint firstAttribute="trailing" secondItem="Ndz-DS-V2s" secondAttribute="trailing" constant="16" id="vai-QI-HRv"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEC-2U-dhq">
-                                                                <rect key="frame" x="0.0" y="71" width="375" height="78.5"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Your enrollment status for Paperless eBill will be updated by the next day." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfJ-7G-EjH">
-                                                                        <rect key="frame" x="16" y="20" width="343" height="38.5"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                        <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="64G-gL-z6r"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="PfJ-7G-EjH" secondAttribute="bottom" priority="999" constant="20" id="BIU-jO-KWP"/>
-                                                                    <constraint firstItem="PfJ-7G-EjH" firstAttribute="top" secondItem="lEC-2U-dhq" secondAttribute="top" priority="999" constant="20" id="QKU-rm-Fb6"/>
-                                                                    <constraint firstItem="PfJ-7G-EjH" firstAttribute="leading" secondItem="lEC-2U-dhq" secondAttribute="leading" constant="16" id="cDH-1v-oRg"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="PfJ-7G-EjH" secondAttribute="trailing" constant="16" id="mZN-sg-DMX"/>
-                                                                </constraints>
-                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHh-Mi-Qqf">
-                                                                <rect key="frame" x="0.0" y="149.5" width="375" height="69"/>
+                                                                <rect key="frame" x="0.0" y="71" width="375" height="69"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zOx-f4-yEB">
                                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
@@ -2599,7 +2580,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5Y-wM-X1w">
-                                                                <rect key="frame" x="0.0" y="218.5" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="140" width="375" height="50"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enrollment Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siQ-7t-F7S">
                                                                         <rect key="frame" x="18" y="10" width="339" height="36"/>
@@ -2618,7 +2599,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gua-rp-1fw">
-                                                                <rect key="frame" x="0.0" y="268.5" width="375" height="65"/>
+                                                                <rect key="frame" x="0.0" y="190" width="375" height="65"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OF5-EZ-pag">
                                                                         <rect key="frame" x="17" y="17" width="341" height="31"/>
@@ -2658,7 +2639,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQi-0t-Dzn">
-                                                                <rect key="frame" x="0.0" y="333.5" width="375" height="65"/>
+                                                                <rect key="frame" x="0.0" y="255" width="375" height="65"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="rvI-4H-AyR" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="157.5" y="26.5" width="60" height="12"/>
@@ -2673,7 +2654,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-Pb-SsT">
-                                                                <rect key="frame" x="0.0" y="398.5" width="375" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="320" width="375" height="0.0"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4m-0V-0iv">
                                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -2687,9 +2668,7 @@
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="nHh-Mi-Qqf" secondAttribute="trailing" id="0E5-Zc-olE"/>
-                                                            <constraint firstAttribute="trailing" secondItem="lEC-2U-dhq" secondAttribute="trailing" priority="999" id="8Xa-RZ-k3n"/>
                                                             <constraint firstItem="DTo-Pb-SsT" firstAttribute="leading" secondItem="vBu-OQ-0Av" secondAttribute="leading" id="9Wp-Jg-c6U"/>
-                                                            <constraint firstItem="lEC-2U-dhq" firstAttribute="leading" secondItem="vBu-OQ-0Av" secondAttribute="leading" priority="999" id="HCO-jF-5c8"/>
                                                             <constraint firstItem="gua-rp-1fw" firstAttribute="leading" secondItem="vBu-OQ-0Av" secondAttribute="leading" id="MHr-EY-4oz"/>
                                                             <constraint firstAttribute="trailing" secondItem="gua-rp-1fw" secondAttribute="trailing" id="Mmg-fl-hgB"/>
                                                             <constraint firstAttribute="trailing" secondItem="DTo-Pb-SsT" secondAttribute="trailing" id="UDI-xn-Dci"/>
@@ -2702,13 +2681,13 @@
                                                             <constraint firstItem="NQi-0t-Dzn" firstAttribute="leading" secondItem="vBu-OQ-0Av" secondAttribute="leading" id="z4m-k6-T3z"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSx-wZ-NZa" userLabel="Bottom View" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="433.5" width="375" height="123.5"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSx-wZ-NZa" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="355" width="375" height="105.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0H-AS-PYY">
-                                                                <rect key="frame" x="29" y="29" width="317" height="65.5"/>
+                                                                <rect key="frame" x="20" y="20" width="335" height="65.5"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="428" id="Fwo-A9-NsO"/>
+                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="420" id="Fwo-A9-NsO"/>
                                                                 </constraints>
                                                                 <string key="text">If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless Billing through ####.com, you will be automatically unenrolled from MyCheckFree.</string>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
@@ -2719,10 +2698,10 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="e0H-AS-PYY" firstAttribute="centerX" secondItem="MSx-wZ-NZa" secondAttribute="centerX" id="2kc-HV-yw4"/>
-                                                            <constraint firstAttribute="trailing" secondItem="e0H-AS-PYY" secondAttribute="trailing" priority="999" constant="29" id="3XZ-AR-7Ay"/>
-                                                            <constraint firstItem="e0H-AS-PYY" firstAttribute="leading" secondItem="MSx-wZ-NZa" secondAttribute="leading" priority="999" constant="29" id="Jjs-Ba-hDA"/>
-                                                            <constraint firstItem="e0H-AS-PYY" firstAttribute="top" secondItem="MSx-wZ-NZa" secondAttribute="top" constant="29" id="cjK-no-SG4"/>
-                                                            <constraint firstAttribute="bottom" secondItem="e0H-AS-PYY" secondAttribute="bottom" priority="999" constant="29" id="jPv-bx-HeC"/>
+                                                            <constraint firstAttribute="trailing" secondItem="e0H-AS-PYY" secondAttribute="trailing" priority="999" constant="20" id="3XZ-AR-7Ay"/>
+                                                            <constraint firstItem="e0H-AS-PYY" firstAttribute="leading" secondItem="MSx-wZ-NZa" secondAttribute="leading" priority="999" constant="20" id="Jjs-Ba-hDA"/>
+                                                            <constraint firstItem="e0H-AS-PYY" firstAttribute="top" secondItem="MSx-wZ-NZa" secondAttribute="top" constant="20" id="cjK-no-SG4"/>
+                                                            <constraint firstAttribute="bottom" secondItem="e0H-AS-PYY" secondAttribute="bottom" priority="999" constant="20" id="jPv-bx-HeC"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -2773,7 +2752,6 @@
                         <outlet property="accountInfoBar" destination="Ppx-Ua-IDa" id="zq3-vh-nN3"/>
                         <outlet property="accountsStackView" destination="DTo-Pb-SsT" id="u5u-Sl-Cfk"/>
                         <outlet property="allAccountsLabel" destination="ciL-El-KGI" id="H9o-lu-igX"/>
-                        <outlet property="detailsLabel" destination="e0H-AS-PYY" id="Zom-Mh-zfq"/>
                         <outlet property="detailsLoadingActivityView" destination="NQi-0t-Dzn" id="0nj-gA-iDA"/>
                         <outlet property="emailLabel" destination="qk2-xq-Q5c" id="YQO-xR-a13"/>
                         <outlet property="emailsWillBeSentToLabel" destination="OB9-oV-7EA" id="XHS-sn-SOX"/>
@@ -2781,12 +2759,12 @@
                         <outlet property="enrollAllAccountsHeaderView" destination="M5Y-wM-X1w" id="ZLH-pW-nt0"/>
                         <outlet property="enrollAllAccountsSwitch" destination="QEY-D0-0OR" id="WCB-Hf-qCA"/>
                         <outlet property="enrollAllAccountsView" destination="gua-rp-1fw" id="kxp-L7-ILX"/>
+                        <outlet property="footerContainer" destination="MSx-wZ-NZa" id="g5s-gX-mw1"/>
+                        <outlet property="footerLabel" destination="e0H-AS-PYY" id="Zom-Mh-zfq"/>
                         <outlet property="scrollView" destination="VRG-Ou-QoU" id="4IO-9x-I0Y"/>
                         <outlet property="singleAccountEnrollLabel" destination="FHT-FE-9vy" id="yYT-sk-1gi"/>
                         <outlet property="singleAccountEnrollSwitch" destination="cCk-QM-z8M" id="YYV-rW-NxK"/>
                         <outlet property="singleAccountEnrollView" destination="nHh-Mi-Qqf" id="NWq-Xr-JY2"/>
-                        <outlet property="updateDetailsLabel" destination="PfJ-7G-EjH" id="0rK-AS-30l"/>
-                        <outlet property="updateDetailsView" destination="lEC-2U-dhq" id="J5Q-12-NK1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjB-hP-UiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
