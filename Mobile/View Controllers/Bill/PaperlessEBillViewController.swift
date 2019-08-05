@@ -25,9 +25,9 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var emailDivider: UIView!
 	@IBOutlet weak var emailLabel: UILabel!
     
-    @IBOutlet weak var singleAccountEnrollView: UIView!
-    @IBOutlet weak var singleAccountEnrollLabel: UILabel!
-    @IBOutlet weak var singleAccountEnrollSwitch: Switch!
+    @IBOutlet weak var singleAccountCurrentlyEnrolledContainer: UIView!
+    @IBOutlet weak var singleAccountCurrentlyEnrolledLabel: UILabel!
+    
     @IBOutlet weak var enrollAllAccountsHeaderView: UIView!
     @IBOutlet weak var enrollAllAccountsHeaderLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
@@ -36,15 +36,21 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
-    @IBOutlet weak var footerContainer: StickyFooterView!
+    
+    @IBOutlet weak var footerContainer: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
-    var initialAccountDetail: AccountDetail!
+    @IBOutlet weak var enrollmentButton: PrimaryButtonNew!
+    @IBOutlet weak var unenrollView: UIView!
+    @IBOutlet weak var unenrollButtonLabel: UILabel!
+    @IBOutlet weak var unenrollButton: UIButton!
+    
+    var accountDetail: AccountDetail!
     
     lazy var viewModel: PaperlessEBillViewModel = {
         PaperlessEBillViewModel(accountService: ServiceFactory.createAccountService(),
                                 billService: ServiceFactory.createBillService(),
-                                initialAccountDetail: self.initialAccountDetail)
+                                initialAccountDetail: self.accountDetail)
     }()
     
     weak var delegate: PaperlessEBillViewControllerDelegate?
@@ -78,12 +84,9 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
         emailLabel.font = SystemFont.regular.of(textStyle: .callout)
         
-        singleAccountEnrollLabel.textColor = .blackText
-        singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .headline)
-        singleAccountEnrollLabel.text = NSLocalizedString("Paperless eBill Enrollment Status", comment: "")
-        singleAccountEnrollLabel.isAccessibilityElement = false
-        
-        singleAccountEnrollSwitch.accessibilityLabel = singleAccountEnrollLabel.text
+        singleAccountCurrentlyEnrolledLabel.textColor = .deepGray
+        singleAccountCurrentlyEnrolledLabel.font = SystemFont.regular.of(textStyle: .body)
+        singleAccountCurrentlyEnrolledLabel.text = NSLocalizedString("You are currently enrolled in Paperless eBill.", comment: "")
         
         enrollAllAccountsHeaderLabel.textColor = .blackText
         enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -95,6 +98,14 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         footerLabel.text = viewModel.footerText
         footerContainer.isHidden = viewModel.footerText == nil
         
+        unenrollButtonLabel.textColor = .deepGray
+        unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
+        unenrollButtonLabel.text = NSLocalizedString("Looking to end Paperless eBill?", comment: "")
+        unenrollButton.accessibilityLabel = "Looking to end Paperless e-bill?"
+        unenrollButton.setTitleColor(.actionBlue, for: .normal)
+        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
+        unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
+        
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] accountDetails -> () in
@@ -103,13 +114,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
                 self.enrollAllAccountsSwitch.isEnabled = true
                 self.detailsLoadingActivityView.isHidden = true
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
-                if self.viewModel.accounts.value.count == 1 {
-                    let accountDetail = accountDetails.first!
-                    self.singleAccountEnrollSwitch.isOn = accountDetail.eBillEnrollStatus == .canUnenroll
-                    self.singleAccountEnrollSwitch.rx.isOn.asDriver().drive(onNext: { [weak self] isOn in
-                        self?.viewModel.switched(accountDetail: accountDetail, on: isOn)
-                    }).disposed(by: self.bag)
-                } else {
+                if self.viewModel.accounts.value.count > 1 {
                     accountDetails.forEach {
                         self.add(accountDetail: $0, animated: true)
                     }
@@ -124,17 +129,29 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             })
             .disposed(by: bag)
         
-//        Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
-//            .drive(submitButton.rx.isEnabled)
-//            .disposed(by: bag)
+        Driver.combineLatest(viewModel.accountsToEnroll.asDriver(), viewModel.accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
+            .drive(enrollmentButton.rx.isEnabled)
+            .disposed(by: bag)
+        
         
         if viewModel.accounts.value.count == 1 {
+            if accountDetail.isEBillEnrollment {
+                enrollmentButton.isHidden = true
+            } else {
+                singleAccountCurrentlyEnrolledContainer.isHidden = true
+                unenrollView.isHidden = true
+            }
             enrollAllAccountsHeaderView.isHidden = true
             enrollAllAccountsView.isHidden = true
             accountsStackView.isHidden = true
         } else {
+            singleAccountCurrentlyEnrolledContainer.isHidden = true
             accountInfoBar.isHidden = true
-            singleAccountEnrollView.isHidden = true
+            
+            let enrollmentButtonText = NSLocalizedString("Update Enrollment", comment: "")
+            enrollmentButton.setTitle(enrollmentButtonText, for: .normal)
+            enrollmentButton.accessibilityLabel = enrollmentButtonText
+            unenrollView.isHidden = true
         }
         
         enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
@@ -189,7 +206,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         }
     }
 
-    @IBAction func submitAction(_ sender: Any) {
+    @IBAction func onEnrollmentButtonPress() {
         LoadingView.show()
         viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()

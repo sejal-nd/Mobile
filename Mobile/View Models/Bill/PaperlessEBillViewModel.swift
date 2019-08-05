@@ -32,22 +32,30 @@ class PaperlessEBillViewModel {
     
     let bag = DisposeBag()
     
-    init(accountService: AccountService, billService: BillService, initialAccountDetail initialAccountDetailValue: AccountDetail) {
+    init(accountService: AccountService, billService: BillService, initialAccountDetail accountDetail: AccountDetail) {
         self.accountService = accountService
         self.billService = billService
-        self.initialAccountDetail = Variable(initialAccountDetailValue)
+        self.initialAccountDetail = Variable(accountDetail)
         
         switch Environment.shared.opco {
         case .bge:
-            self.accounts = Variable([AccountsStore.shared.accounts.filter { initialAccountDetailValue.accountNumber == $0.accountNumber }.first!])
+            self.accounts = Variable([AccountsStore.shared.accounts.filter { accountDetail.accountNumber == $0.accountNumber }.first!])
         case .comEd, .peco:
             self.accounts = Variable(AccountsStore.shared.accounts)
         }
-    
-        Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
-            .drive(enrollStatesChanged)
-            .disposed(by: bag)
         
+        if self.accounts.value.count == 1 {
+            if accountDetail.isEBillEnrollment {
+                accountsToUnenroll.value.insert(accountDetail.accountNumber)
+            } else {
+                accountsToEnroll.value.insert(accountDetail.accountNumber)
+            }
+        } else {
+            Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
+                .drive(enrollStatesChanged)
+                .disposed(by: bag)
+        }
+            
         enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
                                                      accountsToEnroll.asObservable(),
                                                      accountsToUnenroll.asObservable())

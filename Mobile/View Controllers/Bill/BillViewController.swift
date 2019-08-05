@@ -654,7 +654,7 @@ class BillViewController: AccountPickerViewController {
             vc.accountDetail = accountDetail
         case let (vc as PaperlessEBillViewController, accountDetail as AccountDetail):
             vc.delegate = self
-            vc.initialAccountDetail = accountDetail
+            vc.accountDetail = accountDetail
         case let (vc as ViewBillViewController, accountDetail as AccountDetail):
             vc.viewModel.billDate = accountDetail.billingInfo.billDate
             vc.viewModel.isCurrent = true
