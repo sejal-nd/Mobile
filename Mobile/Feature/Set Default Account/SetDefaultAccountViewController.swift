@@ -33,7 +33,7 @@ class SetDefaultAccountViewController: UIViewController {
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_tooltip.pdf"), style: .plain, target: self, action: #selector(infoButtonPressed))
         navigationItem.rightBarButtonItem = infoButton
         infoButton.isAccessibilityElement = true
-        infoButton.accessibilityLabel = "Tooltip"
+        infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
         
         tableView.estimatedRowHeight = 56
         
