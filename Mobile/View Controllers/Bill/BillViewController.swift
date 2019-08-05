@@ -689,7 +689,7 @@ extension BillViewController: AccountPickerDelegate {
 
 extension BillViewController: BudgetBillingViewControllerDelegate {
 
-    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: BudgetBillingViewController, averageMonthlyBill: String?) {
+    func budgetBillingViewControllerDidEnroll(_ budgetBillingViewController: UIViewController, averageMonthlyBill: String?) {
         switch Environment.shared.opco {
         case .bge:
             let textFormat = NSLocalizedString("Enrolled in Budget Billing - your monthly rate is %@", comment: "")
@@ -700,7 +700,7 @@ extension BillViewController: BudgetBillingViewControllerDelegate {
         GoogleAnalytics.log(event: .budgetBillEnrollComplete)
     }
 
-    func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: BudgetBillingViewController) {
+    func budgetBillingViewControllerDidUnenroll(_ budgetBillingViewController: UIViewController) {
         showDelayedToast(withMessage: NSLocalizedString("Unenrolled from Budget Billing", comment: ""))
         GoogleAnalytics.log(event: .budgetBillUnEnrollComplete)
     }
