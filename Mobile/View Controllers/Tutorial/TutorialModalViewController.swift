@@ -11,7 +11,7 @@ class TutorialModalViewController: DismissableFormSheetViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var xButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-
+    
     let slides: [TutorialSlide]
     var slideViews = [TutorialView]()
     
@@ -34,7 +34,7 @@ class TutorialModalViewController: DismissableFormSheetViewController {
         pageControl.addTarget(self, action: #selector(onPageControlTap(sender:)), for: .valueChanged)
         
         xButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
-        nextButton.titleLabel?.font = SystemFont.bold.of(textStyle: .title1)
+        nextButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
         
         slides.forEach(addViewFor)
         view.accessibilityElements = [xButton, pagerContent, pageControl, nextButton] as [UIView]

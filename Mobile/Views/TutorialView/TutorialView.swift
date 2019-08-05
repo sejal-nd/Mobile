@@ -48,7 +48,7 @@ class TutorialView : UIView {
         addSubview(view)
         view.frame = self.bounds
         
-        titleText.font = OpenSans.bold.of(textStyle: .title1)
-        messageText.font = OpenSans.regular.of(textStyle: .subheadline)
+        titleText.font = OpenSans.regular.of(textStyle: .body)
+        messageText.font = SystemFont.regular.of(textStyle: .footnote)
     }
 } 
