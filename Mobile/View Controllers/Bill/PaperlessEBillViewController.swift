@@ -18,8 +18,13 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
+    
+    @IBOutlet weak var emailContainer: UIView!
+    @IBOutlet weak var emailBox: UIView!
     @IBOutlet weak var emailsWillBeSentToLabel: UILabel!
+    @IBOutlet weak var emailDivider: UIView!
 	@IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var singleAccountEnrollView: UIView!
     @IBOutlet weak var singleAccountEnrollLabel: UILabel!
     @IBOutlet weak var singleAccountEnrollSwitch: Switch!
@@ -63,6 +68,16 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
         navigationItem.rightBarButtonItem = infoButton
         
+        emailBox.layer.borderColor = UIColor.accentGray.cgColor
+        emailBox.layer.borderWidth = 1
+        emailDivider.backgroundColor = .accentGray
+        emailsWillBeSentToLabel.textColor = .deepGray
+        emailsWillBeSentToLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        emailsWillBeSentToLabel.text = NSLocalizedString("Emails will be sent to", comment: "")
+        emailLabel.textColor = .deepGray
+        emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
+        emailLabel.font = SystemFont.regular.of(textStyle: .callout)
+        
         singleAccountEnrollLabel.textColor = .blackText
         singleAccountEnrollLabel.font = OpenSans.regular.of(textStyle: .headline)
         singleAccountEnrollLabel.text = NSLocalizedString("Paperless eBill Enrollment Status", comment: "")
@@ -73,10 +88,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         enrollAllAccountsHeaderLabel.textColor = .blackText
         enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)
         enrollAllAccountsHeaderLabel.text = NSLocalizedString("Enrollment Status:", comment: "")
-        
-        emailsWillBeSentToLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        emailLabel.text = viewModel.initialAccountDetail.value.customerInfo.emailAddress
-        emailLabel.font = SystemFont.medium.of(textStyle: .headline)
         
         allAccountsLabel.font = SystemFont.medium.of(textStyle: .title1)
         
