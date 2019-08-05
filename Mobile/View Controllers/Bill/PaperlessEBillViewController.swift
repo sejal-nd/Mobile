@@ -28,8 +28,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var singleAccountCurrentlyEnrolledContainer: UIView!
     @IBOutlet weak var singleAccountCurrentlyEnrolledLabel: UILabel!
     
-    @IBOutlet weak var enrollAllAccountsHeaderView: UIView!
-    @IBOutlet weak var enrollAllAccountsHeaderLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var allAccountsLabel: UILabel!
     @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
@@ -88,11 +86,8 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         singleAccountCurrentlyEnrolledLabel.font = SystemFont.regular.of(textStyle: .body)
         singleAccountCurrentlyEnrolledLabel.text = NSLocalizedString("You are currently enrolled in Paperless eBill.", comment: "")
         
-        enrollAllAccountsHeaderLabel.textColor = .blackText
-        enrollAllAccountsHeaderLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        enrollAllAccountsHeaderLabel.text = NSLocalizedString("Enrollment Status:", comment: "")
-        
-        allAccountsLabel.font = SystemFont.medium.of(textStyle: .title1)
+        allAccountsLabel.textColor = .deepGray
+        allAccountsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         footerLabel.font = SystemFont.regular.of(textStyle: .caption1)
         footerLabel.text = viewModel.footerText
@@ -133,7 +128,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             .drive(enrollmentButton.rx.isEnabled)
             .disposed(by: bag)
         
-        
         if viewModel.accounts.value.count == 1 {
             if accountDetail.isEBillEnrollment {
                 enrollmentButton.isHidden = true
@@ -141,7 +135,6 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
                 singleAccountCurrentlyEnrolledContainer.isHidden = true
                 unenrollView.isHidden = true
             }
-            enrollAllAccountsHeaderView.isHidden = true
             enrollAllAccountsView.isHidden = true
             accountsStackView.isHidden = true
         } else {
