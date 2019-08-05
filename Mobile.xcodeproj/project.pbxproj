@@ -942,6 +942,9 @@
 		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
+		9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
+		9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
+		9C5F786522F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
 		9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButton.swift */; };
 		9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButton.swift */; };
 		9C62445822C1624900F14DA0 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62445522C1624900F14DA0 /* SecondaryButton.swift */; };
@@ -2955,6 +2958,7 @@
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingReasonForStoppingViewController.swift; sourceTree = "<group>"; };
 		9C62445522C1624900F14DA0 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		9C62445A22C171C800F14DA0 /* FloatLabelTextFieldNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextFieldNew.xib; sourceTree = "<group>"; };
 		9C62445B22C171C800F14DA0 /* FloatLabelTextFieldNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextFieldNew.swift; sourceTree = "<group>"; };
@@ -3632,6 +3636,7 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				9C5F786122F4ADB200D5C395 /* Budget Billing */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
 				35C9138F22E9E96E009DD71A /* Mini Wallet */,
 				9C153DB522E8F410002DA062 /* Registration */,
@@ -4349,7 +4354,6 @@
 				E876A8591ECF372600CA63BF /* Wallet */,
 				B094A63C210270820028F90F /* BillBreakdownViewModel.swift */,
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
-				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
 				E86DE4B61F06D70800EDB154 /* PaymentViewModel.swift */,
 				E81CFFF31EC253E5004FDA7E /* ViewBillViewModel.swift */,
@@ -4742,6 +4746,17 @@
 				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		9C5F786122F4ADB200D5C395 /* Budget Billing */ = {
+			isa = PBXGroup;
+			children = (
+				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
+				E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */,
+				E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */,
+				9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */,
+			);
+			path = "Budget Billing";
 			sourceTree = "<group>";
 		};
 		9C62445922C1717E00F14DA0 /* FloatLabelTextFieldNew */ = {
@@ -5484,8 +5499,6 @@
 				E876A8541ECDEF3E00CA63BF /* Wallet */,
 				E882B7E31EA8009500EA3C13 /* BillViewController.swift */,
 				82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */,
-				E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */,
-				E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */,
 				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
 				E81CFFEF1EC24978004FDA7E /* ViewBillViewController.swift */,
 				E89548F41EC646A200730022 /* BGEasyViewController.swift */,
@@ -7743,6 +7756,7 @@
 				5492E01F1EECC3230088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
+				9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
 				359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
@@ -8026,6 +8040,7 @@
 				E87C41491FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
 				E841F3A41F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA31EFC1A01004EBBAB /* WebViewController.swift in Sources */,
+				9C5F786522F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
 				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF559A2170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
@@ -8504,6 +8519,7 @@
 				0D79C6CE1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				359BDB4122D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				823694321FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,

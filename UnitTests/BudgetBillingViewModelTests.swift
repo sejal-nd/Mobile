@@ -20,49 +20,6 @@ class BudgetBillingViewModelTests: XCTestCase {
         MockAccountService.loadAccountsSync()
     }
     
-    func testSubmitButtonUnenrollingWithNoReason() {
-        viewModel = BudgetBillingViewModel(accountDetail: .fromMockJson(forKey: .budgetBill), billService: MockBillService(), alertsService: MockAlertsService())
-        viewModel.currentEnrollment.value = false
-        viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
-            if Environment.shared.opco == .bge {
-                if !enabled {
-                    XCTFail("BGE - Submit button should be enabled when toggling switch off")
-                }
-            } else {
-                if enabled {
-                    XCTFail("ComEd/PECO - Submit button should be disabled when toggling switch off because no reason selected")
-                }
-            }
-        }).disposed(by: disposeBag)
-    }
-    
-    func testSubmitButtonUnenrollingWithReason() {
-        viewModel = BudgetBillingViewModel(accountDetail: .fromMockJson(forKey: .budgetBill), billService: MockBillService(), alertsService: MockAlertsService())
-        viewModel.currentEnrollment.value = false
-        viewModel.selectedUnenrollmentReason.value = 1
-        viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
-            if Environment.shared.opco == .bge {
-                if !enabled {
-                    XCTFail("BGE - Submit button should be enabled when toggling switch off")
-                }
-            } else {
-                if !enabled {
-                    XCTFail("ComEd/PECO - Submit button should be enabled when toggling switch off because reason selected")
-                }
-            }
-        }).disposed(by: disposeBag)
-    }
-    
-    func testSubmitButtonEnrolling() {
-        viewModel = BudgetBillingViewModel(accountDetail: .default, billService: MockBillService(), alertsService: MockAlertsService())
-        viewModel.currentEnrollment.value = true
-        viewModel.submitButtonEnabled().single().subscribe(onNext: { enabled in
-            if !enabled {
-                XCTFail("Submit button should be enabled because switch toggled 'On'")
-            }
-        }).disposed(by: disposeBag)
-    }
-    
     func testGetBudgetBillingInfoSuccess() {
         viewModel = BudgetBillingViewModel(accountDetail: .default, billService: MockBillService(), alertsService: MockAlertsService())
         viewModel.getBudgetBillingInfo(onSuccess: { info in
