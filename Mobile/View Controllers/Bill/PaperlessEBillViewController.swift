@@ -30,7 +30,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     
     @IBOutlet weak var enrollAllAccountsView: UIView!
     @IBOutlet weak var allAccountsLabel: UILabel!
-    @IBOutlet weak var enrollAllAccountsSwitch: UISwitch!
+    @IBOutlet weak var enrollAllAccountsCheckbox: Checkbox!
     @IBOutlet weak var allAccountsSeparatorView: UIView!
     @IBOutlet weak var accountsStackView: UIStackView!
     @IBOutlet weak var detailsLoadingActivityView: UIView!
@@ -88,6 +88,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         
         allAccountsLabel.textColor = .deepGray
         allAccountsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        allAccountsLabel.text = NSLocalizedString("All Eligible Accounts", comment: "")
         
         footerLabel.font = SystemFont.regular.of(textStyle: .caption1)
         footerLabel.text = viewModel.footerText
@@ -101,12 +102,12 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
         unenrollButton.setTitle(NSLocalizedString("Unenroll", comment: ""), for: .normal)
         
+        self.enrollAllAccountsCheckbox.isEnabled = false
         viewModel.accountDetails
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] accountDetails -> () in
                 guard let self = self else { return }
-                
-                self.enrollAllAccountsSwitch.isEnabled = true
+                self.enrollAllAccountsCheckbox.isEnabled = true
                 self.detailsLoadingActivityView.isHidden = true
                 UIAccessibility.post(notification: .screenChanged, argument: self.view)
                 if self.viewModel.accounts.value.count > 1 {
@@ -117,10 +118,14 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             })
             .disposed(by: bag)
         
-        viewModel.enrollAllAccounts.distinctUntilChanged()
-            .asDriver(onErrorJustReturn: false)
-            .drive(onNext: { [weak self] in
-                self?.enrollAllAccountsSwitch.setOn($0, animated: true)
+        viewModel.allAccountsCheckboxState.distinctUntilChanged()
+            .asDriver(onErrorJustReturn: .unchecked)
+            .drive(onNext: { [weak self] state in
+                if state == .indeterminate {
+                    self?.enrollAllAccountsCheckbox.setIndeterminate(true)
+                } else {
+                    self?.enrollAllAccountsCheckbox.isChecked = state == .checked ? true : false
+                }
             })
             .disposed(by: bag)
         
@@ -147,7 +152,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             unenrollView.isHidden = true
         }
         
-        enrollAllAccountsSwitch.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
+        enrollAllAccountsCheckbox.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,15 +164,15 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     func add(accountDetail: AccountDetail, animated: Bool) {
         let accountView = PaperlessEBillAccountView.create(withAccountDetail: accountDetail)
         
-        accountView.isOn?.asDriver()
-            .drive(onNext: { [weak self] isOn in
-                self?.viewModel.switched(accountDetail: accountDetail, on: isOn)
+        accountView.isChecked?.asDriver()
+            .drive(onNext: { [weak self] isChecked in
+                self?.viewModel.switched(accountDetail: accountDetail, on: isChecked)
             })
             .disposed(by: accountView.bag)
         
-        enrollAllAccountsSwitch.rx.isOn.asDriver().skip(1)
+        enrollAllAccountsCheckbox.rx.isChecked.asDriver().skip(1)
             .drive(onNext: {
-                accountView.toggleSwitch(on: $0)
+                accountView.toggleCheckbox(checked: $0)
             })
             .disposed(by: accountView.bag)
         

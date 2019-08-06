@@ -23,26 +23,27 @@
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Tjh-uO-TPW"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="FeQ-xq-dyX" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
+                    <rect key="frame" x="25" y="6" width="44" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yl3-L6-zHx">
-                    <rect key="frame" x="16" y="9" width="343" height="38.5"/>
+                    <rect key="frame" x="59" y="9" width="300" height="38.5"/>
                     <subviews>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9v-zl-oXP" customClass="Switch" customModule="BGE" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="3.5" width="51" height="31"/>
-                        </switch>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="ic_residential_mini" translatesAutoresizingMaskIntoConstraints="NO" id="50g-ht-mAg">
-                            <rect key="frame" x="57" y="9" width="20" height="20"/>
+                            <rect key="frame" x="0.0" y="9" width="20" height="20"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XXD-O1-jwe">
-                            <rect key="frame" x="85" y="0.0" width="258" height="38.5"/>
+                            <rect key="frame" x="28" y="0.0" width="272" height="38.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" text="#########" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTD-Vd-bLe">
-                                    <rect key="frame" x="0.0" y="0.0" width="258" height="21.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="272" height="21.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                    <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500 Address St" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Df8-9B-mWB">
-                                    <rect key="frame" x="0.0" y="21.5" width="258" height="17"/>
+                                    <rect key="frame" x="0.0" y="21.5" width="272" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -57,13 +58,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="yl3-L6-zHx" firstAttribute="leading" secondItem="FeQ-xq-dyX" secondAttribute="trailing" constant="-10" id="29D-8y-t97"/>
                 <constraint firstItem="yl3-L6-zHx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="CE6-ua-MiZ"/>
-                <constraint firstItem="yl3-L6-zHx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="999" constant="16" id="FWN-6W-Wmv"/>
                 <constraint firstAttribute="trailing" secondItem="yl3-L6-zHx" secondAttribute="trailing" priority="999" constant="16" id="KS2-ob-LN9"/>
+                <constraint firstItem="FeQ-xq-dyX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="T6e-Y4-CjB"/>
                 <constraint firstItem="cz4-vC-v0W" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="59" id="Uzn-LZ-GDk"/>
                 <constraint firstAttribute="bottom" secondItem="cz4-vC-v0W" secondAttribute="bottom" id="kDN-p6-62Y"/>
+                <constraint firstItem="FeQ-xq-dyX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="laA-8E-Adp"/>
                 <constraint firstAttribute="trailing" secondItem="cz4-vC-v0W" secondAttribute="trailing" id="nUV-i4-9HK"/>
-                <constraint firstItem="yl3-L6-zHx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="u87-tX-MTJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -71,7 +73,7 @@
                 <outlet property="accountNumberLabel" destination="DTD-Vd-bLe" id="3fy-vr-fhq"/>
                 <outlet property="accountStackView" destination="XXD-O1-jwe" id="lNZ-vP-Ryp"/>
                 <outlet property="addressLabel" destination="Df8-9B-mWB" id="MjB-h7-RkI"/>
-                <outlet property="enrollSwitch" destination="M9v-zl-oXP" id="br7-aC-Epm"/>
+                <outlet property="checkbox" destination="FeQ-xq-dyX" id="63N-ao-Rqt"/>
                 <outlet property="imageView" destination="50g-ht-mAg" id="WmU-lH-ahw"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="-200.5"/>

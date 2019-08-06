@@ -16,6 +16,12 @@ enum PaperlessEBillChangedStatus {
     case mixed
 }
 
+enum PaperlessEBillAllAccountsCheckboxState {
+    case checked
+    case unchecked
+    case indeterminate
+}
+
 class PaperlessEBillViewModel {
     private var accountService: AccountService
     private var billService: BillService
@@ -28,7 +34,7 @@ class PaperlessEBillViewModel {
     
     let enrollStatesChanged = Variable<Bool>(false)
     
-    var enrollAllAccounts = Observable<Bool>.empty()
+    var allAccountsCheckboxState = Observable<PaperlessEBillAllAccountsCheckboxState>.empty()
     
     let bag = DisposeBag()
     
@@ -56,12 +62,18 @@ class PaperlessEBillViewModel {
                 .disposed(by: bag)
         }
             
-        enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
-                                                     accountsToEnroll.asObservable(),
-                                                     accountsToUnenroll.asObservable())
-        { allAccountDetails, toEnroll, toUnenroll -> Bool in
+        allAccountsCheckboxState = Observable.combineLatest(accountDetails.asObservable(),
+                                                            accountsToEnroll.asObservable(),
+                                                            accountsToUnenroll.asObservable())
+        { allAccountDetails, toEnroll, toUnenroll -> PaperlessEBillAllAccountsCheckboxState in
             let enrollableAccounts = allAccountDetails.filter { $0.eBillEnrollStatus == .canEnroll }
-            return toEnroll.count == enrollableAccounts.count && toUnenroll.isEmpty
+            let unenrollableAccounts = allAccountDetails.filter { $0.eBillEnrollStatus == .canUnenroll }
+            if toEnroll.count == enrollableAccounts.count && toUnenroll.isEmpty {
+                return .checked
+            } else if toUnenroll.count == unenrollableAccounts.count && toEnroll.isEmpty {
+                return .unchecked
+            }
+            return .indeterminate
         }
     }
     

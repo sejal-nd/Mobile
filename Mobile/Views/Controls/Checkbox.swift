@@ -15,9 +15,11 @@ class Checkbox: UIControl {
     private var imageView: UIImageView!
 
     private var justToggled = false
+    private var indeterminate = false
     
     var isChecked: Bool = false {
         didSet {
+            indeterminate = false
             imageView.image = isChecked ? #imageLiteral(resourceName: "ic_checkbox_selected.pdf") :#imageLiteral(resourceName: "ic_checkbox_deselected.pdf")
             sendActions(for: .valueChanged)
         }
@@ -35,7 +37,7 @@ class Checkbox: UIControl {
         commonInit()
     }
     
-    func commonInit() {
+    private func commonInit() {
         backgroundColor = .clear
         
         imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 24, height: 24))
@@ -43,13 +45,32 @@ class Checkbox: UIControl {
         addSubview(imageView)
     }
     
+    func setIndeterminate(_ indeterminate: Bool) {
+        self.indeterminate = indeterminate
+        if indeterminate {
+            imageView.image = #imageLiteral(resourceName: "ic_checkbox_indeterminate.pdf")
+        } else {
+            imageView.image = isChecked ? #imageLiteral(resourceName: "ic_checkbox_selected.pdf") :#imageLiteral(resourceName: "ic_checkbox_deselected.pdf")
+        }
+    }
+    
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 44, height: 44)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.isChecked = !isChecked
+        if indeterminate {
+            self.isChecked = true
+        } else {
+            self.isChecked = !isChecked
+        }
         justToggled = true
+    }
+    
+    override var isEnabled: Bool {
+        didSet {
+            imageView.alpha = isEnabled ? 1.0 : 0.4
+        }
     }
     
     private var accessibilityLabelInternal: String?
@@ -58,15 +79,23 @@ class Checkbox: UIControl {
             self.accessibilityLabelInternal = newValue
         }
         get {
-            let checkedState = isChecked ? "Checked" : "Unchecked"
-            if justToggled { // Prevent duplicate readings of the full label (matches UISwitch behavior)
+            let state: String
+            if indeterminate {
+                state = NSLocalizedString("Indeterminate", comment: "")
+            } else {
+                state = isChecked ? NSLocalizedString("Checked", comment: "") :
+                    NSLocalizedString("Unchecked", comment: "")
+            }
+            
+            if justToggled { // Prevents duplicate readings of the full label (matches UISwitch behavior)
                 justToggled = false
-                return checkedState
+                return state
             }
+            
             if let label = self.accessibilityLabelInternal {
-                return "\(label), Checkbox, \(checkedState)"
+                return String.localizedStringWithFormat("%@, Checkbox, %@", label, state)
             }
-            return "Checkbox, \(checkedState)"
+            return String.localizedStringWithFormat("Checkbox, %@", state)
         }
     }
 
