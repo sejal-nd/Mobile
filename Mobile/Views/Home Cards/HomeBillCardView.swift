@@ -374,7 +374,6 @@ class HomeBillCardView: UIView {
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentAccountButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(tutorialButton.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.not().drive(saveAPaymentDescriptionLabel.rx.isHidden).disposed(by: bag)
-        viewModel.showSaveAPaymentAccountButton.drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.showSaveAPaymentAccountButton.drive(oneTouchPayTCSpacerView.rx.isHidden).disposed(by: bag)
         
         // Subview States
@@ -397,6 +396,7 @@ class HomeBillCardView: UIView {
         viewModel.minMaxPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
+        viewModel.enableOneTouchSlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)

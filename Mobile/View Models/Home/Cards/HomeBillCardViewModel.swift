@@ -647,12 +647,8 @@ class HomeBillCardViewModel {
     private(set) lazy var enableOneTouchSlider: Driver<Bool> =
         Driver.combineLatest(accountDetailDriver, walletItemDriver, showMinMaxPaymentAllowed)
         { accountDetail, walletItem, showMinMaxPaymentAllowed in
-            guard let walletItem = walletItem else { return false }
+            guard let walletItem = walletItem, !walletItem.isExpired else { return false }
             if showMinMaxPaymentAllowed {
-                return false
-            }
-
-            if walletItem.isExpired {
                 return false
             }
 
