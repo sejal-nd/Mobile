@@ -37,7 +37,7 @@ enum UsageTool {
         case .energyTips:
             return #imageLiteral(resourceName: "ic_Top5")
         case .homeProfile:
-            return #imageLiteral(resourceName: "ic_residential")
+            return #imageLiteral(resourceName: "ic_house")
         case .peakRewards:
             return #imageLiteral(resourceName: "ic_thermostat")
         case .smartEnergyRewards:

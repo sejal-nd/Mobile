@@ -32,9 +32,9 @@ class UsageWebViewController: UIViewController {
         
         let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question_white"), style: .plain, target: self, action: #selector(onInfoButtonPress))
         infoButton.isAccessibilityElement = true
-        infoButton.accessibilityLabel = "Tooltip"
+        infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
         navigationItem.rightBarButtonItem = infoButton
-
+        
         webView.navigationDelegate = self
         webView.isHidden = true
         

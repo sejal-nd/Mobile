@@ -80,7 +80,7 @@ class BudgetBillingViewModel {
     private(set) lazy var reasonForStoppingUnenrollButtonEnabled: Driver<Bool> =
         self.selectedUnenrollmentReason.asDriver().map { $0 != -1 }
     
-    var newFooterLabelText: String {
+    var footerLabelText: String? {
         switch Environment.shared.opco {
         case .bge:
             return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.\n\nBudget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
@@ -99,37 +99,6 @@ class BudgetBillingViewModel {
             }
             return text
         }
-    }
-    
-    // TODO: Waiting on Mariko decision -- will be able to remove if we go with the combined footer
-    var amountDescriptionText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. Your actual usage will continue to be shown on your monthly bill. If your Budget Billing payment amount needs to be adjusted, you will be notified 1 month prior to the change.", comment: "")
-        case .comEd:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted periodically based on your actual usage. The ComEd app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, any credit/debit balances will be included in the calculation for the following year’s Budget Billing payment.", comment: "")
-        case .peco:
-            return NSLocalizedString("The amount above is your suggested billing amount. It may be adjusted quarterly based on your actual usage. The PECO app will be automatically set to notify you when your billing amount is adjusted (and you can modify your alert preferences at any time). After 12 months, your Budget Billing amount will be recalculated based on your previous 12-month's usage.", comment: "")
-        }
-    }
-    
-    // TODO: Waiting on Mariko decision -- will be able to remove if we go with the combined footer
-    var footerText: String? {
-        switch Environment.shared.opco {
-        case .bge:
-            return NSLocalizedString("Budget Billing only includes BGE charges. If you have selected an alternate supplier, the charges from your supplier will be listed as a separate item on your bill.", comment: "")
-        case .comEd:
-            if accountDetail.isSupplier && accountDetail.isDualBillOption {
-                return NSLocalizedString("Budget Billing is available for your ComEd Delivery charges. Electric Supply charges from your Retail Electric Supplier will not be included in your Budget Billing plan.", comment: "")
-            }
-        case .peco:
-            if accountDetail.isSupplier && accountDetail.isDualBillOption {
-                return NSLocalizedString("Budget billing option only includes PECO charges. Energy Supply charges are billed by your chosen generation provider.", comment: "")
-            } else {
-                return NSLocalizedString("PECO bases the monthly Budget Billing amount on your average bill over the past 12 months. If your account has not yet been open for a year, your monthly Budget Billing amount is an estimate that takes into account the usage of the previous resident at your address and/or the average usage in your area. Be aware that your usage may differ from the previous resident. This may result in future changes to your Budget Billing amount.", comment: "")
-            }
-        }
-        return nil
     }
     
     func reasonString(forIndex index: Int) -> String {

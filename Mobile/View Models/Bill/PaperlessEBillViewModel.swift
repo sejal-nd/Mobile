@@ -16,6 +16,12 @@ enum PaperlessEBillChangedStatus {
     case mixed
 }
 
+enum PaperlessEBillAllAccountsCheckboxState {
+    case checked
+    case unchecked
+    case indeterminate
+}
+
 class PaperlessEBillViewModel {
     private var accountService: AccountService
     private var billService: BillService
@@ -28,32 +34,46 @@ class PaperlessEBillViewModel {
     
     let enrollStatesChanged = Variable<Bool>(false)
     
-    var enrollAllAccounts = Observable<Bool>.empty()
+    var allAccountsCheckboxState = Observable<PaperlessEBillAllAccountsCheckboxState>.empty()
     
     let bag = DisposeBag()
     
-    init(accountService: AccountService, billService: BillService, initialAccountDetail initialAccountDetailValue: AccountDetail) {
+    init(accountService: AccountService, billService: BillService, initialAccountDetail accountDetail: AccountDetail) {
         self.accountService = accountService
         self.billService = billService
-        self.initialAccountDetail = Variable(initialAccountDetailValue)
+        self.initialAccountDetail = Variable(accountDetail)
         
         switch Environment.shared.opco {
         case .bge:
-            self.accounts = Variable([AccountsStore.shared.accounts.filter { initialAccountDetailValue.accountNumber == $0.accountNumber }.first!])
+            self.accounts = Variable([AccountsStore.shared.accounts.filter { accountDetail.accountNumber == $0.accountNumber }.first!])
         case .comEd, .peco:
             self.accounts = Variable(AccountsStore.shared.accounts)
         }
-    
-        Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
-            .drive(enrollStatesChanged)
-            .disposed(by: bag)
         
-        enrollAllAccounts = Observable.combineLatest(accountDetails.asObservable(),
-                                                     accountsToEnroll.asObservable(),
-                                                     accountsToUnenroll.asObservable())
-        { allAccountDetails, toEnroll, toUnenroll -> Bool in
+        if self.accounts.value.count == 1 {
+            if accountDetail.isEBillEnrollment {
+                accountsToUnenroll.value.insert(accountDetail.accountNumber)
+            } else {
+                accountsToEnroll.value.insert(accountDetail.accountNumber)
+            }
+        } else {
+            Driver.combineLatest(accountsToEnroll.asDriver(), accountsToUnenroll.asDriver()) { !$0.isEmpty || !$1.isEmpty }
+                .drive(enrollStatesChanged)
+                .disposed(by: bag)
+        }
+            
+        allAccountsCheckboxState = Observable.combineLatest(accountDetails.asObservable(),
+                                                            accountsToEnroll.asObservable(),
+                                                            accountsToUnenroll.asObservable())
+        { allAccountDetails, toEnroll, toUnenroll -> PaperlessEBillAllAccountsCheckboxState in
             let enrollableAccounts = allAccountDetails.filter { $0.eBillEnrollStatus == .canEnroll }
-            return toEnroll.count == enrollableAccounts.count && toUnenroll.isEmpty
+            let unenrollableAccounts = allAccountDetails.filter { $0.eBillEnrollStatus == .canUnenroll }
+            if toEnroll.count == enrollableAccounts.count && toUnenroll.isEmpty {
+                return .checked
+            } else if toUnenroll.count == unenrollableAccounts.count && toEnroll.isEmpty {
+                return .unchecked
+            }
+            return .indeterminate
         }
     }
     
@@ -126,14 +146,11 @@ class PaperlessEBillViewModel {
     }
     
     var footerText: String? {
-        switch Environment.shared.opco {
-        case .bge:
+        if Environment.shared.opco == .bge {
             return nil
-        case .comEd:
-            return NSLocalizedString("If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through ComEd.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
-        case .peco:
-            return NSLocalizedString("If you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through PECO.com, you will be automatically unenrolled from MyCheckFree.", comment: "")
         }
+        let opcoString = Environment.shared.opco.displayString
+        return String.localizedStringWithFormat("Your enrollment status for Paperless eBill will be updated by the next day.\n\nIf you are currently enrolled in eBill through MyCheckFree.com, by enrolling in Paperless eBill through %@.com, you will be automatically unenrolled from MyCheckFree.", opcoString)
     }
     
     func switched(accountDetail: AccountDetail, on: Bool) {
