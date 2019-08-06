@@ -21,7 +21,7 @@
         <!--Edit Home-->
         <scene sceneID="Fcf-Rs-ryb">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="jop-CG-TUs" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="jop-CG-TUs" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aJG-Y8-P0s"/>
                         <viewControllerLayoutGuide type="bottom" id="BC0-i7-DIf"/>
