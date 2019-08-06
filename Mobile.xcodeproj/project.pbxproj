@@ -1196,9 +1196,6 @@
 		B0728E49215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */; };
 		B0728E4A215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */; };
 		B0728E4B215C149A0007C608 /* AlertPreferencesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */; };
-		B073EC95214C3B7F0030B466 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
-		B073EC96214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
-		B073EC97214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		B07D247320C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247420C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
 		B07D247520C590AB00BD22EB /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D247220C590AB00BD22EB /* HomeWeatherView.swift */; };
@@ -1441,9 +1438,6 @@
 		B0B083BD216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
 		B0B083BE216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
 		B0B083BF216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
-		B0B083C0216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
-		B0B083C1216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
-		B0B083C2216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */; };
 		B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083E921710C8500B1C632 /* Appt_Canceled.json */; };
 		B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EA21710C8600B1C632 /* Appt_Inprogress.json */; };
 		B0B083F021710C8900B1C632 /* Appt_otw.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B083EB21710C8700B1C632 /* Appt_otw.json */; };
@@ -1462,9 +1456,6 @@
 		B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		B0B0840921710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		B0B0840A21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B0840B21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B0840C21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
-		B0B0840D21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		B0B0840F217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08410217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
 		B0B08411217111CE00B1C632 /* appointment_tracker.json in Resources */ = {isa = PBXBuildFile; fileRef = B0B0840E217111CE00B1C632 /* appointment_tracker.json */; };
@@ -3610,25 +3601,9 @@
 			path = "Billing History";
 			sourceTree = "<group>";
 		};
-		2FA5D8621F17D85A00A8B16B /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
-				B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */,
-				B0B083AE216FA79100B1C632 /* AppointmentsViewController.swift */,
-				22EF55962170507700070C13 /* AppointmentDetailViewController.swift */,
-				22EF55972170507700070C13 /* AppointmentDetailViewController.xib */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		2FA5D8671F17DB5400A8B16B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				825171B41F1D25130020A6CA /* HomeViewModel.swift */,
-				825171AF1F1D24C30020A6CA /* Cards */,
-				B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */,
-				B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -3683,8 +3658,139 @@
 		3559C89722F4929500481A87 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
+				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
+				825171B41F1D25130020A6CA /* HomeViewModel.swift */,
+				3559C89822F9C51400481A87 /* Cards */,
+				3559C89922F9C51E00481A87 /* Detail Pages */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		3559C89822F9C51400481A87 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				3559C8A122F9C5F200481A87 /* Updates */,
+				3559C89E22F9C5B200481A87 /* Weather */,
+				3559C89B22F9C56300481A87 /* Bill */,
+				3559C89F22F9C5C600481A87 /* Projected Bill */,
+				3559C8A022F9C5D900481A87 /* Outage */,
+				3559C89C22F9C58300481A87 /* Usage */,
+				3559C89D22F9C59A00481A87 /* Template */,
+				3559C8A322F9C61F00481A87 /* Prepaid */,
+				3559C8A222F9C60A00481A87 /* Appointment */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		3559C89922F9C51E00481A87 /* Detail Pages */ = {
+			isa = PBXGroup;
+			children = (
+				B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */,
+				3559C89A22F9C54000481A87 /* Appointments */,
+			);
+			path = "Detail Pages";
+			sourceTree = "<group>";
+		};
+		3559C89A22F9C54000481A87 /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				B0B083AE216FA79100B1C632 /* AppointmentsViewController.swift */,
+				B0B083BC216FDE3700B1C632 /* AppointmentsViewModel.swift */,
+				22EF55962170507700070C13 /* AppointmentDetailViewController.swift */,
+				B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */,
+				22EF55972170507700070C13 /* AppointmentDetailViewController.xib */,
+			);
+			path = Appointments;
+			sourceTree = "<group>";
+		};
+		3559C89B22F9C56300481A87 /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				CEA215201F7900CC00689422 /* HomeBillCardView.swift */,
+				CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */,
+				CEA215211F7900CC00689422 /* HomeBillCardView.xib */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
+		3559C89C22F9C58300481A87 /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */,
+				E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */,
+				E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */,
+			);
+			path = Usage;
+			sourceTree = "<group>";
+		};
+		3559C89D22F9C59A00481A87 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				4465DE861F1FD0090014537F /* TemplateCardView.swift */,
+				824004C91F25F4970012A288 /* TemplateCardViewModel.swift */,
+				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
+			);
+			path = Template;
+			sourceTree = "<group>";
+		};
+		3559C89E22F9C5B200481A87 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				B07D247220C590AB00BD22EB /* HomeWeatherView.swift */,
+				B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */,
+				B07D247620C590BE00BD22EB /* HomeWeatherView.xib */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		3559C89F22F9C5C600481A87 /* Projected Bill */ = {
+			isa = PBXGroup;
+			children = (
+				9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */,
+				9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */,
+				9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */,
+			);
+			path = "Projected Bill";
+			sourceTree = "<group>";
+		};
+		3559C8A022F9C5D900481A87 /* Outage */ = {
+			isa = PBXGroup;
+			children = (
+				35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */,
+				35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */,
+				35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */,
+			);
+			path = Outage;
+			sourceTree = "<group>";
+		};
+		3559C8A122F9C5F200481A87 /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				B07269342127579C009B2BFF /* HomeUpdateView.swift */,
+				B0726938212757AA009B2BFF /* HomeUpdateView.xib */,
+			);
+			path = Updates;
+			sourceTree = "<group>";
+		};
+		3559C8A222F9C60A00481A87 /* Appointment */ = {
+			isa = PBXGroup;
+			children = (
+				224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */,
+				224EFF1F216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift */,
+				224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */,
+			);
+			path = Appointment;
+			sourceTree = "<group>";
+		};
+		3559C8A322F9C61F00481A87 /* Prepaid */ = {
+			isa = PBXGroup;
+			children = (
+				B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */,
+				B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */,
+				B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */,
+			);
+			path = Prepaid;
 			sourceTree = "<group>";
 		};
 		3575232A22C5371800A0AFAC /* Account Row */ = {
@@ -4302,46 +4408,6 @@
 			path = ComEd;
 			sourceTree = "<group>";
 		};
-		825171A61F1D1F210020A6CA /* Home Cards */ = {
-			isa = PBXGroup;
-			children = (
-				CEA215201F7900CC00689422 /* HomeBillCardView.swift */,
-				CEA215211F7900CC00689422 /* HomeBillCardView.xib */,
-				E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */,
-				E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */,
-				4465DE861F1FD0090014537F /* TemplateCardView.swift */,
-				4465DE881F1FD07C0014537F /* TemplateCardView.xib */,
-				B07D247220C590AB00BD22EB /* HomeWeatherView.swift */,
-				B07D247620C590BE00BD22EB /* HomeWeatherView.xib */,
-				9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */,
-				9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */,
-				35ACCB4420EA5ECE0022907F /* HomeOutageCardView.swift */,
-				35ACCB4220EA590D0022907F /* HomeOutageCardView.xib */,
-				B07269342127579C009B2BFF /* HomeUpdateView.swift */,
-				B0726938212757AA009B2BFF /* HomeUpdateView.xib */,
-				224EFF17216E4E67008A0E40 /* HomeAppointmentCardView.swift */,
-				224EFF1B216E4E76008A0E40 /* HomeAppointmentCardView.xib */,
-				B039DB70225BCF4A00BB5479 /* HomePrepaidCardView.swift */,
-				B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */,
-			);
-			path = "Home Cards";
-			sourceTree = "<group>";
-		};
-		825171AF1F1D24C30020A6CA /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */,
-				E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */,
-				824004C91F25F4970012A288 /* TemplateCardViewModel.swift */,
-				B07D247A20C5B48B00BD22EB /* HomeWeatherViewModel.swift */,
-				9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */,
-				35ACCB4620EA60F50022907F /* HomeOutageCardViewModel.swift */,
-				224EFF1F216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift */,
-				B039DB78225BD32D00BB5479 /* HomePrepaidCardViewModel.swift */,
-			);
-			path = Cards;
-			sourceTree = "<group>";
-		};
 		829D3975203F1E7F008D7BAE /* Usage */ = {
 			isa = PBXGroup;
 			children = (
@@ -4561,7 +4627,6 @@
 				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
 				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
 				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
-				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
 				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
 				9C472AB9220CE05D008C882B /* Payment.storyboard */,
 				0D79C6C41F1D3360004793DD /* Maintenance.storyboard */,
@@ -4584,7 +4649,6 @@
 				359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */,
 				9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */,
 				E87C412E1FAA520A00448F86 /* Alerts */,
-				2FA5D8621F17D85A00A8B16B /* Home */,
 				E82FF1E41F97CB6B00C50F8F /* Usage */,
 				82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */,
 				8FD5AE821E54EA39003F640D /* Login */,
@@ -4608,7 +4672,6 @@
 				E8B8C8461F9E354B005828B0 /* SmartEnergyRewardsView */,
 				E8C29C761F630F9E00DB73FC /* OutageStatusButton */,
 				E8B4BFB01F449F6500F334EE /* NoNetworkConnectionView */,
-				825171A61F1D1F210020A6CA /* Home Cards */,
 				82A18EB01EBA667900BE9F21 /* Controls */,
 				E86334721E5F96980091E6FE /* FloatLabelTextField */,
 				82A18EB11EBA667F00BE9F21 /* Listable Views */,
@@ -8691,7 +8754,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B083C0216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E840BD3D1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				E86414F61F1038CA00DA859A /* Premise.swift in Sources */,
 				B0E9EFFE21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
@@ -8722,7 +8784,6 @@
 				82A18F0B1EBD12E000BE9F21 /* Control.swift in Sources */,
 				E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */,
 				826773441FB2303000A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
-				B0B0840B21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246B21E4F433006D83B0 /* Logger.swift in Sources */,
 				82B20A39203C7C8D00F5F2C6 /* BillViewModelVisibilityTests.swift in Sources */,
 				E89F493E1F9685120060D084 /* BillBreakdownViewModelTests.swift in Sources */,
@@ -8846,7 +8907,6 @@
 				82DE61081FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */,
 				B0882C9A2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
-				B073EC95214C3B7F0030B466 /* HomeBillCardViewModel.swift in Sources */,
 				B067E0A32045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
@@ -8927,7 +8987,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B083C1216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8F62B35200924410077B3DA /* BillService.swift in Sources */,
 				35A6C6EE211DEB5600C2A58F /* UpdatesViewModel.swift in Sources */,
 				B0E9EFFF21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
@@ -8958,7 +9017,6 @@
 				35A6C6F0211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */,
 				E8F62B4B200924410077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62B4C200924410077B3DA /* Control.swift in Sources */,
-				B0B0840C21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246C21E4F434006D83B0 /* Logger.swift in Sources */,
 				E8F62B4D200924410077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62B4E200924410077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
@@ -9082,7 +9140,6 @@
 				E8F62BAE200924410077B3DA /* OutageService.swift in Sources */,
 				E8F62BB0200924410077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62BB1200924410077B3DA /* HomeProfile.swift in Sources */,
-				B073EC96214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */,
 				B0882C9B2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
@@ -9117,7 +9174,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0B083C2216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				E8F62BEA200924570077B3DA /* BillService.swift in Sources */,
 				35A6C6EF211DEB5600C2A58F /* UpdatesViewModel.swift in Sources */,
 				B0E9F00021EE458F0086A82A /* Optional+Comparable.swift in Sources */,
@@ -9148,7 +9204,6 @@
 				35A6C6F1211DEC4000C2A58F /* UpdatesViewModelTests.swift in Sources */,
 				E8F62C00200924570077B3DA /* UIViewDashedBorders.swift in Sources */,
 				E8F62C01200924570077B3DA /* Control.swift in Sources */,
-				B0B0840D21710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B039246D21E4F435006D83B0 /* Logger.swift in Sources */,
 				E8F62C02200924570077B3DA /* BillingHistoryViewModel.swift in Sources */,
 				E8F62C03200924570077B3DA /* SmartThermostatScheduleViewModel.swift in Sources */,
@@ -9272,7 +9327,6 @@
 				E8F62C63200924570077B3DA /* OutageService.swift in Sources */,
 				E8F62C65200924570077B3DA /* OverrideViewModel.swift in Sources */,
 				E8F62C66200924570077B3DA /* HomeProfile.swift in Sources */,
-				B073EC97214C3B820030B466 /* HomeBillCardViewModel.swift in Sources */,
 				B0882C9C2108FD9600EB756B /* UsageViewModelTests.swift in Sources */,
 				B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,
