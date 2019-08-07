@@ -97,9 +97,11 @@ class AccountPicker: UIControl {
         loadingIndicator.isStormMode = StormModeStatus.shared.isOn
     
         for label in accountNumberLabels {
+            label.textColor = .deepGray
             label.font = SystemFont.semibold.of(textStyle: .subheadline)
         }
         for label in addressLabels {
+            label.textColor = .deepGray
             label.font = SystemFont.regular.of(textStyle: .subheadline)
         }
         
