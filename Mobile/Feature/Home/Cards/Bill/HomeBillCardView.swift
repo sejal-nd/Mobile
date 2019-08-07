@@ -396,7 +396,8 @@ class HomeBillCardView: UIView {
         viewModel.minMaxPaymentAllowedText.drive(minimumPaymentLabel.rx.text).disposed(by: bag)
         viewModel.convenienceFeeText.drive(convenienceFeeLabel.rx.text).disposed(by: bag)
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
-        viewModel.enableOneTouchSlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
+        viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
+
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
