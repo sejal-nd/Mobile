@@ -11,6 +11,7 @@ import RxCocoa
 
 fileprivate var topSectionHeaderHeight: CGFloat = 120
 fileprivate let cardsInUseString = NSLocalizedString("Cards in Use", comment: "")
+fileprivate let additionalCardsString = NSLocalizedString("Additional Cards", comment: "")
 
 class HomeEditViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -270,20 +271,13 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
         case UICollectionView.elementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HomeEditSectionHeaderView.className, for: indexPath) as! HomeEditSectionHeaderView
             
-            // Style
-            headerView.instructionsLabel.textColor = .deepGray
-            headerView.instructionsLabel.font = SystemFont.regular.of(textStyle: .body)
-            
-            headerView.label.textColor = .deepGray
-            headerView.label.font = OpenSans.regular.of(textStyle: .body)
-            
             switch indexPath.section {
             case 0:
                 headerView.instructionsLabel.isHidden = false
                 headerView.label.text = cardsInUseString
             case 1:
                 headerView.instructionsLabel.isHidden = true
-                headerView.label.text = NSLocalizedString("Additional Cards", comment: "")
+                headerView.label.text = additionalCardsString
             default:
                 headerView.instructionsLabel.isHidden = true
                 headerView.label.text = ""
@@ -300,16 +294,16 @@ extension HomeEditViewController: UICollectionViewDelegate, UICollectionViewData
 
 extension HomeEditViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width = collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left
+        let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         switch section {
         case 1:
-            return CGSize(width: collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left,
-                          height: 67)
+            let additionalCardsLabelHeight = (additionalCardsString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .title1)], context: nil).height
+            return CGSize(width: width, height: additionalCardsLabelHeight + 30) // 30 top padding
         default:
-            let width = collectionView.bounds.size.width - 2 * collectionView.layoutMargins.left
-            let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
             let instructionsLabelHeight = (HomeEditSectionHeaderView.instructionsLabelString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .headline)], context: nil).height
-            let cardsInUseLabelHeight = (cardsInUseString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .title1)], context: nil).height
-            topSectionHeaderHeight = instructionsLabelHeight + cardsInUseLabelHeight + 36 // 16 top padding + 20 space between labels
+            let cardsInUseLabelHeight = (cardsInUseString as NSString).boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [.font: OpenSans.regular.of(textStyle: .headline)], context: nil).height
+            topSectionHeaderHeight = instructionsLabelHeight + cardsInUseLabelHeight + 46 // 16 top padding + 30 space between labels
             return CGSize(width: width, height: topSectionHeaderHeight)
         }
     }
