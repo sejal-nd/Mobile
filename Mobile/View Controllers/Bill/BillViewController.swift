@@ -15,6 +15,8 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     
+    @IBOutlet weak var mainLoadingIndicator: LoadingIndicator!
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
@@ -70,9 +72,6 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var billBreakdownLabel: UILabel!
     @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
-
-	@IBOutlet weak var loadingIndicatorView: UIView!
-	@IBOutlet weak var billLoadingIndicator: LoadingIndicator!
 
     @IBOutlet weak var makeAPaymentButton: PrimaryButton!
 	@IBOutlet weak var billPaidView: UIView!
@@ -255,8 +254,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showLoadedState() {
-        billLoadingIndicator.isHidden = true
-        loadingIndicatorView.isHidden = true
+        mainLoadingIndicator.isHidden = true
         topView.isHidden = false
         bottomView.isHidden = false
         errorView.isHidden = true
@@ -277,8 +275,7 @@ class BillViewController: AccountPickerViewController {
             noNetworkConnectionView.isHidden = true
         }
         
-        billLoadingIndicator.isHidden = true
-        loadingIndicatorView.isHidden = true
+        mainLoadingIndicator.isHidden = true
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = false
@@ -298,8 +295,7 @@ class BillViewController: AccountPickerViewController {
     }
     
     func showPrepaidState() {
-        billLoadingIndicator.isHidden = true
-        loadingIndicatorView.isHidden = true
+        mainLoadingIndicator.isHidden = true
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = true
@@ -317,8 +313,7 @@ class BillViewController: AccountPickerViewController {
         scrollView?.isHidden = true
         noNetworkConnectionView.isHidden = true
         
-        billLoadingIndicator.isHidden = true
-        loadingIndicatorView.isHidden = true
+        mainLoadingIndicator.isHidden = true
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = true
@@ -331,8 +326,7 @@ class BillViewController: AccountPickerViewController {
     func showSwitchingAccountState() {
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
-        billLoadingIndicator.isHidden = false
-        loadingIndicatorView.isHidden = false
+        mainLoadingIndicator.isHidden = false
         topView.isHidden = false
         bottomView.isHidden = false
         errorView.isHidden = true
