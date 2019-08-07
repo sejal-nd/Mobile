@@ -42,6 +42,8 @@ class PrimaryButtonNew: UIButton {
     }
     
     func commonInit() {
+        adjustsImageWhenHighlighted = false
+        
         titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         layer.cornerRadius = frame.size.height / 2
         
@@ -54,8 +56,10 @@ class PrimaryButtonNew: UIButton {
             if isHighlighted {
                 backgroundColor = tintWhite ? UIColor.white.withAlphaComponent(0.8) :
                     UIColor(red: 17/255, green: 57/255, blue: 112/255, alpha: 1) // Special case color - do not change
+                imageView?.alpha = 0.5
             } else {
                 backgroundColor = tintWhite ? .white : .actionBlue
+                imageView?.alpha = 1
             }
         }
     }
@@ -130,4 +134,5 @@ class PrimaryButtonNew: UIButton {
             setTitle(title, for: .normal)
         }
     }
+    
 }

@@ -20,7 +20,6 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
-	@IBOutlet weak var bottomStackContainerView: UIView!
     
     @IBOutlet weak var prepaidBannerButton: ButtonControl!
     @IBOutlet weak var prepaidHeaderLabel: UILabel!
@@ -28,12 +27,9 @@ class BillViewController: AccountPickerViewController {
     
     @IBOutlet weak var alertBannerView: BillAlertBannerView!
     
-    @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
     @IBOutlet weak var questionMarkButton: UIButton!
-
-	@IBOutlet weak var paymentDetailsView: UIView!
 
 	// Catch Up Disclaimer
 	@IBOutlet weak var catchUpDisclaimerView: UIView!
@@ -73,7 +69,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
 
-    @IBOutlet weak var makeAPaymentButton: PrimaryButton!
+    @IBOutlet weak var makeAPaymentButton: PrimaryButtonNew!
 	@IBOutlet weak var billPaidView: UIView!
     @IBOutlet weak var billPaidLabel: UILabel!
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
@@ -167,7 +163,6 @@ class BillViewController: AccountPickerViewController {
         let refreshControl = UIRefreshControl()
         self.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
-        refreshControl.tintColor = .white
         self.scrollView!.insertSubview(refreshControl, at: 0)
         self.scrollView!.alwaysBounceVertical = true
     }
@@ -186,13 +181,16 @@ class BillViewController: AccountPickerViewController {
             prepaidBannerButton.accessibilityLabel = "\(header). \(detail)"
         }
 
-        totalAmountView.superview?.bringSubviewToFront(totalAmountView)
-        totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
-
         billBreakdownButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
         billBreakdownButton.layer.cornerRadius = 10
         
-        billPaidView.layer.cornerRadius = 10
+        billPaidView.backgroundColor = .accentGray
+        billPaidView.layer.cornerRadius = 27.5
+        billPaidView.isAccessibilityElement = true
+        billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
+        
+        billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
+        billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
 
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
@@ -234,13 +232,9 @@ class BillViewController: AccountPickerViewController {
         billBreakdownLabel.font = OpenSans.semibold.of(textStyle: .headline)
         
         viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
-
-        billPaidLabel.font = SystemFont.bold.of(textStyle: .title1)
+        
         makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
         
-        billPaidView.isAccessibilityElement = true
-        billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
-    
         genericErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
         genericErrorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
@@ -257,7 +251,6 @@ class BillViewController: AccountPickerViewController {
         bottomView.isHidden = false
         errorView.isHidden = true
         prepaidView.isHidden = true
-        bottomStackContainerView.isHidden = false
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
@@ -278,7 +271,6 @@ class BillViewController: AccountPickerViewController {
         bottomView.isHidden = true
         errorView.isHidden = false
         prepaidView.isHidden = true
-        bottomStackContainerView.isHidden = true
         maintenanceModeView.isHidden = true
         
         if error?.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
@@ -298,7 +290,6 @@ class BillViewController: AccountPickerViewController {
         bottomView.isHidden = true
         errorView.isHidden = true
         prepaidView.isHidden = false
-        bottomStackContainerView.isHidden = true
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
@@ -307,17 +298,13 @@ class BillViewController: AccountPickerViewController {
     
     func showMaintenanceModeState() {
         maintenanceModeView.isHidden = false
-        
         scrollView?.isHidden = true
         noNetworkConnectionView.isHidden = true
-        
         mainLoadingIndicator.isHidden = true
         topView.isHidden = true
         bottomView.isHidden = true
         errorView.isHidden = true
         prepaidView.isHidden = true
-        bottomStackContainerView.isHidden = true
-        
         enableRefresh()
     }
     
@@ -325,12 +312,11 @@ class BillViewController: AccountPickerViewController {
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         mainLoadingIndicator.isHidden = false
-        topView.isHidden = false
-        bottomView.isHidden = false
+        topView.isHidden = true
+        bottomView.isHidden = true
         errorView.isHidden = true
         prepaidView.isHidden = true
-        bottomStackContainerView.isHidden = true
-        
+
         refreshControl?.endRefreshing()
         refreshControl?.removeFromSuperview()
         refreshControl = nil
@@ -372,9 +358,6 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
 
         questionMarkButton.isHidden = !viewModel.showAmountDueTooltip
-        
-        viewModel.showTopContent.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
-        viewModel.showTopContent.not().drive(paymentDetailsView.rx.isHidden).disposed(by: bag)
         
 		viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
         viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)

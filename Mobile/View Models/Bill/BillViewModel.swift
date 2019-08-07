@@ -124,11 +124,12 @@ class BillViewModel {
             return currentDueAmount > 0 && currentDueAmount != accountDetail.billingInfo.netDueAmount
     }
     
-    private(set) lazy var showTopContent: Driver<Bool> = Driver
-        .combineLatest(self.switchAccountsTracker.asDriver(),
-                       self.dataEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && $1.error == nil }
-        .startWith(false)
+//    // TODO: Remove at the end of the bill redesign if it's still unused
+//    private(set) lazy var showTopContent: Driver<Bool> = Driver
+//        .combineLatest(self.switchAccountsTracker.asDriver(),
+//                       self.dataEvents.asDriver(onErrorDriveWith: .empty()))
+//        { !$0 && $1.error == nil }
+//        .startWith(false)
     
     private(set) lazy var showPendingPayment: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.pendingPaymentsTotal > 0
