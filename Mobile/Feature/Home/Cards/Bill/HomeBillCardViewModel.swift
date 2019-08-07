@@ -344,8 +344,9 @@ class HomeBillCardViewModel {
         .distinctUntilChanged()
 
     private(set) lazy var showOneTouchPaySlider: Driver<Bool> = Driver.combineLatest(billState,
-                                                                                     accountDetailDriver)
-    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly }
+                                                                                     accountDetailDriver,
+                                                                                     walletItemDriver)
+    { $0 == .billReady && !$1.isActiveSeverance && !$1.isCashOnly && $2 != nil && !($2?.isExpired ?? true) }
     .distinctUntilChanged()
 
     private(set) lazy var showScheduledPayment: Driver<Bool> = billState.map { $0 == .paymentScheduled }
