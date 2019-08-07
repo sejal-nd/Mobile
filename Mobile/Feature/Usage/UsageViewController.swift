@@ -34,22 +34,23 @@ class UsageViewController: AccountPickerViewController {
     }
     @IBOutlet weak var accountDisallowView: UIView!
     
-    @IBOutlet private weak var segmentControl: BillAnalysisSegmentedControl! {
+    @IBOutlet private weak var segmentControl: SegmentedControlNew! {
         didSet {
-            segmentControl.leftLabel.text = "Electric"
-            segmentControl.rightLabel.text = "Gas"
+            segmentControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
         }
     }
     
     @IBOutlet private weak var compareBillTitlelabel: UILabel! {
         didSet {
-            compareBillTitlelabel.font = OpenSans.semibold.of(textStyle: .headline)
+            compareBillTitlelabel.textColor = .deepGray
+            compareBillTitlelabel.font = OpenSans.regular.of(textStyle: .body)
         }
     }
     
     @IBOutlet private weak var myUsageToolsLabel: UILabel! {
         didSet {
-            myUsageToolsLabel.font = OpenSans.semibold.of(textStyle: .headline)
+            myUsageToolsLabel.textColor = .deepGray
+            myUsageToolsLabel.font = OpenSans.regular.of(textStyle: .body)
         }
     }
     
@@ -62,7 +63,8 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var billGraphDetailView: UIView! {
         didSet {
             billGraphDetailView.layer.cornerRadius = 10
-            billGraphDetailView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0.0, height: 2.0), radius: 4)
+            billGraphDetailView.layer.borderColor = UIColor.accentGray.cgColor
+            billGraphDetailView.layer.borderWidth = 1
         }
     }
     
@@ -120,49 +122,49 @@ class UsageViewController: AccountPickerViewController {
     
     @IBOutlet private weak var graphDetailDateLabel: UILabel! {
         didSet {
-            graphDetailDateLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
-            graphDetailDateLabel.textColor = .blackText
+            graphDetailDateLabel.textColor = .deepGray
+            graphDetailDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         }
     }
     
     @IBOutlet private weak var graphDetailTemperatureLabel: UILabel! {
         didSet {
-            graphDetailTemperatureLabel.font = OpenSans.regular.of(textStyle: .footnote)
-            graphDetailTemperatureLabel.textColor = .blackText
+            graphDetailTemperatureLabel.textColor = .deepGray
+            graphDetailTemperatureLabel.font = OpenSans.regular.of(textStyle: .caption1)
         }
     }
     
     @IBOutlet private weak var graphDetailDescriptionLabel: UILabel! {
         didSet {
-            graphDetailDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-            graphDetailDescriptionLabel.textColor = .black
+            graphDetailDescriptionLabel.textColor = .deepGray
+            graphDetailDescriptionLabel.font = OpenSans.regular.of(textStyle: .caption1)
         }
     }
     
     @IBOutlet private weak var lastYearButton: UIButton! {
         didSet {
             lastYearButton.layer.cornerRadius = 16
-            lastYearButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            lastYearButton.layer.borderColor = UIColor.accentGray.cgColor
+            lastYearButton.layer.borderWidth = 1
         }
     }
     
     @IBOutlet private weak var previousBillButton: UIButton! {
         didSet {
             previousBillButton.layer.cornerRadius = 16
-            previousBillButton.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            previousBillButton.layer.borderColor = UIColor.accentGray.cgColor
+            previousBillButton.layer.borderWidth = 1
         }
     }
-    
-    @IBOutlet private weak var dropdownContainer: UIView!
-    @IBOutlet private weak var dropdownView: BillImpactDropdownView!
     
     @IBOutlet private weak var billComparisonLoadingIndicator: LoadingIndicator!
     @IBOutlet private weak var billComparisonErrorView: UIView!
     @IBOutlet private weak var billComparisonErrorLabel: UILabel! {
         didSet {
-            billComparisonErrorLabel.font = OpenSans.regular.of(textStyle: .title1)
+            // todo this has a title and detail label on sympli, is this the unavailalbe for your account label too?
+            billComparisonErrorLabel.textColor = .deepGray
+            billComparisonErrorLabel.font = OpenSans.semibold.of(textStyle: .title3)
             billComparisonErrorLabel.textAlignment = .center
-            billComparisonErrorLabel.textColor = .middleGray
         }
     }
     
@@ -201,7 +203,6 @@ class UsageViewController: AccountPickerViewController {
         
         styleBarGraph()
         bindViewModel()
-        dropdownView.configure(withViewModel: viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -269,9 +270,13 @@ class UsageViewController: AccountPickerViewController {
             projectedBarSoFarImageView.tintColor = UIColor(red: 114/255, green: 184/255, blue: 101/255, alpha: 1)
         }
         
-        // Bar Graph Text Colors
+        // Bar Graph Styling
         noDataLabel.textColor = .deepGray
+        noDataLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
         noDataDateLabel.textColor = .deepGray
+        noDataDateLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
         previousDollarLabel.textColor = .deepGray
         previousDateLabel.textColor = .deepGray
         currentDollarLabel.textColor = .deepGray
@@ -282,8 +287,6 @@ class UsageViewController: AccountPickerViewController {
         projectionNotAvailableUntilNextForecastLabel.textColor = .deepGray
         projectedNotAvailableDateLabel.textColor = .deepGray
         
-        // Bar Graph Text Fonts
-        noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         viewModel.noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
         viewModel.previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
         viewModel.previousLabelFont.drive(previousDateLabel.rx.font).disposed(by: disposeBag)
@@ -294,6 +297,7 @@ class UsageViewController: AccountPickerViewController {
         viewModel.projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
         viewModel.projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
         
+        // todo
         projectedNotAvailableDaysRemainingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
         projectionNotAvailableUntilNextForecastLabel.font = SystemFont.regular.of(textStyle: .footnote)
         viewModel.projectionNotAvailableLabelFont.drive(projectedNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
@@ -711,7 +715,6 @@ class UsageViewController: AccountPickerViewController {
         billComparisonLoadingIndicator.isHidden = false
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
-        dropdownView.isHidden = true
         billComparisonErrorView.isHidden = true
         billComparisonDataContainer.isHidden = false
         billComparisonTitleContainer.isHidden = false
@@ -721,8 +724,6 @@ class UsageViewController: AccountPickerViewController {
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = false
         billGraphDetailContainer.isHidden = false
-        dropdownContainer.isHidden = false
-        dropdownView.isHidden = false
         billComparisonErrorView.isHidden = true
         billComparisonDataContainer.isHidden = false
         billComparisonTitleContainer.isHidden = false
@@ -732,8 +733,6 @@ class UsageViewController: AccountPickerViewController {
         billComparisonLoadingIndicator.isHidden = true
         barGraphStackView.isHidden = true
         billGraphDetailContainer.isHidden = true
-        dropdownContainer.isHidden = true
-        dropdownView.isHidden = true
         billComparisonErrorView.isHidden = false
         billComparisonDataContainer.isHidden = true
         billComparisonTitleContainer.isHidden = true
