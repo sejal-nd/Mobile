@@ -104,8 +104,6 @@ class BillViewController: AccountPickerViewController {
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
                                   authService: ServiceFactory.createAuthenticationService())
 
-    override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
-    
     var shortcutItem = ShortcutItem.none
 
     let bag = DisposeBag()
@@ -180,11 +178,7 @@ class BillViewController: AccountPickerViewController {
     }
         
     func styleViews() {
-        view.backgroundColor = .primaryColorAccountPicker
-        contentView.backgroundColor = .primaryColorAccountPicker
-
-        topView.backgroundColor = .primaryColorAccountPicker
-        bottomView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: -3), radius: 2)
+        view.backgroundColor = .softGray
         
         prepaidHeaderLabel.font = OpenSans.semibold.of(textStyle: .headline)
         prepaidDetailLabel.font = OpenSans.regular.of(textStyle: .subheadline)
