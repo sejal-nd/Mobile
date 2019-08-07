@@ -128,7 +128,7 @@ class RegistrationViewModel {
                                              answer1: securityAnswer1.value,
                                              question2: securityQuestion2.value!,
                                              answer2: securityAnswer2.value,
-                                             question3: securityQuestion3.value!,
+                                             question3: securityQuestion3.value ?? "", // "" for BGE since no 3rd question
                                              answer3: securityAnswer3.value,
                                              isPrimary: primaryProfile.value ? "true" : "false",
                                              isEnrollEBill: (isPaperlessEbillEligible && paperlessEbill.value) ? "true" : "false")

@@ -68,8 +68,8 @@ class PaymentConfirmationViewController: UIViewController {
         confirmationNumberTextLabel.textColor = .deepGray
         confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
-        confirmationNumberValueLabel.contentInset = .zero
         confirmationNumberValueLabel.textContainerInset = .zero
+        confirmationNumberValueLabel.textContainer.lineFragmentPadding = 0
         confirmationNumberValueLabel.textColor = .deepGray
         confirmationNumberValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
