@@ -1462,7 +1462,7 @@
                                                                             <outlet property="label" destination="LUM-6w-0Ba" id="0dT-Bd-YVV"/>
                                                                         </connections>
                                                                     </view>
-                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Kh-nMw" customClass="SheetView" customModule="BGE" customModuleProvider="target">
+                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Kh-nMw">
                                                                         <rect key="frame" x="16" y="236" width="343" height="848"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xef-Jy-u4j">
@@ -2237,8 +2237,9 @@
                         <outlet property="billBreakdownButton" destination="2Mz-YL-zAT" id="8Xx-cx-wVY"/>
                         <outlet property="billBreakdownImageView" destination="UJr-NS-lMM" id="kTP-B4-VSd"/>
                         <outlet property="billBreakdownLabel" destination="1wb-7e-w4G" id="F0v-90-cM5"/>
+                        <outlet property="billCardView" destination="fCi-Kh-nMw" id="EMt-SZ-TU0"/>
+                        <outlet property="billPaidFakeButtonView" destination="8aR-Al-YnJ" id="cYU-Iu-yK2"/>
                         <outlet property="billPaidLabel" destination="Lse-qm-kHf" id="3XK-iM-lp8"/>
-                        <outlet property="billPaidView" destination="8aR-Al-YnJ" id="cYU-Iu-yK2"/>
                         <outlet property="bottomView" destination="Xyl-IY-iJM" id="f7P-Ec-jHO"/>
                         <outlet property="budgetBillingEnrollmentLabel" destination="YPU-W7-EZm" id="9G5-Fq-Ner"/>
                         <outlet property="budgetButton" destination="FCC-5c-R0l" id="cow-gv-EBb"/>

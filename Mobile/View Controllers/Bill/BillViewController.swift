@@ -27,6 +27,8 @@ class BillViewController: AccountPickerViewController {
     
     @IBOutlet weak var alertBannerView: BillAlertBannerView!
     
+    @IBOutlet weak var billCardView: UIView!
+    
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
     @IBOutlet weak var questionMarkButton: UIButton!
@@ -70,7 +72,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var viewBillLabel: UILabel!
 
     @IBOutlet weak var makeAPaymentButton: PrimaryButtonNew!
-	@IBOutlet weak var billPaidView: UIView!
+	@IBOutlet weak var billPaidFakeButtonView: UIView!
     @IBOutlet weak var billPaidLabel: UILabel!
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     @IBOutlet weak var makeAPaymentStatusButton: ButtonControl!
@@ -180,14 +182,18 @@ class BillViewController: AccountPickerViewController {
         if let header = prepaidHeaderLabel.text, let detail = prepaidDetailLabel.text {
             prepaidBannerButton.accessibilityLabel = "\(header). \(detail)"
         }
+        
+        billCardView.layer.cornerRadius = 10
+        billCardView.layer.borderColor = UIColor.accentGray.cgColor
+        billCardView.layer.borderWidth = 1
 
         billBreakdownButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
         billBreakdownButton.layer.cornerRadius = 10
         
-        billPaidView.backgroundColor = .accentGray
-        billPaidView.layer.cornerRadius = 27.5
-        billPaidView.isAccessibilityElement = true
-        billPaidView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
+        billPaidFakeButtonView.backgroundColor = .accentGray
+        billPaidFakeButtonView.layer.cornerRadius = 27.5
+        billPaidFakeButtonView.isAccessibilityElement = true
+        billPaidFakeButtonView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
         
         billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
         billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
@@ -370,7 +376,7 @@ class BillViewController: AccountPickerViewController {
 		viewModel.showBillBreakdownButton.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
 		viewModel.enableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
-		viewModel.enableMakeAPaymentButton.drive(billPaidView.rx.isHidden).disposed(by: bag)
+		viewModel.enableMakeAPaymentButton.drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
 
         viewModel.showAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
