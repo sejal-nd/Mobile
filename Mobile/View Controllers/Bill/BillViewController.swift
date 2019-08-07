@@ -186,8 +186,6 @@ class BillViewController: AccountPickerViewController {
             prepaidBannerButton.accessibilityLabel = "\(header). \(detail)"
         }
 
-        alertBannerView.layer.cornerRadius = 10
-
         totalAmountView.superview?.bringSubviewToFront(totalAmountView)
         totalAmountView.addShadow(color: .black, opacity: 0.05, offset: CGSize(width: 0, height: 1), radius: 1)
 
