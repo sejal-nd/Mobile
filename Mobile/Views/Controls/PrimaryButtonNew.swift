@@ -56,7 +56,7 @@ class PrimaryButtonNew: UIButton {
             if isHighlighted {
                 backgroundColor = tintWhite ? UIColor.white.withAlphaComponent(0.8) :
                     UIColor(red: 17/255, green: 57/255, blue: 112/255, alpha: 1) // Special case color - do not change
-                imageView?.alpha = 0.5
+                imageView?.alpha = 0.6
             } else {
                 backgroundColor = tintWhite ? .white : .actionBlue
                 imageView?.alpha = 1

@@ -31,7 +31,7 @@ class BillViewController: AccountPickerViewController {
     
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
-    @IBOutlet weak var questionMarkButton: UIButton!
+    @IBOutlet weak var totalAmountTooltipButton: UIButton!
 
 	// Catch Up Disclaimer
 	@IBOutlet weak var catchUpDisclaimerView: UIView!
@@ -229,7 +229,11 @@ class BillViewController: AccountPickerViewController {
         pendingPaymentAmountLabel.font = OpenSans.semiboldItalic.of(textStyle: .headline)
         pendingPaymentAmountLabel.textColor = .middleGray
         
-        viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        viewBillButton.layer.cornerRadius = viewBillButton.frame.size.height / 2
+        viewBillButton.layer.borderColor = UIColor.accentGray.cgColor
+        viewBillButton.layer.borderWidth = 1
+        viewBillButton.backgroundColorOnPress = .softGray
+        viewBillLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
         billPaidFakeButtonView.backgroundColor = .accentGray
         billPaidFakeButtonView.layer.cornerRadius = 27.5
@@ -411,7 +415,7 @@ class BillViewController: AccountPickerViewController {
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
 
-        questionMarkButton.isHidden = !viewModel.showAmountDueTooltip
+        totalAmountTooltipButton.isHidden = !viewModel.showAmountDueTooltip
         
 		viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
         viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
@@ -481,7 +485,7 @@ class BillViewController: AccountPickerViewController {
             })
             .disposed(by: bag)
         
-        questionMarkButton.rx.tap.asDriver()
+        totalAmountTooltipButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 let alertController = UIAlertController(title: NSLocalizedString("Your Due Date", comment: ""),
                                                         message: NSLocalizedString("If you recently changed your energy supplier, a portion of your balance may have an earlier due date. Please view your previous bills and corresponding due dates.", comment: ""), preferredStyle: .alert)
@@ -649,9 +653,6 @@ class BillViewController: AccountPickerViewController {
     }
 
     func configureAccessibility() {
-        questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
-        viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
-        
         viewModel.showPaperlessEnrolledView.drive(onNext: { [weak self] show in
             self?.paperlessButton.accessibilityLabel = String.localizedStringWithFormat("Paperless e-bill. Eliminate your paper bill and receive it online.%@", show ? "Enrolled" : "")
         }).disposed(by: bag)
