@@ -84,10 +84,22 @@ class BillViewController: AccountPickerViewController {
     
     @IBOutlet weak var walletButton: ButtonControl!
     @IBOutlet weak var walletButtonLabel: UILabel!
+    
+    @IBOutlet weak var paperlessButton: ButtonControl!
+    @IBOutlet weak var paperlessEnrolledView: UIView!
+    @IBOutlet weak var paperlessTitleLabel: UILabel!
+    @IBOutlet weak var paperlessDetailLabel: UILabel!
 
     @IBOutlet weak var autoPayButton: ButtonControl!
-    @IBOutlet weak var paperlessButton: ButtonControl!
+    @IBOutlet weak var autoPayEnrolledView: UIView!
+    @IBOutlet weak var autoPayTitleLabel: UILabel!
+    @IBOutlet weak var autoPayDetailLabel: UILabel!
+    
     @IBOutlet weak var budgetButton: ButtonControl!
+    @IBOutlet weak var budgetEnrolledView: UIView!
+    @IBOutlet weak var budgetTitleLabel: UILabel!
+    @IBOutlet weak var budgetDetailLabel: UILabel!
+    
     @IBOutlet weak var autoPayEnrollmentLabel: UILabel!
     @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
 	@IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
@@ -211,15 +223,18 @@ class BillViewController: AccountPickerViewController {
         walletButton.backgroundColorOnPress = .softGray
         walletButtonLabel.textColor = .deepGray
         walletButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+                
+        paperlessButton.layer.cornerRadius = 10
+        paperlessButton.layer.borderColor = UIColor.accentGray.cgColor
+        paperlessButton.layer.borderWidth = 1
         
-        autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-        autoPayButton.layer.cornerRadius = 2
+        autoPayButton.layer.cornerRadius = 10
+        autoPayButton.layer.borderColor = UIColor.accentGray.cgColor
+        autoPayButton.layer.borderWidth = 1
 
-        paperlessButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
-        paperlessButton.layer.cornerRadius = 2
-
-        budgetButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        budgetButton.layer.cornerRadius = 2
+        budgetButton.layer.cornerRadius = 10
+        budgetButton.layer.borderColor = UIColor.accentGray.cgColor
+        budgetButton.layer.borderWidth = 1
 
         // Set Fonts
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
