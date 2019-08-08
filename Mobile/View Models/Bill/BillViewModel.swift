@@ -150,25 +150,6 @@ class BillViewModel {
     
     let showAmountDueTooltip = Environment.shared.opco == .peco
     
-    private(set) lazy var showBillBreakdownButton: Driver<Bool> = currentAccountDetail
-        .map { accountDetail in
-            guard let serviceType = accountDetail.serviceType else { return false }
-            
-            // We need premiseNumber to make the usage API calls, so hide the button if we don't have it
-            guard let premiseNumber = accountDetail.premiseNumber, !premiseNumber.isEmpty else { return false }
-            
-            if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
-                return false
-            }
-            
-            // Must have valid serviceType
-            if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return false
-            }
-            
-            return true
-    }
-    
     private(set) lazy var enableMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge
     }
@@ -498,14 +479,6 @@ class BillViewModel {
         let deliveryCharges = $0.billingInfo.deliveryCharges ?? 0
         let totalCharges = supplyCharges + taxesAndFees + deliveryCharges
         return totalCharges > 0
-    }
-    
-    private(set) lazy var billBreakdownButtonTitle: Driver<String> = hasBillBreakdownData.map {
-        if $0 {
-            return NSLocalizedString("Bill Breakdown", comment: "")
-        } else {
-            return NSLocalizedString("View Usage", comment: "")
-        }
     }
     
     //MARK: - Enrollment

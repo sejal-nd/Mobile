@@ -64,21 +64,26 @@ class BillViewController: AccountPickerViewController {
 	@IBOutlet weak var remainingBalanceDueView: UIView!
 	@IBOutlet weak var remainingBalanceDueLabel: UILabel!
 	@IBOutlet weak var remainingBalanceDueAmountLabel: UILabel!
-
-    @IBOutlet weak var billBreakdownButton: ButtonControl!
-    @IBOutlet weak var billBreakdownImageView: UIImageView!
-    @IBOutlet weak var billBreakdownLabel: UILabel!
+    
     @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
 
     @IBOutlet weak var makeAPaymentButton: PrimaryButtonNew!
+    
 	@IBOutlet weak var billPaidFakeButtonView: UIView!
     @IBOutlet weak var billPaidLabel: UILabel!
+    
     @IBOutlet weak var makeAPaymentStatusLabel: UILabel!
     @IBOutlet weak var makeAPaymentStatusButton: ButtonControl!
+    
+    @IBOutlet weak var billBreakdownButton: ButtonControl!
+    @IBOutlet weak var billBreakdownLabel: UILabel!
 
-    @IBOutlet weak var activityButton: DisclosureButton!
-    @IBOutlet weak var walletButton: DisclosureButton!
+    @IBOutlet weak var activityButton: ButtonControl!
+    @IBOutlet weak var activityButtonLabel: UILabel!
+    
+    @IBOutlet weak var walletButton: ButtonControl!
+    @IBOutlet weak var walletButtonLabel: UILabel!
 
     @IBOutlet weak var autoPayButton: ButtonControl!
     @IBOutlet weak var paperlessButton: ButtonControl!
@@ -186,9 +191,6 @@ class BillViewController: AccountPickerViewController {
         billCardView.layer.cornerRadius = 10
         billCardView.layer.borderColor = UIColor.accentGray.cgColor
         billCardView.layer.borderWidth = 1
-
-        billBreakdownButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 1.5)
-        billBreakdownButton.layer.cornerRadius = 10
         
         billPaidFakeButtonView.backgroundColor = .accentGray
         billPaidFakeButtonView.layer.cornerRadius = 27.5
@@ -197,7 +199,19 @@ class BillViewController: AccountPickerViewController {
         
         billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
         billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
-
+        
+        billBreakdownButton.backgroundColorOnPress = .softGray
+        billBreakdownLabel.textColor = .deepGray
+        billBreakdownLabel.font = SystemFont.medium.of(textStyle: .callout)
+        
+        activityButton.backgroundColorOnPress = .softGray
+        activityButtonLabel.textColor = .deepGray
+        activityButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+        
+        walletButton.backgroundColorOnPress = .softGray
+        walletButtonLabel.textColor = .deepGray
+        walletButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+        
         autoPayButton.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
         autoPayButton.layer.cornerRadius = 2
 
@@ -373,11 +387,11 @@ class BillViewController: AccountPickerViewController {
 		viewModel.showPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
 		viewModel.showRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
 
-		viewModel.showBillBreakdownButton.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
-
 		viewModel.enableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
 		viewModel.enableMakeAPaymentButton.drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
+        
+        viewModel.hasBillBreakdownData.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
 
         viewModel.showAutoPay.not().drive(autoPayButton.rx.isHidden).disposed(by: bag)
 		viewModel.showPaperless.not().drive(paperlessButton.rx.isHidden).disposed(by: bag)
@@ -408,13 +422,6 @@ class BillViewController: AccountPickerViewController {
 
         viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).disposed(by: bag)
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
-        
-        viewModel.billBreakdownButtonTitle.drive(billBreakdownLabel.rx.text).disposed(by: bag)
-        viewModel.billBreakdownButtonTitle.drive(billBreakdownButton.rx.accessibilityLabel).disposed(by: bag)
-        viewModel.hasBillBreakdownData
-            .map { $0 ? #imageLiteral(resourceName: "ic_billbreakdown") : #imageLiteral(resourceName: "ic_usagemini") }
-            .drive(billBreakdownImageView.rx.image)
-            .disposed(by: bag)
 
 		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).disposed(by: bag)
 		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).disposed(by: bag)
