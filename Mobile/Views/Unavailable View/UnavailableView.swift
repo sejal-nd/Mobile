@@ -38,8 +38,8 @@ class UnavailableView: UIView {
     }
     
     func styleViews() {
-        titleLabel.font = OpenSans.semibold.of(size: 18)
-        descriptionLabel.font = OpenSans.regular.of(size: 14)
+        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        descriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
     
 }

@@ -163,7 +163,7 @@ class UsageViewController: AccountPickerViewController {
         didSet {
             // todo this has a title and detail label on sympli, is this the unavailalbe for your account label too?
             billComparisonErrorLabel.textColor = .deepGray
-            billComparisonErrorLabel.font = OpenSans.semibold.of(textStyle: .title3)
+            billComparisonErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             billComparisonErrorLabel.textAlignment = .center
         }
     }
