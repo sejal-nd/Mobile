@@ -483,43 +483,41 @@ class BillViewModel {
     
     //MARK: - Enrollment
     
-    private(set) lazy var autoPayButtonText: Driver<NSAttributedString> = currentAccountDetail.map {
-        if $0.isAutoPay || $0.isBGEasy {
-            let text = NSLocalizedString("AutoPay", comment: "")
-            let enrolledText = $0.isBGEasy ?
-                NSLocalizedString("enrolled in BGEasy", comment: "") :
-                NSLocalizedString("enrolled", comment: "")
-            return BillViewModel.isEnrolledText(topText: text, bottomText: enrolledText)
+    private(set) lazy var showPaperlessEnrolledView: Driver<Bool> = currentAccountDetail.map {
+        // Always hide for ComEd/PECO commercial customers
+        if !$0.isResidential && Environment.shared.opco != .bge {
+            return false
+        }
+        return $0.eBillEnrollStatus == .canUnenroll
+    }
+    
+    private(set) lazy var showAutoPayEnrolledView: Driver<Bool> = currentAccountDetail.map {
+        if $0.isBGEasy {
+            return false
+        }
+        return $0.isAutoPay
+    }
+    
+    private(set) lazy var autoPayDetailLabelText: Driver<NSAttributedString> = currentAccountDetail.map {
+        if $0.isBGEasy {
+            let text = NSLocalizedString("Enrolled in BGEasy.", comment: "")
+            return NSAttributedString(string: text, attributes: [.foregroundColor: UIColor.successGreenText])
         } else {
-            return BillViewModel.canEnrollText(boldText: NSLocalizedString("AutoPay?", comment: ""))
+            let text = NSLocalizedString("Set up automatic, recurring payments.", comment: "")
+            return NSAttributedString(string: text, attributes: [.foregroundColor: UIColor.deepGray])
         }
     }
     
-    private(set) lazy var paperlessButtonText: Driver<NSAttributedString?> = currentAccountDetail
-        .map { accountDetail in
-            // ComEd/PECO commercial customers always see the button in the unenrolled state
-            if !accountDetail.isResidential && Environment.shared.opco != .bge {
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
-            }
-            
-            switch accountDetail.eBillEnrollStatus {
-            case .canEnroll:
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
-            case .canUnenroll:
-                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
-                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
-            case .ineligible, .finaled:
-                return nil
-            }
+    private(set) lazy var autoPayAccessibilityLabel: Driver<String> = currentAccountDetail.map {
+        if $0.isBGEasy {
+            return NSLocalizedString("AutoPay. Enrolled in BGEasy.", comment: "")
+        } else {
+            return String.localizedStringWithFormat("AutoPay. Set up automatic, recurring payments.%@", $0.isAutoPay ? "Enrolled" : "")
+        }
     }
     
-    private(set) lazy var budgetButtonText: Driver<NSAttributedString> = currentAccountDetail.map {
-        if $0.isBudgetBillEnrollment {
-            return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
-                                                bottomText: NSLocalizedString("enrolled", comment: ""))
-        } else {
-            return BillViewModel.canEnrollText(boldText: NSLocalizedString("Budget Billing?", comment: ""))
-        }
+    private(set) lazy var showBudgetEnrolledView: Driver<Bool> = currentAccountDetail.map {
+        return $0.isBudgetBillEnrollment
     }
     
     // MARK: - Prepaid

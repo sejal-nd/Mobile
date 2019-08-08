@@ -85,6 +85,8 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var walletButton: ButtonControl!
     @IBOutlet weak var walletButtonLabel: UILabel!
     
+    @IBOutlet weak var billingOptionsLabel: UILabel!
+    
     @IBOutlet weak var paperlessButton: ButtonControl!
     @IBOutlet weak var paperlessEnrolledView: UIView!
     @IBOutlet weak var paperlessTitleLabel: UILabel!
@@ -100,10 +102,6 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var budgetTitleLabel: UILabel!
     @IBOutlet weak var budgetDetailLabel: UILabel!
     
-    @IBOutlet weak var autoPayEnrollmentLabel: UILabel!
-    @IBOutlet weak var paperlessEnrollmentLabel: UILabel!
-	@IBOutlet weak var budgetBillingEnrollmentLabel: UILabel!
-
     @IBOutlet weak var prepaidView: UIView!
     
     @IBOutlet weak var errorView: UIView!
@@ -204,39 +202,6 @@ class BillViewController: AccountPickerViewController {
         billCardView.layer.borderColor = UIColor.accentGray.cgColor
         billCardView.layer.borderWidth = 1
         
-        billPaidFakeButtonView.backgroundColor = .accentGray
-        billPaidFakeButtonView.layer.cornerRadius = 27.5
-        billPaidFakeButtonView.isAccessibilityElement = true
-        billPaidFakeButtonView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
-        
-        billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
-        billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        
-        billBreakdownButton.backgroundColorOnPress = .softGray
-        billBreakdownLabel.textColor = .deepGray
-        billBreakdownLabel.font = SystemFont.medium.of(textStyle: .callout)
-        
-        activityButton.backgroundColorOnPress = .softGray
-        activityButtonLabel.textColor = .deepGray
-        activityButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
-        
-        walletButton.backgroundColorOnPress = .softGray
-        walletButtonLabel.textColor = .deepGray
-        walletButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
-                
-        paperlessButton.layer.cornerRadius = 10
-        paperlessButton.layer.borderColor = UIColor.accentGray.cgColor
-        paperlessButton.layer.borderWidth = 1
-        
-        autoPayButton.layer.cornerRadius = 10
-        autoPayButton.layer.borderColor = UIColor.accentGray.cgColor
-        autoPayButton.layer.borderWidth = 1
-
-        budgetButton.layer.cornerRadius = 10
-        budgetButton.layer.borderColor = UIColor.accentGray.cgColor
-        budgetButton.layer.borderWidth = 1
-
-        // Set Fonts
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         catchUpDisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
@@ -244,7 +209,7 @@ class BillViewController: AccountPickerViewController {
         pastDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         pastDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         pastDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
-
+        
         remainingBalanceDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         remainingBalanceDueLabel.textColor = .blackText
         remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
@@ -264,11 +229,65 @@ class BillViewController: AccountPickerViewController {
         pendingPaymentAmountLabel.font = OpenSans.semiboldItalic.of(textStyle: .headline)
         pendingPaymentAmountLabel.textColor = .middleGray
         
-        billBreakdownLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        
         viewBillLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
+        billPaidFakeButtonView.backgroundColor = .accentGray
+        billPaidFakeButtonView.layer.cornerRadius = 27.5
+        billPaidFakeButtonView.isAccessibilityElement = true
+        billPaidFakeButtonView.accessibilityLabel = NSLocalizedString("Bill Paid, dimmed, button", comment: "")
+        
+        billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
+        billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        
         makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
+        
+        billBreakdownButton.backgroundColorOnPress = .softGray
+        billBreakdownLabel.textColor = .deepGray
+        billBreakdownLabel.font = SystemFont.medium.of(textStyle: .callout)
+        
+        activityButton.backgroundColorOnPress = .softGray
+        activityButtonLabel.textColor = .deepGray
+        activityButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+        
+        walletButton.backgroundColorOnPress = .softGray
+        walletButtonLabel.textColor = .deepGray
+        walletButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
+        
+        billingOptionsLabel.textColor = .deepGray
+        billingOptionsLabel.font = OpenSans.regular.of(textStyle: .headline)
+        
+        paperlessButton.layer.cornerRadius = 10
+        paperlessButton.layer.borderColor = UIColor.accentGray.cgColor
+        paperlessButton.layer.borderWidth = 1
+        paperlessTitleLabel.textColor = .deepGray
+        paperlessTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
+        paperlessDetailLabel.textColor = .deepGray
+        paperlessDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        paperlessEnrolledView.layer.cornerRadius = 7.5
+        paperlessEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        paperlessEnrolledView.layer.borderWidth = 1
+        
+        autoPayButton.layer.cornerRadius = 10
+        autoPayButton.layer.borderColor = UIColor.accentGray.cgColor
+        autoPayButton.layer.borderWidth = 1
+        autoPayTitleLabel.textColor = .deepGray
+        autoPayTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
+        autoPayDetailLabel.textColor = .deepGray
+        autoPayDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        autoPayEnrolledView.layer.cornerRadius = 7.5
+        autoPayEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        autoPayEnrolledView.layer.borderWidth = 1
+        
+        budgetButton.layer.cornerRadius = 10
+        budgetButton.layer.borderColor = UIColor.accentGray.cgColor
+        budgetButton.layer.borderWidth = 1
+        budgetTitleLabel.textColor = .deepGray
+        budgetTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
+        budgetDetailLabel.textColor = .deepGray
+        budgetDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        budgetEnrolledView.layer.cornerRadius = 7.5
+        budgetEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
+        budgetEnrolledView.layer.borderWidth = 1
         
         genericErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
         genericErrorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
@@ -438,9 +457,10 @@ class BillViewController: AccountPickerViewController {
         viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).disposed(by: bag)
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
 
-		viewModel.autoPayButtonText.drive(autoPayEnrollmentLabel.rx.attributedText).disposed(by: bag)
-		viewModel.paperlessButtonText.drive(paperlessEnrollmentLabel.rx.attributedText).disposed(by: bag)
-		viewModel.budgetButtonText.drive(budgetBillingEnrollmentLabel.rx.attributedText).disposed(by: bag)
+        viewModel.showPaperlessEnrolledView.not().drive(paperlessEnrolledView.rx.isHidden).disposed(by: bag)
+        viewModel.showAutoPayEnrolledView.not().drive(autoPayEnrolledView.rx.isHidden).disposed(by: bag)
+        viewModel.autoPayDetailLabelText.drive(autoPayDetailLabel.rx.attributedText).disposed(by: bag)
+        viewModel.showBudgetEnrolledView.not().drive(budgetEnrolledView.rx.isHidden).disposed(by: bag)
 	}
 
     func bindButtonTaps() {
@@ -631,17 +651,16 @@ class BillViewController: AccountPickerViewController {
     func configureAccessibility() {
         questionMarkButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         viewBillButton.accessibilityLabel = NSLocalizedString("PDF, View bill", comment: "")
-        activityButton.accessibilityLabel = NSLocalizedString("Bill & Payment Activity", comment: "")
-        walletButton.accessibilityLabel = NSLocalizedString("My Wallet", comment: "")
         
-        viewModel.autoPayButtonText.map { $0.string }.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.showPaperlessEnrolledView.drive(onNext: { [weak self] show in
+            self?.paperlessButton.accessibilityLabel = String.localizedStringWithFormat("Paperless e-bill. Eliminate your paper bill and receive it online.%@", show ? "Enrolled" : "")
+        }).disposed(by: bag)
         
-        viewModel.paperlessButtonText
-            .map { $0?.string.replacingOccurrences(of: "eBill", with: "e-bill") }
-            .drive(paperlessButton.rx.accessibilityLabel)
-            .disposed(by: bag)
+        viewModel.autoPayAccessibilityLabel.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         
-        viewModel.budgetButtonText.map { $0.string }.drive(budgetButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.showBudgetEnrolledView.drive(onNext: { [weak self] show in
+            self?.budgetButton.accessibilityLabel = String.localizedStringWithFormat("Budget Billing. Enjoy predictable bills by spreading costs evenly month to month.%@", show ? "Enrolled" : "")
+        }).disposed(by: bag)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
