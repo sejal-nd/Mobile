@@ -272,10 +272,10 @@ class UsageViewController: AccountPickerViewController {
         
         // Bar Graph Styling
         noDataLabel.textColor = .deepGray
-        noDataLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        noDataLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         
         noDataDateLabel.textColor = .deepGray
-        noDataDateLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        noDataDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         previousDollarLabel.textColor = .deepGray
         previousDateLabel.textColor = .deepGray
@@ -283,9 +283,15 @@ class UsageViewController: AccountPickerViewController {
         currentDateLabel.textColor = .deepGray
         projectedDollarLabel.textColor = .deepGray
         projectedDateLabel.textColor = .deepGray
+        
         projectedNotAvailableDaysRemainingLabel.textColor = .actionBlue
+        projectedNotAvailableDaysRemainingLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+
         projectionNotAvailableUntilNextForecastLabel.textColor = .deepGray
+        projectionNotAvailableUntilNextForecastLabel.font = SystemFont.regular.of(textStyle: .caption2)
+
         projectedNotAvailableDateLabel.textColor = .deepGray
+        viewModel.projectionNotAvailableLabelFont.drive(projectedNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
         
         viewModel.noDataLabelFont.drive(noDataDateLabel.rx.font).disposed(by: disposeBag)
         viewModel.previousLabelFont.drive(previousDollarLabel.rx.font).disposed(by: disposeBag)
@@ -296,11 +302,6 @@ class UsageViewController: AccountPickerViewController {
         viewModel.currentDollarLabelTextColor.drive(currentDollarLabel.rx.textColor).disposed(by: disposeBag)
         viewModel.projectedLabelFont.drive(projectedDollarLabel.rx.font).disposed(by: disposeBag)
         viewModel.projectedLabelFont.drive(projectedDateLabel.rx.font).disposed(by: disposeBag)
-        
-        // todo
-        projectedNotAvailableDaysRemainingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        projectionNotAvailableUntilNextForecastLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        viewModel.projectionNotAvailableLabelFont.drive(projectedNotAvailableDateLabel.rx.font).disposed(by: disposeBag)
     }
     
     
