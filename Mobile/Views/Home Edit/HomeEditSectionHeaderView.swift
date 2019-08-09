@@ -17,8 +17,12 @@ class HomeEditSectionHeaderView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        instructionsLabel.textColor = .deepGray
         instructionsLabel.font = OpenSans.regular.of(textStyle: .headline)
         instructionsLabel.text = HomeEditSectionHeaderView.instructionsLabelString
+        
+        label.textColor = .deepGray
         label.font = OpenSans.regular.of(textStyle: .headline)
     }
     
