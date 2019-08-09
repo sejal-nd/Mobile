@@ -3617,6 +3617,7 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				3559C8AA22FB4BF500481A87 /* Usage */,
 				3559C89722F4929500481A87 /* Home */,
 				9C5F786122F4ADB200D5C395 /* Budget Billing */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
@@ -3797,6 +3798,16 @@
 				B039DB74225BD02B00BB5479 /* HomePrepaidCardView.xib */,
 			);
 			path = Prepaid;
+			sourceTree = "<group>";
+		};
+		3559C8AA22FB4BF500481A87 /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				B0472B282111011F0048C1A7 /* UsageViewController.swift */,
+				358DE0A421021471002C544E /* UsageViewModel.swift */,
+				358BD20E20F7A8FD00DA2012 /* Usage.storyboard */,
+			);
+			path = Usage;
 			sourceTree = "<group>";
 		};
 		3575232A22C5371800A0AFAC /* Account Row */ = {
@@ -4573,7 +4584,6 @@
 		82EAB3321F97E052008B55B1 /* Usage */ = {
 			isa = PBXGroup;
 			children = (
-				358DE0A421021471002C544E /* UsageViewModel.swift */,
 				82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */,
 				82E9B60D1FA22FA000556C94 /* MyHomeProfileViewModel.swift */,
 				E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */,
@@ -4637,7 +4647,6 @@
 				9C472AB9220CE05D008C882B /* Payment.storyboard */,
 				0D79C6C41F1D3360004793DD /* Maintenance.storyboard */,
 				82AC2A101FAA691000EACB3B /* PeakRewards.storyboard */,
-				358BD20E20F7A8FD00DA2012 /* Usage.storyboard */,
 				B017488D2135D19B0039D0C6 /* Storm.storyboard */,
 			);
 			path = Storyboards;
@@ -5451,7 +5460,6 @@
 		E82FF1E41F97CB6B00C50F8F /* Usage */ = {
 			isa = PBXGroup;
 			children = (
-				B0472B282111011F0048C1A7 /* UsageViewController.swift */,
 				E82FF1E51F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift */,
 				82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */,
 				82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */,
