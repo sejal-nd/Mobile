@@ -195,6 +195,9 @@
 		3559C8A722F9F69600481A87 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		3559C8A822F9F69600481A87 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		3559C8A922F9F69700481A87 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
+		3559C8B12301D41400481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
+		3559C8B22301D41400481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
+		3559C8B32301D41500481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		356C7F752190974A003E8A90 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -8814,6 +8817,7 @@
 				54EDD2DD1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				B574BB001E787655001E8A44 /* OutageInfo.swift in Sources */,
 				B07E17C12208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
+				3559C8B12301D41400481A87 /* WalletViewModel.swift in Sources */,
 				82AC2A271FAB736600EACB3B /* PeakRewardsService.swift in Sources */,
 				9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */,
 				B017489A2135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
@@ -9048,6 +9052,7 @@
 				B07E17C22208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				E8F62B52200924410077B3DA /* OpcoUpdate.swift in Sources */,
 				357757522113611000E73542 /* DateParserTests.swift in Sources */,
+				3559C8B22301D41400481A87 /* WalletViewModel.swift in Sources */,
 				E8F62B54200924410077B3DA /* WalletService.swift in Sources */,
 				E8F62B56200924410077B3DA /* OutageInfo.swift in Sources */,
 				9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
@@ -9236,6 +9241,7 @@
 				B07E17C32208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				E8F62C07200924570077B3DA /* OpcoUpdate.swift in Sources */,
 				357757532113611000E73542 /* DateParserTests.swift in Sources */,
+				3559C8B32301D41500481A87 /* WalletViewModel.swift in Sources */,
 				E8F62C09200924570077B3DA /* WalletService.swift in Sources */,
 				E8F62C0B200924570077B3DA /* OutageInfo.swift in Sources */,
 				9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */,
