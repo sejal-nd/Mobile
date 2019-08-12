@@ -37,12 +37,13 @@ class BillViewController: AccountPickerViewController {
 	@IBOutlet weak var catchUpDisclaimerView: UIView!
 	@IBOutlet weak var catchUpDisclaimerLabel: UILabel!
     
+    @IBOutlet weak var pastDueCurrentBillBox: UIView!
 	// Past Due
     @IBOutlet weak var pastDueView: UIView!
     @IBOutlet weak var pastDueLabel: UILabel!
     @IBOutlet weak var pastDueAmountLabel: UILabel!
     @IBOutlet weak var pastDueDateLabel: UILabel!
-    
+    @IBOutlet weak var pastDueDividerLine: UIView!
     // Current Bill
     @IBOutlet weak var currentBillView: UIView!
     @IBOutlet weak var currentBillLabel: UILabel!
@@ -209,18 +210,27 @@ class BillViewController: AccountPickerViewController {
         
         catchUpDisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        pastDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        pastDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        pastDueDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        pastDueCurrentBillBox.layer.borderColor = UIColor.accentGray.cgColor
+        pastDueCurrentBillBox.layer.borderWidth = 1
+        
+        pastDueLabel.textColor = .deepGray
+        pastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        pastDueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        pastDueAmountLabel.textColor = .deepGray
+        pastDueAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        pastDueDividerLine.backgroundColor = .accentGray
+        
+        currentBillLabel.textColor = .deepGray
+        currentBillLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        currentBillDateLabel.textColor = .middleGray
+        currentBillDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        currentBillAmountLabel.textColor = .deepGray
+        currentBillAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         remainingBalanceDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         remainingBalanceDueLabel.textColor = .blackText
         remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         remainingBalanceDueAmountLabel.textColor = .blackText
-        
-        currentBillLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        currentBillAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        currentBillDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         paymentReceivedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         paymentReceivedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
@@ -422,6 +432,7 @@ class BillViewController: AccountPickerViewController {
         
 		viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
         viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
+        viewModel.showPastDueDividerLine.not().drive(pastDueDividerLine.rx.isHidden).disposed(by: bag)
         viewModel.showCurrentBill.not().drive(currentBillView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
         

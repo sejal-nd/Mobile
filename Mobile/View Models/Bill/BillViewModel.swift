@@ -118,6 +118,9 @@ class BillViewModel {
             return pastDueAmount > 0 && pastDueAmount != accountDetail.billingInfo.netDueAmount
     }
     
+    private(set) lazy var showPastDueDividerLine: Driver<Bool> =
+        Driver.combineLatest(self.showPastDue, self.showCurrentBill).map { $0 && $1 }
+    
     private(set) lazy var showCurrentBill: Driver<Bool> = currentAccountDetail
         .map { accountDetail -> Bool in
             let currentDueAmount = accountDetail.billingInfo.currentDueAmount
@@ -354,11 +357,11 @@ class BillViewModel {
                 billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
-                                                                       .font: OpenSans.regular.of(textStyle: .footnote)])
+                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
             } else {
                 let string = NSLocalizedString("Due Immediately", comment: "")
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
-                                                                       .font: OpenSans.regular.of(textStyle: .footnote)])
+                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
             }
     }
     
