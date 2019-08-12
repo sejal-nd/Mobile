@@ -202,6 +202,9 @@ class BillViewController: AccountPickerViewController {
         billCardView.layer.borderColor = UIColor.accentGray.cgColor
         billCardView.layer.borderWidth = 1
         
+        totalAmountLabel.textColor = .deepGray
+        totalAmountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
+
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         catchUpDisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
