@@ -12,30 +12,11 @@
         {
             "walletItemId": "EB94D5C2BE91B5D6DD995DBADD5AC0C30E3C17A1",
             "maskedWalletItemAccountNumber": "************1111",
+            "nickName": "Test Card",
             "paymentCategoryType": "CREDIT",
             "paymentMethodType": "VISA",
             "expirationDate": "01/2100",
             "isDefault": true
-        },
-        {
-            "walletItemId": "9999",
-            "maskedWalletItemAccountNumber": "*****0213-******9724",
-            "nickName": "Test Bank",
-            "paymentCategoryType": "CHECK",
-            "paymentMethodType": "ACH",
-            "bankName": "M & T BANK",
-            "isDefault": true,
-            "expirationDate": "01/2018"
-        },
-        {
-            "walletItemId": "9999",
-            "maskedWalletItemAccountNumber": "*****0213-******9724",
-            "nickName": "Test Bank",
-            "paymentCategoryType": "CHECK",
-            "paymentMethodType": "ACH",
-            "bankName": "M & T BANK",
-            "isDefault": false,
-            "expirationDate": "01/2018"
         }
     ],
     "billCardNoDefaultPayment": [],
