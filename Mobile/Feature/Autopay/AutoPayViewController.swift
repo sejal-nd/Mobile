@@ -60,9 +60,7 @@ class AutoPayViewController: UIViewController {
 
         title = NSLocalizedString("AutoPay", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
         helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
-        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = helpButton
         
         NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
@@ -110,10 +108,6 @@ class AutoPayViewController: UIViewController {
         }
     }
 
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
-    }
-    
     @objc func onSubmitPress() {
         view.endEditing(true)
         
