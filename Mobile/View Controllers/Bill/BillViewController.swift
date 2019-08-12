@@ -227,14 +227,20 @@ class BillViewController: AccountPickerViewController {
         currentBillAmountLabel.textColor = .deepGray
         currentBillAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
+        paymentReceivedView.layer.borderColor = UIColor.accentGray.cgColor
+        paymentReceivedView.layer.borderWidth = 1
+        
+        paymentReceivedLabel.textColor = .deepGray
+        paymentReceivedLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        paymentReceivedDateLabel.textColor = .middleGray
+        paymentReceivedDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        paymentReceivedAmountLabel.textColor = .successGreenText
+        paymentReceivedAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        
         remainingBalanceDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         remainingBalanceDueLabel.textColor = .blackText
         remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
         remainingBalanceDueAmountLabel.textColor = .blackText
-        
-        paymentReceivedLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        paymentReceivedAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        paymentReceivedDateLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
         pendingPaymentLabel.font = OpenSans.italic.of(textStyle: .subheadline)
         pendingPaymentLabel.textColor = .blackText
