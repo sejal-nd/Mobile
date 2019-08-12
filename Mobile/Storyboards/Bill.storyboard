@@ -1469,10 +1469,10 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="1087"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqt-Ck-0Yz">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="245.5"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="266.5"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gR4-Z3-SoN">
-                                                                                                <rect key="frame" x="0.0" y="30" width="343" height="205.5"/>
+                                                                                                <rect key="frame" x="0.0" y="30" width="343" height="226.5"/>
                                                                                                 <subviews>
                                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$###.##" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYN-lO-iaJ">
                                                                                                         <rect key="frame" x="98" y="0.0" width="147" height="49.5"/>
@@ -1481,16 +1481,16 @@
                                                                                                         <nil key="highlightedColor"/>
                                                                                                     </label>
                                                                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ms6-jc-TD3">
-                                                                                                        <rect key="frame" x="67.5" y="54.5" width="208.5" height="151"/>
+                                                                                                        <rect key="frame" x="67.5" y="54.5" width="208.5" height="172"/>
                                                                                                         <subviews>
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount Due By ##/##/##" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2f6-hb-PDT">
-                                                                                                                <rect key="frame" x="0.0" y="67.5" width="176.5" height="16.5"/>
+                                                                                                                <rect key="frame" x="0.0" y="78" width="176.5" height="16.5"/>
                                                                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                                 <nil key="highlightedColor"/>
                                                                                                             </label>
                                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syh-sx-Jzb">
-                                                                                                                <rect key="frame" x="184.5" y="63.5" width="24" height="24"/>
+                                                                                                                <rect key="frame" x="184.5" y="74" width="24" height="24"/>
                                                                                                                 <accessibility key="accessibilityConfiguration" label="Tool tip"/>
                                                                                                                 <state key="normal" image="ic_tooltip"/>
                                                                                                             </button>
@@ -1507,10 +1507,10 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="141.5" placeholderIntrinsicHeight="300" translatesAutoresizingMaskIntoConstraints="NO" id="rdS-tc-JCK">
-                                                                                        <rect key="frame" x="0.0" y="265.5" width="343" height="407.5"/>
+                                                                                        <rect key="frame" x="0.0" y="286.5" width="343" height="386.5"/>
                                                                                         <subviews>
-                                                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-ci-rJY">
-                                                                                                <rect key="frame" x="15" y="0.0" width="313" height="407.5"/>
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="999" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-ci-rJY">
+                                                                                                <rect key="frame" x="15" y="0.0" width="313" height="386.5"/>
                                                                                                 <subviews>
                                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7da-aV-yjK">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="313" height="128"/>
@@ -1736,10 +1736,10 @@
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lLM-nO-4kr">
-                                                                                                        <rect key="frame" x="0.0" y="342" width="313" height="65.5"/>
+                                                                                                        <rect key="frame" x="0.0" y="342" width="313" height="44.5"/>
                                                                                                         <subviews>
                                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9e-Zn-Tt3">
-                                                                                                                <rect key="frame" x="17" y="0.0" width="279" height="65.5"/>
+                                                                                                                <rect key="frame" x="0.0" y="-5" width="313" height="49.5"/>
                                                                                                                 <string key="text">You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a $XX.XX fee on your next bill where $XX.XX is the reinstatement fee.</string>
                                                                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1748,10 +1748,10 @@
                                                                                                         </subviews>
                                                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                                         <constraints>
-                                                                                                            <constraint firstAttribute="trailing" secondItem="G9e-Zn-Tt3" secondAttribute="trailing" constant="17" id="0Bu-Vq-1Be"/>
+                                                                                                            <constraint firstAttribute="trailing" secondItem="G9e-Zn-Tt3" secondAttribute="trailing" id="0Bu-Vq-1Be"/>
                                                                                                             <constraint firstAttribute="bottom" secondItem="G9e-Zn-Tt3" secondAttribute="bottom" priority="999" id="8st-L0-Cbb"/>
-                                                                                                            <constraint firstItem="G9e-Zn-Tt3" firstAttribute="top" secondItem="lLM-nO-4kr" secondAttribute="top" priority="999" id="VMW-OK-FPJ"/>
-                                                                                                            <constraint firstItem="G9e-Zn-Tt3" firstAttribute="leading" secondItem="lLM-nO-4kr" secondAttribute="leading" constant="17" id="rCQ-EJ-ain"/>
+                                                                                                            <constraint firstItem="G9e-Zn-Tt3" firstAttribute="top" secondItem="lLM-nO-4kr" secondAttribute="top" priority="999" constant="-5" id="VMW-OK-FPJ"/>
+                                                                                                            <constraint firstItem="G9e-Zn-Tt3" firstAttribute="leading" secondItem="lLM-nO-4kr" secondAttribute="leading" id="rCQ-EJ-ain"/>
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                 </subviews>

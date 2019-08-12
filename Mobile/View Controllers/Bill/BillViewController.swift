@@ -32,10 +32,6 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
     @IBOutlet weak var totalAmountTooltipButton: UIButton!
-
-	// Catch Up Disclaimer
-	@IBOutlet weak var catchUpDisclaimerView: UIView!
-	@IBOutlet weak var catchUpDisclaimerLabel: UILabel!
     
     @IBOutlet weak var pastDueCurrentBillBox: UIView!
 	// Past Due
@@ -66,6 +62,10 @@ class BillViewController: AccountPickerViewController {
 	@IBOutlet weak var remainingBalanceDueView: UIView!
 	@IBOutlet weak var remainingBalanceDueLabel: UILabel!
 	@IBOutlet weak var remainingBalanceDueAmountLabel: UILabel!
+    
+    // Catch Up Disclaimer
+    @IBOutlet weak var catchUpDisclaimerView: UIView!
+    @IBOutlet weak var catchUpDisclaimerLabel: UILabel!
     
     @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
@@ -209,8 +209,6 @@ class BillViewController: AccountPickerViewController {
 
         totalAmountDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
         
-        catchUpDisclaimerLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        
         pastDueCurrentBillBox.layer.borderColor = UIColor.accentGray.cgColor
         pastDueCurrentBillBox.layer.borderWidth = 1
         
@@ -251,6 +249,9 @@ class BillViewController: AccountPickerViewController {
         remainingBalanceDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         remainingBalanceDueAmountLabel.textColor = .deepGray
         remainingBalanceDueAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        
+        catchUpDisclaimerLabel.textColor = .deepGray
+        catchUpDisclaimerLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         viewBillButton.layer.cornerRadius = viewBillButton.frame.size.height / 2
         viewBillButton.layer.borderColor = UIColor.accentGray.cgColor
@@ -440,15 +441,23 @@ class BillViewController: AccountPickerViewController {
 
         totalAmountTooltipButton.isHidden = !viewModel.showAmountDueTooltip
         
-		viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
         viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
-        viewModel.showPastDueDividerLine.not().drive(pastDueDividerLine.rx.isHidden).disposed(by: bag)
         viewModel.showCurrentBill.not().drive(currentBillView.rx.isHidden).disposed(by: bag)
+        Driver.combineLatest(viewModel.showPastDue, viewModel.showCurrentBill).drive(onNext: { [weak self] showPastDue, showCurrentBill in
+            self?.pastDueCurrentBillBox.isHidden = !showPastDue && !showCurrentBill
+            self?.pastDueDividerLine.isHidden = !showPastDue || !showCurrentBill
+        }).disposed(by: bag)
+        
         viewModel.showPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
         
 		viewModel.showPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
-        viewModel.showPendingPaymentDividerLine.not().drive(pendingPaymentDividerLine.rx.isHidden).disposed(by: bag)
 		viewModel.showRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
+        Driver.combineLatest(viewModel.showPendingPayment, viewModel.showRemainingBalanceDue).drive(onNext: { [weak self] showPendingPayment, showRemBalDue in
+            self?.pendingPaymentRemainingBalanceBox.isHidden = !showPendingPayment && !showRemBalDue
+            self?.pendingPaymentDividerLine.isHidden = !showPendingPayment || !showRemBalDue
+        }).disposed(by: bag)
+        
+        viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
 
 		viewModel.enableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
 		viewModel.enableMakeAPaymentButton.drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
