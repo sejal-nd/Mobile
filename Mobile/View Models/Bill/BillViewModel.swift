@@ -138,6 +138,9 @@ class BillViewModel {
         $0.billingInfo.pendingPaymentsTotal > 0
     }
     
+    private(set) lazy var showPendingPaymentDividerLine: Driver<Bool> =
+        Driver.combineLatest(self.showPendingPayment, self.showRemainingBalanceDue).map { $0 && $1 }
+    
     private(set) lazy var showRemainingBalanceDue: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.pendingPaymentsTotal > 0 && $0.billingInfo.remainingBalanceDue > 0
     }

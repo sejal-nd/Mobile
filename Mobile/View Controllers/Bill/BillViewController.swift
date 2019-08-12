@@ -41,26 +41,27 @@ class BillViewController: AccountPickerViewController {
 	// Past Due
     @IBOutlet weak var pastDueView: UIView!
     @IBOutlet weak var pastDueLabel: UILabel!
-    @IBOutlet weak var pastDueAmountLabel: UILabel!
     @IBOutlet weak var pastDueDateLabel: UILabel!
+    @IBOutlet weak var pastDueAmountLabel: UILabel!
     @IBOutlet weak var pastDueDividerLine: UIView!
     // Current Bill
     @IBOutlet weak var currentBillView: UIView!
     @IBOutlet weak var currentBillLabel: UILabel!
-    @IBOutlet weak var currentBillAmountLabel: UILabel!
     @IBOutlet weak var currentBillDateLabel: UILabel!
-    
+    @IBOutlet weak var currentBillAmountLabel: UILabel!
+
     // Payment Received
     @IBOutlet weak var paymentReceivedView: UIView!
     @IBOutlet weak var paymentReceivedLabel: UILabel!
-    @IBOutlet weak var paymentReceivedAmountLabel: UILabel!
     @IBOutlet weak var paymentReceivedDateLabel: UILabel!
+    @IBOutlet weak var paymentReceivedAmountLabel: UILabel!
 
+    @IBOutlet weak var pendingPaymentRemainingBalanceBox: UIView!
 	// Payments
 	@IBOutlet weak var pendingPaymentView: UIView!
     @IBOutlet weak var pendingPaymentLabel: UILabel!
     @IBOutlet weak var pendingPaymentAmountLabel: UILabel!
-
+    @IBOutlet weak var pendingPaymentDividerLine: UIView!
 	// Remaining Balance Due
 	@IBOutlet weak var remainingBalanceDueView: UIView!
 	@IBOutlet weak var remainingBalanceDueLabel: UILabel!
@@ -237,16 +238,19 @@ class BillViewController: AccountPickerViewController {
         paymentReceivedAmountLabel.textColor = .successGreenText
         paymentReceivedAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
-        remainingBalanceDueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        remainingBalanceDueLabel.textColor = .blackText
-        remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        remainingBalanceDueAmountLabel.textColor = .blackText
+        pendingPaymentRemainingBalanceBox.layer.borderColor = UIColor.accentGray.cgColor
+        pendingPaymentRemainingBalanceBox.layer.borderWidth = 1
         
-        pendingPaymentLabel.font = OpenSans.italic.of(textStyle: .subheadline)
-        pendingPaymentLabel.textColor = .blackText
-        
-        pendingPaymentAmountLabel.font = OpenSans.semiboldItalic.of(textStyle: .headline)
+        pendingPaymentLabel.textColor = .deepGray
+        pendingPaymentLabel.font = SystemFont.italic.of(textStyle: .footnote)
         pendingPaymentAmountLabel.textColor = .middleGray
+        pendingPaymentAmountLabel.font = OpenSans.semiboldItalic.of(textStyle: .footnote)
+        pendingPaymentDividerLine.backgroundColor = .accentGray
+        
+        remainingBalanceDueLabel.textColor = .deepGray
+        remainingBalanceDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        remainingBalanceDueAmountLabel.textColor = .deepGray
+        remainingBalanceDueAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
         viewBillButton.layer.cornerRadius = viewBillButton.frame.size.height / 2
         viewBillButton.layer.borderColor = UIColor.accentGray.cgColor
@@ -443,6 +447,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.showPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
         
 		viewModel.showPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
+        viewModel.showPendingPaymentDividerLine.not().drive(pendingPaymentDividerLine.rx.isHidden).disposed(by: bag)
 		viewModel.showRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
 
 		viewModel.enableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
