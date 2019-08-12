@@ -279,7 +279,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         amountNotToExceedDetailsLabel.numberOfLines = 0
         amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the automatic payment is created, and you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
+        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold, you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
         
         // adding details for second button to second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
