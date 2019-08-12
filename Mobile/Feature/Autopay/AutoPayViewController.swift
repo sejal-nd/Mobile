@@ -16,8 +16,6 @@ protocol AutoPayViewControllerDelegate: class {
 
 class AutoPayViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var gradientView: UIView!
-    var gradientLayer = CAGradientLayer()
     
     // Not Enrolled
     @IBOutlet weak var enrollStackView: UIStackView!
@@ -97,15 +95,7 @@ class AutoPayViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        gradientLayer.removeFromSuperlayer()
-        
-        let gLayer = CAGradientLayer()
-        gLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
-        gLayer.colors = [UIColor.softGray.cgColor, UIColor.white.cgColor]
-        
-        gradientLayer = gLayer
-        gradientView.layer.addSublayer(gLayer)
-        
+
         // Dynamic sizing for the table header view
         if let headerView = reasonForStoppingTableView.tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height

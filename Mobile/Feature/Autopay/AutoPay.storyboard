@@ -205,10 +205,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-SY-HYl">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1380.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-gL-goW">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1380.5"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yz6-d2-EE6">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1380.5"/>
                                                 <subviews>
@@ -520,11 +516,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="bWt-gL-goW" firstAttribute="height" secondItem="yz6-d2-EE6" secondAttribute="height" id="0Oy-uV-sRH"/>
                                             <constraint firstItem="yz6-d2-EE6" firstAttribute="leading" secondItem="O1U-SY-HYl" secondAttribute="leading" id="0cx-mT-APk"/>
-                                            <constraint firstAttribute="trailing" secondItem="bWt-gL-goW" secondAttribute="trailing" id="CyK-zZ-B9c"/>
-                                            <constraint firstItem="bWt-gL-goW" firstAttribute="top" secondItem="O1U-SY-HYl" secondAttribute="top" id="E6i-gS-MiD"/>
-                                            <constraint firstItem="bWt-gL-goW" firstAttribute="leading" secondItem="O1U-SY-HYl" secondAttribute="leading" id="KdO-3f-KT1"/>
                                             <constraint firstItem="yz6-d2-EE6" firstAttribute="centerX" secondItem="O1U-SY-HYl" secondAttribute="centerX" id="MVr-Gj-s8B"/>
                                             <constraint firstAttribute="bottom" secondItem="yz6-d2-EE6" secondAttribute="bottom" id="Wot-mX-Mzb"/>
                                             <constraint firstItem="yz6-d2-EE6" firstAttribute="top" secondItem="O1U-SY-HYl" secondAttribute="top" id="nJC-Ip-Vfc"/>
@@ -564,7 +556,6 @@
                         <outlet property="enrolledTopLabel" destination="ZS0-Qo-WgP" id="olN-d7-nbS"/>
                         <outlet property="footerLabel" destination="uvA-CK-Snq" id="8ue-C7-pCK"/>
                         <outlet property="footerView" destination="ihQ-UW-xYo" id="573-jR-kJX"/>
-                        <outlet property="gradientView" destination="bWt-gL-goW" id="pIA-AK-IwD"/>
                         <outlet property="nameTextField" destination="fCV-3d-Sr6" id="8eX-LM-JcB"/>
                         <outlet property="reasonForStoppingContainerView" destination="SIf-1c-KV8" id="QrN-IQ-vU2"/>
                         <outlet property="reasonForStoppingLabel" destination="hUu-LK-CxB" id="FBj-jv-CtH"/>
