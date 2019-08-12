@@ -1936,7 +1936,6 @@
 		E876A85B1ECF377D00CA63BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		E876A85D1ECF377D00CA63BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
-		E876A85E1ECF377D00CA63BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
 		E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
 		E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
@@ -2182,7 +2181,6 @@
 		E8F62B36200924410077B3DA /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
-		E8F62B3A200924410077B3DA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		E8F62B3D200924410077B3DA /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
 		E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
@@ -2293,7 +2291,6 @@
 		E8F62BEB200924570077B3DA /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
 		E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AE06AF1ED4B06B004A1FDA /* RegistrationViewModel.swift */; };
 		E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CBA5641E81CA6D005569D8 /* ReportOutageViewModelTests.swift */; };
-		E8F62BEF200924570077B3DA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		E8F62BF2200924570077B3DA /* PaperlessEBillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */; };
 		E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
@@ -3617,6 +3614,7 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				3559C8B022FC92B000481A87 /* Wallet */,
 				3559C8AA22FB4BF500481A87 /* Usage */,
 				3559C89722F4929500481A87 /* Home */,
 				9C5F786122F4ADB200D5C395 /* Budget Billing */,
@@ -3808,6 +3806,17 @@
 				358BD20E20F7A8FD00DA2012 /* Usage.storyboard */,
 			);
 			path = Usage;
+			sourceTree = "<group>";
+		};
+		3559C8B022FC92B000481A87 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
+				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
+				9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */,
+				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		3575232A22C5371800A0AFAC /* Account Row */ = {
@@ -4524,7 +4533,6 @@
 				82E22B5B1F9FC798001F1A1B /* EnergyTipTableViewCell */,
 				E84D42C41F4211A400783708 /* BillingHistoryTableViewCell */,
 				E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */,
-				9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */,
 			);
@@ -4643,7 +4651,6 @@
 				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
 				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
 				E8B4F4B21E5C99380031D934 /* Alerts.storyboard */,
-				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
 				9C472AB9220CE05D008C882B /* Payment.storyboard */,
 				0D79C6C41F1D3360004793DD /* Maintenance.storyboard */,
 				82AC2A101FAA691000EACB3B /* PeakRewards.storyboard */,
@@ -5524,7 +5531,6 @@
 		E876A8541ECDEF3E00CA63BF /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -5532,7 +5538,6 @@
 		E876A8591ECF372600CA63BF /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -8774,7 +8779,6 @@
 				B0E9EFFE21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				54AE06B31ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
-				E876A85E1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82119FE6203F57D800A56FEE /* MyHomeProfileTests.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
 				B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
@@ -9010,7 +9014,6 @@
 				E8F62B36200924410077B3DA /* Premise.swift in Sources */,
 				E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
-				E8F62B3A200924410077B3DA /* WalletViewModel.swift in Sources */,
 				82119FE3203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
 				B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */,
@@ -9199,7 +9202,6 @@
 				E8F62BEB200924570077B3DA /* Premise.swift in Sources */,
 				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
-				E8F62BEF200924570077B3DA /* WalletViewModel.swift in Sources */,
 				82119FE4203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
 				B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */,
