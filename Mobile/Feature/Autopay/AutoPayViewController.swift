@@ -109,12 +109,7 @@ class AutoPayViewController: UIViewController {
             }
         }
     }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: footerView.frame.origin.y + 64)
-    }
-    
+
     @objc func onCancelPress() {
         navigationController?.popViewController(animated: true)
     }
