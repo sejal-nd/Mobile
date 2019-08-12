@@ -443,18 +443,18 @@ class BillViewController: AccountPickerViewController {
         
         viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
         viewModel.showCurrentBill.not().drive(currentBillView.rx.isHidden).disposed(by: bag)
-        Driver.combineLatest(viewModel.showPastDue, viewModel.showCurrentBill).drive(onNext: { [weak self] showPastDue, showCurrentBill in
-            self?.pastDueCurrentBillBox.isHidden = !showPastDue && !showCurrentBill
-            self?.pastDueDividerLine.isHidden = !showPastDue || !showCurrentBill
+        Driver.combineLatest(viewModel.showPastDue, viewModel.showCurrentBill).drive(onNext: { [weak self] in
+            self?.pastDueCurrentBillBox.isHidden = !$0 && !$1
+            self?.pastDueDividerLine.isHidden = !$0 || !$1
         }).disposed(by: bag)
         
         viewModel.showPaymentReceived.not().drive(paymentReceivedView.rx.isHidden).disposed(by: bag)
         
 		viewModel.showPendingPayment.not().drive(pendingPaymentView.rx.isHidden).disposed(by: bag)
 		viewModel.showRemainingBalanceDue.not().drive(remainingBalanceDueView.rx.isHidden).disposed(by: bag)
-        Driver.combineLatest(viewModel.showPendingPayment, viewModel.showRemainingBalanceDue).drive(onNext: { [weak self] showPendingPayment, showRemBalDue in
-            self?.pendingPaymentRemainingBalanceBox.isHidden = !showPendingPayment && !showRemBalDue
-            self?.pendingPaymentDividerLine.isHidden = !showPendingPayment || !showRemBalDue
+        Driver.combineLatest(viewModel.showPendingPayment, viewModel.showRemainingBalanceDue).drive(onNext: { [weak self] in
+            self?.pendingPaymentRemainingBalanceBox.isHidden = !$0 && !$1
+            self?.pendingPaymentDividerLine.isHidden = !$0 || !$1
         }).disposed(by: bag)
         
         viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
