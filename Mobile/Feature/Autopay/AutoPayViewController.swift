@@ -19,29 +19,24 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var gradientView: UIView!
     var gradientLayer = CAGradientLayer()
     
-    @IBOutlet weak var learnMoreButton: ButtonControl!
-    @IBOutlet weak var learnMoreLabel: UILabel!
-    
     // Not Enrolled
     @IBOutlet weak var enrollStackView: UIStackView!
     @IBOutlet weak var topLabel: UILabel!
-    @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
-    @IBOutlet weak var nameTextField: FloatLabelTextField!
-    @IBOutlet weak var routingNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControlNew!
+    @IBOutlet weak var nameTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var routingNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var routingNumberTooltipButton: UIButton!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
-    @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextFieldNew!
     
     @IBOutlet weak var tacStackView: UIStackView!
-    @IBOutlet weak var tacSwitch: Switch!
+    @IBOutlet weak var tacSwitch: Checkbox!
     @IBOutlet weak var tacLabel: UILabel!
     @IBOutlet weak var tacButton: UIButton!
     
     // Enrolled
     @IBOutlet weak var enrolledStackView: UIStackView!
-    @IBOutlet weak var enrollSwitch: Switch!
-    @IBOutlet weak var enrollmentStatusLabel: UILabel!
     @IBOutlet weak var enrolledContentView: UIView!
     @IBOutlet weak var enrolledTopLabel: UILabel!
     
@@ -58,7 +53,7 @@ class AutoPayViewController: UIViewController {
     let bag = DisposeBag()
     
     var accountDetail: AccountDetail!
-    var submitButton = UIBarButtonItem()
+    var helpButton = UIBarButtonItem()
 
     lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: self.accountDetail) }()
 
@@ -68,9 +63,9 @@ class AutoPayViewController: UIViewController {
         title = NSLocalizedString("AutoPay", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress))
+        helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = submitButton
+        navigationItem.rightBarButtonItem = helpButton
         
         NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
             .asDriver(onErrorDriveWith: Driver.empty())
@@ -91,31 +86,7 @@ class AutoPayViewController: UIViewController {
         bindEnrollingState()
         bindEnrolledState()
         
-        footerView.backgroundColor = .softGray
         viewModel.footerText.drive(footerLabel.rx.text).disposed(by: bag)
-        viewModel.canSubmit.drive(submitButton.rx.isEnabled).disposed(by: bag)
-        
-        learnMoreButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.onLearnMorePress()
-            })
-            .disposed(by: bag)
-        
-        view.backgroundColor = .softGray
-        
-//        // background color hackery
-//        let isScrollOffsetLessThanZero = scrollView.rx.contentOffset.asDriver()
-//            .map { $0.y < 0 }
-//            .distinctUntilChanged()
-//
-//        Driver.combineLatest(viewModel.enrollmentStatus.asDriver(), isScrollOffsetLessThanZero)
-//            .map { $0 == .unenrolling || $1 }
-//            .map { $0 ? UIColor.softGray: UIColor.white }
-//            .drive(view.rx.backgroundColor)
-//            .disposed(by: bag)
-        
-        accessibilitySetup()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,8 +130,6 @@ class AutoPayViewController: UIViewController {
     }
     
     @objc func onSubmitPress() {
-        guard submitButton.isEnabled else { return }
-        
         view.endEditing(true)
         
         LoadingView.show()
@@ -184,21 +153,11 @@ class AutoPayViewController: UIViewController {
     }
     
     private func style() {
-        learnMoreLabel.textColor = .actionBlue
-        learnMoreLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
-        
         styleNotEnrolled()
         styleEnrolled()
         
         footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
         footerLabel.setLineHeight(lineHeight: 16)
-    }
-    
-    private func accessibilitySetup() {
-        learnMoreButton.isAccessibilityElement = true
-        learnMoreButton.accessibilityLabel = learnMoreLabel.text
-        enrollSwitch.isAccessibilityElement = true
-        enrollSwitch.accessibilityLabel = "Enrollment status: "
     }
     
     private func styleNotEnrolled() {
@@ -214,7 +173,6 @@ class AutoPayViewController: UIViewController {
     }
     
     private func styleEnrolled() {
-        enrollmentStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
         enrolledTopLabel.font = OpenSans.regular.of(textStyle: .headline)
         enrolledTopLabel.setLineHeight(lineHeight: 16)
         
@@ -246,16 +204,6 @@ class AutoPayViewController: UIViewController {
     }
     
     private func bindEnrolledState() {
-        if accountDetail.isAutoPay {
-            enrollSwitch.rx.isOn
-                .map { isOn -> AutoPayViewModel.AutoPayEnrollmentStatus in
-                    isOn ? .isEnrolled: .unenrolling
-                }
-                .bind(to: viewModel.enrollmentStatus)
-                .disposed(by: bag)
-        }
-        
-        enrollSwitch.rx.isOn.filter { $0 }.map { _ in nil }.bind(to: viewModel.selectedUnenrollmentReason).disposed(by: bag)
         viewModel.selectedUnenrollmentReason.asDriver()
             .filter { $0 == nil }
             .drive(onNext: { [weak self] _ in
@@ -305,7 +253,7 @@ class AutoPayViewController: UIViewController {
         accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: bag)
         routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).disposed(by: bag)
         confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).disposed(by: bag)
-        tacSwitch.rx.isOn.bind(to: viewModel.termsAndConditionsCheck).disposed(by: bag)
+        tacSwitch.rx.isChecked.bind(to: viewModel.termsAndConditionsCheck).disposed(by: bag)
         tacStackView.isHidden = !viewModel.shouldShowTermsAndConditionsCheck
         
         // Name on Account
@@ -408,13 +356,6 @@ class AutoPayViewController: UIViewController {
         message += routingNumberTextField.getError()
         message += accountNumberTextField.getError()
         message += confirmAccountNumberTextField.getError()
-        submitButton.accessibilityLabel = NSLocalizedString(message, comment: "")
-        
-        if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
-        } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
-        }
     }
     
     
@@ -424,10 +365,11 @@ class AutoPayViewController: UIViewController {
         navigationController?.present(tacModal, animated: true, completion: nil)
     }
     
+    @objc
     func onLearnMorePress() {
         let modalDescription = NSLocalizedString("Sign up for AutoPay and you will never have to write another check to pay your bill. With AutoPay, your payment is automatically deducted from your bank account. You will receive a monthly statement notifying you when your payment will be deducted.", comment: "")
         
-        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: modalDescription)
+        let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: UIImage(named: "img_autopaymodal")!, description: modalDescription)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
     

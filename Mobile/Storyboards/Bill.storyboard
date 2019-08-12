@@ -3638,7 +3638,7 @@
         <!--AutoPay-->
         <scene sceneID="Wgb-jf-v3V">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="AutoPay" storyboardName="AUtoPay" referencedIdentifier="AutoPay" id="wS5-mM-FU0" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="AutoPay" storyboardName="AutoPay" referencedIdentifier="AutoPay" id="wS5-mM-FU0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsR-U3-9Vu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1237" y="553"/>
