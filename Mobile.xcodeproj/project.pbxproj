@@ -198,6 +198,9 @@
 		3559C8B12301D41400481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		3559C8B22301D41400481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
 		3559C8B32301D41500481A87 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */; };
+		3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
+		3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
+		3559C8B82301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		356C7F752190974A003E8A90 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -2616,6 +2619,7 @@
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3557071173F2557B279CD47A /* Pods_PECO_WatchOS_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECO_WatchOS_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		356C7F7E21909976003E8A90 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
@@ -3817,13 +3821,14 @@
 		3559C8B42301E43600481A87 /* Autopay */ = {
 			isa = PBXGroup;
 			children = (
+				3559C8B52301E4FF00481A87 /* AutoPay.storyboard */,
 				E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */,
-				E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */,
-				E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */,
-				E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */,
-				822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */,
 				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
+				E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */,
 				B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */,
+				E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */,
+				822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */,
+				E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */,
 			);
 			path = Autopay;
 			sourceTree = "<group>";
@@ -6255,6 +6260,7 @@
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
+				3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E87926D61F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B611F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				359BDBAC22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
@@ -6418,6 +6424,7 @@
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
+				3559C8B82301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
@@ -6581,6 +6588,7 @@
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
