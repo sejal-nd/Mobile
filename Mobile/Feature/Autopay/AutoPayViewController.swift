@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol AutoPayViewControllerDelegate: class {
-    func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool)
+    func autoPayViewController(_ autoPayViewController: UIViewController, enrolled: Bool)
 }
 
 class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
@@ -39,10 +39,6 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var enrolledTopLabel: UILabel!
     
     // Unenrolling
-    @IBOutlet weak var reasonForStoppingContainerView: UIView!
-    @IBOutlet weak var reasonForStoppingTableView: IntrinsicHeightTableView!
-    @IBOutlet weak var reasonForStoppingLabel: UILabel!
-	
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
@@ -62,7 +58,6 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     let bag = DisposeBag()
     
     var accountDetail: AccountDetail!
-    var helpButton = UIBarButtonItem()
 
     lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: self.accountDetail) }()
 
@@ -78,7 +73,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         bindEnrollingState()
         bindEnrolledState()
         
-        viewModel.footerText.drive(footerLabel.rx.text).disposed(by: bag)
+    viewModel.footerText.drive(footerLabel.rx.text).disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,16 +82,14 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        reasonForStoppingTableView.sizeHeaderToFit()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AutoPayChangeBankViewController {
             vc.viewModel = viewModel
             vc.delegate = self
+        } else if let nav = segue.destination as? LargeTitleNavigationController, let vc = nav.viewControllers.first as? AutoPayReasonsForStoppingViewController {
+            vc.viewModel = viewModel
+            vc.delegate = delegate
+            vc.parentVc = self
         }
     }
     
@@ -106,8 +99,10 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     private func configureView() {
         title = NSLocalizedString("AutoPay", comment: "")
         
-        helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
+        let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         navigationItem.rightBarButtonItem = helpButton
+        
+    viewModel.canSubmit.drive(enrollButton.rx.isEnabled).disposed(by: bag)
         
         if accountDetail.isAutoPay {
             enrollButton.isHidden = true
@@ -127,10 +122,6 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
             unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             
             unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
-            
-            reasonForStoppingLabel.textColor = .deepGray
-            reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-            reasonForStoppingLabel.sizeToFit()
         } else {
             // Not enrolled
             topLabel.textColor = .deepGray
@@ -175,31 +166,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     // MARK: - Bindings
     
     private func bindEnrolledState() {
-        viewModel.selectedUnenrollmentReason.asDriver()
-            .filter { $0 == nil }
-            .drive(onNext: { [weak self] _ in
-                guard let tableView = self?.reasonForStoppingTableView,
-                    let selectedIndexPath = tableView.indexPathForSelectedRow
-                    else { return }
-                tableView.deselectRow(at: selectedIndexPath, animated: true)
-            })
-            .disposed(by: bag)
-        
         viewModel.enrollmentStatus.asDriver().map { $0 == .enrolling }.drive(enrolledStackView.rx.isHidden).disposed(by: bag)
-        reasonForStoppingLabel.text = NSLocalizedString("Reason for stopping (pick one)", comment: "")
-        reasonForStoppingTableView.register(UINib(nibName: "RadioSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "ReasonForStoppingCell")
-        reasonForStoppingTableView.estimatedRowHeight = 51
-        reasonForStoppingContainerView.isHidden = true
-        viewModel.enrollmentStatus.asDriver()
-            .map { $0 == .unenrolling }
-            .drive(onNext: { [weak self] unenrolling in
-                UIView.animate(withDuration: 0.3) {
-                    self?.reasonForStoppingContainerView.isHidden = !unenrolling
-                    self?.enrolledContentView.alpha = unenrolling ? 0:1
-                    self?.enrolledContentView.isHidden = unenrolling
-                }
-            })
-            .disposed(by: bag)
     }
     
     private func bindEnrollingState() {
@@ -329,13 +296,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     
     // MARK: - Actions
 
-    @IBAction func unenrollButtonPesss(_ sender: Any) {
-        onSubmitPress()
-    }
-    
-    @objc func onSubmitPress() {
-        view.endEditing(true)
-        
+    @IBAction func enrollButtonPress(_ sender: Any) {
         LoadingView.show()
         viewModel.submit()
             .observeOn(MainScheduler.instance)
@@ -343,7 +304,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
                 onNext: { [weak self] enrolled in
                     LoadingView.hide()
                     guard let self = self else { return }
-                    self.delegate?.autoPayViewController(self, enrolled: enrolled)
+                    self.delegate?.autoPayViewController(self, enrolled: true)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] error in
                     LoadingView.hide()
@@ -354,6 +315,18 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
                     self.present(alertController, animated: true, completion: nil)
             })
             .disposed(by: bag)
+    }
+    
+    
+    @IBAction func unenrollButtonPesss(_ sender: Any) {
+        onSubmitPress()
+    }
+    
+    @objc func onSubmitPress() {
+        view.endEditing(true)
+        guard Environment.shared.opco == .comEd else { fatalError("Opco Not Implemented: \(Environment.shared.opco)") }
+        
+        performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
     }
 
     func onTermsAndConditionsPress() {
@@ -421,38 +394,4 @@ extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
             GoogleAnalytics.log(event: .autoPayModifyBankComplete)
 		})
 	}
-}
-
-
-// MARK: - Table View Delegate
-
-extension AutoPayViewController: UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}
-
-
-// MARK: - Table View DataSource
-
-extension AutoPayViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! RadioSelectionTableViewCell
-        
-        cell.label.text = viewModel.reasonStrings[indexPath.row]
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.selectedUnenrollmentReason.value = viewModel.reasonStrings[indexPath.row]
-    }
 }

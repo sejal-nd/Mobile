@@ -201,6 +201,9 @@
 		3559C8B62301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
 		3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
 		3559C8B82301E4FF00481A87 /* AutoPay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3559C8B52301E4FF00481A87 /* AutoPay.storyboard */; };
+		3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */; };
+		3559C8BB23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */; };
+		3559C8BC23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */; };
 		356C7F2E21908BB3003E8A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		356C7F2F21908BBA003E8A90 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		356C7F752190974A003E8A90 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
@@ -2620,6 +2623,7 @@
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3557071173F2557B279CD47A /* Pods_PECO_WatchOS_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECO_WatchOS_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
+		3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPayReasonsForStoppingViewController.swift; sourceTree = "<group>"; };
 		356C7F3121908E2A003E8A90 /* environment_preprocess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = environment_preprocess.h; sourceTree = "<group>"; };
 		356C7F7E21909976003E8A90 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		356C7F8021909997003E8A90 /* KeychainUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
@@ -3825,6 +3829,7 @@
 				E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */,
 				822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */,
 				E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */,
+				3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */,
 				E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */,
 				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
 				E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */,
@@ -7796,6 +7801,7 @@
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				B0B083B6216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
+				3559C8BA23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
 				E882B7E41EA8009500EA3C13 /* BillViewController.swift in Sources */,
 				82E9B6121FA2401A00556C94 /* HomeProfile.swift in Sources */,
@@ -8348,6 +8354,7 @@
 				351DE2FB221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift in Sources */,
 				82A18F1A1EC0E83800BE9F21 /* NibViews.swift in Sources */,
 				8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */,
+				3559C8BC23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
 				357757572114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
@@ -8559,6 +8566,7 @@
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,
 				E87926DB1F8558AE00794CA9 /* BillBreakdownViewController.swift in Sources */,
+				3559C8BB23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				E882B7F31EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift in Sources */,
 				B094A63E210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				E882B7E51EA8009500EA3C13 /* BillViewController.swift in Sources */,
