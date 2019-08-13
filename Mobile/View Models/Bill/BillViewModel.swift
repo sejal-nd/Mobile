@@ -108,7 +108,9 @@ class BillViewModel {
             .startWith(false)
     }()
     
-    private(set) lazy var showBillNotReady: Driver<Bool> = Driver.just(false) // TODO: Real scenario
+    private(set) lazy var showBillNotReady: Driver<Bool> = currentAccountDetail.map {
+        return $0.billingInfo.billDate == nil && ($0.billingInfo.netDueAmount == nil || $0.billingInfo.netDueAmount == 0)
+    }
     
     private(set) lazy var showCreditScenario: Driver<Bool> = currentAccountDetail.map {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
@@ -129,14 +131,7 @@ class BillViewModel {
             let currentDueAmount = accountDetail.billingInfo.currentDueAmount
             return currentDueAmount > 0 && currentDueAmount != accountDetail.billingInfo.netDueAmount
     }
-    
-//    // TODO: Remove at the end of the bill redesign if it's still unused
-//    private(set) lazy var showTopContent: Driver<Bool> = Driver
-//        .combineLatest(self.switchAccountsTracker.asDriver(),
-//                       self.dataEvents.asDriver(onErrorDriveWith: .empty()))
-//        { !$0 && $1.error == nil }
-//        .startWith(false)
-    
+        
     private(set) lazy var showPendingPayment: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.pendingPaymentsTotal > 0
     }
@@ -151,9 +146,12 @@ class BillViewModel {
     
     let showAmountDueTooltip = Environment.shared.opco == .peco
     
-    private(set) lazy var enableMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
+    private(set) lazy var showMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge
     }
+    
+    private(set) lazy var showBillPaidFakeButton: Driver<Bool> =
+        Driver.combineLatest(self.showMakeAPaymentButton, self.showBillNotReady) { !$0 && !$1 }
     
     private(set) lazy var showPaymentStatusText = paymentStatusText.isNil().not()
     

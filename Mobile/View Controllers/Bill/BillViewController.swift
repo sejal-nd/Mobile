@@ -74,6 +74,9 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var creditScenarioTitleLabel: UILabel!
     @IBOutlet weak var creditScenarioAmountLabel: UILabel!
     
+    @IBOutlet weak var billNotReadyView: UIView!
+    @IBOutlet weak var billNotReadyLabel: UILabel!
+    
     @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
 
@@ -265,6 +268,10 @@ class BillViewController: AccountPickerViewController {
         creditScenarioTitleLabel.text = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
         creditScenarioAmountLabel.textColor = .deepGray
         creditScenarioAmountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
+        
+        billNotReadyLabel.textColor = .deepGray
+        billNotReadyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        billNotReadyLabel.text = NSLocalizedString("Once you receive your bill, details about your charges will appear here.", comment: "")
         
         viewBillButton.layer.cornerRadius = viewBillButton.frame.size.height / 2
         viewBillButton.layer.borderColor = UIColor.accentGray.cgColor
@@ -476,9 +483,12 @@ class BillViewController: AccountPickerViewController {
         viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
         
         viewModel.showCreditScenario.not().drive(creditScenarioView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.showBillNotReady.not().drive(billNotReadyView.rx.isHidden).disposed(by: bag)
+        viewModel.showBillNotReady.drive(viewBillButton.rx.isHidden).disposed(by: bag)
 
-		viewModel.enableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
-		viewModel.enableMakeAPaymentButton.drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
+		viewModel.showMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
+		viewModel.showBillPaidFakeButton.not().drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
         viewModel.showPaymentStatusText.not().drive(makeAPaymentStatusButton.rx.isHidden).disposed(by: bag)
         
         viewModel.hasBillBreakdownData.not().drive(billBreakdownButton.rx.isHidden).disposed(by: bag)
@@ -647,7 +657,7 @@ class BillViewController: AccountPickerViewController {
             .disposed(by: bag)
         
         let shortcutReady = Observable.zip(viewModel.makePaymentScheduledPaymentAlertInfo,
-                                           viewModel.enableMakeAPaymentButton.asObservable())
+                                           viewModel.showMakeAPaymentButton.asObservable())
             .filter { [weak self] in $1 && self?.shortcutItem == .payBill }
             .map { $0.0 }
         

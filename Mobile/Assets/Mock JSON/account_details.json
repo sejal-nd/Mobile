@@ -350,6 +350,18 @@
         "CustomerInfo": {},
         "SERInfo": {}
     },
+    "billNotReady": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 0,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
     "finaled": {
         "accountNumber": "1234567890",
         "BillingInfo": {
