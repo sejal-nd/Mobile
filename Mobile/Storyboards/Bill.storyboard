@@ -2657,7 +2657,7 @@
                         <outlet property="totalAmountTooltipButton" destination="syh-sx-Jzb" id="oZE-yH-XDG"/>
                         <outlet property="totalAmountView" destination="jqt-Ck-0Yz" id="w7R-2D-6EY"/>
                         <outlet property="usageTrendsCardView" destination="v20-oe-aG4" id="vYB-Gd-2Z2"/>
-                        <outlet property="usageTrendsContentView" destination="5VW-Vu-bLa" id="36A-0e-lY6"/>
+                        <outlet property="usageTrendsContentView" destination="5VW-Vu-bLa" id="a9S-Oc-cBH"/>
                         <outlet property="usageTrendsEmptyStateLabel" destination="2Vw-LW-9Vq" id="MNN-y7-pbo"/>
                         <outlet property="usageTrendsEmptyStateView" destination="MzR-IA-ZTH" id="n3r-RF-R3g"/>
                         <outlet property="usageTrendsErrorLabel" destination="dtW-CG-zfN" id="cS1-xh-nzD"/>

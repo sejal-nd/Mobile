@@ -105,7 +105,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var usageTrendsErrorLabel: UILabel!
     @IBOutlet weak var usageTrendsEmptyStateView: UIView!
     @IBOutlet weak var usageTrendsEmptyStateLabel: UILabel!
-    @IBOutlet weak var usageTrendsContentView: UIView!
+    @IBOutlet weak var usageTrendsContentView: BillImpactDropdownView!
     
     // Billing Options
     @IBOutlet weak var billingOptionsView: UIView!
@@ -170,6 +170,8 @@ class BillViewController: AccountPickerViewController {
                 self.navigateToAutoPay(accountDetail: accountDetail)
             }
         }).disposed(by: bag)
+        
+        usageTrendsContentView.configure(withViewModel: viewModel)
     }
 
     override func viewWillAppear(_ animated: Bool) {

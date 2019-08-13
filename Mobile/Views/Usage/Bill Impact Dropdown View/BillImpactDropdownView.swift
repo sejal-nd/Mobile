@@ -12,30 +12,13 @@ import RxCocoa
 
 class BillImpactDropdownView: UIView {
 
-    @IBOutlet private weak var contentView: UIView! {
-        didSet {
-            layer.borderColor = UIColor.accentGray.cgColor
-            layer.borderWidth = 1
-        }
-    }
+    @IBOutlet private weak var view: UIView!
     
-    @IBOutlet private weak var roundedBgView: UIView! {
-        didSet {
-            roundedBgView.layer.cornerRadius = 10
-            roundedBgView.layer.masksToBounds = true
-        }
-    }
-    
-    @IBOutlet private weak var contentStackView: UIStackView!
     @IBOutlet private weak var likelyReasonsStackView: UIStackView!
     @IBOutlet private weak var likelyReasonsDescriptionTriangleView: UIImageView!
     @IBOutlet private weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
     @IBOutlet private weak var likelyReasonsDescriptionView: UIView!
-    @IBOutlet private weak var billFactorView: UIView! {
-        didSet {
-            billFactorView.isHidden = true
-        }
-    }
+
     
     @IBOutlet private weak var toggleButtonLabel: UILabel! {
         didSet {
@@ -142,25 +125,24 @@ class BillImpactDropdownView: UIView {
     
     private var hasLoadedView = false
     
-    private var isExpanded = false {
-        didSet {
-            guard hasLoadedView else { return }
-            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                if let isExpanded = self?.isExpanded, isExpanded {
-                    self?.billFactorView.isHidden = false
-                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_up")
-                } else {
-                    self?.billFactorView.isHidden = true
-                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_down")
-                }
-                self?.contentStackView.layoutIfNeeded()
-            })
-        }
-    }
+//    private var isExpanded = false {
+//        didSet {
+//            guard hasLoadedView else { return }
+//            UIView.animate(withDuration: 0.3, animations: { [weak self] in
+//                if let isExpanded = self?.isExpanded, isExpanded {
+//                    self?.billFactorView.isHidden = false
+//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_up")
+//                } else {
+//                    self?.billFactorView.isHidden = true
+//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_down")
+//                }
+//                self?.contentStackView.layoutIfNeeded()
+//            })
+//        }
+//    }
     
-    private var viewModel: UsageViewModel?
-    
-    
+    private var viewModel: BillViewModel?
+
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -177,27 +159,20 @@ class BillImpactDropdownView: UIView {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("BillImpactDropdownView", owner: self, options: nil)
-        addSubview(contentView)
-        contentView.frame = bounds
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        addSubview(view)
+        view.frame = bounds
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         hasLoadedView = true
     }
     
     private func prepareViews() {
-        // Default to collapsed
-        isExpanded = false
-        
         // Default button selected is Bill Period
         factorImpactPress(billPeriodButton)
     }
     
     
     // MARK: - Actions
-    
-    @IBAction private func toggleStackView(_ sender: Any) {
-        isExpanded = !isExpanded
-    }
     
     @IBAction private func factorImpactPress(_ sender: ButtonControl) {
         // guard statement will block analytics from occuring on view setup.
@@ -217,12 +192,12 @@ class BillImpactDropdownView: UIView {
     
     // MARK: - Configuration
     
-    func configure(withViewModel viewModel: UsageViewModel) {
+    func configure(withViewModel viewModel: BillViewModel) {
         self.viewModel = viewModel
         bindViewModel(viewModel)
     }
     
-    func bindViewModel(_ viewModel: UsageViewModel) {
+    func bindViewModel(_ viewModel: BillViewModel) {
         // Likely reasons
         viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
         viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
@@ -254,7 +229,7 @@ class BillImpactDropdownView: UIView {
         viewModel.noPreviousData.drive(otherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
     }
     
-    private func updateLikelyReasonsSelection(_ selection: UsageViewModel.LikelyReasonsSelection?) {
+    private func updateLikelyReasonsSelection(_ selection: LikelyReasonsSelection?) {
         var selectedCircleButton: UIView?
         switch selection {
         case .billPeriod?:
