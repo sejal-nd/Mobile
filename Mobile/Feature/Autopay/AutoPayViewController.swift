@@ -14,7 +14,7 @@ protocol AutoPayViewControllerDelegate: class {
     func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool)
 }
 
-class AutoPayViewController: UIViewController {
+class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     // Not Enrolled
@@ -46,6 +46,17 @@ class AutoPayViewController: UIViewController {
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
+    @IBOutlet weak var stickyFooterView: StickyFooterView!
+    @IBOutlet weak var enrollButton: PrimaryButtonNew!
+    @IBOutlet weak var unenrollView: UIView!
+    @IBOutlet weak var unenrollButtonLabel: UILabel!
+    @IBOutlet weak var unenrollButton: UIButton!
+    
+    // Prevents status bar color flash when pushed
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     weak var delegate: AutoPayViewControllerDelegate?
     
     let bag = DisposeBag()
@@ -55,29 +66,14 @@ class AutoPayViewController: UIViewController {
 
     lazy var viewModel: AutoPayViewModel = { AutoPayViewModel(withPaymentService: ServiceFactory.createPaymentService(), walletService: ServiceFactory.createWalletService(), accountDetail: self.accountDetail) }()
 
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("AutoPay", comment: "")
-        
-        helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
-        navigationItem.rightBarButtonItem = helpButton
-        
-        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
-            .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: { [weak self] in
-                self?.keyboardWillShow(notification: $0)
-            })
-            .disposed(by: bag)
-        
-        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
-            .asDriver(onErrorDriveWith: Driver.empty())
-            .drive(onNext: { [weak self] in
-                self?.keyboardWillHide(notification: $0)
-            })
-            .disposed(by: bag)
-        
         style()
+        configureView()
         textFieldSetup()
         bindEnrollingState()
         bindEnrolledState()
@@ -94,100 +90,96 @@ class AutoPayViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        // Dynamic sizing for the table header view
-        if let headerView = reasonForStoppingTableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
-            
-            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
-                reasonForStoppingTableView.tableHeaderView = headerView
-            }
+        reasonForStoppingTableView.sizeHeaderToFit()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AutoPayChangeBankViewController {
+            vc.viewModel = viewModel
+            vc.delegate = self
         }
     }
-
-    @objc func onSubmitPress() {
-        view.endEditing(true)
+    
+    
+    // MARK: - Helper
+    
+    private func configureView() {
+        title = NSLocalizedString("AutoPay", comment: "")
         
-        LoadingView.show()
-        viewModel.submit()
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: { [weak self] enrolled in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    self.delegate?.autoPayViewController(self, enrolled: enrolled)
-                    self.navigationController?.popViewController(animated: true)
-                }, onError: { [weak self] error in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                            message: error.localizedDescription, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
-            })
-            .disposed(by: bag)
+        helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
+        navigationItem.rightBarButtonItem = helpButton
+        
+        if accountDetail.isAutoPay {
+            enrollButton.isHidden = true
+        } else {
+            unenrollView.isHidden = true
+        }
     }
     
     private func style() {
-        styleNotEnrolled()
-        styleEnrolled()
-        
-        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        if accountDetail.isAutoPay {
+            // Enrolled
+            enrolledTopLabel.textColor = .deepGray
+            enrolledTopLabel.font = SystemFont.regular.of(textStyle: .body)
+            enrolledTopLabel.setLineHeight(lineHeight: 16)
+            
+            unenrollButtonLabel.textColor = .deepGray
+            unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+            
+            unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
+            
+            reasonForStoppingLabel.textColor = .deepGray
+            reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
+            reasonForStoppingLabel.sizeToFit()
+        } else {
+            // Not enrolled
+            topLabel.textColor = .deepGray
+            topLabel.font = SystemFont.regular.of(textStyle: .body)
+            topLabel.setLineHeight(lineHeight: 24)
+            
+            tacLabel.text = viewModel.tacLabelText
+            tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+            tacLabel.setLineHeight(lineHeight: 25)
+            tacSwitch.accessibilityLabel = viewModel.tacSwitchAccessibilityLabel
+            tacButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+            GoogleAnalytics.log(event: .autoPayEnrollOffer)
+        }
+
+        footerLabel.font = SystemFont.regular.of(textStyle: .caption1)
         footerLabel.setLineHeight(lineHeight: 16)
     }
     
-    private func styleNotEnrolled() {
-        topLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        topLabel.setLineHeight(lineHeight: 24)
-        
-        tacLabel.text = NSLocalizedString("Yes, I have read, understand and agree to the terms and conditions below, and by checking this box, I authorize ComEd to regularly debit the bank account provided.\nI understand that my bank account will be automatically debited each billing period for the total amount due, that these are variable charges, and that my bill being posted in the ComEd mobile app acts as my notification.\nCustomers can see their bill monthly through the ComEd mobile app. Bills are delivered online during each billing cycle. Please note that this will not change your preferred bill delivery method.", comment: "")
-        tacLabel.font = SystemFont.regular.of(textStyle: .headline)
-        tacLabel.setLineHeight(lineHeight: 25)
-        tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
-        tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        GoogleAnalytics.log(event: .autoPayEnrollOffer)
-    }
-    
-    private func styleEnrolled() {
-        enrolledTopLabel.font = OpenSans.regular.of(textStyle: .headline)
-        enrolledTopLabel.setLineHeight(lineHeight: 16)
-        
-        reasonForStoppingLabel.textColor = .blackText
-        reasonForStoppingLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        reasonForStoppingLabel.sizeToFit()
-    }
-    
     private func textFieldSetup() {
-        nameTextField.textField.placeholder = NSLocalizedString("Name on Account*", comment: "")
+        nameTextField.placeholder = NSLocalizedString("Name on Account*", comment: "")
         nameTextField.textField.delegate = self
         nameTextField.textField.returnKeyType = .next
         
-        routingNumberTextField.textField.placeholder = NSLocalizedString("Routing Number*", comment: "")
+        routingNumberTextField.placeholder = NSLocalizedString("Routing Number*", comment: "")
         routingNumberTextField.textField.delegate = self
         routingNumberTextField.setKeyboardType(.numberPad)
         routingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         routingNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+        accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
         accountNumberTextField.textField.delegate = self
         accountNumberTextField.setKeyboardType(.numberPad)
         accountNumberTextField.textField.isShowingAccessory = true
         accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         
-        confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
+        confirmAccountNumberTextField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
         confirmAccountNumberTextField.textField.delegate = self
         confirmAccountNumberTextField.setKeyboardType(.numberPad)
     }
+    
+    
+    // MARK: - Bindings
     
     private func bindEnrolledState() {
         viewModel.selectedUnenrollmentReason.asDriver()
             .filter { $0 == nil }
             .drive(onNext: { [weak self] _ in
                 guard let tableView = self?.reasonForStoppingTableView,
-                let selectedIndexPath = tableView.indexPathForSelectedRow
+                    let selectedIndexPath = tableView.indexPathForSelectedRow
                     else { return }
                 tableView.deselectRow(at: selectedIndexPath, animated: true)
             })
@@ -201,8 +193,6 @@ class AutoPayViewController: UIViewController {
         viewModel.enrollmentStatus.asDriver()
             .map { $0 == .unenrolling }
             .drive(onNext: { [weak self] unenrolling in
-                
-                //self?.view.backgroundColor = unenrolling ? .softGray: .white
                 UIView.animate(withDuration: 0.3) {
                     self?.reasonForStoppingContainerView.isHidden = !unenrolling
                     self?.enrolledContentView.alpha = unenrolling ? 0:1
@@ -213,7 +203,6 @@ class AutoPayViewController: UIViewController {
     }
     
     private func bindEnrollingState() {
-        
         viewModel.enrollmentStatus.asDriver().map { $0 != .enrolling }.drive(enrollStackView.rx.isHidden).disposed(by: bag)
         
         checkingSavingsSegmentedControl.items = [
@@ -264,12 +253,12 @@ class AutoPayViewController: UIViewController {
                 self.viewModel.getBankName(onSuccess: { [weak self] in
                     guard let self = self else { return }
                     self.routingNumberTextField.setInfoMessage(self.viewModel.bankName)
-                }, onError: { [weak self] in
-                    self?.routingNumberTextField.setInfoMessage(nil)
+                    }, onError: { [weak self] in
+                        self?.routingNumberTextField.setInfoMessage(nil)
                 })
             }
         }).disposed(by: bag)
-
+        
         Driver.merge(routingNumberErrorTextFocused, routingNumberErrorTextUnfocused)
             .distinctUntilChanged(==)
             .drive(onNext: { [weak self] errorText in
@@ -336,8 +325,37 @@ class AutoPayViewController: UIViewController {
         message += accountNumberTextField.getError()
         message += confirmAccountNumberTextField.getError()
     }
+
     
+    // MARK: - Actions
+
+    @IBAction func unenrollButtonPesss(_ sender: Any) {
+        onSubmitPress()
+    }
     
+    @objc func onSubmitPress() {
+        view.endEditing(true)
+        
+        LoadingView.show()
+        viewModel.submit()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { [weak self] enrolled in
+                    LoadingView.hide()
+                    guard let self = self else { return }
+                    self.delegate?.autoPayViewController(self, enrolled: enrolled)
+                    self.navigationController?.popViewController(animated: true)
+                }, onError: { [weak self] error in
+                    LoadingView.hide()
+                    guard let self = self else { return }
+                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                            message: error.localizedDescription, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+            })
+            .disposed(by: bag)
+    }
+
     func onTermsAndConditionsPress() {
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
                                       url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
@@ -361,38 +379,11 @@ class AutoPayViewController: UIViewController {
         let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
-    
-	
-    // MARK: - ScrollView
-    
-    func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-		scrollView.scrollIndicatorInsets = .zero
-    }
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let vc = segue.destination as? AutoPayChangeBankViewController {
-			vc.viewModel = viewModel
-			vc.delegate = self
-		}
-	}
-    
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+
 }
+
+
+// MARK: - TextField Delegate
 
 extension AutoPayViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -420,6 +411,9 @@ extension AutoPayViewController: UITextFieldDelegate {
     }
 }
 
+
+// MARK: - Change Bank Delegate
+
 extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 	func changedBank() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
@@ -430,8 +424,9 @@ extension AutoPayViewController: AutoPayChangeBankViewControllerDelegate {
 }
 
 
+// MARK: - Table View Delegate
+
 extension AutoPayViewController: UITableViewDelegate {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -445,8 +440,10 @@ extension AutoPayViewController: UITableViewDelegate {
     }
 }
 
+
+// MARK: - Table View DataSource
+
 extension AutoPayViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReasonForStoppingCell", for: indexPath) as! RadioSelectionTableViewCell
         
@@ -458,5 +455,4 @@ extension AutoPayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectedUnenrollmentReason.value = viewModel.reasonStrings[indexPath.row]
     }
-    
 }
