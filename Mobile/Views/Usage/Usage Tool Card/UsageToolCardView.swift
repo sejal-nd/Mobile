@@ -38,15 +38,16 @@ class UsageToolCardView: ButtonControl {
         // Card Style
         containerView.backgroundColor = .clear
         layer.cornerRadius = 10
-        addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+        layer.borderColor = UIColor.accentGray.cgColor
+        layer.borderWidth = 1
         
         // Line
         lineView.layer.cornerRadius = 1
         lineView.backgroundColor = .softGray
         
         // Label
-        titleLabel.textColor = .actionBlue
-        titleLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        titleLabel.textColor = .deepGray
+        titleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
     }
 
 }

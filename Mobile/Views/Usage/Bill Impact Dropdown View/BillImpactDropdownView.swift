@@ -14,7 +14,8 @@ class BillImpactDropdownView: UIView {
 
     @IBOutlet private weak var contentView: UIView! {
         didSet {
-            addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
+            layer.borderColor = UIColor.accentGray.cgColor
+            layer.borderWidth = 1
         }
     }
     

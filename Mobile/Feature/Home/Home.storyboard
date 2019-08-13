@@ -239,8 +239,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzA-e0-pWV">
                                             <rect key="frame" x="16" y="0.0" width="382" height="75"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hUV-xS-cpA">
-                                                    <rect key="frame" x="0.0" y="16" width="382" height="59"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hUV-xS-cpA">
+                                                    <rect key="frame" x="0.0" y="3" width="382" height="72"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMp-xh-Mlt">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
@@ -249,7 +249,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More Cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXI-ND-0ih">
-                                                            <rect key="frame" x="0.0" y="40.5" width="382" height="18.5"/>
+                                                            <rect key="frame" x="0.0" y="50.5" width="382" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -264,7 +264,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="hUV-xS-cpA" secondAttribute="bottom" id="g1U-WX-xyL"/>
                                                 <constraint firstAttribute="trailing" secondItem="hUV-xS-cpA" secondAttribute="trailing" id="oPf-3K-ye9"/>
                                                 <constraint firstAttribute="width" priority="999" constant="460" id="rQh-Zr-PNu"/>
-                                                <constraint firstItem="hUV-xS-cpA" firstAttribute="top" secondItem="wzA-e0-pWV" secondAttribute="top" constant="16" id="tfu-Ad-oke"/>
                                             </constraints>
                                         </view>
                                     </subviews>
