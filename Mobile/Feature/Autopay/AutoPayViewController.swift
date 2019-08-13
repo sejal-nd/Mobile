@@ -297,6 +297,28 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     // MARK: - Actions
 
     @IBAction func enrollButtonPress(_ sender: Any) {
+        enrollInAutoPay(shouldEnroll: true)
+    }
+    
+    
+    @IBAction func unenrollButtonPesss(_ sender: Any) {
+        onSubmitPress()
+    }
+    
+    @objc func onSubmitPress() {
+        view.endEditing(true)
+        
+        switch Environment.shared.opco {
+        case .comEd:
+            performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
+        case .peco:
+            enrollInAutoPay(shouldEnroll: false)
+        case .bge:
+            fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
+        }
+    }
+    
+    private func enrollInAutoPay(shouldEnroll: Bool) {
         LoadingView.show()
         viewModel.submit()
             .observeOn(MainScheduler.instance)
@@ -304,7 +326,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
                 onNext: { [weak self] enrolled in
                     LoadingView.hide()
                     guard let self = self else { return }
-                    self.delegate?.autoPayViewController(self, enrolled: true)
+                    self.delegate?.autoPayViewController(self, enrolled: shouldEnroll)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] error in
                     LoadingView.hide()
@@ -315,18 +337,6 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
                     self.present(alertController, animated: true, completion: nil)
             })
             .disposed(by: bag)
-    }
-    
-    
-    @IBAction func unenrollButtonPesss(_ sender: Any) {
-        onSubmitPress()
-    }
-    
-    @objc func onSubmitPress() {
-        view.endEditing(true)
-        guard Environment.shared.opco == .comEd else { fatalError("Opco Not Implemented: \(Environment.shared.opco)") }
-        
-        performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
     }
 
     func onTermsAndConditionsPress() {
