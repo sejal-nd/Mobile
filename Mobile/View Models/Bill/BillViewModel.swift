@@ -108,10 +108,16 @@ class BillViewModel {
             .startWith(false)
     }()
     
-    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {
-        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Environment.shared.opco == .comEd
+    private(set) lazy var showBillNotReady: Driver<Bool> = Driver.just(false) // TODO: Real scenario
+    
+    private(set) lazy var showCreditScenario: Driver<Bool> = currentAccountDetail.map {
+        guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
+        return netDueAmount < 0 && Environment.shared.opco == .bge
     }
     
+    private(set) lazy var showTotalAmountAndLedger: Driver<Bool> =
+        Driver.combineLatest(self.showBillNotReady, self.showCreditScenario) { !$0 && !$1 }
+
     private(set) lazy var showPastDue: Driver<Bool> = currentAccountDetail
         .map { accountDetail -> Bool in
             let pastDueAmount = accountDetail.billingInfo.pastDueAmount
@@ -141,11 +147,6 @@ class BillViewModel {
     
     private(set) lazy var showPaymentReceived: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.lastPaymentAmount > 0 && $0.billingInfo.netDueAmount ?? 0 == 0
-    }
-    
-    private(set) lazy var showCredit: Driver<Bool> = currentAccountDetail.map {
-        guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
-        return netDueAmount < 0 && Environment.shared.opco == .bge
     }
     
     let showAmountDueTooltip = Environment.shared.opco == .peco
@@ -286,8 +287,8 @@ class BillViewModel {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
         
         switch Environment.shared.opco {
-        case .bge: // BGE should display the negative value if there is a credit
-            return netDueAmount.currencyString
+        case .bge: // For credit scenario we want to show the positive number
+            return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
         }
@@ -307,8 +308,6 @@ class BillViewModel {
             }
         } else if billingInfo.amtDpaReinst > 0 {
             string = NSLocalizedString("Total Amount Due", comment: "")
-        } else if Environment.shared.opco == .bge && billingInfo.netDueAmount < 0 {
-            string = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
         } else if billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 {
             string = NSLocalizedString("Total Amount Due", comment: "")
         } else {
@@ -316,12 +315,6 @@ class BillViewModel {
         }
         
         return NSAttributedString(string: string, attributes: attributes)
-    }
-    
-    //MARK: - Catch Up
-    private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
-        let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
-        return String(format: localizedText, $0.billingInfo.atReinstateFee?.currencyString ?? "--")
     }
     
     //MARK: - Past Due
@@ -405,6 +398,16 @@ class BillViewModel {
         } else {
             return $0.billingInfo.remainingBalanceDue?.currencyString ?? "--"
         }
+    }
+    
+    //MARK: - Catch Up
+    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {
+        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Environment.shared.opco == .comEd
+    }
+    
+    private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
+        let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
+        return String(format: localizedText, $0.billingInfo.atReinstateFee?.currencyString ?? "--")
     }
     
     //MARK: - Payment Status

@@ -29,9 +29,12 @@ class BillViewController: AccountPickerViewController {
     
     @IBOutlet weak var billCardView: UIView!
     
+    @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
     @IBOutlet weak var totalAmountTooltipButton: UIButton!
+    
+    @IBOutlet weak var billLedgerView: UIView!
     
     @IBOutlet weak var pastDueCurrentBillBox: UIView!
 	// Past Due
@@ -66,6 +69,10 @@ class BillViewController: AccountPickerViewController {
     // Catch Up Disclaimer
     @IBOutlet weak var catchUpDisclaimerView: UIView!
     @IBOutlet weak var catchUpDisclaimerLabel: UILabel!
+    
+    @IBOutlet weak var creditScenarioView: UIView!
+    @IBOutlet weak var creditScenarioTitleLabel: UILabel!
+    @IBOutlet weak var creditScenarioAmountLabel: UILabel!
     
     @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
@@ -252,6 +259,12 @@ class BillViewController: AccountPickerViewController {
         
         catchUpDisclaimerLabel.textColor = .deepGray
         catchUpDisclaimerLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
+        creditScenarioTitleLabel.textColor = .deepGray
+        creditScenarioTitleLabel.font = OpenSans.regular.of(textStyle: .callout)
+        creditScenarioTitleLabel.text = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
+        creditScenarioAmountLabel.textColor = .deepGray
+        creditScenarioAmountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
         
         viewBillButton.layer.cornerRadius = viewBillButton.frame.size.height / 2
         viewBillButton.layer.borderColor = UIColor.accentGray.cgColor
@@ -441,6 +454,9 @@ class BillViewController: AccountPickerViewController {
 
         totalAmountTooltipButton.isHidden = !viewModel.showAmountDueTooltip
         
+        viewModel.showTotalAmountAndLedger.not().drive(totalAmountView.rx.isHidden).disposed(by: bag)
+        viewModel.showTotalAmountAndLedger.not().drive(billLedgerView.rx.isHidden).disposed(by: bag)
+        
         viewModel.showPastDue.not().drive(pastDueView.rx.isHidden).disposed(by: bag)
         viewModel.showCurrentBill.not().drive(currentBillView.rx.isHidden).disposed(by: bag)
         Driver.combineLatest(viewModel.showPastDue, viewModel.showCurrentBill).drive(onNext: { [weak self] in
@@ -458,6 +474,8 @@ class BillViewController: AccountPickerViewController {
         }).disposed(by: bag)
         
         viewModel.showCatchUpDisclaimer.not().drive(catchUpDisclaimerView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.showCreditScenario.not().drive(creditScenarioView.rx.isHidden).disposed(by: bag)
 
 		viewModel.enableMakeAPaymentButton.not().drive(makeAPaymentButton.rx.isHidden).disposed(by: bag)
 		viewModel.enableMakeAPaymentButton.drive(billPaidFakeButtonView.rx.isHidden).disposed(by: bag)
@@ -475,6 +493,7 @@ class BillViewController: AccountPickerViewController {
         viewModel.alertBannerA11yText.drive(alertBannerView.label.rx.accessibilityLabel).disposed(by: bag)
 
 		viewModel.totalAmountText.drive(totalAmountLabel.rx.text).disposed(by: bag)
+        viewModel.totalAmountText.drive(creditScenarioAmountLabel.rx.text).disposed(by: bag)
         viewModel.totalAmountDescriptionText.drive(totalAmountDescriptionLabel.rx.attributedText).disposed(by: bag)
 
         viewModel.catchUpDisclaimerText.drive(catchUpDisclaimerLabel.rx.text).disposed(by: bag)
