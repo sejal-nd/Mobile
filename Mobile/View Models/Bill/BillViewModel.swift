@@ -18,16 +18,26 @@ enum MakePaymentStatusTextRouting {
     case activity, autoPay, nowhere
 }
 
+enum LikelyReasonsSelection {
+    case billPeriod, weather, other
+}
+
 class BillViewModel {
     
     let disposeBag = DisposeBag()
     
     private let accountService: AccountService
     private let authService: AuthenticationService
+    private let usageService: UsageService
 
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
+    let usageTrendsLoading = PublishSubject<Bool>()
+    
+    let electricGasSelectedSegmentIndex = Variable(0)
+    let compareToLastYear = Variable(false)
+    let likelyReasonsSelection = Variable(LikelyReasonsSelection.billPeriod)
     
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
@@ -36,9 +46,10 @@ class BillViewModel {
         }
     }
     
-    required init(accountService: AccountService, authService: AuthenticationService) {
+    required init(accountService: AccountService, authService: AuthenticationService, usageService: UsageService) {
         self.accountService = accountService
         self.authService = authService
+        self.usageService = usageService
     }
     
     private lazy var fetchTrigger = Observable
@@ -51,20 +62,33 @@ class BillViewModel {
         .toAsyncRequest(activityTracker: { [weak self] in self?.tracker(forState: $0) },
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
-    
     private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
         .filter { !($0.element?.allStatus ?? false) && !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
-            }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
-                guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
-                let account = AccountsStore.shared.currentAccount
-                let accountDetail = self.accountService.fetchAccountDetail(account: account)
-                let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
-                return Observable.zip(accountDetail, scheduledPayment)
+        }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
+            guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
+            let account = AccountsStore.shared.currentAccount
+            let accountDetail = self.accountService.fetchAccountDetail(account: account)
+            let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
+            return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
+    
+    private lazy var usageTrendsEvents: Observable<Event<BillComparison>> = Observable
+        .combineLatest(dataEvents.elements().map { $0.0 }.filter { $0.isEligibleForUsageData },
+                       compareToLastYear.asObservable(),
+                       electricGasSelectedSegmentIndex.asObservable())
+        .toAsyncRequest { [weak self] (accountDetail, compareToLastYear, electricGasIndex) in
+            guard let self = self else { return .empty() }
+            self.usageTrendsLoading.onNext(true)
+            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasIndex)
+            return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
+                                                         premiseNumber: accountDetail.premiseNumber!,
+                                                         yearAgo: compareToLastYear,
+                                                         gas: isGas)
+        }
     
     private(set) lazy var accountDetailError: Driver<ServiceError?> = dataEvents.errors()
         .map { $0 as? ServiceError }
@@ -72,6 +96,35 @@ class BillViewModel {
     
     private(set) lazy var showLoadedState: Driver<Void> = dataEvents
         .filter { $0.element != nil && $0.element?.0.prepaidStatus != .active }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showUsageTrendsLoading: Driver<Void> =
+        Driver.combineLatest(self.usageTrendsLoading.asDriver(onErrorJustReturn: false),
+                             self.switchAccountsTracker.asDriver())
+            .filter { $0 && !$1 }
+            .mapTo(())
+    
+    private(set) lazy var showUsageTrendsEmptyState: Driver<Void> = dataEvents.elements()
+        .map { $0.0 }
+        .filter {
+            return !$0.isEligibleForUsageData && $0.isResidential
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var usageTrendsError: Driver<ServiceError?> = usageTrendsEvents.errors()
+        .map { $0 as? ServiceError }
+        .do(onNext: { [weak self] _ in
+            self?.usageTrendsLoading.onNext(false)
+        })
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showUsageTrendsContent: Driver<Void> = usageTrendsEvents
+        .filter { $0.element != nil }
+        .do(onNext: { [weak self] _ in
+            self?.usageTrendsLoading.onNext(false)
+        })
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -536,6 +589,19 @@ class BillViewModel {
     
     var prepaidUrl: URL {
         return URL(string: Environment.shared.myAccountUrl)!
+    }
+    
+    // MARK: - Helpers
+    
+    // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
+    private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
+        if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
+            return true
+        } else if Environment.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
+            return electricGasSelectedIndex == 1
+        }
+        // Default to electric
+        return false
     }
 	
 	// MARK: - Convenience functions

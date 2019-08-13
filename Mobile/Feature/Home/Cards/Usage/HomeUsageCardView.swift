@@ -130,7 +130,7 @@ class HomeUsageCardView: UIView {
         unavailableDescriptionLabel.textColor = .deepGray
         unavailableDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         unavailableDescriptionLabel.attributedText = NSLocalizedString("Usage is not available for this account.", comment: "")
-            .attributedString(textAlignment: .center, lineHeight: 26)
+            .attributedString(textAlignment: .center)
         
         // Commercial Usage
         commercialTitleLabel.textColor = .deepGray
@@ -140,7 +140,7 @@ class HomeUsageCardView: UIView {
         commercialDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         commercialDescriptionLabel.attributedText = NSLocalizedString("View data to analyze trends in your energy consumption.", comment: "")
-            .attributedString(textAlignment: .center, lineHeight: 26)
+            .attributedString(textAlignment: .center)
         
         // Maintenance
         maintenanceModeDescriptionLabel.textColor = .deepGray
@@ -403,7 +403,7 @@ class HomeUsageCardView: UIView {
             })
             .disposed(by: disposeBag)
         
-        let attributedErrorText = viewModel.errorLabelText.attributedString(textAlignment: .center, lineHeight: 26)
+        let attributedErrorText = viewModel.errorLabelText.attributedString(textAlignment: .center)
         errorLabel.attributedText = attributedErrorText
         let localizedAccessibililtyText = NSLocalizedString("Usage OverView, %@", comment: "")
         errorLabel.accessibilityLabel = String(format: localizedAccessibililtyText, attributedErrorText)
@@ -487,7 +487,7 @@ class HomeUsageCardView: UIView {
         
         // Bill Comparison Empty State
         viewModel.billComparisonEmptyStateText
-            .map { $0.attributedString(textAlignment: .center, lineHeight: 26) }
+            .map { $0.attributedString(textAlignment: .center) }
             .drive(billComparisonEmptyStateLabel.rx.attributedText)
             .disposed(by: disposeBag)
     }

@@ -65,7 +65,7 @@ class UsageViewModel {
                     return self.accountService
                         .fetchFirstFuelSSOData(accountNumber: accountDetail.accountNumber,
                                                premiseNumber: premiseNumber)
-            }
+                }
         }
         .share(replay: 1)
     
@@ -194,9 +194,7 @@ class UsageViewModel {
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
         .filter { accountDetailEvent in
             guard let accountDetail = accountDetailEvent.element else { return false }
-            return !accountDetail.isEligibleForUsageData &&
-                (accountDetail.isResidential || accountDetail.premiseNumber == nil) &&
-                accountDetail.prepaidStatus != .active
+            return !accountDetail.isEligibleForUsageData
         }
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())

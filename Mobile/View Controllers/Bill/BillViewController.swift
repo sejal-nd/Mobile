@@ -18,9 +18,9 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var mainLoadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var bottomView: UIView!
     
+    @IBOutlet weak var topView: UIView!
+
     @IBOutlet weak var prepaidBannerButton: ButtonControl!
     @IBOutlet weak var prepaidHeaderLabel: UILabel!
     @IBOutlet weak var prepaidDetailLabel: UILabel!
@@ -97,6 +97,18 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var walletButton: ButtonControl!
     @IBOutlet weak var walletButtonLabel: UILabel!
     
+    // Usage Trends
+    @IBOutlet weak var usageTrendsView: UIView!
+    @IBOutlet weak var usageTrendsCardView: UIView!
+    @IBOutlet weak var usageTrendsLoadingView: UIView!
+    @IBOutlet weak var usageTrendsErrorView: UIView!
+    @IBOutlet weak var usageTrendsErrorLabel: UILabel!
+    @IBOutlet weak var usageTrendsEmptyStateView: UIView!
+    @IBOutlet weak var usageTrendsEmptyStateLabel: UILabel!
+    @IBOutlet weak var usageTrendsContentView: UIView!
+    
+    // Billing Options
+    @IBOutlet weak var billingOptionsView: UIView!
     @IBOutlet weak var billingOptionsLabel: UILabel!
     
     @IBOutlet weak var paperlessButton: ButtonControl!
@@ -126,7 +138,8 @@ class BillViewController: AccountPickerViewController {
     var refreshControl: UIRefreshControl?
     
     let viewModel = BillViewModel(accountService: ServiceFactory.createAccountService(),
-                                  authService: ServiceFactory.createAuthenticationService())
+                                  authService: ServiceFactory.createAuthenticationService(),
+                                  usageService: ServiceFactory.createUsageService(useCache: true))
 
     var shortcutItem = ShortcutItem.none
 
@@ -226,7 +239,7 @@ class BillViewController: AccountPickerViewController {
         pastDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         pastDueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         pastDueAmountLabel.textColor = .deepGray
-        pastDueAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        pastDueAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         pastDueDividerLine.backgroundColor = .accentGray
         
         currentBillLabel.textColor = .deepGray
@@ -234,7 +247,7 @@ class BillViewController: AccountPickerViewController {
         currentBillDateLabel.textColor = .middleGray
         currentBillDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         currentBillAmountLabel.textColor = .deepGray
-        currentBillAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        currentBillAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         paymentReceivedView.layer.borderColor = UIColor.accentGray.cgColor
         paymentReceivedView.layer.borderWidth = 1
@@ -244,7 +257,7 @@ class BillViewController: AccountPickerViewController {
         paymentReceivedDateLabel.textColor = .middleGray
         paymentReceivedDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         paymentReceivedAmountLabel.textColor = .successGreenText
-        paymentReceivedAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        paymentReceivedAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         pendingPaymentRemainingBalanceBox.layer.borderColor = UIColor.accentGray.cgColor
         pendingPaymentRemainingBalanceBox.layer.borderWidth = 1
@@ -258,7 +271,7 @@ class BillViewController: AccountPickerViewController {
         remainingBalanceDueLabel.textColor = .deepGray
         remainingBalanceDueLabel.font = SystemFont.regular.of(textStyle: .footnote)
         remainingBalanceDueAmountLabel.textColor = .deepGray
-        remainingBalanceDueAmountLabel.font = SystemFont.semibold.of(textStyle: .footnote)
+        remainingBalanceDueAmountLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         catchUpDisclaimerLabel.textColor = .deepGray
         catchUpDisclaimerLabel.font = SystemFont.regular.of(textStyle: .caption1)
@@ -301,6 +314,18 @@ class BillViewController: AccountPickerViewController {
         walletButtonLabel.textColor = .deepGray
         walletButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
         
+        usageTrendsCardView.layer.cornerRadius = 10
+        usageTrendsCardView.layer.borderColor = UIColor.accentGray.cgColor
+        usageTrendsCardView.layer.borderWidth = 1
+        
+        usageTrendsEmptyStateLabel.textColor = .deepGray
+        usageTrendsEmptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        usageTrendsEmptyStateLabel.text = NSLocalizedString("After a few bill cycles, insights about your bill will be available here.", comment: "")
+        
+        usageTrendsErrorLabel.textColor = .deepGray
+        usageTrendsErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        usageTrendsErrorLabel.text = NSLocalizedString("Bill trends could not be retrieved at this time. Please try again later.", comment: "")
+        
         billingOptionsLabel.textColor = .deepGray
         billingOptionsLabel.font = OpenSans.regular.of(textStyle: .headline)
         
@@ -337,8 +362,9 @@ class BillViewController: AccountPickerViewController {
         budgetEnrolledView.layer.borderColor = UIColor.successGreenText.cgColor
         budgetEnrolledView.layer.borderWidth = 1
         
-        genericErrorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        genericErrorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        genericErrorLabel.textColor = .deepGray
+        genericErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        genericErrorLabel.text = NSLocalizedString("Billing data could not be retrieved at this time. Please try again later.", comment: "")
     }
     
     func bindViews() {
@@ -350,13 +376,45 @@ class BillViewController: AccountPickerViewController {
     func showLoadedState() {
         mainLoadingIndicator.isHidden = true
         topView.isHidden = false
-        bottomView.isHidden = false
+        billingOptionsView.isHidden = false
         errorView.isHidden = true
         prepaidView.isHidden = true
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         enableRefresh()
+    }
+    
+    func showUsageTrendsLoading() {
+        usageTrendsView.isHidden = false
+        usageTrendsLoadingView.isHidden = false
+        usageTrendsErrorView.isHidden = true
+        usageTrendsEmptyStateView.isHidden = true
+        usageTrendsContentView.isHidden = true
+    }
+    
+    func showUsageTrendsError() {
+        usageTrendsView.isHidden = false
+        usageTrendsLoadingView.isHidden = true
+        usageTrendsErrorView.isHidden = false
+        usageTrendsEmptyStateView.isHidden = true
+        usageTrendsContentView.isHidden = true
+    }
+    
+    func showUsageTrendsEmptyState() {
+        usageTrendsView.isHidden = false
+        usageTrendsLoadingView.isHidden = true
+        usageTrendsErrorView.isHidden = true
+        usageTrendsEmptyStateView.isHidden = false
+        usageTrendsContentView.isHidden = true
+    }
+    
+    func showUsageTrendsContent() {
+        usageTrendsView.isHidden = false
+        usageTrendsLoadingView.isHidden = true
+        usageTrendsErrorView.isHidden = true
+        usageTrendsEmptyStateView.isHidden = true
+        usageTrendsContentView.isHidden = false
     }
     
     func showErrorState(error: ServiceError?) {
@@ -370,7 +428,7 @@ class BillViewController: AccountPickerViewController {
         
         mainLoadingIndicator.isHidden = true
         topView.isHidden = true
-        bottomView.isHidden = true
+        billingOptionsView.isHidden = true
         errorView.isHidden = false
         prepaidView.isHidden = true
         maintenanceModeView.isHidden = true
@@ -389,7 +447,7 @@ class BillViewController: AccountPickerViewController {
     func showPrepaidState() {
         mainLoadingIndicator.isHidden = true
         topView.isHidden = true
-        bottomView.isHidden = true
+        billingOptionsView.isHidden = true
         errorView.isHidden = true
         prepaidView.isHidden = false
         scrollView?.isHidden = false
@@ -404,7 +462,7 @@ class BillViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         mainLoadingIndicator.isHidden = true
         topView.isHidden = true
-        bottomView.isHidden = true
+        billingOptionsView.isHidden = true
         errorView.isHidden = true
         prepaidView.isHidden = true
         enableRefresh()
@@ -415,7 +473,8 @@ class BillViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         mainLoadingIndicator.isHidden = false
         topView.isHidden = true
-        bottomView.isHidden = true
+        usageTrendsView.isHidden = true
+        billingOptionsView.isHidden = true
         errorView.isHidden = true
         prepaidView.isHidden = true
 
@@ -439,6 +498,10 @@ class BillViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.showSwitchingAccountState() })
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
+        viewModel.showUsageTrendsLoading.drive(onNext: { [weak self] in self?.showUsageTrendsLoading() }).disposed(by: bag)
+        viewModel.usageTrendsError.drive(onNext: { [weak self] _ in self?.showUsageTrendsError() }).disposed(by: bag)
+        viewModel.showUsageTrendsEmptyState.drive(onNext: { [weak self] in self?.showUsageTrendsEmptyState() }).disposed(by: bag)
+        viewModel.showUsageTrendsContent.drive(onNext: { [weak self] in self?.showUsageTrendsContent() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
         viewModel.showPrepaidState.drive(onNext: { [weak self] in self?.showPrepaidState() }).disposed(by: bag)
         viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)
