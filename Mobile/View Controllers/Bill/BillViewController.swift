@@ -197,6 +197,12 @@ class BillViewController: AccountPickerViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        usageBillImpactContentView.superviewDidLayoutSubviews()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         shortcutItem = .none

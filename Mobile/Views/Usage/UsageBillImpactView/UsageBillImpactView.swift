@@ -13,117 +13,97 @@ import RxCocoa
 class UsageBillImpactView: UIView {
 
     @IBOutlet private weak var view: UIView!
-    
-    @IBOutlet private weak var likelyReasonsStackView: UIStackView!
-    @IBOutlet private weak var likelyReasonsDescriptionTriangleView: UIImageView!
-    @IBOutlet private weak var likelyReasonsDescriptionTriangleCenterXConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var likelyReasonsDescriptionView: UIView!
-
-    
-    @IBOutlet private weak var toggleButtonLabel: UILabel! {
+    @IBOutlet weak var reasonsWhyLabel: UILabel! {
         didSet {
-            toggleButtonLabel.textColor = .actionBlue
+            reasonsWhyLabel.textColor = .deepGray
+            reasonsWhyLabel.font = OpenSans.regular.of(textStyle: .headline)
+        }
+    }
+    @IBOutlet weak var tooltipButton: UIButton!
+    @IBOutlet weak var elecGasSegmentedControl: SegmentedControlNew! {
+        didSet {
+            elecGasSegmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
         }
     }
     
-    @IBOutlet private weak var carrotImageView: UIImageView!
-    @IBOutlet private weak var descriptionLabel: UILabel! {
+    @IBOutlet weak var differenceDescriptionLabel: UILabel! {
         didSet {
-            descriptionLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+            differenceDescriptionLabel.textColor = .deepGray
+            differenceDescriptionLabel.font = OpenSans.regular.of(textStyle: .callout)
         }
     }
     
-    @IBOutlet private weak var contrastRoundedView: UIView! {
+    @IBOutlet weak var comparisonToggleButton: SecondaryButton!
+    
+    @IBOutlet weak var dropdownView: UIView!
+    
+    @IBOutlet weak var billPeriodTitleLabel: UILabel! {
         didSet {
-            contrastRoundedView.layer.cornerRadius = 10
+            billPeriodTitleLabel.textColor = .deepGray
+            billPeriodTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        }
+    }
+    @IBOutlet weak var billPeriodImageView: UIImageView!
+    @IBOutlet weak var billPeriodAmountLabel: UILabel! {
+        didSet {
+            billPeriodAmountLabel.textColor = .deepGray
+            billPeriodAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
+        }
+    }
+    @IBOutlet weak var billPeriodCaretImageView: UIImageView!
+    @IBOutlet weak var billPeriodDetailView: UIView!
+    @IBOutlet weak var billPeriodDetailLabel: UILabel! {
+        didSet {
+            billPeriodDetailLabel.textColor = .deepGray
+            billPeriodDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
     
-    // Buttons
-    @IBOutlet private weak var billPeriodButton: ButtonControl!
-    @IBOutlet private weak var billPeriodCircleButton: UIView! {
+    @IBOutlet weak var weatherTitleLabel: UILabel! {
         didSet {
-            billPeriodCircleButton.layer.cornerRadius = billPeriodCircleButton.frame.height / 2
-            billPeriodCircleButton.layer.borderWidth = 2
-            billPeriodCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
-            billPeriodCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
+            weatherTitleLabel.textColor = .deepGray
+            weatherTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
+        }
+    }
+    @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var weatherAmountLabel: UILabel! {
+        didSet {
+            weatherAmountLabel.textColor = .deepGray
+            weatherAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
+        }
+    }
+    @IBOutlet weak var weatherCaretImageView: UIImageView!
+    @IBOutlet weak var weatherDetailView: UIView!
+    @IBOutlet weak var weatherDetailLabel: UILabel! {
+        didSet {
+            weatherDetailLabel.textColor = .deepGray
+            weatherDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
     
-    @IBOutlet private weak var billPeriodTitleLabel: UILabel! {
+    @IBOutlet weak var otherTitleLabel: UILabel! {
         didSet {
-            billPeriodTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            otherTitleLabel.textColor = .deepGray
+            otherTitleLabel.font = SystemFont.regular.of(textStyle: .caption2)
         }
     }
-    
-    @IBOutlet private weak var weatherButton: ButtonControl!
-    @IBOutlet private weak var weatherCircleButton: UIView! {
+    @IBOutlet weak var otherImageView: UIImageView!
+    @IBOutlet weak var otherAmountLabel: UILabel! {
         didSet {
-            weatherCircleButton.layer.cornerRadius = weatherCircleButton.frame.height / 2
-            weatherCircleButton.layer.borderWidth = 2
-            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            weatherCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
+            otherAmountLabel.textColor = .deepGray
+            otherAmountLabel.font = SystemFont.regular.of(textStyle: .callout)
         }
     }
-    
-    @IBOutlet private weak var weatherTitleLabel: UILabel! {
+    @IBOutlet weak var otherCaretImageView: UIImageView!
+    @IBOutlet weak var otherDetailView: UIView!
+    @IBOutlet weak var otherDetailLabel: UILabel! {
         didSet {
-            weatherTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
+            otherDetailLabel.textColor = .deepGray
+            otherDetailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         }
     }
-    
-    @IBOutlet private weak var otherButton: ButtonControl!
-    @IBOutlet private weak var otherCircleButton: UIView! {
-        didSet {
-            otherCircleButton.layer.cornerRadius = otherCircleButton.frame.height / 2
-            otherCircleButton.layer.borderWidth = 2
-            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            otherCircleButton.addShadow(color: .black, opacity: 0.15, offset: CGSize(width: 0, height: 2), radius: 4)
-        }
-    }
-    
-    @IBOutlet private weak var otherTitleLabel: UILabel! {
-        didSet {
-            otherTitleLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        }
-    }
-    
-    @IBOutlet private weak var bubbleView: UIView! {
-        didSet {
-            bubbleView.layer.cornerRadius = 10
-            bubbleView.addShadow(color: .black, opacity: 0.08, offset: CGSize(width: 0, height: 2), radius: 4)
-        }
-    }
-    
-    @IBOutlet private weak var bubbleViewTitleLabel: UILabel! {
-        didSet {
-            bubbleViewTitleLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        }
-    }
-    
-    @IBOutlet private weak var bubbleViewDescriptionLabel: UILabel! {
-        didSet {
-            bubbleViewDescriptionLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        }
-    }
-    
-    @IBOutlet private weak var footerLabel: UILabel! {
-        didSet {
-            footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
-            footerLabel.textColor = .blackText
-            footerLabel.text = NSLocalizedString("The amounts shown are usage-related charges and may not include credits and other adjustments. " +
-                "Amounts for Budget Billing customers are based on actual usage in the period, not on your monthly budget payment.", comment: "")
-        }
-    }
-    
-    @IBOutlet private weak var billPeriodUpDownImageView: UIImageView!
-    @IBOutlet private var likelyReasonsNoDataLabels: [UILabel]!
-    @IBOutlet private weak var weatherUpDownImageView: UIImageView!
-    @IBOutlet private weak var otherUpDownImageView: UIImageView!
     
     private let disposeBag = DisposeBag()
-    
-    private var hasLoadedView = false
     
 //    private var isExpanded = false {
 //        didSet {
@@ -148,13 +128,11 @@ class UsageBillImpactView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
-        prepareViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        prepareViews()
     }
     
     private func commonInit() {
@@ -162,33 +140,29 @@ class UsageBillImpactView: UIView {
         addSubview(view)
         view.frame = bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        
-        hasLoadedView = true
     }
     
-    private func prepareViews() {
-        // Default button selected is Bill Period
-        factorImpactPress(billPeriodButton)
+    func superviewDidLayoutSubviews() {
+        // Fixes layout issues with segmented control
+        elecGasSegmentedControl.selectIndex(elecGasSegmentedControl.selectedIndex.value)
     }
-    
     
     // MARK: - Actions
     
-    @IBAction private func factorImpactPress(_ sender: ButtonControl) {
-        // guard statement will block analytics from occuring on view setup.
-        guard let viewModel = viewModel else { return }
-        
-        if sender.tag == 0 {
-            GoogleAnalytics.log(event: .billPreviousReason)
-        } else if sender.tag == 1 {
-            GoogleAnalytics.log(event: .billWeatherReason)
-        } else {
-            GoogleAnalytics.log(event: .billOtherReason)
-        }
-        
-        viewModel.setLikelyReasonSelected(tag: sender.tag)
-    }
-    
+//    @IBAction private func factorImpactPress(_ sender: ButtonControl) {
+//        // guard statement will block analytics from occuring on view setup.
+//        guard let viewModel = viewModel else { return }
+//
+//        if sender.tag == 0 {
+//            GoogleAnalytics.log(event: .billPreviousReason)
+//        } else if sender.tag == 1 {
+//            GoogleAnalytics.log(event: .billWeatherReason)
+//        } else {
+//            GoogleAnalytics.log(event: .billOtherReason)
+//        }
+//
+//        viewModel.setLikelyReasonSelected(tag: sender.tag)
+//    }
     
     // MARK: - Configuration
     
@@ -198,67 +172,51 @@ class UsageBillImpactView: UIView {
     }
     
     func bindViewModel(_ viewModel: BillViewModel) {
+        
+        viewModel.reasonsWhyLabelText.drive(reasonsWhyLabel.rx.text).disposed(by: disposeBag)
+        
+        viewModel.differenceDescriptionLabelText.drive(differenceDescriptionLabel.rx.text).disposed(by: disposeBag)
+        
+        viewModel.billPeriodArrowImage.drive(billPeriodImageView.rx.image).disposed(by: disposeBag)
+        viewModel.currentBillComparison.map { $0.billPeriodCostDifference.currencyString }.drive(billPeriodAmountLabel.rx.text).disposed(by: disposeBag)
+        viewModel.billPeriodDetailLabelText.drive(billPeriodDetailLabel.rx.text).disposed(by: disposeBag)
+        
+        viewModel.weatherArrowImage.drive(weatherImageView.rx.image).disposed(by: disposeBag)
+        viewModel.currentBillComparison.map { $0.weatherCostDifference.currencyString }.drive(weatherAmountLabel.rx.text).disposed(by: disposeBag)
+        viewModel.weatherDetailLabelText.drive(weatherDetailLabel.rx.text).disposed(by: disposeBag)
+        
+        viewModel.otherArrowImage.drive(otherImageView.rx.image).disposed(by: disposeBag)
+        viewModel.currentBillComparison.map { $0.otherCostDifference.currencyString }.drive(otherAmountLabel.rx.text).disposed(by: disposeBag)
+        viewModel.otherDetailLabelText.drive(otherDetailLabel.rx.text).disposed(by: disposeBag)
         // Likely reasons
-        viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
-        viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        viewModel.weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
-        viewModel.weatherA11yLabel.drive(weatherButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        viewModel.otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
-        viewModel.otherA11yLabel.drive(otherButton.rx.accessibilityLabel).disposed(by: disposeBag)
-        
-        viewModel.likelyReasonsLabelText.drive(descriptionLabel.rx.text).disposed(by: disposeBag)
-        viewModel.likelyReasonsDescriptionTitleText.drive(bubbleViewTitleLabel.rx.text).disposed(by: disposeBag)
-        viewModel.likelyReasonsDescriptionDetailText.drive(bubbleViewDescriptionLabel.rx.text).disposed(by: disposeBag)
-        viewModel.noPreviousData.drive(likelyReasonsDescriptionView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.noPreviousData.drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.noPreviousData.drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.noPreviousData.drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-        for label in likelyReasonsNoDataLabels {
-            viewModel.noPreviousData.not().drive(label.rx.isHidden).disposed(by: disposeBag)
-        }
-        
-        Driver.combineLatest(viewModel.likelyReasonsSelection.asDriver().distinctUntilChanged(),
-                             viewModel.noPreviousData.distinctUntilChanged())
-            .drive(onNext: { [weak self] likelyReasonsSelection, noPreviousData in
-                self?.updateLikelyReasonsSelection(noPreviousData ? nil : likelyReasonsSelection)
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.noPreviousData.drive(billPeriodCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
-        viewModel.noPreviousData.drive(weatherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
-        viewModel.noPreviousData.drive(otherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+//        viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
+//        viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//        viewModel.weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
+//        viewModel.weatherA11yLabel.drive(weatherButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//        viewModel.otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
+//        viewModel.otherA11yLabel.drive(otherButton.rx.accessibilityLabel).disposed(by: disposeBag)
+//
+//        viewModel.likelyReasonsLabelText.drive(descriptionLabel.rx.text).disposed(by: disposeBag)
+//        viewModel.likelyReasonsDescriptionTitleText.drive(bubbleViewTitleLabel.rx.text).disposed(by: disposeBag)
+//        viewModel.likelyReasonsDescriptionDetailText.drive(bubbleViewDescriptionLabel.rx.text).disposed(by: disposeBag)
+//        viewModel.noPreviousData.drive(likelyReasonsDescriptionView.rx.isHidden).disposed(by: disposeBag)
+//        viewModel.noPreviousData.drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+//        viewModel.noPreviousData.drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+//        viewModel.noPreviousData.drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
+//        for label in likelyReasonsNoDataLabels {
+//            viewModel.noPreviousData.not().drive(label.rx.isHidden).disposed(by: disposeBag)
+//        }
+//
+//        Driver.combineLatest(viewModel.likelyReasonsSelection.asDriver().distinctUntilChanged(),
+//                             viewModel.noPreviousData.distinctUntilChanged())
+//            .drive(onNext: { [weak self] likelyReasonsSelection, noPreviousData in
+//                self?.updateLikelyReasonsSelection(noPreviousData ? nil : likelyReasonsSelection)
+//            })
+//            .disposed(by: disposeBag)
+//
+//        viewModel.noPreviousData.drive(billPeriodCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+//        viewModel.noPreviousData.drive(weatherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+//        viewModel.noPreviousData.drive(otherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
     }
     
-    private func updateLikelyReasonsSelection(_ selection: LikelyReasonsSelection?) {
-        var selectedCircleButton: UIView?
-        switch selection {
-        case .billPeriod?:
-            selectedCircleButton = billPeriodCircleButton
-            billPeriodCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
-            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-        case .weather?:
-            selectedCircleButton = weatherCircleButton
-            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
-            weatherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
-            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-        case .other?:
-            selectedCircleButton = otherCircleButton
-            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
-            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            otherCircleButton.layer.borderColor = UIColor.primaryColor.cgColor
-        case .none:
-            selectedCircleButton = nil
-            billPeriodCircleButton.layer.borderColor = UIColor.clear.cgColor
-            weatherCircleButton.layer.borderColor = UIColor.clear.cgColor
-            otherCircleButton.layer.borderColor = UIColor.clear.cgColor
-        }
-        
-        guard let button = selectedCircleButton else { return }
-        
-        likelyReasonsDescriptionTriangleCenterXConstraint.isActive = false
-        likelyReasonsDescriptionTriangleCenterXConstraint = likelyReasonsDescriptionTriangleView.centerXAnchor
-            .constraint(equalTo: button.centerXAnchor)
-        likelyReasonsDescriptionTriangleCenterXConstraint.isActive = true
-    }
 }
