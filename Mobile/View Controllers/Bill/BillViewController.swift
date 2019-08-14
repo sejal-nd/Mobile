@@ -694,6 +694,13 @@ class BillViewController: AccountPickerViewController {
                 self.navigationController?.pushViewController(walletVc, animated: true)
             })
             .disposed(by: bag)
+        
+        usageBillImpactContentView.tooltipButton.rx.touchUpInside.asDriver()
+            .drive(onNext: { [weak self] _ in
+                let alert = InfoAlertController(title: NSLocalizedString("What are these amounts  based on?", comment: ""),
+                                                message: NSLocalizedString("The amounts shown are usage-related charges and may not include credits and other adjustments. Amounts for Budget Billing customers are based on actual usage in the period, not on your monthly budget payment.", comment: ""))
+                self?.tabBarController?.present(alert, animated: true)
+            }).disposed(by: bag)
 
 		paperlessButton.rx.touchUpInside.asDriver()
 			.withLatestFrom(viewModel.currentAccountDetail)
