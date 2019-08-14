@@ -45,10 +45,8 @@ final class HomePrepaidCardView: UIView {
     func bindViewModel() {
         headerLabel.attributedText = viewModel.headerText
         detailLabel.text = viewModel.detailText
-        UIView.performWithoutAnimation { [weak self]
- in
-            guard let `self` = self else { return }
-            self.callToActionButton.setTitle(self.viewModel.buttonText, for: .normal)
+        UIView.performWithoutAnimation {
+            callToActionButton.setTitle(viewModel.buttonText, for: .normal)
         }
     }
     @IBAction func callToActionPress(_ sender: Any) {

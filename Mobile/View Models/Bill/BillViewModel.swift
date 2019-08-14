@@ -30,6 +30,7 @@ class BillViewModel {
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
     let usageBillImpactLoading = PublishSubject<Bool>()
+    var usageBillImpactInnerLoading = false
     
     let electricGasSelectedSegmentIndex = Variable(0)
     let compareToLastYear = Variable(false)
@@ -77,7 +78,9 @@ class BillViewModel {
                        electricGasSelectedSegmentIndex.asObservable())
         .toAsyncRequest { [weak self] (accountDetail, compareToLastYear, electricGasIndex) in
             guard let self = self else { return .empty() }
-            self.usageBillImpactLoading.onNext(true)
+            if !self.usageBillImpactInnerLoading {
+                self.usageBillImpactLoading.onNext(true)
+            }
             let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasIndex)
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
                                                          premiseNumber: accountDetail.premiseNumber!,
@@ -111,14 +114,16 @@ class BillViewModel {
     private(set) lazy var usageBillImpactError: Driver<ServiceError?> = usageBillImpactEvents.errors()
         .map { $0 as? ServiceError }
         .do(onNext: { [weak self] _ in
-            self?.usageBillImpactLoading.onNext(false)
+            //self?.usageBillImpactLoading.onNext(false)
+            self?.usageBillImpactInnerLoading = false
         })
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUsageBillImpactContent: Driver<Void> = usageBillImpactEvents
         .filter { $0.element != nil }
         .do(onNext: { [weak self] _ in
-            self?.usageBillImpactLoading.onNext(false)
+            //self?.usageBillImpactLoading.onNext(false)
+            self?.usageBillImpactInnerLoading = false
         })
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -535,26 +540,26 @@ class BillViewModel {
     // MARK: Up/Down Arrow Image Drivers
     
     private(set) lazy var reasonsWhyLabelText: Driver<String?> = currentBillComparison.map {
-        guard let reference = $0.reference, let compared = $0.compared else {
-            return NSLocalizedString("Reasons Why Your Bill is...", comment: "")
-        }
-        let currentCharges = reference.charges
-        let prevCharges = compared.charges
-        let difference = abs(currentCharges - prevCharges)
-        if difference < 1 {
-            return NSLocalizedString("Reasons Why Your Bill is About the Same", comment: "")
-        } else {
-            if currentCharges > prevCharges {
-                return NSLocalizedString("Reasons Why Your Bill is Higher", comment: "")
+            guard let reference = $0.reference, let compared = $0.compared else {
+                return NSLocalizedString("Reasons Why Your Bill is...", comment: "")
+            }
+            let currentCharges = reference.charges
+            let prevCharges = compared.charges
+            let difference = abs(currentCharges - prevCharges)
+            if difference < 1 {
+                return NSLocalizedString("Reasons Why Your Bill is About the Same", comment: "")
             } else {
-                return NSLocalizedString("Reasons Why Your Bill is Lower", comment: "")
+                if currentCharges > prevCharges {
+                    return NSLocalizedString("Reasons Why Your Bill is Higher", comment: "")
+                } else {
+                    return NSLocalizedString("Reasons Why Your Bill is Lower", comment: "")
+                }
             }
         }
-    }
     
     private(set) lazy var differenceDescriptionLabelAttributedText: Driver<NSAttributedString?> =
         Driver.combineLatest(currentAccountDetail, currentBillComparison, compareToLastYear.asDriver())
-        { [weak self] accountDetail, billComparison, compareToLastYear in
+        .filter { _ in self.usageBillImpactInnerLoading == false }.map { [weak self] accountDetail, billComparison, compareToLastYear in
             guard let self = self else { return nil }
             
             guard let reference = billComparison.reference, let compared = billComparison.compared else {
@@ -660,10 +665,6 @@ class BillViewModel {
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
             
-//            let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
-//            let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
-//            let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
-            
             var localizedString: String!
             if billComparison.weatherCostDifference >= 1 {
                 localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ due to changes in weather.", comment: "")
@@ -698,10 +699,6 @@ class BillViewModel {
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
             
-//            let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
-//            let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
-//            let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
-//
             var localizedString: String!
             if billComparison.otherCostDifference >= 1 {
                 localizedString = NSLocalizedString("Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +
@@ -717,199 +714,6 @@ class BillViewModel {
             }
             return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString, gasOrElectricityString)
     }
-    
-    // MARK: Likely Reasons Button Accessibility Drivers
-    
-//    private(set) lazy var billPeriodA11yLabel: Driver<String?> = Driver.combineLatest(currentAccountDetail,
-//                                                                                      currentBillComparison,
-//                                                                                      electricGasSelectedSegmentIndex.asDriver())
-//    { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
-//        if billComparison.compared == nil {
-//            return NSLocalizedString("Bill period. No data.", comment: "")
-//        }
-//
-//        guard let this = self else { return nil }
-//        let isGas = this.isGas(accountDetail: accountDetail,
-//                               electricGasSelectedIndex: electricGasSelectedIndex)
-//        let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
-//
-//        guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
-//        let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
-//        let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
-//        let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
-//
-//        var localizedString: String!
-//        if billComparison.billPeriodCostDifference >= 1 {
-//            localizedString = NSLocalizedString("Bill period. Your bill was about %@ more. You used more %@ because this bill period was %d days longer.", comment: "")
-//        } else if billComparison.billPeriodCostDifference <= -1 {
-//            localizedString = NSLocalizedString("Bill period. Your bill was about %@ less. You used less %@ because this bill period was %d days shorter.", comment: "")
-//        } else {
-//            return NSLocalizedString("Bill period. You spent about the same based on the number of days in your billing period.", comment: "")
-//        }
-//        return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString, gasOrElectricityString, billPeriodDiff)
-//    }
-//
-//    private(set) lazy var weatherA11yLabel: Driver<String?> = Driver.combineLatest(currentAccountDetail,
-//                                                                                   currentBillComparison,
-//                                                                                   electricGasSelectedSegmentIndex.asDriver())
-//    { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
-//        if billComparison.compared == nil {
-//            return NSLocalizedString("Weather. No data.", comment: "")
-//        }
-//
-//        guard let this = self else { return nil }
-//        let isGas = this.isGas(accountDetail: accountDetail,
-//                               electricGasSelectedIndex: electricGasSelectedIndex)
-//        let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
-//
-//        guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
-//
-//        var localizedString: String!
-//        if billComparison.weatherCostDifference >= 1 {
-//            localizedString = NSLocalizedString("Weather. Your bill was about %@ more. You used more %@ due to changes in weather.", comment: "")
-//        } else if billComparison.weatherCostDifference <= -1 {
-//            localizedString = NSLocalizedString("Weather. Your bill was about %@ less. You used less %@ due to changes in weather.", comment: "")
-//        } else {
-//            return NSLocalizedString("Weather. You spent about the same based on weather conditions.", comment: "")
-//        }
-//        return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString, gasOrElectricityString)
-//    }
-//
-//    private(set) lazy var otherA11yLabel: Driver<String?> = Driver.combineLatest(currentAccountDetail,
-//                                                                                 currentBillComparison,
-//                                                                                 electricGasSelectedSegmentIndex.asDriver())
-//    { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
-//        if billComparison.compared == nil {
-//            return NSLocalizedString("Other. No data.", comment: "")
-//        }
-//
-//        guard let this = self else { return nil }
-//        let isGas = this.isGas(accountDetail: accountDetail,
-//                               electricGasSelectedIndex: electricGasSelectedIndex)
-//        let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
-//
-//        guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
-//
-//        var localizedString: String!
-//        if billComparison.otherCostDifference >= 1 {
-//            localizedString = NSLocalizedString("Other. Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +
-//                "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
-//                "plans or cost of energy", comment: "")
-//        } else if billComparison.otherCostDifference <= -1 {
-//            localizedString = NSLocalizedString("Other. Your bill was about %@ less. Your charges decreased based on how you used energy. Your bill may be different for " +
-//                "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
-//                "plans or cost of energy", comment: "")
-//        } else {
-//            return NSLocalizedString("Other. You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
-//                "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
-//        }
-//        return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString, gasOrElectricityString)
-//    }
-    
-    // MARK: Likely Reasons Drivers
-    
-//    private(set) lazy var likelyReasonsLabelText: Driver<String?> =
-//        Driver.combineLatest(currentAccountDetail,
-//                             currentBillComparison,
-//                             compareToLastYear.asDriver())
-//        { [weak self] accountDetail, billComparison, compareToLastYear in
-//            guard let this = self else { return nil }
-//
-//            let isGas = this.isGas(accountDetail: accountDetail,
-//                                   electricGasSelectedIndex: this.electricGasSelectedSegmentIndex.value)
-//
-//            let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
-//
-//            guard let reference = billComparison.reference, let compared = billComparison.compared else {
-//                return String(format: NSLocalizedString("Data not available to explain likely reasons for changes in your %@ charges.", comment: ""), gasOrElectricString)
-//            }
-//
-//            let currentCharges = reference.charges
-//            let prevCharges = compared.charges
-//            let difference = abs(currentCharges - prevCharges)
-//            if difference < 1 { // About the same
-//                if compareToLastYear { // Last Year
-//                    let localizedString = NSLocalizedString("Likely reasons your %@ charges are about the same as last year.", comment: "")
-//                    return String(format: localizedString, gasOrElectricString)
-//                } else { // Previous Bill
-//                    let localizedString = NSLocalizedString("Likely reasons your %@ charges are about the same as your previous bill.", comment: "")
-//                    return String(format: localizedString, gasOrElectricString)
-//                }
-//            } else {
-//                if currentCharges > prevCharges {
-//                    if compareToLastYear { // Last Year
-//                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than last year.", comment: "")
-//                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
-//                    } else { // Previous Bill
-//                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ more than your previous bill.", comment: "")
-//                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
-//                    }
-//                } else {
-//                    if compareToLastYear { // Last Year
-//                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than last year.", comment: "")
-//                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
-//                    } else { // Previous Bill
-//                        let localizedString = NSLocalizedString("Likely reasons your %@ charges are about %@ less than your previous bill.", comment: "")
-//                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
-//                    }
-//                }
-//            }
-//    }
-    
-//    private(set) lazy var likelyReasonsDescriptionDetailText: Driver<String?> =
-//        Driver.combineLatest(currentAccountDetail,
-//                             currentBillComparison,
-//                             likelyReasonsSelection.asDriver(),
-//                             electricGasSelectedSegmentIndex.asDriver())
-//        { [weak self] accountDetail, billComparison, likelyReasonsSelection, electricGasSelectedIndex in
-//            guard let this = self else { return nil }
-//            let isGas = this.isGas(accountDetail: accountDetail,
-//                                   electricGasSelectedIndex: electricGasSelectedIndex)
-//            let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
-//            guard let reference = billComparison.reference, let compared = billComparison.compared else { return nil }
-//
-//            switch likelyReasonsSelection {
-//            case .billPeriod:
-//                let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
-//                let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
-//                let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
-//
-//                var localizedString: String!
-//                if billComparison.billPeriodCostDifference >= 1 {
-//                    localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ because this bill period was %d days longer.", comment: "")
-//                } else if billComparison.billPeriodCostDifference <= -1 {
-//                    localizedString = NSLocalizedString("Your bill was about %@ less. You used less %@ because this bill period was %d days shorter.", comment: "")
-//                } else {
-//                    return NSLocalizedString("You spent about the same based on the number of days in your billing period.", comment: "")
-//                }
-//                return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString, gasOrElectricityString, billPeriodDiff)
-//            case .weather:
-//                var localizedString: String!
-//                if billComparison.weatherCostDifference >= 1 {
-//                    localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ due to changes in weather.", comment: "")
-//                } else if billComparison.weatherCostDifference <= -1 {
-//                    localizedString = NSLocalizedString("Your bill was about %@ less. You used less %@ due to changes in weather.", comment: "")
-//                } else {
-//                    return NSLocalizedString("You spent about the same based on weather conditions.", comment: "")
-//                }
-//                return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString, gasOrElectricityString)
-//            case .other:
-//                var localizedString: String!
-//                if billComparison.otherCostDifference >= 1 {
-//                    localizedString = NSLocalizedString("Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +
-//                        "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
-//                        "plans or cost of energy", comment: "")
-//                } else if billComparison.otherCostDifference <= -1 {
-//                    localizedString = NSLocalizedString("Your bill was about %@ less. Your charges decreased based on how you used energy. Your bill may be different for " +
-//                        "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
-//                        "plans or cost of energy", comment: "")
-//                } else {
-//                    return NSLocalizedString("You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
-//                        "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
-//                }
-//                return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString, gasOrElectricityString)
-//            }
-//    }
     
     private(set) lazy var noPreviousData: Driver<Bool> = currentBillComparison.map { $0.compared == nil }
     

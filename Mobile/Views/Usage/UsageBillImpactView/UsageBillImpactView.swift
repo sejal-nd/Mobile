@@ -103,6 +103,8 @@ class UsageBillImpactView: UIView {
         }
     }
     
+    @IBOutlet weak var loadingView: UIView!
+    
     private let disposeBag = DisposeBag()
     
 //    private var isExpanded = false {
@@ -122,6 +124,8 @@ class UsageBillImpactView: UIView {
 //    }
     
     private var viewModel: BillViewModel?
+    
+    private var hasLoadedView = false
 
     // MARK: - Init
     
@@ -140,11 +144,14 @@ class UsageBillImpactView: UIView {
         addSubview(view)
         view.frame = bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        loadingView.isHidden = true
     }
     
     func superviewDidLayoutSubviews() {
         // Fixes layout issues with segmented control
         elecGasSegmentedControl.selectIndex(elecGasSegmentedControl.selectedIndex.value, animated: false)
+        hasLoadedView = true
     }
     
     // MARK: - Actions
@@ -172,7 +179,6 @@ class UsageBillImpactView: UIView {
     }
     
     func bindViewModel(_ viewModel: BillViewModel) {
-        
         viewModel.reasonsWhyLabelText.drive(reasonsWhyLabel.rx.text).disposed(by: disposeBag)
         
         viewModel.differenceDescriptionLabelAttributedText.drive(differenceDescriptionLabel.rx.attributedText).disposed(by: disposeBag)
@@ -196,14 +202,18 @@ class UsageBillImpactView: UIView {
         
         elecGasSegmentedControl.selectedIndex.asDriver()
             .distinctUntilChanged()
-            .do(onNext: { [weak self] _ in self?.showLoadingState() })
+            .filter { _ in self.hasLoadedView }
+            .do(onNext: { [weak self] _ in self?.setInnerLoadingState(true) })
             .drive(viewModel.electricGasSelectedSegmentIndex)
             .disposed(by: disposeBag)
         
         viewModel.compareToLastYear.asDriver().drive(onNext: { [weak self] lastYear in
             let title = lastYear ? NSLocalizedString("Compare to Previous Bill", comment: "") :
                 NSLocalizedString("Compare to Last Year", comment: "")
-            self?.comparisonToggleButton.setTitle(title, for: .normal)
+            UIView.performWithoutAnimation {
+                self?.comparisonToggleButton.setTitle(title, for: .normal)
+                self?.comparisonToggleButton.layoutIfNeeded()
+            }
         }).disposed(by: disposeBag)
         
         // Likely reasons
@@ -239,11 +249,20 @@ class UsageBillImpactView: UIView {
     
     @IBAction func comparisonToggleButtonPress() {
         guard let viewModel = viewModel else { return }
+        setInnerLoadingState(true)
         viewModel.compareToLastYear.value = !viewModel.compareToLastYear.value
     }
     
-    func showLoadingState() {
-        
+    func setInnerLoadingState(_ loading: Bool) {
+        guard let viewModel = viewModel else { return }
+        viewModel.usageBillImpactInnerLoading = loading
+        dropdownView.isHidden = loading
+        loadingView.isHidden = !loading
+        if loading {
+            reasonsWhyLabel.text = NSLocalizedString("Reasons Why Your Bill is...", comment: "")
+            let elecGasStr = elecGasSegmentedControl.selectedIndex.value == 0 ? "electric" : "gas"
+            differenceDescriptionLabel.text = String.localizedStringWithFormat("Your %@ charges are...", elecGasStr)
+        }
     }
     
 }

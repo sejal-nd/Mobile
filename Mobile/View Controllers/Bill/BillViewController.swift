@@ -423,6 +423,7 @@ class BillViewController: AccountPickerViewController {
         usageBillImpactErrorView.isHidden = true
         usageBillImpactEmptyStateView.isHidden = true
         usageBillImpactContentView.isHidden = false
+        usageBillImpactContentView.setInnerLoadingState(false)
     }
     
     func showErrorState(error: ServiceError?) {
