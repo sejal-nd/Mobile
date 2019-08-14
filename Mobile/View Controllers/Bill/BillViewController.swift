@@ -98,14 +98,14 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var walletButtonLabel: UILabel!
     
     // Usage Trends
-    @IBOutlet weak var usageTrendsView: UIView!
-    @IBOutlet weak var usageTrendsCardView: UIView!
-    @IBOutlet weak var usageTrendsLoadingView: UIView!
-    @IBOutlet weak var usageTrendsErrorView: UIView!
-    @IBOutlet weak var usageTrendsErrorLabel: UILabel!
-    @IBOutlet weak var usageTrendsEmptyStateView: UIView!
-    @IBOutlet weak var usageTrendsEmptyStateLabel: UILabel!
-    @IBOutlet weak var usageTrendsContentView: BillImpactDropdownView!
+    @IBOutlet weak var usageBillImpactView: UIView!
+    @IBOutlet weak var usageBillImpactCardView: UIView!
+    @IBOutlet weak var usageBillImpactLoadingView: UIView!
+    @IBOutlet weak var usageBillImpactErrorView: UIView!
+    @IBOutlet weak var usageBillImpactErrorLabel: UILabel!
+    @IBOutlet weak var usageBillImpactEmptyStateView: UIView!
+    @IBOutlet weak var usageBillImpactEmptyStateLabel: UILabel!
+    @IBOutlet weak var usageBillImpactContentView: UsageBillImpactView!
     
     // Billing Options
     @IBOutlet weak var billingOptionsView: UIView!
@@ -171,7 +171,7 @@ class BillViewController: AccountPickerViewController {
             }
         }).disposed(by: bag)
         
-        usageTrendsContentView.configure(withViewModel: viewModel)
+        usageBillImpactContentView.configure(withViewModel: viewModel)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -316,17 +316,17 @@ class BillViewController: AccountPickerViewController {
         walletButtonLabel.textColor = .deepGray
         walletButtonLabel.font = SystemFont.medium.of(textStyle: .callout)
         
-        usageTrendsCardView.layer.cornerRadius = 10
-        usageTrendsCardView.layer.borderColor = UIColor.accentGray.cgColor
-        usageTrendsCardView.layer.borderWidth = 1
+        usageBillImpactCardView.layer.cornerRadius = 10
+        usageBillImpactCardView.layer.borderColor = UIColor.accentGray.cgColor
+        usageBillImpactCardView.layer.borderWidth = 1
         
-        usageTrendsEmptyStateLabel.textColor = .deepGray
-        usageTrendsEmptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        usageTrendsEmptyStateLabel.text = NSLocalizedString("After a few bill cycles, insights about your bill will be available here.", comment: "")
+        usageBillImpactEmptyStateLabel.textColor = .deepGray
+        usageBillImpactEmptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        usageBillImpactEmptyStateLabel.text = NSLocalizedString("After a few bill cycles, insights about your bill will be available here.", comment: "")
         
-        usageTrendsErrorLabel.textColor = .deepGray
-        usageTrendsErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        usageTrendsErrorLabel.text = NSLocalizedString("Bill trends could not be retrieved at this time. Please try again later.", comment: "")
+        usageBillImpactErrorLabel.textColor = .deepGray
+        usageBillImpactErrorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        usageBillImpactErrorLabel.text = NSLocalizedString("Bill trends could not be retrieved at this time. Please try again later.", comment: "")
         
         billingOptionsLabel.textColor = .deepGray
         billingOptionsLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -387,36 +387,36 @@ class BillViewController: AccountPickerViewController {
         enableRefresh()
     }
     
-    func showUsageTrendsLoading() {
-        usageTrendsView.isHidden = false
-        usageTrendsLoadingView.isHidden = false
-        usageTrendsErrorView.isHidden = true
-        usageTrendsEmptyStateView.isHidden = true
-        usageTrendsContentView.isHidden = true
+    func showUsageBillImpactLoading() {
+        usageBillImpactView.isHidden = false
+        usageBillImpactLoadingView.isHidden = false
+        usageBillImpactErrorView.isHidden = true
+        usageBillImpactEmptyStateView.isHidden = true
+        usageBillImpactContentView.isHidden = true
     }
     
-    func showUsageTrendsError() {
-        usageTrendsView.isHidden = false
-        usageTrendsLoadingView.isHidden = true
-        usageTrendsErrorView.isHidden = false
-        usageTrendsEmptyStateView.isHidden = true
-        usageTrendsContentView.isHidden = true
+    func showUsageBillImpactError() {
+        usageBillImpactView.isHidden = false
+        usageBillImpactLoadingView.isHidden = true
+        usageBillImpactErrorView.isHidden = false
+        usageBillImpactEmptyStateView.isHidden = true
+        usageBillImpactContentView.isHidden = true
     }
     
-    func showUsageTrendsEmptyState() {
-        usageTrendsView.isHidden = false
-        usageTrendsLoadingView.isHidden = true
-        usageTrendsErrorView.isHidden = true
-        usageTrendsEmptyStateView.isHidden = false
-        usageTrendsContentView.isHidden = true
-    }
+//    func showUsageBillImpactEmptyState() {
+//        usageBillImpactView.isHidden = false
+//        usageBillImpactLoadingView.isHidden = true
+//        usageBillImpactErrorView.isHidden = true
+//        usageBillImpactEmptyStateView.isHidden = false
+//        usageBillImpactContentView.isHidden = true
+//    }
     
-    func showUsageTrendsContent() {
-        usageTrendsView.isHidden = false
-        usageTrendsLoadingView.isHidden = true
-        usageTrendsErrorView.isHidden = true
-        usageTrendsEmptyStateView.isHidden = true
-        usageTrendsContentView.isHidden = false
+    func showUsageBillImpactContent() {
+        usageBillImpactView.isHidden = false
+        usageBillImpactLoadingView.isHidden = true
+        usageBillImpactErrorView.isHidden = true
+        usageBillImpactEmptyStateView.isHidden = true
+        usageBillImpactContentView.isHidden = false
     }
     
     func showErrorState(error: ServiceError?) {
@@ -475,7 +475,7 @@ class BillViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         mainLoadingIndicator.isHidden = false
         topView.isHidden = true
-        usageTrendsView.isHidden = true
+        usageBillImpactView.isHidden = true
         billingOptionsView.isHidden = true
         errorView.isHidden = true
         prepaidView.isHidden = true
@@ -500,10 +500,10 @@ class BillViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] in self?.showSwitchingAccountState() })
             .disposed(by: bag)
         viewModel.showLoadedState.drive(onNext: { [weak self] in self?.showLoadedState() }).disposed(by: bag)
-        viewModel.showUsageTrendsLoading.drive(onNext: { [weak self] in self?.showUsageTrendsLoading() }).disposed(by: bag)
-        viewModel.usageTrendsError.drive(onNext: { [weak self] _ in self?.showUsageTrendsError() }).disposed(by: bag)
-        viewModel.showUsageTrendsEmptyState.drive(onNext: { [weak self] in self?.showUsageTrendsEmptyState() }).disposed(by: bag)
-        viewModel.showUsageTrendsContent.drive(onNext: { [weak self] in self?.showUsageTrendsContent() }).disposed(by: bag)
+        viewModel.showUsageBillImpactLoading.drive(onNext: { [weak self] in self?.showUsageBillImpactLoading() }).disposed(by: bag)
+        viewModel.usageBillImpactError.drive(onNext: { [weak self] _ in self?.showUsageBillImpactError() }).disposed(by: bag)
+        //viewModel.showUsageBillImpactEmptyState.drive(onNext: { [weak self] in self?.showUsageBillImpactEmptyState() }).disposed(by: bag)
+        viewModel.showUsageBillImpactContent.drive(onNext: { [weak self] in self?.showUsageBillImpactContent() }).disposed(by: bag)
         viewModel.accountDetailError.drive(onNext: { [weak self] in self?.showErrorState(error: $0) }).disposed(by: bag)
         viewModel.showPrepaidState.drive(onNext: { [weak self] in self?.showPrepaidState() }).disposed(by: bag)
         viewModel.showMaintenanceMode.drive(onNext: { [weak self] in self?.showMaintenanceModeState() }).disposed(by: bag)

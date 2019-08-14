@@ -20,7 +20,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillImpactDropdownView" customModule="BGE" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UsageBillImpactView" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="billPeriodButton" destination="gxK-zj-So2" id="bGP-ne-DbI"/>
                 <outlet property="billPeriodCircleButton" destination="47R-7x-Hn2" id="MB7-hv-Olm"/>

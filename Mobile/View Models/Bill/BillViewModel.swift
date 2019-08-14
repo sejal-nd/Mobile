@@ -33,7 +33,7 @@ class BillViewModel {
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
-    let usageTrendsLoading = PublishSubject<Bool>()
+    let usageBillImpactLoading = PublishSubject<Bool>()
     
     let electricGasSelectedSegmentIndex = Variable(0)
     let compareToLastYear = Variable(false)
@@ -76,13 +76,13 @@ class BillViewModel {
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
     
-    private lazy var usageTrendsEvents: Observable<Event<BillComparison>> = Observable
+    private lazy var usageBillImpactEvents: Observable<Event<BillComparison>> = Observable
         .combineLatest(dataEvents.elements().map { $0.0 }.filter { $0.isEligibleForUsageData },
                        compareToLastYear.asObservable(),
                        electricGasSelectedSegmentIndex.asObservable())
         .toAsyncRequest { [weak self] (accountDetail, compareToLastYear, electricGasIndex) in
             guard let self = self else { return .empty() }
-            self.usageTrendsLoading.onNext(true)
+            self.usageBillImpactLoading.onNext(true)
             let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasIndex)
             return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
                                                          premiseNumber: accountDetail.premiseNumber!,
@@ -99,31 +99,31 @@ class BillViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showUsageTrendsLoading: Driver<Void> =
-        Driver.combineLatest(self.usageTrendsLoading.asDriver(onErrorJustReturn: false),
+    private(set) lazy var showUsageBillImpactLoading: Driver<Void> =
+        Driver.combineLatest(self.usageBillImpactLoading.asDriver(onErrorJustReturn: false),
                              self.switchAccountsTracker.asDriver())
             .filter { $0 && !$1 }
             .mapTo(())
     
-    private(set) lazy var showUsageTrendsEmptyState: Driver<Void> = dataEvents.elements()
-        .map { $0.0 }
-        .filter {
-            return !$0.isEligibleForUsageData && $0.isResidential
-        }
-        .mapTo(())
-        .asDriver(onErrorDriveWith: .empty())
+//    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
+//        .map { $0.0 }
+//        .filter {
+//            return !$0.isEligibleForUsageData && $0.isResidential
+//        }
+//        .mapTo(())
+//        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var usageTrendsError: Driver<ServiceError?> = usageTrendsEvents.errors()
+    private(set) lazy var usageBillImpactError: Driver<ServiceError?> = usageBillImpactEvents.errors()
         .map { $0 as? ServiceError }
         .do(onNext: { [weak self] _ in
-            self?.usageTrendsLoading.onNext(false)
+            self?.usageBillImpactLoading.onNext(false)
         })
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showUsageTrendsContent: Driver<Void> = usageTrendsEvents
+    private(set) lazy var showUsageBillImpactContent: Driver<Void> = usageBillImpactEvents
         .filter { $0.element != nil }
         .do(onNext: { [weak self] _ in
-            self?.usageTrendsLoading.onNext(false)
+            self?.usageBillImpactLoading.onNext(false)
         })
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
@@ -143,7 +143,7 @@ class BillViewModel {
         .asDriver(onErrorDriveWith: Driver.empty())
     
 
-    private lazy var currentBillComparison: Driver<BillComparison> = usageTrendsEvents
+    private lazy var currentBillComparison: Driver<BillComparison> = usageBillImpactEvents
         .elements()
         .asDriver(onErrorDriveWith: .empty())
     
@@ -234,10 +234,6 @@ class BillViewModel {
             $0.isBudgetBillEnrollment ||
             Environment.shared.opco == .bge
     }
-    
-    
-	// MARK: - View Content
-    
     
     //MARK: - Banner Alert Text
     

@@ -1,5 +1,5 @@
 //
-//  BillImpactDropdownView.swift
+//  UsageBillImpactView.swift
 //  BGE
 //
 //  Created by Joseph Erlandson on 7/13/18.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class BillImpactDropdownView: UIView {
+class UsageBillImpactView: UIView {
 
     @IBOutlet private weak var view: UIView!
     
@@ -158,7 +158,7 @@ class BillImpactDropdownView: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("BillImpactDropdownView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("UsageBillImpactView", owner: self, options: nil)
         addSubview(view)
         view.frame = bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
