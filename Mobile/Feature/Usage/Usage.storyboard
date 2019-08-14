@@ -79,9 +79,12 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SgQ-bH-cZn">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="689.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="467" placeholderIntrinsicHeight="45" translatesAutoresizingMaskIntoConstraints="NO" id="b9o-Te-xzG" customClass="SegmentedControlNew" customModule="BGE" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="b9o-Te-xzG" customClass="SegmentedControlNew" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="19" y="0.0" width="305" height="45"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="45" id="S43-xz-pP9"/>
+                                                                </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhU-dZ-ioc">
                                                                 <rect key="frame" x="74" y="61" width="195" height="35.5"/>
@@ -754,7 +757,7 @@
                         <outlet property="projectionNotAvailableContainerButton" destination="csG-p7-Bmt" id="ljE-Sv-CwQ"/>
                         <outlet property="projectionNotAvailableUntilNextForecastLabel" destination="FfM-6j-hNX" id="Dlq-xq-Xsa"/>
                         <outlet property="scrollView" destination="auv-xw-MUC" id="gZz-P8-Fkb"/>
-                        <outlet property="segmentControl" destination="b9o-Te-xzG" id="Xtq-0L-Itv"/>
+                        <outlet property="segmentedControl" destination="b9o-Te-xzG" id="Xtq-0L-Itv"/>
                         <outlet property="switchAccountsLoadingIndicator" destination="DYi-RL-qXC" id="GAn-dI-hSF"/>
                         <outlet property="unavailableView" destination="l15-zg-OGE" id="ARk-PF-06B"/>
                         <outlet property="usageToolsStack" destination="8yI-lw-JsT" id="zNE-F7-JDI"/>
