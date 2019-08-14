@@ -552,13 +552,13 @@ class BillViewModel {
         }
     }
     
-    private(set) lazy var differenceDescriptionLabelText: Driver<String?> =
+    private(set) lazy var differenceDescriptionLabelAttributedText: Driver<NSAttributedString?> =
         Driver.combineLatest(currentAccountDetail, currentBillComparison, compareToLastYear.asDriver())
         { [weak self] accountDetail, billComparison, compareToLastYear in
             guard let self = self else { return nil }
             
             guard let reference = billComparison.reference, let compared = billComparison.compared else {
-                return NSLocalizedString("Data not available.", comment: "")
+                return NSAttributedString(string: NSLocalizedString("Data not available.", comment: ""))
             }
             
             let isGas = self.isGas(accountDetail: accountDetail,
@@ -570,29 +570,31 @@ class BillViewModel {
             let difference = abs(currentCharges - prevCharges)
             if difference < 1 { // About the same
                 if compareToLastYear { // Last Year
-                    let localizedString = NSLocalizedString("Your %@ charges are about the same as last year.", comment: "")
-                    return String(format: localizedString, gasOrElectricString)
+                    return NSAttributedString(string: String.localizedStringWithFormat("Your %@ charges are about the same as last year.", gasOrElectricString))
                 } else { // Previous Bill
-                    let localizedString = NSLocalizedString("Your %@ charges are about the same as your previous bill.", comment: "")
-                    return String(format: localizedString, gasOrElectricString)
+                    return NSAttributedString(string: String.localizedStringWithFormat("Your %@ charges are about the same as your previous bill.", gasOrElectricString))
                 }
             } else {
                 if currentCharges > prevCharges {
+                    let localizedString: String
                     if compareToLastYear { // Last Year
-                        let localizedString = NSLocalizedString("Your %@ charges are %@ more than last year.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ more than last year.", gasOrElectricString, difference.currencyString)
                     } else { // Previous Bill
-                        let localizedString = NSLocalizedString("Your %@ charges are %@ more than your previous bill.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ more than your previous bill.", gasOrElectricString, difference.currencyString)
                     }
+                    let attrString = NSMutableAttributedString(string: localizedString)
+                    attrString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    return attrString
                 } else {
+                    let localizedString: String
                     if compareToLastYear { // Last Year
-                        let localizedString = NSLocalizedString("Your %@ charges are %@ less than last year.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ less than last year.", gasOrElectricString, difference.currencyString)
                     } else { // Previous Bill
-                        let localizedString = NSLocalizedString("Your %@ charges are %@ less than your previous bill.", comment: "")
-                        return String(format: localizedString, gasOrElectricString, difference.currencyString)
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ less than your previous bill.", gasOrElectricString, difference.currencyString)
                     }
+                    let attrString = NSMutableAttributedString(string: localizedString)
+                    attrString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    return attrString
                 }
             }
         }
@@ -658,9 +660,9 @@ class BillViewModel {
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
             
-            let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
-            let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
-            let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
+//            let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
+//            let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
+//            let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
             
             var localizedString: String!
             if billComparison.weatherCostDifference >= 1 {
@@ -696,10 +698,10 @@ class BillViewModel {
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
             
-            let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
-            let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
-            let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
-            
+//            let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
+//            let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
+//            let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
+//
             var localizedString: String!
             if billComparison.otherCostDifference >= 1 {
                 localizedString = NSLocalizedString("Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +

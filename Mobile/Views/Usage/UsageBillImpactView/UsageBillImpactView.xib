@@ -84,10 +84,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-ja-QBu" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
-                            <rect key="frame" x="107.5" y="218" width="160" height="35"/>
+                            <rect key="frame" x="97.5" y="218" width="180" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="0Lq-6z-YSb"/>
-                                <constraint firstAttribute="width" constant="160" id="x6Y-Sf-jzY"/>
+                                <constraint firstAttribute="width" constant="180" id="x6Y-Sf-jzY"/>
                             </constraints>
                             <state key="normal" title="Compare to Last Year"/>
                             <userDefinedRuntimeAttributes>
@@ -96,6 +96,9 @@
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tintWhite" value="NO"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="comparisonToggleButtonPress" destination="-1" eventType="touchUpInside" id="XdZ-8L-5E9"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHk-q8-NlS">
                             <rect key="frame" x="0.0" y="286" width="375" height="335"/>

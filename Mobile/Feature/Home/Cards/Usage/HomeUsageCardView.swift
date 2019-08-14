@@ -165,7 +165,7 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsGraphView.superviewDidLayoutSubviews()
         
         // Fixes layout issues with segmented control
-        segmentedControl.selectIndex(segmentedControl.selectedIndex.value)
+        segmentedControl.selectIndex(segmentedControl.selectedIndex.value, animated: false)
     }
     
     private func styleBillComparison() {

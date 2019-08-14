@@ -144,7 +144,7 @@ class UsageBillImpactView: UIView {
     
     func superviewDidLayoutSubviews() {
         // Fixes layout issues with segmented control
-        elecGasSegmentedControl.selectIndex(elecGasSegmentedControl.selectedIndex.value)
+        elecGasSegmentedControl.selectIndex(elecGasSegmentedControl.selectedIndex.value, animated: false)
     }
     
     // MARK: - Actions
@@ -175,19 +175,37 @@ class UsageBillImpactView: UIView {
         
         viewModel.reasonsWhyLabelText.drive(reasonsWhyLabel.rx.text).disposed(by: disposeBag)
         
-        viewModel.differenceDescriptionLabelText.drive(differenceDescriptionLabel.rx.text).disposed(by: disposeBag)
+        viewModel.differenceDescriptionLabelAttributedText.drive(differenceDescriptionLabel.rx.attributedText).disposed(by: disposeBag)
         
         viewModel.billPeriodArrowImage.drive(billPeriodImageView.rx.image).disposed(by: disposeBag)
-        viewModel.currentBillComparison.map { $0.billPeriodCostDifference.currencyString }.drive(billPeriodAmountLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBillComparison.map { abs($0.billPeriodCostDifference).currencyString }.drive(billPeriodAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.billPeriodDetailLabelText.drive(billPeriodDetailLabel.rx.text).disposed(by: disposeBag)
         
         viewModel.weatherArrowImage.drive(weatherImageView.rx.image).disposed(by: disposeBag)
-        viewModel.currentBillComparison.map { $0.weatherCostDifference.currencyString }.drive(weatherAmountLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBillComparison.map { abs($0.weatherCostDifference).currencyString }.drive(weatherAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.weatherDetailLabelText.drive(weatherDetailLabel.rx.text).disposed(by: disposeBag)
         
         viewModel.otherArrowImage.drive(otherImageView.rx.image).disposed(by: disposeBag)
-        viewModel.currentBillComparison.map { $0.otherCostDifference.currencyString }.drive(otherAmountLabel.rx.text).disposed(by: disposeBag)
+        viewModel.currentBillComparison.map { abs($0.otherCostDifference).currencyString }.drive(otherAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.otherDetailLabelText.drive(otherDetailLabel.rx.text).disposed(by: disposeBag)
+        
+        viewModel.electricGasSelectedSegmentIndex.asDriver()
+            .distinctUntilChanged()
+            .drive(elecGasSegmentedControl.selectedIndex)
+            .disposed(by: disposeBag)
+        
+        elecGasSegmentedControl.selectedIndex.asDriver()
+            .distinctUntilChanged()
+            .do(onNext: { [weak self] _ in self?.showLoadingState() })
+            .drive(viewModel.electricGasSelectedSegmentIndex)
+            .disposed(by: disposeBag)
+        
+        viewModel.compareToLastYear.asDriver().drive(onNext: { [weak self] lastYear in
+            let title = lastYear ? NSLocalizedString("Compare to Previous Bill", comment: "") :
+                NSLocalizedString("Compare to Last Year", comment: "")
+            self?.comparisonToggleButton.setTitle(title, for: .normal)
+        }).disposed(by: disposeBag)
+        
         // Likely reasons
 //        viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
 //        viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
@@ -217,6 +235,15 @@ class UsageBillImpactView: UIView {
 //        viewModel.noPreviousData.drive(billPeriodCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
 //        viewModel.noPreviousData.drive(weatherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
 //        viewModel.noPreviousData.drive(otherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+    }
+    
+    @IBAction func comparisonToggleButtonPress() {
+        guard let viewModel = viewModel else { return }
+        viewModel.compareToLastYear.value = !viewModel.compareToLastYear.value
+    }
+    
+    func showLoadingState() {
+        
     }
     
 }
