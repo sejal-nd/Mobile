@@ -181,6 +181,8 @@ class UsageBillImpactView: UIView {
     func bindViewModel(_ viewModel: BillViewModel) {
         viewModel.reasonsWhyLabelText.drive(reasonsWhyLabel.rx.text).disposed(by: disposeBag)
         
+        viewModel.showElectricGasSegmentedControl.not().drive(elecGasSegmentedControl.rx.isHidden).disposed(by: disposeBag)
+        
         viewModel.differenceDescriptionLabelAttributedText.drive(differenceDescriptionLabel.rx.attributedText).disposed(by: disposeBag)
         
         viewModel.billPeriodArrowImage.drive(billPeriodImageView.rx.image).disposed(by: disposeBag)

@@ -535,7 +535,11 @@ class BillViewModel {
         return totalCharges > 0
     }
     
-    //MARK: - Usage Bill Impact
+    // MARK: - Usage Bill Impact
+    
+    private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = currentAccountDetail.map {
+        $0.serviceType?.uppercased() == "GAS/ELECTRIC"
+    }
     
     // MARK: Up/Down Arrow Image Drivers
     
