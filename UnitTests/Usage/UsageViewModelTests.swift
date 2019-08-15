@@ -431,7 +431,7 @@ class UsageViewModelTests: XCTestCase {
             "May 23, 2018 - Jun 24, 2018",  // Test case: Projected bar selected (electric)
             "May 23, 2018 - Jun 24, 2018",  // Test case: Projected bar selected (gas)
             "Projection Not Available" // Test case: Projection not available selected
-            ])
+        ])
     }
     
     func testBarDescriptionAvgTempLabelText() {
@@ -457,129 +457,6 @@ class UsageViewModelTests: XCTestCase {
         XCTAssertRecordedElements(trimmedEvents, ["Avg. Temp 89° F", "Avg. Temp 62° F"])
     }
     
-    // MARK: Up/Down Arrow Image Drivers
-    
-    func testBillPeriodArrowImage() {
-        MockUser.current = MockUser(globalKeys: .zeroCostDifference, .positiveCostDifference, .negativeCostDifference)
-        MockAccountService.loadAccountsSync()
-        
-        let observer = scheduler.createObserver(UIImage?.self)
-        
-        viewModel.billPeriodArrowImage.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
-            AccountsStore.shared.currentIndex = $0
-            self.viewModel.fetchAllData()
-        }).disposed(by: disposeBag)
-        scheduler.start()
-        
-        let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertRecordedElements(trimmedEvents, [#imageLiteral(resourceName: "no_change_icon"), #imageLiteral(resourceName: "ic_billanalysis_positive"), #imageLiteral(resourceName: "ic_billanalysis_negative")])
-    }
-    
-    func testWeatherArrowImage() {
-        MockUser.current = MockUser(globalKeys: .zeroCostDifference, .positiveCostDifference, .negativeCostDifference)
-        MockAccountService.loadAccountsSync()
-        
-        let observer = scheduler.createObserver(UIImage?.self)
-        
-        viewModel.weatherArrowImage.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
-            AccountsStore.shared.currentIndex = $0
-            self.viewModel.fetchAllData()
-        }).disposed(by: disposeBag)
-        scheduler.start()
-        
-        let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertRecordedElements(trimmedEvents, [#imageLiteral(resourceName: "no_change_icon"), #imageLiteral(resourceName: "ic_billanalysis_positive"), #imageLiteral(resourceName: "ic_billanalysis_negative")])
-    }
-    
-    func testOtherArrowImage() {
-        MockUser.current = MockUser(globalKeys: .zeroCostDifference, .positiveCostDifference, .negativeCostDifference)
-        MockAccountService.loadAccountsSync()
-        
-        let observer = scheduler.createObserver(UIImage?.self)
-        
-        viewModel.otherArrowImage.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2)]).subscribe(onNext: {
-            AccountsStore.shared.currentIndex = $0
-            self.viewModel.fetchAllData()
-        }).disposed(by: disposeBag)
-        scheduler.start()
-        
-        let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertRecordedElements(trimmedEvents, [#imageLiteral(resourceName: "no_change_icon"), #imageLiteral(resourceName: "ic_billanalysis_positive"), #imageLiteral(resourceName: "ic_billanalysis_negative")])
-    }
-    
-    // MARK: Likely Reasons Drivers
-    
-    func testLikelyReasonsLabelText() {
-        MockUser.current = MockUser(globalKeys: .likelyReasonsNoData, .likelyReasonsAboutSame, .likelyReasonsGreater, .likelyReasonsLess)
-        MockAccountService.loadAccountsSync()
-        
-        let observer = scheduler.createObserver(String?.self)
-        
-        viewModel.likelyReasonsLabelText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.createHotObservable([next(0, 0), next(1, 1), next(2, 2), next(3, 3), next(4, 4), next(5, 5), next(6, 6)]).subscribe(onNext: {
-            if $0 == 0 {
-                AccountsStore.shared.currentIndex = 0
-            } else if $0 == 1 {
-                AccountsStore.shared.currentIndex = 1
-            } else if $0 == 2 {
-                AccountsStore.shared.currentIndex = 1
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-            } else if $0 == 3 {
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
-                AccountsStore.shared.currentIndex = 2
-            } else if $0 == 4 {
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-                AccountsStore.shared.currentIndex = 2
-            } else if $0 == 5 {
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 1
-                AccountsStore.shared.currentIndex = 3
-            } else if $0 == 6 {
-                self.viewModel.lastYearPreviousBillSelectedSegmentIndex.value = 0
-                AccountsStore.shared.currentIndex = 3
-            }
-            self.viewModel.fetchAllData()
-        }).disposed(by: disposeBag)
-        scheduler.start()
-        
-        let trimmedEvents = removeIntermediateEvents(observer.events)
-        XCTAssertRecordedElements(trimmedEvents, [
-            "Data not available to explain likely reasons for changes in your electric charges.",
-            "Likely reasons your electric charges are about the same as your previous bill.",
-            "Likely reasons your electric charges are about the same as last year.",
-            "Likely reasons your electric charges are about $100.00 more than your previous bill.",
-            "Likely reasons your electric charges are about $100.00 more than last year.",
-            "Likely reasons your electric charges are about $100.00 less than your previous bill.",
-            "Likely reasons your electric charges are about $100.00 less than last year."
-            ])
-    }
-    
-    func testLikelyReasonsDescriptionTitleText() {
-        viewModel.setLikelyReasonSelected(tag: 0)
-        viewModel.likelyReasonsDescriptionTitleText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Bill Period", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        viewModel.setLikelyReasonSelected(tag: 1)
-        viewModel.likelyReasonsDescriptionTitleText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Weather", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-        
-        viewModel.setLikelyReasonSelected(tag: 2)
-        viewModel.likelyReasonsDescriptionTitleText.asObservable().take(1).subscribe(onNext: { text in
-            let expectedText = NSLocalizedString("Other", comment: "")
-            XCTAssertEqual(text, expectedText)
-        }).disposed(by: disposeBag)
-    }
-    
     func testSetBarSelected() {
         XCTAssert(viewModel.barGraphSelection.value.rawValue == 2, "Index 2 should be selected initially")
         
@@ -588,16 +465,6 @@ class UsageViewModelTests: XCTestCase {
 
         viewModel.setBarSelected(tag: 4)
         XCTAssert(viewModel.barGraphSelection.value.rawValue == 4, "Index 4 should be selected")
-    }
-    
-    func testSetLikelyReasonSelected() {
-        XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 0, "Index 0 should be selected initially")
-        
-        viewModel.setLikelyReasonSelected(tag: 1)
-        XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 1, "Index 1 should be selected")
-        
-        viewModel.setLikelyReasonSelected(tag: 2)
-        XCTAssert(viewModel.likelyReasonsSelection.value.rawValue == 2, "Index 2 should be selected")
     }
     
 }
