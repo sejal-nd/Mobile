@@ -97,7 +97,7 @@ class BillViewModel {
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var showUsageBillImpactLoading: Driver<Void> =
+    private(set) lazy var showUsageBillImpactFullLoading: Driver<Void> =
         Driver.combineLatest(self.usageBillImpactLoading.asDriver(onErrorJustReturn: false),
                              self.switchAccountsTracker.asDriver())
             .filter { $0 && !$1 }
@@ -111,12 +111,27 @@ class BillViewModel {
 //        .mapTo(())
 //        .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var usageBillImpactError: Driver<ServiceError?> = usageBillImpactEvents.errors()
-        .map { $0 as? ServiceError }
+    private(set) lazy var showUsageBillImpactFullError: Driver<Void> = usageBillImpactEvents.errors()
+        .filter { [weak self] _ in
+            guard let self = self else { return false }
+            return !self.usageBillImpactInnerLoading
+        }
+//        .do(onNext: { [weak self] _ in
+//            //self?.usageBillImpactLoading.onNext(false)
+//            self?.usageBillImpactInnerLoading = false
+//        })
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showUsageBillImpactInnerError: Driver<Void> = usageBillImpactEvents.errors()
+        .filter { [weak self] _ in
+            guard let self = self else { return false }
+            return self.usageBillImpactInnerLoading
+        }
         .do(onNext: { [weak self] _ in
-            //self?.usageBillImpactLoading.onNext(false)
             self?.usageBillImpactInnerLoading = false
         })
+        .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var showUsageBillImpactContent: Driver<Void> = usageBillImpactEvents

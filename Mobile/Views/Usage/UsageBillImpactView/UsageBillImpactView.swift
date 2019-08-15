@@ -104,6 +104,7 @@ class UsageBillImpactView: UIView {
     }
     
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var bottomSpacer: UIView!
     
     private let disposeBag = DisposeBag()
     
@@ -218,6 +219,12 @@ class UsageBillImpactView: UIView {
             }
         }).disposed(by: disposeBag)
         
+        viewModel.showUsageBillImpactInnerError.drive(onNext: { [weak self] in
+            self?.loadingView.isHidden = true
+            self?.differenceDescriptionLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+            self?.bottomSpacer.isHidden = false
+        }).disposed(by: disposeBag)
+        
         // Likely reasons
 //        viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
 //        viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
@@ -260,6 +267,7 @@ class UsageBillImpactView: UIView {
         viewModel.usageBillImpactInnerLoading = loading
         dropdownView.isHidden = loading
         loadingView.isHidden = !loading
+        bottomSpacer.isHidden = true
         if loading {
             reasonsWhyLabel.text = NSLocalizedString("Reasons Why Your Bill is...", comment: "")
             let elecGasStr = elecGasSegmentedControl.selectedIndex.value == 0 ? "electric" : "gas"

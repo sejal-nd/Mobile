@@ -17,6 +17,7 @@
                 <outlet property="billPeriodDetailView" destination="9RD-ti-5Jb" id="uny-rQ-lOX"/>
                 <outlet property="billPeriodImageView" destination="MeA-pW-E5c" id="FjW-HX-DEw"/>
                 <outlet property="billPeriodTitleLabel" destination="3UH-W2-JVG" id="MrD-a9-IaN"/>
+                <outlet property="bottomSpacer" destination="fvV-r2-Gs3" id="SHW-Eq-na5"/>
                 <outlet property="comparisonToggleButton" destination="n2B-ja-QBu" id="xuW-Fd-yv8"/>
                 <outlet property="differenceDescriptionLabel" destination="s87-fW-M1Q" id="Nz6-nC-Guu"/>
                 <outlet property="dropdownView" destination="RHk-q8-NlS" id="JzJ-NJ-h4z"/>
@@ -388,17 +389,26 @@
                                 <constraint firstAttribute="height" constant="92" id="uFT-dz-63r"/>
                             </constraints>
                         </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvV-r2-Gs3">
+                            <rect key="frame" x="0.0" y="668" width="375" height="0.0"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="999" constant="10" id="7vk-Q6-fYr"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Wxs-t2-Wbb" secondAttribute="trailing" id="0LR-nn-RT1"/>
                         <constraint firstAttribute="trailing" secondItem="tjl-S5-jSt" secondAttribute="trailing" constant="16" id="2l5-wJ-885"/>
                         <constraint firstAttribute="trailing" secondItem="RHk-q8-NlS" secondAttribute="trailing" id="4iG-ZZ-HQd"/>
+                        <constraint firstAttribute="trailing" secondItem="fvV-r2-Gs3" secondAttribute="trailing" id="MJC-Ia-k4f"/>
                         <constraint firstItem="kd4-ZJ-5YP" firstAttribute="leading" secondItem="U1t-hG-dQl" secondAttribute="leading" id="Qny-9E-T3I"/>
                         <constraint firstItem="Wxs-t2-Wbb" firstAttribute="leading" secondItem="U1t-hG-dQl" secondAttribute="leading" id="Wud-VU-Jr4"/>
                         <constraint firstItem="tjl-S5-jSt" firstAttribute="leading" secondItem="U1t-hG-dQl" secondAttribute="leading" constant="16" id="XNK-i7-weK"/>
                         <constraint firstAttribute="trailing" secondItem="s87-fW-M1Q" secondAttribute="trailing" constant="16" id="Yry-bp-6Lg"/>
                         <constraint firstAttribute="trailing" secondItem="kd4-ZJ-5YP" secondAttribute="trailing" id="atf-2D-wWV"/>
                         <constraint firstItem="RHk-q8-NlS" firstAttribute="leading" secondItem="U1t-hG-dQl" secondAttribute="leading" id="gcm-YB-jhr"/>
+                        <constraint firstItem="fvV-r2-Gs3" firstAttribute="leading" secondItem="U1t-hG-dQl" secondAttribute="leading" id="giD-A7-4N6"/>
                         <constraint firstItem="s87-fW-M1Q" firstAttribute="leading" secondItem="U1t-hG-dQl" secondAttribute="leading" constant="16" id="jmN-wG-yyL"/>
                     </constraints>
                 </stackView>
