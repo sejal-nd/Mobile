@@ -576,14 +576,14 @@ class BillViewModel {
         .filter { _ in self.usageBillImpactInnerLoading == false }.map { [weak self] accountDetail, billComparison, compareToLastYear in
             guard let self = self else { return nil }
             
-            guard let reference = billComparison.reference, let compared = billComparison.compared else {
-                return NSAttributedString(string: NSLocalizedString("Data not available.", comment: ""))
-            }
-            
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: self.electricGasSelectedSegmentIndex.value)
             let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
             
+            guard let reference = billComparison.reference, let compared = billComparison.compared else {
+                return NSAttributedString(string: String.localizedStringWithFormat("Data not available to explain likely reasons for changes in your %@ charges.", gasOrElectricString))
+            }
+                        
             let currentCharges = reference.charges
             let prevCharges = compared.charges
             let difference = abs(currentCharges - prevCharges)
@@ -671,10 +671,6 @@ class BillViewModel {
         { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
             guard let self = self else { return nil }
             
-            guard let reference = billComparison.reference, let compared = billComparison.compared else {
-                return NSLocalizedString("Data not available.", comment: "")
-            }
-            
             let isGas = self.isGas(accountDetail: accountDetail,
                                    electricGasSelectedIndex: electricGasSelectedIndex)
             let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
@@ -704,15 +700,7 @@ class BillViewModel {
         Driver.combineLatest(currentAccountDetail, currentBillComparison, electricGasSelectedSegmentIndex.asDriver())
         { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
             guard let self = self else { return nil }
-            
-            guard let reference = billComparison.reference, let compared = billComparison.compared else {
-                return NSLocalizedString("Data not available.", comment: "")
-            }
-            
-            let isGas = self.isGas(accountDetail: accountDetail,
-                                   electricGasSelectedIndex: electricGasSelectedIndex)
-            let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
-            
+                        
             var localizedString: String!
             if billComparison.otherCostDifference >= 1 {
                 localizedString = NSLocalizedString("Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +
@@ -726,7 +714,7 @@ class BillViewModel {
                 return NSLocalizedString("You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
                     "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
             }
-            return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString, gasOrElectricityString)
+            return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString)
     }
     
     private(set) lazy var noPreviousData: Driver<Bool> = currentBillComparison.map { $0.compared == nil }
