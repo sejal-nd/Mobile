@@ -740,9 +740,6 @@
 		82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
-		82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
-		82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
-		82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
 		82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
 		82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
 		82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
@@ -2881,7 +2878,6 @@
 		82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
 		82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
-		82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		82A18EB71EBA676700BE9F21 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
@@ -4499,7 +4495,6 @@
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				E841F3A61F02F316007BFA82 /* PickerView.swift */,
 				825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */,
-				82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */,
 				9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */,
 				9C62445522C1624900F14DA0 /* SecondaryButton.swift */,
 				82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */,
@@ -7686,7 +7681,6 @@
 				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
-				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				35A6C6DB211CC09C00C2A58F /* UpdatesViewModel.swift in Sources */,
 				35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
@@ -8066,7 +8060,6 @@
 				E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
-				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE821751FB700751430 /* MCSAppointmentService.swift in Sources */,
@@ -8448,7 +8441,6 @@
 				E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35920D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
-				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE721751FB700751430 /* MCSAppointmentService.swift in Sources */,
