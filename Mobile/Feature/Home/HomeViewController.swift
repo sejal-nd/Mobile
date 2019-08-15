@@ -722,7 +722,7 @@ extension HomeViewController: AccountPickerDelegate {
 
 extension HomeViewController: AutoPayViewControllerDelegate {
     
-    func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool) {
+    func autoPayViewController(_ autoPayViewController: UIViewController, enrolled: Bool) {
         let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(message)

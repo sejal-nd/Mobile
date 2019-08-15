@@ -515,7 +515,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
 
 extension BillingHistoryViewController: AutoPayViewControllerDelegate {
     
-    func autoPayViewController(_ autoPayViewController: AutoPayViewController, enrolled: Bool) {
+    func autoPayViewController(_ autoPayViewController: UIViewController, enrolled: Bool) {
         let message = enrolled ? NSLocalizedString("Enrolled in AutoPay", comment: ""): NSLocalizedString("Unenrolled from AutoPay", comment: "")
         showDelayedToast(withMessage: message)
         
