@@ -353,6 +353,12 @@
 		359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB622E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB722E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
+		35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
+		35A5DCBD2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
+		35A5DCBE2305D30900A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
+		35A5DCBF2305D35200A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		35A5DCC02305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		35A5DCC12305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -8807,6 +8813,7 @@
 				3559C8A922F9F69700481A87 /* HomeBillCardViewModel.swift in Sources */,
 				359BDB5722D8C4CD007002B0 /* FirebaseUtility.swift in Sources */,
 				B5389EA71E53DC1D0028AF89 /* AuthTokenParserTests.swift in Sources */,
+				35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */,
 				E8F51EEF1ECA5AE40080AB3E /* Fonts.swift in Sources */,
 				E8FF08671F7EDE360030F1BF /* BillingHistoryDetailsViewModel.swift in Sources */,
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
@@ -8857,6 +8864,7 @@
 				B5389EA81E53E1E50028AF89 /* AuthTokenParser.swift in Sources */,
 				B56DD4A51ED87AE200F0198B /* CreditCard.swift in Sources */,
 				B04DDF7821FFB0A800594ACF /* MockUser.swift in Sources */,
+				35A5DCBF2305D35200A82AA8 /* BGEAutoPayViewModel.swift in Sources */,
 				E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				0E7E16352191E75800A3748A /* WatchSessionManager.swift in Sources */,
 				E8264EF5200D4573004A7EDA /* PaymentViewModelTests.swift in Sources */,
@@ -9039,6 +9047,7 @@
 				3559C8A722F9F69600481A87 /* HomeBillCardViewModel.swift in Sources */,
 				359BDB5322D8C36D007002B0 /* FirebaseUtility.swift in Sources */,
 				E8F62B40200924410077B3DA /* Maintenance.swift in Sources */,
+				35A5DCBD2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */,
 				E8F62B42200924410077B3DA /* AuthTokenParserTests.swift in Sources */,
 				E8F62B43200924410077B3DA /* Fonts.swift in Sources */,
 				E8F62B45200924410077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */,
@@ -9089,6 +9098,7 @@
 				E8F62B68200924410077B3DA /* MockOutageService.swift in Sources */,
 				E8F62B69200924410077B3DA /* AuthTokenParser.swift in Sources */,
 				B04DDF7921FFB0A800594ACF /* MockUser.swift in Sources */,
+				35A5DCC02305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */,
 				E8F62B6A200924410077B3DA /* CreditCard.swift in Sources */,
 				0E7E16362191E75800A3748A /* WatchSessionManager.swift in Sources */,
 				E8F62B6B200924410077B3DA /* BillForecast.swift in Sources */,
@@ -9225,6 +9235,7 @@
 				3559C8A822F9F69600481A87 /* HomeBillCardViewModel.swift in Sources */,
 				359BDB5422D8C36E007002B0 /* FirebaseUtility.swift in Sources */,
 				E8F62BF5200924570077B3DA /* Maintenance.swift in Sources */,
+				35A5DCBE2305D30900A82AA8 /* AutoPayViewModel.swift in Sources */,
 				E8F62BF7200924570077B3DA /* AuthTokenParserTests.swift in Sources */,
 				E8F62BF8200924570077B3DA /* Fonts.swift in Sources */,
 				E8F62BFA200924570077B3DA /* BillingHistoryDetailsViewModel.swift in Sources */,
@@ -9275,6 +9286,7 @@
 				E8F62C1D200924570077B3DA /* MockOutageService.swift in Sources */,
 				E8F62C1E200924570077B3DA /* AuthTokenParser.swift in Sources */,
 				B04DDF7A21FFB0A800594ACF /* MockUser.swift in Sources */,
+				35A5DCC12305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */,
 				E8F62C1F200924570077B3DA /* CreditCard.swift in Sources */,
 				0E7E16372191E75900A3748A /* WatchSessionManager.swift in Sources */,
 				E8F62C20200924570077B3DA /* BillForecast.swift in Sources */,
