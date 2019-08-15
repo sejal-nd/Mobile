@@ -37,6 +37,7 @@ class UsageBillImpactView: UIView {
     
     @IBOutlet weak var dropdownView: UIView!
     
+    @IBOutlet weak var billPeriodStack: UIStackView!
     @IBOutlet weak var billPeriodTapView: UIView!
     @IBOutlet weak var billPeriodTitleLabel: UILabel! {
         didSet {
@@ -60,6 +61,7 @@ class UsageBillImpactView: UIView {
         }
     }
     
+    @IBOutlet weak var weatherStack: UIStackView!
     @IBOutlet weak var weatherTapView: UIView!
     @IBOutlet weak var weatherTitleLabel: UILabel! {
         didSet {
@@ -83,6 +85,7 @@ class UsageBillImpactView: UIView {
         }
     }
     
+    @IBOutlet weak var otherStack: UIStackView!
     @IBOutlet weak var otherTapView: UIView!
     @IBOutlet weak var otherTitleLabel: UILabel! {
         didSet {
@@ -180,24 +183,42 @@ class UsageBillImpactView: UIView {
         viewModel.differenceDescriptionLabelAttributedText.drive(differenceDescriptionLabel.rx.attributedText).disposed(by: disposeBag)
         
         billPeriodExpanded.asDriver().drive(onNext: { [weak self] expanded in
-            self?.billPeriodDetailView.isHidden = !expanded
-            self?.billPeriodCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.3) { [unowned self] in
+                self.billPeriodDetailView.isHidden = !expanded
+                self.billPeriodStack.layoutIfNeeded()
+            }
+            UIView.transition(with: self.billPeriodCaretImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
+                self.billPeriodCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+            }, completion: nil)
         }).disposed(by: disposeBag)
         viewModel.billPeriodArrowImage.drive(billPeriodImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.billPeriodCostDifference).currencyString }.drive(billPeriodAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.billPeriodDetailLabelText.drive(billPeriodDetailLabel.rx.text).disposed(by: disposeBag)
         
         weatherExpanded.asDriver().drive(onNext: { [weak self] expanded in
-            self?.weatherDetailView.isHidden = !expanded
-            self?.weatherCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.3) { [unowned self] in
+                self.weatherDetailView.isHidden = !expanded
+                self.weatherStack.layoutIfNeeded()
+            }
+            UIView.transition(with: self.weatherCaretImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
+                self.weatherCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+            }, completion: nil)
         }).disposed(by: disposeBag)
         viewModel.weatherArrowImage.drive(weatherImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.weatherCostDifference).currencyString }.drive(weatherAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.weatherDetailLabelText.drive(weatherDetailLabel.rx.text).disposed(by: disposeBag)
         
         otherExpanded.asDriver().drive(onNext: { [weak self] expanded in
-            self?.otherDetailView.isHidden = !expanded
-            self?.otherCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.3) { [unowned self] in
+                self.otherDetailView.isHidden = !expanded
+                self.otherStack.layoutIfNeeded()
+            }
+            UIView.transition(with: self.otherCaretImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
+                self.otherCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+            }, completion: nil)
         }).disposed(by: disposeBag)
         viewModel.otherArrowImage.drive(otherImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.otherCostDifference).currencyString }.drive(otherAmountLabel.rx.text).disposed(by: disposeBag)
