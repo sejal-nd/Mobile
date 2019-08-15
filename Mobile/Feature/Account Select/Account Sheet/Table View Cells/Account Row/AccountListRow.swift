@@ -23,7 +23,7 @@ class AccountListRow: UITableViewCell {
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet weak var accountNumber: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var carrotImageView: UIImageView!
+    @IBOutlet weak var caretImageView: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
@@ -81,9 +81,9 @@ class AccountListRow: UITableViewCell {
         }
         
         // Animate carrot image
-        UIView.transition(with: carrotImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
-            self.carrotImageView.image = self.cellState == .collapsed ? UIImage(named: "ic_carat_down") : UIImage(named: "ic_carat_up")
-            }, completion: nil)
+        UIView.transition(with: caretImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [unowned self] in
+            self.caretImageView.image = self.cellState == .collapsed ? #imageLiteral(resourceName: "ic_caret_down.pdf") : #imageLiteral(resourceName: "ic_caret_up.pdf")
+        }, completion: nil)
     }
     
     
@@ -102,7 +102,7 @@ class AccountListRow: UITableViewCell {
             configureTableView()
             
             selectionStyle = .none
-            carrotImageView.isHidden = false
+            caretImageView.isHidden = false
             
             // Address Label
             addressLabel.text = "Multi-Premise Account"
@@ -117,7 +117,7 @@ class AccountListRow: UITableViewCell {
             backgroundView.backgroundColor = .softGray
             selectedBackgroundView = backgroundView
             
-            carrotImageView.isHidden = true
+            caretImageView.isHidden = true
             
             // Address Label
             addressLabel.text = account.address

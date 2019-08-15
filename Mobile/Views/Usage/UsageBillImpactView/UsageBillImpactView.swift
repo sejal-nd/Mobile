@@ -37,6 +37,7 @@ class UsageBillImpactView: UIView {
     
     @IBOutlet weak var dropdownView: UIView!
     
+    @IBOutlet weak var billPeriodTapView: UIView!
     @IBOutlet weak var billPeriodTitleLabel: UILabel! {
         didSet {
             billPeriodTitleLabel.textColor = .deepGray
@@ -59,6 +60,7 @@ class UsageBillImpactView: UIView {
         }
     }
     
+    @IBOutlet weak var weatherTapView: UIView!
     @IBOutlet weak var weatherTitleLabel: UILabel! {
         didSet {
             weatherTitleLabel.textColor = .deepGray
@@ -81,6 +83,7 @@ class UsageBillImpactView: UIView {
         }
     }
     
+    @IBOutlet weak var otherTapView: UIView!
     @IBOutlet weak var otherTitleLabel: UILabel! {
         didSet {
             otherTitleLabel.textColor = .deepGray
@@ -108,16 +111,20 @@ class UsageBillImpactView: UIView {
     
     private let disposeBag = DisposeBag()
     
+    let billPeriodExpanded = BehaviorRelay(value: false)
+    let weatherExpanded = BehaviorRelay(value: false)
+    let otherExpanded = BehaviorRelay(value: false)
+    
 //    private var isExpanded = false {
 //        didSet {
 //            guard hasLoadedView else { return }
 //            UIView.animate(withDuration: 0.3, animations: { [weak self] in
 //                if let isExpanded = self?.isExpanded, isExpanded {
 //                    self?.billFactorView.isHidden = false
-//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_up")
+//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_caret_up")
 //                } else {
 //                    self?.billFactorView.isHidden = true
-//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_carat_down")
+//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_caret_down")
 //                }
 //                self?.contentStackView.layoutIfNeeded()
 //            })
@@ -128,8 +135,6 @@ class UsageBillImpactView: UIView {
     
     private var hasLoadedView = false
 
-    // MARK: - Init
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -147,6 +152,13 @@ class UsageBillImpactView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         loadingView.isHidden = true
+        
+        let billPeriodTap = UITapGestureRecognizer(target: self, action: #selector(onBillPeriodTap))
+        billPeriodTapView.addGestureRecognizer(billPeriodTap)
+        let weatherTap = UITapGestureRecognizer(target: self, action: #selector(onWeatherTap))
+        weatherTapView.addGestureRecognizer(weatherTap)
+        let otherTap = UITapGestureRecognizer(target: self, action: #selector(onOtherTap))
+        otherTapView.addGestureRecognizer(otherTap)
     }
     
     func superviewDidLayoutSubviews() {
@@ -154,25 +166,6 @@ class UsageBillImpactView: UIView {
         elecGasSegmentedControl.selectIndex(elecGasSegmentedControl.selectedIndex.value, animated: false)
         hasLoadedView = true
     }
-    
-    // MARK: - Actions
-    
-//    @IBAction private func factorImpactPress(_ sender: ButtonControl) {
-//        // guard statement will block analytics from occuring on view setup.
-//        guard let viewModel = viewModel else { return }
-//
-//        if sender.tag == 0 {
-//            GoogleAnalytics.log(event: .billPreviousReason)
-//        } else if sender.tag == 1 {
-//            GoogleAnalytics.log(event: .billWeatherReason)
-//        } else {
-//            GoogleAnalytics.log(event: .billOtherReason)
-//        }
-//
-//        viewModel.setLikelyReasonSelected(tag: sender.tag)
-//    }
-    
-    // MARK: - Configuration
     
     func configure(withViewModel viewModel: BillViewModel) {
         self.viewModel = viewModel
@@ -186,14 +179,26 @@ class UsageBillImpactView: UIView {
         
         viewModel.differenceDescriptionLabelAttributedText.drive(differenceDescriptionLabel.rx.attributedText).disposed(by: disposeBag)
         
+        billPeriodExpanded.asDriver().drive(onNext: { [weak self] expanded in
+            self?.billPeriodDetailView.isHidden = !expanded
+            self?.billPeriodCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+        }).disposed(by: disposeBag)
         viewModel.billPeriodArrowImage.drive(billPeriodImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.billPeriodCostDifference).currencyString }.drive(billPeriodAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.billPeriodDetailLabelText.drive(billPeriodDetailLabel.rx.text).disposed(by: disposeBag)
         
+        weatherExpanded.asDriver().drive(onNext: { [weak self] expanded in
+            self?.weatherDetailView.isHidden = !expanded
+            self?.weatherCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+        }).disposed(by: disposeBag)
         viewModel.weatherArrowImage.drive(weatherImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.weatherCostDifference).currencyString }.drive(weatherAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.weatherDetailLabelText.drive(weatherDetailLabel.rx.text).disposed(by: disposeBag)
         
+        otherExpanded.asDriver().drive(onNext: { [weak self] expanded in
+            self?.otherDetailView.isHidden = !expanded
+            self?.otherCaretImageView.image = expanded ? #imageLiteral(resourceName: "ic_caret_up.pdf") : #imageLiteral(resourceName: "ic_caret_down.pdf")
+        }).disposed(by: disposeBag)
         viewModel.otherArrowImage.drive(otherImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.otherCostDifference).currencyString }.drive(otherAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.otherDetailLabelText.drive(otherDetailLabel.rx.text).disposed(by: disposeBag)
@@ -272,6 +277,27 @@ class UsageBillImpactView: UIView {
             reasonsWhyLabel.text = NSLocalizedString("Reasons Why Your Bill is...", comment: "")
             let elecGasStr = elecGasSegmentedControl.selectedIndex.value == 0 ? "electric" : "gas"
             differenceDescriptionLabel.text = String.localizedStringWithFormat("Your %@ charges are...", elecGasStr)
+        }
+    }
+    
+    @objc func onBillPeriodTap() {
+        billPeriodExpanded.accept(!billPeriodExpanded.value)
+        if billPeriodExpanded.value {
+            GoogleAnalytics.log(event: .billPreviousReason)
+        }
+    }
+    
+    @objc func onWeatherTap() {
+        weatherExpanded.accept(!weatherExpanded.value)
+        if weatherExpanded.value {
+            GoogleAnalytics.log(event: .billWeatherReason)
+        }
+    }
+    
+    @objc func onOtherTap() {
+        otherExpanded.accept(!otherExpanded.value)
+        if otherExpanded.value {
+            GoogleAnalytics.log(event: .billOtherReason)
         }
     }
     
