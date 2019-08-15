@@ -118,22 +118,6 @@ class UsageBillImpactView: UIView {
     let weatherExpanded = BehaviorRelay(value: false)
     let otherExpanded = BehaviorRelay(value: false)
     
-//    private var isExpanded = false {
-//        didSet {
-//            guard hasLoadedView else { return }
-//            UIView.animate(withDuration: 0.3, animations: { [weak self] in
-//                if let isExpanded = self?.isExpanded, isExpanded {
-//                    self?.billFactorView.isHidden = false
-//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_caret_up")
-//                } else {
-//                    self?.billFactorView.isHidden = true
-//                    self?.carrotImageView.image = #imageLiteral(resourceName: "ic_caret_down")
-//                }
-//                self?.contentStackView.layoutIfNeeded()
-//            })
-//        }
-//    }
-    
     private var viewModel: BillViewModel?
     
     private var hasLoadedView = false
@@ -250,36 +234,10 @@ class UsageBillImpactView: UIView {
             self?.differenceDescriptionLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
             self?.bottomSpacer.isHidden = false
         }).disposed(by: disposeBag)
-        
-        // Likely reasons
-//        viewModel.billPeriodArrowImage.drive(billPeriodUpDownImageView.rx.image).disposed(by: disposeBag)
-//        viewModel.billPeriodA11yLabel.drive(billPeriodButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//        viewModel.weatherArrowImage.drive(weatherUpDownImageView.rx.image).disposed(by: disposeBag)
-//        viewModel.weatherA11yLabel.drive(weatherButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//        viewModel.otherArrowImage.drive(otherUpDownImageView.rx.image).disposed(by: disposeBag)
-//        viewModel.otherA11yLabel.drive(otherButton.rx.accessibilityLabel).disposed(by: disposeBag)
-//
-//        viewModel.likelyReasonsLabelText.drive(descriptionLabel.rx.text).disposed(by: disposeBag)
-//        viewModel.likelyReasonsDescriptionTitleText.drive(bubbleViewTitleLabel.rx.text).disposed(by: disposeBag)
-//        viewModel.likelyReasonsDescriptionDetailText.drive(bubbleViewDescriptionLabel.rx.text).disposed(by: disposeBag)
-//        viewModel.noPreviousData.drive(likelyReasonsDescriptionView.rx.isHidden).disposed(by: disposeBag)
-//        viewModel.noPreviousData.drive(billPeriodUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-//        viewModel.noPreviousData.drive(weatherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-//        viewModel.noPreviousData.drive(otherUpDownImageView.rx.isHidden).disposed(by: disposeBag)
-//        for label in likelyReasonsNoDataLabels {
-//            viewModel.noPreviousData.not().drive(label.rx.isHidden).disposed(by: disposeBag)
-//        }
-//
-//        Driver.combineLatest(viewModel.likelyReasonsSelection.asDriver().distinctUntilChanged(),
-//                             viewModel.noPreviousData.distinctUntilChanged())
-//            .drive(onNext: { [weak self] likelyReasonsSelection, noPreviousData in
-//                self?.updateLikelyReasonsSelection(noPreviousData ? nil : likelyReasonsSelection)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        viewModel.noPreviousData.drive(billPeriodCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
-//        viewModel.noPreviousData.drive(weatherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
-//        viewModel.noPreviousData.drive(otherCircleButton.rx.isUserInteractionEnabled).disposed(by: disposeBag)
+        viewModel.noPreviousData.drive(onNext: { [weak self] noData in
+            self?.dropdownView.isHidden = noData
+            self?.bottomSpacer.isHidden = !noData
+        }).disposed(by: disposeBag)
     }
     
     @IBAction func comparisonToggleButtonPress() {

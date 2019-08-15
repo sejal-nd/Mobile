@@ -116,10 +116,6 @@ class BillViewModel {
             guard let self = self else { return false }
             return !self.usageBillImpactInnerLoading
         }
-//        .do(onNext: { [weak self] _ in
-//            //self?.usageBillImpactLoading.onNext(false)
-//            self?.usageBillImpactInnerLoading = false
-//        })
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -137,7 +133,6 @@ class BillViewModel {
     private(set) lazy var showUsageBillImpactContent: Driver<Void> = usageBillImpactEvents
         .filter { $0.element != nil }
         .do(onNext: { [weak self] _ in
-            //self?.usageBillImpactLoading.onNext(false)
             self?.usageBillImpactInnerLoading = false
         })
         .mapTo(())
