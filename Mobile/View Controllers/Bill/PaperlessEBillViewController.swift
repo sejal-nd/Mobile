@@ -38,7 +38,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     @IBOutlet weak var footerContainer: UIView!
     @IBOutlet weak var footerLabel: UILabel!
     
-    @IBOutlet weak var enrollmentButton: PrimaryButtonNew!
+    @IBOutlet weak var enrollmentButton: PrimaryButton!
     @IBOutlet weak var unenrollView: UIView!
     @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!

@@ -24,7 +24,7 @@ class InfoAlertController: UIViewController {
     private let titleLabel = UILabel().usingAutoLayout()
     private let messageLabel = UILabel().usingAutoLayout()
     private let xButton = UIButton(type: .custom).usingAutoLayout()
-    private var ctaButton: PrimaryButtonNew?
+    private var ctaButton: PrimaryButton?
     
     private let titleString: String
     private let message: String
@@ -82,7 +82,7 @@ class InfoAlertController: UIViewController {
         stackView.addArrangedSubview(messageLabel)
         
         if let _ = action {
-            let ctaButton = PrimaryButtonNew(frame: .zero).usingAutoLayout()
+            let ctaButton = PrimaryButton(frame: .zero).usingAutoLayout()
             
             stackView.addArrangedSubview(ctaButton)
             
@@ -138,7 +138,7 @@ class InfoAlertController: UIViewController {
         ctaButton?.addTarget(self, action: #selector(callToAction(_:)), for: .touchUpInside)
     }
     
-    @objc private func callToAction(_ ctaButton: PrimaryButtonNew) {
+    @objc private func callToAction(_ ctaButton: PrimaryButton) {
         presentingViewController?.dismiss(animated: true, completion: action?.callToAction)
     }
     

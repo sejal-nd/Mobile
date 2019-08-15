@@ -21,7 +21,7 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
     @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var searchButton: PrimaryButtonNew!
+    @IBOutlet weak var searchButton: PrimaryButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

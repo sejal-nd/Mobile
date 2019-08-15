@@ -31,13 +31,13 @@
                     <rect key="frame" x="30" y="30" width="354" height="339"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="img_prepaidlogo" translatesAutoresizingMaskIntoConstraints="NO" id="hI0-zO-Bcp">
-                            <rect key="frame" x="102" y="0.0" width="150" height="64"/>
+                            <rect key="frame" x="169" y="0.0" width="16" height="16"/>
                             <accessibility key="accessibilityConfiguration" label="Prepaid Power">
                                 <bool key="isElement" value="YES"/>
                             </accessibility>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhW-Ak-tO5" userLabel="Spacer">
-                            <rect key="frame" x="177" y="64" width="0.0" height="30"/>
+                            <rect key="frame" x="177" y="16" width="0.0" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="rL4-KD-iDt"/>
@@ -45,7 +45,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are currently enrolled in BGE Prepaid Power" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNd-Pt-hPI">
-                            <rect key="frame" x="42.5" y="94" width="269.5" height="72.5"/>
+                            <rect key="frame" x="42.5" y="46" width="269.5" height="120.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                 <constraint firstAttribute="height" constant="40" id="mi1-h1-dd2"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-y0-BIg" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0i-y0-BIg" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="284" width="354" height="55"/>
                             <accessibility key="accessibilityConfiguration" label="Launch Dashboard"/>
                             <constraints>

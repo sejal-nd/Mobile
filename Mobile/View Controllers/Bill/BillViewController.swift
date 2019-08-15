@@ -80,7 +80,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var viewBillButton: ButtonControl!
     @IBOutlet weak var viewBillLabel: UILabel!
 
-    @IBOutlet weak var makeAPaymentButton: PrimaryButtonNew!
+    @IBOutlet weak var makeAPaymentButton: PrimaryButton!
     
 	@IBOutlet weak var billPaidFakeButtonView: UIView!
     @IBOutlet weak var billPaidLabel: UILabel!

@@ -987,9 +987,9 @@
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
-		9C7FFD1A22C1251800092987 /* PrimaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */; };
-		9C7FFD1B22C1251800092987 /* PrimaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */; };
-		9C7FFD1C22C1251800092987 /* PrimaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */; };
+		9C7FFD1A22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
+		9C7FFD1B22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
+		9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
 		9C8775B522A082CD0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
 		9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
 		9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
@@ -2962,7 +2962,7 @@
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
-		9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonNew.swift; sourceTree = "<group>"; };
+		9C7FFD1922C1251800092987 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
@@ -4495,7 +4495,7 @@
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				E841F3A61F02F316007BFA82 /* PickerView.swift */,
 				825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */,
-				9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */,
+				9C7FFD1922C1251800092987 /* PrimaryButton.swift */,
 				9C62445522C1624900F14DA0 /* SecondaryButton.swift */,
 				82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */,
 				82A18EB71EBA676700BE9F21 /* Switch.swift */,
@@ -7951,7 +7951,7 @@
 				B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
 				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
-				9C7FFD1A22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
+				9C7FFD1A22C1251800092987 /* PrimaryButton.swift in Sources */,
 				9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
@@ -8201,7 +8201,7 @@
 				E8127B281EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
-				9C7FFD1C22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
+				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3361F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
@@ -8712,7 +8712,7 @@
 				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
-				9C7FFD1B22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
+				9C7FFD1B22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,

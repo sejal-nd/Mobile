@@ -17,7 +17,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
     @IBOutlet weak var col2HeaderLabel: UILabel!
     @IBOutlet weak var col3HeaderLabel: UILabel!
     @IBOutlet weak var firstSeparatorView: UIView!
-    @IBOutlet weak var selectAccountButton: PrimaryButtonNew!
+    @IBOutlet weak var selectAccountButton: PrimaryButton!
     
     var analyticsSource: AnalyticsOutageSource!
     var viewModel: UnauthenticatedOutageViewModel! // Passed from UnauthenticatedOutageValidateAccountViewController

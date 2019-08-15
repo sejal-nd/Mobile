@@ -1,5 +1,5 @@
 //
-//  PrimaryButtonNew.swift
+//  PrimaryButton.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 6/24/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Lottie
 
-class PrimaryButtonNew: UIButton {
+class PrimaryButton: UIButton {
     
     var loadingAnimationView = LOTAnimationView(name: "loading")
     var checkmarkAnimationView = LOTAnimationView(name: "checkmark")
