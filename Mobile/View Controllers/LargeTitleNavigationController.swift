@@ -28,6 +28,7 @@ class LargeTitleNavigationController: UINavigationController {
         navigationBar.barStyle = .default
         
         let color: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        view.backgroundColor = color
         navigationBar.backgroundColor = color
         navigationBar.barTintColor = color
         navigationBar.tintColor = .actionBlue
