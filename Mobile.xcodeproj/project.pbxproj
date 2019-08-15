@@ -3825,15 +3825,8 @@
 		3559C8B42301E43600481A87 /* Autopay */ = {
 			isa = PBXGroup;
 			children = (
-				3559C8B52301E4FF00481A87 /* AutoPay.storyboard */,
-				E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */,
-				822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */,
-				E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */,
-				3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */,
-				E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */,
-				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
-				E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */,
-				B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */,
+				35A5DCBA2304400A00A82AA8 /* AutoPay Peco - ComEd */,
+				35A5DCBB2304402D00A82AA8 /* AutoPay BGE */,
 			);
 			path = Autopay;
 			sourceTree = "<group>";
@@ -3949,6 +3942,29 @@
 				35C9138A22E754C8009DD71A /* Report Outage */,
 			);
 			path = "Detail Pages";
+			sourceTree = "<group>";
+		};
+		35A5DCBA2304400A00A82AA8 /* AutoPay Peco - ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				3559C8B52301E4FF00481A87 /* AutoPay.storyboard */,
+				E8C4531E1EF430ED00F5C781 /* AutoPayViewController.swift */,
+				822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */,
+				E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */,
+				3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */,
+			);
+			path = "AutoPay Peco - ComEd";
+			sourceTree = "<group>";
+		};
+		35A5DCBB2304402D00A82AA8 /* AutoPay BGE */ = {
+			isa = PBXGroup;
+			children = (
+				E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */,
+				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
+				E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */,
+				B06B08812226E948008FC74E /* BGEAutoPaySettingsViewModel.swift */,
+			);
+			path = "AutoPay BGE";
 			sourceTree = "<group>";
 		};
 		35A6C6BC211C6FD100C2A58F /* TitleTableViewHeaderView */ = {
