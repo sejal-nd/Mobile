@@ -32,6 +32,12 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
         style()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.sizeFooterToFit()
+    }
+    
     
     // MARK: - Helper
     
