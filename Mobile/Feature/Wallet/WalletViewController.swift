@@ -259,8 +259,12 @@ class WalletViewController: UIViewController {
     
     // MARK: - Actions
     
+    var handlingEditTap = false // Prevent crash when tapping 2 edit buttons at the same time
     @objc private func onEditWalletItemPress(sender: UIButton) {
-        guard let walletItems = viewModel.walletItems.value, walletItems.indices.contains(sender.tag) else { return }
+        guard let walletItems = viewModel.walletItems.value, walletItems.indices.contains(sender.tag), !handlingEditTap else { return }
+        
+        handlingEditTap = true
+        
         let walletItemToEdit = walletItems[sender.tag]
         selectedWalletItem = walletItemToEdit
         let paymentusVC = PaymentusFormViewController(bankOrCard: walletItemToEdit.bankOrCard, temporary: false, walletItemId: walletItemToEdit.walletItemId)
@@ -268,6 +272,10 @@ class WalletViewController: UIViewController {
         paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
         paymentusVC.editingDefaultItem = walletItemToEdit.isDefault
         self.navigationController?.pushViewController(paymentusVC, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) { [weak self] in
+            self?.handlingEditTap = false
+        }
     }
 
     @objc private func onDeleteWalletItemPress(sender: UIButton) {
