@@ -38,6 +38,12 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
         tableView.sizeFooterToFit()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.selectedUnenrollmentReason.value = nil
+    }
+    
     
     // MARK: - Helper
     
