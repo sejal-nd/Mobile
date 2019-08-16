@@ -159,6 +159,9 @@
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstItem="vcj-6w-cPp" firstAttribute="leading" secondItem="8Ae-iR-lNh" secondAttribute="leading" constant="8" id="0oo-CD-ffI"/>
                                                 <constraint firstItem="qX6-SB-YYT" firstAttribute="leading" secondItem="vcj-6w-cPp" secondAttribute="trailing" constant="10" id="9ey-9y-F5z"/>
@@ -244,6 +247,9 @@
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstItem="3aW-E6-VRI" firstAttribute="leading" secondItem="qkK-Wx-bbC" secondAttribute="trailing" constant="16" id="5cY-fv-DJj"/>
                                                 <constraint firstItem="3aW-E6-VRI" firstAttribute="centerY" secondItem="qkK-Wx-bbC" secondAttribute="centerY" id="8UD-Dh-s7C"/>
@@ -329,6 +335,9 @@
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <bool key="isElement" value="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstItem="6eS-JD-6dL" firstAttribute="centerY" secondItem="oNV-zX-XBU" secondAttribute="centerY" id="3DF-pq-2uA"/>
                                                 <constraint firstItem="oNV-zX-XBU" firstAttribute="leading" secondItem="okw-Z2-ReG" secondAttribute="trailing" constant="10" id="9Id-zb-kke"/>
