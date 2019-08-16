@@ -186,17 +186,17 @@ class HomeUsageCardView: UIView {
         
         // Bar Graph Text Colors
         noDataLabel.textColor = .deepGray
-        noDataLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        noDataLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         noDataDateLabel.textColor = .deepGray
-        noDataDateLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        noDataDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         previousDollarLabel.textColor = .deepGray
-        previousDollarLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        previousDollarLabel.font = SystemFont.regular.of(textStyle: .caption1)
         previousDateLabel.textColor = .deepGray
-        previousDateLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        previousDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         currentDollarLabel.textColor = .deepGray
-        currentDollarLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        currentDollarLabel.font = SystemFont.regular.of(textStyle: .caption1)
         currentDateLabel.textColor = .deepGray
-        currentDateLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        currentDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         // Bar Graph Text Fonts
         noDataLabel.font = SystemFont.bold.of(textStyle: .subheadline)

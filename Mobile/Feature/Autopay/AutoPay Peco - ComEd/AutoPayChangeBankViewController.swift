@@ -14,94 +14,92 @@ protocol AutoPayChangeBankViewControllerDelegate: class {
 	func changedBank()
 }
 
-class AutoPayChangeBankViewController: UIViewController {
+class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewController {
 	
 	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
-	@IBOutlet weak var nameTextField: FloatLabelTextField!
-	@IBOutlet weak var routingNumberTextField: FloatLabelTextField!
+	@IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControlNew!
+	@IBOutlet weak var nameTextField: FloatLabelTextFieldNew!
+	@IBOutlet weak var routingNumberTextField: FloatLabelTextFieldNew!
 	@IBOutlet weak var routingNumberTooltipButton: UIButton!
-	@IBOutlet weak var accountNumberTextField: FloatLabelTextField!
+	@IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
 	@IBOutlet weak var accountNumberTooltipButton: UIButton!
-	@IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
+	@IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextFieldNew!
 	
 	@IBOutlet weak var tacStackView: UIStackView!
-	@IBOutlet weak var tacSwitch: Switch!
+	@IBOutlet weak var tacSwitch: Checkbox!
 	@IBOutlet weak var tacLabel: UILabel!
 	@IBOutlet weak var tacButton: UIButton!
 	
 	@IBOutlet weak var footerLabel: UILabel!
 	
+    @IBOutlet weak var stickyFooterView: StickyFooterView!
+    @IBOutlet weak var enrollButton: PrimaryButton!
+    
 	let bag = DisposeBag()
 	
 	var viewModel: AutoPayViewModel!
-    var saveButton = UIBarButtonItem()
     
 	weak var delegate: AutoPayChangeBankViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("Change Bank Account", comment: "")
-        
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: #selector(onSavePress))
-        
-        navigationItem.leftBarButtonItem = cancelButton
-		navigationItem.rightBarButtonItem = saveButton
-		
-		NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification, object: nil)
-			.asDriver(onErrorDriveWith: Driver.empty())
-			.drive(onNext: keyboardWillShow)
-			.disposed(by: bag)
-		
-		NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification, object: nil)
-			.asDriver(onErrorDriveWith: Driver.empty())
-			.drive(onNext: keyboardWillHide)
-			.disposed(by: bag)
-		
+        addCloseButton()
 		style()
+        configureView()
 		textFieldSetup()
 		bindViews()
-		
-		viewModel.canSubmitNewAccount.drive(saveButton.rx.isEnabled).disposed(by: bag)
 	}
 	
     override func viewDidAppear(_ animated: Bool) {
         GoogleAnalytics.log(event: .autoPayModifyBankView)
     }
     
+    
+    // MARK: - Helper
+    
+    private func configureView() {
+        title = NSLocalizedString("Change Bank Account", comment: "")
+        viewModel.canSubmitNewAccount.drive(enrollButton.rx.isEnabled).disposed(by: bag)
+    }
+    
 	private func style() {
 		tacLabel.text = NSLocalizedString("Yes, I have read, understand and agree to the terms and conditions below, and by checking this box, I authorize ComEd to regularly debit the bank account provided.\n\nI understand that my bank account will be automatically debited each billing period for the total amount due, that these are variable charges, and that my bill being posted in the ComEd mobile app acts as my notification.\n\nCustomers can see their bill monthly through the ComEd mobile app. Bills are delivered online during each billing cycle. Please note that this will not change your preferred bill delivery method.\n", comment: "")
-		tacLabel.font = SystemFont.regular.of(textStyle: .headline)
+        tacLabel.textColor = .deepGray
+		tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
 		tacLabel.setLineHeight(lineHeight: 25)
         tacSwitch.accessibilityLabel = "I agree to ComEd’s AutoPay Terms and Conditions"
-		tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        footerLabel.font = OpenSans.regular.of(textStyle: .footnote)
+		tacButton.titleLabel?.font = SystemFont.bold.of(textStyle: .subheadline)
+        footerLabel.textColor = .deepGray
+        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        footerLabel.setLineHeight(lineHeight: 16)
 	}
 	
 	private func textFieldSetup() {
-		nameTextField.textField.placeholder = NSLocalizedString("Name on Account*", comment: "")
+		nameTextField.placeholder = NSLocalizedString("Name on Account*", comment: "")
 		nameTextField.textField.delegate = self
 		nameTextField.textField.returnKeyType = .next
 		
-		routingNumberTextField.textField.placeholder = NSLocalizedString("Routing Number*", comment: "")
+		routingNumberTextField.placeholder = NSLocalizedString("Routing Number*", comment: "")
 		routingNumberTextField.textField.delegate = self
 		routingNumberTextField.setKeyboardType(.numberPad)
 		routingNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 		routingNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 		
-		accountNumberTextField.textField.placeholder = NSLocalizedString("Account Number*", comment: "")
+		accountNumberTextField.placeholder = NSLocalizedString("Account Number*", comment: "")
 		accountNumberTextField.textField.delegate = self
 		accountNumberTextField.setKeyboardType(.numberPad)
 		accountNumberTextField.textField.isShowingAccessory = true
 		accountNumberTooltipButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 		
-		confirmAccountNumberTextField.textField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
+		confirmAccountNumberTextField.placeholder = NSLocalizedString("Confirm Account Number*", comment: "")
 		confirmAccountNumberTextField.textField.delegate = self
 		confirmAccountNumberTextField.setKeyboardType(.numberPad)
 	}
 	
+    
+    // MARK: - Bindings
+    
 	private func bindViews() {
         checkingSavingsSegmentedControl.items = [
             NSLocalizedString("Checking", comment: ""),
@@ -117,7 +115,7 @@ class AutoPayChangeBankViewController: UIViewController {
 		accountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.accountNumber).disposed(by: bag)
 		routingNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.routingNumber).disposed(by: bag)
 		confirmAccountNumberTextField.textField.rx.text.orEmpty.bind(to: viewModel.confirmAccountNumber).disposed(by: bag)
-		tacSwitch.rx.isOn.bind(to: viewModel.termsAndConditionsCheck).disposed(by: bag)
+		tacSwitch.rx.isChecked.bind(to: viewModel.termsAndConditionsCheck).disposed(by: bag)
 		tacStackView.isHidden = !viewModel.shouldShowTermsAndConditionsCheck
 
 		// Name on Account
@@ -223,13 +221,16 @@ class AutoPayChangeBankViewController: UIViewController {
         message += confirmAccountNumberTextField.getError()
         
         if message.isEmpty {
-            saveButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+            enrollButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
         } else {
-            saveButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
+            enrollButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
         }
     }
 	
-	
+    
+    // MARK: - Actions
+    
+	@objc
 	func onTermsAndConditionsPress() {
 		let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
 		                                 url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
@@ -245,30 +246,7 @@ class AutoPayChangeBankViewController: UIViewController {
 		let infoModal = InfoModalViewController(title: NSLocalizedString("Account Number", comment: ""), image: #imageLiteral(resourceName: "account_number_info"), description: NSLocalizedString("This number is used to identify your bank account. You can find your checking account number on the bottom of your paper check following the routing number.", comment: ""))
 		navigationController?.present(infoModal, animated: true, completion: nil)
 	}
-	
-	
-	// MARK: - ScrollView
-	
-	func keyboardWillShow(notification: Notification) {
-		let userInfo = notification.userInfo!
-		let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-		
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-		let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-		scrollView.contentInset = insets
-		scrollView.scrollIndicatorInsets = insets
-	}
-	
-	func keyboardWillHide(notification: Notification) {
-		scrollView.contentInset = .zero
-		scrollView.scrollIndicatorInsets = .zero
-	}
-	
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    
+
     @objc func onSavePress() {
         LoadingView.show()
         GoogleAnalytics.log(event: .autoPayModifyBankSave)
@@ -292,6 +270,9 @@ class AutoPayChangeBankViewController: UIViewController {
     }
 	
 }
+
+
+// MARK: - Text Field Delegate
 
 extension AutoPayChangeBankViewController: UITextFieldDelegate {
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -36,7 +36,7 @@
                                     <rect key="frame" x="23" y="30" width="329" height="16"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="This will be a little description of the information" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDT-tq-9ma">
-                                    <rect key="frame" x="37" y="66" width="301" height="37.5"/>
+                                    <rect key="frame" x="18" y="66" width="339" height="37.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -45,11 +45,11 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="sDT-tq-9ma" firstAttribute="top" secondItem="Ks8-qC-Oj8" secondAttribute="bottom" constant="20" id="2fy-6S-Lxa"/>
-                                <constraint firstItem="sDT-tq-9ma" firstAttribute="leading" secondItem="JYJ-e8-JsC" secondAttribute="leading" constant="37" id="6IV-nU-QFR"/>
+                                <constraint firstItem="sDT-tq-9ma" firstAttribute="leading" secondItem="JYJ-e8-JsC" secondAttribute="leading" constant="18" id="6IV-nU-QFR"/>
                                 <constraint firstItem="sDT-tq-9ma" firstAttribute="centerX" secondItem="JYJ-e8-JsC" secondAttribute="centerX" id="6Zi-Hn-I4M"/>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="WVu-wa-Dng"/>
                                 <constraint firstAttribute="bottom" secondItem="sDT-tq-9ma" secondAttribute="bottom" constant="20" id="iAC-lF-Fz2"/>
-                                <constraint firstAttribute="trailing" secondItem="sDT-tq-9ma" secondAttribute="trailing" constant="37" id="pCc-eZ-ljp"/>
+                                <constraint firstAttribute="trailing" secondItem="sDT-tq-9ma" secondAttribute="trailing" constant="18" id="pCc-eZ-ljp"/>
                                 <constraint firstAttribute="trailing" secondItem="Ks8-qC-Oj8" secondAttribute="trailing" constant="23" id="qSg-ge-Q76"/>
                                 <constraint firstItem="Ks8-qC-Oj8" firstAttribute="top" secondItem="JYJ-e8-JsC" secondAttribute="top" constant="30" id="t6Y-W9-zun"/>
                                 <constraint firstItem="Ks8-qC-Oj8" firstAttribute="leading" secondItem="JYJ-e8-JsC" secondAttribute="leading" constant="23" id="u6g-iX-NtU"/>
