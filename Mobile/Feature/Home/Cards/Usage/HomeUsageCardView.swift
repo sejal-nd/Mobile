@@ -163,9 +163,6 @@ class HomeUsageCardView: UIView {
             moveTriangleTo(barView: currentContainerButton)
         }
         smartEnergyRewardsGraphView.superviewDidLayoutSubviews()
-        
-        // Fixes layout issues with segmented control
-        segmentedControl.selectIndex(segmentedControl.selectedIndex.value, animated: false)
     }
     
     private func styleBillComparison() {

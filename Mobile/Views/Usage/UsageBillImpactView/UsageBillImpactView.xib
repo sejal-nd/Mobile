@@ -65,6 +65,7 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYl-Gi-Xhc">
                                     <rect key="frame" x="320" y="20" width="24" height="24"/>
+                                    <accessibility key="accessibilityConfiguration" label="Tool tip"/>
                                     <state key="normal" image="ic_tooltip"/>
                                 </button>
                             </subviews>

@@ -119,8 +119,6 @@ class UsageBillImpactView: UIView {
     let otherExpanded = BehaviorRelay(value: false)
     
     private var viewModel: BillViewModel?
-    
-    private var hasLoadedView = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -146,12 +144,6 @@ class UsageBillImpactView: UIView {
         weatherTapView.addGestureRecognizer(weatherTap)
         let otherTap = UITapGestureRecognizer(target: self, action: #selector(onOtherTap))
         otherTapView.addGestureRecognizer(otherTap)
-    }
-    
-    func superviewDidLayoutSubviews() {
-        // Fixes layout issues with segmented control
-        elecGasSegmentedControl.selectIndex(elecGasSegmentedControl.selectedIndex.value, animated: false)
-        hasLoadedView = true
     }
     
     func configure(withViewModel viewModel: BillViewModel) {
@@ -214,8 +206,8 @@ class UsageBillImpactView: UIView {
             .disposed(by: disposeBag)
         
         elecGasSegmentedControl.selectedIndex.asDriver()
+            .skip(1) // The first, programatic selection
             .distinctUntilChanged()
-            .filter { _ in self.hasLoadedView }
             .do(onNext: { [weak self] _ in self?.setInnerLoadingState(true) })
             .drive(viewModel.electricGasSelectedSegmentIndex)
             .disposed(by: disposeBag)
