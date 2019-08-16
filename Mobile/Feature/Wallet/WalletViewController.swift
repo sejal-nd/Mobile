@@ -260,57 +260,58 @@ class WalletViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func onEditWalletItemPress(sender: UIButton) {
-        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
-            selectedWalletItem = walletItems[sender.tag]
-            let paymentusVC = PaymentusFormViewController(bankOrCard: selectedWalletItem!.bankOrCard, temporary: false, walletItemId: selectedWalletItem!.walletItemId)
-            paymentusVC.delegate = self
-            paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
-            paymentusVC.editingDefaultItem = selectedWalletItem!.isDefault
-            self.navigationController?.pushViewController(paymentusVC, animated: true)
-        }
+        guard let walletItems = viewModel.walletItems.value, walletItems.indices.contains(sender.tag) else { return }
+        let walletItemToEdit = walletItems[sender.tag]
+        selectedWalletItem = walletItemToEdit
+        let paymentusVC = PaymentusFormViewController(bankOrCard: walletItemToEdit.bankOrCard, temporary: false, walletItemId: walletItemToEdit.walletItemId)
+        paymentusVC.delegate = self
+        paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
+        paymentusVC.editingDefaultItem = walletItemToEdit.isDefault
+        self.navigationController?.pushViewController(paymentusVC, animated: true)
     }
 
     @objc private func onDeleteWalletItemPress(sender: UIButton) {
-        if let walletItems = viewModel.walletItems.value, sender.tag < walletItems.count {
-            selectedWalletItem = walletItems[sender.tag]
-
-            let title: String
-            var message = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Bill & Payment Activity.", comment: "")
-            let toast: String
-            if selectedWalletItem!.bankOrCard == .bank {
-                title = NSLocalizedString("Delete Bank Account?", comment: "")
-                toast = NSLocalizedString("Bank Account deleted", comment: "")
-                if Environment.shared.opco == .bge {
-                    message += NSLocalizedString(" Utility Accounts enrolled in AutoPay using this payment method will be unenrolled.", comment: "")
-                }
-            } else {
-                title = NSLocalizedString("Delete Card?", comment: "")
-                toast = NSLocalizedString("Card deleted", comment: "")
+        guard let walletItems = viewModel.walletItems.value, walletItems.indices.contains(sender.tag) else { return }
+        
+        let walletItemToEdit = walletItems[sender.tag]
+        selectedWalletItem = walletItemToEdit
+        
+        let title: String
+        var message = NSLocalizedString("All one-time payments scheduled with this payment method will still be processed. You can review and edit your scheduled payments in Bill & Payment Activity.", comment: "")
+        let toast: String
+        if walletItemToEdit.bankOrCard == .bank {
+            title = NSLocalizedString("Delete Bank Account?", comment: "")
+            toast = NSLocalizedString("Bank Account deleted", comment: "")
+            if Environment.shared.opco == .bge {
+                message += NSLocalizedString(" Utility Accounts enrolled in AutoPay using this payment method will be unenrolled.", comment: "")
             }
-
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
+        } else {
+            title = NSLocalizedString("Delete Card?", comment: "")
+            toast = NSLocalizedString("Card deleted", comment: "")
+        }
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete", comment: ""), style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            LoadingView.show()
+            self.viewModel.deleteWalletItem(walletItem: walletItemToEdit, onSuccess: { [weak self] in
+                LoadingView.hide()
+                
                 guard let self = self else { return }
-                LoadingView.show()
-                self.viewModel.deleteWalletItem(walletItem: self.selectedWalletItem!, onSuccess: { [weak self] in
-                    LoadingView.hide()
-
-                    guard let self = self else { return }
-
-                    self.viewModel.fetchWalletItems.onNext(())
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                        self.view.showToast(toast)
-                    })
+                
+                self.viewModel.fetchWalletItems.onNext(())
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                    self.view.showToast(toast)
+                })
                 }, onError: { errMessage in
                     LoadingView.hide()
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     self.present(alertVc, animated: true, completion: nil)
-                })
-            }))
-            present(alertController, animated: true, completion: nil)
-        }
+            })
+        }))
+        present(alertController, animated: true, completion: nil)
     }
 
     // Prevents status bar color flash when pushed

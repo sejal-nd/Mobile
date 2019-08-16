@@ -3820,10 +3820,10 @@
 		3559C8B022FC92B000481A87 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
 				E876A8551ECDEF6800CA63BF /* WalletViewController.swift */,
 				E876A85A1ECF377D00CA63BF /* WalletViewModel.swift */,
 				9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */,
-				E867A8F91F053AFF007F4FD9 /* Wallet.storyboard */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
