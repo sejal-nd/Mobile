@@ -47,16 +47,16 @@ class BGEAutoPaySettingsViewModel {
             case .upToAmount:
                 guard let billingInfo = self?.accountDetail.billingInfo else { return false }
                 let minPaymentAmount = billingInfo.minPaymentAmount
-                let maxPaymentAmount = billingInfo.maxPaymentAmount(bankOrCard: .bank)
+                let maxPaymentAmount: Double = 500_000 // VSTS 219442: Decision to hardcode the max amount
                 return amountNotToExceed >= minPaymentAmount && amountNotToExceed <= maxPaymentAmount
             }
-    }
+        }
     
     private(set) lazy var amountToPayErrorMessage: Driver<String?> = amountNotToExceedDouble
         .map { [weak self] amountNotToExceed in
             guard let billingInfo = self?.accountDetail.billingInfo else { return nil }
             let minPaymentAmount = billingInfo.minPaymentAmount
-            let maxPaymentAmount = billingInfo.maxPaymentAmount(bankOrCard: .bank)
+            let maxPaymentAmount: Double = 500_000 // VSTS 219442: Decision to hardcode the max amount
             if amountNotToExceed < minPaymentAmount {
                 let textFormat = NSLocalizedString("Minimum payment allowed is %@", comment: "")
                 return String.localizedStringWithFormat(textFormat, minPaymentAmount.currencyString)
@@ -66,7 +66,7 @@ class BGEAutoPaySettingsViewModel {
             } else {
                 return nil
             }
-    }
+        }
     
     private lazy var whenToPayIsValid = Driver
         .combineLatest(whenToPay.asDriver(),
