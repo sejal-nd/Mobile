@@ -79,7 +79,7 @@
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fKo-n7-BdN" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyc-Ve-2Eq" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyc-Ve-2Eq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Password"/>
                                         <constraints>
@@ -344,7 +344,7 @@
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MO4-o9-0sF" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="631" width="375" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOk-h3-Neq" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOk-h3-Neq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="319" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Password"/>
                                         <constraints>
@@ -713,7 +713,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3j9-Gc-Uvq">
                                         <rect key="frame" x="20" y="15" width="335" height="105"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azq-M6-kiv" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azq-M6-kiv" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
                                                 <accessibility key="accessibilityConfiguration" label="Enroll in Budget Billing"/>
                                                 <constraints>

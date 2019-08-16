@@ -13,7 +13,7 @@ import RxCocoa
 class AutoPayReasonsForStoppingViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
-    @IBOutlet weak var unenerollButton: PrimaryButtonNew!
+    @IBOutlet weak var unenerollButton: PrimaryButton!
     
     var viewModel: AutoPayViewModel!
     

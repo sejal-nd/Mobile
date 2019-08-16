@@ -67,7 +67,7 @@ class ReviewPaymentViewController: UIViewController {
     
     @IBOutlet weak var footerLabel: UILabel!
     
-    @IBOutlet weak var submitPaymentButton: PrimaryButtonNew!
+    @IBOutlet weak var submitPaymentButton: PrimaryButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

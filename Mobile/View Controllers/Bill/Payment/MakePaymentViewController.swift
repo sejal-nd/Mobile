@@ -84,7 +84,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var stickyPaymentFooterTotalPaymentLabel: UILabel!
     @IBOutlet weak var stickyPaymentFooterAmountLabel: UILabel!
     @IBOutlet weak var stickyPaymentFooterFeeLabel: UILabel!
-    @IBOutlet weak var continueButton: PrimaryButtonNew!
+    @IBOutlet weak var continueButton: PrimaryButton!
 
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!

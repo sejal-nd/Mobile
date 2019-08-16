@@ -2,8 +2,8 @@
 //  PrimaryButton.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 2/13/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Marc Shilling on 6/24/19.
+//  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
@@ -14,6 +14,20 @@ class PrimaryButton: UIButton {
     var loadingAnimationView = LOTAnimationView(name: "loading")
     var checkmarkAnimationView = LOTAnimationView(name: "checkmark")
     var restoreTitle: String?
+    
+    @IBInspectable var tintWhite: Bool = false {
+        didSet {
+            updateTitleColors()
+            updateEnabledState()
+        }
+    }
+    
+    @IBInspectable var condensed: Bool = false {
+        didSet {
+            titleLabel?.font = condensed ? SystemFont.semibold.of(textStyle: .subheadline) :
+                SystemFont.semibold.of(textStyle: .headline)
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,29 +42,59 @@ class PrimaryButton: UIButton {
     }
     
     func commonInit() {
-        backgroundColor = .ctaBlue
-        addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
-        setTitleColor(.white, for: .normal)
-        setTitleColor(UIColor.white.withAlphaComponent(0.8), for: .highlighted)
-        setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .disabled)
-        layer.cornerRadius = 10.0
+        adjustsImageWhenHighlighted = false
+        
+        titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        layer.cornerRadius = frame.size.height / 2
+        
+        updateTitleColors()
+        updateEnabledState()
     }
     
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                backgroundColor = UIColor(red: 0/255, green: 38/255, blue: 88/255, alpha: 1) // Special case color - do not change
+                backgroundColor = tintWhite ? UIColor.white.withAlphaComponent(0.8) :
+                    UIColor(red: 17/255, green: 57/255, blue: 112/255, alpha: 1) // Special case color - do not change
+                imageView?.alpha = 0.6
             } else {
-                backgroundColor = .ctaBlue
+                backgroundColor = tintWhite ? .white : .actionBlue
+                imageView?.alpha = 1
             }
         }
     }
     
     override var isEnabled: Bool {
         didSet {
-            backgroundColor = isEnabled ? .ctaBlue: .middleGray
-            accessibilityTraits = isEnabled ? .button : [.button, .notEnabled]
+            updateEnabledState()
+        }
+    }
+    
+    private func updateTitleColors() {
+        let titleColor: UIColor, highlightColor: UIColor, disabledColor: UIColor
+        
+        if tintWhite {
+            titleColor = .actionBlue
+            highlightColor = .actionBlue
+            disabledColor = UIColor.actionBlue.withAlphaComponent(0.5)
+        } else {
+            titleColor = .white
+            highlightColor = UIColor.white.withAlphaComponent(0.7)
+            disabledColor = UIColor.deepGray.withAlphaComponent(0.5)
+        }
+        
+        setTitleColor(titleColor, for: .normal)
+        setTitleColor(highlightColor, for: .highlighted)
+        setTitleColor(disabledColor, for: .disabled)
+    }
+    
+    private func updateEnabledState() {
+        if isEnabled {
+            backgroundColor = tintWhite ? .white : .actionBlue
+            accessibilityTraits = .button
+        } else {
+            backgroundColor = tintWhite ? UIColor.white.withAlphaComponent(0.3) : .accentGray
+            accessibilityTraits = [.button, .notEnabled]
         }
     }
     
@@ -90,4 +134,5 @@ class PrimaryButton: UIButton {
             setTitle(title, for: .normal)
         }
     }
+    
 }

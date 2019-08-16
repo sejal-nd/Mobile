@@ -24,22 +24,18 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="KsY-Hs-M3n">
                     <rect key="frame" x="291" y="23.5" width="8" height="13"/>
-                    <constraints>
-                        <constraint firstAttribute="height" priority="999" constant="13" id="VBa-Ma-2CK"/>
-                        <constraint firstAttribute="width" constant="8" id="vfO-sb-B9b"/>
-                    </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="sik-2v-qbl">
-                    <rect key="frame" x="16" y="10.5" width="267" height="39"/>
+                    <rect key="frame" x="16" y="10.5" width="177" height="39"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the description label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAq-I6-Jhg">
-                            <rect key="frame" x="0.0" y="0.0" width="267" height="14.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="177" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is the value label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgK-Xb-vxA">
-                            <rect key="frame" x="0.0" y="17.5" width="267" height="21.5"/>
+                            <rect key="frame" x="0.0" y="17.5" width="177" height="21.5"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                             <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -57,7 +53,7 @@
                 <constraint firstAttribute="trailing" secondItem="KsY-Hs-M3n" secondAttribute="trailing" constant="18" id="LWP-dx-GFt"/>
                 <constraint firstItem="sik-2v-qbl" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LXC-rk-Zx0"/>
                 <constraint firstItem="KsY-Hs-M3n" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" priority="999" id="a1U-qr-fdk"/>
-                <constraint firstItem="KsY-Hs-M3n" firstAttribute="leading" secondItem="sik-2v-qbl" secondAttribute="trailing" constant="8" id="ejY-Y4-s7x"/>
+                <constraint firstItem="KsY-Hs-M3n" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sik-2v-qbl" secondAttribute="trailing" constant="8" id="ejY-Y4-s7x"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

@@ -46,7 +46,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     
-    @IBOutlet weak var submitButton: PrimaryButtonNew!
+    @IBOutlet weak var submitButton: PrimaryButton!
     
     let disposeBag = DisposeBag()
     

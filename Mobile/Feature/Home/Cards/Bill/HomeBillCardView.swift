@@ -154,7 +154,6 @@ class HomeBillCardView: UIView {
         
         reinstatementFeeLabel.textColor = .deepGray
         reinstatementFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
-        reinstatementFeeLabel.setLineHeight(lineHeight: 16)
         
         bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
         bankCreditNumberButton.layer.borderWidth = 1
@@ -218,7 +217,6 @@ class HomeBillCardView: UIView {
         // Bill Not Ready
         billNotReadyLabel.textColor = .deepGray
         billNotReadyLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        billNotReadyLabel.setLineHeight(lineHeight: 26)
         billNotReadyLabel.textAlignment = .center
         
         // Error State
@@ -227,7 +225,6 @@ class HomeBillCardView: UIView {
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        errorLabel.setLineHeight(lineHeight: 26)
         errorLabel.textAlignment = .center
         if let errorLabelText = errorLabel.text {
             let localizedAccessibililtyText = NSLocalizedString("Bill OverView, %@", comment: "")

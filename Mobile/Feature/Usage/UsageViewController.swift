@@ -34,9 +34,9 @@ class UsageViewController: AccountPickerViewController {
     }
     @IBOutlet weak var accountDisallowView: UIView!
     
-    @IBOutlet private weak var segmentControl: SegmentedControlNew! {
+    @IBOutlet private weak var segmentedControl: SegmentedControlNew! {
         didSet {
-            segmentControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
+            segmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
         }
     }
     
@@ -411,10 +411,10 @@ class UsageViewController: AccountPickerViewController {
         // Segmented Control
         viewModel.electricGasSelectedSegmentIndex.asDriver()
             .distinctUntilChanged()
-            .drive(segmentControl.selectedIndex)
+            .drive(segmentedControl.selectedIndex)
             .disposed(by: disposeBag)
         
-        segmentControl.selectedIndex.asDriver()
+        segmentedControl.selectedIndex.asDriver()
             .distinctUntilChanged()
             .do(onNext: { [weak self] _ in self?.showBillComparisonLoadingState() })
             .drive(viewModel.electricGasSelectedSegmentIndex)
@@ -442,7 +442,7 @@ class UsageViewController: AccountPickerViewController {
             .drive(lastYearButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        viewModel.showElectricGasSegmentedControl.not().drive(segmentControl.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showElectricGasSegmentedControl.not().drive(segmentedControl.rx.isHidden).disposed(by: disposeBag)
         viewModel.compareBillTitle.drive(compareBillTitlelabel.rx.text).disposed(by: disposeBag)
         
         // Update bar graph selection when the current selection is no longer available.

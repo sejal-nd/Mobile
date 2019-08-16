@@ -33,7 +33,7 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 	@IBOutlet weak var footerLabel: UILabel!
 	
     @IBOutlet weak var stickyFooterView: StickyFooterView!
-    @IBOutlet weak var enrollButton: PrimaryButtonNew!
+    @IBOutlet weak var enrollButton: PrimaryButton!
     
 	let bag = DisposeBag()
 	

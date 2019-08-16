@@ -23,7 +23,7 @@ class AccountLookupToolResultViewController: UIViewController {
     @IBOutlet weak var streetNumberHeaderLabel: UILabel!
     @IBOutlet weak var unitNumberHeaderLabel: UILabel!
     @IBOutlet weak var firstSeparatorView: UIView!
-    @IBOutlet weak var selectAccountButton: PrimaryButtonNew!
+    @IBOutlet weak var selectAccountButton: PrimaryButton!
     
     var viewModel: AccountLookupToolViewModel!
     
