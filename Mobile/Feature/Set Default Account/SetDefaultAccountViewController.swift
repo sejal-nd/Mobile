@@ -19,7 +19,7 @@ class SetDefaultAccountViewController: UIViewController {
     weak var delegate: SetDefaultAccountViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var saveButton: PrimaryButtonNew!
+    @IBOutlet weak var saveButton: PrimaryButton!
     
     let viewModel = SetDefaultAccountViewModel(accountService: ServiceFactory.createAccountService())
     

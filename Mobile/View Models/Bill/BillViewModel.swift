@@ -24,10 +24,16 @@ class BillViewModel {
     
     private let accountService: AccountService
     private let authService: AuthenticationService
+    private let usageService: UsageService
 
     let fetchAccountDetail = PublishSubject<FetchingAccountState>()
     let refreshTracker = ActivityTracker()
     let switchAccountsTracker = ActivityTracker()
+    let usageBillImpactLoading = PublishSubject<Bool>()
+    var usageBillImpactInnerLoading = false
+    
+    let electricGasSelectedSegmentIndex = Variable(0)
+    let compareToLastYear = Variable(false)
     
     private func tracker(forState state: FetchingAccountState) -> ActivityTracker {
         switch state {
@@ -36,9 +42,10 @@ class BillViewModel {
         }
     }
     
-    required init(accountService: AccountService, authService: AuthenticationService) {
+    required init(accountService: AccountService, authService: AuthenticationService, usageService: UsageService) {
         self.accountService = accountService
         self.authService = authService
+        self.usageService = usageService
     }
     
     private lazy var fetchTrigger = Observable
@@ -51,20 +58,35 @@ class BillViewModel {
         .toAsyncRequest(activityTracker: { [weak self] in self?.tracker(forState: $0) },
                         requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
-    
     private(set) lazy var dataEvents: Observable<Event<(AccountDetail, PaymentItem?)>> = maintenanceModeEvents
         .filter { !($0.element?.allStatus ?? false) && !($0.element?.billStatus ?? false) }
         .withLatestFrom(self.fetchTrigger)
         .toAsyncRequest(activityTracker: { [weak self] in
             self?.tracker(forState: $0)
-            }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
-                guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
-                let account = AccountsStore.shared.currentAccount
-                let accountDetail = self.accountService.fetchAccountDetail(account: account)
-                let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
-                return Observable.zip(accountDetail, scheduledPayment)
+        }, requestSelector: { [weak self] _ -> Observable<(AccountDetail, PaymentItem?)> in
+            guard let self = self, AccountsStore.shared.currentIndex != nil else { return .empty() }
+            let account = AccountsStore.shared.currentAccount
+            let accountDetail = self.accountService.fetchAccountDetail(account: account)
+            let scheduledPayment = self.accountService.fetchScheduledPayments(accountNumber: account.accountNumber).map { $0.last }
+            return Observable.zip(accountDetail, scheduledPayment)
         })
         .do(onNext: { _ in UIAccessibility.post(notification: .screenChanged, argument: nil) })
+    
+    private lazy var usageBillImpactEvents: Observable<Event<BillComparison>> = Observable
+        .combineLatest(dataEvents.elements().map { $0.0 }.filter { $0.isEligibleForUsageData },
+                       compareToLastYear.asObservable(),
+                       electricGasSelectedSegmentIndex.asObservable())
+        .toAsyncRequest { [weak self] (accountDetail, compareToLastYear, electricGasIndex) in
+            guard let self = self else { return .empty() }
+            if !self.usageBillImpactInnerLoading {
+                self.usageBillImpactLoading.onNext(true)
+            }
+            let isGas = self.isGas(accountDetail: accountDetail, electricGasSelectedIndex: electricGasIndex)
+            return self.usageService.fetchBillComparison(accountNumber: accountDetail.accountNumber,
+                                                         premiseNumber: accountDetail.premiseNumber!,
+                                                         yearAgo: compareToLastYear,
+                                                         gas: isGas)
+        }
     
     private(set) lazy var accountDetailError: Driver<ServiceError?> = dataEvents.errors()
         .map { $0 as? ServiceError }
@@ -72,6 +94,47 @@ class BillViewModel {
     
     private(set) lazy var showLoadedState: Driver<Void> = dataEvents
         .filter { $0.element != nil && $0.element?.0.prepaidStatus != .active }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showUsageBillImpactFullLoading: Driver<Void> =
+        Driver.combineLatest(self.usageBillImpactLoading.asDriver(onErrorJustReturn: false),
+                             self.switchAccountsTracker.asDriver())
+            .filter { $0 && !$1 }
+            .mapTo(())
+    
+//    private(set) lazy var showUsageBillImpactEmptyState: Driver<Void> = dataEvents.elements()
+//        .map { $0.0 }
+//        .filter {
+//            return !$0.isEligibleForUsageData && $0.isResidential
+//        }
+//        .mapTo(())
+//        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showUsageBillImpactFullError: Driver<Void> = usageBillImpactEvents.errors()
+        .filter { [weak self] _ in
+            guard let self = self else { return false }
+            return !self.usageBillImpactInnerLoading
+        }
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showUsageBillImpactInnerError: Driver<Void> = usageBillImpactEvents.errors()
+        .filter { [weak self] _ in
+            guard let self = self else { return false }
+            return self.usageBillImpactInnerLoading
+        }
+        .do(onNext: { [weak self] _ in
+            self?.usageBillImpactInnerLoading = false
+        })
+        .mapTo(())
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var showUsageBillImpactContent: Driver<Void> = usageBillImpactEvents
+        .filter { $0.element != nil }
+        .do(onNext: { [weak self] _ in
+            self?.usageBillImpactInnerLoading = false
+        })
         .mapTo(())
         .asDriver(onErrorDriveWith: .empty())
     
@@ -88,6 +151,11 @@ class BillViewModel {
     private(set) lazy var currentAccountDetail: Driver<AccountDetail> = data
         .map { $0.0 }
         .asDriver(onErrorDriveWith: Driver.empty())
+    
+
+    private(set) lazy var currentBillComparison: Driver<BillComparison> = usageBillImpactEvents
+        .elements()
+        .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var scheduledPayment: Driver<PaymentItem?> = data
         .map { $0.1 }
@@ -108,10 +176,18 @@ class BillViewModel {
             .startWith(false)
     }()
     
-    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {
-        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Environment.shared.opco == .comEd
+    private(set) lazy var showBillNotReady: Driver<Bool> = currentAccountDetail.map {
+        return $0.billingInfo.billDate == nil && ($0.billingInfo.netDueAmount == nil || $0.billingInfo.netDueAmount == 0)
     }
     
+    private(set) lazy var showCreditScenario: Driver<Bool> = currentAccountDetail.map {
+        guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
+        return netDueAmount < 0 && Environment.shared.opco == .bge
+    }
+    
+    private(set) lazy var showTotalAmountAndLedger: Driver<Bool> =
+        Driver.combineLatest(self.showBillNotReady, self.showCreditScenario) { !$0 && !$1 }
+
     private(set) lazy var showPastDue: Driver<Bool> = currentAccountDetail
         .map { accountDetail -> Bool in
             let pastDueAmount = accountDetail.billingInfo.pastDueAmount
@@ -123,13 +199,7 @@ class BillViewModel {
             let currentDueAmount = accountDetail.billingInfo.currentDueAmount
             return currentDueAmount > 0 && currentDueAmount != accountDetail.billingInfo.netDueAmount
     }
-    
-    private(set) lazy var showTopContent: Driver<Bool> = Driver
-        .combineLatest(self.switchAccountsTracker.asDriver(),
-                       self.dataEvents.asDriver(onErrorDriveWith: .empty()))
-        { !$0 && $1.error == nil }
-        .startWith(false)
-    
+        
     private(set) lazy var showPendingPayment: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.pendingPaymentsTotal > 0
     }
@@ -142,35 +212,14 @@ class BillViewModel {
         $0.billingInfo.lastPaymentAmount > 0 && $0.billingInfo.netDueAmount ?? 0 == 0
     }
     
-    private(set) lazy var showCredit: Driver<Bool> = currentAccountDetail.map {
-        guard let netDueAmount = $0.billingInfo.netDueAmount else { return false }
-        return netDueAmount < 0 && Environment.shared.opco == .bge
-    }
-    
     let showAmountDueTooltip = Environment.shared.opco == .peco
     
-    private(set) lazy var showBillBreakdownButton: Driver<Bool> = currentAccountDetail
-        .map { accountDetail in
-            guard let serviceType = accountDetail.serviceType else { return false }
-            
-            // We need premiseNumber to make the usage API calls, so hide the button if we don't have it
-            guard let premiseNumber = accountDetail.premiseNumber, !premiseNumber.isEmpty else { return false }
-            
-            if !accountDetail.isResidential || accountDetail.isBGEControlGroup || accountDetail.isFinaled {
-                return false
-            }
-            
-            // Must have valid serviceType
-            if serviceType.uppercased() != "GAS" && serviceType.uppercased() != "ELECTRIC" && serviceType.uppercased() != "GAS/ELECTRIC" {
-                return false
-            }
-            
-            return true
-    }
-    
-    private(set) lazy var enableMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
+    private(set) lazy var showMakeAPaymentButton: Driver<Bool> = currentAccountDetail.map {
         $0.billingInfo.netDueAmount > 0 || Environment.shared.opco == .bge
     }
+    
+    private(set) lazy var showBillPaidFakeButton: Driver<Bool> =
+        Driver.combineLatest(self.showMakeAPaymentButton, self.showBillNotReady) { !$0 && !$1 }
     
     private(set) lazy var showPaymentStatusText = paymentStatusText.isNil().not()
     
@@ -195,10 +244,6 @@ class BillViewModel {
             $0.isBudgetBillEnrollment ||
             Environment.shared.opco == .bge
     }
-    
-    
-	// MARK: - View Content
-    
     
     //MARK: - Banner Alert Text
     
@@ -304,8 +349,8 @@ class BillViewModel {
         guard let netDueAmount = $0.billingInfo.netDueAmount else { return "--" }
         
         switch Environment.shared.opco {
-        case .bge: // BGE should display the negative value if there is a credit
-            return netDueAmount.currencyString
+        case .bge: // For credit scenario we want to show the positive number
+            return abs(netDueAmount).currencyString
         case .comEd, .peco:
             return max(netDueAmount, 0).currencyString
         }
@@ -313,21 +358,18 @@ class BillViewModel {
     
     private(set) lazy var totalAmountDescriptionText: Driver<NSAttributedString> = currentAccountDetail.map {
         let billingInfo = $0.billingInfo
-        var attributes: [NSAttributedString.Key: Any] = [.font: OpenSans.regular.of(textStyle: .footnote),
-                                                         .foregroundColor: UIColor.blackText]
+        var attributes: [NSAttributedString.Key: Any] = [.font: SystemFont.regular.of(textStyle: .caption1),
+                                                         .foregroundColor: UIColor.deepGray]
         let string: String
         if billingInfo.pastDueAmount > 0 {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 string = NSLocalizedString("Total Amount Due Immediately", comment: "")
-                attributes = [.font: OpenSans.semibold.of(textStyle: .footnote),
-                              .foregroundColor: UIColor.errorRed]
+                attributes[.foregroundColor] = UIColor.errorRed
             } else {
                 string = NSLocalizedString("Total Amount Due", comment: "")
             }
         } else if billingInfo.amtDpaReinst > 0 {
             string = NSLocalizedString("Total Amount Due", comment: "")
-        } else if Environment.shared.opco == .bge && billingInfo.netDueAmount < 0 {
-            string = NSLocalizedString("No Amount Due - Credit Balance", comment: "")
         } else if billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 {
             string = NSLocalizedString("Total Amount Due", comment: "")
         } else {
@@ -335,12 +377,6 @@ class BillViewModel {
         }
         
         return NSAttributedString(string: string, attributes: attributes)
-    }
-    
-    //MARK: - Catch Up
-    private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
-        let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
-        return String(format: localizedText, $0.billingInfo.atReinstateFee?.currencyString ?? "--")
     }
     
     //MARK: - Past Due
@@ -373,11 +409,11 @@ class BillViewModel {
                 billingInfo.amtDpaReinst == billingInfo.pastDueAmount {
                 let string = String.localizedStringWithFormat("Due by %@", date.mmDdYyyyString)
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.middleGray,
-                                                                       .font: OpenSans.regular.of(textStyle: .footnote)])
+                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
             } else {
                 let string = NSLocalizedString("Due Immediately", comment: "")
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
-                                                                       .font: OpenSans.regular.of(textStyle: .footnote)])
+                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
             }
     }
     
@@ -424,6 +460,16 @@ class BillViewModel {
         } else {
             return $0.billingInfo.remainingBalanceDue?.currencyString ?? "--"
         }
+    }
+    
+    //MARK: - Catch Up
+    private(set) lazy var showCatchUpDisclaimer: Driver<Bool> = currentAccountDetail.map {
+        !$0.isLowIncome && $0.billingInfo.amtDpaReinst > 0 && Environment.shared.opco == .comEd
+    }
+    
+    private(set) lazy var catchUpDisclaimerText: Driver<String> = currentAccountDetail.map {
+        let localizedText = NSLocalizedString("You are entitled to one free reinstatement per plan. Any additional reinstatement will incur a %@ fee on your next bill.", comment: "")
+        return String(format: localizedText, $0.billingInfo.atReinstateFee?.currencyString ?? "--")
     }
     
     //MARK: - Payment Status
@@ -499,53 +545,217 @@ class BillViewModel {
         return totalCharges > 0
     }
     
-    private(set) lazy var billBreakdownButtonTitle: Driver<String> = hasBillBreakdownData.map {
-        if $0 {
-            return NSLocalizedString("Bill Breakdown", comment: "")
+    // MARK: - Usage Bill Impact
+    
+    private(set) lazy var showElectricGasSegmentedControl: Driver<Bool> = currentAccountDetail.map {
+        $0.serviceType?.uppercased() == "GAS/ELECTRIC"
+    }
+    
+    // MARK: Up/Down Arrow Image Drivers
+    
+    private(set) lazy var reasonsWhyLabelText: Driver<String?> = currentBillComparison.map {
+            guard let reference = $0.reference, let compared = $0.compared else {
+                return NSLocalizedString("Reasons Why Your Bill is...", comment: "")
+            }
+            let currentCharges = reference.charges
+            let prevCharges = compared.charges
+            let difference = abs(currentCharges - prevCharges)
+            if difference < 1 {
+                return NSLocalizedString("Reasons Why Your Bill is About the Same", comment: "")
+            } else {
+                if currentCharges > prevCharges {
+                    return NSLocalizedString("Reasons Why Your Bill is Higher", comment: "")
+                } else {
+                    return NSLocalizedString("Reasons Why Your Bill is Lower", comment: "")
+                }
+            }
+        }
+    
+    private(set) lazy var differenceDescriptionLabelAttributedText: Driver<NSAttributedString?> =
+        Driver.combineLatest(currentAccountDetail, currentBillComparison, compareToLastYear.asDriver())
+        .filter { _ in self.usageBillImpactInnerLoading == false }.map { [weak self] accountDetail, billComparison, compareToLastYear in
+            guard let self = self else { return nil }
+            
+            let isGas = self.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: self.electricGasSelectedSegmentIndex.value)
+            let gasOrElectricString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electric", comment: "")
+            
+            guard let reference = billComparison.reference, let compared = billComparison.compared else {
+                return NSAttributedString(string: String.localizedStringWithFormat("Data not available to explain likely reasons for changes in your %@ charges.", gasOrElectricString))
+            }
+                        
+            let currentCharges = reference.charges
+            let prevCharges = compared.charges
+            let difference = abs(currentCharges - prevCharges)
+            if difference < 1 { // About the same
+                if compareToLastYear { // Last Year
+                    return NSAttributedString(string: String.localizedStringWithFormat("Your %@ charges are about the same as last year.", gasOrElectricString))
+                } else { // Previous Bill
+                    return NSAttributedString(string: String.localizedStringWithFormat("Your %@ charges are about the same as your previous bill.", gasOrElectricString))
+                }
+            } else {
+                if currentCharges > prevCharges {
+                    let localizedString: String
+                    if compareToLastYear { // Last Year
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ more than last year.", gasOrElectricString, difference.currencyString)
+                    } else { // Previous Bill
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ more than your previous bill.", gasOrElectricString, difference.currencyString)
+                    }
+                    let attrString = NSMutableAttributedString(string: localizedString)
+                    attrString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    return attrString
+                } else {
+                    let localizedString: String
+                    if compareToLastYear { // Last Year
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ less than last year.", gasOrElectricString, difference.currencyString)
+                    } else { // Previous Bill
+                        localizedString = String.localizedStringWithFormat("Your %@ charges are %@ less than your previous bill.", gasOrElectricString, difference.currencyString)
+                    }
+                    let attrString = NSMutableAttributedString(string: localizedString)
+                    attrString.addAttribute(.font, value: OpenSans.semibold.of(textStyle: .callout), range: (localizedString as NSString).range(of: difference.currencyString))
+                    return attrString
+                }
+            }
+        }
+
+    private(set) lazy var billPeriodArrowImage: Driver<UIImage?> = currentBillComparison.map {
+        if $0.billPeriodCostDifference >= 1 {
+            return #imageLiteral(resourceName: "ic_trendup.pdf")
+        } else if $0.billPeriodCostDifference <= -1 {
+            return #imageLiteral(resourceName: "ic_trenddown.pdf")
         } else {
-            return NSLocalizedString("View Usage", comment: "")
+            return #imageLiteral(resourceName: "ic_trendequal.pdf")
         }
     }
+    
+    private(set) lazy var billPeriodDetailLabelText: Driver<String?> =
+        Driver.combineLatest(currentAccountDetail, currentBillComparison, electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
+            guard let self = self else { return nil }
+            
+            guard let reference = billComparison.reference, let compared = billComparison.compared else {
+                return NSLocalizedString("Data not available.", comment: "")
+            }
+            
+            let isGas = self.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasSelectedIndex)
+            let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
+            
+            let daysInCurrentBillPeriod = abs(reference.startDate.interval(ofComponent: .day, fromDate: reference.endDate))
+            let daysInPreviousBillPeriod = abs(compared.startDate.interval(ofComponent: .day, fromDate: compared.endDate))
+            let billPeriodDiff = abs(daysInCurrentBillPeriod - daysInPreviousBillPeriod)
+            
+            var localizedString: String!
+            if billComparison.billPeriodCostDifference >= 1 {
+                localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ because this bill period was %d days longer.", comment: "")
+            } else if billComparison.billPeriodCostDifference <= -1 {
+                localizedString = NSLocalizedString("Your bill was about %@ less. You used less %@ because this bill period was %d days shorter.", comment: "")
+            } else {
+                return NSLocalizedString("You spent about the same based on the number of days in your billing period.", comment: "")
+            }
+            return String(format: localizedString, abs(billComparison.billPeriodCostDifference).currencyString, gasOrElectricityString, billPeriodDiff)
+        }
+    
+    private(set) lazy var weatherArrowImage: Driver<UIImage?> = currentBillComparison.map {
+        if $0.weatherCostDifference >= 1 {
+            return #imageLiteral(resourceName: "ic_trendup.pdf")
+        } else if $0.weatherCostDifference <= -1 {
+            return #imageLiteral(resourceName: "ic_trenddown.pdf")
+        } else {
+            return #imageLiteral(resourceName: "ic_trendequal.pdf")
+        }
+    }
+    
+    private(set) lazy var weatherDetailLabelText: Driver<String?> =
+        Driver.combineLatest(currentAccountDetail, currentBillComparison, electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
+            guard let self = self else { return nil }
+            
+            let isGas = self.isGas(accountDetail: accountDetail,
+                                   electricGasSelectedIndex: electricGasSelectedIndex)
+            let gasOrElectricityString = isGas ? NSLocalizedString("gas", comment: "") : NSLocalizedString("electricity", comment: "")
+            
+            var localizedString: String!
+            if billComparison.weatherCostDifference >= 1 {
+                localizedString = NSLocalizedString("Your bill was about %@ more. You used more %@ due to changes in weather.", comment: "")
+            } else if billComparison.weatherCostDifference <= -1 {
+                localizedString = NSLocalizedString("Your bill was about %@ less. You used less %@ due to changes in weather.", comment: "")
+            } else {
+                return NSLocalizedString("You spent about the same based on weather conditions.", comment: "")
+            }
+            return String(format: localizedString, abs(billComparison.weatherCostDifference).currencyString, gasOrElectricityString)
+    }
+    
+    private(set) lazy var otherArrowImage: Driver<UIImage?> = currentBillComparison.map {
+        if $0.otherCostDifference >= 1 {
+            return #imageLiteral(resourceName: "ic_trendup.pdf")
+        } else if $0.otherCostDifference <= -1 {
+            return #imageLiteral(resourceName: "ic_trenddown.pdf")
+        } else {
+            return #imageLiteral(resourceName: "ic_trendequal.pdf")
+        }
+    }
+    
+    private(set) lazy var otherDetailLabelText: Driver<String?> =
+        Driver.combineLatest(currentAccountDetail, currentBillComparison, electricGasSelectedSegmentIndex.asDriver())
+        { [weak self] accountDetail, billComparison, electricGasSelectedIndex in
+            guard let self = self else { return nil }
+                        
+            var localizedString: String!
+            if billComparison.otherCostDifference >= 1 {
+                localizedString = NSLocalizedString("Your bill was about %@ more. Your charges increased based on how you used energy. Your bill may be different for " +
+                    "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
+                    "plans or cost of energy", comment: "")
+            } else if billComparison.otherCostDifference <= -1 {
+                localizedString = NSLocalizedString("Your bill was about %@ less. Your charges decreased based on how you used energy. Your bill may be different for " +
+                    "a variety of reasons, including:\n• Number of people and amount of time spent in your home\n• New appliances or electronics\n• Differences in rate " +
+                    "plans or cost of energy", comment: "")
+            } else {
+                return NSLocalizedString("You spent about the same based on a variety reasons, including:\n• Number of people and amount of time spent in your home\n" +
+                    "• New appliances or electronics\n• Differences in rate plans or cost of energy", comment: "")
+            }
+            return String(format: localizedString, abs(billComparison.otherCostDifference).currencyString)
+    }
+    
+    private(set) lazy var noPreviousData: Driver<Bool> = currentBillComparison.map { $0.compared == nil }
     
     //MARK: - Enrollment
     
-    private(set) lazy var autoPayButtonText: Driver<NSAttributedString> = currentAccountDetail.map {
-        if $0.isAutoPay || $0.isBGEasy {
-            let text = NSLocalizedString("AutoPay", comment: "")
-            let enrolledText = $0.isBGEasy ?
-                NSLocalizedString("enrolled in BGEasy", comment: "") :
-                NSLocalizedString("enrolled", comment: "")
-            return BillViewModel.isEnrolledText(topText: text, bottomText: enrolledText)
+    private(set) lazy var showPaperlessEnrolledView: Driver<Bool> = currentAccountDetail.map {
+        // Always hide for ComEd/PECO commercial customers
+        if !$0.isResidential && Environment.shared.opco != .bge {
+            return false
+        }
+        return $0.eBillEnrollStatus == .canUnenroll
+    }
+    
+    private(set) lazy var showAutoPayEnrolledView: Driver<Bool> = currentAccountDetail.map {
+        if $0.isBGEasy {
+            return false
+        }
+        return $0.isAutoPay
+    }
+    
+    private(set) lazy var autoPayDetailLabelText: Driver<NSAttributedString> = currentAccountDetail.map {
+        if $0.isBGEasy {
+            let text = NSLocalizedString("Enrolled in BGEasy.", comment: "")
+            return NSAttributedString(string: text, attributes: [.foregroundColor: UIColor.successGreenText])
         } else {
-            return BillViewModel.canEnrollText(boldText: NSLocalizedString("AutoPay?", comment: ""))
+            let text = NSLocalizedString("Set up automatic, recurring payments.", comment: "")
+            return NSAttributedString(string: text, attributes: [.foregroundColor: UIColor.deepGray])
         }
     }
     
-    private(set) lazy var paperlessButtonText: Driver<NSAttributedString?> = currentAccountDetail
-        .map { accountDetail in
-            // ComEd/PECO commercial customers always see the button in the unenrolled state
-            if !accountDetail.isResidential && Environment.shared.opco != .bge {
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
-            }
-            
-            switch accountDetail.eBillEnrollStatus {
-            case .canEnroll:
-                return BillViewModel.canEnrollText(boldText: NSLocalizedString("Paperless eBill?", comment: ""))
-            case .canUnenroll:
-                return BillViewModel.isEnrolledText(topText: NSLocalizedString("Paperless eBill", comment: ""),
-                                                    bottomText: NSLocalizedString("enrolled", comment: ""))
-            case .ineligible, .finaled:
-                return nil
-            }
+    private(set) lazy var autoPayAccessibilityLabel: Driver<String> = currentAccountDetail.map {
+        if $0.isBGEasy {
+            return NSLocalizedString("AutoPay. Enrolled in BGEasy.", comment: "")
+        } else {
+            return String.localizedStringWithFormat("AutoPay. Set up automatic, recurring payments.%@", $0.isAutoPay ? "Enrolled" : "")
+        }
     }
     
-    private(set) lazy var budgetButtonText: Driver<NSAttributedString> = currentAccountDetail.map {
-        if $0.isBudgetBillEnrollment {
-            return BillViewModel.isEnrolledText(topText: NSLocalizedString("Budget Billing", comment: ""),
-                                                bottomText: NSLocalizedString("enrolled", comment: ""))
-        } else {
-            return BillViewModel.canEnrollText(boldText: NSLocalizedString("Budget Billing?", comment: ""))
-        }
+    private(set) lazy var showBudgetEnrolledView: Driver<Bool> = currentAccountDetail.map {
+        return $0.isBudgetBillEnrollment
     }
     
     // MARK: - Prepaid
@@ -564,6 +774,19 @@ class BillViewModel {
     
     var prepaidUrl: URL {
         return URL(string: Environment.shared.myAccountUrl)!
+    }
+    
+    // MARK: - Helpers
+    
+    // If a gas only account, return true, if an electric only account, returns false, if both gas/electric, returns selected segemented control
+    private func isGas(accountDetail: AccountDetail, electricGasSelectedIndex: Int) -> Bool {
+        if accountDetail.serviceType?.uppercased() == "GAS" { // If account is gas only
+            return true
+        } else if Environment.shared.opco != .comEd && accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC" {
+            return electricGasSelectedIndex == 1
+        }
+        // Default to electric
+        return false
     }
 	
 	// MARK: - Convenience functions

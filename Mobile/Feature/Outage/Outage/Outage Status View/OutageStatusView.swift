@@ -159,9 +159,9 @@ extension OutageStatusView {
             titleDescriptionLabel.text = NSLocalizedString("Our records indicate", comment: "")
             descriptionLabel.isHidden = true
             button.isHidden = false
-            UIView.performWithoutAnimation { [unowned self] in
-                self.button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
-                self.button.layoutIfNeeded()
+            UIView.performWithoutAnimation {
+                button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
+                button.layoutIfNeeded()
             }
         case .reported:
             lottieAnimationView?.removeFromSuperview()
@@ -175,9 +175,9 @@ extension OutageStatusView {
             descriptionLabel.isHidden = true
             detailDescriptionLabel.isHidden = false
             detailLabel.isHidden = false
-            UIView.performWithoutAnimation { [unowned self] in
-                self.button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
-                self.button.layoutIfNeeded()
+            UIView.performWithoutAnimation {
+                button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
+                button.layoutIfNeeded()
             }
         case .unavailable:
             lottieAnimationView?.removeFromSuperview()
@@ -204,9 +204,9 @@ extension OutageStatusView {
             detailLabel.isHidden = true
             button.isHidden = false
             
-            UIView.performWithoutAnimation { [unowned self] in
-                self.button.setTitle(NSLocalizedString("Pay Bill", comment: ""), for: .normal)
-                self.button.layoutIfNeeded()
+            UIView.performWithoutAnimation {
+                button.setTitle(NSLocalizedString("Pay Bill", comment: ""), for: .normal)
+                button.layoutIfNeeded()
             }
         }
         

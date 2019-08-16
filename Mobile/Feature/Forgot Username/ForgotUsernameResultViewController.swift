@@ -23,7 +23,7 @@ class ForgotUsernameResultViewController: UIViewController {
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var tableView: IntrinsicHeightTableView!
     
-    @IBOutlet weak var answerSecurityQuestionButton: PrimaryButtonNew!
+    @IBOutlet weak var answerSecurityQuestionButton: PrimaryButton!
     
     var viewModel: ForgotUsernameViewModel!
     

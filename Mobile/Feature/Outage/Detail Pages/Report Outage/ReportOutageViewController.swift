@@ -56,7 +56,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
-    @IBOutlet weak var submitButton: PrimaryButtonNew!
+    @IBOutlet weak var submitButton: PrimaryButton!
     
     private var lottieAnimationView: LOTAnimationView?
     

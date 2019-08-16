@@ -13,7 +13,7 @@ import RxCocoa
 class AutoPayReasonsForStoppingViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerLabel: UILabel!
-    @IBOutlet weak var unenerollButton: PrimaryButtonNew!
+    @IBOutlet weak var unenerollButton: PrimaryButton!
     
     var viewModel: AutoPayViewModel!
     
@@ -30,6 +30,18 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
         
         configureView()
         style()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.sizeFooterToFit()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.selectedUnenrollmentReason.value = nil
     }
     
     

@@ -44,7 +44,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     
     @IBOutlet weak var accountDataStackView: UIStackView!
     
-    @IBOutlet weak var registerButton: PrimaryButtonNew!
+    @IBOutlet weak var registerButton: PrimaryButton!
     
     var viewModel: RegistrationViewModel!
     

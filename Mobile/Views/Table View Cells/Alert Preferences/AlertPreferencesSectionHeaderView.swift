@@ -10,7 +10,7 @@ import UIKit
 
 class AlertPreferencesSectionHeaderView: UIView {
     private let label = UILabel().usingAutoLayout()
-    private let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_carat_down")).usingAutoLayout()
+    private let caretImageView = UIImageView(image: #imageLiteral(resourceName: "ic_caret_down")).usingAutoLayout()
     let separator = UIView().usingAutoLayout()
     var tapped: (() -> ())?
     
@@ -62,7 +62,7 @@ class AlertPreferencesSectionHeaderView: UIView {
     
     func configure(withTitle title: String, isExpanded: Bool) {
         label.text = title
-        caretImageView.image = isExpanded ? #imageLiteral(resourceName: "ic_carat_up") : #imageLiteral(resourceName: "ic_carat_down")
+        caretImageView.image = isExpanded ? #imageLiteral(resourceName: "ic_caret_up") : #imageLiteral(resourceName: "ic_caret_down")
         separator.isHidden = isExpanded
     }
 

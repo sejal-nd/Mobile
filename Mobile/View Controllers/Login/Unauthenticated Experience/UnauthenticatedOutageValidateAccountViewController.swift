@@ -23,7 +23,7 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet weak var stickyFooterView: StickyFooterView!
-    @IBOutlet weak var continueButton: PrimaryButtonNew!
+    @IBOutlet weak var continueButton: PrimaryButton!
     
     var analyticsSource: AnalyticsOutageSource!
     

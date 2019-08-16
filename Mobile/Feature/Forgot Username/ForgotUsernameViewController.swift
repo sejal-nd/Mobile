@@ -25,7 +25,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var accountLookupToolButton: UIButton!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
-    @IBOutlet weak var continueButton: PrimaryButtonNew!
+    @IBOutlet weak var continueButton: PrimaryButton!
     
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
     

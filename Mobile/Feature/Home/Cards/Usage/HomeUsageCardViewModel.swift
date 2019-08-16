@@ -68,13 +68,12 @@ class HomeUsageCardViewModel {
         .withLatestFrom(fetchData) { ($0.0, $1) }
         .toAsyncRequest(activityTracker: { [weak self] _, fetchingState in
             self?.fetchTracker(forState: fetchingState)
-            }, requestSelector: { [weak self] accountDetail, _ in
-                guard let self = self else { return .empty() }
-                guard accountDetail.isBGEControlGroup && accountDetail.isSERAccount else {
-                    return Observable.just([])
-                }
-                
-                return self.accountService.fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+        }, requestSelector: { [weak self] accountDetail, _ in
+            guard let self = self else { return .empty() }
+            guard accountDetail.isBGEControlGroup && accountDetail.isSERAccount else {
+                return Observable.just([])
+            }
+            return self.accountService.fetchSERResults(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
     
     private(set) lazy var billComparisonEvents: Observable<Event<BillComparison>> = Observable

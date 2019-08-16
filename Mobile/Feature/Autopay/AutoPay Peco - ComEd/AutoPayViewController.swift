@@ -43,7 +43,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var footerLabel: UILabel!
     
     @IBOutlet weak var stickyFooterView: StickyFooterView!
-    @IBOutlet weak var enrollButton: PrimaryButtonNew!
+    @IBOutlet weak var enrollButton: PrimaryButton!
     @IBOutlet weak var unenrollView: UIView!
     @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!
@@ -83,10 +83,12 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AutoPayChangeBankViewController {
+        if let nav = segue.destination as? UINavigationController,
+            let vc = nav.viewControllers.first as? AutoPayChangeBankViewController {
             vc.viewModel = viewModel
             vc.delegate = self
-        } else if let nav = segue.destination as? LargeTitleNavigationController, let vc = nav.viewControllers.first as? AutoPayReasonsForStoppingViewController {
+        } else if let nav = segue.destination as? LargeTitleNavigationController,
+            let vc = nav.viewControllers.first as? AutoPayReasonsForStoppingViewController {
             vc.viewModel = viewModel
             vc.delegate = delegate
             vc.parentVc = self
@@ -128,6 +130,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
             topLabel.font = SystemFont.regular.of(textStyle: .body)
             topLabel.setLineHeight(lineHeight: 24)
             
+            tacLabel.textColor = .deepGray
             tacLabel.text = viewModel.tacLabelText
             tacLabel.font = SystemFont.regular.of(textStyle: .subheadline)
             tacLabel.setLineHeight(lineHeight: 25)
@@ -136,7 +139,8 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
             GoogleAnalytics.log(event: .autoPayEnrollOffer)
         }
 
-        footerLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        footerLabel.textColor = .deepGray
+        footerLabel.font = SystemFont.regular.of(textStyle: .footnote)
         footerLabel.setLineHeight(lineHeight: 16)
     }
     
