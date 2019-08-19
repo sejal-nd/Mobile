@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>BGE_AUT</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUATStage</string>
+	<string>Stage</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.bge.com/MyAccount</string>
 	<key>outageMapUrl</key>

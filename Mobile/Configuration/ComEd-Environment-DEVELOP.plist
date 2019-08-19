@@ -7,24 +7,24 @@
 	<key>environment</key>
 	<string>DEV</string>
 	<key>opco</key>
-	<string>BGE</string>
+	<string>ComEd</string>
 	<key>appName</key>
-	<string>BGE_DEV</string>
+	<string>ComEd_DEV</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppDevStage</string>
+	<string>Test1Integration</string>
 	<key>myAccountUrl</key>
-	<string>https://azstg.bge.com/MyAccount</string>
+	<string>https://aztst.comed.com/MyAccount</string>
 	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
+	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>paymentusUrl</key>
-	<string>https://bge-uat.paymentus.io/xotp/pm/bge</string>
+	<string>https://comd-sit-623.paymentus.io/xotp/pm/comd</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_bge_develop</string>
+	<string>GoogleService-Info_comed_develop</string>
 	<key>gaTrackingId</key>
-	<string>UA-76742208-8</string>
+	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>
-	<string>azstg.bge.com</string>
+	<string>azstg.comed.com</string>
 	<key>associatedDomain</key>
-	<string>azstg-secure.bge.com</string>
+	<string>azstg-secure.comed.com</string>
 </dict>
 </plist>

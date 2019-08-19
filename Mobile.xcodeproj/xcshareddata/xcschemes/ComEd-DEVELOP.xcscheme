@@ -14,28 +14,27 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-               BuildableName = "PECO.app"
-               BlueprintName = "PECO"
+               BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+               BuildableName = "ComEd.app"
+               BlueprintName = "ComEd"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Develop-Test"
+      buildConfiguration = "Develop"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E8F62BE6200924570077B3DA"
-               BuildableName = "PECOUnitTests.xctest"
-               BlueprintName = "PECOUnitTests"
+               BlueprintIdentifier = "E8F62B0B2009207C0077B3DA"
+               BuildableName = "ComEdUITests.xctest"
+               BlueprintName = "ComEdUITests"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-            BuildableName = "PECO.app"
-            BlueprintName = "PECO"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,7 +52,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Develop-Test"
+      buildConfiguration = "Develop"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -66,9 +65,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-            BuildableName = "PECO.app"
-            BlueprintName = "PECO"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -76,7 +75,7 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Develop-Test"
+      buildConfiguration = "Develop"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -85,18 +84,18 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-            BuildableName = "PECO.app"
-            BlueprintName = "PECO"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Develop-Test">
+      buildConfiguration = "Develop">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Develop-Test"
+      buildConfiguration = "Develop"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

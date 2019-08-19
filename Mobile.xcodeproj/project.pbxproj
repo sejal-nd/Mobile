@@ -2985,9 +2985,9 @@
 		9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButtonNew.swift; sourceTree = "<group>"; };
 		9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButtonNew.xib; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
-		9CEB30DE2261305F00DD725C /* BGE-Environment-DEV-TEST.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEV-TEST.plist"; sourceTree = "<group>"; };
-		9CEB30E0226130E000DD725C /* ComEd-Environment-DEV-TEST.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEV-TEST.plist"; sourceTree = "<group>"; };
-		9CEB30E12261310000DD725C /* PECO-Environment-DEV-TEST.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEV-TEST.plist"; sourceTree = "<group>"; };
+		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		9FF2522B35DFFA1287C17144 /* Pods-BGEApp-BGEUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		A1023EE69855C3B6A4E574E5 /* Pods-BGEApp-BGE.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.prodbeta.xcconfig"; sourceTree = "<group>"; };
@@ -3146,17 +3146,14 @@
 		B58B5AC41E4E28740051FD5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		B58B5B1E1E515BD50051FD5F /* PECO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PECO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58B5B2F1E515C840051FD5F /* ComEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B58B5B591E516B100051FD5F /* BGE-Environment-DEV-STAGE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEV-STAGE.plist"; sourceTree = "<group>"; };
 		B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-RELEASE.plist"; sourceTree = "<group>"; };
 		B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B59606291F7C1F4A00515B72 /* AppRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRating.swift; sourceTree = "<group>"; };
 		B59EFA9C1F72E62A001490A1 /* FloatLabelTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextView.xib; sourceTree = "<group>"; };
 		B59EFAA41F72E9A2001490A1 /* FloatLabelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextView.swift; sourceTree = "<group>"; };
 		B5AC06781E51763200BBA4ED /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEV-STAGE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEV-STAGE.plist"; sourceTree = "<group>"; };
 		B5AC06821E5212E300BBA4ED /* ComEd-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-RELEASE.plist"; sourceTree = "<group>"; };
 		B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-STAGING.plist"; sourceTree = "<group>"; };
-		B5AC06861E5212E300BBA4ED /* PECO-Environment-DEV-STAGE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEV-STAGE.plist"; sourceTree = "<group>"; };
 		B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-RELEASE.plist"; sourceTree = "<group>"; };
 		B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-STAGING.plist"; sourceTree = "<group>"; };
 		B5AC06C71E521B3200BBA4ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -5252,22 +5249,19 @@
 				356C7F3121908E2A003E8A90 /* environment_preprocess.h */,
 				356C7FA92190D93F003E8A90 /* environment.plist */,
 				0EB93B6B202CA4DF0049E7A2 /* BGE-Environment-AUT.plist */,
-				9CEB30DE2261305F00DD725C /* BGE-Environment-DEV-TEST.plist */,
-				B58B5B591E516B100051FD5F /* BGE-Environment-DEV-STAGE.plist */,
+				9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */,
 				9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */,
 				B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */,
 				0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */,
 				B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */,
 				0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */,
-				9CEB30E0226130E000DD725C /* ComEd-Environment-DEV-TEST.plist */,
-				B5AC06811E5212E300BBA4ED /* ComEd-Environment-DEV-STAGE.plist */,
+				9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */,
 				9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */,
 				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
 				0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */,
 				B5AC06821E5212E300BBA4ED /* ComEd-Environment-RELEASE.plist */,
 				0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */,
-				9CEB30E12261310000DD725C /* PECO-Environment-DEV-TEST.plist */,
-				B5AC06861E5212E300BBA4ED /* PECO-Environment-DEV-STAGE.plist */,
+				9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */,
 				9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */,
 				B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */,
 				0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */,
@@ -9467,57 +9461,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		087630E51E72F5D000FA7020 /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD1287E7F20B265241A3FDC8 /* Pods-BGEApp-BGEUITests.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = BGE;
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
-		};
 		087630E71E72F5D000FA7020 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C828BD6C50342FEB58C68BE6 /* Pods-BGEApp-BGEUITests.staging.xcconfig */;
@@ -10445,87 +10388,6 @@
 			};
 			name = Automation;
 		};
-		35E7C7AA21907EA400BA13C6 /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 703FC56C548263817A1AA1B0 /* Pods-PECO_WatchOS.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IBSC_MODULE = PECO_WatchOS_Extension;
-				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
-				LIBRARY_SEARCH_PATHS = "";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5;
-				TARGETED_DEVICE_FAMILY = 4;
-				USER_HEADER_SEARCH_PATHS = "";
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Develop-Stage";
-		};
 		35E7C7AB21907EA400BA13C6 /* Automation */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04C72F0649BE900892AC022D /* Pods-PECO_WatchOS.automation.xcconfig */;
@@ -10700,88 +10562,6 @@
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Prodbeta;
-		};
-		35E7C7B021907EA400BA13C6 /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01D6F9C6F9EBD8713EE8E020 /* Pods-PECO_WatchOS Extension.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.develop.watchkitapp;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-watchOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.develop.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
-			};
-			name = "Develop-Stage";
 		};
 		35E7C7B121907EA400BA13C6 /* Automation */ = {
 			isa = XCBuildConfiguration;
@@ -11340,7 +11120,7 @@
 			};
 			name = Testing;
 		};
-		9CEB30CF22612D8500DD725C /* Develop-Test */ = {
+		9CEB30CF22612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11374,7 +11154,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXM_ENVIRONMENT = "DEV-TEST";
+				EXM_ENVIRONMENT = DEVELOP;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -11409,11 +11189,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D022612D8500DD725C /* Develop-Test */ = {
+		9CEB30D022612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DF8789921850547B0D60CB1 /* Pods-BGEApp-BGE.develop-test.xcconfig */;
+			baseConfigurationReference = F947030DF2FBBE95B00D41C2 /* Pods-BGEApp-BGE.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -11435,11 +11215,11 @@
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D122612D8500DD725C /* Develop-Test */ = {
+		9CEB30D122612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D02940ABF0BCB023CEA0FCD1 /* Pods-ComEdApp-ComEd.develop-test.xcconfig */;
+			baseConfigurationReference = DBA08FFF2F1AEBC99FC3B599 /* Pods-ComEdApp-ComEd.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -11460,11 +11240,11 @@
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D222612D8500DD725C /* Develop-Test */ = {
+		9CEB30D222612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */;
+			baseConfigurationReference = 7B17D03514CE7FE1D72A4748 /* Pods-PECOApp-PECO.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -11486,9 +11266,9 @@
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D322612D8500DD725C /* Develop-Test */ = {
+		9CEB30D322612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = "";
@@ -11498,9 +11278,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D422612D8500DD725C /* Develop-Test */ = {
+		9CEB30D422612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_PREPROCESS = NO;
@@ -11509,9 +11289,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D522612D8500DD725C /* Develop-Test */ = {
+		9CEB30D522612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_PREPROCESS = NO;
@@ -11520,11 +11300,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5;
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D622612D8500DD725C /* Develop-Test */ = {
+		9CEB30D622612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5265F37621E9DDBE00FB25 /* Pods-BGEApp-BGEUnitTests.develop-test.xcconfig */;
+			baseConfigurationReference = 25A60B3B8641046AC3395CEE /* Pods-BGEApp-BGEUnitTests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -11569,11 +11349,11 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D722612D8500DD725C /* Develop-Test */ = {
+		9CEB30D722612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0107AF943332E02CFB486156 /* Pods-ComEdApp-ComEdUnitTests.develop-test.xcconfig */;
+			baseConfigurationReference = D729E2291886890F98B810F7 /* Pods-ComEdApp-ComEdUnitTests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -11619,11 +11399,11 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D822612D8500DD725C /* Develop-Test */ = {
+		9CEB30D822612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A935C61A46E1E4B58F2570F6 /* Pods-PECOApp-PECOUnitTests.develop-test.xcconfig */;
+			baseConfigurationReference = 9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -11669,11 +11449,11 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30D922612D8500DD725C /* Develop-Test */ = {
+		9CEB30D922612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FF2522B35DFFA1287C17144 /* Pods-BGEApp-BGEUITests.develop-test.xcconfig */;
+			baseConfigurationReference = 18326609F3C789C1A2FDFBB1 /* Pods-BGEApp-BGEUITests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11720,11 +11500,11 @@
 				TEST_TARGET_NAME = BGE;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30DA22612D8500DD725C /* Develop-Test */ = {
+		9CEB30DA22612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B9439801B731C80F3E0C5F1 /* Pods-ComEdApp-ComEdUITests.develop-test.xcconfig */;
+			baseConfigurationReference = EF96C3B9C784991D679EADDB /* Pods-ComEdApp-ComEdUITests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11771,11 +11551,11 @@
 				TEST_TARGET_NAME = ComEd;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30DB22612D8500DD725C /* Develop-Test */ = {
+		9CEB30DB22612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C3DB455AC2909C6CE9EF5C6 /* Pods-PECOApp-PECOUITests.develop-test.xcconfig */;
+			baseConfigurationReference = 4F95AAD3D68CA26E2D4CA81D /* Pods-PECOApp-PECOUITests.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -11822,11 +11602,11 @@
 				TEST_TARGET_NAME = PECO;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30DC22612D8500DD725C /* Develop-Test */ = {
+		9CEB30DC22612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76827AE2DC8B8645DFD52396 /* Pods-PECO_WatchOS.develop-test.xcconfig */;
+			baseConfigurationReference = 45EA6588EE1B61FEF565C8C3 /* Pods-PECO_WatchOS.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11903,11 +11683,11 @@
 				USER_HEADER_SEARCH_PATHS = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Develop-Test";
+			name = Develop;
 		};
-		9CEB30DD22612D8500DD725C /* Develop-Test */ = {
+		9CEB30DD22612D8500DD725C /* Develop */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01467613E95CA24B7B933E9C /* Pods-PECO_WatchOS Extension.develop-test.xcconfig */;
+			baseConfigurationReference = 1C33D950607BDB958492E3A9 /* Pods-PECO_WatchOS Extension.develop.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -11985,78 +11765,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
-			name = "Develop-Test";
-		};
-		B58B5AE71E4E28740051FD5F /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				EXM_ENVIRONMENT = "DEV-STAGE";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
-				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
-				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
-			};
-			name = "Develop-Stage";
+			name = Develop;
 		};
 		B58B5AE81E4E28740051FD5F /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -12121,32 +11830,6 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-		};
-		B58B5AEA1E4E28740051FD5F /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06B48D4B3BEE84D637D373F1 /* Pods-BGEApp-BGE.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COMPRESS_PNG_FILES = YES;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.bge.develop;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
 		};
 		B58B5AEB1E4E28740051FD5F /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -12278,32 +11961,6 @@
 			};
 			name = Staging;
 		};
-		B58B5B191E515BD50051FD5F /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 809DDCA135F323473A708E62 /* Pods-PECOApp-PECO.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COMPRESS_PNG_FILES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.peco.develop;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
-		};
 		B58B5B1B1E515BD50051FD5F /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F9D22CDA7EFE9F0DF8C35D6 /* Pods-PECOApp-PECO.staging.xcconfig */;
@@ -12358,31 +12015,6 @@
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
-		};
-		B58B5B2A1E515C840051FD5F /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 427ED97F3A13152299E3D394 /* Pods-ComEdApp-ComEd.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				ENABLE_BITCODE = NO;
-				EXM_BUNDLE_ID = com.exelon.mobile.comed.develop;
-				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a8b53b0b-b8ff-4377-a2cc-1922bbd33196";
-				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
-				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
 		};
 		B58B5B2C1E515C840051FD5F /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -12439,18 +12071,6 @@
 			};
 			name = Release;
 		};
-		B58B5B621E516EEE0051FD5F /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5;
-			};
-			name = "Develop-Stage";
-		};
 		B58B5B641E516EEE0051FD5F /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -12475,17 +12095,6 @@
 			};
 			name = Release;
 		};
-		B5AC06AC1E5216C300BBA4ED /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5;
-			};
-			name = "Develop-Stage";
-		};
 		B5AC06AE1E5216C300BBA4ED /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -12508,17 +12117,6 @@
 			};
 			name = Release;
 		};
-		B5AC06B51E52171800BBA4ED /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_PREPROCESS = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5;
-			};
-			name = "Develop-Stage";
-		};
 		B5AC06B71E52171800BBA4ED /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -12540,55 +12138,6 @@
 				SWIFT_VERSION = 5;
 			};
 			name = Release;
-		};
-		B5AC06DD1E52238900BBA4ED /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5592F2C6205A2EF0764FEB27 /* Pods-BGEApp-BGEUnitTests.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
 		};
 		B5AC06DF1E52238900BBA4ED /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -12649,57 +12198,6 @@
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
-		};
-		E8F62B132009207C0077B3DA /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DC1FD66B81ACBDA300A0FD9 /* Pods-ComEdApp-ComEdUITests.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = ComEd;
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
 		};
 		E8F62B162009207C0077B3DA /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -12763,57 +12261,6 @@
 			};
 			name = Release;
 		};
-		E8F62B24200920870077B3DA /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0418518DB84642D6643DD7 /* Pods-PECOApp-PECOUITests.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = PECO;
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
-		};
 		E8F62B27200920870077B3DA /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 142BE78994BB3F376A5A7562 /* Pods-PECOApp-PECOUITests.staging.xcconfig */;
@@ -12876,56 +12323,6 @@
 			};
 			name = Release;
 		};
-		E8F62BDD200924410077B3DA /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 214DD6D207405A82F0D0AFBF /* Pods-ComEdApp-ComEdUnitTests.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
-		};
 		E8F62BE0200924410077B3DA /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C31239585E582445838013E /* Pods-ComEdApp-ComEdUnitTests.staging.xcconfig */;
@@ -12987,56 +12384,6 @@
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
-		};
-		E8F62C92200924570077B3DA /* Develop-Stage */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D724009124CB9382D0948F8 /* Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YU7Y757VB5;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
-					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
-				);
-				INFOPLIST_FILE = UnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
-				USER_HEADER_SEARCH_PATHS = "";
-			};
-			name = "Develop-Stage";
 		};
 		E8F62C95200924570077B3DA /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -13106,8 +12453,7 @@
 		087630EA1E72F5D000FA7020 /* Build configuration list for PBXNativeTarget "BGEUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				087630E51E72F5D000FA7020 /* Develop-Stage */,
-				9CEB30D922612D8500DD725C /* Develop-Test */,
+				9CEB30D922612D8500DD725C /* Develop */,
 				0EB93B68202CA3C70049E7A2 /* Automation */,
 				087630E71E72F5D000FA7020 /* Staging */,
 				9C54105D218B9D8700E03670 /* Testing */,
@@ -13115,13 +12461,12 @@
 				0E13175B202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		35E7C7B621907EA400BA13C6 /* Build configuration list for PBXNativeTarget "PECO_WatchOS Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				35E7C7B021907EA400BA13C6 /* Develop-Stage */,
-				9CEB30DD22612D8500DD725C /* Develop-Test */,
+				9CEB30DD22612D8500DD725C /* Develop */,
 				35E7C7B121907EA400BA13C6 /* Automation */,
 				35E7C7B221907EA400BA13C6 /* Staging */,
 				35E7C7B321907EA400BA13C6 /* Testing */,
@@ -13129,13 +12474,12 @@
 				35E7C7B521907EA400BA13C6 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		35E7C7B821907EA400BA13C6 /* Build configuration list for PBXNativeTarget "PECO_WatchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				35E7C7AA21907EA400BA13C6 /* Develop-Stage */,
-				9CEB30DC22612D8500DD725C /* Develop-Test */,
+				9CEB30DC22612D8500DD725C /* Develop */,
 				35E7C7AB21907EA400BA13C6 /* Automation */,
 				35E7C7AC21907EA400BA13C6 /* Staging */,
 				35E7C7AD21907EA400BA13C6 /* Testing */,
@@ -13143,13 +12487,12 @@
 				35E7C7AF21907EA400BA13C6 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B58B5ABC1E4E28740051FD5F /* Build configuration list for PBXProject "Mobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B58B5AE71E4E28740051FD5F /* Develop-Stage */,
-				9CEB30CF22612D8500DD725C /* Develop-Test */,
+				9CEB30CF22612D8500DD725C /* Develop */,
 				0EB93B5E202CA3C70049E7A2 /* Automation */,
 				B58B5AF61E51497B0051FD5F /* Staging */,
 				9C541053218B9D8700E03670 /* Testing */,
@@ -13157,13 +12500,12 @@
 				0E131751202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "BGE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B58B5AEA1E4E28740051FD5F /* Develop-Stage */,
-				9CEB30D022612D8500DD725C /* Develop-Test */,
+				9CEB30D022612D8500DD725C /* Develop */,
 				0EB93B5F202CA3C70049E7A2 /* Automation */,
 				B58B5AF71E51497B0051FD5F /* Staging */,
 				9C541054218B9D8700E03670 /* Testing */,
@@ -13171,13 +12513,12 @@
 				0E131752202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B58B5B181E515BD50051FD5F /* Build configuration list for PBXNativeTarget "PECO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B58B5B191E515BD50051FD5F /* Develop-Stage */,
-				9CEB30D222612D8500DD725C /* Develop-Test */,
+				9CEB30D222612D8500DD725C /* Develop */,
 				0EB93B61202CA3C70049E7A2 /* Automation */,
 				B58B5B1B1E515BD50051FD5F /* Staging */,
 				9C541056218B9D8700E03670 /* Testing */,
@@ -13185,13 +12526,12 @@
 				0E131754202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B58B5B291E515C840051FD5F /* Build configuration list for PBXNativeTarget "ComEd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B58B5B2A1E515C840051FD5F /* Develop-Stage */,
-				9CEB30D122612D8500DD725C /* Develop-Test */,
+				9CEB30D122612D8500DD725C /* Develop */,
 				0EB93B60202CA3C70049E7A2 /* Automation */,
 				B58B5B2C1E515C840051FD5F /* Staging */,
 				9C541055218B9D8700E03670 /* Testing */,
@@ -13199,13 +12539,12 @@
 				0E131753202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B58B5B611E516EEE0051FD5F /* Build configuration list for PBXAggregateTarget "BGE Environment Switch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B58B5B621E516EEE0051FD5F /* Develop-Stage */,
-				9CEB30D322612D8500DD725C /* Develop-Test */,
+				9CEB30D322612D8500DD725C /* Develop */,
 				0EB93B62202CA3C70049E7A2 /* Automation */,
 				B58B5B641E516EEE0051FD5F /* Staging */,
 				9C541057218B9D8700E03670 /* Testing */,
@@ -13213,13 +12552,12 @@
 				0E131755202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B5AC06AB1E5216C300BBA4ED /* Build configuration list for PBXAggregateTarget "ComEd Environment Switch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B5AC06AC1E5216C300BBA4ED /* Develop-Stage */,
-				9CEB30D422612D8500DD725C /* Develop-Test */,
+				9CEB30D422612D8500DD725C /* Develop */,
 				0EB93B63202CA3C70049E7A2 /* Automation */,
 				B5AC06AE1E5216C300BBA4ED /* Staging */,
 				9C541058218B9D8700E03670 /* Testing */,
@@ -13227,13 +12565,12 @@
 				0E131756202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B5AC06B41E52171800BBA4ED /* Build configuration list for PBXAggregateTarget "PECO Environment Switch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B5AC06B51E52171800BBA4ED /* Develop-Stage */,
-				9CEB30D522612D8500DD725C /* Develop-Test */,
+				9CEB30D522612D8500DD725C /* Develop */,
 				0EB93B64202CA3C70049E7A2 /* Automation */,
 				B5AC06B71E52171800BBA4ED /* Staging */,
 				9C541059218B9D8700E03670 /* Testing */,
@@ -13241,13 +12578,12 @@
 				0E131757202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		B5AC06DC1E52238900BBA4ED /* Build configuration list for PBXNativeTarget "BGEUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B5AC06DD1E52238900BBA4ED /* Develop-Stage */,
-				9CEB30D622612D8500DD725C /* Develop-Test */,
+				9CEB30D622612D8500DD725C /* Develop */,
 				0EB93B65202CA3C70049E7A2 /* Automation */,
 				B5AC06DF1E52238900BBA4ED /* Staging */,
 				9C54105A218B9D8700E03670 /* Testing */,
@@ -13255,13 +12591,12 @@
 				0E131758202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		E8F62B122009207C0077B3DA /* Build configuration list for PBXNativeTarget "ComEdUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8F62B132009207C0077B3DA /* Develop-Stage */,
-				9CEB30DA22612D8500DD725C /* Develop-Test */,
+				9CEB30DA22612D8500DD725C /* Develop */,
 				0EB93B69202CA3C70049E7A2 /* Automation */,
 				E8F62B162009207C0077B3DA /* Staging */,
 				9C54105E218B9D8700E03670 /* Testing */,
@@ -13269,13 +12604,12 @@
 				0E13175C202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		E8F62B23200920870077B3DA /* Build configuration list for PBXNativeTarget "PECOUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8F62B24200920870077B3DA /* Develop-Stage */,
-				9CEB30DB22612D8500DD725C /* Develop-Test */,
+				9CEB30DB22612D8500DD725C /* Develop */,
 				0EB93B6A202CA3C70049E7A2 /* Automation */,
 				E8F62B27200920870077B3DA /* Staging */,
 				9C54105F218B9D8700E03670 /* Testing */,
@@ -13283,13 +12617,12 @@
 				0E13175D202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		E8F62BDC200924410077B3DA /* Build configuration list for PBXNativeTarget "ComEdUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8F62BDD200924410077B3DA /* Develop-Stage */,
-				9CEB30D722612D8500DD725C /* Develop-Test */,
+				9CEB30D722612D8500DD725C /* Develop */,
 				0EB93B66202CA3C70049E7A2 /* Automation */,
 				E8F62BE0200924410077B3DA /* Staging */,
 				9C54105B218B9D8700E03670 /* Testing */,
@@ -13297,13 +12630,12 @@
 				0E131759202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 		E8F62C91200924570077B3DA /* Build configuration list for PBXNativeTarget "PECOUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E8F62C92200924570077B3DA /* Develop-Stage */,
-				9CEB30D822612D8500DD725C /* Develop-Test */,
+				9CEB30D822612D8500DD725C /* Develop */,
 				0EB93B67202CA3C70049E7A2 /* Automation */,
 				E8F62C95200924570077B3DA /* Staging */,
 				9C54105C218B9D8700E03670 /* Testing */,
@@ -13311,7 +12643,7 @@
 				0E13175A202B583000865819 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Develop-Stage";
+			defaultConfigurationName = Develop;
 		};
 /* End XCConfigurationList section */
 	};
