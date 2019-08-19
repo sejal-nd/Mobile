@@ -19,9 +19,9 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
     
     @IBOutlet weak var instructionLabel: UILabel!
     
-    @IBOutlet weak var createUsernameTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var createPasswordTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var createUsernameTextField: FloatLabelTextField!
+    @IBOutlet weak var createPasswordTextField: FloatLabelTextField!
+    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
         
     @IBOutlet var passwordRequirementLabels: [UILabel]!
     @IBOutlet var mustAlsoContainLabel: UILabel!

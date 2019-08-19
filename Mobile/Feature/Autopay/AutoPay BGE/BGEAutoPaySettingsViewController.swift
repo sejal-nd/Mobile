@@ -35,7 +35,7 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
     
     @IBOutlet weak var amountNotToExceedButtonStackView: UIStackView!   //1.1.2
     let amountNotToExceedRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Amount Not To Exceed", comment: ""))
-    let amountNotToExceedTextField = FloatLabelTextFieldNew(frame: .zero)
+    let amountNotToExceedTextField = FloatLabelTextField(frame: .zero)
     var amountNotToExceedSpacerView1 = SeparatorSpaceView(frame: .zero)
     let amountNotToExceedDetailsLabel = UILabel(frame: .zero)
     var amountNotToExceedSpacerView2 = SeparatorSpaceView(frame: .zero)

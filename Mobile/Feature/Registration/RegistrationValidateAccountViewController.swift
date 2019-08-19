@@ -19,9 +19,9 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var accountNumberView: UIView!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var identifierTextField: FloatLabelTextField!
 
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!

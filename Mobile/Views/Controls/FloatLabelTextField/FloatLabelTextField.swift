@@ -2,32 +2,39 @@
 //  FloatLabelTextField.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 2/23/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Marc Shilling on 6/24/19.
+//  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
-import JVFloatLabeledTextField
 import RxSwift
 import RxCocoa
 
 class FloatLabelTextField: UIView {
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var textFieldView: UIView!
-    @IBOutlet weak var textField: InsetJVFloatLabeledTextField!
+    @IBOutlet weak var textFieldContainerView: UIView!
+    @IBOutlet weak var textField: InsetTextField!
+    @IBOutlet weak var floatLabel: UILabel!
+    @IBOutlet weak var floatLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var checkAccessoryImageView: UIImageView!
-    @IBOutlet weak var leftColorBar: UIView!
-    @IBOutlet weak var bottomColorBar: UIView!
+    
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
-    
-    @IBOutlet weak var disabledColorBar: UIView!
     
     var errorState = false
     var textFieldIsFocused = false
     var errorMessage = ""
     
     let disposeBag = DisposeBag()
+    
+    var placeholder: String? {
+        didSet {
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.middleGray
+            ])
+            floatLabel.text = placeholder
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -42,111 +49,110 @@ class FloatLabelTextField: UIView {
     func commonInit() {
         self.backgroundColor = .clear
         
-        Bundle.main.loadNibNamed(FloatLabelTextField.className, owner: self, options: nil)
+        Bundle.main.loadNibNamed(className, owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
         
-        leftColorBar.backgroundColor = .primaryColor
-        bottomColorBar.isHidden = true
-        
         errorLabel.textColor = .errorRed
-        errorLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        errorLabel.font = SystemFont.semibold.of(textStyle: .caption2)
         errorLabel.text = nil
         errorView.isHidden = true
         
-        textField.font = SystemFont.regular.of(textStyle: .title2)
-        textField.floatingLabelFont = SystemFont.semibold.of(textStyle: .caption1)
-        textField.floatingLabelYPadding = 6
-        textField.floatingLabelTextColor = .primaryColorDark
-        textField.floatingLabelActiveTextColor = .primaryColorDark
+        floatLabel.font = SystemFont.semibold.of(textStyle: .caption2)
+        floatLabel.textColor = .middleGray
+        floatLabel.alpha = 0
+        
+        textField.font = SystemFont.regular.of(textStyle: .callout)
+        textField.tintColor = .primaryColor
+
         textField.rx.controlEvent(.editingDidBegin).asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            if !self.errorState {
-                self.bottomColorBar.backgroundColor = .primaryColor
-                self.bottomColorBar.isHidden = false
-            }
             self.textFieldIsFocused = true
+            if !self.errorState {
+                self.floatLabel.textColor = .primaryColorDark
+                self.textFieldContainerView.layer.borderColor = UIColor.primaryColor.cgColor
+            }
         }).disposed(by: disposeBag)
+        
         textField.rx.controlEvent(.editingDidEnd).asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            if !self.errorState {
-                if self.textField.hasText {
-                    self.bottomColorBar.backgroundColor = .accentGray
-                    self.bottomColorBar.isHidden = false
-                } else {
-                    self.bottomColorBar.isHidden = true
-                }
-            }
             self.textFieldIsFocused = false
+            if !self.errorState {
+                self.floatLabel.textColor = .middleGray
+                self.textFieldContainerView.layer.borderColor = UIColor.accentGray.cgColor
+            }
         }).disposed(by: disposeBag)
+        
+        Observable.merge(textField.rx.text.asObservable(),
+                         textField.textPublishSubject.asObservable())
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
+                self.view.layoutIfNeeded() // So that the textRect shift doesn't animate
+                if text?.count > 0 && self.floatLabelTopConstraint.constant != 8 {
+                    self.floatLabelTopConstraint.constant = 8
+                    UIView.animate(withDuration: 0.3) {
+                        self.floatLabel.alpha = 1
+                        self.view.layoutIfNeeded()
+                    }
+                } else if text?.count == 0 && self.floatLabelTopConstraint.constant != 16 {
+                    self.floatLabelTopConstraint.constant = 16
+                    UIView.animate(withDuration: 0.3) {
+                        self.floatLabel.alpha = 0
+                        self.view.layoutIfNeeded()
+                    }
+                }
+            }).disposed(by: disposeBag)
         
         setDefaultStyles()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        view.roundCorners([.topLeft, .topRight], radius: 4.0)
-    }
-    
     func setDefaultStyles() {
-        disabledColorBar.isHidden = true
+        textFieldContainerView.backgroundColor = .white
+        textFieldContainerView.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         
-        textFieldView.backgroundColor = UIColor.accentGray.withAlphaComponent(0.3)
-        
-        textField.placeholderColor = .deepGray
-        textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
-        textField.textColor = .blackText
+        textField.textColor = .deepGray
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.middleGray
+        ])
     }
     
     func setError(_ error: String?) {
-        if let errorMessage = error {
+        if let errMsg = error {
             errorState = true
-            checkAccessoryImageView.isHidden = true
-            errorLabel.textColor = .errorRed
-
-            leftColorBar.backgroundColor = .errorRed
-            bottomColorBar.backgroundColor = .errorRed
-            bottomColorBar.isHidden = false
-            
-            textField.floatingLabelTextColor = .errorRed
-            textField.floatingLabelActiveTextColor = .errorRed
-            textField.floatingLabel.textColor = .errorRed
-            
+            errorMessage = errMsg
             errorLabel.text = String(format: NSLocalizedString("Error: %@", comment: ""), errorMessage)
-            self.errorMessage = errorMessage
+            
+            errorLabel.textColor = .errorRed
+            floatLabel.textColor = .errorRed
+            textFieldContainerView.layer.borderColor = UIColor.errorRed.cgColor
+            
             errorView.isHidden = false
+            checkAccessoryImageView.isHidden = true
         } else {
             errorState = false
+            errorMessage = ""
+            errorLabel.text = nil
             
-            leftColorBar.backgroundColor = .primaryColor
             if textFieldIsFocused {
-                bottomColorBar.backgroundColor = .primaryColor
+                floatLabel.textColor = .primaryColorDark
+                textFieldContainerView.layer.borderColor = UIColor.primaryColor.cgColor
             } else {
-                bottomColorBar.backgroundColor = .accentGray
-                if !textField.hasText {
-                    bottomColorBar.isHidden = true
-                }
+                floatLabel.textColor = .middleGray
+                textFieldContainerView.layer.borderColor = UIColor.accentGray.cgColor
             }
             
-            textField.floatingLabelTextColor = .primaryColorDark
-            textField.floatingLabelActiveTextColor = .primaryColorDark
-            textField.floatingLabel.textColor = .primaryColorDark
-            
-            errorLabel.text = nil
             errorView.isHidden = true
-            self.errorMessage = ""
         }
     }
     
     func getError() -> String {
-        let fieldTitle = textField.floatingLabel.text?.replacingOccurrences(of: "*", with: "")
+        let fieldTitle = textField.placeholder?.replacingOccurrences(of: "*", with: "")
         return errorMessage != "" ? fieldTitle! + " error: " + errorMessage + ". " : ""
     }
         
     func setInfoMessage(_ message: String?) {
-        
         if let info = message {
             errorLabel.textColor = .successGreenText
             errorLabel.text = String(format: NSLocalizedString("%@", comment: ""), info)
@@ -172,10 +178,11 @@ class FloatLabelTextField: UIView {
             setError(nil)
             setValidated(false)
             
-            disabledColorBar.isHidden = false
-            textFieldView.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
-            textField.placeholderColor = .middleGray
-            textField.setPlaceholder(textField.placeholder, floatingTitle: textField.placeholder) // Needed to update the color
+            textFieldContainerView.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+        
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.deepGray.withAlphaComponent(0.5)
+            ])
         }
     }
     
@@ -195,15 +202,7 @@ class FloatLabelTextField: UIView {
         }
     }
     
-    func setKeyboardType(_ type: UIKeyboardType) {
-        textField.keyboardType = type
-        if type == .numberPad || type == .decimalPad || type == .phonePad {
-            let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(doneButtonAction))
-            addDoneButton(done)
-        }
-    }
-    
-    func setKeyboardType(_ type: UIKeyboardType, doneActionTarget: Any, doneActionSelector: Selector) {
+    func setKeyboardType(_ type: UIKeyboardType, doneActionTarget: Any = self, doneActionSelector: Selector = #selector(doneButtonAction)) {
         textField.keyboardType = type
         if type == .numberPad || type == .decimalPad || type == .phonePad {
             let done = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: doneActionTarget, action: doneActionSelector)

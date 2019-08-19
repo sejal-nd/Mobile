@@ -1,5 +1,5 @@
 //
-//  FloatLabelTextViewNew.swift
+//  FloatLabelTextView.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 6/26/19.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class FloatLabelTextViewNew: UIView {
+class FloatLabelTextView: UIView {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var textViewContainerView: UIView!
     @IBOutlet weak var textView: UITextView!

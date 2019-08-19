@@ -257,7 +257,7 @@
                                                                             </stackView>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="Tmx-Ej-HeH" customClass="FloatLabelTextFieldNew" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="55" translatesAutoresizingMaskIntoConstraints="NO" id="Tmx-Ej-HeH" customClass="FloatLabelTextField" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="45.5" width="335" height="55"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </view>
@@ -1555,7 +1555,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krV-DK-BVi" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="657"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="654.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="WJ6-Sv-i8y">
                                                 <rect key="frame" x="70" y="10" width="460" height="540.5"/>
@@ -1567,19 +1567,19 @@
                                                                 <rect key="frame" x="222" y="10" width="16" height="16"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your payment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bG-L6-jsq">
-                                                                <rect key="frame" x="0.0" y="46" width="460" height="27.5"/>
+                                                                <rect key="frame" x="0.0" y="46" width="460" height="23.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A confirmation email will be sent to you shortly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUO-WP-p0N">
-                                                                <rect key="frame" x="0.0" y="78.5" width="460" height="22"/>
+                                                                <rect key="frame" x="0.0" y="74.5" width="460" height="19"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="lCD-io-vwp">
-                                                                <rect key="frame" x="0.0" y="140.5" width="460" height="284.5"/>
+                                                                <rect key="frame" x="0.0" y="133.5" width="460" height="291.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udK-To-f4d" userLabel="Payment Info View">
                                                                         <rect key="frame" x="0.0" y="0.0" width="460" height="152"/>
@@ -1718,7 +1718,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CAx-BX-DoM">
-                                                                        <rect key="frame" x="0.0" y="268" width="460" height="16.5"/>
+                                                                        <rect key="frame" x="0.0" y="277.5" width="460" height="14"/>
                                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1786,10 +1786,10 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GxY-Rg-QtV" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="580.5" width="600" height="76.5"/>
+                                                <rect key="frame" x="0.0" y="580.5" width="600" height="74"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsw-Al-Iy1">
-                                                        <rect key="frame" x="70" y="30" width="460" height="16.5"/>
+                                                        <rect key="frame" x="70" y="30" width="460" height="14"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="GKO-2y-ycA"/>
                                                         </constraints>

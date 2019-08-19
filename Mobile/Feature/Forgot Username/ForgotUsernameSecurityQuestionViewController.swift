@@ -18,7 +18,7 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var answerTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var answerTextField: FloatLabelTextField!
     @IBOutlet weak var submitButton: PrimaryButton!
     
     var viewModel: ForgotUsernameViewModel!
