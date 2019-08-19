@@ -28,30 +28,29 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBOutlet weak var selectBankAccountLabel: UILabel!
     
-    @IBOutlet weak var bankAccountContainerStack: UIStackView!
     @IBOutlet weak var bankAccountButton: ButtonControl!
     @IBOutlet weak var bankAccountButtonIcon: UIImageView!
     @IBOutlet weak var bankAccountButtonSelectLabel: UILabel!
     @IBOutlet weak var bankAccountButtonAccountNumberLabel: UILabel!
     @IBOutlet weak var bankAccountButtonNicknameLabel: UILabel!
     
+    @IBOutlet weak var settingsButton: ButtonControl!
+    @IBOutlet weak var settingsTitleLabel: UILabel!
     @IBOutlet weak var settingsLabel: UILabel!
-    @IBOutlet weak var settingsButton: DisclosureButton!
+    @IBOutlet weak var settingsDescriptionLabel: UILabel!
     
     @IBOutlet weak var termsStackView: UIStackView!
-    @IBOutlet weak var termsSwitch: Switch!
+    @IBOutlet weak var termsSwitch: Checkbox!
     @IBOutlet weak var termsLabel: UILabel!
     @IBOutlet weak var termsButton: UIButton!
-    
-    @IBOutlet weak var learnMoreView: UIView!
-    @IBOutlet weak var learnMoreButton: ButtonControl!
-    @IBOutlet weak var learnMoreButtonLabel: UILabel!
-    
+
     @IBOutlet weak var bottomLabelView: UIView!
     @IBOutlet weak var bottomLabel: UILabel!
     
+    @IBOutlet weak var stickyFooterView: StickyFooterView!
+    @IBOutlet weak var enrollButton: PrimaryButtonNew!
     @IBOutlet weak var unenrollView: UIView!
-    @IBOutlet weak var unenrollLabel: UILabel!
+    @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!
     
     var accountDetail: AccountDetail! // Passed from BillViewController
@@ -64,14 +63,12 @@ class BGEAutoPayViewController: UIViewController {
         super.viewDidLoad()
 
         title = NSLocalizedString("AutoPay", comment: "")
+
+        let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
+        navigationItem.rightBarButtonItem = helpButton
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        let submitButton = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .done, target: self, action: #selector(onSubmitPress(submitButton:)))
-        
-        viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = submitButton
-        
+    viewModel.submitButtonEnabled.drive(enrollButton.rx.isEnabled).disposed(by: disposeBag)
+
         styleViews()
         setupBindings()
         accessibilitySetup()
@@ -91,6 +88,12 @@ class BGEAutoPayViewController: UIViewController {
             guard let self = self else { return }
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
+        
+        if accountDetail.isAutoPay {
+            enrollButton.isHidden = true
+        } else {
+            unenrollView.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,61 +114,59 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     private func accessibilitySetup() {
-        learnMoreButton.isAccessibilityElement = true
-        learnMoreButton.accessibilityLabel = learnMoreButtonLabel.text
         bankAccountButton.isAccessibilityElement = true
         settingsButton.isAccessibilityElement = true
     }
     
     private func styleViews() {
-        scrollView.backgroundColor = .softGray
-        learnMoreButtonLabel.textColor = .actionBlue
-        learnMoreButtonLabel.text = NSLocalizedString("Learn more about AutoPay", comment: "")
-        learnMoreButtonLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        learnMoreButtonLabel.numberOfLines = 0
-        
-        selectBankAccountLabel.textColor = .blackText
-        selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        selectBankAccountLabel.textColor = .deepGray
+        selectBankAccountLabel.font = OpenSans.semibold.of(textStyle: .caption2)
         selectBankAccountLabel.text = NSLocalizedString("Bank Account", comment: "")
         
+        bankAccountButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         bankAccountButton.backgroundColorOnPress = .softGray
-        bankAccountButton.layer.cornerRadius = 10
-        bankAccountButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         
-        bankAccountButtonSelectLabel.font = SystemFont.medium.of(textStyle: .headline)
-        bankAccountButtonSelectLabel.textColor = .blackText
+        bankAccountButtonSelectLabel.textColor = .deepGray
+        bankAccountButtonSelectLabel.font = SystemFont.regular.of(textStyle: .callout)
         bankAccountButtonSelectLabel.text = NSLocalizedString("Select Bank Account", comment: "")
         
-        bankAccountButtonAccountNumberLabel.textColor = .blackText
+        bankAccountButtonAccountNumberLabel.textColor = .deepGray
+        bankAccountButtonAccountNumberLabel.font = SystemFont.regular.of(textStyle: .callout)
         bankAccountButtonNicknameLabel.textColor = .middleGray
+        bankAccountButtonNicknameLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        settingsButton.label.lineBreakMode = .byTruncatingMiddle
+        settingsButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
+        settingsButton.backgroundColorOnPress = .softGray
+//        settingsButton.label.lineBreakMode = .byTruncatingMiddle
         
         termsLabel.textColor = .deepGray
-        termsLabel.font = SystemFont.regular.of(textStyle: .headline)
+        termsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         termsLabel.setLineHeight(lineHeight: 25)
         termsLabel.isAccessibilityElement = false
         termsButton.setTitleColor(.actionBlue, for: .normal)
-        termsButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        termsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         termsSwitch.accessibilityLabel = termsLabel.text
         
-        bottomLabelView.backgroundColor = .softGray
-        bottomLabel.textColor = .blackText
+        bottomLabel.textColor = .deepGray
         bottomLabel.text = viewModel.bottomLabelText
-        bottomLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        bottomLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        settingsLabel.textColor = .blackText
-        settingsLabel.font = OpenSans.semibold.of(textStyle: .headline)
-        settingsLabel.text = NSLocalizedString("AutoPay Settings", comment: "")
+        settingsTitleLabel.textColor = .deepGray
+        settingsTitleLabel.font = OpenSans.semibold.of(textStyle: .caption2)
         
-        unenrollView.addShadow(color: .black, opacity: 0.1, offset: CGSize(width: 0, height: -2), radius: 2)
-        unenrollLabel.font = SystemFont.regular.of(textStyle: .headline)
-        unenrollLabel.textColor = .deepGray
+        settingsLabel.textColor = .deepGray
+        settingsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        settingsDescriptionLabel.textColor = .middleGray
+        settingsDescriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        
+        unenrollButtonLabel.textColor = .deepGray
+        unenrollButtonLabel.font = SystemFont.regular.of(textStyle: .callout)
         unenrollButton.setTitleColor(.actionBlue, for: .normal)
-        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .headline)
+        unenrollButton.titleLabel?.font = SystemFont.bold.of(textStyle: .callout)
         
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
+        errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        errorLabel.textColor = .deepGray
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
     
@@ -183,23 +184,18 @@ class BGEAutoPayViewController: UIViewController {
         viewModel.walletItemNicknameText.drive(bankAccountButtonNicknameLabel.rx.text).disposed(by: disposeBag)
         viewModel.selectedWalletItemA11yLabel.drive(bankAccountButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
-        viewModel.settingsButtonAmountText.drive(settingsButton.rx.labelText).disposed(by: disposeBag)
-        viewModel.settingsButtonDaysBeforeText.drive(settingsButton.rx.detailText).disposed(by: disposeBag)
+        viewModel.settingsButtonAmountText.drive(settingsLabel.rx.text).disposed(by: disposeBag)
+        viewModel.settingsButtonDaysBeforeText.drive(settingsDescriptionLabel.rx.text).disposed(by: disposeBag)
         
         viewModel.settingsButtonA11yLabel
             .drive(settingsButton.rx.accessibilityLabel)
             .disposed(by: disposeBag)
         
-        viewModel.showUnenrollFooter.drive(learnMoreView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showUnenrollFooter.not().drive(unenrollView.rx.isHidden).disposed(by: disposeBag)
         
-        termsSwitch.rx.isOn.asDriver().drive(viewModel.userDidReadTerms).disposed(by: disposeBag)
+        termsSwitch.rx.isChecked.asDriver().drive(viewModel.userDidReadTerms).disposed(by: disposeBag)
     }
-    
-    @objc func onCancelPress() {
-        navigationController?.popViewController(animated: true)
-    }
-    
+
     @objc func onSubmitPress(submitButton: UIBarButtonItem) {
         guard submitButton.isEnabled else { return }
         
@@ -246,7 +242,7 @@ class BGEAutoPayViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func enroll() {
+    @IBAction func enroll() {
         GoogleAnalytics.log(event: .autoPayEnrollSubmit)
         if viewModel.userDidChangeSettings.value {
             GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
@@ -304,7 +300,8 @@ class BGEAutoPayViewController: UIViewController {
         self.present(alertVc, animated: true, completion: nil)
     }
     
-    @IBAction func onLearnMorePress() {
+    @objc
+    func onLearnMorePress() {
         let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }

@@ -359,6 +359,9 @@
 		35A5DCBF2305D35200A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		35A5DCC02305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		35A5DCC12305D35300A82AA8 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
+		35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
+		35A5DCC42305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
+		35A5DCC52305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */; };
 		35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */; };
 		35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */; };
 		35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */; };
@@ -2672,6 +2675,7 @@
 		359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoBarNew.xib; sourceTree = "<group>"; };
 		359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smallcircleload_blue.json; sourceTree = "<group>"; };
 		359BDBB422E0E6EA007002B0 /* checkmark_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark_blue.json; sourceTree = "<group>"; };
+		35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPayBGE.storyboard; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
 		35A6C6C0211C7AD200C2A58F /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -3965,6 +3969,7 @@
 		35A5DCBB2304402D00A82AA8 /* AutoPay BGE */ = {
 			isa = PBXGroup;
 			children = (
+				35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */,
 				E8C453221EF4310800F5C781 /* BGEAutoPayViewController.swift */,
 				E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */,
 				E8C453261EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift */,
@@ -6296,6 +6301,7 @@
 				E8B4F4BF1E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06CC1E521B5300BBA4ED /* BGEAssets.xcassets in Resources */,
 				9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */,
+				35A5DCC32305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				E867A8FA1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				82AEF2E41F618F560057E7ED /* Settings.bundle in Resources */,
 				82D626181FE1AD8B00B09F00 /* landing_video.mp4 in Resources */,
@@ -6460,6 +6466,7 @@
 				359BDB6822D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
+				35A5DCC52305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				B08957282217496D00A97965 /* bill_pdf.json in Resources */,
 				9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */,
 				35A6C6D6211C8F1300C2A58F /* TitleTableViewHeaderView.xib in Resources */,
@@ -6624,6 +6631,7 @@
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				B08957272217496D00A97965 /* bill_pdf.json in Resources */,
 				9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */,
+				35A5DCC42305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
 				35A6C6D5211C8F1200C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				82E22B621F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				E867A8FB1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
