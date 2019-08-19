@@ -48,7 +48,7 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var bottomLabel: UILabel!
     
     @IBOutlet weak var stickyFooterView: StickyFooterView!
-    @IBOutlet weak var enrollButton: PrimaryButtonNew!
+    @IBOutlet weak var enrollButton: PrimaryButton!
     @IBOutlet weak var unenrollView: UIView!
     @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!

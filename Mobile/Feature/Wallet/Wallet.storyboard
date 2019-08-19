@@ -544,7 +544,7 @@
                         <viewLayoutGuide key="safeArea" id="LSJ-du-FZs"/>
                     </view>
                     <navigationItem key="navigationItem" title="My Wallet" id="wfM-W8-eOg">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="E5s-mr-4C4"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="E5s-mr-4C4"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

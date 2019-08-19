@@ -40,7 +40,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
     @IBOutlet weak var primaryProfileLabel: UILabel!
     @IBOutlet weak var primaryProfileCheckbox: Checkbox!
     
-    @IBOutlet weak var continueButton: PrimaryButtonNew!
+    @IBOutlet weak var continueButton: PrimaryButton!
     
     var viewModel: RegistrationViewModel!
     

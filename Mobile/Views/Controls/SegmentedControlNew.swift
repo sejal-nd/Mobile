@@ -119,7 +119,7 @@ class SegmentedControlNew: UIControl {
         selectIndex(index)
     }
     
-    func selectIndex(_ index: Int) {
+    func selectIndex(_ index: Int, animated: Bool = true) {
         selectedIndex.value = index
         sendActions(for: .valueChanged)
         setNeedsLayout()
@@ -133,7 +133,8 @@ class SegmentedControlNew: UIControl {
         let itemWidth = frame.width / CGFloat(items!.count)
         let xPos = CGFloat(index) * itemWidth
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+        let duration = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
             self.selectionPill.frame = CGRect(x: xPos, y: 0, width: itemWidth, height: self.frame.height)
             self.layoutIfNeeded()
         }, completion: nil)

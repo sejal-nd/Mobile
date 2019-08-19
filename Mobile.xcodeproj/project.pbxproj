@@ -184,10 +184,10 @@
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
-		35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
-		35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
-		35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
-		35376C6A20F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
+		35376C6720F8FFC8007E50F7 /* UsageBillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */; };
+		35376C6820F8FFC9007E50F7 /* UsageBillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */; };
+		35376C6920F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */; };
+		35376C6A20F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		3559C8A522F9F68400481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
@@ -275,8 +275,8 @@
 		358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
-		358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */; };
-		358BD21920F8FDAE00DA2012 /* BillImpactDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */; };
+		358BD21720F8FB2D00DA2012 /* UsageBillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */; };
+		358BD21920F8FDAE00DA2012 /* UsageBillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */; };
 		358BD97322E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		358BD97422E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		358BD97522E625D8001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
@@ -755,9 +755,6 @@
 		82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
-		82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
-		82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
-		82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */; };
 		82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
 		82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
 		82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
@@ -1005,9 +1002,9 @@
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
-		9C7FFD1A22C1251800092987 /* PrimaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */; };
-		9C7FFD1B22C1251800092987 /* PrimaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */; };
-		9C7FFD1C22C1251800092987 /* PrimaryButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */; };
+		9C7FFD1A22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
+		9C7FFD1B22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
+		9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
 		9C8775B522A082CD0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
 		9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
 		9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
@@ -2641,8 +2638,8 @@
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
-		358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillImpactDropdownView.xib; sourceTree = "<group>"; };
-		358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImpactDropdownView.swift; sourceTree = "<group>"; };
+		358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageBillImpactView.xib; sourceTree = "<group>"; };
+		358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageBillImpactView.swift; sourceTree = "<group>"; };
 		358D677221961BC400395D0F /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
 		358DE0A421021471002C544E /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
@@ -2890,7 +2887,6 @@
 		82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
 		82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
-		82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		82A18EB71EBA676700BE9F21 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
@@ -2975,7 +2971,7 @@
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
-		9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonNew.swift; sourceTree = "<group>"; };
+		9C7FFD1922C1251800092987 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
@@ -3664,13 +3660,13 @@
 			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
-		35376C6B20F914D5007E50F7 /* Bill Impact Dropdown View */ = {
+		35376C6B20F914D5007E50F7 /* UsageBillImpactView */ = {
 			isa = PBXGroup;
 			children = (
-				358BD21620F8FB2D00DA2012 /* BillImpactDropdownView.xib */,
-				358BD21820F8FDAE00DA2012 /* BillImpactDropdownView.swift */,
+				358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */,
+				358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */,
 			);
-			path = "Bill Impact Dropdown View";
+			path = UsageBillImpactView;
 			sourceTree = "<group>";
 		};
 		3559C89722F4929500481A87 /* Home */ = {
@@ -3882,7 +3878,7 @@
 			isa = PBXGroup;
 			children = (
 				B0882C9D210B921E00EB756B /* Usage Tool Card */,
-				35376C6B20F914D5007E50F7 /* Bill Impact Dropdown View */,
+				35376C6B20F914D5007E50F7 /* UsageBillImpactView */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -4541,8 +4537,7 @@
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				E841F3A61F02F316007BFA82 /* PickerView.swift */,
 				825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */,
-				82A18EB41EBA676700BE9F21 /* PrimaryButton.swift */,
-				9C7FFD1922C1251800092987 /* PrimaryButtonNew.swift */,
+				9C7FFD1922C1251800092987 /* PrimaryButton.swift */,
 				9C62445522C1624900F14DA0 /* SecondaryButton.swift */,
 				82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */,
 				82A18EB71EBA676700BE9F21 /* Switch.swift */,
@@ -6355,7 +6350,7 @@
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
 				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
-				358BD21720F8FB2D00DA2012 /* BillImpactDropdownView.xib in Resources */,
+				358BD21720F8FB2D00DA2012 /* UsageBillImpactView.xib in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
@@ -6518,7 +6513,7 @@
 				6A4FD41C5B2744DEBEF4D69E /* otp_step1.json in Resources */,
 				6A4FDDD10550ECC33F36ECCD /* otps2_img_0.png in Resources */,
 				6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */,
-				35376C6820F8FFC9007E50F7 /* BillImpactDropdownView.xib in Resources */,
+				35376C6820F8FFC9007E50F7 /* UsageBillImpactView.xib in Resources */,
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
@@ -6685,7 +6680,7 @@
 				6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */,
 				6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */,
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
-				35376C6720F8FFC8007E50F7 /* BillImpactDropdownView.xib in Resources */,
+				35376C6720F8FFC8007E50F7 /* UsageBillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
 				9CD3533422CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
@@ -7712,7 +7707,6 @@
 				B01748972135D3740039D0C6 /* StormModeHomeViewModel.swift in Sources */,
 				82AC2A161FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35820D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
-				82A18EBB1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				35A6C6DB211CC09C00C2A58F /* UpdatesViewModel.swift in Sources */,
 				35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
@@ -7899,7 +7893,7 @@
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
-				358BD21920F8FDAE00DA2012 /* BillImpactDropdownView.swift in Sources */,
+				358BD21920F8FDAE00DA2012 /* UsageBillImpactView.swift in Sources */,
 				9C28D388227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
@@ -7984,7 +7978,7 @@
 				B59EFAA51F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				54C1DF041F02EF2800290FE5 /* SeparatorSpaceView.swift in Sources */,
 				8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
-				9C7FFD1A22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
+				9C7FFD1A22C1251800092987 /* PrimaryButton.swift in Sources */,
 				9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */,
 				E881B14F1F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
@@ -8093,7 +8087,6 @@
 				E8400E6B1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
-				82A18EBD1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE821751FB700751430 /* MCSAppointmentService.swift in Sources */,
@@ -8173,7 +8166,7 @@
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
-				35376C6A20F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */,
+				35376C6A20F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */,
@@ -8235,7 +8228,7 @@
 				E8127B281EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
-				9C7FFD1C22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
+				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3361F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
@@ -8476,7 +8469,6 @@
 				E8400E6A1FE05F0D0064E242 /* MockWalletService.swift in Sources */,
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35920D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
-				82A18EBC1EBA676700BE9F21 /* PrimaryButton.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
 				8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE721751FB700751430 /* MCSAppointmentService.swift in Sources */,
@@ -8565,7 +8557,7 @@
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
-				35376C6920F8FFD1007E50F7 /* BillImpactDropdownView.swift in Sources */,
+				35376C6920F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				B07E17BF2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				82AC2A1B1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
@@ -8749,7 +8741,7 @@
 				B59EFAA61F72E9A2001490A1 /* FloatLabelTextView.swift in Sources */,
 				8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				E881B1501F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
-				9C7FFD1B22C1251800092987 /* PrimaryButtonNew.swift in Sources */,
+				9C7FFD1B22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,

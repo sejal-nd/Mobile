@@ -37,13 +37,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="608.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnr-5P-RZv">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="407.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="427.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="eDo-fn-RRN">
-                                                        <rect key="frame" x="0.0" y="25" width="414" height="382.5"/>
+                                                        <rect key="frame" x="0.0" y="25" width="414" height="402.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXW-RY-0Ab" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="0.0" width="374" height="61"/>
+                                                                <rect key="frame" x="20" y="0.0" width="374" height="81"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bank account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ya-E5-jrB">
                                                                         <rect key="frame" x="20" y="6" width="324" height="13"/>
@@ -55,25 +55,25 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="opco_bank_mini" translatesAutoresizingMaskIntoConstraints="NO" id="jpT-Wu-pEI">
-                                                                        <rect key="frame" x="20" y="32" width="16" height="16"/>
+                                                                        <rect key="frame" x="20" y="32" width="45" height="36"/>
                                                                     </imageView>
                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="TVa-ce-thh">
-                                                                        <rect key="frame" x="51" y="32" width="285" height="60.5"/>
+                                                                        <rect key="frame" x="80" y="32" width="256" height="60.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Select Bank Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1l-mI-oxf">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="285" height="20.5"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="256" height="20.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** 4321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybl-7e-krV">
-                                                                                <rect key="frame" x="0.0" y="23.5" width="285" height="19.5"/>
+                                                                                <rect key="frame" x="0.0" y="23.5" width="256" height="19.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4w-cn-94i">
-                                                                                <rect key="frame" x="0.0" y="46" width="285" height="14.5"/>
+                                                                                <rect key="frame" x="0.0" y="46" width="256" height="14.5"/>
                                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -81,7 +81,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="amG-et-Sxv">
-                                                                        <rect key="frame" x="348" y="24" width="8" height="13"/>
+                                                                        <rect key="frame" x="348" y="34" width="8" height="13"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="8" id="P26-bX-VS0"/>
                                                                             <constraint firstAttribute="height" constant="13" id="pOe-hN-If7"/>
@@ -109,7 +109,7 @@
                                                                 </connections>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyP-an-I7R" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="91" width="374" height="76"/>
+                                                                <rect key="frame" x="20" y="111" width="374" height="76"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AutoPay Settings" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W80-KL-FTp">
                                                                         <rect key="frame" x="20" y="6" width="334" height="13"/>
@@ -178,7 +178,7 @@
                                                                 </connections>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-hG-B7m">
-                                                                <rect key="frame" x="20" y="197" width="374" height="79"/>
+                                                                <rect key="frame" x="20" y="217" width="374" height="79"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJg-zg-xLJ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="79"/>
@@ -231,7 +231,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vch-kQ-TeG">
-                                                                <rect key="frame" x="0.0" y="306" width="414" height="76.5"/>
+                                                                <rect key="frame" x="0.0" y="326" width="414" height="76.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1K-Mq-0vw">
                                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -304,7 +304,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XmA-xW-aqO">
                                                 <rect key="frame" x="20" y="15" width="374" height="85.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WU4-Lr-PlL" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WU4-Lr-PlL" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
                                                         <accessibility key="accessibilityConfiguration" label="Enroll in Budget Billing"/>
                                                         <constraints>
@@ -511,7 +511,7 @@
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9g-jo-c5a" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="777" width="414" height="119"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0LE-zq-7P5" customClass="PrimaryButtonNew" customModule="BGE" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0LE-zq-7P5" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
                                         <accessibility key="accessibilityConfiguration" label="Save Password"/>
                                         <constraints>

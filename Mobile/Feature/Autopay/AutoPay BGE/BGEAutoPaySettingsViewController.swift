@@ -60,7 +60,7 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
     let beforeDueDateHairline = UIView(frame: .zero)
 
     @IBOutlet var dueDateRadioControlsSet = [UIControl]()
-    @IBOutlet weak var doneButton: PrimaryButtonNew!
+    @IBOutlet weak var doneButton: PrimaryButton!
     
     let now = Calendar.current.startOfDay(for: .now)
     let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: .now))

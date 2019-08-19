@@ -18,7 +18,7 @@ class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooter
     @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
-    @IBOutlet weak var continueButton: PrimaryButtonNew!
+    @IBOutlet weak var continueButton: PrimaryButton!
     
     let disposeBag = DisposeBag()
     

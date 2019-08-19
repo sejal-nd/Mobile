@@ -43,7 +43,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var footerLabel: UILabel!
     
     @IBOutlet weak var stickyFooterView: StickyFooterView!
-    @IBOutlet weak var enrollButton: PrimaryButtonNew!
+    @IBOutlet weak var enrollButton: PrimaryButton!
     @IBOutlet weak var unenrollView: UIView!
     @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!

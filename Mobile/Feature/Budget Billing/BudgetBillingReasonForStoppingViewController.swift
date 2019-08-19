@@ -12,7 +12,7 @@ import RxSwift
 class BudgetBillingReasonForStoppingViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var unenrollButton: PrimaryButtonNew!
+    @IBOutlet weak var unenrollButton: PrimaryButton!
     
     // Passed from BudgetBillingViewController
     var viewModel: BudgetBillingViewModel!

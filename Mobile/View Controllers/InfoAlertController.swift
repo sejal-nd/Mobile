@@ -109,11 +109,11 @@ class InfoAlertController: UIViewController {
         alertContainerView.layer.cornerRadius = 10
         xButton.setImage(#imageLiteral(resourceName: "ic_close"), for: .normal)
         xButton.tintColor = .actionBlue
-        titleLabel.font = SystemFont.regular.of(textStyle: .title1)
+        titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         titleLabel.textColor = .deepGray
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
-        messageLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        messageLabel.font = SystemFont.regular.of(textStyle: .footnote)
         messageLabel.textColor = .deepGray
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center

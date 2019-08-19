@@ -26,7 +26,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var passwordTextField: FloatLabelTextFieldNew!
     @IBOutlet weak var keepMeSignedInCheckbox: Checkbox!
     @IBOutlet weak var keepMeSignedInLabel: UILabel!
-    @IBOutlet weak var signInButton: PrimaryButtonNew!
+    @IBOutlet weak var signInButton: PrimaryButton!
     @IBOutlet weak var forgotUsernamePasswordButton: UIButton!
     @IBOutlet weak var eyeballButton: UIButton!
     @IBOutlet weak var biometricImageView: UIImageView!
