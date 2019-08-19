@@ -247,24 +247,25 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 		navigationController?.present(infoModal, animated: true, completion: nil)
 	}
 
-    @objc func onSavePress() {
+    @IBAction func onSavePress() {
+        view.endEditing(true)
+        
         LoadingView.show()
         GoogleAnalytics.log(event: .autoPayModifyBankSave)
-        viewModel.submit()
+        viewModel.changeBank()
             .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: { [weak self] enrolled in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    self.delegate?.changedBank()
-                    self.navigationController?.popViewController(animated: true)
-                }, onError: { [weak self] error in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                            message: error.localizedDescription, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
+            .subscribe(onNext: { [weak self] enrolled in
+                LoadingView.hide()
+                guard let self = self else { return }
+                self.delegate?.changedBank()
+                self.dismissModal()
+            }, onError: { [weak self] error in
+                LoadingView.hide()
+                guard let self = self else { return }
+                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                        message: error.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             })
             .disposed(by: bag)
     }

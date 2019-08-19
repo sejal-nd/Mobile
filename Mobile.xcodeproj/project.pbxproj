@@ -3827,7 +3827,7 @@
 		3559C8B42301E43600481A87 /* Autopay */ = {
 			isa = PBXGroup;
 			children = (
-				35A5DCBA2304400A00A82AA8 /* AutoPay Peco - ComEd */,
+				35A5DCBA2304400A00A82AA8 /* AutoPay ComEd PECO */,
 				35A5DCBB2304402D00A82AA8 /* AutoPay BGE */,
 			);
 			path = Autopay;
@@ -3946,7 +3946,7 @@
 			path = "Detail Pages";
 			sourceTree = "<group>";
 		};
-		35A5DCBA2304400A00A82AA8 /* AutoPay Peco - ComEd */ = {
+		35A5DCBA2304400A00A82AA8 /* AutoPay ComEd PECO */ = {
 			isa = PBXGroup;
 			children = (
 				3559C8B52301E4FF00481A87 /* AutoPay.storyboard */,
@@ -3955,7 +3955,7 @@
 				E8C4532E1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift */,
 				3559C8B923030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift */,
 			);
-			path = "AutoPay Peco - ComEd";
+			path = "AutoPay ComEd PECO";
 			sourceTree = "<group>";
 		};
 		35A5DCBB2304402D00A82AA8 /* AutoPay BGE */ = {
