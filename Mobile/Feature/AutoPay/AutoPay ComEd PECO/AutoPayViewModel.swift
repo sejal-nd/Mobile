@@ -15,7 +15,7 @@ class AutoPayViewModel {
     let bag = DisposeBag()
     
     enum AutoPayEnrollmentStatus {
-        case enrolling, isEnrolled, unenrolling
+        case enrolled, unenrolled
     }
     
     let enrollmentStatus: Variable<AutoPayEnrollmentStatus>
@@ -39,33 +39,34 @@ class AutoPayViewModel {
         self.paymentService = paymentService
         self.walletService = walletService
         self.accountDetail = accountDetail
-        enrollmentStatus = Variable(accountDetail.isAutoPay ? .isEnrolled:.enrolling)
+        enrollmentStatus = Variable(accountDetail.isAutoPay ? .enrolled : .unenrolled)
         termsAndConditionsCheck = Variable(Environment.shared.opco != .comEd)
     }
     
-    func submit() -> Observable<Bool> {
+    func enroll() -> Observable<Bool> {
         let bankAccountType = checkingSavingsSegmentedControlIndex.value == 0 ? "checking" : "saving"
-        switch enrollmentStatus.value {
-        case .enrolling:
-            GoogleAnalytics.log(event: .autoPayEnrollSubmit)
-            return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
-                                                  nameOfAccount: nameOnAccount.value,
-                                                  bankAccountType: bankAccountType,
-                                                  routingNumber: routingNumber.value,
-                                                  bankAccountNumber: accountNumber.value,
-                                                  isUpdate: false).map { _ in true }
-        case .unenrolling:
-            GoogleAnalytics.log(event: .autoPayUnenrollOffer)
-            return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
-                                                      reason: selectedUnenrollmentReason.value!).map { _ in false }
-        case .isEnrolled:
-            return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
-                                                  nameOfAccount: nameOnAccount.value,
-                                                  bankAccountType: bankAccountType,
-                                                  routingNumber: routingNumber.value,
-                                                  bankAccountNumber: accountNumber.value,
-                                                  isUpdate: true).map { _ in true }
-        }
+        return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
+                                              nameOfAccount: nameOnAccount.value,
+                                              bankAccountType: bankAccountType,
+                                              routingNumber: routingNumber.value,
+                                              bankAccountNumber: accountNumber.value,
+                                              isUpdate: false).map { _ in true }
+    }
+    
+    func changeBank() -> Observable<Bool> {
+        let bankAccountType = checkingSavingsSegmentedControlIndex.value == 0 ? "checking" : "saving"
+        return paymentService.enrollInAutoPay(accountNumber: accountDetail.accountNumber,
+                                              nameOfAccount: nameOnAccount.value,
+                                              bankAccountType: bankAccountType,
+                                              routingNumber: routingNumber.value,
+                                              bankAccountNumber: accountNumber.value,
+                                              isUpdate: true).map { _ in true }
+    }
+    
+    func unenroll() -> Observable<Bool> {
+        GoogleAnalytics.log(event: .autoPayUnenrollOffer)
+        return paymentService.unenrollFromAutoPay(accountNumber: accountDetail.accountNumber,
+                                                  reason: selectedUnenrollmentReason.value!).map { _ in false }
     }
     
     func getBankName(onSuccess: @escaping () -> Void, onError: @escaping () -> Void) {
@@ -126,20 +127,7 @@ class AutoPayViewModel {
     }()
     
     private(set) lazy var canSubmitUnenroll: Driver<Bool> = self.selectedUnenrollmentReason.asDriver().isNil().not()
-    
-    private(set) lazy var canSubmit: Driver<Bool> = Driver.combineLatest(self.enrollmentStatus.asDriver(),
-                                                                         self.canSubmitNewAccount,
-                                                                         self.canSubmitUnenroll)
-        .map { status, canSubmitNewAccount, canSubmitUnenroll in
-            switch status {
-            case .enrolling:
-                return canSubmitNewAccount
-            case .isEnrolled, .unenrolling:
-                return canSubmitUnenroll
-            }
-        }
-        .distinctUntilChanged()
-    
+        
     private(set) lazy var nameOnAccountErrorText: Driver<String?> = self.nameOnAccountIsValid.asDriver()
         .distinctUntilChanged()
         .map { $0 ? nil: NSLocalizedString("Can only contain letters, numbers, and spaces", comment: "") }
@@ -186,17 +174,14 @@ class AutoPayViewModel {
         guard let self = self else { return nil }
 		var footerText: String
         switch (Environment.shared.opco, enrollmentStatus) {
-        case (.peco, .enrolling):
+        case (.peco, .unenrolled):
             footerText = NSLocalizedString("Your recurring payment will apply to the next PECO bill you receive. You will need to submit a payment for your current PECO bill if you have not already done so.", comment: "")
-        case (.comEd, .enrolling):
+        case (.comEd, .unenrolled):
             footerText = NSLocalizedString("Your recurring payment will apply to the next ComEd bill you receive. You will need to submit a payment for your current ComEd bill if you have not already done so.", comment: "")
-        case (.peco, .isEnrolled):
+        case (.peco, .enrolled):
             footerText = NSLocalizedString("Changing your bank account information takes up to 7 days to process. If this change is submitted less than 7 days prior to your next due date, the funds may be deducted from your original bank account.", comment: "")
-        case (.comEd, .isEnrolled):
+        case (.comEd, .enrolled):
             footerText = NSLocalizedString("If this change is submitted more than 4 business days prior to the bill due date, you will need to pay your current bill using another payment method because the existing bank information on file will be canceled. If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
-        case (.peco, .unenrolling),
-             (.comEd, .unenrolling):
-            footerText = NSLocalizedString("If this change is submitted less than 3 business days prior to the bill due date, the funds will be deducted from your original bank account.", comment: "")
         default:
             fatalError("BGE account attempted to access the ComEd/PECO AutoPay screen.")
         }

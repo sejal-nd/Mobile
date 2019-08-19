@@ -119,8 +119,6 @@ class UsageBillImpactView: UIView {
     let otherExpanded = BehaviorRelay(value: false)
     
     private var viewModel: BillViewModel?
-    
-    private var hasLoadedView = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -148,12 +146,6 @@ class UsageBillImpactView: UIView {
         otherTapView.addGestureRecognizer(otherTap)
     }
     
-    func superviewDidLayoutSubviews() {
-        // Fixes layout issues with segmented control
-        elecGasSegmentedControl.selectIndex(elecGasSegmentedControl.selectedIndex.value, animated: false)
-        hasLoadedView = true
-    }
-    
     func configure(withViewModel viewModel: BillViewModel) {
         self.viewModel = viewModel
         bindViewModel(viewModel)
@@ -179,6 +171,7 @@ class UsageBillImpactView: UIView {
         viewModel.billPeriodArrowImage.drive(billPeriodImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.billPeriodCostDifference).currencyString }.drive(billPeriodAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.billPeriodDetailLabelText.drive(billPeriodDetailLabel.rx.text).disposed(by: disposeBag)
+        viewModel.billPeriodDetailLabelText.drive(billPeriodTapView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         weatherExpanded.asDriver().drive(onNext: { [weak self] expanded in
             guard let self = self else { return }
@@ -193,6 +186,7 @@ class UsageBillImpactView: UIView {
         viewModel.weatherArrowImage.drive(weatherImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.weatherCostDifference).currencyString }.drive(weatherAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.weatherDetailLabelText.drive(weatherDetailLabel.rx.text).disposed(by: disposeBag)
+        viewModel.weatherDetailLabelText.drive(weatherTapView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         otherExpanded.asDriver().drive(onNext: { [weak self] expanded in
             guard let self = self else { return }
@@ -207,6 +201,7 @@ class UsageBillImpactView: UIView {
         viewModel.otherArrowImage.drive(otherImageView.rx.image).disposed(by: disposeBag)
         viewModel.currentBillComparison.map { abs($0.otherCostDifference).currencyString }.drive(otherAmountLabel.rx.text).disposed(by: disposeBag)
         viewModel.otherDetailLabelText.drive(otherDetailLabel.rx.text).disposed(by: disposeBag)
+        viewModel.otherDetailLabelText.drive(otherTapView.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.electricGasSelectedSegmentIndex.asDriver()
             .distinctUntilChanged()
@@ -214,8 +209,8 @@ class UsageBillImpactView: UIView {
             .disposed(by: disposeBag)
         
         elecGasSegmentedControl.selectedIndex.asDriver()
+            .skip(1) // The first, programatic selection
             .distinctUntilChanged()
-            .filter { _ in self.hasLoadedView }
             .do(onNext: { [weak self] _ in self?.setInnerLoadingState(true) })
             .drive(viewModel.electricGasSelectedSegmentIndex)
             .disposed(by: disposeBag)

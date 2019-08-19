@@ -86,8 +86,14 @@ class AccountPicker: UIControl {
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
         
-        isAccessibilityElement = true
-        accessibilityTraits = .button
+        if accounts.count > 1 || isMultiPremise {
+            isAccessibilityElement = true
+            accessibilityTraits = .button
+            accessibilityLabel = NSLocalizedString("Account picker", comment: "")
+        } else {
+            isAccessibilityElement = false
+        }
+        
         clipsToBounds = true
         backgroundColor = .clear
         view.backgroundColor = .clear

@@ -47,12 +47,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var unenrollView: UIView!
     @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!
-    
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+        
     weak var delegate: AutoPayViewControllerDelegate?
     
     let bag = DisposeBag()
@@ -70,10 +65,9 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         style()
         configureView()
         textFieldSetup()
-        bindEnrollingState()
-        bindEnrolledState()
+        bindStates()
         
-    viewModel.footerText.drive(footerLabel.rx.text).disposed(by: bag)
+        viewModel.footerText.drive(footerLabel.rx.text).disposed(by: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +77,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nav = segue.destination as? UINavigationController,
+        if let nav = segue.destination as? LargeTitleNavigationController,
             let vc = nav.viewControllers.first as? AutoPayChangeBankViewController {
             vc.viewModel = viewModel
             vc.delegate = self
@@ -104,7 +98,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         navigationItem.rightBarButtonItem = helpButton
         
-    viewModel.canSubmit.drive(enrollButton.rx.isEnabled).disposed(by: bag)
+        viewModel.canSubmitNewAccount.drive(enrollButton.rx.isEnabled).disposed(by: bag)
         
         if accountDetail.isAutoPay {
             enrollButton.isHidden = true
@@ -169,12 +163,9 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     
     // MARK: - Bindings
     
-    private func bindEnrolledState() {
-        viewModel.enrollmentStatus.asDriver().map { $0 == .enrolling }.drive(enrolledStackView.rx.isHidden).disposed(by: bag)
-    }
-    
-    private func bindEnrollingState() {
-        viewModel.enrollmentStatus.asDriver().map { $0 != .enrolling }.drive(enrollStackView.rx.isHidden).disposed(by: bag)
+    private func bindStates() {
+        viewModel.enrollmentStatus.asDriver().map { $0 == .unenrolled }.drive(enrolledStackView.rx.isHidden).disposed(by: bag)
+        viewModel.enrollmentStatus.asDriver().map { $0 == .enrolled }.drive(enrollStackView.rx.isHidden).disposed(by: bag)
         
         checkingSavingsSegmentedControl.items = [
             NSLocalizedString("Checking", comment: ""),
@@ -301,46 +292,41 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     // MARK: - Actions
 
     @IBAction func enrollButtonPress(_ sender: Any) {
-        enrollInAutoPay(shouldEnroll: true)
+        view.endEditing(true)
+        
+        LoadingView.show()
+        viewModel.enroll()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] enrolled in
+                LoadingView.hide()
+                guard let self = self else { return }
+                self.delegate?.autoPayViewController(self, enrolled: true)
+                self.navigationController?.popViewController(animated: true)
+            }, onError: { [weak self] error in
+                LoadingView.hide()
+                guard let self = self else { return }
+                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                        message: error.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            })
+            .disposed(by: bag)
     }
     
     
-    @IBAction func unenrollButtonPesss(_ sender: Any) {
-        onSubmitPress()
-    }
-    
-    @objc func onSubmitPress() {
+    @IBAction func unenrollButtonPress(_ sender: Any) {
         view.endEditing(true)
         
         switch Environment.shared.opco {
-        case .comEd:
+        case .comEd, .peco:
             performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
-        case .peco:
-            enrollInAutoPay(shouldEnroll: false)
         case .bge:
             fatalError("Opco Not Implemented: \(Environment.shared.opco.displayString)")
         }
     }
     
-    private func enrollInAutoPay(shouldEnroll: Bool) {
-        LoadingView.show()
-        viewModel.submit()
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: { [weak self] enrolled in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    self.delegate?.autoPayViewController(self, enrolled: shouldEnroll)
-                    self.navigationController?.popViewController(animated: true)
-                }, onError: { [weak self] error in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                            message: error.localizedDescription, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
-            })
-            .disposed(by: bag)
+    @IBAction func changeBankPress() {
+        performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
     }
 
     func onTermsAndConditionsPress() {
