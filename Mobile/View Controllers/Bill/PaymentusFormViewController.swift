@@ -133,7 +133,7 @@ class PaymentusFormViewController: UIViewController {
             .subscribe(onNext: { [weak self] key in
                 guard let self = self else { return }
                 
-                var urlComponents = URLComponents(string: Environment.shared.paymentusUrl)
+                var urlComponents = URLComponents(string: Environment.shared.mcsConfig.paymentusUrl)
                 urlComponents?.queryItems = [
                     URLQueryItem(name: "authToken", value: key)
                 ]
@@ -277,7 +277,7 @@ extension PaymentusFormViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url, !url.absoluteString.starts(with: Environment.shared.paymentusUrl) {
+        if let url = navigationAction.request.url, !url.absoluteString.starts(with: Environment.shared.mcsConfig.paymentusUrl) {
             showLoadingState()
         }
         decisionHandler(.allow)

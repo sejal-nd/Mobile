@@ -116,7 +116,7 @@ class MCSWalletService: WalletService {
             "postbackUrl": "",
         ]
         
-        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=\(Environment.shared.paymentusUrl);"
+        var strParam = "pageView=mobile;postMessagePmDetailsOrigin=\(Environment.shared.mcsConfig.paymentusUrl);"
         if temporary {
             strParam += "nickname=false;primaryPM=false;"
         } else {

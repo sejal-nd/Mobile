@@ -16,8 +16,6 @@
 	<string>https://bge.com/MyAccount</string>
 	<key>outageMapUrl</key>
 	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
-	<key>paymentusUrl</key>
-	<string>https://ipn2.paymentus.com/xotp/pm/bge</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_prodbeta</string>
 	<key>gaTrackingId</key>

@@ -16,6 +16,8 @@
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Test2UAT</key>
 		<dict>
@@ -29,6 +31,8 @@
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Test1Integration</key>
 		<dict>
@@ -42,6 +46,8 @@
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Test1UAT</key>
 		<dict>
@@ -55,6 +61,8 @@
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
 		<key>Stage</key>
 		<dict>
@@ -68,6 +76,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-bgeMBE</key>
 		<dict>
@@ -81,6 +91,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-comedMBE</key>
 		<dict>
@@ -94,6 +106,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-pecoMBE</key>
 		<dict>
@@ -107,6 +121,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Prod-bgeMBE</key>
 		<dict>
@@ -120,6 +136,8 @@
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Prod-comedMBE</key>
 		<dict>
@@ -133,6 +151,8 @@
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Prod-pecoMBE</key>
 		<dict>
@@ -146,6 +166,8 @@
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 	</dict>
 </dict>
