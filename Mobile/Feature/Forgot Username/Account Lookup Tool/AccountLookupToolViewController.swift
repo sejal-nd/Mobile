@@ -18,9 +18,9 @@ class AccountLookupToolViewController: KeyboardAvoidingStickyFooterViewControlle
     weak var delegate: AccountLookupToolResultViewControllerDelegate?
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
-    @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var identifierTextField: FloatLabelTextField!
     @IBOutlet weak var searchButton: PrimaryButton!
     
     override func viewDidLoad() {

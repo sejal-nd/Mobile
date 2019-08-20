@@ -27,9 +27,9 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var havingTroubleView: UIView!
     @IBOutlet weak var havingTroubleLabel: UILabel!
     @IBOutlet weak var havingTroubleButton: UIButton!
-    @IBOutlet weak var currentPasswordTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var newPasswordTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var currentPasswordTextField: FloatLabelTextField!
+    @IBOutlet weak var newPasswordTextField: FloatLabelTextField!
+    @IBOutlet weak var confirmPasswordTextField: FloatLabelTextField!
     
     @IBOutlet weak var passwordStrengthView: UIView!
     @IBOutlet weak var passwordStrengthMeterView: PasswordStrengthMeterView!

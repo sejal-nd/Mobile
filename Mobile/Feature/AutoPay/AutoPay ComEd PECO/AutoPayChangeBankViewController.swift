@@ -18,12 +18,12 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
 	
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControlNew!
-	@IBOutlet weak var nameTextField: FloatLabelTextFieldNew!
-	@IBOutlet weak var routingNumberTextField: FloatLabelTextFieldNew!
+	@IBOutlet weak var nameTextField: FloatLabelTextField!
+	@IBOutlet weak var routingNumberTextField: FloatLabelTextField!
 	@IBOutlet weak var routingNumberTooltipButton: UIButton!
-	@IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
+	@IBOutlet weak var accountNumberTextField: FloatLabelTextField!
 	@IBOutlet weak var accountNumberTooltipButton: UIButton!
-	@IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextFieldNew!
+	@IBOutlet weak var confirmAccountNumberTextField: FloatLabelTextField!
 	
 	@IBOutlet weak var tacStackView: UIStackView!
 	@IBOutlet weak var tacSwitch: Checkbox!

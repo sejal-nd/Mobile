@@ -15,7 +15,7 @@ class ForgotUsernameBGEAccountNumberViewController: KeyboardAvoidingStickyFooter
     let viewModel = ForgotUsernameViewModel(authService: ServiceFactory.createAuthenticationService())
 
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
     @IBOutlet weak var continueButton: PrimaryButton!

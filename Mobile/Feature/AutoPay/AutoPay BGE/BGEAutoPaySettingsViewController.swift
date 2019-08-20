@@ -18,22 +18,20 @@ protocol BGEAutoPaySettingsViewControllerDelegate: class {
                            numberOfDaysBeforeDueDate: Int)
 }
 
-class BGEAutoPaySettingsViewController: UIViewController {
+class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewController {
     
     let disposeBag = DisposeBag()
 
-    // grand master stackview
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var stackView: UIStackView!                          // 1
+    @IBOutlet weak var stackView: UIStackView!
 
-    // Group 1
-    @IBOutlet weak var amountDueStackView: UIStackView!                 //1.1
+    @IBOutlet weak var amountDueStackView: UIStackView!
     
     @IBOutlet weak var amountDueHeaderLabel: UILabel!
-    @IBOutlet weak var totalAmountDueButtonStackView: UIStackView!      //1.1.1
+    @IBOutlet weak var totalAmountDueButtonStackView: UIStackView!
     let totalAmountDueRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Total Amount Billed", comment: ""))
     
-    @IBOutlet weak var amountNotToExceedButtonStackView: UIStackView!   //1.1.2
+    @IBOutlet weak var amountNotToExceedButtonStackView: UIStackView!
     let amountNotToExceedRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Amount Not To Exceed", comment: ""))
     let amountNotToExceedTextField = FloatLabelTextField(frame: .zero)
     var amountNotToExceedSpacerView1 = SeparatorSpaceView(frame: .zero)
@@ -44,24 +42,24 @@ class BGEAutoPaySettingsViewController: UIViewController {
     @IBOutlet var amountDueRadioControlsSet = [UIControl]()
 
     // Group 2
-    @IBOutlet weak var dueDateStackView: UIStackView!                   //1.2
+    @IBOutlet weak var dueDateStackView: UIStackView!
     
     @IBOutlet weak var dueDateHeaderLabel: UILabel!
-    @IBOutlet weak var onDueDateButtonStackView: UIStackView!           //1.2.1
+    @IBOutlet weak var onDueDateButtonStackView: UIStackView!
     let onDueDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("On Due Date", comment: ""))
     let onDueDateDetailsLabel = UILabel(frame: .zero)
     var onDueDateSpacerView1 = SeparatorSpaceView(frame: .zero)
     var onDueDateHairline = UIView(frame: .zero)
     
-    @IBOutlet weak var beforeDueDateButtonStackView: UIStackView!       //1.2.2
+    @IBOutlet weak var beforeDueDateButtonStackView: UIStackView!
     let beforeDueDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Before Due Date", comment: ""))
     let beforeDueDateDetailsLabel = UILabel(frame: .zero)
     var beforeDateSpacerView1 = SeparatorSpaceView(frame: .zero)
     let beforeDueDateHairline = UIView(frame: .zero)
 
     @IBOutlet var dueDateRadioControlsSet = [UIControl]()
-
-    //
+    @IBOutlet weak var doneButton: PrimaryButton!
+    
     let now = Calendar.current.startOfDay(for: .now)
     let lastDate = Calendar.current.date(byAdding: .year, value: 100, to: Calendar.current.startOfDay(for: .now))
 
@@ -70,26 +68,16 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     let separatorInset: CGFloat = 34.0
     let spacerHeight: CGFloat = 20.0
-    
-    var doneButton = UIBarButtonItem()
+
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        addCloseButton()
         
         title = NSLocalizedString("AutoPay Settings", comment: "")
-        
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelPress))
-        cancelButton.isAccessibilityElement = true
-        cancelButton.accessibilityLabel = NSLocalizedString("Cancel", comment: "")
-        navigationItem.leftBarButtonItems = [cancelButton]
-        
-        doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
-        doneButton.isAccessibilityElement = true
-        doneButton.accessibilityLabel = NSLocalizedString("Done", comment: "")
-        navigationItem.rightBarButtonItems = [doneButton]
+
         viewModel.enableDone.drive(doneButton.rx.isEnabled).disposed(by: disposeBag)
         doneButton.rx.tap.asDriver()
             .withLatestFrom(viewModel.amountNotToExceedDouble)
@@ -102,6 +90,8 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         loadSettings()
         
+        style()
+        
         amountNotToExceedTextField.textField.rx.controlEvent(.editingChanged)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -112,6 +102,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                 }
             }).disposed(by: disposeBag)
         
+        // Reason the screen starts with an error
         viewModel.amountToPayErrorMessage
             .drive(onNext: { [weak self] errorMessage in
                 self?.amountNotToExceedTextField.setError(errorMessage)
@@ -126,6 +117,9 @@ class BGEAutoPaySettingsViewController: UIViewController {
             GoogleAnalytics.log(event: .autoPayModifySettingOfferNew)
         }
     }
+    
+    
+    // MARK: - Helper
     
     func loadSettings() {
         switch viewModel.amountToPay.value {
@@ -150,6 +144,50 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
         hideAmountNotToExceedControlViews(viewModel.amountToPay.value == .amountDue)
         hideBeforeDueDateControlViews(viewModel.whenToPay.value != .onDueDate)
+    }
+    
+    private func style() {
+        totalAmountDueRadioControl.titleLabel.textColor = .deepGray
+        totalAmountDueRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .callout)
+        
+        amountDueHeaderLabel.textColor = .deepGray
+        amountDueHeaderLabel.numberOfLines = 0
+        amountDueHeaderLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        amountDueHeaderLabel.text = NSLocalizedString("How much do you want to pay?", comment: "")
+        
+        amountNotToExceedTextField.textField.textColor = .deepGray
+        amountNotToExceedTextField.placeholder = NSLocalizedString("Amount Not To Exceed*", comment: "")
+        amountNotToExceedTextField.textField.autocorrectionType = .no
+        
+        amountNotToExceedDetailsLabel.textColor = .deepGray
+        amountNotToExceedDetailsLabel.numberOfLines = 0
+        amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the automatic payment is created, and you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
+        
+        dueDateHeaderLabel.textColor = .deepGray
+        dueDateHeaderLabel.numberOfLines = 0
+        dueDateHeaderLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        dueDateHeaderLabel.text = NSLocalizedString("When do you want to pay?", comment: "")
+        
+        onDueDateDetailsLabel.textColor = .deepGray
+        onDueDateDetailsLabel.numberOfLines = 0
+        onDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.", comment: "")
+        
+        amountNotToExceedRadioControl.titleLabel.textColor = .deepGray
+        amountNotToExceedRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .callout)
+        
+        beforeDueDateRadioControl.titleLabel.textColor = .deepGray
+        beforeDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .callout)
+        beforeDueDateRadioControl.detailButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
+        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Days", comment: "")
+        
+        onDueDateRadioControl.titleLabel.textColor = .deepGray
+        onDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        
+        beforeDueDateDetailsLabel.textColor = .deepGray
+        beforeDueDateDetailsLabel.numberOfLines = 0
+        beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .caption1)
     }
     
     // manipulate Group 1
@@ -200,9 +238,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountDueHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
         amountDueHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         amountDueHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
-        amountDueHeaderLabel.numberOfLines = 0
-        amountDueHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        amountDueHeaderLabel.text = NSLocalizedString("How much do you want to pay?", comment: "")
         
         //
         let group1Button1StackView = buildGroup1Button1()
@@ -224,9 +259,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func buildGroup1Button1() -> UIStackView {
-        // start of first group, first button
-        totalAmountDueRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        
         // add button to button stack view
         totalAmountDueButtonStackView.addArrangedSubview(totalAmountDueRadioControl)
         
@@ -241,17 +273,12 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func buildGroup1Button2() -> UIStackView {
-        // start of first group, second button
-        amountNotToExceedRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        
         // adding button to button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedRadioControl)
         
         amountDueRadioControlsSet.append(amountNotToExceedRadioControl)
         
         // creating text field for second button
-        amountNotToExceedTextField.textField.placeholder = NSLocalizedString("Amount Not To Exceed*", comment: "")
-        amountNotToExceedTextField.textField.autocorrectionType = .no
         amountNotToExceedTextField.textField.delegate = self
         amountNotToExceedTextField.setKeyboardType(.decimalPad)
         
@@ -271,9 +298,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
         amountNotToExceedDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         amountNotToExceedDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
-        amountNotToExceedDetailsLabel.numberOfLines = 0
-        amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the automatic payment is created, and you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
         
         // adding details for second button to second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
@@ -297,9 +321,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         dueDateHeaderLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
         dueDateHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         dueDateHeaderLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
-        dueDateHeaderLabel.numberOfLines = 0
-        dueDateHeaderLabel.font = SystemFont.bold.of(textStyle: .subheadline)
-        dueDateHeaderLabel.text = NSLocalizedString("When do you want to pay?", comment: "")
         
         //
         let group2Button1 = buildGroup2Button1()
@@ -319,7 +340,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func buildGroup2Button1() -> UIStackView {
-        onDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
         onDueDateButtonStackView.addArrangedSubview(onDueDateRadioControl)
         
         dueDateRadioControlsSet.append(onDueDateRadioControl)
@@ -329,9 +349,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
         onDueDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
         onDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         onDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
-        onDueDateDetailsLabel.numberOfLines = 0
-        onDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        onDueDateDetailsLabel.text = NSLocalizedString("Your payments will process on each bill's due date. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary.", comment: "")
         
         onDueDateButtonStackView.addArrangedSubview(onDueDateDetailsLabel)
         
@@ -345,9 +362,6 @@ class BGEAutoPaySettingsViewController: UIViewController {
     }
     
     func buildGroup2Button2() -> UIStackView {
-        beforeDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Days", comment: "")
-        
         beforeDueDateButtonStackView.addArrangedSubview(beforeDueDateRadioControl)
         
         dueDateRadioControlsSet.append(beforeDueDateRadioControl)
@@ -359,8 +373,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         beforeDueDateDetailsLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 999), for: .vertical)
         beforeDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 751), for: .horizontal)
         beforeDueDateDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
-        beforeDueDateDetailsLabel.numberOfLines = 0
-        beforeDueDateDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
+
         modifyBeforeDueDateDetailsLabel()
         
         beforeDueDateButtonStackView.addArrangedSubview(beforeDueDateDetailsLabel)
@@ -456,27 +469,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
                                     numberOfDaysBeforeDueDate: viewModel.numberOfDaysBeforeDueDate.value)
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+
 }
 
 //MARK: - Text Field Delegate

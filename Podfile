@@ -7,7 +7,6 @@ end
 
 def iOS_pods
   pod 'lottie-ios', '2.5.3'
-  pod 'JVFloatLabeledTextField', '1.2.1'
   pod 'Toast-Swift', '5.0.0'
   pod 'zxcvbn-ios', '1.0.4'
   pod 'ReachabilitySwift', '4.3.1'
@@ -30,7 +29,7 @@ def iOS_UITestPods
 end
 
 abstract_target 'BGEApp' do
-    platform :ios, '10.0'
+    platform :ios, '11.0'
     use_frameworks!
 
     iOS_pods
@@ -49,7 +48,7 @@ abstract_target 'BGEApp' do
 end
 
 abstract_target 'ComEdApp' do
-    platform :ios, '10.0'
+    platform :ios, '11.0'
     use_frameworks!
 
     iOS_pods
@@ -68,7 +67,7 @@ abstract_target 'ComEdApp' do
 end
 
 abstract_target 'PECOApp' do
-    platform :ios, '10.0'
+    platform :ios, '11.0'
     use_frameworks!
 
     iOS_pods

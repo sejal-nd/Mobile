@@ -16,8 +16,8 @@ class UnauthenticatedOutageValidateAccountViewController: KeyboardAvoidingSticky
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
