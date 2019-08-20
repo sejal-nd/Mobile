@@ -69,22 +69,21 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     
     @IBAction func unenroll(_ sender: Any) {
         LoadingView.show()
-        viewModel.submit()
+        viewModel.unenroll()
             .observeOn(MainScheduler.instance)
-            .subscribe(
-                onNext: { [weak self] enrolled in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    self.delegate?.autoPayViewController(self, enrolled: true)
-                    self.parentVc?.navigationController?.popViewController(animated: true)
-                    self.dismissModal()
-                }, onError: { [weak self] error in
-                    LoadingView.hide()
-                    guard let self = self else { return }
-                    let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                            message: error.localizedDescription, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    self.present(alertController, animated: true, completion: nil)
+            .subscribe(onNext: { [weak self] enrolled in
+                LoadingView.hide()
+                guard let self = self else { return }
+                self.delegate?.autoPayViewController(self, enrolled: false)
+                self.parentVc?.navigationController?.popViewController(animated: false)
+                self.dismissModal()
+            }, onError: { [weak self] error in
+                LoadingView.hide()
+                guard let self = self else { return }
+                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                        message: error.localizedDescription, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             })
             .disposed(by: bag)
     }

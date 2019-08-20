@@ -72,17 +72,19 @@ class SegmentedControlNew: UIControl {
         selectedIndex.asDriver()
             .skip(1)
             .distinctUntilChanged()
-            .drive(onNext: { [weak self] in self?.selectIndex($0) })
+            .drive(onNext: { [weak self] in self?.selectIndex($0, postAccessibilityNotification: false) })
             .disposed(by: disposeBag)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)
             
-            if selectionPill.frame == .zero { // Only set frame once
+            let selectionPillSize = selectionPill.frame.size
+            if selectionPillSize.width != itemWidth || selectionPillSize.height != frame.height {
+                // To appropriately size the selectionPill without breaking animations
                 selectionPill.frame = CGRect(x: 0, y: 0, width: itemWidth, height: frame.height)
             }
             
@@ -119,16 +121,18 @@ class SegmentedControlNew: UIControl {
         selectIndex(index)
     }
     
-    func selectIndex(_ index: Int, animated: Bool = true) {
+    func selectIndex(_ index: Int, animated: Bool = true, postAccessibilityNotification: Bool = true) {
         selectedIndex.value = index
         sendActions(for: .valueChanged)
         setNeedsLayout()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            let label = self.items![index]
-            let a11yString = String(format: NSLocalizedString("Selected %@, option %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
-            UIAccessibility.post(notification: .announcement, argument: a11yString)
-        })
+        if postAccessibilityNotification {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                let label = self.items![index]
+                let a11yString = String(format: NSLocalizedString("Selected %@, option %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
+                UIAccessibility.post(notification: .announcement, argument: a11yString)
+            })
+        }
         
         let itemWidth = frame.width / CGFloat(items!.count)
         let xPos = CGFloat(index) * itemWidth
