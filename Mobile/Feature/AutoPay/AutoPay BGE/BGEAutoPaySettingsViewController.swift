@@ -22,18 +22,16 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
     
     let disposeBag = DisposeBag()
 
-    // grand master stackview
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var stackView: UIStackView!                          // 1
+    @IBOutlet weak var stackView: UIStackView!
 
-    // Group 1
-    @IBOutlet weak var amountDueStackView: UIStackView!                 //1.1
+    @IBOutlet weak var amountDueStackView: UIStackView!
     
     @IBOutlet weak var amountDueHeaderLabel: UILabel!
-    @IBOutlet weak var totalAmountDueButtonStackView: UIStackView!      //1.1.1
+    @IBOutlet weak var totalAmountDueButtonStackView: UIStackView!
     let totalAmountDueRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Total Amount Billed", comment: ""))
     
-    @IBOutlet weak var amountNotToExceedButtonStackView: UIStackView!   //1.1.2
+    @IBOutlet weak var amountNotToExceedButtonStackView: UIStackView!
     let amountNotToExceedRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Amount Not To Exceed", comment: ""))
     let amountNotToExceedTextField = FloatLabelTextField(frame: .zero)
     var amountNotToExceedSpacerView1 = SeparatorSpaceView(frame: .zero)
@@ -44,16 +42,16 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
     @IBOutlet var amountDueRadioControlsSet = [UIControl]()
 
     // Group 2
-    @IBOutlet weak var dueDateStackView: UIStackView!                   //1.2
+    @IBOutlet weak var dueDateStackView: UIStackView!
     
     @IBOutlet weak var dueDateHeaderLabel: UILabel!
-    @IBOutlet weak var onDueDateButtonStackView: UIStackView!           //1.2.1
+    @IBOutlet weak var onDueDateButtonStackView: UIStackView!
     let onDueDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("On Due Date", comment: ""))
     let onDueDateDetailsLabel = UILabel(frame: .zero)
     var onDueDateSpacerView1 = SeparatorSpaceView(frame: .zero)
     var onDueDateHairline = UIView(frame: .zero)
     
-    @IBOutlet weak var beforeDueDateButtonStackView: UIStackView!       //1.2.2
+    @IBOutlet weak var beforeDueDateButtonStackView: UIStackView!
     let beforeDueDateRadioControl = RadioSelectControl.create(withTitle: NSLocalizedString("Before Due Date", comment: ""))
     let beforeDueDateDetailsLabel = UILabel(frame: .zero)
     var beforeDateSpacerView1 = SeparatorSpaceView(frame: .zero)
@@ -71,14 +69,10 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
     let separatorInset: CGFloat = 34.0
     let spacerHeight: CGFloat = 20.0
 
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         addCloseButton()
         
@@ -475,27 +469,7 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
                                     numberOfDaysBeforeDueDate: viewModel.numberOfDaysBeforeDueDate.value)
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
-    // MARK: - ScrollView
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo!
-        let endFrameRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        let safeAreaBottomInset = view.safeAreaInsets.bottom
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: endFrameRect.size.height - safeAreaBottomInset, right: 0)
-        scrollView.contentInset = insets
-        scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+
 }
 
 //MARK: - Text Field Delegate
