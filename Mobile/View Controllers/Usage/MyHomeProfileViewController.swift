@@ -32,7 +32,7 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var numberOfChildrenButton: DisclosureButtonNew!
     
     @IBOutlet weak var homeSizeInfoLabel: UILabel!
-    @IBOutlet weak var homeSizeTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var homeSizeTextField: FloatLabelTextField!
     
     @IBOutlet weak var saveButton: PrimaryButton!
     

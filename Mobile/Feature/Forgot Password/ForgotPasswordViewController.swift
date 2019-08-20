@@ -18,7 +18,7 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     weak var delegate: ForgotPasswordViewControllerDelegate?
     
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var usernameTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var usernameTextField: FloatLabelTextField!
     @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var submitButton: PrimaryButton!
     

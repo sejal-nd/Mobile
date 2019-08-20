@@ -21,13 +21,13 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     @IBOutlet weak var instructionLabel: UILabel!
 
     @IBOutlet weak var question1QuestionButton: DisclosureButtonNew!
-    @IBOutlet weak var question1AnswerTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var question1AnswerTextField: FloatLabelTextField!
 
     @IBOutlet weak var question2QuestionButton: DisclosureButtonNew!
-    @IBOutlet weak var question2AnswerTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var question2AnswerTextField: FloatLabelTextField!
     
     @IBOutlet weak var question3QuestionButton: DisclosureButtonNew!
-    @IBOutlet weak var question3AnswerTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var question3AnswerTextField: FloatLabelTextField!
     
     @IBOutlet weak var eBillEnrollView: UIView!
     @IBOutlet weak var eBillEnrollCheckbox: Checkbox!

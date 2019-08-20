@@ -16,7 +16,7 @@ class RegistrationBGEAccountNumberViewController: KeyboardAvoidingStickyFooterVi
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var questionMarkButton: UIButton!
     @IBOutlet weak var continueButton: PrimaryButton!
 

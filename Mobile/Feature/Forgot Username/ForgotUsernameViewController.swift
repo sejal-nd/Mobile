@@ -14,14 +14,14 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var phoneNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     
     @IBOutlet weak var identifierContainerView: UIView!
     @IBOutlet weak var identifierDescriptionLabel: UILabel!
-    @IBOutlet weak var identifierTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var identifierTextField: FloatLabelTextField!
     
     @IBOutlet weak var accountNumberContainerView: UIView!
-    @IBOutlet weak var accountNumberTextField: FloatLabelTextFieldNew!
+    @IBOutlet weak var accountNumberTextField: FloatLabelTextField!
     @IBOutlet weak var accountLookupToolButton: UIButton!
     @IBOutlet weak var accountNumberTooltipButton: UIButton!
     
