@@ -20,7 +20,6 @@ class BGEAutoPayViewController: UIViewController {
     
     let disposeBag = DisposeBag()
 
-    @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
@@ -171,7 +170,9 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     func setupBindings() {
-        viewModel.shouldShowContent.not().drive(mainStackView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.shouldShowContent.not().drive(stickyFooterView.rx.isHidden).disposed(by: disposeBag)
+
         viewModel.isLoading.asDriver().map(!).drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.isError.asDriver().not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
@@ -312,6 +313,16 @@ class BGEAutoPayViewController: UIViewController {
         
         miniWalletVC.viewModel.walletItems = self.viewModel.walletItems ?? []
         miniWalletVC.accountDetail = viewModel.accountDetail
+        
+        if let selectedItem = self.viewModel.selectedWalletItem.value {
+            miniWalletVC.viewModel.selectedWalletItem = selectedItem
+            if selectedItem.isTemporary {
+                miniWalletVC.viewModel.temporaryWalletItem = selectedItem
+            } else if selectedItem.isEditingItem {
+                miniWalletVC.viewModel.editingWalletItem = selectedItem
+            }
+        }
+        
         miniWalletVC.isCreditCardDisabled = true
         miniWalletVC.allowTemporaryItems = false
         miniWalletVC.delegate = self
