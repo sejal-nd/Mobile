@@ -378,12 +378,18 @@ class BillViewController: AccountPickerViewController {
     func showLoadedState() {
         mainLoadingIndicator.isHidden = true
         topView.isHidden = false
-        billingOptionsView.isHidden = false
         errorView.isHidden = true
         prepaidView.isHidden = true
         scrollView?.isHidden = false
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
+        
+        // Hide the entire billingOptionsView if none of buttons will be shown
+        Driver.combineLatest(viewModel.showAutoPay, viewModel.showBudget, viewModel.showPaperless)
+            .asObservable().single()
+            .subscribe(onNext: { [weak self] in
+                self?.billingOptionsView.isHidden = !$0 && !$1 && !$2
+            }).disposed(by: bag)
         enableRefresh()
     }
     
