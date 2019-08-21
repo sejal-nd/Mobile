@@ -214,10 +214,10 @@
 		352B8DA6230D7576007F8CEE /* BillBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87926D91F8558AE00794CA9 /* BillBreakdownViewController.swift */; };
 		352B8DA7230D7576007F8CEE /* BillBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87926D91F8558AE00794CA9 /* BillBreakdownViewController.swift */; };
 		352B8DA8230D7576007F8CEE /* BillBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87926D91F8558AE00794CA9 /* BillBreakdownViewController.swift */; };
-		35376C6720F8FFC8007E50F7 /* UsageBillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */; };
-		35376C6820F8FFC9007E50F7 /* UsageBillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */; };
-		35376C6920F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */; };
-		35376C6A20F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */; };
+		35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactView.xib */; };
+		35376C6820F8FFC9007E50F7 /* BillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactView.xib */; };
+		35376C6920F8FFD1007E50F7 /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
+		35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		3559C8A522F9F68400481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
@@ -305,8 +305,8 @@
 		358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
-		358BD21720F8FB2D00DA2012 /* UsageBillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */; };
-		358BD21920F8FDAE00DA2012 /* UsageBillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */; };
+		358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactView.xib */; };
+		358BD21920F8FDAE00DA2012 /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
 		358BD97322E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		358BD97422E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		358BD97522E625D8001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
@@ -2627,8 +2627,8 @@
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
-		358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsageBillImpactView.xib; sourceTree = "<group>"; };
-		358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageBillImpactView.swift; sourceTree = "<group>"; };
+		358BD21620F8FB2D00DA2012 /* BillImpactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillImpactView.xib; sourceTree = "<group>"; };
+		358BD21820F8FDAE00DA2012 /* BillImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImpactView.swift; sourceTree = "<group>"; };
 		358D677221961BC400395D0F /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
 		358DE0A421021471002C544E /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
@@ -4363,8 +4363,8 @@
 		35CEB022230D8B4400366440 /* Bill Impact View */ = {
 			isa = PBXGroup;
 			children = (
-				358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */,
-				358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */,
+				358BD21620F8FB2D00DA2012 /* BillImpactView.xib */,
+				358BD21820F8FDAE00DA2012 /* BillImpactView.swift */,
 			);
 			path = "Bill Impact View";
 			sourceTree = "<group>";
@@ -6370,7 +6370,7 @@
 				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
 				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
-				358BD21720F8FB2D00DA2012 /* UsageBillImpactView.xib in Resources */,
+				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
@@ -6531,7 +6531,7 @@
 				6A4FD41C5B2744DEBEF4D69E /* otp_step1.json in Resources */,
 				6A4FDDD10550ECC33F36ECCD /* otps2_img_0.png in Resources */,
 				6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */,
-				35376C6820F8FFC9007E50F7 /* UsageBillImpactView.xib in Resources */,
+				35376C6820F8FFC9007E50F7 /* BillImpactView.xib in Resources */,
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
@@ -6696,7 +6696,7 @@
 				6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */,
 				6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */,
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
-				35376C6720F8FFC8007E50F7 /* UsageBillImpactView.xib in Resources */,
+				35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
 				9CD3533422CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
@@ -7888,7 +7888,7 @@
 				E840BD441EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
 				E88B8DA11F0D233E008B375D /* PaymentConfirmationViewController.swift in Sources */,
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
-				358BD21920F8FDAE00DA2012 /* UsageBillImpactView.swift in Sources */,
+				358BD21920F8FDAE00DA2012 /* BillImpactView.swift in Sources */,
 				9C28D388227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
@@ -8156,7 +8156,7 @@
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
-				35376C6A20F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */,
+				35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
 				359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */,
@@ -8541,7 +8541,7 @@
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
-				35376C6920F8FFD1007E50F7 /* UsageBillImpactView.swift in Sources */,
+				35376C6920F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E80D2E281E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				B07E17BF2208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
 				82AC2A1B1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,

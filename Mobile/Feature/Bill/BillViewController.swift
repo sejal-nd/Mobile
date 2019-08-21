@@ -105,7 +105,7 @@ class BillViewController: AccountPickerViewController {
     @IBOutlet weak var usageBillImpactErrorLabel: UILabel!
     @IBOutlet weak var usageBillImpactEmptyStateView: UIView!
     @IBOutlet weak var usageBillImpactEmptyStateLabel: UILabel!
-    @IBOutlet weak var usageBillImpactContentView: UsageBillImpactView!
+    @IBOutlet weak var usageBillImpactContentView: BillImpactView!
     
     // Billing Options
     @IBOutlet weak var billingOptionsView: UIView!
