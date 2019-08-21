@@ -4,7 +4,37 @@
 <dict>
 	<key>mobileBackends</key>
 	<dict>
-		<key>mobileAppDevTest</key>
+		<key>Test2Integration</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exeloneuhaenv5-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>e29bdb09-b255-4323-b6e0-0b494a6ddf37</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+			<key>oauthEndpoint</key>
+			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<key>apiVersion</key>
+			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+		</dict>
+		<key>Test2UAT</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://exeloneuhaenv5-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<key>mobileBackendID</key>
+			<string>92642bac-8694-470d-be9d-799ddc3f3923</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+			<key>oauthEndpoint</key>
+			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<key>apiVersion</key>
+			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
+		</dict>
+		<key>Test1Integration</key>
 		<dict>
 			<key>baseURL</key>
 			<string>https://exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com:443</string>
@@ -16,8 +46,10 @@
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
-		<key>mobileAppUATTest</key>
+		<key>Test1UAT</key>
 		<dict>
 			<key>baseURL</key>
 			<string>https://exeloneumobileapptest-a453576.mobileenv.us2.oraclecloud.com:443</string>
@@ -29,34 +61,10 @@
 			<string>https://dev-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://%@-sit-%d.paymentus.io/xotp/pm/%@</string>
 		</dict>
-		<key>mobileAppDevStage</key>
-		<dict>
-			<key>baseURL</key>
-			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
-			<key>mobileBackendID</key>
-			<string>471e5945-7a9b-40ef-8b0e-19b8230a7872</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
-			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
-		</dict>
-		<key>mobileAppUATStage</key>
-		<dict>
-			<key>baseURL</key>
-			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
-			<key>mobileBackendID</key>
-			<string>75926ee8-5d41-4375-92d3-d4c01f73b432</string>
-			<key>anonymousKey</key>
-			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
-			<key>oauthEndpoint</key>
-			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
-			<key>apiVersion</key>
-			<string>v6</string>
-		</dict>
-		<key>stageMain</key>
+		<key>Stage</key>
 		<dict>
 			<key>baseURL</key>
 			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
@@ -68,6 +76,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-bgeMBE</key>
 		<dict>
@@ -81,6 +91,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-comedMBE</key>
 		<dict>
@@ -94,6 +106,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Stage-pecoMBE</key>
 		<dict>
@@ -107,6 +121,8 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Prod-bgeMBE</key>
 		<dict>
@@ -120,6 +136,8 @@
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Prod-comedMBE</key>
 		<dict>
@@ -133,6 +151,8 @@
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Prod-pecoMBE</key>
 		<dict>
@@ -146,6 +166,8 @@
 			<string>https://apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://ipn2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 	</dict>
 </dict>
