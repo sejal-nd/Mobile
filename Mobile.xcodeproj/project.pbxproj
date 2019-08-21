@@ -779,9 +779,6 @@
 		82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */; };
 		82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */; };
 		82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */; };
-		82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */; };
-		82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */; };
-		82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */; };
 		82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
@@ -2877,7 +2874,6 @@
 		82A18E931EB919B300BE9F21 /* ForgotUsernameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModel.swift; sourceTree = "<group>"; };
 		82A18E941EB919B300BE9F21 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
-		82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
 		82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		82A18EB71EBA676700BE9F21 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
@@ -3627,7 +3623,6 @@
 				E8B4F4AE1E5C957A0031D934 /* More.storyboard */,
 				E8EEF7281E5777BA006804D4 /* MoreViewController.swift */,
 				35A6C6FD2121D9D600C2A58F /* MoreViewModel.swift */,
-				82A18EA51EB919C200BE9F21 /* SettingsViewModel.swift */,
 				352B8D72230D70BD007F8CEE /* Detail Screens */,
 			);
 			path = More;
@@ -7701,7 +7696,6 @@
 				35A6C6C3211C7ADE00C2A58F /* TitleTableViewCell.swift in Sources */,
 				9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8CFB8AA1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
-				82A18EAA1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
 				54AE06AA1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
 				82A18F041EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
@@ -8063,7 +8057,6 @@
 				0EF60FD920EE8105006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				B574BAF91E786473001E8A44 /* MockOutageService.swift in Sources */,
 				359BDB3A22D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
-				82A18EAC1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
@@ -8439,7 +8432,6 @@
 				9CD3531F22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				0EF60FD620EE8104006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
 				B574BAF81E786473001E8A44 /* MockOutageService.swift in Sources */,
-				82A18EAB1EB919C200BE9F21 /* SettingsViewModel.swift in Sources */,
 				B0E9EFFC21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				824A96661FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
