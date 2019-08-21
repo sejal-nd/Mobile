@@ -3770,6 +3770,7 @@
 		352B8D9B230D7432007F8CEE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
 				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				35CEB01C230D84CA00366440 /* Splash Screen */,
@@ -3784,7 +3785,6 @@
 		352B8D9C230D7449007F8CEE /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				8FD5AE8F1E54EA53003F640D /* Login.storyboard */,
 				82A18E941EB919B300BE9F21 /* LoginViewModel.swift */,
 				8FD5AE851E54EA49003F640D /* LoginViewController.swift */,
 			);
