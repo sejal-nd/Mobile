@@ -320,8 +320,19 @@ extension MiniWalletSheetViewController: UITableViewDelegate {
         
         if walletItems.count - 1 >= indexPath.row { // Wallet Item
             let walletItem = walletItems[indexPath.row]
+
             guard !walletItem.isExpired else { return }
-            didSelectWalletItem(walletItem, at: indexPath)
+            
+            if walletItem.bankOrCard == .card && !isCreditCardDisabled {
+                // Card
+                didSelectWalletItem(walletItem, at: indexPath)
+            } else if walletItem.bankOrCard == .bank && !isBankAccountDisabled {
+                // Bank
+                didSelectWalletItem(walletItem, at: indexPath)
+            } else {
+                // Disabled
+                return
+            }
         } else if walletItems.count == indexPath.row && !isBankAccountDisabled { // Bank Button
             lastSheetLevel = .closed // Close Sheet
             delegate?.miniWalletSheetViewControllerDidSelectAddBank(self)
@@ -372,7 +383,11 @@ extension MiniWalletSheetViewController: UITableViewDataSource {
         let walletItems = viewModel.tableViewWalletItems
         if walletItems.count - 1 >= indexPath.row { // Wallet Item
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MiniWalletItemRow.className, for: indexPath) as? MiniWalletItemRow else { fatalError("Incorrect Cell Type") }
-            cell.configure(with: walletItems[indexPath.row], indexPath: indexPath, selectedIndexPath: selectedIndexPath)
+            cell.configure(with: walletItems[indexPath.row],
+                           isCreditCardDisabled: isCreditCardDisabled,
+                           isBankAccountDisabled: isBankAccountDisabled,
+                           indexPath: indexPath,
+                           selectedIndexPath: selectedIndexPath)
             return cell
         } else if walletItems.count == indexPath.row { // Bank Button
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonRow.className, for: indexPath) as? ButtonRow else { fatalError("Incorrect Cell Type") }

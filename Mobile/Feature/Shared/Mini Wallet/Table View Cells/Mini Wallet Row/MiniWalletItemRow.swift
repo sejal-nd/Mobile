@@ -59,11 +59,22 @@ class MiniWalletItemRow: UITableViewCell {
     
     
     func configure(with walletItem: WalletItem,
+                   isCreditCardDisabled: Bool,
+                   isBankAccountDisabled: Bool,
                    indexPath: IndexPath,
                    selectedIndexPath: IndexPath?) {
-        
-        isEnabled = !walletItem.isExpired
-        
+
+        if !walletItem.isExpired && walletItem.bankOrCard == .card && !isCreditCardDisabled {
+            // Card
+            isEnabled = true
+        } else if !walletItem.isExpired && walletItem.bankOrCard == .bank && !isBankAccountDisabled {
+            // Bank
+            isEnabled = true
+        } else {
+            // Enabled
+            isEnabled = false
+        }
+                
         // Checkmark
         if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
             checkmarkImageView.isHidden = false

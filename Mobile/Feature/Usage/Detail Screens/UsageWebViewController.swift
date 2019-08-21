@@ -30,7 +30,7 @@ class UsageWebViewController: UIViewController {
         
         title = NSLocalizedString("Usage Details", comment: "")
         
-        let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_question_white"), style: .plain, target: self, action: #selector(onInfoButtonPress))
+        let infoButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onInfoButtonPress))
         infoButton.isAccessibilityElement = true
         infoButton.accessibilityLabel = NSLocalizedString("Tooltip", comment: "")
         navigationItem.rightBarButtonItem = infoButton

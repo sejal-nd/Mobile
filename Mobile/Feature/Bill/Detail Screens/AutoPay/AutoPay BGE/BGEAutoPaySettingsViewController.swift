@@ -86,11 +86,11 @@ class BGEAutoPaySettingsViewController: KeyboardAvoidingStickyFooterViewControll
             })
             .disposed(by: disposeBag)
         
+        style()
+        
         buildStackViews()
         
         loadSettings()
-        
-        style()
         
         amountNotToExceedTextField.textField.rx.controlEvent(.editingChanged)
             .subscribe(onNext: { [weak self] _ in
