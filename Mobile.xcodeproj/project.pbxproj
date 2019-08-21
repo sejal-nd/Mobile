@@ -2014,12 +2014,6 @@
 		E88ECFF11E8D8BA600A570D0 /* MCSOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* MCSOutageService.swift */; };
 		E88ECFF21E8D8BA600A570D0 /* MCSOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* MCSOutageService.swift */; };
 		E88ECFF31E8D8BA600A570D0 /* MCSOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* MCSOutageService.swift */; };
-		E89399351F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89399341F86722300B9184C /* BillAnalysisSegmentedControl.swift */; };
-		E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89399341F86722300B9184C /* BillAnalysisSegmentedControl.swift */; };
-		E89399371F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89399341F86722300B9184C /* BillAnalysisSegmentedControl.swift */; };
-		E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = E89399381F86722F00B9184C /* BillAnalysisSegmentedControl.xib */; };
-		E893993A1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = E89399381F86722F00B9184C /* BillAnalysisSegmentedControl.xib */; };
-		E893993B1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = E89399381F86722F00B9184C /* BillAnalysisSegmentedControl.xib */; };
 		E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */; };
 		E893993E1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */; };
 		E893993F1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */; };
@@ -3291,8 +3285,6 @@
 		E887C9FD1ED5D400002433A3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E88B8DA01F0D233E008B375D /* PaymentConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentConfirmationViewController.swift; sourceTree = "<group>"; };
 		E88ECFF01E8D8BA600A570D0 /* MCSOutageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCSOutageService.swift; sourceTree = "<group>"; };
-		E89399341F86722300B9184C /* BillAnalysisSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillAnalysisSegmentedControl.swift; sourceTree = "<group>"; };
-		E89399381F86722F00B9184C /* BillAnalysisSegmentedControl.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillAnalysisSegmentedControl.xib; sourceTree = "<group>"; };
 		E893993C1F86AF1600B9184C /* UIViewDashedBorders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDashedBorders.swift; sourceTree = "<group>"; };
 		E89496351EE9E04000B76F8C /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		E89518721F0A9ABE005E0E92 /* ReviewPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPaymentViewController.swift; sourceTree = "<group>"; };
@@ -4947,7 +4939,6 @@
 				9CD3531B22CABBB700165F87 /* DataDetectorTextView */,
 				9C62446622C42AF100F14DA0 /* FloatLabelTextView */,
 				9C62445922C1717E00F14DA0 /* FloatLabelTextField */,
-				E89399331F86719B00B9184C /* BillAnalysisSegmentedControl */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
 				9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */,
@@ -5748,15 +5739,6 @@
 			path = "Forgot Username";
 			sourceTree = "<group>";
 		};
-		E89399331F86719B00B9184C /* BillAnalysisSegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				E89399341F86722300B9184C /* BillAnalysisSegmentedControl.swift */,
-				E89399381F86722F00B9184C /* BillAnalysisSegmentedControl.xib */,
-			);
-			path = BillAnalysisSegmentedControl;
-			sourceTree = "<group>";
-		};
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -6384,7 +6366,6 @@
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
 				352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
-				E89399391F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				359BB27F2148517F00FBAD83 /* sm_outage_loading.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
 				6A4FD7DC1371BC6129CC594F /* otps1_img_0.png in Resources */,
@@ -6549,7 +6530,6 @@
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
 				352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
-				E893993B1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				6A4FD2D560C81F27B81D2748 /* otps1_img_0.png in Resources */,
 				6A4FD6EF9B7917482EF511D8 /* otps1_img_1.png in Resources */,
 				B0EE78F32214766700F53C56 /* appointments.json in Resources */,
@@ -6714,7 +6694,6 @@
 				352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
-				E893993A1F86722F00B9184C /* BillAnalysisSegmentedControl.xib in Resources */,
 				6A4FD9B658A06B0878472526 /* otps1_img_0.png in Resources */,
 				B0EE78F22214766700F53C56 /* appointments.json in Resources */,
 				6A4FD4A0E10A729FE6FD4B09 /* otps1_img_1.png in Resources */,
@@ -8004,7 +7983,6 @@
 				E81CFFF41EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				2F5A3F801EFD86BC00B9E49E /* BillingHistory.swift in Sources */,
 				B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
-				E89399351F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */,
@@ -8376,7 +8354,6 @@
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
-				E89399371F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				E8C453311EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				B07E17B52208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
@@ -8756,7 +8733,6 @@
 				9C7FFD1B22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E81CFFF51EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C02090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
-				E89399361F86722300B9184C /* BillAnalysisSegmentedControl.swift in Sources */,
 				E8C453301EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				E876A85C1ECF377D00CA63BF /* WalletViewModel.swift in Sources */,
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
