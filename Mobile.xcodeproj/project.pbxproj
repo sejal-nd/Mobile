@@ -3595,28 +3595,18 @@
 		351241EA22B3DB6800E8BD25 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				E8067C901EC3C257004C2724 /* SplashViewController.swift */,
-				E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */,
-				352B8DA0230D74DE007F8CEE /* Bill */,
 				352B8D9D230D748D007F8CEE /* Shared */,
+				35CEB01D230D851800366440 /* Main */,
 				352B8D9B230D7432007F8CEE /* Authentication */,
 				352B8D8C230D7263007F8CEE /* Unauthenticated */,
 				352B8D84230D7214007F8CEE /* Storm Mode */,
-				352B8D70230D7090007F8CEE /* More */,
-				3559C8B42301E43600481A87 /* AutoPay */,
-				3559C8B022FC92B000481A87 /* Wallet */,
-				3559C8AA22FB4BF500481A87 /* Usage */,
 				3559C89722F4929500481A87 /* Home */,
+				352B8DA0230D74DE007F8CEE /* Bill */,
+				352B8D70230D7090007F8CEE /* More */,
+				3559C8AA22FB4BF500481A87 /* Usage */,
 				9C5F786122F4ADB200D5C395 /* Budget Billing */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
-				35C9138F22E9E96E009DD71A /* Mini Wallet */,
-				9C153DB522E8F410002DA062 /* Registration */,
 				359BDB5922D8DC43007002B0 /* Outage */,
-				9C10B4DC22E2177A00B0851B /* BGE Choice ID */,
-				9C10B4D822E216BF00B0851B /* Change Password */,
-				9C10B4D622E215F800B0851B /* Forgot Password */,
-				E891885E1EF1DA6B00987922 /* Forgot Username */,
-				9CE83BAD22D93C870094C34C /* Set Default Account */,
 				351241EB22B3DB7600E8BD25 /* Account Select */,
 			);
 			path = Feature;
@@ -3668,6 +3658,9 @@
 		352B8D72230D70BD007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				9CE83BAD22D93C870094C34C /* Set Default Account */,
+				9C10B4D822E216BF00B0851B /* Change Password */,
+				9C10B4DC22E2177A00B0851B /* BGE Choice ID */,
 				352B8D74230D70EF007F8CEE /* Terms And Policys */,
 				352B8D73230D70CF007F8CEE /* Contact Us */,
 				352B8D71230D70B5007F8CEE /* Alerts */,
@@ -3788,9 +3781,13 @@
 		352B8D9B230D7432007F8CEE /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				352B8D9C230D7449007F8CEE /* Login */,
-				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
 				8FD5AE841E54EA49003F640D /* LoginTermsPoliciesViewController.swift */,
+				8FD5AE831E54EA49003F640D /* LandingViewController.swift */,
+				35CEB01C230D84CA00366440 /* Splash Screen */,
+				352B8D9C230D7449007F8CEE /* Login */,
+				9C153DB522E8F410002DA062 /* Registration */,
+				9C10B4D622E215F800B0851B /* Forgot Password */,
+				E891885E1EF1DA6B00987922 /* Forgot Username */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -3808,13 +3805,12 @@
 		352B8D9D230D748D007F8CEE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
-				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
 				B0CB1CB5228487020081F99B /* InfoAlertController.swift */,
 				352B8DAC230D76CE007F8CEE /* Maintenance Mode */,
 				352B8DAB230D762B007F8CEE /* Web View Modal */,
 				352B8D9F230D74A5007F8CEE /* Tutorial Modal */,
 				352B8D9E230D7491007F8CEE /* Info Modal */,
+				35C9138F22E9E96E009DD71A /* Mini Wallet */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -3854,6 +3850,8 @@
 				B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */,
 				E89548F41EC646A200730022 /* BGEasyViewController.swift */,
 				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
+				3559C8B022FC92B000481A87 /* Wallet */,
+				3559C8B42301E43600481A87 /* AutoPay */,
 				352B8DAA230D75DC007F8CEE /* Billing History */,
 				352B8DA9230D75B9007F8CEE /* Payment */,
 				352B8DA5230D7558007F8CEE /* Bill Breakdown */,
@@ -4333,6 +4331,28 @@
 				35C913A822EB6A98009DD71A /* ButtonRow.xib */,
 			);
 			path = "Button Row";
+			sourceTree = "<group>";
+		};
+		35CEB01C230D84CA00366440 /* Splash Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E8067C901EC3C257004C2724 /* SplashViewController.swift */,
+				E8EDC54E1F35071F006DD927 /* SplashViewModel.swift */,
+			);
+			path = "Splash Screen";
+			sourceTree = "<group>";
+		};
+		35CEB01D230D851800366440 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8FD3C2681E5250AF005FB1BB /* Main.storyboard */,
+				E89D07A01E609DC900F87F87 /* MainTabBarController.swift */,
+				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
+				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
+				359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */,
+				9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		35E7C79021907EA200BA13C6 /* PECO_WatchOS */ = {
@@ -4905,10 +4925,6 @@
 		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E8B4F4AA1E5C950A0031D934 /* MainBaseNavigationController.swift */,
-				E8CA07F31E9D7E1300A1D431 /* DismissableFormSheetViewController.swift */,
-				359BDB3722D4C699007002B0 /* LargeTitleNavigationController.swift */,
-				9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */,
 				82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */,
 			);
 			path = "View Controllers";
