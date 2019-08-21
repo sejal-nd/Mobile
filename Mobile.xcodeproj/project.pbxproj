@@ -3800,6 +3800,8 @@
 			isa = PBXGroup;
 			children = (
 				B0CB1CB5228487020081F99B /* InfoAlertController.swift */,
+				82A18EB01EBA667900BE9F21 /* Controls */,
+				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				35CEB033230D904800366440 /* Prepaid Card View */,
 				351241EB22B3DB7600E8BD25 /* Account Bar + Picker */,
 				35CEB027230D8C1A00366440 /* No Network Connection */,
@@ -5067,8 +5069,6 @@
 			isa = PBXGroup;
 			children = (
 				E8C29C761F630F9E00DB73FC /* OutageStatusButton */,
-				82A18EB01EBA667900BE9F21 /* Controls */,
-				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
