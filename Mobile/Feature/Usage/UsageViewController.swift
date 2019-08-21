@@ -320,6 +320,9 @@ class UsageViewController: AccountPickerViewController {
         Driver.merge(lastYearButton.rx.tap.asDriver().mapTo(false),
                      previousBillButton.rx.tap.asDriver().mapTo(true))
             .drive(onNext: { [weak self] isPreviousBill in
+                if self?.viewModel.barGraphSelection.value == .projected {
+                    self?.viewModel.barGraphSelection.value = .current
+                }
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 GoogleAnalytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
             })
@@ -339,7 +342,7 @@ class UsageViewController: AccountPickerViewController {
         if billComparisonLoadingIndicator != nil {
             showBillComparisonLoadingState()
         }
-        
+
         viewModel.lastYearPreviousBillSelectedSegmentIndex.value = isPreviousBill ? 1 : 0
     }
     
