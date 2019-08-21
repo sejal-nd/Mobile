@@ -2615,8 +2615,8 @@
 		2FA5D8631F17D88500A8B16B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2FA7B9F91F0548F000D660B8 /* OutageMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutageMapViewController.swift; path = "Mobile/Feature/Outage/Detail Pages/OutageMapViewController.swift"; sourceTree = SOURCE_ROOT; };
 		2FB9B4561EFC6B38002CBD88 /* BillingHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryItem.swift; sourceTree = "<group>"; };
-		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryTableViewCell.swift; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
-		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillingHistoryTableViewCell.xib; path = "Mobile/Views/Table View Cells/BillingHistoryTableViewCell/BillingHistoryTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
+		2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BillingHistoryTableViewCell.swift; path = "Mobile/Feature/Bill/Detail Screens/Billing History/Table View Cells/Billing History Table VIew Cell/BillingHistoryTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BillingHistoryTableViewCell.xib; path = "Mobile/Feature/Bill/Detail Screens/Billing History/Table View Cells/Billing History Table VIew Cell/BillingHistoryTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
 		2FEC69401F056EEB00C059DC /* Premise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Premise.swift; sourceTree = "<group>"; };
 		351241EC22B3DB8600E8BD25 /* AccountSheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountSheet.storyboard; sourceTree = "<group>"; };
 		351241ED22B3DB8600E8BD25 /* AccountSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSheetViewController.swift; sourceTree = "<group>"; };
@@ -2840,8 +2840,8 @@
 		8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatPeriodCard.swift; sourceTree = "<group>"; };
 		8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureScaleStore.swift; sourceTree = "<group>"; };
 		82119FE2203F4BE500A56FEE /* MyHomeProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeProfileTests.swift; sourceTree = "<group>"; };
-		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.swift; sourceTree = SOURCE_ROOT; };
-		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = Mobile/Views/NoNetworkConnectionView/NoNetworkConnectionView.xib; sourceTree = SOURCE_ROOT; };
+		82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoNetworkConnectionView.swift; path = "Mobile/Feature/Shared/No Network Connection/NoNetworkConnectionView.swift"; sourceTree = SOURCE_ROOT; };
+		82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoNetworkConnectionView.xib; path = "Mobile/Feature/Shared/No Network Connection/NoNetworkConnectionView.xib"; sourceTree = SOURCE_ROOT; };
 		8218988D1F2A30C00077D7A1 /* Binders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binders.swift; sourceTree = "<group>"; };
 		821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillAlertBannerView.swift; sourceTree = "<group>"; };
 		821898951F3279AB0077D7A1 /* MockPaymentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPaymentService.swift; sourceTree = "<group>"; };
@@ -3604,22 +3604,20 @@
 				352B8DA0230D74DE007F8CEE /* Bill */,
 				352B8D70230D7090007F8CEE /* More */,
 				3559C8AA22FB4BF500481A87 /* Usage */,
-				9C5F786122F4ADB200D5C395 /* Budget Billing */,
-				35A6C6DC211CC0A300C2A58F /* Updates */,
 				359BDB5922D8DC43007002B0 /* Outage */,
-				351241EB22B3DB7600E8BD25 /* Account Select */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
 		};
-		351241EB22B3DB7600E8BD25 /* Account Select */ = {
+		351241EB22B3DB7600E8BD25 /* Account Bar + Picker */ = {
 			isa = PBXGroup;
 			children = (
+				35CEB02A230D8DC400366440 /* Account Info Bar */,
 				3575233122C53AC700A0AFAC /* Account Picker */,
 				3575233022C53ABF00A0AFAC /* Account Sheet */,
 				E8D340951EBB6BE100BA2D42 /* AccountPickerViewController.swift */,
 			);
-			path = "Account Select";
+			path = "Account Bar + Picker";
 			sourceTree = "<group>";
 		};
 		351241F822B3DB8D00E8BD25 /* Table View Cells */ = {
@@ -3651,6 +3649,7 @@
 				E87C413D1FAA6C0B00448F86 /* AlertsViewModel.swift */,
 				B0728E3F215AD18C0007C608 /* AlertPreferencesViewController.swift */,
 				E87C414A1FACDD2100448F86 /* AlertPreferencesViewModel.swift */,
+				35CEB029230D8D5100366440 /* Table View Cells */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -3658,12 +3657,13 @@
 		352B8D72230D70BD007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				352B8D71230D70B5007F8CEE /* Alerts */,
+				35A6C6DC211CC0A300C2A58F /* Updates */,
 				9CE83BAD22D93C870094C34C /* Set Default Account */,
 				9C10B4D822E216BF00B0851B /* Change Password */,
 				9C10B4DC22E2177A00B0851B /* BGE Choice ID */,
 				352B8D74230D70EF007F8CEE /* Terms And Policys */,
 				352B8D73230D70CF007F8CEE /* Contact Us */,
-				352B8D71230D70B5007F8CEE /* Alerts */,
 				E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */,
 			);
 			path = "Detail Screens";
@@ -3725,6 +3725,7 @@
 			children = (
 				82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */,
 				82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */,
+				35CEB02E230D8E8700366440 /* Energy Tip Table View Cell */,
 			);
 			path = "Top 5 Tips";
 			sourceTree = "<group>";
@@ -3734,6 +3735,7 @@
 			children = (
 				B0CB1C7D227CAF340081F99B /* CommercialUsageViewController.swift */,
 				B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */,
+				35CEB02F230D8ED600366440 /* Tab Colletion View Cell */,
 			);
 			path = "Commercial Usage";
 			sourceTree = "<group>";
@@ -3806,6 +3808,9 @@
 			isa = PBXGroup;
 			children = (
 				B0CB1CB5228487020081F99B /* InfoAlertController.swift */,
+				35CEB033230D904800366440 /* Prepaid Card View */,
+				351241EB22B3DB7600E8BD25 /* Account Bar + Picker */,
+				35CEB027230D8C1A00366440 /* No Network Connection */,
 				352B8DAC230D76CE007F8CEE /* Maintenance Mode */,
 				352B8DAB230D762B007F8CEE /* Web View Modal */,
 				352B8D9F230D74A5007F8CEE /* Tutorial Modal */,
@@ -3829,6 +3834,7 @@
 			children = (
 				6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */,
 				6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */,
+				35CEB028230D8C4300366440 /* Views */,
 			);
 			path = "Tutorial Modal";
 			sourceTree = "<group>";
@@ -3840,6 +3846,7 @@
 				82A18E591EB918C900BE9F21 /* BillViewModel.swift */,
 				E882B7E31EA8009500EA3C13 /* BillViewController.swift */,
 				352B8DA1230D74F7007F8CEE /* Detail Screens */,
+				35CEB021230D8B3B00366440 /* Views */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -3849,25 +3856,27 @@
 			children = (
 				B0D5792C219DD4CE00FAAE96 /* PaymentusFormViewController.swift */,
 				E89548F41EC646A200730022 /* BGEasyViewController.swift */,
-				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
 				3559C8B022FC92B000481A87 /* Wallet */,
 				3559C8B42301E43600481A87 /* AutoPay */,
+				9C5F786122F4ADB200D5C395 /* Budget Billing */,
 				352B8DAA230D75DC007F8CEE /* Billing History */,
 				352B8DA9230D75B9007F8CEE /* Payment */,
 				352B8DA5230D7558007F8CEE /* Bill Breakdown */,
 				352B8DA4230D753D007F8CEE /* Bill PDF */,
-				352B8DA2230D750B007F8CEE /* Paperless e-Bill Residential */,
+				352B8DA2230D750B007F8CEE /* Paperless e-Bill */,
 			);
 			path = "Detail Screens";
 			sourceTree = "<group>";
 		};
-		352B8DA2230D750B007F8CEE /* Paperless e-Bill Residential */ = {
+		352B8DA2230D750B007F8CEE /* Paperless e-Bill */ = {
 			isa = PBXGroup;
 			children = (
 				82D551D81EAA9779001B1796 /* PaperlessEBillViewController.swift */,
 				82A18E5B1EB918C900BE9F21 /* PaperlessEBillViewModel.swift */,
+				82A18E541EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift */,
+				35CEB031230D8F8F00366440 /* Paperless e-Bill Account View */,
 			);
-			path = "Paperless e-Bill Residential";
+			path = "Paperless e-Bill";
 			sourceTree = "<group>";
 		};
 		352B8DA4230D753D007F8CEE /* Bill PDF */ = {
@@ -3908,6 +3917,7 @@
 				E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */,
 				54C1DEEF1F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift */,
 				2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */,
+				35CEB02C230D8E4A00366440 /* Table View Cells */,
 			);
 			path = "Billing History";
 			sourceTree = "<group>";
@@ -3927,17 +3937,9 @@
 				0D79C6C41F1D3360004793DD /* Maintenance.storyboard */,
 				0D79C6C81F1D3CD7004793DD /* MaintenanceModeViewController.swift */,
 				0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */,
+				35CEB025230D8BA700366440 /* Views */,
 			);
 			path = "Maintenance Mode";
-			sourceTree = "<group>";
-		};
-		35376C6B20F914D5007E50F7 /* UsageBillImpactView */ = {
-			isa = PBXGroup;
-			children = (
-				358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */,
-				358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */,
-			);
-			path = UsageBillImpactView;
 			sourceTree = "<group>";
 		};
 		3559C89722F4929500481A87 /* Home */ = {
@@ -3948,6 +3950,7 @@
 				825171B41F1D25130020A6CA /* HomeViewModel.swift */,
 				3559C89822F9C51400481A87 /* Cards */,
 				3559C89922F9C51E00481A87 /* Detail Pages */,
+				35CEB023230D8B8700366440 /* Views */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -4086,6 +4089,7 @@
 				B0472B282111011F0048C1A7 /* UsageViewController.swift */,
 				358DE0A421021471002C544E /* UsageViewModel.swift */,
 				352B8D76230D718F007F8CEE /* Detail Screens */,
+				35CEB01E230D8B0200366440 /* Views */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -4145,24 +4149,6 @@
 				9C50EBD222B971D500A89DBF /* AccountPicker.xib */,
 			);
 			path = "Account Picker";
-			sourceTree = "<group>";
-		};
-		358BD21520F8FB1500DA2012 /* Usage */ = {
-			isa = PBXGroup;
-			children = (
-				B0882C9D210B921E00EB756B /* Usage Tool Card */,
-				35376C6B20F914D5007E50F7 /* UsageBillImpactView */,
-			);
-			path = Usage;
-			sourceTree = "<group>";
-		};
-		358DE0A621021B46002C544E /* Unavailable View */ = {
-			isa = PBXGroup;
-			children = (
-				358DE0A721021B64002C544E /* UnavailableView.xib */,
-				358DE0A921021B7A002C544E /* UnavailableView.swift */,
-			);
-			path = "Unavailable View";
 			sourceTree = "<group>";
 		};
 		359BDB5922D8DC43007002B0 /* Outage */ = {
@@ -4355,6 +4341,204 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		35CEB01E230D8B0200366440 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
+				35CEB032230D8FD700366440 /* Unavailable View */,
+				35CEB026230D8BE200366440 /* Smart Energy Rewards */,
+				35CEB01F230D8B1100366440 /* Usage Tool Card */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35CEB01F230D8B1100366440 /* Usage Tool Card */ = {
+			isa = PBXGroup;
+			children = (
+				B0882CA5210B926B00EB756B /* UsageToolCardView.xib */,
+				B0882C9E210B925000EB756B /* UsageToolCardView.swift */,
+				B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */,
+				B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */,
+			);
+			path = "Usage Tool Card";
+			sourceTree = "<group>";
+		};
+		35CEB021230D8B3B00366440 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35CEB022230D8B4400366440 /* Bill Impact View */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35CEB022230D8B4400366440 /* Bill Impact View */ = {
+			isa = PBXGroup;
+			children = (
+				358BD21620F8FB2D00DA2012 /* UsageBillImpactView.xib */,
+				358BD21820F8FDAE00DA2012 /* UsageBillImpactView.swift */,
+			);
+			path = "Bill Impact View";
+			sourceTree = "<group>";
+		};
+		35CEB023230D8B8700366440 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35CEB024230D8B8F00366440 /* Edit */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35CEB024230D8B8F00366440 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				B068DB5520D2E99300930589 /* HomeEditCardCell.swift */,
+				B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */,
+				B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */,
+				B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */,
+				B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		35CEB025230D8BA700366440 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B0030D072097BC8300327A3D /* MaintenanceModeView.swift */,
+				B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35CEB026230D8BE200366440 /* Smart Energy Rewards */ = {
+			isa = PBXGroup;
+			children = (
+				E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */,
+				E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */,
+			);
+			path = "Smart Energy Rewards";
+			sourceTree = "<group>";
+		};
+		35CEB027230D8C1A00366440 /* No Network Connection */ = {
+			isa = PBXGroup;
+			children = (
+				82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */,
+				82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */,
+			);
+			path = "No Network Connection";
+			sourceTree = "<group>";
+		};
+		35CEB028230D8C4300366440 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E8FF085F1F7EDD790030F1BF /* TutorialView.swift */,
+				E8FF085E1F7EDD790030F1BF /* TutorialView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		35CEB029230D8D5100366440 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */,
+				B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */,
+				B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */,
+				B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */,
+				B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */,
+				B0DB2755215EBEE600CD703B /* AlertPreferencesLanguageCell.swift */,
+				B0DB2756215EBEE600CD703B /* AlertPreferencesLanguageCell.xib */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		35CEB02A230D8DC400366440 /* Account Info Bar */ = {
+			isa = PBXGroup;
+			children = (
+				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
+				35CEB02B230D8DE200366440 /* Table View Cell */,
+			);
+			path = "Account Info Bar";
+			sourceTree = "<group>";
+		};
+		35CEB02B230D8DE200366440 /* Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */,
+				B0DB275F215ECF5100CD703B /* AccountInfoBarCell.xib */,
+			);
+			path = "Table View Cell";
+			sourceTree = "<group>";
+		};
+		35CEB02C230D8E4A00366440 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				35CEB02D230D8E5700366440 /* Billing History Table VIew Cell */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		35CEB02D230D8E5700366440 /* Billing History Table VIew Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */,
+				2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */,
+			);
+			path = "Billing History Table VIew Cell";
+			sourceTree = "<group>";
+		};
+		35CEB02E230D8E8700366440 /* Energy Tip Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */,
+				82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */,
+			);
+			path = "Energy Tip Table View Cell";
+			sourceTree = "<group>";
+		};
+		35CEB02F230D8ED600366440 /* Tab Colletion View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B0CB1C82227CB4510081F99B /* TabCollectionViewCell.swift */,
+				B0CB1C83227CB4510081F99B /* TabCollectionViewCell.xib */,
+			);
+			path = "Tab Colletion View Cell";
+			sourceTree = "<group>";
+		};
+		35CEB030230D8F1700366440 /* Account Details View */ = {
+			isa = PBXGroup;
+			children = (
+				54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */,
+				54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */,
+			);
+			path = "Account Details View";
+			sourceTree = "<group>";
+		};
+		35CEB031230D8F8F00366440 /* Paperless e-Bill Account View */ = {
+			isa = PBXGroup;
+			children = (
+				82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */,
+				82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */,
+			);
+			path = "Paperless e-Bill Account View";
+			sourceTree = "<group>";
+		};
+		35CEB032230D8FD700366440 /* Unavailable View */ = {
+			isa = PBXGroup;
+			children = (
+				358DE0A721021B64002C544E /* UnavailableView.xib */,
+				358DE0A921021B7A002C544E /* UnavailableView.swift */,
+			);
+			path = "Unavailable View";
+			sourceTree = "<group>";
+		};
+		35CEB033230D904800366440 /* Prepaid Card View */ = {
+			isa = PBXGroup;
+			children = (
+				9CD3532522CABC0900165F87 /* PrepaidCardView.xib */,
+				9CD3532622CABC0900165F87 /* PrepaidCardView.swift */,
+			);
+			path = "Prepaid Card View";
+			sourceTree = "<group>";
+		};
 		35E7C79021907EA200BA13C6 /* PECO_WatchOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -4469,15 +4653,6 @@
 				35E7C80A2190806700BA13C6 /* Info.plist */,
 			);
 			path = Configurations;
-			sourceTree = "<group>";
-		};
-		54DF4BD81EE9CB39008CF7AD /* Registration */ = {
-			isa = PBXGroup;
-			children = (
-				54DF4BD91EE9CBAB008CF7AD /* AccountDetailsView.swift */,
-				54DF4BDD1EE9CBCA008CF7AD /* AccountDetailsView.xib */,
-			);
-			path = Registration;
 			sourceTree = "<group>";
 		};
 		6A4FD01F41569B9443AA6FFD /* step3 */ = {
@@ -4795,40 +4970,16 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
-		82A18EB11EBA667F00BE9F21 /* Listable Views */ = {
-			isa = PBXGroup;
-			children = (
-				B0CB1C81227CB41F0081F99B /* Tab Cell */,
-				54DF4BD81EE9CB39008CF7AD /* Registration */,
-				82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */,
-			);
-			path = "Listable Views";
-			sourceTree = "<group>";
-		};
 		82A18EB21EBA668500BE9F21 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				B0DB275D215ECF3B00CD703B /* Account Info Bar */,
-				B0728E43215C132B0007C608 /* Alert Preferences */,
 				35A6C6BF211C7AB600C2A58F /* TitleTableViewCell */,
 				35A6C6F82121D62D00C2A58F /* ToggleTableViewCell */,
 				35A6C6BC211C6FD100C2A58F /* TitleTableViewHeaderView */,
-				82E22B5B1F9FC798001F1A1B /* EnergyTipTableViewCell */,
-				E84D42C41F4211A400783708 /* BillingHistoryTableViewCell */,
 				E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */,
-				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */,
 			);
 			path = "Table View Cells";
-			sourceTree = "<group>";
-		};
-		82A18EC71EBA677300BE9F21 /* PaperlessEBillAccountView */ = {
-			isa = PBXGroup;
-			children = (
-				82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */,
-				82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */,
-			);
-			path = PaperlessEBillAccountView;
 			sourceTree = "<group>";
 		};
 		82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */ = {
@@ -4861,15 +5012,6 @@
 				82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */,
 			);
 			path = "Peak Rewards";
-			sourceTree = "<group>";
-		};
-		82E22B5B1F9FC798001F1A1B /* EnergyTipTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				82E22B5C1F9FC7CE001F1A1B /* EnergyTipTableViewCell.swift */,
-				82E22B5D1F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib */,
-			);
-			path = EnergyTipTableViewCell;
 			sourceTree = "<group>";
 		};
 		82F2BDE51FD6EF9A00612309 /* Landing Video */ = {
@@ -4933,22 +5075,12 @@
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				358DE0A621021B46002C544E /* Unavailable View */,
-				358BD21520F8FB1500DA2012 /* Usage */,
-				B068DB5420D2E88700930589 /* Home Edit */,
-				B0030D062097BC5500327A3D /* MaintenanceModeView */,
-				E8B8C8461F9E354B005828B0 /* SmartEnergyRewardsView */,
 				E8C29C761F630F9E00DB73FC /* OutageStatusButton */,
-				E8B4BFB01F449F6500F334EE /* NoNetworkConnectionView */,
 				82A18EB01EBA667900BE9F21 /* Controls */,
-				82A18EB11EBA667F00BE9F21 /* Listable Views */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
-				E8FF085D1F7EDD2F0030F1BF /* TutorialView */,
-				9CD3532422CABC0900165F87 /* PrepaidCardView */,
 				E800434C1E671FD6005CF531 /* PasswordStrengthMeterView.swift */,
 				E8127B211EBB959E0083DDE9 /* LoadingView.swift */,
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
-				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
 				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
@@ -5070,6 +5202,7 @@
 				54DF4BC71EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift */,
 				54DF4BD41EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift */,
 				5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */,
+				35CEB030230D8F1700366440 /* Account Details View */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -5122,15 +5255,6 @@
 			path = DataDetectorTextView;
 			sourceTree = "<group>";
 		};
-		9CD3532422CABC0900165F87 /* PrepaidCardView */ = {
-			isa = PBXGroup;
-			children = (
-				9CD3532522CABC0900165F87 /* PrepaidCardView.xib */,
-				9CD3532622CABC0900165F87 /* PrepaidCardView.swift */,
-			);
-			path = PrepaidCardView;
-			sourceTree = "<group>";
-		};
 		9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */ = {
 			isa = PBXGroup;
 			children = (
@@ -5148,15 +5272,6 @@
 				9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */,
 			);
 			path = "Set Default Account";
-			sourceTree = "<group>";
-		};
-		B0030D062097BC5500327A3D /* MaintenanceModeView */ = {
-			isa = PBXGroup;
-			children = (
-				B0030D072097BC8300327A3D /* MaintenanceModeView.swift */,
-				B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */,
-			);
-			path = MaintenanceModeView;
 			sourceTree = "<group>";
 		};
 		B04DDF822200D44800594ACF /* Mock JSON */ = {
@@ -5209,43 +5324,6 @@
 			path = "Peak Rewards";
 			sourceTree = "<group>";
 		};
-		B068DB5420D2E88700930589 /* Home Edit */ = {
-			isa = PBXGroup;
-			children = (
-				B068DB5520D2E99300930589 /* HomeEditCardCell.swift */,
-				B068DB5920D3076D00930589 /* HomeEditFlowLayout.swift */,
-				B068DB5D20D42E8100930589 /* HomeEditSectionHeaderView.swift */,
-				B094A35320D99B0E00E81303 /* HomeEditEmptyCell.swift */,
-				B094A35720D99FC600E81303 /* HomeEditRestoreDefaultCell.swift */,
-			);
-			path = "Home Edit";
-			sourceTree = "<group>";
-		};
-		B0728E43215C132B0007C608 /* Alert Preferences */ = {
-			isa = PBXGroup;
-			children = (
-				B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */,
-				B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */,
-				B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */,
-				B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */,
-				B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */,
-				B0DB2755215EBEE600CD703B /* AlertPreferencesLanguageCell.swift */,
-				B0DB2756215EBEE600CD703B /* AlertPreferencesLanguageCell.xib */,
-			);
-			path = "Alert Preferences";
-			sourceTree = "<group>";
-		};
-		B0882C9D210B921E00EB756B /* Usage Tool Card */ = {
-			isa = PBXGroup;
-			children = (
-				B0882C9E210B925000EB756B /* UsageToolCardView.swift */,
-				B0882CA5210B926B00EB756B /* UsageToolCardView.xib */,
-				B0882CAC210B938700EB756B /* UsageToolTopCardView.swift */,
-				B0882CB3210B93F200EB756B /* UsageToolTopCardView.xib */,
-			);
-			path = "Usage Tool Card";
-			sourceTree = "<group>";
-		};
 		B0B083C821710BAE00B1C632 /* Appointments */ = {
 			isa = PBXGroup;
 			children = (
@@ -5280,24 +5358,6 @@
 				B0B083EB21710C8700B1C632 /* Appt_otw.json */,
 			);
 			path = Appointments;
-			sourceTree = "<group>";
-		};
-		B0CB1C81227CB41F0081F99B /* Tab Cell */ = {
-			isa = PBXGroup;
-			children = (
-				B0CB1C82227CB4510081F99B /* TabCollectionViewCell.swift */,
-				B0CB1C83227CB4510081F99B /* TabCollectionViewCell.xib */,
-			);
-			path = "Tab Cell";
-			sourceTree = "<group>";
-		};
-		B0DB275D215ECF3B00CD703B /* Account Info Bar */ = {
-			isa = PBXGroup;
-			children = (
-				B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */,
-				B0DB275F215ECF5100CD703B /* AccountInfoBarCell.xib */,
-			);
-			path = "Account Info Bar";
 			sourceTree = "<group>";
 		};
 		B52CA0AD1F3114D5002B5674 /* Analytics */ = {
@@ -5666,15 +5726,6 @@
 			path = UINavigationBackButton;
 			sourceTree = "<group>";
 		};
-		E84D42C41F4211A400783708 /* BillingHistoryTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				2FB9B45B1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.swift */,
-				2FB9B45C1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib */,
-			);
-			path = BillingHistoryTableViewCell;
-			sourceTree = "<group>";
-		};
 		E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -5706,15 +5757,6 @@
 			path = BillAnalysisSegmentedControl;
 			sourceTree = "<group>";
 		};
-		E8B4BFB01F449F6500F334EE /* NoNetworkConnectionView */ = {
-			isa = PBXGroup;
-			children = (
-				82156F1C1F2781E2008597BF /* NoNetworkConnectionView.swift */,
-				82156F201F2781FC008597BF /* NoNetworkConnectionView.xib */,
-			);
-			path = NoNetworkConnectionView;
-			sourceTree = "<group>";
-		};
 		E8B4F4C31E5CE1500031D934 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -5723,15 +5765,6 @@
 				356C7F8021909997003E8A90 /* KeychainUtility.swift */,
 			);
 			path = Vendor;
-			sourceTree = "<group>";
-		};
-		E8B8C8461F9E354B005828B0 /* SmartEnergyRewardsView */ = {
-			isa = PBXGroup;
-			children = (
-				E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */,
-				E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */,
-			);
-			path = SmartEnergyRewardsView;
 			sourceTree = "<group>";
 		};
 		E8C29C761F630F9E00DB73FC /* OutageStatusButton */ = {
@@ -5801,15 +5834,6 @@
 				6A4FD70300E4B36BC01D3FDF /* tutorial_otp */,
 			);
 			path = PECO;
-			sourceTree = "<group>";
-		};
-		E8FF085D1F7EDD2F0030F1BF /* TutorialView */ = {
-			isa = PBXGroup;
-			children = (
-				E8FF085F1F7EDD790030F1BF /* TutorialView.swift */,
-				E8FF085E1F7EDD790030F1BF /* TutorialView.xib */,
-			);
-			path = TutorialView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
