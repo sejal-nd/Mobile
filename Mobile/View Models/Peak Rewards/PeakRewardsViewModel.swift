@@ -116,9 +116,7 @@ class PeakRewardsViewModel {
         .map { $0.devices[$1] }
         .asDriver(onErrorDriveWith: .empty())
     
-    private(set) lazy var deviceButtonText: Driver<String> = self.selectedDevice.map {
-        String(format: NSLocalizedString("Device: %@", comment: ""), $0.name)
-    }
+    private(set) lazy var deviceButtonValueText: Driver<String> = self.selectedDevice.map { $0.name }
     
     private(set) lazy var programCardsData: Driver<[(String, String)]> = Observable
         .combineLatest(programsAndOverridesElements, selectedDevice.asObservable())
