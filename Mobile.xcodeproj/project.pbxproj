@@ -3658,9 +3658,9 @@
 				82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */,
 				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
 				E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */,
-				352B8D7A230D71B4007F8CEE /* Commercial Usage */,
 				352B8D79230D71AE007F8CEE /* Top 5 Tips */,
 				352B8D78230D71A5007F8CEE /* Home Profile */,
+				9CB4346C230F203400094BC3 /* PeakRewards */,
 				352B8D77230D719E007F8CEE /* SER */,
 			);
 			path = "Detail Screens";
@@ -3700,7 +3700,7 @@
 			children = (
 				B0CB1C7D227CAF340081F99B /* CommercialUsageViewController.swift */,
 				B0CB1C8A227CDCEE0081F99B /* CommercialUsageViewModel.swift */,
-				35CEB02F230D8ED600366440 /* Tab Colletion View Cell */,
+				35CEB02F230D8ED600366440 /* Tab Collection View Cell */,
 			);
 			path = "Commercial Usage";
 			sourceTree = "<group>";
@@ -4055,6 +4055,7 @@
 				358BD20E20F7A8FD00DA2012 /* Usage.storyboard */,
 				B0472B282111011F0048C1A7 /* UsageViewController.swift */,
 				358DE0A421021471002C544E /* UsageViewModel.swift */,
+				352B8D7A230D71B4007F8CEE /* Commercial Usage */,
 				352B8D76230D718F007F8CEE /* Detail Screens */,
 				35CEB01E230D8B0200366440 /* Views */,
 			);
@@ -4311,6 +4312,7 @@
 		35CEB01E230D8B0200366440 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				35CEB032230D8FD700366440 /* Unavailable View */,
 				35CEB026230D8BE200366440 /* Smart Energy Rewards */,
@@ -4461,13 +4463,13 @@
 			path = "Energy Tip Table View Cell";
 			sourceTree = "<group>";
 		};
-		35CEB02F230D8ED600366440 /* Tab Colletion View Cell */ = {
+		35CEB02F230D8ED600366440 /* Tab Collection View Cell */ = {
 			isa = PBXGroup;
 			children = (
 				B0CB1C82227CB4510081F99B /* TabCollectionViewCell.swift */,
 				B0CB1C83227CB4510081F99B /* TabCollectionViewCell.xib */,
 			);
-			path = "Tab Colletion View Cell";
+			path = "Tab Collection View Cell";
 			sourceTree = "<group>";
 		};
 		35CEB030230D8F1700366440 /* Account Details View */ = {
@@ -4956,29 +4958,6 @@
 			path = DisclosureButton;
 			sourceTree = "<group>";
 		};
-		82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */ = {
-			isa = PBXGroup;
-			children = (
-				82AC2A151FAB5C3900EACB3B /* PeakRewardsViewController.swift */,
-				826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */,
-				82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */,
-				824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */,
-				8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */,
-			);
-			path = "Smart Thermostat Peak Rewards";
-			sourceTree = "<group>";
-		};
-		82AC2A211FAB71CC00EACB3B /* Peak Rewards */ = {
-			isa = PBXGroup;
-			children = (
-				82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */,
-				826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */,
-				824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */,
-				82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */,
-			);
-			path = "Peak Rewards";
-			sourceTree = "<group>";
-		};
 		82F2BDE51FD6EF9A00612309 /* Landing Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -5021,22 +5000,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8FD3C2671E525023005FB1BB /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				82AC2A101FAA691000EACB3B /* PeakRewards.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		8FD5AE7C1E54EA04003F640D /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				82AC2A141FAB5BFD00EACB3B /* Smart Thermostat Peak Rewards */,
-			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
 		8FD5AE7D1E54EA11003F640D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -5046,7 +5009,6 @@
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
-				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
 				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
 				35AFB42A20C82DA0000312B9 /* SheetView.swift */,
@@ -5207,6 +5169,31 @@
 				9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */,
 			);
 			path = A0SimpleKeychain;
+			sourceTree = "<group>";
+		};
+		9CB4346C230F203400094BC3 /* PeakRewards */ = {
+			isa = PBXGroup;
+			children = (
+				9CB4346D230F206900094BC3 /* View Models */,
+				82AC2A101FAA691000EACB3B /* PeakRewards.storyboard */,
+				82AC2A151FAB5C3900EACB3B /* PeakRewardsViewController.swift */,
+				826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */,
+				82DE61091FB9F36D00DC25C1 /* OverrideViewController.swift */,
+				824A96641FB5F30D0026FA4B /* AdjustThermostatViewController.swift */,
+				8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */,
+			);
+			path = PeakRewards;
+			sourceTree = "<group>";
+		};
+		9CB4346D230F206900094BC3 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				82AC2A221FAB729E00EACB3B /* PeakRewardsViewModel.swift */,
+				826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */,
+				824A96681FB5F3480026FA4B /* AdjustThermostatViewModel.swift */,
+				82DE61041FB9F34A00DC25C1 /* OverrideViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		9CD3531B22CABBB700165F87 /* DataDetectorTextView */ = {
@@ -5432,10 +5419,7 @@
 				8FDF8C651E550459000B7BD0 /* Extensions */,
 				E8B4F4C31E5CE1500031D934 /* Vendor */,
 				8FD5AE7D1E54EA11003F640D /* Views */,
-				E8EEF70B1E565BE7006804D4 /* View Models */,
-				8FD5AE7C1E54EA04003F640D /* View Controllers */,
 				B5AC06C61E521B2600BBA4ED /* Assets */,
-				8FD3C2671E525023005FB1BB /* Storyboards */,
 				E8EEF7341E578928006804D4 /* Launch Screens */,
 				B58B5B571E516A9B0051FD5F /* Configuration */,
 				8FD3C26C1E52576F005FB1BB /* BGE-Info.plist */,
@@ -5728,14 +5712,6 @@
 				E8C29C7B1F630FD200DB73FC /* OutageStatusButton.swift */,
 			);
 			path = OutageStatusButton;
-			sourceTree = "<group>";
-		};
-		E8EEF70B1E565BE7006804D4 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				82AC2A211FAB71CC00EACB3B /* Peak Rewards */,
-			);
-			path = "View Models";
 			sourceTree = "<group>";
 		};
 		E8EEF7341E578928006804D4 /* Launch Screens */ = {
