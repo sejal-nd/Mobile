@@ -21,7 +21,7 @@
         <!--PeakRewards-->
         <scene sceneID="5fR-u7-1k1">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="m5h-DN-QMe" customClass="PeakRewardsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="m5h-DN-QMe" customClass="PeakRewardsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xAd-Rs-pwW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -293,7 +293,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gvO-tC-OQK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="PeakRewards" id="PtI-A2-umr"/>
+                    <navigationItem key="navigationItem" title="PeakRewards" id="PtI-A2-umr">
+                        <barButtonItem key="backBarButtonItem" title=" " id="P17-bw-Cdz"/>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="1100"/>
                     <connections>
                         <outlet property="adjustScaleLabel" destination="e2V-iP-vEf" id="NSY-3u-cOI"/>

@@ -143,7 +143,8 @@ class PeakRewardsViewController: UIViewController {
             .map { [unowned self] in (self.viewModel, $0) }
             .map(SelectDeviceViewController.init)
             .drive(onNext: { [weak self] in
-                self?.navigationController?.pushViewController($0, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: $0)
+                self?.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         

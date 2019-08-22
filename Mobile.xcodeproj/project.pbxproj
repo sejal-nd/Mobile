@@ -687,9 +687,6 @@
 		826773351FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */; };
 		826773361FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */; };
 		826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */; };
-		826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
-		8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
-		8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */; };
 		8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */; };
 		8267733E1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */; };
 		8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */; };
@@ -2833,7 +2830,6 @@
 		826413781EAEAE5E007F4615 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		826773301FB0C38600A8CFAA /* SelectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeviceViewController.swift; sourceTree = "<group>"; };
 		826773341FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUsingAutoLayout.swift; sourceTree = "<group>"; };
-		826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatDeviceCell.swift; sourceTree = "<group>"; };
 		8267733C1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewController.swift; sourceTree = "<group>"; };
 		826773401FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatScheduleViewModel.swift; sourceTree = "<group>"; };
 		826773451FB2330400A8CFAA /* TemperatureSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureSliderView.swift; sourceTree = "<group>"; };
@@ -4947,7 +4943,6 @@
 				35A6C6F82121D62D00C2A58F /* ToggleTableViewCell */,
 				35A6C6BC211C6FD100C2A58F /* TitleTableViewHeaderView */,
 				E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */,
-				826773381FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -7688,7 +7683,6 @@
 				E89548F51EC646A200730022 /* BGEasyViewController.swift in Sources */,
 				35A6C6DB211CC09C00C2A58F /* UpdatesViewModel.swift in Sources */,
 				35C913AD22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
-				826773391FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				9C153DC922E8F6CE002DA062 /* Checkbox.swift in Sources */,
 				B0336FE621751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				B574BAF11E785AE3001E8A44 /* OutageStatus.swift in Sources */,
@@ -8060,7 +8054,6 @@
 				82AC2A181FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35A20D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
 				B574BAF31E785AE3001E8A44 /* OutageStatus.swift in Sources */,
-				8267733B1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE821751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				E8C453171EF3293600F5C781 /* ToastView.swift in Sources */,
 				2FA5D8661F17D88500A8B16B /* HomeViewController.swift in Sources */,
@@ -8436,7 +8429,6 @@
 				82AC2A171FAB5C3900EACB3B /* PeakRewardsViewController.swift in Sources */,
 				B094A35920D99FC600E81303 /* HomeEditRestoreDefaultCell.swift in Sources */,
 				B574BAF21E785AE3001E8A44 /* OutageStatus.swift in Sources */,
-				8267733A1FB0CAEC00A8CFAA /* SmartThermostatDeviceCell.swift in Sources */,
 				B0336FE721751FB700751430 /* MCSAppointmentService.swift in Sources */,
 				E8C453161EF3293600F5C781 /* ToastView.swift in Sources */,
 				35C913AE22EB6AA3009DD71A /* ButtonRow.swift in Sources */,

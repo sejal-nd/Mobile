@@ -22,7 +22,7 @@ class PeakRewardsViewModel {
             accountDetail.premiseNumber!
     }
     
-    let selectedDeviceIndex = BehaviorSubject(value: 0)
+    let selectedDeviceIndex = BehaviorRelay(value: 0)
     
     let peakRewardsSummaryFetchTracker = ActivityTracker()
     let deviceScheduleFetchTracker = ActivityTracker()
@@ -103,9 +103,9 @@ class PeakRewardsViewModel {
         .map { $0.devices }
         .do(onNext: { [weak self] devices in
             if let (index, thermostat) = devices.enumerated().first(where: { $0.1.isSmartThermostat }) {
-                self?.selectedDeviceIndex.onNext(index)
+                self?.selectedDeviceIndex.accept(index)
             } else {
-                self?.selectedDeviceIndex.onNext(0)
+                self?.selectedDeviceIndex.accept(0)
             }
         })
         .asDriver(onErrorDriveWith: .empty())
