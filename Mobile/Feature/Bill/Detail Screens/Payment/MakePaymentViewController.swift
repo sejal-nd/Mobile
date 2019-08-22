@@ -22,13 +22,23 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var activeSeveranceLabel: UILabel!
     @IBOutlet weak var bankAccountsUnavailableLabel: UILabel!
     
-    // Contains Total Amount Due and Due Date information
+    // Contains Total Amount Due and Due Date
     @IBOutlet weak var billInfoBox: UIView!
     @IBOutlet weak var amountDueTextLabel: UILabel!
     @IBOutlet weak var amountDueValueLabel: UILabel!
     @IBOutlet weak var billInfoBoxDivider: UIView!
     @IBOutlet weak var dueDateTextLabel: UILabel!
     @IBOutlet weak var dueDateDateLabel: UILabel!
+    
+    // Contains Payment Status and Confirmation Number
+    @IBOutlet weak var editPaymentInfoBox: UIView!
+    @IBOutlet weak var paymentStatusView: UIView!
+    @IBOutlet weak var paymentStatusTextLabel: UILabel!
+    @IBOutlet weak var paymentStatusValueLabel: UILabel!
+    @IBOutlet weak var editPaymentInfoBoxDivider: UIView!
+    @IBOutlet weak var confirmationNumberView: UIView!
+    @IBOutlet weak var confirmationNumberTextLabel: UILabel!
+    @IBOutlet weak var confirmationNumberValueTextView: ZeroInsetDataDetectorTextView!
     
     @IBOutlet weak var paymentMethodContainerView: UIView!
     @IBOutlet weak var paymentMethodButton: ButtonControl!
@@ -55,16 +65,6 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var paymentDatePastDueLabel: UILabel!
     @IBOutlet weak var sameDayPaymentWarningView: UIView!
     @IBOutlet weak var sameDayPaymentWarningLabel: UILabel!
-    
-    @IBOutlet weak var editPaymentDetailView: UIView!
-    @IBOutlet weak var paymentStatusView: UIView!
-    @IBOutlet weak var paymentStatusTextLabel: UILabel!
-    @IBOutlet weak var paymentStatusValueLabel: UILabel!
-    @IBOutlet weak var confirmationNumberView: UIView!
-    @IBOutlet weak var confirmationNumberTextLabel: UILabel!
-    @IBOutlet weak var confirmationNumberValueTextView: ZeroInsetDataDetectorTextView!
-    @IBOutlet var editPaymentDividerLines: [UIView]!
-    @IBOutlet var editPaymentDividerLineConstraints: [NSLayoutConstraint]!
     
     @IBOutlet weak var addPaymentMethodView: UIView!
     @IBOutlet weak var addPaymentMethodLabel: UILabel!
@@ -131,6 +131,21 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         dueDateDateLabel.textColor = .deepGray
         dueDateDateLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
+        editPaymentInfoBox.layer.borderColor = UIColor.accentGray.cgColor
+        editPaymentInfoBox.layer.borderWidth = 1
+        paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
+        paymentStatusTextLabel.textColor = .deepGray
+        paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        paymentStatusValueLabel.textColor = .deepGray
+        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
+        editPaymentInfoBoxDivider.backgroundColor = .accentGray
+        confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
+        confirmationNumberTextLabel.textColor = .deepGray
+        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        confirmationNumberValueTextView.textColor = .deepGray
+        confirmationNumberValueTextView.dataDetectorTypes.remove(.all) // Some confirmation numbers are detected as phone numbers
+        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle: .subheadline)
+        
         paymentMethodLabel.text = NSLocalizedString("Payment Method*", comment: "")
         paymentMethodLabel.textColor = .middleGray
         paymentMethodLabel.font = SystemFont.semibold.of(textStyle: .caption2)
@@ -174,22 +189,6 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         sameDayPaymentWarningLabel.font = SystemFont.regular.of(textStyle: .footnote)
         sameDayPaymentWarningLabel.text = NSLocalizedString("Same day payments cannot be edited or canceled after submission.", comment: "")
         
-        // Edit Payment
-        paymentStatusTextLabel.text = NSLocalizedString("Payment Status", comment: "")
-        paymentStatusTextLabel.textColor = .deepGray
-        paymentStatusTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        paymentStatusValueLabel.textColor = .deepGray
-        paymentStatusValueLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        confirmationNumberTextLabel.text = NSLocalizedString("Confirmation Number", comment: "")
-        confirmationNumberTextLabel.textColor = .deepGray
-        confirmationNumberTextLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        confirmationNumberValueTextView.textColor = .deepGray
-        confirmationNumberValueTextView.dataDetectorTypes.remove(.all) // Some confirmation numbers are detected as phone numbers
-        confirmationNumberValueTextView.font = SystemFont.semibold.of(textStyle: .headline)
-        for line in editPaymentDividerLines {
-            line.backgroundColor = .accentGray
-        }
-        
         addPaymentMethodLabel.textColor = .deepGray
         addPaymentMethodLabel.font = OpenSans.regular.of(textStyle: .headline)
         addPaymentMethodLabel.text = NSLocalizedString("Choose a payment method", comment: "")
@@ -211,7 +210,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         let cancelPaymentText = NSLocalizedString("Cancel Payment", comment: "")
         cancelPaymentButton.accessibilityLabel = cancelPaymentText
         cancelPaymentLabel.text = cancelPaymentText
-        cancelPaymentLabel.font = SystemFont.regular.of(textStyle: .headline)
+        cancelPaymentLabel.font = SystemFont.semibold.of(textStyle: .headline)
         cancelPaymentLabel.textColor = .actionBlue
         
         footerLabel.textColor = .deepGray
@@ -239,13 +238,6 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
-    override func updateViewConstraints() {
-        for constraint in editPaymentDividerLineConstraints {
-            constraint.constant = 1.0 / UIScreen.main.scale
-        }
-        super.updateViewConstraints()
     }
     
     func fetchData(initialFetch: Bool) {
@@ -307,7 +299,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
             paymentStatusView.isHidden = billingHistoryItem.statusString == nil
             confirmationNumberView.isHidden = billingHistoryItem.confirmationNumber == nil
         } else {
-            editPaymentDetailView.isHidden = true
+            editPaymentInfoBox.isHidden = true
         }
     }
     
