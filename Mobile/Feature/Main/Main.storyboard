@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a7N-G9-44d">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a7N-G9-44d">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,17 +33,17 @@
         <!--Home-->
         <scene sceneID="f2e-QZ-YFW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="860-AT-jXi" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" id="v6H-gB-TMz"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="860-AT-jXi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" selectedImage="Tabbar Home Selected" id="v6H-gB-TMz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcz-28-eLx">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Home"/>
-                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="Dxm-V1-jlT" kind="relationship" relationship="rootViewController" id="S3n-cg-Mco"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQT-oY-DzB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,17 +52,17 @@
         <!--Bill-->
         <scene sceneID="q78-Wg-4VI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4hR-iJ-D1w" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" id="c1S-Sq-ZJ5"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4hR-iJ-D1w" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" selectedImage="Tabbar Bill Selected" id="c1S-Sq-ZJ5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABC-PP-DNT">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Bill"/>
-                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="bAg-jk-VCd" kind="relationship" relationship="rootViewController" id="xlq-N8-6jt"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4W-A9-ULO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -72,34 +71,74 @@
         <!--More-->
         <scene sceneID="DmR-1M-Rt9">
             <objects>
-                <navigationController id="uQF-ze-ffY" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" id="0Wk-9T-mXr"/>
+                <navigationController id="uQF-ze-ffY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" selectedImage="Tabbar More Selected" id="0Wk-9T-mXr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sm4-4A-KSA">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="More"/>
-                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="my7-Lc-YON" kind="relationship" relationship="rootViewController" id="Xrd-Gz-DmN"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byj-Bf-b8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1930" y="-2179"/>
         </scene>
+        <!--Bill-->
+        <scene sceneID="S4S-rR-2c8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Bill" id="bAg-jk-VCd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="15D-2h-orW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xw-AT-kHC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-223" y="-1701"/>
+        </scene>
+        <!--Outage-->
+        <scene sceneID="5Mg-R6-NJ1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Outage" id="Zjz-hN-u6T" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="kY1-U5-dRf"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f8A-vQ-7zy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="502" y="-1687"/>
+        </scene>
+        <!--Usage-->
+        <scene sceneID="g7h-Je-e2h">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Usage" id="2Cx-xU-Wxi" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="OEd-un-uUR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Izp-eB-Pih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1222" y="-1687"/>
+        </scene>
+        <!--More-->
+        <scene sceneID="Ggo-yH-H2h">
+            <objects>
+                <viewControllerPlaceholder storyboardName="More" id="my7-Lc-YON" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7JF-21-gv6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mRu-ih-lp5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1929" y="-1687"/>
+        </scene>
         <!--Outage-->
         <scene sceneID="hUx-td-Zrv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdC-Bo-rcI" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" id="vXF-ge-4jE"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdC-Bo-rcI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" selectedImage="Tabbar Outage Selected" id="vXF-ge-4jE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tph-83-2fc">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Outage"/>
-                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="Zjz-hN-u6T" kind="relationship" relationship="rootViewController" id="B91-xd-pr1"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NS0-Au-8UF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,28 +147,43 @@
         <!--Usage-->
         <scene sceneID="70j-Ia-4jH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oCk-0Q-geV" customClass="MainBaseNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="4" title="Usage" image="ic_nav_usage" selectedImage="ic_nav_usage" id="Otb-cD-p9W"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oCk-0Q-geV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="4" title="Usage" image="ic_nav_usage" selectedImage="Tabbar Usage Selected" id="Otb-cD-p9W"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NOb-8y-go0">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="storyboardName" value="Usage"/>
-                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="2Cx-xU-Wxi" kind="relationship" relationship="rootViewController" id="spB-uW-hbe"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRd-jK-xEl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1223" y="-2179"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="aw1-xl-Pg5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="Dxm-V1-jlT" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tkE-ha-LrC"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k0p-zV-iks" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-939" y="-1701"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="ic_nav_bill" width="24" height="24"/>
-        <image name="ic_nav_home" width="24" height="24"/>
-        <image name="ic_nav_more" width="24" height="24"/>
-        <image name="ic_nav_outage" width="24" height="24"/>
-        <image name="ic_nav_usage" width="24" height="24"/>
+        <image name="Tabbar Bill Selected" width="30" height="30"/>
+        <image name="Tabbar Home Selected" width="30" height="30"/>
+        <image name="Tabbar More Selected" width="30" height="30"/>
+        <image name="Tabbar Outage Selected" width="30" height="30"/>
+        <image name="Tabbar Usage Selected" width="30" height="30"/>
+        <image name="ic_nav_bill" width="30" height="30"/>
+        <image name="ic_nav_home" width="30" height="30"/>
+        <image name="ic_nav_more" width="30" height="30"/>
+        <image name="ic_nav_outage" width="30" height="30"/>
+        <image name="ic_nav_usage" width="30" height="30"/>
     </resources>
 </document>
