@@ -4313,6 +4313,7 @@
 			isa = PBXGroup;
 			children = (
 				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
+				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
 				35CEB032230D8FD700366440 /* Unavailable View */,
 				35CEB026230D8BE200366440 /* Smart Energy Rewards */,
@@ -5009,7 +5010,6 @@
 				E8127B251EBBAF2A0083DDE9 /* LoadingIndicator.swift */,
 				E8DB7CBC1EF82A10008188A5 /* IntrinsicHeightTableView.swift */,
 				821898911F326BAE0077D7A1 /* BillAlertBannerView.swift */,
-				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				826773451FB2330400A8CFAA /* TemperatureSliderView.swift */,
 				35AFB42A20C82DA0000312B9 /* SheetView.swift */,
 			);
