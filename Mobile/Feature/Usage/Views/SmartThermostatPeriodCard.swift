@@ -30,24 +30,23 @@ class SmartThermostatPeriodCard: ButtonControl {
     override func commonInit() {
         super.commonInit()
         backgroundColorOnPress = .softGray
-        addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
+        layer.borderColor = UIColor.accentGray.cgColor
+        layer.borderWidth = 1
         layer.cornerRadius = 10
         backgroundColor = .white
         
-        // TIME/PERIOD
-        timeLabel.textColor = .blackText
-        timeLabel.font = OpenSans.regular.of(size: 20)
+        timeLabel.textColor = .deepGray
+        timeLabel.font = SystemFont.regular.of(textStyle: .title3)
         
-        periodNameLabel.textColor = .blackText
-        periodNameLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        periodNameLabel.textColor = .deepGray
+        periodNameLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
         let timePeriodStack = UIStackView(arrangedSubviews: [timeLabel, periodNameLabel])
         timePeriodStack.axis = .vertical
-        timePeriodStack.spacing = -2
+        timePeriodStack.spacing = 0
         timePeriodStack.alignment = .leading
         timePeriodStack.isUserInteractionEnabled = false
         
-        // TEMPERATURE
         let coolCircle = UIView()
         coolCircle.backgroundColor = .richElectricBlue
         coolCircle.translatesAutoresizingMaskIntoConstraints = false
@@ -55,8 +54,8 @@ class SmartThermostatPeriodCard: ButtonControl {
         coolCircle.widthAnchor.constraint(equalTo: coolCircle.heightAnchor).isActive = true
         coolCircle.layer.cornerRadius = 7
         
-        coolTempLabel.textColor = .blackText
-        coolTempLabel.font = OpenSans.bold.of(textStyle: .headline)
+        coolTempLabel.textColor = .deepGray
+        coolTempLabel.font = SystemFont.semibold.of(textStyle: .callout)
         
         let coolStack = UIStackView(arrangedSubviews: [coolCircle, coolTempLabel])
         coolStack.axis = .horizontal
@@ -71,8 +70,8 @@ class SmartThermostatPeriodCard: ButtonControl {
         heatCircle.widthAnchor.constraint(equalTo: heatCircle.heightAnchor).isActive = true
         heatCircle.layer.cornerRadius = 7
         
-        heatTempLabel.textColor = .blackText
-        heatTempLabel.font = OpenSans.bold.of(textStyle: .headline)
+        heatTempLabel.textColor = .deepGray
+        heatTempLabel.font = SystemFont.semibold.of(textStyle: .callout)
         
         let heatStack = UIStackView(arrangedSubviews: [heatCircle, heatTempLabel])
         heatStack.axis = .horizontal
@@ -149,7 +148,6 @@ class SmartThermostatPeriodCard: ButtonControl {
             .disposed(by: bag)
         
     }
-    
     
     private override init(frame: CGRect) {
         super.init(frame: frame)

@@ -68,8 +68,10 @@ class PeakRewardsViewController: UIViewController {
         adjustScaleLabel.font = OpenSans.regular.of(textStyle: .headline)
         segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
         
-        coolLegendLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        heatLegendLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        coolLegendLabel.textColor = .deepGray
+        coolLegendLabel.font = OpenSans.regular.of(textStyle: .caption1)
+        heatLegendLabel.textColor = .deepGray
+        heatLegendLabel.font = OpenSans.regular.of(textStyle: .caption1)
     }
     
     func bindViews() {
@@ -196,7 +198,8 @@ class PeakRewardsViewController: UIViewController {
                         self?.view.makeToast(NSLocalizedString("Thermostat settings saved", comment: ""))
                     })
                     .disposed(by: $0.disposeBag)
-                self.navigationController?.pushViewController($0, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: $0)
+                self.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         

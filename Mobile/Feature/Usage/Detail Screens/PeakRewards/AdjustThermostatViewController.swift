@@ -16,7 +16,8 @@ class AdjustThermostatViewController: UIViewController {
     
     let viewModel: AdjustThermostatViewModel
     
-    let mainContentStack = UIStackView().usingAutoLayout()
+    let scrollView = UIScrollView().usingAutoLayout()
+    let stickyFooterView = StickyFooterView().usingAutoLayout()
     let errorLabel = UILabel().usingAutoLayout()
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
     
@@ -26,12 +27,9 @@ class AdjustThermostatViewController: UIViewController {
                                                scale: TemperatureScaleStore.shared.scale,
                                                mode: Variable(.cool))
     let permanentHoldSwitch = Switch().usingAutoLayout()
-    let modeSegmentedControl = SegmentedControl(frame: .zero).usingAutoLayout()
-    let fanSegmentedControl = SegmentedControl(frame: .zero).usingAutoLayout()
-    
-    private let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: nil)
-    private let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
-    
+    let modeSegmentedControl = SegmentedControlNew(frame: .zero).usingAutoLayout()
+    let fanSegmentedControl = SegmentedControlNew(frame: .zero).usingAutoLayout()
+
     init(viewModel: AdjustThermostatViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -41,7 +39,6 @@ class AdjustThermostatViewController: UIViewController {
         super.loadView()
         buildLayout()
         bindViews()
-        bindActions()
         bindSaveStates()
         viewModel.loadInitialData.onNext(())
     }
@@ -50,22 +47,10 @@ class AdjustThermostatViewController: UIViewController {
         title = NSLocalizedString("Adjust Thermostat", comment: "")
         view.backgroundColor = .white
         
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        errorLabel.textColor = .blackText
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textAlignment = .center
-        errorLabel.numberOfLines = 0
-        view.addSubview(errorLabel)
-        errorLabel.addTabletWidthConstraints(horizontalPadding: 29)
-        errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        view.addSubview(loadingIndicator)
-        loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = saveButton
-        
+        addCloseButton()
+
+        extendedLayoutIncludesOpaqueBars = true
+                
         let permanentHoldLabel = UILabel().usingAutoLayout()
         permanentHoldLabel.numberOfLines = 0
         permanentHoldLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -94,7 +79,7 @@ class AdjustThermostatViewController: UIViewController {
         modeLabel.textColor = .blackText
         modeLabel.text = NSLocalizedString("Mode", comment: "")
         
-        modeSegmentedControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        modeSegmentedControl.heightAnchor.constraint(equalToConstant: 45).isActive = true
         modeSegmentedControl.items = [NSLocalizedString("Cool", comment: ""),
                                       NSLocalizedString("Heat", comment: ""),
                                       NSLocalizedString("Off", comment: "")]
@@ -112,7 +97,7 @@ class AdjustThermostatViewController: UIViewController {
         fanLabel.textColor = .blackText
         fanLabel.text = NSLocalizedString("Fan", comment: "")
         
-        fanSegmentedControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        fanSegmentedControl.heightAnchor.constraint(equalToConstant: 45).isActive = true
         fanSegmentedControl.items = [NSLocalizedString("Auto", comment: ""),
                                      NSLocalizedString("Circulate", comment: ""),
                                      NSLocalizedString("On", comment: "")]
@@ -143,26 +128,58 @@ class AdjustThermostatViewController: UIViewController {
         didYouKnowDetailLabel.trailingAnchor.constraint(equalTo: didYouKnowView.trailingAnchor).isActive = true
         didYouKnowDetailLabel.bottomAnchor.constraint(equalTo: didYouKnowView.bottomAnchor, constant: -15).isActive = true
         
-        let scrollView = UIScrollView().usingAutoLayout()
+        scrollView.contentInsetAdjustmentBehavior = .automatic
+        scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
+        
+        let saveButton = PrimaryButton(frame: .zero).usingAutoLayout()
+        saveButton.setTitle(NSLocalizedString("Save Changes", comment: ""), for: .normal)
+        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
+        stickyFooterView.addSubview(saveButton)
+        view.addSubview(stickyFooterView)
+        
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: stickyFooterView.topAnchor).isActive = true
         
+        stickyFooterView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        stickyFooterView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        stickyFooterView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        saveButton.topAnchor.constraint(equalTo: stickyFooterView.topAnchor, constant: 15).isActive = true
+        saveButton.addTabletWidthConstraints(horizontalPadding: 20)
+        saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        saveButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
+        let mainContentStack = UIStackView().usingAutoLayout()
         [tempSliderView, permanentHoldContainer, modeStack, fanStack, didYouKnowView]
             .forEach(mainContentStack.addArrangedSubview)
         mainContentStack.axis = .vertical
         mainContentStack.spacing = 30
         scrollView.addSubview(mainContentStack)
-        mainContentStack.addTabletWidthConstraints(horizontalPadding: 29)
+        mainContentStack.addTabletWidthConstraints(horizontalPadding: 20)
         mainContentStack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40).isActive = true
-        mainContentStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -29).isActive = true
+        mainContentStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
+        
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.textColor = .blackText
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textAlignment = .center
+        errorLabel.numberOfLines = 0
+        view.addSubview(errorLabel)
+        errorLabel.addTabletWidthConstraints(horizontalPadding: 20)
+        errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(loadingIndicator)
+        loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     func bindViews() {
         viewModel.showMainLoadingState.not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showMainContent.not().drive(mainContentStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainContent.not().drive(stickyFooterView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showMainContent.asDriver()
@@ -227,14 +244,6 @@ class AdjustThermostatViewController: UIViewController {
             })
             .bind(to: viewModel.fan)
             .disposed(by: disposeBag)
-    }
-    
-    func bindActions() {
-        cancelButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in self?.navigationController?.popViewController(animated: true) })
-            .disposed(by: disposeBag)
-        
-        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
     }
     
     func bindSaveStates() {

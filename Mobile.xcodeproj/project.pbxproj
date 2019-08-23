@@ -620,7 +620,6 @@
 		8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
 		8206D0171FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
 		8206D0181FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
-		8206D0191FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
 		8206D01B1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
 		8206D01C1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
 		8206D01D1FABCDD70056F4CB /* TemperatureScaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */; };
@@ -1013,6 +1012,7 @@
 		9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7FFD1922C1251800092987 /* PrimaryButton.swift */; };
 		9C8775B522A082CD0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
 		9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */; };
+		9C9204CC2310327400B0B89F /* SmartThermostatPeriodCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */; };
 		9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
 		9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
 		9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */; };
@@ -8099,6 +8099,7 @@
 				22EF559A2170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				9C9204CC2310327400B0B89F /* SmartThermostatPeriodCard.swift in Sources */,
 				2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				B0B0839C216F970800B1C632 /* Appointment.swift in Sources */,
 				824A966B1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
@@ -8293,7 +8294,6 @@
 				E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				826773331FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
-				8206D0191FABC5350056F4CB /* SmartThermostatPeriodCard.swift in Sources */,
 				9C62447622C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,

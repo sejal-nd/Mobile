@@ -41,10 +41,8 @@ class SegmentedControlNew: UIControl {
     
     func commonInit() {
         backgroundColor = .softGray
-        fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
         
         selectionPill.backgroundColor = .white
-        selectionPill.fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
         addSubview(selectionPill)
         
         for i in 0...2 {
@@ -74,6 +72,12 @@ class SegmentedControlNew: UIControl {
             .distinctUntilChanged()
             .drive(onNext: { [weak self] in self?.selectIndex($0, postAccessibilityNotification: false) })
             .disposed(by: disposeBag)
+    }
+    
+    override func setNeedsLayout() {
+        super.setNeedsLayout()
+        fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
+        selectionPill.fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
     }
     
     override func layoutSubviews() {
