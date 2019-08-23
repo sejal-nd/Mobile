@@ -104,11 +104,11 @@ class MainTabBarController: UITabBarController {
     /// Animate TabBar Item
     private func animateTabBarItem(imageView: UIImageView) {
         // Scale Up Animation
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-            imageView.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            imageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             
             // Scale Down Animation
-            UIView.animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
                 imageView.transform = .identity
             }, completion: nil)
         }, completion: nil)
