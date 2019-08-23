@@ -27,29 +27,54 @@ class LargeTitleNavigationController: UINavigationController {
     private func commonInit() {
         navigationBar.barStyle = .default
         
-        let color: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
-        view.backgroundColor = color
-        navigationBar.backgroundColor = color
-        navigationBar.barTintColor = color
-        navigationBar.tintColor = .actionBlue
-        navigationBar.isTranslucent = false
+        let backgroundColor: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
+        let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText
         
-        navigationBar.setBackgroundImage(nil, for: .default)
-        navigationBar.shadowImage = UIColor.primaryColor.navBarShadowImage()
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = backgroundColor
+            appearance.titleTextAttributes = [.foregroundColor: textColor]
+            appearance.largeTitleTextAttributes = [
+                .foregroundColor: textColor,
+                .font: OpenSans.semibold.of(size: 24)
+            ]
+            
+            appearance.titleTextAttributes = [
+                .foregroundColor: textColor,
+                .font: OpenSans.semibold.of(size: 15)
+            ]
+            
+            appearance.shadowImage = UIColor.primaryColor.navBarShadowImage()
+            
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            navigationBar.setBackgroundImage(nil, for: .default)
+            navigationBar.shadowImage = UIColor.primaryColor.navBarShadowImage()
+            
+            navigationBar.largeTitleTextAttributes = [
+                .foregroundColor: textColor,
+                .font: OpenSans.semibold.of(size: 24)
+            ]
+            
+            navigationBar.titleTextAttributes = [
+                .foregroundColor: textColor,
+                .font: OpenSans.semibold.of(size: 15)
+            ]
+            
+            setNeedsStatusBarAppearanceUpdate()
+        }
         
-        navigationBar.largeTitleTextAttributes = [
-            .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
-            .font: OpenSans.semibold.of(size: 24)
-        ]
         navigationItem.largeTitleDisplayMode = .always
         navigationBar.prefersLargeTitles = true
         
-        navigationBar.titleTextAttributes = [
-            .foregroundColor: StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText,
-            .font: OpenSans.semibold.of(size: 15)
-        ]
+        navigationBar.barTintColor = backgroundColor
+        navigationBar.tintColor = .actionBlue
+        navigationBar.isTranslucent = false
         
-        setNeedsStatusBarAppearanceUpdate()
+        view.backgroundColor = backgroundColor
+        navigationBar.backgroundColor = backgroundColor
     }
     
     // If presenting an InfoModalViewController or WebViewController, first wrap it in a

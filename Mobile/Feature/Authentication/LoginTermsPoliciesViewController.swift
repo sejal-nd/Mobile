@@ -30,6 +30,10 @@ class LoginTermsPoliciesViewController: UIViewController {
         
         title = NSLocalizedString("Policies and Terms", comment: "")
         
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
+        
         agreeCheckbox.rx.isChecked.bind(to: continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         continueButton.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)

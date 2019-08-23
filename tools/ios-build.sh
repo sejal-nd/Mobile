@@ -334,16 +334,10 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 fi
 
 
-# Check VSTS xcode version. If set to 9.4.1, change it to 10.0. This branch requires 10.0+ to run.
-if xcodebuild -version | grep -q 9.4.1; then
-    echo "Switching VSTS build agent to Xcode 10 -- $XCODE_10_DEVELOPER_DIR"
-    sudo xcode-select -switch $XCODE_10_DEVELOPER_DIR
-
-    # Xcode 10's new build system seems to want all files in place, which causes issues with the environment switcher task
-    # Stick empty files in place
-
-    touch Mobile/Configuration/environment.plist
-    touch Mobile/Configuration/environment_preprocess.h
+# Check VSTS xcode version. If set to 10, change it to 11. This branch requires 11+ to run.
+if xcodebuild -version | grep -q "Xcode 10"; then
+    echo "Switching VSTS build agent to Xcode 11 -- $XCODE_11_DEVELOPER_DIR"
+    sudo xcode-select -switch $XCODE_11_DEVELOPER_DIR
 fi
 
 # Restore cocoapods Packages
