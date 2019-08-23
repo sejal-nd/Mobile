@@ -26,7 +26,7 @@ class AdjustThermostatViewController: UIViewController {
                                                maxTemp: Temperature(value: Double(90), scale: .fahrenheit),
                                                scale: TemperatureScaleStore.shared.scale,
                                                mode: Variable(.cool))
-    let permanentHoldSwitch = Switch().usingAutoLayout()
+    let permanentHoldCheckbox = Checkbox().usingAutoLayout()
     let modeSegmentedControl = SegmentedControlNew(frame: .zero).usingAutoLayout()
     let fanSegmentedControl = SegmentedControlNew(frame: .zero).usingAutoLayout()
 
@@ -53,26 +53,26 @@ class AdjustThermostatViewController: UIViewController {
                 
         let permanentHoldLabel = UILabel().usingAutoLayout()
         permanentHoldLabel.numberOfLines = 0
-        permanentHoldLabel.font = SystemFont.regular.of(textStyle: .headline)
-        permanentHoldLabel.textColor = .blackText
+        permanentHoldLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        permanentHoldLabel.textColor = .deepGray
         permanentHoldLabel.text = NSLocalizedString("Permanent Hold", comment: "")
         permanentHoldLabel.isAccessibilityElement = false
         permanentHoldLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         permanentHoldLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         
-        permanentHoldSwitch.setContentHuggingPriority(.required, for: .horizontal)
+        permanentHoldCheckbox.setContentHuggingPriority(.required, for: .horizontal)
         
-        let permanentHoldStack = UIStackView(arrangedSubviews: [permanentHoldLabel, permanentHoldSwitch]).usingAutoLayout()
+        let permanentHoldStack = UIStackView(arrangedSubviews: [permanentHoldCheckbox, permanentHoldLabel]).usingAutoLayout()
         permanentHoldStack.axis = .horizontal
         permanentHoldStack.alignment = .center
-        permanentHoldStack.spacing = 8
+        permanentHoldStack.spacing = -12
         
         let permanentHoldContainer = UIView()
         permanentHoldContainer.addSubview(permanentHoldStack)
-        permanentHoldStack.topAnchor.constraint(equalTo: permanentHoldContainer.topAnchor, constant: 25).isActive = true
+        permanentHoldStack.topAnchor.constraint(equalTo: permanentHoldContainer.topAnchor, constant: -10).isActive = true
         permanentHoldStack.leadingAnchor.constraint(equalTo: permanentHoldContainer.leadingAnchor).isActive = true
         permanentHoldStack.trailingAnchor.constraint(equalTo: permanentHoldContainer.trailingAnchor).isActive = true
-        permanentHoldStack.bottomAnchor.constraint(equalTo: permanentHoldContainer.bottomAnchor, constant: -13).isActive = true
+        permanentHoldStack.bottomAnchor.constraint(equalTo: permanentHoldContainer.bottomAnchor, constant: -20).isActive = true
         
         let modeLabel = UILabel()
         modeLabel.font = SystemFont.regular.of(textStyle: .headline)
@@ -202,11 +202,11 @@ class AdjustThermostatViewController: UIViewController {
             .drive(fanSegmentedControl.selectedIndex)
             .disposed(by: disposeBag)
         
-        permanentHoldSwitch.accessibilityLabel = NSLocalizedString("Permanent Hold", comment: "")
-        viewModel.initialHold.drive(permanentHoldSwitch.rx.isOn).disposed(by: disposeBag)
+        permanentHoldCheckbox.accessibilityLabel = NSLocalizedString("Permanent Hold", comment: "")
+        viewModel.initialHold.drive(permanentHoldCheckbox.rx.isChecked).disposed(by: disposeBag)
         
         // Bind to view model
-        permanentHoldSwitch.rx.isOn.distinctUntilChanged()
+        permanentHoldCheckbox.rx.isChecked.distinctUntilChanged()
             .do(onNext: {
                 GoogleAnalytics.log(event: $0 ? .permanentHoldOn : .permanentHoldOff)
             })
