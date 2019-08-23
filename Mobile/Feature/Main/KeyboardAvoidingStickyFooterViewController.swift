@@ -12,16 +12,21 @@ class KeyboardAvoidingStickyFooterViewController: UIViewController {
     
     @IBOutlet weak var stickyFooterBottomConstraint: NSLayoutConstraint!
 
+    
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        observeNotifications()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    
+    // MARK: - Actions
     
     @objc func adjustForKeyboard(notification: Notification) {
         guard let keyboardFrameValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
@@ -40,6 +45,14 @@ class KeyboardAvoidingStickyFooterViewController: UIViewController {
             self.stickyFooterBottomConstraint.constant = keyboardHeight
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func observeNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
 }

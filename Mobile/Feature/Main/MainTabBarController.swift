@@ -19,19 +19,40 @@ class MainTabBarController: UITabBarController {
     
     let normalTitleColor = UIColor.middleGray
     let selectedTitleColor = UIColor.primaryColorADA
+        
+    
+    // MARK: - View Life Cycle
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.inMainApp)
+        style()
         
+        configureTabBar()
+    }
+        
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let itemIndex = tabBar.items?.firstIndex(of: item), tabBar.subviews.count > itemIndex + 1, let imageView = tabBar.subviews[itemIndex + 1].subviews.compactMap ({ $0 as? UIImageView }).first else {
+            return
+        }
+
+        animateTabBarItem(imageView: imageView)
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func style() {
         tabBar.barTintColor = .white
         tabBar.tintColor = .primaryColor
         tabBar.isTranslucent = false
+    }
+    
+    private func configureTabBar() {
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.inMainApp)
+        
         delegate = self
-        
-        setButtonStates(itemTag: 1)
-        
+                
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.pushNotificationReceived) {
             // If push notification was tapped and the user logged in within 5 minutes, take them straight to alerts
             if let timestamp = UserDefaults.standard.object(forKey: UserDefaultKeys.pushNotificationReceivedTimestamp) as? Date, Float(timestamp.timeIntervalSinceNow) >= -300 {
@@ -80,22 +101,24 @@ class MainTabBarController: UITabBarController {
             .disposed(by: disposeBag)
     }
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        setButtonStates(itemTag: item.tag)
+    /// Animate TabBar Item
+    private func animateTabBarItem(imageView: UIImageView) {
+        // Scale Up Animation
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            imageView.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+            
+            // Scale Down Animation
+            UIView.animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+                imageView.transform = .identity
+            }, completion: nil)
+        }, completion: nil)
     }
-    
-    // Needed for programmatically changing tabs
-    override var selectedIndex: Int {
-        didSet {
-            setButtonStates(itemTag: selectedIndex + 1)
-        }
-    }
-    
+
     func navigateToUsage(selectedBar: UsageViewModel.BarGraphSelection? = nil, isGas: Bool, isPreviousBill: Bool) {
         selectedIndex = 3
         
         guard let bar = selectedBar,
-            let usageNavCtl = viewControllers?[3] as? MainBaseNavigationController,
+            let usageNavCtl = viewControllers?[3] as? UINavigationController,
             let usageVC = usageNavCtl.viewControllers.first as? UsageViewController
             else { return }
         
@@ -114,7 +137,7 @@ class MainTabBarController: UITabBarController {
         let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
         let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
         
-        guard let moreNavCtl = viewControllers?[4] as? MainBaseNavigationController,
+        guard let moreNavCtl = viewControllers?[4] as? UINavigationController,
             let moreVC = moreStoryboard.instantiateInitialViewController(),
             let alertsVC = alertsStoryboard.instantiateInitialViewController()
             else { return }
@@ -128,7 +151,7 @@ class MainTabBarController: UITabBarController {
         let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
         let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
         
-        guard let moreNavCtl = viewControllers?[4] as? MainBaseNavigationController,
+        guard let moreNavCtl = viewControllers?[4] as? UINavigationController,
             let moreVC = moreStoryboard.instantiateInitialViewController(),
             let alertsVC = alertsStoryboard.instantiateInitialViewController() as? AlertsViewController
             else { return }
@@ -136,17 +159,10 @@ class MainTabBarController: UITabBarController {
         alertsVC.shortcutToPrefs = true
         moreNavCtl.viewControllers = [moreVC, alertsVC]
     }
-    
-    func setButtonStates (itemTag: Int) {
-        for tab in tabBar.items! {
-            if tab.tag == itemTag {
-                tab.setTitleTextAttributes([.font: selectedTitleFont, .foregroundColor: selectedTitleColor], for: .normal)
-            } else {
-                tab.setTitleTextAttributes([.font: normalTitleFont, .foregroundColor: normalTitleColor], for: .normal)
-            }
-        }
-    }
 }
+
+
+// MARK: - TabBar Delegate
 
 extension MainTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
