@@ -11,7 +11,7 @@ import RxCocoa
 
 class AlertsViewController: AccountPickerViewController {
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     
@@ -28,6 +28,9 @@ class AlertsViewController: AccountPickerViewController {
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     let viewModel = AlertsViewModel()
+    
+    
+    // MARK: - Helper
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,19 +56,8 @@ class AlertsViewController: AccountPickerViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        // Dynamic sizing for the table header view
-        if let headerView = tableView.tableHeaderView {
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
-            
-            // If we don't have this check, viewDidLayoutSubviews() will get called repeatedly, causing the app to hang.
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
-                tableView.tableHeaderView = headerView
-            }
-        }
+          
+        tableView.sizeHeaderToFit()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,28 +65,32 @@ class AlertsViewController: AccountPickerViewController {
         shortcutToPrefs = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navController = segue.destination as? UINavigationController, let vc = navController.viewControllers.first as? AlertPreferencesViewController else { return }
+        vc.delegate = self
+    }
+    
+    
+    // MARK: - Helper
+    
     private func styleViews() {
         if StormModeStatus.shared.isOn {
             view.backgroundColor = .stormModeBlack
         }
         
         preferencesButtonLabel.textColor = .actionBlue
-        preferencesButtonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        preferencesButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         preferencesButtonLabel.text = NSLocalizedString("Preferences", comment: "")
         preferencesButton.accessibilityLabel = preferencesButtonLabel.text
         
         alertsEmptyStateLabel.textColor = .middleGray
-        alertsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
+        alertsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .body)
         alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
     }
     
     private func bindViewModel() {
         viewModel.shouldShowAlertsEmptyState.not()
             .drive(alertsEmptyStateView.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        viewModel.shouldShowAlertsEmptyState.not()
-            .drive(tableView.rx.isScrollEnabled)
             .disposed(by: disposeBag)
 
         viewModel.currentAlerts.asDriver()
@@ -125,60 +121,31 @@ class AlertsViewController: AccountPickerViewController {
     @IBAction func onPreferencesButtonTap(_ sender: Any) {
         GoogleAnalytics.log(event: .alertsMainScreen)
         performSegue(withIdentifier: "preferencesSegue", sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AlertPreferencesViewController {
-            vc.delegate = self
-        }
-    }
-    
+    }    
 }
 
 extension AlertsViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.currentAlerts.value.count
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == tableView {
-            var cell = tableView.dequeueReusableCell(withIdentifier: "AlertCell")
-            if cell == nil {
-                cell = UITableViewCell(style: .default, reuseIdentifier: "AlertCell")
-            }
-            
-            cell!.textLabel?.numberOfLines = 0
-            cell!.detailTextLabel?.numberOfLines = 0
-            
-            cell!.textLabel?.textColor = .deepGray
-            cell!.textLabel?.font = SystemFont.regular.of(textStyle: .headline)
-            cell!.textLabel?.text = viewModel.currentAlerts.value[indexPath.row].message
-            
-            return cell!
-        }
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlertRow.className, for: indexPath) as? AlertRow else { fatalError("Failed to deque cell: \(AlertRow.className)") }
+        
+        let message = viewModel.currentAlerts.value[indexPath.row].message
+        cell.configure(with: message)
+        
+        return cell
     }
 }
 
 extension AlertsViewController: AccountPickerDelegate {
-    
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         loadAlerts()
     }
-    
 }
 
 extension AlertsViewController: AlertPreferencesViewControllerDelegate {
-    
     func alertPreferencesViewControllerDidSavePreferences() {
         GoogleAnalytics.log(event: .alertsPrefCenterComplete)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
