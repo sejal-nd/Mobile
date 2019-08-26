@@ -70,7 +70,7 @@ class SmartThermostatScheduleViewController: UIViewController {
         
         let sliderStackContainer = UIView().usingAutoLayout()
         sliderStackContainer.addSubview(sliderStack)
-        sliderStack.addTabletWidthConstraints(horizontalPadding: 27)
+        sliderStack.addTabletWidthConstraints(horizontalPadding: 20)
         
         sliderStack.topAnchor.constraint(equalTo: sliderStackContainer.topAnchor).isActive = true
         sliderStack.bottomAnchor.constraint(equalTo: sliderStackContainer.bottomAnchor).isActive = true
