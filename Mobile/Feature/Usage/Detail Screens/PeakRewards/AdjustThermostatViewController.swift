@@ -75,8 +75,9 @@ class AdjustThermostatViewController: UIViewController {
         permanentHoldStack.bottomAnchor.constraint(equalTo: permanentHoldContainer.bottomAnchor, constant: -20).isActive = true
         
         let modeLabel = UILabel()
-        modeLabel.font = SystemFont.regular.of(textStyle: .headline)
-        modeLabel.textColor = .blackText
+        modeLabel.font = OpenSans.regular.of(textStyle: .headline)
+        modeLabel.textColor = .deepGray
+        modeLabel.textAlignment = .center
         modeLabel.text = NSLocalizedString("Mode", comment: "")
         
         modeSegmentedControl.heightAnchor.constraint(equalToConstant: 45).isActive = true
@@ -93,8 +94,9 @@ class AdjustThermostatViewController: UIViewController {
         modeStack.spacing = 10
         
         let fanLabel = UILabel()
-        fanLabel.font = SystemFont.regular.of(textStyle: .headline)
-        fanLabel.textColor = .blackText
+        fanLabel.font = OpenSans.regular.of(textStyle: .headline)
+        fanLabel.textColor = .deepGray
+        fanLabel.textAlignment = .center
         fanLabel.text = NSLocalizedString("Fan", comment: "")
         
         fanSegmentedControl.heightAnchor.constraint(equalToConstant: 45).isActive = true
@@ -108,12 +110,12 @@ class AdjustThermostatViewController: UIViewController {
         let didYouKnowView = UIView().usingAutoLayout()
         let didYouKnowLabel = UILabel().usingAutoLayout()
         didYouKnowLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        didYouKnowLabel.textColor = .blackText
+        didYouKnowLabel.textColor = .deepGray
         didYouKnowLabel.text = NSLocalizedString("Did you know?", comment: "")
         
         let didYouKnowDetailLabel = UILabel().usingAutoLayout()
         didYouKnowDetailLabel.font = SystemFont.regular.of(textStyle: .headline)
-        didYouKnowDetailLabel.textColor = .blackText
+        didYouKnowDetailLabel.textColor = .deepGray
         didYouKnowDetailLabel.numberOfLines = 0
         didYouKnowDetailLabel.text = NSLocalizedString("By turning your thermostat back by 7-10°F for eight hours a day, you can save 10% a year on heating and cooling.", comment: "")
         
@@ -259,7 +261,7 @@ class AdjustThermostatViewController: UIViewController {
         
         viewModel.saveSuccess.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissModal()
             })
             .disposed(by: disposeBag)
 
