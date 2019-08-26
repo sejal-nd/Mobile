@@ -17,14 +17,15 @@ class OverrideViewController: UIViewController {
 
     let disposeBag = DisposeBag()
     
+    let scrollView = UIScrollView().usingAutoLayout()
     let mainStack = UIStackView().usingAutoLayout()
     let errorLabel = UILabel().usingAutoLayout()
     let loadingIndicator = LoadingIndicator().usingAutoLayout()
+    let stickyFooterView = StickyFooterView().usingAutoLayout()
     
-    private let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: nil)
-    private let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
+    let saveButton = PrimaryButton(frame: .zero).usingAutoLayout()
     
-    let dateButton = DisclosureButton()
+    let dateButton = DisclosureButtonNew()
     
     let scheduledSerialLabel = UILabel()
     let scheduledDateLabel = UILabel()
@@ -44,6 +45,8 @@ class OverrideViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
+        addCloseButton()
+        
         buildLayout()
         bindViews()
         bindActions()
@@ -51,47 +54,34 @@ class OverrideViewController: UIViewController {
     }
     
     func buildLayout() {
+        navigationItem.backBarButtonItem?.title = " "
         title = NSLocalizedString("Override", comment: "")
         view.backgroundColor = .white
         
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        errorLabel.textColor = .blackText
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textAlignment = .center
-        errorLabel.numberOfLines = 0
-        view.addSubview(errorLabel)
-        errorLabel.addTabletWidthConstraints(horizontalPadding: 29)
-        errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        view.addSubview(loadingIndicator)
-        loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = saveButton
+        extendedLayoutIncludesOpaqueBars = true
         
         let topLabel = UILabel()
         topLabel.text = NSLocalizedString("Select a date to override an Energy Savings Day", comment: "")
-        topLabel.textColor = .blackText
-        topLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        topLabel.textColor = .deepGray
+        topLabel.font = SystemFont.regular.of(textStyle: .headline)
         topLabel.numberOfLines = 0
-        topLabel.setLineHeight(lineHeight: 24)
         
-        dateButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        dateButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        dateButton.descriptionText = NSLocalizedString("Select Date", comment: "")
         
         let scheduledTitleLabel = UILabel()
         scheduledTitleLabel.text = NSLocalizedString("Scheduled Overrides", comment: "")
-        scheduledTitleLabel.textColor = .blackText
-        scheduledTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        scheduledTitleLabel.textColor = .deepGray
+        scheduledTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         topLabel.numberOfLines = 0
         
-        scheduledSerialLabel.textColor = .blackText
-        scheduledSerialLabel.font = OpenSans.regular.of(textStyle: .title1)
+        scheduledSerialLabel.textColor = .deepGray
+        scheduledSerialLabel.font = OpenSans.regular.of(textStyle: .callout)
         scheduledSerialLabel.numberOfLines = 0
         scheduledSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
-        scheduledDateLabel.textColor = .blackText
-        scheduledDateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        scheduledDateLabel.textColor = .deepGray
+        scheduledDateLabel.font = OpenSans.regular.of(textStyle: .callout)
         scheduledDateLabel.numberOfLines = 0
         scheduledDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
@@ -102,7 +92,7 @@ class OverrideViewController: UIViewController {
         
         scheduledCancelButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         scheduledCancelButton.setTitleColor(.actionBlue, for: .normal)
-        scheduledCancelButton.titleLabel?.font = OpenSans.regular.of(size: 18)
+        scheduledCancelButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         let scheduledCardStack = UIStackView(arrangedSubviews: [scheduledLabelStack, scheduledCancelButton]).usingAutoLayout()
         scheduledCardStack.axis = .horizontal
@@ -110,9 +100,10 @@ class OverrideViewController: UIViewController {
         scheduledCardStack.spacing = 4
         
         let scheduledCardView = UIView()
+        scheduledCardView.layer.borderColor = UIColor.accentGray.cgColor
+        scheduledCardView.layer.borderWidth = 1
         scheduledCardView.layer.cornerRadius = 2
         scheduledCardView.backgroundColor = .white
-        scheduledCardView.addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
         
         scheduledCardView.addSubview(scheduledCardStack)
         scheduledCardStack.topAnchor.constraint(equalTo: scheduledCardView.topAnchor, constant: 20).isActive = true
@@ -127,17 +118,17 @@ class OverrideViewController: UIViewController {
         
         let activeTitleLabel = UILabel()
         activeTitleLabel.text = NSLocalizedString("Active Overrides", comment: "")
-        activeTitleLabel.textColor = .blackText
-        activeTitleLabel.font = OpenSans.bold.of(textStyle: .title1)
+        activeTitleLabel.textColor = .deepGray
+        activeTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         topLabel.numberOfLines = 0
         
-        activeSerialLabel.textColor = .blackText
-        activeSerialLabel.font = OpenSans.regular.of(textStyle: .title1)
+        activeSerialLabel.textColor = .deepGray
+        activeSerialLabel.font = OpenSans.regular.of(textStyle: .callout)
         activeSerialLabel.numberOfLines = 0
         activeSerialLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
-        activeDateLabel.textColor = .blackText
-        activeDateLabel.font = OpenSans.regular.of(textStyle: .title1)
+        activeDateLabel.textColor = .deepGray
+        activeDateLabel.font = OpenSans.regular.of(textStyle: .callout)
         activeDateLabel.numberOfLines = 0
         activeDateLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         
@@ -157,12 +148,13 @@ class OverrideViewController: UIViewController {
         
         let contentView = UIView().usingAutoLayout()
         contentView.addSubview(mainStack)
-        mainStack.addTabletWidthConstraints(horizontalPadding: 29)
-        mainStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
+        mainStack.addTabletWidthConstraints(horizontalPadding: 20)
+        mainStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30).isActive = true
         mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30).isActive = true
         
-        let scrollView = UIScrollView().usingAutoLayout()
         scrollView.addSubview(contentView)
+        scrollView.contentInsetAdjustmentBehavior = .automatic
+        scrollView.alwaysBounceVertical = true
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
@@ -170,21 +162,48 @@ class OverrideViewController: UIViewController {
         contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
         
         view.addSubview(scrollView)
+        
+        saveButton.setTitle(NSLocalizedString("Save Changes", comment: ""), for: .normal)
+        stickyFooterView.addSubview(saveButton)
+        view.addSubview(stickyFooterView)
+        
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        contentView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: stickyFooterView.topAnchor).isActive = true
+        
+        stickyFooterView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        stickyFooterView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        stickyFooterView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        saveButton.topAnchor.constraint(equalTo: stickyFooterView.topAnchor, constant: 15).isActive = true
+        saveButton.addTabletWidthConstraints(horizontalPadding: 20)
+        saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        saveButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+        errorLabel.textColor = .deepGray
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.textAlignment = .center
+        errorLabel.numberOfLines = 0
+        view.addSubview(errorLabel)
+        errorLabel.addTabletWidthConstraints(horizontalPadding: 20)
+        errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(loadingIndicator)
+        loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     func bindViews() {
         viewModel.showMainLoadingState.not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showMainContent.not().drive(mainStack.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainContent.not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showMainContent.not().drive(stickyFooterView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showErrorLabel.not().drive(errorLabel.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.enableSaveButton.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.enableDateButton.drive(dateButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.dateButtonText.drive(dateButton.label.rx.text).disposed(by: disposeBag)
+        viewModel.dateButtonText.drive(dateButton.rx.valueText).disposed(by: disposeBag)
         viewModel.dateButtonA11yText.drive(dateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.showScheduledOverride.not().drive(scheduledStack.rx.isHidden).disposed(by: disposeBag)
@@ -203,11 +222,6 @@ class OverrideViewController: UIViewController {
             .bind(to: viewModel.saveAction)
             .disposed(by: disposeBag)
         
-        cancelButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
-            })
-            .disposed(by: disposeBag)
         scheduledCancelButton.rx.tap.bind(to: viewModel.cancelAction).disposed(by: disposeBag)
         
         dateButton.rx.tap.asObservable()
@@ -247,7 +261,7 @@ class OverrideViewController: UIViewController {
         
         viewModel.saveSuccess.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissModal()
             })
             .disposed(by: disposeBag)
         

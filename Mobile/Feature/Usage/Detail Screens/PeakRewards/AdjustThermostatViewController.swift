@@ -165,7 +165,7 @@ class AdjustThermostatViewController: UIViewController {
         mainContentStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
         
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
-        errorLabel.textColor = .blackText
+        errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textAlignment = .center
         errorLabel.numberOfLines = 0

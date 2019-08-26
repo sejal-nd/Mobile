@@ -41,9 +41,9 @@ class OverrideViewModel {
         self.refreshingOverrides = refreshingOverrides
     }
     
-    private(set) lazy var dateButtonText: Driver<String> = self.selectedDate.asObservable()
+    private(set) lazy var dateButtonText: Driver<String?> = self.selectedDate.asObservable()
         .map { String(format: NSLocalizedString("Date: %@", comment: ""), $0.mmDdYyyyString) }
-        .startWith(NSLocalizedString("Select Date", comment: ""))
+        .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var dateButtonA11yText: Driver<String> = self.selectedDate.asObservable()
