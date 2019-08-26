@@ -226,7 +226,8 @@ class PeakRewardsViewController: UIViewController {
                         self?.view.showToast(NSLocalizedString("Schedule updated", comment: ""))
                     })
                     .disposed(by: vc.disposeBag)
-                self.navigationController?.pushViewController(vc, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: vc)
+                self.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
