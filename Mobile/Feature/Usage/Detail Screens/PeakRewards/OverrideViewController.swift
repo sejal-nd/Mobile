@@ -52,9 +52,8 @@ class OverrideViewController: UIViewController {
         bindActions()
         bindSaveStates()
     }
-    
+        
     func buildLayout() {
-        navigationItem.backBarButtonItem?.title = " "
         title = NSLocalizedString("Override", comment: "")
         view.backgroundColor = .white
         
@@ -229,8 +228,7 @@ class OverrideViewController: UIViewController {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                let backItem = UIBarButtonItem()
-                backItem.title = NSLocalizedString("Back", comment: "")
+                let backItem = UIBarButtonItem(title: " ", style: .plain, target: .none, action: .none)
                 self.navigationItem.backBarButtonItem = backItem
                 
                 let calendarVC = PDTSimpleCalendarViewController()
