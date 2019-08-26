@@ -42,7 +42,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var reportFormStackView: UIStackView!
     @IBOutlet weak var areYourLightsOutView: UIView!
     @IBOutlet weak var areYourLightsOutLabel: UILabel!
-    @IBOutlet weak var segmentedControl: SegmentedControlNew!
+    @IBOutlet weak var segmentedControl: SegmentedControl!
     @IBOutlet weak var howCanWeContactYouLabel: UILabel!
     @IBOutlet weak var phoneNumberTextField: FloatLabelTextField!
     @IBOutlet weak var phoneExtensionContainerView: UIView!

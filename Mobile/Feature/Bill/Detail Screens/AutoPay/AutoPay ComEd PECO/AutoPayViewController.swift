@@ -20,7 +20,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     // Not Enrolled
     @IBOutlet weak var enrollStackView: UIStackView!
     @IBOutlet weak var topLabel: UILabel!
-    @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControlNew!
+    @IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
     @IBOutlet weak var nameTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTextField: FloatLabelTextField!
     @IBOutlet weak var routingNumberTooltipButton: UIButton!

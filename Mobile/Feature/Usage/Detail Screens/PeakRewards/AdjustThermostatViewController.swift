@@ -27,8 +27,8 @@ class AdjustThermostatViewController: UIViewController {
                                                scale: TemperatureScaleStore.shared.scale,
                                                mode: Variable(.cool))
     let permanentHoldCheckbox = Checkbox().usingAutoLayout()
-    let modeSegmentedControl = SegmentedControlNew(frame: .zero).usingAutoLayout()
-    let fanSegmentedControl = SegmentedControlNew(frame: .zero).usingAutoLayout()
+    let modeSegmentedControl = SegmentedControl(frame: .zero).usingAutoLayout()
+    let fanSegmentedControl = SegmentedControl(frame: .zero).usingAutoLayout()
 
     init(viewModel: AdjustThermostatViewModel) {
         self.viewModel = viewModel

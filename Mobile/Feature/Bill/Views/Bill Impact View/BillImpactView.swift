@@ -20,7 +20,7 @@ class BillImpactView: UIView {
         }
     }
     @IBOutlet weak var tooltipButton: UIButton!
-    @IBOutlet weak var elecGasSegmentedControl: SegmentedControlNew! {
+    @IBOutlet weak var elecGasSegmentedControl: SegmentedControl! {
         didSet {
             elecGasSegmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
         }

@@ -25,7 +25,7 @@ class HomeProjectedBillCardView: UIView {
     
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var segmentedControlContainer: UIView!
-    @IBOutlet private weak var segmentedControl: SegmentedControlNew!
+    @IBOutlet private weak var segmentedControl: SegmentedControl!
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var projectionLabelTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet private weak var projectionLabel: UILabel!

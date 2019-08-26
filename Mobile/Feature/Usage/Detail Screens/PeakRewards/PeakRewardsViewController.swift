@@ -25,7 +25,7 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var adjustThermostatButton: DisclosureButtonNew!
     
     @IBOutlet weak var adjustScaleLabel: UILabel!
-    @IBOutlet weak var segmentedControl: SegmentedControlNew!
+    @IBOutlet weak var segmentedControl: SegmentedControl!
     
     @IBOutlet weak var scheduleHeaderStack: UIStackView!
     @IBOutlet weak var scheduleContentStack: UIStackView!
@@ -173,7 +173,8 @@ class PeakRewardsViewController: UIViewController {
                     .bind(to: self.viewModel.overridesUpdated)
                     .disposed(by: $0.disposeBag)
                 
-                self.navigationController?.pushViewController($0, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: $0)
+                self.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         

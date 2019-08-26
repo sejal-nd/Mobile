@@ -760,9 +760,6 @@
 		82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAE1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
 		82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */; };
-		82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
-		82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
-		82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */; };
 		82A18EC41EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
 		82A18EC51EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
 		82A18EC61EBA676700BE9F21 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EB71EBA676700BE9F21 /* Switch.swift */; };
@@ -989,9 +986,9 @@
 		9C62447022C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */; };
 		9C62447122C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */; };
 		9C62447222C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */; };
-		9C62447422C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */; };
-		9C62447522C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */; };
-		9C62447622C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */; };
+		9C62447422C5617D00F14DA0 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControl.swift */; };
+		9C62447522C5617D00F14DA0 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControl.swift */; };
+		9C62447622C5617D00F14DA0 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62447322C5617D00F14DA0 /* SegmentedControl.swift */; };
 		9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
 		9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */; };
@@ -2853,7 +2850,6 @@
 		82A18E941EB919B300BE9F21 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		82A18EA41EB919C200BE9F21 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
 		82A18EA61EB919C200BE9F21 /* TermsPoliciesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsPoliciesViewModel.swift; sourceTree = "<group>"; };
-		82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		82A18EB71EBA676700BE9F21 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
 		82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
@@ -2933,7 +2929,7 @@
 		9C62446222C28A4600F14DA0 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		9C62446722C42B4200F14DA0 /* FloatLabelTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextView.xib; sourceTree = "<group>"; };
 		9C62446C22C42B4900F14DA0 /* FloatLabelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextView.swift; sourceTree = "<group>"; };
-		9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlNew.swift; sourceTree = "<group>"; };
+		9C62447322C5617D00F14DA0 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
@@ -4926,12 +4922,11 @@
 				825171A21F1D1D4F0020A6CA /* RadioSelectControl.swift */,
 				9C7FFD1922C1251800092987 /* PrimaryButton.swift */,
 				9C62445522C1624900F14DA0 /* SecondaryButton.swift */,
-				82A18EB61EBA676700BE9F21 /* SegmentedControl.swift */,
 				82A18EB71EBA676700BE9F21 /* Switch.swift */,
 				54C1DF011F02EF2800290FE5 /* SeparatorSpaceView.swift */,
 				545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */,
 				B085C44220FD2C5500CE0893 /* ConversationalButton.swift */,
-				9C62447322C5617D00F14DA0 /* SegmentedControlNew.swift */,
+				9C62447322C5617D00F14DA0 /* SegmentedControl.swift */,
 				2FA5D85E1F17D2A300A8B16B /* OneTouchSlider.swift */,
 				359BDB3F22D50F90007002B0 /* StickyFooterView.swift */,
 				9C153DC822E8F6CE002DA062 /* Checkbox.swift */,
@@ -7611,7 +7606,7 @@
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
-				9C62447422C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */,
+				9C62447422C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				9CCE3E3F21B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0DB274B215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */,
@@ -7783,7 +7778,6 @@
 				B574BADF1E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				B094A63D210270830028F90F /* BillBreakdownViewModel.swift in Sources */,
 				B085C44720FFD49400CE0893 /* ReportedOutagesStore.swift in Sources */,
-				82A18EC11EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				357757402113582C00E73542 /* DateParser.swift in Sources */,
 				B07E17B32208F5C200B6E3C7 /* WeatherItem.swift in Sources */,
 				B0030D082097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
@@ -8155,7 +8149,6 @@
 				E873DA651EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D0A2097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02721FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
-				82A18EC31EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				B5389EA51E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F841EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7E1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
@@ -8294,7 +8287,7 @@
 				E87C414D1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
 				826773331FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
-				9C62447622C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */,
+				9C62447622C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
@@ -8360,7 +8353,7 @@
 				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
-				9C62447522C5617D00F14DA0 /* SegmentedControlNew.swift in Sources */,
+				9C62447522C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
 				9CCE3E4021B865F30008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0DB274C215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift in Sources */,
 				82AC2A1F1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -8534,7 +8527,6 @@
 				E873DA7B1EE8A19D00020D1B /* PECOReleaseOfInfoViewController.swift in Sources */,
 				B0030D092097BC8300327A3D /* MaintenanceModeView.swift in Sources */,
 				E83F02711FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
-				82A18EC21EBA676700BE9F21 /* SegmentedControl.swift in Sources */,
 				B5389EA41E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,

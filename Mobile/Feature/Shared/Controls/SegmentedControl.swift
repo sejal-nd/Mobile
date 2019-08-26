@@ -2,8 +2,8 @@
 //  SegmentedControl.swift
 //  Mobile
 //
-//  Created by Marc Shilling on 3/16/17.
-//  Copyright © 2017 Exelon Corporation. All rights reserved.
+//  Created by Marc Shilling on 6/27/19.
+//  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class SegmentedControl: UIControl {
-    
+
     let disposeBag = DisposeBag()
     
     var items: [String]?
@@ -20,16 +20,13 @@ class SegmentedControl: UIControl {
     private var views = [UIView]()
     private var labels = [UILabel]()
     private var buttons = [UIButton]()
-    private var bigBottomBar: UIView?
-    private var selectedBar: UIView?
-    
-    private var borderLayers = [CALayer]()
+    private var selectionPill = UIView(frame: .zero)
     
     init() {
         super.init(frame: .zero)
         commonInit()
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -43,8 +40,10 @@ class SegmentedControl: UIControl {
     }
     
     func commonInit() {
-        clipsToBounds = true
-        layer.cornerRadius = 4
+        backgroundColor = .softGray
+        
+        selectionPill.backgroundColor = .white
+        addSubview(selectionPill)
         
         for i in 0...2 {
             let view = UIView(frame: .zero)
@@ -68,58 +67,43 @@ class SegmentedControl: UIControl {
             addSubview(button)
         }
         
-        bigBottomBar = UIView(frame: .zero)
-        bigBottomBar!.isUserInteractionEnabled = false
-        bigBottomBar!.backgroundColor = .accentGray
-        addSubview(bigBottomBar!)
-        
-        selectedBar = UIView(frame: .zero)
-        selectedBar!.isUserInteractionEnabled = false
-        selectedBar!.backgroundColor = .primaryColor
-        addSubview(selectedBar!)
-        
         selectedIndex.asDriver()
+            .skip(1)
             .distinctUntilChanged()
-            .drive(onNext: { [weak self] in self?.selectIndex($0) })
+            .drive(onNext: { [weak self] in self?.selectIndex($0, postAccessibilityNotification: false) })
             .disposed(by: disposeBag)
+    }
+    
+    override func setNeedsLayout() {
+        super.setNeedsLayout()
+        fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
+        selectionPill.fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        for layer in borderLayers {
-            layer.removeFromSuperlayer()
-        }
-        
-        borderLayers.removeAll()
-        
-        let edgeWidth: CGFloat = 1.0 / UIScreen.main.scale
-        
+
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)
+            
+            let selectionPillSize = selectionPill.frame.size
+            if selectionPillSize.width != itemWidth || selectionPillSize.height != frame.height {
+                // To appropriately size the selectionPill without breaking animations
+                selectionPill.frame = CGRect(x: 0, y: 0, width: itemWidth, height: frame.height)
+            }
+            
             for (index, item) in items.enumerated() {
                 let xPos = CGFloat(index) * itemWidth
                 
                 let view = views[index]
-                view.frame = CGRect(x: xPos, y: 0, width: itemWidth, height: frame.height - 6)
-                view.backgroundColor = index == selectedIndex.value ?
-                    UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1) :
-                    UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
-                borderLayers.append(view.addTopBorder(color: .accentGray, width: edgeWidth))
-                borderLayers.append(view.addLeftBorder(color: .accentGray, width: edgeWidth))
-                if index == items.count - 1 {
-                    borderLayers.append(view.addRightBorder(color: .accentGray, width: edgeWidth))
-                    borderLayers.append(view.addRoundedTopRightBorder(radius: 4, borderColor: .accentGray, borderWidth: 2 * edgeWidth))
-                } else if index == 0 {
-                    borderLayers.append(view.addRoundedTopLeftBorder(radius: 4, borderColor: .accentGray, borderWidth: 2 * edgeWidth))
-                }
+                view.frame = CGRect(x: xPos, y: 0, width: itemWidth, height: frame.height)
                 
                 let label = labels[index]
                 label.text = item
                 if index == selectedIndex.value {
-                    label.font = SystemFont.bold.of(textStyle: .subheadline)
+                    label.font = OpenSans.semibold.of(textStyle: .subheadline)
                 } else {
-                    label.font = SystemFont.regular.of(textStyle: .subheadline)
+                    label.font = OpenSans.regular.of(textStyle: .subheadline)
                 }
                 label.frame.size = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
                 label.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2)
@@ -133,11 +117,6 @@ class SegmentedControl: UIControl {
                 let button = buttons[index]
                 button.accessibilityLabel = String(format: NSLocalizedString("%@, option %@ of %@ %@", comment: ""), item, String(index + 1), String(items.count), index == selectedIndex.value ? NSLocalizedString(", selected", comment: "") : "")
             }
-            
-            bigBottomBar!.frame = CGRect(x: 0, y: frame.height - 6, width: frame.width, height: 6)
-            
-            let xPos = CGFloat(selectedIndex.value) * itemWidth
-            selectedBar!.frame = CGRect(x: xPos, y: frame.height - 6, width: itemWidth + 1, height: 6)
         }
     }
     
@@ -146,16 +125,27 @@ class SegmentedControl: UIControl {
         selectIndex(index)
     }
     
-    func selectIndex(_ index: Int) {
+    func selectIndex(_ index: Int, animated: Bool = true, postAccessibilityNotification: Bool = true) {
         selectedIndex.value = index
         sendActions(for: .valueChanged)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-            let label = self.items![index]
-            let a11yString = String(format: NSLocalizedString("Selected %@, option %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
-            UIAccessibility.post(notification: .announcement, argument: a11yString)
-        })
-        
         setNeedsLayout()
+        
+        if postAccessibilityNotification {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                let label = self.items![index]
+                let a11yString = String(format: NSLocalizedString("Selected %@, option %@ of %@", comment: ""), label, String(index + 1), String(self.items!.count))
+                UIAccessibility.post(notification: .announcement, argument: a11yString)
+            })
+        }
+        
+        let itemWidth = frame.width / CGFloat(items!.count)
+        let xPos = CGFloat(index) * itemWidth
+        
+        let duration = animated ? 0.2 : 0
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
+            self.selectionPill.frame = CGRect(x: xPos, y: 0, width: itemWidth, height: self.frame.height)
+            self.layoutIfNeeded()
+        }, completion: nil)
     }
-    
+
 }

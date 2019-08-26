@@ -34,7 +34,7 @@ class UsageViewController: AccountPickerViewController {
     }
     @IBOutlet weak var accountDisallowView: UIView!
     
-    @IBOutlet private weak var segmentedControl: SegmentedControlNew! {
+    @IBOutlet private weak var segmentedControl: SegmentedControl! {
         didSet {
             segmentedControl.items = [NSLocalizedString("Electric", comment: ""), NSLocalizedString("Gas", comment: "")]
         }
