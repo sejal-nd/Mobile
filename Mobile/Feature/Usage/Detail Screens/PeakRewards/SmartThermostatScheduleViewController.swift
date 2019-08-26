@@ -15,8 +15,8 @@ class SmartThermostatScheduleViewController: UIViewController {
     
     let viewModel: SmartThermostatScheduleViewModel
     
+    private let scrollView = UIScrollView().usingAutoLayout()
     private let timeButton = DisclosureButtonNew().usingAutoLayout()
-    private let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
     
     private(set) lazy var saveSuccess: Observable<Void> = self.viewModel.saveSuccess
     
@@ -38,10 +38,10 @@ class SmartThermostatScheduleViewController: UIViewController {
     func buildLayout() {
         addCloseButton()
         
+        extendedLayoutIncludesOpaqueBars = true
+        
         view.backgroundColor = .white
-        
-        navigationItem.rightBarButtonItem = saveButton
-        
+                
         let timeButtonContainer = UIView().usingAutoLayout()
         timeButtonContainer.addSubview(timeButton)
         timeButton.descriptionText = NSLocalizedString("Time", comment: "")
@@ -96,12 +96,30 @@ class SmartThermostatScheduleViewController: UIViewController {
         didYouKnowDetailLabel.addTabletWidthConstraints(horizontalPadding: 20)
         didYouKnowDetailLabel.bottomAnchor.constraint(equalTo: didYouKnowView.bottomAnchor, constant: -15).isActive = true
         
-        let scrollView = UIScrollView().usingAutoLayout()
+        scrollView.contentInsetAdjustmentBehavior = .automatic
+        scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
+        
+        let saveButton = PrimaryButton(frame: .zero).usingAutoLayout()
+        saveButton.setTitle(NSLocalizedString("Save Changes", comment: ""), for: .normal)
+        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
+        let stickyFooterView = StickyFooterView().usingAutoLayout()
+        stickyFooterView.addSubview(saveButton)
+        view.addSubview(stickyFooterView)
+        
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: stickyFooterView.topAnchor).isActive = true
+        
+        stickyFooterView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        stickyFooterView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        stickyFooterView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        saveButton.topAnchor.constraint(equalTo: stickyFooterView.topAnchor, constant: 15).isActive = true
+        saveButton.addTabletWidthConstraints(horizontalPadding: 20)
+        saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        saveButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         let mainStack = UIStackView(arrangedSubviews: [timeButtonContainer, sliderStackContainer, didYouKnowView]).usingAutoLayout()
         mainStack.axis = .vertical
@@ -137,8 +155,6 @@ class SmartThermostatScheduleViewController: UIViewController {
                                           onCancel: nil)
             })
             .disposed(by: disposeBag)
-        
-        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
     }
     
     func bindSaveStates() {
@@ -154,7 +170,7 @@ class SmartThermostatScheduleViewController: UIViewController {
         
         viewModel.saveSuccess.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissModal()
             })
             .disposed(by: disposeBag)
         
