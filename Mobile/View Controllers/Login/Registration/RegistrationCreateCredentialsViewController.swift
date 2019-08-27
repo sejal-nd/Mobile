@@ -76,7 +76,7 @@ class RegistrationCreateCredentialsViewController: UIViewController {
         prepareTextFieldsForInput()
         
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
