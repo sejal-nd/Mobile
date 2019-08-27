@@ -4410,13 +4410,15 @@
 			isa = PBXGroup;
 			children = (
 				35D6B62A231424E900DCD588 /* AlertRow.swift */,
+				B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */,
+				B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */,
+				B0DB275F215ECF5100CD703B /* AccountInfoBarCell.xib */,
 				B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */,
 				B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */,
 				B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */,
 				B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */,
-				B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */,
-				B0DB2755215EBEE600CD703B /* AlertPreferencesLanguageCell.swift */,
 				B0DB2756215EBEE600CD703B /* AlertPreferencesLanguageCell.xib */,
+				B0DB2755215EBEE600CD703B /* AlertPreferencesLanguageCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -4425,18 +4427,8 @@
 			isa = PBXGroup;
 			children = (
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
-				35CEB02B230D8DE200366440 /* Table View Cell */,
 			);
 			path = "Account Info Bar";
-			sourceTree = "<group>";
-		};
-		35CEB02B230D8DE200366440 /* Table View Cell */ = {
-			isa = PBXGroup;
-			children = (
-				B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */,
-				B0DB275F215ECF5100CD703B /* AccountInfoBarCell.xib */,
-			);
-			path = "Table View Cell";
 			sourceTree = "<group>";
 		};
 		35CEB02C230D8E4A00366440 /* Table View Cells */ = {
@@ -5145,8 +5137,8 @@
 		9C10B4D822E216BF00B0851B /* Change Password */ = {
 			isa = PBXGroup;
 			children = (
-				82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */,
 				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
+				82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */,
 			);
 			path = "Change Password";
 			sourceTree = "<group>";

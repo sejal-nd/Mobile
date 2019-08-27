@@ -19,12 +19,10 @@ class AlertPreferencesViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var loadingIndicator: LoadingIndicator!
     @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet weak var saveButton: PrimaryButton!
     
     private let disposeBag = DisposeBag()
-    
-    private var saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: nil, action: nil)
-    private let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
-    
+        
     weak var delegate: AlertPreferencesViewControllerDelegate?
     
     let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(),
@@ -43,8 +41,7 @@ class AlertPreferencesViewController: UIViewController {
         tableView.register(UINib(nibName: AccountInfoBarCell.className, bundle: nil),
                            forCellReuseIdentifier: AccountInfoBarCell.className)
         
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = saveButton
+        addCloseButton()
         
         styleViews()
         bindViewModel()
@@ -102,8 +99,8 @@ class AlertPreferencesViewController: UIViewController {
     }
 
     private func styleViews() {
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
+        errorLabel.font = OpenSans.regular.of(textStyle: .body)
+        errorLabel.textColor = .deepGray
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
 
@@ -114,11 +111,11 @@ class AlertPreferencesViewController: UIViewController {
             .subscribe(onNext: { _ in GoogleAnalytics.log(event: .alertsPrefCenterOffer) })
             .disposed(by: disposeBag)
         
-        cancelButton.rx.tap.asObservable()
-            .withLatestFrom(viewModel.prefsChanged)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] in self?.onCancelPress(prefsChanged: $0) })
-            .disposed(by: disposeBag)
+//        cancelButton.rx.tap.asObservable()
+//            .withLatestFrom(viewModel.prefsChanged)
+//            .asDriver(onErrorDriveWith: .empty())
+//            .drive(onNext: { [weak self] in self?.onCancelPress(prefsChanged: $0) })
+//            .disposed(by: disposeBag)
         
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in self?.onSavePress() })
@@ -134,7 +131,7 @@ class AlertPreferencesViewController: UIViewController {
             LoadingView.hide()
             guard let self = self else { return }
             self.delegate?.alertPreferencesViewControllerDidSavePreferences()
-            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
             }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
@@ -290,7 +287,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             case .bge:
                 break
             case .comEd, .peco:
-                cell.toggle.rx.isOn.asDriver()
+                cell.checkbox.rx.isChecked.asDriver()
                     .skip(1)
                     .drive(onNext: { [weak self] in self?.showBillIsReadyToggleAlert(isOn: $0) })
                     .disposed(by: cell.disposeBag)
@@ -330,8 +327,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         }
         
         if let toggleVariable = toggleVariable {
-            toggleVariable.asDriver().distinctUntilChanged().drive(cell.toggle.rx.isOn).disposed(by: cell.disposeBag)
-            cell.toggle.rx.isOn.asDriver().skip(1).drive(toggleVariable).disposed(by: cell.disposeBag)
+            toggleVariable.asDriver().distinctUntilChanged().drive(cell.checkbox.rx.isChecked).disposed(by: cell.disposeBag)
+            cell.checkbox.rx.isChecked.asDriver().skip(1).drive(toggleVariable).disposed(by: cell.disposeBag)
         }
         
         cell.configure(withPreferenceOption: option,

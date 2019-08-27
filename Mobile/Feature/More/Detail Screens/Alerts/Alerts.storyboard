@@ -223,7 +223,7 @@ this time.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="150" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="tGP-At-eB8">
-                                <rect key="frame" x="0.0" y="56" width="375" height="702"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="583"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -232,8 +232,30 @@ this time.</string>
                                     <outlet property="delegate" destination="leW-pj-b7g" id="a2j-LX-m1Q"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDJ-Xu-I7G" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="639" width="375" height="119"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp6-ek-HUS" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="335" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="a0K-je-fcH"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="d7t-sY-dGM"/>
+                                        </constraints>
+                                        <state key="normal" title="Save Changes"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bp6-ek-HUS" secondAttribute="trailing" priority="999" constant="20" id="Ffk-ef-9dW"/>
+                                    <constraint firstItem="bp6-ek-HUS" firstAttribute="centerX" secondItem="dkH-tf-81S" secondAttribute="centerX" id="Siz-65-IsR"/>
+                                    <constraint firstItem="bp6-ek-HUS" firstAttribute="leading" secondItem="VDJ-Xu-I7G" secondAttribute="leading" priority="999" constant="20" id="XK6-mn-Lxh"/>
+                                    <constraint firstItem="dkH-tf-81S" firstAttribute="bottom" secondItem="bp6-ek-HUS" secondAttribute="bottom" constant="15" id="bJ2-Xr-083"/>
+                                    <constraint firstItem="bp6-ek-HUS" firstAttribute="top" secondItem="dkH-tf-81S" secondAttribute="top" constant="15" id="neC-Oq-4A8"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="dkH-tf-81S"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFK-DZ-ctu">
-                                <rect key="frame" x="166.66666666666666" y="397" width="41.666666666666657" height="20.333333333333314"/>
+                                <rect key="frame" x="166.66666666666666" y="337.33333333333331" width="41.666666666666657" height="20.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Dga-nf-29E"/>
                                 </constraints>
@@ -242,7 +264,7 @@ this time.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="bVz-N3-ck9" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.66666666666666" y="401" width="60" height="12"/>
+                                <rect key="frame" x="157.66666666666666" y="341.66666666666669" width="60" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -251,20 +273,24 @@ this time.</string>
                             <constraint firstItem="8VJ-Nk-vPQ" firstAttribute="trailing" secondItem="tGP-At-eB8" secondAttribute="trailing" id="3Uj-e3-u63"/>
                             <constraint firstItem="8VJ-Nk-vPQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pFK-DZ-ctu" secondAttribute="trailing" constant="29" id="9tG-kW-F3Y"/>
                             <constraint firstItem="tGP-At-eB8" firstAttribute="top" secondItem="8VJ-Nk-vPQ" secondAttribute="top" id="Ac9-cy-8Hy"/>
-                            <constraint firstAttribute="bottom" secondItem="tGP-At-eB8" secondAttribute="bottom" id="M4w-fB-LQ6"/>
+                            <constraint firstItem="VDJ-Xu-I7G" firstAttribute="leading" secondItem="H57-5L-WeS" secondAttribute="leading" id="LaI-8J-fpj"/>
                             <constraint firstItem="pFK-DZ-ctu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8VJ-Nk-vPQ" secondAttribute="leading" constant="29" id="chl-3C-iyb"/>
                             <constraint firstItem="bVz-N3-ck9" firstAttribute="centerX" secondItem="tGP-At-eB8" secondAttribute="centerX" id="ddf-Qt-x9d"/>
+                            <constraint firstItem="VDJ-Xu-I7G" firstAttribute="top" secondItem="tGP-At-eB8" secondAttribute="bottom" id="dmQ-lt-PnV"/>
                             <constraint firstItem="tGP-At-eB8" firstAttribute="leading" secondItem="8VJ-Nk-vPQ" secondAttribute="leading" id="k4P-aq-waz"/>
                             <constraint firstItem="pFK-DZ-ctu" firstAttribute="centerX" secondItem="H57-5L-WeS" secondAttribute="centerX" id="oOk-pe-U2Y"/>
                             <constraint firstItem="bVz-N3-ck9" firstAttribute="centerY" secondItem="tGP-At-eB8" secondAttribute="centerY" id="rdQ-1K-tLP"/>
+                            <constraint firstAttribute="trailing" secondItem="VDJ-Xu-I7G" secondAttribute="trailing" id="rh2-J0-tBa"/>
+                            <constraint firstAttribute="bottom" secondItem="VDJ-Xu-I7G" secondAttribute="bottom" id="s2b-BP-6Q5"/>
                             <constraint firstItem="pFK-DZ-ctu" firstAttribute="centerY" secondItem="tGP-At-eB8" secondAttribute="centerY" id="xKg-SB-J9B"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8VJ-Nk-vPQ"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9rp-X8-Fga"/>
+                    <navigationItem key="navigationItem" title="Alert Preferences" id="9rp-X8-Fga"/>
                     <connections>
                         <outlet property="errorLabel" destination="pFK-DZ-ctu" id="3nf-TU-WNO"/>
                         <outlet property="loadingIndicator" destination="bVz-N3-ck9" id="9Xc-DN-Rwt"/>
+                        <outlet property="saveButton" destination="bp6-ek-HUS" id="A5b-h5-6IZ"/>
                         <outlet property="tableView" destination="tGP-At-eB8" id="rT6-xb-3zf"/>
                     </connections>
                 </viewController>
