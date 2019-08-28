@@ -68,22 +68,21 @@ class SmartEnergyRewardsViewController: UIViewController {
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
         smartEnergyRewardsSeasonLabel.textColor = .deepGray
-        smartEnergyRewardsSeasonLabel.font = OpenSans.semibold.of(textStyle: .subheadline)
+        smartEnergyRewardsSeasonLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         smartEnergyRewardsViewAllSavingsButton.setTitleColor(.actionBlue, for: .normal)
-        smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
+        smartEnergyRewardsViewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         smartEnergyRewardsViewAllSavingsButton.titleLabel?.text = NSLocalizedString("View All Savings", comment: "")
         
-        smartEnergyRewardsFooterLabel.textColor = .blackText
-        smartEnergyRewardsFooterLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        smartEnergyRewardsFooterLabel.textColor = .deepGray
+        smartEnergyRewardsFooterLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
-        smartEnergyRewardsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .title1)
-        smartEnergyRewardsEmptyStateLabel.setLineHeight(lineHeight: 26)
+        smartEnergyRewardsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
         smartEnergyRewardsEmptyStateLabel.textAlignment = .center
         smartEnergyRewardsEmptyStateLabel.textColor = .deepGray
         smartEnergyRewardsEmptyStateLabel.text = NSLocalizedString("Your energy savings data will be available here once we have more data.", comment: "")
         
-        errorLabel.textColor = .blackText
+        errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
     }
     
@@ -109,11 +108,11 @@ class SmartEnergyRewardsViewController: UIViewController {
                 self.scrollView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 self.errorLabel.isHidden = true
-                }, onError: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.scrollView.isHidden = true
-                    self.loadingIndicator.isHidden = true
-                    self.errorLabel.isHidden = false
+            }, onError: { [weak self] _ in
+                guard let self = self else { return }
+                self.scrollView.isHidden = true
+                self.loadingIndicator.isHidden = true
+                self.errorLabel.isHidden = false
             })
             .disposed(by: disposeBag)
         
