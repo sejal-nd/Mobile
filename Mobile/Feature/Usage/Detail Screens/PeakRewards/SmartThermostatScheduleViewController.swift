@@ -15,9 +15,8 @@ class SmartThermostatScheduleViewController: UIViewController {
     
     let viewModel: SmartThermostatScheduleViewModel
     
-    private let timeButton = DisclosureButton().usingAutoLayout()
-    private let cancelButton = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: nil)
-    private let saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: self, action: nil)
+    private let scrollView = UIScrollView().usingAutoLayout()
+    private let timeButton = DisclosureButtonNew().usingAutoLayout()
     
     private(set) lazy var saveSuccess: Observable<Void> = self.viewModel.saveSuccess
     
@@ -37,19 +36,19 @@ class SmartThermostatScheduleViewController: UIViewController {
     }
 
     func buildLayout() {
+        addCloseButton()
+        
+        extendedLayoutIncludesOpaqueBars = true
+        
         view.backgroundColor = .white
-        
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = saveButton
-        
+                
         let timeButtonContainer = UIView().usingAutoLayout()
-        timeButtonContainer.backgroundColor = .softGray
-        
         timeButtonContainer.addSubview(timeButton)
-        timeButton.addTabletWidthConstraints(horizontalPadding: 29)
+        timeButton.descriptionText = NSLocalizedString("Time", comment: "")
+        timeButton.addTabletWidthConstraints(horizontalPadding: 20)
         timeButton.topAnchor.constraint(equalTo: timeButtonContainer.topAnchor, constant: 30).isActive = true
         timeButton.bottomAnchor.constraint(equalTo: timeButtonContainer.bottomAnchor, constant: -30).isActive = true
-        timeButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        timeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         let minTemp = Temperature(value: Double(40), scale: .fahrenheit)
         let maxTemp = Temperature(value: Double(90), scale: .fahrenheit)
@@ -71,7 +70,7 @@ class SmartThermostatScheduleViewController: UIViewController {
         
         let sliderStackContainer = UIView().usingAutoLayout()
         sliderStackContainer.addSubview(sliderStack)
-        sliderStack.addTabletWidthConstraints(horizontalPadding: 27)
+        sliderStack.addTabletWidthConstraints(horizontalPadding: 20)
         
         sliderStack.topAnchor.constraint(equalTo: sliderStackContainer.topAnchor).isActive = true
         sliderStack.bottomAnchor.constraint(equalTo: sliderStackContainer.bottomAnchor).isActive = true
@@ -79,30 +78,48 @@ class SmartThermostatScheduleViewController: UIViewController {
         let didYouKnowView = UIView().usingAutoLayout()
         let didYouKnowLabel = UILabel().usingAutoLayout()
         didYouKnowLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        didYouKnowLabel.textColor = .blackText
+        didYouKnowLabel.textColor = .deepGray
         didYouKnowLabel.text = NSLocalizedString("Did you know?", comment: "")
         
         let didYouKnowDetailLabel = UILabel().usingAutoLayout()
         didYouKnowDetailLabel.font = SystemFont.regular.of(textStyle: .headline)
-        didYouKnowDetailLabel.textColor = .blackText
+        didYouKnowDetailLabel.textColor = .deepGray
         didYouKnowDetailLabel.numberOfLines = 0
         didYouKnowDetailLabel.text = viewModel.didYouKnowText
         
         didYouKnowView.addSubview(didYouKnowLabel)
         didYouKnowView.addSubview(didYouKnowDetailLabel)
         
-        didYouKnowLabel.addTabletWidthConstraints(horizontalPadding: 29)
-        didYouKnowLabel.topAnchor.constraint(equalTo: didYouKnowView.topAnchor, constant: 11).isActive = true
+        didYouKnowLabel.addTabletWidthConstraints(horizontalPadding: 20)
+        didYouKnowLabel.topAnchor.constraint(equalTo: didYouKnowView.topAnchor, constant: 26).isActive = true
         didYouKnowLabel.bottomAnchor.constraint(equalTo: didYouKnowDetailLabel.topAnchor, constant: -10).isActive = true
-        didYouKnowDetailLabel.addTabletWidthConstraints(horizontalPadding: 29)
+        didYouKnowDetailLabel.addTabletWidthConstraints(horizontalPadding: 20)
         didYouKnowDetailLabel.bottomAnchor.constraint(equalTo: didYouKnowView.bottomAnchor, constant: -15).isActive = true
         
-        let scrollView = UIScrollView().usingAutoLayout()
+        scrollView.contentInsetAdjustmentBehavior = .automatic
+        scrollView.alwaysBounceVertical = true
         view.addSubview(scrollView)
+        
+        let saveButton = PrimaryButton(frame: .zero).usingAutoLayout()
+        saveButton.setTitle(NSLocalizedString("Save Changes", comment: ""), for: .normal)
+        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
+        let stickyFooterView = StickyFooterView().usingAutoLayout()
+        stickyFooterView.addSubview(saveButton)
+        view.addSubview(stickyFooterView)
+        
         scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: stickyFooterView.topAnchor).isActive = true
+        
+        stickyFooterView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        stickyFooterView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        stickyFooterView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        saveButton.topAnchor.constraint(equalTo: stickyFooterView.topAnchor, constant: 15).isActive = true
+        saveButton.addTabletWidthConstraints(horizontalPadding: 20)
+        saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        saveButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         
         let mainStack = UIStackView(arrangedSubviews: [timeButtonContainer, sliderStackContainer, didYouKnowView]).usingAutoLayout()
         mainStack.axis = .vertical
@@ -110,7 +127,7 @@ class SmartThermostatScheduleViewController: UIViewController {
         
         scrollView.addSubview(mainStack)
         mainStack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
-        mainStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -29).isActive = true
+        mainStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20).isActive = true
         mainStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         mainStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         mainStack.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -118,7 +135,7 @@ class SmartThermostatScheduleViewController: UIViewController {
     
     func bindViews() {
         viewModel.timeButtonText
-            .drive(timeButton.label.rx.text)
+            .drive(timeButton.rx.valueText)
             .disposed(by: disposeBag)
         
         viewModel.timeButtonText
@@ -138,12 +155,6 @@ class SmartThermostatScheduleViewController: UIViewController {
                                           onCancel: nil)
             })
             .disposed(by: disposeBag)
-        
-        cancelButton.rx.tap.asDriver()
-            .drive(onNext: { [weak self] in self?.navigationController?.popViewController(animated: true) })
-            .disposed(by: disposeBag)
-        
-        saveButton.rx.tap.bind(to: viewModel.saveAction).disposed(by: disposeBag)
     }
     
     func bindSaveStates() {
@@ -159,7 +170,7 @@ class SmartThermostatScheduleViewController: UIViewController {
         
         viewModel.saveSuccess.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissModal()
             })
             .disposed(by: disposeBag)
         

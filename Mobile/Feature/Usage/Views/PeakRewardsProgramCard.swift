@@ -13,20 +13,21 @@ class PeakRewardsProgramCard: UIView {
     convenience init(title: String, body: String) {
         self.init(frame: .zero)
         
-        addShadow(color: .black, opacity: 0.1, offset: .zero, radius: 2)
-        layer.cornerRadius = 2
+        layer.borderColor = UIColor.accentGray.cgColor
+        layer.borderWidth = 1
         backgroundColor = .white
         
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = .blackText
-        titleLabel.font = OpenSans.bold.of(textStyle: .footnote)
+        titleLabel.textColor = .deepGray
+        titleLabel.textAlignment = .center
+        titleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
         
         let separator = UIView()
-        separator.backgroundColor = .primaryColor
+        separator.backgroundColor = .accentGray
         separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.heightAnchor.constraint(equalToConstant: 1.5).isActive = true
+        separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         let descriptionContainer = UIView()
         
@@ -34,7 +35,8 @@ class PeakRewardsProgramCard: UIView {
         descriptionLabel.text = body
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .deepGray
-        descriptionLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
         descriptionContainer.addSubview(descriptionLabel)
         

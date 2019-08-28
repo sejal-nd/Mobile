@@ -52,10 +52,14 @@ class SecondaryButton: UIButton {
     func commonInit() {
         titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         layer.borderWidth = 1
-        layer.cornerRadius = frame.size.height / 2
         
         updateTitleColors()
         updateEnabledState()
+    }
+    
+    override func setNeedsLayout() {
+        super.setNeedsLayout()
+        layer.cornerRadius = frame.size.height / 2
     }
     
     override var isHighlighted: Bool {

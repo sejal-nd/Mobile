@@ -17,7 +17,7 @@ protocol AutoPayChangeBankViewControllerDelegate: class {
 class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewController {
 	
 	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControlNew!
+	@IBOutlet weak var checkingSavingsSegmentedControl: SegmentedControl!
 	@IBOutlet weak var nameTextField: FloatLabelTextField!
 	@IBOutlet weak var routingNumberTextField: FloatLabelTextField!
 	@IBOutlet weak var routingNumberTooltipButton: UIButton!

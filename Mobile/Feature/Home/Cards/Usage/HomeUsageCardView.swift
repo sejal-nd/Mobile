@@ -25,7 +25,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var billComparisonView: UIView!
     @IBOutlet private weak var usageOverviewLabel: UILabel!
     @IBOutlet private weak var billComparisonStackView: UIStackView!
-    @IBOutlet private weak var segmentedControl: SegmentedControlNew!
+    @IBOutlet private weak var segmentedControl: SegmentedControl!
     
     @IBOutlet private weak var billComparisonContentView: UIView!
 

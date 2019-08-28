@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m5h-DN-QMe">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m5h-DN-QMe">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="OpenSans-Bold.ttf">
-            <string>OpenSans-Bold</string>
-        </array>
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
@@ -24,172 +19,132 @@
         <!--PeakRewards-->
         <scene sceneID="5fR-u7-1k1">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="m5h-DN-QMe" customClass="PeakRewardsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="m5h-DN-QMe" customClass="PeakRewardsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xAd-Rs-pwW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-qg-ikB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avC-5q-wSD">
-                                <rect key="frame" x="29" y="529.5" width="317" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cow-Uv-Q5A"/>
-                                    <constraint firstAttribute="width" priority="999" constant="460" id="zfs-0Y-auk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-pp-1sF" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="544" width="60" height="12"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ZD-gx-g4N">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sV5-Zr-gVC">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1154.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1071"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-ET-rlJ" customClass="AccountInfoBar" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="35" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-ET-rlJ" customClass="AccountInfoBarNew" customModule="BGE" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="n6b-tQ-Lbc"/>
-                                                </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="s7K-8t-XOv" userLabel="Main Stack">
-                                                <rect key="frame" x="29" y="71" width="317" height="1053.5"/>
+                                                <rect key="frame" x="20" y="65" width="335" height="976"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="TsC-Vc-6od">
-                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="92.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TsC-Vc-6od">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Device:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCf-tL-X2H">
-                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="20.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="60" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-FB-ss2" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="32.5" width="317" height="60"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-FB-ss2" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Device"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="55" id="UkG-IJ-Qtr"/>
+                                                                </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Device: WH Water Heater"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="descriptionText" value="Device"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="50" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qLr-4t-hzz">
-                                                        <rect key="frame" x="0.0" y="127.5" width="317" height="25"/>
+                                                        <rect key="frame" x="0.0" y="90" width="335" height="23.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Cycling Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBk-zX-K9G">
-                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="25"/>
-                                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Cycling Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBk-zX-K9G">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="23.5"/>
+                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                                 <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rlM-J4-Bhv">
-                                                        <rect key="frame" x="0.0" y="187.5" width="317" height="130"/>
+                                                        <rect key="frame" x="0.0" y="148.5" width="335" height="120"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-MQ-zow" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-MQ-zow" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Adjust Thermostat"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="60" id="Ehe-m6-rc7"/>
+                                                                    <constraint firstAttribute="height" constant="55" id="Ehe-m6-rc7"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Adjust Thermostat"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="descriptionText" value="Adjust Thermostat"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-Ke-GyS" customClass="DisclosureButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="70" width="317" height="60"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-Ke-GyS" customClass="DisclosureButtonNew" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="65" width="335" height="55"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Override"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="60" id="HWA-vg-yfe"/>
+                                                                    <constraint firstAttribute="height" constant="55" id="HWA-vg-yfe"/>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Override"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="descriptionText" value="Override"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ihc-ks-Yc3">
-                                                        <rect key="frame" x="0.0" y="352.5" width="317" height="117"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ihc-ks-Yc3">
+                                                        <rect key="frame" x="0.0" y="303.5" width="335" height="88.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Thermostat Schedule" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2V-iP-vEf">
-                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="25"/>
-                                                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust Thermostat Schedule" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2V-iP-vEf">
+                                                                <rect key="frame" x="56" y="0.0" width="223" height="23.5"/>
+                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIQ-zY-4sl">
-                                                                <rect key="frame" x="0.0" y="25" width="317" height="12"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="12" id="XY3-0Q-5Ua"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Show Temperature As:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uib-65-jNP">
-                                                                <rect key="frame" x="0.0" y="37" width="317" height="22"/>
-                                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
-                                                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwR-8q-QDC">
-                                                                <rect key="frame" x="0.0" y="59" width="317" height="8"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="8" id="E31-dd-1ND"/>
-                                                                </constraints>
-                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeA-nM-shV" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="67" width="317" height="50"/>
+                                                                <rect key="frame" x="12" y="43.5" width="311" height="45"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" id="PZY-mx-ZEE"/>
+                                                                    <constraint firstAttribute="height" constant="45" id="PZY-mx-ZEE"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="IeA-nM-shV" firstAttribute="leading" secondItem="Ihc-ks-Yc3" secondAttribute="leading" constant="12" id="GKj-Q4-VaB"/>
+                                                            <constraint firstAttribute="trailing" secondItem="IeA-nM-shV" secondAttribute="trailing" constant="12" id="KiK-oe-cPb"/>
+                                                        </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lnY-Lk-pmn" userLabel="Schedule Stack">
-                                                        <rect key="frame" x="0.0" y="504.5" width="317" height="549"/>
+                                                        <rect key="frame" x="0.0" y="427" width="335" height="549"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="scc-fz-DeU" userLabel="Schedule Content Stack">
-                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="448"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="448"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uCx-LG-mjZ" userLabel="Schedule List Stack">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="382"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="382"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="Jls-KO-K6h" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="317" height="88"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="88"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="mba-Rl-P1R" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="98" width="317" height="88"/>
+                                                                                <rect key="frame" x="0.0" y="98" width="335" height="88"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="XNS-Th-CbV" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="196" width="317" height="88"/>
+                                                                                <rect key="frame" x="0.0" y="196" width="335" height="88"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="88" translatesAutoresizingMaskIntoConstraints="NO" id="pUK-w8-yEi" customClass="SmartThermostatPeriodCard" customModule="BGE" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="294" width="317" height="88"/>
+                                                                                <rect key="frame" x="0.0" y="294" width="335" height="88"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
                                                                         </subviews>
                                                                     </stackView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfQ-tn-9zV">
-                                                                        <rect key="frame" x="0.0" y="398" width="317" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="398" width="335" height="50"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ToK-gt-Wp3">
-                                                                                <rect key="frame" x="99.5" y="0.0" width="118" height="50"/>
+                                                                                <rect key="frame" x="108.5" y="0.0" width="118" height="50"/>
                                                                                 <subviews>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TNE-Kc-II9">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="53" height="50"/>
@@ -242,10 +197,10 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sof-oc-UlF" userLabel="Schedule Error View">
-                                                                <rect key="frame" x="0.0" y="448" width="317" height="41"/>
+                                                                <rect key="frame" x="0.0" y="448" width="335" height="41"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Unable to retrieve schedules at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-IV-fOe">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="317" height="41"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="41"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -260,10 +215,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sy2-7C-d5y" userLabel="Schedule Loading View">
-                                                                <rect key="frame" x="0.0" y="489" width="317" height="60"/>
+                                                                <rect key="frame" x="0.0" y="489" width="335" height="60"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="nQg-xh-FcH" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="128.5" y="24" width="60" height="12"/>
+                                                                        <rect key="frame" x="137.5" y="24" width="60" height="12"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
                                                                 </subviews>
@@ -285,14 +240,12 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="s7K-8t-XOv" firstAttribute="centerX" secondItem="sV5-Zr-gVC" secondAttribute="centerX" id="6vV-w8-TQZ"/>
-                                            <constraint firstItem="s7K-8t-XOv" firstAttribute="top" secondItem="Vlv-ET-rlJ" secondAttribute="bottom" constant="21" id="GpV-pa-rIA"/>
+                                            <constraint firstItem="s7K-8t-XOv" firstAttribute="top" secondItem="Vlv-ET-rlJ" secondAttribute="bottom" constant="30" id="GpV-pa-rIA"/>
                                             <constraint firstAttribute="bottom" secondItem="s7K-8t-XOv" secondAttribute="bottom" constant="30" id="HbO-9r-LeX"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="s7K-8t-XOv" secondAttribute="trailing" constant="29" id="M3i-mf-wUP"/>
-                                            <constraint firstItem="s7K-8t-XOv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sV5-Zr-gVC" secondAttribute="leading" constant="29" id="Vx3-T9-oDc"/>
                                             <constraint firstItem="Vlv-ET-rlJ" firstAttribute="top" secondItem="sV5-Zr-gVC" secondAttribute="top" id="XIg-as-WhX"/>
-                                            <constraint firstItem="s7K-8t-XOv" firstAttribute="leading" secondItem="sV5-Zr-gVC" secondAttribute="leading" priority="750" constant="29" id="Yeh-uH-cvl"/>
+                                            <constraint firstItem="s7K-8t-XOv" firstAttribute="leading" secondItem="sV5-Zr-gVC" secondAttribute="leading" priority="999" constant="20" id="Yeh-uH-cvl"/>
                                             <constraint firstItem="Vlv-ET-rlJ" firstAttribute="leading" secondItem="sV5-Zr-gVC" secondAttribute="leading" id="lAA-MS-BiK"/>
-                                            <constraint firstAttribute="trailing" secondItem="s7K-8t-XOv" secondAttribute="trailing" priority="750" constant="29" id="nR1-8n-uxM"/>
+                                            <constraint firstAttribute="trailing" secondItem="s7K-8t-XOv" secondAttribute="trailing" priority="999" constant="20" id="nR1-8n-uxM"/>
                                             <constraint firstAttribute="trailing" secondItem="Vlv-ET-rlJ" secondAttribute="trailing" id="oTd-Or-SY5"/>
                                         </constraints>
                                     </view>
@@ -305,17 +258,27 @@
                                     <constraint firstItem="sV5-Zr-gVC" firstAttribute="top" secondItem="3ZD-gx-g4N" secondAttribute="top" id="wYc-hw-Zws"/>
                                 </constraints>
                             </scrollView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Unable to retrieve data at this time. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avC-5q-wSD">
+                                <rect key="frame" x="29" y="529.5" width="317" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="cow-Uv-Q5A"/>
+                                    <constraint firstAttribute="width" priority="999" constant="460" id="zfs-0Y-auk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.13725490196078433" green="0.12156862745098039" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="0EV-pp-1sF" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="157.5" y="544" width="60" height="12"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="lba-qg-ikB" secondAttribute="bottom" id="98t-1M-zDH"/>
                             <constraint firstItem="gvO-tC-OQK" firstAttribute="trailing" secondItem="avC-5q-wSD" secondAttribute="trailing" priority="999" constant="29" id="EZM-YG-sDf"/>
-                            <constraint firstItem="lba-qg-ikB" firstAttribute="leading" secondItem="gvO-tC-OQK" secondAttribute="leading" id="FBt-ci-fRA"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="avC-5q-wSD" secondAttribute="trailing" constant="29" id="FE4-1c-OQi"/>
                             <constraint firstItem="avC-5q-wSD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xAd-Rs-pwW" secondAttribute="leading" constant="29" id="Hrb-xG-TVt"/>
-                            <constraint firstItem="lba-qg-ikB" firstAttribute="top" secondItem="xAd-Rs-pwW" secondAttribute="top" id="Hxa-5k-ENR"/>
                             <constraint firstItem="3ZD-gx-g4N" firstAttribute="trailing" secondItem="gvO-tC-OQK" secondAttribute="trailing" id="IG9-AA-llW"/>
-                            <constraint firstItem="lba-qg-ikB" firstAttribute="trailing" secondItem="gvO-tC-OQK" secondAttribute="trailing" id="POg-8G-8PQ"/>
                             <constraint firstItem="0EV-pp-1sF" firstAttribute="centerX" secondItem="xAd-Rs-pwW" secondAttribute="centerX" id="QAZ-gH-TVF"/>
                             <constraint firstItem="3ZD-gx-g4N" firstAttribute="leading" secondItem="gvO-tC-OQK" secondAttribute="leading" id="Xka-9q-gD3"/>
                             <constraint firstItem="3ZD-gx-g4N" firstAttribute="bottom" secondItem="xAd-Rs-pwW" secondAttribute="bottom" id="YR5-Yw-VNK"/>
@@ -328,7 +291,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gvO-tC-OQK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="PeakRewards" id="PtI-A2-umr"/>
+                    <navigationItem key="navigationItem" title="PeakRewards" id="PtI-A2-umr">
+                        <barButtonItem key="backBarButtonItem" title=" " id="P17-bw-Cdz"/>
+                    </navigationItem>
                     <size key="freeformSize" width="375" height="1100"/>
                     <connections>
                         <outlet property="adjustScaleLabel" destination="e2V-iP-vEf" id="NSY-3u-cOI"/>
@@ -337,7 +302,6 @@
                         <outlet property="cyclingStatusLabel" destination="xBk-zX-K9G" id="nRP-OQ-oCZ"/>
                         <outlet property="deviceButton" destination="qWW-FB-ss2" id="nfy-UX-F3c"/>
                         <outlet property="deviceSelectionStack" destination="TsC-Vc-6od" id="YFu-r1-8H9"/>
-                        <outlet property="gradientView" destination="lba-qg-ikB" id="mfM-Ex-IrD"/>
                         <outlet property="heatLegendLabel" destination="YQ1-8J-0MC" id="51t-Xh-cR4"/>
                         <outlet property="leavePeriodCard" destination="mba-Rl-P1R" id="ZSH-1o-Ldv"/>
                         <outlet property="mainErrorLabel" destination="avC-5q-wSD" id="kek-nb-jXR"/>
@@ -351,9 +315,7 @@
                         <outlet property="scheduleLoadingView" destination="sy2-7C-d5y" id="wxg-K8-erN"/>
                         <outlet property="scrollView" destination="3ZD-gx-g4N" id="uIh-Cu-MkX"/>
                         <outlet property="segmentedControl" destination="IeA-nM-shV" id="taD-tJ-HrW"/>
-                        <outlet property="selectDeviceLabel" destination="gCf-tL-X2H" id="fBG-a8-uML"/>
                         <outlet property="sleepPeriodCard" destination="pUK-w8-yEi" id="La9-Go-BsS"/>
-                        <outlet property="temperatureScaleLabel" destination="Uib-65-jNP" id="IYN-Rn-hwh"/>
                         <outlet property="wakePeriodCard" destination="Jls-KO-K6h" id="Kss-Nv-xrs"/>
                     </connections>
                 </viewController>

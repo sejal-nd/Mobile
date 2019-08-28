@@ -45,12 +45,16 @@ class PrimaryButton: UIButton {
         adjustsImageWhenHighlighted = false
         
         titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
-        layer.cornerRadius = frame.size.height / 2
-        
+
         updateTitleColors()
         updateEnabledState()
     }
     
+    override func setNeedsLayout() {
+        super.setNeedsLayout()
+        layer.cornerRadius = frame.size.height / 2
+    }
+        
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {

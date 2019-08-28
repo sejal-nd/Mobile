@@ -11,23 +11,20 @@ import RxCocoa
 import RxSwiftExt
 
 class PeakRewardsViewController: UIViewController {
-    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainErrorLabel: UILabel!
     @IBOutlet weak var mainLoadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var deviceSelectionStack: UIStackView!
-    @IBOutlet weak var selectDeviceLabel: UILabel!
-    @IBOutlet weak var deviceButton: DisclosureButton!
+    @IBOutlet weak var deviceButton: DisclosureButtonNew!
     
     @IBOutlet weak var programCardStack: UIStackView!
     @IBOutlet weak var cyclingStatusLabel: UILabel!
     
-    @IBOutlet weak var overrideButton: DisclosureButton!
-    @IBOutlet weak var adjustThermostatButton: DisclosureButton!
+    @IBOutlet weak var overrideButton: DisclosureButtonNew!
+    @IBOutlet weak var adjustThermostatButton: DisclosureButtonNew!
     
     @IBOutlet weak var adjustScaleLabel: UILabel!
-    @IBOutlet weak var temperatureScaleLabel: UILabel!
     @IBOutlet weak var segmentedControl: SegmentedControl!
     
     @IBOutlet weak var scheduleHeaderStack: UIStackView!
@@ -42,7 +39,6 @@ class PeakRewardsViewController: UIViewController {
     
     @IBOutlet weak var scheduleErrorView: UIView!
     @IBOutlet weak var scheduleLoadingView: UIView!
-    let gradientLayer = CAGradientLayer()
     
     var accountDetail: AccountDetail!
     
@@ -59,41 +55,29 @@ class PeakRewardsViewController: UIViewController {
         viewModel.loadInitialData.onNext(())
     }
     
-    func styleViews() {
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [
-            UIColor.white.cgColor,
-            UIColor(red: 244/255, green: 245/255, blue: 246/255, alpha: 1).cgColor,
-            UIColor(red: 239/255, green: 241/255, blue: 243/255, alpha: 1).cgColor
-        ]
-        gradientView.layer.addSublayer(gradientLayer)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        selectDeviceLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        
-        cyclingStatusLabel.font = OpenSans.bold.of(textStyle: .title1)
-        adjustScaleLabel.font = OpenSans.bold.of(textStyle: .title1)
-        temperatureScaleLabel.font = OpenSans.regular.of(textStyle: .headline)
-        segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
-        
-        coolLegendLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        heatLegendLabel.font = OpenSans.semibold.of(textStyle: .footnote)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer.frame = gradientView.bounds
-    }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        gradientLayer.frame = gradientView.bounds
+    func styleViews() {
+        cyclingStatusLabel.textColor = .deepGray
+        cyclingStatusLabel.font = OpenSans.regular.of(textStyle: .headline)
+        adjustScaleLabel.textColor = .deepGray
+        adjustScaleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        segmentedControl.items = [TemperatureScale.fahrenheit, TemperatureScale.celsius].map { $0.displayString }
+        
+        coolLegendLabel.textColor = .deepGray
+        coolLegendLabel.font = OpenSans.regular.of(textStyle: .caption1)
+        heatLegendLabel.textColor = .deepGray
+        heatLegendLabel.font = OpenSans.regular.of(textStyle: .caption1)
     }
     
     func bindViews() {
         viewModel.showMainLoadingState.asDriver().not().drive(mainLoadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMainErrorState.asDriver().not().drive(mainErrorLabel.rx.isHidden).disposed(by: disposeBag)
         viewModel.showMainContent.asDriver().not().drive(scrollView.rx.isHidden).disposed(by: disposeBag)
-        viewModel.showMainContent.asDriver().not().drive(gradientView.rx.isHidden).disposed(by: disposeBag)
         
         viewModel.showMainContent.asDriver()
             .filter { $0 }
@@ -106,8 +90,10 @@ class PeakRewardsViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.showDeviceButton.not().drive(deviceSelectionStack.rx.isHidden).disposed(by: disposeBag)
-        viewModel.deviceButtonText.drive(deviceButton.label.rx.text).disposed(by: disposeBag)
-        viewModel.deviceButtonText.drive(deviceButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.deviceButtonValueText.drive(deviceButton.rx.valueText).disposed(by: disposeBag)
+        viewModel.deviceButtonValueText.map {
+            return String.localizedStringWithFormat("Device: %@", $0)
+        }.drive(deviceButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.programCardsData.map { $0.isEmpty }.drive(programCardStack.rx.isHidden).disposed(by: disposeBag)
         
@@ -159,7 +145,8 @@ class PeakRewardsViewController: UIViewController {
             .map { [unowned self] in (self.viewModel, $0) }
             .map(SelectDeviceViewController.init)
             .drive(onNext: { [weak self] in
-                self?.navigationController?.pushViewController($0, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: $0)
+                self?.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
@@ -186,7 +173,8 @@ class PeakRewardsViewController: UIViewController {
                     .bind(to: self.viewModel.overridesUpdated)
                     .disposed(by: $0.disposeBag)
                 
-                self.navigationController?.pushViewController($0, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: $0)
+                self.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
@@ -211,7 +199,8 @@ class PeakRewardsViewController: UIViewController {
                         self?.view.makeToast(NSLocalizedString("Thermostat settings saved", comment: ""))
                     })
                     .disposed(by: $0.disposeBag)
-                self.navigationController?.pushViewController($0, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: $0)
+                self.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
@@ -237,7 +226,8 @@ class PeakRewardsViewController: UIViewController {
                         self?.view.showToast(NSLocalizedString("Schedule updated", comment: ""))
                     })
                     .disposed(by: vc.disposeBag)
-                self.navigationController?.pushViewController(vc, animated: true)
+                let largeTitleNavController = LargeTitleNavigationController(rootViewController: vc)
+                self.present(largeTitleNavController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
