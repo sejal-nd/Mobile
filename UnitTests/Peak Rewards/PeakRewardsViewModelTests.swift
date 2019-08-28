@@ -81,31 +81,7 @@ class PeakRewardsViewModelTests: XCTestCase {
             .mappableObject(fromFile: .peakRewardsSummary, key: .default)
         XCTAssertRecordedElements(observer.events, expectedSummary.devices)
     }
-    
-    func testDeviceButtonText() {
-        MockUser.current = .default
-        MockAccountService.loadAccountsSync()
         
-        let viewModel = PeakRewardsViewModel(peakRewardsService: MockPeakRewardsService(),
-                                             accountDetail: .default)
-        
-        scheduler.createHotObservable([next(0, ())])
-            .bind(to: viewModel.loadInitialData)
-            .disposed(by: disposeBag)
-        
-        scheduler.createHotObservable([next(1, 0), next(1, 1)])
-            .bind(to: viewModel.selectedDeviceIndex)
-            .disposed(by: disposeBag)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.deviceButtonText.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedElements = [String](repeating: "Device: ", count: 2)
-        XCTAssertRecordedElements(observer.events, expectedElements)
-    }
-    
     func testProgramCardsDataActiveOverride() {
         MockUser.current = MockUser(dataKeys: [.peakRewardsSummary: .peakRewardsInactiveProgram,
                                                .peakRewardsOverrides: .peakRewardsActiveOverride])
