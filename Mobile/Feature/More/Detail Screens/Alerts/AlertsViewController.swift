@@ -67,6 +67,10 @@ class AlertsViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let navController = segue.destination as? UINavigationController, let vc = navController.viewControllers.first as? AlertPreferencesViewController else { return }
+
+        // Modal Dismiss iOS 13
+        navController.presentationController?.delegate = vc
+
         vc.delegate = self
     }
     

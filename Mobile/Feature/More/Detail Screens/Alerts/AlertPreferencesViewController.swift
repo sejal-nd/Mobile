@@ -57,10 +57,6 @@ class AlertPreferencesViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        if #available(iOS 13.0, *) {
-            isModalInPresentation = true
-        }
-        
         errorLabel.isHidden = true
         tableView.isHidden = true
         viewModel.fetchData(onCompletion: { [weak self] in
@@ -115,9 +111,14 @@ class AlertPreferencesViewController: UIViewController {
         
         viewModel.prefsChanged.subscribe(onNext: { [weak self] value in
             self?.viewModel.hasPreferencesChanged = Variable(value)
+            
+            // iOS 13 modal
+            if #available(iOS 13.0, *) {
+                self?.isModalInPresentation = value
+            }
         })
         .disposed(by: disposeBag)
-        
+
         viewModel.prefsChanged.filter { $0 }.take(1)
             .subscribe(onNext: { _ in GoogleAnalytics.log(event: .alertsPrefCenterOffer) })
             .disposed(by: disposeBag)
@@ -393,4 +394,14 @@ extension AlertPreferencesViewController: UITableViewDelegate {
         return UIView(frame: .zero)
     }
     
+}
+
+
+// MARK: - iOS 13 Modal (Swipe to Dismiss)
+
+extension AlertPreferencesViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        
+        onCancelPress()
+    }
 }
