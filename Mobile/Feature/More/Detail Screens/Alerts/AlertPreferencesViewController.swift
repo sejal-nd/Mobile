@@ -41,7 +41,10 @@ class AlertPreferencesViewController: UIViewController {
         tableView.register(UINib(nibName: AccountInfoBarCell.className, bundle: nil),
                            forCellReuseIdentifier: AccountInfoBarCell.className)
         
-        addCloseButton()
+        // Add X Button
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(onCancelPress))
+        closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
+        navigationItem.setLeftBarButton(closeButton, animated: false)
         
         styleViews()
         bindViewModel()
@@ -54,6 +57,9 @@ class AlertPreferencesViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
         
         errorLabel.isHidden = true
         tableView.isHidden = true
@@ -107,16 +113,15 @@ class AlertPreferencesViewController: UIViewController {
     private func bindViewModel() {
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
+        viewModel.prefsChanged.subscribe(onNext: { [weak self] value in
+            self?.viewModel.hasPreferencesChanged = Variable(value)
+        })
+        .disposed(by: disposeBag)
+        
         viewModel.prefsChanged.filter { $0 }.take(1)
             .subscribe(onNext: { _ in GoogleAnalytics.log(event: .alertsPrefCenterOffer) })
             .disposed(by: disposeBag)
-        
-//        cancelButton.rx.tap.asObservable()
-//            .withLatestFrom(viewModel.prefsChanged)
-//            .asDriver(onErrorDriveWith: .empty())
-//            .drive(onNext: { [weak self] in self?.onCancelPress(prefsChanged: $0) })
-//            .disposed(by: disposeBag)
-        
+
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in self?.onSavePress() })
             .disposed(by: disposeBag)
@@ -141,18 +146,19 @@ class AlertPreferencesViewController: UIViewController {
         
     }
     
-    func onCancelPress(prefsChanged: Bool) {
-        if prefsChanged {
+    @objc
+    func onCancelPress() {
+        if viewModel.hasPreferencesChanged.value {
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Notification Preferences", comment: ""),
                                             message: NSLocalizedString("Are you sure you want to leave without saving your changes?", comment: ""),
                                             preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissModal()
             }))
             present(alertVc, animated: true, completion: nil)
         } else {
-            navigationController?.popViewController(animated: true)
+            dismissModal()
         }
     }
     
