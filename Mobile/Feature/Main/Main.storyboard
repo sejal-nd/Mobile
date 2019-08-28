@@ -71,7 +71,7 @@
         <!--More-->
         <scene sceneID="DmR-1M-Rt9">
             <objects>
-                <navigationController id="uQF-ze-ffY" sceneMemberID="viewController">
+                <navigationController id="uQF-ze-ffY" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" selectedImage="Tabbar More Selected" id="0Wk-9T-mXr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sm4-4A-KSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
