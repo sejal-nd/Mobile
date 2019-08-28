@@ -52,17 +52,17 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCr-NA-QNK" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                            <rect key="frame" x="243" y="0.0" width="111" height="55"/>
+                                                            <rect key="frame" x="235" y="0.0" width="119" height="55"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_settings" translatesAutoresizingMaskIntoConstraints="NO" id="VGg-UJ-yxj">
-                                                                    <rect key="frame" x="0.0" y="20.666666666666671" width="14" height="14"/>
+                                                                    <rect key="frame" x="0.0" y="16.666666666666671" width="22" height="22"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="14" id="M3q-sy-2PF"/>
-                                                                        <constraint firstAttribute="height" constant="14" id="bWx-it-vjD"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="M3q-sy-2PF"/>
+                                                                        <constraint firstAttribute="height" constant="22" id="bWx-it-vjD"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c49-3y-BWN">
-                                                                    <rect key="frame" x="19" y="0.0" width="92" height="55"/>
+                                                                    <rect key="frame" x="27" y="0.0" width="92" height="55"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -71,7 +71,9 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="c49-3y-BWN" secondAttribute="bottom" id="13x-v3-XQV"/>
+                                                                <constraint firstItem="c49-3y-BWN" firstAttribute="centerY" secondItem="zCr-NA-QNK" secondAttribute="centerY" id="7v9-8G-f65"/>
                                                                 <constraint firstAttribute="trailing" secondItem="c49-3y-BWN" secondAttribute="trailing" id="NbC-C5-Yy9"/>
+                                                                <constraint firstItem="VGg-UJ-yxj" firstAttribute="centerY" secondItem="zCr-NA-QNK" secondAttribute="centerY" id="Sh6-Yd-CPc"/>
                                                                 <constraint firstItem="c49-3y-BWN" firstAttribute="top" secondItem="zCr-NA-QNK" secondAttribute="top" id="V9U-iO-pdJ"/>
                                                                 <constraint firstItem="VGg-UJ-yxj" firstAttribute="leading" secondItem="zCr-NA-QNK" secondAttribute="leading" id="VTx-j8-Fnw"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="k8c-Sw-RGM"/>
