@@ -28,11 +28,11 @@ class TotalSavingsViewController: UIViewController {
         eventResults = eventResults.reversed() // Sort most recent at the top
         
         totalSavingsValueLabel.textColor = .primaryColor
-        totalSavingsValueLabel.font = OpenSans.semibold.of(size: 30)
+        totalSavingsValueLabel.font = OpenSans.semibold.of(textStyle: .title1)
         totalSavingsValueLabel.text = totalSavingsValue.currencyString
         
-        totalSavingsTitleLabel.textColor = .blackText
-        totalSavingsTitleLabel.font = OpenSans.bold.of(textStyle: .subheadline)
+        totalSavingsTitleLabel.textColor = .deepGray
+        totalSavingsTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         totalSavingsTitleLabel.text = NSLocalizedString("Total Bill Credits", comment: "")
         
         tableView.separatorColor = UIColor(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
