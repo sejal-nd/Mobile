@@ -96,12 +96,12 @@ class SmartEnergyRewardsView: UIView {
         bar3BarView.backgroundColor = .primaryColor
         
         // Bar Graph Text Colors
-        bar1DollarLabel.textColor = .blackText
-        bar1DateLabel.textColor = .blackText
-        bar2DollarLabel.textColor = .blackText
-        bar2DateLabel.textColor = .blackText
-        bar3DollarLabel.textColor = .blackText
-        bar3DateLabel.textColor = .blackText
+        bar1DollarLabel.textColor = .deepGray
+        bar1DateLabel.textColor = .deepGray
+        bar2DollarLabel.textColor = .deepGray
+        bar2DateLabel.textColor = .deepGray
+        bar3DollarLabel.textColor = .deepGray
+        bar3DateLabel.textColor = .deepGray
         
         barDescriptionView.layer.cornerRadius = 10
         barDescriptionView.layer.borderColor = UIColor.accentGray.cgColor
@@ -205,15 +205,15 @@ class SmartEnergyRewardsView: UIView {
     
     // MARK: Bill Comparison Bar Graph Drivers
     private(set) lazy var bar1LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[0].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
     }
     
     private(set) lazy var bar2LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[1].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
     }
     
     private(set) lazy var bar3LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[2].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
     }
 
 }
