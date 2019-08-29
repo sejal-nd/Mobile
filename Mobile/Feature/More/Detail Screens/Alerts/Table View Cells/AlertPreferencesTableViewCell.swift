@@ -16,23 +16,18 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     
-    @IBOutlet private weak var pickerButtonStack: UIStackView!
-    @IBOutlet private weak var pickerLabel: UILabel!
     @IBOutlet weak var pickerButton: UIButton!
     @IBOutlet private weak var separatorView: UIView!
     
-    @IBOutlet weak var toggle: Switch!
+    @IBOutlet weak var checkbox: Checkbox!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.isAccessibilityElement = false
-        nameLabel.textColor = .blackText
-        nameLabel.font = SystemFont.regular.of(textStyle: .title1)
-        pickerLabel.textColor = .deepGray
-        pickerLabel.font = SystemFont.regular.of(textStyle: .headline)
-        pickerLabel.text = NSLocalizedString("Remind me", comment: "")
+        nameLabel.textColor = .deepGray
+        nameLabel.font = SystemFont.regular.of(textStyle: .callout)
         pickerButton.setTitleColor(.actionBlue, for: .normal)
-        pickerButton.titleLabel?.font = SystemFont.regular.of(textStyle: .headline)
+        pickerButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         contentView.backgroundColor = .softGray
@@ -43,19 +38,19 @@ class AlertPreferencesTableViewCell: UITableViewCell {
                    isLastItem: Bool) {
         nameLabel.text = option.titleText
         detailLabel.text = option.detailText
-        toggle.accessibilityLabel = option.titleText
+        checkbox.accessibilityLabel = option.titleText
         
         pickerButtonText?
             .drive(onNext: { [weak self] buttonText in
                 UIView.performWithoutAnimation { // Prevents ugly setTitle animation
-                    self?.pickerButton.setTitle(buttonText, for: .normal)
+                    self?.pickerButton.setTitle("Remind me \(buttonText)", for: .normal)
                     self?.pickerButton.layoutIfNeeded()
                 }
             })
             .disposed(by: disposeBag)
         
         
-        pickerButtonStack.isHidden = pickerButtonText == nil
+        pickerButton.isHidden = pickerButtonText == nil
         separatorView.isHidden = isLastItem
     }
     

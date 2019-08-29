@@ -36,6 +36,8 @@ class AlertPreferencesViewModel {
     let forYourInfo = Variable(false)
     let english = Variable(true) // Language selection. False = Spanish
     
+    var hasPreferencesChanged = Variable(false)
+    
     let isError = Variable(false)
     let alertPrefs = Variable<AlertPreferences?>(nil)
     
