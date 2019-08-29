@@ -23,9 +23,11 @@ class HourlyPricingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        extendedLayoutIncludesOpaqueBars = true
+        
         view.insertSubview(webView, belowSubview: loadingIndicator)
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
