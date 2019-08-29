@@ -84,7 +84,7 @@ class HomeUsageCardView: UIView {
     @IBOutlet private weak var smartEnergyRewardsSeasonLabel: UILabel!
     
     @IBOutlet private weak var smartEnergyRewardsGrayBackgroundView: UIView!
-    @IBOutlet private weak var smartEnergyRewardsGraphView: SmartEnergyRewardsView!
+    @IBOutlet private weak var smartEnergyRewardsGraphView: SERPTSGraphView!
     
     @IBOutlet private weak var smartEnergyRewardsFooterLabel: UILabel!
     
@@ -106,7 +106,7 @@ class HomeUsageCardView: UIView {
     static func create(withViewModel viewModel: HomeUsageCardViewModel) -> HomeUsageCardView {
         let view = Bundle.main.loadViewFromNib() as HomeUsageCardView
         view.viewModel = viewModel
-        view.smartEnergyRewardsGraphView.viewModel = SmartEnergyRewardsViewModel(eventResults: viewModel.serResultEvents.elements())
+        view.smartEnergyRewardsGraphView.viewModel = SERPTSGraphViewModel(eventResults: viewModel.serResultEvents.elements())
         return view
     }
     

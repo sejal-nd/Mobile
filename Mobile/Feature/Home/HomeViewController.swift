@@ -684,7 +684,7 @@ class HomeViewController: AccountPickerViewController {
                 .skip(1) // First element just repeats the one passed in from this screen.
                 .bind(to: viewModel.appointmentsUpdates)
                 .disposed(by: vc.disposeBag)
-        case let (vc as SmartEnergyRewardsViewController, accountDetail as AccountDetail):
+        case let (vc as SERPTSViewController, accountDetail as AccountDetail):
             vc.accountDetail = accountDetail
         case let (vc as TotalSavingsViewController, eventResults as [SERResult]):
             vc.eventResults = eventResults

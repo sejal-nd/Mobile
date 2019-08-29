@@ -1,5 +1,5 @@
 //
-//  SmartEnergyRewardsVCViewModel.swift
+//  SERPTSViewModel.swift
 //  Mobile
 //
 //  Created by Sam Francis on 10/18/17.
@@ -9,14 +9,14 @@
 import RxSwift
 import RxCocoa
 
-class SmartEnergyRewardsVCViewModel {
+class SERPTSViewModel {
     
     let disposeBag = DisposeBag()
     
     let accountDetail: AccountDetail
     let eventResults: Observable<[SERResult]>
     
-    let smartEnergyRewardsViewModel: SmartEnergyRewardsViewModel
+    let graphViewModel: SERPTSGraphViewModel
     
     required init(accountService: AccountService, accountDetail: AccountDetail, eventResults: [SERResult]?) {
         self.accountDetail = accountDetail
@@ -28,7 +28,7 @@ class SmartEnergyRewardsVCViewModel {
                 .share(replay: 1)
         }
         
-        smartEnergyRewardsViewModel = SmartEnergyRewardsViewModel(eventResults: self.eventResults)
+        graphViewModel = SERPTSGraphViewModel(eventResults: self.eventResults)
     }
     
     var shouldShowSmartEnergyRewards: Bool {

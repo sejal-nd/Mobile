@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -389,7 +391,7 @@
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhr-Tm-Qmx">
                                                     <rect key="frame" x="0.0" y="77" width="505" height="177.5"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="115" translatesAutoresizingMaskIntoConstraints="NO" id="eec-GG-spe" customClass="SmartEnergyRewardsView" customModule="BGE" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="115" translatesAutoresizingMaskIntoConstraints="NO" id="eec-GG-spe" customClass="SERPTSGraphView" customModule="BGE" customModuleProvider="target">
                                                             <rect key="frame" x="22" y="10" width="461" height="115"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </view>
@@ -774,7 +776,7 @@
         <image name="bill_analysis_shadow_triangle" width="50" height="61"/>
         <image name="ic_maintenancemode_overall" width="125" height="90"/>
         <image name="ic_nousage_small" width="179" height="65"/>
-        <image name="ic_smartenergyempty" width="119" height="105"/>
+        <image name="ic_smartenergyempty" width="120" height="120"/>
         <image name="ic_usagecard_empty" width="38" height="31"/>
         <image name="img_commercialusagehome" width="179" height="75"/>
     </resources>

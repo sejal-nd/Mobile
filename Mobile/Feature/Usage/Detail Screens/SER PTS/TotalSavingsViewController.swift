@@ -18,7 +18,7 @@ class TotalSavingsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewWidthConstraint: NSLayoutConstraint!
     
-    var eventResults: [SERResult]! // Passed from HomeViewController/SmartEnergyRewardsViewController
+    var eventResults: [SERResult]! // Passed from HomeViewController/SERPTSViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()

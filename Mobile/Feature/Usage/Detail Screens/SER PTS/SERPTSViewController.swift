@@ -1,5 +1,5 @@
 //
-//  SmartEnergyRewardsViewController.swift
+//  SERPTSViewController.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 10/18/17.
@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwiftExt
 import SafariServices
 
-class SmartEnergyRewardsViewController: UIViewController {
+class SERPTSViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
@@ -22,7 +22,7 @@ class SmartEnergyRewardsViewController: UIViewController {
     
     @IBOutlet private weak var smartEnergyRewardsContentView: UIView!
     @IBOutlet private weak var smartEnergyRewardsSeasonLabel: UILabel!
-    @IBOutlet private weak var smartEnergyRewardsView: SmartEnergyRewardsView!
+    @IBOutlet private weak var graphView: SERPTSGraphView!
     @IBOutlet private weak var smartEnergyRewardsViewAllSavingsButton: UIButton!
     
     @IBOutlet private weak var smartEnergyRewardsEmptyStateView: UIView!
@@ -34,16 +34,16 @@ class SmartEnergyRewardsViewController: UIViewController {
     var accountDetail: AccountDetail! // Passed from HomeViewController
     var eventResults: [SERResult]? // If nil, fetch from the server
     
-    var viewModel: SmartEnergyRewardsVCViewModel!
+    var viewModel: SERPTSViewModel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        viewModel = SmartEnergyRewardsVCViewModel(accountService: ServiceFactory.createAccountService(),
-                                                  accountDetail: accountDetail,
-                                                  eventResults: eventResults)
+        viewModel = SERPTSViewModel(accountService: ServiceFactory.createAccountService(),
+                                    accountDetail: accountDetail,
+                                    eventResults: eventResults)
         
-        smartEnergyRewardsView.viewModel = viewModel.smartEnergyRewardsViewModel
+        graphView.viewModel = viewModel.graphViewModel
         
         styleViews()
         buttonTapSetup()
@@ -59,8 +59,8 @@ class SmartEnergyRewardsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        smartEnergyRewardsView.layoutIfNeeded()
-        smartEnergyRewardsView.superviewDidLayoutSubviews()
+        graphView.layoutIfNeeded()
+        graphView.superviewDidLayoutSubviews()
     }
     
     private func styleViews() {

@@ -1,5 +1,5 @@
 //
-//  SmartEnergyRewardsViewModel.swift
+//  SERPTSGraphViewModel.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 10/23/17.
@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class SmartEnergyRewardsViewModel {
+class SERPTSGraphViewModel {
     
     private let eventResults: Observable<[SERResult]> // Passed from HomeUsageCardView
 

@@ -1196,7 +1196,7 @@
         <!--Usage-->
         <scene sceneID="FIv-fe-aUp">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="yQT-Cb-YF3" customClass="SmartEnergyRewardsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="yQT-Cb-YF3" customClass="SERPTSViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="whR-g5-Q9c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1222,7 +1222,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="317" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="tlr-mN-C41" customClass="SmartEnergyRewardsView" customModule="BGE" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="317" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="tlr-mN-C41" customClass="SERPTSGraphView" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="28" y="40.5" width="279" height="269"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </view>
@@ -1355,6 +1355,7 @@
                     <size key="freeformSize" width="375" height="700"/>
                     <connections>
                         <outlet property="errorLabel" destination="r1O-Zy-Ypu" id="RnQ-An-yHw"/>
+                        <outlet property="graphView" destination="tlr-mN-C41" id="gKQ-o0-0hP"/>
                         <outlet property="loadingIndicator" destination="0Fm-l3-5yU" id="gx0-nk-k34"/>
                         <outlet property="scrollView" destination="VaY-OY-lhz" id="fBJ-z2-oCh"/>
                         <outlet property="smartEnergyRewardsContainerView" destination="f54-Ua-D5I" id="Rog-x9-qBi"/>
@@ -1363,7 +1364,6 @@
                         <outlet property="smartEnergyRewardsEmptyStateView" destination="fie-if-PC1" id="diB-Qd-zkJ"/>
                         <outlet property="smartEnergyRewardsFooterLabel" destination="qAg-fp-rav" id="3em-aY-VcM"/>
                         <outlet property="smartEnergyRewardsSeasonLabel" destination="KFs-ju-0fc" id="z1J-ZO-LRq"/>
-                        <outlet property="smartEnergyRewardsView" destination="tlr-mN-C41" id="gKQ-o0-0hP"/>
                         <outlet property="smartEnergyRewardsViewAllSavingsButton" destination="vHt-Yp-O0c" id="E4L-TM-eAj"/>
                         <segue destination="ZXV-Im-D7e" kind="show" identifier="totalSavingsSegue" id="XE8-Kz-S0z"/>
                     </connections>

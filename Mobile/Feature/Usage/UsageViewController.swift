@@ -868,7 +868,7 @@ class UsageViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let accountDetail = sender as? AccountDetail else { return }
         switch segue.destination {
-        case let vc as SmartEnergyRewardsViewController:
+        case let vc as SERPTSViewController:
             vc.accountDetail = accountDetail
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail

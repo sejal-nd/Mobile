@@ -1,5 +1,5 @@
 //
-//  SmartEnergyRewardsView.swift
+//  SERPTSGraphView.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 10/23/17.
@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class SmartEnergyRewardsView: UIView {
+class SERPTSGraphView: UIView {
     
     var disposeBag = DisposeBag()
 
@@ -69,7 +69,7 @@ class SmartEnergyRewardsView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(SmartEnergyRewardsView.className, owner: self, options: nil)
+        Bundle.main.loadNibNamed(SERPTSGraphView.className, owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true

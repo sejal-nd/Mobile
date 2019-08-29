@@ -12,7 +12,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SmartEnergyRewardsView" customModule="BGE" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SERPTSGraphView" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="bar1BarView" destination="4b1-dg-IDm" id="cjg-SP-YT1"/>
                 <outlet property="bar1ContainerButton" destination="Igb-ws-PLG" id="zqi-E1-MOv"/>
