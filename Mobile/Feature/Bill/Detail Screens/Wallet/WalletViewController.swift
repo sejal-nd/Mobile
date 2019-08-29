@@ -112,7 +112,7 @@ class WalletViewController: UIViewController {
     private func style() {
         // Empty state stuff
         choosePaymentMethodLabel.textColor = .deepGray
-        choosePaymentMethodLabel.font = OpenSans.regular.of(textStyle: .body)
+        choosePaymentMethodLabel.font = OpenSans.regular.of(textStyle: .headline)
         choosePaymentMethodLabel.text = NSLocalizedString("Choose a payment method", comment: "")
         
         bankButton.layer.borderColor = UIColor.accentGray.cgColor
@@ -159,7 +159,7 @@ class WalletViewController: UIViewController {
         nonEmptyStateView.isHidden = true
         
         // Cash only stuff
-        emptyStateCashOnlyLabel.font = SystemFont.regular.of(textStyle: .body)
+        emptyStateCashOnlyLabel.font = SystemFont.regular.of(textStyle: .headline)
         emptyStateCashOnlyLabel.textColor = .deepGray
         if viewModel.accountDetail.isCashOnly {
             emptyStateCashOnlyLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
@@ -168,7 +168,7 @@ class WalletViewController: UIViewController {
             emptyStateCashOnlyTopConstraint.constant = 0
         }
         
-        cashOnlyTableHeaderLabel.font = SystemFont.regular.of(textStyle: .body)
+        cashOnlyTableHeaderLabel.font = SystemFont.regular.of(textStyle: .headline)
         cashOnlyTableHeaderLabel.textColor = .deepGray
         cashOnlyTableHeaderLabel.text = NSLocalizedString("Bank account payments are not available for this account.", comment: "")
         cashOnlyTableHeaderLabel.isHidden = !viewModel.accountDetail.isCashOnly

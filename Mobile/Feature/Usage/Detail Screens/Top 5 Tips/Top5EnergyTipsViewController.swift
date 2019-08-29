@@ -11,11 +11,9 @@ import RxSwift
 
 class Top5EnergyTipsViewController: DismissableFormSheetViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var xButton: UIButton!
     
     let disposeBag = DisposeBag()
     var accountDetail: AccountDetail!
@@ -27,13 +25,12 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = NSLocalizedString("Top 5 Energy Tips", comment: "")
+        
         let residentialAMIString = String(format: "%@%@", accountDetail.isResidential ? "Residential/" : "Commercial/", accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
         GoogleAnalytics.log(event: .viewTopTips, dimensions: [.residentialAMI: residentialAMIString])
         
-        tableView.backgroundColor = .primaryColor
-        titleLabel.textColor = .blackText
-        errorLabel.textColor = .blackText
-        xButton.tintColor = .actionBlue
+        errorLabel.textColor = .deepGray
         
         tableView.register(UINib(nibName: EnergyTipTableViewCell.className, bundle: nil),
                            forCellReuseIdentifier: EnergyTipTableViewCell.className)
@@ -41,31 +38,28 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         tableView.estimatedRowHeight = 650
         
         // Header and footer for padding
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
         header.backgroundColor = .clear
         tableView.tableHeaderView = header
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 22))
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
         footer.backgroundColor = .clear
         tableView.tableFooterView = footer
         
         loadingIndicator.isHidden = false
         errorLabel.isHidden = true
         tableView.isHidden = true
-        viewModel.energyTips
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let self = self else { return }
-                self.energyTips = $0
-                self.tableView.reloadData()
-                self.loadingIndicator.isHidden = true
-                self.errorLabel.isHidden = true
-                self.tableView.isHidden = false
-            }, onError: { [weak self] _ in
-                self?.loadingIndicator.isHidden = true
-                self?.errorLabel.isHidden = false
-                self?.tableView.isHidden = true
-            })
-            .disposed(by: disposeBag)
+        viewModel.energyTips.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.energyTips = $0
+            self.tableView.reloadData()
+            self.loadingIndicator.isHidden = true
+            self.errorLabel.isHidden = true
+            self.tableView.isHidden = false
+        }, onError: { [weak self] _ in
+            self?.loadingIndicator.isHidden = true
+            self?.errorLabel.isHidden = false
+            self?.tableView.isHidden = true
+        }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,9 +68,6 @@ class Top5EnergyTipsViewController: DismissableFormSheetViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    @IBAction func xPressed(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
-    }
 }
 
 extension Top5EnergyTipsViewController: UITableViewDataSource {
@@ -90,7 +81,7 @@ extension Top5EnergyTipsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EnergyTipTableViewCell.className, for: indexPath) as! EnergyTipTableViewCell
-        cell.configure(with: energyTips[indexPath.row])
+        cell.configure(with: energyTips[indexPath.row], index: indexPath.row)
         return cell
     }
 }

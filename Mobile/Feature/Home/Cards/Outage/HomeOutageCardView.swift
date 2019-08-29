@@ -86,7 +86,7 @@ class HomeOutageCardView: UIView {
         
         // Content View
         titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .body)
+        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         powerStatusTitleLabel.textColor = .deepGray
         powerStatusTitleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -103,11 +103,11 @@ class HomeOutageCardView: UIView {
         outageReportedLabel.textColor = .deepGray
         outageReportedLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         // Custom Error View
         customErrorTitleLabel.textColor = .deepGray
-        customErrorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        customErrorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
 
         gasOnlyLabel.textColor = .deepGray
         gasOnlyLabel.font = OpenSans.semibold.of(textStyle: .title3)
@@ -123,7 +123,7 @@ class HomeOutageCardView: UIView {
         
         // Generic Error View
         errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .caption1)

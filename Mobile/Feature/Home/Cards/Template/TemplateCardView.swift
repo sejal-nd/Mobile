@@ -47,12 +47,12 @@ class TemplateCardView: UIView {
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
         clippingView.layer.cornerRadius = 10
-        titleLabel.font = OpenSans.regular.of(textStyle: .body)
+        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
         bodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         errorLabel.textColor = .deepGray
         errorLabel.font = OpenSans.regular.of(textStyle: .subheadline)

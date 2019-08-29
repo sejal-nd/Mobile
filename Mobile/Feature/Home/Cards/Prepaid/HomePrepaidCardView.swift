@@ -39,7 +39,7 @@ final class HomePrepaidCardView: UIView {
         detailLabel.textColor = .deepGray
         detailLabel.font = OpenSans.regular.of(textStyle: .caption1)
         
-        callToActionButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .body)
+        callToActionButton.titleLabel?.font = OpenSans.semibold.of(textStyle: .headline)
     }
     
     func bindViewModel() {

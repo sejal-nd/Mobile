@@ -67,10 +67,10 @@ class HomeProjectedBillCardView: UIView {
         clippingView.layer.cornerRadius = 10
         
         titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.regular.of(textStyle: .body)
+        titleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         emptyStateTitleLabel.textColor = .deepGray
-        emptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        emptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         emptyStateDescriptionLabel.textColor = .deepGray
         emptyStateDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -101,7 +101,7 @@ class HomeProjectedBillCardView: UIView {
         projectionFooterLabel.textColor = .deepGray
         projectionFooterLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
-        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     private func showContent() {

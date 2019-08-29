@@ -370,7 +370,7 @@ class HomeBillCardViewModel {
             switch billState {
             case .billPaid, .billPaidIntermediate:
                 let text = NSLocalizedString("Thank you for your payment", comment: "")
-                return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .body),
+                return NSAttributedString(string: text, attributes: [.font: OpenSans.regular.of(textStyle: .headline),
                                                                      .foregroundColor: textColor])
             case .paymentPending:
                 let text: String
@@ -380,7 +380,7 @@ class HomeBillCardViewModel {
                 case .comEd, .peco:
                     text = NSLocalizedString("You have pending payments", comment: "")
                 }
-                return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .body),
+                return NSAttributedString(string: text, attributes: [.font: OpenSans.italic.of(textStyle: .headline),
                                                                      .foregroundColor: textColor])
             default:
                 return nil
@@ -671,11 +671,11 @@ class HomeBillCardViewModel {
         .map {
             switch $0 {
             case .billReady, .billReadyAutoPay, .billPaid, .billPaidIntermediate, .credit:
-                return OpenSans.regular.of(textStyle: .body)
+                return OpenSans.regular.of(textStyle: .headline)
             case .paymentPending:
-                return OpenSans.italic.of(textStyle: .body)
+                return OpenSans.italic.of(textStyle: .headline)
             default:
-                return OpenSans.regular.of(textStyle: .body)
+                return OpenSans.regular.of(textStyle: .headline)
             }
     }
 

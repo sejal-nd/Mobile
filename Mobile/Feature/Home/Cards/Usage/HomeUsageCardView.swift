@@ -125,7 +125,7 @@ class HomeUsageCardView: UIView {
         
         // Unavailable
         unavailableTitleLabel.textColor = .deepGray
-        unavailableTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        unavailableTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         unavailableDescriptionLabel.textColor = .deepGray
         unavailableDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -134,7 +134,7 @@ class HomeUsageCardView: UIView {
         
         // Commercial Usage
         commercialTitleLabel.textColor = .deepGray
-        commercialTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        commercialTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         commercialDescriptionLabel.textColor = .deepGray
         commercialDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -148,7 +148,7 @@ class HomeUsageCardView: UIView {
         
         // Error State
         errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -171,7 +171,7 @@ class HomeUsageCardView: UIView {
         layer.cornerRadius = 10
         
         usageOverviewLabel.textColor = .deepGray
-        usageOverviewLabel.font = OpenSans.regular.of(textStyle: .body)
+        usageOverviewLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         billComparisonEmptyStateLabel.textColor = .deepGray
         billComparisonEmptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -217,15 +217,14 @@ class HomeUsageCardView: UIView {
         barDescriptionUsageValueLabel.textColor = .deepGray
         barDescriptionUsageValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
         
+        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
-        viewUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
-        
-        viewCommercialUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        viewCommercialUsageButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     private func styleSmartEnergyRewards() {
         smartEnergyRewardsTitleLabel.textColor = .deepGray
-        smartEnergyRewardsTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        smartEnergyRewardsTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         smartEnergyRewardsTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         
@@ -237,10 +236,10 @@ class HomeUsageCardView: UIView {
         smartEnergyRewardsFooterLabel.text = NSLocalizedString("You earn bill credits for every kWh you save. " +
             "We calculate how much you save by comparing the energy you use on an Energy Savings Day to your typical use.", comment: "")
         
-        viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        viewAllSavingsButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         smartEnergyRewardsEmptyStateTitleLabel.textColor = .deepGray
-        smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        smartEnergyRewardsEmptyStateTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         smartEnergyRewardsEmptyStateTitleLabel.text = Environment.shared.opco == .comEd ? NSLocalizedString("Peak Time Savings", comment: "") :
             NSLocalizedString("Smart Energy Rewards", comment: "")
         

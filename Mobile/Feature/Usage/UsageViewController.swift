@@ -43,14 +43,14 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var compareBillTitlelabel: UILabel! {
         didSet {
             compareBillTitlelabel.textColor = .deepGray
-            compareBillTitlelabel.font = OpenSans.regular.of(textStyle: .body)
+            compareBillTitlelabel.font = OpenSans.regular.of(textStyle: .headline)
         }
     }
     
     @IBOutlet private weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.textColor = .deepGray
-            myUsageToolsLabel.font = OpenSans.regular.of(textStyle: .body)
+            myUsageToolsLabel.font = OpenSans.regular.of(textStyle: .headline)
         }
     }
     
