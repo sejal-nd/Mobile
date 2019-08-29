@@ -14,22 +14,22 @@ class BillBreakdownViewController: UIViewController {
     
     @IBOutlet private weak var currentChargesPieChartView: PieChartView!
     
+    @IBOutlet private weak var totalChargesValueLabel: UILabel!
+    @IBOutlet private weak var totalChargesTextLabel: UILabel!
+    
     @IBOutlet private weak var currentChargesLegendView: UIView!
     
-    @IBOutlet private weak var supplyLegendBox: UIView!
+    @IBOutlet private weak var supplyLegendCircle: UIView!
     @IBOutlet private weak var supplyLegendLabel: UILabel!
     @IBOutlet private weak var supplyValueLabel: UILabel!
     
-    @IBOutlet private weak var taxesFeesLegendBox: UIView!
+    @IBOutlet private weak var taxesFeesLegendCircle: UIView!
     @IBOutlet private weak var taxesFeesLegendLabel: UILabel!
     @IBOutlet private weak var taxesFeesValueLabel: UILabel!
     
-    @IBOutlet private weak var deliveryLegendBox: UIView!
+    @IBOutlet private weak var deliveryLegendCircle: UIView!
     @IBOutlet private weak var deliveryLegendLabel: UILabel!
     @IBOutlet private weak var deliveryValueLabel: UILabel!
-    
-    @IBOutlet private weak var totalChargesLegendLabel: UILabel!
-    @IBOutlet private weak var totalChargesValueLabel: UILabel!
     
     // MARK: - Properties
     
@@ -50,6 +50,8 @@ class BillBreakdownViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        extendedLayoutIncludesOpaqueBars = true
 
         let residentialAMIString = String(format: "%@%@", viewModel.accountDetail.isResidential ? "Residential/" : "Commercial/", viewModel.accountDetail.isAMIAccount ? "AMI" : "Non-AMI")
         GoogleAnalytics.log(event: .billNeedHelp,
@@ -79,16 +81,8 @@ class BillBreakdownViewController: UIViewController {
         currentChargesPieChartView.legend.enabled = false // Hide the legend because we'll draw our own
         currentChargesPieChartView.chartDescription?.enabled = false // Hides the chart description
         currentChargesPieChartView.holeColor = .clear
-        currentChargesPieChartView.holeRadiusPercent = 0.66
-        currentChargesPieChartView.transparentCircleRadiusPercent = 0.70
+        currentChargesPieChartView.holeRadiusPercent = 0.58
         currentChargesPieChartView.transparentCircleColor = .clear
-        
-        let centerAttrText = NSMutableAttributedString(string: viewModel.totalChargesString)
-        centerAttrText.addAttribute(.foregroundColor, value: UIColor.deepGray, range: NSRange(location: 0, length: centerAttrText.length))
-        centerAttrText.addAttribute(.font, value: OpenSans.semibold.of(size: 24), range: NSRange(location: 0, length: centerAttrText.length))
-        currentChargesPieChartView.centerAttributedText = centerAttrText
-        
-        currentChargesPieChartView.accessibilityLabel = viewModel.totalChargesString
         
         var pieChartValues = [PieChartDataEntry]()
         var pieChartColors = [UIColor]()
@@ -115,38 +109,42 @@ class BillBreakdownViewController: UIViewController {
     }
     
     private func styleLegend() {
-        currentChargesLegendView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
+        totalChargesValueLabel.textColor = .deepGray
+        totalChargesValueLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        totalChargesValueLabel.text = viewModel.totalChargesString
+        totalChargesTextLabel.textColor = .deepGray
+        totalChargesTextLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        totalChargesTextLabel.text = NSLocalizedString("Total Charges", comment: "")
         
-        supplyLegendBox.backgroundColor = .accentGray
-        supplyLegendLabel.textColor = .blackText
-        supplyLegendLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        currentChargesLegendView.layer.borderColor = UIColor.accentGray.cgColor
+        currentChargesLegendView.layer.borderWidth = 1
+        
+        supplyLegendCircle.layer.cornerRadius = 7.5
+        supplyLegendCircle.backgroundColor = .accentGray
+        supplyLegendLabel.textColor = .deepGray
+        supplyLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         supplyLegendLabel.text = NSLocalizedString("Supply", comment: "")
-        supplyValueLabel.textColor = .blackText
-        supplyValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        supplyValueLabel.textColor = .deepGray
+        supplyValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         supplyValueLabel.text = viewModel.supplyCharges.currencyString
         
-        taxesFeesLegendBox.backgroundColor = .blackText
-        taxesFeesLegendLabel.textColor = .blackText
-        taxesFeesLegendLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        taxesFeesLegendCircle.layer.cornerRadius = 7.5
+        taxesFeesLegendCircle.backgroundColor = .blackText
+        taxesFeesLegendLabel.textColor = .deepGray
+        taxesFeesLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         taxesFeesLegendLabel.text = NSLocalizedString("Taxes & Fees", comment: "")
-        taxesFeesValueLabel.textColor = .blackText
-        taxesFeesValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        taxesFeesValueLabel.textColor = .deepGray
+        taxesFeesValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         taxesFeesValueLabel.text = viewModel.taxesAndFees.currencyString
         
-        deliveryLegendBox.backgroundColor = .primaryColor
-        deliveryLegendLabel.textColor = .blackText
-        deliveryLegendLabel.font = OpenSans.semibold.of(textStyle: .headline)
+        deliveryLegendCircle.layer.cornerRadius = 7.5
+        deliveryLegendCircle.backgroundColor = .primaryColor
+        deliveryLegendLabel.textColor = .deepGray
+        deliveryLegendLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         deliveryLegendLabel.text = NSLocalizedString("Delivery", comment: "")
-        deliveryValueLabel.textColor = .blackText
-        deliveryValueLabel.font = OpenSans.regular.of(textStyle: .subheadline)
+        deliveryValueLabel.textColor = .deepGray
+        deliveryValueLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         deliveryValueLabel.text = viewModel.deliveryCharges.currencyString
-        
-        totalChargesLegendLabel.textColor = .deepGray
-        totalChargesLegendLabel.font = OpenSans.bold.of(textStyle: .headline)
-        totalChargesLegendLabel.text = NSLocalizedString("TOTAL CHARGES", comment: "")
-        totalChargesValueLabel.textColor = .deepGray
-        totalChargesValueLabel.font = OpenSans.bold.of(textStyle: .subheadline)
-        totalChargesValueLabel.text = viewModel.totalChargesString
     }
 
 }
