@@ -461,6 +461,9 @@
 		35CEB03B230D985D00366440 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
 		35CEB03C230D985D00366440 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
 		35CEB03D230D985D00366440 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18E591EB918C900BE9F21 /* BillViewModel.swift */; };
+		35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
+		35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
+		35D6B62D231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35E7C79C21907EA400BA13C6 /* PECO_WatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO_WatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -2672,6 +2675,7 @@
 		35CE69DA21122F50007EB844 /* BGE-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BGE-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DB21122F50007EB844 /* ComEd-STAGE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ComEd-STAGE.entitlements"; sourceTree = "<group>"; };
 		35CE69DC21122F51007EB844 /* PECO-PROD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PECO-PROD.entitlements"; sourceTree = "<group>"; };
+		35D6B62A231424E900DCD588 /* AlertRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertRow.swift; sourceTree = "<group>"; };
 		35E7C78F21907EA200BA13C6 /* PECO_WatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PECO_WatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E7C79B21907EA300BA13C6 /* PECO_WatchOS Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PECO_WatchOS Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -4400,13 +4404,16 @@
 		35CEB029230D8D5100366440 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				35D6B62A231424E900DCD588 /* AlertRow.swift */,
+				B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */,
+				B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */,
+				B0DB275F215ECF5100CD703B /* AccountInfoBarCell.xib */,
 				B0728E44215C149A0007C608 /* AlertPreferencesTableViewCell.swift */,
 				B0728E45215C149A0007C608 /* AlertPreferencesTableViewCell.xib */,
 				B0DB2749215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.swift */,
 				B0DB274A215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib */,
-				B0DB2751215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift */,
-				B0DB2755215EBEE600CD703B /* AlertPreferencesLanguageCell.swift */,
 				B0DB2756215EBEE600CD703B /* AlertPreferencesLanguageCell.xib */,
+				B0DB2755215EBEE600CD703B /* AlertPreferencesLanguageCell.swift */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -4415,18 +4422,8 @@
 			isa = PBXGroup;
 			children = (
 				E8C453181EF4154000F5C781 /* AccountInfoBar.swift */,
-				35CEB02B230D8DE200366440 /* Table View Cell */,
 			);
 			path = "Account Info Bar";
-			sourceTree = "<group>";
-		};
-		35CEB02B230D8DE200366440 /* Table View Cell */ = {
-			isa = PBXGroup;
-			children = (
-				B0DB275E215ECF5100CD703B /* AccountInfoBarCell.swift */,
-				B0DB275F215ECF5100CD703B /* AccountInfoBarCell.xib */,
-			);
-			path = "Table View Cell";
 			sourceTree = "<group>";
 		};
 		35CEB02C230D8E4A00366440 /* Table View Cells */ = {
@@ -5092,8 +5089,8 @@
 		9C10B4D822E216BF00B0851B /* Change Password */ = {
 			isa = PBXGroup;
 			children = (
-				82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */,
 				E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */,
+				82A18E911EB919B300BE9F21 /* ChangePasswordViewModel.swift */,
 			);
 			path = "Change Password";
 			sourceTree = "<group>";
@@ -7682,6 +7679,7 @@
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
+				35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
 				54DF4BD51EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
 				E80D2E171E721668002626C9 /* MaskedString.swift in Sources */,
@@ -8320,6 +8318,7 @@
 				B0B083BF216FDE3700B1C632 /* AppointmentsViewModel.swift in Sources */,
 				9C74CDEB21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
 				B56DD4A41ED87AE200F0198B /* CreditCard.swift in Sources */,
+				35D6B62D231424E900DCD588 /* AlertRow.swift in Sources */,
 				82AC2A251FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
 				821898981F33AB300077D7A1 /* MockPaymentService.swift in Sources */,
 				B07D247520C590AB00BD22EB /* HomeWeatherView.swift in Sources */,
@@ -8427,6 +8426,7 @@
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
+				35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
 				E8DB7CBE1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				35A6C7012121DAED00C2A58F /* ToggleTableViewCell.swift in Sources */,

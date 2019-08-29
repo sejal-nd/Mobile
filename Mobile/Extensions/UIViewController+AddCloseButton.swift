@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIViewController {
+        
     public func addCloseButton() {
         // Remove back button
         navigationItem.setHidesBackButton(true, animated: true)

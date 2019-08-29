@@ -33,7 +33,7 @@
         <!--Home-->
         <scene sceneID="f2e-QZ-YFW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="860-AT-jXi" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="860-AT-jXi" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="Home" image="ic_nav_home" selectedImage="Tabbar Home Selected" id="v6H-gB-TMz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lcz-28-eLx">
@@ -52,7 +52,7 @@
         <!--Bill-->
         <scene sceneID="q78-Wg-4VI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4hR-iJ-D1w" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4hR-iJ-D1w" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="Bill" image="ic_nav_bill" selectedImage="Tabbar Bill Selected" id="c1S-Sq-ZJ5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABC-PP-DNT">
@@ -71,7 +71,7 @@
         <!--More-->
         <scene sceneID="DmR-1M-Rt9">
             <objects>
-                <navigationController id="uQF-ze-ffY" sceneMemberID="viewController">
+                <navigationController id="uQF-ze-ffY" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="5" title="More" image="ic_nav_more" selectedImage="Tabbar More Selected" id="0Wk-9T-mXr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sm4-4A-KSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -128,7 +128,7 @@
         <!--Outage-->
         <scene sceneID="hUx-td-Zrv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdC-Bo-rcI" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdC-Bo-rcI" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="3" title="Outage" image="ic_nav_outage" selectedImage="Tabbar Outage Selected" id="vXF-ge-4jE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tph-83-2fc">
@@ -147,7 +147,7 @@
         <!--Usage-->
         <scene sceneID="70j-Ia-4jH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oCk-0Q-geV" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oCk-0Q-geV" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="4" title="Usage" image="ic_nav_usage" selectedImage="Tabbar Usage Selected" id="Otb-cD-p9W"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NOb-8y-go0">

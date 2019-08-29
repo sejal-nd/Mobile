@@ -19,12 +19,10 @@ class AlertPreferencesViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var loadingIndicator: LoadingIndicator!
     @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet weak var saveButton: PrimaryButton!
     
     private let disposeBag = DisposeBag()
-    
-    private var saveButton = UIBarButtonItem(title: NSLocalizedString("Save", comment: ""), style: .done, target: nil, action: nil)
-    private let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
-    
+        
     weak var delegate: AlertPreferencesViewControllerDelegate?
     
     let viewModel = AlertPreferencesViewModel(alertsService: ServiceFactory.createAlertsService(),
@@ -43,8 +41,10 @@ class AlertPreferencesViewController: UIViewController {
         tableView.register(UINib(nibName: AccountInfoBarCell.className, bundle: nil),
                            forCellReuseIdentifier: AccountInfoBarCell.className)
         
-        navigationItem.leftBarButtonItem = cancelButton
-        navigationItem.rightBarButtonItem = saveButton
+        // Add X Button
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(onCancelPress))
+        closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
+        navigationItem.setLeftBarButton(closeButton, animated: false)
         
         styleViews()
         bindViewModel()
@@ -56,7 +56,6 @@ class AlertPreferencesViewController: UIViewController {
                 self?.checkForNotificationsPermissions()
             })
             .disposed(by: disposeBag)
-        
         
         errorLabel.isHidden = true
         tableView.isHidden = true
@@ -102,24 +101,28 @@ class AlertPreferencesViewController: UIViewController {
     }
 
     private func styleViews() {
-        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.textColor = .blackText
+        errorLabel.font = OpenSans.regular.of(textStyle: .body)
+        errorLabel.textColor = .deepGray
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     }
 
     private func bindViewModel() {
         viewModel.saveButtonEnabled.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         
+        viewModel.prefsChanged.subscribe(onNext: { [weak self] value in
+            self?.viewModel.hasPreferencesChanged = Variable(value)
+            
+            // iOS 13 modal
+            if #available(iOS 13.0, *) {
+                self?.isModalInPresentation = value
+            }
+        })
+        .disposed(by: disposeBag)
+
         viewModel.prefsChanged.filter { $0 }.take(1)
             .subscribe(onNext: { _ in GoogleAnalytics.log(event: .alertsPrefCenterOffer) })
             .disposed(by: disposeBag)
-        
-        cancelButton.rx.tap.asObservable()
-            .withLatestFrom(viewModel.prefsChanged)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] in self?.onCancelPress(prefsChanged: $0) })
-            .disposed(by: disposeBag)
-        
+
         saveButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in self?.onSavePress() })
             .disposed(by: disposeBag)
@@ -134,7 +137,7 @@ class AlertPreferencesViewController: UIViewController {
             LoadingView.hide()
             guard let self = self else { return }
             self.delegate?.alertPreferencesViewControllerDidSavePreferences()
-            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
             }, onError: { [weak self] errMessage in
                 LoadingView.hide()
                 let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
@@ -144,18 +147,19 @@ class AlertPreferencesViewController: UIViewController {
         
     }
     
-    func onCancelPress(prefsChanged: Bool) {
-        if prefsChanged {
+    @objc
+    func onCancelPress() {
+        if viewModel.hasPreferencesChanged.value {
             let alertVc = UIAlertController(title: NSLocalizedString("Exit Notification Preferences", comment: ""),
                                             message: NSLocalizedString("Are you sure you want to leave without saving your changes?", comment: ""),
                                             preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("Exit", comment: ""), style: .destructive, handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismissModal()
             }))
             present(alertVc, animated: true, completion: nil)
         } else {
-            navigationController?.popViewController(animated: true)
+            dismissModal()
         }
     }
     
@@ -290,7 +294,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             case .bge:
                 break
             case .comEd, .peco:
-                cell.toggle.rx.isOn.asDriver()
+                cell.checkbox.rx.isChecked.asDriver()
                     .skip(1)
                     .drive(onNext: { [weak self] in self?.showBillIsReadyToggleAlert(isOn: $0) })
                     .disposed(by: cell.disposeBag)
@@ -330,8 +334,8 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         }
         
         if let toggleVariable = toggleVariable {
-            toggleVariable.asDriver().distinctUntilChanged().drive(cell.toggle.rx.isOn).disposed(by: cell.disposeBag)
-            cell.toggle.rx.isOn.asDriver().skip(1).drive(toggleVariable).disposed(by: cell.disposeBag)
+            toggleVariable.asDriver().distinctUntilChanged().drive(cell.checkbox.rx.isChecked).disposed(by: cell.disposeBag)
+            cell.checkbox.rx.isChecked.asDriver().skip(1).drive(toggleVariable).disposed(by: cell.disposeBag)
         }
         
         cell.configure(withPreferenceOption: option,
@@ -390,4 +394,14 @@ extension AlertPreferencesViewController: UITableViewDelegate {
         return UIView(frame: .zero)
     }
     
+}
+
+
+// MARK: - iOS 13 Modal (Swipe to Dismiss)
+
+extension AlertPreferencesViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        
+        onCancelPress()
+    }
 }
