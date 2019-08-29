@@ -148,11 +148,5 @@ class BillBreakdownViewController: UIViewController {
         totalChargesValueLabel.font = OpenSans.bold.of(textStyle: .subheadline)
         totalChargesValueLabel.text = viewModel.totalChargesString
     }
-    
-    // MARK: - Actions
-    
-    @IBAction private func viewUsageButtonPressed(_ sender: Any) {
-        navigationController?.tabBarController?.selectedIndex = 3
-        navigationController?.popToRootViewController(animated: false)
-    }
+
 }
