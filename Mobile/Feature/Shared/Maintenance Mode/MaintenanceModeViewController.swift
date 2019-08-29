@@ -34,6 +34,10 @@ class MaintenanceModeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
+        
         reloadButton.isAccessibilityElement = true
         reloadButton.accessibilityLabel = NSLocalizedString("Reload", comment: "")
         
