@@ -26,7 +26,7 @@ class BillingHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .softGray
+        view.backgroundColor = .white
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -36,11 +36,6 @@ class BillingHistoryViewController: UIViewController {
         //registerForPreviewing(with: self, sourceView: tableView)
         
         emptyStateAutoPayButton.setTitle(NSLocalizedString("View AutoPay Settings", comment: ""), for: .normal)
-        emptyStateAutoPayButton.removeShadow()
-        emptyStateAutoPayButton.layer.cornerRadius = 22.5
-        emptyStateAutoPayButton.layer.borderWidth = 1
-        emptyStateAutoPayButton.layer.borderColor = UIColor.accentGray.cgColor
-        emptyStateAutoPayButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         emptyStateAutoPayButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
             guard let self = self else { return }
             let billStoryboard = UIStoryboard(name: "Bill", bundle: nil)
@@ -50,8 +45,8 @@ class BillingHistoryViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: disposeBag)
         
-        emptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
-        emptyStateLabel.textColor = .middleGray
+        emptyStateLabel.textColor = .deepGray
+        emptyStateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         var emptyStateText = NSLocalizedString("Once you receive your bill or make a payment, details about those activities can be accessed here.", comment: "")
         if viewModel.shouldShowAutoPayCellDetailLabel {
             emptyStateText += NSLocalizedString(" Automatic payments will be visible once your bill is generated.", comment: "")
@@ -451,8 +446,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
             .disposed(by: disposeBag)
         
         let titleLabel = UILabel()
-        titleLabel.textColor = .blackText
-        titleLabel.font = SystemFont.medium.of(textStyle: .headline)
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         let titleText: String
         if viewModel.accountDetail.isAutoPay {
             titleText = NSLocalizedString("You are enrolled in AutoPay", comment: "")
@@ -463,7 +458,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
         
         let detailLabel = UILabel()
         detailLabel.textColor = .deepGray
-        detailLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        detailLabel.font = SystemFont.regular.of(textStyle: .caption1)
         detailLabel.text = NSLocalizedString("Your upcoming automatic payment will be\nvisible once your next bill is generated.", comment: "")
         detailLabel.numberOfLines = 0
         detailLabel.isHidden = true
@@ -502,9 +497,9 @@ extension BillingHistoryViewController: UITableViewDataSource {
         stackView.trailingAnchor.constraint(equalTo: innerContentView.trailingAnchor, constant: -22).isActive = true
         
         let separatorView = UIView()
-        separatorView.backgroundColor = UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1)
+        separatorView.backgroundColor = .accentGray
         separatorView.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.heightAnchor.constraint(equalToConstant: 0.5).isActive = true
+        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         innerContentView.addSubview(separatorView)
         
