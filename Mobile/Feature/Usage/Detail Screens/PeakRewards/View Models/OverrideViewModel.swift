@@ -42,10 +42,10 @@ class OverrideViewModel {
     }
     
     private(set) lazy var dateButtonText: Driver<String?> = self.selectedDate.asObservable()
-        .map { String(format: NSLocalizedString("Date: %@", comment: ""), $0.mmDdYyyyString) }
+        .map { $0.mmDdYyyyString }
         .startWith(nil)
         .asDriver(onErrorDriveWith: .empty())
-    
+        
     private(set) lazy var dateButtonA11yText: Driver<String> = self.selectedDate.asObservable()
         .map { String(format: NSLocalizedString("Date: %@", comment: ""), $0.fullMonthDayAndYearString) }
         .startWith(NSLocalizedString("Select Date", comment: ""))
@@ -128,7 +128,7 @@ class OverrideViewModel {
                 .materialize()
         }
         .share()
-    
+        
     private(set) lazy var saveSuccess: Observable<Void> = self.saveEvents.elements()
         .do(onNext: { GoogleAnalytics.log(event: .overrideToast) })
     

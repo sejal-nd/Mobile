@@ -68,10 +68,11 @@ class SmartThermostatScheduleViewModel {
     }
     
     private(set) lazy var timeButtonText: Driver<String> = self.updatedPeriodInfo
-        .map {
-            let localizedTimeText = NSLocalizedString("Time: %@", comment: "")
-            return String(format: localizedTimeText, $0.startTimeDisplayString)
-        }
+        .map { $0.startTimeDisplayString }
+        .asDriver(onErrorDriveWith: .empty())
+    
+    private(set) lazy var timeButtonA11yText: Driver<String> = self.timeButtonText
+        .map { String.localizedStringWithFormat("Time: %@", $0) }
         .asDriver(onErrorDriveWith: .empty())
     
     private(set) lazy var updatedPeriodInfo: Observable<SmartThermostatPeriodInfo> = Observable

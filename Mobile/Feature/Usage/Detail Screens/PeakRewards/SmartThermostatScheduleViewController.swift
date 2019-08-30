@@ -138,7 +138,7 @@ class SmartThermostatScheduleViewController: UIViewController {
             .drive(timeButton.rx.valueText)
             .disposed(by: disposeBag)
         
-        viewModel.timeButtonText
+        viewModel.timeButtonA11yText
             .drive(timeButton.rx.accessibilityLabel)
             .disposed(by: disposeBag)
     }
