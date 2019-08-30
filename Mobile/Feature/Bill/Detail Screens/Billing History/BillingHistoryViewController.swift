@@ -241,11 +241,11 @@ extension BillingHistoryViewController: UITableViewDelegate {
         if indexPath.section == 0 && indexPath.row == 0 && viewModel.shouldShowAutoPayCellDetailLabel {
             return UITableView.automaticDimension
         }
-        return 66
+        return 60
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66
+        return 60
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -255,7 +255,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
         } else if section == 1 && billingHistory.past.isEmpty {
             return 0.01
         }
-        return 50
+        return 45
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -327,12 +327,11 @@ extension BillingHistoryViewController: UITableViewDelegate {
         button.addTarget(self, action: selector, for:.touchUpInside)
         
         let leadingSpace = UIView()
-        leadingSpace.widthAnchor.constraint(equalToConstant: 19).isActive = true
+        leadingSpace.widthAnchor.constraint(equalToConstant: 20).isActive = true
         let trailingSpace = UIView()
-        trailingSpace.widthAnchor.constraint(equalToConstant: 12).isActive = true
+        trailingSpace.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
-        let stackView = UIStackView(arrangedSubviews: [leadingSpace, label, UIView(), button, trailingSpace])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        let stackView = UIStackView(arrangedSubviews: [leadingSpace, label, UIView(), button, trailingSpace]).usingAutoLayout()
         
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -341,6 +340,16 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         stackView.addTabletWidthConstraints(horizontalPadding: 0)
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        let divider = UIView().usingAutoLayout()
+        divider.backgroundColor = .accentGray
+        
+        view.addSubview(divider)
+        
+        divider.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        divider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        divider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        divider.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
         return view
     }
@@ -411,7 +420,7 @@ extension BillingHistoryViewController: UITableViewDataSource {
     private func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
         let button = UIButton(type: .system)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        button.titleLabel?.font = SystemFont.semibold.of(size: 18)
+        button.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         button.setTitle("View More", for: .normal)
         button.setTitleColor(.actionBlue, for: .normal)
         button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
