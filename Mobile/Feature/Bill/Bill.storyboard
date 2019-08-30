@@ -2621,25 +2621,25 @@
         <!--Billing History Details View Controller-->
         <scene sceneID="Luh-dg-AiZ">
             <objects>
-                <viewController storyboardIdentifier="billingHistoryDetails" id="MpQ-Zp-Bed" customClass="BillingHistoryDetailsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="billingHistoryDetails" extendedLayoutIncludesOpaqueBars="YES" id="MpQ-Zp-Bed" customClass="BillingHistoryDetailsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qyT-bL-ygT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="844-zQ-P3R">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="844-zQ-P3R">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1I-Xk-I4g" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="10" width="414" height="820.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-Do-Lzi">
-                                                <rect key="frame" x="28" y="0.0" width="386" height="820.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="394" height="820.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQX-th-1K0" userLabel="Payment Method View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="386" height="92.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="92.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vxm-7B-Nuf">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="66.5"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="66.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-92-nLf" userLabel="Payment Method">
                                                                         <rect key="frame" x="0.0" y="0.0" width="130.5" height="20.5"/>
@@ -2680,7 +2680,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nka-dH-aZj" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="91.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="91.5" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="hDf-d1-jA4"/>
@@ -2699,10 +2699,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltL-2O-GfC" userLabel="Payment Type View">
-                                                        <rect key="frame" x="0.0" y="92.5" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="92.5" width="394" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dZc-lU-ZQy">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ9-cR-8gg">
                                                                         <rect key="frame" x="0.0" y="0.0" width="108.5" height="20.5"/>
@@ -2719,7 +2719,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4x-my-9Te" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="97.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="97.5" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="IyK-vu-5xn"/>
@@ -2738,10 +2738,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uAt-gn-Tuy" userLabel="Payment Amount View">
-                                                        <rect key="frame" x="0.0" y="191" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="191" width="394" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="4KJ-ju-rJf">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9M-EQ-LMx">
                                                                         <rect key="frame" x="0.0" y="0.0" width="131" height="20.5"/>
@@ -2758,7 +2758,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiM-2P-VdC" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="97.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="97.5" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="DlV-Fg-oWv"/>
@@ -2777,10 +2777,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmJ-Jg-QL8" userLabel="Convenience Fee View">
-                                                        <rect key="frame" x="0.0" y="289.5" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="289.5" width="394" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="oel-4q-rja">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Convenience Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aai-Rm-yvo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="131.5" height="20.5"/>
@@ -2797,7 +2797,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF6-3k-Qyp" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="97.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="97.5" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="14E-L9-YqJ"/>
@@ -2816,10 +2816,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3R-WG-mv4" userLabel="Amount Paid View">
-                                                        <rect key="frame" x="0.0" y="388" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="388" width="394" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2Dr-w7-ppD">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Total Payment Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYL-5t-ePd">
                                                                         <rect key="frame" x="0.0" y="0.0" width="172.5" height="20.5"/>
@@ -2836,7 +2836,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyB-Ty-ej0" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="97.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="97.5" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="Kuy-Uc-mOy"/>
@@ -2855,10 +2855,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QE-qF-Ndm" userLabel="Payment Date View">
-                                                        <rect key="frame" x="0.0" y="486.5" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="486.5" width="394" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-f8-hfd">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiB-jk-g9H">
                                                                         <rect key="frame" x="0.0" y="0.0" width="107" height="20.5"/>
@@ -2875,7 +2875,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEX-tO-f8j" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="97.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="97.5" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="iPC-VN-N1a"/>
@@ -2894,10 +2894,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYD-v0-HHW" userLabel="Payment Status View">
-                                                        <rect key="frame" x="0.0" y="585" width="386" height="98.5"/>
+                                                        <rect key="frame" x="0.0" y="585" width="394" height="98.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bIL-xm-JNF">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="74.5"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="74.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Payment Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxK-go-9vS">
                                                                         <rect key="frame" x="0.0" y="0.0" width="120.5" height="20.5"/>
@@ -2914,7 +2914,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbY-W5-4LA" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="97.5" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="97.5" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="cnz-bb-pL7"/>
@@ -2933,10 +2933,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9u-dE-IeU" userLabel="Confirmation Number View">
-                                                        <rect key="frame" x="0.0" y="683.5" width="386" height="85"/>
+                                                        <rect key="frame" x="0.0" y="683.5" width="394" height="85"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Vvh-Um-xag">
-                                                                <rect key="frame" x="0.0" y="11" width="386" height="61"/>
+                                                                <rect key="frame" x="0.0" y="11" width="394" height="61"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Confirmation Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7d-qD-WYg">
                                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="20.5"/>
@@ -2945,7 +2945,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IyY-Pe-otw" customClass="ZeroInsetDataDetectorTextView" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="24.5" width="386" height="36.5"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="394" height="36.5"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -2957,7 +2957,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kji-6M-MLC" userLabel="Separator View">
-                                                                <rect key="frame" x="0.0" y="84" width="386" height="1"/>
+                                                                <rect key="frame" x="0.0" y="84" width="394" height="1"/>
                                                                 <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" priority="999" constant="1" id="HlJ-pV-qQ3"/>
@@ -2976,10 +2976,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvQ-bn-HGU">
-                                                        <rect key="frame" x="0.0" y="768.5" width="386" height="52"/>
+                                                        <rect key="frame" x="0.0" y="768.5" width="394" height="52"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FeM-ko-Kz6" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="84.5" y="11" width="161.5" height="28"/>
+                                                                <rect key="frame" x="88.5" y="11" width="161.5" height="28"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_delete" translatesAutoresizingMaskIntoConstraints="NO" id="31F-81-7FP">
                                                                         <rect key="frame" x="8" y="4" width="20" height="20"/>
@@ -3032,7 +3032,7 @@
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Mby-Fb-G5J"/>
                                             <constraint firstAttribute="bottom" secondItem="sWB-Do-Lzi" secondAttribute="bottom" id="YXq-Xf-eUE"/>
                                             <constraint firstItem="sWB-Do-Lzi" firstAttribute="top" secondItem="s1I-Xk-I4g" secondAttribute="top" id="cXM-e9-oEE"/>
-                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="leading" secondItem="s1I-Xk-I4g" secondAttribute="leading" constant="28" id="jcO-si-lf6"/>
+                                            <constraint firstItem="sWB-Do-Lzi" firstAttribute="leading" secondItem="s1I-Xk-I4g" secondAttribute="leading" constant="20" id="jcO-si-lf6"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -3050,7 +3050,7 @@
                             <constraint firstItem="M4A-SP-F6E" firstAttribute="trailing" secondItem="844-zQ-P3R" secondAttribute="trailing" id="6SN-ar-7fY"/>
                             <constraint firstItem="844-zQ-P3R" firstAttribute="leading" secondItem="M4A-SP-F6E" secondAttribute="leading" id="GhZ-O1-6sp"/>
                             <constraint firstAttribute="bottom" secondItem="844-zQ-P3R" secondAttribute="bottom" id="dbT-aR-hQj"/>
-                            <constraint firstItem="844-zQ-P3R" firstAttribute="top" secondItem="M4A-SP-F6E" secondAttribute="top" id="r1C-cI-hRf"/>
+                            <constraint firstItem="844-zQ-P3R" firstAttribute="top" secondItem="qyT-bL-ygT" secondAttribute="top" id="r1C-cI-hRf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="M4A-SP-F6E"/>
                     </view>
