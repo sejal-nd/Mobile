@@ -93,7 +93,7 @@
                                                             </connections>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OFV-uL-5dI">
-                                                            <rect key="frame" x="20" y="54" width="355" height="1"/>
+                                                            <rect key="frame" x="0.0" y="54" width="375" height="1"/>
                                                             <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="1" id="1b0-iQ-MI7"/>
@@ -105,7 +105,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="zCr-NA-QNK" secondAttribute="trailing" constant="21" id="8nX-jH-cZ1"/>
                                                         <constraint firstAttribute="trailing" secondItem="OFV-uL-5dI" secondAttribute="trailing" id="E72-jQ-Fo8"/>
                                                         <constraint firstAttribute="bottom" secondItem="OFV-uL-5dI" secondAttribute="bottom" id="EUL-Vb-Vpg"/>
-                                                        <constraint firstItem="OFV-uL-5dI" firstAttribute="leading" secondItem="hWJ-et-THP" secondAttribute="leading" constant="20" id="TvV-ll-4Lc"/>
+                                                        <constraint firstItem="OFV-uL-5dI" firstAttribute="leading" secondItem="hWJ-et-THP" secondAttribute="leading" id="TvV-ll-4Lc"/>
                                                         <constraint firstAttribute="bottom" secondItem="zCr-NA-QNK" secondAttribute="bottom" id="cUc-bh-8uA"/>
                                                         <constraint firstItem="zCr-NA-QNK" firstAttribute="top" secondItem="hWJ-et-THP" secondAttribute="top" id="pop-WQ-RMc"/>
                                                     </constraints>
