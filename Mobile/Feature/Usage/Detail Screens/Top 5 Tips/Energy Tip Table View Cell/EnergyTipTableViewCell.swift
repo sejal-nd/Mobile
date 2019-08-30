@@ -12,29 +12,25 @@ class EnergyTipTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var bodyLabel: UILabel!
-    @IBOutlet weak var roundedView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         selectionStyle = .none
-        titleLabel.textColor = .primaryColor
-        titleLabel.font = OpenSans.bold.of(size: 20)
-        titleLabel.numberOfLines = 0
+        
+        titleLabel.textColor = .deepGray
+        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
         
         bodyLabel.textColor = .deepGray
-        bodyLabel.font = OpenSans.regular.of(textStyle: .body)
-        bodyLabel.numberOfLines = 0
-        
-        roundedView.layer.cornerRadius = 10
-        roundedView.layer.masksToBounds = true
+        bodyLabel.font = SystemFont.regular.of(textStyle: .body)
     }
     
-    func configure(with energyTip: EnergyTip) {
+    func configure(with energyTip: EnergyTip, index: Int) {
         iconImageView.image = energyTip.image
         iconImageView.isHidden = energyTip.image == nil
-        titleLabel.text = energyTip.title
+        titleLabel.text = String.localizedStringWithFormat("Tip #%d: %@", index + 1, energyTip.title)
         bodyLabel.text = energyTip.body
-        bodyLabel.setLineHeight(lineHeight: 25)
+        bodyLabel.setLineHeight(lineHeight: 24)
     }
     
 }

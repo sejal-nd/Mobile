@@ -19,7 +19,7 @@ class UsageWebViewController: UIViewController {
     
     let accountService = ServiceFactory.createAccountService()
     
-    var accountDetail: AccountDetail! // Passed from SmartEnergyRewardsViewController
+    var accountDetail: AccountDetail! // Passed from SERPTSViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()

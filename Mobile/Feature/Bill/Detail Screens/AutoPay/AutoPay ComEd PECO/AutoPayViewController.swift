@@ -111,7 +111,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         if accountDetail.isAutoPay {
             // Enrolled
             enrolledTopLabel.textColor = .deepGray
-            enrolledTopLabel.font = SystemFont.regular.of(textStyle: .body)
+            enrolledTopLabel.font = SystemFont.regular.of(textStyle: .headline)
             enrolledTopLabel.setLineHeight(lineHeight: 16)
             
             unenrollButtonLabel.textColor = .deepGray
@@ -121,7 +121,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         } else {
             // Not enrolled
             topLabel.textColor = .deepGray
-            topLabel.font = SystemFont.regular.of(textStyle: .body)
+            topLabel.font = SystemFont.regular.of(textStyle: .headline)
             topLabel.setLineHeight(lineHeight: 24)
             
             tacLabel.textColor = .deepGray

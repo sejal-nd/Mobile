@@ -708,18 +708,6 @@
 		82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
 		82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82837D131F20677700C31E1C /* RecentPaymentsStore.swift */; };
-		8286F1A02044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */; };
-		8286F1A12044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */; };
-		8286F1A22044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */; };
-		8286F1A3204468B600EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
-		8286F1A4204468B700EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
-		8286F1A6204468B800EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
-		828FDAF32040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */; };
-		828FDAF42040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */; };
-		828FDAF52040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */; };
-		828FDAF62040B9F5009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
-		828FDAF72040B9F5009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
-		828FDAF82040B9F6009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
 		8291DD4E1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD4F1F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
 		8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */; };
@@ -880,9 +868,9 @@
 		82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		82E9B6141FA2401A00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
 		82E9B6151FA257ED00556C94 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
-		82EAB3341F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
-		82EAB3351F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
-		82EAB3361F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */; };
+		82EAB3341F97E078008B55B1 /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
+		82EAB3351F97E078008B55B1 /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
+		82EAB3361F97E078008B55B1 /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
 		82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */; };
 		82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */; };
 		82EAB33A1F97E186008B55B1 /* UsageWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */; };
@@ -1074,6 +1062,18 @@
 		9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
 		9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CE700A82318656F00191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SERPTSViewModelTests.swift */; };
+		9CE700A92318657000191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SERPTSViewModelTests.swift */; };
+		9CE700AA2318657000191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828FDAF22040B91A009B7EE4 /* SERPTSViewModelTests.swift */; };
+		9CE700AB2318657300191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
+		9CE700AD2318657400191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
+		9CE700AE2318657400191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
+		9CE700AF231865AA00191C05 /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
+		9CE700B0231865AA00191C05 /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
+		9CE700B1231865AB00191C05 /* SERPTSViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */; };
+		9CE700B2231865B400191C05 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
+		9CE700B3231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
+		9CE700B4231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
 		9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
 		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
@@ -1814,9 +1814,9 @@
 		E827F1921F8E9D620090C5A5 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
 		E82FA1351EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */; };
 		E82FA1371EA541D100C2DABC /* ForgotPasswordViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */; };
-		E82FF1E61F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift */; };
-		E82FF1E71F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift */; };
-		E82FF1E81F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift */; };
+		E82FF1E61F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* SERPTSViewController.swift */; };
+		E82FF1E71F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* SERPTSViewController.swift */; };
+		E82FF1E81F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E51F97CB8D00C50F8F /* SERPTSViewController.swift */; };
 		E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */; };
 		E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */; };
 		E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */; };
@@ -2039,15 +2039,15 @@
 		E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
 		E8B674D51E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */; };
-		E8B8C8481F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */; };
-		E8B8C8491F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */; };
-		E8B8C84A1F9E3590005828B0 /* SmartEnergyRewardsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */; };
-		E8B8C84C1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
-		E8B8C84D1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
-		E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */; };
-		E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
-		E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
-		E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */; };
+		E8B8C8481F9E358F005828B0 /* SERPTSGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SERPTSGraphView.xib */; };
+		E8B8C8491F9E358F005828B0 /* SERPTSGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SERPTSGraphView.xib */; };
+		E8B8C84A1F9E3590005828B0 /* SERPTSGraphView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8B8C8471F9E358F005828B0 /* SERPTSGraphView.xib */; };
+		E8B8C84C1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SERPTSGraphView.swift */; };
+		E8B8C84D1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SERPTSGraphView.swift */; };
+		E8B8C84E1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B8C84B1F9E35A2005828B0 /* SERPTSGraphView.swift */; };
+		E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
+		E8B956E31F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
+		E8B956E41F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
 		E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8BCB9BB1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
 		E8BCB9BC1EFAE79700779588 /* BGEAutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */; };
@@ -2834,8 +2834,8 @@
 		826DCCE81F0E7E0A0063D47E /* SetDefaultAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountViewController.swift; sourceTree = "<group>"; };
 		826DCCEC1F0E7E410063D47E /* SetDefaultAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountViewModel.swift; sourceTree = "<group>"; };
 		82837D131F20677700C31E1C /* RecentPaymentsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPaymentsStore.swift; sourceTree = "<group>"; };
-		8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModelTests.swift; sourceTree = "<group>"; };
-		828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsVCViewModelTests.swift; sourceTree = "<group>"; };
+		8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERPTSViewModelTests.swift; sourceTree = "<group>"; };
+		828FDAF22040B91A009B7EE4 /* SERPTSViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERPTSViewModelTests.swift; sourceTree = "<group>"; };
 		8291DD4D1F44BAD20061F40E /* ObservableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
 		829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsTests.swift; sourceTree = "<group>"; };
 		829E058A1FA7928E00697633 /* Fillable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fillable.swift; sourceTree = "<group>"; };
@@ -2887,7 +2887,7 @@
 		82E22B661F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsViewModel.swift; sourceTree = "<group>"; };
 		82E9B60D1FA22FA000556C94 /* MyHomeProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeProfileViewModel.swift; sourceTree = "<group>"; };
 		82E9B6111FA2401A00556C94 /* HomeProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProfile.swift; sourceTree = "<group>"; };
-		82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsVCViewModel.swift; sourceTree = "<group>"; };
+		82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERPTSViewModel.swift; sourceTree = "<group>"; };
 		82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageWebViewController.swift; sourceTree = "<group>"; };
 		82EAB33B1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top5EnergyTipsViewController.swift; sourceTree = "<group>"; };
 		82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPricingViewController.swift; sourceTree = "<group>"; };
@@ -3197,7 +3197,7 @@
 		E827F18E1F8E9D620090C5A5 /* BillForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillForecast.swift; sourceTree = "<group>"; };
 		E82FA1341EA5311E00C2DABC /* ForgotUsernameViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewModelTests.swift; sourceTree = "<group>"; };
 		E82FA1361EA541D100C2DABC /* ForgotPasswordViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModelTests.swift; sourceTree = "<group>"; };
-		E82FF1E51F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewController.swift; sourceTree = "<group>"; };
+		E82FF1E51F97CB8D00C50F8F /* SERPTSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERPTSViewController.swift; sourceTree = "<group>"; };
 		E82FF1E91F97CC6A00C50F8F /* HomeUsageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUsageCardView.swift; sourceTree = "<group>"; };
 		E82FF1ED1F97CC7900C50F8F /* HomeUsageCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUsageCardView.xib; sourceTree = "<group>"; };
 		E82FF1F11F97CD0B00C50F8F /* HomeUsageCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUsageCardViewModel.swift; sourceTree = "<group>"; };
@@ -3272,9 +3272,9 @@
 		E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		E8B674D21E96EB0C00BB0788 /* ForgotUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameViewController.swift; sourceTree = "<group>"; };
 		E8B674DB1E981B1300BB0788 /* ForgotUsernameBGEAccountNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotUsernameBGEAccountNumberViewController.swift; sourceTree = "<group>"; };
-		E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmartEnergyRewardsView.xib; sourceTree = "<group>"; };
-		E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsView.swift; sourceTree = "<group>"; };
-		E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartEnergyRewardsViewModel.swift; sourceTree = "<group>"; };
+		E8B8C8471F9E358F005828B0 /* SERPTSGraphView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SERPTSGraphView.xib; sourceTree = "<group>"; };
+		E8B8C84B1F9E35A2005828B0 /* SERPTSGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERPTSGraphView.swift; sourceTree = "<group>"; };
+		E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERPTSGraphViewModel.swift; sourceTree = "<group>"; };
 		E8BCB9B01EFAE58E00779588 /* BGEAutoPayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModel.swift; sourceTree = "<group>"; };
 		E8C0B4C81F55F692006DC694 /* BGEAutoPayViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGEAutoPayViewModelTests.swift; sourceTree = "<group>"; };
 		E8C29C771F630FC100DB73FC /* OutageStatusButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutageStatusButton.xib; sourceTree = "<group>"; };
@@ -3653,23 +3653,22 @@
 			children = (
 				82EAB3371F97E186008B55B1 /* UsageWebViewController.swift */,
 				82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */,
-				E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */,
 				352B8D79230D71AE007F8CEE /* Top 5 Tips */,
 				352B8D78230D71A5007F8CEE /* Home Profile */,
 				9CB4346C230F203400094BC3 /* PeakRewards */,
-				352B8D77230D719E007F8CEE /* SER */,
+				352B8D77230D719E007F8CEE /* SER PTS */,
 			);
 			path = "Detail Screens";
 			sourceTree = "<group>";
 		};
-		352B8D77230D719E007F8CEE /* SER */ = {
+		352B8D77230D719E007F8CEE /* SER PTS */ = {
 			isa = PBXGroup;
 			children = (
-				E82FF1E51F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift */,
-				82EAB3331F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift */,
-				E8B956E11F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift */,
+				E82FF1E51F97CB8D00C50F8F /* SERPTSViewController.swift */,
+				82EAB3331F97E078008B55B1 /* SERPTSViewModel.swift */,
+				E8EA60151FA1141A00FCE085 /* TotalSavingsViewController.swift */,
 			);
-			path = SER;
+			path = "SER PTS";
 			sourceTree = "<group>";
 		};
 		352B8D78230D71A5007F8CEE /* Home Profile */ = {
@@ -4310,8 +4309,8 @@
 				8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */,
 				8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */,
 				E8EA60191FA13D7500FCE085 /* TotalSavingsTableViewCell.swift */,
-				35CEB032230D8FD700366440 /* Unavailable View */,
-				35CEB026230D8BE200366440 /* Smart Energy Rewards */,
+				35CEB032230D8FD700366440 /* UnavailableView */,
+				35CEB026230D8BE200366440 /* SERPTSGraphView */,
 				35CEB01F230D8B1100366440 /* Usage Tool Card */,
 			);
 			path = Views;
@@ -4374,13 +4373,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		35CEB026230D8BE200366440 /* Smart Energy Rewards */ = {
+		35CEB026230D8BE200366440 /* SERPTSGraphView */ = {
 			isa = PBXGroup;
 			children = (
-				E8B8C8471F9E358F005828B0 /* SmartEnergyRewardsView.xib */,
-				E8B8C84B1F9E35A2005828B0 /* SmartEnergyRewardsView.swift */,
+				E8B8C8471F9E358F005828B0 /* SERPTSGraphView.xib */,
+				E8B8C84B1F9E35A2005828B0 /* SERPTSGraphView.swift */,
+				E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */,
 			);
-			path = "Smart Energy Rewards";
+			path = SERPTSGraphView;
 			sourceTree = "<group>";
 		};
 		35CEB027230D8C1A00366440 /* No Network Connection */ = {
@@ -4479,13 +4479,13 @@
 			path = "Paperless e-Bill Account View";
 			sourceTree = "<group>";
 		};
-		35CEB032230D8FD700366440 /* Unavailable View */ = {
+		35CEB032230D8FD700366440 /* UnavailableView */ = {
 			isa = PBXGroup;
 			children = (
 				358DE0A721021B64002C544E /* UnavailableView.xib */,
 				358DE0A921021B7A002C544E /* UnavailableView.swift */,
 			);
-			path = "Unavailable View";
+			path = UnavailableView;
 			sourceTree = "<group>";
 		};
 		35CEB033230D904800366440 /* Prepaid Card View */ = {
@@ -4891,9 +4891,9 @@
 			children = (
 				B0882C992108FD9600EB756B /* UsageViewModelTests.swift */,
 				82119FE2203F4BE500A56FEE /* MyHomeProfileTests.swift */,
-				8286F19F2044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift */,
+				8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */,
 				829D3976203F1EA2008D7BAE /* Top5EnergyTipsTests.swift */,
-				828FDAF22040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift */,
+				828FDAF22040B91A009B7EE4 /* SERPTSViewModelTests.swift */,
 			);
 			path = Usage;
 			sourceTree = "<group>";
@@ -6283,7 +6283,7 @@
 				E800433B1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				35C9139F22E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
 				E8494F381EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
-				E8B8C8481F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
+				E8B8C8481F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
 				B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
@@ -6450,7 +6450,7 @@
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
-				E8B8C84A1F9E3590005828B0 /* SmartEnergyRewardsView.xib in Resources */,
+				E8B8C84A1F9E3590005828B0 /* SERPTSGraphView.xib in Resources */,
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
 				0EF60FD120EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
@@ -6614,7 +6614,7 @@
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
-				E8B8C8491F9E358F005828B0 /* SmartEnergyRewardsView.xib in Resources */,
+				E8B8C8491F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				0EF60FD220EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				359BB2692146F06D00FBAD83 /* sm_outage.json in Resources */,
@@ -7794,7 +7794,7 @@
 				B0D84D4422023FD900C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162A1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				E8EEF7121E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
-				82EAB3341F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
+				82EAB3341F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				821898961F3279AB0077D7A1 /* MockPaymentService.swift in Sources */,
 				9C62445F22C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				B0CB1C8B227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
@@ -7850,12 +7850,12 @@
 				82A18E5F1EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
-				E8B956E21F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
+				E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
 				B0D5792D219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
-				E8B8C84C1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
+				E8B8C84C1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
 				B56DD4A21ED87AE200F0198B /* CreditCard.swift in Sources */,
 				8FD5AE861E54EA49003F640D /* LandingViewController.swift in Sources */,
 				82BE057F1ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
@@ -7902,7 +7902,7 @@
 				0EF60FD520EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F72025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				826DCCE91F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
-				E82FF1E61F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */,
+				E82FF1E61F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
 				B01748922135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				E89496361EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				E87C414B1FACDD2100448F86 /* AlertPreferencesViewModel.swift in Sources */,
@@ -8158,7 +8158,7 @@
 				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
-				82EAB3361F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
+				82EAB3361F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				E8EEF7141E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -8218,10 +8218,10 @@
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
 				359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */,
-				E8B956E41F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
+				E8B956E41F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				35C913AF22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
-				E8B8C84E1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
+				E8B8C84E1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
 				B0D5792F219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
@@ -8272,7 +8272,7 @@
 				0EF60FDB20EE8105006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				54AE06961ECF7809004A1FDA /* RegistrationService.swift in Sources */,
-				E82FF1E81F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */,
+				E82FF1E81F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
 				B01748942135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				82A18EA91EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067B1E51763200BBA4ED /* Environment.swift in Sources */,
@@ -8536,7 +8536,7 @@
 				B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
-				82EAB3351F97E078008B55B1 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
+				82EAB3351F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C119F6521FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
 				E8EEF7131E566D70006804D4 /* UserDefaultKeys.swift in Sources */,
@@ -8594,9 +8594,9 @@
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
-				E8B956E31F9E947800F8A852 /* SmartEnergyRewardsViewModel.swift in Sources */,
+				E8B956E31F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
-				E8B8C84D1F9E35A2005828B0 /* SmartEnergyRewardsView.swift in Sources */,
+				E8B8C84D1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
@@ -8647,7 +8647,7 @@
 				0EF60FD820EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F82025160F00A749A3 /* MockRegistrationService.swift in Sources */,
 				54AE06951ECF7809004A1FDA /* RegistrationService.swift in Sources */,
-				E82FF1E71F97CB8D00C50F8F /* SmartEnergyRewardsViewController.swift in Sources */,
+				E82FF1E71F97CB8D00C50F8F /* SERPTSViewController.swift in Sources */,
 				B01748932135D2C50039D0C6 /* StormModeHomeViewController.swift in Sources */,
 				82A18EA81EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
 				B5AC067A1E51763200BBA4ED /* Environment.swift in Sources */,
@@ -8732,7 +8732,6 @@
 				B574BAE21E7837A6001E8A44 /* MockAccountService.swift in Sources */,
 				54EDD2D81ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				B0B0839D216F970800B1C632 /* Appointment.swift in Sources */,
-				8286F1A3204468B600EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				B08BBFBE21C8284A00A899FC /* Payments.swift in Sources */,
 				E8F51EE31EC9F7F90080AB3E /* BudgetBillingViewModel.swift in Sources */,
 				B548469A1E6F5AF9008CE1B1 /* AuthenticationService.swift in Sources */,
@@ -8760,7 +8759,6 @@
 				E80043661E6A11E7005CF531 /* BiometricsService.swift in Sources */,
 				224EFF23216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				E800436B1E6A12DD005CF531 /* UserDefaultKeys.swift in Sources */,
-				8286F1A02044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */,
 				E8FF08581F7EA3B40030F1BF /* AppRating.swift in Sources */,
 				B0AD7FF1205841C80090B40D /* SequenceForEach.swift in Sources */,
 				E87C41411FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
@@ -8786,6 +8784,7 @@
 				B07D247E20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				9CCE3E4921B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B54846961E6F58E9008CE1B1 /* MockAuthenticationService.swift in Sources */,
+				9CE700AF231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
 				E8F51EE51EC9F84A0080AB3E /* MockBillService.swift in Sources */,
 				9C72424B21E5061600E5946B /* GovWeatherService.swift in Sources */,
 				B04DDF7F2200A3E000594ACF /* MockJSONManager.swift in Sources */,
@@ -8815,6 +8814,7 @@
 				E8052D911F477CBC00410D64 /* ObservableExtensions.swift in Sources */,
 				B548468D1E6885FC008CE1B1 /* ResponseParserTests.swift in Sources */,
 				E80043681E6A1250005CF531 /* Environment.swift in Sources */,
+				9CE700B2231865B400191C05 /* SERPTSGraphViewModel.swift in Sources */,
 				E8D340941EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
 				E83F02731FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B039DB7C225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
@@ -8841,6 +8841,7 @@
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
 				B011C0BB20F5063A00C900BE /* RecentPaymentsStore.swift in Sources */,
+				9CE700AB2318657300191C05 /* SERPTSViewModelTests.swift in Sources */,
 				E8039FF81EFB041D004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				54AE06971ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A261FAB729E00EACB3B /* PeakRewardsViewModel.swift in Sources */,
@@ -8855,7 +8856,6 @@
 				9C10B4E322E23ABB00B0851B /* BGEChoiceIDViewModel.swift in Sources */,
 				82E22B6A1F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B0D786102285C400007C551F /* CommercialUsageAlertStore.swift in Sources */,
-				828FDAF32040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8C6F29D1F1F995300C4644C /* WeatherService.swift in Sources */,
 				82D5994E1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				82AEF2E21F6054910057E7ED /* RxNotifications.swift in Sources */,
@@ -8868,6 +8868,7 @@
 				E8CBA5631E81C03B005569D8 /* OutageViewModelTests.swift in Sources */,
 				225FF85D1EC56B480079010C /* Date.swift in Sources */,
 				E84705F0202514CB00A749A3 /* MockUsageService.swift in Sources */,
+				9CE700AA2318657000191C05 /* SERPTSViewModelTests.swift in Sources */,
 				B08957422217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				E83F026E1FB0B5850062A348 /* AlertsService.swift in Sources */,
 				B0A830902146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
@@ -8875,7 +8876,6 @@
 				E8039FFB1EFB0421004DB789 /* PaymentService.swift in Sources */,
 				E895E9B01EBB849A003B38A1 /* ChangePasswordViewModel.swift in Sources */,
 				B574BADC1E78360D001E8A44 /* AccountService.swift in Sources */,
-				828FDAF62040B9F5009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
 				8206D01E1FACA93B0056F4CB /* TemperatureScaleStore.swift in Sources */,
 				35CEB03B230D985D00366440 /* BillViewModel.swift in Sources */,
 				35A6C6ED211DEB5500C2A58F /* UpdatesViewModel.swift in Sources */,
@@ -8966,7 +8966,6 @@
 				E8F62B47200924410077B3DA /* WalletItem.swift in Sources */,
 				B0B0839E216F970800B1C632 /* Appointment.swift in Sources */,
 				B08BBFBF21C8284A00A899FC /* Payments.swift in Sources */,
-				8286F1A4204468B700EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F62B48200924410077B3DA /* BudgetBillingViewModel.swift in Sources */,
 				B0B083B3216FC60700B1C632 /* LineHeightLabel.swift in Sources */,
 				E8F62B49200924410077B3DA /* AuthenticationService.swift in Sources */,
@@ -8994,7 +8993,6 @@
 				E8F62B5C200924410077B3DA /* AuthTokenResponse.swift in Sources */,
 				E8F62B5D200924410077B3DA /* BiometricsService.swift in Sources */,
 				E8F62B5E200924410077B3DA /* UserDefaultKeys.swift in Sources */,
-				8286F1A12044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */,
 				E8F62B5F200924410077B3DA /* AppRating.swift in Sources */,
 				9CCE3E4321B865FB0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0AD7FF2205841C80090B40D /* SequenceForEach.swift in Sources */,
@@ -9018,6 +9016,7 @@
 				E8F62B6E200924410077B3DA /* BudgetBillingViewModelTests.swift in Sources */,
 				9CCE3E4A21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D247F20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
+				9CE700B0231865AA00191C05 /* SERPTSViewModel.swift in Sources */,
 				E8F62B6F200924410077B3DA /* MockAuthenticationService.swift in Sources */,
 				9C72424A21E5061600E5946B /* GovWeatherService.swift in Sources */,
 				B04DDF802200A3E000594ACF /* MockJSONManager.swift in Sources */,
@@ -9047,6 +9046,7 @@
 				829D3978203F1EA2008D7BAE /* Top5EnergyTipsTests.swift in Sources */,
 				E8F62B7F200924410077B3DA /* ObservableExtensions.swift in Sources */,
 				E8F62B80200924410077B3DA /* ResponseParserTests.swift in Sources */,
+				9CE700B3231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */,
 				E8F62B81200924410077B3DA /* Environment.swift in Sources */,
 				E8F62B83200924410077B3DA /* AccountsStore.swift in Sources */,
 				B039DB7D225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
@@ -9073,6 +9073,7 @@
 				3577573B2113582700E73542 /* DateParser.swift in Sources */,
 				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62B98200924410077B3DA /* BillViewModelTests.swift in Sources */,
+				9CE700AD2318657400191C05 /* SERPTSViewModelTests.swift in Sources */,
 				B011C0BC20F5063B00C900BE /* RecentPaymentsStore.swift in Sources */,
 				E8F62B99200924410077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62B9A200924410077B3DA /* RegistrationService.swift in Sources */,
@@ -9088,7 +9089,6 @@
 				E8F62BA3200924410077B3DA /* NibViews.swift in Sources */,
 				E8F62BA6200924410077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				B0D786112285C401007C551F /* CommercialUsageAlertStore.swift in Sources */,
-				828FDAF42040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8F62BA9200924410077B3DA /* WeatherService.swift in Sources */,
 				E8F62BAC200924410077B3DA /* NumberFormatter.swift in Sources */,
 				B0B083AC216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
@@ -9100,6 +9100,7 @@
 				B067E0A42045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62BB2200924410077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62BB3200924410077B3DA /* Date.swift in Sources */,
+				9CE700A92318657000191C05 /* SERPTSViewModelTests.swift in Sources */,
 				E84705F1202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				B08957432217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				B0A830912146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
@@ -9108,7 +9109,6 @@
 				E8F62BB7200924410077B3DA /* PaymentService.swift in Sources */,
 				E8F62BB8200924410077B3DA /* ChangePasswordViewModel.swift in Sources */,
 				E8F62BBA200924410077B3DA /* AccountService.swift in Sources */,
-				828FDAF72040B9F5009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
 				35CEB03C230D985D00366440 /* BillViewModel.swift in Sources */,
 				E8F62BBC200924410077B3DA /* TemperatureScaleStore.swift in Sources */,
 				B0A79B0B20E2BD1100E04DD8 /* Version.swift in Sources */,
@@ -9152,7 +9152,6 @@
 				E8F62BFC200924570077B3DA /* WalletItem.swift in Sources */,
 				B0B0839F216F970800B1C632 /* Appointment.swift in Sources */,
 				B08BBFC021C8284A00A899FC /* Payments.swift in Sources */,
-				8286F1A6204468B800EB4D61 /* SmartEnergyRewardsViewModel.swift in Sources */,
 				E8F62BFD200924570077B3DA /* BudgetBillingViewModel.swift in Sources */,
 				B0B083B4216FC60700B1C632 /* LineHeightLabel.swift in Sources */,
 				E8F62BFE200924570077B3DA /* AuthenticationService.swift in Sources */,
@@ -9180,7 +9179,6 @@
 				E8F62C11200924570077B3DA /* AuthTokenResponse.swift in Sources */,
 				E8F62C12200924570077B3DA /* BiometricsService.swift in Sources */,
 				E8F62C13200924570077B3DA /* UserDefaultKeys.swift in Sources */,
-				8286F1A22044649700EB4D61 /* SmartEnergyRewardsViewModelTests.swift in Sources */,
 				E8F62C14200924570077B3DA /* AppRating.swift in Sources */,
 				9CCE3E4421B865FC0008E1AF /* UIAlertController+SaveToWallet.swift in Sources */,
 				B0AD7FF3205841C80090B40D /* SequenceForEach.swift in Sources */,
@@ -9204,6 +9202,7 @@
 				E8F62C23200924570077B3DA /* BudgetBillingViewModelTests.swift in Sources */,
 				9CCE3E4B21B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				B07D248020C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
+				9CE700B1231865AB00191C05 /* SERPTSViewModel.swift in Sources */,
 				E8F62C24200924570077B3DA /* MockAuthenticationService.swift in Sources */,
 				9C72424921E5061500E5946B /* GovWeatherService.swift in Sources */,
 				B04DDF812200A3E000594ACF /* MockJSONManager.swift in Sources */,
@@ -9233,6 +9232,7 @@
 				829D3979203F1EA2008D7BAE /* Top5EnergyTipsTests.swift in Sources */,
 				E8F62C34200924570077B3DA /* ObservableExtensions.swift in Sources */,
 				E8F62C35200924570077B3DA /* ResponseParserTests.swift in Sources */,
+				9CE700B4231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */,
 				E8F62C36200924570077B3DA /* Environment.swift in Sources */,
 				E8F62C38200924570077B3DA /* AccountsStore.swift in Sources */,
 				B039DB7E225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
@@ -9259,6 +9259,7 @@
 				3577573C2113582800E73542 /* DateParser.swift in Sources */,
 				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
 				E8F62C4D200924570077B3DA /* BillViewModelTests.swift in Sources */,
+				9CE700AE2318657400191C05 /* SERPTSViewModelTests.swift in Sources */,
 				B011C0BD20F5063C00C900BE /* RecentPaymentsStore.swift in Sources */,
 				E8F62C4E200924570077B3DA /* BGEAutoPayInfo.swift in Sources */,
 				E8F62C4F200924570077B3DA /* RegistrationService.swift in Sources */,
@@ -9274,7 +9275,6 @@
 				E8F62C58200924570077B3DA /* NibViews.swift in Sources */,
 				E8F62C5B200924570077B3DA /* Top5EnergyTipsViewModel.swift in Sources */,
 				B0D786122285C401007C551F /* CommercialUsageAlertStore.swift in Sources */,
-				828FDAF52040B91A009B7EE4 /* SmartEnergyRewardsVCViewModelTests.swift in Sources */,
 				E8F62C5E200924570077B3DA /* WeatherService.swift in Sources */,
 				E8F62C61200924570077B3DA /* NumberFormatter.swift in Sources */,
 				B0B083AD216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
@@ -9286,6 +9286,7 @@
 				B067E0A52045E77A001C1271 /* PeakRewardsViewModelTests.swift in Sources */,
 				E8F62C67200924570077B3DA /* OutageViewModelTests.swift in Sources */,
 				E8F62C68200924570077B3DA /* Date.swift in Sources */,
+				9CE700A82318656F00191C05 /* SERPTSViewModelTests.swift in Sources */,
 				E84705F2202514CB00A749A3 /* MockUsageService.swift in Sources */,
 				B08957442217701D00A97965 /* UnitTestExtensions.swift in Sources */,
 				B0A830922146FEF500EC3F21 /* StormModeBillViewModel.swift in Sources */,
@@ -9294,7 +9295,6 @@
 				E8F62C6C200924570077B3DA /* PaymentService.swift in Sources */,
 				E8F62C6D200924570077B3DA /* ChangePasswordViewModel.swift in Sources */,
 				E8F62C6F200924570077B3DA /* AccountService.swift in Sources */,
-				828FDAF82040B9F6009B7EE4 /* SmartEnergyRewardsVCViewModel.swift in Sources */,
 				35CEB03D230D985D00366440 /* BillViewModel.swift in Sources */,
 				E8F62C71200924570077B3DA /* TemperatureScaleStore.swift in Sources */,
 				B0A79B0C20E2BD1100E04DD8 /* Version.swift in Sources */,

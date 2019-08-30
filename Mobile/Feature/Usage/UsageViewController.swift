@@ -43,14 +43,14 @@ class UsageViewController: AccountPickerViewController {
     @IBOutlet private weak var compareBillTitlelabel: UILabel! {
         didSet {
             compareBillTitlelabel.textColor = .deepGray
-            compareBillTitlelabel.font = OpenSans.regular.of(textStyle: .body)
+            compareBillTitlelabel.font = OpenSans.regular.of(textStyle: .headline)
         }
     }
     
     @IBOutlet private weak var myUsageToolsLabel: UILabel! {
         didSet {
             myUsageToolsLabel.textColor = .deepGray
-            myUsageToolsLabel.font = OpenSans.regular.of(textStyle: .body)
+            myUsageToolsLabel.font = OpenSans.regular.of(textStyle: .headline)
         }
     }
     
@@ -868,7 +868,7 @@ class UsageViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let accountDetail = sender as? AccountDetail else { return }
         switch segue.destination {
-        case let vc as SmartEnergyRewardsViewController:
+        case let vc as SERPTSViewController:
             vc.accountDetail = accountDetail
         case let vc as UsageWebViewController:
             vc.accountDetail = accountDetail

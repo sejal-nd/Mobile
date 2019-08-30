@@ -1,5 +1,5 @@
 //
-//  SmartEnergyRewardsViewModelTests.swift
+//  SERPTSGraphViewModelTests.swift
 //  Mobile
 //
 //  Created by Sam Francis on 2/26/18.
@@ -11,11 +11,11 @@ import RxSwift
 import RxTest
 import RxCocoa
 
-class SmartEnergyRewardsViewModelTests: XCTestCase {
+class SERPTSGraphViewModelTests: XCTestCase {
     
     let disposeBag = DisposeBag()
     var scheduler = TestScheduler(initialClock: 0)
-    var viewModel: SmartEnergyRewardsViewModel!
+    var viewModel: SERPTSGraphViewModel!
     var eventResultsSubject = PublishSubject<[SERResult]>()
     
     lazy var dateFormatter = DateFormatter.mmDdYyyyFormatter
@@ -26,7 +26,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
         super.setUp()
         
         //viewModel = SmartEnergyRewardsViewModel(accountDetailDriver: accountDetailSubject.asDriver(onErrorDriveWith: .empty()))
-        viewModel = SmartEnergyRewardsViewModel(eventResults: eventResultsSubject.asObservable())
+        viewModel = SERPTSGraphViewModel(eventResults: eventResultsSubject.asObservable())
     }
     
     private func scheduleBoilerplateEvents() {
@@ -430,7 +430,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
             SERResult(eventStart: dateFormatter.date(from: "05/23/2018")!, savingDollar: 4)
         ]
         
-        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
+        viewModel = SERPTSGraphViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionDateLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "May 23, 2018")
@@ -454,7 +454,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
             SERResult(eventStart: startDate, eventEnd: endDate)
         ]
         
-        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
+        viewModel = SERPTSGraphViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionPeakHoursLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "Peak Hours: 12PM - 7PM")
@@ -464,7 +464,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionTypicalUseValueLabelText() {
         let eventResults = [SERResult(baselineKWH: 1029.21341)]
         
-        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
+        viewModel = SERPTSGraphViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionTypicalUseValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "1029.2 kWh")
@@ -474,7 +474,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionActualUseValueLabelText() {
         let eventResults = [SERResult(actualKWH: 18)]
         
-        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
+        viewModel = SERPTSGraphViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionActualUseValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "18.0 kWh")
@@ -484,7 +484,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionEnergySavingsValueLabelText() {
         let eventResults = [SERResult(savingKWH: 900.19)]
         
-        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
+        viewModel = SERPTSGraphViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionEnergySavingsValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "900.2 kWh")
@@ -494,7 +494,7 @@ class SmartEnergyRewardsViewModelTests: XCTestCase {
     func testBarDescriptionBillCreditValueLabelText() {
         let eventResults = [SERResult(savingDollar: 13.99)]
         
-        viewModel = SmartEnergyRewardsViewModel(eventResults: Observable.just(eventResults))
+        viewModel = SERPTSGraphViewModel(eventResults: Observable.just(eventResults))
         
         viewModel.barDescriptionBillCreditValueLabelText.asObservable().take(1).subscribe(onNext: { text in
             XCTAssertEqual(text, "$13.99")

@@ -1,5 +1,5 @@
 //
-//  SmartEnergyRewardsView.swift
+//  SERPTSGraphView.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 10/23/17.
@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class SmartEnergyRewardsView: UIView {
+class SERPTSGraphView: UIView {
     
     var disposeBag = DisposeBag()
 
@@ -69,7 +69,7 @@ class SmartEnergyRewardsView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed(SmartEnergyRewardsView.className, owner: self, options: nil)
+        Bundle.main.loadNibNamed(SERPTSGraphView.className, owner: self, options: nil)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
@@ -96,35 +96,36 @@ class SmartEnergyRewardsView: UIView {
         bar3BarView.backgroundColor = .primaryColor
         
         // Bar Graph Text Colors
-        bar1DollarLabel.textColor = .blackText
-        bar1DateLabel.textColor = .blackText
-        bar2DollarLabel.textColor = .blackText
-        bar2DateLabel.textColor = .blackText
-        bar3DollarLabel.textColor = .blackText
-        bar3DateLabel.textColor = .blackText
+        bar1DollarLabel.textColor = .deepGray
+        bar1DateLabel.textColor = .deepGray
+        bar2DollarLabel.textColor = .deepGray
+        bar2DateLabel.textColor = .deepGray
+        bar3DollarLabel.textColor = .deepGray
+        bar3DateLabel.textColor = .deepGray
         
         barDescriptionView.layer.cornerRadius = 10
-        barDescriptionView.addShadow(color: .black, opacity: 0.08, offset: .zero, radius: 2)
-        barDescriptionDateLabel.textColor = .blackText
-        barDescriptionDateLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionPeakHoursLabel.textColor = .blackText
-        barDescriptionPeakHoursLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionTypicalUseTitleLabel.textColor = .blackText
-        barDescriptionTypicalUseTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionTypicalUseValueLabel.textColor = .blackText
-        barDescriptionTypicalUseValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        barDescriptionActualUseTitleLabel.textColor = .blackText
-        barDescriptionActualUseTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionActualUseValueLabel.textColor = .blackText
-        barDescriptionActualUseValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        barDescriptionEnergySavingsTitleLabel.textColor = .blackText
-        barDescriptionEnergySavingsTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionEnergySavingsValueLabel.textColor = .blackText
-        barDescriptionEnergySavingsValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
-        barDescriptionBillCreditTitleLabel.textColor = .blackText
-        barDescriptionBillCreditTitleLabel.font = OpenSans.semibold.of(textStyle: .footnote)
-        barDescriptionBillCreditValueLabel.textColor = .blackText
-        barDescriptionBillCreditValueLabel.font = OpenSans.regular.of(textStyle: .footnote)
+        barDescriptionView.layer.borderColor = UIColor.accentGray.cgColor
+        barDescriptionView.layer.borderWidth = 1
+        barDescriptionDateLabel.textColor = .deepGray
+        barDescriptionDateLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        barDescriptionPeakHoursLabel.textColor = .deepGray
+        barDescriptionPeakHoursLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        barDescriptionTypicalUseTitleLabel.textColor = .deepGray
+        barDescriptionTypicalUseTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        barDescriptionTypicalUseValueLabel.textColor = .deepGray
+        barDescriptionTypicalUseValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        barDescriptionActualUseTitleLabel.textColor = .deepGray
+        barDescriptionActualUseTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        barDescriptionActualUseValueLabel.textColor = .deepGray
+        barDescriptionActualUseValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        barDescriptionEnergySavingsTitleLabel.textColor = .deepGray
+        barDescriptionEnergySavingsTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        barDescriptionEnergySavingsValueLabel.textColor = .deepGray
+        barDescriptionEnergySavingsValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        barDescriptionBillCreditTitleLabel.textColor = .deepGray
+        barDescriptionBillCreditTitleLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        barDescriptionBillCreditValueLabel.textColor = .deepGray
+        barDescriptionBillCreditValueLabel.font = SystemFont.regular.of(textStyle: .caption1)
     }
     
     private func bindViewModel() {
@@ -204,15 +205,15 @@ class SmartEnergyRewardsView: UIView {
     
     // MARK: Bill Comparison Bar Graph Drivers
     private(set) lazy var bar1LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[0].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
     }
     
     private(set) lazy var bar2LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[1].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
     }
     
     private(set) lazy var bar3LabelFont: Driver<UIFont> = self.viewModel.barGraphSelectionStates.value[2].asDriver().map {
-        $0 ? OpenSans.bold.of(textStyle: .subheadline) : OpenSans.semibold.of(textStyle: .subheadline)
+        $0 ? SystemFont.bold.of(textStyle: .caption1) : SystemFont.regular.of(textStyle: .caption1)
     }
 
 }

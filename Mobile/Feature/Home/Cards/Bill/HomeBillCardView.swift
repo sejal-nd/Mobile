@@ -175,7 +175,7 @@ class HomeBillCardView: UIView {
         a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
         
         paymentDescriptionLabel.textColor = .deepGray
-        paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .body)
+        paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         minimumPaymentLabel.textColor = .deepGray
         minimumPaymentLabel.font = SystemFont.semibold.of(textStyle: .footnote)
@@ -212,7 +212,7 @@ class HomeBillCardView: UIView {
         oneTouchPayTCButtonLabel.text = NSLocalizedString("Payments made on the Home screen cannot be canceled. By sliding to pay, you agree to the payment Terms & Conditions.", comment: "")
         oneTouchPayTCButton.accessibilityLabel = oneTouchPayTCButtonLabel.text
         
-        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .body)
+        viewBillButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         // Bill Not Ready
         billNotReadyLabel.textColor = .deepGray
@@ -221,7 +221,7 @@ class HomeBillCardView: UIView {
         
         // Error State
         errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.regular.of(textStyle: .body)
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .subheadline)
