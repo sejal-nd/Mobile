@@ -130,7 +130,7 @@ class WalletViewController: UIViewController {
         creditCardButtonLabel.text = NSLocalizedString("Credit/Debit Card", comment: "")
         
         emptyStateFooter.textColor = .deepGray
-        emptyStateFooter.text = viewModel.footerLabelText
+        emptyStateFooter.text = viewModel.emptyFooterLabelString
         emptyStateFooter.font = SystemFont.regular.of(textStyle: .caption1)
         emptyStateFooter.setLineHeight(lineHeight: 17)
         
@@ -151,7 +151,7 @@ class WalletViewController: UIViewController {
         miniBankButton.layer.borderWidth = 1
         miniBankButton.layer.cornerRadius = 8
         
-        tableViewFooter.text = viewModel.footerLabelText
+        tableViewFooter.text = viewModel.footerLabelString
         tableViewFooter.textColor = .deepGray
         tableViewFooter.font = SystemFont.regular.of(textStyle: .caption2)
         
