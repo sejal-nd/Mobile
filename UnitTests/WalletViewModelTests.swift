@@ -53,8 +53,8 @@ class WalletViewModelTests: XCTestCase {
         XCTAssert(viewModel.addBankDisabled, "addBankDisabled should be true for cash only users")
     }
         
-    func testFooterLabelText() {
-        XCTAssertEqual(viewModel.footerLabelText, NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: ""))
+    func testEmptyFooterLabelText() {
+        XCTAssertEqual(viewModel.emptyFooterLabelString, NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: ""))
     }
     
 }
