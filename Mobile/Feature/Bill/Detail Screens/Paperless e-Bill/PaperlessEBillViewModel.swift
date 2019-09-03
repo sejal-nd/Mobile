@@ -120,7 +120,7 @@ class PaperlessEBillViewModel {
             }
             .doEach { _ in
                 
-                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
+                FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
                 GoogleAnalytics.log(event: .eBillEnrollOffer) }
         
         let unenrollObservables = accountsToUnenroll.value.map {
@@ -129,7 +129,7 @@ class PaperlessEBillViewModel {
             }
             .doEach { _ in
                 
-                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
                 
                 GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
         

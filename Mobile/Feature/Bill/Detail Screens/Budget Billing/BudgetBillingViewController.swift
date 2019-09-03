@@ -221,7 +221,7 @@ class BudgetBillingViewController: UIViewController {
     }
     
     @objc func onTooltipPress() {
-        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
+        FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
         
         performSegue(withIdentifier: "whatIsBudgetBillingSegue", sender: self)
     }
@@ -236,7 +236,7 @@ class BudgetBillingViewController: UIViewController {
             LoadingView.hide()
             guard let self = self else { return }
             
-            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
+            FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
             
             FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
             
@@ -245,7 +245,7 @@ class BudgetBillingViewController: UIViewController {
         }, onError: { [weak self] errMessage in
             LoadingView.hide()
             
-            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+            FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
             
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -272,7 +272,7 @@ class BudgetBillingViewController: UIViewController {
                     LoadingView.hide()
                     guard let self = self else { return }
                     
-                    FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                    FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
                     
                     FirebaseUtility.logEvent(.budgetBillingNetworkComplete)
                     
@@ -282,7 +282,7 @@ class BudgetBillingViewController: UIViewController {
                     LoadingView.hide()
                     guard let self = self else { return }
                     
-                    FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                    FirebaseUtility.logEvent(.budgetBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
                     
                     let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
