@@ -73,6 +73,8 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        FirebaseUtility.logEvent(.autoPayStart)
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
@@ -294,15 +296,27 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     @IBAction func enrollButtonPress(_ sender: Any) {
         view.endEditing(true)
         
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enrolled_start)])
+
+        FirebaseUtility.logEvent(.autoPaySubmit)
+        
         LoadingView.show()
         viewModel.enroll()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] enrolled in
                 LoadingView.hide()
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
+
+                FirebaseUtility.logEvent(.autoPayNetworkComplete)
+                
                 self.delegate?.autoPayViewController(self, enrolled: true)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] error in
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                
                 LoadingView.hide()
                 guard let self = self else { return }
                 let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
@@ -312,7 +326,6 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
             })
             .disposed(by: bag)
     }
-    
     
     @IBAction func unenrollButtonPress(_ sender: Any) {
         view.endEditing(true)
@@ -326,10 +339,14 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     @IBAction func changeBankPress() {
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .modify_bank)])
+
         performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
     }
 
     func onTermsAndConditionsPress() {
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .terms)])
+        
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
                                       url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
         navigationController?.present(tacModal, animated: true, completion: nil)
@@ -337,6 +354,8 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     
     @objc
     func onLearnMorePress() {
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
+
         let modalDescription = NSLocalizedString("Sign up for AutoPay and you will never have to write another check to pay your bill. With AutoPay, your payment is automatically deducted from your bank account. You will receive a monthly statement notifying you when your payment will be deducted.", comment: "")
         
         let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: UIImage(named: "img_autopaymodal")!, description: modalDescription)
