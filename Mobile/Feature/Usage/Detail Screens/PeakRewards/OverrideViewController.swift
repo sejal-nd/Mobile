@@ -162,7 +162,7 @@ class OverrideViewController: UIViewController {
         
         view.addSubview(scrollView)
         
-        saveButton.setTitle(NSLocalizedString("Save Changes", comment: ""), for: .normal)
+        saveButton.setTitle(NSLocalizedString("Save Override", comment: ""), for: .normal)
         stickyFooterView.addSubview(saveButton)
         view.addSubview(stickyFooterView)
         
@@ -202,7 +202,12 @@ class OverrideViewController: UIViewController {
         
         viewModel.enableSaveButton.drive(saveButton.rx.isEnabled).disposed(by: disposeBag)
         viewModel.enableDateButton.drive(dateButton.rx.isEnabled).disposed(by: disposeBag)
-        viewModel.dateButtonText.drive(dateButton.rx.valueText).disposed(by: disposeBag)
+        viewModel.dateButtonText.drive(onNext: { [weak self] dateButtonText in
+            if let text = dateButtonText {
+                self?.dateButton.descriptionText = NSLocalizedString("Date", comment: "")
+                self?.dateButton.valueText = text
+            }
+        }).disposed(by: disposeBag)
         viewModel.dateButtonA11yText.drive(dateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         viewModel.showScheduledOverride.not().drive(scheduledStack.rx.isHidden).disposed(by: disposeBag)
@@ -221,8 +226,17 @@ class OverrideViewController: UIViewController {
             .bind(to: viewModel.saveAction)
             .disposed(by: disposeBag)
         
-        scheduledCancelButton.rx.tap.bind(to: viewModel.cancelAction).disposed(by: disposeBag)
-        
+        scheduledCancelButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+            let alertVc = UIAlertController(title: NSLocalizedString("Cancel Override", comment: ""),
+                                            message: NSLocalizedString("Are you sure you want to cancel this override?", comment: ""),
+                                            preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil))
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive, handler: { [weak self] _ in
+                self?.viewModel.cancelAction.onNext(())
+            }))
+            self?.present(alertVc, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
+                
         dateButton.rx.tap.asObservable()
             .withLatestFrom(viewModel.selectedDate.startWith(Calendar.opCo.startOfDay(for: .now)))
             .asDriver(onErrorDriveWith: .empty())

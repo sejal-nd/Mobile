@@ -125,7 +125,7 @@ class TemperatureSliderView: UIView {
             .disposed(by: disposeBag)
         
         let sliderLabelTextColor = mode.asDriver()
-            .map { $0 == .off ? UIColor.middleGray : UIColor.blackText  }
+            .map { $0 == .off ? UIColor.middleGray : UIColor.deepGray  }
         
         sliderLabelTextColor.drive(minLabel.rx.textColor).disposed(by: disposeBag)
         sliderLabelTextColor.drive(maxLabel.rx.textColor).disposed(by: disposeBag)
@@ -138,7 +138,9 @@ class TemperatureSliderView: UIView {
             })
             .disposed(by: disposeBag)
         
+        titleLabel.textColor = .deepGray
         titleLabel.font = SystemFont.bold.of(textStyle: .caption1)
+        temperatureLabel.textColor = .deepGray
         temperatureLabel.font = OpenSans.semibold.of(textStyle: .title3)
         minLabel.font = SystemFont.regular.of(size: 17)
         maxLabel.font = SystemFont.regular.of(size: 17)
