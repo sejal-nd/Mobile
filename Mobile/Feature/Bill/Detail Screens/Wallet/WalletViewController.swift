@@ -135,8 +135,7 @@ class WalletViewController: UIViewController {
         emptyStateFooter.setLineHeight(lineHeight: 17)
         
         // Non-empty state stuff
-        tableView.backgroundColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
-        tableView.indicatorStyle = StormModeStatus.shared.isOn ? .white : .default
+        tableView.backgroundColor = .white
         tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         
         addPaymentAccountLabel.textColor = .deepGray

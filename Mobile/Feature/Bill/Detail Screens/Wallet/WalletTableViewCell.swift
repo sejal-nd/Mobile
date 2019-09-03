@@ -34,6 +34,7 @@ class WalletTableViewCell: UITableViewCell {
         innerContentView.layer.borderColor = UIColor.accentGray.cgColor
         innerContentView.layer.borderWidth = 1
         innerContentView.layer.cornerRadius = 8
+        innerContentView.layer.masksToBounds = true
         
         accountNumberLabel.textColor = .deepGray
         accountNumberLabel.font = OpenSans.regular.of(textStyle: .subheadline)

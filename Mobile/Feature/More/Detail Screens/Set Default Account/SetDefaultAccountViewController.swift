@@ -95,8 +95,10 @@ extension SetDefaultAccountViewController: UITableViewDataSource {
         
         if account.address == nil || (account.serviceType ?? "").isEmpty {
             cell.setIsEnabled(false)
+            cell.isUserInteractionEnabled = false
         } else {
             cell.setIsEnabled(true)
+            cell.isUserInteractionEnabled = true
         }
         
         return cell
@@ -111,10 +113,6 @@ extension SetDefaultAccountViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let account = AccountsStore.shared.accounts[indexPath.row]
-        if account.address == nil || (account.serviceType ?? "").isEmpty {
-            tableView.deselectRow(at: indexPath, animated: false)
-            return
-        }
         viewModel.selectedAccount.value = account
     }
     

@@ -326,6 +326,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showStormMode(){
+        StormModeStatus.shared.isOn = true
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
             
@@ -337,10 +338,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard let stormModeVC = UIStoryboard(name: "Storm", bundle: nil).instantiateInitialViewController(),
                     let window = self?.window else {
-                        return
+                    StormModeStatus.shared.isOn = false
+                    return
                 }
-                
-                StormModeStatus.shared.isOn = true
+
                 window.rootViewController = stormModeVC
             }
         }
