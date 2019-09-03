@@ -60,6 +60,8 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
             self?.answerTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
+        
+        FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .answer_question_start)])
     }
     
     private func accessibilityErrorLabel() {
@@ -83,6 +85,9 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
                     continue
                 }
                 self.delegate = dest
+                
+                FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .answer_question_complete)])
+                
                 self.delegate?.forgotUsernameSecurityQuestionViewController(self, didUnmaskUsername: unmaskedUsername)
                 self.navigationController?.popToViewController(dest, animated: true)
                 break
@@ -94,6 +99,9 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
             
         }, onError: { [weak self] errorMessage in
             LoadingView.hide()
+            
+            FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+            
             let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self?.present(alertController, animated: true, completion: nil)
