@@ -83,8 +83,12 @@ class WalletViewModel {
     var addBankDisabled: Bool {
         return self.accountDetail.isCashOnly
     }
-        
-    var footerLabelText: String {
+
+    var emptyFooterLabelString: String {
         return NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.\n\nPayment methods saved to My Wallet are stored by Paymentus Corporation.", comment: "")
+    }
+    
+    var footerLabelString: String {
+        return NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "")
     }
 }
