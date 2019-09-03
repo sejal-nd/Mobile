@@ -25,7 +25,7 @@ class LargeTitleNavigationController: UINavigationController {
     }
     
     private func commonInit() {
-        navigationBar.barStyle = .default
+        navigationBar.barStyle = StormModeStatus.shared.isOn ? .black : .default
         
         let backgroundColor: UIColor = StormModeStatus.shared.isOn ? .stormModeBlack : .white
         let textColor = StormModeStatus.shared.isOn ? UIColor.white : UIColor.blackText
@@ -44,14 +44,25 @@ class LargeTitleNavigationController: UINavigationController {
                 .font: OpenSans.semibold.of(size: 15)
             ]
             
-            appearance.shadowImage = UIColor.primaryColor.navBarShadowImage()
+            if StormModeStatus.shared.isOn {
+                // No bottom border in Storm Mode
+                appearance.shadowImage = UIImage()
+            } else {
+                appearance.shadowImage = UIColor.primaryColor.navBarShadowImage()
+            }
             
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().compactAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         } else {
             navigationBar.setBackgroundImage(nil, for: .default)
-            navigationBar.shadowImage = UIColor.primaryColor.navBarShadowImage()
+            
+            if StormModeStatus.shared.isOn {
+                // No bottom border in Storm Mode
+                navigationBar.shadowImage = UIImage()
+            } else {
+                navigationBar.shadowImage = UIColor.primaryColor.navBarShadowImage()
+            }
             
             navigationBar.largeTitleTextAttributes = [
                 .foregroundColor: textColor,
@@ -70,7 +81,7 @@ class LargeTitleNavigationController: UINavigationController {
         navigationBar.prefersLargeTitles = true
         
         navigationBar.barTintColor = backgroundColor
-        navigationBar.tintColor = .actionBlue
+        navigationBar.tintColor = StormModeStatus.shared.isOn ? .white : .actionBlue
         navigationBar.isTranslucent = false
         
         view.backgroundColor = backgroundColor
