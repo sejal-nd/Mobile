@@ -5069,8 +5069,8 @@
 		9C10B4D622E215F800B0851B /* Forgot Password */ = {
 			isa = PBXGroup;
 			children = (
-				82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */,
 				E8B674C31E96AD0E00BB0788 /* ForgotPasswordViewController.swift */,
+				82A18E921EB919B300BE9F21 /* ForgotPasswordViewModel.swift */,
 			);
 			path = "Forgot Password";
 			sourceTree = "<group>";
