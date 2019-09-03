@@ -5122,8 +5122,8 @@
 		9C5F786122F4ADB200D5C395 /* Budget Billing */ = {
 			isa = PBXGroup;
 			children = (
-				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				E882B7EC1EA93FA600EA3C13 /* BudgetBillingViewController.swift */,
+				82A18E5A1EB918C900BE9F21 /* BudgetBillingViewModel.swift */,
 				E882B7F11EA946B500EA3C13 /* WhatIsBudgetBillingViewController.swift */,
 				9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */,
 			);
