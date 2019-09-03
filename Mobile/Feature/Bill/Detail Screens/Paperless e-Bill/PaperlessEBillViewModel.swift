@@ -118,13 +118,20 @@ class PaperlessEBillViewModel {
                                                email: initialAccountDetail.value.customerInfo.emailAddress)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillEnrollComplete)})
             }
-            .doEach { _ in GoogleAnalytics.log(event: .eBillEnrollOffer) }
+            .doEach { _ in
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
+                GoogleAnalytics.log(event: .eBillEnrollOffer) }
         
         let unenrollObservables = accountsToUnenroll.value.map {
             billService.unenrollPaperlessBilling(accountNumber: $0)
                 .do(onNext: {GoogleAnalytics.log(event: .eBillUnEnrollComplete)})
             }
-            .doEach { _ in GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
+            .doEach { _ in
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                
+                GoogleAnalytics.log(event: .eBillUnEnrollOffer) }
         
         var changedStatus: PaperlessEBillChangedStatus
         if Environment.shared.opco == .bge {
