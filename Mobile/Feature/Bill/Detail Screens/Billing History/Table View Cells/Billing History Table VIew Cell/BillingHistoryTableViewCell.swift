@@ -28,18 +28,18 @@ class BillingHistoryTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        titleLabel.textColor = .blackText
-        titleLabel.font = SystemFont.medium.of(textStyle: .headline)
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         dateLabel.textColor = .deepGray
-        dateLabel.font = SystemFont.regular.of(textStyle: .subheadline)
-        amountLabel.font = SystemFont.regular.of(textStyle: .headline)
-        amountLabel.textColor = .blackText
+        dateLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        amountLabel.textColor = .deepGray
+        amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
     }
 
     func configureWith(item: BillingHistoryItem) {
         let dateString = item.date.shortMonthDayAndYearString
         dateLabel.text = item.date.mmDdYyyyString
-        
+                
         var a11y = ""
         if item.isBillPDF {
             iconImageView.image = #imageLiteral(resourceName: "ic_bill")
@@ -69,6 +69,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
                 let titleText = NSLocalizedString("Payment", comment: "")
                 iconImageView.image = #imageLiteral(resourceName: "ic_activity_success")
                 titleLabel.text = titleText
+                amountLabel.textColor = .successGreenText
+                amountLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
                 a11y = String(format: NSLocalizedString("%@. %@. %@.", comment: ""), titleText, dateString, amountPaid)
             case .failed:
                 let titleText = NSLocalizedString("Failed Payment", comment: "")
@@ -99,6 +101,8 @@ class BillingHistoryTableViewCell: UITableViewCell {
         super.prepareForReuse()
         dateLabel.text = ""
         titleLabel.text = ""
+        amountLabel.textColor = .deepGray
+        amountLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         amountLabel.text = ""
         iconImageView.image = nil
         dateLabel.isHidden = false
