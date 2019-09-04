@@ -426,6 +426,8 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
                 guard let self = self else { return }
                 self.view.endEditing(true)
                 
+                FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .switch_payment_method)])
+                
                 guard let miniWalletVC = UIStoryboard(name: "MiniWalletSheet", bundle: .main).instantiateInitialViewController() as? MiniWalletSheetViewController else { return }
                 miniWalletVC.modalPresentationStyle = .overCurrentContext
                 
