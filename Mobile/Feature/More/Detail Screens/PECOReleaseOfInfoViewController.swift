@@ -51,6 +51,8 @@ class PECOReleaseOfInfoViewController: UIViewController {
         errorLabel.textColor = .blackText
         errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
         errorLabel.isHidden = true
+        
+        FirebaseUtility.logEvent(.releaseOfInfoStart)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,12 +80,16 @@ class PECOReleaseOfInfoViewController: UIViewController {
         }
         
         LoadingView.show()
+        
+        FirebaseUtility.logEvent(.releaseOfInfoSubmit)
         GoogleAnalytics.log(event: .releaseInfoSubmit)
         accountService.updatePECOReleaseOfInfoPreference(account: AccountsStore.shared.currentAccount, selectedIndex: rowToIntMapping)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.releaseOfInfoNetworkComplete)
                 
                 FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .release_of_info_complete)])
                 

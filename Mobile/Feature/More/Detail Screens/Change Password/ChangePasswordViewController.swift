@@ -214,6 +214,8 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
                 FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .strong_password_complete)])
             }
             
+            FirebaseUtility.logEvent(.changePasswordNetworkComplete)
+            
             GoogleAnalytics.log(event: .changePasswordDone)
                                     
             FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .change_password_complete)])
