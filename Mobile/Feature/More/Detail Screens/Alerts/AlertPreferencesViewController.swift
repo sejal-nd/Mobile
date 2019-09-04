@@ -136,6 +136,9 @@ class AlertPreferencesViewController: UIViewController {
         viewModel.saveChanges(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
+            
+            FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .alert_preferences_complete)])
+            
             self.delegate?.alertPreferencesViewControllerDidSavePreferences()
             self.dismiss(animated: true, completion: nil)
             }, onError: { [weak self] errMessage in

@@ -84,6 +84,9 @@ class PECOReleaseOfInfoViewController: UIViewController {
             .subscribe(onNext: { [weak self] in
                 LoadingView.hide()
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .release_of_info_complete)])
+                
                 self.delegate?.pecoReleaseOfInfoViewControllerDidUpdate(self)
                 self.navigationController?.popViewController(animated: true)
             }, onError: { [weak self] error in
