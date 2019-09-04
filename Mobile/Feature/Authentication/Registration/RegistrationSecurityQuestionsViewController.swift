@@ -240,6 +240,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
             }
             
             GoogleAnalytics.log(event: .registerAccountSecurityQuestions)
+            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_security_questions)])
             self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
 
         }, onError: { [weak self] (title, message) in
@@ -258,6 +259,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if eBillEnrollCheckbox.isChecked {
+            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .ebill_enroll)])
             GoogleAnalytics.log(event: .registerEBillEnroll)
         }
     }
