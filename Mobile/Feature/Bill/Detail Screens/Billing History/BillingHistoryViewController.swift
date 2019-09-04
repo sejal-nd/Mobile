@@ -191,6 +191,8 @@ class BillingHistoryViewController: UIViewController {
                     alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                     return alertVc
                 } else {
+                    FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_pdf)])
+                    
                     let vc = billStoryboard.instantiateViewController(withIdentifier: "viewBill") as! ViewBillViewController
                     vc.viewModel.billDate = billingHistoryItem.date
                     return vc
@@ -203,6 +205,8 @@ class BillingHistoryViewController: UIViewController {
     }
     
     @objc func viewAllUpcoming() {
+        FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_more_upcoming_header)])
+        
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
         vc.viewModel.accountDetail = viewModel.accountDetail
@@ -212,6 +216,8 @@ class BillingHistoryViewController: UIViewController {
     }
     
     @objc func viewMorePast() {
+        FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_more_past_header)])
+        
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
         vc.viewModel.accountDetail = viewModel.accountDetail
@@ -409,6 +415,8 @@ extension BillingHistoryViewController: UITableViewDataSource {
     }
     
     private func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
+        FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_more_row)])
+        
         let button = UIButton(type: .system)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.titleLabel?.font = SystemFont.semibold.of(size: 18)
