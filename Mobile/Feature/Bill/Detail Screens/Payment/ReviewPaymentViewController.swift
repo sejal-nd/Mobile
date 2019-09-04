@@ -229,6 +229,8 @@ class ReviewPaymentViewController: UIViewController {
             }
         }
         
+        FirebaseUtility.logEvent(.reviewPaymentSubmit)
+        
         let handleError = { [weak self] (err: ServiceError) in
             guard let self = self else { return }
             
@@ -240,6 +242,8 @@ class ReviewPaymentViewController: UIViewController {
                     guard let self = self else { return }
                     if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
                         guard let navCtl = self.navigationController else { return }
+                        
+                        FirebaseUtility.logEvent(.paymentNetworkComplete)
                         
                         FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
                         
