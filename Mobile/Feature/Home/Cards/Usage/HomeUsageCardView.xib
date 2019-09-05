@@ -48,6 +48,9 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="45" id="S51-mm-ZjL"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <action selector="segmentValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="TtT-Kc-7p2"/>
+                                                            </connections>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPo-rA-9qq">
                                                             <rect key="frame" x="0.0" y="45" width="505" height="395"/>

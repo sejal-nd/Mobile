@@ -184,6 +184,7 @@ class HomeProjectedBillCardView: UIView {
     }
     
     @IBAction func segmentValueChange(_ sender: SegmentedControl) {
+        guard ((viewModel?.shouldShowElectricGasSegmentedControl) != nil) else { return }
         if sender.selectedIndex.value == 0 {
             FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .projected_bill_electric_press)])
 

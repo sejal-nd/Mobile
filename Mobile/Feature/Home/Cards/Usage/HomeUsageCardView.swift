@@ -416,10 +416,8 @@ class HomeUsageCardView: UIView {
 
         segmentedControl.selectedIndex.asObservable().distinctUntilChanged().subscribe(onNext: { index in
             if index == 0 {
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_electric_press)])
                 GoogleAnalytics.log(event: .viewUsageElectricity)
             } else {
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_gas_press)])
                 GoogleAnalytics.log(event: .viewUsageGas)
             }
         }).disposed(by: disposeBag)
@@ -501,6 +499,13 @@ class HomeUsageCardView: UIView {
         FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_cta)])
     }
     
+    @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
+        if sender.selectedIndex.value == 0 {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_electric_press)])
+        } else {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_gas_press)])
+        }
+    }
     
     private func moveTriangleTo(barView: UIView) {
         barDescriptionTriangleCenterXConstraint.isActive = false

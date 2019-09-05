@@ -232,6 +232,8 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
     
 	@objc
 	func onTermsAndConditionsPress() {
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .terms)])
+        
 		let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""),
 		                                 url: URL(string: "https://webpayments.billmatrix.com/HTML/terms_conditions_en-us.html")!)
 		navigationController?.present(tacModal, animated: true, completion: nil)

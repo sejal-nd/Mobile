@@ -269,15 +269,17 @@ extension AlertPreferencesViewController: UITableViewDataSource {
     private func configureLanguageCell(_ cell: AlertPreferencesLanguageCell) {
         cell.englishRadioSelectControl.rx.touchUpInside.mapTo(true).bind(to: viewModel.english).disposed(by: cell.disposeBag)
         cell.spanishRadioSelectControl.rx.touchUpInside.mapTo(false).bind(to: viewModel.english).disposed(by: cell.disposeBag)
-        
-        _ = cell.englishRadioSelectControl.rx.touchUpInside.bind { (_) in
+
+        cell.spanishRadioSelectControl.rx.touchUpInside.asDriver().drive(onNext: {
             FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .english)])
-        }
+        })
+        .disposed(by: cell.disposeBag)
         
-        _ = cell.spanishRadioSelectControl.rx.touchUpInside.bind { (_) in
+        cell.spanishRadioSelectControl.rx.touchUpInside.asDriver().drive(onNext: {
             FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .spanish)])
-        }
-        
+        })
+        .disposed(by: cell.disposeBag)
+
         viewModel.english.asDriver()
             .drive(onNext: { [weak cell] english in
                 guard let cell = cell else { return }

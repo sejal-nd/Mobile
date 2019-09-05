@@ -45,6 +45,8 @@ class HomeEditViewController: UIViewController {
         configureCollectionView()
         
         observerActions()
+        
+        FirebaseUtility.logEvent(.personalizeHomeStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +75,8 @@ class HomeEditViewController: UIViewController {
             .drive(onNext: { [weak self] in
                 guard let this = self, !this.isReordering.value else { return }
                 HomeCardPrefsStore.shared.list = this.cards.value[0]
+                
+                FirebaseUtility.logEvent(.personalizeHomeComplete)
                 
                 FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .personalize_complete)])
                 

@@ -340,8 +340,6 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBAction func changeBankPress() {
         FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .modify_bank)])
-
-        performSegue(withIdentifier: "presentReasonsForStopping", sender: nil)
     }
 
     func onTermsAndConditionsPress() {
