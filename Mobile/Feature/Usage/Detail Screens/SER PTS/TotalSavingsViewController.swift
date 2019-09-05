@@ -24,9 +24,7 @@ class TotalSavingsViewController: UIViewController {
         super.viewDidLoad()
 
         title = NSLocalizedString("Total Savings", comment: "")
-        
-        eventResults = eventResults.reversed() // Sort most recent at the top
-        
+
         totalSavingsValueLabel.textColor = .primaryColor
         totalSavingsValueLabel.font = OpenSans.semibold.of(textStyle: .title1)
         totalSavingsValueLabel.text = totalSavingsValue.currencyString
