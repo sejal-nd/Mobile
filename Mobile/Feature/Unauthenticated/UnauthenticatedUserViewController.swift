@@ -86,6 +86,8 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     }
 
     @IBAction private func loginRegisterPress(_ sender: ButtonControl) {
+        FirebaseUtility.logEvent(.unauth, parameters: [EventParameter(parameterName: .action, value: .sign_in_register_press)])
+
         navigationController?.popViewController(animated: true)
     }
 
@@ -190,6 +192,8 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 1:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 2:
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .billing_videos)])
+
                 UIApplication.shared.openUrlIfCan(billingVideosUrl)
             case 3:
                 performSegue(withIdentifier: "termPoliciesSegue", sender: nil)
