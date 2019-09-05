@@ -75,6 +75,10 @@
             argument = "-FIRAnalyticsDebugEnabled"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-FIRAnalyticsDebugDisabled"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
