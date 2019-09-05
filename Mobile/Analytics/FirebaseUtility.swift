@@ -199,15 +199,15 @@ struct EventParameter {
         case edit_payment_method
         case scan_with_camera
         
-        case emergency_number // done
-        case phone_number_main // done
-        case phone_number_emergency_gas // done
-        case phone_number_emergency_electric // done
-        case view_details // done
-        case report_complete // done
-        case map // done
-        case streetlight_map // done
-        case account_number_help // done
+        case emergency_number
+        case phone_number_main
+        case phone_number_emergency_gas
+        case phone_number_emergency_electric
+        case view_details
+        case report_complete
+        case map
+        case streetlight_map
+        case account_number_help
         
         case electric_segment_press
         case gas_segment_press
@@ -229,6 +229,10 @@ struct EventParameter {
         case release_of_info_complete
         case alert_preferences_complete
         case sign_out
+        
+        case press
+        case account_change
+        case expand_premise
         
         case online_form
         case customer_service_residential

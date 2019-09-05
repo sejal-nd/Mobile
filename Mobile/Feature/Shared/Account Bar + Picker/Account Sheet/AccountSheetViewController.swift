@@ -324,6 +324,8 @@ extension AccountSheetViewController: UITableViewDelegate {
         
         selectedIndexPath = accountIndexPath
         
+        FirebaseUtility.logEvent(.accountPicker, parameters: [EventParameter(parameterName: .action, value: .account_change)])
+        
         // Selection Action
         delegate?.didSelectAccount(accounts[accountIndexPath.row], premiseIndexPath: premiseIndexPath)
         lastSheetLevel = .closed
