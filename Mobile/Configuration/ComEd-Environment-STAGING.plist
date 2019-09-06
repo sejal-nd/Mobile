@@ -15,7 +15,7 @@
 	<key>myAccountUrl</key>
 	<string>https://azstg.comed.com/MyAccount</string>
 	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
+	<string>https://kubra.io/stormcenter/views/1c741c0a-b7e1-4d69-9e4e-10dedd2c4ce6</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_comed_staging</string>
 	<key>gaTrackingId</key>
