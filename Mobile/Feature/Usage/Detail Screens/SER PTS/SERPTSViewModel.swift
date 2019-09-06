@@ -23,9 +23,7 @@ class SERPTSViewModel {
         if let eventResults = eventResults {
             self.eventResults = Observable.just(eventResults).share(replay: 1)
         } else {
-            self.eventResults = accountService.fetchSERResults(accountNumber: accountDetail.accountNumber)
-                .map { Array($0.reversed()) }
-                .share(replay: 1)
+            self.eventResults = accountService.fetchSERResults(accountNumber: accountDetail.accountNumber).share(replay: 1)
         }
         
         graphViewModel = SERPTSGraphViewModel(eventResults: self.eventResults)
@@ -44,7 +42,7 @@ class SERPTSViewModel {
     
     private(set) lazy var smartEnergyRewardsSeasonLabelText: Driver<String?> = eventResults
         .map { eventResults in
-            if let mostRecentEvent = eventResults.last {
+            if let mostRecentEvent = eventResults.first {
                 let latestEventYear = Calendar.opCo.component(.year, from: mostRecentEvent.eventStart)
                 return String(format: NSLocalizedString("Summer %d", comment: ""), latestEventYear)
             }

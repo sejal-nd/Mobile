@@ -21,13 +21,14 @@ class SERPTSGraphViewModel {
     
     private(set) lazy var latest3EventsThisSeason: Driver<[SERResult]> = eventResults
         .map { eventResults in
-            guard let latestEvent = eventResults.last else { return [] }
+            guard let latestEvent = eventResults.first else { return [] }
             
             let latestEventYear = Calendar.opCo.component(.year, from: latestEvent.eventStart)
             
             return eventResults
-                .suffix(3)
-                .filter { Calendar.opCo.component(.year, from: $0.eventStart) == latestEventYear }
+                .prefix(3) // Grab the 3 most recent events
+                .filter { Calendar.opCo.component(.year, from: $0.eventStart) == latestEventYear } // Drop any that aren't from the latest year
+                .reversed() // Reverse so that the most recent event is on the right
         }
         .asDriver(onErrorDriveWith: .empty())
     
