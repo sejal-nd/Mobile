@@ -90,7 +90,7 @@ class StormModeBillViewModel {
         { isLoading, accountDetailEvent in
             isLoading || accountDetailEvent.element?.prepaidStatus != .active
         }
-        .startWith(false)
+        .startWith(true)
         .distinctUntilChanged()
         .asDriver(onErrorDriveWith: .empty())
     

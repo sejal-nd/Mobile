@@ -279,7 +279,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         amountNotToExceedDetailsLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 999), for: .vertical)
         amountNotToExceedDetailsLabel.numberOfLines = 0
         amountNotToExceedDetailsLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold you will receive an email alert at the time the automatic payment is created, and you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
+        amountNotToExceedDetailsLabel.text = NSLocalizedString("If your bill amount exceeds this threshold, you will be responsible for submitting another one-time payment for the remaining amount.\n\nPlease note that any payments made for less than the total amount due or after the indicated due date may result in collection activity up to and including disconnection of service.", comment: "")
         
         // adding details for second button to second button stack view
         amountNotToExceedButtonStackView.addArrangedSubview(amountNotToExceedDetailsLabel)
@@ -352,7 +352,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
     
     func buildGroup2Button2() -> UIStackView {
         beforeDueDateRadioControl.titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
+        beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Days", comment: "")
         
         beforeDueDateButtonStackView.addArrangedSubview(beforeDueDateRadioControl)
         
@@ -386,7 +386,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
         
         beforeDueDateDetailsLabel.text = "Your payment will be processed on your selected number of days before each bill's due date or the next business day. An upcoming automatic payment will be created each time a bill is generated to give you the opportunity to view and cancel the payment on the Bill & Payment Activity page, if necessary."
         if numDays == 0 {
-            beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Number", comment: "")
+            beforeDueDateRadioControl.detailButtonTitle = NSLocalizedString("Select Days", comment: "")
         } else {
             beforeDueDateRadioControl.detailButtonTitle = String.localizedStringWithFormat("%@ Day%@", String(numDays), numDaysPlural)
         }
@@ -403,7 +403,7 @@ class BGEAutoPaySettingsViewController: UIViewController {
             guard let self = self else { return }
             let selectedIndex = self.viewModel.numberOfDaysBeforeDueDate.value == 0 ?
                 0 : (self.viewModel.numberOfDaysBeforeDueDate.value - 1)
-            PickerView.showStringPicker(withTitle: NSLocalizedString("Select Number", comment: ""),
+            PickerView.showStringPicker(withTitle: NSLocalizedString("Select Days", comment: ""),
                                         data: (1...10).map { $0 == 1 ? "\($0) Day" : "\($0) Days" },
                                         selectedIndex: selectedIndex,
                                         onDone: { [weak self] value, index in
