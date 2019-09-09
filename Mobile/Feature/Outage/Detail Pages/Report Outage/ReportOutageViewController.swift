@@ -82,7 +82,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         if unauthenticatedExperience,
             let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
             let addressText = viewModel.outageStatus?.maskedAddress {
-            accountInfoBar.configure(accountNumberText: accountNumberText, addressText: addressText)
+            accountInfoBar.configure(accountNumberText: accountNumberText, addressText: "\(addressText)...")
         }
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
