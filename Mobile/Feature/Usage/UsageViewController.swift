@@ -214,9 +214,12 @@ class UsageViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
+        let dashedBorderColor = UIColor.accentGray
+        let backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.03)
         noDataBarView.addDashedBorder(color: dashedBorderColor)
+        noDataBarView.backgroundColor = backgroundColor
         projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
+        projectionNotAvailableBarView.backgroundColor = backgroundColor
         projectionNotAvailableBarView.layer.cornerRadius = 10
     }
     
