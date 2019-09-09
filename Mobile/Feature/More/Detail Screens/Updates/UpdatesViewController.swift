@@ -22,6 +22,8 @@ class UpdatesViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
 
+    var unauthenticatedExperience = false
+    
     let viewModel = UpdatesViewModel(alertsService: ServiceFactory.createAlertsService())
 
     
@@ -47,7 +49,12 @@ class UpdatesViewController: UIViewController {
     // MARK: - Helper
     
     private func style() {
-        title = NSLocalizedString("News and Updates", comment: "")
+        
+        if unauthenticatedExperience {
+            title = NSLocalizedString("News and Updates", comment: "")
+        } else {
+            navigationItem.title = "Updates"
+        }
         
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         

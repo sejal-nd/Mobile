@@ -111,6 +111,8 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
             GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
         } else if let vc = segue.destination as? ContactUsViewController {
             vc.unauthenticatedExperience = true
+        } else if let vc = segue.destination as? UpdatesViewController {
+            vc.unauthenticatedExperience = true
         }
     }
 }
