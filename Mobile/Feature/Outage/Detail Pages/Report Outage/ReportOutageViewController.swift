@@ -113,8 +113,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 }
             }).disposed(by: disposeBag)
             
-            footerContainerView.isHidden = true
-
             self.setLottieAnimation(for: "smallcircleload_blue", shouldLoop: true)
         } else {
             meterPingStackView.isHidden = true
@@ -250,9 +248,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     
                     self.meterPingFuseBoxView.isHidden = false
                 }
-                
-                self.footerContainerView.isHidden = false
-                
+                                
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
             }, onError: { [weak self] in
@@ -268,7 +264,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 
                 self.areYourLightsOutView.isHidden = true
                 self.viewModel.reportFormHidden.value = false
-                self.footerContainerView.isHidden = false
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
