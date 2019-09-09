@@ -233,6 +233,7 @@ class HomeViewController: AccountPickerViewController {
         
         // Bottom personalize button setup
         personalizeButton.setTitleColor(.actionBlue, for: .normal)
+        personalizeButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         personalizeButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 guard let this = self else { return }
