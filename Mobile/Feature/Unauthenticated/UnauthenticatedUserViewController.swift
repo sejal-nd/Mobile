@@ -27,7 +27,6 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     @IBOutlet weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
-            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
             headerContentView.accessibilityLabel = NSLocalizedString("Sign in / Register to pay. Includes features like the ability to effortlessly pay your bill from the home screen, auto pay, and payment activity.", comment: "")
         }
     }
