@@ -229,6 +229,8 @@ class ReviewPaymentViewController: UIViewController {
             }
         }
         
+        FirebaseUtility.logEvent(.reviewPaymentSubmit)
+        
         let handleError = { [weak self] (err: ServiceError) in
             guard let self = self else { return }
             
@@ -240,6 +242,11 @@ class ReviewPaymentViewController: UIViewController {
                     guard let self = self else { return }
                     if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
                         guard let navCtl = self.navigationController else { return }
+                        
+                        FirebaseUtility.logEvent(.paymentNetworkComplete)
+                        
+                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
+                        
                         let makePaymentVC = UIStoryboard(name: "Payment", bundle: nil)
                             .instantiateInitialViewController() as! MakePaymentViewController
                         makePaymentVC.accountDetail = self.viewModel.accountDetail.value
@@ -300,6 +307,8 @@ class ReviewPaymentViewController: UIViewController {
     }
     
     @IBAction func onTermsConditionsPress() {
+        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .view_terms)])
+        
         let url = URL(string: "https://ipn2.paymentus.com/rotp/www/terms-and-conditions-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)

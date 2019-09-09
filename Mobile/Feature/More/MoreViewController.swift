@@ -87,6 +87,8 @@ class MoreViewController: UIViewController {
     // MARK: - Actions
     
     @objc func toggleBiometrics(_ sender: UISwitch) {
+        FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: sender.isOn.description)])
+        
         if sender.isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
             GoogleAnalytics.log(event: .touchIDEnable)
@@ -157,6 +159,8 @@ class MoreViewController: UIViewController {
             // Sign out of Apple Watch App
             try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
         }
+        
+        FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout()
@@ -335,6 +339,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 1:
+                FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .billing_videos)])
+                
                 UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
             case 2:
                 performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)

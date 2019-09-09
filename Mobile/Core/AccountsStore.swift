@@ -23,6 +23,22 @@ final class AccountsStore {
     }
     
     var currentAccount: Account {
-        return accounts[currentIndex]
+        let currentAccount = accounts[currentIndex]
+        
+        // Customer Type
+        let customerType: String
+        if currentAccount.isResidential {
+            customerType = "residential"
+        } else {
+            customerType = "commercial"
+        }
+        FirebaseUtility.setUserPropety(.customerType, value: customerType)
+        
+        // Service Type
+        if let serviceType = currentAccount.serviceType {
+            FirebaseUtility.setUserPropety(.serviceType, value: serviceType)
+        }
+
+        return currentAccount
     }
 }

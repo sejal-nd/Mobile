@@ -143,6 +143,8 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
     
     override func viewDidAppear(_ animated: Bool) {
         GoogleAnalytics.log(event: .registerOffer)
+        
+        FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .offer)])
     }
     
     private func accessibilityErrorLabel() {
@@ -192,10 +194,14 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         viewModel.validateAccount(onSuccess: { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountValidation)
+            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_validation)])
+            
             self?.performSegue(withIdentifier: "createCredentialsSegue", sender: self)
         }, onMultipleAccounts:  { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountValidation)
+            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_validation)])
+            
             self?.performSegue(withIdentifier: "bgeAccountNumberSegue", sender: self)
         }, onError: { [weak self] (title, message) in
             LoadingView.hide()

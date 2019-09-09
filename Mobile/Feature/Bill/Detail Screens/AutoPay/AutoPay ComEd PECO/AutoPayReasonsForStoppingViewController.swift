@@ -69,17 +69,30 @@ class AutoPayReasonsForStoppingViewController: UIViewController {
     
     @IBAction func unenroll(_ sender: Any) {
         LoadingView.show()
+        
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enrolled_start)])
+
+        FirebaseUtility.logEvent(.autoPaySubmit)
+
         viewModel.unenroll()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] enrolled in
                 LoadingView.hide()
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                
+                FirebaseUtility.logEvent(.autoPayNetworkComplete)
+                
                 self.delegate?.autoPayViewController(self, enrolled: false)
                 self.parentVc?.navigationController?.popViewController(animated: false)
                 self.dismissModal()
             }, onError: { [weak self] error in
                 LoadingView.hide()
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                
                 let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""),
                                                         message: error.localizedDescription, preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

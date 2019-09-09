@@ -239,6 +239,8 @@ class HomeViewController: AccountPickerViewController {
                 UserDefaults.standard.set(Version.current.string, forKey: UserDefaultKeys.homeCardCustomizeTappedVersion)
                 this.performSegue(withIdentifier: editHomeSegueId, sender: nil)
                 
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .personalize_button)])
+                
                 guard let button = this.topPersonalizeButton else { return }
                 UIView.animate(withDuration: 0.15, animations: {
                     button.isHidden = true
@@ -268,6 +270,9 @@ class HomeViewController: AccountPickerViewController {
                 guard let this = self, let button = topPersonalizeButton else { return }
                 UserDefaults.standard.set(Version.current.string, forKey: UserDefaultKeys.homeCardCustomizeTappedVersion)
                 this.performSegue(withIdentifier: editHomeSegueId, sender: nil)
+                
+                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .personalize_banner)])
+                
                 UIView.animate(withDuration: 0.15, animations: {
                     button.isHidden = true
                 }, completion: { _ in

@@ -229,6 +229,9 @@ class WalletViewController: UIViewController {
         Driver.merge(bankButton.rx.touchUpInside.asDriver(), miniBankButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_bank_start)])
+                
                 let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                 paymentusVC.delegate = self
                 paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
@@ -238,6 +241,9 @@ class WalletViewController: UIViewController {
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_card_start)])
+                
                 let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                 paymentusVC.delegate = self
                 paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
@@ -306,6 +312,8 @@ class WalletViewController: UIViewController {
                 LoadingView.hide()
                 
                 guard let self = self else { return }
+                
+                FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .delete_payment_method)])
                 
                 self.viewModel.fetchWalletItems.onNext(())
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
@@ -384,12 +392,20 @@ extension WalletViewController: UITableViewDataSource {
 
 extension WalletViewController: PaymentusFormViewControllerDelegate {
     func didEditWalletItem() {
+        FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .edit_payment_method)])
+        
         didChangeAccount(toastMessage: NSLocalizedString("Changes saved", comment: ""))
     }
     
     func didAddWalletItem(_ walletItem: WalletItem) {
         GoogleAnalytics.log(event: .addWalletComplete)
 
+        if walletItem.bankOrCard == .bank {
+            FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_bank_complete)])
+        } else {
+            FirebaseUtility.logEvent(.wallet, parameters: [EventParameter(parameterName: .action, value: .add_card_complete)])
+        }
+        
         let toastMessage = walletItem.bankOrCard == .bank ?
             NSLocalizedString("Bank account added", comment: "") :
             NSLocalizedString("Card added", comment: "")
