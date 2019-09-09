@@ -183,7 +183,6 @@ class HomeBillCardView: UIView {
         amountLabel.textColor = .deepGray
         amountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
         
-        dueDateLabel.textColor = .deepGray
         dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 
