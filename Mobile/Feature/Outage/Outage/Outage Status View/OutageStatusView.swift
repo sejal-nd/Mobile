@@ -101,7 +101,7 @@ class OutageStatusView: UIView {
         titleDescriptionLabel.textColor = .blackText
         titleDescriptionLabel.font = OpenSans.regular.of(textStyle: .subheadline)
         titleLabel.textColor = .deepGray
-        titleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        titleLabel.font = OpenSans.semibold.of(textStyle: .title3)
         
         descriptionLabel.textColor = .deepGray
         descriptionLabel.font = OpenSans.regular.of(textStyle: .subheadline)
