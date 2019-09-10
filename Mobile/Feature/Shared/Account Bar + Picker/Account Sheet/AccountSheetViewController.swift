@@ -245,6 +245,15 @@ class AccountSheetViewController: UIViewController {
         guard let row = accounts.firstIndex(of: AccountsStore.shared.currentAccount) else { return }
         selectedIndexPath = IndexPath(row: row, section: 0)
         tableView.reloadData()
+        
+        // Auto expand single multi premise accounts
+        if accounts.count == 1 && accounts.first?.isMultipremise ?? false {
+            let indexPath = IndexPath(row: 0, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! AccountListRow
+            cell.didSelect()
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
     }
     
     private func configureGestures() {
