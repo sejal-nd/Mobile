@@ -33,7 +33,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="MUk-3W-gZH">
+                                <view key="tableFooterView" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="MUk-3W-gZH">
                                     <rect key="frame" x="0.0" y="21" width="414" height="82"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -55,7 +55,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="82T-ES-k9e" firstAttribute="centerX" secondItem="MUk-3W-gZH" secondAttribute="centerX" id="FAS-hB-NZx"/>
-                                        <constraint firstAttribute="trailing" secondItem="L3Q-uS-isE" secondAttribute="trailing" constant="16" id="L6d-aX-2te"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="L3Q-uS-isE" secondAttribute="trailing" constant="8" id="L6d-aX-2te"/>
                                         <constraint firstAttribute="bottom" secondItem="L3Q-uS-isE" secondAttribute="bottom" constant="16" id="ejW-gf-Nmh"/>
                                         <constraint firstItem="82T-ES-k9e" firstAttribute="top" secondItem="MUk-3W-gZH" secondAttribute="top" constant="5" id="lrY-JD-dlX"/>
                                     </constraints>

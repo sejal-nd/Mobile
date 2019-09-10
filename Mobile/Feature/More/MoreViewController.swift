@@ -298,15 +298,13 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
-            self?.tableViewDidSelectRow(at: indexPath)
-        }).disposed(by: cell.disposeBag)
-        
         cell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
         return cell
     }
     
-    func tableViewDidSelectRow(at indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -345,7 +343,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }
