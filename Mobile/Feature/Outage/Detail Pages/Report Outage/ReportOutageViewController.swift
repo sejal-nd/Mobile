@@ -157,7 +157,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        phoneExtensionTextField.placeholder = NSLocalizedString("Contact # Ext. (Opt.)", comment: "")
+        phoneExtensionTextField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self

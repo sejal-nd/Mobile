@@ -36,7 +36,7 @@ class UnauthenticatedOutageValidateAccountResultViewController: UIViewController
         title = singleMultipremiseAccount ? NSLocalizedString("Select an Address", comment: "") : NSLocalizedString("Select an Account", comment: "")
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("Please select your account", comment: "")
+        instructionLabel.text = NSLocalizedString("Please select your account.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         col1HeaderLabel.textColor = .deepGray

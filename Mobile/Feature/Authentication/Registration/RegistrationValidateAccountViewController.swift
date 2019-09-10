@@ -38,7 +38,7 @@ class RegistrationValidateAccountViewController: KeyboardAvoidingStickyFooterVie
         viewModel.validateAccountContinueEnabled.drive(continueButton.rx.isEnabled).disposed(by: disposeBag)
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
+        instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         if Environment.shared.opco != .bge {
