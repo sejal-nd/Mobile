@@ -81,7 +81,7 @@
                                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="jmE-d9-Mi9">
                                                                     <rect key="frame" x="48" y="9.5" width="280" height="41.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-p9-MP6">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-p9-MP6">
                                                                             <rect key="frame" x="0.0" y="0.0" width="38" height="25"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -90,7 +90,7 @@
                                                                             <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May not be available for all accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2T-Jz-ytA">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="May not be available for all accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2T-Jz-ytA">
                                                                             <rect key="frame" x="0.0" y="25" width="203.5" height="16.5"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -301,6 +301,7 @@
                                 <constraints>
                                     <constraint firstItem="g0X-DQ-FVa" firstAttribute="trailing" secondItem="1zG-sw-7Fq" secondAttribute="trailing" priority="999" constant="28" id="9SS-u6-gJL"/>
                                     <constraint firstItem="1zG-sw-7Fq" firstAttribute="top" secondItem="g0X-DQ-FVa" secondAttribute="top" constant="15" id="K1g-TG-adi"/>
+                                    <constraint firstItem="1zG-sw-7Fq" firstAttribute="centerX" secondItem="ONv-RL-qH5" secondAttribute="centerX" id="X3E-SR-Nw0"/>
                                     <constraint firstItem="1zG-sw-7Fq" firstAttribute="leading" secondItem="g0X-DQ-FVa" secondAttribute="leading" priority="999" constant="28" id="eYG-sa-pgX"/>
                                     <constraint firstItem="g0X-DQ-FVa" firstAttribute="bottom" secondItem="1zG-sw-7Fq" secondAttribute="bottom" constant="15" id="sd4-Mz-UBo"/>
                                 </constraints>
