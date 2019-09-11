@@ -44,9 +44,8 @@ class LargeTitleNavigationController: UINavigationController {
                 .font: OpenSans.semibold.of(size: 15)
             ]
             
-            if StormModeStatus.shared.isOn {
-                // No bottom border in Storm Mode
-                appearance.shadowImage = UIImage()
+            if StormModeStatus.shared.isOn { // No bottom border in Storm Mode
+                appearance.shadowColor = .clear
             } else {
                 appearance.shadowImage = UIColor.primaryColor.navBarShadowImage()
             }
@@ -57,8 +56,7 @@ class LargeTitleNavigationController: UINavigationController {
         } else {
             navigationBar.setBackgroundImage(nil, for: .default)
             
-            if StormModeStatus.shared.isOn {
-                // No bottom border in Storm Mode
+            if StormModeStatus.shared.isOn { // No bottom border in Storm Mode
                 navigationBar.shadowImage = UIImage()
             } else {
                 navigationBar.shadowImage = UIColor.primaryColor.navBarShadowImage()
