@@ -125,7 +125,7 @@ class TemperatureSliderView: UIView {
             .disposed(by: disposeBag)
         
         let sliderLabelTextColor = mode.asDriver()
-            .map { $0 == .off ? UIColor.middleGray : UIColor.blackText  }
+            .map { $0 == .off ? UIColor.middleGray : UIColor.deepGray  }
         
         sliderLabelTextColor.drive(minLabel.rx.textColor).disposed(by: disposeBag)
         sliderLabelTextColor.drive(maxLabel.rx.textColor).disposed(by: disposeBag)
@@ -138,10 +138,12 @@ class TemperatureSliderView: UIView {
             })
             .disposed(by: disposeBag)
         
-        titleLabel.font = SystemFont.bold.of(textStyle: .footnote)
-        temperatureLabel.font = SystemFont.regular.of(size: 22)
-        minLabel.font = SystemFont.regular.of(textStyle: .title1)
-        maxLabel.font = SystemFont.regular.of(textStyle: .title1)
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.bold.of(textStyle: .caption1)
+        temperatureLabel.textColor = .deepGray
+        temperatureLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        minLabel.font = SystemFont.regular.of(size: 17)
+        maxLabel.font = SystemFont.regular.of(size: 17)
         
         slider.minimumValue = Float(minTemp.value(forScale: scale))
         slider.maximumValue = Float(maxTemp.value(forScale: scale))

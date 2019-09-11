@@ -149,9 +149,13 @@ struct MCSAccountService: AccountService {
                         let serInfo = dict["SERInfo"] as? NSDictionary,
                         let array = serInfo["eventResults"] as? NSArray,
                         let serResults = SERResult.from(array) else {
-                            throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                        throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
-                    return serResults
+                    // Ensure the array is always sorted most recent to oldest
+                    let sortedResults = serResults.sorted { (a, b) -> Bool in
+                        a.eventStart > b.eventStart
+                    }
+                    return sortedResults
                 }
                 .catchError { error in
                     let serviceError = error as? ServiceError ?? ServiceError(cause: error)

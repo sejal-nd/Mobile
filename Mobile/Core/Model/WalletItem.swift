@@ -107,7 +107,7 @@ enum PaymentMethodType {
         case .ach:
             return #imageLiteral(resourceName: "opco_bank_mini")
         case .unknown(_):
-            return #imageLiteral(resourceName: "credit_card_mini_white_bg")
+            return #imageLiteral(resourceName: "credit_card_mini")
         }
     }
 

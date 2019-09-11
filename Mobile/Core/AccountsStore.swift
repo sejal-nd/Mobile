@@ -18,13 +18,27 @@ final class AccountsStore {
     // Private init protects against another instance being accidentally instantiated
     private init() {
         // Load from disk
-        if let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.customerIdentifier) {
-            customerIdentifier = customerId
-        }
+        guard let customerId = UserDefaults.standard.string(forKey: UserDefaultKeys.customerIdentifier) else { return }
+        customerIdentifier = customerId
     }
     
     var currentAccount: Account {
-        return accounts[currentIndex]
+        let currentAccount = accounts[currentIndex]
+        
+        // Customer Type
+        let customerType: String
+        if currentAccount.isResidential {
+            customerType = "residential"
+        } else {
+            customerType = "commercial"
+        }
+        FirebaseUtility.setUserPropety(.customerType, value: customerType)
+        
+        // Service Type
+        if let serviceType = currentAccount.serviceType {
+            FirebaseUtility.setUserPropety(.serviceType, value: serviceType)
+        }
+
+        return currentAccount
     }
-    
 }

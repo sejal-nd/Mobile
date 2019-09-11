@@ -11,13 +11,11 @@
 	<key>appName</key>
 	<string>BGE_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUATTest</string>
+	<string>Test1UAT</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.bge.com/MyAccount</string>
 	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
-	<key>paymentusUrl</key>
-	<string>https://bge-sit-620.paymentus.io/xotp/pm/bge</string>
+	<string>https://kubra.io/stormcenter/views/f457527c-82db-4ebe-bc4e-91e04a4f8209</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_testing</string>
 	<key>gaTrackingId</key>

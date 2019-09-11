@@ -15,14 +15,18 @@ class BGEAutoPayViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testShowBottomLabel() {
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .default)
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
+                                        walletService: MockWalletService(),
+                                        accountDetail: .default)
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if !show {
                 XCTFail("Bottom label should show when not enrolled")
             }
         }).disposed(by: disposeBag)
         
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .autoPay))
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
+                                        walletService: MockWalletService(),
+                                        accountDetail: .fromMockJson(forKey: .autoPay))
         viewModel.showBottomLabel.asObservable().take(1).subscribe(onNext: { show in
             if show {
                 XCTFail("Bottom label should not show when enrolled")
@@ -31,7 +35,9 @@ class BGEAutoPayViewModelTests: XCTestCase {
     }
     
     func testSubmitButtonEnabled() {
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .default)
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
+                                        walletService: MockWalletService(),
+                                        accountDetail: .default)
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.userDidReadTerms.value = true
         viewModel.submitButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
@@ -40,7 +46,9 @@ class BGEAutoPayViewModelTests: XCTestCase {
             }
         }).disposed(by: disposeBag)
         
-        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .autoPay))
+        viewModel = BGEAutoPayViewModel(paymentService: MockPaymentService(),
+                                        walletService: MockWalletService(),
+                                        accountDetail: .fromMockJson(forKey: .autoPay))
         viewModel.selectedWalletItem.value = WalletItem()
         viewModel.userDidChangeSettings.value = true
         viewModel.userDidReadTerms.value = true

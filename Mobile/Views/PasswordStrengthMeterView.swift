@@ -40,6 +40,8 @@ class PasswordStrengthMeterView: UIView {
         backgroundColor = .clear
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
+        layer.cornerRadius = frame.height / 2
+        layer.masksToBounds = true
 
         addSubview(colorSubview)
     }
