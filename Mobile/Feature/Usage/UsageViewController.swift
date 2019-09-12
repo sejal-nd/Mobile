@@ -629,6 +629,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showNoUsageDataState() {
@@ -643,6 +644,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showCommercialState() {
@@ -675,6 +677,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showMainErrorState() {
@@ -689,6 +692,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showAccountDisallowState() {
@@ -703,6 +707,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showNoNetworkState() {
@@ -717,6 +722,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = false
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showMaintenanceModeState() {
@@ -731,6 +737,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = false
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showBillComparisonLoadingState() {
@@ -740,6 +747,7 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = true
         billComparisonDataContainer.isHidden = false
         billComparisonTitleContainer.isHidden = false
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showBillComparisonContents() {
@@ -749,6 +757,7 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = true
         billComparisonDataContainer.isHidden = false
         billComparisonTitleContainer.isHidden = false
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showBillComparisonErrorState() {
@@ -758,6 +767,7 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = false
         billComparisonDataContainer.isHidden = true
         billComparisonTitleContainer.isHidden = true
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func removeCommercialView() {
