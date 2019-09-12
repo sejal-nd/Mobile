@@ -85,8 +85,9 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var autoPayContainer: UIView!
     @IBOutlet private weak var autoPayBox: UIView!
+    @IBOutlet private weak var autoPayButton: ButtonControl!
     @IBOutlet private weak var autoPayImageView: UIImageView!
-    @IBOutlet private weak var autoPayButton: UIButton!
+    @IBOutlet private weak var autoPayButtonLabel: UILabel!
     
     @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
     @IBOutlet private weak var oneTouchPayTCButtonLabel: UILabel!
@@ -204,8 +205,8 @@ class HomeBillCardView: UIView {
         autoPayBox.layer.cornerRadius = 6
         autoPayBox.layer.borderColor = UIColor.accentGray.cgColor
         autoPayBox.layer.borderWidth = 1
-        autoPayButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
-        autoPayButton.titleLabel?.numberOfLines = 0
+        autoPayButtonLabel.textColor = .actionBlue
+        autoPayButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
         oneTouchPayTCButtonLabel.textColor = .actionBlue
         oneTouchPayTCButtonLabel.font = SystemFont.semibold.of(textStyle: .caption1)
@@ -283,7 +284,7 @@ class HomeBillCardView: UIView {
         scheduledImageView.image = #imageLiteral(resourceName: "ic_scheduled_sm.pdf")
         
         autoPayBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        autoPayButton.setTitleColor(.white, for: .normal)
+        autoPayButtonLabel.textColor = .white
         autoPayImageView.image = #imageLiteral(resourceName: "ic_autopay_sm.pdf")
         
         billNotReadyImageView.image = #imageLiteral(resourceName: "ic_home_billnotready_sm.pdf")
@@ -395,7 +396,7 @@ class HomeBillCardView: UIView {
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
 
-        viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.title(for: .normal)).disposed(by: bag)
+        viewModel.automaticPaymentInfoButtonText.drive(autoPayButtonLabel.rx.text).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
@@ -496,13 +497,14 @@ class HomeBillCardView: UIView {
         .mapTo(())
         .map(OneTouchTutorialViewController.init)
     
-    private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.tap.asObservable()
+    private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { $0.isBGEasy }
         .map { _ in UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEasy") }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var autoPayAlert: Driver<UIViewController> = autoPayButton.rx.tap
+    private lazy var autoPayAlert: Driver<UIViewController> = autoPayButton.rx.touchUpInside
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy && StormModeStatus.shared.isOn }
@@ -561,7 +563,7 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var autoPayViewController: Driver<UIViewController> = autoPayButton.rx.tap
+    private lazy var autoPayViewController: Driver<UIViewController> = autoPayButton.rx.touchUpInside
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy && !StormModeStatus.shared.isOn }
