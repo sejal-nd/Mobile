@@ -776,7 +776,7 @@ class UsageViewController: AccountPickerViewController {
         NSLayoutConstraint.activate([
             commercialVC.view.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
             commercialVC.view.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
-            ])
+        ])
         commercialViewController = commercialVC
         view.backgroundColor = .white
     }
