@@ -358,10 +358,9 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         if let popoverController = actionSheet.popoverPresentationController { // iPad popover
             let width = self.forgotUsernamePasswordButton.frame.size.width
-            let height = self.forgotUsernamePasswordButton.frame.size.height
             popoverController.sourceView = self.forgotUsernamePasswordButton
-            popoverController.sourceRect = CGRect(x: width / 2, y: height, width: 0, height: 0)
-            popoverController.permittedArrowDirections = .up
+            popoverController.sourceRect = CGRect(x: width / 2, y: 0, width: 0, height: 0)
+            popoverController.permittedArrowDirections = .down
         }
 
         present(actionSheet, animated: true, completion: nil)
