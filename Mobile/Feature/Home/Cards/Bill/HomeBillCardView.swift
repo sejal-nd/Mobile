@@ -149,7 +149,6 @@ class HomeBillCardView: UIView {
         headerView.layer.borderColor = UIColor.accentGray.cgColor
         headerView.layer.borderWidth = 1
         
-        headerLabel.textColor = .deepGray
         headerLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
         reinstatementFeeLabel.textColor = .deepGray
