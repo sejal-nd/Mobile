@@ -151,6 +151,7 @@ extension OutageStatusView {
                 detailDescriptionLabel.isHidden = false
                 detailLabel.isHidden = false
             }
+            
             statusImageView.isHidden = true
             statusHeightConstraint.constant = 107
             statusWidthConstraint.constant = 107
@@ -159,10 +160,13 @@ extension OutageStatusView {
             titleDescriptionLabel.text = NSLocalizedString("Our records indicate", comment: "")
             descriptionLabel.isHidden = true
             button.isHidden = false
+            
             UIView.performWithoutAnimation {
                 button.setTitle(NSLocalizedString("View Details", comment: ""), for: .normal)
                 button.layoutIfNeeded()
             }
+            
+            titleLabel.accessibilityLabel = "\(titleDescriptionLabel.text ?? "") \(titleLabel.text ?? "")"
         case .reported:
             lottieAnimationView?.removeFromSuperview()
             lottieAnimationView = LOTAnimationView(name: "outage_reported")
@@ -172,6 +176,8 @@ extension OutageStatusView {
             
             titleDescriptionLabel.text = NSLocalizedString("Your outage is", comment: "")
             titleLabel.text = NSLocalizedString("REPORTED", comment: "")
+            titleLabel.accessibilityLabel = "\(titleDescriptionLabel.text ?? "") \(titleLabel.text ?? "")"
+            
             descriptionLabel.isHidden = true
             detailDescriptionLabel.isHidden = false
             detailLabel.isHidden = false
