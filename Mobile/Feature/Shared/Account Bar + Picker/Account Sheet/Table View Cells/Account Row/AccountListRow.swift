@@ -165,7 +165,7 @@ class AccountListRow: UITableViewCell {
         accountNumber.accessibilityLabel = String(format: NSLocalizedString("Account number %@", comment: ""), accountNumberText)
         
         // Accessibility
-        self.accessibilityLabel = "\(checkmarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), "
+        self.accessibilityLabel = "\(checkmarkImageView.accessibilityLabel ?? ""), \(accountImageView.accessibilityLabel ?? ""), \(accountNumber.accessibilityLabel ?? ""), \(addressLabel.accessibilityLabel ?? "")"
     }
     
     private func configureTableView() {
