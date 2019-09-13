@@ -39,5 +39,8 @@ extension PremiseListRow {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .softGray
         selectedBackgroundView = backgroundView
+        
+        // Accessibility
+        self.accessibilityLabel = "Premise \(accountNumber.text ?? "")."
     }
 }

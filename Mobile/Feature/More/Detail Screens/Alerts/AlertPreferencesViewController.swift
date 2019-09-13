@@ -42,7 +42,8 @@ class AlertPreferencesViewController: UIViewController {
                            forCellReuseIdentifier: AccountInfoBarCell.className)
         
         // Add X Button
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(onCancelPress))
+        let closeButton = UIBarButtonItem(image: UIImage(named: "ic_close"), style: .plain, target: self, action: #selector(onCancelPress))
+                        
         closeButton.accessibilityLabel = NSLocalizedString("Close", comment: "")
         navigationItem.setLeftBarButton(closeButton, animated: false)
         

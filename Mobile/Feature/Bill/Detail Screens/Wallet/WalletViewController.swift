@@ -235,7 +235,10 @@ class WalletViewController: UIViewController {
                 let paymentusVC = PaymentusFormViewController(bankOrCard: .bank, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                 paymentusVC.delegate = self
                 paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
-                self.navigationController?.pushViewController(paymentusVC, animated: true)
+                
+                let largeTitleNavigationController = LargeTitleNavigationController(rootViewController: paymentusVC)
+                
+                self.navigationController?.present(largeTitleNavigationController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
 
         Driver.merge(creditCardButton.rx.touchUpInside.asDriver(), miniCreditCardButton.rx.touchUpInside.asDriver())
@@ -247,7 +250,10 @@ class WalletViewController: UIViewController {
                 let paymentusVC = PaymentusFormViewController(bankOrCard: .card, temporary: false, isWalletEmpty: self.viewModel.walletItems.value!.isEmpty)
                 paymentusVC.delegate = self
                 paymentusVC.shouldPopToRootOnSave = self.shouldPopToRootOnSave
-                self.navigationController?.pushViewController(paymentusVC, animated: true)
+                
+                let largeTitleNavigationController = LargeTitleNavigationController(rootViewController: paymentusVC)
+                
+                self.navigationController?.present(largeTitleNavigationController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
     
@@ -276,7 +282,10 @@ class WalletViewController: UIViewController {
         paymentusVC.delegate = self
         paymentusVC.shouldPopToRootOnSave = shouldPopToRootOnSave
         paymentusVC.editingDefaultItem = walletItemToEdit.isDefault
-        self.navigationController?.pushViewController(paymentusVC, animated: true)
+        
+        let largeTitleNavigationController = LargeTitleNavigationController(rootViewController: paymentusVC)
+        
+        self.navigationController?.present(largeTitleNavigationController, animated: true, completion: nil)        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(500)) { [weak self] in
             self?.handlingEditTap = false

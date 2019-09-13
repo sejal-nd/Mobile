@@ -38,7 +38,7 @@ class OutageViewController: AccountPickerViewController {
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
-        refreshControl.tintColor = .primaryColor
+        refreshControl.tintColor = .deepGray
         refreshControl.backgroundColor = .softGray
         return refreshControl
     }()

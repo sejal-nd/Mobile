@@ -27,7 +27,6 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
     @IBOutlet weak var headerContentView: ButtonControl! {
         didSet {
             headerContentView.layer.cornerRadius = 10.0
-            headerContentView.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
             headerContentView.accessibilityLabel = NSLocalizedString("Sign in / Register to pay. Includes features like the ability to effortlessly pay your bill from the home screen, auto pay, and payment activity.", comment: "")
         }
     }
@@ -114,6 +113,8 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
             GoogleAnalytics.log(event: .viewOutageMapGuestMenu)
         } else if let vc = segue.destination as? ContactUsViewController {
             vc.unauthenticatedExperience = true
+        } else if let vc = segue.destination as? UpdatesViewController {
+            vc.unauthenticatedExperience = true
         }
     }
 }
@@ -164,15 +165,13 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         default:
             return UITableViewCell()
         }
-        
-        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
-            self?.tableViewDidSelectRow(at: indexPath)
-        }).disposed(by: cell.disposeBag)
-        
+
         return cell
     }
     
-    func tableViewDidSelectRow(at indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         switch indexPath.section {
         case 0:
             switch indexPath.row {

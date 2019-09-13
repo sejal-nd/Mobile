@@ -78,7 +78,7 @@ class HomeProjectedBillCardView: UIView {
             .attributedString(textAlignment: .center, lineHeight: 26)
         
         errorTitleLabel.textColor = .deepGray
-        errorTitleLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        errorTitleLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         errorDescriptionLabel.textColor = .deepGray
         errorDescriptionLabel.font = SystemFont.regular.of(textStyle: .subheadline)

@@ -116,6 +116,7 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         
         mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .headline)
         for label in passwordRequirementLabels {
+            label.textColor = .deepGray
             label.font = SystemFont.regular.of(textStyle: .headline)
         }
         
