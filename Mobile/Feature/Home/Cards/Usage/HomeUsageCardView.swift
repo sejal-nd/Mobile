@@ -494,6 +494,19 @@ class HomeUsageCardView: UIView {
         userTappedBarGraph = true
     }
     
+    
+    @IBAction func ctaButtonPress(_ sender: Any) {
+        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_cta)])
+    }
+    
+    @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
+        if sender.selectedIndex.value == 0 {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_electric_press)])
+        } else {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_gas_press)])
+        }
+    }
+    
     private func moveTriangleTo(barView: UIView) {
         barDescriptionTriangleCenterXConstraint.isActive = false
         barDescriptionTriangleCenterXConstraint = barDescriptionTriangleImageView.centerXAnchor

@@ -84,6 +84,9 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.submitForgotPassword(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
+            
+            FirebaseUtility.logEvent(.forgotPassword, parameters: [EventParameter(parameterName: .action, value: .complete)])
+            
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
             self.navigationController?.popViewController(animated: true)
         }, onProfileNotFound: { [weak self] error in
@@ -95,6 +98,9 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         }, onError: { [weak self] errorMessage in
             LoadingView.hide()
             guard let self = self else { return }
+            
+            FirebaseUtility.logEvent(.forgotPassword, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+            
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)

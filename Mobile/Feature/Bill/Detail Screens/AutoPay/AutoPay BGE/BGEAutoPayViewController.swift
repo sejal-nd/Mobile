@@ -88,6 +88,8 @@ class BGEAutoPayViewController: UIViewController {
             UIAccessibility.post(notification: .screenChanged, argument: self.view)
         })
         
+        FirebaseUtility.logEvent(.autoPayStart)
+        
         if accountDetail.isAutoPay {
             enrollButton.isHidden = true
         } else {
@@ -219,9 +221,18 @@ class BGEAutoPayViewController: UIViewController {
             
             LoadingView.show()
             GoogleAnalytics.log(event: .autoPayUnenrollOffer)
+            
+            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enrolled_start)])
+            
+            FirebaseUtility.logEvent(.autoPaySubmit)
+
             self.viewModel.unenroll(onSuccess: { [weak self] in
                 LoadingView.hide()
                 GoogleAnalytics.log(event: .autoPayUnenrollComplete)
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenroll_complete)])
+                
+                FirebaseUtility.logEvent(.autoPayNetworkComplete)
                 
                 guard let self = self else { return }
                 let title = NSLocalizedString("Unenrolled from AutoPay", comment: "")
@@ -235,6 +246,8 @@ class BGEAutoPayViewController: UIViewController {
                 
                 self.navigationController?.present(infoModal, animated: true)
             }, onError: { [weak self] errMessage in
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+                
                 LoadingView.hide()
                 self?.showErrorAlert(message: errMessage)
             })
@@ -245,6 +258,11 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBAction func enroll() {
         GoogleAnalytics.log(event: .autoPayEnrollSubmit)
+        
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenrolled_start)])
+
+        FirebaseUtility.logEvent(.autoPaySubmit)
+        
         if viewModel.userDidChangeSettings.value {
             GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
         }
@@ -254,8 +272,15 @@ class BGEAutoPayViewController: UIViewController {
             guard let self = self else { return }
             
             GoogleAnalytics.log(event: .autoPayEnrollComplete)
+            
+            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
+            
+            FirebaseUtility.logEvent(.autoPayNetworkComplete)
+            
             if self.viewModel.userDidChangeSettings.value {
                 GoogleAnalytics.log(event: .autoPayModifySettingCompleteNew)
+                
+                FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .modify_complete)])
             }
             
             let title = NSLocalizedString("Enrolled in AutoPay", comment: "")
@@ -275,6 +300,8 @@ class BGEAutoPayViewController: UIViewController {
             
             self.navigationController?.present(infoModal, animated: true)
         }, onError: { [weak self] errMessage in
+            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+            
             LoadingView.hide()
             self?.showErrorAlert(message: errMessage)
         })
@@ -282,14 +309,23 @@ class BGEAutoPayViewController: UIViewController {
     
     private func updateSettings() {
         GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
+        
+        FirebaseUtility.logEvent(.autoPaySubmit)
+        
         viewModel.update(onSuccess: { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .autoPayModifySettingComplete)
+            
+            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .settings_changed)])
+            
+            FirebaseUtility.logEvent(.autoPayNetworkComplete)
             
             guard let self = self else { return }
             self.delegate?.BGEAutoPayViewController(self, didUpdateWithToastMessage: NSLocalizedString("AutoPay changes saved", comment: ""))
             self.navigationController?.popViewController(animated: true)
         }, onError: { [weak self] errMessage in
+            FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+            
             LoadingView.hide()
             self?.showErrorAlert(message: errMessage)
         })
@@ -303,6 +339,8 @@ class BGEAutoPayViewController: UIViewController {
     
     @objc
     func onLearnMorePress() {
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
+        
         let infoModal = InfoModalViewController(title: NSLocalizedString("What is AutoPay?", comment: ""), image: #imageLiteral(resourceName: "img_autopaymodal"), description: viewModel.learnMoreDescriptionText)
         navigationController?.present(infoModal, animated: true, completion: nil)
     }
@@ -341,6 +379,8 @@ class BGEAutoPayViewController: UIViewController {
     }
     
     @IBAction func onTermsConditionsPress() {
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .terms)])
+        
         let url = URL(string: "https://ipn2.paymentus.com/biller/stde/terms-conditions-autopay-exln.html")!
         let tacModal = WebViewController(title: NSLocalizedString("Terms and Conditions", comment: ""), url: url)
         navigationController?.present(tacModal, animated: true, completion: nil)

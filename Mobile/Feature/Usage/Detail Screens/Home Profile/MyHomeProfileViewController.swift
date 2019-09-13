@@ -58,6 +58,8 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
         bindButtons()
         bindTextField()
         bindSaveResults()
+        
+        FirebaseUtility.logEvent(.homeProfileStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -234,6 +236,10 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
         viewModel.saveA11yLabel.drive(saveButton.rx.accessibilityLabel).disposed(by: disposeBag)
     }
     
+    @IBAction func saveButtonPress(_ sender: Any) {
+        FirebaseUtility.logEvent(.homeProfileSubmit)
+    }
+    
     func bindTextField() {
         homeSizeTextField.textField.delegate = self
         homeSizeTextField.setKeyboardType(.numberPad)
@@ -257,8 +263,10 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     }
     
     func bindSaveResults() {
+        
         viewModel.saveSuccess
             .drive(onNext: { [weak self] in
+                FirebaseUtility.logEvent(.homeProfileNetworkComplete)
                 self?.didSaveHomeProfileSubject.onNext(())
                 self?.navigationController?.popViewController(animated: true)
             })

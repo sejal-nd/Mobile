@@ -62,6 +62,9 @@ class SetDefaultAccountViewController: UIViewController {
         LoadingView.show()
         viewModel.setDefaultAccount(onSuccess: { [weak self] in
             guard let self = self else { return }
+            
+            FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .set_default_account_complete)])
+            
             LoadingView.hide()
             self.delegate?.setDefaultAccountViewControllerDidFinish(self)
             self.navigationController?.popViewController(animated: true)

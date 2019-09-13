@@ -244,4 +244,7 @@ class HomeOutageCardView: UIView {
         viewModel.callToActionButtonText.drive(callToActionButton.rx.accessibilityLabel).disposed(by: bag)
     }
     
+    @IBAction func ctaPress(_ sender: Any) {        
+        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .outage_cta)])
+    }
 }

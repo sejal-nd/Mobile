@@ -153,6 +153,8 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
         }
         
         enrollAllAccountsCheckbox.accessibilityLabel = NSLocalizedString("Enrollment status: ", comment: "")
+        
+        FirebaseUtility.logEvent(.paperlessEBillStart)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -180,6 +182,8 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     @IBAction func onTooltipPress() {
+        FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .learn_more)])
+        
         let description: String
         if Environment.shared.opco == .bge {
             description = NSLocalizedString("Eliminate your paper bill.  Your online bill is identical to your current paper bill and is available to view, download, or print at any time.  You will receive bill ready email notifications regardless of preference.  Your preference will be updated with your next month’s bill.", comment: "")
@@ -205,13 +209,24 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
     }
 
     @IBAction func onEnrollmentButtonPress() {
+        
+        FirebaseUtility.logEvent(.paperlessEBillSubmit)
+        
         LoadingView.show()
         viewModel.submitChanges(onSuccess: { [weak self] changedStatus in
             LoadingView.hide()
             guard let self = self else { return }
+            
+            FirebaseUtility.logEvent(.paperlessEBillNetworkComplete)
+            
+            FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
+            
             self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
         }, onError: { [weak self] errMessage in
+            
+            FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+            
             LoadingView.hide()
             let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errMessage, preferredStyle: .alert)
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))

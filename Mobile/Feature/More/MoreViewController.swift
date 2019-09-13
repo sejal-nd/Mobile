@@ -13,6 +13,9 @@ import Toast_Swift
 class MoreViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var superviewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var safeAreaTopConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
             signOutButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
@@ -58,10 +61,17 @@ class MoreViewController: UIViewController {
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
         
+        // Constraint stuff: In Storm Mode, we want the tableView top constrained to superview top
+        // for smooth large title nav collapsing. Outside of Storm Mode there is no nav bar, so we
+        // constrain to the safe area so that content does not overlap the status bar
         if StormModeStatus.shared.isOn {
             view.backgroundColor = .stormModeBlack
+            view.removeConstraint(safeAreaTopConstraint)
+            view.addConstraint(superviewTopConstraint)
         } else {
             view.backgroundColor = .primaryColor
+            view.removeConstraint(superviewTopConstraint)
+            view.addConstraint(safeAreaTopConstraint)
         }
     }
     
@@ -87,6 +97,8 @@ class MoreViewController: UIViewController {
     // MARK: - Actions
     
     @objc func toggleBiometrics(_ sender: UISwitch) {
+        FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: sender.isOn.description)])
+        
         if sender.isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
             GoogleAnalytics.log(event: .touchIDEnable)
@@ -157,6 +169,8 @@ class MoreViewController: UIViewController {
             // Sign out of Apple Watch App
             try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
         }
+        
+        FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
         let authService = ServiceFactory.createAuthenticationService()
         authService.logout()
@@ -333,6 +347,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 1:
+                FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .billing_videos)])
+                
                 UIApplication.shared.openUrlIfCan(viewModel.billingVideosUrl)
             case 2:
                 performSegue(withIdentifier: "termsPoliciesSegue", sender: nil)

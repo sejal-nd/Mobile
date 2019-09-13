@@ -45,6 +45,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     
     override func viewDidAppear(_ animated: Bool) {
         GoogleAnalytics.log(event: .registerAccountComplete)
+        FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .complete)])
     }
     
     private var emailAddress: String {
@@ -79,6 +80,7 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     LoadingView.hide()
+                    FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .resend_email)])
                     self?.view.showToast(NSLocalizedString("Verification email sent", comment: ""))
                     GoogleAnalytics.log(event: .registerResendEmail)
                 }, onError: { [weak self] err in

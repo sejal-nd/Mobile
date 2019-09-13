@@ -421,11 +421,15 @@ class HomeBillCardView: UIView {
     }
     
     private(set) lazy var viewBillPressed: Driver<Void> = self.viewBillButton.rx.touchUpInside.asDriver()
-        .do(onNext: { GoogleAnalytics.log(event: .viewBillBillCard) })
+        .do(onNext: {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_cta)])
+            GoogleAnalytics.log(event: .viewBillBillCard)
+        })
     
     private(set) lazy var oneTouchPayFinished: Observable<Void> = self.viewModel.oneTouchPayResult
         .do(onNext: { [weak self] _ in
             LoadingView.hide(animated: true)
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_slide_to_pay)])
             self?.oneTouchSlider.reset(animated: true)
         })
         .mapTo(())
@@ -433,6 +437,7 @@ class HomeBillCardView: UIView {
     // Modal View Controllers
     private lazy var paymentTACModal: Driver<UIViewController> = self.oneTouchPayTCButton.rx.touchUpInside.asObservable()
         .do(onNext: {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_terms)])
             GoogleAnalytics.log(event: .oneTouchTermsView)
         })
         .map { [weak self] in self?.viewModel.paymentTACUrl }
@@ -534,6 +539,7 @@ class HomeBillCardView: UIView {
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bil_choose_default_payment_method)])
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true

@@ -247,10 +247,21 @@ class UsageViewController: AccountPickerViewController {
     }
     
     @IBAction private func barGraphPress(_ sender: ButtonControl) {
+        if sender.tag == 3 {
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .projected_graph_press)])
+        }
+        
         viewModel.setBarSelected(tag: sender.tag)
     }
     
     func selectBar(_ selectedBar: UsageViewModel.BarGraphSelection, gas: Bool) {
+        
+        if gas {
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .gas_segment_press)])
+        } else {
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .electric_segment_press)])
+        }
+        
         viewModel.electricGasSelectedSegmentIndex.value = gas ? 1 : 0
         viewModel.setBarSelected(tag: selectedBar.rawValue)
     }
@@ -327,6 +338,13 @@ class UsageViewController: AccountPickerViewController {
                     self?.viewModel.barGraphSelection.value = .current
                 }
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
+                
+                if isPreviousBill {
+                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .previous_graph_press)])
+                } else {
+                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .next_graph_press)])
+                }
+                
                 GoogleAnalytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
             })
             .disposed(by: disposeBag)

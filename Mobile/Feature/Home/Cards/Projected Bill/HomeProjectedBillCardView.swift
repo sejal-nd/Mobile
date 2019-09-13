@@ -178,5 +178,19 @@ class HomeProjectedBillCardView: UIView {
         viewModel.projectionNotAvailable.drive(infoButton.rx.isHidden).disposed(by: disposeBag)
         viewModel.projectionNotAvailable.drive(projectionFooterLabel.rx.isHidden).disposed(by: disposeBag)
     }
+    
+    @IBAction func ctaPress(_ sender: Any) {
+        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .projected_bill_cta)])
+    }
+    
+    @IBAction func segmentValueChange(_ sender: SegmentedControl) {
+        guard ((viewModel?.shouldShowElectricGasSegmentedControl) != nil) else { return }
+        if sender.selectedIndex.value == 0 {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .projected_bill_electric_press)])
 
+        } else {
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .projected_bill_gas_press)])
+        }
+    }
+    
 }
