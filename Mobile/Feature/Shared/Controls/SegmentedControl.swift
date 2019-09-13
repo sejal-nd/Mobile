@@ -74,14 +74,11 @@ class SegmentedControl: UIControl {
             .disposed(by: disposeBag)
     }
     
-    override func setNeedsLayout() {
-        super.setNeedsLayout()
-        fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
-        selectionPill.fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
+        selectionPill.fullyRoundCorners(diameter: frame.size.height, borderColor: .accentGray, borderWidth: 1)
 
         if let items = items {
             let itemWidth = frame.width / CGFloat(items.count)

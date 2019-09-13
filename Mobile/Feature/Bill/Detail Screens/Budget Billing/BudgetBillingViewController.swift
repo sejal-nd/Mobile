@@ -203,6 +203,8 @@ class BudgetBillingViewController: UIViewController {
                     // USPP Participants cannot unenroll
                     self.stickyFooterView.isHidden = true
                 }
+                
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
             }
         }, onError: { [weak self] errMessage in
             guard let self = self else { return }
