@@ -158,6 +158,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         }).disposed(by: disposeBag)
         
         phoneExtensionTextField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
+        phoneExtensionTextField.accessibilityLabel = NSLocalizedString("Contact number extension optional.", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
@@ -192,9 +193,9 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         let message = phoneNumberTextField.getError()
         
         if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Report Outage", comment: "")
         } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Report Outage", comment: ""), message)
         }
     }
     
