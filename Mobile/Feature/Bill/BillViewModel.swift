@@ -369,6 +369,7 @@ class BillViewModel {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 string = NSLocalizedString("Total Amount Due Immediately", comment: "")
                 attributes[.foregroundColor] = UIColor.errorRed
+                attributes[.font] = SystemFont.semibold.of(textStyle: .caption1)
             } else {
                 string = NSLocalizedString("Total Amount Due", comment: "")
             }
@@ -417,7 +418,7 @@ class BillViewModel {
             } else {
                 let string = NSLocalizedString("Due Immediately", comment: "")
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
-                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
+                                                                       .font: SystemFont.semibold.of(textStyle: .caption1)])
             }
     }
     
