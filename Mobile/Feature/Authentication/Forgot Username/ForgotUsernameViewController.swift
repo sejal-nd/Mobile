@@ -46,7 +46,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         instructionLabel.textColor = .deepGray
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
-        instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
+        instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
         phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no

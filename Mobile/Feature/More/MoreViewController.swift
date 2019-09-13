@@ -274,7 +274,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Updates", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -312,15 +312,13 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
-            self?.tableViewDidSelectRow(at: indexPath)
-        }).disposed(by: cell.disposeBag)
-        
         cell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
         return cell
     }
     
-    func tableViewDidSelectRow(at indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -361,7 +359,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }
