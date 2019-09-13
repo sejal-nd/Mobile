@@ -123,6 +123,8 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                     self?.homeSizeTextField.textField.text = "\(squareFeet)"
                     self?.viewModel.homeSizeEntry.value = String(squareFeet)
                 }
+                
+                UIAccessibility.post(notification: .screenChanged, argument: self?.view)
             }, onError: { [weak self] _ in
                 self?.scrollView.isHidden = true
                 self?.errorLabel.isHidden = false
