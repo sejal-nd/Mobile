@@ -84,6 +84,10 @@ struct FirebaseUtility {
         case isControlGroup
         case customerType
         case serviceType
+        
+        case isScreenReaderEnabled
+        case isSwitchAccessEnabled
+        case fontScale
     }
     
     /// This method should only be called once from App Delegate: Configures Firebase
