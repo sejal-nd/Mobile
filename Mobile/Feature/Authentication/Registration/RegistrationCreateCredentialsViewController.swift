@@ -70,7 +70,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         passwordStrengthLabel.textColor = .deepGray
         passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         mustAlsoContainLabel.textColor = .deepGray
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         for label in passwordRequirementLabels {
             label.textColor = .deepGray
