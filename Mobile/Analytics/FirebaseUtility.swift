@@ -107,7 +107,7 @@ struct FirebaseUtility {
     ///   - parameters: Dict of parameters to be sent along with the event name
     public static func logEvent(_ event: Event, parameters: [EventParameter]? = nil) {
         #if DEBUG
-        NSLog("📊 Firebase Event: \(event.rawValue)")
+        NSLog("📊🔥 Firebase Event: \(event.rawValue)")
         #endif
         
         // Convert Event Parameter into dict if it exists
