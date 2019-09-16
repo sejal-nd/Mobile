@@ -364,7 +364,7 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.isCreditCardDisabled = true
         miniWalletVC.allowTemporaryItems = false
         miniWalletVC.delegate = self
-
+        
         if accountDetail.isAutoPay {
             GoogleAnalytics.log(event: .autoPayModifyWallet)
         } else {
@@ -423,6 +423,8 @@ extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
         guard walletItem != viewModel.selectedWalletItem.value else { return }
         viewModel.userDidChangeBankAccount.value = true
         viewModel.selectedWalletItem.value = walletItem
+        
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .modify_bank)])
     }
     
     func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
@@ -438,6 +440,8 @@ extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
         viewModel.userDidChangeBankAccount.value = true
         viewModel.selectedWalletItem.value = walletItem
+        
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .modify_bank)])
     }
 }
 
