@@ -222,6 +222,10 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         stickyPaymentFooterAmountLabel.font = SystemFont.semibold.of(textStyle: .callout)
         stickyPaymentFooterFeeLabel.textColor = .deepGray
         stickyPaymentFooterFeeLabel.font = SystemFont.regular.of(textStyle: .caption1)
+        stickyPaymentFooterView.accessibilityElements = [
+            stickyPaymentFooterTotalPaymentLabel, stickyPaymentFooterAmountLabel,
+            stickyPaymentFooterFeeLabel, continueButton
+        ] as [UIView]
         
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
         errorLabel.textColor = .deepGray
