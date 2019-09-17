@@ -100,9 +100,9 @@ class MyHomeProfileViewModel {
         }
         
         if a11yString.isEmpty {
-            return NSLocalizedString("Save", comment: "")
+            return NSLocalizedString("Save Profile", comment: "")
         } else {
-            return String(format: NSLocalizedString("%@ Save", comment: ""), a11yString)
+            return String(format: NSLocalizedString("%@ Save Profile", comment: ""), a11yString)
         }
     }.asDriver(onErrorJustReturn: "")
     
