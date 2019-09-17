@@ -171,7 +171,9 @@ class ContactUsViewController: UIViewController {
         
         // add spacer buttons to fill the last row
         while buttons.count % rowCount != 0 {
-            buttons.append(UIButton(type: .custom))
+            let spacerButton = UIButton(type: .custom)
+            spacerButton.isAccessibilityElement = false
+            buttons.append(spacerButton)
         }
         
         // create stack views for each row of buttons
