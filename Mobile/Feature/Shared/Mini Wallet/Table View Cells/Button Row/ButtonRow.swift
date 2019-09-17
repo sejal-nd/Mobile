@@ -19,11 +19,13 @@ class ButtonRow: UITableViewCell {
                 titleLabel.alpha = 1.0
                 
                 selectionStyle = .default
+                accessibilityTraits = .button
             } else {
                 iconImageView.alpha = 0.4
                 titleLabel.alpha = 0.4
                 
                 selectionStyle = .none
+                accessibilityTraits = [.button, .notEnabled]
             }
         }
     }
@@ -33,9 +35,9 @@ class ButtonRow: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        accessibilityTraits = .button
         style()
     }
-    
     
     // MARK: - Helper
     
@@ -54,8 +56,7 @@ class ButtonRow: UITableViewCell {
         titleLabel.text = title
         
         self.isEnabled = isEnabled
-        
-        // Accessibility
-        self.accessibilityLabel = "\(iconImageView.accessibilityLabel ?? ""), \(titleLabel.accessibilityLabel ?? "")"
+
+        accessibilityLabel = "\(iconImageView.accessibilityLabel ?? ""), \(titleLabel.accessibilityLabel ?? "")"
     }
 }
