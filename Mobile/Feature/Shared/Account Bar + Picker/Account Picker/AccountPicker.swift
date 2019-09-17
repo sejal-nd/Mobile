@@ -86,14 +86,8 @@ class AccountPicker: UIControl {
         view.translatesAutoresizingMaskIntoConstraints = true
         addSubview(view)
         
-        if accounts.count > 1 || isMultiPremise {
-            isAccessibilityElement = true
-            accessibilityTraits = .button
-            accessibilityLabel = NSLocalizedString("Account picker", comment: "")
-        } else {
-            isAccessibilityElement = false
-        }
-        
+        isAccessibilityElement = true
+                
         clipsToBounds = true
         backgroundColor = .clear
         view.backgroundColor = .clear
@@ -139,25 +133,29 @@ class AccountPicker: UIControl {
             multiAccountView.isHidden = isSingleAccount
             singleAccountView.isHidden = !isSingleAccount
             
+            accessibilityTraits = isSingleAccount ? [] : .button
+            var a11yDescription = isSingleAccount ? "" : NSLocalizedString("Account picker button.", comment: "")
+            
             guard let account = currentAccount else { return }
             
             let icon: UIImage
-            let a11yDescription: String
+            let iconA11yLabel: String
             switch (!account.isResidential, tintWhite) {
             case (true, true):
                 icon = UIImage(named: "ic_commercial_mini_white")!
-                a11yDescription = NSLocalizedString("Commercial account", comment: "")
+                iconA11yLabel = NSLocalizedString("Commercial account", comment: "")
             case (true, false):
                 icon = UIImage(named: "ic_commercial_mini")!
-                a11yDescription = NSLocalizedString("Commercial account", comment: "")
+                iconA11yLabel = NSLocalizedString("Commercial account", comment: "")
             case (false, true):
                 icon = UIImage(named: "ic_residential_mini_white")!
-                a11yDescription = NSLocalizedString("Residential account", comment: "")
+                iconA11yLabel = NSLocalizedString("Residential account", comment: "")
             case (false, false):
                 icon = UIImage(named: "ic_residential_mini")!
-                a11yDescription = NSLocalizedString("Residential account", comment: "")
+                iconA11yLabel = NSLocalizedString("Residential account", comment: "")
             }
-            setIconImage(icon, accessibilityLabel: a11yDescription)
+            setIconImage(icon, accessibilityLabel: iconA11yLabel)
+            a11yDescription += iconA11yLabel
             
             let finaledString = NSLocalizedString(Environment.shared.opco == .bge ? "Stopped" : "Finaled", comment: "")
             let linkedString = NSLocalizedString("Linked", comment: "")
@@ -165,15 +163,23 @@ class AccountPicker: UIControl {
             let accountNumberText = "\(account.accountNumber) " +
             "\(account.isFinaled ? "(\(finaledString))" : account.isLinked ? "(\(linkedString))":"")"
             
-            setAccountNumberText(accountNumberText, accessibilityLabel: String.localizedStringWithFormat("Account number %@", accountNumberText))
+            let accountNumA11yLabel = String.localizedStringWithFormat("Account number %@", accountNumberText)
+            setAccountNumberText(accountNumberText, accessibilityLabel: accountNumA11yLabel)
+            a11yDescription += ", \(accountNumA11yLabel)"
             
             if let currPremise = account.currentPremise, let address = currPremise.addressGeneral {
-                setAddressText(address, accessibilityLabel: String.localizedStringWithFormat("Street address %@", address))
+                let addressA11yLabel = String.localizedStringWithFormat("Street address %@", address)
+                setAddressText(address, accessibilityLabel: addressA11yLabel)
+                a11yDescription += ", \(addressA11yLabel)"
             } else if let address = account.address {
-                setAddressText(address, accessibilityLabel: String.localizedStringWithFormat("Street address %@", address))
+                let addressA11yLabel = String.localizedStringWithFormat("Street address %@", address)
+                setAddressText(address, accessibilityLabel: addressA11yLabel)
+                a11yDescription += ", \(addressA11yLabel)"
             } else {
                 setAddressText(" ", accessibilityLabel: "")
             }
+
+            accessibilityLabel = a11yDescription
         }
     }
     
