@@ -109,7 +109,6 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         viewModel.verifyUniqueUsername(onSuccess: { [weak self] in
             LoadingView.hide()
             GoogleAnalytics.log(event: .registerAccountSetup)
-            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_setup)])
             
             self?.performSegue(withIdentifier: "loadSecretQuestionsSegue", sender: self)
         }, onEmailAlreadyExists: { [weak self] in

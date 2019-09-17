@@ -184,11 +184,10 @@ struct EventParameter {
         case account_verify
         
         case view_pdf
-        case view_usage
         case launch_prepaid
         case history_view_more_upcoming_header
         case history_view_more_past_header
-        case history_view_more_row
+        case history_view_more_past_row
         case history_view_pdf
         
         case switch_payment_method

@@ -240,7 +240,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
             }
             
             GoogleAnalytics.log(event: .registerAccountSecurityQuestions)
-            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_security_questions)])
+
             self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
 
         }, onError: { [weak self] (title, message) in
