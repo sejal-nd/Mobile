@@ -23,6 +23,7 @@ class MiniWalletItemRow: UITableViewCell {
                 subtitleLabel.alpha = 1.0
                 
                 selectionStyle = .default
+                accessibilityTraits = .button
             } else {
                 checkmarkImageView.alpha = 0.4
                 paymentTypeImageView.alpha = 0.4
@@ -30,6 +31,7 @@ class MiniWalletItemRow: UITableViewCell {
                 subtitleLabel.alpha = 0.4
                 
                 selectionStyle = .none
+                accessibilityTraits = [.button, .notEnabled]
             }
         }
     }
@@ -40,6 +42,7 @@ class MiniWalletItemRow: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        accessibilityTraits = .button
         style()
     }
     
