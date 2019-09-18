@@ -236,16 +236,16 @@
                                 <rect key="frame" x="0.0" y="94" width="375" height="2872"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-pX-9Nn" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2747.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2820"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KpR-1V-7N1" userLabel="Main Stack">
-                                                <rect key="frame" x="0.0" y="20" width="375" height="2707.5"/>
+                                                <rect key="frame" x="0.0" y="20" width="375" height="2780"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVU-9C-SBY" userLabel="Top View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1622"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1694.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="C0x-OA-H1R" userLabel="Top Stack">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1622"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1694.5"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="veU-mg-8re" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="16" y="0.0" width="343" height="151.5"/>
@@ -333,13 +333,30 @@
                                                                         </connections>
                                                                     </view>
                                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCi-Kh-nMw">
-                                                                        <rect key="frame" x="16" y="231.5" width="343" height="1390.5"/>
+                                                                        <rect key="frame" x="16" y="231.5" width="343" height="1463"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xef-Jy-u4j">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="1390.5"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="1463"/>
                                                                                 <subviews>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wcs-pd-EJQ">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="52.5"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Multi-Premise Bill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ooo-FO-Sag">
+                                                                                                <rect key="frame" x="105" y="16" width="133.5" height="20.5"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                                <nil key="textColor"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="Ooo-FO-Sag" firstAttribute="centerX" secondItem="Wcs-pd-EJQ" secondAttribute="centerX" id="Tin-J5-k55"/>
+                                                                                            <constraint firstItem="Ooo-FO-Sag" firstAttribute="top" secondItem="Wcs-pd-EJQ" secondAttribute="top" constant="16" id="VGR-cP-FfH"/>
+                                                                                            <constraint firstAttribute="bottom" secondItem="Ooo-FO-Sag" secondAttribute="bottom" constant="16" id="so6-BI-s9r"/>
+                                                                                        </constraints>
+                                                                                    </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqt-Ck-0Yz">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="111"/>
+                                                                                        <rect key="frame" x="0.0" y="72.5" width="343" height="111"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gR4-Z3-SoN">
                                                                                                 <rect key="frame" x="0.0" y="30" width="343" height="71"/>
@@ -377,7 +394,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdS-tc-JCK">
-                                                                                        <rect key="frame" x="0.0" y="131" width="343" height="383"/>
+                                                                                        <rect key="frame" x="0.0" y="203.5" width="343" height="383"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ggz-ci-rJY">
                                                                                                 <rect key="frame" x="15" y="0.0" width="313" height="383"/>
@@ -635,7 +652,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQ3-al-STq">
-                                                                                        <rect key="frame" x="0.0" y="534" width="343" height="228.5"/>
+                                                                                        <rect key="frame" x="0.0" y="606.5" width="343" height="228.5"/>
                                                                                         <subviews>
                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" image="ic_bill_credit" translatesAutoresizingMaskIntoConstraints="NO" id="Th2-Rs-5bK">
                                                                                                 <rect key="frame" x="117.5" y="30" width="108" height="108"/>
@@ -667,7 +684,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2p-65-p3x">
-                                                                                        <rect key="frame" x="0.0" y="782.5" width="343" height="194"/>
+                                                                                        <rect key="frame" x="0.0" y="855" width="343" height="194"/>
                                                                                         <subviews>
                                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" image="ic_bill_newcustomer" translatesAutoresizingMaskIntoConstraints="NO" id="dse-Dq-D0K">
                                                                                                 <rect key="frame" x="117.5" y="30" width="108" height="108"/>
@@ -690,7 +707,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwd-SD-FQp" userLabel="View Bill Button" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                                                        <rect key="frame" x="91" y="996.5" width="161" height="34.5"/>
+                                                                                        <rect key="frame" x="91" y="1069" width="161" height="34.5"/>
                                                                                         <subviews>
                                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_pdf" translatesAutoresizingMaskIntoConstraints="NO" id="Y0I-nG-f72">
                                                                                                 <rect key="frame" x="20" y="7.5" width="18" height="20"/>
@@ -719,7 +736,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bX6-7t-Qlu">
-                                                                                        <rect key="frame" x="30" y="1051" width="283" height="149.5"/>
+                                                                                        <rect key="frame" x="30" y="1123.5" width="283" height="149.5"/>
                                                                                         <subviews>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kP-03-nkd" userLabel="Make a Payment Button" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="283" height="55"/>
@@ -778,7 +795,7 @@
                                                                                         </subviews>
                                                                                     </stackView>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ec7-s5-I2y">
-                                                                                        <rect key="frame" x="0.0" y="1220.5" width="343" height="170"/>
+                                                                                        <rect key="frame" x="0.0" y="1293" width="343" height="170"/>
                                                                                         <subviews>
                                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yBr-Ha-ice">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="165"/>
@@ -898,8 +915,10 @@
                                                                                     <constraint firstItem="jqt-Ck-0Yz" firstAttribute="leading" secondItem="xef-Jy-u4j" secondAttribute="leading" id="7Hh-l7-Ocv"/>
                                                                                     <constraint firstItem="iQ3-al-STq" firstAttribute="leading" secondItem="xef-Jy-u4j" secondAttribute="leading" id="C5O-4o-rAu"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="iQ3-al-STq" secondAttribute="trailing" id="Il5-Ub-c0L"/>
+                                                                                    <constraint firstItem="Wcs-pd-EJQ" firstAttribute="leading" secondItem="xef-Jy-u4j" secondAttribute="leading" id="Ldt-TY-BUE"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="W2p-65-p3x" secondAttribute="trailing" id="Qkn-aA-3SY"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="jqt-Ck-0Yz" secondAttribute="trailing" id="ZYP-El-F21"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Wcs-pd-EJQ" secondAttribute="trailing" id="auM-r0-0tO"/>
                                                                                     <constraint firstItem="rdS-tc-JCK" firstAttribute="leading" secondItem="xef-Jy-u4j" secondAttribute="leading" id="g4D-0Z-G28"/>
                                                                                     <constraint firstItem="ec7-s5-I2y" firstAttribute="leading" secondItem="xef-Jy-u4j" secondAttribute="leading" id="i01-KM-Qel"/>
                                                                                     <constraint firstItem="bX6-7t-Qlu" firstAttribute="leading" secondItem="xef-Jy-u4j" secondAttribute="leading" constant="30" id="ini-44-Eh6"/>
@@ -942,7 +961,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pmG-TX-rf7">
-                                                        <rect key="frame" x="0.0" y="1622" width="375" height="609"/>
+                                                        <rect key="frame" x="0.0" y="1694.5" width="375" height="609"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v20-oe-aG4">
                                                                 <rect key="frame" x="16" y="15" width="343" height="594"/>
@@ -1038,7 +1057,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xyl-IY-iJM">
-                                                        <rect key="frame" x="0.0" y="2231" width="375" height="376.5"/>
+                                                        <rect key="frame" x="0.0" y="2303.5" width="375" height="376.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Billing Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltx-Ph-efq">
                                                                 <rect key="frame" x="132.5" y="30" width="110.5" height="20.5"/>
@@ -1303,7 +1322,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="dfG-y4-peS" userLabel="Prepaid View">
-                                                        <rect key="frame" x="0.0" y="2607.5" width="375" height="100"/>
+                                                        <rect key="frame" x="0.0" y="2680" width="375" height="100"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGI-YG-7zo" customClass="PrepaidCardView" customModule="BGE" customModuleProvider="target">
                                                                 <rect key="frame" x="16" y="30" width="343" height="70"/>
@@ -1323,7 +1342,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohR-qR-Y1P">
-                                                        <rect key="frame" x="0.0" y="2707.5" width="375" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="2780" width="375" height="0.0"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KV6-S8-LRw">
                                                                 <rect key="frame" x="0.0" y="-71.5" width="375" height="143.5"/>
@@ -1488,6 +1507,8 @@
                         <outlet property="makeAPaymentButton" destination="5kP-03-nkd" id="fM0-dK-iK8"/>
                         <outlet property="makeAPaymentStatusButton" destination="Hcr-PO-NuQ" id="F8X-PO-sq8"/>
                         <outlet property="makeAPaymentStatusLabel" destination="AoK-OV-hPp" id="v0y-Bq-sX6"/>
+                        <outlet property="multipremiseHeaderLabel" destination="Ooo-FO-Sag" id="KKw-hs-DEl"/>
+                        <outlet property="multipremiseHeaderView" destination="Wcs-pd-EJQ" id="hsa-3y-SDY"/>
                         <outlet property="noNetworkConnectionView" destination="kjt-Td-wx3" id="hdU-7F-clf"/>
                         <outlet property="paperlessButton" destination="nSe-Oh-dqm" id="U55-jj-93f"/>
                         <outlet property="paperlessDetailLabel" destination="nsg-Qd-WHh" id="J7b-N2-rEQ"/>

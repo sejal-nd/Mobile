@@ -509,7 +509,7 @@ class HomeBillCardViewModel {
         default:
             if AccountsStore.shared.currentAccount.isMultipremise {
                 attributes[.foregroundColor] = StormModeStatus.shared.isOn ? UIColor.white : UIColor.deepGray
-                return NSAttributedString(string: NSLocalizedString("Multi-premise Account", comment: ""),
+                return NSAttributedString(string: NSLocalizedString("Multi-Premise Bill", comment: ""),
                                           attributes: attributes)
             }
             return nil

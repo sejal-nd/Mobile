@@ -29,6 +29,9 @@ class BillViewController: AccountPickerViewController {
     
     @IBOutlet weak var billCardView: UIView!
     
+    @IBOutlet weak var multipremiseHeaderView: UIView!
+    @IBOutlet weak var multipremiseHeaderLabel: UILabel!
+    
     @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
@@ -228,6 +231,12 @@ class BillViewController: AccountPickerViewController {
         billCardView.layer.cornerRadius = 10
         billCardView.layer.borderColor = UIColor.accentGray.cgColor
         billCardView.layer.borderWidth = 1
+        
+        multipremiseHeaderView.layer.borderColor = UIColor.accentGray.cgColor
+        multipremiseHeaderView.layer.borderWidth = 1
+        multipremiseHeaderLabel.textColor = .deepGray
+        multipremiseHeaderLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        multipremiseHeaderLabel.text = NSLocalizedString("Multi-Premise Bill", comment: "")
         
         totalAmountLabel.textColor = .deepGray
         totalAmountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
@@ -530,6 +539,8 @@ class BillViewController: AccountPickerViewController {
         viewModel.showAlertBanner.filter { $0 }.mapTo(())
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
+        
+        viewModel.showMultipremiseHeader.not().drive(multipremiseHeaderView.rx.isHidden).disposed(by: bag)
 
         totalAmountTooltipButton.isHidden = !viewModel.showAmountDueTooltip
         
