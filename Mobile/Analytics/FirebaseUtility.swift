@@ -244,13 +244,14 @@ struct EventParameter {
         case instagram
         case pinterest
         
+        case view_screen
         case personalize_banner
         case personalize_button
         case personalize_complete
         case personalize_restore
         case bill_cta
         case bill_slide_to_pay
-        case bil_choose_default_payment_method
+        case bill_choose_default_payment_method
         case bill_terms
         case bill_view_pdf
         case usage_cta

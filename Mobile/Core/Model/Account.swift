@@ -174,11 +174,6 @@ struct AccountDetail: Mappable {
         
         electricChoiceId = map.optionalFrom("electricChoiceID")
         gasChoiceId = map.optionalFrom("gasChoiceID")
-        
-        // Control Group
-        if Environment.shared.opco == .bge {
-            FirebaseUtility.setUserPropety(.isControlGroup, value: isBGEControlGroup.description)
-        }
     }
     
     // BGE only - Smart Energy Rewards enrollment status
