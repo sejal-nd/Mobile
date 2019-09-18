@@ -173,6 +173,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         footerTextView.linkTapDelegate = self
         
         commentTextView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
+        commentTextView.textView.accessibilityLabel = NSLocalizedString("Enter details here (Optional)", comment: "")
         
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         

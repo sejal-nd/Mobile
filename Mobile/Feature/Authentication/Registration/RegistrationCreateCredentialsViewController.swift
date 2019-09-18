@@ -70,7 +70,7 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         passwordStrengthLabel.textColor = .deepGray
         passwordStrengthLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         mustAlsoContainLabel.textColor = .deepGray
-        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        mustAlsoContainLabel.font = SystemFont.regular.of(textStyle: .subheadline)
         
         for label in passwordRequirementLabels {
             label.textColor = .deepGray
@@ -252,27 +252,27 @@ class RegistrationCreateCredentialsViewController: KeyboardAvoidingStickyFooterV
         viewModel.characterCountValid.map(checkImageOrNil).drive(characterCountCheck.rx.image).disposed(by: disposeBag)
         viewModel.characterCountValid.drive(onNext: { [weak self] valid in
             self?.characterCountCheck.isAccessibilityElement = valid
-            self?.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+            self?.characterCountCheck.accessibilityLabel = NSLocalizedString("Password criteria met", comment: "")
         }).disposed(by: disposeBag)
         viewModel.containsUppercaseLetter.map(checkImageOrNil).drive(uppercaseCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsUppercaseLetter.drive(onNext: { [weak self] valid in
             self?.uppercaseCheck.isAccessibilityElement = valid
-            self?.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+            self?.uppercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met", comment: "")
         }).disposed(by: disposeBag)
         viewModel.containsLowercaseLetter.map(checkImageOrNil).drive(lowercaseCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsLowercaseLetter.drive(onNext: { [weak self] valid in
             self?.lowercaseCheck.isAccessibilityElement = valid
-            self?.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+            self?.lowercaseCheck.accessibilityLabel = NSLocalizedString("Password criteria met", comment: "")
         }).disposed(by: disposeBag)
         viewModel.containsNumber.map(checkImageOrNil).drive(numberCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsNumber.drive(onNext: { [weak self] valid in
             self?.numberCheck.isAccessibilityElement = valid
-            self?.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+            self?.numberCheck.accessibilityLabel = NSLocalizedString("Password criteria met", comment: "")
         }).disposed(by: disposeBag)
         viewModel.containsSpecialCharacter.map(checkImageOrNil).drive(specialCharacterCheck.rx.image).disposed(by: disposeBag)
         viewModel.containsSpecialCharacter.drive(onNext: { [weak self] valid in
             self?.specialCharacterCheck.isAccessibilityElement = valid
-            self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met for", comment: "")
+            self?.specialCharacterCheck.accessibilityLabel = NSLocalizedString("Password criteria met", comment: "")
         }).disposed(by: disposeBag)
         
         // Password cannot match email
