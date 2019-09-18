@@ -138,9 +138,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         accountLookupToolButton.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton.setTitleColor(.actionBlue, for: .normal)
         accountLookupToolButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
-        accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")
-        
-        FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .start)])
+        accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")        
     }
     
     private func accessibilityErrorLabel() {

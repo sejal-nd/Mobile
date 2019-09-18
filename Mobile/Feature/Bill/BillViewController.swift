@@ -616,7 +616,6 @@ class BillViewController: AccountPickerViewController {
         prepaidBannerButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
                 GoogleAnalytics.log(event: .prePaidPending)
-                FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .launch_prepaid)])
                 UIApplication.shared.openUrlIfCan(self?.viewModel.prepaidUrl)
             })
             .disposed(by: bag)

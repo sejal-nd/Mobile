@@ -171,4 +171,9 @@ class TemplateCardView: UIView {
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,
                                                                                          self.peakRewardsViewController)
+    
+    @IBAction func ctaPress(_ sender: Any) {
+        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .promo_cta)])
+
+    }
 }

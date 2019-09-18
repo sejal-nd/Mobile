@@ -45,7 +45,6 @@ class RegistrationConfirmationViewController: DismissableFormSheetViewController
     
     override func viewDidAppear(_ animated: Bool) {
         GoogleAnalytics.log(event: .registerAccountComplete)
-        FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .complete)])
     }
     
     private var emailAddress: String {
