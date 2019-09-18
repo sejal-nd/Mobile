@@ -177,7 +177,7 @@ struct AccountDetail: Mappable {
         
         // Control Group
         if Environment.shared.opco == .bge {
-            FirebaseUtility.setUserPropety(.serviceType, value: isBGEControlGroup.description)
+            FirebaseUtility.setUserPropety(.isControlGroup, value: isBGEControlGroup.description)
         }
     }
     

@@ -99,6 +99,8 @@ class MoreViewController: UIViewController {
     @objc func toggleBiometrics(_ sender: UISwitch) {
         FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: sender.isOn.description)])
         
+        FirebaseUtility.setUserPropety(.isBiometricsEnabled, value: sender.isOn.description)
+        
         if sender.isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
             GoogleAnalytics.log(event: .touchIDEnable)

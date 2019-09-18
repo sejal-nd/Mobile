@@ -247,8 +247,15 @@ class UsageViewController: AccountPickerViewController {
     }
     
     @IBAction private func barGraphPress(_ sender: ButtonControl) {
-        if sender.tag == 3 {
-            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .projected_graph_press)])
+        switch sender.tag {
+        case 1:
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .previous_bar_press)])
+        case 2:
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .current_bar_press)])
+        case 3:
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .projected_bar_press)])
+        default:
+            break
         }
         
         viewModel.setBarSelected(tag: sender.tag)
@@ -340,9 +347,9 @@ class UsageViewController: AccountPickerViewController {
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 
                 if isPreviousBill {
-                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .previous_graph_press)])
+                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .last_year_graph_press)])
                 } else {
-                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .next_graph_press)])
+                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .last_bill_graph_press)])
                 }
                 
                 GoogleAnalytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)

@@ -231,6 +231,8 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         
         LoadingView.show()
         
+        FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .ebill_enroll)])
+        
         viewModel.registerUser(onSuccess: { [weak self] in
             guard let self = self else { return }
             LoadingView.hide()
@@ -259,7 +261,6 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if eBillEnrollCheckbox.isChecked {
-            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .ebill_enroll)])
             GoogleAnalytics.log(event: .registerEBillEnroll)
         }
     }
@@ -267,6 +268,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     @IBAction func onQuestionButtonPress(_ sender: Any) {
         self.performSegue(withIdentifier: "securityQuestionSegue", sender: sender)
     }
+    
     
     // MARK: - Navigation
 

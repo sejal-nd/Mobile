@@ -140,6 +140,11 @@ struct FirebaseUtility {
         
         Analytics.setUserProperty(value, forName: userProperty.rawValue)
     }
+
+    public static func trackScreenWithName(_ name: String?, className: String?) {
+        Analytics.setScreenName(name, screenClass: className)
+    }
+    
 }
 
 
@@ -168,23 +173,16 @@ struct EventParameter {
         case terms
         
         case complete
-        
-        case start
         case verification_complete
-        case answer_question_start
         case answer_question_complete
         
-        case offer
-        case account_validation
-        case account_setup
-        case account_security_questions
         case account_complete
         case resend_email
         case ebill_enroll
         case account_verify
+        case return_to_signin
         
         case view_pdf
-        case launch_prepaid
         case history_view_more_upcoming_header
         case history_view_more_past_header
         case history_view_more_past_row
@@ -214,15 +212,12 @@ struct EventParameter {
         
         case electric_segment_press
         case gas_segment_press
-        case next_graph_press
-        case previous_graph_press
+        case last_bill_graph_press
+        case last_year_graph_press
+                
         case previous_bar_press
-        case next_bar_press
-        case projected_graph_press
-        case factors_press
-        case factor_bill_period_press
-        case factor_weather_press
-        case factor_other_press
+        case current_bar_press
+        case projected_bar_press
         
         case strong_password_complete
         case change_password_complete
@@ -259,7 +254,7 @@ struct EventParameter {
         case bill_terms
         case bill_view_pdf
         case usage_cta
-        case peak_rewards_cta
+        case promo_cta
         case outage_cta
         case projected_bill_cta
         case projected_bill_electric_press
@@ -269,28 +264,24 @@ struct EventParameter {
         case usage_previous_graph_press
         case usage_next_graph_press
         case urgent_message_press
+        case weather_tip
         
         case sign_in_register_press
+        case report_outage_press
+        case view_outage_press
         
-        case pay_remind
+        case days_before_due_press
         case english
         case spanish
-        case main_screen
-        case initial
-        case initial_decline
-        case initial_accept
         case opco_update
-        case bill_enroll_push
         case bill_enroll_push_cancel
         case bill_enroll_push_continue
-        case bill_unenroll_push
-        case bill_unenroll_push_cancel
         case bill_unenroll_push_continue
         
         // Login
-        case show_password // done
-        case forgot_username_press // done
-        case forgot_password_press // done
+        case show_password
+        case forgot_username_press
+        case forgot_password_press
         case biometrics_press
     }
     
