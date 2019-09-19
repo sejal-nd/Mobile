@@ -469,7 +469,7 @@ class HomeBillCardView: UIView {
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .mapTo(())
-        .map(OneTouchTutorialViewController.init)
+        .map(SetDefaultPaymentMethodTutorialViewController.init)
     
     private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.touchUpInside
         .asObservable()
