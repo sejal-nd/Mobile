@@ -9,7 +9,6 @@
 import WatchKit
 
 extension WKInterfaceController {
-    
     func animate(withDuration duration: TimeInterval, animations: @escaping () -> Void, completion: @escaping () -> Void) {
         
         let queue = DispatchGroup()
@@ -24,5 +23,4 @@ extension WKInterfaceController {
         
         queue.notify(queue: .main, execute: completion)
     }
-    
 }

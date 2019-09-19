@@ -494,7 +494,6 @@
 		35F9DD3D2333C34200AAA2B2 /* BGE-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35F9DD232333C33F00AAA2B2 /* BGE-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */; };
 		35F9DD5D2333C45900AAA2B2 /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */; };
-		35F9DD632333C84900AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		35F9DD642333C84D00AAA2B2 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C621907F2E00BA13C6 /* Bill.storyboard */; };
 		35F9DD652333C85000AAA2B2 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C721907F2E00BA13C6 /* Outage.storyboard */; };
 		35F9DD662333C85300AAA2B2 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C821907F2E00BA13C6 /* Usage.storyboard */; };
@@ -578,6 +577,7 @@
 		35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
 		35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDC423340C8600AAA2B2 /* Main.storyboard */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -2855,6 +2855,7 @@
 		35F9DD612333C74100AAA2B2 /* BGE-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Info.plist"; sourceTree = "<group>"; };
 		35F9DD692333C87A00AAA2B2 /* PECOAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PECOAssets.xcassets; sourceTree = "<group>"; };
 		35F9DD8E2333D61E00AAA2B2 /* Pods_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35F9DDC423340C8600AAA2B2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
@@ -4766,10 +4767,8 @@
 		35E7C7C521907F2E00BA13C6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				35E7C7C921907F2E00BA13C6 /* Main.storyboard */,
-				35E7C7C621907F2E00BA13C6 /* Bill.storyboard */,
-				35E7C7C721907F2E00BA13C6 /* Outage.storyboard */,
-				35E7C7C821907F2E00BA13C6 /* Usage.storyboard */,
+				35F9DDC323340C5900AAA2B2 /* BGE */,
+				35F9DDC223340C5300AAA2B2 /* PECO */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -4861,6 +4860,25 @@
 				35F9DD8E2333D61E00AAA2B2 /* Pods_Watch_Extension.framework */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		35F9DDC223340C5300AAA2B2 /* PECO */ = {
+			isa = PBXGroup;
+			children = (
+				35E7C7C921907F2E00BA13C6 /* Main.storyboard */,
+				35E7C7C621907F2E00BA13C6 /* Bill.storyboard */,
+				35E7C7C721907F2E00BA13C6 /* Outage.storyboard */,
+				35E7C7C821907F2E00BA13C6 /* Usage.storyboard */,
+			);
+			path = PECO;
+			sourceTree = "<group>";
+		};
+		35F9DDC323340C5900AAA2B2 /* BGE */ = {
+			isa = PBXGroup;
+			children = (
+				35F9DDC423340C8600AAA2B2 /* Main.storyboard */,
+			);
+			path = BGE;
 			sourceTree = "<group>";
 		};
 		6A4FD01F41569B9443AA6FFD /* step3 */ = {
@@ -6483,10 +6501,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */,
 				35F9DD652333C85000AAA2B2 /* Outage.storyboard in Resources */,
-				35F9DD632333C84900AAA2B2 /* Main.storyboard in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
 				35F9DD642333C84D00AAA2B2 /* Bill.storyboard in Resources */,
 				35F9DD662333C85300AAA2B2 /* Usage.storyboard in Resources */,

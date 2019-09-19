@@ -9,7 +9,6 @@
 import WatchKit
 
 extension Date {
-    
     public func dueBy(shouldColor: Bool = false, shouldIncludePrefix: Bool = false) -> NSAttributedString {
 
         let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 63.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)]
@@ -40,5 +39,4 @@ extension Date {
         
         return due
     }
-    
 }

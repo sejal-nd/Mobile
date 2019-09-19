@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14868" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yv4-PS-J3u">
     <device id="watch38"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14643"/>
     </dependencies>
@@ -71,7 +70,7 @@
         <!--SignInInterfaceController-->
         <scene sceneID="MbM-Z9-klW">
             <objects>
-                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="PECO_Watch_Extension">
+                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="BGE_Watch_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="RQM-iB-7iQ">
                             <items>

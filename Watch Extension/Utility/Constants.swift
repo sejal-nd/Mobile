@@ -9,45 +9,28 @@
 import WatchKit
 
 struct Errors {
-    
     struct Code {
-        
         static let passwordProtected = "09122"
-        
         static let noAccountsFound = "09121"
-        
         static let invalidInformation = "87221"
-        
         static let noAuthTokenFound = "981156"
-        
     }
     
     static let passwordProtected = ServiceError(serviceCode: Code.passwordProtected, serviceMessage: "Account is Password Protected, cannot show data.", cause: nil)
-    
     static let noAccountsFound = ServiceError(serviceCode: Code.noAccountsFound, serviceMessage: "Could not locate the current account in AccountStore.shared.getSelectedAccounts.", cause: nil)
-    
     static let invalidInformation = ServiceError(serviceCode: Code.invalidInformation, serviceMessage: "Invalid Info: nil data returned for expected request without throwing an error.", cause: nil)
-    
     static let noAuthTokenFound = ServiceError(serviceCode: Code.noAuthTokenFound, serviceMessage: "No Auth Token in Keychain.", cause: nil)
-    
 }
 
 struct keychainKeys {
-    
     static let authToken = "authToken"
-    
     static let clearAuthToken = "clearAuthToken"
-    
     static let askForUpdate = "askForUpdate"
-    
     static let outageReported = "outageReported"
-    
 }
 extension Notification.Name {
     static let outageReported: Notification.Name = Notification.Name(rawValue: "outageReportedNotificationName")
-    
     static let defaultAccountSet: Notification.Name = Notification.Name(rawValue: "defaultAccountSet")
-    
     static let currentAccountUpdated: Notification.Name = Notification.Name(rawValue: "currentAccountUpdated")
 }
 

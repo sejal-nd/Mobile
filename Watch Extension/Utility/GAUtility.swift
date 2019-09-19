@@ -9,7 +9,6 @@
 import Foundation
 
 class GATracker {
-
     private var propertyId = Environment.shared.watchGaTrackingId
     private var clientId: String
     private var appName: String
@@ -131,5 +130,4 @@ class GATracker {
         }
         send(type: "exception", params: params)
     }
-    
 }

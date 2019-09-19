@@ -9,10 +9,8 @@
 import Foundation
 
 extension RangeReplaceableCollection where Indices: Equatable {
-    
     mutating func rearrange(from: Index, to: Index) {
         guard from != to && indices.contains(from) && indices.contains(to) else { return }
         insert(remove(at: from), at: to)
     }
-    
 }

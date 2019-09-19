@@ -71,7 +71,7 @@
         <!--SignInInterfaceController-->
         <scene sceneID="MbM-Z9-klW">
             <objects>
-                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="BGE_Watch_Extension">
+                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="PECO_Watch_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="RQM-iB-7iQ">
                             <items>
