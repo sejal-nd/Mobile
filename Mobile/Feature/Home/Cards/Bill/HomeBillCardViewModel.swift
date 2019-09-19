@@ -314,8 +314,9 @@ class HomeBillCardViewModel {
 
     private(set) lazy var showWalletItemInfo: Driver<Bool> = Driver
         .combineLatest(showOneTouchPaySlider,
+                       showSaveAPaymentAccountButton,
                        showMinMaxPaymentAllowed)
-        { $0 && !$1 }
+        { ($0 || $1) && !$2 }
         .distinctUntilChanged()
 
     private(set) lazy var showBankCreditNumberButton: Driver<Bool> = walletItemDriver.isNil().not()
@@ -325,8 +326,8 @@ class HomeBillCardViewModel {
     }
 
     private(set) lazy var showSaveAPaymentAccountButton: Driver<Bool> = Driver
-        .combineLatest(billState, walletItemDriver, showOneTouchPaySlider)
-        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil && $2 }
+        .combineLatest(billState, walletItemDriver)
+        { $0 != .credit && !$0.isPrecariousBillSituation && $0 != .paymentScheduled && $1 == nil }
         .distinctUntilChanged()
 
     private(set) lazy var showMinMaxPaymentAllowed: Driver<Bool> = Driver
