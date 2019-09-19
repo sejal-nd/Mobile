@@ -173,29 +173,20 @@ class AlertPreferencesViewController: UIViewController {
                 let alertTitle = NSLocalizedString("Go Paperless", comment: "")
                 let alertMessage = NSLocalizedString("By selecting this alert, you will be enrolled in paperless billing and you will no longer receive a paper bill in the mail. Paperless billing will begin with your next billing cycle.", comment: "")
                 GoogleAnalytics.log(event: .alertseBillEnrollPush)
-                FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_enroll_push)])
                 
                 let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { [weak self] _ in
-                    if isOn {
-                        FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_enroll_push_cancel)])
-                        GoogleAnalytics.log(event: .alertseBillEnrollPushCancel)
-                    } else {
-                        FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_unenroll_push_cancel)])
-                        GoogleAnalytics.log(event: .alertseBillUnenrollPushCancel)
-                    }
+                    FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_enroll_push_cancel)])
+                    GoogleAnalytics.log(event: .alertseBillEnrollPushCancel)
+                    
                     self?.viewModel.billReady.value = !isOn // Need to manually set this because .setOn does not trigger rx binding
                 }))
                 
                 alertVc.addAction(UIAlertAction(title: NSLocalizedString("Continue", comment: ""), style: .default, handler: { [weak self] _ in
-                    if isOn {
-                        FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_enroll_push_continue)])
-                        GoogleAnalytics.log(event: .alertseBillEnrollPushContinue)
-                    } else {
-                        FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_unenroll_push_continue)])
-                        GoogleAnalytics.log(event: .alertseBillUnenrollPushContinue)
-                    }
+                    FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_enroll_push_continue)])
+                    GoogleAnalytics.log(event: .alertseBillEnrollPushContinue)
+                    
                     self?.viewModel.billReady.value = true
                 }))
                 
@@ -210,6 +201,11 @@ class AlertPreferencesViewController: UIViewController {
             let alertVc = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             
             alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
+                
+                FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .bill_unenroll_push_continue)])
+
+                GoogleAnalytics.log(event: .alertseBillUnenrollPushContinue)
+
                 self?.viewModel.billReady.value = false
             }))
             
@@ -324,7 +320,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
             cell.pickerButton.rx.tap.asDriver()
                 .drive(onNext: { [weak self] in
                     guard let self = self else { return }
-                    FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .pay_remind)])
+                    FirebaseUtility.logEvent(.alerts, parameters: [EventParameter(parameterName: .action, value: .days_before_due_press)])
                     GoogleAnalytics.log(event: .alertsPayRemind)
                     let upperRange = Environment.shared.opco == .bge ? 14 : 7
                     PickerView.showStringPicker(withTitle: NSLocalizedString("Payment Due Reminder", comment: ""),

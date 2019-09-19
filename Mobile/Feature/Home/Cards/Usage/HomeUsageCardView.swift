@@ -96,6 +96,8 @@ class HomeUsageCardView: UIView {
     
     var userTappedBarGraph = false
     
+    var isInitialSegmentValuePress = false
+    
     fileprivate var viewModel: HomeUsageCardViewModel! {
         didSet {
             disposeBag = DisposeBag() // Clear all pre-existing bindings
@@ -115,6 +117,8 @@ class HomeUsageCardView: UIView {
         
         segmentedControl.items = [NSLocalizedString("Electric", comment: ""),
                                   NSLocalizedString("Gas", comment: "")]
+        
+        isInitialSegmentValuePress = true
         segmentedControl.selectedIndex.value = 0
 
         billComparisonStackView.bringSubviewToFront(segmentedControl)
@@ -500,11 +504,13 @@ class HomeUsageCardView: UIView {
     }
     
     @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
+        guard !isInitialSegmentValuePress else { return }
         if sender.selectedIndex.value == 0 {
             FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_electric_press)])
         } else {
             FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .usage_gas_press)])
         }
+        isInitialSegmentValuePress = false
     }
     
     private func moveTriangleTo(barView: UIView) {

@@ -171,7 +171,6 @@ enum GoogleAnalyticsEvent: String {
     case alertseBillEnrollPushCancel = "AlertseBillEnrollPushCancel"
     case alertseBillEnrollPushContinue = "AlertseBillEnrollPushContinue"
     case alertseBillUnenrollPush = "AlertseBillUnenrollPush" // not currently used
-    case alertseBillUnenrollPushCancel = "AlertseBillUnenrollPushCancel"
     case alertseBillUnenrollPushContinue = "AlertseBillUnenrollPushContinue"
     case alertsDevSet = "AlertsDevSet"
 

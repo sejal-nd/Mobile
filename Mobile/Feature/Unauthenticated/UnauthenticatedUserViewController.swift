@@ -176,8 +176,10 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
         case 0:
             switch indexPath.row {
             case 0:
+                FirebaseUtility.logEvent(.unauth, parameters: [EventParameter(parameterName: .action, value: .report_outage_press)])
                 performSegue(withIdentifier: "reportOutageValidateAccount", sender: nil)
             case 1:
+                FirebaseUtility.logEvent(.unauth, parameters: [EventParameter(parameterName: .action, value: .view_outage_press)])
                 performSegue(withIdentifier: "checkOutageValidateAccount", sender: nil)
             case 2:
                 performSegue(withIdentifier: "outageMapSegue", sender: nil)
@@ -191,7 +193,7 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
             case 1:
                 performSegue(withIdentifier: "contactUsSegue", sender: nil)
             case 2:
-                FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .billing_videos)])
+                FirebaseUtility.logEvent(.unauth, parameters: [EventParameter(parameterName: .action, value: .billing_videos)])
 
                 UIApplication.shared.openUrlIfCan(billingVideosUrl)
             case 3:

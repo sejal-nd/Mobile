@@ -290,6 +290,9 @@ class HomeViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Artificial screen event due to automatic screen tracking not counting the initial load of this screen...
+        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .view_screen)])
+
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     

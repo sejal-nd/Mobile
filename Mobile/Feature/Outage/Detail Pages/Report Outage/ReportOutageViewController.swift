@@ -78,7 +78,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         style()
         
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-
+        
         if unauthenticatedExperience,
             let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
             let addressText = viewModel.outageStatus?.maskedAddress {
@@ -250,25 +250,25 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     
                     self.meterPingFuseBoxView.isHidden = false
                 }
-                                
-                UIAccessibility.post(notification: .screenChanged, argument: self)
-                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
-            }, onError: { [weak self] in
-                guard let `self` = self else { return }
-
-                self.setLottieAnimation(for: "checkmark_blue")
-                
-                self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
-                
-                self.meterPingStatusContainer.isHidden = false
-                self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
-                self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
-                
-                self.areYourLightsOutView.isHidden = true
-                self.viewModel.reportFormHidden.value = false
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
+                }, onError: { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.setLottieAnimation(for: "checkmark_blue")
+                    
+                    self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
+                    
+                    self.meterPingStatusContainer.isHidden = false
+                    self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
+                    self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
+                    
+                    self.areYourLightsOutView.isHidden = true
+                    self.viewModel.reportFormHidden.value = false
+                    
+                    UIAccessibility.post(notification: .screenChanged, argument: self)
+                    UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
             })
         }
     }

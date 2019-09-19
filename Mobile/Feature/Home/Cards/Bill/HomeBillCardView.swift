@@ -541,7 +541,7 @@ class HomeBillCardView: UIView {
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bil_choose_default_payment_method)])
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_choose_default_payment_method)])
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true

@@ -286,11 +286,13 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                                                                     message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
                                                                     preferredStyle: .alert)
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
+                                FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: false.description)])
                                 self?.launchMainApp(isStormMode: isStormMode)
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp(isStormMode: isStormMode)
+                                FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: true.description)])
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
@@ -406,7 +408,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func launchMainApp(isStormMode: Bool) {
         FirebaseUtility.setUserPropety(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
         FirebaseUtility.setUserPropety(.isKeepMeSignedInEnabled, value: viewModel.keepMeSignedIn.value.description)
-        
+
         FirebaseUtility.logEvent(.loginAccountNetworkComplete)
         GoogleAnalytics.log(event: .loginComplete)
 
