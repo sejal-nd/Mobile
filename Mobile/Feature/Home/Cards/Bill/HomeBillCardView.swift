@@ -101,6 +101,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
     
+    let shouldPushWallet = PublishSubject<Void>()
     
     private var viewModel: HomeBillCardViewModel! {
         didSet {
@@ -166,6 +167,8 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.layer.borderColor = UIColor.accentGray.cgColor
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .caption1)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
+        
+        tutorialButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
                 
         paymentDescriptionLabel.textColor = .deepGray
         paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -469,7 +472,11 @@ class HomeBillCardView: UIView {
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .mapTo(())
-        .map(SetDefaultPaymentMethodTutorialViewController.init)
+        .map { [weak self] in
+            let vc = SetDefaultPaymentMethodTutorialViewController()
+            vc.shouldPushWallet = self?.shouldPushWallet
+            return vc
+        }
     
     private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.touchUpInside
         .asObservable()
@@ -502,8 +509,8 @@ class HomeBillCardView: UIView {
                autoPayAlert)
     
     // Pushed View Controllers
-    private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
-        .asObservable()
+    private lazy var walletViewController: Driver<UIViewController> =
+        Observable.merge(bankCreditNumberButton.rx.touchUpInside.asObservable(), shouldPushWallet.asObservable())
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
