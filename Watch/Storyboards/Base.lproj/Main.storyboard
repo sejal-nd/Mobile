@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yv4-PS-J3u">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14868" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yv4-PS-J3u">
+    <device id="watch38"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14643"/>
     </dependencies>
     <scenes>
         <!--ReportOutageInterfaceController-->
@@ -30,11 +28,11 @@
         <!--AccountListInterfaceController-->
         <scene sceneID="QsP-lO-Kwh">
             <objects>
-                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
+                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="Watch_Extension">
                     <items>
                         <table alignment="left" id="sgx-CZ-A51">
                             <items>
-                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="PECO_WatchOS" customModuleProvider="target">
+                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="BGE_Watch" customModuleProvider="target">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="sdA-I2-UIm">
                                         <items>
                                             <imageView width="24" height="1" alignment="left" image="checkmark_white" contentMode="scaleAspectFit" id="eSW-rz-UXJ"/>
@@ -73,7 +71,7 @@
         <!--SignInInterfaceController-->
         <scene sceneID="MbM-Z9-klW">
             <objects>
-                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
+                <controller identifier="SignInInterfaceController" id="yv4-PS-J3u" customClass="SignInInterfaceController" customModule="PECO_Watch_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="RQM-iB-7iQ">
                             <items>
@@ -95,7 +93,7 @@
         <!--OpenAppOnPhoneInterfaceController-->
         <scene sceneID="49C-7x-8A7">
             <objects>
-                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
+                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="Watch_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Cpt-5p-t75">
                             <items>
@@ -115,5 +113,11 @@
             <point key="canvasLocation" x="267" y="-964"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkmark_white" width="24" height="24"/>
+        <image name="reportOutageSignIn" width="138" height="171"/>
+        <image name="residential" width="43" height="43"/>
+        <image name="signin" width="173" height="214"/>
+    </resources>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

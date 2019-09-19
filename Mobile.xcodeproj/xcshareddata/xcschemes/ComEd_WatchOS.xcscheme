@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-               BuildableName = "PECO-Watch.app"
-               BlueprintName = "PECO-Watch"
-               ReferencedContainer = "container:Mobile.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B58B5B0F1E515BD50051FD5F"
-               BuildableName = "PECO.app"
-               BlueprintName = "PECO"
+               BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+               BuildableName = "ComEd.app"
+               BlueprintName = "ComEd"
                ReferencedContainer = "container:Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -41,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO-Watch.app"
-            BlueprintName = "PECO-Watch"
-            ReferencedContainer = "container:Mobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -63,18 +40,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/PECO">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO-Watch.app"
-            BlueprintName = "PECO-Watch"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -82,27 +57,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/PECO">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO-Watch.app"
-            BlueprintName = "PECO-Watch"
+            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
+            BuildableName = "ComEd.app"
+            BlueprintName = "ComEd"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35E7C78E21907EA200BA13C6"
-            BuildableName = "PECO-Watch.app"
-            BlueprintName = "PECO-Watch"
-            ReferencedContainer = "container:Mobile.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Develop">
