@@ -409,7 +409,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         
         // Payment Date
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.valueText).disposed(by: disposeBag)
-        viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.paymentDateA11yString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Edit Payment Detail View
         paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized

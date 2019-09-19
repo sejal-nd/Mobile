@@ -237,6 +237,9 @@ class PaymentViewModel {
     private(set) lazy var paymentDateString: Driver<String> = paymentDate.asDriver()
         .map { $0.mmDdYyyyString }
     
+    private(set) lazy var paymentDateA11yString: Driver<String> = paymentDate.asDriver()
+        .map { String.localizedStringWithFormat("Payment Date,%@", $0.mmDdYyyyString) }
+    
     func shouldCalendarDateBeEnabled(_ date: Date) -> Bool {
         let components = Calendar.opCo.dateComponents([.year, .month, .day], from: date)
         guard let opCoTimeDate = Calendar.opCo.date(from: components) else { return false }
