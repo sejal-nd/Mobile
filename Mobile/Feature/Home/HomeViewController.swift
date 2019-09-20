@@ -489,7 +489,13 @@ class HomeViewController: AccountPickerViewController {
         
         billCardView.modalViewControllers
             .drive(onNext: { [weak self] viewController in
-                self?.present(viewController, animated: true, completion: nil)
+                if viewController is SetDefaultPaymentMethodTutorialViewController {
+                    let newNavController = LargeTitleNavigationController(rootViewController: viewController)
+                    newNavController.modalPresentationStyle = .formSheet
+                    self?.present(newNavController, animated: true, completion: nil)
+                } else {
+                    self?.present(viewController, animated: true, completion: nil)
+                }
             })
             .disposed(by: billCardView.bag)
         
