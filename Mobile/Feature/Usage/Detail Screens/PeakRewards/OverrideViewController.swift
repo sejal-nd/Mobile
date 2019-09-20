@@ -25,7 +25,7 @@ class OverrideViewController: UIViewController {
     
     let saveButton = PrimaryButton(frame: .zero).usingAutoLayout()
     
-    let dateButton = DisclosureButtonNew()
+    let dateButton = DisclosureButton()
     
     let scheduledSerialLabel = UILabel()
     let scheduledDateLabel = UILabel()

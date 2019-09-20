@@ -763,12 +763,6 @@
 		82A18EF31EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */; };
 		82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */; };
 		82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */; };
-		82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
-		82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
-		82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */; };
-		82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
-		82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
-		82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */; };
 		82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		82A18F011EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
 		82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
@@ -1048,9 +1042,9 @@
 		9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
 		9CD3532B22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
 		9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
-		9CD3533022CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533122CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533222CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
+		9CD3533022CABCBB00165F87 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButton.swift */; };
+		9CD3533122CABCBB00165F87 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButton.swift */; };
+		9CD3533222CABCBB00165F87 /* DisclosureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButton.swift */; };
 		9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
 		9CD3533422CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
 		9CD3533522CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
@@ -2852,8 +2846,6 @@
 		82A18ED21EBA684F00BE9F21 /* AccountLookupToolResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountLookupToolResultCell.swift; sourceTree = "<group>"; };
 		82A18EEE1EBA686500BE9F21 /* PaperlessEBillAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperlessEBillAccountView.swift; sourceTree = "<group>"; };
 		82A18EEF1EBA686500BE9F21 /* PaperlessEBillAccountView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaperlessEBillAccountView.xib; sourceTree = "<group>"; };
-		82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
-		82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButton.xib; sourceTree = "<group>"; };
 		82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenResponse.swift; sourceTree = "<group>"; };
 		82A18F031EBD11A000BE9F21 /* ButtonControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonControl.swift; sourceTree = "<group>"; };
 		82A18F071EBD12D600BE9F21 /* Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
@@ -2946,7 +2938,7 @@
 		9CD3531D22CABBB700165F87 /* ZeroInsetDataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroInsetDataDetectorTextView.swift; sourceTree = "<group>"; };
 		9CD3532522CABC0900165F87 /* PrepaidCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepaidCardView.xib; sourceTree = "<group>"; };
 		9CD3532622CABC0900165F87 /* PrepaidCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
-		9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButtonNew.swift; sourceTree = "<group>"; };
+		9CD3532E22CABCBB00165F87 /* DisclosureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButton.swift; sourceTree = "<group>"; };
 		9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButtonNew.xib; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
@@ -4903,7 +4895,6 @@
 				9C62446622C42AF100F14DA0 /* FloatLabelTextView */,
 				9C62445922C1717E00F14DA0 /* FloatLabelTextField */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
-				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
 				9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */,
 				B05D84B121877FD900F15A9F /* DisclosureCellButton */,
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
@@ -4932,15 +4923,6 @@
 				E873DA661EE8681200020D1B /* RadioSelectionTableViewCell */,
 			);
 			path = "Table View Cells";
-			sourceTree = "<group>";
-		};
-		82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */ = {
-			isa = PBXGroup;
-			children = (
-				82A18EF71EBA6A4100BE9F21 /* DisclosureButton.swift */,
-				82A18EF81EBA6A4100BE9F21 /* DisclosureButton.xib */,
-			);
-			path = DisclosureButton;
 			sourceTree = "<group>";
 		};
 		82F2BDE51FD6EF9A00612309 /* Landing Video */ = {
@@ -5192,7 +5174,7 @@
 		9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */ = {
 			isa = PBXGroup;
 			children = (
-				9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */,
+				9CD3532E22CABCBB00165F87 /* DisclosureButton.swift */,
 				9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */,
 			);
 			path = DisclosureButtonNew;
@@ -6232,7 +6214,6 @@
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B07E17EC2209F0CA00B6E3C7 /* payments.json in Resources */,
-				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
@@ -6389,7 +6370,6 @@
 				8FD3C2751E525CE9005FB1BB /* Main.storyboard in Resources */,
 				9C97DB1D20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
 				0D79C6C71F1D3360004793DD /* Maintenance.storyboard in Resources */,
-				82A18EFE1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08957022215F6DC00A97965 /* home_profile.json in Resources */,
 				9C62445E22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
 				9CD3533622CABDB900165F87 /* DisclosureCellButton.xib in Resources */,
@@ -6566,7 +6546,6 @@
 				B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */,
 				B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */,
 				82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
-				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
@@ -7784,7 +7763,6 @@
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				E80043561E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
-				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
@@ -7863,7 +7841,7 @@
 				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
-				9CD3533022CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
+				9CD3533022CABCBB00165F87 /* DisclosureButton.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
@@ -8003,7 +7981,7 @@
 				35A6C7002121DAE600C2A58F /* MoreViewModel.swift in Sources */,
 				E8CFB8AC1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
-				9CD3533222CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
+				9CD3533222CABCBB00165F87 /* DisclosureButton.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
@@ -8154,7 +8132,6 @@
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
-				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3361F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
@@ -8532,7 +8509,6 @@
 				E80043571E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
-				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3351F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C119F6521FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
@@ -8610,7 +8586,7 @@
 				B0728E47215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				8218988F1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
-				9CD3533122CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
+				9CD3533122CABCBB00165F87 /* DisclosureButton.swift in Sources */,
 				82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,

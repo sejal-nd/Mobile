@@ -59,7 +59,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
     @IBOutlet weak var paymentDateView: UIView!
-    @IBOutlet weak var paymentDateButton: DisclosureButtonNew!
+    @IBOutlet weak var paymentDateButton: DisclosureButton!
     @IBOutlet weak var paymentDateErrorView: UIView!
     @IBOutlet weak var paymentDateErrorLabel: UILabel!
     @IBOutlet weak var paymentDatePastDueLabel: UILabel!

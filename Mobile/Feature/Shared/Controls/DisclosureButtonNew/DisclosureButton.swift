@@ -1,5 +1,5 @@
 //
-//  DisclosureButtonNew.swift
+//  DisclosureButton.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 6/28/19.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class DisclosureButtonNew: UIButton {
+class DisclosureButton: UIButton {
     
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -120,7 +120,7 @@ class DisclosureButtonNew: UIButton {
 }
 
 
-extension Reactive where Base: DisclosureButtonNew {
+extension Reactive where Base: DisclosureButton {
     
     var descriptionText: Binder<String?> {
         return Binder(base) { button, text in
