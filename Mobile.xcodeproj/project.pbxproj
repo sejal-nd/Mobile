@@ -578,6 +578,88 @@
 		35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		35F9DDC12333DA4B00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
 		35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDC423340C8600AAA2B2 /* Main.storyboard */; };
+		35F9DDD52335397400AAA2B2 /* ComEd-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DDD42335397400AAA2B2 /* ComEd-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35F9DDE22335397500AAA2B2 /* ComEd-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35F9DDC82335397300AAA2B2 /* ComEd-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		35F9DDF4233539C200AAA2B2 /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */; };
+		35F9DDF5233539C300AAA2B2 /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */; };
+		35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF7233539E100AAA2B2 /* Main.storyboard */; };
+		35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
+		35F9DDFC23353A3C00AAA2B2 /* Equatable+Rearrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */; };
+		35F9DDFD23353A3C00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
+		35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
+		35F9DDFF23353A3C00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
+		35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
+		35F9DE0123353A4300AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
+		35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
+		35F9DE0323353A4300AAA2B2 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
+		35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
+		35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
+		35F9DE0623353A4D00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
+		35F9DE0723353A4D00AAA2B2 /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E42190803900BA13C6 /* AccountsManager.swift */; };
+		35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
+		35F9DE0923353A5300AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */; };
+		35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
+		35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
+		35F9DE0C23353A5300AAA2B2 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
+		35F9DE0D23353A5300AAA2B2 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
+		35F9DE0E23353A5700AAA2B2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */; };
+		35F9DE1223353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */; };
+		35F9DE1323353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89496351EE9E04000B76F8C /* NotificationNames.swift */; };
+		35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		35F9DE1723353C4C00AAA2B2 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
+		35F9DE1823353C5200AAA2B2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
+		35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
+		35F9DE1A23353C5B00AAA2B2 /* OutageStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAF01E785AE3001E8A44 /* OutageStatus.swift */; };
+		35F9DE1B23353C5E00AAA2B2 /* OutageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAFC1E787655001E8A44 /* OutageInfo.swift */; };
+		35F9DE1C23353C6200AAA2B2 /* ForgotUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA07E41E9D391400A1D431 /* ForgotUsername.swift */; };
+		35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2D41ECDE78800CAB8A6 /* WalletItem.swift */; };
+		35F9DE1E23353C7200AAA2B2 /* Premise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC69401F056EEB00C059DC /* Premise.swift */; };
+		35F9DE1F23353C7600AAA2B2 /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		35F9DE2023353C7A00AAA2B2 /* BillComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8790BE61F8C18C20067BE85 /* BillComparison.swift */; };
+		35F9DE2123353C7E00AAA2B2 /* BillForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E827F18E1F8E9D620090C5A5 /* BillForecast.swift */; };
+		35F9DE2223353C8100AAA2B2 /* SSOData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CBD0E1F98EC930039D9E7 /* SSOData.swift */; };
+		35F9DE2323353C8500AAA2B2 /* HomeProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E9B6111FA2401A00556C94 /* HomeProfile.swift */; };
+		35F9DE2423353C9700AAA2B2 /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFBA21C8284A00A899FC /* Payments.swift */; };
+		35F9DE2523353C9C00AAA2B2 /* SERResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08BBFC221C8539000A899FC /* SERResult.swift */; };
+		35F9DE2623353CA700AAA2B2 /* MCSAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD81E8C43BB00550F99 /* MCSAccountService.swift */; };
+		35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F0FF51E9EC8BB00A9B72B /* MCSApi.swift */; };
+		35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801BAD41E8C439500550F99 /* MCSAuthenticationService.swift */; };
+		35F9DE2923353CB700AAA2B2 /* MCSOutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88ECFF01E8D8BA600A570D0 /* MCSOutageService.swift */; };
+		35F9DE2A23353CBD00AAA2B2 /* MCSUsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CFB8A91F87D789003E1AB5 /* MCSUsageService.swift */; };
+		35F9DE2B23353CC700AAA2B2 /* AuthTokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5389EA21E53D9660028AF89 /* AuthTokenParser.swift */; };
+		35F9DE2C23353CCA00AAA2B2 /* MCSResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846861E687E6F008CE1B1 /* MCSResponseParser.swift */; };
+		35F9DE2D23353CCE00AAA2B2 /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB0843210F540400DA47B4 /* DateParser.swift */; };
+		35F9DE2E23353CD200AAA2B2 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAD81E78360D001E8A44 /* AccountService.swift */; };
+		35F9DE2F23353CD800AAA2B2 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E51E526AD500BBA4ED /* AuthenticationService.swift */; };
+		35F9DE3023353CDC00AAA2B2 /* AuthTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18EFF1EBA6AE100BE9F21 /* AuthTokenResponse.swift */; };
+		35F9DE3123353CE300AAA2B2 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54846821E687CEB008CE1B1 /* HttpMethod.swift */; };
+		35F9DE3223353CE900AAA2B2 /* OutageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAEA1E785A5F001E8A44 /* OutageService.swift */; };
+		35F9DE3323353CEF00AAA2B2 /* ServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06E91E52755800BBA4ED /* ServiceResult.swift */; };
+		35F9DE3423353CF200AAA2B2 /* UsageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C16291F87D6AE0023DC02 /* UsageService.swift */; };
+		35F9DE3523353CFD00AAA2B2 /* AccountsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */; };
+		35F9DE3623353D0B00AAA2B2 /* ReportedOutagesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085C44620FFD49400CE0893 /* ReportedOutagesStore.swift */; };
+		35F9DE3723353D1000AAA2B2 /* StormModeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0649A5E214834380041B299 /* StormModeStatus.swift */; };
+		35F9DE3823353D1300AAA2B2 /* ShortUUIDGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B083B5216FCDCF00B1C632 /* ShortUUIDGenerator.swift */; };
+		35F9DE3923353D1900AAA2B2 /* Date+Now.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04DDF5A21FA800C00594ACF /* Date+Now.swift */; };
+		35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D5994A1EC36B5500DDB380 /* NumberFormatter.swift */; };
+		35F9DE3B23353D2900AAA2B2 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225FF8591EC56B480079010C /* Date.swift */; };
+		35F9DE3C23353D3400AAA2B2 /* NibViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A18F171EC0E83800BE9F21 /* NibViews.swift */; };
+		35F9DE3D23353D3800AAA2B2 /* PecoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C681E550545000B7BD0 /* PecoColor.swift */; };
+		35F9DE3E23353D4000AAA2B2 /* Fillable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829E058A1FA7928E00697633 /* Fillable.swift */; };
+		35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AD7FED205841C80090B40D /* SequenceForEach.swift */; };
+		35F9DE4023353D4C00AAA2B2 /* URLSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2249C036216C44C800EAA44D /* URLSession+Rx.swift */; };
+		35F9DE4123353D5400AAA2B2 /* Optional+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9EFFA21EE458F0086A82A /* Optional+Comparable.swift */; };
+		35F9DE4223353D5F00AAA2B2 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356C7F8021909997003E8A90 /* KeychainUtility.swift */; };
+		35F9DE4323353D6700AAA2B2 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
+		35F9DE4423353D9500AAA2B2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
+		35F9DE4523353D9C00AAA2B2 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */; };
+		35F9DE4623353DA700AAA2B2 /* DebugOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8092190806700BA13C6 /* DebugOptions.swift */; };
+		35F9DE472335409900AAA2B2 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
+		35F9DE482335413200AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
+		35F9DE492335413300AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
+		35F9DE4A2335413800AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
+		35F9DE4B2335413800AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -701,6 +783,7 @@
 		6A4FDF0D523DED06D1465E99 /* otps3_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD9CCBDC02D4AB4E199CA /* otps3_img_1.png */; };
 		6A4FDF7B7B5896327BB37392 /* TutorialModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */; };
 		6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */; };
+		764DB97880F4FB501BD0A817 /* Pods_ComEd_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A8802415FF973953C36323 /* Pods_ComEd_Watch_Extension.framework */; };
 		820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
 		820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
 		820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
@@ -1776,6 +1859,7 @@
 		B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415831F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist */; };
 		B5D415861F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415851F3A6EC900AC32B2 /* GoogleService-Info_peco_staging.plist */; };
 		B5D415881F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */; };
+		B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */; };
 		C35630934D9C14C670A6E89D /* Pods_BGE_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56989091D306CA58F4B7F0BC /* Pods_BGE_Watch.framework */; };
 		CEA2151D1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
 		CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */; };
@@ -2505,6 +2589,20 @@
 			remoteGlobalIDString = 35F9DD2E2333C34100AAA2B2;
 			remoteInfo = "BGE-Watch Extension";
 		};
+		35F9DDD62335397400AAA2B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35F9DDD32335397400AAA2B2;
+			remoteInfo = "ComEd-Watch Extension";
+		};
+		35F9DDE02335397500AAA2B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35F9DDC72335397300AAA2B2;
+			remoteInfo = "ComEd-Watch";
+		};
 		B58B5B671E516F200051FD5F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B58B5AB91E4E28740051FD5F /* Project object */;
@@ -2646,6 +2744,39 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		35F9DDEA2335397500AAA2B2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				35F9DDD52335397400AAA2B2 /* ComEd-Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35F9DDF22335397500AAA2B2 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				35F9DDE22335397500AAA2B2 /* ComEd-Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35F9DE1423353C1C00AAA2B2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				35F9DE1323353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -2694,6 +2825,7 @@
 		16EF6073F4FCC7A8EC26A5DB /* Pods-PECO_WatchOS.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		1718653D6673902E80574C8B /* Pods-PECO_WatchOS Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		18326609F3C789C1A2FDFBB1 /* Pods-BGEApp-BGEUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		186E04E414D2B72C1CEC84FE /* Pods-ComEd-Watch.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.staging.xcconfig"; sourceTree = "<group>"; };
 		1BD79CAFE843705C9795521E /* Pods_ComEdApp_ComEd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEdApp_ComEd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C33D950607BDB958492E3A9 /* Pods-PECO_WatchOS Extension.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.develop.xcconfig"; sourceTree = "<group>"; };
 		1FC86F494EBA854AF018DFB7 /* Pods_PECOApp_PECO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2716,6 +2848,7 @@
 		2B69AE935E8B3EACE53E2E77 /* Pods-BGE-Watch.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.automation.xcconfig"; sourceTree = "<group>"; };
 		2B9439801B731C80F3E0C5F1 /* Pods-ComEdApp-ComEdUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		2CCC074A6ECD38E6C9FC586D /* Pods-PECO-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
+		2E3B8F5E664FBF52470D610A /* Pods-ComEd-Watch.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		2F036CEF1F1EA7D5000DECBE /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		2F5A3F7F1EFD86BC00B9E49E /* BillingHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistory.swift; sourceTree = "<group>"; };
 		2F5C81F91F1D4B1B005B35FA /* GovWeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GovWeatherService.swift; sourceTree = "<group>"; };
@@ -2856,12 +2989,20 @@
 		35F9DD692333C87A00AAA2B2 /* PECOAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PECOAssets.xcassets; sourceTree = "<group>"; };
 		35F9DD8E2333D61E00AAA2B2 /* Pods_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F9DDC423340C8600AAA2B2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		35F9DDC82335397300AAA2B2 /* ComEd-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ComEd-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35F9DDD42335397400AAA2B2 /* ComEd-Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ComEd-Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ComEdAssets.xcassets; sourceTree = "<group>"; };
+		35F9DDF7233539E100AAA2B2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		35F9DDF923353A0D00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
+		35F9DE0F23353A6C00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
+		35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ComEd_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
 		3D724009124CB9382D0948F8 /* Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		3F80457703111C29B6104071 /* Pods-BGE-Watch.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.prodbeta.xcconfig"; sourceTree = "<group>"; };
+		40F855342CC5A91C701200B9 /* Pods-ComEd-Watch.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.automation.xcconfig"; sourceTree = "<group>"; };
 		427ED97F3A13152299E3D394 /* Pods-ComEdApp-ComEd.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		445CDE0C4568940CA20D2EFA /* Pods-PECO-Watch.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.staging.xcconfig"; sourceTree = "<group>"; };
 		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
@@ -2904,6 +3045,7 @@
 		5615370DCB46448A0C5935B5 /* Pods-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		56989091D306CA58F4B7F0BC /* Pods_BGE_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGE_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		614D543C436421863B8BC05E /* Pods_BGEApp_BGEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		638B790A0A077453811FDEC9 /* Pods-ComEd-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		64F75344AD0FA8FE270323F3 /* Pods-BGEApp-BGE.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.automation.xcconfig"; sourceTree = "<group>"; };
 		668FCA1931C2BA712403005F /* Pods-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
 		6A4FD1929F1F4842101B4166 /* otp_step1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step1.json; sourceTree = "<group>"; };
@@ -3051,6 +3193,7 @@
 		82EAB33F1F97EFF8008B55B1 /* HourlyPricingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyPricingViewController.swift; sourceTree = "<group>"; };
 		82EAB3431F97F01B008B55B1 /* MyHomeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeProfileViewController.swift; sourceTree = "<group>"; };
 		848366C52382E9D02E99D475 /* Pods_PECO_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECO_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84B9471DB1EB287845E5DAAA /* Pods-ComEd-Watch Extension.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.develop.xcconfig"; sourceTree = "<group>"; };
 		88ABE05F3C4AB1D71DE48235 /* Pods-BGEApp-BGEUITests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		8D0418518DB84642D6643DD7 /* Pods-PECOApp-PECOUITests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		8D98553251DAB33475DAE2DE /* Pods-PECO-Watch Extension.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.develop.xcconfig"; sourceTree = "<group>"; };
@@ -3126,6 +3269,7 @@
 		A8E654E4706B92DF0A22BFAB /* Pods-ComEdApp-ComEdUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
 		A935C61A46E1E4B58F2570F6 /* Pods-PECOApp-PECOUnitTests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		AAC0B730E787F1CC86670155 /* Pods-BGEApp-BGE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.release.xcconfig"; sourceTree = "<group>"; };
+		AB578E9B1169CA68E0839FD2 /* Pods-ComEd-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		AC02E0BECD80023F0A2FC593 /* Pods-BGE-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		AD0FCFB55A57BACE4C5EDDD8 /* Pods-ComEdApp-ComEdUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		AF8005B3C9C6881CB9A17F2C /* Pods-BGE-Watch Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.automation.xcconfig"; sourceTree = "<group>"; };
@@ -3314,10 +3458,13 @@
 		B9C2CDC8EAF0A302CCFCA131 /* Pods-PECO_WatchOS Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		C33F0387916E1A4F76CD102F /* Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig"; sourceTree = "<group>"; };
+		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C577CF1D0C7BCE01659C0C25 /* Pods-ComEdApp-ComEd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.release.xcconfig"; sourceTree = "<group>"; };
 		C679892349D0C94588054423 /* Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		C6DD69BB516F96CA1CAF9B0D /* Pods-BGE-Watch Extension.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.develop.xcconfig"; sourceTree = "<group>"; };
+		C7AD4CD9CDCC7C0D3379DE90 /* Pods-ComEd-Watch.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.develop.xcconfig"; sourceTree = "<group>"; };
+		C7BB4923B39059D7FDFC6E70 /* Pods-ComEd-Watch Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		C828BD6C50342FEB58C68BE6 /* Pods-BGEApp-BGEUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		C878A5BEC37F80D54FE107EC /* Pods-PECO-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
 		CA796E0B9C45EA88BED00557 /* Pods-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.release.xcconfig"; sourceTree = "<group>"; };
@@ -3327,15 +3474,19 @@
 		CEA215211F7900CC00689422 /* HomeBillCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBillCardView.xib; sourceTree = "<group>"; };
 		D02940ABF0BCB023CEA0FCD1 /* Pods-ComEdApp-ComEd.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.develop-test.xcconfig"; sourceTree = "<group>"; };
 		D08DBC8EEA81485E66E6A10F /* Pods-Watch.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.automation.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.automation.xcconfig"; sourceTree = "<group>"; };
+		D1B84F8105CCB8F5D0E49941 /* Pods-ComEd-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		D2C9D2D0144FD2FEF974B398 /* Pods-PECO-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		D67EC960AE7AECDBFA838CDB /* Pods-PECO_WatchOS.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.staging.xcconfig"; sourceTree = "<group>"; };
 		D729E2291886890F98B810F7 /* Pods-ComEdApp-ComEdUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
+		D7A8802415FF973953C36323 /* Pods_ComEd_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEd_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D807A237E456E82B891E1DA6 /* Pods-ComEdApp-ComEdUITests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.testing.xcconfig"; sourceTree = "<group>"; };
 		DBA08FFF2F1AEBC99FC3B599 /* Pods-ComEdApp-ComEd.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.develop.xcconfig"; sourceTree = "<group>"; };
 		DD1287E7F20B265241A3FDC8 /* Pods-BGEApp-BGEUITests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		DD5628E0CEB1C12A41C8C875 /* Pods-PECOApp-PECOUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DE89CB543705ABCE7DE036CD /* Pods-ComEd-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.release.xcconfig"; sourceTree = "<group>"; };
 		DEEDA786E59F7E11D0A41C34 /* Pods-PECO-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		DFEB5C68BA35D2EB9A8BA318 /* Pods-PECO-Watch.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.develop.xcconfig"; sourceTree = "<group>"; };
+		E2512B0B4514CC334F71A935 /* Pods-ComEd-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
 		E5B6CA46E614EA6D38C37AFA /* Pods-PECOApp-PECO.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.automation.xcconfig"; sourceTree = "<group>"; };
 		E80043071E64DEE2005CF531 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E800431C1E65FF70005CF531 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -3500,6 +3651,7 @@
 		E9B82B70DA00FA889FFB7545 /* Pods-PECO-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.release.xcconfig"; sourceTree = "<group>"; };
 		E9CD8F2D0CAF071DF53E6AAF /* Pods_PECOApp_PECOUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F45C0B42C8E3C04D9A52A4 /* Pods-PECOApp-PECOUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
+		EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEd_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC3D4BDE43A5A828C49ECC99 /* Pods_ComEdApp_ComEdUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEdApp_ComEdUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBD970A701D2D9AA35AFDEC /* Pods-BGEApp-BGEUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		EF96C3B9C784991D679EADDB /* Pods-ComEdApp-ComEdUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.develop.xcconfig"; sourceTree = "<group>"; };
@@ -3554,6 +3706,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		35F9DDD12335397400AAA2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				764DB97880F4FB501BD0A817 /* Pods_ComEd_Watch_Extension.framework in Frameworks */,
+				35F9DE1223353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B58B5ABE1E4E28740051FD5F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3583,6 +3744,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				315FF3E02BAB0CC702262FE6 /* Pods_BGEApp_BGEUnitTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E1794CCC2F28964DC3CB33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6E550F7AEB4213F413081C2 /* Pods_ComEd_Watch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3781,6 +3950,18 @@
 				2CCC074A6ECD38E6C9FC586D /* Pods-PECO-Watch Extension.testing.xcconfig */,
 				D2C9D2D0144FD2FEF974B398 /* Pods-PECO-Watch Extension.release.xcconfig */,
 				9E85585C63DC708EE8610105 /* Pods-PECO-Watch Extension.prodbeta.xcconfig */,
+				C7AD4CD9CDCC7C0D3379DE90 /* Pods-ComEd-Watch.develop.xcconfig */,
+				40F855342CC5A91C701200B9 /* Pods-ComEd-Watch.automation.xcconfig */,
+				186E04E414D2B72C1CEC84FE /* Pods-ComEd-Watch.staging.xcconfig */,
+				C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */,
+				DE89CB543705ABCE7DE036CD /* Pods-ComEd-Watch.release.xcconfig */,
+				2E3B8F5E664FBF52470D610A /* Pods-ComEd-Watch.prodbeta.xcconfig */,
+				84B9471DB1EB287845E5DAAA /* Pods-ComEd-Watch Extension.develop.xcconfig */,
+				C7BB4923B39059D7FDFC6E70 /* Pods-ComEd-Watch Extension.automation.xcconfig */,
+				E2512B0B4514CC334F71A935 /* Pods-ComEd-Watch Extension.staging.xcconfig */,
+				D1B84F8105CCB8F5D0E49941 /* Pods-ComEd-Watch Extension.testing.xcconfig */,
+				AB578E9B1169CA68E0839FD2 /* Pods-ComEd-Watch Extension.release.xcconfig */,
+				638B790A0A077453811FDEC9 /* Pods-ComEd-Watch Extension.prodbeta.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -4760,6 +4941,7 @@
 				35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */,
 				35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */,
 				35F9DD692333C87A00AAA2B2 /* PECOAssets.xcassets */,
+				35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -4767,6 +4949,7 @@
 		35E7C7C521907F2E00BA13C6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				35F9DDF6233539CA00AAA2B2 /* ComEd */,
 				35F9DDC323340C5900AAA2B2 /* BGE */,
 				35F9DDC223340C5300AAA2B2 /* PECO */,
 			);
@@ -4840,6 +5023,7 @@
 			children = (
 				35E7C8092190806700BA13C6 /* DebugOptions.swift */,
 				35E7C80A2190806700BA13C6 /* PECO-Info.plist */,
+				35F9DDF923353A0D00AAA2B2 /* ComEd-Info.plist */,
 				35F9DD612333C74100AAA2B2 /* BGE-Info.plist */,
 			);
 			path = Configurations;
@@ -4850,6 +5034,7 @@
 			children = (
 				35E7C7C421907F2E00BA13C6 /* PECO-Info.plist */,
 				35F9DD5F2333C49600AAA2B2 /* BGE-Info.plist */,
+				35F9DE0F23353A6C00AAA2B2 /* ComEd-Info.plist */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -4879,6 +5064,14 @@
 				35F9DDC423340C8600AAA2B2 /* Main.storyboard */,
 			);
 			path = BGE;
+			sourceTree = "<group>";
+		};
+		35F9DDF6233539CA00AAA2B2 /* ComEd */ = {
+			isa = PBXGroup;
+			children = (
+				35F9DDF7233539E100AAA2B2 /* Main.storyboard */,
+			);
+			path = ComEd;
 			sourceTree = "<group>";
 		};
 		6A4FD01F41569B9443AA6FFD /* step3 */ = {
@@ -5227,6 +5420,7 @@
 		8FD3C25A1E524511005FB1BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */,
 				823AA55F201247CF009CAEF0 /* XCTest.framework */,
 				E887C9F51ED5D3E1002433A3 /* Accelerate.framework */,
 				E887C9F91ED5D3F1002433A3 /* AudioToolbox.framework */,
@@ -5254,6 +5448,8 @@
 				B541FB0BE2F9DADFF7A6D5D3 /* Pods_BGE_Watch_Extension.framework */,
 				848366C52382E9D02E99D475 /* Pods_PECO_Watch.framework */,
 				49D43876706AB96D1C37D83C /* Pods_PECO_Watch_Extension.framework */,
+				EB0AFBF9BF435C40AA83AB7B /* Pods_ComEd_Watch.framework */,
+				D7A8802415FF973953C36323 /* Pods_ComEd_Watch_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -5662,6 +5858,8 @@
 				35E7C79B21907EA300BA13C6 /* PECO-Watch Extension.appex */,
 				35F9DD232333C33F00AAA2B2 /* BGE-Watch.app */,
 				35F9DD2F2333C34100AAA2B2 /* BGE-Watch Extension.appex */,
+				35F9DDC82335397300AAA2B2 /* ComEd-Watch.app */,
+				35F9DDD42335397400AAA2B2 /* ComEd-Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -6127,6 +6325,45 @@
 			productReference = 35F9DD2F2333C34100AAA2B2 /* BGE-Watch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		35F9DDC72335397300AAA2B2 /* ComEd-Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35F9DDEB2335397500AAA2B2 /* Build configuration list for PBXNativeTarget "ComEd-Watch" */;
+			buildPhases = (
+				56031A00BC6791F5CCF0051F /* [CP] Check Pods Manifest.lock */,
+				35F9DDC62335397300AAA2B2 /* Resources */,
+				35F9DDEA2335397500AAA2B2 /* Embed App Extensions */,
+				C3E1794CCC2F28964DC3CB33 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35F9DDD72335397400AAA2B2 /* PBXTargetDependency */,
+			);
+			name = "ComEd-Watch";
+			productName = "ComEd-Watch";
+			productReference = 35F9DDC82335397300AAA2B2 /* ComEd-Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		35F9DDD32335397400AAA2B2 /* ComEd-Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35F9DDE32335397500AAA2B2 /* Build configuration list for PBXNativeTarget "ComEd-Watch Extension" */;
+			buildPhases = (
+				4235A223F2E399165F89BB69 /* [CP] Check Pods Manifest.lock */,
+				35F9DDD02335397400AAA2B2 /* Sources */,
+				35F9DDD12335397400AAA2B2 /* Frameworks */,
+				35F9DDD22335397400AAA2B2 /* Resources */,
+				80AD5F31254FE936B7198C9B /* [CP] Embed Pods Frameworks */,
+				35F9DE1423353C1C00AAA2B2 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ComEd-Watch Extension";
+			productName = "ComEd-Watch Extension";
+			productReference = 35F9DDD42335397400AAA2B2 /* ComEd-Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		B58B5AC01E4E28740051FD5F /* BGE */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B58B5AE91E4E28740051FD5F /* Build configuration list for PBXNativeTarget "BGE" */;
@@ -6180,11 +6417,13 @@
 				B58B5B241E515C840051FD5F /* Frameworks */,
 				B58B5B251E515C840051FD5F /* Resources */,
 				0E1E27BB3D9C5444B3241C10 /* [CP] Embed Pods Frameworks */,
+				35F9DDF22335397500AAA2B2 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B5AC06BB1E52173600BBA4ED /* PBXTargetDependency */,
+				35F9DDE12335397500AAA2B2 /* PBXTargetDependency */,
 			);
 			name = ComEd;
 			productName = Mobile;
@@ -6328,6 +6567,16 @@
 						CreatedOnToolsVersion = 11.0;
 						ProvisioningStyle = Manual;
 					};
+					35F9DDC72335397300AAA2B2 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = YU7Y757VB5;
+						ProvisioningStyle = Automatic;
+					};
+					35F9DDD32335397400AAA2B2 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = YU7Y757VB5;
+						ProvisioningStyle = Automatic;
+					};
 					B58B5AC01E4E28740051FD5F = {
 						DevelopmentTeam = YU7Y757VB5;
 						LastSwiftMigration = 1020;
@@ -6457,6 +6706,8 @@
 				35E7C79A21907EA300BA13C6 /* PECO-Watch Extension */,
 				35F9DD222333C33F00AAA2B2 /* BGE-Watch */,
 				35F9DD2E2333C34100AAA2B2 /* BGE-Watch Extension */,
+				35F9DDC72335397300AAA2B2 /* ComEd-Watch */,
+				35F9DDD32335397400AAA2B2 /* ComEd-Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -6521,6 +6772,29 @@
 				35F9DD832333D15200AAA2B2 /* Assets.xcassets in Resources */,
 				35F9DD5D2333C45900AAA2B2 /* BGEAssets.xcassets in Resources */,
 				35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35F9DDC62335397300AAA2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35F9DDF4233539C200AAA2B2 /* ComEdAssets.xcassets in Resources */,
+				35F9DE492335413300AAA2B2 /* Assets.xcassets in Resources */,
+				35F9DE4A2335413800AAA2B2 /* README.md in Resources */,
+				35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35F9DDD22335397400AAA2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35F9DE4323353D6700AAA2B2 /* MCSConfig.plist in Resources */,
+				35F9DDF5233539C300AAA2B2 /* ComEdAssets.xcassets in Resources */,
+				35F9DE4B2335413800AAA2B2 /* README.md in Resources */,
+				35F9DE482335413200AAA2B2 /* Assets.xcassets in Resources */,
+				35F9DE472335409900AAA2B2 /* environment.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7381,6 +7655,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4235A223F2E399165F89BB69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ComEd-Watch Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4A10DEFFB1038DD260665B4F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7441,6 +7737,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-BGE-Watch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56031A00BC6791F5CCF0051F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ComEd-Watch-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7533,6 +7851,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80AD5F31254FE936B7198C9B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-watchOS/Mapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-watchOS/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */ = {
@@ -8077,6 +8415,82 @@
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
 				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35F9DDD02335397400AAA2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35F9DDFF23353A3C00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */,
+				35F9DE1F23353C7600AAA2B2 /* Maintenance.swift in Sources */,
+				35F9DE3323353CEF00AAA2B2 /* ServiceResult.swift in Sources */,
+				35F9DE3723353D1000AAA2B2 /* StormModeStatus.swift in Sources */,
+				35F9DE3E23353D4000AAA2B2 /* Fillable.swift in Sources */,
+				35F9DE1E23353C7200AAA2B2 /* Premise.swift in Sources */,
+				35F9DE2D23353CCE00AAA2B2 /* DateParser.swift in Sources */,
+				35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */,
+				35F9DE2E23353CD200AAA2B2 /* AccountService.swift in Sources */,
+				35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */,
+				35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */,
+				35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */,
+				35F9DE2423353C9700AAA2B2 /* Payments.swift in Sources */,
+				35F9DE3223353CE900AAA2B2 /* OutageService.swift in Sources */,
+				35F9DE4123353D5400AAA2B2 /* Optional+Comparable.swift in Sources */,
+				35F9DE3123353CE300AAA2B2 /* HttpMethod.swift in Sources */,
+				35F9DE2F23353CD800AAA2B2 /* AuthenticationService.swift in Sources */,
+				35F9DDFC23353A3C00AAA2B2 /* Equatable+Rearrange.swift in Sources */,
+				35F9DE3523353CFD00AAA2B2 /* AccountsStore.swift in Sources */,
+				35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */,
+				35F9DE1823353C5200AAA2B2 /* Account.swift in Sources */,
+				35F9DE2B23353CC700AAA2B2 /* AuthTokenParser.swift in Sources */,
+				35F9DE1A23353C5B00AAA2B2 /* OutageStatus.swift in Sources */,
+				35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */,
+				35F9DE1723353C4C00AAA2B2 /* MinimumVersion.swift in Sources */,
+				35F9DE1B23353C5E00AAA2B2 /* OutageInfo.swift in Sources */,
+				35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */,
+				35F9DE2023353C7A00AAA2B2 /* BillComparison.swift in Sources */,
+				35F9DE4523353D9C00AAA2B2 /* UserDefaultKeys.swift in Sources */,
+				35F9DE3923353D1900AAA2B2 /* Date+Now.swift in Sources */,
+				35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */,
+				35F9DE4623353DA700AAA2B2 /* DebugOptions.swift in Sources */,
+				35F9DE2123353C7E00AAA2B2 /* BillForecast.swift in Sources */,
+				35F9DE2923353CB700AAA2B2 /* MCSOutageService.swift in Sources */,
+				35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
+				35F9DE0D23353A5300AAA2B2 /* BillInterfaceController.swift in Sources */,
+				35F9DE2623353CA700AAA2B2 /* MCSAccountService.swift in Sources */,
+				35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */,
+				35F9DE0123353A4300AAA2B2 /* Constants.swift in Sources */,
+				35F9DE3823353D1300AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
+				35F9DE3423353CF200AAA2B2 /* UsageService.swift in Sources */,
+				35F9DE0623353A4D00AAA2B2 /* WatchSessionManager.swift in Sources */,
+				35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */,
+				35F9DE0E23353A5700AAA2B2 /* ExtensionDelegate.swift in Sources */,
+				35F9DE4223353D5F00AAA2B2 /* KeychainUtility.swift in Sources */,
+				35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */,
+				35F9DE3D23353D3800AAA2B2 /* PecoColor.swift in Sources */,
+				35F9DE0723353A4D00AAA2B2 /* AccountsManager.swift in Sources */,
+				35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */,
+				35F9DE2523353C9C00AAA2B2 /* SERResult.swift in Sources */,
+				35F9DE3C23353D3400AAA2B2 /* NibViews.swift in Sources */,
+				35F9DE2223353C8100AAA2B2 /* SSOData.swift in Sources */,
+				35F9DE3023353CDC00AAA2B2 /* AuthTokenResponse.swift in Sources */,
+				35F9DE0323353A4300AAA2B2 /* GAUtility.swift in Sources */,
+				35F9DE4423353D9500AAA2B2 /* Environment.swift in Sources */,
+				35F9DE0C23353A5300AAA2B2 /* UsageInterfaceController.swift in Sources */,
+				35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */,
+				35F9DE2A23353CBD00AAA2B2 /* MCSUsageService.swift in Sources */,
+				35F9DE0923353A5300AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */,
+				35F9DE2323353C8500AAA2B2 /* HomeProfile.swift in Sources */,
+				35F9DE3B23353D2900AAA2B2 /* Date.swift in Sources */,
+				35F9DE1C23353C6200AAA2B2 /* ForgotUsername.swift in Sources */,
+				35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */,
+				35F9DE4023353D4C00AAA2B2 /* URLSession+Rx.swift in Sources */,
+				35F9DE2C23353CCA00AAA2B2 /* MCSResponseParser.swift in Sources */,
+				35F9DE3623353D0B00AAA2B2 /* ReportedOutagesStore.swift in Sources */,
+				35F9DDFD23353A3C00AAA2B2 /* UIFont+Italic.swift in Sources */,
+				35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */,
+				35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9829,6 +10243,16 @@
 			target = 35F9DD2E2333C34100AAA2B2 /* BGE-Watch Extension */;
 			targetProxy = 35F9DD852333D2B800AAA2B2 /* PBXContainerItemProxy */;
 		};
+		35F9DDD72335397400AAA2B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35F9DDD32335397400AAA2B2 /* ComEd-Watch Extension */;
+			targetProxy = 35F9DDD62335397400AAA2B2 /* PBXContainerItemProxy */;
+		};
+		35F9DDE12335397500AAA2B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35F9DDC72335397300AAA2B2 /* ComEd-Watch */;
+			targetProxy = 35F9DDE02335397500AAA2B2 /* PBXContainerItemProxy */;
+		};
 		B58B5B681E516F200051FD5F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B58B5B601E516EEE0051FD5F /* BGE Environment Switch */;
@@ -11462,6 +11886,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -11495,6 +11920,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -11527,6 +11953,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -11559,6 +11986,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -11591,6 +12019,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
@@ -11623,9 +12052,444 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Prodbeta;
+		};
+		35F9DDE42335397500AAA2B2 /* Develop */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84B9471DB1EB287845E5DAAA /* Pods-ComEd-Watch Extension.develop.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.comed.develop.watchkitapp;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Develop;
+		};
+		35F9DDE52335397500AAA2B2 /* Automation */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7BB4923B39059D7FDFC6E70 /* Pods-ComEd-Watch Extension.automation.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.comed.develop.watchkitapp;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Automation;
+		};
+		35F9DDE62335397500AAA2B2 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2512B0B4514CC334F71A935 /* Pods-ComEd-Watch Extension.staging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.comed.staging.watchkitapp;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.staging.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Staging;
+		};
+		35F9DDE72335397500AAA2B2 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1B84F8105CCB8F5D0E49941 /* Pods-ComEd-Watch Extension.testing.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.comed.watchkitapp;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.testing.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Testing;
+		};
+		35F9DDE82335397500AAA2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB578E9B1169CA68E0839FD2 /* Pods-ComEd-Watch Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.comed.watchkitapp;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		35F9DDE92335397500AAA2B2 /* Prodbeta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 638B790A0A077453811FDEC9 /* Pods-ComEd-Watch Extension.prodbeta.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.comed.prodbeta.watchkitapp;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/ComEd-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.prodbeta.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Prodbeta;
+		};
+		35F9DDEC2335397500AAA2B2 /* Develop */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7AD4CD9CDCC7C0D3379DE90 /* Pods-ComEd-Watch.develop.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IBSC_MODULE = ComEd_Watch_Extension;
+				INFOPLIST_FILE = "Watch/configuration/ComEd-Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Develop;
+		};
+		35F9DDED2335397500AAA2B2 /* Automation */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40F855342CC5A91C701200B9 /* Pods-ComEd-Watch.automation.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Marc Shilling (244V8J7D6Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = ComEd_Watch_Extension;
+				INFOPLIST_FILE = "Watch/configuration/ComEd-Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.develop.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Automation;
+		};
+		35F9DDEE2335397500AAA2B2 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 186E04E414D2B72C1CEC84FE /* Pods-ComEd-Watch.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.staging;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = ComEd_Watch_Extension;
+				INFOPLIST_FILE = "Watch/configuration/ComEd-Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.staging.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Staging;
+		};
+		35F9DDEF2335397500AAA2B2 /* Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.comd.testing;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = ComEd_Watch_Extension;
+				INFOPLIST_FILE = "Watch/configuration/ComEd-Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.testing.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Testing;
+		};
+		35F9DDF02335397500AAA2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE89CB543705ABCE7DE036CD /* Pods-ComEd-Watch.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.comed;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = ComEd_Watch_Extension;
+				INFOPLIST_FILE = "Watch/configuration/ComEd-Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		35F9DDF12335397500AAA2B2 /* Prodbeta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E3B8F5E664FBF52470D610A /* Pods-ComEd-Watch.prodbeta.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.prodbeta;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = ComEd_Watch_Extension;
+				INFOPLIST_FILE = "Watch/configuration/ComEd-Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.prodbeta.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Prodbeta;
 		};
@@ -13397,6 +14261,32 @@
 				35F9DD4A2333C34200AAA2B2 /* Testing */,
 				35F9DD4B2333C34200AAA2B2 /* Release */,
 				35F9DD4C2333C34200AAA2B2 /* Prodbeta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Develop;
+		};
+		35F9DDE32335397500AAA2B2 /* Build configuration list for PBXNativeTarget "ComEd-Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35F9DDE42335397500AAA2B2 /* Develop */,
+				35F9DDE52335397500AAA2B2 /* Automation */,
+				35F9DDE62335397500AAA2B2 /* Staging */,
+				35F9DDE72335397500AAA2B2 /* Testing */,
+				35F9DDE82335397500AAA2B2 /* Release */,
+				35F9DDE92335397500AAA2B2 /* Prodbeta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Develop;
+		};
+		35F9DDEB2335397500AAA2B2 /* Build configuration list for PBXNativeTarget "ComEd-Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35F9DDEC2335397500AAA2B2 /* Develop */,
+				35F9DDED2335397500AAA2B2 /* Automation */,
+				35F9DDEE2335397500AAA2B2 /* Staging */,
+				35F9DDEF2335397500AAA2B2 /* Testing */,
+				35F9DDF02335397500AAA2B2 /* Release */,
+				35F9DDF12335397500AAA2B2 /* Prodbeta */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Develop;

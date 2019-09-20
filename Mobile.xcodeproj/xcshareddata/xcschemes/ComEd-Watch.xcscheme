@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "35F9DDC72335397300AAA2B2"
+               BuildableName = "ComEd-Watch.app"
+               BlueprintName = "ComEd-Watch"
+               ReferencedContainer = "container:Mobile.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B58B5B201E515C840051FD5F"
                BuildableName = "ComEd.app"
                BlueprintName = "ComEd"
@@ -40,16 +54,18 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/ComEd">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
-            BuildableName = "ComEd.app"
-            BlueprintName = "ComEd"
+            BlueprintIdentifier = "35F9DDC72335397300AAA2B2"
+            BuildableName = "ComEd-Watch.app"
+            BlueprintName = "ComEd-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,16 +73,27 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/ComEd">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B58B5B201E515C840051FD5F"
-            BuildableName = "ComEd.app"
-            BlueprintName = "ComEd"
+            BlueprintIdentifier = "35F9DDC72335397300AAA2B2"
+            BuildableName = "ComEd-Watch.app"
+            BlueprintName = "ComEd-Watch"
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "35F9DDC72335397300AAA2B2"
+            BuildableName = "ComEd-Watch.app"
+            BlueprintName = "ComEd-Watch"
+            ReferencedContainer = "container:Mobile.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Develop">

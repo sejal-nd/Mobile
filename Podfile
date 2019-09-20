@@ -109,6 +109,18 @@ target 'BGE-Watch Extension' do
   shared_pods
 end
 
+target 'ComEd-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'ComEd-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
 # Removes the project warnings after a `pod install`
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
