@@ -26,10 +26,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYS-0z-nPK" customClass="SheetView" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="470" width="375" height="342"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jOk-5D-qem">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOk-5D-qem">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                         <subviews>
-                                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6S-PX-OzL">
+                                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6S-PX-OzL">
                                                 <rect key="frame" x="0.0" y="22" width="375" height="44"/>
                                                 <textAttributes key="titleTextAttributes">
                                                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,11 +56,10 @@
                                             <constraint firstAttribute="bottom" secondItem="d6S-PX-OzL" secondAttribute="bottom" id="bsg-Ka-HRC"/>
                                             <constraint firstItem="d6S-PX-OzL" firstAttribute="top" secondItem="zfp-En-5in" secondAttribute="bottom" constant="8" id="eLj-mI-RE8"/>
                                             <constraint firstAttribute="trailing" secondItem="d6S-PX-OzL" secondAttribute="trailing" id="qVe-As-kAN"/>
-                                            <constraint firstAttribute="height" priority="250" constant="68" id="s8x-Uo-J9i"/>
                                             <constraint firstItem="zfp-En-5in" firstAttribute="centerX" secondItem="jOk-5D-qem" secondAttribute="centerX" id="vnh-DK-Mgl"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MEb-p9-zkO">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MEb-p9-zkO">
                                         <rect key="frame" x="0.0" y="66" width="375" height="276"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
