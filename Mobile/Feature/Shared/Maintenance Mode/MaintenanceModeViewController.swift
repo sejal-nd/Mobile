@@ -30,6 +30,10 @@ class MaintenanceModeViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var bodyTextView: ZeroInsetDataDetectorTextView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,11 +75,7 @@ class MaintenanceModeViewController: UIViewController {
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
         return a + (b - a) * t
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+        
     func onReloadPress() {
         LoadingView.show()
         viewModel.doReload(onSuccess: { [weak self] isMaintenance in

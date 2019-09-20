@@ -36,6 +36,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), registrationService: ServiceFactory.createRegistrationService())
     var viewAlreadyAppeared = false
     var forgotUsernamePopulated = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -496,10 +500,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     // MARK: - Other
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
 
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
         return a + (b - a) * t

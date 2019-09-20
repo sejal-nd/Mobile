@@ -29,6 +29,10 @@ class LandingViewController: UIViewController {
     private var avPlayerPlaybackTime = CMTime.zero
     
     private var viewDidAppear = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     // MARK: - View Life Cycle
     
@@ -176,12 +180,5 @@ class LandingViewController: UIViewController {
         guard let avPlayer = avPlayer else { return }
         playerLayer.player = avPlayer
     }
-    
-    
-    // MARK: - Setup
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
- 
+     
 }

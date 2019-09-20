@@ -220,6 +220,10 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     var stormModePollingDisposable: Disposable?
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     // MARK: - View Life Cycle
     
@@ -615,11 +619,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         moreVC.shouldHideNavigationBar = false
         navigationController?.viewControllers = [self, moreVC, alertsVC]
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+        
     func navigateToAlertPreferences() {
         let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
         let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)

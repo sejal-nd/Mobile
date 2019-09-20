@@ -32,6 +32,10 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     
     let viewModel = BGEChoiceIDViewModel(accountService: ServiceFactory.createAccountService())
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
