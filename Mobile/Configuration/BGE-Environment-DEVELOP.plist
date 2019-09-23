@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>BGE_DEV</string>
 	<key>mcsInstanceName</key>
-	<string>Test1Integration</string>
+	<string>Stage</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.bge.com/MyAccount</string>
 	<key>outageMapUrl</key>
