@@ -477,7 +477,6 @@
 		35E7C7E52190803900BA13C6 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
 		35E7C7E62190803900BA13C6 /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E42190803900BA13C6 /* AccountsManager.swift */; };
 		35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35E7C7F42190804E00BA13C6 /* Equatable+Rearrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */; };
 		35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35E7C7F72190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
@@ -516,7 +515,6 @@
 		35F9DD7A2333D14D00AAA2B2 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
 		35F9DD7B2333D14D00AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35F9DD7D2333D14D00AAA2B2 /* Equatable+Rearrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */; };
 		35F9DD7E2333D14D00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DD802333D14D00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
@@ -580,7 +578,6 @@
 		35F9DDF5233539C300AAA2B2 /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */; };
 		35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF7233539E100AAA2B2 /* Main.storyboard */; };
 		35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35F9DDFC23353A3C00AAA2B2 /* Equatable+Rearrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */; };
 		35F9DDFD23353A3C00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DDFF23353A3C00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
@@ -2961,7 +2958,6 @@
 		35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		35E7C7E42190803900BA13C6 /* AccountsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsManager.swift; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
-		35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Equatable+Rearrange.swift"; sourceTree = "<group>"; };
 		35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Italic.swift"; sourceTree = "<group>"; };
 		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
 		35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
@@ -4980,7 +4976,6 @@
 			isa = PBXGroup;
 			children = (
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
-				35E7C7ED2190804E00BA13C6 /* Equatable+Rearrange.swift */,
 				35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */,
 				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
 				35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */,
@@ -8251,7 +8246,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35E7C7F42190804E00BA13C6 /* Equatable+Rearrange.swift in Sources */,
 				356C7F7921909819003E8A90 /* Account.swift in Sources */,
 				35E7C8052190805C00BA13C6 /* AccountListInterfaceController.swift in Sources */,
 				356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */,
@@ -8371,7 +8365,6 @@
 				35F9DDB32333D8D900AAA2B2 /* AuthTokenParser.swift in Sources */,
 				35F9DDB92333D8FE00AAA2B2 /* PecoColor.swift in Sources */,
 				35F9DD9E2333D86600AAA2B2 /* SSOData.swift in Sources */,
-				35F9DD7D2333D14D00AAA2B2 /* Equatable+Rearrange.swift in Sources */,
 				35F9DD7B2333D14D00AAA2B2 /* BillUtility.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				35F9DDAF2333D8C300AAA2B2 /* MCSApi.swift in Sources */,
@@ -8418,7 +8411,6 @@
 				35F9DE4123353D5400AAA2B2 /* Optional+Comparable.swift in Sources */,
 				35F9DE3123353CE300AAA2B2 /* HttpMethod.swift in Sources */,
 				35F9DE2F23353CD800AAA2B2 /* AuthenticationService.swift in Sources */,
-				35F9DDFC23353A3C00AAA2B2 /* Equatable+Rearrange.swift in Sources */,
 				35F9DE3523353CFD00AAA2B2 /* AccountsStore.swift in Sources */,
 				35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				35F9DE1823353C5200AAA2B2 /* Account.swift in Sources */,
