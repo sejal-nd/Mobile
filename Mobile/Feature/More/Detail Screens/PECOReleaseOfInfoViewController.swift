@@ -32,6 +32,10 @@ class PECOReleaseOfInfoViewController: UIViewController {
     let accountService = ServiceFactory.createAccountService()
     
     var selectedRowIndex = 0
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

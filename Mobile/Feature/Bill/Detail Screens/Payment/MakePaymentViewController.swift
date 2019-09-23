@@ -95,6 +95,10 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     
     var hasPrecariousOtherAmountBeenSelected = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -31,6 +31,10 @@ class StormModeBillViewController: AccountPickerViewController {
                                            paymentService: ServiceFactory.createPaymentService(),
                                            authService: ServiceFactory.createAuthenticationService())
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

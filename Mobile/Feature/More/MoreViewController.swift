@@ -49,6 +49,9 @@ class MoreViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - View Life Cycle
     
@@ -181,11 +184,6 @@ class MoreViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     
     // MARK: - Navigation
     

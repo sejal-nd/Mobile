@@ -56,6 +56,10 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         }
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -88,10 +92,6 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         FirebaseUtility.logEvent(.unauth, parameters: [EventParameter(parameterName: .action, value: .sign_in_register_press)])
 
         navigationController?.popViewController(animated: true)
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
