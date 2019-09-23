@@ -39,27 +39,29 @@ extension WatchSessionManager {
 
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         DispatchQueue.main.async {
-            if let clearAuthToken = applicationContext[keychainKeys.clearAuthToken] as? Bool, clearAuthToken {
-                KeychainUtility.shared[keychainKeys.authToken] = nil
-                WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: SignInInterfaceController.className, context: [:] as AnyObject)])
-            } else if let authToken = applicationContext[keychainKeys.authToken] as? String {
+            
+            // New MCS Auth Token
+            if let authToken = applicationContext[keychainKeys.authToken] as? String {
                 
                 // Save to KeyChain
                 KeychainUtility.shared[keychainKeys.authToken] = authToken
 
+                // Reload Screens
                 WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)]) // we may want to remove this
             }
             
+            // User reported outage on mobile app
             if let outageReported = applicationContext[keychainKeys.outageReported] as? Bool, outageReported {
                 NotificationCenter.default.post(name: Notification.Name.outageReported, object: nil)
             }
-            
         }
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
-
 }
+
+
+
 extension WatchSessionManager {
     
     // This is where the magic happens!

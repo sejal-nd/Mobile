@@ -24,7 +24,6 @@ struct Errors {
 
 struct keychainKeys {
     static let authToken = "authToken"
-    static let clearAuthToken = "clearAuthToken"
     static let askForUpdate = "askForUpdate"
     static let outageReported = "outageReported"
 }
