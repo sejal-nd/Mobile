@@ -13,6 +13,20 @@ import RxCocoa
 class BillImpactView: UIView {
 
     @IBOutlet private weak var view: UIView!
+    
+    @IBOutlet weak var multipremiseHeaderView: UIView! {
+        didSet {
+            multipremiseHeaderView.layer.borderColor = UIColor.accentGray.cgColor
+            multipremiseHeaderView.layer.borderWidth = 1
+        }
+    }
+    @IBOutlet weak var multipremiseHeaderLabel: UILabel! {
+        didSet {
+            multipremiseHeaderLabel.textColor = .deepGray
+            multipremiseHeaderLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        }
+    }
+    
     @IBOutlet weak var reasonsWhyLabel: UILabel! {
         didSet {
             reasonsWhyLabel.textColor = .deepGray
@@ -152,6 +166,8 @@ class BillImpactView: UIView {
     }
     
     func bindViewModel(_ viewModel: BillViewModel) {
+        viewModel.showMultipremiseHeader.not().drive(multipremiseHeaderView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.premiseAddressString.drive(multipremiseHeaderLabel.rx.text).disposed(by: disposeBag)
         viewModel.reasonsWhyLabelText.drive(reasonsWhyLabel.rx.text).disposed(by: disposeBag)
         
         viewModel.showElectricGasSegmentedControl.not().drive(elecGasSegmentedControl.rx.isHidden).disposed(by: disposeBag)

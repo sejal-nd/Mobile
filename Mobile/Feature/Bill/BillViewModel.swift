@@ -165,7 +165,7 @@ class BillViewModel {
         .map { $0.1 }
         .asDriver(onErrorDriveWith: Driver.empty())
 	
-    // MARK: - Show/Hide Views -
+    // MARK: - Show/Hide Views
     
     private(set) lazy var showMaintenanceMode: Driver<Void> = maintenanceModeEvents.elements()
         .filter { $0.billStatus }
@@ -179,7 +179,7 @@ class BillViewModel {
         return Driver.combineLatest(showFromResponse, self.switchAccountsTracker.asDriver()) { $0 && !$1 }
             .startWith(false)
     }()
-    
+        
     private(set) lazy var showBillNotReady: Driver<Bool> = currentAccountDetail.map {
         return $0.billingInfo.billDate == nil && ($0.billingInfo.netDueAmount == nil || $0.billingInfo.netDueAmount == 0)
     }
@@ -345,6 +345,16 @@ class BillViewModel {
     
     private(set) lazy var alertBannerA11yText: Driver<String?> = alertBannerText.map {
         $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
+    }
+    
+    //MARK: - MultiPremise Handling
+    
+    private(set) lazy var showMultipremiseHeader: Driver<Bool> = currentAccountDetail.map { _ in
+        return AccountsStore.shared.currentAccount.isMultipremise
+    }
+    
+    private(set) lazy var premiseAddressString: Driver<String?> = currentAccountDetail.map { _ in
+        AccountsStore.shared.currentAccount.currentPremise?.addressLineString
     }
     
     //MARK: - Total Amount Due

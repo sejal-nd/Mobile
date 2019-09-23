@@ -71,10 +71,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var minimumPaymentLabel: UILabel!
     
     @IBOutlet private weak var convenienceFeeLabel: UILabel!
-    
-    @IBOutlet private weak var a11yTutorialButtonContainer: UIView!
-    @IBOutlet private weak var a11yTutorialButton: UIButton!
-    
+        
     @IBOutlet private weak var oneTouchSliderContainer: UIView!
     @IBOutlet private weak var oneTouchSlider: OneTouchSlider!
 
@@ -104,6 +101,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
     
+    let shouldPushWallet = PublishSubject<Void>()
     
     private var viewModel: HomeBillCardViewModel! {
         didSet {
@@ -170,10 +168,8 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .caption1)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
-        a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
-        a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
-        
+        tutorialButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+                
         paymentDescriptionLabel.textColor = .deepGray
         paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         
@@ -357,10 +353,6 @@ class HomeBillCardView: UIView {
             }
         }).disposed(by: bag)
         
-        viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
-            let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
-            self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
-        }).disposed(by: bag)
         viewModel.showConvenienceFee.not().drive(convenienceFeeLabel.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
@@ -405,19 +397,6 @@ class HomeBillCardView: UIView {
             .mapTo(())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
-            .disposed(by: bag)
-        
-        Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
-                         NotificationCenter.default.rx.notification(UIAccessibility.voiceOverStatusDidChangeNotification, object: nil))
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.viewModel.showSaveAPaymentAccountButton.asObservable().single().subscribe(onNext: { show in
-                    let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
-                    self.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
-                    UIAccessibility.post(notification: .screenChanged, argument: self)
-                }).disposed(by: self.bag)
-            })
             .disposed(by: bag)
     }
     
@@ -493,7 +472,11 @@ class HomeBillCardView: UIView {
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .mapTo(())
-        .map(OneTouchTutorialViewController.init)
+        .map { [weak self] in
+            let vc = SetDefaultPaymentMethodTutorialViewController()
+            vc.shouldPushWallet = self?.shouldPushWallet
+            return vc
+        }
     
     private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.touchUpInside
         .asObservable()
@@ -526,8 +509,8 @@ class HomeBillCardView: UIView {
                autoPayAlert)
     
     // Pushed View Controllers
-    private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
-        .asObservable()
+    private lazy var walletViewController: Driver<UIViewController> =
+        Observable.merge(bankCreditNumberButton.rx.touchUpInside.asObservable(), shouldPushWallet.asObservable())
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
