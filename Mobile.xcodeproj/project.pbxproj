@@ -4915,6 +4915,7 @@
 				35E7C7FB2190805C00BA13C6 /* Controllers */,
 				35E7C7E22190803900BA13C6 /* Services */,
 				35E7C7D82190802400BA13C6 /* Views */,
+				35F9DE4C2339106800AAA2B2 /* Data */,
 				35E7C7DB2190802C00BA13C6 /* Utility */,
 				35E7C7EA2190804E00BA13C6 /* Extensions */,
 				35E7C8082190806700BA13C6 /* Configurations */,
@@ -4955,10 +4956,9 @@
 		35E7C7DB2190802C00BA13C6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				35E7C7DC2190802C00BA13C6 /* Constants.swift */,
 				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
-				35E7C7DE2190802C00BA13C6 /* GAUtility.swift */,
 				358D677221961BC400395D0F /* BillUtility.swift */,
+				35E7C7DE2190802C00BA13C6 /* GAUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -5050,6 +5050,14 @@
 				35F9DDF7233539E100AAA2B2 /* Main.storyboard */,
 			);
 			path = ComEd;
+			sourceTree = "<group>";
+		};
+		35F9DE4C2339106800AAA2B2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				35E7C7DC2190802C00BA13C6 /* Constants.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		6A4FD01F41569B9443AA6FFD /* step3 */ = {
