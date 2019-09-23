@@ -26,6 +26,9 @@ class UpdatesViewController: UIViewController {
     
     let viewModel = UpdatesViewModel(alertsService: ServiceFactory.createAlertsService())
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
     
     // MARK: - View Life Cycle
     

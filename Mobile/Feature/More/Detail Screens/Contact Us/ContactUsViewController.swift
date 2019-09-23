@@ -48,6 +48,10 @@ class ContactUsViewController: UIViewController {
     
     var unauthenticatedExperience = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

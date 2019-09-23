@@ -23,6 +23,10 @@ class BillingHistoryViewController: UIViewController {
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -233,12 +237,7 @@ class BillingHistoryViewController: UIViewController {
             self.view.showToast(message)
         })
     }
-    
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+        
 }
 
 extension BillingHistoryViewController: UITableViewDelegate {

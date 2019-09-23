@@ -21,6 +21,10 @@ class ViewBillViewController: UIViewController {
     let viewModel = ViewBillViewModel(billService: ServiceFactory.createBillService())
     
     var webView: WKWebView!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,8 +108,6 @@ class ViewBillViewController: UIViewController {
         documentController = UIDocumentInteractionController(url: viewModel.pdfFileUrl!)
         documentController!.presentOptionsMenu(from: view.frame, in: view, animated: true)
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
     
 }
 

@@ -47,6 +47,9 @@ class WalletViewController: UIViewController {
     fileprivate let didUpdateSubject = PublishSubject<String>()
     private(set) lazy var didUpdate: Observable<String> = self.didUpdateSubject.asObservable()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
     
     // MARK: - View Life Cycle
     
@@ -336,11 +339,6 @@ class WalletViewController: UIViewController {
             })
         }))
         present(alertController, animated: true, completion: nil)
-    }
-
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 
 }

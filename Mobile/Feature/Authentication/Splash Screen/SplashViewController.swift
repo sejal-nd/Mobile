@@ -37,6 +37,10 @@ class SplashViewController: UIViewController{
     let viewModel = SplashViewModel(authService: ServiceFactory.createAuthenticationService())
     
     var bag = DisposeBag()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -226,11 +230,7 @@ class SplashViewController: UIViewController{
             performDeepLink = true
         }
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+
     // MARK: Timeout and Error States
 
     @objc func loadingTimerExpired() {
