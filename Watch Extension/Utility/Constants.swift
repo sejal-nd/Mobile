@@ -8,8 +8,11 @@
 
 import WatchKit
 
-struct Errors {
-    struct Code {
+
+// MARK: - Errors
+
+enum Errors {
+    enum Code {
         static let passwordProtected = "09122"
         static let noAccountsFound = "09121"
         static let invalidInformation = "87221"
@@ -22,17 +25,26 @@ struct Errors {
     static let noAuthTokenFound = ServiceError(serviceCode: Code.noAuthTokenFound, serviceMessage: "No Auth Token in Keychain.", cause: nil)
 }
 
-struct keychainKeys {
+
+// MARK: - Keychain Keys
+
+enum keychainKeys {
     static let authToken = "authToken"
     static let askForUpdate = "askForUpdate"
     static let outageReported = "outageReported"
 }
+
+
+// MARK: - Notification Names
+
 extension Notification.Name {
     static let outageReported: Notification.Name = Notification.Name(rawValue: "outageReportedNotificationName")
     static let defaultAccountSet: Notification.Name = Notification.Name(rawValue: "defaultAccountSet")
     static let currentAccountUpdated: Notification.Name = Notification.Name(rawValue: "currentAccountUpdated")
 }
 
+
+// MARK: - Assets
 
 enum AppImage {
     case alert
