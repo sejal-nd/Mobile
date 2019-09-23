@@ -24,7 +24,7 @@ class GATracker {
      Set up all attributes
      */
     private init() {
-        aLog("NOTICE: Google Analytics Tracker Initialized.")
+        dLog("NOTICE: Google Analytics Tracker Initialized.")
 
         if let infoDictionary = Bundle.main.infoDictionary, let name = infoDictionary["CFBundleName"] as? String {
             appName = name
@@ -67,17 +67,17 @@ class GATracker {
             
             guard let url = URL(string: urlString) else { return }
             
-//            aLog("Sending: \(urlString)")
+//            dLog("Sending: \(urlString)")
 
             let task = URLSession.shared.dataTask(with: url) { (data, response, error) -> Void in
                 if let error = error {
-                    aLog("Error: \(error.localizedDescription)")
+                    dLog("Error: \(error.localizedDescription)")
                 } else if let httpReponse = response as? HTTPURLResponse {
                     let statusCode = httpReponse.statusCode
                     
-                    aLog("Status Code: \(statusCode)")
+                    dLog("Status Code: \(statusCode)")
                 } else {
-                    aLog("Unhandled error in GATracker Send request.")
+                    dLog("Unhandled error in GATracker Send request.")
                 }
             }
             task.resume()

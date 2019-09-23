@@ -68,7 +68,7 @@ class NetworkingUtility {
     private let disposeBag = DisposeBag()
 
     private init() {
-        aLog("init network manager.")
+        dLog("init network manager.")
         
         // Observer Notifications
         NotificationCenter.default.addObserver(self, selector: #selector(newAccountUpdate(_:)), name: Notification.Name.defaultAccountSet, object: nil)
@@ -89,7 +89,7 @@ class NetworkingUtility {
     
     /// Reload Data every 15 minutes without the loading indicator if the app is reachable
     @objc private func reloadPollingData() {
-        aLog("Polling new data...")
+        dLog("Polling new data...")
         guard WatchSessionManager.shared.isReachable() else { return }
         
         fetchData(shouldShowLoading: true, shouldLoadAccountList: false)
@@ -142,7 +142,7 @@ class NetworkingUtility {
 
                 self?.fetchAccountDetailsWithData(maintenanceModeStatus: status, completion: { [weak self] accountDetails in
                     guard let accountDetails = accountDetails else {
-                        aLog("ERROR: Account Details is nil.")
+                        dLog("ERROR: Account Details is nil.")
                         
                         self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
                         return
@@ -181,7 +181,7 @@ class NetworkingUtility {
                 })
             } else {
                 // Error status is nil
-                aLog("ERROR: Maintenance Mode Status is nil.")
+                dLog("ERROR: Maintenance Mode Status is nil.")
                 self?.networkUtilityDelegates.forEach { $0.error(Errors.invalidInformation, feature: .all) }
             }
         }
@@ -263,19 +263,19 @@ class NetworkingUtility {
     ///     - success: completion handler for `fetchData()` call resulting in maintenance mode data.
     ///     - error: completion handler for `fetchData()` call resulting in an error state.
     private func fetchMaintenanceModeStatus(completion: @escaping (Maintenance?, ServiceError?) -> Void) {
-        aLog("Fetching Maintenance Mode Status...")
+        dLog("Fetching Maintenance Mode Status...")
         
         let authService = MCSAuthenticationService()
 
         authService.getMaintenanceMode()
             .subscribe(onNext: { maintenance in
                 // handle success
-                aLog("Maintenance Mode Fetched.")
+                dLog("Maintenance Mode Fetched.")
                 
                 completion(maintenance, nil)
             }, onError: { error in
                 // handle error
-                aLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
+                dLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
                 completion(nil, error as? ServiceError)
             })
             .disposed(by: disposeBag)
@@ -289,10 +289,10 @@ class NetworkingUtility {
     ///     - success: completion handler for `fetchData()` call resulting in outage data.
     ///     - error: completion handler for `fetchData()` call resulting in an error state.
     private func fetchOutageStatus(success: @escaping (OutageStatus) -> Void, error: @escaping (ServiceError) -> Void) {
-        aLog("Fetching Outage Status...")
+        dLog("Fetching Outage Status...")
 
         guard let _ = AccountsStore.shared.currentIndex else {
-            aLog("Failed to retreive current account while fetching outage status.")
+            dLog("Failed to retreive current account while fetching outage status.")
             error(Errors.noAccountsFound)
             return
         }
@@ -301,12 +301,12 @@ class NetworkingUtility {
         
         outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount).subscribe(onNext: { [weak self] outageStatus in
             // handle success
-            aLog("Outage Status Fetched.")
+            dLog("Outage Status Fetched.")
             success(outageStatus)
             self?.outageStatus = outageStatus
             }, onError: { outageError in
                 // handle error
-                aLog("Failed to retrieve outage status: \(outageError.localizedDescription)")
+                dLog("Failed to retrieve outage status: \(outageError.localizedDescription)")
                 let serviceError = (outageError as? ServiceError) ?? ServiceError(serviceCode: outageError.localizedDescription, serviceMessage: nil, cause: nil)
 
                 error(serviceError)
@@ -324,7 +324,7 @@ class NetworkingUtility {
     ///     - success: completion handler for `fetchData()` call resulting in usage data.
     ///     - error: completion handler for `fetchData()` call resulting in an error state.
     private func fetchUsageData(accountDetail: AccountDetail, success: @escaping (BillForecastResult) -> Void, error: @escaping (ServiceError) -> Void) {
-        aLog("Fetching Usage Data...")
+        dLog("Fetching Usage Data...")
         
         guard accountDetail.isAMIAccount, let premiseNumber = accountDetail.premiseNumber else {
             error(Errors.invalidInformation)
@@ -334,11 +334,11 @@ class NetworkingUtility {
         
         MCSUsageService(useCache: false).fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
             // handle success
-            aLog("Usage Data Fetched.")
+            dLog("Usage Data Fetched.")
             success(billForecastResult)
             }, onError: { usageError in
                 // handle error
-                aLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
+                dLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
                 let serviceError = (usageError as? ServiceError) ?? ServiceError(serviceCode: usageError.localizedDescription, serviceMessage: nil, cause: nil)
                 
                 error(serviceError)
@@ -357,7 +357,7 @@ extension NetworkingUtility {
 
         guard let account = notification.object as? Account else { return }
         
-        aLog("Initial Account Did Update")
+        dLog("Initial Account Did Update")
         
         networkUtilityDelegates.forEach { $0.newAccountDidUpdate(account) }
     }
@@ -367,7 +367,7 @@ extension NetworkingUtility {
 
         guard let account = notification.object as? Account else { return }
         
-        aLog("Current Account Did Update")
+        dLog("Current Account Did Update")
         
         // Reset timer
         pollingTimer.invalidate()

@@ -148,7 +148,7 @@ class UsageInterfaceController: WKInterfaceController {
                 // show loading group
                 loadingImageGroup.setHidden(false)
                 
-                aLog("Loading State")
+                dLog("Loading State")
             case .maintenanceMode:
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
@@ -203,7 +203,7 @@ class UsageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
 
-                aLog("Usage Error State: \(serviceError.localizedDescription)")
+                dLog("Usage Error State: \(serviceError.localizedDescription)")
             }
         }
     }
@@ -347,7 +347,7 @@ extension UsageInterfaceController: NetworkingDelegate {
             setElectricState(electric: electric, startDate: startDate)
         }
 
-        aLog("Usage Status Did Update: \(billForecast)")
+        dLog("Usage Status Did Update: \(billForecast)")
     }
     
     func accountListDidUpdate(_ accounts: [Account]) { }

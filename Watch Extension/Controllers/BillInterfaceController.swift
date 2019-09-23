@@ -86,7 +86,7 @@ class BillInterfaceController: WKInterfaceController {
                 loadingImageGroup.setHidden(true)
                 errorGroup.setHidden(true)
                 
-                aLog("Loaded")
+                dLog("Loaded")
             case .loading:
                 loadingImageGroup.setHidden(false)
                 
@@ -94,7 +94,7 @@ class BillInterfaceController: WKInterfaceController {
                 billGroup.setHidden(true)
                 errorGroup.setHidden(true)
                 
-                aLog("Loading")
+                dLog("Loading")
             case .error(let error):
 
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
@@ -109,7 +109,7 @@ class BillInterfaceController: WKInterfaceController {
 
                 billGroup.setHidden(true)
 
-                aLog("Error: \(error.localizedDescription)")
+                dLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.maintenanceMode.name)
@@ -121,7 +121,7 @@ class BillInterfaceController: WKInterfaceController {
                 
                 billGroup.setHidden(true)
 
-                aLog("Maintenance Mode")
+                dLog("Maintenance Mode")
             case .passwordProtected:
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.passwordProtected.name)
@@ -132,7 +132,7 @@ class BillInterfaceController: WKInterfaceController {
                 
                 billGroup.setHidden(true)
 
-                aLog("Password Protected")
+                dLog("Password Protected")
             }
         }
     }
@@ -236,7 +236,7 @@ extension BillInterfaceController: NetworkingDelegate {
         // Display Account Group
         accountGroup.setHidden(false)
         
-        aLog("Account detail did update")
+        dLog("Account detail did update")
         
         // Retrieve a list of states
         let billStates = BillUtility().generateBillStates(accountDetail: accountDetail)

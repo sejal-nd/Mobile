@@ -68,7 +68,7 @@ class OutageInterfaceController: WKInterfaceController {
                 loadingImageGroup.setHidden(true)
                 reportOutageTapGesture.isEnabled = true
                 self.outageState = outageState
-                aLog("Loaded")
+                dLog("Loaded")
             case .loading:
                 loadingImageGroup.setHidden(false)
                 reportOutageTapGesture.isEnabled = false
@@ -77,7 +77,7 @@ class OutageInterfaceController: WKInterfaceController {
                 etrGroup.setHidden(true)
                 errorGroup.setHidden(true)
                 shouldAnimateStatusImage = false
-                aLog("Loading")
+                dLog("Loading")
             case .error(let error):
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
                 loadingImageGroup.setHidden(true)
@@ -91,7 +91,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
                 errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
-                aLog("Error: \(error.localizedDescription)")
+                dLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 loadingImageGroup.setHidden(true)
 
@@ -104,7 +104,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.maintenanceMode.name)
                 errorTitleLabel.setText("Scheduled Maintenance")
                 errorDetailLabel.setText("Outage is currently unavailable due to scheduled maintenance.")
-                aLog("Maintenance Mode")
+                dLog("Maintenance Mode")
             case .passwordProtected:
                 loadingImageGroup.setHidden(true)
                 
@@ -118,7 +118,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.passwordProtected.name)
                 errorTitleLabel.setText("Password Protected")
                 errorDetailLabel.setText("Your account cannot be accessed through this app.")
-                aLog("Password Protected")
+                dLog("Password Protected")
             }
         }
     }
@@ -142,7 +142,7 @@ class OutageInterfaceController: WKInterfaceController {
                 shouldAnimateStatusImage = true
 
                 powerStatusLabel.setText("POWER IS ON")
-                aLog("Outage Status: power on")
+                dLog("Outage Status: power on")
             case .powerOut:
                 statusGroup.setHidden(false)
                 powerStatusImage.setHidden(false)
@@ -159,7 +159,7 @@ class OutageInterfaceController: WKInterfaceController {
                     return
                 }
                 etrDetailLabel.setText(DateFormatter.outageOpcoDateFormatter.string(from: etr))
-                aLog("Outage Status: power out")
+                dLog("Outage Status: power out")
             case .gasOnly:
                 statusGroup.setHidden(true)
                 powerStatusImage.setHidden(true)
@@ -169,7 +169,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.gasOnly.name)
                 errorTitleLabel.setText("Gas Only Account")
                 errorDetailLabel.setText("Reporting of issues for gas only accounts not allowed online.")
-                aLog("Outage Status: Gas Only")
+                dLog("Outage Status: Gas Only")
             case .unavilable:
                 statusGroup.setHidden(true)
                 powerStatusImage.setHidden(true)
@@ -179,7 +179,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorImage.setImageNamed(AppImage.outageUnavailable.name)
                 errorTitleLabel.setText("Outage Unavailable")
                 errorDetailLabel.setText("Outage Status and Outage Reporting are not available for this account.")
-                aLog("Outage Unavailable")
+                dLog("Outage Unavailable")
             }
         }
     }

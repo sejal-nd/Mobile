@@ -23,7 +23,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         session.delegate = self
         session.activate()
         
-        aLog("NOTICE: Watch Session Starting...")
+        dLog("NOTICE: Watch Session Starting...")
     }
     
     func isReachable() -> Bool {
