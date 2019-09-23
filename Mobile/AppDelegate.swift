@@ -211,21 +211,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         WatchSessionManager.shared.startSession()
         
         // Send jwt to watch if available
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
+        if MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
             try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
         }
     }
-    private func checkAndLoginOnWatch() {
-        //checks if still logged in if app just went home and reloads watch app
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken, Environment.shared.opco == .peco {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
-        }
-    }
-    private func logoutOfWatch() {
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), Environment.shared.opco == .peco {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
-        }
-    }
+
     // MARK: - Helper
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
@@ -518,18 +508,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.shortcutItems = [reportOutageShortcut]
         }
         
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        checkAndLoginOnWatch()
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        logoutOfWatch()
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        logoutOfWatch()
     }
 }
 
