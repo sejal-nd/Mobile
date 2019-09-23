@@ -809,6 +809,10 @@ class BillViewController: AccountPickerViewController {
     }
 
     func configureAccessibility() {
+        pastDueView.accessibilityElements = [pastDueLabel, pastDueDateLabel, pastDueAmountLabel] as [UIView]
+        currentBillView.accessibilityElements = [currentBillLabel, currentBillDateLabel, currentBillAmountLabel] as [UIView]
+        paymentReceivedView.accessibilityElements = [paymentReceivedLabel, paymentReceivedDateLabel, paymentReceivedAmountLabel] as [UIView]
+        
         viewModel.showPaperlessEnrolledView.drive(onNext: { [weak self] show in
             self?.paperlessButton.accessibilityLabel = String.localizedStringWithFormat("Paperless e-bill. Eliminate your paper bill and receive it online.%@", show ? "Enrolled" : "")
         }).disposed(by: bag)
