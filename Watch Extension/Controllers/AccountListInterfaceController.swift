@@ -40,12 +40,7 @@ class AccountListInterfaceController: WKInterfaceController {
               let _ = AccountsStore.shared.currentIndex else { return }
 
         accounts = storedAccounts
-        
-        // Arrange Current Account to First in Array
-        if let currentAccountIndex = accounts.lastIndex(of: AccountsStore.shared.currentAccount) {
-            accounts.rearrange(from: currentAccountIndex, to: 0)
-        }
-        
+
         table.setNumberOfRows(accounts.count, withRowType: AccountTableRowController.className)
         
         for (index, account) in accounts.enumerated() {
