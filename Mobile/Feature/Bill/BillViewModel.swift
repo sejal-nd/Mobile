@@ -505,7 +505,6 @@ class BillViewModel {
                 billDate < lastPaymentDate {
                 return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), lastPaymentAmount.currencyString, lastPaymentDate.mmDdYyyyString)
             }
-            
             return nil
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -539,13 +538,11 @@ class BillViewModel {
     private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = data
         .map { accountDetail, scheduledPayment in
             guard !accountDetail.isBGEasy else { return .nowhere }
-            
             if accountDetail.isAutoPay {
                 return .autoPay
             } else if scheduledPayment?.amount > 0 {
                 return .activity
             }
-            
             return .nowhere
         }
         .asDriver(onErrorDriveWith: .empty())

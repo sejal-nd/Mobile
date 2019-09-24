@@ -310,9 +310,7 @@ class BillViewController: AccountPickerViewController {
         
         billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
         billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        
-        makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
-        
+                
         billBreakdownButton.backgroundColorOnPress = .softGray
         billBreakdownLabel.textColor = .deepGray
         billBreakdownLabel.font = SystemFont.medium.of(textStyle: .callout)
@@ -606,6 +604,15 @@ class BillViewController: AccountPickerViewController {
 
         viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).disposed(by: bag)
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.makePaymentStatusTextTapRouting.drive(onNext: { [weak self] route in
+            if route == .nowhere {
+                self?.makeAPaymentStatusLabel.textColor = .deepGray
+                self?.makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .caption1)
+            } else {
+                self?.makeAPaymentStatusLabel.textColor = .actionBlue
+                self?.makeAPaymentStatusLabel.font = OpenSans.semibold.of(textStyle: .caption1)
+            }
+        }).disposed(by: bag)
 
         viewModel.showPaperlessEnrolledView.not().drive(paperlessEnrolledView.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPayEnrolledView.not().drive(autoPayEnrolledView.rx.isHidden).disposed(by: bag)
