@@ -23,6 +23,7 @@ class TitleSubTitleRow: UITableViewCell {
                 disclosureIndicatorImageView.alpha = 1.0
                 
                 selectionStyle = .default
+                accessibilityTraits = [.button]
             } else {
                 iconImageView.alpha = 0.4
                 titleLabel.alpha = 0.4
@@ -30,6 +31,7 @@ class TitleSubTitleRow: UITableViewCell {
                 disclosureIndicatorImageView.alpha = 0.4
                 
                 selectionStyle = .none
+                accessibilityTraits = [.button, .notEnabled]
             }
         }
     }
