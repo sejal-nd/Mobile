@@ -97,7 +97,7 @@ class HomeBillCardViewModel {
                         requestSelector: { [weak self] _ in
                             guard let this = self else { return .empty() }
                             return this.walletService.fetchWalletItems().map { $0.first(where: { $0.isDefault }) }
-        })
+                        })
 
     private(set) lazy var walletItemNoNetworkConnection: Observable<Bool> = walletItemEvents.errors()
         .map { ($0 as? ServiceError)?.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue }

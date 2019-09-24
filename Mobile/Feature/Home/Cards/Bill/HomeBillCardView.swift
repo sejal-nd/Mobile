@@ -266,7 +266,7 @@ class HomeBillCardView: UIView {
         bankCreditNumberButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         bankCreditNumberButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
         bankCreditNumberButton.shouldFadeSubviewsOnPress = true
-        bankCreditNumberButton.layer.borderColor = UIColor.red.cgColor
+
         expiredLabel.textColor = .white
         saveAPaymentAccountButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         saveAPaymentAccountButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
@@ -347,7 +347,7 @@ class HomeBillCardView: UIView {
        
         viewModel.showBankCreditExpiredLabel.asObservable().subscribe(onNext: { [weak self] show in
             if show {
-                self?.bankCreditNumberButton.layer.borderColor = UIColor.primaryColor.cgColor
+                self?.bankCreditNumberButton.layer.borderColor = UIColor.errorRed.cgColor
             } else {
                 self?.bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
             }

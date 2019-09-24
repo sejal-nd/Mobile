@@ -135,17 +135,17 @@ class HomeViewModel {
             case .switchAccount:
                 return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
             }
-            }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+        }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
             return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
-            }, requestSelector: { [weak self] _ in
-                guard let self = self else { return .empty() }
-                return self.authService.getMaintenanceMode()
-            })
+        }, requestSelector: { [weak self] _ in
+            guard let self = self else { return .empty() }
+            return self.authService.getMaintenanceMode()
+        })
     
     private lazy var recentPaymentsUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.recentPaymentsUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
