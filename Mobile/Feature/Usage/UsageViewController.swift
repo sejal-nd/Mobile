@@ -146,6 +146,7 @@ class UsageViewController: AccountPickerViewController {
             lastYearButton.layer.cornerRadius = 16
             lastYearButton.layer.borderColor = UIColor.accentGray.cgColor
             lastYearButton.layer.borderWidth = 1
+            lastYearButton.accessibilityLabel = NSLocalizedString("Compare to last year", comment: "")
         }
     }
     
@@ -154,6 +155,7 @@ class UsageViewController: AccountPickerViewController {
             previousBillButton.layer.cornerRadius = 16
             previousBillButton.layer.borderColor = UIColor.accentGray.cgColor
             previousBillButton.layer.borderWidth = 1
+            previousBillButton.accessibilityLabel = NSLocalizedString("Compare to previous bill", comment: "")
         }
     }
     
