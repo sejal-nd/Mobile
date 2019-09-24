@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>ComEd_DEV</string>
 	<key>mcsInstanceName</key>
-	<string>Stage</string>
+	<string>Test1Integration</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.comed.com/MyAccount</string>
 	<key>outageMapUrl</key>
