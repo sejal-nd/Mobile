@@ -77,7 +77,6 @@ class WatchSessionManager: NSObject {
 
 extension WatchSessionManager: WCSessionDelegate {
     
-    @available(iOS 9.3, *)
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
 
     func sessionDidBecomeInactive(_ session: WCSession) { }
@@ -87,6 +86,23 @@ extension WatchSessionManager: WCSessionDelegate {
         session.activate()
     }
     
+}
+
+
+// MARK: - Receiving User Info
+
+extension WatchSessionManager {
+    
+    /// Handles receiving data for watch analytics
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        print("did receive user info:\(userInfo)")
+        
+        guard let screenName = userInfo["screenName"] as? String else {
+            dLog("Failed to parse user info dictionary with key: screenName")
+            return }
+        
+        FirebaseUtility.logWatchScreenView(screenName)
+    }
 }
 
 // MARK: Interactive Messaging

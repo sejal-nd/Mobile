@@ -472,9 +472,6 @@
 		35E7C7D221907F2F00BA13C6 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C821907F2E00BA13C6 /* Usage.storyboard */; };
 		35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35E7C7E02190802C00BA13C6 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
-		35E7C7E12190802C00BA13C6 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
-		35E7C7E52190803900BA13C6 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
-		35E7C7E62190803900BA13C6 /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E42190803900BA13C6 /* AccountsManager.swift */; };
 		35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
@@ -506,11 +503,8 @@
 		35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
 		35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
 		35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
-		35F9DD752333D14D00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
-		35F9DD762333D14D00AAA2B2 /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E42190803900BA13C6 /* AccountsManager.swift */; };
 		35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DD792333D14D00AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
-		35F9DD7A2333D14D00AAA2B2 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
 		35F9DD7B2333D14D00AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD7E2333D14D00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
@@ -581,11 +575,8 @@
 		35F9DDFF23353A3C00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
 		35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
 		35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
-		35F9DE0323353A4300AAA2B2 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
 		35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
-		35F9DE0623353A4D00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
-		35F9DE0723353A4D00AAA2B2 /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E42190803900BA13C6 /* AccountsManager.swift */; };
 		35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
 		35F9DE0923353A5300AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */; };
 		35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
@@ -652,12 +643,15 @@
 		35F9DE4D2339152900AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
-		35F9DE51233A583700AAA2B2 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */; };
-		35F9DE52233A583700AAA2B2 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */; };
-		35F9DE53233A583700AAA2B2 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */; };
+		35F9DE51233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */; };
+		35F9DE52233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */; };
+		35F9DE53233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */; };
 		35F9DE55233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
 		35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
 		35F9DE57233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
+		35F9DE5B233A63AB00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
+		35F9DE5C233A63AD00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
+		35F9DE5D233A63AE00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -2960,9 +2954,7 @@
 		35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableRowController.swift; sourceTree = "<group>"; };
 		35E7C7DC2190802C00BA13C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingUtility.swift; sourceTree = "<group>"; };
-		35E7C7DE2190802C00BA13C6 /* GAUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAUtility.swift; sourceTree = "<group>"; };
 		35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
-		35E7C7E42190803900BA13C6 /* AccountsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsManager.swift; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
 		35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Italic.swift"; sourceTree = "<group>"; };
 		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
@@ -2991,7 +2983,7 @@
 		35F9DDF923353A0D00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		35F9DE0F23353A6C00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ComEd_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
+		35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAnalyticUtility.swift; sourceTree = "<group>"; };
 		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4964,10 +4956,9 @@
 		35E7C7DB2190802C00BA13C6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */,
+				35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */,
 				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
 				358D677221961BC400395D0F /* BillUtility.swift */,
-				35E7C7DE2190802C00BA13C6 /* GAUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -4976,7 +4967,6 @@
 			isa = PBXGroup;
 			children = (
 				35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */,
-				35E7C7E42190803900BA13C6 /* AccountsManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -8269,7 +8259,7 @@
 				356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */,
 				356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */,
 				356C7F7A21909887003E8A90 /* AccountsStore.swift in Sources */,
-				35F9DE51233A583700AAA2B2 /* FirebaseUtility.swift in Sources */,
+				35F9DE51233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */,
 				356C7F8F2190A162003E8A90 /* MinimumVersion.swift in Sources */,
 				356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
@@ -8308,14 +8298,12 @@
 				358D677321961BC400395D0F /* BillUtility.swift in Sources */,
 				356C7F962190A275003E8A90 /* OutageService.swift in Sources */,
 				356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */,
-				35E7C7E62190803900BA13C6 /* AccountsManager.swift in Sources */,
 				356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */,
 				356C7F8A21909F89003E8A90 /* PecoColor.swift in Sources */,
 				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
 				356C7F8321909E7E003E8A90 /* NumberFormatter.swift in Sources */,
 				35E7C7FA2190805500BA13C6 /* ExtensionDelegate.swift in Sources */,
 				35E7C7E02190802C00BA13C6 /* NetworkingUtility.swift in Sources */,
-				35E7C7E12190802C00BA13C6 /* GAUtility.swift in Sources */,
 				356C7F942190A1F8003E8A90 /* HomeProfile.swift in Sources */,
 				B0E9F00121EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				356C7F9E2190A446003E8A90 /* AuthTokenParser.swift in Sources */,
@@ -8327,9 +8315,9 @@
 				356C7F932190A1DD003E8A90 /* MCSUsageService.swift in Sources */,
 				356C7FA02190A46E003E8A90 /* HttpMethod.swift in Sources */,
 				35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */,
-				35E7C7E52190803900BA13C6 /* WatchSessionManager.swift in Sources */,
 				B08BBFC121C8284A00A899FC /* Payments.swift in Sources */,
 				356C7F7D219098F8003E8A90 /* MCSAccountService.swift in Sources */,
+				35F9DE5B233A63AB00AAA2B2 /* WatchSessionManager.swift in Sources */,
 				356C7F8D2190A09F003E8A90 /* ProfileStatus.swift in Sources */,
 				356C7F952190A262003E8A90 /* OutageInfo.swift in Sources */,
 				356C7FA12190A4BE003E8A90 /* UsageService.swift in Sources */,
@@ -8345,9 +8333,8 @@
 				35F9DD9A2333D85A00AAA2B2 /* Premise.swift in Sources */,
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				35F9DD992333D85400AAA2B2 /* WalletItem.swift in Sources */,
-				35F9DE52233A583700AAA2B2 /* FirebaseUtility.swift in Sources */,
+				35F9DE52233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */,
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
-				35F9DD762333D14D00AAA2B2 /* AccountsManager.swift in Sources */,
 				35F9DDA02333D87300AAA2B2 /* Payments.swift in Sources */,
 				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
 				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
@@ -8359,7 +8346,6 @@
 				35F9DD932333D83F00AAA2B2 /* MinimumVersion.swift in Sources */,
 				35F9DD972333D84C00AAA2B2 /* OutageInfo.swift in Sources */,
 				35F9DDAC2333D8AF00AAA2B2 /* ServiceResult.swift in Sources */,
-				35F9DD752333D14D00AAA2B2 /* WatchSessionManager.swift in Sources */,
 				35F9DDA82333D89E00AAA2B2 /* AuthenticationService.swift in Sources */,
 				35F9DDB22333D8CF00AAA2B2 /* MCSUsageService.swift in Sources */,
 				35F9DD9C2333D86100AAA2B2 /* BillComparison.swift in Sources */,
@@ -8371,7 +8357,6 @@
 				35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */,
 				35F9DDAD2333D8B300AAA2B2 /* UsageService.swift in Sources */,
 				35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */,
-				35F9DD7A2333D14D00AAA2B2 /* GAUtility.swift in Sources */,
 				35F9DDA52333D88B00AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
 				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
@@ -8406,6 +8391,7 @@
 				35F9DDBC2333D90D00AAA2B2 /* URLSession+Rx.swift in Sources */,
 				35F9DD792333D14D00AAA2B2 /* NetworkingUtility.swift in Sources */,
 				35F9DDB02333D8C600AAA2B2 /* MCSAuthenticationService.swift in Sources */,
+				35F9DE5C233A63AD00AAA2B2 /* WatchSessionManager.swift in Sources */,
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
 				35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				35F9DDBB2333D90900AAA2B2 /* SequenceForEach.swift in Sources */,
@@ -8421,7 +8407,7 @@
 				35F9DE3323353CEF00AAA2B2 /* ServiceResult.swift in Sources */,
 				35F9DE3723353D1000AAA2B2 /* StormModeStatus.swift in Sources */,
 				35F9DE3E23353D4000AAA2B2 /* Fillable.swift in Sources */,
-				35F9DE53233A583700AAA2B2 /* FirebaseUtility.swift in Sources */,
+				35F9DE53233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */,
 				35F9DE1E23353C7200AAA2B2 /* Premise.swift in Sources */,
 				35F9DE2D23353CCE00AAA2B2 /* DateParser.swift in Sources */,
 				35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */,
@@ -8457,19 +8443,16 @@
 				35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */,
 				35F9DE3823353D1300AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				35F9DE3423353CF200AAA2B2 /* UsageService.swift in Sources */,
-				35F9DE0623353A4D00AAA2B2 /* WatchSessionManager.swift in Sources */,
 				35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */,
 				35F9DE0E23353A5700AAA2B2 /* ExtensionDelegate.swift in Sources */,
 				35F9DE4223353D5F00AAA2B2 /* KeychainUtility.swift in Sources */,
 				35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				35F9DE3D23353D3800AAA2B2 /* PecoColor.swift in Sources */,
-				35F9DE0723353A4D00AAA2B2 /* AccountsManager.swift in Sources */,
 				35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */,
 				35F9DE2523353C9C00AAA2B2 /* SERResult.swift in Sources */,
 				35F9DE3C23353D3400AAA2B2 /* NibViews.swift in Sources */,
 				35F9DE2223353C8100AAA2B2 /* SSOData.swift in Sources */,
 				35F9DE3023353CDC00AAA2B2 /* AuthTokenResponse.swift in Sources */,
-				35F9DE0323353A4300AAA2B2 /* GAUtility.swift in Sources */,
 				35F9DE4423353D9500AAA2B2 /* Environment.swift in Sources */,
 				35F9DE0C23353A5300AAA2B2 /* UsageInterfaceController.swift in Sources */,
 				35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */,
@@ -8482,6 +8465,7 @@
 				35F9DE4023353D4C00AAA2B2 /* URLSession+Rx.swift in Sources */,
 				35F9DE2C23353CCA00AAA2B2 /* MCSResponseParser.swift in Sources */,
 				35F9DE3623353D0B00AAA2B2 /* ReportedOutagesStore.swift in Sources */,
+				35F9DE5D233A63AE00AAA2B2 /* WatchSessionManager.swift in Sources */,
 				35F9DDFD23353A3C00AAA2B2 /* UIFont+Italic.swift in Sources */,
 				35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */,
 				35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */,

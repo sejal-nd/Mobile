@@ -58,25 +58,7 @@ extension WatchSessionManager {
     }
     
 
-
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
-}
-
-
-
-extension WatchSessionManager {
-    
-    // This is where the magic happens!
-    // Yes, that's it!
-    // Just updateApplicationContext on the session!
-    func updateApplicationContext(applicationContext: [String : Any]) throws {
-        do {
-            try session.updateApplicationContext(applicationContext)
-        } catch let error {
-            throw error
-        }
-    }
-    
 }
 
 
@@ -93,10 +75,19 @@ extension WatchSessionManager {
         // Send user info
         session.transferUserInfo(userInfo)
     }
+}
+
+extension WatchSessionManager {
     
-    func session(_ session: WCSession, didFinish userInfoTransfer: WCSessionUserInfoTransfer, error: Error?) {
-//        guard isReachable() else { dLog("User Info Transfer failed, session is not reachable") }
-        
-//        session.transferUserInfo(<#T##userInfo: [String : Any]##[String : Any]#>)
+    // This is where the magic happens!
+    // Yes, that's it!
+    // Just updateApplicationContext on the session!
+    func updateApplicationContext(applicationContext: [String : Any]) throws {
+        do {
+            try session.updateApplicationContext(applicationContext)
+        } catch let error {
+            throw error
+        }
     }
+    
 }

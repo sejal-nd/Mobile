@@ -9,6 +9,7 @@
 import Foundation
 
 struct WatchAnalyticUtility {
+    
     enum ScreenName: String {
         case sign_in_screen_view
         case please_sync_screen_view
@@ -22,4 +23,5 @@ struct WatchAnalyticUtility {
     static func logScreenView(_ screenName: ScreenName) {
         WatchSessionManager.shared.transferUserInfo(userInfo: ["screenName": screenName.rawValue])
     }
+    
 }

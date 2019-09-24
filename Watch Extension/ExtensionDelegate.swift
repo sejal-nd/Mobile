@@ -15,11 +15,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         
         WatchSessionManager.shared.startSession()
 
-        // Initialize Google Analytics Singleton
-        _ = GATracker.shared
-        
         setInitialScreen()
-
     }
 
     

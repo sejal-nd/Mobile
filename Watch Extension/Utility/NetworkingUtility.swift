@@ -57,9 +57,7 @@ class NetworkingUtility {
     private let group = DispatchGroup()
     
     public var outageStatus: OutageStatus?
-    
-    private let accountManager = AccountsManager()
-    
+        
     private var pollingTimer: Timer!
     
     private var accounts = [Account]()
