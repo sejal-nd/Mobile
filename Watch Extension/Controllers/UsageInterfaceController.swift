@@ -230,7 +230,7 @@ class UsageInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        GATracker.shared.screenView(screenName: UsageInterfaceController.className, customParameters: nil)
+        WatchAnalyticUtility.logScreenView(.usage_screen_view)
     }
     
     

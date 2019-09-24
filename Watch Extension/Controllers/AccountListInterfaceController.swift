@@ -29,7 +29,7 @@ class AccountListInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        GATracker.shared.screenView(screenName: AccountListInterfaceController.className, customParameters: nil)
+        WatchAnalyticUtility.logScreenView(.account_list_screen_view)
     }
 
     

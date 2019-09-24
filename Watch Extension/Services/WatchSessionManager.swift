@@ -56,6 +56,8 @@ extension WatchSessionManager {
             }
         }
     }
+    
+
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
 }
@@ -75,4 +77,26 @@ extension WatchSessionManager {
         }
     }
     
+}
+
+
+// MARK: - Transfer User Info
+
+extension WatchSessionManager {
+    // Use when your app needs all the data - FIFO queue
+    func transferUserInfo(userInfo: [String : Any]) {
+        guard isReachable() else {
+            dLog("User Info Transfer failed, session is not reachable")
+            return
+        }
+
+        // Send user info
+        session.transferUserInfo(userInfo)
+    }
+    
+    func session(_ session: WCSession, didFinish userInfoTransfer: WCSessionUserInfoTransfer, error: Error?) {
+//        guard isReachable() else { dLog("User Info Transfer failed, session is not reachable") }
+        
+//        session.transferUserInfo(<#T##userInfo: [String : Any]##[String : Any]#>)
+    }
 }

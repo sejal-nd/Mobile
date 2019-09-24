@@ -228,7 +228,7 @@ class OutageInterfaceController: WKInterfaceController {
         super.didAppear()
 
         // Log Analytics
-        GATracker.shared.screenView(screenName: OutageInterfaceController.className, customParameters: nil)
+        WatchAnalyticUtility.logScreenView(.account_list_screen_view)
         
         // If outage state loads without being on the outage screen
         shouldAnimateStatusImage = true

@@ -652,6 +652,12 @@
 		35F9DE4D2339152900AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
+		35F9DE51233A583700AAA2B2 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */; };
+		35F9DE52233A583700AAA2B2 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */; };
+		35F9DE53233A583700AAA2B2 /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */; };
+		35F9DE55233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
+		35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
+		35F9DE57233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -2985,6 +2991,8 @@
 		35F9DDF923353A0D00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		35F9DE0F23353A6C00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ComEd_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
+		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
@@ -4956,6 +4964,7 @@
 		35E7C7DB2190802C00BA13C6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				35F9DE50233A583700AAA2B2 /* FirebaseUtility.swift */,
 				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
 				358D677221961BC400395D0F /* BillUtility.swift */,
 				35E7C7DE2190802C00BA13C6 /* GAUtility.swift */,
@@ -4991,6 +5000,7 @@
 				35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */,
 				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
 				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
+				35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */,
 				35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */,
 				35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */,
 			);
@@ -8259,6 +8269,7 @@
 				356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */,
 				356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */,
 				356C7F7A21909887003E8A90 /* AccountsStore.swift in Sources */,
+				35F9DE51233A583700AAA2B2 /* FirebaseUtility.swift in Sources */,
 				356C7F8F2190A162003E8A90 /* MinimumVersion.swift in Sources */,
 				356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
@@ -8287,6 +8298,7 @@
 				356C7F9F2190A455003E8A90 /* MCSResponseParser.swift in Sources */,
 				356C7F752190974A003E8A90 /* NibViews.swift in Sources */,
 				9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */,
+				35F9DE55233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				356C7F8521909EB3003E8A90 /* Maintenance.swift in Sources */,
 				356C7F8821909F46003E8A90 /* AuthenticationService.swift in Sources */,
 				B0E9F00421F28ADB0086A82A /* SequenceForEach.swift in Sources */,
@@ -8333,6 +8345,7 @@
 				35F9DD9A2333D85A00AAA2B2 /* Premise.swift in Sources */,
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				35F9DD992333D85400AAA2B2 /* WalletItem.swift in Sources */,
+				35F9DE52233A583700AAA2B2 /* FirebaseUtility.swift in Sources */,
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
 				35F9DD762333D14D00AAA2B2 /* AccountsManager.swift in Sources */,
 				35F9DDA02333D87300AAA2B2 /* Payments.swift in Sources */,
@@ -8361,6 +8374,7 @@
 				35F9DD7A2333D14D00AAA2B2 /* GAUtility.swift in Sources */,
 				35F9DDA52333D88B00AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
+				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */,
 				35F9DD812333D14D00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */,
 				35F9DD7E2333D14D00AAA2B2 /* UIFont+Italic.swift in Sources */,
@@ -8407,6 +8421,7 @@
 				35F9DE3323353CEF00AAA2B2 /* ServiceResult.swift in Sources */,
 				35F9DE3723353D1000AAA2B2 /* StormModeStatus.swift in Sources */,
 				35F9DE3E23353D4000AAA2B2 /* Fillable.swift in Sources */,
+				35F9DE53233A583700AAA2B2 /* FirebaseUtility.swift in Sources */,
 				35F9DE1E23353C7200AAA2B2 /* Premise.swift in Sources */,
 				35F9DE2D23353CCE00AAA2B2 /* DateParser.swift in Sources */,
 				35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */,
@@ -8435,6 +8450,7 @@
 				35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */,
 				35F9DE2123353C7E00AAA2B2 /* BillForecast.swift in Sources */,
 				35F9DE2923353CB700AAA2B2 /* MCSOutageService.swift in Sources */,
+				35F9DE57233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */,
 				35F9DE0D23353A5300AAA2B2 /* BillInterfaceController.swift in Sources */,
 				35F9DE2623353CA700AAA2B2 /* MCSAccountService.swift in Sources */,

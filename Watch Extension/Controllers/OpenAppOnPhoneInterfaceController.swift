@@ -16,7 +16,8 @@ class OpenAppOnPhoneInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        GATracker.shared.screenView(screenName: OpenAppOnPhoneInterfaceController.className, customParameters: nil)
+        WatchAnalyticUtility.logScreenView(.please_sync_screen_view)
+        
         try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
     }
 

@@ -10,7 +10,7 @@
         <!--ReportOutageInterfaceController-->
         <scene sceneID="1RF-hm-hR3">
             <objects>
-                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a">
+                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="ReportOutageInterfaceController" customModule="PECO_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="BKS-FI-22X">
                             <items>
@@ -28,11 +28,11 @@
         <!--AccountListInterfaceController-->
         <scene sceneID="QsP-lO-Kwh">
             <objects>
-                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="Watch_Extension">
+                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="PECO_Watch_Extension">
                     <items>
                         <table alignment="left" id="sgx-CZ-A51">
                             <items>
-                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="BGE_Watch" customModuleProvider="target">
+                                <tableRow identifier="AccountTableRowController" id="Orz-c5-1Ov" customClass="AccountTableRowController" customModule="PECO_Watch" customModuleProvider="target">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="sdA-I2-UIm">
                                         <items>
                                             <imageView width="24" height="1" alignment="left" image="checkmark_white" contentMode="scaleAspectFit" id="eSW-rz-UXJ"/>
@@ -93,7 +93,7 @@
         <!--OpenAppOnPhoneInterfaceController-->
         <scene sceneID="49C-7x-8A7">
             <objects>
-                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="Watch_Extension">
+                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="PECO_Watch_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Cpt-5p-t75">
                             <items>

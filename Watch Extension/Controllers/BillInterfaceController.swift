@@ -160,7 +160,7 @@ class BillInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        GATracker.shared.screenView(screenName: BillInterfaceController.className, customParameters: nil)
+        WatchAnalyticUtility.logScreenView(.bill_screen_view)
     }
     
     // MARK: - Helper

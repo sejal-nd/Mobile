@@ -8,7 +8,7 @@
 
 import WatchKit
 
-class SignInInterfaceController: WKInterfaceController {
+class ReportOutageInterfaceController: WKInterfaceController {
     
     
     // MARK: - Interface Life Cycle
@@ -17,9 +17,7 @@ class SignInInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        WatchAnalyticUtility.logScreenView(.sign_in_screen_view)
-        
-        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate: true])
+        WatchAnalyticUtility.logScreenView(.report_outage_screen_view)
     }
 
 }
