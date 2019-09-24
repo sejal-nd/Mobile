@@ -159,6 +159,7 @@ class HomeViewModel {
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter { !($0.element?.allStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(fetchTrigger)
+        .delay(.leastNonzeroMagnitude, scheduler: MainScheduler.instance) // Resolve race condition on Usage Card with mock data loading instantly
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
             switch state {
