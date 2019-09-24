@@ -164,7 +164,7 @@ class NetworkingUtility {
                         // Maint - Outage
                         self?.networkUtilityDelegates.forEach { $0.maintenanceMode(feature: .outage) }
                     } else {
-                        // No Maint - Outage
+                        // No Maint - Fetch Outage
                         self?.fetchOutageStatus(success: { [weak self] outageStatus in
                             self?.networkUtilityDelegates.forEach { $0.outageStatusDidUpdate(outageStatus) }
                             }, error: { serviceError in
@@ -230,7 +230,7 @@ class NetworkingUtility {
     ///     - error: Triggers delegate method for a general error occured attempting to fetch account details.
     private func fetchAccountDetailsWithData(maintenanceModeStatus: Maintenance, completion: @escaping (AccountDetail?) -> Void) {
         group.enter()
-        accountManager.fetchAccountDetails(success: { [weak self] accountDetail in
+        fetchAccountDetails(success: { [weak self] accountDetail in
             if accountDetail.isPasswordProtected {
                 self?.networkUtilityDelegates.forEach { $0.error(Errors.passwordProtected, feature: .all) }
                 completion(nil)
@@ -253,6 +253,34 @@ class NetworkingUtility {
                 self?.group.leave()
                 completion(nil)
         })
+    }
+    
+    // Fetch Account Details: We need this to determine if the current account is password protected.
+    public func fetchAccountDetails(success: @escaping (AccountDetail) -> Void, noAuthToken: @escaping (ServiceError) -> Void, error: @escaping (ServiceError) -> Void) {
+        dLog("Fetching Account Details...")
+        
+        guard KeychainUtility.shared[keychainKeys.authToken] != nil,
+            let _ = AccountsStore.shared.currentIndex else {
+            dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
+            noAuthToken(Errors.noAuthTokenFound)
+            return
+        }
+        
+        let accountService = MCSAccountService()
+        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+            .subscribe(onNext: { accountDetail in
+                // handle success
+                dLog("Account Details Fetched.")
+                
+                success(accountDetail)
+            }, onError: { accountDetailError in
+                // handle error
+                dLog("Failed to Fetch Account Details. \(accountDetailError.localizedDescription)")
+                let serviceError = (accountDetailError as? ServiceError) ?? ServiceError(serviceCode: accountDetailError.localizedDescription, serviceMessage: nil, cause: nil)
+                
+                error(serviceError)
+            })
+            .disposed(by: disposeBag)
     }
     
     /// Fetches if maintenance mode is active for any/all services.

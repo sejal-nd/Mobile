@@ -471,7 +471,6 @@
 		35E7C7D121907F2F00BA13C6 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C721907F2E00BA13C6 /* Outage.storyboard */; };
 		35E7C7D221907F2F00BA13C6 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C821907F2E00BA13C6 /* Usage.storyboard */; };
 		35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
-		35E7C7DF2190802C00BA13C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35E7C7E02190802C00BA13C6 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35E7C7E12190802C00BA13C6 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
 		35E7C7E52190803900BA13C6 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
@@ -510,7 +509,6 @@
 		35F9DD752333D14D00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
 		35F9DD762333D14D00AAA2B2 /* AccountsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E42190803900BA13C6 /* AccountsManager.swift */; };
 		35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
-		35F9DD782333D14D00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DD792333D14D00AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35F9DD7A2333D14D00AAA2B2 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
 		35F9DD7B2333D14D00AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
@@ -582,7 +580,6 @@
 		35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DDFF23353A3C00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
 		35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
-		35F9DE0123353A4300AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35F9DE0323353A4300AAA2B2 /* GAUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DE2190802C00BA13C6 /* GAUtility.swift */; };
 		35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
@@ -652,6 +649,9 @@
 		35F9DE492335413300AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DE4A2335413800AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DE4B2335413800AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
+		35F9DE4D2339152900AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
+		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
+		35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -8263,6 +8263,7 @@
 				356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
 				356C7F7B219098C4003E8A90 /* OutageStatus.swift in Sources */,
+				35F9DE4D2339152900AAA2B2 /* Constants.swift in Sources */,
 				356C7F902190A173003E8A90 /* SSOData.swift in Sources */,
 				356C7F8721909EFC003E8A90 /* UserDefaultKeys.swift in Sources */,
 				B08BBFC921C8539000A899FC /* SERResult.swift in Sources */,
@@ -8313,7 +8314,6 @@
 				356C7F8221909997003E8A90 /* KeychainUtility.swift in Sources */,
 				356C7F932190A1DD003E8A90 /* MCSUsageService.swift in Sources */,
 				356C7FA02190A46E003E8A90 /* HttpMethod.swift in Sources */,
-				35E7C7DF2190802C00BA13C6 /* Constants.swift in Sources */,
 				35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */,
 				35E7C7E52190803900BA13C6 /* WatchSessionManager.swift in Sources */,
 				B08BBFC121C8284A00A899FC /* Payments.swift in Sources */,
@@ -8331,13 +8331,13 @@
 				35F9DD702333D14D00AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */,
 				35F9DD9B2333D85E00AAA2B2 /* Maintenance.swift in Sources */,
 				35F9DD9A2333D85A00AAA2B2 /* Premise.swift in Sources */,
-				35F9DD782333D14D00AAA2B2 /* Constants.swift in Sources */,
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				35F9DD992333D85400AAA2B2 /* WalletItem.swift in Sources */,
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
 				35F9DD762333D14D00AAA2B2 /* AccountsManager.swift in Sources */,
 				35F9DDA02333D87300AAA2B2 /* Payments.swift in Sources */,
 				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
+				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
 				35F9DDB52333D8E000AAA2B2 /* DateParser.swift in Sources */,
 				35F9DD802333D14D00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */,
 				35F9DD942333D84400AAA2B2 /* Account.swift in Sources */,
@@ -8411,6 +8411,7 @@
 				35F9DE2D23353CCE00AAA2B2 /* DateParser.swift in Sources */,
 				35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */,
 				35F9DE2E23353CD200AAA2B2 /* AccountService.swift in Sources */,
+				35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */,
 				35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */,
 				35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */,
 				35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */,
@@ -8438,7 +8439,6 @@
 				35F9DE0D23353A5300AAA2B2 /* BillInterfaceController.swift in Sources */,
 				35F9DE2623353CA700AAA2B2 /* MCSAccountService.swift in Sources */,
 				35F9DE2823353CB100AAA2B2 /* MCSAuthenticationService.swift in Sources */,
-				35F9DE0123353A4300AAA2B2 /* Constants.swift in Sources */,
 				35F9DE3823353D1300AAA2B2 /* ShortUUIDGenerator.swift in Sources */,
 				35F9DE3423353CF200AAA2B2 /* UsageService.swift in Sources */,
 				35F9DE0623353A4D00AAA2B2 /* WatchSessionManager.swift in Sources */,
