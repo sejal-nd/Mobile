@@ -510,7 +510,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
-        if let vc = segue.destination as? ForgotPasswordViewController {
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? ForgotPasswordViewController {
             vc.delegate = self
         }
     }
