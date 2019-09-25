@@ -274,7 +274,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Updates", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             default:
                 return UITableViewCell()
             }
