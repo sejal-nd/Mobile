@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14868" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="watch38"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14643"/>
     </dependencies>
     <scenes>
         <!--Outage-->
         <scene sceneID="hol-pR-2GK">
             <objects>
-                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="PECO_WatchOS" customModuleProvider="target">
+                <controller identifier="OutageInterfaceController" title="Outage" id="4RC-kn-Bcl" customClass="OutageInterfaceController" customModule="BGE_Watch" customModuleProvider="target">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="Qu5-Yb-MPl">
                             <items>
@@ -130,5 +128,11 @@
             <point key="canvasLocation" x="608" y="-311"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <resources>
+        <image name="Loading_white" width="16" height="16"/>
+        <image name="On_0" width="270" height="50"/>
+        <image name="outageUnavailable" width="100" height="101"/>
+        <image name="residential_mini_white" width="20" height="20"/>
+    </resources>
+    <color key="tintColor" red="0.0" green="0.63529411764705879" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14868" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yv4-PS-J3u">
     <device id="watch38"/>
     <dependencies>
+        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14643"/>
     </dependencies>
@@ -114,9 +115,9 @@
     </scenes>
     <resources>
         <image name="checkmark_white" width="24" height="24"/>
-        <image name="reportOutageSignIn" width="138" height="171"/>
-        <image name="residential" width="43" height="43"/>
-        <image name="signin" width="173" height="214"/>
+        <image name="reportOutageSignIn" width="70" height="86"/>
+        <image name="residential" width="20" height="20"/>
+        <image name="signin" width="87" height="107"/>
     </resources>
-    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.40000000000000002" green="0.70196078431372544" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
