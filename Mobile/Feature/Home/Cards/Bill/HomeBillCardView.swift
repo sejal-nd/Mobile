@@ -261,7 +261,7 @@ class HomeBillCardView: UIView {
         errorLabel.textColor = .white
         maintenanceModeLabel.textColor = .white
         
-        dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
+        dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_tooltip_white.pdf"), for: .normal)
         walletItemInfoBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         bankCreditNumberButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         bankCreditNumberButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
@@ -272,6 +272,9 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
         saveAPaymentAccountButton.shouldFadeSubviewsOnPress = true
         saveAPaymentAccountLabel.textColor = .white
+        tutorialButton.setImage(#imageLiteral(resourceName: "ic_tooltip_white.pdf"), for: .normal)
+        
+        saveAPaymentDescriptionLabel.textColor = .white
         
         scheduledPaymentBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         thankYouForSchedulingButton.setTitleColor(.white, for: .normal)
