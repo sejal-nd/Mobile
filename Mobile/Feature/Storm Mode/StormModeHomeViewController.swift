@@ -589,22 +589,13 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UpdatesDetailViewController {
-            if let stormUpdate = viewModel.stormModeUpdate.value {
-                vc.opcoUpdate = stormUpdate
-            }
-        } else if let vc = segue.destination as? ReportOutageViewController {
-            navigationController?.setNavigationBarHidden(false, animated: false) // may be able to refactor this out into the root of prep for segue
+        if let vc = segue.destination as? UpdatesDetailViewController, let stormUpdate = viewModel.stormModeUpdate.value {
+            vc.opcoUpdate = stormUpdate
+        } else if let vc = segue.destination as? ReportOutageViewController, let phone = viewModel.currentOutageStatus!.contactHomeNumber {
             vc.viewModel.outageStatus = viewModel.currentOutageStatus!
-            
-            guard let phone = viewModel.currentOutageStatus!.contactHomeNumber else { return }
             vc.viewModel.phoneNumber.value = phone
         } else if let vc = segue.destination as? OutageMapViewController {
-            navigationController?.setNavigationBarHidden(false, animated: false)
             vc.hasPressedStreetlightOutageMapButton = false
-        } else if let vc = segue.destination as? MoreViewController {
-            vc.shouldHideNavigationBar = false
-            navigationController?.setNavigationBarHidden(false, animated: false)
         }
     }
     
@@ -616,7 +607,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             let alertsVC = alertsStoryboard.instantiateInitialViewController()
             else { return }
         
-        moreVC.shouldHideNavigationBar = false
         navigationController?.viewControllers = [self, moreVC, alertsVC]
     }
         
@@ -629,7 +619,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             let alertsVC = alertsStoryboard.instantiateInitialViewController() as? AlertsViewController
             else { return }
         
-        moreVC.shouldHideNavigationBar = false
         alertsVC.shortcutToPrefs = true
         navCtl.viewControllers = [self, moreVC, alertsVC]
     }
