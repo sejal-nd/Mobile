@@ -487,9 +487,6 @@
 		35F9DD3D2333C34200AAA2B2 /* BGE-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35F9DD232333C33F00AAA2B2 /* BGE-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */; };
 		35F9DD5D2333C45900AAA2B2 /* BGEAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD5B2333C45300AAA2B2 /* BGEAssets.xcassets */; };
-		35F9DD642333C84D00AAA2B2 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C621907F2E00BA13C6 /* Bill.storyboard */; };
-		35F9DD652333C85000AAA2B2 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C721907F2E00BA13C6 /* Outage.storyboard */; };
-		35F9DD662333C85300AAA2B2 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C821907F2E00BA13C6 /* Usage.storyboard */; };
 		35F9DD672333C85B00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD682333C85C00AAA2B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
 		35F9DD6A2333C87A00AAA2B2 /* PECOAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DD692333C87A00AAA2B2 /* PECOAssets.xcassets */; };
@@ -6740,10 +6737,7 @@
 				35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */,
-				35F9DD652333C85000AAA2B2 /* Outage.storyboard in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
-				35F9DD642333C84D00AAA2B2 /* Bill.storyboard in Resources */,
-				35F9DD662333C85300AAA2B2 /* Usage.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
