@@ -66,7 +66,7 @@ class BGEAutoPayViewController: UIViewController {
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         navigationItem.rightBarButtonItem = helpButton
         
-    viewModel.submitButtonEnabled.drive(enrollButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.submitButtonEnabled.drive(enrollButton.rx.isEnabled).disposed(by: disposeBag)
 
         styleViews()
         setupBindings()
@@ -258,15 +258,10 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBAction func enroll() {
         GoogleAnalytics.log(event: .autoPayEnrollSubmit)
-        
         FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenrolled_start)])
-
         FirebaseUtility.logEvent(.autoPaySubmit)
         
-        if viewModel.userDidChangeSettings.value {
-            GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
-        }
-        
+        LoadingView.show()
         viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
@@ -309,7 +304,6 @@ class BGEAutoPayViewController: UIViewController {
     
     private func updateSettings() {
         GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
-        
         FirebaseUtility.logEvent(.autoPaySubmit)
         
         viewModel.update(onSuccess: { [weak self] in
