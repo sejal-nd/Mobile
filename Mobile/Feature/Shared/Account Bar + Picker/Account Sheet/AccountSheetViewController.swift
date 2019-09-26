@@ -23,7 +23,7 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var gestureView: UIView!
     @IBOutlet weak var handleView: UIView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
 
@@ -232,7 +232,8 @@ class AccountSheetViewController: UIViewController {
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
 
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.font: SystemFont.semibold.of(textStyle: .title3)]
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     private func configureTableView() {
