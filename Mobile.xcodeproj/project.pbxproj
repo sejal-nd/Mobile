@@ -183,6 +183,12 @@
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
+		352B19F8233BBE710090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage.storyboard */; };
+		352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage.storyboard */; };
+		352B19FC233BBF120090B442 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FB233BBF120090B442 /* Bill.storyboard */; };
+		352B19FE233BBFA50090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FD233BBFA50090B442 /* Outage.storyboard */; };
+		352B1A00233BBFB50090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FF233BBFB50090B442 /* Usage.storyboard */; };
+		352B1A02233BBFC70090B442 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B1A01233BBFC70090B442 /* Bill.storyboard */; };
 		352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
@@ -512,7 +518,6 @@
 		35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		35F9DD892333D3CC00AAA2B2 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
 		35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AC06781E51763200BBA4ED /* Environment.swift */; };
-		35F9DD902333D61E00AAA2B2 /* Pods_Watch_Extension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35F9DD8E2333D61E00AAA2B2 /* Pods_Watch_Extension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35F9DD932333D83F00AAA2B2 /* MinimumVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EDC5491F3506F2006DD927 /* MinimumVersion.swift */; };
 		35F9DD942333D84400AAA2B2 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D2E2B1E72FEC5002626C9 /* Account.swift */; };
 		35F9DD952333D84700AAA2B2 /* ProfileStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574BAC91E72FF73001E8A44 /* ProfileStatus.swift */; };
@@ -2722,17 +2727,6 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		35F9DD912333D61E00AAA2B2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				35F9DD902333D61E00AAA2B2 /* Pods_Watch_Extension.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		35F9DDEA2335397500AAA2B2 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2854,6 +2848,12 @@
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
+		352B19F7233BBE710090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Outage.storyboard; path = Watch/Storyboards/BGE/Outage.storyboard; sourceTree = SOURCE_ROOT; };
+		352B19F9233BBEDD0090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
+		352B19FB233BBF120090B442 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		352B19FD233BBFA50090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
+		352B19FF233BBFB50090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
+		352B1A01233BBFC70090B442 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unauthenticated.storyboard; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
@@ -5026,9 +5026,9 @@
 			isa = PBXGroup;
 			children = (
 				35E7C7C921907F2E00BA13C6 /* Main.storyboard */,
-				35E7C7C621907F2E00BA13C6 /* Bill.storyboard */,
 				35E7C7C721907F2E00BA13C6 /* Outage.storyboard */,
 				35E7C7C821907F2E00BA13C6 /* Usage.storyboard */,
+				35E7C7C621907F2E00BA13C6 /* Bill.storyboard */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -5037,6 +5037,9 @@
 			isa = PBXGroup;
 			children = (
 				35F9DDC423340C8600AAA2B2 /* Main.storyboard */,
+				352B19F7233BBE710090B442 /* Outage.storyboard */,
+				352B19F9233BBEDD0090B442 /* Usage.storyboard */,
+				352B19FB233BBF120090B442 /* Bill.storyboard */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -5045,6 +5048,9 @@
 			isa = PBXGroup;
 			children = (
 				35F9DDF7233539E100AAA2B2 /* Main.storyboard */,
+				352B19FD233BBFA50090B442 /* Outage.storyboard */,
+				352B19FF233BBFB50090B442 /* Usage.storyboard */,
+				352B1A01233BBFC70090B442 /* Bill.storyboard */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -6296,7 +6302,6 @@
 				35F9DD2B2333C34100AAA2B2 /* Sources */,
 				35F9DD2C2333C34100AAA2B2 /* Frameworks */,
 				35F9DD2D2333C34100AAA2B2 /* Resources */,
-				35F9DD912333D61E00AAA2B2 /* Embed Frameworks */,
 				8DE5BB4C03A54C48796C44F4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -6544,10 +6549,12 @@
 					};
 					35F9DD222333C33F00AAA2B2 = {
 						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = YU7Y757VB5;
 						ProvisioningStyle = Manual;
 					};
 					35F9DD2E2333C34100AAA2B2 = {
 						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = YU7Y757VB5;
 						ProvisioningStyle = Manual;
 					};
 					35F9DDC72335397300AAA2B2 = {
@@ -6734,10 +6741,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				352B19F8233BBE710090B442 /* Outage.storyboard in Resources */,
 				35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */,
+				352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
+				352B19FC233BBF120090B442 /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6757,10 +6767,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				352B19FE233BBFA50090B442 /* Outage.storyboard in Resources */,
 				35F9DDF4233539C200AAA2B2 /* ComEdAssets.xcassets in Resources */,
+				352B1A00233BBFB50090B442 /* Usage.storyboard in Resources */,
 				35F9DE492335413300AAA2B2 /* Assets.xcassets in Resources */,
 				35F9DE4A2335413800AAA2B2 /* README.md in Resources */,
 				35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */,
+				352B1A02233BBFC70090B442 /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11595,11 +11608,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 20180206;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.bge.develop.watchkitapp;
@@ -11625,7 +11639,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -11646,9 +11660,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.bge.develop.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
@@ -11657,7 +11672,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11676,9 +11691,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.bge.staging.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
@@ -11687,7 +11703,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.staging.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11706,9 +11722,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.bge.testing.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
@@ -11717,7 +11734,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.testing.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11736,9 +11753,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.bge.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
@@ -11747,7 +11765,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit Extension App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11766,9 +11784,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.bge.prodbeta.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Watch Extension/Configurations/BGE-Info.plist";
@@ -11777,7 +11796,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.prodbeta.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11827,7 +11846,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 20180206;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop;
@@ -11854,7 +11873,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -11879,7 +11898,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -11889,7 +11908,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.develop.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11912,7 +11931,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.staging;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -11922,7 +11941,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.staging.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Staging Watchkit App Enterprise Dist";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11945,7 +11964,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.testing;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -11955,7 +11974,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.testing.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -11978,7 +11997,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -11988,7 +12007,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Watchkit App Store";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -12011,7 +12030,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180206;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YU7Y757VB5;
 				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.prodbeta;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = BGE_Watch_Extension;
@@ -12021,7 +12040,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.bge.prodbeta.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Exelon Wildcard Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";

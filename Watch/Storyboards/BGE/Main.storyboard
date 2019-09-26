@@ -10,7 +10,7 @@
         <!--ReportOutageInterfaceController-->
         <scene sceneID="1RF-hm-hR3">
             <objects>
-                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a">
+                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="SignInInterfaceController" customModule="BGE_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="BKS-FI-22X">
                             <items>
@@ -28,7 +28,7 @@
         <!--AccountListInterfaceController-->
         <scene sceneID="QsP-lO-Kwh">
             <objects>
-                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="Watch_Extension">
+                <controller identifier="AccountListInterfaceController" id="JpS-g5-YWX" customClass="AccountListInterfaceController" customModule="BGE_Watch_Extension">
                     <items>
                         <table alignment="left" id="sgx-CZ-A51">
                             <items>
@@ -93,7 +93,7 @@
         <!--OpenAppOnPhoneInterfaceController-->
         <scene sceneID="49C-7x-8A7">
             <objects>
-                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="Watch_Extension">
+                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="BGE_Watch_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Cpt-5p-t75">
                             <items>
