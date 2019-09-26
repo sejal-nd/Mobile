@@ -91,8 +91,8 @@ class AlertsViewController: AccountPickerViewController {
         preferencesButton.accessibilityLabel = preferencesButtonLabel.text
         
         alertsEmptyStateLabel.textColor = .middleGray
-        alertsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .body)
-        alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any\nnotifications yet.", comment: "")
+        alertsEmptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
+        alertsEmptyStateLabel.text = NSLocalizedString("You haven't received any notifications yet.", comment: "")
     }
     
     private func bindViewModel() {
