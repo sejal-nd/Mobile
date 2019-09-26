@@ -138,7 +138,6 @@ class BGEAutoPayViewController: UIViewController {
         
         settingsButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         settingsButton.backgroundColorOnPress = .softGray
-//        settingsButton.label.lineBreakMode = .byTruncatingMiddle
         
         termsLabel.textColor = .deepGray
         termsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
