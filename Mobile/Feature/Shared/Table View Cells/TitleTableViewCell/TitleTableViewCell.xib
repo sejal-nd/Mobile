@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -57,16 +57,15 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="vUf-9D-NaE" firstAttribute="centerY" secondItem="Imy-mn-0WD" secondAttribute="centerY" id="87M-mo-Tir"/>
                     <constraint firstItem="kg7-h3-qHb" firstAttribute="leading" secondItem="vUf-9D-NaE" secondAttribute="trailing" constant="12" id="G9M-Pn-kIp"/>
                     <constraint firstItem="F4e-ka-6AD" firstAttribute="centerY" secondItem="Imy-mn-0WD" secondAttribute="centerY" id="I87-PV-LDf"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="vUf-9D-NaE" secondAttribute="bottom" constant="2" id="K9K-H3-kwG"/>
                     <constraint firstItem="vUf-9D-NaE" firstAttribute="leading" secondItem="F4e-ka-6AD" secondAttribute="trailing" constant="12" id="Pqz-zT-z5p"/>
                     <constraint firstItem="F4e-ka-6AD" firstAttribute="leading" secondItem="Imy-mn-0WD" secondAttribute="leadingMargin" id="RV7-yL-fDy"/>
                     <constraint firstItem="kg7-h3-qHb" firstAttribute="centerY" secondItem="Imy-mn-0WD" secondAttribute="centerY" id="X9e-rY-E0x"/>
                     <constraint firstItem="kg7-h3-qHb" firstAttribute="trailing" secondItem="Imy-mn-0WD" secondAttribute="trailingMargin" id="Zmq-5t-twf"/>
                     <constraint firstAttribute="bottom" secondItem="2O0-lO-zkL" secondAttribute="bottom" id="eYY-Bx-KRc"/>
                     <constraint firstItem="2O0-lO-zkL" firstAttribute="leading" secondItem="F4e-ka-6AD" secondAttribute="trailing" constant="12" id="fvF-ba-IJM"/>
-                    <constraint firstItem="vUf-9D-NaE" firstAttribute="top" secondItem="Imy-mn-0WD" secondAttribute="topMargin" constant="2" id="qh9-ft-hZB"/>
                     <constraint firstAttribute="trailing" secondItem="2O0-lO-zkL" secondAttribute="trailing" id="rwe-ek-XvX"/>
                 </constraints>
             </tableViewCellContentView>
