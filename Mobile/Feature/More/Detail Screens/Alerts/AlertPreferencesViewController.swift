@@ -310,6 +310,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
                 break
             case .comEd, .peco:
                 cell.checkbox.rx.isChecked.asDriver()
+                    .distinctUntilChanged()
                     .skip(1)
                     .drive(onNext: { [weak self] in self?.showBillIsReadyToggleAlert(isOn: $0) })
                     .disposed(by: cell.disposeBag)
