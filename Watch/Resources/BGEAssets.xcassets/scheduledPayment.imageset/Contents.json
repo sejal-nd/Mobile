@@ -1,7 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "ic_scheduled_1.pdf"
     }
   ],
   "info" : {

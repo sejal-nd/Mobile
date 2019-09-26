@@ -1,7 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "ic_autopay_2.pdf"
     }
   ],
   "info" : {
