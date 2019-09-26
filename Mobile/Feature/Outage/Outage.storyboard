@@ -110,15 +110,15 @@
                                 </connections>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UoT-gg-gb1">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <connections>
-                                    <segue destination="vck-Zw-W0A" kind="embed" id="1Wx-JL-0Dy"/>
+                                    <segue destination="vck-Zw-W0A" kind="embed" identifier="maintModeEmbed" id="1Wx-JL-0Dy"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBP-rF-ByC">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <connections>
-                                    <segue destination="FJs-Ee-VCt" kind="embed" id="7d6-G5-Yhi"/>
+                                    <segue destination="FJs-Ee-VCt" kind="embed" identifier="noNetworkEmbed" id="7d6-G5-Yhi"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haH-7e-9Oh">
@@ -148,12 +148,12 @@
                             <constraint firstItem="haH-7e-9Oh" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="8lU-Df-0kR"/>
                             <constraint firstItem="haH-7e-9Oh" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="9Po-UN-rFR"/>
                             <constraint firstAttribute="bottom" secondItem="kBP-rF-ByC" secondAttribute="bottom" id="9qd-dR-ALn"/>
+                            <constraint firstItem="kBP-rF-ByC" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="B9Y-CA-zOB"/>
                             <constraint firstItem="hW1-hm-7uS" firstAttribute="leading" secondItem="rLJ-mF-oEY" secondAttribute="leading" id="C8i-at-rVt"/>
                             <constraint firstItem="hW1-hm-7uS" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="DRE-T7-X3E"/>
                             <constraint firstItem="2M7-jH-97W" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="DbY-wj-RQI"/>
                             <constraint firstItem="hW1-hm-7uS" firstAttribute="trailing" secondItem="rLJ-mF-oEY" secondAttribute="trailing" id="Dc6-nT-W9K"/>
                             <constraint firstItem="Ndp-bw-rV5" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="EKx-gY-yjh"/>
-                            <constraint firstItem="UoT-gg-gb1" firstAttribute="top" secondItem="W6a-Rg-J5C" secondAttribute="top" id="HFP-Qp-lgv"/>
                             <constraint firstItem="2M7-jH-97W" firstAttribute="top" secondItem="rLJ-mF-oEY" secondAttribute="top" id="JuS-H4-BDy"/>
                             <constraint firstItem="Ndp-bw-rV5" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="K5Q-s9-QDz"/>
                             <constraint firstItem="UoT-gg-gb1" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="Pun-ny-0tk"/>
@@ -162,10 +162,10 @@
                             <constraint firstAttribute="trailing" secondItem="haH-7e-9Oh" secondAttribute="trailing" id="UzJ-uk-kDh"/>
                             <constraint firstAttribute="trailing" secondItem="Ndp-bw-rV5" secondAttribute="trailing" id="VDm-to-wWS"/>
                             <constraint firstAttribute="trailing" secondItem="kBP-rF-ByC" secondAttribute="trailing" id="eT7-Le-1ge"/>
-                            <constraint firstItem="kBP-rF-ByC" firstAttribute="top" secondItem="W6a-Rg-J5C" secondAttribute="top" id="kCT-3p-Ojh"/>
                             <constraint firstAttribute="bottom" secondItem="haH-7e-9Oh" secondAttribute="bottom" id="mG8-0D-5U0"/>
                             <constraint firstItem="aBU-xp-OAP" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="mMZ-vI-Rk9"/>
                             <constraint firstAttribute="trailing" secondItem="UoT-gg-gb1" secondAttribute="trailing" id="oo8-4p-les"/>
+                            <constraint firstItem="UoT-gg-gb1" firstAttribute="top" secondItem="2M7-jH-97W" secondAttribute="bottom" id="pFf-U7-Lh3"/>
                             <constraint firstAttribute="bottom" secondItem="hW1-hm-7uS" secondAttribute="bottom" id="sll-Lk-a4Y"/>
                             <constraint firstAttribute="bottom" secondItem="Ndp-bw-rV5" secondAttribute="bottom" id="tQF-Xa-kfP"/>
                             <constraint firstItem="kBP-rF-ByC" firstAttribute="leading" secondItem="W6a-Rg-J5C" secondAttribute="leading" id="z7r-nq-3v9"/>
@@ -176,13 +176,13 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="v95-ee-yb3"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="NoNetworkConnectionContainerView" destination="kBP-rF-ByC" id="17C-Uf-CgA"/>
                         <outlet property="accountInfoBar" destination="s3d-Cf-EwG" id="9fw-wD-lFK"/>
                         <outlet property="accountPicker" destination="YW7-Op-Vld" id="zKE-jZ-7RF"/>
                         <outlet property="footerTextView" destination="waI-lA-BTk" id="Idb-gl-Tis"/>
                         <outlet property="gasOnlyContainerView" destination="haH-7e-9Oh" id="NDc-yc-lnk"/>
                         <outlet property="loadingContainerView" destination="hW1-hm-7uS" id="nOO-1K-DbL"/>
                         <outlet property="maintenanceModeContainerView" destination="UoT-gg-gb1" id="ggl-Op-zsQ"/>
+                        <outlet property="noNetworkConnectionContainerView" destination="kBP-rF-ByC" id="17C-Uf-CgA"/>
                         <outlet property="notAvailableContainerView" destination="Ndp-bw-rV5" id="Yqf-aY-Ra9"/>
                         <outlet property="outageStatusView" destination="g02-Sk-O1R" id="V41-IR-WL5"/>
                         <outlet property="tableView" destination="aBU-xp-OAP" id="f59-qN-5vY"/>
@@ -643,11 +643,11 @@
             <objects>
                 <viewController id="FJs-Ee-VCt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kzm-Ed-0kH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="752"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-6o-rmo" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="752"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isColorBackground" value="NO"/>

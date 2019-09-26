@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class OutageViewController: AccountPickerViewController {
     
@@ -26,7 +27,7 @@ class OutageViewController: AccountPickerViewController {
     
     @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
     @IBOutlet weak var maintenanceModeContainerView: UIView!
-    @IBOutlet weak var NoNetworkConnectionContainerView: UIView!
+    @IBOutlet weak var noNetworkConnectionContainerView: UIView!
     @IBOutlet weak var loadingContainerView: UIView!
     @IBOutlet weak var gasOnlyContainerView: UIView!
     @IBOutlet weak var notAvailableContainerView: UIView!
@@ -34,7 +35,7 @@ class OutageViewController: AccountPickerViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var outageStatusView: OutageStatusView!
     @IBOutlet weak var footerTextView: ZeroInsetDataDetectorTextView!
-    
+
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
@@ -52,6 +53,8 @@ class OutageViewController: AccountPickerViewController {
     var shortcutItem: ShortcutItem = .none
     
     var accountsLoaded = false
+    
+    let disposeBag = DisposeBag()
     
     
     // MARK: - View Life Cycle
@@ -98,6 +101,24 @@ class OutageViewController: AccountPickerViewController {
             vc.unauthenticatedExperience = userState == .unauthenticated ? true : false
         } else if let vc = segue.destination as? OutageMapViewController, let hasPressedStreetlightOutageMapButton = sender as? Bool {
             vc.hasPressedStreetlightOutageMapButton = hasPressedStreetlightOutageMapButton
+        } else if segue.identifier == "noNetworkEmbed" {
+            for subview in segue.destination.view.subviews {
+                if let noNetworkView = subview as? NoNetworkConnectionView {
+                    noNetworkView.reload.subscribe(onNext: { [weak self] _ in
+                        self?.configureState(.loading)
+                        self?.loadOutageStatus()
+                    }).disposed(by: disposeBag)
+                }
+            }
+        } else if segue.identifier == "maintModeEmbed" {
+           for subview in segue.destination.view.subviews {
+               if let maintModeView = subview as? MaintenanceModeView {
+                   maintModeView.reload.subscribe(onNext: { [weak self] _ in
+                       self?.configureState(.loading)
+                       self?.loadOutageStatus()
+                   }).disposed(by: disposeBag)
+               }
+           }
         }
     }
     
@@ -166,17 +187,16 @@ class OutageViewController: AccountPickerViewController {
                 self.performSegue(withIdentifier: "reportOutageSegue", sender: self)
             }
             self.shortcutItem = .none
-            }, onError: { [weak self] serviceError in
-                self?.shortcutItem = .none
-                if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
-                    self?.configureState(.noNetwork)
-                } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-                    
-                   self?.configureState(.unavailable)
-                }
-            }, onMaintenance: { [weak self] in
-                self?.shortcutItem = .none
-                self?.configureState(.maintenance)
+        }, onError: { [weak self] serviceError in
+            self?.shortcutItem = .none
+            if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
+                self?.configureState(.noNetwork)
+            } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
+                self?.configureState(.unavailable)
+            }
+        }, onMaintenance: { [weak self] in
+            self?.shortcutItem = .none
+            self?.configureState(.maintenance)
         })
     }
     
@@ -216,37 +236,37 @@ class OutageViewController: AccountPickerViewController {
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .loading:
             loadingContainerView.isHidden = false
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .gasOnly:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = false
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .maintenance:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = false
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .noNetwork:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = false
+            noNetworkConnectionContainerView.isHidden = false
             notAvailableContainerView.isHidden = true
         case .unavailable:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = false
         }
     }
