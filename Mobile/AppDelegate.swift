@@ -66,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         setupAppearance()
         setupAnalytics()
+        
+        // Fetch Remote Config Values
+        let _ = RemoteConfigUtility.shared
         //printFonts()
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk

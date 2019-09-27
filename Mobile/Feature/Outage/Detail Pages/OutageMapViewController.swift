@@ -19,6 +19,8 @@ class OutageMapViewController: UIViewController {
     
     var hasPressedStreetlightOutageMapButton = false
     
+    var urlString: String?
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default
     }
@@ -26,15 +28,15 @@ class OutageMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url: URL
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            return
+        }
         let a11yLabel: String
         if hasPressedStreetlightOutageMapButton {
             title = NSLocalizedString("Street Light Map", comment: "")
-            url = URL(string: "https://comed.streetlightoutages.com")!
             a11yLabel = NSLocalizedString("This is an outage map showing the street lights that are currently experiencing an outage.", comment: "")
         } else {
             title = NSLocalizedString("Outage Map", comment: "")
-            url = URL(string: Environment.shared.outageMapUrl)!
             a11yLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
         }
         
