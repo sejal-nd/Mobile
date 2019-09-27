@@ -191,6 +191,9 @@
 		35376C6820F8FFC9007E50F7 /* BillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactView.xib */; };
 		35376C6920F8FFD1007E50F7 /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
 		35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
+		354838B5233E84BC00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
+		354838B6233E84BD00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
+		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		3559C8A522F9F68400481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
@@ -8390,6 +8393,7 @@
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B067E0A72045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
+				354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03D216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				82B20A35203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
@@ -8621,6 +8625,7 @@
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
 				823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
+				354838B5233E84BC00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03E216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A82045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
@@ -8806,6 +8811,7 @@
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,
+				354838B6233E84BD00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03F216C5F9D00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A92045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
