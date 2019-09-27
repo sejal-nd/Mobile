@@ -79,8 +79,9 @@
       "subtype" : "44mm"
     },
     {
-      "idiom" : "watch-marketing",
       "size" : "1024x1024",
+      "idiom" : "watch-marketing",
+      "filename" : "AppIcon_Full_BGE.png",
       "scale" : "1x"
     }
   ],
