@@ -481,12 +481,10 @@
 		35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35E7C7F72190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
 		35E7C7F82190804E00BA13C6 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
 		35E7C7FA2190805500BA13C6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */; };
 		35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
 		35E7C8032190805C00BA13C6 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
-		35E7C8042190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */; };
 		35E7C8052190805C00BA13C6 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
 		35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
 		35E7C8072190805C00BA13C6 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
@@ -501,7 +499,6 @@
 		35F9DD6D2333C8A100AAA2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35F9DD6E2333D14D00AAA2B2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */; };
 		35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
-		35F9DD702333D14D00AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */; };
 		35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
 		35F9DD722333D14D00AAA2B2 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
 		35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
@@ -512,7 +509,6 @@
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD7E2333D14D00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35F9DD802333D14D00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
 		35F9DD812333D14D00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
 		35F9DD842333D2B800AAA2B2 /* BGE-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* BGE-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
@@ -574,13 +570,11 @@
 		35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DDFD23353A3C00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35F9DDFF23353A3C00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */; };
 		35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
 		35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
-		35F9DE0923353A5300AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */; };
 		35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
 		35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */; };
 		35F9DE0C23353A5300AAA2B2 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
@@ -2955,12 +2949,10 @@
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
 		35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Italic.swift"; sourceTree = "<group>"; };
 		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
-		35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+isFirstLaunch.swift"; sourceTree = "<group>"; };
 		35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+ColorInRange.swift"; sourceTree = "<group>"; };
 		35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageInterfaceController.swift; sourceTree = "<group>"; };
 		35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInInterfaceController.swift; sourceTree = "<group>"; };
-		35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAppOnPhoneInterfaceController.swift; sourceTree = "<group>"; };
 		35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListInterfaceController.swift; sourceTree = "<group>"; };
 		35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillInterfaceController.swift; sourceTree = "<group>"; };
 		35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutageInterfaceController.swift; sourceTree = "<group>"; };
@@ -4974,7 +4966,6 @@
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
 				35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */,
 				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
-				35E7C7F02190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift */,
 				35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */,
 			);
 			path = Extensions;
@@ -4984,7 +4975,6 @@
 			isa = PBXGroup;
 			children = (
 				35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */,
-				35E7C7FE2190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift */,
 				35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */,
 				35E7C8012190805C00BA13C6 /* OutageInterfaceController.swift */,
 				35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */,
@@ -8282,13 +8272,11 @@
 				35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */,
 				356C7F922190A1B9003E8A90 /* MCSOutageService.swift in Sources */,
 				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
-				35E7C7F72190804E00BA13C6 /* UserDefaults+isFirstLaunch.swift in Sources */,
 				356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */,
 				356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
 				356C7F7621909783003E8A90 /* ServiceResult.swift in Sources */,
 				35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */,
-				35E7C8042190805C00BA13C6 /* OpenAppOnPhoneInterfaceController.swift in Sources */,
 				356C7F7C219098D7003E8A90 /* BillForecast.swift in Sources */,
 				35E7C7F82190804E00BA13C6 /* NSAttributedString+ColorInRange.swift in Sources */,
 				35E7C8032190805C00BA13C6 /* SignInInterfaceController.swift in Sources */,
@@ -8335,7 +8323,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35F9DD702333D14D00AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */,
 				35F9DD9B2333D85E00AAA2B2 /* Maintenance.swift in Sources */,
 				35F9DD9A2333D85A00AAA2B2 /* Premise.swift in Sources */,
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
@@ -8346,7 +8333,6 @@
 				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
 				35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */,
 				35F9DDB52333D8E000AAA2B2 /* DateParser.swift in Sources */,
-				35F9DD802333D14D00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */,
 				35F9DD942333D84400AAA2B2 /* Account.swift in Sources */,
 				35F9DD962333D84A00AAA2B2 /* OutageStatus.swift in Sources */,
 				35F9DDBD2333D91300AAA2B2 /* Optional+Comparable.swift in Sources */,
@@ -8409,7 +8395,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35F9DDFF23353A3C00AAA2B2 /* UserDefaults+isFirstLaunch.swift in Sources */,
 				35F9DE1F23353C7600AAA2B2 /* Maintenance.swift in Sources */,
 				35F9DE3323353CEF00AAA2B2 /* ServiceResult.swift in Sources */,
 				35F9DE3723353D1000AAA2B2 /* StormModeStatus.swift in Sources */,
@@ -8464,7 +8449,6 @@
 				35F9DE0C23353A5300AAA2B2 /* UsageInterfaceController.swift in Sources */,
 				35F9DE1923353C5600AAA2B2 /* ProfileStatus.swift in Sources */,
 				35F9DE2A23353CBD00AAA2B2 /* MCSUsageService.swift in Sources */,
-				35F9DE0923353A5300AAA2B2 /* OpenAppOnPhoneInterfaceController.swift in Sources */,
 				35F9DE2323353C8500AAA2B2 /* HomeProfile.swift in Sources */,
 				35F9DE3B23353D2900AAA2B2 /* Date.swift in Sources */,
 				35F9DE1C23353C6200AAA2B2 /* ForgotUsername.swift in Sources */,

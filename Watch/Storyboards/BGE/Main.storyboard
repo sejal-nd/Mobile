@@ -90,28 +90,6 @@
             </objects>
             <point key="canvasLocation" x="273" y="-655"/>
         </scene>
-        <!--OpenAppOnPhoneInterfaceController-->
-        <scene sceneID="49C-7x-8A7">
-            <objects>
-                <controller identifier="OpenAppOnPhoneInterfaceController" id="FKd-iz-nEM" customClass="OpenAppOnPhoneInterfaceController" customModule="BGE_Watch_Extension">
-                    <items>
-                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Cpt-5p-t75">
-                            <items>
-                                <imageView width="1" height="103" alignment="center" verticalAlignment="center" image="signin" contentMode="scaleAspectFit" id="qnW-l4-G4g"/>
-                                <group width="1" alignment="left" verticalAlignment="bottom" id="aRF-2Y-Pdy">
-                                    <items>
-                                        <label alignment="center" verticalAlignment="center" text="Please open the PECO app on your iPhone to sync your data." textAlignment="center" numberOfLines="0" id="Pgc-NG-h8H">
-                                            <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
-                                        </label>
-                                    </items>
-                                </group>
-                            </items>
-                        </group>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="267" y="-964"/>
-        </scene>
     </scenes>
     <resources>
         <image name="checkmark_white" width="24" height="24"/>
