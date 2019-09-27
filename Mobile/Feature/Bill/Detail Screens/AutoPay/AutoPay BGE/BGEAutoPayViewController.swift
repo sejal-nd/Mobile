@@ -66,7 +66,7 @@ class BGEAutoPayViewController: UIViewController {
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
         navigationItem.rightBarButtonItem = helpButton
         
-    viewModel.submitButtonEnabled.drive(enrollButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.submitButtonEnabled.drive(enrollButton.rx.isEnabled).disposed(by: disposeBag)
 
         styleViews()
         setupBindings()
@@ -138,7 +138,6 @@ class BGEAutoPayViewController: UIViewController {
         
         settingsButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         settingsButton.backgroundColorOnPress = .softGray
-//        settingsButton.label.lineBreakMode = .byTruncatingMiddle
         
         termsLabel.textColor = .deepGray
         termsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -258,15 +257,10 @@ class BGEAutoPayViewController: UIViewController {
     
     @IBAction func enroll() {
         GoogleAnalytics.log(event: .autoPayEnrollSubmit)
-        
         FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenrolled_start)])
-
         FirebaseUtility.logEvent(.autoPaySubmit)
         
-        if viewModel.userDidChangeSettings.value {
-            GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
-        }
-        
+        LoadingView.show()
         viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
@@ -309,7 +303,6 @@ class BGEAutoPayViewController: UIViewController {
     
     private func updateSettings() {
         GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
-        
         FirebaseUtility.logEvent(.autoPaySubmit)
         
         viewModel.update(onSuccess: { [weak self] in
@@ -364,6 +357,7 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.isCreditCardDisabled = true
         miniWalletVC.allowTemporaryItems = false
         miniWalletVC.delegate = self
+        miniWalletVC.titleText = NSLocalizedString("Select Bank Account", comment: "")
         
         if accountDetail.isAutoPay {
             GoogleAnalytics.log(event: .autoPayModifyWallet)

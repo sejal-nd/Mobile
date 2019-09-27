@@ -43,8 +43,6 @@ class MoreViewController: UIViewController {
 
     let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
     
-    var shouldHideNavigationBar = true
-    
     private var biometricsPasswordRetryCount = 0
     
     private let disposeBag = DisposeBag()
@@ -81,10 +79,8 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if shouldHideNavigationBar {
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-        
+        navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
+
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
         }
@@ -274,7 +270,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Updates", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             default:
                 return UITableViewCell()
             }

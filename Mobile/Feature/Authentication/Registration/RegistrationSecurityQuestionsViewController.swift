@@ -20,13 +20,13 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     
     @IBOutlet weak var instructionLabel: UILabel!
 
-    @IBOutlet weak var question1QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question1QuestionButton: DisclosureButton!
     @IBOutlet weak var question1AnswerTextField: FloatLabelTextField!
 
-    @IBOutlet weak var question2QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question2QuestionButton: DisclosureButton!
     @IBOutlet weak var question2AnswerTextField: FloatLabelTextField!
     
-    @IBOutlet weak var question3QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question3QuestionButton: DisclosureButton!
     @IBOutlet weak var question3AnswerTextField: FloatLabelTextField!
     
     @IBOutlet weak var eBillEnrollView: UIView!
@@ -277,7 +277,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         if let navController = segue.destination as? LargeTitleNavigationController,
             let vc = navController.viewControllers.first as? RegistrationSecurityQuestionListViewController {
             vc.viewModel = viewModel
-            switch sender as? DisclosureButtonNew {
+            switch sender as? DisclosureButton {
             case question1QuestionButton?:
                 vc.questionNumber = 1
             case question2QuestionButton?:

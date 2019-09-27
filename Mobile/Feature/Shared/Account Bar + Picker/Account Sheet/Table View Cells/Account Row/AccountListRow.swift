@@ -77,6 +77,8 @@ class AccountListRow: UITableViewCell {
             tableViewHeightConstraint.constant = CGFloat(integerLiteral: account.premises.count) * cellHeight
         }
         
+        tableView.reloadData() // So we can update the a11y settings per-cell
+        
         // Animate constraint change
         UIView.animate(withDuration: 0.3) { [unowned self] in
             self.stackView.layoutIfNeeded()
@@ -239,6 +241,10 @@ extension AccountListRow: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: PremiseListRow.className, for: indexPath) as! PremiseListRow
         let premise = account.premises[indexPath.row]
         cell.configureWithPremise(premise, indexPath: indexPath, selectedIndexPath: premiseSelectedIndexPath)
+        
+        cell.isAccessibilityElement = tableViewHeightConstraint.constant > 0
+        cell.accessibilityElementsHidden = tableViewHeightConstraint.constant == 0
+                
         return cell
     }
 }

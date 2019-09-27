@@ -16,7 +16,7 @@ class SmartThermostatScheduleViewController: UIViewController {
     let viewModel: SmartThermostatScheduleViewModel
     
     private let scrollView = UIScrollView().usingAutoLayout()
-    private let timeButton = DisclosureButtonNew().usingAutoLayout()
+    private let timeButton = DisclosureButton().usingAutoLayout()
     
     private(set) lazy var saveSuccess: Observable<Void> = self.viewModel.saveSuccess
     

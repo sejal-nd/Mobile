@@ -253,7 +253,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        signInButton.accessibilityLabel = "Loading"
+        signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
         signInButton.accessibilityViewIsModal = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
@@ -453,7 +453,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             })
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
             self.signInButton.setLoading()
-            self.signInButton.accessibilityLabel = "Loading"
+            self.signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             self.signInButton.accessibilityViewIsModal = true
             self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
@@ -510,7 +510,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
-        if let vc = segue.destination as? ForgotPasswordViewController {
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? ForgotPasswordViewController {
             vc.delegate = self
         }
     }

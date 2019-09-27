@@ -77,32 +77,31 @@ class ForgotUsernameSecurityQuestionViewController: KeyboardAvoidingStickyFooter
         LoadingView.show()
         viewModel.submitSecurityQuestionAnswer(onSuccess: { [weak self] unmaskedUsername in
             LoadingView.hide()
-            guard let self = self, let viewControllers = self.navigationController?.viewControllers else { return }
-            for vc in viewControllers {
+            guard let self = self, let rootNavVc = self.navigationController?.presentingViewController as? LargeTitleNavigationController else { return }
+            for vc in rootNavVc.viewControllers {
                 guard let dest = vc as? LoginViewController else {
                     continue
                 }
                 self.delegate = dest
-                
+
                 FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .answer_question_complete)])
-                
+
                 self.delegate?.forgotUsernameSecurityQuestionViewController(self, didUnmaskUsername: unmaskedUsername)
-                self.navigationController?.popToViewController(dest, animated: true)
+                self.dismissModal()
                 break
             }
-            }, onAnswerNoMatch: { [weak self] inlineErrorMessage in
-                LoadingView.hide()
-                self?.answerTextField.setError(inlineErrorMessage)
-                self?.accessibilityErrorLabel()
-                
-            }, onError: { [weak self] errorMessage in
-                LoadingView.hide()
-                
-                FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
-                
-                let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self?.present(alertController, animated: true, completion: nil)
+        }, onAnswerNoMatch: { [weak self] inlineErrorMessage in
+            LoadingView.hide()
+            self?.answerTextField.setError(inlineErrorMessage)
+            self?.accessibilityErrorLabel()
+        }, onError: { [weak self] errorMessage in
+            LoadingView.hide()
+
+            FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
+
+            let alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self?.present(alertController, animated: true, completion: nil)
         })
     }
     

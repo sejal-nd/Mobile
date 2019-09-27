@@ -25,7 +25,7 @@ class MiniWalletSheetViewController: UIViewController {
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var gestureView: UIView!
     @IBOutlet weak var handleView: UIView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableHeaderLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
@@ -96,6 +96,7 @@ class MiniWalletSheetViewController: UIViewController {
     var isCreditCardDisabled = false // Disabled from BGE AutoPay
     var allowTemporaryItems = true // Disabled from BGE AutoPay
     var accountDetail: AccountDetail!
+    var titleText = NSLocalizedString("Select Payment Method", comment: "") // Set to override if necessary
     
     // MARK: - View Life Cycle
     
@@ -248,10 +249,9 @@ class MiniWalletSheetViewController: UIViewController {
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
         
-        navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.deepGray,
-            NSAttributedString.Key.font: SystemFont.semibold.of(textStyle: .headline)
-        ]
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.semibold.of(textStyle: .headline)
+        titleLabel.text = titleText
     }
     
     private func configureTableView() {

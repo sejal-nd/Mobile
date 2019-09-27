@@ -1009,12 +1009,6 @@
 		9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
 		9CD3532B22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
 		9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
-		9CD3533022CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533122CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533222CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
-		9CD3533422CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
-		9CD3533522CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
 		9CD3533622CABDB900165F87 /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
 		9CD3533722CABDB900165F87 /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
 		9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
@@ -2864,8 +2858,6 @@
 		9CD3531D22CABBB700165F87 /* ZeroInsetDataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroInsetDataDetectorTextView.swift; sourceTree = "<group>"; };
 		9CD3532522CABC0900165F87 /* PrepaidCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepaidCardView.xib; sourceTree = "<group>"; };
 		9CD3532622CABC0900165F87 /* PrepaidCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
-		9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButtonNew.swift; sourceTree = "<group>"; };
-		9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButtonNew.xib; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
@@ -4552,7 +4544,6 @@
 				9C62445922C1717E00F14DA0 /* FloatLabelTextField */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
-				9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */,
 				B05D84B121877FD900F15A9F /* DisclosureCellButton */,
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				E841F3A61F02F316007BFA82 /* PickerView.swift */,
@@ -4835,15 +4826,6 @@
 				9CD3531D22CABBB700165F87 /* ZeroInsetDataDetectorTextView.swift */,
 			);
 			path = DataDetectorTextView;
-			sourceTree = "<group>";
-		};
-		9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */ = {
-			isa = PBXGroup;
-			children = (
-				9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */,
-				9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */,
-			);
-			path = DisclosureButtonNew;
 			sourceTree = "<group>";
 		};
 		9CE83BAD22D93C870094C34C /* Set Default Account */ = {
@@ -5949,7 +5931,6 @@
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
-				9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
@@ -6099,7 +6080,6 @@
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
-				9CD3533522CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
@@ -6249,7 +6229,6 @@
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
-				9CD3533422CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
@@ -7467,7 +7446,6 @@
 				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
-				9CD3533022CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
@@ -7606,7 +7584,6 @@
 				35A6C7002121DAE600C2A58F /* MoreViewModel.swift in Sources */,
 				E8CFB8AC1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
-				9CD3533222CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
@@ -8210,7 +8187,6 @@
 				B0728E47215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				8218988F1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
-				9CD3533122CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
 				82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,

@@ -260,7 +260,7 @@ class BGEAutoPayViewModel {
     private(set) lazy var settingsButtonA11yLabel: Driver<String> = Driver
         .combineLatest(settingsButtonAmountText,
                        settingsButtonDaysBeforeText)
-        { $0 + ", " + $1 }
+        { String.localizedStringWithFormat("AutoPay settings. Selected %@, %@", $0, $1) }
     
     var learnMoreDescriptionText: String {
         if accountDetail.isResidential {

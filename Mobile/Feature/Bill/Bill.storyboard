@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1095,7 +1095,7 @@
                                                                                             <constraint firstAttribute="bottom" secondItem="obw-t8-SXp" secondAttribute="bottom" id="mXU-Uh-23a"/>
                                                                                         </constraints>
                                                                                     </view>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eliminate your paper bill and receive it online" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsg-Qd-WHh">
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eliminate your paper bill and receive it online." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsg-Qd-WHh">
                                                                                         <rect key="frame" x="0.0" y="25" width="246" height="29"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                         <nil key="textColor"/>
@@ -1433,7 +1433,7 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Js2-JQ-YOY" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="1499" width="60" height="12"/>
+                                <rect key="frame" x="157.5" y="1524" width="60" height="12"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -1451,7 +1451,7 @@
                             <constraint firstItem="Js2-JQ-YOY" firstAttribute="centerX" secondItem="kfU-af-bHI" secondAttribute="centerX" id="VYX-pt-zvy"/>
                             <constraint firstItem="NC9-vF-Qye" firstAttribute="leading" secondItem="kfU-af-bHI" secondAttribute="leading" id="Vni-HR-K23"/>
                             <constraint firstItem="NC9-vF-Qye" firstAttribute="top" secondItem="f8I-LW-4KU" secondAttribute="top" id="W3R-Mf-aWW"/>
-                            <constraint firstItem="Js2-JQ-YOY" firstAttribute="centerY" secondItem="kfU-af-bHI" secondAttribute="centerY" id="ceY-SU-bju"/>
+                            <constraint firstItem="Js2-JQ-YOY" firstAttribute="centerY" secondItem="DL5-8p-VuX" secondAttribute="centerY" id="XTV-O6-iiJ"/>
                             <constraint firstItem="DL5-8p-VuX" firstAttribute="leading" secondItem="kfU-af-bHI" secondAttribute="leading" id="da8-tO-DCY"/>
                             <constraint firstItem="kfU-af-bHI" firstAttribute="trailing" secondItem="DL5-8p-VuX" secondAttribute="trailing" id="osR-Xv-yKg"/>
                             <constraint firstItem="kjt-Td-wx3" firstAttribute="top" secondItem="f8I-LW-4KU" secondAttribute="top" id="x0y-s4-1lF"/>
@@ -3136,7 +3136,7 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_invoice" translatesAutoresizingMaskIntoConstraints="NO" id="jzN-bq-bvj">
                                                                 <rect key="frame" x="119.5" y="0.0" width="96" height="96"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 consistent bill over 12 months" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLe-s8-s1i">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 consistent bill over 12 months" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLe-s8-s1i">
                                                                 <rect key="frame" x="0.0" y="126" width="335" height="27.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="20"/>
                                                                 <nil key="textColor"/>
@@ -3185,7 +3185,7 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="aH0-hX-Ocl">
                                                                 <rect key="frame" x="119.5" y="0.0" width="96" height="96"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjusted throughout the year" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFX-G5-VQ9">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjusted throughout the year" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFX-G5-VQ9">
                                                                 <rect key="frame" x="0.0" y="126" width="335" height="27.5"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="20"/>
                                                                 <nil key="textColor"/>

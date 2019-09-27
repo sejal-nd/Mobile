@@ -41,7 +41,7 @@ final class PrepaidCardView: UIView {
         contentView.layer.cornerRadius = 10
         
         headerLabel.textColor = .blackText
-        headerLabel.font = OpenSans.semibold.of(textStyle: .title1)
+        headerLabel.font = OpenSans.semibold.of(textStyle: .headline)
         
         detailLabel.textColor = .blackText
         detailLabel.font = OpenSans.regular.of(textStyle: .subheadline)

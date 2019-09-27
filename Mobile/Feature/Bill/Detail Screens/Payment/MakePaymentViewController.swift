@@ -59,7 +59,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var paymentAmountTextField: FloatLabelTextField!
     
     @IBOutlet weak var paymentDateView: UIView!
-    @IBOutlet weak var paymentDateButton: DisclosureButtonNew!
+    @IBOutlet weak var paymentDateButton: DisclosureButton!
     @IBOutlet weak var paymentDateErrorView: UIView!
     @IBOutlet weak var paymentDateErrorLabel: UILabel!
     @IBOutlet weak var paymentDatePastDueLabel: UILabel!
@@ -413,7 +413,7 @@ class MakePaymentViewController: KeyboardAvoidingStickyFooterViewController {
         
         // Payment Date
         viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.valueText).disposed(by: disposeBag)
-        viewModel.paymentDateString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
+        viewModel.paymentDateA11yString.asDriver().drive(paymentDateButton.rx.accessibilityLabel).disposed(by: disposeBag)
         
         // Edit Payment Detail View
         paymentStatusValueLabel.text = billingHistoryItem?.statusString?.capitalized
