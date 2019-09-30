@@ -22,7 +22,7 @@ class OutageViewModel {
     var hasJustReportedOutage = false
 
     // Remote Config Values
-    var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightOutageMapURL)
+    var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
     var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
     
     // Passed from unauthenticated experience

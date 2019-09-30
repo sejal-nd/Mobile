@@ -28,7 +28,7 @@ final class RemoteConfigUtility {
     private func loadDefaultValues() {
         let appDefaults: [String: Any?] = [
             RemoteConfigKey.outageMapURL.rawValue : "",
-            RemoteConfigKey.streetlightOutageMapURL.rawValue : ""
+            RemoteConfigKey.streetlightMapURL.rawValue : ""
         ]
         RemoteConfig.remoteConfig().setDefaults(appDefaults as? [String: NSObject])
     }
