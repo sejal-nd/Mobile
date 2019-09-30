@@ -149,7 +149,7 @@ class OutageViewController: AccountPickerViewController {
         
         RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
             self?.viewModel.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
-            self?.viewModel.streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightOutageMapURL)
+            self?.viewModel.streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
             self?.tableView.reloadData()
         }
     }
