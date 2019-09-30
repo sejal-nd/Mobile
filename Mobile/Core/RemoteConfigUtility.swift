@@ -12,7 +12,7 @@ import Firebase
 final class RemoteConfigUtility {
     enum RemoteConfigKey: String {
         case outageMapURL
-        case streetlightOutageMapURL
+        case streetlightMapURL
     }
     
     static let shared = RemoteConfigUtility()
