@@ -42,8 +42,15 @@ final class RemoteConfigUtility {
     // MARK: - Public API
     
     public func fetchCloudValues() {
-        let fetchDuration: TimeInterval = 3600 // in seconds
 
+        let fetchDuration: TimeInterval
+        #if DEBUG
+        fetchDuration = 0
+        #else
+        fetchDuration = 3600
+        #endif
+        
+        
         RemoteConfig.remoteConfig().fetch(withExpirationDuration: fetchDuration) { [weak self] status, error in
             
             if let error = error {

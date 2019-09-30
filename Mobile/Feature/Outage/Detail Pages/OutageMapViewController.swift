@@ -19,7 +19,11 @@ class OutageMapViewController: UIViewController {
     
     var hasPressedStreetlightOutageMapButton = false
     
-    var urlString: String?
+    private var urlString: String?
+    
+    // Remote Config
+    private var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
+    private var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return StormModeStatus.shared.isOn ? .lightContent : .default
@@ -28,16 +32,19 @@ class OutageMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let urlString = urlString, let url = URL(string: urlString) else {
-            return
-        }
         let a11yLabel: String
         if hasPressedStreetlightOutageMapButton {
             title = NSLocalizedString("Street Light Map", comment: "")
+            urlString = streetlightOutageMapURLString
             a11yLabel = NSLocalizedString("This is an outage map showing the street lights that are currently experiencing an outage.", comment: "")
         } else {
             title = NSLocalizedString("Outage Map", comment: "")
+            urlString = outageMapURLString
             a11yLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
+        }
+        
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            return
         }
         
         webView.navigationDelegate = self
@@ -59,6 +66,14 @@ class OutageMapViewController: UIViewController {
         
         if unauthenticatedExperience {
             GoogleAnalytics.log(event: .viewOutageMapUnAuthOfferComplete)
+        }
+        
+        if urlString == nil {
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("The map is currently unavailable. Please try again later.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }))
+            present(alertVc, animated: true, completion: nil)
         }
     }
 

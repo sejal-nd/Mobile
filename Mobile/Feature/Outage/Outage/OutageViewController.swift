@@ -100,15 +100,8 @@ class OutageViewController: AccountPickerViewController {
             }
             vc.unauthenticatedExperience = userState == .unauthenticated ? true : false
         } else if let vc = segue.destination as? OutageMapViewController,
-            let hasPressedStreetlightOutageMapButton = sender as? Bool {
-            if hasPressedStreetlightOutageMapButton {
-                // Streetlight Map
-                vc.urlString = viewModel.streetlightOutageMapURLString
-                vc.hasPressedStreetlightOutageMapButton = hasPressedStreetlightOutageMapButton
-            } else {
-                // Outage Map
-                vc.urlString = viewModel.outageMapURLString
-            }
+            let hasPressedStreetlightOutageMapButton = sender as? Bool, hasPressedStreetlightOutageMapButton {
+            vc.hasPressedStreetlightOutageMapButton = hasPressedStreetlightOutageMapButton
         } else if segue.identifier == "noNetworkEmbed" {
             for subview in segue.destination.view.subviews {
                 if let noNetworkView = subview as? NoNetworkConnectionView {
@@ -174,6 +167,7 @@ class OutageViewController: AccountPickerViewController {
             if sender != nil {
                 sender?.endRefreshing()
                 self?.viewModel.hasJustReportedOutage = false
+                RemoteConfigUtility.shared.fetchCloudValues()
             }
             
             guard let `self` = self else { return }

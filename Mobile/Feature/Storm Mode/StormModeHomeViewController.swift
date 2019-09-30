@@ -230,6 +230,8 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureRemoteConfig()
+        
         view.backgroundColor = .stormModeBlack
         
         let gradientColor: UIColor
@@ -418,6 +420,18 @@ class StormModeHomeViewController: AccountPickerViewController {
         gasOnlyPhone2Button.accessibilityLabel = gasOnlyPhone2Label.text
     }
     
+    private func configureRemoteConfig() {
+        RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
+            self?.viewModel.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+            
+            if self?.viewModel.outageMapURLString.isEmpty ?? true {
+                self?.outageMapButton.isHidden = true
+            } else {
+                self?.outageMapButton.isHidden = false
+            }
+        }
+    }
+    
     private func stormModeDidEnd() {
         let yesAction = UIAlertAction(title: NSLocalizedString("Exit Storm Mode", comment: ""), style: .default)
         { [weak self] _ in
@@ -450,6 +464,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             loadingView.isHidden = false
             scrollView?.isHidden = false
             setRefreshControlEnabled(enabled: false)
+        } else {
+            RemoteConfigUtility.shared.fetchCloudValues()
         }
         
         viewModel.fetchData(onSuccess: { [weak self] in
