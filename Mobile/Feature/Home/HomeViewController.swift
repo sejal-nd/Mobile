@@ -628,6 +628,8 @@ class HomeViewController: AccountPickerViewController {
     
     @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(.refresh)
+        
+        RemoteConfigUtility.shared.fetchCloudValues()
     }
 
     func bindLoadingStates() {
