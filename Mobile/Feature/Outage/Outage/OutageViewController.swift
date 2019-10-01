@@ -152,6 +152,7 @@ class OutageViewController: AccountPickerViewController {
         outageStatusView.delegate = self
         
         // Footer
+        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers

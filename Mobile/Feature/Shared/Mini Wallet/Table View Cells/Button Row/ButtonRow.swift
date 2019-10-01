@@ -35,7 +35,6 @@ class ButtonRow: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accessibilityTraits = .button
         style()
     }
     
@@ -53,10 +52,16 @@ class ButtonRow: UITableViewCell {
     
     func configure(image: UIImage?, title: String, isEnabled: Bool) {
         iconImageView.image = image
+        iconImageView.isAccessibilityElement = false
+        
         titleLabel.text = title
+        titleLabel.isAccessibilityElement = false
         
         self.isEnabled = isEnabled
-
-        accessibilityLabel = "\(iconImageView.accessibilityLabel ?? ""), \(titleLabel.accessibilityLabel ?? "")"
+        let enabledText = isEnabled ? "" : "Disabled "
+        
+        
+        isAccessibilityElement = true
+        accessibilityLabel = "\(enabledText)\(titleLabel.text ?? "")"
     }
 }
