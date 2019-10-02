@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,7 +52,7 @@
                                                                 <rect key="frame" x="20" y="32" width="45" height="36"/>
                                                             </imageView>
                                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="TVa-ce-thh">
-                                                                <rect key="frame" x="80" y="32" width="256" height="60.5"/>
+                                                                <rect key="frame" x="80" y="29" width="256" height="60.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Select Bank Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1l-mI-oxf">
                                                                         <rect key="frame" x="0.0" y="0.0" width="256" height="20.5"/>
@@ -87,7 +87,7 @@
                                                             <constraint firstItem="jpT-Wu-pEI" firstAttribute="top" secondItem="9ya-E5-jrB" secondAttribute="bottom" constant="13" id="9KO-Cg-rU1"/>
                                                             <constraint firstAttribute="trailing" secondItem="amG-et-Sxv" secondAttribute="trailing" constant="18" id="9ry-nz-Fsz"/>
                                                             <constraint firstItem="jpT-Wu-pEI" firstAttribute="leading" secondItem="OXW-RY-0Ab" secondAttribute="leading" constant="20" id="aRr-9b-QIh"/>
-                                                            <constraint firstItem="TVa-ce-thh" firstAttribute="top" secondItem="9ya-E5-jrB" secondAttribute="bottom" constant="13" id="b9C-tn-dbm"/>
+                                                            <constraint firstItem="TVa-ce-thh" firstAttribute="top" secondItem="9ya-E5-jrB" secondAttribute="bottom" constant="10" id="b9C-tn-dbm"/>
                                                             <constraint firstItem="amG-et-Sxv" firstAttribute="leading" secondItem="TVa-ce-thh" secondAttribute="trailing" constant="12" id="bBX-zu-pb1"/>
                                                             <constraint firstAttribute="bottom" secondItem="jpT-Wu-pEI" secondAttribute="bottom" constant="13" id="bnf-B2-lbC"/>
                                                             <constraint firstAttribute="height" priority="999" constant="76" id="bqZ-PB-vi0"/>
@@ -106,19 +106,19 @@
                                                         <rect key="frame" x="20" y="191" width="374" height="76"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AutoPay Settings" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W80-KL-FTp">
-                                                                <rect key="frame" x="20" y="6" width="334" height="13"/>
+                                                                <rect key="frame" x="20" y="6" width="334" height="14"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="13" id="pKJ-OG-Zc8"/>
+                                                                    <constraint firstAttribute="height" constant="14" id="pKJ-OG-Zc8"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1X-lY-oVu">
-                                                                <rect key="frame" x="20" y="27" width="316" height="41"/>
+                                                                <rect key="frame" x="20" y="28" width="316" height="40"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="fMj-Wk-C0P">
-                                                                        <rect key="frame" x="0.0" y="1" width="177" height="39"/>
+                                                                        <rect key="frame" x="0.0" y="0.5" width="177" height="39"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is the value label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhO-74-PIX">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="21.5"/>
@@ -305,13 +305,13 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WU4-Lr-PlL" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="55"/>
-                                                <accessibility key="accessibilityConfiguration" label="Enroll in Budget Billing"/>
+                                                <accessibility key="accessibilityConfiguration" label="Enroll in Auto Pay"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="999" constant="55" id="w0K-gl-tX6"/>
                                                 </constraints>
                                                 <state key="normal" title="Enroll in AutoPay"/>
                                                 <connections>
-                                                    <action selector="enroll" destination="Zhu-5c-ibe" eventType="touchUpInside" id="cqQ-5Z-eru"/>
+                                                    <action selector="onSubmitPress:" destination="Zhu-5c-ibe" eventType="touchUpInside" id="y9x-t5-qPJ"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yhw-AE-4Ht">
@@ -406,7 +406,6 @@
                         <outlet property="bankAccountButtonSelectLabel" destination="D1l-mI-oxf" id="xib-Db-aHj"/>
                         <outlet property="bottomLabel" destination="mZh-8a-uyy" id="33d-QA-nf5"/>
                         <outlet property="bottomLabelView" destination="Vch-kQ-TeG" id="u3A-VH-GRI"/>
-                        <outlet property="enrollButton" destination="WU4-Lr-PlL" id="afK-6o-opN"/>
                         <outlet property="errorLabel" destination="uqw-F0-A6U" id="ZLO-AT-3PA"/>
                         <outlet property="loadingIndicator" destination="78M-KI-pKV" id="Wcc-O0-VBm"/>
                         <outlet property="scrollView" destination="FrB-7r-SHz" id="m8u-Pr-o8L"/>
@@ -416,6 +415,7 @@
                         <outlet property="settingsLabel" destination="KhO-74-PIX" id="aeD-HL-CED"/>
                         <outlet property="settingsTitleLabel" destination="W80-KL-FTp" id="3OM-zo-i6D"/>
                         <outlet property="stickyFooterView" destination="sEQ-nP-tS3" id="jmv-YY-UAQ"/>
+                        <outlet property="submitButton" destination="WU4-Lr-PlL" id="afK-6o-opN"/>
                         <outlet property="termsButton" destination="m39-TC-zui" id="m9V-tH-oOL"/>
                         <outlet property="termsLabel" destination="9JD-47-J9K" id="mN4-G8-qVh"/>
                         <outlet property="termsStackView" destination="Xte-hG-B7m" id="pwy-rg-b6J"/>

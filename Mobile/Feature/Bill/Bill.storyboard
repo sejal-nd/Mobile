@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DBY-ak-0eF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1325,7 +1325,7 @@
                                                         <rect key="frame" x="0.0" y="2680" width="375" height="100"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGI-YG-7zo" customClass="PrepaidCardView" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="30" width="343" height="70"/>
+                                                                <rect key="frame" x="16" y="10" width="343" height="90"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="Zbl-9B-28u"/>
@@ -1336,7 +1336,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="YGI-YG-7zo" secondAttribute="bottom" id="98Y-ad-OB5"/>
                                                             <constraint firstItem="YGI-YG-7zo" firstAttribute="centerX" secondItem="dfG-y4-peS" secondAttribute="centerX" id="Kc5-5Z-fhM"/>
-                                                            <constraint firstItem="YGI-YG-7zo" firstAttribute="top" secondItem="dfG-y4-peS" secondAttribute="top" constant="30" id="aR5-C5-nau"/>
+                                                            <constraint firstItem="YGI-YG-7zo" firstAttribute="top" secondItem="dfG-y4-peS" secondAttribute="top" constant="10" id="aR5-C5-nau"/>
                                                             <constraint firstAttribute="trailing" secondItem="YGI-YG-7zo" secondAttribute="trailing" priority="999" constant="16" id="guj-PN-8G4"/>
                                                             <constraint firstItem="YGI-YG-7zo" firstAttribute="leading" secondItem="dfG-y4-peS" secondAttribute="leading" priority="999" constant="16" id="lIo-Sk-iih"/>
                                                         </constraints>

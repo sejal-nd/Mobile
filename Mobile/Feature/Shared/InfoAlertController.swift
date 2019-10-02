@@ -51,7 +51,7 @@ class InfoAlertController: UIViewController {
     }
     
     private func buildLayout() {
-        xButton.accessibilityLabel = "Close, Button"
+        xButton.accessibilityLabel = "Close"
         
         var constraints = [NSLayoutConstraint]()
         
