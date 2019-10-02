@@ -14,8 +14,6 @@
 	<string>Test1UAT</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.bge.com/MyAccount</string>
-	<key>outageMapUrl</key>
-	<string>https://kubra.io/stormcenter/views/f457527c-82db-4ebe-bc4e-91e04a4f8209</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_testing</string>
 	<key>gaTrackingId</key>

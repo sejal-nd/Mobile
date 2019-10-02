@@ -11,11 +11,9 @@
 	<key>appName</key>
 	<string>PECO_STAGE</string>
 	<key>mcsInstanceName</key>
-	<string>Stage</string>
+	<string>Stage-pecoMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://azstg.peco.com/MyAccount</string>
-	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_staging</string>
 	<key>gaTrackingId</key>
