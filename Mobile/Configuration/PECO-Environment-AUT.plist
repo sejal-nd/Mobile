@@ -14,8 +14,6 @@
 	<string>Stage</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.peco.com/MyAccount</string>
-	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco_testing</string>
 	<key>gaTrackingId</key>

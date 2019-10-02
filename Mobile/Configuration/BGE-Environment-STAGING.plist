@@ -14,8 +14,6 @@
 	<string>Stage-bgeMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://azstg.bge.com/MyAccount</string>
-	<key>outageMapUrl</key>
-	<string>https://kubra.io/stormcenter/views/f457527c-82db-4ebe-bc4e-91e04a4f8209</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_staging</string>
 	<key>gaTrackingId</key>

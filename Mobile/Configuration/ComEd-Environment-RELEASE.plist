@@ -14,8 +14,6 @@
 	<string>Prod-comedMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://comed.com/MyAccount</string>
-	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.comed.com/app.html</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_comed</string>
 	<key>gaTrackingId</key>
