@@ -48,6 +48,7 @@ enum EnvironmentName: String {
     case stage = "STAGE"
     case prodbeta = "PRODBETA"
     case prod = "PROD"
+    case hotfix = "HOTFIX"
 }
 
 struct MCSConfig {

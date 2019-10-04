@@ -82,6 +82,21 @@
 			<key>apiVersion</key>
 			<string>v6</string>
 		</dict>
+		<key>Stage-bgeHotfixMBE</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://mcsstg.mobileenv.bge.com</string>
+			<key>mobileBackendID</key>
+			<string>03adfef5-e1a8-416b-ad0e-8fff74fb04f8</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+			<key>oauthEndpoint</key>
+			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<key>apiVersion</key>
+			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+		</dict>
 		<key>Stage-comedMBE</key>
 		<dict>
 			<key>baseURL</key>
@@ -95,6 +110,21 @@
 			<key>apiVersion</key>
 			<string>v6</string>
 		</dict>
+		<key>Stage-comedHotfixMBE</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://mcsstg.mobileenv.comed.com</string>
+			<key>mobileBackendID</key>
+			<string>98f8a3de-c4a3-4259-8c68-ac33465610ed</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+			<key>oauthEndpoint</key>
+			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<key>apiVersion</key>
+			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
+		</dict>
 		<key>Stage-pecoMBE</key>
 		<dict>
 			<key>baseURL</key>
@@ -107,6 +137,21 @@
 			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
 			<key>apiVersion</key>
 			<string>v6</string>
+		</dict>
+		<key>Stage-pecoHotfixMBE</key>
+		<dict>
+			<key>baseURL</key>
+			<string>https://mcsstg.mobileenv.peco.com</string>
+			<key>mobileBackendID</key>
+			<string>4388b1a1-7011-44eb-b33a-1c18ce02b91f</string>
+			<key>anonymousKey</key>
+			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
+			<key>oauthEndpoint</key>
+			<string>https://stage-apigateway.exeloncorp.com/mcs/oauth2/tokens</string>
+			<key>apiVersion</key>
+			<string>v6</string>
+			<key>paymentusUrl</key>
+			<string>https://secure2.paymentus.com/xotp/pm/%@</string>
 		</dict>
 		<key>Prod-bgeMBE</key>
 		<dict>
