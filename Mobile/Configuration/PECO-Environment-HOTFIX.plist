@@ -19,7 +19,7 @@
 	<key>paymentusUrl</key>
 	<string>https://secure2.paymentus.com/xotp/pm/peco</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_peco_staging</string>
+	<string>GoogleService-Info_peco_hotfix</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-17</string>
 	<key>opcoUpdatesHost</key>
@@ -27,6 +27,6 @@
 	<key>associatedDomain</key>
 	<string>azstg-secure.peco.com</string>
 	<key>appCenterId</key>
-	<string>432a1a21-ccbb-4ee9-b3e3-2480090618f5</string>
+	<string>26fd4ab7-fed2-41e2-b320-103a0ff5f4d0</string>
 </dict>
 </plist>

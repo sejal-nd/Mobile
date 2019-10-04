@@ -19,7 +19,7 @@
 	<key>paymentusUrl</key>
 	<string>https://secure2.paymentus.com/xotp/pm/bge</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_bge_staging</string>
+	<string>GoogleService-Info_bge_hotfix</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-8</string>
 	<key>opcoUpdatesHost</key>
@@ -27,6 +27,6 @@
 	<key>associatedDomain</key>
 	<string>azstg-secure.bge.com</string>
 	<key>appCenterId</key>
-	<string>3bf3242e-af11-4b1e-9242-99dce77bbbc8</string>
+	<string>ab784d1a-981b-477b-abb9-b54c3917d011</string>
 </dict>
 </plist>

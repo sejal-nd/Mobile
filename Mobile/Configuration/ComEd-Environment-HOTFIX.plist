@@ -19,7 +19,7 @@
 	<key>paymentusUrl</key>
 	<string>https://secure2.paymentus.com/xotp/pm/comd</string>
 	<key>firebaseConfigFile</key>
-	<string>GoogleService-Info_comed_staging</string>
+	<string>GoogleService-Info_comed_hotfix</string>
 	<key>gaTrackingId</key>
 	<string>UA-76742208-16</string>
 	<key>opcoUpdatesHost</key>
@@ -27,6 +27,6 @@
 	<key>associatedDomain</key>
 	<string>azstg-secure.comed.com</string>
 	<key>appCenterId</key>
-	<string>bf4bfe55-3dfd-423b-acfa-32ef84b3776c</string>
+	<string>c395dfcc-f7fc-4430-9974-d45b8f4d3dd1</string>
 </dict>
 </plist>
