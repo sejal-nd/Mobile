@@ -38,7 +38,6 @@ class WatchSessionManager: NSObject {
         
         // Note: if the device is paired, but your watch app is not installed
         // consider prompting the user to install it for a better experience
-        
         guard let session = session, session.isPaired && session.isWatchAppInstalled else { return nil }
         return session
     }
@@ -57,8 +56,7 @@ class WatchSessionManager: NSObject {
                 //check for valid jwt else clear and log out
                 if MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
                     try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
-                } else {
-                    try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
+                    
                 }
             }
         }
@@ -95,8 +93,6 @@ extension WatchSessionManager {
     
     /// Handles receiving data for watch analytics
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        print("did receive user info:\(userInfo)")
-        
         guard let screenName = userInfo["screenName"] as? String else {
             dLog("Failed to parse user info dictionary with key: screenName")
             return }
@@ -127,10 +123,9 @@ extension WatchSessionManager {
     // Yes, that's it!
     // Just updateApplicationContext on the session!
     func updateApplicationContext(applicationContext: [String : Any]) throws {
-        guard let session = validSession else { return }
         
         do {
-            try session.updateApplicationContext(applicationContext)
+            try session?.updateApplicationContext(applicationContext)
         } catch let error {
             throw error
         }

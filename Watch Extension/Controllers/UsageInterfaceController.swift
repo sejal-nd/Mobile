@@ -402,7 +402,6 @@ extension UsageInterfaceController: NetworkingDelegate {
                 addMenuItem(withImageNamed: AppImage.electricMenuItem.name, title: "Electric", action: #selector(selectElectricMenuItem))
             }
         }
-        
     }
     
     func error(_ serviceError: ServiceError, feature: MainFeature) {

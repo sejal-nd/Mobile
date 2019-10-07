@@ -205,15 +205,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Watch Helper
     private func setupWatchConnectivity() {
-        guard Environment.shared.opco == .peco else { return }
-        
         // Watch Connectivity
         WatchSessionManager.shared.startSession()
-        
+
         // Send jwt to watch if available
-        if MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
-        }
+        guard MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken else { return }
+        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
     }
 
     // MARK: - Helper
@@ -233,11 +230,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             biometricsService.disableBiometrics()
 
             MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
-            
-            if Environment.shared.opco == .peco {
-                // Clear watch jwt
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
-            }
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
