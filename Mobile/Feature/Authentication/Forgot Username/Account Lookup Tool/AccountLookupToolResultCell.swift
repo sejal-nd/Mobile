@@ -24,6 +24,7 @@ class AccountLookupToolResultCell: UITableViewCell {
         super.awakeFromNib()
         
         selectionStyle = .none
+        accessibilityTraits = .button
         
         accountNumberLabel.textColor = .deepGray
         accountNumberLabel.font = SystemFont.semibold.of(textStyle: .headline)

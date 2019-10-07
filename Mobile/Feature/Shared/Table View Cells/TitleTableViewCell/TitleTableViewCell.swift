@@ -6,15 +6,10 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
 class TitleTableViewCell: UITableViewCell {
     
-    var disposeBag = DisposeBag()
-    
-    // NOTE: You must utilize contentContainerView as a button for row selection rather than didSelectRowAtIndexPath
-    // because didSelectRowAtIndexPath will allow taps outside of the 460 max width on iPad
-    @IBOutlet weak var contentContainerView: ButtonControl!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
@@ -28,7 +23,6 @@ class TitleTableViewCell: UITableViewCell {
             detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         }
     }
-    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var disclosureImageView: UIImageView!
     @IBOutlet weak var separatorView: UIView!
     
@@ -37,13 +31,13 @@ class TitleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        let selectionView = UIView()
         if StormModeStatus.shared.isOn {
-            contentContainerView.normalBackgroundColor = .clear
-            contentContainerView.backgroundColorOnPress = UIColor.black.withAlphaComponent(0.15)
+            selectionView.backgroundColor = UIColor.black.withAlphaComponent(0.15)
         } else {
-            contentContainerView.normalBackgroundColor = UIColor.primaryColor
-            contentContainerView.backgroundColorOnPress = UIColor.primaryColor.darker(by: 10)
+            selectionView.backgroundColor = UIColor.primaryColor.darker(by: 10)
         }
+        selectedBackgroundView = selectionView
         
         detailLabel.isHidden = true
     }
@@ -57,22 +51,11 @@ class TitleTableViewCell: UITableViewCell {
         
         detailLabel.isHidden = detailText != nil ? false : true
         
-        // Needed due to scrolling / dequeuing
-        if contentViewWidthConstraint != nil {
-            contentViewWidthConstraint.isActive = shouldConstrainWidth
-        }
-        
         disclosureImageView.isHidden = shouldHideDisclosure
         
         separatorView.isHidden = shouldHideSeparator
         
-        contentContainerView.accessibilityLabel = "\(text ?? ""). \(detailText ?? "")"
-        contentContainerView.isEnabled = !disabled
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
+        contentView.accessibilityLabel = "\(text ?? ""). \(detailText ?? "")"
     }
     
 }

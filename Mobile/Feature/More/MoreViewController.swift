@@ -13,6 +13,9 @@ import Toast_Swift
 class MoreViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var superviewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var safeAreaTopConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var signOutButton: UIButton! {
         didSet {
             signOutButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
@@ -40,12 +43,13 @@ class MoreViewController: UIViewController {
 
     let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
     
-    var shouldHideNavigationBar = true
-    
     private var biometricsPasswordRetryCount = 0
     
     private let disposeBag = DisposeBag()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - View Life Cycle
     
@@ -58,20 +62,25 @@ class MoreViewController: UIViewController {
         tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
         tableView.register(UINib(nibName: ToggleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ToggleTableViewCell.className)
         
+        // Constraint stuff: In Storm Mode, we want the tableView top constrained to superview top
+        // for smooth large title nav collapsing. Outside of Storm Mode there is no nav bar, so we
+        // constrain to the safe area so that content does not overlap the status bar
         if StormModeStatus.shared.isOn {
             view.backgroundColor = .stormModeBlack
+            view.removeConstraint(safeAreaTopConstraint)
+            view.addConstraint(superviewTopConstraint)
         } else {
             view.backgroundColor = .primaryColor
+            view.removeConstraint(superviewTopConstraint)
+            view.addConstraint(safeAreaTopConstraint)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if shouldHideNavigationBar {
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-        
+        navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
+
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
         }
@@ -88,6 +97,8 @@ class MoreViewController: UIViewController {
     
     @objc func toggleBiometrics(_ sender: UISwitch) {
         FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: sender.isOn.description)])
+        
+        FirebaseUtility.setUserPropety(.isBiometricsEnabled, value: sender.isOn.description)
         
         if sender.isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
@@ -169,11 +180,6 @@ class MoreViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     
     // MARK: - Navigation
     
@@ -302,15 +308,13 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.contentContainerView.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
-            self?.tableViewDidSelectRow(at: indexPath)
-        }).disposed(by: cell.disposeBag)
-        
         cell.accessibilityElementsHidden = self.tableView(tableView, heightForRowAt: indexPath) == 0
         return cell
     }
     
-    func tableViewDidSelectRow(at indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -351,7 +355,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
     }

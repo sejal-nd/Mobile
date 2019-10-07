@@ -71,10 +71,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var minimumPaymentLabel: UILabel!
     
     @IBOutlet private weak var convenienceFeeLabel: UILabel!
-    
-    @IBOutlet private weak var a11yTutorialButtonContainer: UIView!
-    @IBOutlet private weak var a11yTutorialButton: UIButton!
-    
+        
     @IBOutlet private weak var oneTouchSliderContainer: UIView!
     @IBOutlet private weak var oneTouchSlider: OneTouchSlider!
 
@@ -85,8 +82,9 @@ class HomeBillCardView: UIView {
     
     @IBOutlet private weak var autoPayContainer: UIView!
     @IBOutlet private weak var autoPayBox: UIView!
+    @IBOutlet private weak var autoPayButton: ButtonControl!
     @IBOutlet private weak var autoPayImageView: UIImageView!
-    @IBOutlet private weak var autoPayButton: UIButton!
+    @IBOutlet private weak var autoPayButtonLabel: UILabel!
     
     @IBOutlet private weak var oneTouchPayTCButton: ButtonControl!
     @IBOutlet private weak var oneTouchPayTCButtonLabel: UILabel!
@@ -103,6 +101,7 @@ class HomeBillCardView: UIView {
     @IBOutlet private weak var maintenanceModeView: UIView!
     @IBOutlet private weak var maintenanceModeLabel: UILabel!
     
+    let shouldPushWallet = PublishSubject<Void>()
     
     private var viewModel: HomeBillCardViewModel! {
         didSet {
@@ -149,7 +148,6 @@ class HomeBillCardView: UIView {
         headerView.layer.borderColor = UIColor.accentGray.cgColor
         headerView.layer.borderWidth = 1
         
-        headerLabel.textColor = .deepGray
         headerLabel.font = SystemFont.semibold.of(textStyle: .caption1)
         
         reinstatementFeeLabel.textColor = .deepGray
@@ -170,10 +168,8 @@ class HomeBillCardView: UIView {
         saveAPaymentAccountLabel.font = OpenSans.semibold.of(textStyle: .caption1)
         saveAPaymentAccountButton.accessibilityLabel = NSLocalizedString("Set a default payment method", comment: "")
         
-        a11yTutorialButton.setTitleColor(StormModeStatus.shared.isOn ? .white : .actionBlue, for: .normal)
-        a11yTutorialButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .title1)
-        a11yTutorialButton.titleLabel?.text = NSLocalizedString("View Tutorial", comment: "")
-        
+        tutorialButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
+                
         paymentDescriptionLabel.textColor = .deepGray
         paymentDescriptionLabel.font = OpenSans.regular.of(textStyle: .headline)
         
@@ -183,7 +179,6 @@ class HomeBillCardView: UIView {
         amountLabel.textColor = .deepGray
         amountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
         
-        dueDateLabel.textColor = .deepGray
         dueDateLabel.font = SystemFont.regular.of(textStyle: .caption1)
         dueDateTooltip.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
 
@@ -204,8 +199,8 @@ class HomeBillCardView: UIView {
         autoPayBox.layer.cornerRadius = 6
         autoPayBox.layer.borderColor = UIColor.accentGray.cgColor
         autoPayBox.layer.borderWidth = 1
-        autoPayButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
-        autoPayButton.titleLabel?.numberOfLines = 0
+        autoPayButtonLabel.textColor = .actionBlue
+        autoPayButtonLabel.font = SystemFont.semibold.of(textStyle: .subheadline)
         
         oneTouchPayTCButtonLabel.textColor = .actionBlue
         oneTouchPayTCButtonLabel.font = SystemFont.semibold.of(textStyle: .caption1)
@@ -266,24 +261,27 @@ class HomeBillCardView: UIView {
         errorLabel.textColor = .white
         maintenanceModeLabel.textColor = .white
         
-        dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_question_white.pdf"), for: .normal)
+        dueDateTooltip.setImage(#imageLiteral(resourceName: "ic_tooltip_white.pdf"), for: .normal)
         walletItemInfoBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         bankCreditNumberButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         bankCreditNumberButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
         bankCreditNumberButton.shouldFadeSubviewsOnPress = true
-        bankCreditNumberButton.layer.borderColor = UIColor.red.cgColor
+
         expiredLabel.textColor = .white
         saveAPaymentAccountButton.normalBackgroundColor = UIColor.white.withAlphaComponent(0.1)
         saveAPaymentAccountButton.backgroundColorOnPress = UIColor.white.withAlphaComponent(0.06)
         saveAPaymentAccountButton.shouldFadeSubviewsOnPress = true
         saveAPaymentAccountLabel.textColor = .white
+        tutorialButton.setImage(#imageLiteral(resourceName: "ic_tooltip_white.pdf"), for: .normal)
+        
+        saveAPaymentDescriptionLabel.textColor = .white
         
         scheduledPaymentBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         thankYouForSchedulingButton.setTitleColor(.white, for: .normal)
         scheduledImageView.image = #imageLiteral(resourceName: "ic_scheduled_sm.pdf")
         
         autoPayBox.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        autoPayButton.setTitleColor(.white, for: .normal)
+        autoPayButtonLabel.textColor = .white
         autoPayImageView.image = #imageLiteral(resourceName: "ic_autopay_sm.pdf")
         
         billNotReadyImageView.image = #imageLiteral(resourceName: "ic_home_billnotready_sm.pdf")
@@ -352,16 +350,12 @@ class HomeBillCardView: UIView {
        
         viewModel.showBankCreditExpiredLabel.asObservable().subscribe(onNext: { [weak self] show in
             if show {
-                self?.bankCreditNumberButton.layer.borderColor = UIColor.primaryColor.cgColor
+                self?.bankCreditNumberButton.layer.borderColor = UIColor.errorRed.cgColor
             } else {
                 self?.bankCreditNumberButton.layer.borderColor = UIColor.accentGray.cgColor
             }
         }).disposed(by: bag)
         
-        viewModel.showSaveAPaymentAccountButton.asObservable().subscribe(onNext: { [weak self] show in
-            let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
-            self?.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
-        }).disposed(by: bag)
         viewModel.showConvenienceFee.not().drive(convenienceFeeLabel.rx.isHidden).disposed(by: bag)
         viewModel.showMinMaxPaymentAllowed.not().drive(minimumPaymentContainer.rx.isHidden).disposed(by: bag)
         viewModel.showScheduledPayment.not().drive(scheduledPaymentContainer.rx.isHidden).disposed(by: bag)
@@ -395,7 +389,7 @@ class HomeBillCardView: UIView {
         viewModel.enableOneTouchSlider.drive(oneTouchSlider.rx.isEnabled).disposed(by: bag)
         viewModel.showOneTouchPaySlider.not().drive(oneTouchSliderContainer.rx.isHidden).disposed(by: bag)
 
-        viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.title(for: .normal)).disposed(by: bag)
+        viewModel.automaticPaymentInfoButtonText.drive(autoPayButtonLabel.rx.text).disposed(by: bag)
         viewModel.automaticPaymentInfoButtonText.drive(autoPayButton.rx.accessibilityLabel).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.title(for: .normal)).disposed(by: bag)
         viewModel.thankYouForSchedulingButtonText.drive(thankYouForSchedulingButton.rx.accessibilityLabel).disposed(by: bag)
@@ -406,19 +400,6 @@ class HomeBillCardView: UIView {
             .mapTo(())
             .do(onNext: { LoadingView.show(animated: true) })
             .drive(viewModel.submitOneTouchPay)
-            .disposed(by: bag)
-        
-        Observable.merge(NotificationCenter.default.rx.notification(UIAccessibility.switchControlStatusDidChangeNotification, object: nil),
-                         NotificationCenter.default.rx.notification(UIAccessibility.voiceOverStatusDidChangeNotification, object: nil))
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.viewModel.showSaveAPaymentAccountButton.asObservable().single().subscribe(onNext: { show in
-                    let a11yEnabled = UIAccessibility.isVoiceOverRunning || UIAccessibility.isSwitchControlRunning
-                    self.a11yTutorialButtonContainer.isHidden = !show || !a11yEnabled
-                    UIAccessibility.post(notification: .screenChanged, argument: self)
-                }).disposed(by: self.bag)
-            })
             .disposed(by: bag)
     }
     
@@ -494,15 +475,20 @@ class HomeBillCardView: UIView {
         .withLatestFrom(Driver.combineLatest(self.viewModel.showSaveAPaymentAccountButton, self.viewModel.enableOneTouchSlider))
         .filter { $0 && !$1 }
         .mapTo(())
-        .map(OneTouchTutorialViewController.init)
+        .map { [weak self] in
+            let vc = SetDefaultPaymentMethodTutorialViewController()
+            vc.shouldPushWallet = self?.shouldPushWallet
+            return vc
+        }
     
-    private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.tap.asObservable()
+    private lazy var bgeasyViewController: Driver<UIViewController> = self.autoPayButton.rx.touchUpInside
+        .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { $0.isBGEasy }
         .map { _ in UIStoryboard(name: "Bill", bundle: nil).instantiateViewController(withIdentifier: "BGEasy") }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var autoPayAlert: Driver<UIViewController> = autoPayButton.rx.tap
+    private lazy var autoPayAlert: Driver<UIViewController> = autoPayButton.rx.touchUpInside
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy && StormModeStatus.shared.isOn }
@@ -526,8 +512,8 @@ class HomeBillCardView: UIView {
                autoPayAlert)
     
     // Pushed View Controllers
-    private lazy var walletViewController: Driver<UIViewController> = bankCreditNumberButton.rx.touchUpInside
-        .asObservable()
+    private lazy var walletViewController: Driver<UIViewController> =
+        Observable.merge(bankCreditNumberButton.rx.touchUpInside.asObservable(), shouldPushWallet.asObservable())
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
@@ -541,7 +527,7 @@ class HomeBillCardView: UIView {
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .map { accountDetail in
-            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bil_choose_default_payment_method)])
+            FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .bill_choose_default_payment_method)])
             let vc = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "wallet") as! WalletViewController
             vc.viewModel.accountDetail = accountDetail
             vc.shouldPopToRootOnSave = true
@@ -561,7 +547,7 @@ class HomeBillCardView: UIView {
         }
         .asDriver(onErrorDriveWith: .empty())
     
-    private lazy var autoPayViewController: Driver<UIViewController> = autoPayButton.rx.tap
+    private lazy var autoPayViewController: Driver<UIViewController> = autoPayButton.rx.touchUpInside
         .asObservable()
         .withLatestFrom(self.viewModel.accountDetailEvents.elements())
         .filter { !$0.isBGEasy && !StormModeStatus.shared.isOn }

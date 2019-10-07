@@ -51,6 +51,8 @@ class InfoAlertController: UIViewController {
     }
     
     private func buildLayout() {
+        xButton.accessibilityLabel = "Close"
+        
         var constraints = [NSLayoutConstraint]()
         
         let stackView = UIStackView().usingAutoLayout()

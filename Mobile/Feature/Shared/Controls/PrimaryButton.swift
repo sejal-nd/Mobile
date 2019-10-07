@@ -50,8 +50,8 @@ class PrimaryButton: UIButton {
         updateEnabledState()
     }
     
-    override func setNeedsLayout() {
-        super.setNeedsLayout()
+    override func layoutSubviews() {
+        super.layoutSubviews()
         layer.cornerRadius = frame.size.height / 2
     }
         

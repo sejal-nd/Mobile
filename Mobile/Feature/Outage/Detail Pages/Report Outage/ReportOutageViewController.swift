@@ -52,8 +52,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var commentLabel: UILabel!
     
     // Footer View
-    @IBOutlet weak var footerContainerView: UIView!
-    @IBOutlet weak var footerBackgroundView: UIView!
     @IBOutlet weak var footerTextView: DataDetectorTextView!
     
     @IBOutlet weak var submitButton: PrimaryButton!
@@ -68,6 +66,10 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
     
     var unauthenticatedExperience = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,11 +80,11 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         style()
         
         viewModel.submitEnabled.asDriver().drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
-
+        
         if unauthenticatedExperience,
             let accountNumberText = viewModel.outageStatus?.maskedAccountNumber,
             let addressText = viewModel.outageStatus?.maskedAddress {
-            accountInfoBar.configure(accountNumberText: accountNumberText, addressText: addressText)
+            accountInfoBar.configure(accountNumberText: accountNumberText, addressText: "\(addressText)...")
         }
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
@@ -95,7 +97,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             meterPingStackView.isHidden = false
             meterPingStatusContainer.isHidden = true
             
-            meterPingCurrentStatusLabel.text = NSLocalizedString("Checking meter status...", comment: "")
+            meterPingCurrentStatusLabel.text = NSLocalizedString("Verifying Meter Status", comment: "")
             
             meterPingFuseBoxView.isHidden = true
             meterPingFuseBoxLabel.text = NSLocalizedString("I have checked my circuit breakers or fuse box and I would still like to report an outage.", comment: "")
@@ -113,8 +115,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 }
             }).disposed(by: disposeBag)
             
-            footerContainerView.isHidden = true
-
             self.setLottieAnimation(for: "smallcircleload_blue", shouldLoop: true)
         } else {
             meterPingStackView.isHidden = true
@@ -159,7 +159,8 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
         
-        phoneExtensionTextField.placeholder = NSLocalizedString("Contact # Ext. (Opt.)", comment: "")
+        phoneExtensionTextField.placeholder = NSLocalizedString("Contact Number Ext. (Optional)", comment: "")
+        phoneExtensionTextField.textField.customAccessibilityLabel = NSLocalizedString("Contact number extension, optional", comment: "")
         phoneExtensionTextField.textField.autocorrectionType = .no
         phoneExtensionTextField.setKeyboardType(.numberPad)
         phoneExtensionTextField.textField.delegate = self
@@ -168,12 +169,12 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
             phoneExtensionContainerView.isHidden = true
         }
         
-        footerTextView.textColor = .deepGray
         footerTextView.tintColor = .actionBlue // For the phone numbers
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.linkTapDelegate = self
         
         commentTextView.placeholder = NSLocalizedString("Enter details here (Optional)", comment: "")
+        commentTextView.textView.accessibilityLabel = NSLocalizedString("Enter details here, optional", comment: "")
         
         segmentedControl.selectedIndex.asObservable().bind(to: viewModel.selectedSegmentIndex).disposed(by: disposeBag)
         
@@ -194,9 +195,9 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         let message = phoneNumberTextField.getError()
         
         if message.isEmpty {
-            submitButton.accessibilityLabel = NSLocalizedString("Submit", comment: "")
+            submitButton.accessibilityLabel = NSLocalizedString("Report Outage", comment: "")
         } else {
-            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Submit", comment: ""), message)
+            submitButton.accessibilityLabel = String(format: NSLocalizedString("%@ Report Outage", comment: ""), message)
         }
     }
     
@@ -217,7 +218,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
         
         if viewModel.shouldPingMeter && !unauthenticatedExperience {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Checking meter status", comment: ""))
+                UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Verifying meter status", comment: ""))
             })
             
             viewModel.meterPingGetStatus(onComplete: { [weak self] meterPingInfo in
@@ -242,7 +243,6 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
                     self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                     
-                    self.areYourLightsOutView.isHidden = true
                     self.viewModel.reportFormHidden.value = false
                 } else {
                     self.meterPingStatusTitleLabel.text = NSLocalizedString("No Problems Found", comment: "")
@@ -251,13 +251,11 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                     self.meterPingFuseBoxView.isHidden = false
                 }
                 
-                self.footerContainerView.isHidden = false
-                
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))
             }, onError: { [weak self] in
                 guard let `self` = self else { return }
-
+                
                 self.setLottieAnimation(for: "checkmark_blue")
                 
                 self.meterPingCurrentStatusLabel.text = NSLocalizedString("Check Complete", comment: "")
@@ -266,9 +264,7 @@ class ReportOutageViewController: KeyboardAvoidingStickyFooterViewController {
                 self.meterPingStatusTitleLabel.text = NSLocalizedString("Problems Found", comment: "")
                 self.meterPingStatusDescriptionLabel.text = NSLocalizedString("Please report your outage.", comment: "")
                 
-                self.areYourLightsOutView.isHidden = true
                 self.viewModel.reportFormHidden.value = false
-                self.footerContainerView.isHidden = false
                 
                 UIAccessibility.post(notification: .screenChanged, argument: self)
                 UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Check Complete", comment: ""))

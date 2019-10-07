@@ -28,7 +28,7 @@ class UsageWebViewController: UIViewController {
         GoogleAnalytics.log(event: .viewUsageOfferComplete,
                              dimensions: [.residentialAMI: residentialAMIString])
         
-        title = NSLocalizedString("Usage Details", comment: "")
+        title = NSLocalizedString("Usage Data", comment: "")
         
         let infoButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onInfoButtonPress))
         infoButton.isAccessibilityElement = true

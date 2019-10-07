@@ -36,6 +36,10 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     var viewModel = LoginViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), registrationService: ServiceFactory.createRegistrationService())
     var viewAlreadyAppeared = false
     var forgotUsernamePopulated = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -249,7 +253,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
 
         signInButton.setLoading()
-        signInButton.accessibilityLabel = "Loading"
+        signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
         signInButton.accessibilityViewIsModal = true
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500), execute: {
@@ -286,11 +290,13 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
                                                                     message: String(format: NSLocalizedString("Would you like to use %@ to sign in from now on?", comment: ""), biometricsString),
                                                                     preferredStyle: .alert)
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: { [weak self] (action) in
+                                FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: false.description)])
                                 self?.launchMainApp(isStormMode: isStormMode)
                             }))
                             biometricsAlert.addAction(UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .default, handler: { [weak self] (action) in
                                 self?.viewModel.storePasswordInSecureEnclave()
                                 self?.launchMainApp(isStormMode: isStormMode)
+                                FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: true.description)])
                                 GoogleAnalytics.log(event: .touchIDEnable)
                             }))
                             self.present(biometricsAlert, animated: true, completion: nil)
@@ -358,10 +364,9 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
         if let popoverController = actionSheet.popoverPresentationController { // iPad popover
             let width = self.forgotUsernamePasswordButton.frame.size.width
-            let height = self.forgotUsernamePasswordButton.frame.size.height
             popoverController.sourceView = self.forgotUsernamePasswordButton
-            popoverController.sourceRect = CGRect(x: width / 2, y: height, width: 0, height: 0)
-            popoverController.permittedArrowDirections = .up
+            popoverController.sourceRect = CGRect(x: width / 2, y: 0, width: 0, height: 0)
+            popoverController.permittedArrowDirections = .down
         }
 
         present(actionSheet, animated: true, completion: nil)
@@ -407,7 +412,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     func launchMainApp(isStormMode: Bool) {
         FirebaseUtility.setUserPropety(.isBiometricsEnabled, value: viewModel.biometricsEnabled.value.description)
         FirebaseUtility.setUserPropety(.isKeepMeSignedInEnabled, value: viewModel.keepMeSignedIn.value.description)
-        
+
         FirebaseUtility.logEvent(.loginAccountNetworkComplete)
         GoogleAnalytics.log(event: .loginComplete)
 
@@ -448,7 +453,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
             })
             self.passwordTextField.textField.sendActions(for: .editingDidEnd) // Update the text field appearance
             self.signInButton.setLoading()
-            self.signInButton.accessibilityLabel = "Loading"
+            self.signInButton.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             self.signInButton.accessibilityViewIsModal = true
             self.biometricButton.isEnabled = true
             self.navigationController?.view.isUserInteractionEnabled = false // Blocks entire screen including back button
@@ -496,10 +501,6 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: - Other
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     func lerp(_ a: CGFloat, _ b: CGFloat, _ t: CGFloat) -> CGFloat {
         return a + (b - a) * t
     }
@@ -509,7 +510,8 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         view.endEditing(true)
-        if let vc = segue.destination as? ForgotPasswordViewController {
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? ForgotPasswordViewController {
             vc.delegate = self
         }
     }

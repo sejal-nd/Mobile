@@ -47,7 +47,7 @@ class BGEAutoPayViewController: UIViewController {
     @IBOutlet weak var bottomLabel: UILabel!
     
     @IBOutlet weak var stickyFooterView: StickyFooterView!
-    @IBOutlet weak var enrollButton: PrimaryButton!
+    @IBOutlet weak var submitButton: PrimaryButton!
     @IBOutlet weak var unenrollView: UIView!
     @IBOutlet weak var unenrollButtonLabel: UILabel!
     @IBOutlet weak var unenrollButton: UIButton!
@@ -64,9 +64,10 @@ class BGEAutoPayViewController: UIViewController {
         title = NSLocalizedString("AutoPay", comment: "")
 
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
+        helpButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         navigationItem.rightBarButtonItem = helpButton
         
-    viewModel.submitButtonEnabled.drive(enrollButton.rx.isEnabled).disposed(by: disposeBag)
+        viewModel.submitButtonEnabled.drive(submitButton.rx.isEnabled).disposed(by: disposeBag)
 
         styleViews()
         setupBindings()
@@ -77,7 +78,6 @@ class BGEAutoPayViewController: UIViewController {
             GoogleAnalytics.log(event: .autoPayEnrollOffer)
         case .enrolled:
             termsStackView.isHidden = true
-            termsStackView.alpha = 0
         }
         
         viewModel.fetchData(onSuccess: { [weak self] in
@@ -91,7 +91,7 @@ class BGEAutoPayViewController: UIViewController {
         FirebaseUtility.logEvent(.autoPayStart)
         
         if accountDetail.isAutoPay {
-            enrollButton.isHidden = true
+            submitButton.isHidden = true
         } else {
             unenrollView.isHidden = true
         }
@@ -109,7 +109,6 @@ class BGEAutoPayViewController: UIViewController {
             (viewModel.userDidChangeSettings.value || viewModel.userDidChangeBankAccount.value) {
             UIView.animate(withDuration: 0.25) { [weak self] in
                 self?.termsStackView.isHidden = false
-                self?.termsStackView.alpha = 1
             }
         }
     }
@@ -138,7 +137,6 @@ class BGEAutoPayViewController: UIViewController {
         
         settingsButton.fullyRoundCorners(diameter: 20, borderColor: .accentGray, borderWidth: 1)
         settingsButton.backgroundColorOnPress = .softGray
-//        settingsButton.label.lineBreakMode = .byTruncatingMiddle
         
         termsLabel.textColor = .deepGray
         termsLabel.font = SystemFont.regular.of(textStyle: .subheadline)
@@ -198,8 +196,19 @@ class BGEAutoPayViewController: UIViewController {
         
         termsSwitch.rx.isChecked.asDriver().drive(viewModel.userDidReadTerms).disposed(by: disposeBag)
     }
+    
+    private func showUpdateButton() {
+        guard accountDetail.isAutoPay else { return }
+        
+        termsStackView.isHidden = false
 
-    @objc func onSubmitPress(submitButton: UIBarButtonItem) {
+        submitButton.isHidden = false
+        submitButton.setTitle(NSLocalizedString("Update AutoPay", comment: ""), for: .normal)
+        submitButton.accessibilityLabel = NSLocalizedString("Update AutoPay", comment: "")
+        unenrollView.isHidden = true
+    }
+
+    @IBAction func onSubmitPress(_ sender: Any) {
         guard submitButton.isEnabled else { return }
         
         LoadingView.show()
@@ -256,16 +265,10 @@ class BGEAutoPayViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func enroll() {
+    private func enroll() {
         GoogleAnalytics.log(event: .autoPayEnrollSubmit)
-        
         FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .unenrolled_start)])
-
         FirebaseUtility.logEvent(.autoPaySubmit)
-        
-        if viewModel.userDidChangeSettings.value {
-            GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
-        }
         
         viewModel.enroll(onSuccess: { [weak self] in
             LoadingView.hide()
@@ -309,7 +312,6 @@ class BGEAutoPayViewController: UIViewController {
     
     private func updateSettings() {
         GoogleAnalytics.log(event: .autoPayModifySettingSubmit)
-        
         FirebaseUtility.logEvent(.autoPaySubmit)
         
         viewModel.update(onSuccess: { [weak self] in
@@ -364,7 +366,8 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.isCreditCardDisabled = true
         miniWalletVC.allowTemporaryItems = false
         miniWalletVC.delegate = self
-
+        miniWalletVC.titleText = NSLocalizedString("Select Bank Account", comment: "")
+        
         if accountDetail.isAutoPay {
             GoogleAnalytics.log(event: .autoPayModifyWallet)
         } else {
@@ -411,11 +414,6 @@ class BGEAutoPayViewController: UIViewController {
         }
     }
     
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
 }
 
 extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
@@ -423,6 +421,10 @@ extension BGEAutoPayViewController: MiniWalletSheetViewControllerDelegate {
         guard walletItem != viewModel.selectedWalletItem.value else { return }
         viewModel.userDidChangeBankAccount.value = true
         viewModel.selectedWalletItem.value = walletItem
+        
+        showUpdateButton()
+        
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .modify_bank)])
     }
     
     func miniWalletSheetViewControllerDidSelectAddBank(_ miniWalletSheetViewController: MiniWalletSheetViewController) {
@@ -438,6 +440,10 @@ extension BGEAutoPayViewController: PaymentusFormViewControllerDelegate {
     func didAddWalletItem(_ walletItem: WalletItem) {
         viewModel.userDidChangeBankAccount.value = true
         viewModel.selectedWalletItem.value = walletItem
+        
+        showUpdateButton()
+        
+        FirebaseUtility.logEvent(.autoPay, parameters: [EventParameter(parameterName: .action, value: .modify_bank)])
     }
 }
 
@@ -454,5 +460,7 @@ extension BGEAutoPayViewController: BGEAutoPaySettingsViewControllerDelegate {
         viewModel.amountNotToExceed.value = amountNotToExceed
         viewModel.whenToPay.value = whenToPay
         viewModel.numberOfDaysBeforeDueDate.value = numberOfDaysBeforeDueDate
+        
+        showUpdateButton()
     }
 }

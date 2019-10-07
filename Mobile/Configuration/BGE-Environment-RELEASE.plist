@@ -14,8 +14,6 @@
 	<string>Prod-bgeMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://bge.com/MyAccount</string>
-	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge</string>
 	<key>gaTrackingId</key>

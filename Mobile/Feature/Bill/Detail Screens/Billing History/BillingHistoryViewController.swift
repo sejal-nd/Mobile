@@ -23,6 +23,10 @@ class BillingHistoryViewController: UIViewController {
     
     let viewModel = BillingHistoryViewModel(billService: ServiceFactory.createBillService())
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -210,8 +214,12 @@ class BillingHistoryViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func viewMorePast() {
-        FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_more_past_header)])
+    @objc func viewMorePast(_ sender: UIButton) {
+        if sender.tag == 1 {
+            FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_more_past_row)])
+        } else {
+            FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_more_past_header)])
+        }
         
         let storyboard = UIStoryboard(name: "Bill", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "billingHistory") as! BillingHistoryViewController
@@ -221,6 +229,7 @@ class BillingHistoryViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    
     // MARK: - Misc
     
     func showDelayedToast(withMessage message: String) {
@@ -228,12 +237,7 @@ class BillingHistoryViewController: UIViewController {
             self.view.showToast(message)
         })
     }
-    
-    // Prevents status bar color flash when pushed
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+        
 }
 
 extension BillingHistoryViewController: UITableViewDelegate {
@@ -324,7 +328,7 @@ extension BillingHistoryViewController: UITableViewDelegate {
         
         let selector = section == 0 ?
             #selector(BillingHistoryViewController.viewAllUpcoming) :
-            #selector(BillingHistoryViewController.viewMorePast)
+            #selector(viewMorePast(_:))
         button.addTarget(self, action: selector, for:.touchUpInside)
         
         let leadingSpace = UIView()
@@ -417,16 +421,15 @@ extension BillingHistoryViewController: UITableViewDataSource {
         }).disposed(by: cell.disposeBag)
         return cell
     }
-    
+
     private func viewMoreTableViewCell(indexPath: IndexPath) -> UITableViewCell {
-        FirebaseUtility.logEvent(.bill, parameters: [EventParameter(parameterName: .action, value: .history_view_more_row)])
-        
         let button = UIButton(type: .system)
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         button.setTitle("View More", for: .normal)
         button.setTitleColor(.actionBlue, for: .normal)
-        button.addTarget(self, action: #selector(BillingHistoryViewController.viewMorePast), for:.touchUpInside)
+        button.tag = 1
+        button.addTarget(self, action: #selector(viewMorePast(_:)), for:.touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "ViewMoreCell")

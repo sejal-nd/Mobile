@@ -100,9 +100,9 @@ class MyHomeProfileViewModel {
         }
         
         if a11yString.isEmpty {
-            return NSLocalizedString("Save", comment: "")
+            return NSLocalizedString("Save Profile", comment: "")
         } else {
-            return String(format: NSLocalizedString("%@ Save", comment: ""), a11yString)
+            return String(format: NSLocalizedString("%@ Save Profile", comment: ""), a11yString)
         }
     }.asDriver(onErrorJustReturn: "")
     
@@ -137,7 +137,7 @@ class MyHomeProfileViewModel {
                 return String(format: localizedText, NSLocalizedString("required", comment: ""))
             }
             return String(format: localizedText, homeType.displayString)
-    }
+        }
     
     private(set) lazy var heatingFuelA11y: Driver<String> = self.heatType.asDriver()
         .map { heatingFuel -> String in
@@ -146,7 +146,7 @@ class MyHomeProfileViewModel {
                 return String(format: localizedText, NSLocalizedString("required", comment: ""))
             }
             return String(format: localizedText, heatingFuel.displayString)
-    }
+        }
     
     private(set) lazy var numberOfAdultsA11y: Driver<String> = self.numberOfAdults.asDriver()
         .map { numberOfAdults -> String in
@@ -155,7 +155,7 @@ class MyHomeProfileViewModel {
                 return String(format: localizedText, NSLocalizedString("required", comment: ""))
             }
             return String(format: localizedText, String(numberOfAdults))
-    }
+        }
     
     private(set) lazy var numberOfChildrenA11y: Driver<String> = self.numberOfChildren.asDriver()
         .map { numberOfChildren -> String in
@@ -164,5 +164,5 @@ class MyHomeProfileViewModel {
                 return String(format: localizedText, NSLocalizedString("required", comment: ""))
             }
             return String(format: localizedText, String(numberOfChildren))
-    }
+        }
 }

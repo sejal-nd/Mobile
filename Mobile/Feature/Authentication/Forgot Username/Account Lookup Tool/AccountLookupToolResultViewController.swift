@@ -35,7 +35,7 @@ class AccountLookupToolResultViewController: UIViewController {
         title = NSLocalizedString("Account Lookup Tool", comment: "")
         
         instructionLabel.textColor = .deepGray
-        instructionLabel.text = NSLocalizedString("Please select your account", comment: "")
+        instructionLabel.text = NSLocalizedString("Please select your account.", comment: "")
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
         
         accountNumberHeaderLabel.textColor = .deepGray

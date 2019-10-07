@@ -243,10 +243,6 @@ class ReviewPaymentViewController: UIViewController {
                     if err.serviceCode == ServiceErrorCode.walletItemIdTimeout.rawValue {
                         guard let navCtl = self.navigationController else { return }
                         
-                        FirebaseUtility.logEvent(.paymentNetworkComplete)
-                        
-                        FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
-                        
                         let makePaymentVC = UIStoryboard(name: "Payment", bundle: nil)
                             .instantiateInitialViewController() as! MakePaymentViewController
                         makePaymentVC.accountDetail = self.viewModel.accountDetail.value
@@ -263,6 +259,11 @@ class ReviewPaymentViewController: UIViewController {
         if viewModel.paymentId.value != nil { // Modify
             viewModel.modifyPayment(onSuccess: { [weak self] in
                 LoadingView.hide()
+                
+                FirebaseUtility.logEvent(.paymentNetworkComplete)
+                
+                FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
+                
                 self?.performSegue(withIdentifier: "paymentConfirmationSegue", sender: self)
             }, onError: { error in
                 handleError(error)
@@ -275,6 +276,11 @@ class ReviewPaymentViewController: UIViewController {
                 self?.present(alertVc, animated: true, completion: nil)
                 }, onSuccess: { [weak self] in
                     LoadingView.hide()
+                    
+                    FirebaseUtility.logEvent(.paymentNetworkComplete)
+                    
+                    FirebaseUtility.logEvent(.payment, parameters: [EventParameter(parameterName: .action, value: .submit)])
+                    
                     if let bankOrCard = self?.viewModel.selectedWalletItem.value?.bankOrCard, let temp = self?.viewModel.selectedWalletItem.value?.isTemporary {
                         switch bankOrCard {
                         case .bank:

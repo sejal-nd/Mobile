@@ -22,14 +22,14 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
     @IBOutlet weak var headerLabel: UILabel!
     
     @IBOutlet weak var homeTypeInfoLabel: UILabel!
-    @IBOutlet weak var homeTypeButton: DisclosureButtonNew!
+    @IBOutlet weak var homeTypeButton: DisclosureButton!
     
     @IBOutlet weak var heatingFuelInfoLabel: UILabel!
-    @IBOutlet weak var heatingFuelButton: DisclosureButtonNew!
+    @IBOutlet weak var heatingFuelButton: DisclosureButton!
     
     @IBOutlet weak var numberOfResidentsInfoLabel: UILabel!
-    @IBOutlet weak var numberOfAdultsButton: DisclosureButtonNew!
-    @IBOutlet weak var numberOfChildrenButton: DisclosureButtonNew!
+    @IBOutlet weak var numberOfAdultsButton: DisclosureButton!
+    @IBOutlet weak var numberOfChildrenButton: DisclosureButton!
     
     @IBOutlet weak var homeSizeInfoLabel: UILabel!
     @IBOutlet weak var homeSizeTextField: FloatLabelTextField!
@@ -123,6 +123,8 @@ class MyHomeProfileViewController: KeyboardAvoidingStickyFooterViewController {
                     self?.homeSizeTextField.textField.text = "\(squareFeet)"
                     self?.viewModel.homeSizeEntry.value = String(squareFeet)
                 }
+                
+                UIAccessibility.post(notification: .screenChanged, argument: self?.view)
             }, onError: { [weak self] _ in
                 self?.scrollView.isHidden = true
                 self?.errorLabel.isHidden = false

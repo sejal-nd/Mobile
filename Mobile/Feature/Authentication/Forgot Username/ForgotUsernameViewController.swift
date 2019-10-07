@@ -34,6 +34,8 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addCloseButton()
+        
         title = NSLocalizedString("Forgot Username", comment: "")
         
         if Environment.shared.opco == .bge {
@@ -46,7 +48,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         
         instructionLabel.textColor = .deepGray
         instructionLabel.font = SystemFont.regular.of(textStyle: .headline)
-        instructionLabel.text = NSLocalizedString("Please help us validate your account", comment: "")
+        instructionLabel.text = NSLocalizedString("Please help us validate your account.", comment: "")
         
         phoneNumberTextField.placeholder = NSLocalizedString("Primary Phone Number*", comment: "")
         phoneNumberTextField.textField.autocorrectionType = .no
@@ -138,9 +140,7 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
         accountLookupToolButton.setTitle(NSLocalizedString("Account Lookup Tool", comment: ""), for: .normal)
         accountLookupToolButton.setTitleColor(.actionBlue, for: .normal)
         accountLookupToolButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
-        accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")
-        
-        FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .start)])
+        accountLookupToolButton.accessibilityLabel = NSLocalizedString("Account lookup tool", comment: "")        
     }
     
     private func accessibilityErrorLabel() {

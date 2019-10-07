@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class OutageViewController: AccountPickerViewController {
     
@@ -26,7 +27,7 @@ class OutageViewController: AccountPickerViewController {
     
     @IBOutlet weak var accountInfoBar: AccountInfoBarNew!
     @IBOutlet weak var maintenanceModeContainerView: UIView!
-    @IBOutlet weak var NoNetworkConnectionContainerView: UIView!
+    @IBOutlet weak var noNetworkConnectionContainerView: UIView!
     @IBOutlet weak var loadingContainerView: UIView!
     @IBOutlet weak var gasOnlyContainerView: UIView!
     @IBOutlet weak var notAvailableContainerView: UIView!
@@ -38,14 +39,14 @@ class OutageViewController: AccountPickerViewController {
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadOutageStatus(sender:)), for: .valueChanged)
-        refreshControl.tintColor = .primaryColor
+        refreshControl.tintColor = .deepGray
         refreshControl.backgroundColor = .softGray
         return refreshControl
     }()
     
     let viewModel = OutageViewModel(accountService: ServiceFactory.createAccountService(),
-                                            outageService: ServiceFactory.createOutageService(),
-                                            authService: ServiceFactory.createAuthenticationService())
+                                    outageService: ServiceFactory.createOutageService(),
+                                    authService: ServiceFactory.createAuthenticationService())
     
     var userState: UserState = .authenticated
     
@@ -53,12 +54,14 @@ class OutageViewController: AccountPickerViewController {
     
     var accountsLoaded = false
     
+    let disposeBag = DisposeBag()
+    
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureAccountPicker()
         
         configureTableView()
@@ -96,8 +99,31 @@ class OutageViewController: AccountPickerViewController {
                 vc.delegate = self
             }
             vc.unauthenticatedExperience = userState == .unauthenticated ? true : false
-        } else if let vc = segue.destination as? OutageMapViewController, let hasPressedStreetlightOutageMapButton = sender as? Bool {
+        } else if let vc = segue.destination as? OutageMapViewController,
+            let hasPressedStreetlightOutageMapButton = sender as? Bool, hasPressedStreetlightOutageMapButton {
             vc.hasPressedStreetlightOutageMapButton = hasPressedStreetlightOutageMapButton
+        } else if segue.identifier == "noNetworkEmbed" {
+            for subview in segue.destination.view.subviews {
+                if let noNetworkView = subview as? NoNetworkConnectionView {
+                    noNetworkView.reload.subscribe(onNext: { [weak self] _ in
+                        
+                        // Re-fetch remote config values
+                        RemoteConfigUtility.shared.fetchCloudValues()
+                        
+                        self?.configureState(.loading)
+                        self?.loadOutageStatus()
+                    }).disposed(by: disposeBag)
+                }
+            }
+        } else if segue.identifier == "maintModeEmbed" {
+            for subview in segue.destination.view.subviews {
+                if let maintModeView = subview as? MaintenanceModeView {
+                    maintModeView.reload.subscribe(onNext: { [weak self] _ in
+                        self?.configureState(.loading)
+                        self?.loadOutageStatus()
+                    }).disposed(by: disposeBag)
+                }
+            }
         }
     }
     
@@ -113,13 +139,20 @@ class OutageViewController: AccountPickerViewController {
         let titleDetailCell = UINib(nibName: TitleSubTitleRow.className, bundle: nil)
         tableView.register(titleDetailCell, forCellReuseIdentifier: TitleSubTitleRow.className)
         tableView.reloadData()
+        
+        RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
+            self?.viewModel.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+            self?.viewModel.streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
+            self?.tableView.reloadData()
+        }
     }
     
     private func configureTableHeaderFooterView() {
         // Header
         outageStatusView.delegate = self
-
+        
         // Footer
+        footerTextView.font = SystemFont.regular.of(textStyle: .footnote)
         footerTextView.attributedText = viewModel.footerTextViewText
         footerTextView.textColor = .blackText
         footerTextView.tintColor = .actionBlue // For the phone numbers
@@ -135,6 +168,7 @@ class OutageViewController: AccountPickerViewController {
             if sender != nil {
                 sender?.endRefreshing()
                 self?.viewModel.hasJustReportedOutage = false
+                RemoteConfigUtility.shared.fetchCloudValues()
             }
             
             guard let `self` = self else { return }
@@ -159,9 +193,9 @@ class OutageViewController: AccountPickerViewController {
             
             // If coming from shortcut, check these flags for report outage button availablility
             if !outageStatus.flagGasOnly &&
-                    !outageStatus.flagNoPay &&
-                    !outageStatus.flagFinaled &&
-                    !outageStatus.flagNonService &&
+                !outageStatus.flagNoPay &&
+                !outageStatus.flagFinaled &&
+                !outageStatus.flagNonService &&
                 self.shortcutItem == .reportOutage {
                 self.performSegue(withIdentifier: "reportOutageSegue", sender: self)
             }
@@ -171,8 +205,7 @@ class OutageViewController: AccountPickerViewController {
                 if serviceError.serviceCode == ServiceErrorCode.noNetworkConnection.rawValue {
                     self?.configureState(.noNetwork)
                 } else if serviceError.serviceCode == ServiceErrorCode.fnAccountDisallow.rawValue {
-                    
-                   self?.configureState(.unavailable)
+                    self?.configureState(.unavailable)
                 }
             }, onMaintenance: { [weak self] in
                 self?.shortcutItem = .none
@@ -188,7 +221,7 @@ class OutageViewController: AccountPickerViewController {
             accountInfoBar.isHidden = true
             
             tableView.addSubview(refreshControl)
-
+            
             configureState(.loading)
         case .unauthenticated:
             title = "Outage"
@@ -216,37 +249,37 @@ class OutageViewController: AccountPickerViewController {
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .loading:
             loadingContainerView.isHidden = false
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .gasOnly:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = false
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .maintenance:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = false
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = true
         case .noNetwork:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = false
+            noNetworkConnectionContainerView.isHidden = false
             notAvailableContainerView.isHidden = true
         case .unavailable:
             loadingContainerView.isHidden = true
             gasOnlyContainerView.isHidden = true
             maintenanceModeContainerView.isHidden = true
-            NoNetworkConnectionContainerView.isHidden = true
+            noNetworkConnectionContainerView.isHidden = true
             notAvailableContainerView.isHidden = false
         }
     }
@@ -299,11 +332,24 @@ extension OutageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 1 && (Environment.shared.opco != .comEd || userState == .unauthenticated) {
-            // Only authenticated ComEd users get the Report Streetlight Outage row
-            return 0
+        switch indexPath.row {
+        case 1:
+            // Streetlight Map
+            if userState == .unauthenticated || viewModel.streetlightOutageMapURLString.isEmpty {
+                return 0
+            } else {
+                return UITableView.automaticDimension
+            }
+        case 2:
+            // Outage Map
+            if viewModel.outageMapURLString.isEmpty {
+                return 0
+            } else {
+                return UITableView.automaticDimension
+            }
+        default:
+            return UITableView.automaticDimension
         }
-        return UITableView.automaticDimension
     }
 }
 
@@ -354,7 +400,7 @@ extension OutageViewController: OutageStatusDelegate {
         case .powerStatus(_), .reported, .unavailable:
             guard let message = viewModel.outageStatus?.outageDescription else { return }
             let alertViewController = InfoAlertController(title: NSLocalizedString("Outage Status Details", comment: ""),
-                                            message: message)
+                                                          message: message)
             
             if let tabBarController = tabBarController {
                 // Auth
@@ -389,18 +435,18 @@ extension OutageViewController: ReportOutageDelegate {
         // Show Toast
         view.showToast(NSLocalizedString("Outage report received", comment: ""))
         GoogleAnalytics.log(event: .reportOutageAuthComplete)
-
+        
         // Update Report Outage Cell
         guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TitleSubTitleRow else { return }
         cell.updateSubTitle(viewModel.outageReportedDateString)
-
+        
         // Enable Reported Outage State
         viewModel.hasJustReportedOutage = true
         guard let outageStatus = viewModel.outageStatus else { return }
         outageStatusView.setOutageStatus(outageStatus,
                                          reportedResults: viewModel.reportedOutage,
                                          hasJustReported: viewModel.hasJustReportedOutage)
-  
+        
         // Analytics
         let event: FirebaseUtility.Event
         if userState == .authenticated {

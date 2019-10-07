@@ -26,6 +26,10 @@ class StormModeHomeViewModel {
     
     var stormModeEnded = false
     
+    // Remote Config Value
+    var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+    
+    
     init(authService: AuthenticationService, outageService: OutageService, alertsService: AlertsService) {
         self.authService = authService
         self.outageService = outageService

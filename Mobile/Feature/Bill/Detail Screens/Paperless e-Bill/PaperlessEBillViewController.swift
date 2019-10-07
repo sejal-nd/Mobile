@@ -218,9 +218,7 @@ class PaperlessEBillViewController: UIViewController, UIGestureRecognizerDelegat
             guard let self = self else { return }
             
             FirebaseUtility.logEvent(.paperlessEBillNetworkComplete)
-            
-            FirebaseUtility.logEvent(.eBill, parameters: [EventParameter(parameterName: .action, value: .enroll_complete)])
-            
+                        
             self.delegate?.paperlessEBillViewController(self, didChangeStatus: changedStatus)
             self.navigationController?.popViewController(animated: true)
         }, onError: { [weak self] errMessage in

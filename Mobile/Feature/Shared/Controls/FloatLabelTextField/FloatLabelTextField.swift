@@ -178,7 +178,7 @@ class FloatLabelTextField: UIView {
             setError(nil)
             setValidated(false)
             
-            textFieldContainerView.backgroundColor = UIColor.accentGray.withAlphaComponent(0.08)
+            textFieldContainerView.backgroundColor = .softGray
         
             textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [
                 NSAttributedString.Key.foregroundColor: UIColor.deepGray.withAlphaComponent(0.5)

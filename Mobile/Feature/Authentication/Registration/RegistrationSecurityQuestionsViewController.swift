@@ -20,13 +20,13 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
     
     @IBOutlet weak var instructionLabel: UILabel!
 
-    @IBOutlet weak var question1QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question1QuestionButton: DisclosureButton!
     @IBOutlet weak var question1AnswerTextField: FloatLabelTextField!
 
-    @IBOutlet weak var question2QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question2QuestionButton: DisclosureButton!
     @IBOutlet weak var question2AnswerTextField: FloatLabelTextField!
     
-    @IBOutlet weak var question3QuestionButton: DisclosureButtonNew!
+    @IBOutlet weak var question3QuestionButton: DisclosureButton!
     @IBOutlet weak var question3AnswerTextField: FloatLabelTextField!
     
     @IBOutlet weak var eBillEnrollView: UIView!
@@ -231,6 +231,8 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         
         LoadingView.show()
         
+        FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .ebill_enroll)])
+        
         viewModel.registerUser(onSuccess: { [weak self] in
             guard let self = self else { return }
             LoadingView.hide()
@@ -240,7 +242,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
             }
             
             GoogleAnalytics.log(event: .registerAccountSecurityQuestions)
-            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_security_questions)])
+
             self.performSegue(withIdentifier: "loadRegistrationConfirmationSegue", sender: self)
 
         }, onError: { [weak self] (title, message) in
@@ -259,7 +261,6 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         toggleAccountListing(viewModel.paperlessEbill.value && viewModel.accounts.value.count > displayAccountsIfGreaterThan)
         
         if eBillEnrollCheckbox.isChecked {
-            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .ebill_enroll)])
             GoogleAnalytics.log(event: .registerEBillEnroll)
         }
     }
@@ -268,6 +269,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         self.performSegue(withIdentifier: "securityQuestionSegue", sender: sender)
     }
     
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -275,7 +277,7 @@ class RegistrationSecurityQuestionsViewController: KeyboardAvoidingStickyFooterV
         if let navController = segue.destination as? LargeTitleNavigationController,
             let vc = navController.viewControllers.first as? RegistrationSecurityQuestionListViewController {
             vc.viewModel = viewModel
-            switch sender as? DisclosureButtonNew {
+            switch sender as? DisclosureButton {
             case question1QuestionButton?:
                 vc.questionNumber = 1
             case question2QuestionButton?:

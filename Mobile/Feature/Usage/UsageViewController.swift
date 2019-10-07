@@ -146,6 +146,7 @@ class UsageViewController: AccountPickerViewController {
             lastYearButton.layer.cornerRadius = 16
             lastYearButton.layer.borderColor = UIColor.accentGray.cgColor
             lastYearButton.layer.borderWidth = 1
+            lastYearButton.accessibilityLabel = NSLocalizedString("Compare to last year", comment: "")
         }
     }
     
@@ -154,6 +155,7 @@ class UsageViewController: AccountPickerViewController {
             previousBillButton.layer.cornerRadius = 16
             previousBillButton.layer.borderColor = UIColor.accentGray.cgColor
             previousBillButton.layer.borderWidth = 1
+            previousBillButton.accessibilityLabel = NSLocalizedString("Compare to previous bill", comment: "")
         }
     }
     
@@ -214,9 +216,12 @@ class UsageViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let dashedBorderColor = UIColor(red: 0, green: 80/255, blue: 125/255, alpha: 0.24)
+        let dashedBorderColor = UIColor.accentGray
+        let backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.03)
         noDataBarView.addDashedBorder(color: dashedBorderColor)
+        noDataBarView.backgroundColor = backgroundColor
         projectionNotAvailableBarView.addDashedBorder(color: dashedBorderColor)
+        projectionNotAvailableBarView.backgroundColor = backgroundColor
         projectionNotAvailableBarView.layer.cornerRadius = 10
     }
     
@@ -244,8 +249,15 @@ class UsageViewController: AccountPickerViewController {
     }
     
     @IBAction private func barGraphPress(_ sender: ButtonControl) {
-        if sender.tag == 3 {
-            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .projected_graph_press)])
+        switch sender.tag {
+        case 1:
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .previous_bar_press)])
+        case 2:
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .current_bar_press)])
+        case 3:
+            FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .projected_bar_press)])
+        default:
+            break
         }
         
         viewModel.setBarSelected(tag: sender.tag)
@@ -337,9 +349,9 @@ class UsageViewController: AccountPickerViewController {
                 self?.selectLastYearPreviousBill(isPreviousBill: isPreviousBill)
                 
                 if isPreviousBill {
-                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .previous_graph_press)])
+                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .last_year_graph_press)])
                 } else {
-                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .next_graph_press)])
+                    FirebaseUtility.logEvent(.usage, parameters: [EventParameter(parameterName: .action, value: .last_bill_graph_press)])
                 }
                 
                 GoogleAnalytics.log(event: isPreviousBill ? .billPreviousToggle : .billLastYearToggle)
@@ -629,6 +641,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showNoUsageDataState() {
@@ -643,6 +656,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showCommercialState() {
@@ -675,6 +689,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showMainErrorState() {
@@ -689,6 +704,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showAccountDisallowState() {
@@ -703,6 +719,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showNoNetworkState() {
@@ -717,6 +734,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = false
         maintenanceModeView.isHidden = true
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showMaintenanceModeState() {
@@ -731,6 +749,7 @@ class UsageViewController: AccountPickerViewController {
         noNetworkConnectionView.isHidden = true
         maintenanceModeView.isHidden = false
         removeCommercialView()
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showBillComparisonLoadingState() {
@@ -740,6 +759,7 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = true
         billComparisonDataContainer.isHidden = false
         billComparisonTitleContainer.isHidden = false
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showBillComparisonContents() {
@@ -749,6 +769,7 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = true
         billComparisonDataContainer.isHidden = false
         billComparisonTitleContainer.isHidden = false
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func showBillComparisonErrorState() {
@@ -758,6 +779,7 @@ class UsageViewController: AccountPickerViewController {
         billComparisonErrorView.isHidden = false
         billComparisonDataContainer.isHidden = true
         billComparisonTitleContainer.isHidden = true
+        UIAccessibility.post(notification: .screenChanged, argument: view)
     }
     
     private func removeCommercialView() {
@@ -776,7 +798,7 @@ class UsageViewController: AccountPickerViewController {
         NSLayoutConstraint.activate([
             commercialVC.view.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
             commercialVC.view.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor)
-            ])
+        ])
         commercialViewController = commercialVC
         view.backgroundColor = .white
     }

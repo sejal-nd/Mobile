@@ -165,7 +165,7 @@ class BillViewModel {
         .map { $0.1 }
         .asDriver(onErrorDriveWith: Driver.empty())
 	
-    // MARK: - Show/Hide Views -
+    // MARK: - Show/Hide Views
     
     private(set) lazy var showMaintenanceMode: Driver<Void> = maintenanceModeEvents.elements()
         .filter { $0.billStatus }
@@ -179,7 +179,7 @@ class BillViewModel {
         return Driver.combineLatest(showFromResponse, self.switchAccountsTracker.asDriver()) { $0 && !$1 }
             .startWith(false)
     }()
-    
+        
     private(set) lazy var showBillNotReady: Driver<Bool> = currentAccountDetail.map {
         return $0.billingInfo.billDate == nil && ($0.billingInfo.netDueAmount == nil || $0.billingInfo.netDueAmount == 0)
     }
@@ -347,6 +347,16 @@ class BillViewModel {
         $0?.replacingOccurrences(of: "shutoff", with: "shut-off")
     }
     
+    //MARK: - MultiPremise Handling
+    
+    private(set) lazy var showMultipremiseHeader: Driver<Bool> = currentAccountDetail.map { _ in
+        return AccountsStore.shared.currentAccount.isMultipremise
+    }
+    
+    private(set) lazy var premiseAddressString: Driver<String?> = currentAccountDetail.map { _ in
+        AccountsStore.shared.currentAccount.currentPremise?.addressLineString
+    }
+    
     //MARK: - Total Amount Due
     
     private(set) lazy var totalAmountText: Driver<String> = currentAccountDetail.map {
@@ -369,6 +379,7 @@ class BillViewModel {
             if billingInfo.pastDueAmount == billingInfo.netDueAmount {
                 string = NSLocalizedString("Total Amount Due Immediately", comment: "")
                 attributes[.foregroundColor] = UIColor.errorRed
+                attributes[.font] = SystemFont.semibold.of(textStyle: .caption1)
             } else {
                 string = NSLocalizedString("Total Amount Due", comment: "")
             }
@@ -417,7 +428,7 @@ class BillViewModel {
             } else {
                 let string = NSLocalizedString("Due Immediately", comment: "")
                 return NSAttributedString(string: string, attributes: [.foregroundColor: UIColor.errorRed,
-                                                                       .font: SystemFont.regular.of(textStyle: .caption1)])
+                                                                       .font: SystemFont.semibold.of(textStyle: .caption1)])
             }
     }
     
@@ -494,7 +505,6 @@ class BillViewModel {
                 billDate < lastPaymentDate {
                 return String(format: NSLocalizedString("Thank you for %@ payment on %@", comment: ""), lastPaymentAmount.currencyString, lastPaymentDate.mmDdYyyyString)
             }
-            
             return nil
         }
         .asDriver(onErrorDriveWith: .empty())
@@ -528,13 +538,11 @@ class BillViewModel {
     private(set) lazy var makePaymentStatusTextTapRouting: Driver<MakePaymentStatusTextRouting> = data
         .map { accountDetail, scheduledPayment in
             guard !accountDetail.isBGEasy else { return .nowhere }
-            
             if accountDetail.isAutoPay {
                 return .autoPay
             } else if scheduledPayment?.amount > 0 {
                 return .activity
             }
-            
             return .nowhere
         }
         .asDriver(onErrorDriveWith: .empty())

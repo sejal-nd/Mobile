@@ -84,12 +84,9 @@ class ForgotUsernameResultViewController: UIViewController {
     }
     
     @IBAction func onSignInPress() {
-        for vc in (navigationController?.viewControllers)! {
-            if let dest = vc as? LoginViewController {
-                navigationController?.popToViewController(dest, animated: true)
-                break
-            }
-        }
+        FirebaseUtility.logEvent(.forgotUsername, parameters: [EventParameter(parameterName: .action, value: .return_to_signin)])
+        
+        dismissModal()
     }
     
     // MARK: - Navigation

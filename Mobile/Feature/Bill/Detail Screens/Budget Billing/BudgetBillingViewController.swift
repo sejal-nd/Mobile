@@ -79,7 +79,7 @@ class BudgetBillingViewController: UIViewController {
         if accountDetail.isBudgetBillEnrollment {
             descriptionHeaderLabel.text = NSLocalizedString("You are currently enrolled in Budget Billing. Your monthly Budget Billing payment is adjusted periodically based on your actual usage.", comment: "")
         } else {
-            descriptionHeaderLabel.text = NSLocalizedString("Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill. It’s a predictable monthly payment that eliminates montlhy or seasonal variation.", comment: "")
+            descriptionHeaderLabel.text = NSLocalizedString("Budget Billing spreads costs evenly month to month by charging a pre-arranged amount with each bill. It’s a predictable monthly payment that eliminates monthly or seasonal variation.", comment: "")
         }
         descriptionHeaderLabel.setLineHeight(lineHeight: 24)
         
@@ -203,6 +203,8 @@ class BudgetBillingViewController: UIViewController {
                     // USPP Participants cannot unenroll
                     self.stickyFooterView.isHidden = true
                 }
+                
+                UIAccessibility.post(notification: .screenChanged, argument: self.view)
             }
         }, onError: { [weak self] errMessage in
             guard let self = self else { return }

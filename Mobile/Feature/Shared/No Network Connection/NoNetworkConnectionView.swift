@@ -60,11 +60,13 @@ class NoNetworkConnectionView: UIView {
     }
     
     private func styleViews() {
-        reloadLabel.font = SystemFont.bold.of(textStyle: .headline)
-        noNetworkConnectionLabel.font = OpenSans.semibold.of(textStyle: .title1)
-        pleaseReloadLabel.font = OpenSans.regular.of(textStyle: .subheadline)
-        group1Label.font = OpenSans.regular.of(textStyle: .subheadline)
-        group2Label.font = OpenSans.regular.of(textStyle: .subheadline)
+        reloadLabel.font = SystemFont.bold.of(textStyle: .callout)
+        noNetworkConnectionLabel.textColor = .deepGray
+        noNetworkConnectionLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        pleaseReloadLabel.textColor = .deepGray
+        pleaseReloadLabel.font = SystemFont.regular.of(textStyle: .subheadline)
+        group1Label.font = SystemFont.regular.of(textStyle: .footnote)
+        group2Label.font = SystemFont.regular.of(textStyle: .footnote)
         phone1Button.roundCorners(.allCorners, radius: 4)
         phone1Button.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 1), radius: 3)
         phone2Button.roundCorners(.allCorners, radius: 4)

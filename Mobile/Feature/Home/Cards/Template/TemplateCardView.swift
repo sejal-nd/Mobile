@@ -47,7 +47,9 @@ class TemplateCardView: UIView {
         layer.borderColor = UIColor.accentGray.cgColor
         layer.borderWidth = 1
         clippingView.layer.cornerRadius = 10
+        titleLabel.textColor = .deepGray
         titleLabel.font = OpenSans.regular.of(textStyle: .headline)
+        bodyLabel.textColor = .deepGray
         bodyLabel.font = SystemFont.regular.of(textStyle: .footnote)
         callToActionButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
@@ -169,4 +171,9 @@ class TemplateCardView: UIView {
     
     private(set) lazy var pushedViewControllers: Driver<UIViewController> = Driver.merge(self.hourlyPricingViewController,
                                                                                          self.peakRewardsViewController)
+    
+    @IBAction func ctaPress(_ sender: Any) {
+        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .promo_cta)])
+
+    }
 }

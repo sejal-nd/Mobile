@@ -26,6 +26,10 @@ class AccountPickerViewController: UIViewController {
     var safeAreaTop: CGFloat = 0
     var shouldLoadAccounts = true
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return defaultStatusBarStyle
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -51,10 +55,6 @@ class AccountPickerViewController: UIViewController {
                 NotificationCenter.default.post(name: .didReceiveAccountListError, object: self)
             }).disposed(by: disposeBag)
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return defaultStatusBarStyle
-    }
-    
+        
 }
 

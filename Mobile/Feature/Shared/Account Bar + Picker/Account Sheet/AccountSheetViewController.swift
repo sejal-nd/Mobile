@@ -23,7 +23,7 @@ class AccountSheetViewController: UIViewController {
     @IBOutlet weak var bottomSheetView: UIView!
     @IBOutlet weak var gestureView: UIView!
     @IBOutlet weak var handleView: UIView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomSheetViewTopConstraint: NSLayoutConstraint!
 
@@ -232,7 +232,8 @@ class AccountSheetViewController: UIViewController {
         
         handleView.layer.cornerRadius = handleView.bounds.height / 2
 
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.font: SystemFont.semibold.of(textStyle: .title3)]
+        titleLabel.textColor = .deepGray
+        titleLabel.font = SystemFont.semibold.of(textStyle: .headline)
     }
     
     private func configureTableView() {
@@ -245,6 +246,15 @@ class AccountSheetViewController: UIViewController {
         guard let row = accounts.firstIndex(of: AccountsStore.shared.currentAccount) else { return }
         selectedIndexPath = IndexPath(row: row, section: 0)
         tableView.reloadData()
+        
+        // Auto expand single multi premise accounts
+        if accounts.count == 1 && accounts.first?.isMultipremise ?? false {
+            let indexPath = IndexPath(row: 0, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! AccountListRow
+            cell.didSelect()
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
     }
     
     private func configureGestures() {

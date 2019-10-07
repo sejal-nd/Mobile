@@ -22,8 +22,13 @@ class UpdatesViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: LoadingIndicator!
     @IBOutlet weak var errorLabel: UILabel!
 
+    var unauthenticatedExperience = false
+    
     let viewModel = UpdatesViewModel(alertsService: ServiceFactory.createAlertsService())
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
     
     // MARK: - View Life Cycle
     
@@ -47,6 +52,7 @@ class UpdatesViewController: UIViewController {
     // MARK: - Helper
     
     private func style() {
+        
         title = NSLocalizedString("News and Updates", comment: "")
         
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)

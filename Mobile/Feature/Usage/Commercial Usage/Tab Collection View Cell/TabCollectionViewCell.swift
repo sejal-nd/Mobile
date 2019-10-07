@@ -24,10 +24,13 @@ class TabCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         highlightBar.backgroundColor = .primaryColor
         styleDeselected()
+        isAccessibilityElement = true
+        accessibilityTraits = .button
     }
     
     func configure(title: String, isSelected: Driver<Bool>) {
         titleLabel.text = title
+        accessibilityLabel = title
         isSelected
             .distinctUntilChanged()
             .drive(onNext: { [weak self] isSelected in

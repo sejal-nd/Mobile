@@ -23,6 +23,7 @@ class MiniWalletItemRow: UITableViewCell {
                 subtitleLabel.alpha = 1.0
                 
                 selectionStyle = .default
+                accessibilityTraits = .button
             } else {
                 checkmarkImageView.alpha = 0.4
                 paymentTypeImageView.alpha = 0.4
@@ -30,6 +31,7 @@ class MiniWalletItemRow: UITableViewCell {
                 subtitleLabel.alpha = 0.4
                 
                 selectionStyle = .none
+                accessibilityTraits = [.button, .notEnabled]
             }
         }
     }
@@ -40,6 +42,7 @@ class MiniWalletItemRow: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        accessibilityTraits = .button
         style()
     }
     
@@ -76,19 +79,23 @@ class MiniWalletItemRow: UITableViewCell {
         }
                 
         // Checkmark
+        let selectionAccessibilityString: String
         if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
             checkmarkImageView.isHidden = false
-            checkmarkImageView.accessibilityLabel = NSLocalizedString("Selected", comment: "")
+            selectionAccessibilityString = NSLocalizedString("Selected,", comment: "")
         } else {
             checkmarkImageView.isHidden = true
+            selectionAccessibilityString = ""
         }
         checkmarkImageView.isAccessibilityElement = false
         
         paymentTypeImageView.image = walletItem.paymentMethodType.imageMini
+        paymentTypeImageView.isAccessibilityElement = false
+        
         titleLabel.text = "**** \(walletItem.maskedWalletItemAccountNumber ?? "")"
         subtitleLabel.text = walletItem.nickName
         
         // Accessibility
-        self.accessibilityLabel = "\(checkmarkImageView.accessibilityLabel ?? ""), \(paymentTypeImageView.accessibilityLabel ?? ""), \(titleLabel.accessibilityLabel ?? ""), \(subtitleLabel.accessibilityLabel ?? "")"
+        self.accessibilityLabel = "\(selectionAccessibilityString) \(walletItem.paymentCategoryType.displayString), \(titleLabel.text ?? ""), \(subtitleLabel.text ?? "")"
     }
 }

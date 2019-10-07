@@ -221,9 +221,9 @@ class AutoPayChangeBankViewController: KeyboardAvoidingStickyFooterViewControlle
         message += confirmAccountNumberTextField.getError()
         
         if message.isEmpty {
-            enrollButton.accessibilityLabel = NSLocalizedString("Save", comment: "")
+            enrollButton.accessibilityLabel = NSLocalizedString("Save Bank Account", comment: "")
         } else {
-            enrollButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save", comment: ""), message)
+            enrollButton.accessibilityLabel = String(format: NSLocalizedString("%@ Save Bank Account", comment: ""), message)
         }
     }
 	

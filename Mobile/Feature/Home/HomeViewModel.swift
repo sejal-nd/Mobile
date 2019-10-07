@@ -135,17 +135,17 @@ class HomeViewModel {
             case .switchAccount:
                 return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
             }
-            }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
+        }, requestSelector: { [unowned self] _ in self.authService.getMaintenanceMode() })
     
     private lazy var accountDetailUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.accountDetailUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
         .toAsyncRequest(activityTrackers: { [weak self] in
             guard let this = self else { return nil }
             return [this.appointmentTracker, this.billTracker, this.usageTracker, this.accountDetailTracker, this.outageTracker, this.projectedBillTracker]
-            }, requestSelector: { [weak self] _ in
-                guard let self = self else { return .empty() }
-                return self.authService.getMaintenanceMode()
-            })
+        }, requestSelector: { [weak self] _ in
+            guard let self = self else { return .empty() }
+            return self.authService.getMaintenanceMode()
+        })
     
     private lazy var recentPaymentsUpdatedMMEvents: Observable<Event<Maintenance>> = RxNotifications.shared.recentPaymentsUpdated
         .filter { _ in AccountsStore.shared.currentIndex != nil }
@@ -159,6 +159,7 @@ class HomeViewModel {
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter { !($0.element?.allStatus ?? false) && !($0.element?.homeStatus ?? false) }
         .withLatestFrom(fetchTrigger)
+        .delay(.leastNonzeroMagnitude, scheduler: MainScheduler.instance) // Resolve race condition on Usage Card with mock data loading instantly
         .toAsyncRequest(activityTrackers: { [weak self] state in
             guard let this = self else { return nil }
             switch state {

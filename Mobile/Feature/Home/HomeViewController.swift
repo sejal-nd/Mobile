@@ -135,7 +135,7 @@ class HomeViewController: AccountPickerViewController {
         weatherView.didTapTemperatureTip
             .map(InfoModalViewController.init)
             .drive(onNext: { [weak self] in
-                self?.present($0, animated: true, completion: nil)
+                self?.navigationController?.present($0, animated: true, completion: nil)
             })
             .disposed(by: weatherView.bag)
         
@@ -233,6 +233,7 @@ class HomeViewController: AccountPickerViewController {
         
         // Bottom personalize button setup
         personalizeButton.setTitleColor(.actionBlue, for: .normal)
+        personalizeButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .subheadline)
         personalizeButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] in
                 guard let this = self else { return }
@@ -289,6 +290,9 @@ class HomeViewController: AccountPickerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Artificial screen event due to automatic screen tracking not counting the initial load of this screen...
+        FirebaseUtility.logEvent(.home, parameters: [EventParameter(parameterName: .action, value: .view_screen)])
+
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -485,7 +489,13 @@ class HomeViewController: AccountPickerViewController {
         
         billCardView.modalViewControllers
             .drive(onNext: { [weak self] viewController in
-                self?.present(viewController, animated: true, completion: nil)
+                if viewController is SetDefaultPaymentMethodTutorialViewController {
+                    let newNavController = LargeTitleNavigationController(rootViewController: viewController)
+                    newNavController.modalPresentationStyle = .formSheet
+                    self?.present(newNavController, animated: true, completion: nil)
+                } else {
+                    self?.present(viewController, animated: true, completion: nil)
+                }
             })
             .disposed(by: billCardView.bag)
         
@@ -574,11 +584,9 @@ class HomeViewController: AccountPickerViewController {
             }).disposed(by: projectedBillCardView.disposeBag)
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
-            let alertVc = UIAlertController(title: NSLocalizedString("Estimated Amount", comment: ""),
-                                            message: NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: ""),
-                                            preferredStyle: .alert)
-            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-            self?.present(alertVc, animated: true, completion: nil)
+            let alertViewController = InfoAlertController(title: NSLocalizedString("Estimated Amount", comment: ""),
+            message: NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: ""))
+            self?.present(alertViewController, animated: true, completion: nil)
         }).disposed(by: projectedBillCardView.disposeBag)
     }
     
@@ -620,6 +628,8 @@ class HomeViewController: AccountPickerViewController {
     
     @objc func onPullToRefresh() {
         viewModel.fetchData.onNext(.refresh)
+        
+        RemoteConfigUtility.shared.fetchCloudValues()
     }
 
     func bindLoadingStates() {

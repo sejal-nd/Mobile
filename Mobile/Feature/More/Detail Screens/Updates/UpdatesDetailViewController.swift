@@ -13,8 +13,11 @@ class UpdatesDetailViewController: UIViewController {
     @IBOutlet private weak var label: UILabel!
     
     var opcoUpdate: OpcoUpdate!
-
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -30,7 +33,6 @@ class UpdatesDetailViewController: UIViewController {
     
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
     
     // MARK: - Helper
     
@@ -50,4 +52,5 @@ class UpdatesDetailViewController: UIViewController {
         
         label.text = opcoUpdate.message
     }
+    
 }

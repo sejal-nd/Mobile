@@ -19,6 +19,17 @@
             "isDefault": true
         }
     ],
+    "screenshots": [
+        {
+            "walletItemId": "1234",
+            "maskedWalletItemAccountNumber": "*****0113-******1234",
+            "nickName": "Test Bank",
+            "paymentCategoryType": "CHECK",
+            "paymentMethodType": "ACH",
+            "bankName": "M & T BANK",
+            "isDefault": true
+        }
+    ],
     "billCardNoDefaultPayment": [],
     "billCardWithDefaultPayment": [
         {

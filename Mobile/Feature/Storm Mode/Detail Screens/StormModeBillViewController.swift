@@ -31,6 +31,10 @@ class StormModeBillViewController: AccountPickerViewController {
                                            paymentService: ServiceFactory.createPaymentService(),
                                            authService: ServiceFactory.createAuthenticationService())
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,11 +47,11 @@ class StormModeBillViewController: AccountPickerViewController {
         contentStack.insertArrangedSubview(billCardView, at: 0)
         
         makeAPaymentButton.stormTheme = true
-        makeAPaymentButton.accessibilityLabel = makeAPaymentButton.labelText
+        makeAPaymentButton.accessibilityLabel = makeAPaymentButton.descriptionText
         paymentActivityButton.stormTheme = true
-        paymentActivityButton.accessibilityLabel = paymentActivityButton.labelText
+        paymentActivityButton.accessibilityLabel = paymentActivityButton.descriptionText
         myWalletButton.stormTheme = true
-        myWalletButton.accessibilityLabel = myWalletButton.labelText
+        myWalletButton.accessibilityLabel = myWalletButton.descriptionText
         
         bindActions()
         bindViewStates()

@@ -19,11 +19,13 @@ class ButtonRow: UITableViewCell {
                 titleLabel.alpha = 1.0
                 
                 selectionStyle = .default
+                accessibilityTraits = .button
             } else {
                 iconImageView.alpha = 0.4
                 titleLabel.alpha = 0.4
                 
                 selectionStyle = .none
+                accessibilityTraits = [.button, .notEnabled]
             }
         }
     }
@@ -35,7 +37,6 @@ class ButtonRow: UITableViewCell {
         
         style()
     }
-    
     
     // MARK: - Helper
     
@@ -51,11 +52,16 @@ class ButtonRow: UITableViewCell {
     
     func configure(image: UIImage?, title: String, isEnabled: Bool) {
         iconImageView.image = image
+        iconImageView.isAccessibilityElement = false
+        
         titleLabel.text = title
+        titleLabel.isAccessibilityElement = false
         
         self.isEnabled = isEnabled
+        let enabledText = isEnabled ? "" : "Disabled "
         
-        // Accessibility
-        self.accessibilityLabel = "\(iconImageView.accessibilityLabel ?? ""), \(titleLabel.accessibilityLabel ?? "")"
+        
+        isAccessibilityElement = true
+        accessibilityLabel = "\(enabledText)\(titleLabel.text ?? "")"
     }
 }

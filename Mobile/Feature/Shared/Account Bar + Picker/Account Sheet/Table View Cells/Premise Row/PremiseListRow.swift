@@ -29,8 +29,11 @@ extension PremiseListRow {
     func configureWithPremise(_ premise: Premise, indexPath: IndexPath, selectedIndexPath: IndexPath?) {
         accountNumber.text = premise.addressLineString
         
+        var a11yString = ""
+        
         if let selectedIndexPath = selectedIndexPath, indexPath == selectedIndexPath {
             checkmarkImageView.isHidden = false
+            a11yString += "Selected,"
         } else {
             checkmarkImageView.isHidden = true
         }
@@ -39,5 +42,8 @@ extension PremiseListRow {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .softGray
         selectedBackgroundView = backgroundView
+        
+        // Accessibility
+        self.accessibilityLabel = "\(a11yString)Premise \(accountNumber.text ?? "")"
     }
 }

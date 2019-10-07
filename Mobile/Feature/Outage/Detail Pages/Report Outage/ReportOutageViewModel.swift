@@ -60,13 +60,16 @@ class ReportOutageViewModel {
             localizedString = String.localizedStringWithFormat("To report a gas emergency or a downed or sparking power line, please call %@", phone1)
         }
         
-        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [.font: OpenSans.regular.of(textStyle: .footnote)])
+        let attributedText = NSMutableAttributedString(string: localizedString, attributes: [
+            .font: SystemFont.regular.of(textStyle: .caption1),
+            .foregroundColor: UIColor.deepGray
+        ])
         for phone in phoneNumbers {
             localizedString.ranges(of: phone, options: .regularExpression)
                 .map { NSRange($0, in: localizedString) }
                 .forEach {
-                    attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .footnote), range: $0)
-            }
+                    attributedText.addAttribute(.font, value: SystemFont.bold.of(textStyle: .caption1), range: $0)
+                }
         }
         return attributedText
     }

@@ -40,7 +40,7 @@ class UsageViewModel {
         .do(onNext: { [weak self] in self?.usageService.clearCache() })
         .toAsyncRequest { [weak self] in
             self?.authService.getMaintenanceMode() ?? .empty()
-    }
+        }
     
     private(set) lazy var accountDetailEvents: Observable<Event<AccountDetail>> = maintenanceModeEvents
         .filter {
@@ -49,7 +49,7 @@ class UsageViewModel {
         }
         .toAsyncRequest { [weak self] _ in
             self?.accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount) ?? .empty()
-    }
+        }
     
     private lazy var commercialDataEvents: Observable<Event<SSOData>> = accountDetailEvents
         .elements()
@@ -102,7 +102,7 @@ class UsageViewModel {
             }
             
             return Observable.zip(billComparison, billForecast)
-    }
+        }
     
     // MARK: - Convenience Properties
     
@@ -182,7 +182,7 @@ class UsageViewModel {
     
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
         .filter { accountDetailEvent in
-            guard let accountDetail = accountDetailEvent.element else { return false }
+            guard let accountDetail = accountDetailEvent.element, accountDetail.isResidential, accountDetail.premiseNumber != nil else { return false }
             return !accountDetail.isEligibleForUsageData
         }
         .mapTo(())
@@ -225,17 +225,16 @@ class UsageViewModel {
         }
         .asDriver(onErrorDriveWith: .empty())
 
-    
     // MARK: - Bill Analysis Content
     
-    private(set) lazy var compareBillTitle: Driver<String> = lastYearPreviousBillSelectedSegmentIndex.asDriver()
-        .map {
+    private(set) lazy var compareBillTitle: Driver<String> = lastYearPreviousBillSelectedSegmentIndex
+        .asDriver().map {
             if $0 == 0 {
                 return NSLocalizedString("Compared to Last Year", comment: "")
             } else {
                 return NSLocalizedString("Compared to Previous Bill", comment: "")
             }
-    }
+        }
     
     private(set) lazy var billComparisonEmptyStateText: Driver<String> = Driver
         .combineLatest(electricGasSelectedSegmentIndex.asDriver(),
@@ -247,7 +246,7 @@ class UsageViewModel {
             } else {
                 return NSLocalizedString("Your usage overview will be available here once we have two full months of data.", comment: "")
             }
-    }
+        }
     
     // MARK: No Data Bar Drivers
     
@@ -261,7 +260,7 @@ class UsageViewModel {
                 let lastMonthDate = Calendar.opCo.date(byAdding: .month, value: -1, to: reference.endDate)!
                 return lastMonthDate.shortMonthAndDayString.uppercased()
             }
-    }
+        }
     
     // MARK: Previous Bar Drivers
     
@@ -289,7 +288,7 @@ class UsageViewModel {
                     return fraction > 3 ? fraction : 3
                 }
             }
-    }
+        }
     
     private(set) lazy var previousBarDollarLabelText: Driver<String?> = billComparison
         .map { $0.compared?.charges.currencyString }
@@ -302,7 +301,7 @@ class UsageViewModel {
             } else { // Previous Bill
                 return compared.endDate.shortMonthAndDayString.uppercased()
             }
-    }
+        }
     
     // MARK: Current Bar Drivers
     
@@ -330,7 +329,7 @@ class UsageViewModel {
                     return fraction > 3 ? fraction : 3
                 }
             }
-    }
+        }
     
     private(set) lazy var currentBarDollarLabelText: Driver<String?> = billComparison.map {
         guard let reference = $0.reference else { return nil }
@@ -345,7 +344,7 @@ class UsageViewModel {
             } else { // Previous Bill
                 return reference.endDate.shortMonthAndDayString.uppercased()
             }
-    }
+        }
     
     // MARK: Projection Bar Drivers
     
@@ -360,7 +359,7 @@ class UsageViewModel {
             } else {
                 return billForecast?.electric?.projectedCost
             }
-    }
+        }
     
     private(set) lazy var projectedCostSoFar: Driver<Double?> =
         Driver.combineLatest(accountDetail,
@@ -373,7 +372,7 @@ class UsageViewModel {
             } else {
                 return billForecast?.electric?.toDateCost
             }
-    }
+        }
     
     private(set) lazy var projectedUsage: Driver<Double?> =
         Driver.combineLatest(accountDetail,
@@ -386,13 +385,13 @@ class UsageViewModel {
             } else {
                 return billForecast?.electric?.projectedUsage
             }
-    }
+        }
     
     private(set) lazy var showProjectedBar: Driver<Bool> =
         Driver.combineLatest(lastYearPreviousBillSelectedSegmentIndex.asDriver(), projectedCost, showProjectionNotAvailableBar) {
             // Projections are only for "Previous Bill" selection
             $0 == 1 && $1 != nil && !$2
-    }
+        }
     
     private(set) lazy var projectedBarHeightConstraintValue: Driver<CGFloat> =
         Driver.combineLatest(billComparison, projectedCost) { billComparison, projectedCost in
@@ -408,14 +407,14 @@ class UsageViewModel {
                 let fraction = CGFloat(134.0 * (projectedCost / compared))
                 return fraction > 3 ? fraction : 3
             }
-    }
+        }
     
     private(set) lazy var projectedBarSoFarHeightConstraintValue: Driver<CGFloat> =
         Driver.combineLatest(projectedBarHeightConstraintValue, projectedCost, projectedCostSoFar) { heightConstraint, projectedCost, projectedCostSoFar in
             guard let projectedCost = projectedCost, let projectedCostSoFar = projectedCostSoFar else { return 0 }
             let fraction = heightConstraint * CGFloat(projectedCostSoFar / projectedCost)
             return fraction > 3 ? fraction : 0
-    }
+        }
     
     private(set) lazy var projectedBarDollarLabelText: Driver<String?> =
         Driver.combineLatest(accountDetail,
@@ -429,8 +428,7 @@ class UsageViewModel {
                 guard let usage = usage else { return nil }
                 return String(format: "%d %@", Int(usage), billComparison.meterUnit)
             }
-    }
-    
+        }
     
     private(set) lazy var projectedBarDateLabelText: Driver<String?> =
         Driver.combineLatest(accountDetail,
@@ -448,7 +446,7 @@ class UsageViewModel {
                 return endDate.shortMonthAndDayString.uppercased()
             }
             return nil
-    }
+        }
     
     // MARK: Projection Not Available Bar Drivers
     private(set) lazy var showProjectionNotAvailableBar: Driver<Bool> =
@@ -475,7 +473,7 @@ class UsageViewModel {
                 }
             }
             return false
-    }
+        }
     
     private(set) lazy var projectionNotAvailableDaysRemainingText: Driver<String?> =
         Driver.combineLatest(accountDetail,
@@ -622,7 +620,7 @@ class UsageViewModel {
             }
             
             return "\(dateString). \(detailString)"
-    }
+        }
     
     private(set) lazy var projectionNotAvailableA11yLabel: Driver<String?> =
         Driver.combineLatest(accountDetail,
@@ -660,7 +658,7 @@ class UsageViewModel {
             
             let localizedString = NSLocalizedString("Projection not available. Data becomes available once you are more than 7 days into the billing cycle. %@", comment: "")
             return String(format: localizedString, daysRemainingString)
-    }
+        }
     
     // MARK: Bar Description Box Drivers
     
@@ -706,7 +704,7 @@ class UsageViewModel {
             }
             
             return nil
-    }
+        }
     
     private(set) lazy var barDescriptionAvgTempLabelText: Driver<String?> =
         Driver.combineLatest(billComparison,
@@ -727,7 +725,7 @@ class UsageViewModel {
             }
             
             return nil
-    }
+        }
     
     private(set) lazy var barDescriptionDetailLabelText: Driver<String?> =
         Driver.combineLatest(accountDetail,
@@ -799,7 +797,7 @@ class UsageViewModel {
             }
             
             return nil
-    }
+        }
     
     // MARK: Selection States
     

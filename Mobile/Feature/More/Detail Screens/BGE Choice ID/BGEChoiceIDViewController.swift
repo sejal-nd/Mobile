@@ -32,6 +32,10 @@ class BGEChoiceIDViewController: AccountPickerViewController {
     
     let viewModel = BGEChoiceIDViewModel(accountService: ServiceFactory.createAccountService())
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +45,7 @@ class BGEChoiceIDViewController: AccountPickerViewController {
         accountPicker.parentViewController = self
         
         headerLabel.textColor = .deepGray
-        headerLabel.font = SystemFont.regular.of(textStyle: .headline)
+        headerLabel.font = SystemFont.regular.of(textStyle: .body)
         headerLabel.text = NSLocalizedString("All customers in the BGE service area have the opportunity to choose their electricity or natural gas supplier. Research your options, but before choosing a new supplier, be certain the company is licensed by the PSC and registered with BGE.", comment: "")
         headerLabel.setLineHeight(lineHeight: 24)
         
