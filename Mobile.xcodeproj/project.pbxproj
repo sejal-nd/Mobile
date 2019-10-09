@@ -183,12 +183,13 @@
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
+		3527DB38234B86E000DA4553 /* NewBillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* NewBillUtility.swift */; };
+		3527DB39234B86E000DA4553 /* NewBillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* NewBillUtility.swift */; };
+		3527DB3A234B86E000DA4553 /* NewBillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* NewBillUtility.swift */; };
 		352B19F8233BBE710090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage.storyboard */; };
 		352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage.storyboard */; };
-		352B19FC233BBF120090B442 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FB233BBF120090B442 /* Bill.storyboard */; };
 		352B19FE233BBFA50090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FD233BBFA50090B442 /* Outage.storyboard */; };
 		352B1A00233BBFB50090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FF233BBFB50090B442 /* Usage.storyboard */; };
-		352B1A02233BBFC70090B442 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B1A01233BBFC70090B442 /* Bill.storyboard */; };
 		352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
@@ -280,6 +281,9 @@
 		357757582114D65B00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		357757592114D65C00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		3577575A2114D65C00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
+		35839039234E5BA900AB601B /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35839038234E5B8E00AB601B /* Bill.storyboard */; };
+		3583903A234E5BB100AB601B /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FB233BBF120090B442 /* Bill.storyboard */; };
+		3583903C234E5BDB00AB601B /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3583903B234E5BDB00AB601B /* Bill.storyboard */; };
 		358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
@@ -473,7 +477,6 @@
 		35E7C7A921907EA400BA13C6 /* PECO-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO-Watch.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35E7C7CC21907F2F00BA13C6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
-		35E7C7D021907F2F00BA13C6 /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C621907F2E00BA13C6 /* Bill.storyboard */; };
 		35E7C7D121907F2F00BA13C6 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C721907F2E00BA13C6 /* Outage.storyboard */; };
 		35E7C7D221907F2F00BA13C6 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C821907F2E00BA13C6 /* Usage.storyboard */; };
 		35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
@@ -647,6 +650,9 @@
 		35F9DE5B233A63AB00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
 		35F9DE5C233A63AD00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
 		35F9DE5D233A63AE00AAA2B2 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */; };
+		35FB502F234D091000C50162 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
+		35FB5030234D091100C50162 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
+		35FB5031234D091100C50162 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB502E234D091000C50162 /* UIColor.swift */; };
 		384F86A21F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A31F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
 		384F86A41F310B8600A85557 /* TermPolicies.html in Resources */ = {isa = PBXBuildFile; fileRef = 384F86A11F310B8600A85557 /* TermPolicies.html */; };
@@ -2829,12 +2835,12 @@
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
+		3527DB37234B86E000DA4553 /* NewBillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillUtility.swift; sourceTree = "<group>"; };
 		352B19F7233BBE710090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Outage.storyboard; path = Watch/Storyboards/BGE/Outage.storyboard; sourceTree = SOURCE_ROOT; };
 		352B19F9233BBEDD0090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
-		352B19FB233BBF120090B442 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		352B19FB233BBF120090B442 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Bill.storyboard; path = ../BGE/Bill.storyboard; sourceTree = "<group>"; };
 		352B19FD233BBFA50090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
 		352B19FF233BBFB50090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
-		352B1A01233BBFC70090B442 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unauthenticated.storyboard; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
@@ -2846,6 +2852,8 @@
 		3575232C22C53A1B00A0AFAC /* AccountListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountListRow.xib; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
+		35839038234E5B8E00AB601B /* Bill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Bill.storyboard; path = Watch/Storyboards/ComEd/Bill.storyboard; sourceTree = SOURCE_ROOT; };
+		3583903B234E5BDB00AB601B /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		358BD21620F8FB2D00DA2012 /* BillImpactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillImpactView.xib; sourceTree = "<group>"; };
 		358BD21820F8FDAE00DA2012 /* BillImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImpactView.swift; sourceTree = "<group>"; };
@@ -2925,7 +2933,6 @@
 		35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35E7C7BE21907F2E00BA13C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35E7C7C421907F2E00BA13C6 /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
-		35E7C7C621907F2E00BA13C6 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		35E7C7C721907F2E00BA13C6 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
 		35E7C7C821907F2E00BA13C6 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		35E7C7CA21907F2E00BA13C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -2962,6 +2969,7 @@
 		35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAnalyticUtility.swift; sourceTree = "<group>"; };
 		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
+		35FB502E234D091000C50162 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		384E0055B25C91AF4418A919 /* Pods_BGEApp_BGEUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
@@ -4888,8 +4896,8 @@
 			children = (
 				35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */,
 				35E7C7FB2190805C00BA13C6 /* Controllers */,
-				35E7C7E22190803900BA13C6 /* Services */,
 				35E7C7D82190802400BA13C6 /* Views */,
+				35E7C7E22190803900BA13C6 /* Services */,
 				35F9DE4C2339106800AAA2B2 /* Data */,
 				35E7C7DB2190802C00BA13C6 /* Utility */,
 				35E7C7EA2190804E00BA13C6 /* Extensions */,
@@ -4934,6 +4942,7 @@
 				35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */,
 				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
 				358D677221961BC400395D0F /* BillUtility.swift */,
+				3527DB37234B86E000DA4553 /* NewBillUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -4949,6 +4958,7 @@
 		35E7C7EA2190804E00BA13C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				35FB502E234D091000C50162 /* UIColor.swift */,
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
 				35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */,
 				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
@@ -5001,10 +5011,10 @@
 		35F9DDC223340C5300AAA2B2 /* PECO */ = {
 			isa = PBXGroup;
 			children = (
+				3583903B234E5BDB00AB601B /* Bill.storyboard */,
 				35E7C7C921907F2E00BA13C6 /* Main.storyboard */,
 				35E7C7C721907F2E00BA13C6 /* Outage.storyboard */,
 				35E7C7C821907F2E00BA13C6 /* Usage.storyboard */,
-				35E7C7C621907F2E00BA13C6 /* Bill.storyboard */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -5015,7 +5025,7 @@
 				35F9DDC423340C8600AAA2B2 /* Main.storyboard */,
 				352B19F7233BBE710090B442 /* Outage.storyboard */,
 				352B19F9233BBEDD0090B442 /* Usage.storyboard */,
-				352B19FB233BBF120090B442 /* Bill.storyboard */,
+				35839038234E5B8E00AB601B /* Bill.storyboard */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -5026,7 +5036,7 @@
 				35F9DDF7233539E100AAA2B2 /* Main.storyboard */,
 				352B19FD233BBFA50090B442 /* Outage.storyboard */,
 				352B19FF233BBFB50090B442 /* Usage.storyboard */,
-				352B1A01233BBFC70090B442 /* Bill.storyboard */,
+				352B19FB233BBF120090B442 /* Bill.storyboard */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -6696,7 +6706,7 @@
 				35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */,
 				35E7C7D221907F2F00BA13C6 /* Usage.storyboard in Resources */,
 				35E7C7D121907F2F00BA13C6 /* Outage.storyboard in Resources */,
-				35E7C7D021907F2F00BA13C6 /* Bill.storyboard in Resources */,
+				3583903C234E5BDB00AB601B /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6717,12 +6727,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				352B19F8233BBE710090B442 /* Outage.storyboard in Resources */,
+				35839039234E5BA900AB601B /* Bill.storyboard in Resources */,
 				35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */,
 				352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
-				352B19FC233BBF120090B442 /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6748,7 +6758,7 @@
 				35F9DE492335413300AAA2B2 /* Assets.xcassets in Resources */,
 				35F9DE4A2335413800AAA2B2 /* README.md in Resources */,
 				35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */,
-				352B1A02233BBFC70090B442 /* Bill.storyboard in Resources */,
+				3583903A234E5BB100AB601B /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8260,6 +8270,7 @@
 				356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */,
 				356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
+				3527DB38234B86E000DA4553 /* NewBillUtility.swift in Sources */,
 				356C7F7621909783003E8A90 /* ServiceResult.swift in Sources */,
 				35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */,
 				356C7F7C219098D7003E8A90 /* BillForecast.swift in Sources */,
@@ -8293,6 +8304,7 @@
 				35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */,
 				356C7F8221909997003E8A90 /* KeychainUtility.swift in Sources */,
 				356C7F932190A1DD003E8A90 /* MCSUsageService.swift in Sources */,
+				35FB502F234D091000C50162 /* UIColor.swift in Sources */,
 				356C7FA02190A46E003E8A90 /* HttpMethod.swift in Sources */,
 				35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */,
 				B08BBFC121C8284A00A899FC /* Payments.swift in Sources */,
@@ -8332,6 +8344,7 @@
 				35F9DDAE2333D8BF00AAA2B2 /* MCSAccountService.swift in Sources */,
 				35F9DDA92333D8A100AAA2B2 /* AuthTokenResponse.swift in Sources */,
 				35F9DD9D2333D86400AAA2B2 /* BillForecast.swift in Sources */,
+				3527DB39234B86E000DA4553 /* NewBillUtility.swift in Sources */,
 				35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */,
 				35F9DDAD2333D8B300AAA2B2 /* UsageService.swift in Sources */,
 				35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */,
@@ -8365,6 +8378,7 @@
 				35F9DDBF2333DA3E00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				35F9DDC02333DA4400AAA2B2 /* Logger.swift in Sources */,
 				35F9DD982333D85000AAA2B2 /* ForgotUsername.swift in Sources */,
+				35FB5030234D091100C50162 /* UIColor.swift in Sources */,
 				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				35F9DDBC2333D90D00AAA2B2 /* URLSession+Rx.swift in Sources */,
 				35F9DD792333D14D00AAA2B2 /* NetworkingUtility.swift in Sources */,
@@ -8404,6 +8418,7 @@
 				35F9DE2B23353CC700AAA2B2 /* AuthTokenParser.swift in Sources */,
 				35F9DE1A23353C5B00AAA2B2 /* OutageStatus.swift in Sources */,
 				35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */,
+				3527DB3A234B86E000DA4553 /* NewBillUtility.swift in Sources */,
 				35F9DE1723353C4C00AAA2B2 /* MinimumVersion.swift in Sources */,
 				35F9DE1B23353C5E00AAA2B2 /* OutageInfo.swift in Sources */,
 				35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */,
@@ -8437,6 +8452,7 @@
 				35F9DE2323353C8500AAA2B2 /* HomeProfile.swift in Sources */,
 				35F9DE3B23353D2900AAA2B2 /* Date.swift in Sources */,
 				35F9DE1C23353C6200AAA2B2 /* ForgotUsername.swift in Sources */,
+				35FB5031234D091100C50162 /* UIColor.swift in Sources */,
 				35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */,
 				35F9DE4023353D4C00AAA2B2 /* URLSession+Rx.swift in Sources */,
 				35F9DE2C23353CCA00AAA2B2 /* MCSResponseParser.swift in Sources */,

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14868" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="watch44"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14643"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
     </dependencies>
     <scenes>
         <!--Bill-->
         <scene sceneID="0SA-xD-T2x">
             <objects>
-                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="BGE_Watch" customModuleProvider="target">
+                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="BGE_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="tax-4C-a6R">
                             <items>
@@ -111,11 +111,11 @@
                                         </group>
                                         <group width="1" alignment="center" layout="vertical" radius="8" id="rvO-3U-9Ul">
                                             <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="0vq-db-dF8">
+                                                <label alignment="center" text="$##.##" textAlignment="center" minimumScaleFactor="0.75" id="0vq-db-dF8">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="Ino-eP-z8w"/>
-                                                <label alignment="center" text="Amount Past Due" textAlignment="center" numberOfLines="0" id="eMn-pT-NVb">
+                                                <label alignment="center" text="Past Due Amount" textAlignment="center" numberOfLines="0" id="eMn-pT-NVb">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                                 <label alignment="center" text="Due Immediately" textAlignment="center" minimumScaleFactor="0.75" id="M5D-M4-1BR">
@@ -128,64 +128,14 @@
                                         </group>
                                         <group width="1" alignment="center" layout="vertical" radius="8" id="9RK-d6-w7V">
                                             <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="Q0x-hY-aBx">
+                                                <label alignment="center" text="$##.##" textAlignment="center" minimumScaleFactor="0.75" id="Q0x-hY-aBx">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="LGa-QC-G51"/>
-                                                <label alignment="center" text="Amount Due to Avoid Shutoff" textAlignment="center" numberOfLines="0" id="RFs-8Q-H3K">
+                                                <label alignment="center" text="Current Bill Amount" textAlignment="center" numberOfLines="0" id="RFs-8Q-H3K">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
-                                                <label alignment="center" text="Due Immediately" textAlignment="center" minimumScaleFactor="0.75" id="Rmq-uV-PYU">
-                                                    <color key="textColor" red="1" green="0.24705882352941178" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                            </items>
-                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
-                                        </group>
-                                        <group width="1" alignment="center" layout="vertical" radius="8" id="L4p-r4-dZ5">
-                                            <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="l8n-Gp-VYb">
-                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                                </label>
-                                                <label alignment="center" text="Amount Due to Restore Service" textAlignment="center" numberOfLines="0" id="lDt-82-Vjb">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                                <group width="1" height="2" alignment="left" id="cpZ-W7-ghz"/>
-                                                <label alignment="center" text="Due Immediately" textAlignment="center" minimumScaleFactor="0.75" id="6od-8E-4aG">
-                                                    <color key="textColor" red="1" green="0.24705882352941178" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                            </items>
-                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
-                                        </group>
-                                        <group width="1" alignment="center" layout="vertical" radius="8" id="Vmi-6d-FoC">
-                                            <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="f2j-i9-2zo">
-                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                                </label>
-                                                <group width="1" height="2" alignment="left" id="4Pi-IY-zmf"/>
-                                                <label alignment="center" text="Amount Due to Catch Up On Agreement" textAlignment="center" numberOfLines="0" id="1F2-wU-lJy">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                                <label alignment="center" text="Due by 09/25/2018" textAlignment="center" minimumScaleFactor="0.75" id="Abg-LK-Qwx">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                            </items>
-                                            <color key="backgroundColor" red="0.19997459649999999" green="0.2000149786" blue="0.1999689341" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <edgeInsets key="margins" left="8" right="8" top="8" bottom="8"/>
-                                        </group>
-                                        <group width="1" alignment="center" layout="vertical" radius="8" id="3nl-G6-pBJ">
-                                            <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="2J5-dL-Z5V">
-                                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                                </label>
-                                                <group width="1" height="2" alignment="left" id="4Nb-1x-rQJ"/>
-                                                <label alignment="center" text="Most Recent Bill" textAlignment="center" id="QWs-vL-aED">
-                                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
-                                                </label>
-                                                <label alignment="center" text="Due by 09/25/2018" textAlignment="center" minimumScaleFactor="0.75" id="Vro-PE-6ci">
+                                                <label alignment="center" text="##/##/####" textAlignment="center" minimumScaleFactor="0.75" id="Rmq-uV-PYU">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -194,11 +144,11 @@
                                         </group>
                                         <group width="1" alignment="center" layout="vertical" radius="8" id="o1x-31-mqT">
                                             <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
+                                                <label alignment="center" text="$##.##" textAlignment="center" minimumScaleFactor="0.75" id="g2o-us-bNb">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="KMM-tA-OKK"/>
-                                                <label alignment="center" text="Pending Payment" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
+                                                <label alignment="center" text="Pending Payments" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="FHu-PO-h09">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
                                             </items>
@@ -207,7 +157,7 @@
                                         </group>
                                         <group width="1" alignment="center" layout="vertical" radius="8" id="od3-16-YHY">
                                             <items>
-                                                <label alignment="center" text="Amount Label" textAlignment="center" minimumScaleFactor="0.75" id="a1e-JS-QCS">
+                                                <label alignment="center" text="$##.##" textAlignment="center" minimumScaleFactor="0.75" id="a1e-JS-QCS">
                                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                                 </label>
                                                 <group width="1" height="2" alignment="left" id="km7-U4-xwX"/>
@@ -237,43 +187,39 @@
                         <outlet property="accountGroup" destination="Ps8-w7-tGJ" id="I59-9b-cn4"/>
                         <outlet property="accountImage" destination="Acg-hw-Aco" id="y3T-jW-aaX"/>
                         <outlet property="accountTitleLabel" destination="kxq-l9-ddx" id="Dhq-mh-cLe"/>
-                        <outlet property="amountPastDueGroup" destination="rvO-3U-9Ul" id="nz9-Sg-m1k"/>
-                        <outlet property="amountPastDueLabel" destination="0vq-db-dF8" id="OqA-pt-vnF"/>
                         <outlet property="autoPayScheduledPaymentDetailLabel" destination="tAq-ZU-nbS" id="DwS-PJ-GyE"/>
                         <outlet property="autoPayScheduledPaymentGroup" destination="hQI-2U-ZeZ" id="9Fr-Wc-sDK"/>
                         <outlet property="autoPayScheduledPaymentImage" destination="Sdd-Uj-qLY" id="PPd-3C-DeN"/>
-                        <outlet property="avoidShutoffAmountLabel" destination="Q0x-hY-aBx" id="WKZ-TJ-Uzl"/>
-                        <outlet property="avoidShutoffGroup" destination="9RK-d6-w7V" id="9c3-zj-Dhz"/>
                         <outlet property="billAlertGroup" destination="rC6-p8-6uf" id="I31-zy-nkn"/>
                         <outlet property="billAlertLabel" destination="R6r-XD-noe" id="sch-LE-Uvo"/>
-                        <outlet property="billAmountDescriptionLabel" destination="24p-98-gVK" id="wIQ-a6-xhy"/>
-                        <outlet property="billAmountGroup" destination="P9P-zW-vSc" id="R2L-en-xwV"/>
-                        <outlet property="billAmountTitleLabel" destination="lDA-dY-QiO" id="htT-de-TSU"/>
                         <outlet property="billGroup" destination="tPK-Sl-QXF" id="jVT-JS-Ice"/>
-                        <outlet property="billPaidAmountLabel" destination="WV6-2Y-tA6" id="7Cq-rB-XY5"/>
-                        <outlet property="billPaidGroup" destination="orj-4a-aIm" id="jer-mU-JlR"/>
-                        <outlet property="catchUpOnAgreementAmountLabel" destination="f2j-i9-2zo" id="yRi-cW-QW4"/>
-                        <outlet property="catchUpOnAgreementDateLabel" destination="Abg-LK-Qwx" id="POc-p5-uZ1"/>
-                        <outlet property="catchUpOnAgreementGroup" destination="Vmi-6d-FoC" id="T4q-IR-hal"/>
+                        <outlet property="currentBillAmountLabel" destination="Q0x-hY-aBx" id="JQS-T2-kfS"/>
+                        <outlet property="currentBillDateLabel" destination="Rmq-uV-PYU" id="V8H-eB-ql7"/>
+                        <outlet property="currentBillGroup" destination="9RK-d6-w7V" id="RHP-uV-9tr"/>
+                        <outlet property="currentBillLabel" destination="RFs-8Q-H3K" id="Niw-3q-Fip"/>
                         <outlet property="errorDetailLabel" destination="rso-8i-8vz" id="wiY-Ry-zAJ"/>
                         <outlet property="errorGroup" destination="k99-kY-Ghs" id="DNV-q4-cKz"/>
                         <outlet property="errorImage" destination="t25-mM-fED" id="G8u-dB-hyx"/>
                         <outlet property="errorTitleLabel" destination="yrO-gy-zWL" id="twS-c0-xNu"/>
                         <outlet property="footerGroup" destination="WiM-Mf-i9F" id="rIH-zF-NHQ"/>
                         <outlet property="loadingImageGroup" destination="lni-Wf-0hF" id="vfb-e8-h7Q"/>
-                        <outlet property="mostRecentBillAmountLabel" destination="2J5-dL-Z5V" id="R0s-Bv-f9C"/>
-                        <outlet property="mostRecentBillDueDateLabel" destination="Vro-PE-6ci" id="PTT-un-Rw2"/>
-                        <outlet property="mostRecentBillGroup" destination="3nl-G6-pBJ" id="nxX-8B-Olc"/>
+                        <outlet property="pastDueAmountLabel" destination="0vq-db-dF8" id="bn3-8K-vK7"/>
+                        <outlet property="pastDueDateLabel" destination="M5D-M4-1BR" id="X8a-U2-XQL"/>
+                        <outlet property="pastDueGroup" destination="rvO-3U-9Ul" id="nz9-Sg-m1k"/>
+                        <outlet property="pastDueLabel" destination="eMn-pT-NVb" id="aBA-wm-NYD"/>
+                        <outlet property="paymentReceivedAmountLabel" destination="WV6-2Y-tA6" id="tBT-Ui-8YW"/>
+                        <outlet property="paymentReceivedGroup" destination="orj-4a-aIm" id="MTQ-6t-Zd7"/>
+                        <outlet property="paymentReceivedImage" destination="2vB-s7-pMg" id="Bke-BN-a48"/>
+                        <outlet property="paymentReceivedLabel" destination="Les-qd-1Gt" id="Bmn-td-bwF"/>
                         <outlet property="pendingPaymentAmountLabel" destination="g2o-us-bNb" id="ybQ-oz-INq"/>
-                        <outlet property="pendingPaymentDescriptionLabel" destination="FHu-PO-h09" id="cFs-eP-zAc"/>
                         <outlet property="pendingPaymentGroup" destination="o1x-31-mqT" id="zg2-fa-euo"/>
+                        <outlet property="pendingPaymentLabel" destination="FHu-PO-h09" id="cFs-eP-zAc"/>
                         <outlet property="remainingBalanaceAmountLabel" destination="a1e-JS-QCS" id="Inb-r2-nKh"/>
-                        <outlet property="remainingBalanceDescriptionLabel" destination="KGX-pP-kId" id="NDU-Lp-jRh"/>
                         <outlet property="remainingBalanceGroup" destination="od3-16-YHY" id="VqG-WE-xDR"/>
-                        <outlet property="restoreServiceAmountLabel" destination="l8n-Gp-VYb" id="hte-lw-kv1"/>
-                        <outlet property="restoreServiceDateLabel" destination="6od-8E-4aG" id="r02-mN-foF"/>
-                        <outlet property="restoreServiceDescriptionLabel" destination="lDt-82-Vjb" id="Dd8-MW-jff"/>
-                        <outlet property="restoreServiceGroup" destination="L4p-r4-dZ5" id="KGH-AX-PHl"/>
+                        <outlet property="remainingBalanceLabel" destination="KGX-pP-kId" id="NDU-Lp-jRh"/>
+                        <outlet property="totalAmountDescriptionLabel" destination="24p-98-gVK" id="wIQ-a6-xhy"/>
+                        <outlet property="totalAmountGroup" destination="P9P-zW-vSc" id="R2L-en-xwV"/>
+                        <outlet property="totalAmountLabel" destination="lDA-dY-QiO" id="htT-de-TSU"/>
                     </connections>
                 </controller>
             </objects>

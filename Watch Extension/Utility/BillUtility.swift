@@ -9,17 +9,23 @@
 import Foundation
 
 enum BillState {
+
+    case billPaid(amount: Double)
+    case billReady(amount: Double, date: Date)
+    case autoPay
+    case billNotReady
+
+    case paymentScheduled(scheduledPayment: PaymentItem)
+    
+    case paymentPending(amount: Double)
+    case remainingBalance(remainingBalanceAmount: Double)
+    
+    case pastDue(pastDueAmount: Double, netDueAmount: Double, remainingBalanceDue: Double)
+
+    
     case restoreService(restoreAmount: Double, dpaReinstAmount: Double)
     case catchUp(amount: Double, date: Date)
     case avoidShutoff(amount: Double)
-    case pastDue(pastDueAmount: Double, netDueAmount: Double, remainingBalanceDue: Double)
-    case billReady(amount: Double, date: Date)
-    case autoPay
-    case billPaid(amount: Double)
-    case remainingBalance(remainingBalanceAmount: Double)
-    case paymentPending(amount: Double)
-    case billNotReady
-    case paymentScheduled(scheduledPayment: PaymentItem)
     case mostRecent(amount: Double, date: Date)
     
     var isPrecariousBillSituation: Bool {

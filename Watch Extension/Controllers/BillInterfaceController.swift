@@ -12,60 +12,69 @@ class BillInterfaceController: WKInterfaceController {
     
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
+    // Account
     @IBOutlet var accountGroup: WKInterfaceGroup!
     @IBOutlet var accountImage: WKInterfaceImage!
     @IBOutlet var accountTitleLabel: WKInterfaceLabel!
     
+    // Error
     @IBOutlet var errorGroup: WKInterfaceGroup!
     @IBOutlet var errorImage: WKInterfaceImage!
     @IBOutlet var errorTitleLabel: WKInterfaceLabel!
     @IBOutlet var errorDetailLabel: WKInterfaceLabel!
     
+    // Bill State Components
+    @IBOutlet var billGroup: WKInterfaceGroup!
+    
+    // Alert
     @IBOutlet var billAlertGroup: WKInterfaceGroup!
     @IBOutlet var billAlertLabel: WKInterfaceLabel!
-
-    @IBOutlet var billGroup: WKInterfaceGroup!
-
+    
+    // Payment Received
+    @IBOutlet var paymentReceivedGroup: WKInterfaceGroup!
+    @IBOutlet var paymentReceivedImage: WKInterfaceImage!
+    @IBOutlet var paymentReceivedLabel: WKInterfaceLabel!
+    @IBOutlet var paymentReceivedAmountLabel: WKInterfaceLabel!
+    
+    // Auto Pay
     @IBOutlet var autoPayScheduledPaymentGroup: WKInterfaceGroup!
     @IBOutlet var autoPayScheduledPaymentImage: WKInterfaceImage!
     @IBOutlet var autoPayScheduledPaymentDetailLabel: WKInterfaceLabel!
     
-    @IBOutlet var billAmountGroup: WKInterfaceGroup!
-    @IBOutlet var billAmountTitleLabel: WKInterfaceLabel!
-    @IBOutlet var billAmountDescriptionLabel: WKInterfaceLabel!
+    // Total Amount Due
+    @IBOutlet var totalAmountGroup: WKInterfaceGroup!
+    @IBOutlet var totalAmountLabel: WKInterfaceLabel!
+    @IBOutlet var totalAmountDescriptionLabel: WKInterfaceLabel!
+        
+    // Bill Line Items
     
-    @IBOutlet var billPaidGroup: WKInterfaceGroup!
-    @IBOutlet var billPaidAmountLabel: WKInterfaceLabel!
+    @IBOutlet var pastDueGroup: WKInterfaceGroup!
+    @IBOutlet var pastDueLabel: WKInterfaceLabel!
+    @IBOutlet var pastDueAmountLabel: WKInterfaceLabel!
+    @IBOutlet var pastDueDateLabel: WKInterfaceLabel!
 
-    @IBOutlet var mostRecentBillGroup: WKInterfaceGroup!
-    @IBOutlet var mostRecentBillAmountLabel: WKInterfaceLabel!
-    @IBOutlet var mostRecentBillDueDateLabel: WKInterfaceLabel!
-    
-    @IBOutlet var amountPastDueGroup: WKInterfaceGroup!
-    @IBOutlet var amountPastDueLabel: WKInterfaceLabel!
-    
-    @IBOutlet var avoidShutoffGroup: WKInterfaceGroup!
-    @IBOutlet var avoidShutoffAmountLabel: WKInterfaceLabel!
-    
-    @IBOutlet var catchUpOnAgreementGroup: WKInterfaceGroup!
-    @IBOutlet var catchUpOnAgreementAmountLabel: WKInterfaceLabel!
-    @IBOutlet var catchUpOnAgreementDateLabel: WKInterfaceLabel!
-    
-    @IBOutlet var remainingBalanceGroup: WKInterfaceGroup!
-    @IBOutlet var remainingBalanaceAmountLabel: WKInterfaceLabel!
-    @IBOutlet var remainingBalanceDescriptionLabel: WKInterfaceLabel!
+    @IBOutlet var currentBillGroup: WKInterfaceGroup!
+    @IBOutlet var currentBillLabel: WKInterfaceLabel!
+    @IBOutlet var currentBillAmountLabel: WKInterfaceLabel!
+    @IBOutlet var currentBillDateLabel: WKInterfaceLabel!
     
     @IBOutlet var pendingPaymentGroup: WKInterfaceGroup!
+    @IBOutlet var pendingPaymentLabel: WKInterfaceLabel!
     @IBOutlet var pendingPaymentAmountLabel: WKInterfaceLabel!
-    @IBOutlet var pendingPaymentDescriptionLabel: WKInterfaceLabel!
     
-    @IBOutlet var restoreServiceGroup: WKInterfaceGroup!
-    @IBOutlet var restoreServiceAmountLabel: WKInterfaceLabel!
-    @IBOutlet var restoreServiceDescriptionLabel: WKInterfaceLabel!
-    @IBOutlet var restoreServiceDateLabel: WKInterfaceLabel!
+    @IBOutlet var remainingBalanceGroup: WKInterfaceGroup!
+    @IBOutlet var remainingBalanceLabel: WKInterfaceLabel!
+    @IBOutlet var remainingBalanaceAmountLabel: WKInterfaceLabel!
 
+    
+    
+//    @IBOutlet var mostRecentBillGroup: WKInterfaceGroup!
+//    @IBOutlet var mostRecentBillAmountLabel: WKInterfaceLabel!
+//    @IBOutlet var mostRecentBillDueDateLabel: WKInterfaceLabel!
+
+    // Footer
     @IBOutlet var footerGroup: WKInterfaceGroup!
-
+    
     
     // We may want to make this a global enum, if these end up being the states for all main VC's
     enum State {
@@ -75,7 +84,7 @@ class BillInterfaceController: WKInterfaceController {
         case maintenanceMode
         case passwordProtected
     }
-
+    
     // Changes the Interface for error states
     var state = State.loading {
         didSet {
@@ -96,19 +105,19 @@ class BillInterfaceController: WKInterfaceController {
                 
                 dLog("Loading")
             case .error(let error):
-
+                
                 try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.askForUpdate : true])
-
+                
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
                 errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
-
+                
                 loadingImageGroup.setHidden(true)
-
-
+                
+                
                 billGroup.setHidden(true)
-
+                
                 dLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 errorGroup.setHidden(false)
@@ -117,10 +126,10 @@ class BillInterfaceController: WKInterfaceController {
                 errorDetailLabel.setText("Billing is currently unavailable due to scheduled maintenance.")
                 
                 loadingImageGroup.setHidden(true)
-
+                
                 
                 billGroup.setHidden(true)
-
+                
                 dLog("Maintenance Mode")
             case .passwordProtected:
                 errorGroup.setHidden(false)
@@ -131,7 +140,7 @@ class BillInterfaceController: WKInterfaceController {
                 loadingImageGroup.setHidden(true)
                 
                 billGroup.setHidden(true)
-
+                
                 dLog("Password Protected")
             }
         }
@@ -142,7 +151,7 @@ class BillInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-
+        
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
         hideAllStates(shouldHideLoading: false)
@@ -185,24 +194,66 @@ class BillInterfaceController: WKInterfaceController {
     }
     
     private func hideAllStates(shouldHideLoading: Bool = true) {
-        shouldHideLoading ? (loadingImageGroup.setHidden(true)) : (loadingImageGroup.setHidden(false))
-        
+        loadingImageGroup.setHidden(shouldHideLoading)
+                
         footerGroup.setHidden(false)
         
         accountGroup.setHidden(true)
         errorGroup.setHidden(true)
         billAlertGroup.setHidden(true)
-        billGroup.setHidden(true)
         autoPayScheduledPaymentGroup.setHidden(true)
-        billAmountGroup.setHidden(true)
-        billPaidGroup.setHidden(true)
-        mostRecentBillGroup.setHidden(true)
-        amountPastDueGroup.setHidden(true)
-        avoidShutoffGroup.setHidden(true)
-        catchUpOnAgreementGroup.setHidden(true)
-        remainingBalanceGroup.setHidden(true)
+        totalAmountGroup.setHidden(true)
+        billGroup.setHidden(true)
+        pastDueGroup.setHidden(true)
+        currentBillGroup.setHidden(true)
+        paymentReceivedGroup.setHidden(true)
         pendingPaymentGroup.setHidden(true)
-        restoreServiceGroup.setHidden(true)
+        remainingBalanceGroup.setHidden(true)
+    }
+    
+    private func configureBillingState(billUtility: BillUtilityNew) {
+        
+        // Show/Hide Views
+        state = .loaded
+        
+        billAlertGroup.setHidden(!billUtility.showAlertBanner)
+        
+        totalAmountGroup.setHidden(!billUtility.showTotalAmountAndLedger)
+        
+        paymentReceivedGroup.setHidden(!billUtility.showPaymentReceived)
+        
+       // auto pay & scheduled payment + bill not ready
+        autoPayScheduledPaymentGroup.setHidden(billUtility.shouldHideAutoPay)
+                
+        pastDueGroup.setHidden(!billUtility.showPastDue)
+       
+        currentBillGroup.setHidden(!billUtility.showCurrentBill)
+        pendingPaymentGroup.setHidden(!billUtility.showPendingPayment)
+        remainingBalanceGroup.setHidden(!billUtility.showRemainingBalanceDue)
+        
+        // Set values
+        billAlertLabel.setText(billUtility.alertBannerText)
+        
+        totalAmountLabel.setText(billUtility.totalAmountText)
+        totalAmountDescriptionLabel.setAttributedText(billUtility.totalAmountDescriptionText)
+        
+        paymentReceivedAmountLabel.setText(billUtility.paymentReceivedAmountText)
+        
+        autoPayScheduledPaymentImage.setImage(billUtility.autoPayImage)
+        autoPayScheduledPaymentDetailLabel.setText(billUtility.autoPayText)
+        
+        pastDueAmountLabel.setText(billUtility.pastDueAmountText)
+        pastDueLabel.setText(billUtility.pastDueText)
+        pastDueDateLabel.setAttributedText(billUtility.pastDueDateText)
+        
+        currentBillAmountLabel.setText(billUtility.currentBillAmountText)
+        currentBillDateLabel.setText(billUtility.currentBillDateText)
+        
+        pendingPaymentAmountLabel.setText(billUtility.pendingPaymentsTotalAmountText)
+        pendingPaymentLabel.setText(billUtility.pendingPaymentsText)
+        
+        remainingBalanaceAmountLabel.setText(billUtility.remainingBalanceDueAmountText)
+        remainingBalanceLabel.setText(billUtility.remainingBalanceDueText)
     }
     
 }
@@ -224,147 +275,15 @@ extension BillInterfaceController: NetworkingDelegate {
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail) {
         
-        // Hides all groups
-        hideAllStates()
-        
-        // Resets label
-        billAmountTitleLabel.setAttributedText(("--").textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1)))
-        
-        // Shows overarching bill group
-        state = .loaded
-        
-        // Display Account Group
-        accountGroup.setHidden(false)
-        
         dLog("Account detail did update")
         
-        // Retrieve a list of states
-        let billStates = BillUtility().generateBillStates(accountDetail: accountDetail)
-        
-        // Set States
-        for state in billStates {
-            switch state {
-            case .restoreService(let restoreAmount, let dpaReinstAmount):
-                restoreServiceGroup.setHidden(false)
-                restoreServiceAmountLabel.setText(restoreAmount.currencyString)
-
-                // Alert Banner
-                billAlertGroup.setHidden(false)
-
-                if dpaReinstAmount > 0 {
-                    billAlertLabel.setText("Your service is off due to non-payment.")
-                } else {
-                    billAlertLabel.setText("\(restoreAmount.currencyString) is due immediately to restore service.")
-                }
+        // Hides all groups
+        hideAllStates()
                 
-                // Past Due
-                amountPastDueLabel.setText(restoreAmount.currencyString)
-            case .avoidShutoff(let amount):
-                avoidShutoffGroup.setHidden(false)
-                avoidShutoffAmountLabel.setText(amount.currencyString)
+        // Display Account Group
+        accountGroup.setHidden(false)
                 
-                // Alert Banner
-                billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(amount.currencyString) is due immediately to avoid shutoff.")
-                
-                // Past Due
-                amountPastDueLabel.setText(amount.currencyString)
-            case .catchUp(let amount, let date):
-                catchUpOnAgreementGroup.setHidden(false)
-                catchUpOnAgreementAmountLabel.setText(amount.currencyString)
-                catchUpOnAgreementDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
-
-                // Alert Banner
-                billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(amount.currencyString) is due \(date.dueBy().string) to catch up on your DPA.")
-                
-                // Past Due
-                amountPastDueLabel.setText(amount.currencyString)
-            case .pastDue(let pastDueAmount, let netDueAmount, let remainingBalanceDue):
-                amountPastDueGroup.setHidden(false)
-                amountPastDueLabel.setText(pastDueAmount.currencyString)
-
-                // Alert Banner
-                billAlertGroup.setHidden(false)
-
-                if netDueAmount == pastDueAmount, remainingBalanceDue <= 0 {
-                    billAlertLabel.setText("Your bill is past due.")
-                } else {
-                    billAlertLabel.setText("\(pastDueAmount.currencyString) is due immediately.")
-                }
-            case .billReady(let amount, let date):
-                billAmountGroup.setHidden(false)
-                
-                // Add Colored Dollar Sign if there is a precarious bill state
-                if billStates.contains(where: { $0.isPrecariousBillSituation }) {
-                    // White
-                    billAmountTitleLabel.setAttributedText((amount.currencyString).textWithColorAndFontInRange(color: .white, font: UIFont.preferredFont(forTextStyle: .title1)))
-                } else {
-                    // Blue
-                    billAmountTitleLabel.setAttributedText((amount.currencyString).textWithColorAndFontInRange(color: UIColor(red: 0.0 / 255.0, green: 162.0 / 255.0, blue: 255.0 / 255.0, alpha: 0.6), font: UIFont.preferredFont(forTextStyle: .title1)))
-                }
-                
-                let text = "Amount due \(date.dueBy().string)"
-                if text == "Amount due immediately" {
-                    let attributes = [NSMutableAttributedString.Key.foregroundColor: UIColor(red: 255.0 / 255.0, green: 63.0 / 255.0, blue: 14.0 / 255.0, alpha: 1.0)]
-                    let attributedText = NSAttributedString(string: text, attributes: attributes)
-                    billAmountDescriptionLabel.setAttributedText(attributedText)
-                } else {
-                    billAmountDescriptionLabel.setText(text)
-                }
-                
-                billPaidGroup.setHidden(true)
-            case .autoPay:
-                autoPayScheduledPaymentGroup.setHidden(false)
-                autoPayScheduledPaymentImage.setImageNamed(AppImage.autoPay.name)
-                autoPayScheduledPaymentDetailLabel.setText("You are enrolled in Autopay")
-            case .billPaid(let amount):
-                billPaidGroup.setHidden(false)
-                billPaidAmountLabel.setText(amount.currencyString)
-                
-                billAmountGroup.setHidden(true)
-            case .remainingBalance(let remainingBalanceAmount):
-                remainingBalanceGroup.setHidden(false)
-                remainingBalanaceAmountLabel.setText(remainingBalanceAmount.currencyString)
-                
-                // Alert Banner
-                billAlertGroup.setHidden(false)
-                billAlertLabel.setText("\(remainingBalanceAmount.currencyString) is due immediately.")
-            case .paymentPending(let amount):
-                pendingPaymentGroup.setHidden(false)
-                
-                let italicHeadlineFont =
-                    UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline).italic()
-                let fontAttribute = [NSAttributedString.Key.font : italicHeadlineFont]
-                let attributedString = NSAttributedString(string: "-\(amount.currencyString)", attributes: fontAttribute)
-                pendingPaymentAmountLabel.setAttributedText(attributedString)
-                let italicFootnoteFont =
-                    UIFont.preferredFont(forTextStyle: UIFont.TextStyle.footnote).italic()
-                let fontFootnoteAttribute = [NSAttributedString.Key.font : italicFootnoteFont]
-                let attributedFootnoteString = NSAttributedString(string: "Pending Payment", attributes: fontFootnoteAttribute)
-                pendingPaymentDescriptionLabel.setAttributedText(attributedFootnoteString)
-            case .billNotReady:
-                autoPayScheduledPaymentGroup.setHidden(false)
-                autoPayScheduledPaymentImage.setImageNamed(AppImage.billNotReady.name)
-                autoPayScheduledPaymentDetailLabel.setText("Your bill will be available here once it is ready")
-                
-                billAmountGroup.setHidden(true)
-                footerGroup.setHidden(true)
-            case .paymentScheduled(let scheduledPayment):
-                autoPayScheduledPaymentGroup.setHidden(false)
-                autoPayScheduledPaymentImage.setImageNamed(AppImage.scheduledPayment.name)
-                autoPayScheduledPaymentDetailLabel.setText("Thank you for scheduling your \(scheduledPayment.amount.currencyString) payment for \(scheduledPayment.date?.mmDdYyyyString ?? "--")")
-                
-                billAmountGroup.setHidden(true)
-            case .mostRecent(let amount, let date):
-                guard billStates.contains(where: { $0.shouldShowRecentBill }) else { continue }
-                
-                mostRecentBillGroup.setHidden(false)
-                mostRecentBillAmountLabel.setText(amount.currencyString)
-                mostRecentBillDueDateLabel.setAttributedText(date.dueBy(shouldColor: true, shouldIncludePrefix: true))
-            }
-        }
-
+        configureBillingState(billUtility: BillUtilityNew(accountDetails: accountDetail))
     }
     
     func accountListDidUpdate(_ accounts: [Account]) {
@@ -402,5 +321,5 @@ extension BillInterfaceController: NetworkingDelegate {
     func outageStatusDidUpdate(_ outageStatus: OutageStatus) { }
     
     func usageStatusDidUpdate(_ billForecast: BillForecastResult) { }
-
+    
 }
