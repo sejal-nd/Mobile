@@ -173,9 +173,12 @@ class BillUtilityNew {
         }
     }()
     
-    // todo this will need to be edited / reworked
+    private lazy var isCreditBalance: Bool = {
+       guard let netDueAmount = billingInfo.netDueAmount else { return false }
+       return netDueAmount < 0 && Environment.shared.opco == .bge
+    }()
+    
     private(set) lazy var totalAmountDescriptionText: NSAttributedString = {
-        
         var attributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption1),
                                                          .foregroundColor: UIColor.white]
         let string: String
@@ -191,6 +194,8 @@ class BillUtilityNew {
             string = NSLocalizedString("Total Amount Due", comment: "")
         } else if billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0 {
             string = NSLocalizedString("Total Amount Due", comment: "")
+        } else if self.isCreditBalance {
+            string = NSLocalizedString("No Amount Due – Credit Balance", comment: "")
         } else {
             string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
         }
