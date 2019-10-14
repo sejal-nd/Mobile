@@ -84,7 +84,7 @@ struct MCSAccountService: AccountService {
             } else {
                 customerType = "commercial"
             }
-            FirebaseUtility.setUserPropety(.customerType, value: customerType)
+            FirebaseUtility.setUserProperty(.customerType, value: customerType)
 
             // Service Type
             if let serviceType = accountDetail.serviceType {
@@ -98,12 +98,12 @@ struct MCSAccountService: AccountService {
                     serviceTypeString = "both"
                 }
                 
-                FirebaseUtility.setUserPropety(.serviceType, value: serviceTypeString)
+                FirebaseUtility.setUserProperty(.serviceType, value: serviceTypeString)
             }
             
             // Control Group
             if Environment.shared.opco == .bge {
-                FirebaseUtility.setUserPropety(.isControlGroup, value: accountDetail.isBGEControlGroup.description)
+                FirebaseUtility.setUserProperty(.isControlGroup, value: accountDetail.isBGEControlGroup.description)
             }
             #endif
             

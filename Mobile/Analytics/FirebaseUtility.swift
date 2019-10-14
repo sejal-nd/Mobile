@@ -128,12 +128,12 @@ struct FirebaseUtility {
         Analytics.logEvent(event.rawValue, parameters: parametersDict)
     }
     
-    /// Sets a User Propetry on the current user, all future events are auto tagged with User Properties
+    /// Sets a User Property on the current user, all future events are auto tagged with User Properties
     ///
     /// - Parameters:
     ///   - userProperty: Name of the user property
     ///   - value: `String` value of property
-    public static func setUserPropety(_ userProperty: UserProperty, value: String? = nil) {
+    public static func setUserProperty(_ userProperty: UserProperty, value: String? = nil) {
         #if DEBUG
         NSLog("👤 Set User Property: \(userProperty.rawValue)")
         #endif
