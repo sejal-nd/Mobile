@@ -183,9 +183,9 @@
 		35277B052109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
 		35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35277B042109FC1000411297 /* ViewControllerAlertable.swift */; };
-		3527DB38234B86E000DA4553 /* NewBillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* NewBillUtility.swift */; };
-		3527DB39234B86E000DA4553 /* NewBillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* NewBillUtility.swift */; };
-		3527DB3A234B86E000DA4553 /* NewBillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* NewBillUtility.swift */; };
+		3527DB38234B86E000DA4553 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* BillUtility.swift */; };
+		3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* BillUtility.swift */; };
+		3527DB3A234B86E000DA4553 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* BillUtility.swift */; };
 		352B19F8233BBE710090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage.storyboard */; };
 		352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage.storyboard */; };
 		352B19FE233BBFA50090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FD233BBFA50090B442 /* Outage.storyboard */; };
@@ -292,7 +292,6 @@
 		358BD97322E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		358BD97422E625D7001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
 		358BD97522E625D8001F0929 /* OutageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359BDB7E22DCBAAF007002B0 /* OutageViewModel.swift */; };
-		358D677321961BC400395D0F /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		358DE0A521021471002C544E /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A421021471002C544E /* UsageViewModel.swift */; };
 		358DE0A821021B64002C544E /* UnavailableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358DE0A721021B64002C544E /* UnavailableView.xib */; };
 		358DE0AA21021B7A002C544E /* UnavailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358DE0A921021B7A002C544E /* UnavailableView.swift */; };
@@ -482,9 +481,7 @@
 		35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35E7C7E02190802C00BA13C6 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35E7C7F82190804E00BA13C6 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
 		35E7C7FA2190805500BA13C6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */; };
 		35E7C8022190805C00BA13C6 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
 		35E7C8032190805C00BA13C6 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
@@ -508,11 +505,8 @@
 		35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
 		35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DD792333D14D00AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
-		35F9DD7B2333D14D00AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35F9DD7E2333D14D00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35F9DD812333D14D00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
 		35F9DD842333D2B800AAA2B2 /* BGE-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* BGE-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35F9DD882333D3C500AAA2B2 /* MCSConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B55736441E6742A6003B9369 /* MCSConfig.plist */; };
 		35F9DD892333D3CC00AAA2B2 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356C7FA92190D93F003E8A90 /* environment.plist */; };
@@ -571,11 +565,8 @@
 		35F9DDF5233539C300AAA2B2 /* ComEdAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF3233539B400AAA2B2 /* ComEdAssets.xcassets */; };
 		35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF7233539E100AAA2B2 /* Main.storyboard */; };
 		35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
-		35F9DDFD23353A3C00AAA2B2 /* UIFont+Italic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */; };
 		35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */; };
 		35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
-		35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358D677221961BC400395D0F /* BillUtility.swift */; };
 		35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
 		35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
@@ -2835,7 +2826,7 @@
 		351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ResizableHeaderFooter.swift"; sourceTree = "<group>"; };
 		35277AFC210266BF00411297 /* UsageTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTool.swift; sourceTree = "<group>"; };
 		35277B042109FC1000411297 /* ViewControllerAlertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerAlertable.swift; sourceTree = "<group>"; };
-		3527DB37234B86E000DA4553 /* NewBillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillUtility.swift; sourceTree = "<group>"; };
+		3527DB37234B86E000DA4553 /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
 		352B19F7233BBE710090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Outage.storyboard; path = Watch/Storyboards/BGE/Outage.storyboard; sourceTree = SOURCE_ROOT; };
 		352B19F9233BBEDD0090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		352B19FB233BBF120090B442 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Bill.storyboard; path = ../BGE/Bill.storyboard; sourceTree = "<group>"; };
@@ -2857,7 +2848,6 @@
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		358BD21620F8FB2D00DA2012 /* BillImpactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillImpactView.xib; sourceTree = "<group>"; };
 		358BD21820F8FDAE00DA2012 /* BillImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImpactView.swift; sourceTree = "<group>"; };
-		358D677221961BC400395D0F /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
 		358DE0A421021471002C544E /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		358DE0A721021B64002C544E /* UnavailableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnavailableView.xib; sourceTree = "<group>"; };
 		358DE0A921021B7A002C544E /* UnavailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableView.swift; sourceTree = "<group>"; };
@@ -2941,9 +2931,7 @@
 		35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingUtility.swift; sourceTree = "<group>"; };
 		35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
-		35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Italic.swift"; sourceTree = "<group>"; };
 		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
-		35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+ColorInRange.swift"; sourceTree = "<group>"; };
 		35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageInterfaceController.swift; sourceTree = "<group>"; };
 		35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInInterfaceController.swift; sourceTree = "<group>"; };
@@ -4941,8 +4929,7 @@
 			children = (
 				35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */,
 				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
-				358D677221961BC400395D0F /* BillUtility.swift */,
-				3527DB37234B86E000DA4553 /* NewBillUtility.swift */,
+				3527DB37234B86E000DA4553 /* BillUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -4960,9 +4947,7 @@
 			children = (
 				35FB502E234D091000C50162 /* UIColor.swift */,
 				35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */,
-				35E7C7EE2190804E00BA13C6 /* UIFont+Italic.swift */,
 				35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */,
-				35E7C7F12190804E00BA13C6 /* NSAttributedString+ColorInRange.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -8264,17 +8249,15 @@
 				B0D84D602204987800C70A6F /* Date+Now.swift in Sources */,
 				356C7F9C2190A3CE003E8A90 /* AuthTokenResponse.swift in Sources */,
 				9CCE3E4C21BB17E40008E1AF /* StormModeStatus.swift in Sources */,
-				35E7C7F52190804E00BA13C6 /* UIFont+Italic.swift in Sources */,
 				356C7F922190A1B9003E8A90 /* MCSOutageService.swift in Sources */,
 				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
 				356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */,
 				356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
-				3527DB38234B86E000DA4553 /* NewBillUtility.swift in Sources */,
+				3527DB38234B86E000DA4553 /* BillUtility.swift in Sources */,
 				356C7F7621909783003E8A90 /* ServiceResult.swift in Sources */,
 				35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */,
 				356C7F7C219098D7003E8A90 /* BillForecast.swift in Sources */,
-				35E7C7F82190804E00BA13C6 /* NSAttributedString+ColorInRange.swift in Sources */,
 				35E7C8032190805C00BA13C6 /* SignInInterfaceController.swift in Sources */,
 				356C7F9F2190A455003E8A90 /* MCSResponseParser.swift in Sources */,
 				356C7F752190974A003E8A90 /* NibViews.swift in Sources */,
@@ -8286,7 +8269,6 @@
 				356C7F8921909F6F003E8A90 /* Premise.swift in Sources */,
 				356C7F9D2190A436003E8A90 /* URLSession+Rx.swift in Sources */,
 				356C7F982190A2D1003E8A90 /* BillComparison.swift in Sources */,
-				358D677321961BC400395D0F /* BillUtility.swift in Sources */,
 				356C7F962190A275003E8A90 /* OutageService.swift in Sources */,
 				356C7F9B2190A37F003E8A90 /* MCSAuthenticationService.swift in Sources */,
 				356C7F8E2190A0AA003E8A90 /* ForgotUsername.swift in Sources */,
@@ -8344,7 +8326,7 @@
 				35F9DDAE2333D8BF00AAA2B2 /* MCSAccountService.swift in Sources */,
 				35F9DDA92333D8A100AAA2B2 /* AuthTokenResponse.swift in Sources */,
 				35F9DD9D2333D86400AAA2B2 /* BillForecast.swift in Sources */,
-				3527DB39234B86E000DA4553 /* NewBillUtility.swift in Sources */,
+				3527DB39234B86E000DA4553 /* BillUtility.swift in Sources */,
 				35F9DDA32333D88400AAA2B2 /* ReportedOutagesStore.swift in Sources */,
 				35F9DDAD2333D8B300AAA2B2 /* UsageService.swift in Sources */,
 				35F9DD8A2333D3D600AAA2B2 /* Environment.swift in Sources */,
@@ -8352,8 +8334,6 @@
 				35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */,
 				35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
 				35F9DD712333D14D00AAA2B2 /* AccountListInterfaceController.swift in Sources */,
-				35F9DD812333D14D00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */,
-				35F9DD7E2333D14D00AAA2B2 /* UIFont+Italic.swift in Sources */,
 				35F9DD6E2333D14D00AAA2B2 /* ExtensionDelegate.swift in Sources */,
 				35F9DDB42333D8DC00AAA2B2 /* MCSResponseParser.swift in Sources */,
 				35F9DDA62333D88F00AAA2B2 /* Date+Now.swift in Sources */,
@@ -8363,7 +8343,6 @@
 				35F9DDB32333D8D900AAA2B2 /* AuthTokenParser.swift in Sources */,
 				35F9DDB92333D8FE00AAA2B2 /* PecoColor.swift in Sources */,
 				35F9DD9E2333D86600AAA2B2 /* SSOData.swift in Sources */,
-				35F9DD7B2333D14D00AAA2B2 /* BillUtility.swift in Sources */,
 				35F9DDB82333D8F800AAA2B2 /* NibViews.swift in Sources */,
 				35F9DDAF2333D8C300AAA2B2 /* MCSApi.swift in Sources */,
 				35F9DDAB2333D8A900AAA2B2 /* OutageService.swift in Sources */,
@@ -8406,7 +8385,6 @@
 				35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */,
 				35F9DE1623353C3E00AAA2B2 /* Logger.swift in Sources */,
 				35F9DE1D23353C6B00AAA2B2 /* WalletItem.swift in Sources */,
-				35F9DE0423353A4300AAA2B2 /* BillUtility.swift in Sources */,
 				35F9DE2423353C9700AAA2B2 /* Payments.swift in Sources */,
 				35F9DE3223353CE900AAA2B2 /* OutageService.swift in Sources */,
 				35F9DE4123353D5400AAA2B2 /* Optional+Comparable.swift in Sources */,
@@ -8418,14 +8396,13 @@
 				35F9DE2B23353CC700AAA2B2 /* AuthTokenParser.swift in Sources */,
 				35F9DE1A23353C5B00AAA2B2 /* OutageStatus.swift in Sources */,
 				35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */,
-				3527DB3A234B86E000DA4553 /* NewBillUtility.swift in Sources */,
+				3527DB3A234B86E000DA4553 /* BillUtility.swift in Sources */,
 				35F9DE1723353C4C00AAA2B2 /* MinimumVersion.swift in Sources */,
 				35F9DE1B23353C5E00AAA2B2 /* OutageInfo.swift in Sources */,
 				35F9DE1523353C3A00AAA2B2 /* NotificationNames.swift in Sources */,
 				35F9DE2023353C7A00AAA2B2 /* BillComparison.swift in Sources */,
 				35F9DE4523353D9C00AAA2B2 /* UserDefaultKeys.swift in Sources */,
 				35F9DE3923353D1900AAA2B2 /* Date+Now.swift in Sources */,
-				35F9DE0023353A3C00AAA2B2 /* NSAttributedString+ColorInRange.swift in Sources */,
 				35F9DE2123353C7E00AAA2B2 /* BillForecast.swift in Sources */,
 				35F9DE2923353CB700AAA2B2 /* MCSOutageService.swift in Sources */,
 				35F9DE57233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */,
@@ -8458,7 +8435,6 @@
 				35F9DE2C23353CCA00AAA2B2 /* MCSResponseParser.swift in Sources */,
 				35F9DE3623353D0B00AAA2B2 /* ReportedOutagesStore.swift in Sources */,
 				35F9DE5D233A63AE00AAA2B2 /* WatchSessionManager.swift in Sources */,
-				35F9DDFD23353A3C00AAA2B2 /* UIFont+Italic.swift in Sources */,
 				35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */,
 				35F9DE3F23353D4500AAA2B2 /* SequenceForEach.swift in Sources */,
 			);

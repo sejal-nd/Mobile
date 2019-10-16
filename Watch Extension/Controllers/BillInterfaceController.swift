@@ -206,7 +206,7 @@ class BillInterfaceController: WKInterfaceController {
         remainingBalanceGroup.setHidden(true)
     }
     
-    private func configureBillingState(billUtility: BillUtilityNew) {
+    private func configureBillingState(billUtility: BillUtility) {
         
         // Show/Hide Views
         state = .loaded
@@ -272,7 +272,7 @@ extension BillInterfaceController: NetworkingDelegate {
         // Display Account Group
         accountGroup.setHidden(false)
         
-        configureBillingState(billUtility: BillUtilityNew(accountDetails: accountDetail))
+        configureBillingState(billUtility: BillUtility(accountDetails: accountDetail))
     }
     
     func accountListDidUpdate(_ accounts: [Account]) {
