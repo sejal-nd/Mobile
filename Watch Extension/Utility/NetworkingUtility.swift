@@ -25,10 +25,7 @@ protocol NetworkingDelegate {
     
     /// Informs IC that account list did update
     func accountListDidUpdate(_ accounts: [Account])
-    
-    /// Informs IC that current account did update
-    func newAccountDidUpdate(_ account: Account)
-    
+
     /// Informs IC that current account did update
     func currentAccountDidUpdate(_ account: Account)
     
@@ -45,6 +42,18 @@ protocol NetworkingDelegate {
     
     /// Informs IC that maintenance mode is on for a specific data type.
     func maintenanceMode(feature: MainFeature)
+}
+
+extension NetworkingDelegate {
+    func outageStatusDidUpdate(_ outageStatus: OutageStatus) { }
+    
+    func usageStatusDidUpdate(_ billForecast: BillForecastResult) { }
+    
+    func accountListDidUpdate(_ accounts: [Account]) { }
+    
+    func accountDetailDidUpdate(_ accountDetail: AccountDetail) { }
+    
+    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
 }
 
 class NetworkingUtility {
@@ -69,7 +78,6 @@ class NetworkingUtility {
         dLog("init network manager.")
         
         // Observer Notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(newAccountUpdate(_:)), name: Notification.Name.defaultAccountSet, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
         
         // Set a 15 minute polling timer here.
@@ -420,16 +428,7 @@ extension NetworkingUtility {
 // MARK: - Current Account Delegate Methods
 
 extension NetworkingUtility {
-    
-    @objc func newAccountUpdate(_ notification: NSNotification) {
 
-        guard let account = notification.object as? Account else { return }
-        
-        dLog("Initial Account Did Update")
-        
-        networkUtilityDelegates.forEach { $0.newAccountDidUpdate(account) }
-    }
-    
     // User selected account did update
     @objc func currentAccountDidUpdate(_ notification: NSNotification) {
 

@@ -214,7 +214,7 @@ class OutageInterfaceController: WKInterfaceController {
         
         // Populate Account Info
         if let _ = AccountsStore.shared.currentIndex {
-            updateAccountInformation(AccountsStore.shared.currentAccount)
+            updateAccountInterface(AccountsStore.shared.currentAccount)
         }
 
         // Set Delegate
@@ -243,10 +243,12 @@ class OutageInterfaceController: WKInterfaceController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    
     // MARK: - Action
     
     @IBAction func presentReportOutage(_ sender: Any) {
-        presentController(withName: "ReportOutageInterfaceController", context: nil)
+        presentController(withName: ReportOutageInterfaceController.className, context: nil)
     }
     
     
@@ -256,20 +258,22 @@ class OutageInterfaceController: WKInterfaceController {
         presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
-    private func updateAccountInformation(_ account: Account) {
+    private func updateAccountInterface(_ account: Account, animationDuration: TimeInterval? = nil) {
         accountTitleLabel.setText(account.accountNumber)
-        accountImage.setImageNamed(account.isResidential ? "residential_mini_white" : "commercial_mini_white")
-    }
-
-    private func accountChangeAnimation(duration: TimeInterval) {
-        animate(withDuration: duration, animations: { [weak self] in
+        accountImage.setImageNamed(account.isResidential ? AppImage.residential_mini_white.name : AppImage.commercial_mini_white.name)
+        
+        // Animate
+        guard let animationDuration = animationDuration else { return }
+        
+        animate(withDuration: animationDuration, animations: { [weak self] in
             self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5))
-        }, completion: { [weak self] in
-            self?.animate(withDuration: duration, animations: {
-                self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.2))
-            })
+            }, completion: { [weak self] in
+                self?.animate(withDuration: animationDuration, animations: {
+                    self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.2))
+                })
         })
     }
+    
     @objc func outageReportedFromPhone() {
         self.state = .loaded(.powerOut)
     }
@@ -279,29 +283,17 @@ class OutageInterfaceController: WKInterfaceController {
 // MARK: - Networking Delegate
 
 extension OutageInterfaceController: NetworkingDelegate {
-    
-    func newAccountDidUpdate(_ account: Account) {
-        updateAccountInformation(account)
-    }
-    
-    func currentAccountDidUpdate(_ account: Account) {
-        updateAccountInformation(account)
-        
-        accountChangeAnimation(duration: 1.0)
-    }
-    
-    func accountDetailDidUpdate(_ accountDetail: AccountDetail) { }
-    
-    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
 
+    func currentAccountDidUpdate(_ account: Account) {
+        updateAccountInterface(account, animationDuration: 1)
+    }
+    
     func accountListDidUpdate(_ accounts: [Account]) {
         clearAllMenuItems()
         
         guard accounts.count > 1 else { return }
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
-    
-    
     
     func outageStatusDidUpdate(_ outageStatus: OutageStatus) {
         
@@ -346,7 +338,5 @@ extension OutageInterfaceController: NetworkingDelegate {
         }
         state = .passwordProtected
     }
-    
-    func usageStatusDidUpdate(_ billForecast: BillForecastResult) { }
-    
+        
 }

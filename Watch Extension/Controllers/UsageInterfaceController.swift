@@ -219,7 +219,7 @@ class UsageInterfaceController: WKInterfaceController {
         
         // Populate Account Info
         if let _ = AccountsStore.shared.currentIndex {
-            updateAccountInformation(AccountsStore.shared.currentAccount)
+            updateAccountInterface(AccountsStore.shared.currentAccount, animationDuration: 1.0)
         }
         
         // Set Delegate
@@ -259,16 +259,17 @@ class UsageInterfaceController: WKInterfaceController {
     
     // MARK: - Helper
     
-    private func updateAccountInformation(_ account: Account) {
+    private func updateAccountInterface(_ account: Account, animationDuration: TimeInterval? = nil) {
         accountTitleLabel.setText(account.accountNumber)
         accountImage.setImageNamed(account.isResidential ? AppImage.residential_mini_white.name : AppImage.commercial_mini_white.name)
-    }
-    
-    private func accountChangeAnimation(duration: TimeInterval) {
-        animate(withDuration: duration, animations: { [weak self] in
+        
+        // Animate
+        guard let animationDuration = animationDuration else { return }
+        
+        animate(withDuration: animationDuration, animations: { [weak self] in
             self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5))
             }, completion: { [weak self] in
-                self?.animate(withDuration: duration, animations: {
+                self?.animate(withDuration: animationDuration, animations: {
                     self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.2))
                 })
         })
@@ -349,17 +350,9 @@ extension UsageInterfaceController: NetworkingDelegate {
 
         dLog("Usage Status Did Update: \(billForecast)")
     }
-    
-    func accountListDidUpdate(_ accounts: [Account]) { }
-    
-    func newAccountDidUpdate(_ account: Account) {
-        updateAccountInformation(account)
-    }
-    
+
     func currentAccountDidUpdate(_ account: Account) {
-        updateAccountInformation(account)
-        
-        accountChangeAnimation(duration: 1.0)
+        updateAccountInterface(account, animationDuration: 1.0)
         
         guard !account.isResidential else { return }
         state = .unavailable
@@ -431,7 +424,5 @@ extension UsageInterfaceController: NetworkingDelegate {
         
         state = .maintenanceMode
     }
-    
-    func outageStatusDidUpdate(_ outageStatus: OutageStatus) { }
-    
+        
 }

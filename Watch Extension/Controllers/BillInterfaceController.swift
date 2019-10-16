@@ -45,14 +45,14 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var totalAmountGroup: WKInterfaceGroup!
     @IBOutlet var totalAmountLabel: WKInterfaceLabel!
     @IBOutlet var totalAmountDescriptionLabel: WKInterfaceLabel!
-        
+    
     // Bill Line Items
     
     @IBOutlet var pastDueGroup: WKInterfaceGroup!
     @IBOutlet var pastDueLabel: WKInterfaceLabel!
     @IBOutlet var pastDueAmountLabel: WKInterfaceLabel!
     @IBOutlet var pastDueDateLabel: WKInterfaceLabel!
-
+    
     @IBOutlet var currentBillGroup: WKInterfaceGroup!
     @IBOutlet var currentBillLabel: WKInterfaceLabel!
     @IBOutlet var currentBillAmountLabel: WKInterfaceLabel!
@@ -65,12 +65,6 @@ class BillInterfaceController: WKInterfaceController {
     @IBOutlet var remainingBalanceGroup: WKInterfaceGroup!
     @IBOutlet var remainingBalanceLabel: WKInterfaceLabel!
     @IBOutlet var remainingBalanaceAmountLabel: WKInterfaceLabel!
-
-    
-    
-//    @IBOutlet var mostRecentBillGroup: WKInterfaceGroup!
-//    @IBOutlet var mostRecentBillAmountLabel: WKInterfaceLabel!
-//    @IBOutlet var mostRecentBillDueDateLabel: WKInterfaceLabel!
 
     // Footer
     @IBOutlet var footerGroup: WKInterfaceGroup!
@@ -158,7 +152,7 @@ class BillInterfaceController: WKInterfaceController {
         
         // Populate Account Info
         if let _ = AccountsStore.shared.currentIndex {
-            updateAccountInformation(AccountsStore.shared.currentAccount)
+            updateAccountInterface(AccountsStore.shared.currentAccount)
         }
         
         // Set Delegate
@@ -178,16 +172,17 @@ class BillInterfaceController: WKInterfaceController {
         presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
-    private func updateAccountInformation(_ account: Account) {
+    private func updateAccountInterface(_ account: Account, animationDuration: TimeInterval? = nil) {
         accountTitleLabel.setText(account.accountNumber)
         accountImage.setImageNamed(account.isResidential ? AppImage.residential_mini_white.name : AppImage.commercial_mini_white.name)
-    }
-    
-    private func accountChangeAnimation(duration: TimeInterval) {
-        animate(withDuration: duration, animations: { [weak self] in
+        
+        // Animate
+        guard let animationDuration = animationDuration else { return }
+        
+        animate(withDuration: animationDuration, animations: { [weak self] in
             self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5))
             }, completion: { [weak self] in
-                self?.animate(withDuration: duration, animations: {
+                self?.animate(withDuration: animationDuration, animations: {
                     self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.2))
                 })
         })
@@ -195,7 +190,7 @@ class BillInterfaceController: WKInterfaceController {
     
     private func hideAllStates(shouldHideLoading: Bool = true) {
         loadingImageGroup.setHidden(shouldHideLoading)
-                
+        
         footerGroup.setHidden(false)
         
         accountGroup.setHidden(true)
@@ -222,11 +217,11 @@ class BillInterfaceController: WKInterfaceController {
         
         paymentReceivedGroup.setHidden(!billUtility.showPaymentReceived)
         
-       // auto pay & scheduled payment + bill not ready
+        // auto pay & scheduled payment + bill not ready
         autoPayScheduledPaymentGroup.setHidden(billUtility.shouldHideAutoPay)
-                
+        
         pastDueGroup.setHidden(!billUtility.showPastDue)
-       
+        
         currentBillGroup.setHidden(!billUtility.showCurrentBill)
         pendingPaymentGroup.setHidden(!billUtility.showPendingPayment)
         remainingBalanceGroup.setHidden(!billUtility.showRemainingBalanceDue)
@@ -263,14 +258,8 @@ class BillInterfaceController: WKInterfaceController {
 
 extension BillInterfaceController: NetworkingDelegate {
     
-    func newAccountDidUpdate(_ account: Account) {
-        updateAccountInformation(account)
-    }
-    
     func currentAccountDidUpdate(_ account: Account) {
-        updateAccountInformation(account)
-        
-        accountChangeAnimation(duration: 1.0)
+        updateAccountInterface(account, animationDuration: 1.0)
     }
     
     func accountDetailDidUpdate(_ accountDetail: AccountDetail) {
@@ -279,10 +268,10 @@ extension BillInterfaceController: NetworkingDelegate {
         
         // Hides all groups
         hideAllStates()
-                
+        
         // Display Account Group
         accountGroup.setHidden(false)
-                
+        
         configureBillingState(billUtility: BillUtilityNew(accountDetails: accountDetail))
     }
     
@@ -292,8 +281,6 @@ extension BillInterfaceController: NetworkingDelegate {
         guard accounts.count > 1 else { return }
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
-    
-    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) { }
     
     func maintenanceMode(feature: MainFeature) {
         guard feature == .all || feature == .bill else { return }
@@ -317,9 +304,5 @@ extension BillInterfaceController: NetworkingDelegate {
         }
         state = .passwordProtected
     }
-    
-    func outageStatusDidUpdate(_ outageStatus: OutageStatus) { }
-    
-    func usageStatusDidUpdate(_ billForecast: BillForecastResult) { }
     
 }
