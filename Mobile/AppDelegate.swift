@@ -8,7 +8,6 @@
 
 import UIKit
 import Toast_Swift
-import Firebase
 import AppCenter
 import AppCenterCrashes
 import RxSwift
@@ -44,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.keyWindow?.layer.speed = 200
         }
         
+        // Set mock maintenance mode state based on launch argument
+        if let key = processInfo.arguments.lazy.compactMap(MockDataKey.init).first,
+            processInfo.arguments.contains("UITest") {
+            MockAppState.current = MockAppState(maintenanceKey: key)
+        }
+        
         if let appInfo = Bundle.main.infoDictionary,
             let shortVersionString = appInfo["CFBundleShortVersionString"] as? String {
             UserDefaults.standard.set(shortVersionString, forKey: "version")
@@ -61,15 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         setupAppearance()
         setupAnalytics()
+        
+        // Fetch Remote Config Values
+        let _ = RemoteConfigUtility.shared
         //printFonts()
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnFailedAccountsFetch), name: .didReceiveAccountListError, object: nil)
         
         NotificationCenter.default.rx.notification(.didMaintenanceModeTurnOn)
-            .subscribe(onNext: { [weak self] _ in
-                self?.showMaintenanceMode(nil)
+            .subscribe(onNext: { [weak self] notification in
+                self?.showMaintenanceMode(notification.object as? Maintenance)
             })
             .disposed(by: disposeBag)
         
@@ -152,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NotificationCenter.default.post(name: .didTapOnPushNotification, object: self)
             } else {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.pushNotificationReceived)
-                UserDefaults.standard.set(Date(), forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
+                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.pushNotificationReceivedTimestamp)
             }
         } else {
             // App was in the foreground when notification received - do nothing
@@ -174,6 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let guid = getQueryStringParameter(url: url, param: "guid") {
             UserDefaults.standard.set(guid, forKey: UserDefaultKeys.accountVerificationDeepLinkGuid)
+            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_verify)])
         }
         
         if let topMostVC = rootNav.viewControllers.last as? SplashViewController {
@@ -268,24 +278,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gai = GAI.sharedInstance()
         _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
         
-        guard let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist"),
-            let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
-                return dLog("Failed to load Firebase Analytics")
-        }
+        FirebaseUtility.configure()
         
-        FirebaseApp.configure(options: fileopts)
-        
+        FirebaseUtility.setUserProperty(.isScreenReaderEnabled, value: UIAccessibility.isVoiceOverRunning.description)
+        FirebaseUtility.setUserProperty(.isSwitchAccessEnabled, value: UIAccessibility.isSwitchControlRunning.description)
+        FirebaseUtility.setUserProperty(.fontScale, value: UIApplication.shared.preferredContentSizeCategory.rawValue)
     }
     
     @objc func resetNavigationOnAuthTokenExpire() {
-        resetNavigation(sendToLogin: false)
+        resetNavigation(sendToLogin: true)
         
-        let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
-        alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-        self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let alertVc = UIAlertController(title: NSLocalizedString("Session Expired", comment: ""), message: NSLocalizedString("To protect the security of your account, your login has been expired. Please sign in again.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            self.configureQuickActions(isAuthenticated: false)
+        }
+    }
+    
+    @objc func resetNavigationOnFailedAccountsFetch() {
+        resetNavigation(sendToLogin: true)
         
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-        configureQuickActions(isAuthenticated: false)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let alertVc = UIAlertController(title: NSLocalizedString("Unable to retrieve account", comment: ""), message: NSLocalizedString("Your account data could not be retrieved. Please sign in again.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            self.window?.rootViewController?.present(alertVc, animated: true, completion: nil)
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+            self.configureQuickActions(isAuthenticated: false)
+        }
     }
     
     func showMaintenanceMode(_ maintenanceInfo: Maintenance?) {
@@ -297,6 +322,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 while let presentedVC = topmostVC.presentedViewController {
                     topmostVC = presentedVC
                 }
+                if topmostVC is MaintenanceModeViewController { return } // Don't present again
                 
                 let maintenanceStoryboard = UIStoryboard(name: "Maintenance", bundle: nil)
                 let vc = maintenanceStoryboard.instantiateInitialViewController() as! MaintenanceModeViewController
@@ -308,6 +334,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showStormMode(){
+        StormModeStatus.shared.isOn = true
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
             
@@ -319,10 +346,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard let stormModeVC = UIStoryboard(name: "Storm", bundle: nil).instantiateInitialViewController(),
                     let window = self?.window else {
-                        return
+                    StormModeStatus.shared.isOn = false
+                    return
                 }
-                
-                StormModeStatus.shared.isOn = true
+
                 window.rootViewController = stormModeVC
             }
         }
@@ -392,10 +419,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let shortcutItem = ShortcutItem(identifier: shortcutItem.type)
         
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) || StormModeStatus.shared.isOn {
-            let storyboardName = StormModeStatus.shared.isOn ? "Storm" : "Main"
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+            let storyboardName = "Main"
             if let root = window.rootViewController, let _ = root.presentedViewController {
-                root.dismiss(animated: false) {
+                root.dismiss(animated: false) { [weak window] in
+                    guard let window = window else { return }
                     let mainStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
                     let newTabBarController = mainStoryboard.instantiateInitialViewController()
                     window.rootViewController = newTabBarController
@@ -406,6 +434,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let newTabBarController = mainStoryboard.instantiateInitialViewController()
                 window.rootViewController = newTabBarController
                 NotificationCenter.default.post(name: .didTapOnShortcutItem, object: shortcutItem)
+            }
+        } else if StormModeStatus.shared.isOn && shortcutItem == .alertPreferences {
+            let storyboard = UIStoryboard(name: "Storm", bundle: nil)
+            let navCtl = storyboard.instantiateInitialViewController() as! UINavigationController
+            window.rootViewController = navCtl
+            if let stormHomeVC = navCtl.viewControllers.first as? StormModeHomeViewController {
+                stormHomeVC.navigateToAlertPreferences()
             }
         } else if let splashVC = (window.rootViewController as? UINavigationController)?.viewControllers.last as? SplashViewController {
             splashVC.shortcutItem = shortcutItem
@@ -421,7 +456,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
-            Analytics.log(event: .reportAnOutageUnAuthOffer)
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
             unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
             
             // Reset the unauthenticated nav stack

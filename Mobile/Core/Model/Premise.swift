@@ -34,7 +34,7 @@ struct Premise: Mappable, Equatable, Hashable {
     }
     
     // Hashable
-    var hashValue: Int {
-        return premiseNumber.hash
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(premiseNumber)
     }
 }

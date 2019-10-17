@@ -64,7 +64,7 @@ class MCSUsageService: UsageService {
                     } else {
                         return billComparison
                     }
-            }
+                }
         }
         
         return dataObservable
@@ -73,7 +73,6 @@ class MCSUsageService: UsageService {
                 let params = BillAnalysisCache.ComparisonParams(accountNumber: accountNumber, premiseNumber: premiseNumber, yearAgo: yearAgo, gas: gas)
                 self.cache[params] = $0
             })
-        
     }
     
     func fetchBillForecast(accountNumber: String, premiseNumber: String) -> Observable<BillForecastResult> {
@@ -96,7 +95,7 @@ class MCSUsageService: UsageService {
                     } catch {
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
-            }
+                }
         }
         
         return dataObservable
@@ -110,12 +109,12 @@ class MCSUsageService: UsageService {
     func fetchHomeProfile(accountNumber: String, premiseNumber: String) -> Observable<HomeProfile> {
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile")
             .map { response in
-                guard let dict = response as? NSDictionary, let billComparison = HomeProfile.from(dict) else {
+                guard let dict = response as? NSDictionary, let homeProfile = HomeProfile.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 
-                return billComparison
-        }
+                return homeProfile
+            }
     }
     
     #if os(iOS)
@@ -130,7 +129,7 @@ class MCSUsageService: UsageService {
             "square_feet": homeProfile.squareFeet!,
             "adult_count": homeProfile.numberOfAdults!,
             "child_count": homeProfile.numberOfChildren!,
-            ]
+        ]
         
         return MCSApi.shared.put(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/home_profile", params: params)
             .mapTo(())
@@ -144,7 +143,7 @@ class MCSUsageService: UsageService {
                 }
                 
                 return array.compactMap(EnergyTip.from)
-        }
+            }
     }
     
     func fetchEnergyTipByName(accountNumber: String, premiseNumber:String, tipName:String) -> Observable<EnergyTip> {
@@ -155,7 +154,7 @@ class MCSUsageService: UsageService {
                 }
                 
                 return tip
-        }
+            }
     }
     #endif
 

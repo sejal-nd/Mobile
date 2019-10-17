@@ -11,32 +11,15 @@ import RxSwift
 class MockPeakRewardsService: PeakRewardsService {
     
     func fetchPeakRewardsSummary(accountNumber: String, premiseNumber: String) -> Observable<PeakRewardsSummary> {
-        if accountNumber == "programCardsDataActiveOverride" || accountNumber == "programCardsDataNoOverrides" {
-            return .just(PeakRewardsSummary(
-                devices: [SmartThermostatDevice(serialNumber: "123", programNames: ["Test Program"])],
-                programs: [PeakRewardsProgram(name: "Test Program", displayName: "Test Program", status: .active)]
-            ))
-        } else if accountNumber.contains("InactiveProgram") {
-            return .just(PeakRewardsSummary(
-                devices: [SmartThermostatDevice(serialNumber: "123", programNames: ["Test Program"])],
-                programs: [PeakRewardsProgram(name: "Test Program", displayName: "Test Program", status: .inactive)]
-            ))
-        } else {
-            return .just(PeakRewardsSummary(devices: [SmartThermostatDevice(), SmartThermostatDevice()]))
-        }
+        let dataFile = MockJSONManager.File.peakRewardsSummary
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableObject(fromFile: dataFile, key: key)
     }
     
     func fetchPeakRewardsOverrides(accountNumber: String, premiseNumber: String) -> Observable<[PeakRewardsOverride]> {
-        if accountNumber.contains("NoOverrides") {
-            return .just([])
-        } else if accountNumber.contains("ScheduledOverride") {
-            let stop = Calendar.current.date(byAdding: .hour, value: 5, to: Date())
-            return .just([PeakRewardsOverride(serialNumber: "123", status: .scheduled, start: Date(), stop: stop)])
-        } else if accountNumber == "programCardsDataActiveOverride" || accountNumber == "programCardsDataInactiveProgram" {
-            return .just([PeakRewardsOverride(serialNumber: "123", status: .active, start: Date())])
-        } else {
-            return .just([PeakRewardsOverride()])
-        }
+        let dataFile = MockJSONManager.File.peakRewardsOverrides
+        let key = MockUser.current.currentAccount.dataKey(forFile: dataFile)
+        return MockJSONManager.shared.rx.mappableArray(fromFile: dataFile, key: key)
     }
     
     func scheduleOverride(accountNumber: String,

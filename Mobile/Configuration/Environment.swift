@@ -46,6 +46,7 @@ enum EnvironmentName: String {
     case dev = "DEV"
     case test = "TEST"
     case stage = "STAGE"
+    case prodbeta = "PRODBETA"
     case prod = "PROD"
 }
 
@@ -54,9 +55,10 @@ struct MCSConfig {
     let mobileBackendId: String
     let anonymousKey: String
     let oAuthEndpoint: String // The Layer 7 token endpoint
-    let speedpayUrl: String
+    let apiVersion: String
+    let paymentusUrl: String
     
-    init(mcsInstanceName: String) {
+    init(mcsInstanceName: String, opco: OpCo) {
         let configPath = Bundle.main.path(forResource: "MCSConfig", ofType: "plist")!
         let dict = NSDictionary(contentsOfFile: configPath)
         let mobileBackends = dict?["mobileBackends"] as! [String: Any]
@@ -66,7 +68,24 @@ struct MCSConfig {
         mobileBackendId = mobileBackend["mobileBackendID"] as! String
         anonymousKey = mobileBackend["anonymousKey"] as! String
         oAuthEndpoint = mobileBackend["oauthEndpoint"] as! String
-        speedpayUrl = mobileBackend["speedpayUrl"] as! String
+        apiVersion = mobileBackend["apiVersion"] as! String
+        
+        let opcoStr: String
+        let opcoNum: String
+        switch opco {
+        case .bge:
+            opcoStr = "bge"
+            opcoNum = "620"
+        case .comEd:
+            opcoStr = "comd"
+            opcoNum = "623"
+        case .peco:
+            opcoStr = "peco"
+            opcoNum = "622"
+        }
+        let paymentusUrlFormat = mobileBackend["paymentusUrl"] as! String
+        paymentusUrl = paymentusUrlFormat.replacingOccurrences(of: "%@", with: opcoStr)
+            .replacingOccurrences(of: "%d", with: opcoNum)
     }
 }
 
@@ -79,8 +98,7 @@ struct Environment {
     let opco: OpCo
     let mcsInstanceName: String
     let mcsConfig: MCSConfig
-    let outageMapUrl: String
-    let paymentusUrl: String
+    let myAccountUrl: String
     let gaTrackingId: String
     let watchGaTrackingId: String
     let firebaseConfigFile: String
@@ -90,21 +108,20 @@ struct Environment {
     
     private init() {
         let path = Bundle.main.path(forResource: "environment", ofType: "plist")!
-        let dict = NSDictionary(contentsOfFile: path)
+        let dict = NSDictionary(contentsOfFile: path)!
     
-        environmentName = EnvironmentName(rawValue: dict?["environment"] as! String)!
-        appName = dict?["appName"] as! String
-        opco = OpCo(rawValue: dict?["opco"] as! String)!
-        mcsInstanceName = dict?["mcsInstanceName"] as! String
-        mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName)
-        outageMapUrl = dict?["outageMapUrl"] as! String
-        paymentusUrl = dict?["paymentusUrl"] as! String
-        gaTrackingId = dict?["gaTrackingId"] as! String
-        watchGaTrackingId = dict?["watchGaTrackingId"] as! String
-        firebaseConfigFile = dict?["firebaseConfigFile"] as! String
-        opcoUpdatesHost = dict?["opcoUpdatesHost"] as! String
-        associatedDomain = dict?["associatedDomain"] as! String
-        appCenterId = dict?["appCenterId"] as? String
+        environmentName = EnvironmentName(rawValue: dict["environment"] as! String)!
+        appName = dict["appName"] as! String
+        opco = OpCo(rawValue: dict["opco"] as! String)!
+        mcsInstanceName = dict["mcsInstanceName"] as! String
+        mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName, opco: opco)
+        myAccountUrl = dict["myAccountUrl"] as! String
+        gaTrackingId = dict["gaTrackingId"] as! String
+        watchGaTrackingId = dict["watchGaTrackingId"] as! String
+        firebaseConfigFile = dict["firebaseConfigFile"] as! String
+        opcoUpdatesHost = dict["opcoUpdatesHost"] as! String
+        associatedDomain = dict["associatedDomain"] as! String
+        appCenterId = dict["appCenterId"] as? String
     }
 }
 

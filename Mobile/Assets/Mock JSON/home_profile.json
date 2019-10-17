@@ -1,0 +1,9 @@
+{
+    "default": {
+        "numberOfChildren": 4,
+        "numberOfAdults": 2,
+        "squareFeet": 3000,
+        "heatType": "ELEC",
+        "dwellingType": "SINGLE_FAMILY"
+    }
+}

@@ -10,114 +10,51 @@ import RxSwift
 
 class MockAppointmentService: AppointmentService {
     
-    static var isFirstFetch = true
+    var isFirstFetch = true
     
     func fetchAppointments(accountNumber: String, premiseNumber: String) -> Observable<[Appointment]> {
-        let loggedInUsername = UserDefaults.standard.string(forKey: UserDefaultKeys.loggedInUsername)
+        var key = MockUser.current.currentAccount.dataKey(forFile: .appointments)
         
-        let noon = Calendar.opCo.date(byAdding: DateComponents(hour: 12),
-                                      to: Calendar.opCo.startOfDay(for: Date()))!
-        let one = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: noon)!
-        
-        let appointments: [Appointment]
-        switch loggedInUsername {
-        case "apptToday":
-            appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled)]
-        case "apptTomorrow":
-            let noonTomorrow = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: noon)!
-            let oneTomorrow = Calendar.opCo.date(byAdding: DateComponents(day: 1), to: one)!
-            
-            appointments = [Appointment(id: "0", startDate: noonTomorrow, stopDate: oneTomorrow, status: .scheduled)]
-        case "apptScheduled":
-            let noonLaterDate = Calendar.opCo.date(byAdding: DateComponents(day: 5), to: noon)!
-            let oneLaterDate = Calendar.opCo.date(byAdding: DateComponents(day: 5), to: one)!
-            
-            appointments = [Appointment(id: "0", startDate: noonLaterDate, stopDate: oneLaterDate, status: .scheduled)]
-        case "apptEnRoute":
-            appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .enRoute)]
-        case "apptInProgress":
-            appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .inProgress)]
-        case "apptComplete":
-            appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .complete)]
-        case "apptCanceled":
-            appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .canceled)]
-        case "apptMultiple":
-            appointments = [
-                Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled),
-                Appointment(id: "1", startDate: noon, stopDate: one, status: .enRoute),
-                Appointment(id: "2", startDate: noon, stopDate: one, status: .inProgress),
-                Appointment(id: "3", startDate: noon, stopDate: one, status: .complete),
-                Appointment(id: "4", startDate: noon, stopDate: one, status: .canceled)
-            ]
-            
         // Changing response during polling
-        case "apptInProgressThenComplete": // Changes the appt status after the first fetch
-            if MockAppointmentService.isFirstFetch {
-                MockAppointmentService.isFirstFetch = false
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .inProgress)]
+        switch key {
+        case .apptInProgressThenComplete: // Changes the appt status after the first fetch
+            if isFirstFetch {
+                isFirstFetch = false
+                key = .apptInProgress
             } else {
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .complete)]
+                key = .apptComplete
             }
-        case "apptReschedule": // Reschedules the appt after the first fetch
-            let two = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: one)!
-            if MockAppointmentService.isFirstFetch {
-                MockAppointmentService.isFirstFetch = false
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled)]
-            } else {
-                appointments = [Appointment(id: "0", startDate: one, stopDate: two, status: .scheduled)]
+        case .apptReschedule: // Reschedules the appt after the first fetch
+            if isFirstFetch {
+                isFirstFetch = false
+                key = .apptScheduled
             }
-        case "apptAdd": // Starts with 2 appts, then adds 1 more after the first fetch
-            let two = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: one)!
-            let three = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: two)!
-            if MockAppointmentService.isFirstFetch {
-                MockAppointmentService.isFirstFetch = false
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled),
-                                Appointment(id: "1", startDate: one, stopDate: two, status: .scheduled),]
-            } else {
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled),
-                                Appointment(id: "1", startDate: one, stopDate: two, status: .scheduled),
-                                Appointment(id: "2", startDate: two, stopDate: three, status: .scheduled)]
-            }
-        case "apptRemove": // Starts with 2 appts, then removes 1 after the first fetch
-            let two = Calendar.opCo.date(byAdding: DateComponents(hour: 1), to: one)!
-            if MockAppointmentService.isFirstFetch {
-                MockAppointmentService.isFirstFetch = false
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled),
-                                Appointment(id: "0", startDate: one, stopDate: two, status: .scheduled)]
-            } else {
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled)]
-            }
-        case "apptRemoveAll": // Starts with 1 appt, then removes it after the first fetch
-            if MockAppointmentService.isFirstFetch {
-                MockAppointmentService.isFirstFetch = false
-                appointments = [Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled)]
-            } else {
-                appointments = []
-            }
-        case "multiApptChanges":
-            if MockAppointmentService.isFirstFetch {
-                MockAppointmentService.isFirstFetch = false
-                appointments = [
-                    Appointment(id: "0", startDate: noon, stopDate: one, status: .scheduled),
-                    Appointment(id: "1", startDate: noon, stopDate: one, status: .enRoute),
-                    Appointment(id: "2", startDate: noon, stopDate: one, status: .inProgress),
-                ]
-            } else {
-                appointments = [
-                    Appointment(id: "0", startDate: noon, stopDate: one, status: .enRoute),
-                    Appointment(id: "1", startDate: noon, stopDate: one, status: .inProgress),
-                    Appointment(id: "2", startDate: noon, stopDate: one, status: .complete),
-                ]
-            }
-        case "apptFailure":
-            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
-        case "apptNone":
+        case .apptAdd: // Starts with 2 appts, then adds 1 more after the first fetch
             fallthrough
+        case .apptRemove: // Starts with 2 appts, then removes 1 after the first fetch
+            if isFirstFetch {
+                isFirstFetch = false
+                key = .apptWillChange
+            }
+        case .apptRemoveAll: // Starts with 1 appt, then removes it after the first fetch
+            if isFirstFetch {
+                isFirstFetch = false
+                key = .apptScheduled
+            } else {
+                key = .apptNone
+            }
+        case .multiApptChanges:
+            if isFirstFetch {
+                isFirstFetch = false
+                key = .apptWillMultiChange
+            }
+        case .apptFailure:
+            return .error(ServiceError(serviceCode: ServiceErrorCode.localError.rawValue))
         default:
-            appointments = []
+            break
         }
         
-        return .just(appointments)
+        return MockJSONManager.shared.rx.mappableArray(fromFile: .appointments, key: key)
     }
     
 }

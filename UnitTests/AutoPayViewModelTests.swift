@@ -15,8 +15,7 @@ class AutoPayViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     func testNameOnAccountHasText() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: accountDetail)
+        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: .default)
         viewModel.nameOnAccountHasText.asObservable().take(1).subscribe(onNext: { hasText in
             if hasText {
                 XCTFail("nameOnAccount should be empty upon initialization")
@@ -32,8 +31,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testNameOnAccountIsValid() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: accountDetail)
+        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: .default)
         viewModel.nameOnAccountIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if !isValid {
                 XCTFail("nameOnAccount should be valid upon initialization")
@@ -56,8 +54,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
 
     func testRoutingNumberIsValid() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: accountDetail)
+        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: .default)
         viewModel.routingNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if isValid {
                 XCTFail("routingNumber should be invalid upon initialization")
@@ -73,8 +70,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testAccountNumberHasText() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: accountDetail)
+        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: .default)
         viewModel.accountNumberHasText.asObservable().take(1).subscribe(onNext: { hasText in
             if hasText {
                 XCTFail("accountNumberHasText should be empty upon initialization")
@@ -90,8 +86,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testAccountNumberIsValid() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: accountDetail)
+        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: .default)
         viewModel.accountNumberIsValid.asObservable().take(1).subscribe(onNext: { isValid in
             if isValid {
                 XCTFail("accountNumber should be invalid upon initialization")
@@ -121,8 +116,7 @@ class AutoPayViewModelTests: XCTestCase {
     }
     
     func testConfirmAccountNumberMatches() {
-        let accountDetail = AccountDetail.from(["accountNumber": "0123456789", "isAutoPay": false, "CustomerInfo": [:], "BillingInfo": [:], "SERInfo": [:]])!
-        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: accountDetail)
+        viewModel = AutoPayViewModel(withPaymentService: MockPaymentService(), walletService: MockWalletService(), accountDetail: .default)
         
         viewModel.accountNumber.value = "Match"
         viewModel.confirmAccountNumber.value = "NoMatch"

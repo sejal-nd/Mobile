@@ -11,11 +11,9 @@
 	<key>appName</key>
 	<string>BGE_DEV</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppDevStage</string>
-	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
-	<key>paymentusUrl</key>
-	<string>https://bge-uat.paymentus.io/xotp/pm/bge</string>
+	<string>Test1Integration</string>
+	<key>myAccountUrl</key>
+	<string>https://aztst.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_develop</string>
 	<key>gaTrackingId</key>

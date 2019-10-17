@@ -14,7 +14,7 @@
 		<string>PECO WatchkitExtension App Store</string>
 	</dict>
 	<key>signingCertificate</key>
-	<string>305192A978161F709EFCE001FC6CE04332EA32A2</string>
+	<string>320b2a1634549d319c6ae8e159586d5be17b442a</string>
 	<key>signingStyle</key>
 	<string>manual</string>
 	<key>stripSwiftSymbols</key>

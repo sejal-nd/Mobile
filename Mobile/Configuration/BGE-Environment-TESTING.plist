@@ -11,11 +11,9 @@
 	<key>appName</key>
 	<string>BGE_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>mobileAppUATTest</string>
-	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.bge.com/app.html</string>
-	<key>paymentusUrl</key>
-	<string>https://bge-sit-620.paymentus.io/xotp/pm/bge</string>
+	<string>Test1UAT</string>
+	<key>myAccountUrl</key>
+	<string>https://aztst.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_bge_testing</string>
 	<key>gaTrackingId</key>
@@ -25,6 +23,6 @@
 	<key>associatedDomain</key>
 	<string>azstg-secure.bge.com</string>
 	<key>appCenterId</key>
-	<string>3bf3242e-af11-4b1e-9242-99dce77bbbc8</string>
+	<string>5555b456-47b1-4288-b4d4-c6cf44b15fb9</string>
 </dict>
 </plist>

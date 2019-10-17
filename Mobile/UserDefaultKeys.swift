@@ -22,6 +22,7 @@ struct UserDefaultKeys {
     
     static let paymentDetailsDictionary = "kPaymentDetailsDictionary"
     static let reportedOutagesDictionary = "kReportedOutagesDictionary"
+    static let commercialUsageAlertSeen = "kCommercialUsageAlertSeen"
     
     static let temperatureScale = "kPTemperatureScale"
     

@@ -20,7 +20,7 @@ class MCSPeakRewardsService: PeakRewardsService {
                 }
                 
                 return peakRewardsSummary
-        }
+            }
     }
     
     func fetchPeakRewardsOverrides(accountNumber: String, premiseNumber: String) -> Observable<[PeakRewardsOverride]> {
@@ -32,7 +32,7 @@ class MCSPeakRewardsService: PeakRewardsService {
                 }
                 
                 return overrides
-        }
+            }
     }
     
     func scheduleOverride(accountNumber: String,
@@ -62,7 +62,7 @@ class MCSPeakRewardsService: PeakRewardsService {
                 }
                 
                 return settings
-        }
+            }
     }
     
     func updateDeviceSettings(forDevice device: SmartThermostatDevice,
@@ -85,7 +85,7 @@ class MCSPeakRewardsService: PeakRewardsService {
                 }
                 
                 return smartThermostatDeviceSchedule
-        }
+            }
     }
     
     func updateSmartThermostatSchedule(forDevice device: SmartThermostatDevice,

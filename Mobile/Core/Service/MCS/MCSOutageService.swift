@@ -33,11 +33,15 @@ class MCSOutageService: OutageService {
                 }
                 
                 return meterPingInfo
-        }
+            }
     }
     
     func fetchOutageStatus(account: Account) -> Observable<OutageStatus> {
-        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/outage?meterPing=false")
+        var path = "accounts/\(account.accountNumber)/outage?meterPing=false"
+        if StormModeStatus.shared.isOn && Environment.shared.opco != .bge {
+            path.append("&summary=true")
+        }
+        return MCSApi.shared.get(pathPrefix: .auth, path: path)
             .map { jsonArray in
                 guard let outageStatusArray = jsonArray as? NSArray else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -46,7 +50,7 @@ class MCSOutageService: OutageService {
                 if account.isMultipremise {
                     let outageStatusModels = outageStatusArray.map { $0 as! NSDictionary }
                     guard let premiseNumber = account.currentPremise?.premiseNumber,
-                        let dict = outageStatusModels.filter({ $0["premiseNumber"] as! String == premiseNumber }).first,
+                        let dict = outageStatusModels.filter({ $0["premiseNumber"] as? String == premiseNumber }).first,
                         let outageStatus = OutageStatus.from(dict as NSDictionary) else {
                             throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
@@ -60,7 +64,7 @@ class MCSOutageService: OutageService {
                     
                     return outageStatus
                 }
-        }
+            }
     }
     
     #if os(iOS)
@@ -121,10 +125,10 @@ class MCSOutageService: OutageService {
                     let reportedOutage = ReportedOutageResult.from(dict) else {
                         throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
-                
+
                 ReportedOutagesStore.shared[outageInfo.accountNumber] = reportedOutage
                 return reportedOutage
-        }
+            }
     }
     
     func getReportedOutageResult(accountNumber: String) -> ReportedOutageResult? {
@@ -173,6 +177,6 @@ class MCSOutageService: OutageService {
                 }
                 
                 return finalOutageArray
-        }
+            }
     }
 }

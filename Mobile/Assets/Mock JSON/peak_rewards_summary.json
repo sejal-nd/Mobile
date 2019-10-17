@@ -1,0 +1,73 @@
+{
+    "default": {
+        "devices": [
+            {
+                "serialNumber": "",
+                "programs": [],
+                "emergencyFlag": "",
+                "name": "",
+                "type": "",
+                "inventoryId": 0
+            },
+            {
+                "serialNumber": "",
+                "programs": [],
+                "emergencyFlag": "",
+                "name": "",
+                "type": "",
+                "inventoryId": 0
+            }
+        ],
+        "programs": []
+    },
+    "peakRewardsActiveProgram": {
+        "devices": [
+            {
+                "serialNumber": "123",
+                "programs": [
+                    "Test Program"
+                ],
+                "emergencyFlag": "",
+                "name": "",
+                "type": "",
+                "inventoryId": 0
+            }
+        ],
+        "programs": [
+            {
+                "name": "Test Program",
+                "displayName": "Test Program",
+                "isActive": false,
+                "status": "Active",
+                "gearName": "",
+                "startDate": "2019-01-01T12:00:00-05:00",
+                "stopDate": "2019-01-01T13:00:00-05:00"
+            }
+        ]
+    },
+    "peakRewardsInactiveProgram": {
+        "devices": [
+            {
+                "serialNumber": "123",
+                "programs": [
+                    "Test Program"
+                ],
+                "emergencyFlag": "",
+                "name": "",
+                "type": "",
+                "inventoryId": 0
+            }
+        ],
+        "programs": [
+            {
+                "name": "Test Program",
+                "displayName": "Test Program",
+                "isActive": false,
+                "status": "Inactive",
+                "gearName": "",
+                "startDate": "2019-01-01T12:00:00-05:00",
+                "stopDate": "2019-01-01T13:00:00-05:00"
+            }
+        ]
+    }
+}

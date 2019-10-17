@@ -1,0 +1,30 @@
+{
+    "default": [
+        {
+            "device": {
+                "serialNumber": ""
+            }
+        }
+    ],
+    "peakRewardsNoOverrides": [],
+    "peakRewardsScheduledOverride": [
+        {
+            "device": {
+                "serialNumber": "123"
+            },
+            "status": "Scheduled",
+            "start": "2019-01-01T10:00:00-05:00",
+            "stop": "2019-01-01T15:00:00-05:00"
+        }
+    ],
+    "peakRewardsActiveOverride": [
+        {
+            "device": {
+                "serialNumber": "123"
+            },
+            "status": "Active",
+            "start": "2019-01-01T05:00:00-05:00",
+            "stop": "2019-01-01T10:00:00-05:00"
+        }
+    ]
+}

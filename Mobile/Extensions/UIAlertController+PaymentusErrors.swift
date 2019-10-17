@@ -11,6 +11,8 @@ import UIKit
 extension UIAlertController {
     static func paymentusErrorAlertController(forError error: ServiceError,
                                               walletItem: WalletItem,
+                                              customMessageForSessionExpired: String? = nil,
+                                              okHandler: @escaping ((UIAlertAction) -> ()) = { _ in },
                                               callHandler: @escaping ((UIAlertAction) -> ())) -> UIAlertController {
         let title: String
         let message: String
@@ -34,30 +36,34 @@ extension UIAlertController {
             includeCallCTA = true
         case ServiceErrorCode.blockedPaymentType.rawValue:
             title = NSLocalizedString("Payment Method Unavailable", comment: "")
-            message = String.localizedStringWithFormat("%@ payments are not available on your account at this time. Please select another payment method or contact %@ customer service.", walletItem.bankOrCard == .bank ? "Bank account" : "Card", Environment.shared.opco.displayString)
+            message = String.localizedStringWithFormat("%@ payments are not available on your account at this time. Please select another payment method or contact %@ customer service.", walletItem.paymentMethodType.displayString, Environment.shared.opco.displayString)
             includeCallCTA = true
         case ServiceErrorCode.duplicatePayment.rawValue:
             title = NSLocalizedString("Duplicate Payment", comment: "")
-            message = String.localizedStringWithFormat("Recent transaction blocked due to duplicate payment. Matching amount using the same %@ was submitted within the last 24 hours.", walletItem.bankOrCard == .bank ? "bank account" : "card")
-        case ServiceErrorCode.paymentAccountVelocity.rawValue:
+            message = String.localizedStringWithFormat("Recent transaction blocked due to duplicate payment. Matching amount using the same %@ was submitted within the last 24 hours.", walletItem.paymentCategoryType.displayString)
+        case ServiceErrorCode.paymentAccountVelocityBank.rawValue:
+            fallthrough
+        case ServiceErrorCode.paymentAccountVelocityCard.rawValue:
             title = NSLocalizedString("Please select another payment method", comment: "")
             message = NSLocalizedString("Electronic payments with this payment method are not available at this time due to overuse.", comment: "")
         case ServiceErrorCode.utilityAccountVelocity.rawValue:
             title = NSLocalizedString("Unable to process electronic payments", comment: "")
             message = String.localizedStringWithFormat("Electronic payments for your utility account are not available at this time due to overuse. Please review other payment options, or contact %@ customer service for further assistance.", Environment.shared.opco.displayString)
             includeCallCTA = true
+        case ServiceErrorCode.walletItemIdTimeout.rawValue:
+            title = NSLocalizedString("Session Expired", comment: "")
+            message = customMessageForSessionExpired ?? NSLocalizedString("Please attempt to make your payment again.", comment: "")
         default:
             title = NSLocalizedString("Payment Error", comment: "")
             message = NSLocalizedString("Unable to process electronic payments for your account at this time. Please try again later or view other payment options.", comment: "")
         }
         
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if includeCallCTA {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: callHandler))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""), style: .default, handler: callHandler))
         } else {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: okHandler))
         }
         return alert
     }

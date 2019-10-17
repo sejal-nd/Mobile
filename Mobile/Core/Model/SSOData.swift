@@ -13,11 +13,13 @@ struct SSOData: Mappable {
     let ssoPostURL: URL
     let relayState: URL
     let samlResponse: String
+    let username: String?
     
     init(map: Mapper) throws {
         try utilityCustomerId = map.from("utilityCustomerId")
         try ssoPostURL = map.from("ssoPostURL")
         try relayState = map.from("relayState")
         try samlResponse = map.from("samlResponse")
+        username = map.optionalFrom("username")
     }
 }

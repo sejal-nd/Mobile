@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import StoreKit
 
 /// Utility to keep track of events used to
 /// track when to prompt the user to rate the app.
@@ -37,9 +38,20 @@ struct AppRating {
     /// - Returns: true if the threshold was met and the
     ///     user should be prompted to rate the app.
     static func shouldRequestRating() -> Bool {
-        let isDev = Environment.shared.environmentName != .prod && Environment.shared.environmentName != .stage
+        let isDev = Environment.shared.environmentName != .prod &&
+            Environment.shared.environmentName != .prodbeta &&
+            Environment.shared.environmentName != .stage
+        
         let value = UserDefaults.standard.integer(forKey: UserDefaultKeys.appRatingEventCount)
         
         return value >= EventThreshold && !isDev
+    }
+    
+    /// Presents the Apple App Store Rating Prompt, its presentation is not guarenteed
+    static func present() {
+        let env = Environment.shared.environmentName
+        if AppRating.shouldRequestRating() && (env == .prod || env == .prodbeta) {
+            SKStoreReviewController.requestReview()
+        }
     }
 }

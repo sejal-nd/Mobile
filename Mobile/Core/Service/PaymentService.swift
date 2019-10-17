@@ -15,43 +15,52 @@ protocol PaymentService {
     /// - Parameters:
     ///   - accountNumber: The account to get the info for
     func fetchBGEAutoPayInfo(accountNumber: String) -> Observable<BGEAutoPayInfo>
-
-
+    
+    
     /// Enroll in AutoPay (BGE only)
     ///
     /// - Parameters:
     ///   - accountNumber: The account to enroll
     ///   - walletItemId: The selected wallet item to use for AutoPay payments
-    ///   - Params 3-8: BGE AutoPay Settings
-    ///   - isUpdate: Denotes whether the account is a change, or new
+    ///   - Params 3-5: BGE AutoPay Settings
     func enrollInAutoPayBGE(accountNumber: String,
                             walletItemId: String?,
                             amountType: AmountType,
                             amountThreshold: String,
-                            paymentDaysBeforeDue: String,
-                            effectivePeriod: EffectivePeriod,
-                            effectiveEndDate: Date?,
-                            effectiveNumPayments: String,
-                            isUpdate: Bool) -> Observable<Void>
+                            paymentDaysBeforeDue: String) -> Observable<Void>
+    
+    
+    /// Update AutoPay Settings (BGE only)
+    ///
+    /// - Parameters:
+    ///   - accountNumber: The account to enroll
+    ///   - walletItemId: The selected wallet item to use for AutoPay payments
+    ///   - Params 4-6: BGE AutoPay Settings
+    func updateAutoPaySettingsBGE(accountNumber: String,
+                                  walletItemId: String?,
+                                  confirmationNumber: String,
+                                  amountType: AmountType,
+                                  amountThreshold: String,
+                                  paymentDaysBeforeDue: String) -> Observable<Void>
     
     /// Unenroll in AutoPay (BGE only)
     ///
     /// - Parameters:
     ///   - accountNumber: The account to enroll
-    func unenrollFromAutoPayBGE(accountNumber: String) -> Observable<Void>
+    func unenrollFromAutoPayBGE(accountNumber: String, confirmationNumber: String) -> Observable<Void>
 
     /// Enroll in AutoPay (ComEd & PECO only)
     ///
     /// - Parameters:
     ///   - accountNumber: The account to enroll
     ///   - nameOfAccount: The name on the bank account
-    ///   - bankAccountType: Checking/Saving
+    ///   - bankAccountType: "checking" or "saving"
     ///   - routingNumber: The routing number of the bank account
     ///   - bankAccountNumber: The account number for the bank account
     ///   - isUpdate: Denotes whether the account is a change, or new
     func enrollInAutoPay(accountNumber: String,
                          nameOfAccount: String,
-                         bankAccountType: BankAccountType,
+                         bankAccountType: String,
                          routingNumber: String,
                          bankAccountNumber: String,
                          isUpdate: Bool) -> Observable<Void>
@@ -66,23 +75,23 @@ protocol PaymentService {
     /// Schedule a payment
     ///
     /// - Parameters:
-    ///   - payment: the payment to schedule
-    func schedulePayment(payment: Payment) -> Observable<String>
+    ///   - accountNumber: The account
+    ///   - paymentAmount: The amount to be paid
+    ///   - paymentDate: the date to schedule the payment for
+    ///   - walletId: Always the customerIdentifier
+    ///   - walletItem: The WalletItem being used to make the payment
+    func schedulePayment(accountNumber: String,
+                         paymentAmount: Double,
+                         paymentDate: Date,
+                         walletId: String,
+                         walletItem: WalletItem) -> Observable<String>
+
+    func updatePayment(paymentId: String,
+                       accountNumber: String,
+                       paymentAmount: Double,
+                       paymentDate: Date,
+                       walletId: String,
+                       walletItem: WalletItem) -> Observable<String>
     
-    /// Schedule a payment
-    ///
-    /// - Parameters:
-    ///   - creditCard: the card details
-    func scheduleBGEOneTimeCardPayment(accountNumber: String, paymentAmount: Double, paymentDate: Date, creditCard: CreditCard) -> Observable<String>
-    
-    /// Gets full details of an one time payment transaction
-    ///
-    /// - Parameters:
-    ///   - accountNumber: The account to fetch for
-    ///   - paymentId: the paymentId
-    func fetchPaymentDetails(accountNumber: String, paymentId: String) -> Observable<PaymentDetail>
-    
-    func updatePayment(paymentId: String, payment: Payment) -> Observable<Void>
-    
-    func cancelPayment(accountNumber: String, paymentId: String, paymentDetail: PaymentDetail) -> Observable<Void>
+    func cancelPayment(accountNumber: String, paymentAmount: Double, paymentId: String) -> Observable<Void>
 }

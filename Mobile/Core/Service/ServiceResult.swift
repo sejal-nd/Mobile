@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Mapper
 
 // MARK: - ServiceErrorCode
 
@@ -38,18 +39,22 @@ enum ServiceErrorCode : String {
     case maintenanceMode = "TC-SYS-MAINTENANCE"
     case fnMultiAccountFound = "FN-MULTI-ACCT-FOUND" // Forgot Username scenario for BGE with multiple account numbers
     case expiredTempPassword = "EXPIRED-TEMP-PASSWORD" // Temp password older than an hour
-    case fnAccountDisallow = "FN-ACCT-DISALLOW" // BGE only account blocking mechanism
+    case fnAccountDisallow = "FN-ACCT-DISALLOW" // BGE only - blocks EDI and summary billing customers from the app
     case fnOverNotFound = "FN-OVER-NOTFOUND" // BGE PeakRewards overrides not found
     case fnOverExists = "FN-OVER-EXISTS" // BGE PeakRewards overrides already exists
     case fnOverOther = "FN-OVER-OTHER" // BGE PeakRewards overrides
+    case failed = "FAILED" // ComEd/PECO /payments endpoint with no scheduled payments
+    case functionalError = "FUNCTIONAL ERROR" // BGE /programs endpoint with no eventResults
     
     // Paymentus Errors
     case blockedPaymentMethod = "xmlPayment.declined"
-    case blockedUtilityAccount = "accountNumber.Suspended"
+    case blockedUtilityAccount = "accountNumber.suspended"
     case blockedPaymentType = "paymentMethodType.blocked"
     case duplicatePayment = "xmlPayment.duplicate"
-    case paymentAccountVelocity = "pmBankAccount.tooManyPerPaymentMethodType"
+    case paymentAccountVelocityBank = "pmBankAccount.tooManyPerPaymentMethodType"
+    case paymentAccountVelocityCard = "pmCreditCardNumber.tooManyPerPaymentMethodType"
     case utilityAccountVelocity = "accountNumber.tooManyPerPaymentType"
+    case walletItemIdTimeout = "tokenizedProfile.notProcessed"
 }
 
 // MARK: - ServiceError
@@ -65,8 +70,16 @@ struct ServiceError : Error {
         self.serviceMessage = serviceMessage
         self.cause = cause
     }
+    
+    static let parsing = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
 }
 
+extension ServiceError: Mappable {
+    init(map: Mapper) throws {
+        serviceCode = try map.from("code")
+        serviceMessage = map.optionalFrom("description")
+    }
+}
 
 // MARK: - ServiceError -> LocalizedError
 
@@ -78,7 +91,7 @@ extension ServiceError : LocalizedError {
             return cause.localizedDescription
         } else {
             let description = NSLocalizedString(serviceCode, tableName: "ErrorMessages", comment: "")
-            if(description != serviceCode) {
+            if description != serviceCode {
                 return description
             } else if let serviceMessage = serviceMessage {
                 return serviceMessage

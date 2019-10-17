@@ -11,7 +11,9 @@ import Foundation
 import Reachability
 #endif
 import RxSwift
+#if !os(iOS)
 import WatchKit
+#endif
 
 /// MCSApi is a wrapper around the URLSession networking APIs. It provides convenience methods
 /// for executing POST/PUT/GET/DELETE custom endpoints, as well as authentication related APIs.
@@ -19,9 +21,9 @@ class MCSApi {
 
     static let shared = MCSApi()
     
-    enum PathPrefix: String {
-        case anon = "anon_v5"
-        case auth = "auth_v5"
+    enum PathPrefix {
+        case anon
+        case auth
         case none
     }
     
@@ -140,6 +142,11 @@ class MCSApi {
                     }
                     
                     APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
+                    
+                    #if os(iOS)
+                    FirebaseUtility.logEvent(.loginExchangeTokenNetworkComplete)
+                    #endif
+                    
                     return token
                 }
                 .do(onNext: { [weak self] token in
@@ -198,9 +205,9 @@ class MCSApi {
         switch pathPrefix {
         case .anon:
             let opCoString = Environment.shared.opco.displayString.uppercased()
-            fullPath = "\(pathPrefix.rawValue)/\(opCoString)/\(path)"
+            fullPath = String(format: "anon_%@/%@/%@", Environment.shared.mcsConfig.apiVersion, opCoString, path)
         case .auth:
-            fullPath = "\(pathPrefix.rawValue)/\(path)"
+            fullPath = String(format: "auth_%@/%@", Environment.shared.mcsConfig.apiVersion, path)
         case .none:
             fullPath = path
         }

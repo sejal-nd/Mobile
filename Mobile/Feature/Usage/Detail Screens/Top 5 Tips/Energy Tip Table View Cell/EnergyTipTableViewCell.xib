@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EnergyTipTableViewCell" rowHeight="218" id="KGk-i7-Jjw" customClass="EnergyTipTableViewCell" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="494" height="218"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="494" height="218"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="saU-b8-Dii">
+                        <rect key="frame" x="20" y="0.0" width="454" height="218"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="AhS-oC-R6G">
+                                <rect key="frame" x="-0.5" y="0.0" width="455" height="198"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oiO-9W-sRW">
+                                        <rect key="frame" x="0.0" y="0.0" width="455" height="56.5"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Tip #1: Buy ENERGY STAR appliances" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bF-G5-BoF">
+                                        <rect key="frame" x="0.0" y="86.5" width="455" height="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="999" text="The Department of Energy tests the energy efficiency of many home appliances and electronics, and the best earn the official..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFW-XT-nSh">
+                                        <rect key="frame" x="0.0" y="140.5" width="455" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AhS-oC-R6G" firstAttribute="top" secondItem="saU-b8-Dii" secondAttribute="top" id="1HD-XY-9LM"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="gHH-jS-3KF"/>
+                            <constraint firstAttribute="bottom" secondItem="AhS-oC-R6G" secondAttribute="bottom" constant="20" id="ome-xC-wDf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="saU-b8-Dii" secondAttribute="trailing" constant="20" id="8QE-ik-zUW"/>
+                    <constraint firstAttribute="trailing" secondItem="AhS-oC-R6G" secondAttribute="trailing" constant="19.5" id="ICS-S7-KXa"/>
+                    <constraint firstItem="saU-b8-Dii" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" priority="999" constant="20" id="KeC-r7-RdG"/>
+                    <constraint firstItem="AhS-oC-R6G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19.5" id="Qmi-ME-hQB"/>
+                    <constraint firstItem="saU-b8-Dii" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XfS-U7-8SI"/>
+                    <constraint firstItem="saU-b8-Dii" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="eoj-as-udZ"/>
+                    <constraint firstAttribute="bottom" secondItem="saU-b8-Dii" secondAttribute="bottom" id="j1u-4T-UsH"/>
+                    <constraint firstItem="saU-b8-Dii" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="qHq-qU-d9W"/>
+                    <constraint firstAttribute="trailing" secondItem="saU-b8-Dii" secondAttribute="trailing" priority="999" constant="20" id="uzG-bH-6Yp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bodyLabel" destination="qFW-XT-nSh" id="ISo-Xc-0o7"/>
+                <outlet property="contentView" destination="H2p-sc-9uM" id="xan-bg-1cJ"/>
+                <outlet property="iconImageView" destination="oiO-9W-sRW" id="get-X0-e0s"/>
+                <outlet property="titleLabel" destination="4bF-G5-BoF" id="scV-KK-4ab"/>
+            </connections>
+            <point key="canvasLocation" x="120" y="-104.34782608695653"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -14,7 +14,8 @@ class MoreUITests: ExelonUITestCase {
     
     override func setUp() {
         super.setUp()
-        doLogin(username: "valid@test.com")
+        launchApp()
+        doLogin(username: "screenshots")
         selectTab(tabName: "More")
 
         continueAfterFailure = false
@@ -37,12 +38,10 @@ class MoreUITests: ExelonUITestCase {
         XCTAssertTrue(buttonElement(withText: "Sign Out", timeout: 5).isHittable)
         
         // Face ID/Touch ID buttons should not be shown because they are never enabled during UI testing
-        if #available(iOS 11.0, *) {
-            if LAContext().biometryType == .faceID {
-                XCTAssertFalse(app.cells.staticTexts["Face ID"].isHittable)
-            } else if LAContext().biometryType == .touchID {
-                XCTAssertFalse(app.cells.staticTexts["Touch ID"].isHittable)
-            }
+        if LAContext().biometryType == .faceID {
+            XCTAssertFalse(app.cells.staticTexts["Face ID"].isHittable)
+        } else if LAContext().biometryType == .touchID {
+            XCTAssertFalse(app.cells.staticTexts["Touch ID"].isHittable)
         }
         
         if appOpCo == .bge {

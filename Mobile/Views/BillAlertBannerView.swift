@@ -11,7 +11,6 @@ import Lottie
 
 class BillAlertBannerView: UIView {
     
-    @IBOutlet weak var iconView: UIView!
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var label: UILabel!
     
@@ -20,15 +19,18 @@ class BillAlertBannerView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        label.font = OpenSans.regular.of(textStyle: .subheadline)
-        iconView.superview?.bringSubviewToFront(iconView)
-        iconView.addShadow(color: .black, opacity: 0.3, offset: .zero, radius: 3)
+        layer.cornerRadius = 10
+        layer.borderColor = UIColor.accentGray.cgColor
+        layer.borderWidth = 1
+        
+        label.textColor = .deepGray
+        label.font = OpenSans.regular.of(textStyle: .footnote)
         
         animationView.isAccessibilityElement = true
         animationView.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         
         // Here lies the reason for this class' existence. Order of `accessibilityElements`
-        accessibilityElements = [animationView, label]
+        accessibilityElements = [animationView, label] as [UIView]
     }
     
     func resetAnimation() {
