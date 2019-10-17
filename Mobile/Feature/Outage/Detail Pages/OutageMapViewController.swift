@@ -48,6 +48,7 @@ class OutageMapViewController: UIViewController {
         }
         
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.isHidden = true
         webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
@@ -87,5 +88,13 @@ extension OutageMapViewController: WKNavigationDelegate {
         webView.isAccessibilityElement = true
         UIAccessibility.post(notification: .screenChanged, argument: nil)
     }
-    
+}
+
+extension OutageMapViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+        }
+        return nil;
+    }
 }
