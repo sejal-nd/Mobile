@@ -120,7 +120,7 @@ DEPENDENCIES:
   - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AppCenter
     - AppCenterXCUITestExtensions
     - Charts
@@ -176,4 +176,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 06c208368eb54bdb5cee65169247dbafcfd52637
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3

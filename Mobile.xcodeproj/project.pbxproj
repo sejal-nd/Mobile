@@ -58,6 +58,9 @@
 		0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */; };
+		0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */; };
+		0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */; };
 		0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */; };
 		0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */; };
@@ -2473,6 +2476,7 @@
 		01D5F371BE1FF0F0E537749D /* Pods-PECO_WatchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.release.xcconfig"; sourceTree = "<group>"; };
 		01D6F9C6F9EBD8713EE8E020 /* Pods-PECO_WatchOS Extension.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		04C72F0649BE900892AC022D /* Pods-PECO_WatchOS.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.automation.xcconfig"; sourceTree = "<group>"; };
+		06232A7BBAF8AE8B2F8C470B /* Pods-BGEApp-BGEUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		06B48D4B3BEE84D637D373F1 /* Pods-BGEApp-BGE.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		087630DE1E72F5D000FA7020 /* BGEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BGEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		087630E01E72F5D000FA7020 /* LoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITests.swift; sourceTree = "<group>"; };
@@ -2485,6 +2489,9 @@
 		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
 		0D79C6D01F1FB761004793DD /* Maintenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maintenance.swift; sourceTree = "<group>"; };
 		0DF8789921850547B0D60CB1 /* Pods-BGEApp-BGE.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop-test.xcconfig"; sourceTree = "<group>"; };
+		0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
+		0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
+		0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
 		0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
@@ -2669,6 +2676,7 @@
 		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
 		4465DE881F1FD07C0014537F /* TemplateCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateCardView.xib; sourceTree = "<group>"; };
 		45EA6588EE1B61FEF565C8C3 /* Pods-PECO_WatchOS.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.develop.xcconfig"; sourceTree = "<group>"; };
+		48EE85F3BC572751D85A9B8C /* Pods-PECOApp-PECO.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.hotfix.xcconfig"; sourceTree = "<group>"; };
 		4AD41859FF9B42DEE20D8598 /* Pods-PECOApp-PECO.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		4B960FAF9D66026C44FB0B49 /* Pods-BGEApp-BGEUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C1BC3C1385B8A3665BFFDF2 /* Pods-PECOApp-PECOUnitTests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.automation.xcconfig"; sourceTree = "<group>"; };
@@ -2677,6 +2685,7 @@
 		4DC1FD66B81ACBDA300A0FD9 /* Pods-ComEdApp-ComEdUITests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		4F95AAD3D68CA26E2D4CA81D /* Pods-PECOApp-PECOUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		4F9D22CDA7EFE9F0DF8C35D6 /* Pods-PECOApp-PECO.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.staging.xcconfig"; sourceTree = "<group>"; };
+		50BE0D90B7754BEFCF3E547C /* Pods-BGEApp-BGE.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.hotfix.xcconfig"; sourceTree = "<group>"; };
 		52225EDFDC70E5508B562E45 /* Pods-PECOApp-PECO.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.testing.xcconfig"; sourceTree = "<group>"; };
 		545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
 		5492E01E1EECC3230088A725 /* RegistrationConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationConfirmationViewController.swift; sourceTree = "<group>"; };
@@ -2700,6 +2709,7 @@
 		54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCSWalletService.swift; sourceTree = "<group>"; };
 		5592F2C6205A2EF0764FEB27 /* Pods-BGEApp-BGEUnitTests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		55D0DC0B3609390231A8650B /* Pods-ComEdApp-ComEdUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.release.xcconfig"; sourceTree = "<group>"; };
+		58CEDBA1FBE82C83732EA80C /* Pods-ComEdApp-ComEdUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		614D543C436421863B8BC05E /* Pods_BGEApp_BGEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F75344AD0FA8FE270323F3 /* Pods-BGEApp-BGE.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.automation.xcconfig"; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
@@ -2876,6 +2886,7 @@
 		A935C61A46E1E4B58F2570F6 /* Pods-PECOApp-PECOUnitTests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		AAC0B730E787F1CC86670155 /* Pods-BGEApp-BGE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.release.xcconfig"; sourceTree = "<group>"; };
 		AD0FCFB55A57BACE4C5EDDD8 /* Pods-ComEdApp-ComEdUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		AD5B28DE1D6540496A38D05E /* Pods-PECOApp-PECOUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
 		B017488D2135D19B0039D0C6 /* Storm.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storm.storyboard; sourceTree = "<group>"; };
@@ -2996,6 +3007,7 @@
 		B0EE78E9221353E600F53C56 /* report_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = report_outage.json; sourceTree = "<group>"; };
 		B0EE78F02214766600F53C56 /* appointments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointments.json; sourceTree = "<group>"; };
 		B118428B41821733972CF125 /* Pods-PECO_WatchOS.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.testing.xcconfig"; sourceTree = "<group>"; };
+		B1790A9449F0E85CD0E0DCB1 /* Pods-PECO_WatchOS Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		B1C82778F4B29F83D5A54EE7 /* Pods-BGEApp-BGEUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
 		B3F0A0B0AA306013338624F6 /* Pods-PECO_WatchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 		B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
@@ -3060,10 +3072,12 @@
 		B9C2CDC8EAF0A302CCFCA131 /* Pods-PECO_WatchOS Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
 		C33F0387916E1A4F76CD102F /* Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig"; sourceTree = "<group>"; };
+		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C577CF1D0C7BCE01659C0C25 /* Pods-ComEdApp-ComEd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.release.xcconfig"; sourceTree = "<group>"; };
 		C679892349D0C94588054423 /* Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		C828BD6C50342FEB58C68BE6 /* Pods-BGEApp-BGEUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		CA7D742948411DF8FEB81338 /* Pods-PECO_WatchOS.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.hotfix.xcconfig"; sourceTree = "<group>"; };
 		CB68675BD0EC0F038D803C46 /* Pods-PECOApp-PECOUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardViewModel.swift; sourceTree = "<group>"; };
 		CEA215201F7900CC00689422 /* HomeBillCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardView.swift; sourceTree = "<group>"; };
@@ -3239,11 +3253,14 @@
 		EC3D4BDE43A5A828C49ECC99 /* Pods_ComEdApp_ComEdUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEdApp_ComEdUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBD970A701D2D9AA35AFDEC /* Pods-BGEApp-BGEUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		EF96C3B9C784991D679EADDB /* Pods-ComEdApp-ComEdUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		F23C5E96482FCD9F5217DB5A /* Pods-BGEApp-BGEUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		F6EED6200B63E389B2CD15F3 /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		F947030DF2FBBE95B00D41C2 /* Pods-BGEApp-BGE.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop.xcconfig"; sourceTree = "<group>"; };
 		FCFF16B5FD2E374B0ED2EF3B /* Pods-BGEApp-BGEUnitTests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.automation.xcconfig"; sourceTree = "<group>"; };
 		FDBA1E34BD6D85FF3CB35FB2 /* Pods-ComEdApp-ComEdUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		FE4040232BB894F7986808FC /* Pods-ComEdApp-ComEd.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.hotfix.xcconfig"; sourceTree = "<group>"; };
 		FEB1243F588C7A464BB522C2 /* Pods_BGEApp_BGE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEEA745A8541314D0BC8CD74 /* Pods-PECOApp-PECOUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3462,6 +3479,17 @@
 				76827AE2DC8B8645DFD52396 /* Pods-PECO_WatchOS.develop-test.xcconfig */,
 				01D6F9C6F9EBD8713EE8E020 /* Pods-PECO_WatchOS Extension.develop-stage.xcconfig */,
 				01467613E95CA24B7B933E9C /* Pods-PECO_WatchOS Extension.develop-test.xcconfig */,
+				50BE0D90B7754BEFCF3E547C /* Pods-BGEApp-BGE.hotfix.xcconfig */,
+				06232A7BBAF8AE8B2F8C470B /* Pods-BGEApp-BGEUITests.hotfix.xcconfig */,
+				F23C5E96482FCD9F5217DB5A /* Pods-BGEApp-BGEUnitTests.hotfix.xcconfig */,
+				FE4040232BB894F7986808FC /* Pods-ComEdApp-ComEd.hotfix.xcconfig */,
+				58CEDBA1FBE82C83732EA80C /* Pods-ComEdApp-ComEdUITests.hotfix.xcconfig */,
+				C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */,
+				48EE85F3BC572751D85A9B8C /* Pods-PECOApp-PECO.hotfix.xcconfig */,
+				FEEA745A8541314D0BC8CD74 /* Pods-PECOApp-PECOUITests.hotfix.xcconfig */,
+				AD5B28DE1D6540496A38D05E /* Pods-PECOApp-PECOUnitTests.hotfix.xcconfig */,
+				CA7D742948411DF8FEB81338 /* Pods-PECO_WatchOS.hotfix.xcconfig */,
+				B1790A9449F0E85CD0E0DCB1 /* Pods-PECO_WatchOS Extension.hotfix.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -5063,18 +5091,21 @@
 				9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */,
 				9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */,
 				B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */,
+				0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */,
 				0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */,
 				B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */,
 				0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */,
 				9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */,
 				9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */,
 				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
+				0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */,
 				0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */,
 				B5AC06821E5212E300BBA4ED /* ComEd-Environment-RELEASE.plist */,
 				0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */,
 				9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */,
 				9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */,
 				B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */,
+				0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */,
 				0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */,
 				B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */,
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
@@ -5863,6 +5894,7 @@
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
+				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
@@ -5896,6 +5928,7 @@
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
+				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
@@ -5949,6 +5982,10 @@
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
+				6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */,
+				0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */,
+				6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */,
+				6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6409,14 +6446,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -6426,14 +6463,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -6453,14 +6490,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -6470,14 +6507,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -6519,14 +6556,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -6537,14 +6574,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -6565,14 +6602,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -6583,14 +6620,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -6765,14 +6802,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -6783,14 +6820,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -6854,14 +6891,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -6872,14 +6909,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -6922,14 +6959,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -6940,14 +6977,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7010,14 +7047,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7027,14 +7064,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -7054,14 +7091,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
@@ -7072,14 +7109,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
@@ -9046,6 +9083,468 @@
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
+		};
+		0E0276D52347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_ENVIRONMENT = STAGING;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
+			};
+			name = Hotfix;
+		};
+		0E0276D62347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50BE0D90B7754BEFCF3E547C /* Pods-BGEApp-BGE.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COMPRESS_PNG_FILES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.bge.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Enterprise Dist";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276D72347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE4040232BB894F7986808FC /* Pods-ComEdApp-ComEd.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.comed.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0dbc7d4e-b1b0-4e69-a53b-306ca99104d2";
+				PROVISIONING_PROFILE_SPECIFIER = "ComEd Hotfix Enterprise Dist";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276D82347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48EE85F3BC572751D85A9B8C /* Pods-PECOApp-PECO.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COMPRESS_PNG_FILES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.peco.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "26d3c4f4-431d-4400-a26d-910b8601a452";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Enterprise Dist";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276D92347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5;
+			};
+			name = Hotfix;
+		};
+		0E0276DA2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5;
+			};
+			name = Hotfix;
+		};
+		0E0276DB2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5;
+			};
+			name = Hotfix;
+		};
+		0E0276DC2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F23C5E96482FCD9F5217DB5A /* Pods-BGEApp-BGEUnitTests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+				);
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276DD2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276DE2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD5B28DE1D6540496A38D05E /* Pods-PECOApp-PECOUnitTests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+				);
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276DF2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06232A7BBAF8AE8B2F8C470B /* Pods-BGEApp-BGEUITests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BGE;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276E02347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58CEDBA1FBE82C83732EA80C /* Pods-ComEdApp-ComEdUITests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ComEd;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276E12347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEEA745A8541314D0BC8CD74 /* Pods-PECOApp-PECOUITests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = PECO;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276E22347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA7D742948411DF8FEB81338 /* Pods-PECO_WatchOS.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = PECO_WatchOS_Extension;
+				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Watchkit App Enterprise Dist";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = 4;
+				USER_HEADER_SEARCH_PATHS = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Hotfix;
+		};
+		0E0276E32347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1790A9449F0E85CD0E0DCB1 /* Pods-PECO_WatchOS Extension.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_ENVIRONMENT = HOTFIX;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.hotfix.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-watchOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Watchkit WatchkitExtension Enterprise";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Hotfix;
 		};
 		0E131751202B583000865819 /* Prodbeta */ = {
 			isa = XCBuildConfiguration;
@@ -11980,6 +12479,7 @@
 				9CEB30D922612D8500DD725C /* Develop */,
 				0EB93B68202CA3C70049E7A2 /* Automation */,
 				087630E71E72F5D000FA7020 /* Staging */,
+				0E0276DF2347B2B600671E65 /* Hotfix */,
 				9C54105D218B9D8700E03670 /* Testing */,
 				087630E91E72F5D000FA7020 /* Release */,
 				0E13175B202B583000865819 /* Prodbeta */,
@@ -11993,6 +12493,7 @@
 				9CEB30DD22612D8500DD725C /* Develop */,
 				35E7C7B121907EA400BA13C6 /* Automation */,
 				35E7C7B221907EA400BA13C6 /* Staging */,
+				0E0276E32347B2B600671E65 /* Hotfix */,
 				35E7C7B321907EA400BA13C6 /* Testing */,
 				35E7C7B421907EA400BA13C6 /* Release */,
 				35E7C7B521907EA400BA13C6 /* Prodbeta */,
@@ -12006,6 +12507,7 @@
 				9CEB30DC22612D8500DD725C /* Develop */,
 				35E7C7AB21907EA400BA13C6 /* Automation */,
 				35E7C7AC21907EA400BA13C6 /* Staging */,
+				0E0276E22347B2B600671E65 /* Hotfix */,
 				35E7C7AD21907EA400BA13C6 /* Testing */,
 				35E7C7AE21907EA400BA13C6 /* Release */,
 				35E7C7AF21907EA400BA13C6 /* Prodbeta */,
@@ -12019,6 +12521,7 @@
 				9CEB30CF22612D8500DD725C /* Develop */,
 				0EB93B5E202CA3C70049E7A2 /* Automation */,
 				B58B5AF61E51497B0051FD5F /* Staging */,
+				0E0276D52347B2B600671E65 /* Hotfix */,
 				9C541053218B9D8700E03670 /* Testing */,
 				B58B5AE81E4E28740051FD5F /* Release */,
 				0E131751202B583000865819 /* Prodbeta */,
@@ -12032,6 +12535,7 @@
 				9CEB30D022612D8500DD725C /* Develop */,
 				0EB93B5F202CA3C70049E7A2 /* Automation */,
 				B58B5AF71E51497B0051FD5F /* Staging */,
+				0E0276D62347B2B600671E65 /* Hotfix */,
 				9C541054218B9D8700E03670 /* Testing */,
 				B58B5AEB1E4E28740051FD5F /* Release */,
 				0E131752202B583000865819 /* Prodbeta */,
@@ -12045,6 +12549,7 @@
 				9CEB30D222612D8500DD725C /* Develop */,
 				0EB93B61202CA3C70049E7A2 /* Automation */,
 				B58B5B1B1E515BD50051FD5F /* Staging */,
+				0E0276D82347B2B600671E65 /* Hotfix */,
 				9C541056218B9D8700E03670 /* Testing */,
 				B58B5B1D1E515BD50051FD5F /* Release */,
 				0E131754202B583000865819 /* Prodbeta */,
@@ -12058,6 +12563,7 @@
 				9CEB30D122612D8500DD725C /* Develop */,
 				0EB93B60202CA3C70049E7A2 /* Automation */,
 				B58B5B2C1E515C840051FD5F /* Staging */,
+				0E0276D72347B2B600671E65 /* Hotfix */,
 				9C541055218B9D8700E03670 /* Testing */,
 				B58B5B2E1E515C840051FD5F /* Release */,
 				0E131753202B583000865819 /* Prodbeta */,
@@ -12071,6 +12577,7 @@
 				9CEB30D322612D8500DD725C /* Develop */,
 				0EB93B62202CA3C70049E7A2 /* Automation */,
 				B58B5B641E516EEE0051FD5F /* Staging */,
+				0E0276D92347B2B600671E65 /* Hotfix */,
 				9C541057218B9D8700E03670 /* Testing */,
 				B58B5B661E516EEE0051FD5F /* Release */,
 				0E131755202B583000865819 /* Prodbeta */,
@@ -12084,6 +12591,7 @@
 				9CEB30D422612D8500DD725C /* Develop */,
 				0EB93B63202CA3C70049E7A2 /* Automation */,
 				B5AC06AE1E5216C300BBA4ED /* Staging */,
+				0E0276DA2347B2B600671E65 /* Hotfix */,
 				9C541058218B9D8700E03670 /* Testing */,
 				B5AC06B01E5216C300BBA4ED /* Release */,
 				0E131756202B583000865819 /* Prodbeta */,
@@ -12097,6 +12605,7 @@
 				9CEB30D522612D8500DD725C /* Develop */,
 				0EB93B64202CA3C70049E7A2 /* Automation */,
 				B5AC06B71E52171800BBA4ED /* Staging */,
+				0E0276DB2347B2B600671E65 /* Hotfix */,
 				9C541059218B9D8700E03670 /* Testing */,
 				B5AC06B91E52171800BBA4ED /* Release */,
 				0E131757202B583000865819 /* Prodbeta */,
@@ -12110,6 +12619,7 @@
 				9CEB30D622612D8500DD725C /* Develop */,
 				0EB93B65202CA3C70049E7A2 /* Automation */,
 				B5AC06DF1E52238900BBA4ED /* Staging */,
+				0E0276DC2347B2B600671E65 /* Hotfix */,
 				9C54105A218B9D8700E03670 /* Testing */,
 				B5AC06E11E52238900BBA4ED /* Release */,
 				0E131758202B583000865819 /* Prodbeta */,
@@ -12123,6 +12633,7 @@
 				9CEB30DA22612D8500DD725C /* Develop */,
 				0EB93B69202CA3C70049E7A2 /* Automation */,
 				E8F62B162009207C0077B3DA /* Staging */,
+				0E0276E02347B2B600671E65 /* Hotfix */,
 				9C54105E218B9D8700E03670 /* Testing */,
 				E8F62B192009207C0077B3DA /* Release */,
 				0E13175C202B583000865819 /* Prodbeta */,
@@ -12136,6 +12647,7 @@
 				9CEB30DB22612D8500DD725C /* Develop */,
 				0EB93B6A202CA3C70049E7A2 /* Automation */,
 				E8F62B27200920870077B3DA /* Staging */,
+				0E0276E12347B2B600671E65 /* Hotfix */,
 				9C54105F218B9D8700E03670 /* Testing */,
 				E8F62B2A200920870077B3DA /* Release */,
 				0E13175D202B583000865819 /* Prodbeta */,
@@ -12149,6 +12661,7 @@
 				9CEB30D722612D8500DD725C /* Develop */,
 				0EB93B66202CA3C70049E7A2 /* Automation */,
 				E8F62BE0200924410077B3DA /* Staging */,
+				0E0276DD2347B2B600671E65 /* Hotfix */,
 				9C54105B218B9D8700E03670 /* Testing */,
 				E8F62BE3200924410077B3DA /* Release */,
 				0E131759202B583000865819 /* Prodbeta */,
@@ -12162,6 +12675,7 @@
 				9CEB30D822612D8500DD725C /* Develop */,
 				0EB93B67202CA3C70049E7A2 /* Automation */,
 				E8F62C95200924570077B3DA /* Staging */,
+				0E0276DE2347B2B600671E65 /* Hotfix */,
 				9C54105C218B9D8700E03670 /* Testing */,
 				E8F62C98200924570077B3DA /* Release */,
 				0E13175A202B583000865819 /* Prodbeta */,
