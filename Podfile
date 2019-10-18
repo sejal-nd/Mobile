@@ -26,7 +26,7 @@ def iOS_UnitTestPods
 end
 
 def iOS_UITestPods
-  pod 'AppCenterXCUITestExtensions', '1.0'
+
 end
 
 abstract_target 'BGEApp' do

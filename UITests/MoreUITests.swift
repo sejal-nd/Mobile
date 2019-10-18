@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import AppCenterXCUITestExtensions
 import LocalAuthentication
 
 class MoreUITests: ExelonUITestCase {

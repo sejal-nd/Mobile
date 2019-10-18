@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AppCenterXCUITestExtensions
 import XCTest
 
 let appOpCo: OpCo = {
@@ -30,40 +29,43 @@ class ExelonUITestCase: XCTestCase {
     }
     
     override func tearDown() {
-        ACTLabel.labelStep("Tearing down")
-
         super.tearDown()
     }
     
     func launchApp() {
-        ACTLaunch.launch(app)
+        app.launch()
+        sleep(20)
+//        ACTLaunch.launch(app)
     }
     
     func handleTermsFirstLaunch() {
+        
         let continueButton = app.buttons["Continue"]
+        continueButton.waitForExistence(timeout: 10)
         XCTAssertTrue(continueButton.exists)
         // Assert button is disabled when the switch is not enabled
         XCTAssertFalse(continueButton.isEnabled)
         
-        let continueSwitch = app.switches.element(boundBy: 0)
+//        let continueSwitch = app.switches.element(boundBy: 0)
+        
 //        let continueSwitch = app.otherElements.children(matching: Checkbox)
-        continueSwitch.tap()
+//        continueSwitch.tap()
         
         var i = 0
         while !continueButton.isEnabled {
             // seems the app sometimes has trouble starting up quickly enough for the button to react?
             usleep(50000)
-            continueSwitch.tap()
+            XCUIApplication().otherElements["I agree to BGE's Privacy Policy and Terms of Use., Checkbox, Unchecked"].tap()
             i += 1
             if i > 10 {
                 break
             }
         }
-        ACTLabel.labelStep("Continue switch tapped")
+       
         continueButton.tap()
-        ACTLabel.labelStep("Continue button tapped")
+       
         XCTAssertTrue(buttonElement(withText: "Sign In", timeout: 5).exists)
-        ACTLabel.labelStep("Sign in ready")
+       
     }
     
     func doLogin(username: String) {
@@ -81,7 +83,7 @@ class ExelonUITestCase: XCTestCase {
         
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.clearAndEnterText("Password1")
-        ACTLabel.labelStep("Signing in...")
+        
         tapButton(buttonText: "Sign In")
     
         if app.launchArguments.contains("stormMode") {
@@ -90,7 +92,7 @@ class ExelonUITestCase: XCTestCase {
             XCTAssertTrue(tabButtonElement(withText: "Home").exists)
         }
         
-        ACTLabel.labelStep("Signed in")
+        
     }
 }
 
@@ -98,19 +100,15 @@ class ExelonUITestCase: XCTestCase {
 extension ExelonUITestCase {
 
     func selectTab(tabName: String) {
-        ACTLabel.labelStep("Pre-select tab \(tabName)")
         let tab = tabButtonElement(withText: tabName, timeout: 20)
         XCTAssertTrue(tab.exists)
         tab.tap()
-        ACTLabel.labelStep("Post-select tab \(tabName)")
     }
     
     func tapButton(buttonText: String) {
-        ACTLabel.labelStep("Pre-tap button \(buttonText)")
         let button = buttonElement(withText: buttonText)
         XCTAssertTrue(button.exists)
         button.tap()
-        ACTLabel.labelStep("Post-tap button \(buttonText)")
     }
 
     func scrollToBottomOfTable() {

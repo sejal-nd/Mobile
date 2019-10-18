@@ -19,7 +19,7 @@ class ScreenshotsUITests: ExelonUITestCase {
         let personalizeButton = buttonElement(withText: "Did you know you can personalize your home screen?")
         if personalizeButton.exists {
             personalizeButton.tap()
-            tapButton(buttonText: "Cancel")
+            tapButton(buttonText: "Save Changes")
         }
 
         // 📸 Home
@@ -28,7 +28,7 @@ class ScreenshotsUITests: ExelonUITestCase {
         // 📸 Bill
         
         selectTab(tabName: "Outage")
-        tapButton(buttonText: "Report outage")
+        tapButton(buttonText: "Report Outage")
         tapButton(buttonText: "Submit")
         sleep(6) // wait for the toast to dismiss
         // 📸 Outage

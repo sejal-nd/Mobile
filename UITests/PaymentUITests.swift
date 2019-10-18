@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import AppCenterXCUITestExtensions
+
 
 class PaymentUITests: ExelonUITestCase {
 
