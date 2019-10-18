@@ -16,11 +16,16 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios screenshots
+```
+fastlane ios screenshots
+```
+Generate new localized screenshots -> Increment version number -> setup certs + profiles -> Create IPA -> Upload dSYMs -> Upload to App Store
 ### ios uploadBuild
 ```
 fastlane ios uploadBuild
 ```
-Generate new localized screenshots -> Increment version number -> setup certs + profiles -> Create IPA -> Upload to App Store
+
 ### ios refresh_dsyms
 ```
 fastlane ios refresh_dsyms

@@ -10,12 +10,6 @@ import Foundation
 import AppCenterXCUITestExtensions
 import XCTest
 
-enum OpCo: String {
-    case bge = "BGEUITests-Runner"
-    case comEd = "ComEdUITests-Runner"
-    case peco = "PECOUITests-Runner"
-}
-
 let appOpCo: OpCo = {
     let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
     return OpCo(rawValue: appName)!
@@ -46,11 +40,13 @@ class ExelonUITestCase: XCTestCase {
     }
     
     func handleTermsFirstLaunch() {
-        let continueButton = buttonElement(withText: "Continue", timeout: 5)
+        let continueButton = app.buttons["Continue"]
         XCTAssertTrue(continueButton.exists)
         // Assert button is disabled when the switch is not enabled
         XCTAssertFalse(continueButton.isEnabled)
+        
         let continueSwitch = app.switches.element(boundBy: 0)
+//        let continueSwitch = app.otherElements.children(matching: Checkbox)
         continueSwitch.tap()
         
         var i = 0

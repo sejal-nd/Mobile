@@ -16,6 +16,15 @@
 default_platform(:ios)
   desc "Generate new localized screenshots -> Increment version number -> setup certs + profiles -> Create IPA -> Upload dSYMs -> Upload to App Store"
 platform :ios do
+
+  lane :screenshots do
+    capture_screenshots(
+      workspace: "Mobile.xcworkspace",
+      scheme: ENV["SCREENSHOT_SCHEME"],
+      output_directory: ENV["SCREENSHOTS_PATH"]
+    )
+  end
+
   lane :uploadBuild do
     update_fastlane
 
@@ -35,7 +44,7 @@ platform :ios do
       archive_path: ENV["ARCHIVE_PATH"],
       output_directory: "./fastlane/IPA", # Destination directory. Defaults to current directory.
       output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
-      sdk: "iOS 10.0"        # use SDK as the name or path of the base SDK when building the project.
+      sdk: "iOS 11.0"        # use SDK as the name or path of the base SDK when building the project.
     )
 
     # Upload generated dSYMs
