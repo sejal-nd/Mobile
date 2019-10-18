@@ -11,8 +11,10 @@ import XCTest
 class ScreenshotsUITests: ExelonUITestCase {
 
     func testScreenshots() {
-        launchApp()
+        setupSnapshot(app)
         
+        launchApp()
+    
         doLogin(username: "screenshots")
         
         // Get rid of the personalize home button if present
@@ -23,18 +25,27 @@ class ScreenshotsUITests: ExelonUITestCase {
         }
 
         // 📸 Home
-
-        selectTab(tabName: "Bill")
+        snapshot("01Home")
+        
         // 📸 Bill
+        selectTab(tabName: "Bill")
+        snapshot("02Bill")
         
         selectTab(tabName: "Outage")
+        
+                
+//        tapButton(buttonText: "Report Outage")
+        sleep(5)
+        app.staticTexts["Report Outage"].tap()
         tapButton(buttonText: "Report Outage")
-        tapButton(buttonText: "Submit")
         sleep(6) // wait for the toast to dismiss
         // 📸 Outage
+        snapshot("03Outage")
         
-        selectTab(tabName: "Usage")
+        
         // 📸 Usage
+        selectTab(tabName: "Usage")
+        snapshot("04Usage")
         
         // Terminate and relaunch with storm mode
         app.terminate()
@@ -42,6 +53,7 @@ class ScreenshotsUITests: ExelonUITestCase {
         launchApp()
         doLogin(username: "screenshots")
         // 📸 Storm Mode
+        snapshot("05Storm")
     }
 
 }
