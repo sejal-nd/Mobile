@@ -4,7 +4,7 @@ set -x
 export FASTLANE_PASSWORD="$1"
 OPCO="$2"
 
-cd ./_Exelon_Mobile_iOS/fastlane/
+cd ./repo/fastlane/
 mv ../.././build/drop/build/xcarchive/$OPCO-RELEASE.xcarchive .
 
 # update fastlane stuff
