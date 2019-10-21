@@ -367,6 +367,7 @@ class BGEAutoPayViewController: UIViewController {
         miniWalletVC.allowTemporaryItems = false
         miniWalletVC.delegate = self
         miniWalletVC.titleText = NSLocalizedString("Select Bank Account", comment: "")
+        miniWalletVC.tableHeaderText = ""
         
         if accountDetail.isAutoPay {
             GoogleAnalytics.log(event: .autoPayModifyWallet)
