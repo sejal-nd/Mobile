@@ -4932,8 +4932,8 @@
 			isa = PBXGroup;
 			children = (
 				35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */,
-				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
 				3527DB37234B86E000DA4553 /* BillUtility.swift */,
+				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
 				35A2EB1123578A8900427246 /* NewNetworkUtility.swift */,
 			);
 			path = Utility;

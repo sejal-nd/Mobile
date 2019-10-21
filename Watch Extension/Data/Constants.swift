@@ -41,6 +41,13 @@ extension Notification.Name {
     static let outageReported: Notification.Name = Notification.Name(rawValue: "outageReportedNotificationName")
     static let defaultAccountSet: Notification.Name = Notification.Name(rawValue: "defaultAccountSet")
     static let currentAccountUpdated: Notification.Name = Notification.Name(rawValue: "currentAccountUpdated")
+    
+    static let accountListDidUpdate: Notification.Name = Notification.Name(rawValue: "accountListDidUpdate")
+    static let errorDidOccur: Notification.Name = Notification.Name(rawValue: "errorDidOccur")
+    static let outageStatusDidUpdate: Notification.Name = Notification.Name(rawValue: "outageStatusDidUpdate")
+    static let usageDetailsDidUpdate: Notification.Name = Notification.Name(rawValue: "usageDetailsDidUpdate")
+    static let accountDetailsDidUpdate: Notification.Name = Notification.Name(rawValue: "accountDetailsDidUpdate")
+
 }
 
 
