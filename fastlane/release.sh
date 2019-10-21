@@ -2,6 +2,7 @@
 set -x
 
 export FASTLANE_PASSWORD="$1"
+OPCO="$2"
 
 cd ./_Exelon_Mobile_iOS/fastlane/
 mv ../.././build/drop/build/xcarchive/$OPCO-RELEASE.xcarchive .
