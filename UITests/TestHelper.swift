@@ -11,7 +11,16 @@ import XCTest
 
 let appOpCo: OpCo = {
     let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
-    return OpCo(rawValue: appName)!
+    let bundleId = Bundle.main.infoDictionary?["CFBundleName"] as! String
+    var opCoName = ""
+    if bundleId == "ComEdUITests-Runner" {
+        opCoName = "ComEd"
+    } else if bundleId == "BGEUITests-Runner" {
+        opCoName = "BGE"
+    } else if bundleId == "PECOUITests-Runner" {
+        opCoName = "PECO"
+    }
+    return OpCo(rawValue: opCoName)!
 }()
 
 class ExelonUITestCase: XCTestCase {
@@ -55,7 +64,20 @@ class ExelonUITestCase: XCTestCase {
         while !continueButton.isEnabled {
             // seems the app sometimes has trouble starting up quickly enough for the button to react?
             usleep(50000)
-            XCUIApplication().otherElements["I agree to BGE's Privacy Policy and Terms of Use., Checkbox, Unchecked"].tap()
+            
+            var checkboxText = ""
+            let bundleId = Bundle.main.infoDictionary?["CFBundleName"] as! String
+            if bundleId == "ComEdUITests-Runner" {
+                checkboxText = "ComEd"
+            } else if bundleId == "BGEUITests-Runner" {
+                checkboxText = "BGE"
+            } else if bundleId == "PECOUITests-Runner" {
+                checkboxText = "PECO"
+            }
+            
+                
+            XCUIApplication().otherElements[String(format: NSLocalizedString("I agree to %@'s Privacy Policy and Terms of Use., Checkbox, Unchecked", comment: ""), checkboxText)].tap()
+            
             i += 1
             if i > 10 {
                 break
