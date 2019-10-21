@@ -34,18 +34,18 @@ platform :ios do
       output_directory: ENV["SCREENSHOTS_PATH"]
     )
 
-    build_ios_app(
-      scheme: ENV["RELEASE_SCHEME"],
-      silent: true,
-      clean: true,
-      include_bitcode: true,
-      skip_build_archive: true,
-      export_method: "app-store",
-      archive_path: ENV["ARCHIVE_PATH"],
-      output_directory: "./fastlane/IPA", # Destination directory. Defaults to current directory.
-      output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
-      sdk: "iOS 11.0"        # use SDK as the name or path of the base SDK when building the project.
-    )
+    # build_ios_app(
+    #   scheme: ENV["RELEASE_SCHEME"],
+    #   silent: true,
+    #   clean: true,
+    #   include_bitcode: true,
+    #   skip_build_archive: true,
+    #   export_method: "app-store",
+    #   archive_path: ENV["ARCHIVE_PATH"],
+    #   output_directory: "./fastlane/IPA", # Destination directory. Defaults to current directory.
+    #   output_name: "mobile.ipa",       # specify the name of the .ipa file to generate (including file extension)
+    #   sdk: "iOS 11.0"        # use SDK as the name or path of the base SDK when building the project.
+    # )
 
     # Upload generated dSYMs
     # unzip(file: "mobile.app.dSYM.zip",
@@ -65,11 +65,11 @@ platform :ios do
       username: "e20600@exelonds.com",
       submit_for_review: false,
       force: false,
-      # metadata_path: ENV["METADATA_PATH"],
-      # screenshot_path: "./fastlane/screenshots"
+      metadata_path: ENV["METADATA_PATH"],
+      screenshot_path: ENV["SCREENSHOTS_PATH"]
     )
 
-    clean_build_artifacts
+    # clean_build_artifacts
   end
 end
 
