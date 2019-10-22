@@ -97,7 +97,7 @@ class MiniWalletSheetViewController: UIViewController {
     var allowTemporaryItems = true // Disabled from BGE AutoPay
     var accountDetail: AccountDetail!
     var titleText = NSLocalizedString("Select Payment Method", comment: "") // Set to override if necessary
-    var tableHeaderText = NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "") // Set to override if necessary
+    var tableHeaderText: String? = NSLocalizedString("We accept: Amex, Discover, MasterCard, Visa Credit Cards or Check Cards, and ATM Debit Cards with a PULSE, STAR, NYCE, or ACCEL logo.", comment: "") // Set to override if necessary
     
     // MARK: - View Life Cycle
     
