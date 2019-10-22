@@ -19,6 +19,7 @@ platform :ios do
 
   lane :screenshots do
     capture_screenshots(
+      app_identifier: ENV["APP_IDENTIFIER"],
       workspace: "Mobile.xcworkspace",
       scheme: ENV["SCREENSHOT_SCHEME"],
       output_directory: ENV["SCREENSHOTS_PATH"]
@@ -29,6 +30,7 @@ platform :ios do
     update_fastlane
 
     capture_screenshots(
+      app_identifier: ENV["APP_IDENTIFIER"],
       workspace: "Mobile.xcworkspace",
       scheme: ENV["SCREENSHOT_SCHEME"],
       output_directory: ENV["SCREENSHOTS_PATH"]
