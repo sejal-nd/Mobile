@@ -168,6 +168,24 @@ class BillInterfaceController: WKInterfaceController {
     
     // MARK: - Helper
     
+    private func configureNetworkActions() {
+        NetworkUtilityNew.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
+            self?.configureMaintenanceMode(maintenance, feature: feature)
+        }
+        
+        NetworkUtilityNew.shared.errorDidOccur = { [weak self] error, feature in
+            self?.configureError(error, feature: feature)
+        }
+        
+        NetworkUtilityNew.shared.accountListDidUpdate = { [weak self] accounts in
+            self?.configureAccountList(accounts)
+        }
+        
+        NetworkUtilityNew.shared.outageStatusDidUpdate = { [weak self] outageStatus in
+            self?.configureOutageStatus(outageStatus)
+        }
+    }
+    
     @objc private func presentAccountList() {
         presentController(withName: AccountListInterfaceController.className, context: nil)
     }
@@ -252,6 +270,70 @@ class BillInterfaceController: WKInterfaceController {
     }
     
 }
+
+
+// MARK: - Network Action Configuration
+
+extension OutageInterfaceController {
+    
+    @objc private func currentAccountDidUpdate(_ notification: NSNotification) {
+        guard let account = notification.object as? Account else {
+                state = .error(.invalidAccount)
+                return
+        }
+        
+        updateAccountInterface(account, animationDuration: 1.0)
+    }
+    
+    private func configureAccountList(_ accounts: [Account]) {
+        clearAllMenuItems()
+        
+        guard accounts.count > 1 else { return }
+        addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
+    }
+    
+    private func configureOutageStatus(_ outageStatus: OutageStatus) {
+        accountGroup.setHidden(false)
+        
+        guard !outageStatus.flagGasOnly else {
+            state = .loaded(.gasOnly)
+            return
+        }
+        
+        if outageStatus.activeOutage {
+            state = .loaded(.powerOut)
+        } else if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
+            state = .loaded(.unavilable)
+        } else {
+            state = .loaded(.powerOn)
+        }
+    }
+    
+    private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
+        
+        guard feature == .all || feature == .outage else { return }
+        
+        accountGroup.setHidden(false)
+        
+        state = .maintenanceMode
+    }
+    
+    private func configureError(_ error: NetworkError, feature: Feature) {
+        
+        guard feature == .all || feature == .outage else { return }
+        
+        accountGroup.setHidden(false)
+        
+        
+        guard error == .passwordProtected else {
+            state = .error(error)
+            return
+        }
+        state = .passwordProtected
+    }
+    
+}
+
 
 
 // MARK: - Networking Delegate

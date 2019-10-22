@@ -17,13 +17,38 @@ enum NetworkError: Error {
     case fetchError
 }
 
+enum Feature {
+    case outage
+    case bill
+    case usage
+    case all
+}
+
 final class NetworkUtilityNew {
     
     private let disposeBag = DisposeBag()
     
     private var pollingTimer: Timer!
     
-    public init() {
+    public static let shared = NetworkUtilityNew()
+
+    
+    
+    public var accountListDidUpdate: (([Account]) -> ())?
+    
+    public var outageStatusDidUpdate: ((OutageStatus) -> ())?
+    
+    public var accountDetailDidUpdate: ((AccountDetail) -> ())? // Billing
+    
+    public var billForecastDidUpdate: ((BillForecastResult) -> ())? // Usage
+    
+    public var maintenanceModeDidUpdate: ((Maintenance, Feature) -> ())?
+    
+    public var errorDidOccur: ((NetworkError, Feature) -> ())?
+    
+    
+    
+    private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
         
         // Set a 15 minute polling timer here.
@@ -80,12 +105,12 @@ final class NetworkUtilityNew {
         
         dispatchQueue.async { [weak self] in
             if shouldLoadAccountList {
-                self?.fetchAccountList { result in
+                self?.fetchAccountList { [weak self] result in
                     switch result {
                     case.success(let accounts):
-                        break
+                        self?.accountListDidUpdate?(accounts)
                     case .failure(let error):
-                        break
+                        self?.errorDidOccur?(error, .all)
                     }
                     semaphore.signal()
                 }
@@ -93,9 +118,9 @@ final class NetworkUtilityNew {
                 
                 self?.fetchFeatureData { result in
                     switch result {
-                    case .success(let temp):
+                    case .success(_):
                         break
-                    case .failure(let error):
+                    case .failure(_):
                         break
                     }
                     semaphore.signal()
@@ -105,9 +130,9 @@ final class NetworkUtilityNew {
             } else {
                 self?.fetchFeatureData { result in
                     switch result {
-                    case .success(let accounts):
+                    case .success(_):
                         break
-                    case .failure(let error):
+                    case .failure(_):
                         break
                     }
                 }
@@ -129,28 +154,29 @@ extension NetworkUtilityNew {
         fetchAccountDetailsWithData { [weak self] accountDetailResult in
             switch accountDetailResult {
             case .success(let accountDetails):
+                self?.accountDetailDidUpdate?(accountDetails)
                 
                 // Fetch Outage Status
-                self?.fetchOutageStatus { outageResult in
+                self?.fetchOutageStatus { [weak self] outageResult in
                     switch outageResult {
                     case .success(let outageStatus):
-                        break
+                        self?.outageStatusDidUpdate?(outageStatus)
                     case .failure(let error):
-                        break
+                        self?.errorDidOccur?(error, .outage)
                     }
                 }
 
                 // Fetch Usage Data
-                self?.fetchUsageData(accountDetail: accountDetails, result: { useageResult in
-                    switch useageResult {
+                self?.fetchUsageData(accountDetail: accountDetails, result: { [weak self] usageResult in
+                    switch usageResult {
                     case .success(let billForecast):
-                        break
+                        self?.billForecastDidUpdate?(billForecast)
                     case .failure(let error):
-                        break
+                        self?.errorDidOccur?(error, .usage)
                     }
                 })
             case .failure(let error):
-                break
+                self?.errorDidOccur?(error, .all)
             }
         }
     }

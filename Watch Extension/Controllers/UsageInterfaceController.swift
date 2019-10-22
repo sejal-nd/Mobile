@@ -57,7 +57,7 @@ class UsageInterfaceController: WKInterfaceController {
         case maintenanceMode
         case passwordProtected
         case unavailable
-        case error(ServiceError)
+        case error(NetworkError)
     }
     
     private var electricForecast: BillForecast?
@@ -214,6 +214,8 @@ class UsageInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
+        
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
         
@@ -222,8 +224,6 @@ class UsageInterfaceController: WKInterfaceController {
             updateAccountInterface(AccountsStore.shared.currentAccount, animationDuration: 1.0)
         }
         
-        // Set Delegate
-        NetworkingUtility.shared.addNetworkUtilityUpdateDelegate(self)
     }
     
     override func didAppear() {
@@ -259,6 +259,28 @@ class UsageInterfaceController: WKInterfaceController {
     
     // MARK: - Helper
     
+    private func configureNetworkActions() {
+        NetworkUtilityNew.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
+            self?.configureMaintenanceMode(maintenance, feature: feature)
+        }
+        
+        NetworkUtilityNew.shared.errorDidOccur = { [weak self] error, feature in
+            self?.configureError(error, feature: feature)
+        }
+        
+        NetworkUtilityNew.shared.accountDetailDidUpdate = { [weak self] accountDetails in
+            guard let accounts = AccountsStore.shared.accounts else {
+                self?.state = .error(.fetchError)
+                return
+            }
+            self?.configureAccountDetails(accountDetails, accounts: accounts)
+        }
+        
+        NetworkUtilityNew.shared.billForecastDidUpdate = { [weak self] billForecast in
+            self?.configureBillForecast(billForecast)
+        }
+    }
+    
     private func updateAccountInterface(_ account: Account, animationDuration: TimeInterval? = nil) {
         accountTitleLabel.setText(account.accountNumber)
         accountImage.setImageNamed(account.isResidential ? AppImage.residential_mini_white.name : AppImage.commercial_mini_white.name)
@@ -276,7 +298,7 @@ class UsageInterfaceController: WKInterfaceController {
     }
     
     private func setImageForProgress(_ progress: Double) {
-        let cleanedProgress = Int(floor(progress * 100)) // we will need to double check this, because it may be a floating point between 0-1 (0-100)
+        let cleanedProgress = Int(floor(progress * 100))
         
         if cleanedProgress >= 100 {
             // 100
@@ -325,12 +347,53 @@ class UsageInterfaceController: WKInterfaceController {
 }
 
 
-// MARK: - Networking Delegate
+// MARK: - Network Action Configuration
 
-extension UsageInterfaceController: NetworkingDelegate {
-    
-    func usageStatusDidUpdate(_ billForecast: BillForecastResult) {
+extension UsageInterfaceController {
+
+    @objc private func currentAccountDidUpdate(_ notification: NSNotification) {
+        guard let account = notification.object as? Account,
+            account.isResidential else {
+                state = .error(.invalidAccount)
+                return
+        }
         
+        updateAccountInterface(account, animationDuration: 1.0)
+    }
+    
+    private func configureAccountDetails(_ accountDetails: AccountDetail, accounts: [Account]) {
+        isModeledForOpower = accountDetails.isModeledForOpower
+        
+        guard !accountDetails.isPasswordProtected else {
+            state = .passwordProtected
+            return
+        }
+        
+        if !accountDetails.isAMIAccount {
+            state = .unavailable
+        }
+        
+        clearAllMenuItems()
+        
+        guard accounts.count > 1 else { return }
+        addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
+
+        // Set electric image. gas / electric menu items
+        if let serviceType = accountDetails.serviceType {
+            if serviceType.uppercased() == "GAS" {
+                isElectricSelected = false
+            } else if serviceType.uppercased() == "ELECTRIC" {
+                isElectricSelected = true
+            } else if serviceType.uppercased() == "GAS/ELECTRIC" {
+                isElectricSelected = true
+                
+                addMenuItem(withImageNamed: AppImage.gasMenuItem.name, title: "Gas", action: #selector(selectGasMenuItem))
+                addMenuItem(withImageNamed: AppImage.electricMenuItem.name, title: "Electric", action: #selector(selectElectricMenuItem))
+            }
+        }
+    }
+    
+    private func configureBillForecast(_ billForecast: BillForecastResult) {
         accountGroup.setHidden(false)
         
         // Determine if data is avilable
@@ -350,79 +413,30 @@ extension UsageInterfaceController: NetworkingDelegate {
 
         dLog("Usage Status Did Update: \(billForecast)")
     }
-
-    func currentAccountDidUpdate(_ account: Account) {
-        updateAccountInterface(account, animationDuration: 1.0)
-        
-        guard !account.isResidential else { return }
-        state = .unavailable
-    }
     
-    func accountDetailDidUpdate(_ accountDetail: AccountDetail) {
+    private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
         
-        isModeledForOpower = accountDetail.isModeledForOpower
-        
-        guard !accountDetail.isPasswordProtected else {
-            state = .passwordProtected
-            return
-        }
-        
-        if !accountDetail.isAMIAccount {
-            state = .unavailable
-        }
-    }
-    
-    func accountListAndAccountDetailsDidUpdate(accounts: [Account], accountDetail: AccountDetail?) {
-        clearAllMenuItems()
-        
-        guard !accounts.isEmpty, let accountDetail = accountDetail, !hasError else { return }
-                
-        // Set Account list menu item
-        if accounts.count > 1 {
-            addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
-        }
-
-        // Set electric image. gas / electric menu items
-        if let serviceType = accountDetail.serviceType {
-            if serviceType.uppercased() == "GAS" {
-                isElectricSelected = false
-            } else if serviceType.uppercased() == "ELECTRIC" {
-                isElectricSelected = true
-            } else if serviceType.uppercased() == "GAS/ELECTRIC" {
-                isElectricSelected = true
-                
-                addMenuItem(withImageNamed: AppImage.gasMenuItem.name, title: "Gas", action: #selector(selectGasMenuItem))
-                addMenuItem(withImageNamed: AppImage.electricMenuItem.name, title: "Electric", action: #selector(selectElectricMenuItem))
-            }
-        }
-    }
-    
-    func error(_ serviceError: ServiceError, feature: MainFeature) {
-        guard feature == .all || feature == .usage else { return }
-        
-        accountGroup.setHidden(false)
-        
-        hasError = true
-        clearAllMenuItems()
-        
-        guard serviceError.serviceCode == Errors.Code.passwordProtected else {
-            state = .error(serviceError)
-            return
-        }
-        state = .passwordProtected
-    }
-    
-    func loading(feature: MainFeature) {
-        guard feature == .all || feature == .usage else { return }
-        state = .loading
-    }
-    
-    func maintenanceMode(feature: MainFeature) {
-        guard feature == .all || feature == .usage else { return }
+        guard feature == .all || feature == .outage else { return }
         
         accountGroup.setHidden(false)
         
         state = .maintenanceMode
     }
+    
+    private func configureError(_ error: NetworkError, feature: Feature) {
         
+        guard feature == .all || feature == .outage else { return }
+        
+        accountGroup.setHidden(false)
+        
+        hasError = true
+        clearAllMenuItems() // todo double check this
+        
+        guard error == .passwordProtected else {
+            state = .error(error)
+            return
+        }
+        state = .passwordProtected
+    }
+    
 }
