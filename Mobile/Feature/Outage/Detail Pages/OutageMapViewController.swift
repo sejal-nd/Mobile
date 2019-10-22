@@ -93,10 +93,9 @@ extension OutageMapViewController: WKNavigationDelegate {
 extension OutageMapViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil,
-            let url = navigationAction.request.url {
+            let url = navigationAction.request.url,
+            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
                         
-            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-            
             // force http links to load over https
             if url.scheme == "http" {
                 urlComponents.scheme = "https"
