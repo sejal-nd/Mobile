@@ -607,9 +607,10 @@ class StormModeHomeViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UpdatesDetailViewController, let stormUpdate = viewModel.stormModeUpdate.value {
             vc.opcoUpdate = stormUpdate
-        } else if let vc = segue.destination as? ReportOutageViewController, let phone = viewModel.currentOutageStatus!.contactHomeNumber {
-            vc.viewModel.outageStatus = viewModel.currentOutageStatus!
-            vc.viewModel.phoneNumber.value = phone
+        } else if let vc = segue.destination as? ReportOutageViewController,
+            let outageStatus = viewModel.currentOutageStatus {
+            vc.viewModel.outageStatus = outageStatus
+            vc.viewModel.phoneNumber.value = outageStatus.contactHomeNumber ?? ""
         } else if let vc = segue.destination as? OutageMapViewController {
             vc.hasPressedStreetlightOutageMapButton = false
         }
