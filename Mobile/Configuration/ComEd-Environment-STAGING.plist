@@ -11,7 +11,7 @@
 	<key>appName</key>
 	<string>ComEd_STAGE</string>
 	<key>mcsInstanceName</key>
-	<string>Stage-comedMBE</string>
+	<string>Stage</string>
 	<key>myAccountUrl</key>
 	<string>https://azstg.comed.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
