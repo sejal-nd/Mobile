@@ -82,7 +82,7 @@
 		<key>Stage-bgeMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://mcsstg.mobileenv.bge.com</string>
 			<key>mobileBackendID</key>
 			<string>c08e5dd7-3d18-4e20-b1f5-4a2639b060d0</string>
 			<key>anonymousKey</key>
@@ -112,9 +112,9 @@
 		<key>Stage-comedMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://mcsstg.mobileenv.comed.com</string>
 			<key>mobileBackendID</key>
-			<string>3408d3c1-ea9a-4866-90df-b1d13dc2d4a2</string>
+			<string>4f9cc034-207a-4afe-a30a-bd7a825b78a2</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
@@ -142,9 +142,9 @@
 		<key>Stage-pecoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://exeloneumobileappstage-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://mcsstg.mobileenv.peco.com</string>
 			<key>mobileBackendID</key>
-			<string>78363748-a53d-4415-bcd8-556032e5fe73</string>
+			<string>e187e300-70a6-46f8-83d6-4c916b35ed3e</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9zdGc6T1k5cmgyZHghY1AqQGkhRCVxcVM=</string>
 			<key>oauthEndpoint</key>
