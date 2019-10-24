@@ -6,8 +6,8 @@ sudo xcode-select -switch $XCODE_11_DEVELOPER_DIR
 export FASTLANE_PASSWORD="$1"
 OPCO="$2"
 
-cd ./repo/fastlane/
-mv ../.././build/drop/build/xcarchive/$OPCO-RELEASE.xcarchive .
+cd ./repo/
+mv ../.././build/drop/build/ ./fastlane
 
 find .
 
