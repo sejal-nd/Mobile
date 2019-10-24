@@ -63,7 +63,7 @@ platform :ios do
 
     deliver(
       app_identifier: ENV["APP_IDENTIFIER"],
-      ipa: "./fastlane/IPA/mobile.ipa", # Same as output directory above
+      ipa: ENV["IPA_PATH"], # Same as output directory above
       username: "e20600@exelonds.com",
       submit_for_review: false,
       force: false,
