@@ -7,7 +7,7 @@ export FASTLANE_PASSWORD="$1"
 OPCO="$2"
 
 cd ./repo/
-mv ../.././build/drop/build/ ./fastlane
+# mv ../.././build/drop/build/ ./fastlane
 
 find .
 
