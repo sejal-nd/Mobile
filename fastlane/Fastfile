@@ -66,7 +66,7 @@ platform :ios do
       ipa: ENV["IPA_PATH"], # Same as output directory above
       username: "e20600@exelonds.com",
       submit_for_review: false,
-      force: false,
+      force: true,
       metadata_path: ENV["METADATA_PATH"],
       screenshots_path: ENV["SCREENSHOTS_PATH"],
       # release_notes: ENV["RELEASE_NOTES_PATH"]
