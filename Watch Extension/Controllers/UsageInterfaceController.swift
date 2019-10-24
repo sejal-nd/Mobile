@@ -416,7 +416,7 @@ extension UsageInterfaceController {
     
     private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
         
-        guard feature == .all || feature == .outage else { return }
+        guard feature == .all || feature == .usage else { return }
         
         accountGroup.setHidden(false)
         
@@ -425,7 +425,7 @@ extension UsageInterfaceController {
     
     private func configureError(_ error: NetworkError, feature: Feature) {
         
-        guard feature == .all || feature == .outage else { return }
+        guard feature == .all || feature == .usage else { return }
         
         accountGroup.setHidden(false)
         

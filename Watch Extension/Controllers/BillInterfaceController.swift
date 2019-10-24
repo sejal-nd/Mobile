@@ -74,7 +74,7 @@ class BillInterfaceController: WKInterfaceController {
     enum State {
         case loaded
         case loading
-        case error(ServiceError)
+        case error(NetworkError)
         case maintenanceMode
         case passwordProtected
     }
@@ -154,9 +154,6 @@ class BillInterfaceController: WKInterfaceController {
         if let _ = AccountsStore.shared.currentIndex {
             updateAccountInterface(AccountsStore.shared.currentAccount)
         }
-        
-        // Set Delegate
-        NetworkingUtility.shared.addNetworkUtilityUpdateDelegate(self)
     }
     
     override func didAppear() {
@@ -165,6 +162,13 @@ class BillInterfaceController: WKInterfaceController {
         // Log Analytics
         WatchAnalyticUtility.logScreenView(.bill_screen_view)
     }
+    
+    // MARK: - Actions
+    
+    @objc private func presentAccountList() {
+        presentController(withName: AccountListInterfaceController.className, context: nil)
+    }
+    
     
     // MARK: - Helper
     
@@ -181,13 +185,9 @@ class BillInterfaceController: WKInterfaceController {
             self?.configureAccountList(accounts)
         }
         
-        NetworkUtilityNew.shared.outageStatusDidUpdate = { [weak self] outageStatus in
-            self?.configureOutageStatus(outageStatus)
+        NetworkUtilityNew.shared.accountDetailDidUpdate = { [weak self] accountDetails in
+            self?.configureAccountDetails(accountDetails)
         }
-    }
-    
-    @objc private func presentAccountList() {
-        presentController(withName: AccountListInterfaceController.className, context: nil)
     }
     
     private func updateAccountInterface(_ account: Account, animationDuration: TimeInterval? = nil) {
@@ -274,7 +274,7 @@ class BillInterfaceController: WKInterfaceController {
 
 // MARK: - Network Action Configuration
 
-extension OutageInterfaceController {
+extension BillInterfaceController {
     
     @objc private func currentAccountDidUpdate(_ notification: NSNotification) {
         guard let account = notification.object as? Account else {
@@ -292,60 +292,7 @@ extension OutageInterfaceController {
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
     
-    private func configureOutageStatus(_ outageStatus: OutageStatus) {
-        accountGroup.setHidden(false)
-        
-        guard !outageStatus.flagGasOnly else {
-            state = .loaded(.gasOnly)
-            return
-        }
-        
-        if outageStatus.activeOutage {
-            state = .loaded(.powerOut)
-        } else if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
-            state = .loaded(.unavilable)
-        } else {
-            state = .loaded(.powerOn)
-        }
-    }
-    
-    private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
-        
-        guard feature == .all || feature == .outage else { return }
-        
-        accountGroup.setHidden(false)
-        
-        state = .maintenanceMode
-    }
-    
-    private func configureError(_ error: NetworkError, feature: Feature) {
-        
-        guard feature == .all || feature == .outage else { return }
-        
-        accountGroup.setHidden(false)
-        
-        
-        guard error == .passwordProtected else {
-            state = .error(error)
-            return
-        }
-        state = .passwordProtected
-    }
-    
-}
-
-
-
-// MARK: - Networking Delegate
-
-extension BillInterfaceController: NetworkingDelegate {
-    
-    func currentAccountDidUpdate(_ account: Account) {
-        updateAccountInterface(account, animationDuration: 1.0)
-    }
-    
-    func accountDetailDidUpdate(_ accountDetail: AccountDetail) {
-        
+    private func configureAccountDetails(_ accountDetails: AccountDetail) {
         dLog("Account detail did update")
         
         // Hides all groups
@@ -354,34 +301,22 @@ extension BillInterfaceController: NetworkingDelegate {
         // Display Account Group
         accountGroup.setHidden(false)
         
-        configureBillingState(billUtility: BillUtility(accountDetails: accountDetail))
+        configureBillingState(billUtility: BillUtility(accountDetails: accountDetails))
     }
-    
-    func accountListDidUpdate(_ accounts: [Account]) {
-        clearAllMenuItems()
-        
-        guard accounts.count > 1 else { return }
-        addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
-    }
-    
-    func maintenanceMode(feature: MainFeature) {
+
+    private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
         guard feature == .all || feature == .bill else { return }
         accountGroup.setHidden(false)
         state = .maintenanceMode
     }
     
-    func loading(feature: MainFeature) {
-        guard feature == .all || feature == .bill else { return }
-        state = .loading
-    }
-    
-    func error(_ serviceError: ServiceError, feature: MainFeature) {
+    private func configureError(_ error: NetworkError, feature: Feature) {
         guard feature == .all || feature == .bill else { return }
         
         accountGroup.setHidden(false)
         
-        guard serviceError.serviceCode == Errors.Code.passwordProtected else {
-            state = .error(serviceError)
+        guard error == .passwordProtected else {
+            state = .error(error)
             return
         }
         state = .passwordProtected
