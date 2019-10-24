@@ -69,7 +69,7 @@ platform :ios do
       force: false,
       metadata_path: ENV["METADATA_PATH"],
       screenshots_path: ENV["SCREENSHOTS_PATH"],
-      release_notes: ENV["RELEASE_NOTES_PATH"]
+      # release_notes: ENV["RELEASE_NOTES_PATH"]
     )
 
     # clean_build_artifacts
