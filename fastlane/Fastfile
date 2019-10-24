@@ -68,7 +68,8 @@ platform :ios do
       submit_for_review: false,
       force: false,
       metadata_path: ENV["METADATA_PATH"],
-      screenshot_path: ENV["SCREENSHOTS_PATH"]
+      screenshots_path: ENV["SCREENSHOTS_PATH"],
+      release_notes: ENV["RELEASE_NOTES_PATH"]
     )
 
     # clean_build_artifacts
