@@ -75,6 +75,38 @@ struct MCSAccountService: AccountService {
                 throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
             }
             
+            // Firebase Analytic User Properties
+            #if os(iOS)
+            // Customer Type
+            let customerType: String
+            if accountDetail.isResidential {
+                customerType = "residential"
+            } else {
+                customerType = "commercial"
+            }
+            FirebaseUtility.setUserProperty(.customerType, value: customerType)
+
+            // Service Type
+            if let serviceType = accountDetail.serviceType {
+                let serviceTypeString: String
+                
+                if serviceType == "GAS" {
+                    serviceTypeString = "gas"
+                } else if serviceType == "ELECTRIC" {
+                    serviceTypeString = "electric"
+                } else {
+                    serviceTypeString = "both"
+                }
+                
+                FirebaseUtility.setUserProperty(.serviceType, value: serviceTypeString)
+            }
+            
+            // Control Group
+            if Environment.shared.opco == .bge {
+                FirebaseUtility.setUserProperty(.isControlGroup, value: accountDetail.isBGEControlGroup.description)
+            }
+            #endif
+            
             return accountDetail
         }
     }
@@ -121,21 +153,21 @@ struct MCSAccountService: AccountService {
                 guard let dict = json as? NSDictionary,
                     let billingInfo = dict["BillingInfo"] as? NSDictionary,
                     let payments = billingInfo["payments"] as? [NSDictionary] else {
-                    return []
+                        return []
                 }
                 let paymentItems = payments.compactMap(PaymentItem.from).filter { $0.status == .scheduled }
                 return paymentItems
+        }
+        .catchError { error in
+            let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+            if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.fnNotFound.rawValue {
+                return Observable.just([])
+            } else if (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) && serviceError.serviceCode ==  ServiceErrorCode.failed.rawValue {
+                return Observable.just([])
+            } else {
+                throw serviceError
             }
-            .catchError { error in
-                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.fnNotFound.rawValue {
-                    return Observable.just([])
-                } else if (Environment.shared.opco == .comEd || Environment.shared.opco == .peco) && serviceError.serviceCode ==  ServiceErrorCode.failed.rawValue {
-                    return Observable.just([])
-                } else {
-                    throw serviceError
-                }
-            }
+        }
     }
     
     func fetchSERResults(accountNumber: String) -> Observable<[SERResult]> {
@@ -151,16 +183,20 @@ struct MCSAccountService: AccountService {
                         let serResults = SERResult.from(array) else {
                             throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                     }
-                    return serResults
-                }
-                .catchError { error in
-                    let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                    if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.functionalError.rawValue {
-                        return Observable.just([])
-                    } else {
-                        throw serviceError
+                    // Ensure the array is always sorted most recent to oldest
+                    let sortedResults = serResults.sorted { (a, b) -> Bool in
+                        a.eventStart > b.eventStart
                     }
+                    return sortedResults
+            }
+            .catchError { error in
+                let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                if Environment.shared.opco == .bge && serviceError.serviceCode == ServiceErrorCode.functionalError.rawValue {
+                    return Observable.just([])
+                } else {
+                    throw serviceError
                 }
+            }
         }
     }
 }

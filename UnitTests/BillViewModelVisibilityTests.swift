@@ -99,27 +99,6 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         XCTAssertRecordedElements(observer.events, expectedPastDueValues)
     }
     
-    // Tests changes in the `showTopContent` value after switching
-    // through different accounts.
-    func testShowTopContent() {
-        MockUser.current = MockUser(globalKeys: .default, .error)
-        MockAccountService.loadAccountsSync()
-        
-        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(Bool.self)
-        viewModel.showTopContent.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        let expectedEvents = [next(0, false), next(0, false), next(0, true),
-                              next(1, false), next(1, false), next(1, false)]
-        
-        XCTAssertEqual(observer.events, expectedEvents)
-    }
-    
     // Tests changes in the `showPendingPayment` value after switching
     // through different accounts.
     func testShowPendingPayment() {
@@ -181,9 +160,9 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
-    // Tests changes in the `showCredit` value after switching
+    // Tests changes in the `showCreditScenario` value after switching
     // through different accounts.
-    func testShowCredit() {
+    func testShowCreditScenario() {
         MockUser.current = MockUser(globalKeys: .credit, .default)
         MockAccountService.loadAccountsSync()
         
@@ -194,7 +173,7 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         let expectedValues = [Environment.shared.opco == .bge, false]
         
         let observer = scheduler.createObserver(Bool.self)
-        viewModel.showCredit.drive(observer).disposed(by: disposeBag)
+        viewModel.showCreditScenario.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
@@ -208,20 +187,20 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         XCTAssertEqual(viewModel.showAmountDueTooltip, Environment.shared.opco == .peco)
     }
     
-    // Tests changes in the `showBillBreakdownButton` value after switching
+    // Tests changes in the `hasBillBreakdownData` value after switching
     // through different accounts.
-    func testShowBillBreakdownButton() {
-        MockUser.current = MockUser(globalKeys: .default, .bgeControlGroup, .finaledResidential, .invalidServiceType, .gasOnly, .electricOnly, .gasAndElectric)
+    func testHasBillBreakdownData() {
+        MockUser.current = MockUser(globalKeys: .default, .billBreakdown)
         MockAccountService.loadAccountsSync()
         
         let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
         
         simulateAccountSwitches(at: switchAccountEventTimes)
         
-        let expectedValues = [false, false, false, false, true, true, true]
+        let expectedValues = [false, true]
         
         let observer = scheduler.createObserver(Bool.self)
-        viewModel.showBillBreakdownButton.drive(observer).disposed(by: disposeBag)
+        viewModel.hasBillBreakdownData.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
@@ -251,9 +230,9 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         XCTAssertEqual(observer.events, expectedEvents)
     }
     
-    // Tests changes in the `enableMakeAPaymentButton` value after switching
+    // Tests changes in the `showMakeAPaymentButton` value after switching
     // through different accounts.
-    func testEnableMakeAPaymentButton() {
+    func testShowMakeAPaymentButton() {
         MockUser.current = MockUser(globalKeys: .billCardNoDefaultPayment, .default)
         MockAccountService.loadAccountsSync()
         
@@ -264,13 +243,12 @@ class BillViewModelVisibilityTests: BillViewModelTests {
         let expectedValues = [true, Environment.shared.opco == .bge]
         
         let observer = scheduler.createObserver(Bool.self)
-        viewModel.enableMakeAPaymentButton.drive(observer).disposed(by: disposeBag)
+        viewModel.showMakeAPaymentButton.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         
         let expectedEvents = zip(switchAccountEventTimes, expectedValues).map(next)
         XCTAssertEqual(observer.events, expectedEvents)
-        
     }
     
     // Tests changes in the `showPaperless` value after switching

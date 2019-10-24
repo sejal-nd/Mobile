@@ -87,7 +87,7 @@ class BillViewModelContentTests: BillViewModelTests {
             "$200.00",
             "$5,000.00",
             "--",
-            Environment.shared.opco == .bge ? "-$350.34" : "$0.00",
+            Environment.shared.opco == .bge ? "$350.34" : "$0.00",
             "$435.32",
             "$435.32",
             "$435.32"
@@ -115,7 +115,7 @@ class BillViewModelContentTests: BillViewModelTests {
         
         let expectedValues: [String] = [
             "Total Amount Due Immediately",
-            Environment.shared.opco == .bge ? "No Amount Due - Credit Balance" : "Total Amount Due By --",
+            "Total Amount Due By --",
             "Total Amount Due By 01/11/2019",
             "Total Amount Due By --"
         ]
@@ -256,24 +256,6 @@ class BillViewModelContentTests: BillViewModelTests {
         XCTAssertRecordedElements(observer.events, [true, false])
     }
     
-    // Tests changes in the `billBreakdownButtonTitle` value after switching
-    // through different accounts.
-    func testBillBreakdownButtonTitle() {
-        MockUser.current = MockUser(globalKeys: .billBreakdown, .default)
-        MockAccountService.loadAccountsSync()
-        
-        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.billBreakdownButtonTitle.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        XCTAssertRecordedElements(observer.events, ["Bill Breakdown", "View Usage"])
-    }
-    
     // Tests changes in the `paymentStatusText` value after switching
     // through different accounts.
     func testPaymentStatusText() {
@@ -376,78 +358,6 @@ You have a payment of $82.00 scheduled for 01/11/2019. To avoid a duplicate paym
         
         let observer = scheduler.createObserver(MakePaymentStatusTextRouting.self)
         viewModel.makePaymentStatusTextTapRouting.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        XCTAssertRecordedElements(observer.events, expectedValues)
-    }
-    
-    // Tests changes in the `autoPayButtonText` value after switching
-    // through different accounts.
-    func testAutoPayButtonText() {
-        MockUser.current = MockUser(globalKeys: .bgEasy, .autoPay, .autoPayEligible, .default)
-        MockAccountService.loadAccountsSync()
-        
-        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
-        
-        let expectedValues = [
-            "AutoPay\nenrolled in BGEasy",
-            "AutoPay\nenrolled",
-            "Would you like to enroll in AutoPay?",
-            "Would you like to enroll in AutoPay?"
-        ]
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.autoPayButtonText.map { $0.string }.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        XCTAssertRecordedElements(observer.events, expectedValues)
-    }
-    
-    // Tests changes in the `paperlessButtonText` value after switching
-    // through different accounts.
-    func testPaperlessButtonText() {
-        MockUser.current = MockUser(globalKeys: .eBillEligible, .eBill, .finaledStatus)
-        MockAccountService.loadAccountsSync()
-        
-        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
-        
-        let expectedValues = [
-            "Would you like to enroll in Paperless eBill?",
-            "Paperless eBill\nenrolled",
-            nil,
-        ]
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String?.self)
-        viewModel.paperlessButtonText.map { $0?.string }.drive(observer).disposed(by: disposeBag)
-        
-        scheduler.start()
-        
-        XCTAssertRecordedElements(observer.events, expectedValues)
-    }
-    
-    // Tests changes in the `budgetButtonText` value after switching
-    // through different accounts.
-    func testBudgetButtonText() {
-        MockUser.current = MockUser(globalKeys: .budgetBill, .default)
-        MockAccountService.loadAccountsSync()
-        
-        let switchAccountEventTimes = Array(0..<MockUser.current.accounts.count)
-        
-        let expectedValues = [
-            "Budget Billing\nenrolled",
-            "Would you like to enroll in Budget Billing?"
-        ]
-        
-        simulateAccountSwitches(at: switchAccountEventTimes)
-        
-        let observer = scheduler.createObserver(String.self)
-        viewModel.budgetButtonText.map { $0.string }.drive(observer).disposed(by: disposeBag)
         
         scheduler.start()
         

@@ -6,11 +6,7 @@
 
 plutil -convert json -e json Mobile/MCSConfig.plist
 
-string_of_mbes="$(perl -MJSON::PP -e "my \$data = decode_json(<STDIN>); \
-    foreach my \$key ( keys \$data -> {mobileBackends} ){ \
-        if (index(\$key, \"Prod\") == -1){ \
-            print \$key , \" \"; \
-    }}" < Mobile/MCSConfig.json)"
+string_of_mbes="$(jq -r '.mobileBackends|keys[]' < Mobile/MCSConfig.json | grep -v Prod)"
 
 stagingMBEs=($string_of_mbes)
 
@@ -26,13 +22,14 @@ Usage:
 --opco                    - BGE, PECO, or ComEd
 --build-number            - Integer, will be appended to the base version number
 
---configuration           - Testing, Staging, Prodbeta, or Release
+--configuration           - Testing, Staging, Prodbeta, Hotfix, or Release
                             
                             or
 
 --build-branch              refs/heads/test
                             refs/heads/stage
                             refs/heads/prodbeta
+                            refs/heads/hotfix
                             refs/heads/master
 
 ------ App Center Arguments -----
@@ -52,6 +49,7 @@ The build script already figures these values based on opco + configuration, but
 need to override the default behavior you can do so with these. However, it's recommended
 to just update the build script directly if it's a permanent change.
 
+--nowsecure-api-token     - API key for NowSecure security scanning system
 --azuredevopstoken        - A token used by the eucoms-list-changes.sh script to access pull
                             request and work item details to generate release notes. 
                             See the EU-DevOps -> eucoms-list-changes repo for details
@@ -65,7 +63,7 @@ to just update the build script directly if it's a permanent change.
 
 --project                 - Name of the xcworkspace -- defaults to Mobile.xcworkspace
 --scheme                  - Name of the xcode scheme -- Determined algorithmically
---phase                   - cocoapods, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
+--phase                   - cocoapods, build, veracodePrep, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript
 --override-mbe            - Override the default MBE for testing or staging builds only 
                           - Options: ${stagingMBEs[*]}
 "
@@ -92,6 +90,7 @@ OVERRIDE_MBE=
 AZURE_DEVOPS_TOKEN=
 RELEASE_NOTES_PR_NUMBER=
 RELEASE_NOTES_CONTENT=
+NOWSECURE_API_TOKEN=
 
 # Parse arguments.
 for i in "$@"; do
@@ -114,6 +113,7 @@ for i in "$@"; do
         --azuredevopstoken) AZURE_DEVOPS_TOKEN="$2"; shift ;;
         --releasenotesprnumber) RELEASE_NOTES_PR_NUMBER="$2"; shift ;;
         --releasenotescontent) RELEASE_NOTES_CONTENT="$2"; shift ;;
+        --nowsecure-api-token) NOWSECURE_API_TOKEN="$2"; shift ;;
     esac
     shift
 done
@@ -147,6 +147,8 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
   CONFIGURATION="Prodbeta"
+elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix" ]]; then
+  CONFIGURATION="Hotfix"
 elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
   CONFIGURATION="Release"
 fi
@@ -162,7 +164,7 @@ elif [ -z "$OPCO" ]; then
     exit 1
 fi
 
-target_phases="cocoapods, build, veracodePrep, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
+target_phases="cocoapods, build, veracodePrep, nowsecure, unitTest, appCenterTest, appCenterSymbols, distribute, writeDistributionScript"
 
 if [ -n "$PHASE" ]; then
   target_phases="$PHASE"
@@ -235,6 +237,13 @@ elif [ "$CONFIGURATION" == "Prodbeta" ]; then
     target_scheme="$OPCO-PRODBETA"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
     target_version_number="$target_version_number.$BUILD_NUMBER-prodbeta"
+elif [ "$CONFIGURATION" == "Hotfix" ]; then
+    target_bundle_id="$BASE_BUNDLE_NAME.hotfix"
+    target_app_name="$OPCO Hotfix"
+    target_icon_asset="tools/$OPCO/hotfix"
+    target_scheme="$OPCO-HOTFIX"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
+    target_version_number="$target_version_number.$BUILD_NUMBER-hotfix"
 elif [ "$CONFIGURATION" == "Release" ]; then
     if [ "$OPCO_LOWERCASE" == "comed" ]; then
         # ComEd's production app bundle is different because of the previous Kony mobile app
@@ -248,7 +257,7 @@ elif [ "$CONFIGURATION" == "Release" ]; then
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
     echo "Invalid argument: configuration"
-    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", or \"Release\""
+    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", \"Hotfix\", or \"Release\""
     exit 1
 fi
 
@@ -312,12 +321,15 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	echo "   CFBundleShortVersionString=$target_version_number"
 	echo ""
 
-	if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ) &&  "$OVERRIDE_MBE" != "" ]]; then
+	if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ||  "$CONFIGURATION" == "Hotfix" ) &&  "$OVERRIDE_MBE" != "" ]]; then
         if find_in_array $OVERRIDE_MBE "${stagingMBEs[@]}"; then
 
             if [ "$CONFIGURATION" == "Staging" ]; then
                 plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist
                 echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist"
+            elif [ "$CONFIGURATION" == "Hotfix" ]; then
+                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-HOTFIX.plist
+                echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-HOTFIX.plist"
             else
                 plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist
                 echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist"
@@ -331,16 +343,10 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 fi
 
 
-# Check VSTS xcode version. If set to 9.4.1, change it to 10.0. This branch requires 10.0+ to run.
-if xcodebuild -version | grep -q 9.4.1; then
-    echo "Switching VSTS build agent to Xcode 10 -- $XCODE_10_DEVELOPER_DIR"
-    sudo xcode-select -switch $XCODE_10_DEVELOPER_DIR
-
-    # Xcode 10's new build system seems to want all files in place, which causes issues with the environment switcher task
-    # Stick empty files in place
-
-    touch Mobile/Configuration/environment.plist
-    touch Mobile/Configuration/environment_preprocess.h
+# Check VSTS xcode version. If set to 10, change it to 11. This branch requires 11+ to run.
+if xcodebuild -version | grep -q "Xcode 10"; then
+    echo "Switching VSTS build agent to Xcode 11 -- $XCODE_11_DEVELOPER_DIR"
+    sudo xcode-select -switch $XCODE_11_DEVELOPER_DIR
 fi
 
 # Restore cocoapods Packages
@@ -543,6 +549,24 @@ if [[ $target_phases = *"veracodePrep"* ]]; then
         echo "Skipping Veracode prep. Only Staging configuration is setup for Veracode analysis currently"
     fi
 fi
+
+if [[ $target_phases = *"nowsecure"* ]]; then
+
+    if [ "$CONFIGURATION" == "Staging" ]; then
+
+        if [ -n "$NOWSECURE_API_TOKEN" ]; then
+            echo "Uploading ./build/output/$target_scheme/$target_scheme.ipa to NowSecure"
+            pwd
+            curl -H "Authorization: Bearer ${NOWSECURE_API_TOKEN}" -X POST https://lab-api.nowsecure.com/build/ --data-binary @./build/output/$target_scheme/$target_scheme.ipa
+        else
+            echo "NowSecure API token is missing, can't upload binary!"
+        fi
+
+    else
+        echo "Skipping NowSecure upload. Only Staging configuration is setup for NowSecure analysis currently"
+    fi
+fi
+
 
 
 if [[ $target_phases = *"appCenterTest"* ]]; then

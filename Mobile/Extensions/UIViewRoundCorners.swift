@@ -17,12 +17,8 @@ extension UIView {
      - parameter radius:  Radius to round to
      */
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        if #available(iOS 11.0, *) {
-            layer.maskedCorners = corners.cornerMask
-            layer.cornerRadius = radius
-        } else {
-            _roundWithMask(corners: corners, radius: radius)
-        }
+        layer.maskedCorners = corners.cornerMask
+        layer.cornerRadius = radius
     }
     
     /**
@@ -34,15 +30,10 @@ extension UIView {
      - parameter borderWidth: The border width
      */
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat) {
-        if #available(iOS 11.0, *) {
-            layer.maskedCorners = corners.cornerMask
-            layer.cornerRadius = radius
-            layer.borderColor = borderColor.cgColor
-            layer.borderWidth = borderWidth
-        } else {
-            let mask = _roundWithMask(corners: corners, radius: radius)
-            addBorder(mask: mask, borderColor: borderColor, borderWidth: borderWidth)
-        }
+        layer.maskedCorners = corners.cornerMask
+        layer.cornerRadius = radius
+        layer.borderColor = borderColor.cgColor
+        layer.borderWidth = borderWidth
     }
     
     /**
@@ -57,30 +48,6 @@ extension UIView {
         layer.cornerRadius = diameter / 2
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor
-    }
-    
-}
-
-private extension UIView {
-    
-    @available(iOS, deprecated: 11.0, message: "In iOS 11+, use `CALayer.maskedCorners` instead")
-    @discardableResult func _roundWithMask(corners: UIRectCorner, radius: CGFloat) -> CAShapeLayer {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
-        return mask
-    }
-    
-    @available(iOS, deprecated: 11.0, message: "In iOS 11+, use `CALayer.maskedCorners` instead")
-    func addBorder(mask: CAShapeLayer, borderColor: UIColor, borderWidth: CGFloat) {
-        let borderLayer = CAShapeLayer()
-        borderLayer.path = mask.path
-        borderLayer.fillColor = UIColor.clear.cgColor
-        borderLayer.strokeColor = borderColor.cgColor
-        borderLayer.lineWidth = borderWidth
-        borderLayer.frame = bounds
-        layer.addSublayer(borderLayer)
     }
     
 }

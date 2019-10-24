@@ -11,7 +11,9 @@ import Foundation
 import Reachability
 #endif
 import RxSwift
+#if !os(iOS)
 import WatchKit
+#endif
 
 /// MCSApi is a wrapper around the URLSession networking APIs. It provides convenience methods
 /// for executing POST/PUT/GET/DELETE custom endpoints, as well as authentication related APIs.
@@ -140,6 +142,11 @@ class MCSApi {
                     }
                     
                     APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
+                    
+                    #if os(iOS)
+                    FirebaseUtility.logEvent(.loginExchangeTokenNetworkComplete)
+                    #endif
+                    
                     return token
                 }
                 .do(onNext: { [weak self] token in

@@ -44,25 +44,23 @@ struct GovWeatherService: WeatherService {
                 
                 return URLSession.shared.rx.dataResponse(request: urlRequest, onCanceled: {
                     APILog(GovWeatherService.self, requestId: requestId, path: urlString, method: method, logType: .canceled, message: nil)
-                })
-                    .do(onError: { error in
-                        let serviceError = error as? ServiceError ?? ServiceError(cause: error)
-                        APILog(GovWeatherService.self, requestId: requestId, path: urlString, method: method, logType: .error, message: serviceError.errorDescription)
-                    })
-                    .map { data -> WeatherItem in
-                        guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                            let dict = json as? [String: Any],
-                            let weatherItem = WeatherItem.from(dict as NSDictionary) else {
-                                let error = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
-                                APILog(GovWeatherService.self, requestId: requestId, path: urlString, method: method, logType: .error, message: error.errorDescription)
-                                throw error
-                        }
-                        
-                        APILog(GovWeatherService.self, requestId: requestId, path: urlString, method: method, logType: .response, message: "SUCCESS")
-                        return weatherItem
+                }).do(onError: { error in
+                    let serviceError = error as? ServiceError ?? ServiceError(cause: error)
+                    APILog(GovWeatherService.self, requestId: requestId, path: urlString, method: method, logType: .error, message: serviceError.errorDescription)
+                }).map { data -> WeatherItem in
+                    guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                        let dict = json as? [String: Any],
+                        let weatherItem = WeatherItem.from(dict as NSDictionary) else {
+                            let error = ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                            APILog(GovWeatherService.self, requestId: requestId, path: urlString, method: method, logType: .error, message: error.errorDescription)
+                            throw error
+                    }
+                    
+                    APILog(GovWeatherService.self, requestId: requestId, path: urlString, method: method, logType: .response, message: "SUCCESS")
+                    return weatherItem
                 }
+            }
         }
-    }
     
     private func urlString(coordinate: CLLocationCoordinate2D) -> String {
         let lat = String(format: "%.3f", coordinate.latitude)

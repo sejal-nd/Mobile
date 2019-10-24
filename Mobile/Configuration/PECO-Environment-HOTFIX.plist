@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>watchGaTrackingId</key>
+	<string>UA-130168632-1</string>
+	<key>environment</key>
+	<string>HOTFIX</string>
+	<key>opco</key>
+	<string>PECO</string>
+	<key>appName</key>
+	<string>PECO_HOTFIX</string>
+	<key>mcsInstanceName</key>
+	<string>Stage-pecoHotfixMBE</string>
+	<key>myAccountUrl</key>
+	<string>https://azstg.peco.com/MyAccount</string>
+	<key>outageMapUrl</key>
+	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
+	<key>paymentusUrl</key>
+	<string>https://secure2.paymentus.com/xotp/pm/peco</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_peco_hotfix</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-17</string>
+	<key>opcoUpdatesHost</key>
+	<string>azstg.peco.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.peco.com</string>
+	<key>appCenterId</key>
+	<string>26fd4ab7-fed2-41e2-b320-103a0ff5f4d0</string>
+</dict>
+</plist>

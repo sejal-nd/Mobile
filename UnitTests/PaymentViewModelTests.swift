@@ -141,8 +141,8 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         // Initial state
-        viewModel.makePaymentNextButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
-            XCTAssertFalse(enabled, "Next button should not be enabled initially")
+        viewModel.makePaymentContinueButtonEnabled.asObservable().take(1).subscribe(onNext: { enabled in
+            XCTAssertFalse(enabled, "Continue button should not be enabled initially")
         }).disposed(by: disposeBag)
 
         // TODO: Make this test more robust
@@ -151,13 +151,13 @@ class PaymentViewModelTests: XCTestCase {
     func testShouldShowPaymentAccountView() {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
-        viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssertFalse(shouldShow, "Payment method view should not be shown by default")
+        viewModel.shouldShowPaymentMethodButton.asObservable().take(1).subscribe(onNext: { shouldShow in
+            XCTAssertFalse(shouldShow, "Payment method button should not be shown by default")
         }).disposed(by: disposeBag)
 
         viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
-        viewModel.shouldShowPaymentAccountView.asObservable().take(1).subscribe(onNext: { shouldShow in
-            XCTAssert(shouldShow, "Payment method view should be shown after a wallet item is selected")
+        viewModel.shouldShowPaymentMethodButton.asObservable().take(1).subscribe(onNext: { shouldShow in
+            XCTAssert(shouldShow, "Payment method button should be shown after a wallet item is selected")
         }).disposed(by: disposeBag)
     }
 
@@ -211,7 +211,7 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
         
         viewModel.selectedWalletItem.value = WalletItem()
-        viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
+        viewModel.paymentMethodFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
             let expectedFeeString = NSLocalizedString("No convenience fee will be applied.", comment: "")
             XCTAssertEqual(feeText, expectedFeeString)
         }).disposed(by: disposeBag)
@@ -221,7 +221,7 @@ class PaymentViewModelTests: XCTestCase {
         viewModel = PaymentViewModel(walletService: MockWalletService(), paymentService: MockPaymentService(), accountDetail: .fromMockJson(forKey: .billCardNoDefaultPayment), billingHistoryItem: nil)
 
         viewModel.selectedWalletItem.value = WalletItem(paymentMethodType: .visa)
-        viewModel.paymentAmountFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
+        viewModel.paymentMethodFeeLabelText.asObservable().take(1).subscribe(onNext: { feeText in
             let expectedFeeString = NSLocalizedString("A $5.95 convenience fee will be applied by Paymentus, our payment partner.", comment: "")
             XCTAssertEqual(feeText, expectedFeeString)
         }).disposed(by: disposeBag)

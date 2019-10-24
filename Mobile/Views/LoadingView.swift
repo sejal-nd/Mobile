@@ -39,7 +39,7 @@ class LoadingView: UIView {
         
         loadingView.frame = loadingView.containerView.bounds
         loadingView.isAccessibilityElement = true
-        loadingView.accessibilityLabel = "Loading"
+        loadingView.accessibilityLabel = NSLocalizedString("Loading", comment: "")
         loadingView.accessibilityViewIsModal = true
         if loadingView.superview == nil {
             loadingView.alpha = 0.0

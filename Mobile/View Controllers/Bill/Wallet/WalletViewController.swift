@@ -124,11 +124,11 @@ class WalletViewController: UIViewController {
 
         addAccessibility()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        navigationController?.setColoredNavBar(hidesBottomBorder: true)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func viewDidLayoutSubviews() {
@@ -370,7 +370,7 @@ extension WalletViewController: PaymentusFormViewControllerDelegate {
     }
     
     func didAddWalletItem(_ walletItem: WalletItem) {
-        Analytics.log(event: .addWalletComplete)
+        GoogleAnalytics.log(event: .addWalletComplete)
 
         let toastMessage = walletItem.bankOrCard == .bank ?
             NSLocalizedString("Bank account added", comment: "") :

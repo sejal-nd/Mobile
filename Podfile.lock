@@ -16,6 +16,12 @@ PODS:
     - FirebaseAnalytics (= 5.8.0)
   - Firebase/CoreOnly (5.19.0):
     - FirebaseCore (= 5.4.0)
+  - Firebase/RemoteConfig (5.19.0):
+    - Firebase/Core
+    - FirebaseRemoteConfig (= 3.1.0)
+  - FirebaseABTesting (2.0.0):
+    - FirebaseCore (~> 5.0)
+    - Protobuf (~> 3.5)
   - FirebaseAnalytics (5.8.0):
     - FirebaseCore (~> 5.4)
     - FirebaseInstanceID (~> 3.8)
@@ -32,6 +38,14 @@ PODS:
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/UserDefaults (~> 5.2)
+  - FirebaseRemoteConfig (3.1.0):
+    - FirebaseABTesting (~> 2.0)
+    - FirebaseAnalytics (~> 5.3)
+    - FirebaseCore (~> 5.1)
+    - FirebaseInstanceID (~> 3.3)
+    - GoogleUtilities/Environment (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - Protobuf (~> 3.5)
   - GoogleAnalytics (3.17.0)
   - GoogleAppMeasurement (5.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
@@ -57,7 +71,6 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
-  - JVFloatLabeledTextField (1.2.1)
   - lottie-ios (2.5.3)
   - ModelMapper (10.0.0):
     - ModelMapper/Core (= 10.0.0)
@@ -68,6 +81,7 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - PDTSimpleCalendar (0.9.1)
+  - Protobuf (3.9.0)
   - ReachabilitySwift (4.3.1)
   - RxCocoa (4.4.2):
     - RxSwift (>= 4.4.2, ~> 4.4)
@@ -91,8 +105,8 @@ DEPENDENCIES:
   - AppCenterXCUITestExtensions (= 1.0)
   - Charts (= 3.3)
   - Firebase/Core (= 5.19.0)
+  - Firebase/RemoteConfig
   - GoogleAnalytics (= 3.17.0)
-  - JVFloatLabeledTextField (= 1.2.1)
   - lottie-ios (= 2.5.3)
   - ModelMapper (= 10.0.0)
   - PDTSimpleCalendar (= 0.9.1)
@@ -106,22 +120,24 @@ DEPENDENCIES:
   - zxcvbn-ios (= 1.0.4)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AppCenter
     - AppCenterXCUITestExtensions
     - Charts
     - Firebase
+    - FirebaseABTesting
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
+    - FirebaseRemoteConfig
     - GoogleAnalytics
     - GoogleAppMeasurement
     - GoogleUtilities
-    - JVFloatLabeledTextField
     - lottie-ios
     - ModelMapper
     - nanopb
     - PDTSimpleCalendar
+    - Protobuf
     - ReachabilitySwift
     - RxCocoa
     - RxSwift
@@ -136,17 +152,19 @@ SPEC CHECKSUMS:
   AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
+  FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: fd72a26bf8dac84cefba2f0864366f718555a5b0
   FirebaseCore: 22a79a961c3951ef2f77b67bfbc99e454247b319
   FirebaseInstanceID: cf488df2f4b79782f0e430b04a0e17c0aa7979b2
+  FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
-  JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   ModelMapper: a8dbf2a2003bf626627b9fe7c9a22b3405a30404
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
@@ -156,6 +174,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: e7e7600cdb6da72d60a70eb270a69cf4faa474d6
+PODFILE CHECKSUM: 06c208368eb54bdb5cee65169247dbafcfd52637
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3

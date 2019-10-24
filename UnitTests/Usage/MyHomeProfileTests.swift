@@ -253,15 +253,13 @@ class MyHomeProfileTests: XCTestCase {
         viewModel.saveA11yLabel.drive(observer).disposed(by: disposeBag)
         
         let expectedEvents = [
-            "Home type is required,Heating fuel is required,Number of adults is required,Number of children is required,Square footage is required, Save",
-            "Heating fuel is required,Number of adults is required,Number of children is required,Square footage is required, Save",
-            "Number of adults is required,Number of children is required,Square footage is required, Save",
-            "Number of children is required,Square footage is required, Save",
-            "Square footage is required, Save",
-            "Save"
-            ]
-            .enumerated()
-            .map(next)
+            "Home type is required,Heating fuel is required,Number of adults is required,Number of children is required,Square footage is required, Save Profile",
+            "Heating fuel is required,Number of adults is required,Number of children is required,Square footage is required, Save Profile",
+            "Number of adults is required,Number of children is required,Square footage is required, Save Profile",
+            "Number of children is required,Square footage is required, Save Profile",
+            "Square footage is required, Save Profile",
+            "Save Profile"
+        ].enumerated().map(next)
         
         scheduler.start()
         
