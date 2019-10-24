@@ -55,7 +55,7 @@ class OutageInterfaceController: WKInterfaceController {
     
     enum OutageState {
         case powerOn
-        case powerOut
+        case powerOut(OutageStatus?)
         case gasOnly
         case unavilable
     }
@@ -143,7 +143,7 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 powerStatusLabel.setText("POWER IS ON")
                 dLog("Outage Status: power on")
-            case .powerOut:
+            case .powerOut(let outageStatus):
                 statusGroup.setHidden(false)
                 powerStatusImage.setHidden(false)
                 etrGroup.setHidden(false)
@@ -153,7 +153,7 @@ class OutageInterfaceController: WKInterfaceController {
                 shouldAnimateStatusImage = true
                 
                 powerStatusLabel.setText("POWER IS OUT")
-                guard let etr = NetworkingUtility.shared.outageStatus?.etr else {
+                guard let etr = outageStatus?.etr else {
                     etrTitleLabel.setHidden(true)
                     etrDetailLabel.setHidden(true)
                     return
@@ -192,9 +192,9 @@ class OutageInterfaceController: WKInterfaceController {
                 return
             }
             
-            if outageState == .powerOn {
+            if case .powerOn = outageState {
                 powerStatusImage.startAnimatingWithImages(in: NSMakeRange(0, 119), duration: 0, repeatCount: 0)
-            } else if outageState == .powerOut {
+            } else if case .powerOut(_) = outageState {
                 powerStatusImage.startAnimatingWithImages(in: NSMakeRange(0, 119), duration: 0, repeatCount: 1)
             } else {
                 powerStatusImage.stopAnimating()
@@ -223,7 +223,7 @@ class OutageInterfaceController: WKInterfaceController {
         }
         
         // Perform Network Request
-        NetworkingUtility.shared.fetchData() // todo remove
+        NetworkUtility.shared.fetchData(shouldLoadAccountList: true)
     }
     
     override func didAppear() {
@@ -261,23 +261,23 @@ class OutageInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     @objc private func outageReportedFromPhone() {
-        self.state = .loaded(.powerOut)
+        self.state = .loaded(.powerOut(nil))
     }
     
     private func configureNetworkActions() {
-        NetworkUtilityNew.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
+        NetworkUtility.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
             self?.configureMaintenanceMode(maintenance, feature: feature)
         }
         
-        NetworkUtilityNew.shared.errorDidOccur = { [weak self] error, feature in
+        NetworkUtility.shared.errorDidOccur = { [weak self] error, feature in
             self?.configureError(error, feature: feature)
         }
         
-        NetworkUtilityNew.shared.accountListDidUpdate = { [weak self] accounts in
+        NetworkUtility.shared.accountListDidUpdate = { [weak self] accounts in
             self?.configureAccountList(accounts)
         }
         
-        NetworkUtilityNew.shared.outageStatusDidUpdate = { [weak self] outageStatus in
+        NetworkUtility.shared.outageStatusDidUpdate = { [weak self] outageStatus in
             self?.configureOutageStatus(outageStatus)
         }
     }
@@ -330,7 +330,7 @@ extension OutageInterfaceController {
         }
         
         if outageStatus.activeOutage {
-            state = .loaded(.powerOut)
+            state = .loaded(.powerOut(outageStatus))
         } else if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
             state = .loaded(.unavilable)
         } else {

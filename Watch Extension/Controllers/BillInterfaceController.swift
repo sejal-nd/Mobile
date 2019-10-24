@@ -173,19 +173,19 @@ class BillInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     private func configureNetworkActions() {
-        NetworkUtilityNew.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
+        NetworkUtility.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
             self?.configureMaintenanceMode(maintenance, feature: feature)
         }
         
-        NetworkUtilityNew.shared.errorDidOccur = { [weak self] error, feature in
+        NetworkUtility.shared.errorDidOccur = { [weak self] error, feature in
             self?.configureError(error, feature: feature)
         }
         
-        NetworkUtilityNew.shared.accountListDidUpdate = { [weak self] accounts in
+        NetworkUtility.shared.accountListDidUpdate = { [weak self] accounts in
             self?.configureAccountList(accounts)
         }
         
-        NetworkUtilityNew.shared.accountDetailDidUpdate = { [weak self] accountDetails in
+        NetworkUtility.shared.accountDetailDidUpdate = { [weak self] accountDetails in
             self?.configureAccountDetails(accountDetails)
         }
     }

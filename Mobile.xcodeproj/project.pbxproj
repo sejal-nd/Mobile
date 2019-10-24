@@ -364,9 +364,9 @@
 		359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB622E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB722E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
-		35A2EB1223578A8900427246 /* NewNetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2EB1123578A8900427246 /* NewNetworkUtility.swift */; };
-		35A2EB1323578A8900427246 /* NewNetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2EB1123578A8900427246 /* NewNetworkUtility.swift */; };
-		35A2EB1423578A8900427246 /* NewNetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2EB1123578A8900427246 /* NewNetworkUtility.swift */; };
+		35A2EB1223578A8900427246 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2EB1123578A8900427246 /* NetworkUtility.swift */; };
+		35A2EB1323578A8900427246 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2EB1123578A8900427246 /* NetworkUtility.swift */; };
+		35A2EB1423578A8900427246 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A2EB1123578A8900427246 /* NetworkUtility.swift */; };
 		35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		35A5DCBD2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		35A5DCBE2305D30900A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
@@ -482,7 +482,6 @@
 		35E7C7D121907F2F00BA13C6 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C721907F2E00BA13C6 /* Outage.storyboard */; };
 		35E7C7D221907F2F00BA13C6 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C821907F2E00BA13C6 /* Usage.storyboard */; };
 		35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
-		35E7C7E02190802C00BA13C6 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35E7C7FA2190805500BA13C6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7F92190805500BA13C6 /* ExtensionDelegate.swift */; };
@@ -507,7 +506,6 @@
 		35F9DD732333D14D00AAA2B2 /* UsageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FC2190805C00BA13C6 /* UsageInterfaceController.swift */; };
 		35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C8002190805C00BA13C6 /* BillInterfaceController.swift */; };
 		35F9DD772333D14D00AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
-		35F9DD792333D14D00AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DD7F2333D14D00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
 		35F9DD842333D2B800AAA2B2 /* BGE-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35F9DD2F2333C34100AAA2B2 /* BGE-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -569,7 +567,6 @@
 		35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35F9DDF7233539E100AAA2B2 /* Main.storyboard */; };
 		35F9DDFB23353A3C00AAA2B2 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35F9DDFE23353A3C00AAA2B2 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
-		35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */; };
 		35F9DE0523353A4800AAA2B2 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FD2190805C00BA13C6 /* SignInInterfaceController.swift */; };
 		35F9DE0A23353A5300AAA2B2 /* AccountListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7FF2190805C00BA13C6 /* AccountListInterfaceController.swift */; };
@@ -2882,7 +2879,7 @@
 		359BDBAB22E09D93007002B0 /* AccountInfoBarNew.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountInfoBarNew.xib; sourceTree = "<group>"; };
 		359BDBB022E0E6E3007002B0 /* smallcircleload_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smallcircleload_blue.json; sourceTree = "<group>"; };
 		359BDBB422E0E6EA007002B0 /* checkmark_blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark_blue.json; sourceTree = "<group>"; };
-		35A2EB1123578A8900427246 /* NewNetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNetworkUtility.swift; sourceTree = "<group>"; };
+		35A2EB1123578A8900427246 /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
 		35A5DCC22305D70400A82AA8 /* AutoPayBGE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPayBGE.storyboard; sourceTree = "<group>"; };
 		35A6C6B8211C6CCE00C2A58F /* TitleTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewHeaderView.xib; sourceTree = "<group>"; };
 		35A6C6BA211C6CEB00C2A58F /* TitleTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewHeaderView.swift; sourceTree = "<group>"; };
@@ -2932,7 +2929,6 @@
 		35E7C7CA21907F2E00BA13C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableRowController.swift; sourceTree = "<group>"; };
 		35E7C7DC2190802C00BA13C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingUtility.swift; sourceTree = "<group>"; };
 		35E7C7E32190803900BA13C6 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DueBy.swift"; sourceTree = "<group>"; };
 		35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnimateWithDuration+Completion.swift"; sourceTree = "<group>"; };
@@ -4933,8 +4929,7 @@
 			children = (
 				35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */,
 				3527DB37234B86E000DA4553 /* BillUtility.swift */,
-				35E7C7DD2190802C00BA13C6 /* NetworkingUtility.swift */,
-				35A2EB1123578A8900427246 /* NewNetworkUtility.swift */,
+				35A2EB1123578A8900427246 /* NetworkUtility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -8257,7 +8252,7 @@
 				356C7F922190A1B9003E8A90 /* MCSOutageService.swift in Sources */,
 				356C7F8421909E97003E8A90 /* DateParser.swift in Sources */,
 				356C7F8B21909FBB003E8A90 /* AccountService.swift in Sources */,
-				35A2EB1223578A8900427246 /* NewNetworkUtility.swift in Sources */,
+				35A2EB1223578A8900427246 /* NetworkUtility.swift in Sources */,
 				356C7F8C2190A08A003E8A90 /* MCSApi.swift in Sources */,
 				35E7C8062190805C00BA13C6 /* BillInterfaceController.swift in Sources */,
 				3527DB38234B86E000DA4553 /* BillUtility.swift in Sources */,
@@ -8282,7 +8277,6 @@
 				356C7F992190A2E0003E8A90 /* ReportedOutagesStore.swift in Sources */,
 				356C7F8321909E7E003E8A90 /* NumberFormatter.swift in Sources */,
 				35E7C7FA2190805500BA13C6 /* ExtensionDelegate.swift in Sources */,
-				35E7C7E02190802C00BA13C6 /* NetworkingUtility.swift in Sources */,
 				356C7F942190A1F8003E8A90 /* HomeProfile.swift in Sources */,
 				B0E9F00121EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				356C7F9E2190A446003E8A90 /* AuthTokenParser.swift in Sources */,
@@ -8329,7 +8323,7 @@
 				35F9DD9C2333D86100AAA2B2 /* BillComparison.swift in Sources */,
 				35F9DD7C2333D14D00AAA2B2 /* Date+DueBy.swift in Sources */,
 				35F9DDB62333D8EE00AAA2B2 /* NumberFormatter.swift in Sources */,
-				35A2EB1323578A8900427246 /* NewNetworkUtility.swift in Sources */,
+				35A2EB1323578A8900427246 /* NetworkUtility.swift in Sources */,
 				35F9DDAE2333D8BF00AAA2B2 /* MCSAccountService.swift in Sources */,
 				35F9DDA92333D8A100AAA2B2 /* AuthTokenResponse.swift in Sources */,
 				35F9DD9D2333D86400AAA2B2 /* BillForecast.swift in Sources */,
@@ -8367,7 +8361,6 @@
 				35FB5030234D091100C50162 /* UIColor.swift in Sources */,
 				35F9DD6F2333D14D00AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				35F9DDBC2333D90D00AAA2B2 /* URLSession+Rx.swift in Sources */,
-				35F9DD792333D14D00AAA2B2 /* NetworkingUtility.swift in Sources */,
 				35F9DDB02333D8C600AAA2B2 /* MCSAuthenticationService.swift in Sources */,
 				35F9DE5C233A63AD00AAA2B2 /* WatchSessionManager.swift in Sources */,
 				35F9DDA42333D88800AAA2B2 /* StormModeStatus.swift in Sources */,
@@ -8401,7 +8394,7 @@
 				35F9DE0823353A5300AAA2B2 /* SignInInterfaceController.swift in Sources */,
 				35F9DE1823353C5200AAA2B2 /* Account.swift in Sources */,
 				35F9DE2B23353CC700AAA2B2 /* AuthTokenParser.swift in Sources */,
-				35A2EB1423578A8900427246 /* NewNetworkUtility.swift in Sources */,
+				35A2EB1423578A8900427246 /* NetworkUtility.swift in Sources */,
 				35F9DE1A23353C5B00AAA2B2 /* OutageStatus.swift in Sources */,
 				35F9DE3A23353D2600AAA2B2 /* NumberFormatter.swift in Sources */,
 				3527DB3A234B86E000DA4553 /* BillUtility.swift in Sources */,
@@ -8425,7 +8418,6 @@
 				35F9DE4223353D5F00AAA2B2 /* KeychainUtility.swift in Sources */,
 				35F9DE0B23353A5300AAA2B2 /* OutageInterfaceController.swift in Sources */,
 				35F9DE3D23353D3800AAA2B2 /* PecoColor.swift in Sources */,
-				35F9DE0223353A4300AAA2B2 /* NetworkingUtility.swift in Sources */,
 				35F9DE2523353C9C00AAA2B2 /* SERResult.swift in Sources */,
 				35F9DE3C23353D3400AAA2B2 /* NibViews.swift in Sources */,
 				35F9DE2223353C8100AAA2B2 /* SSOData.swift in Sources */,

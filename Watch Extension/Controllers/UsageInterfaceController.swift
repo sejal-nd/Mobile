@@ -260,15 +260,15 @@ class UsageInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     private func configureNetworkActions() {
-        NetworkUtilityNew.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
+        NetworkUtility.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
             self?.configureMaintenanceMode(maintenance, feature: feature)
         }
         
-        NetworkUtilityNew.shared.errorDidOccur = { [weak self] error, feature in
+        NetworkUtility.shared.errorDidOccur = { [weak self] error, feature in
             self?.configureError(error, feature: feature)
         }
         
-        NetworkUtilityNew.shared.accountDetailDidUpdate = { [weak self] accountDetails in
+        NetworkUtility.shared.accountDetailDidUpdate = { [weak self] accountDetails in
             guard let accounts = AccountsStore.shared.accounts else {
                 self?.state = .error(.fetchError)
                 return
@@ -276,7 +276,7 @@ class UsageInterfaceController: WKInterfaceController {
             self?.configureAccountDetails(accountDetails, accounts: accounts)
         }
         
-        NetworkUtilityNew.shared.billForecastDidUpdate = { [weak self] billForecast in
+        NetworkUtility.shared.billForecastDidUpdate = { [weak self] billForecast in
             self?.configureBillForecast(billForecast)
         }
     }

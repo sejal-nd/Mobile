@@ -24,15 +24,12 @@ enum Feature {
     case all
 }
 
-final class NetworkUtilityNew {
+final class NetworkUtility {
     
     private let disposeBag = DisposeBag()
-    
     private var pollingTimer: Timer!
     
-    public static let shared = NetworkUtilityNew()
-
-    
+    public static let shared = NetworkUtility()
     
     public var accountListDidUpdate: (([Account]) -> ())?
     
@@ -45,8 +42,6 @@ final class NetworkUtilityNew {
     public var maintenanceModeDidUpdate: ((Maintenance, Feature) -> ())?
     
     public var errorDidOccur: ((NetworkError, Feature) -> ())?
-    
-    
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
@@ -147,7 +142,7 @@ final class NetworkUtilityNew {
 
 // MARK: - Feature Fetches
 
-extension NetworkUtilityNew {
+extension NetworkUtility {
     // this is where the magic happens
     private func fetchFeatureData(completion: @escaping (Result<[Account], NetworkError>) -> ()) {
         // Fetch Account Details + Maintenance Mode
@@ -356,7 +351,7 @@ extension NetworkUtilityNew {
     
     // MARK: - Timer
     
-    extension NetworkUtilityNew {
+    extension NetworkUtility {
     
     /// Reload Data every 15 minutes without the loading indicator if the app is reachable
     @objc private func reloadPollingData() {
@@ -373,7 +368,7 @@ extension NetworkUtilityNew {
     
     // MARK: - Current Account Did Update
     
-    extension NetworkUtilityNew {
+    extension NetworkUtility {
     
     // User selected account did update
     @objc func currentAccountDidUpdate(_ notification: NSNotification) {
