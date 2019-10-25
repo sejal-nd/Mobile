@@ -5982,10 +5982,7 @@
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
-				6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */,
 				0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */,
-				6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */,
-				6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
