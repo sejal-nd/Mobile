@@ -33,12 +33,11 @@ class ScreenshotsUITests: ExelonUITestCase {
         
         selectTab(tabName: "Outage")
         
-                
-//        tapButton(buttonText: "Report Outage")
         sleep(5)
         app.staticTexts["Report Outage"].tap()
         tapButton(buttonText: "Report Outage")
         sleep(6) // wait for the toast to dismiss
+        
         // 📸 Outage
         snapshot("03Outage")
         
