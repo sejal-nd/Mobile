@@ -42,7 +42,7 @@
                                     <variation key="device=watch42mm" height="130"/>
                                     <variation key="device=watch44mm" height="130"/>
                                 </group>
-                                <group width="1" height="100" alignment="left" layout="vertical" id="k99-kY-Ghs">
+                                <group width="1" alignment="left" layout="vertical" id="k99-kY-Ghs">
                                     <items>
                                         <imageView height="60" alignment="center" image="outageUnavailable" contentMode="scaleAspectFit" id="t25-mM-fED"/>
                                         <label width="1" alignment="center" text="Label" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="yrO-gy-zWL">
@@ -52,10 +52,6 @@
                                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                         </label>
                                     </items>
-                                    <variation key="device=watch38mm" height="110"/>
-                                    <variation key="device=watch40mm" height="110"/>
-                                    <variation key="device=watch42mm" height="130"/>
-                                    <variation key="device=watch44mm" height="130"/>
                                 </group>
                                 <group width="1" height="6" alignment="left" id="XPD-e9-Vgv"/>
                                 <group width="1" alignment="left" layout="vertical" spacing="8" id="tPK-Sl-QXF">
@@ -230,7 +226,7 @@
         <image name="Loading_white" width="16" height="16"/>
         <image name="alert" width="26" height="26"/>
         <image name="autoPay" width="51" height="52"/>
-        <image name="outageUnavailable" width="100" height="101"/>
+        <image name="outageUnavailable" width="49" height="49"/>
         <image name="paymentConfirmation" width="48" height="48"/>
         <image name="residential_mini_white" width="20" height="20"/>
     </resources>

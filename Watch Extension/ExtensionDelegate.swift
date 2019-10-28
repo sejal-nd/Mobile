@@ -22,8 +22,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     // MARK: - Helper
     
     private func setInitialScreen() {
-        if KeychainUtility.shared[keychainKeys.authToken] != nil {
-            WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
+        let authToken = KeychainUtility.shared[keychainKeys.authToken]
+        
+        if authToken != nil {
+            print("test: \(OutageInterfaceController.className)")
+            WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject),
+                                                                               (name: UsageInterfaceController.className, context: [:] as AnyObject),
+                                                                               (name: BillInterfaceController.className, context: [:] as AnyObject)])
         } else {
             WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: SignInInterfaceController.className, context: [:] as AnyObject)])
         }

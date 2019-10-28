@@ -1,14 +1,18 @@
 //
-//  NewNetworkUtility.swift
+//  NetworkTest.swift
 //  Mobile
 //
-//  Created by Joseph Erlandson on 10/16/19.
+//  Created by Joseph Erlandson on 10/28/19.
 //  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 
+
+// MARK: - Types
+
+/// Possible errors or error states from network requests
 enum NetworkError: Error {
     case missingToken
     case maintenanceMode
@@ -17,6 +21,7 @@ enum NetworkError: Error {
     case fetchError
 }
 
+/// Main page in the app.  Used for Error's and Maintenance Mode
 enum Feature {
     case outage
     case bill
@@ -24,24 +29,28 @@ enum Feature {
     case all
 }
 
+
+// MARK: - Network Utility
+
 final class NetworkUtility {
     
+    public static let shared = NetworkUtility()
+
     private let disposeBag = DisposeBag()
+    private let notificationCenter = NotificationCenter.default
     private var pollingTimer: Timer!
     
-    public static let shared = NetworkUtility()
+    // In memory cache
+    public var accounts = [Account]()
+    public var defaultAccount: Account?
+    public var outageStatus: OutageStatus?
+    public var accountDetails: AccountDetail?
+    public var billForecast: BillForecastResult?
+    public var maintenanceModeStatuses = [(Maintenance, Feature)]()
+    public var error: (NetworkError, Feature)?
     
-    public var accountListDidUpdate: (([Account]) -> ())?
     
-    public var outageStatusDidUpdate: ((OutageStatus) -> ())?
-    
-    public var accountDetailDidUpdate: ((AccountDetail) -> ())? // Billing
-    
-    public var billForecastDidUpdate: ((BillForecastResult) -> ())? // Usage
-    
-    public var maintenanceModeDidUpdate: ((Maintenance, Feature) -> ())?
-    
-    public var errorDidOccur: ((NetworkError, Feature) -> ())?
+    // MARK: - Life Cycle
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
@@ -56,9 +65,207 @@ final class NetworkUtility {
         pollingTimer.invalidate()
     }
     
-    private func fetchAccountList(result: @escaping (Result<[Account], NetworkError>) -> ()) {
-        dLog("Fetching Accounts...")
+    
+    // MARK: - Public API
+    
+    /// Fetch all app data.  Due to all screens possibly loading at the same time we must fetch all data at once.
+    /// - Parameter shouldLoadAccountList: true on fresh app launch, false if user selects a new account.
+    public func fetchData(shouldLoadAccountList: Bool) {
         
+        // Reset in memory cache
+        resetLocalCache()
+        
+        let dispatchQueue = DispatchQueue.global(qos: .background)
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        if shouldLoadAccountList {
+            dispatchQueue.async { [weak self] in
+                
+                print("BEGIN fetching account list")
+                self?.fetchAccountList(result: { (result) in
+                    switch result {
+                    case .success(let accounts):
+                        print("COMPLETE fetching account list")
+                        self?.accounts = accounts
+                        self?.notificationCenter.post(name: .accountListDidUpdate, object: accounts)
+                        semaphore.signal()
+                    case .failure(let error):
+                        print("ERROR fetching account list")
+                        self?.error = (error, Feature.all)
+                        self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+                        semaphore.signal()
+                        return
+                    }
+                })
+                semaphore.wait()
+                
+                self?.fetchFeatureData(semaphore: semaphore, dispatchQueue: dispatchQueue)
+            }
+        } else {
+            fetchFeatureData(semaphore: semaphore, dispatchQueue: dispatchQueue)
+        }
+    }
+    
+}
+
+
+// MARK: - Network Helper
+
+extension NetworkUtility {
+    
+    /// Resets local variables in `NetworkingUtility.swift`
+    private func resetLocalCache() {
+        maintenanceModeStatuses.removeAll()
+        error = nil
+        defaultAccount = nil
+        accounts.removeAll()
+        accountDetails = nil
+        outageStatus = nil
+        billForecast = nil
+    }
+    
+    /// Fetches Maintenance mode, then account details.  Once both succeed usage and outage are fetched at the same time.  Notifications are sent to the respective interface controllers.
+    /// - Parameter semaphore: Prevents the need to nest too many async requests.
+    /// - Parameter dispatchQueue: Allows network requests to occur in the background.
+    private func fetchFeatureData(semaphore: DispatchSemaphore, dispatchQueue: DispatchQueue) {
+        var maintenanceStatuses = [(Maintenance, Feature)]()
+        
+        guard KeychainUtility.shared[keychainKeys.authToken] != nil,
+            let _ = AccountsStore.shared.currentIndex else {
+                dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
+                self.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.missingToken, Feature.all))
+                return
+        }
+        
+        print("BEGIN fetching maintenance mode.")
+        fetchMaintenanceModeStatus { [weak self] (result) in
+            switch result {
+            case .success(let maintenance):
+                maintenanceStatuses = self?.processMaintenanceMode(maintenance) ?? []
+                print("SUCCESS fetching maintenance mode.")
+                semaphore.signal()
+            case .failure(let error):
+                print("ERROR Fetching Mantenance mode.")
+                self?.error = (error, Feature.all)
+                self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+                semaphore.signal()
+                return
+            }
+        }
+        semaphore.wait()
+        
+        if isMaintenanceModeOnForFeature(maintenanceStatuses: maintenanceStatuses, featureCheck: .all) {
+            return
+        }
+        
+        print("BEGIN fetching account details")
+        fetchAccountDetails { [weak self] (result) in
+            switch result {
+            case .success(let accountDetails):
+                print("SUCCESS fetching account details.")
+                if accountDetails.isPasswordProtected {
+                    self?.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.passwordProtected, Feature.all))
+                    return
+                } else {
+                    
+                    self?.accountDetails = accountDetails
+                    self?.notificationCenter.post(name: .accountDetailsDidUpdate, object: accountDetails)
+                    
+                    
+                    if self?.isMaintenanceModeOnForFeature(maintenanceStatuses: maintenanceStatuses, featureCheck: .outage) ?? false {
+                        return
+                    }
+                    
+                    print("BEGIN fetching outage.")
+                    self?.fetchOutageStatus { (result) in
+                        switch result {
+                        case .success(let outageStatus):
+                            print("SUCCESS fetching outage.")
+                            self?.outageStatus = outageStatus
+                            self?.notificationCenter.post(name: .outageStatusDidUpdate, object: outageStatus)
+                        case .failure(let error):
+                            print("ERROR Fetching outage.")
+                            self?.error = (error, .outage)
+                            self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.outage))
+                        }
+                    }
+                    
+                    if self?.isMaintenanceModeOnForFeature(maintenanceStatuses: maintenanceStatuses, featureCheck: .usage) ?? false {
+                        return
+                    }
+                    
+                    print("BEGIN fetching usage.")
+                    self?.fetchUsageData(accountDetail: accountDetails) { (result) in
+                        switch result {
+                        case .success(let billForecastResult):
+                            print("SUCCESS fetching usage.")
+                            self?.billForecast = billForecastResult
+                            self?.notificationCenter.post(name: .billForecastDidUpdate, object: billForecastResult)
+                        case .failure(let error):
+                            print("ERROR Fetching usage.")
+                            self?.error = (error, .usage)
+                            self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.usage))
+                        }
+                    }
+                }
+                
+            case .failure(let error):
+                print("ERROR Fetching account details.")
+                self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+            }
+        }
+    }
+
+    /// Sends notification to IC, and returns a boolean signifying if any form of maintenance mode is turned on.
+    /// - Parameter maintenance: object returned from serivces of type `Maintenance`.
+    private func processMaintenanceMode(_ maintenance: Maintenance) -> [(Maintenance, Feature)] {
+        var statuses = [(Maintenance, Feature)]()
+
+        if maintenance.allStatus {
+            statuses.append((maintenance, .all))
+            maintenanceModeStatuses.append((maintenance, .all))
+            print("sig all")
+        }
+        
+        if maintenance.outageStatus {
+            statuses.append((maintenance, .outage))
+            maintenanceModeStatuses.append((maintenance, .outage))
+            print("sig outage")
+        }
+        
+        if maintenance.usageStatus {
+            statuses.append((maintenance, .usage))
+            maintenanceModeStatuses.append((maintenance, .usage))
+            print("sig usage")
+        }
+        
+        return statuses
+    }
+    
+    private func isMaintenanceModeOnForFeature(maintenanceStatuses: [(Maintenance, Feature)], featureCheck: Feature) -> Bool {
+        for status in maintenanceStatuses {
+            let maintenance = status.0
+            let feature = status.1
+            
+            if featureCheck == feature {
+                self.notificationCenter.post(name: .maintenanceModeDidUpdate, object: (maintenance, Feature.all))
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+}
+ 
+
+// MARK: - Base Network Requests
+
+extension NetworkUtility {
+    
+    /// Fetches the account list associated with a particular MyAccount.
+    /// - Parameter result: Either an array of `Account` or a `NetworkError`.
+    private func fetchAccountList(result: @escaping (Result<[Account], NetworkError>) -> ()) {
         guard KeychainUtility.shared[keychainKeys.authToken] != nil else {
             dLog("No Auth Token: Account list fetch termimated.")
             result(.failure(.missingToken))
@@ -66,7 +273,7 @@ final class NetworkUtility {
         }
         
         let accountService = MCSAccountService()
-        accountService.fetchAccounts().subscribe(onNext: { accounts in
+        accountService.fetchAccounts().subscribe(onNext: { [weak self] accounts in
             // handle success
             guard let firstAccount = AccountsStore.shared.accounts.first else {
                 dLog("No first account in account list: Terminated.")
@@ -78,176 +285,30 @@ final class NetworkUtility {
                 AccountsStore.shared.currentIndex = 0
             }
             
-            NotificationCenter.default.post(name: Notification.Name.defaultAccountSet, object: firstAccount)
+            //            DispatchQueue.main.async {
+            self?.defaultAccount = firstAccount
+            self?.notificationCenter.post(name: .defaultAccountDidUpdate, object: firstAccount)
+            //            }
             
             dLog("Accounts Fetched.")
             
             result(.success(accounts))
-        }, onError: { error in
-            dLog("Failed to retrieve account list: \(error.localizedDescription)")
-            result(.failure(.fetchError))
+            }, onError: { error in
+                dLog("Failed to retrieve account list: \(error.localizedDescription)")
+                result(.failure(.fetchError))
         }).disposed(by: disposeBag)
     }
     
-    
-    // do not reload account list with polling timer
-    // do not show loading with polling
-    
-    //todo all notifications will trigger here
-    public func fetchData(shouldLoadAccountList: Bool) {
-        let dispatchQueue = DispatchQueue.global(qos: .background)
-        let semaphore = DispatchSemaphore(value: 1)
-        
-        dispatchQueue.async { [weak self] in
-            if shouldLoadAccountList {
-                self?.fetchAccountList { [weak self] result in
-                    switch result {
-                    case.success(let accounts):
-                        self?.accountListDidUpdate?(accounts)
-                    case .failure(let error):
-                        self?.errorDidOccur?(error, .all)
-                    }
-                    semaphore.signal()
-                }
-                semaphore.wait()
-                
-                self?.fetchFeatureData { result in
-                    switch result {
-                    case .success(_):
-                        break
-                    case .failure(_):
-                        break
-                    }
-                    semaphore.signal()
-                }
-                semaphore.wait()
-                
-            } else {
-                self?.fetchFeatureData { result in
-                    switch result {
-                    case .success(_):
-                        break
-                    case .failure(_):
-                        break
-                    }
-                }
-            }
-            
-            
-        }
-    }
-    
-}
- 
-
-// MARK: - Feature Fetches
-
-extension NetworkUtility {
-    // this is where the magic happens
-    private func fetchFeatureData(completion: @escaping (Result<[Account], NetworkError>) -> ()) {
-        // Fetch Account Details + Maintenance Mode
-        fetchAccountDetailsWithData { [weak self] accountDetailResult in
-            switch accountDetailResult {
-            case .success(let accountDetails):
-                self?.accountDetailDidUpdate?(accountDetails)
-                
-                // Fetch Outage Status
-                self?.fetchOutageStatus { [weak self] outageResult in
-                    switch outageResult {
-                    case .success(let outageStatus):
-                        self?.outageStatusDidUpdate?(outageStatus)
-                    case .failure(let error):
-                        self?.errorDidOccur?(error, .outage)
-                    }
-                }
-
-                // Fetch Usage Data
-                self?.fetchUsageData(accountDetail: accountDetails, result: { [weak self] usageResult in
-                    switch usageResult {
-                    case .success(let billForecast):
-                        self?.billForecastDidUpdate?(billForecast)
-                    case .failure(let error):
-                        self?.errorDidOccur?(error, .usage)
-                    }
-                })
-            case .failure(let error):
-                self?.errorDidOccur?(error, .all)
-            }
-        }
-    }
-    
-    
-    // todo we need to rename this
-    
-    /// Fetches the account details for the current user triggering various networkUtilityDelegate methods along the way.
-    ///
-    /// - Note: AccountDetails contains Billing data `accountDetails.billingInfo` and isPasswordProtectedStatus.
-    ///
-    /// - Parameter maintenanceModeStatus: status of maintenance mode, used to determine if bill is in maintenance mode or not.
-    ///
-    /// - Requires: That the JWT token has been saved into the local keychain.
-    ///
-    /// - Important:
-    ///     - success: Triggers delegate method to IC informing it that the account details did update.
-    ///                Also triggers the `fetchData()` call for outage, usage, and bill.  This can return that the account
-    ///                is password protected.
-    ///     - noAuthToken: Triggers delegate method for an error due to no jwt token presen: Service Error Code: 981156.
-    ///     - error: Triggers delegate method for a general error occured attempting to fetch account details.
-    private func fetchAccountDetailsWithData(completion: @escaping (Result<AccountDetail, NetworkError>) -> ()) {
-        guard KeychainUtility.shared[keychainKeys.authToken] != nil,
-            let _ = AccountsStore.shared.currentIndex else {
-                dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
-                completion(.failure(.missingToken))
-                return
-        }
-        
-        let dispatchQueue = DispatchQueue.global(qos: .background)
-        let semaphore = DispatchSemaphore(value: 1)
-        
-        dispatchQueue.async { [weak self] in
-            // Maintenance Mode
-            self?.fetchMaintenanceModeStatus { result in
-                switch result {
-                case .success(let maintenance):
-                    if maintenance.billStatus {
-                        completion(.failure(.maintenanceMode))
-                        return
-                    } else {
-                        break
-                    }
-                case .failure(_):
-                    completion(.failure(.fetchError))
-                }
-                semaphore.signal()
-            }
-            semaphore.wait()
-            // Account Details
-            self?.fetchAccountDetails { result in
-                switch result {
-                case .success(let accountDetails):
-                    if accountDetails.isPasswordProtected {
-                        completion(.failure(.passwordProtected))
-                    } else {
-                        completion(.success(accountDetails))
-                    }
-                case .failure(_):
-                    completion(.failure(.fetchError))
-                }
-                semaphore.signal()
-            }
-            semaphore.wait()
-        }
-    }
-    
-    // Fetch Account Details: We need this to determine if the current account is password protected.
-    public func fetchAccountDetails(result: @escaping (Result<AccountDetail, NetworkError>) -> ()) {
+    /// Fetches key info about an account, specifically if the account is password protected.  Also required for fetching usage data.
+    /// - Parameter result: Either `AccountDetail` or `NetworkError`.
+    private func fetchAccountDetails(result: @escaping (Result<AccountDetail, NetworkError>) -> ()) {
         dLog("Fetching Account Details...")
         
         guard KeychainUtility.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
-            dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
-            result(.failure(.missingToken))
-            return
+                dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
+                result(.failure(.missingToken))
+                return
         }
         
         let accountService = MCSAccountService()
@@ -265,22 +326,20 @@ extension NetworkUtility {
             .disposed(by: disposeBag)
     }
     
-    /// Fetches if maintenance mode is active for any/all services.
+    /// Fetches maintenance mode status.
     ///
-    /// - Note: success here does not mean maintenance mode is active, rather it means maintenanceMode data was returned.
+    /// - Note: Maintenance can be active for: all, outage, usage, or bill.  Success does not indicate whether maintenance mode is on, rather that data was successfully fetched.
     ///
-    /// - Important:
-    ///     - success: completion handler for `fetchData()` call resulting in maintenance mode data.
-    ///     - error: completion handler for `fetchData()` call resulting in an error state.
+    /// - Parameter result: Either `Maintenance` or `NetworkError`.
     private func fetchMaintenanceModeStatus(result: @escaping (Result<Maintenance, NetworkError>) -> ()) {
         dLog("Fetching Maintenance Mode Status...")
-
+        
         let authService = MCSAuthenticationService()
-
+        
         authService.getMaintenanceMode()
             .subscribe(onNext: { maintenance in
                 dLog("Maintenance Mode Fetched.")
-
+                
                 result(.success(maintenance))
             }, onError: { error in
                 dLog("Failed to retrieve maintenance mode: \(error.localizedDescription)")
@@ -289,69 +348,57 @@ extension NetworkUtility {
             .disposed(by: disposeBag)
     }
     
-    /// Fetches outage data fort he current account triggering various networkUtilityDelegate methods along the way.
-    ///
-    /// - Requires: That the JWT token has been saved into the local keychain.
-    ///
-    /// - Important:
-    ///     - success: completion handler for `fetchData()` call resulting in outage data.
-    ///     - error: completion handler for `fetchData()` call resulting in an error state.
+    /// Fetches outage data for the current account.
+    /// - Parameter result: Either `OutageStatus` or `NetworkError`.
     private func fetchOutageStatus(result: @escaping (Result<OutageStatus, NetworkError>) -> ()) {
         dLog("Fetching Outage Status...")
-
+        
         guard let _ = AccountsStore.shared.currentIndex else {
             dLog("Failed to retreive current account while fetching outage status.")
             result(.failure(.missingToken))
             return
         }
-
+        
         let outageService = MCSOutageService()
-
+        
         outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount).subscribe(onNext: { outageStatus in
             dLog("Outage Status Fetched.")
             result(.success(outageStatus))
-            }, onError: { error in
-                // handle error
-                dLog("Failed to retrieve outage status: \(error.localizedDescription)")
-                result(.failure(.fetchError))
+        }, onError: { error in
+            // handle error
+            dLog("Failed to retrieve outage status: \(error.localizedDescription)")
+            result(.failure(.fetchError))
         })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
-    
-    /// Fetches usage data fort he current account triggering various networkUtilityDelegate methods along the way.
-    ///
-    /// - Parameter accountDetail: details of current account needed for account number & accunt premise number.
-    ///
-    /// - Requires: That the JWT token has been saved into the local keychain.
-    ///
-    /// - Important:
-    ///     - success: completion handler for `fetchData()` call resulting in usage data.
-    ///     - error: completion handler for `fetchData()` call resulting in an error state.
+
+    /// Fetches projected usage data (striped bar graph on mobile app)
+    /// - Parameter accountDetail: contains specific info about a users selected account.
+    /// - Parameter result: Either `BillForecastResult` or `NetworkError`.
     private func fetchUsageData(accountDetail: AccountDetail, result: @escaping (Result<BillForecastResult, NetworkError>) -> ()) {
         dLog("Fetching Usage Data...")
-
+        
         guard accountDetail.isAMIAccount, let premiseNumber = accountDetail.premiseNumber else {
             result(.failure(.invalidAccount))
             return
         }
         let accountNumber = accountDetail.accountNumber
-
+        
         MCSUsageService(useCache: false).fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
             result(.success(billForecastResult))
-            }, onError: { usageError in
-                dLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
-                result(.failure(.fetchError))
+        }, onError: { usageError in
+            dLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
+            result(.failure(.fetchError))
         })
             .disposed(by: disposeBag)
     }
     
 }
-    
-    
-    
-    // MARK: - Timer
-    
-    extension NetworkUtility {
+
+
+// MARK: - Timer
+
+extension NetworkUtility {
     
     /// Reload Data every 15 minutes without the loading indicator if the app is reachable
     @objc private func reloadPollingData() {
@@ -360,58 +407,32 @@ extension NetworkUtility {
         
         fetchData(shouldLoadAccountList: false)
     }
-        
-    }
     
+}
+
+
+// MARK: - Current Account Did Update
+
+extension NetworkUtility {
     
-    
-    
-    // MARK: - Current Account Did Update
-    
-    extension NetworkUtility {
-    
-    // User selected account did update
+    /// User selected account did update
     @objc func currentAccountDidUpdate(_ notification: NSNotification) {
         dLog("Current Account Did Update")
+        
+        guard let account = notification.object as? Account else {
+            error = (.invalidAccount, .all)
+            notificationCenter.post(name: .errorDidOccur, object: (NetworkError.invalidAccount, Feature.all))
+            return
+        }
         
         // Reset timer
         pollingTimer.invalidate()
         // Set a 15 minute polling timer here.
         pollingTimer = Timer.scheduledTimer(timeInterval: 900, target: self, selector: #selector(reloadPollingData), userInfo: nil, repeats: true)
         
-        fetchData(shouldLoadAccountList: true)
+        fetchData(shouldLoadAccountList: false)
+        
+        defaultAccount = account
+        notificationCenter.post(name: .defaultAccountDidUpdate, object: account)
     }
 }
-
-// fetch account lists
-
-
-// we can simplify this code by using semaphores, then we do not need to nest calls
-
-// 1.  Fetch maintenance mode
-
-// 2. fetch account details
-
-// 3. fetch usage data
-
-// 4.  fetch outage
-
-
-// Notes:
-
-// toggle for showing or not showing loading indicator
-
-// All Screens must get the updates on completion: Notification center?
-
-// polling reload every 15 mins
-
-// pass from app delegate as opposed to singleton
-
-// two public methods: Load Data & loadAccountList
-
-// Unsure where in the app we will load data as this does not return a callback, rather it triggers notification center items
-
-
-// public API: fetchData and outageStatus
-
-// note: internal polling needs to fetch data with and without re fetching the account list.

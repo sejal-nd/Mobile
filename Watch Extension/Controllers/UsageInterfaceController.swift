@@ -10,6 +10,16 @@ import WatchKit
 
 class UsageInterfaceController: WKInterfaceController {
     
+    enum State {
+        case loaded(BillForecast)
+        case nextForecast(Int)
+        case loading
+        case maintenanceMode
+        case passwordProtected
+        case unavailable
+        case error(NetworkError)
+    }
+    
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
     @IBOutlet var accountGroup: WKInterfaceGroup! {
@@ -48,18 +58,7 @@ class UsageInterfaceController: WKInterfaceController {
     @IBOutlet var mainSpentSoFarValueLabel: WKInterfaceLabel!
     @IBOutlet var mainprojectedBillValueLabel: WKInterfaceLabel!
     @IBOutlet var mainbillPeriodValueLabel: WKInterfaceLabel!
-    
-    
-    enum State {
-        case loaded(BillForecast)
-        case nextForecast(Int)
-        case loading
-        case maintenanceMode
-        case passwordProtected
-        case unavailable
-        case error(NetworkError)
-    }
-    
+        
     private var electricForecast: BillForecast?
     private var gasForecast: BillForecast?
     
@@ -153,15 +152,16 @@ class UsageInterfaceController: WKInterfaceController {
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
                 errorGroup.setHidden(true)
-                nextForecastGroup.setHidden(true)
+                errorGroup.setHidden(true)
                 mainGroup.setHidden(true)
                 
                 // show error group
-                errorGroup.setHidden(false)
+                nextForecastGroup.setHidden(false)
                 
                 // set error data
-                errorImage.setImageNamed(AppImage.maintenanceMode.name)
-                errorTitleLabel.setText("Scheduled Maintenance")
+                nextForecastImage.setImageNamed(AppImage.maintenanceMode.name)
+                nextForecastTitleLabel.setText("Scheduled Maintenance")
+                nextForecastDetailLabel.setText("Usage is currently unavailable due to scheduled maintenance.")
             case .passwordProtected:
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
@@ -201,7 +201,7 @@ class UsageInterfaceController: WKInterfaceController {
 
                 // set error data
                 errorImage.setImageNamed(AppImage.error.name)
-                errorTitleLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
+                errorTitleLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
 
                 dLog("Usage Error State: \(serviceError.localizedDescription)")
             }
@@ -214,7 +214,9 @@ class UsageInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
+        print("awake 2")
+                
+        configureNetworkActions()
         
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
@@ -224,6 +226,7 @@ class UsageInterfaceController: WKInterfaceController {
             updateAccountInterface(AccountsStore.shared.currentAccount, animationDuration: 1.0)
         }
         
+        loadData()
     }
     
     override func didAppear() {
@@ -260,24 +263,46 @@ class UsageInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     private func configureNetworkActions() {
-        NetworkUtility.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
-            self?.configureMaintenanceMode(maintenance, feature: feature)
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .maintenanceModeDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .errorDidOccur, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .accountDetailsDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .defaultAccountDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .billForecastDidUpdate, object: nil)
+    }
+    
+    private func loadData() {
+        let networkUtility = NetworkUtility.shared
+        
+        if !networkUtility.maintenanceModeStatuses.isEmpty {
+            networkUtility.maintenanceModeStatuses.forEach { tuple in
+                configureMaintenanceMode(tuple.0, feature: tuple.1)
+            }
         }
         
-        NetworkUtility.shared.errorDidOccur = { [weak self] error, feature in
-            self?.configureError(error, feature: feature)
+        if let error = networkUtility.error {
+            configureError(error.0, feature: error.1)
         }
         
-        NetworkUtility.shared.accountDetailDidUpdate = { [weak self] accountDetails in
+        if let accountDetails = networkUtility.accountDetails {
             guard let accounts = AccountsStore.shared.accounts else {
-                self?.state = .error(.fetchError)
+                state = .error(.fetchError)
                 return
             }
-            self?.configureAccountDetails(accountDetails, accounts: accounts)
+            configureAccountDetails(accountDetails, accounts: accounts)
         }
         
-        NetworkUtility.shared.billForecastDidUpdate = { [weak self] billForecast in
-            self?.configureBillForecast(billForecast)
+        if let defaultAccount = networkUtility.defaultAccount {
+            updateAccountInterface(defaultAccount, animationDuration: 1.0)
+        }
+        
+        if let billForecast = networkUtility.billForecast {
+            configureBillForecast(billForecast)
         }
     }
     
@@ -295,6 +320,27 @@ class UsageInterfaceController: WKInterfaceController {
                     self?.accountGroup.setBackgroundColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.2))
                 })
         })
+    }
+    
+    @objc
+    private func handleNotification(_ notification: NSNotification) {
+        if let accountDetails = notification.object as? AccountDetail {
+            guard let accounts = AccountsStore.shared.accounts else {
+                state = .error(.fetchError)
+                return
+            }
+            configureAccountDetails(accountDetails, accounts: accounts)
+        } else if let account = notification.object as? Account {
+            updateAccountInterface(account, animationDuration: 1.0)
+        } else if let billForecast = notification.object as? BillForecastResult {
+                configureBillForecast(billForecast)
+        } else if let tuple = notification.object as? (Maintenance, Feature) {
+            configureMaintenanceMode(tuple.0, feature: tuple.1)
+        } else if let tuple = notification.object as? (NetworkError, Feature) {
+            configureError(tuple.0, feature: tuple.1)
+        } else {
+            assertionFailure("Invalid Notification")
+        }
     }
     
     private func setImageForProgress(_ progress: Double) {

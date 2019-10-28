@@ -10,6 +10,21 @@ import WatchKit
 
 class OutageInterfaceController: WKInterfaceController {
     
+    enum State {
+        case loaded(OutageState)
+        case loading
+        case error(NetworkError)
+        case maintenanceMode
+        case passwordProtected
+    }
+    
+    enum OutageState {
+        case powerOn
+        case powerOut(OutageStatus?)
+        case gasOnly
+        case unavilable
+    }
+    
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
     @IBOutlet var accountGroup: WKInterfaceGroup! {
@@ -44,22 +59,7 @@ class OutageInterfaceController: WKInterfaceController {
     @IBOutlet var errorImage: WKInterfaceImage!
     @IBOutlet var errorTitleLabel: WKInterfaceLabel!
     @IBOutlet var errorDetailLabel: WKInterfaceLabel!
-    
-    enum State {
-        case loaded(OutageState)
-        case loading
-        case error(NetworkError)
-        case maintenanceMode
-        case passwordProtected
-    }
-    
-    enum OutageState {
-        case powerOn
-        case powerOut(OutageStatus?)
-        case gasOnly
-        case unavilable
-    }
-    
+        
     // Changes the Interface for error states
     var state = State.loading {
         didSet {
@@ -90,7 +90,7 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
-                errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
                 dLog("Error: \(error.localizedDescription)")
             case .maintenanceMode:
                 loadingImageGroup.setHidden(true)
@@ -207,8 +207,7 @@ class OutageInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
+        print("awake 1")
         
         NotificationCenter.default.addObserver(self, selector: #selector(outageReportedFromPhone), name: Notification.Name.outageReported, object: nil)
         
@@ -224,6 +223,8 @@ class OutageInterfaceController: WKInterfaceController {
         
         // Perform Network Request
         NetworkUtility.shared.fetchData(shouldLoadAccountList: true)
+        
+        loadData()
     }
     
     override func didAppear() {
@@ -265,20 +266,42 @@ class OutageInterfaceController: WKInterfaceController {
     }
     
     private func configureNetworkActions() {
-        NetworkUtility.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
-            self?.configureMaintenanceMode(maintenance, feature: feature)
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .maintenanceModeDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .errorDidOccur, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .accountListDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .defaultAccountDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .outageStatusDidUpdate, object: nil)
+    }
+    
+    private func loadData() {
+        let networkUtility = NetworkUtility.shared
+        
+        if !networkUtility.maintenanceModeStatuses.isEmpty {
+            networkUtility.maintenanceModeStatuses.forEach { tuple in
+                configureMaintenanceMode(tuple.0, feature: tuple.1)
+            }
         }
         
-        NetworkUtility.shared.errorDidOccur = { [weak self] error, feature in
-            self?.configureError(error, feature: feature)
+        if let error = networkUtility.error {
+            configureError(error.0, feature: error.1)
         }
         
-        NetworkUtility.shared.accountListDidUpdate = { [weak self] accounts in
-            self?.configureAccountList(accounts)
+        if !networkUtility.accounts.isEmpty {
+           configureAccountList(networkUtility.accounts)
         }
         
-        NetworkUtility.shared.outageStatusDidUpdate = { [weak self] outageStatus in
-            self?.configureOutageStatus(outageStatus)
+        if let defaultAccount = networkUtility.defaultAccount {
+            updateAccountInterface(defaultAccount, animationDuration: 1.0)
+        }
+        
+        if let outageStatus = networkUtility.outageStatus {
+            configureOutageStatus(outageStatus)
         }
     }
     
@@ -297,6 +320,23 @@ class OutageInterfaceController: WKInterfaceController {
                 })
         })
     }
+
+    @objc
+    private func handleNotification(_ notification: NSNotification) {
+        if let accounts = notification.object as? [Account] {
+            configureAccountList(accounts)
+        } else if let account = notification.object as? Account {
+            updateAccountInterface(account, animationDuration: 1.0)
+        } else if let outageStatus = notification.object as? OutageStatus {
+                configureOutageStatus(outageStatus)
+        } else if let tuple = notification.object as? (Maintenance, Feature) {
+            configureMaintenanceMode(tuple.0, feature: tuple.1)
+        } else if let tuple = notification.object as? (NetworkError, Feature) {
+            configureError(tuple.0, feature: tuple.1)
+        } else {
+            assertionFailure("Invalid Notification")
+        }
+    }
     
 }
 
@@ -305,8 +345,10 @@ class OutageInterfaceController: WKInterfaceController {
 
 extension OutageInterfaceController {
     
-    @objc private func currentAccountDidUpdate(_ notification: NSNotification) {
+    @objc
+    private func currentAccountDidUpdate(_ notification: NSNotification) {
         guard let account = notification.object as? Account else {
+            
                 state = .error(.invalidAccount)
                 return
         }
@@ -316,8 +358,9 @@ extension OutageInterfaceController {
     
     private func configureAccountList(_ accounts: [Account]) {
         clearAllMenuItems()
-        
+
         guard accounts.count > 1 else { return }
+
         addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
     }
     
@@ -339,7 +382,6 @@ extension OutageInterfaceController {
     }
     
     private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
-        
         guard feature == .all || feature == .outage else { return }
         
         accountGroup.setHidden(false)
@@ -348,11 +390,9 @@ extension OutageInterfaceController {
     }
     
     private func configureError(_ error: NetworkError, feature: Feature) {
-        
         guard feature == .all || feature == .outage else { return }
         
         accountGroup.setHidden(false)
-        
         
         guard error == .passwordProtected else {
             state = .error(error)

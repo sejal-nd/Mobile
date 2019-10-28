@@ -10,6 +10,15 @@ import WatchKit
 
 class BillInterfaceController: WKInterfaceController {
     
+    // We may want to make this a global enum, if these end up being the states for all main VC's
+    enum State {
+        case loaded
+        case loading
+        case error(NetworkError)
+        case maintenanceMode
+        case passwordProtected
+    }
+    
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
     // Account
@@ -69,16 +78,6 @@ class BillInterfaceController: WKInterfaceController {
     // Footer
     @IBOutlet var footerGroup: WKInterfaceGroup!
     
-    
-    // We may want to make this a global enum, if these end up being the states for all main VC's
-    enum State {
-        case loaded
-        case loading
-        case error(NetworkError)
-        case maintenanceMode
-        case passwordProtected
-    }
-    
     // Changes the Interface for error states
     var state = State.loading {
         didSet {
@@ -105,7 +104,7 @@ class BillInterfaceController: WKInterfaceController {
                 errorGroup.setHidden(false)
                 errorImage.setImageNamed(AppImage.error.name)
                 errorTitleLabel.setHidden(true)
-                errorDetailLabel.setText("Unable to retrieve data. Please open the PECO app on your iPhone to sync your data or try again later.")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
                 
                 loadingImageGroup.setHidden(true)
                 
@@ -146,6 +145,10 @@ class BillInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
+        print("awake 3")
+        
+        configureNetworkActions()
+                
         // Clear Default Account Info
         accountTitleLabel.setText(nil)
         hideAllStates(shouldHideLoading: false)
@@ -154,6 +157,8 @@ class BillInterfaceController: WKInterfaceController {
         if let _ = AccountsStore.shared.currentIndex {
             updateAccountInterface(AccountsStore.shared.currentAccount)
         }
+        
+        loadData()
     }
     
     override func didAppear() {
@@ -173,20 +178,42 @@ class BillInterfaceController: WKInterfaceController {
     // MARK: - Helper
     
     private func configureNetworkActions() {
-        NetworkUtility.shared.maintenanceModeDidUpdate = { [weak self] maintenance, feature in
-            self?.configureMaintenanceMode(maintenance, feature: feature)
+        let notificationCenter = NotificationCenter.default
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .maintenanceModeDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .errorDidOccur, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .accountListDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .defaultAccountDidUpdate, object: nil)
+
+        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .accountDetailsDidUpdate, object: nil)
+    }
+    
+    private func loadData() {
+        let networkUtility = NetworkUtility.shared
+        
+        if !networkUtility.maintenanceModeStatuses.isEmpty {
+            networkUtility.maintenanceModeStatuses.forEach { tuple in
+                configureMaintenanceMode(tuple.0, feature: tuple.1)
+            }
         }
         
-        NetworkUtility.shared.errorDidOccur = { [weak self] error, feature in
-            self?.configureError(error, feature: feature)
+        if let error = networkUtility.error {
+            configureError(error.0, feature: error.1)
         }
         
-        NetworkUtility.shared.accountListDidUpdate = { [weak self] accounts in
-            self?.configureAccountList(accounts)
+        if !networkUtility.accounts.isEmpty {
+            configureAccountList(networkUtility.accounts)
         }
         
-        NetworkUtility.shared.accountDetailDidUpdate = { [weak self] accountDetails in
-            self?.configureAccountDetails(accountDetails)
+        if let defaultAccount = networkUtility.defaultAccount {
+            updateAccountInterface(defaultAccount, animationDuration: 1.0)
+        }
+        
+        if let accountDetails = networkUtility.accountDetails {
+            configureAccountDetails(accountDetails)
         }
     }
     
@@ -267,6 +294,23 @@ class BillInterfaceController: WKInterfaceController {
         
         remainingBalanaceAmountLabel.setText(billUtility.remainingBalanceDueAmountText)
         remainingBalanceLabel.setText(billUtility.remainingBalanceDueText)
+    }
+    
+    @objc
+    private func handleNotification(_ notification: NSNotification) {
+        if let accounts = notification.object as? [Account] {
+            configureAccountList(accounts)
+        } else if let account = notification.object as? Account {
+            updateAccountInterface(account, animationDuration: 1.0)
+        } else if let accountDetails = notification.object as? AccountDetail {
+                configureAccountDetails(accountDetails)
+        } else if let tuple = notification.object as? (Maintenance, Feature) {
+            configureMaintenanceMode(tuple.0, feature: tuple.1)
+        } else if let tuple = notification.object as? (NetworkError, Feature) {
+            configureError(tuple.0, feature: tuple.1)
+        } else {
+            assertionFailure("Invalid Notification")
+        }
     }
     
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14868" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="watch42"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14643"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
     </dependencies>
     <scenes>
         <!--Usage-->
@@ -111,7 +111,7 @@
                                 <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="anY-gl-iAX">
                                     <items>
                                         <imageView width="0.75" alignment="center" verticalAlignment="center" image="usage" contentMode="scaleAspectFit" id="NVu-g3-j8Z"/>
-                                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" minimumScaleFactor="0.75" id="3Gi-xa-aCD">
+                                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="3Gi-xa-aCD">
                                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                         </label>
                                         <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="bm2-Ux-IZP">
