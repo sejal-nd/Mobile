@@ -8,7 +8,6 @@
 
 import UIKit
 import Toast_Swift
-import Firebase
 import AppCenter
 import AppCenterCrashes
 import RxSwift
@@ -67,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         setupAppearance()
         setupAnalytics()
+        
+        // Fetch Remote Config Values
+        let _ = RemoteConfigUtility.shared
         //printFonts()
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
@@ -181,6 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let guid = getQueryStringParameter(url: url, param: "guid") {
             UserDefaults.standard.set(guid, forKey: UserDefaultKeys.accountVerificationDeepLinkGuid)
+            FirebaseUtility.logEvent(.register, parameters: [EventParameter(parameterName: .action, value: .account_verify)])
         }
         
         if let topMostVC = rootNav.viewControllers.last as? SplashViewController {
@@ -275,13 +278,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let gai = GAI.sharedInstance()
         _ = gai?.tracker(withTrackingId: Environment.shared.gaTrackingId)
         
-        guard let filePath = Bundle.main.path(forResource: Environment.shared.firebaseConfigFile, ofType: "plist"),
-            let fileopts = FirebaseOptions(contentsOfFile: filePath) else {
-                return dLog("Failed to load Firebase Analytics")
-        }
+        FirebaseUtility.configure()
         
-        FirebaseApp.configure(options: fileopts)
-        
+        FirebaseUtility.setUserProperty(.isScreenReaderEnabled, value: UIAccessibility.isVoiceOverRunning.description)
+        FirebaseUtility.setUserProperty(.isSwitchAccessEnabled, value: UIAccessibility.isSwitchControlRunning.description)
+        FirebaseUtility.setUserProperty(.fontScale, value: UIApplication.shared.preferredContentSizeCategory.rawValue)
     }
     
     @objc func resetNavigationOnAuthTokenExpire() {
@@ -333,6 +334,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showStormMode(){
+        StormModeStatus.shared.isOn = true
         DispatchQueue.main.async { [weak self] in
             LoadingView.hide()
             
@@ -344,10 +346,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard let stormModeVC = UIStoryboard(name: "Storm", bundle: nil).instantiateInitialViewController(),
                     let window = self?.window else {
-                        return
+                    StormModeStatus.shared.isOn = false
+                    return
                 }
-                
-                StormModeStatus.shared.isOn = true
+
                 window.rootViewController = stormModeVC
             }
         }
@@ -454,7 +456,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
             
-            Analytics.log(event: .reportAnOutageUnAuthOffer)
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
             unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
             
             // Reset the unauthenticated nav stack

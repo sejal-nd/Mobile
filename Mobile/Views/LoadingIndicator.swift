@@ -32,7 +32,7 @@ class LoadingIndicator: UIView {
             
             //make accessibility label for loading animation - and make it the only thing tappable
             lottieAnimationView.isAccessibilityElement = true
-            lottieAnimationView.accessibilityLabel = "Loading"
+            lottieAnimationView.accessibilityLabel = NSLocalizedString("Loading", comment: "")
             lottieAnimationView.accessibilityViewIsModal = true
         }
     }

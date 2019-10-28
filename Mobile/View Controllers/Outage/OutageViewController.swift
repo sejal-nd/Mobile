@@ -13,7 +13,6 @@ class OutageViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     
-    @IBOutlet weak var backgroundScrollConstraint: NSLayoutConstraint!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!
     @IBOutlet weak var scrollViewContentView: UIView!
@@ -102,13 +101,7 @@ class OutageViewController: AccountPickerViewController {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] in self?.getOutageStatus() })
             .disposed(by: disposeBag)
-        
-        scrollView?.rx.contentOffset.asDriver()
-            .map { min(0, $0.y) }
-            .distinctUntilChanged()
-            .drive(backgroundScrollConstraint.rx.constant)
-            .disposed(by: disposeBag)
-        
+                
         reportStreetlightOutageButton.isHidden = !viewModel.showReportStreetlightOutageButton
         
         noPayPayBillButton.backgroundColorOnPress = .softGray
@@ -141,7 +134,7 @@ class OutageViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Analytics.log(event: .outageStatusOfferComplete)
+        GoogleAnalytics.log(event: .outageStatusOfferComplete)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -341,13 +334,13 @@ class OutageViewController: AccountPickerViewController {
     
     @IBAction func onViewStreetlightOutageMapPress() {
         viewModel.hasPressedStreetlightOutageMapButton = true
-        Analytics.log(event: .viewStreetlightMapOfferComplete)
+        GoogleAnalytics.log(event: .viewStreetlightMapOfferComplete)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
     @IBAction func onViewOutageMapPress() {
         viewModel.hasPressedStreetlightOutageMapButton = false
-        Analytics.log(event: .viewMapOfferComplete)
+        GoogleAnalytics.log(event: .viewMapOfferComplete)
         performSegue(withIdentifier: "outageMapSegue", sender: self)
     }
     
@@ -366,7 +359,7 @@ class OutageViewController: AccountPickerViewController {
                     guard let this = self else { return }
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                         this.view.showToast(NSLocalizedString("Outage report received", comment: ""))
-                        Analytics.log(event: .reportOutageAuthComplete)
+                        GoogleAnalytics.log(event: .reportOutageAuthComplete)
                     })
                 })
                 .disposed(by: vc.disposeBag)
@@ -387,7 +380,7 @@ extension OutageViewController: AccountPickerDelegate {
 
 extension OutageViewController: OutageStatusButtonDelegate {
     func outageStatusButtonWasTapped(_ outageStatusButton: OutageStatusButton) {
-        Analytics.log(event: .outageStatusDetails)
+        GoogleAnalytics.log(event: .outageStatusDetails)
         if let message = viewModel.currentOutageStatus!.outageDescription {
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
@@ -399,6 +392,6 @@ extension OutageViewController: OutageStatusButtonDelegate {
 extension OutageViewController: DataDetectorTextViewLinkTapDelegate {
     
     func dataDetectorTextView(_ textView: DataDetectorTextView, didInteractWith URL: URL) {
-        Analytics.log(event: .outageAuthEmergencyCall)
+        GoogleAnalytics.log(event: .outageAuthEmergencyCall)
     }
 }

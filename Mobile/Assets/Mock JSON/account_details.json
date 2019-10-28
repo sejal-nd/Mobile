@@ -14,6 +14,7 @@
     "residential": {
         "accountNumber": "1234567890",
         "premiseNumber": "1",
+        "isAutoPayEligible": true,
         "isResidential": true,
         "BillingInfo": {
             "minimumPaymentAmount": 5,
@@ -342,6 +343,18 @@
         "accountNumber": "1234567890",
         "BillingInfo": {
             "netDueAmount": -350.34,
+            "minimumPaymentAmount": 5,
+            "maximumPaymentAmount": 5000,
+            "maximumPaymentAmountACH": 100000,
+            "convenienceFee": 5.95
+        },
+        "CustomerInfo": {},
+        "SERInfo": {}
+    },
+    "billNotReady": {
+        "accountNumber": "1234567890",
+        "BillingInfo": {
+            "netDueAmount": 0,
             "minimumPaymentAmount": 5,
             "maximumPaymentAmount": 5000,
             "maximumPaymentAmountACH": 100000,

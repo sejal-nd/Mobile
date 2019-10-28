@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>watchGaTrackingId</key>
+	<string>UA-130168632-1</string>
+	<key>environment</key>
+	<string>DEV</string>
+	<key>opco</key>
+	<string>PECO</string>
+	<key>appName</key>
+	<string>PECO_DEV</string>
+	<key>mcsInstanceName</key>
+	<string>Test1Integration</string>
+	<key>myAccountUrl</key>
+	<string>https://aztst.peco.com/MyAccount</string>
+	<key>firebaseConfigFile</key>
+	<string>GoogleService-Info_peco_develop</string>
+	<key>gaTrackingId</key>
+	<string>UA-76742208-17</string>
+	<key>opcoUpdatesHost</key>
+	<string>azstg.peco.com</string>
+	<key>associatedDomain</key>
+	<string>azstg-secure.peco.com</string>
+</dict>
+</plist>

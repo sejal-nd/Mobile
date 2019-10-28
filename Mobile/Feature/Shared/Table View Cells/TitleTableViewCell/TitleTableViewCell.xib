@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TitleTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleTableViewCell" id="4PF-Jy-aIc" customClass="TitleTableViewCell" customModule="BGE" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4PF-Jy-aIc" id="Imy-mn-0WD">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_caret_white" translatesAutoresizingMaskIntoConstraints="NO" id="kg7-h3-qHb">
+                        <rect key="frame" x="346" y="23" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="S6J-IA-0BN"/>
+                            <constraint firstAttribute="height" constant="14" id="qGm-mh-OXv"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vUf-9D-NaE">
+                        <rect key="frame" x="51" y="13" width="283" height="34"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqd-2J-dVB">
+                                <rect key="frame" x="0.0" y="0.0" width="283" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESi-w8-keP">
+                                <rect key="frame" x="0.0" y="19.5" width="283" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2O0-lO-zkL">
+                        <rect key="frame" x="51" y="59.5" width="324" height="0.5"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="yu9-he-nNK"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F4e-ka-6AD">
+                        <rect key="frame" x="15" y="18" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="Hu6-h6-Jaa"/>
+                            <constraint firstAttribute="height" constant="24" id="e8w-xB-A5Y"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="vUf-9D-NaE" firstAttribute="centerY" secondItem="Imy-mn-0WD" secondAttribute="centerY" id="87M-mo-Tir"/>
+                    <constraint firstItem="kg7-h3-qHb" firstAttribute="leading" secondItem="vUf-9D-NaE" secondAttribute="trailing" constant="12" id="G9M-Pn-kIp"/>
+                    <constraint firstItem="F4e-ka-6AD" firstAttribute="centerY" secondItem="Imy-mn-0WD" secondAttribute="centerY" id="I87-PV-LDf"/>
+                    <constraint firstItem="vUf-9D-NaE" firstAttribute="leading" secondItem="F4e-ka-6AD" secondAttribute="trailing" constant="12" id="Pqz-zT-z5p"/>
+                    <constraint firstItem="F4e-ka-6AD" firstAttribute="leading" secondItem="Imy-mn-0WD" secondAttribute="leadingMargin" id="RV7-yL-fDy"/>
+                    <constraint firstItem="kg7-h3-qHb" firstAttribute="centerY" secondItem="Imy-mn-0WD" secondAttribute="centerY" id="X9e-rY-E0x"/>
+                    <constraint firstItem="kg7-h3-qHb" firstAttribute="trailing" secondItem="Imy-mn-0WD" secondAttribute="trailingMargin" id="Zmq-5t-twf"/>
+                    <constraint firstAttribute="bottom" secondItem="2O0-lO-zkL" secondAttribute="bottom" id="eYY-Bx-KRc"/>
+                    <constraint firstItem="2O0-lO-zkL" firstAttribute="leading" secondItem="F4e-ka-6AD" secondAttribute="trailing" constant="12" id="fvF-ba-IJM"/>
+                    <constraint firstAttribute="trailing" secondItem="2O0-lO-zkL" secondAttribute="trailing" id="rwe-ek-XvX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="separatorInset" minX="52" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="detailLabel" destination="ESi-w8-keP" id="EI4-UK-ECe"/>
+                <outlet property="disclosureImageView" destination="kg7-h3-qHb" id="YJa-6b-hOP"/>
+                <outlet property="iconImageView" destination="F4e-ka-6AD" id="UoN-Ss-ypn"/>
+                <outlet property="separatorView" destination="2O0-lO-zkL" id="7fy-yi-Y6E"/>
+                <outlet property="titleLabel" destination="nqd-2J-dVB" id="sLF-OF-vaE"/>
+            </connections>
+            <point key="canvasLocation" x="92" y="-6.2968515742128943"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_caret_white" width="8" height="13"/>
+    </resources>
+</document>
