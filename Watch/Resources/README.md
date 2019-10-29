@@ -22,4 +22,4 @@ Xcode 10.0 or later; WatchOS 4.0 SDK or later; Swift 4.2
 
 watchOS 4.0 or later
 
-Copyright (C) 2018 Exelon Corp All rights reserved.
+Copyright (C) 2019 Exelon Corporation All rights reserved.
