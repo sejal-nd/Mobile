@@ -280,8 +280,8 @@ class UsageInterfaceController: WKInterfaceController {
         let networkUtility = NetworkUtility.shared
         
         if !networkUtility.maintenanceModeStatuses.isEmpty {
-            networkUtility.maintenanceModeStatuses.forEach { tuple in
-                configureMaintenanceMode(tuple.0, feature: tuple.1)
+            networkUtility.maintenanceModeStatuses.forEach { maintenanceModeStatus in
+                configureMaintenanceModeStatus(maintenanceModeStatus)
             }
         }
         
@@ -334,8 +334,8 @@ class UsageInterfaceController: WKInterfaceController {
             updateAccountInterface(account, animationDuration: 1.0)
         } else if let billForecast = notification.object as? BillForecastResult {
                 configureBillForecast(billForecast)
-        } else if let tuple = notification.object as? (Maintenance, Feature) {
-            configureMaintenanceMode(tuple.0, feature: tuple.1)
+        } else if let maintenanceModeStatus = notification.object as? MaintenanceModeStatus {
+            configureMaintenanceModeStatus(maintenanceModeStatus)
         } else if let tuple = notification.object as? (NetworkError, Feature) {
             configureError(tuple.0, feature: tuple.1)
         } else {
@@ -460,9 +460,8 @@ extension UsageInterfaceController {
         dLog("Usage Status Did Update: \(billForecast)")
     }
     
-    private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
-        
-        guard feature == .all || feature == .usage else { return }
+    private func configureMaintenanceModeStatus(_ maintenanceModeStatus: MaintenanceModeStatus) {
+        guard maintenanceModeStatus.feature == .all || maintenanceModeStatus.feature == .usage else { return }
         
         accountGroup.setHidden(false)
         

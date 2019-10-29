@@ -195,8 +195,8 @@ class BillInterfaceController: WKInterfaceController {
         let networkUtility = NetworkUtility.shared
         
         if !networkUtility.maintenanceModeStatuses.isEmpty {
-            networkUtility.maintenanceModeStatuses.forEach { tuple in
-                configureMaintenanceMode(tuple.0, feature: tuple.1)
+            networkUtility.maintenanceModeStatuses.forEach { maintenanceModeStatus in
+                configureMaintenanceModeStatus(maintenanceModeStatus)
             }
         }
         
@@ -304,8 +304,8 @@ class BillInterfaceController: WKInterfaceController {
             updateAccountInterface(account, animationDuration: 1.0)
         } else if let accountDetails = notification.object as? AccountDetail {
                 configureAccountDetails(accountDetails)
-        } else if let tuple = notification.object as? (Maintenance, Feature) {
-            configureMaintenanceMode(tuple.0, feature: tuple.1)
+        } else if let maintenanceModeStatus = notification.object as? MaintenanceModeStatus {
+            configureMaintenanceModeStatus(maintenanceModeStatus)
         } else if let tuple = notification.object as? (NetworkError, Feature) {
             configureError(tuple.0, feature: tuple.1)
         } else {
@@ -348,8 +348,8 @@ extension BillInterfaceController {
         configureBillingState(billUtility: BillUtility(accountDetails: accountDetails))
     }
 
-    private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
-        guard feature == .all || feature == .bill else { return }
+    private func configureMaintenanceModeStatus(_ maintenanceModeStatus: MaintenanceModeStatus) {
+        guard maintenanceModeStatus.feature == .all || maintenanceModeStatus.feature == .bill else { return }
         accountGroup.setHidden(false)
         state = .maintenanceMode
     }

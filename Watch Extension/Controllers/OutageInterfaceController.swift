@@ -283,8 +283,8 @@ class OutageInterfaceController: WKInterfaceController {
         let networkUtility = NetworkUtility.shared
         
         if !networkUtility.maintenanceModeStatuses.isEmpty {
-            networkUtility.maintenanceModeStatuses.forEach { tuple in
-                configureMaintenanceMode(tuple.0, feature: tuple.1)
+            networkUtility.maintenanceModeStatuses.forEach { maintenanceModeStatus in
+                configureMaintenanceModeStatus(maintenanceModeStatus)
             }
         }
         
@@ -329,8 +329,8 @@ class OutageInterfaceController: WKInterfaceController {
             updateAccountInterface(account, animationDuration: 1.0)
         } else if let outageStatus = notification.object as? OutageStatus {
                 configureOutageStatus(outageStatus)
-        } else if let tuple = notification.object as? (Maintenance, Feature) {
-            configureMaintenanceMode(tuple.0, feature: tuple.1)
+        } else if let maintenanceModeStatus = notification.object as? MaintenanceModeStatus {
+            configureMaintenanceModeStatus(maintenanceModeStatus)
         } else if let tuple = notification.object as? (NetworkError, Feature) {
             configureError(tuple.0, feature: tuple.1)
         } else {
@@ -381,8 +381,9 @@ extension OutageInterfaceController {
         }
     }
     
-    private func configureMaintenanceMode(_ maintenanceMode: Maintenance, feature: Feature) {
-        guard feature == .all || feature == .outage else { return }
+    private func configureMaintenanceModeStatus(_ maintenanceModeStatus: MaintenanceModeStatus) {
+        print("maint mode outage: \(maintenanceModeStatus)")
+        guard maintenanceModeStatus.feature == .all || maintenanceModeStatus.feature == .outage else { return }
         
         accountGroup.setHidden(false)
         

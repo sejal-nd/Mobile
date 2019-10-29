@@ -15,7 +15,6 @@ import RxSwift
 /// Possible errors or error states from network requests
 enum NetworkError: Error {
     case missingToken
-    case maintenanceMode
     case passwordProtected
     case invalidAccount
     case fetchError
@@ -29,6 +28,11 @@ enum Feature {
     case all
 }
 
+struct MaintenanceModeStatus {
+    var maintenance: Maintenance
+    var feature: Feature
+}
+
 
 // MARK: - Network Utility
 
@@ -38,6 +42,8 @@ final class NetworkUtility {
 
     private let disposeBag = DisposeBag()
     private let notificationCenter = NotificationCenter.default
+    private let dispatchQueue = DispatchQueue.global(qos: .background)
+    private let semaphore = DispatchSemaphore(value: 0)
     private var pollingTimer: Timer!
     
     // In memory cache
@@ -46,7 +52,7 @@ final class NetworkUtility {
     public var outageStatus: OutageStatus?
     public var accountDetails: AccountDetail?
     public var billForecast: BillForecastResult?
-    public var maintenanceModeStatuses = [(Maintenance, Feature)]()
+    public var maintenanceModeStatuses = [MaintenanceModeStatus]()
     public var error: (NetworkError, Feature)?
     
     
@@ -72,37 +78,38 @@ final class NetworkUtility {
     /// - Parameter shouldLoadAccountList: true on fresh app launch, false if user selects a new account.
     public func fetchData(shouldLoadAccountList: Bool) {
         
-        // Reset in memory cache
-        resetLocalCache()
-        
-        let dispatchQueue = DispatchQueue.global(qos: .background)
-        let semaphore = DispatchSemaphore(value: 0)
+        // Reset Maintenance Mode
+        maintenanceModeStatuses.removeAll()
         
         if shouldLoadAccountList {
-            dispatchQueue.async { [weak self] in
+            dispatchQueue.async { [unowned self] in
                 
                 print("BEGIN fetching account list")
-                self?.fetchAccountList(result: { (result) in
+                self.fetchAccountList(result: { (result) in
                     switch result {
                     case .success(let accounts):
                         print("COMPLETE fetching account list")
-                        self?.accounts = accounts
-                        self?.notificationCenter.post(name: .accountListDidUpdate, object: accounts)
-                        semaphore.signal()
+                        self.accounts = accounts
+                        self.notificationCenter.post(name: .accountListDidUpdate, object: accounts)
+                        self.semaphore.signal()
                     case .failure(let error):
                         print("ERROR fetching account list")
-                        self?.error = (error, Feature.all)
-                        self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
-                        semaphore.signal()
+                        self.error = (error, Feature.all)
+                        self.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+                        self.semaphore.signal()
                         return
                     }
                 })
-                semaphore.wait()
-                
-                self?.fetchFeatureData(semaphore: semaphore, dispatchQueue: dispatchQueue)
+                self.semaphore.wait()
+                print("sema 0: \(self.semaphore.debugDescription)")
+                self.fetchFeatureData(semaphore: self.semaphore, dispatchQueue: self.dispatchQueue)
             }
         } else {
-            fetchFeatureData(semaphore: semaphore, dispatchQueue: dispatchQueue)
+            print("no acc list fetch")
+            print("sema 4: \(self.semaphore.debugDescription)")
+            dispatchQueue.async { [unowned self] in
+                self.fetchFeatureData(semaphore: self.semaphore, dispatchQueue: self.dispatchQueue)
+            }
         }
     }
     
@@ -113,22 +120,11 @@ final class NetworkUtility {
 
 extension NetworkUtility {
     
-    /// Resets local variables in `NetworkingUtility.swift`
-    private func resetLocalCache() {
-        maintenanceModeStatuses.removeAll()
-        error = nil
-        defaultAccount = nil
-        accounts.removeAll()
-        accountDetails = nil
-        outageStatus = nil
-        billForecast = nil
-    }
-    
     /// Fetches Maintenance mode, then account details.  Once both succeed usage and outage are fetched at the same time.  Notifications are sent to the respective interface controllers.
     /// - Parameter semaphore: Prevents the need to nest too many async requests.
     /// - Parameter dispatchQueue: Allows network requests to occur in the background.
     private func fetchFeatureData(semaphore: DispatchSemaphore, dispatchQueue: DispatchQueue) {
-        var maintenanceStatuses = [(Maintenance, Feature)]()
+        var maintenanceStatuses = [MaintenanceModeStatus]()
         
         guard KeychainUtility.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
@@ -153,106 +149,97 @@ extension NetworkUtility {
             }
         }
         semaphore.wait()
-        
-        if isMaintenanceModeOnForFeature(maintenanceStatuses: maintenanceStatuses, featureCheck: .all) {
+        print("sema 1: \(semaphore.debugDescription)")
+        if isMaintenanceModeOnForFeature(feature: .all, currentStatuses: maintenanceStatuses) {
             return
         }
         
         print("BEGIN fetching account details")
-        fetchAccountDetails { [weak self] (result) in
+        fetchAccountDetails { [unowned self] (result) in
             switch result {
             case .success(let accountDetails):
                 print("SUCCESS fetching account details.")
                 if accountDetails.isPasswordProtected {
-                    self?.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.passwordProtected, Feature.all))
+                    self.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.passwordProtected, Feature.all))
+                    semaphore.signal()
                     return
                 } else {
-                    
-                    self?.accountDetails = accountDetails
-                    self?.notificationCenter.post(name: .accountDetailsDidUpdate, object: accountDetails)
-                    
-                    
-                    if self?.isMaintenanceModeOnForFeature(maintenanceStatuses: maintenanceStatuses, featureCheck: .outage) ?? false {
-                        return
-                    }
-                    
-                    print("BEGIN fetching outage.")
-                    self?.fetchOutageStatus { (result) in
-                        switch result {
-                        case .success(let outageStatus):
-                            print("SUCCESS fetching outage.")
-                            self?.outageStatus = outageStatus
-                            self?.notificationCenter.post(name: .outageStatusDidUpdate, object: outageStatus)
-                        case .failure(let error):
-                            print("ERROR Fetching outage.")
-                            self?.error = (error, .outage)
-                            self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.outage))
-                        }
-                    }
-                    
-                    if self?.isMaintenanceModeOnForFeature(maintenanceStatuses: maintenanceStatuses, featureCheck: .usage) ?? false {
-                        return
-                    }
-                    
-                    print("BEGIN fetching usage.")
-                    self?.fetchUsageData(accountDetail: accountDetails) { (result) in
-                        switch result {
-                        case .success(let billForecastResult):
-                            print("SUCCESS fetching usage.")
-                            self?.billForecast = billForecastResult
-                            self?.notificationCenter.post(name: .billForecastDidUpdate, object: billForecastResult)
-                        case .failure(let error):
-                            print("ERROR Fetching usage.")
-                            self?.error = (error, .usage)
-                            self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.usage))
-                        }
-                    }
+                    self.accountDetails = accountDetails
+                    self.notificationCenter.post(name: .accountDetailsDidUpdate, object: accountDetails)
                 }
-                
+                semaphore.signal()
             case .failure(let error):
                 print("ERROR Fetching account details.")
-                self?.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+                self.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+                semaphore.signal()
+                return
+            }
+        }
+        semaphore.wait()
+        print("sema 2: \(semaphore.debugDescription)")
+        guard let accountDetails = self.accountDetails else { return }
+        
+        if !self.isMaintenanceModeOnForFeature(feature: .outage, currentStatuses: maintenanceStatuses) {
+            print("BEGIN fetching outage.")
+            self.fetchOutageStatus { (result) in
+                switch result {
+                case .success(let outageStatus):
+                    print("SUCCESS fetching outage.")
+                    self.outageStatus = outageStatus
+                    self.notificationCenter.post(name: .outageStatusDidUpdate, object: outageStatus)
+                case .failure(let error):
+                    print("ERROR Fetching outage.")
+                    self.error = (error, .outage)
+                    self.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.outage))
+                }
+            }
+        }
+
+        if !self.isMaintenanceModeOnForFeature(feature: .usage, currentStatuses: maintenanceStatuses) {
+            print("BEGIN fetching usage.")
+            self.fetchUsageData(accountDetail: accountDetails) { (result) in
+                switch result {
+                case .success(let billForecastResult):
+                    print("SUCCESS fetching usage.")
+                    self.billForecast = billForecastResult
+                    self.notificationCenter.post(name: .billForecastDidUpdate, object: billForecastResult)
+                case .failure(let error):
+                    print("ERROR Fetching usage.")
+                    self.error = (error, .usage)
+                    self.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.usage))
+                }
             }
         }
     }
 
     /// Sends notification to IC, and returns a boolean signifying if any form of maintenance mode is turned on.
     /// - Parameter maintenance: object returned from serivces of type `Maintenance`.
-    private func processMaintenanceMode(_ maintenance: Maintenance) -> [(Maintenance, Feature)] {
-        var statuses = [(Maintenance, Feature)]()
-
+    private func processMaintenanceMode(_ maintenance: Maintenance) -> [MaintenanceModeStatus] {
         if maintenance.allStatus {
-            statuses.append((maintenance, .all))
-            maintenanceModeStatuses.append((maintenance, .all))
+            maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .all))
             print("sig all")
         }
         
         if maintenance.outageStatus {
-            statuses.append((maintenance, .outage))
-            maintenanceModeStatuses.append((maintenance, .outage))
+            maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .outage))
             print("sig outage")
         }
         
         if maintenance.usageStatus {
-            statuses.append((maintenance, .usage))
-            maintenanceModeStatuses.append((maintenance, .usage))
+            maintenanceModeStatuses.append(MaintenanceModeStatus(maintenance: maintenance, feature: .usage))
             print("sig usage")
         }
         
-        return statuses
+        return maintenanceModeStatuses
     }
     
-    private func isMaintenanceModeOnForFeature(maintenanceStatuses: [(Maintenance, Feature)], featureCheck: Feature) -> Bool {
-        for status in maintenanceStatuses {
-            let maintenance = status.0
-            let feature = status.1
-            
-            if featureCheck == feature {
-                self.notificationCenter.post(name: .maintenanceModeDidUpdate, object: (maintenance, Feature.all))
+    private func isMaintenanceModeOnForFeature(feature: Feature, currentStatuses: [MaintenanceModeStatus]) -> Bool {
+        for status in currentStatuses {
+            if feature == status.feature {
+                self.notificationCenter.post(name: .maintenanceModeDidUpdate, object: status)
                 return true
             }
         }
-        
         return false
     }
     
