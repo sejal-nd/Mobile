@@ -20,7 +20,6 @@ class HomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var colorBackgroundView: UIView!
     @IBOutlet weak var colorBackgroundHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var headerContentView: UIView!
     @IBOutlet weak var noNetworkConnectionView: NoNetworkConnectionView!
     @IBOutlet weak var accountDisallowView: UIView!
     @IBOutlet weak var maintenanceModeView: MaintenanceModeView!

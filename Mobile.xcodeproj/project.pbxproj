@@ -962,6 +962,12 @@
 		9C74CDEC21EF89F900F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C74CDED21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
 		9C74CDEE21EF89FA00F599D1 /* A0SimpleKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */; };
+		9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
+		9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
+		9C7774832368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
+		9C7774852368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */; };
+		9C7774862368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */; };
+		9C7774872368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
@@ -2859,6 +2865,8 @@
 		9C62447322C5617D00F14DA0 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
+		9C7774802368C630009AF0F0 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
+		9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameViewController.swift; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
 		9C7FFD1922C1251800092987 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
@@ -3837,8 +3845,10 @@
 			isa = PBXGroup;
 			children = (
 				E8B4F4BE1E5C9A200031D934 /* Home.storyboard */,
+				9C7774802368C630009AF0F0 /* HomeContentViewController.swift */,
 				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
 				825171B41F1D25130020A6CA /* HomeViewModel.swift */,
+				9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */,
 				3559C89822F9C51400481A87 /* Cards */,
 				3559C89922F9C51E00481A87 /* Detail Pages */,
 				35CEB023230D8B8700366440 /* Views */,
@@ -5982,10 +5992,7 @@
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
-				6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */,
 				0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */,
-				6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */,
-				6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7531,6 +7538,7 @@
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
+				9C7774852368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
@@ -7562,6 +7570,7 @@
 				B0EA71BF2090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
 				82A18E951EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
+				9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				35A6C6BB211C6CEB00C2A58F /* TitleTableViewHeaderView.swift in Sources */,
 				E801BAD91E8C43BB00550F99 /* MCSAccountService.swift in Sources */,
 				E867A8FF1F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
@@ -7724,6 +7733,7 @@
 				82E9B6101FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF559A2170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
+				9C7774832368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				9C9204CC2310327400B0B89F /* SmartThermostatPeriodCard.swift in Sources */,
 				2F5A3F8A1EFD979F00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
@@ -7970,6 +7980,7 @@
 				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
 				9CD3532022CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */,
+				9C7774872368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 			);
@@ -8274,6 +8285,7 @@
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
+				9C7774862368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
@@ -8305,6 +8317,7 @@
 				82A18E961EB919B300BE9F21 /* AccountLookupToolViewModel.swift in Sources */,
 				9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */,
 				54AE06B61ED60236004A1FDA /* RegistrationCreateCredentialsViewController.swift in Sources */,
+				9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B0B083A9216F9DC100B1C632 /* MockAppointmentService.swift in Sources */,
 				9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */,
 				35A6C6D7211C8F1600C2A58F /* TitleTableViewHeaderView.swift in Sources */,
