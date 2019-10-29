@@ -62,7 +62,7 @@
                                                 <label alignment="center" text="10:30AM 10/09/2018" minimumScaleFactor="0.5" id="GYa-hc-Udw">
                                                     <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                                 </label>
-                                                <imageView alignment="center" verticalAlignment="bottom" image="On_0" id="fzl-mw-v2T"/>
+                                                <imageView alignment="center" verticalAlignment="bottom" image="On_1" id="fzl-mw-v2T"/>
                                             </items>
                                         </group>
                                     </items>
@@ -130,7 +130,7 @@
     </scenes>
     <resources>
         <image name="Loading_white" width="16" height="16"/>
-        <image name="On_0" width="270" height="50"/>
+        <image name="On_1" width="270" height="50"/>
         <image name="outageUnavailable" width="49" height="49"/>
         <image name="residential_mini_white" width="20" height="20"/>
     </resources>

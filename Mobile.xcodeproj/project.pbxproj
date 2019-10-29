@@ -188,8 +188,6 @@
 		3527DB3A234B86E000DA4553 /* BillUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3527DB37234B86E000DA4553 /* BillUtility.swift */; };
 		352B19F8233BBE710090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F7233BBE710090B442 /* Outage.storyboard */; };
 		352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19F9233BBEDD0090B442 /* Usage.storyboard */; };
-		352B19FE233BBFA50090B442 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FD233BBFA50090B442 /* Outage.storyboard */; };
-		352B1A00233BBFB50090B442 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FF233BBFB50090B442 /* Usage.storyboard */; };
 		352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
 		352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */; };
@@ -281,9 +279,6 @@
 		357757582114D65B00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		357757592114D65C00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
 		3577575A2114D65C00E73542 /* SharedWebCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357757542114D32A00E73542 /* SharedWebCredentialService.swift */; };
-		35839039234E5BA900AB601B /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35839038234E5B8E00AB601B /* Bill.storyboard */; };
-		3583903A234E5BB100AB601B /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 352B19FB233BBF120090B442 /* Bill.storyboard */; };
-		3583903C234E5BDB00AB601B /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3583903B234E5BDB00AB601B /* Bill.storyboard */; };
 		358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
 		358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358BD20E20F7A8FD00DA2012 /* Usage.storyboard */; };
@@ -442,6 +437,13 @@
 		35BAA1792367454F0053E58A /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
 		35BAA17A2367454F0053E58A /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
 		35BAA17B2367454F0053E58A /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAA1782367454F0053E58A /* NetworkUtility.swift */; };
+		35BAA1832368B20F0053E58A /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1822368B20F0053E58A /* Outage.storyboard */; };
+		35BAA1852368B22C0053E58A /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1842368B22C0053E58A /* Usage.storyboard */; };
+		35BAA1892368B29A0053E58A /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1882368B29A0053E58A /* Outage.storyboard */; };
+		35BAA18B2368B2A50053E58A /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18A2368B2A50053E58A /* Usage.storyboard */; };
+		35BAA18D2368B2BB0053E58A /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18C2368B2BB0053E58A /* Bill.storyboard */; };
+		35BAA18F2368B5AA0053E58A /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18E2368B5AA0053E58A /* Bill.storyboard */; };
+		35BAA1912368B5C80053E58A /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1902368B5C80053E58A /* Bill.storyboard */; };
 		35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
 		35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
 		35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
@@ -479,8 +481,6 @@
 		35E7C7A921907EA400BA13C6 /* PECO-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO-Watch.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
 		35E7C7CC21907F2F00BA13C6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BE21907F2E00BA13C6 /* README.md */; };
-		35E7C7D121907F2F00BA13C6 /* Outage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C721907F2E00BA13C6 /* Outage.storyboard */; };
-		35E7C7D221907F2F00BA13C6 /* Usage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C821907F2E00BA13C6 /* Usage.storyboard */; };
 		35E7C7DA2190802400BA13C6 /* AccountTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */; };
 		35E7C7F22190804E00BA13C6 /* Date+DueBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EB2190804E00BA13C6 /* Date+DueBy.swift */; };
 		35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7EF2190804E00BA13C6 /* AnimateWithDuration+Completion.swift */; };
@@ -2829,9 +2829,6 @@
 		3527DB37234B86E000DA4553 /* BillUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUtility.swift; sourceTree = "<group>"; };
 		352B19F7233BBE710090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Outage.storyboard; path = Watch/Storyboards/BGE/Outage.storyboard; sourceTree = SOURCE_ROOT; };
 		352B19F9233BBEDD0090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
-		352B19FB233BBF120090B442 /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Bill.storyboard; path = ../BGE/Bill.storyboard; sourceTree = "<group>"; };
-		352B19FD233BBFA50090B442 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
-		352B19FF233BBFB50090B442 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		352B8D97230D72E5007F8CEE /* Unauthenticated.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Unauthenticated.storyboard; sourceTree = "<group>"; };
 		3547FDDF21E8F33C006F28A7 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		3559C8B52301E4FF00481A87 /* AutoPay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AutoPay.storyboard; sourceTree = "<group>"; };
@@ -2843,8 +2840,6 @@
 		3575232C22C53A1B00A0AFAC /* AccountListRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountListRow.xib; sourceTree = "<group>"; };
 		357757502113611000E73542 /* DateParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParserTests.swift; sourceTree = "<group>"; };
 		357757542114D32A00E73542 /* SharedWebCredentialService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedWebCredentialService.swift; path = Service/SharedWebCredentialService.swift; sourceTree = "<group>"; };
-		35839038234E5B8E00AB601B /* Bill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Bill.storyboard; path = Watch/Storyboards/ComEd/Bill.storyboard; sourceTree = SOURCE_ROOT; };
-		3583903B234E5BDB00AB601B /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		358BD20E20F7A8FD00DA2012 /* Usage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		358BD21620F8FB2D00DA2012 /* BillImpactView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillImpactView.xib; sourceTree = "<group>"; };
 		358BD21820F8FDAE00DA2012 /* BillImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillImpactView.swift; sourceTree = "<group>"; };
@@ -2902,6 +2897,13 @@
 		35B9609C22B7BC79003BCC97 /* PremiseListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiseListRow.swift; sourceTree = "<group>"; };
 		35B960BE22C2A15A003BCC97 /* AccountListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountListRow.swift; sourceTree = "<group>"; };
 		35BAA1782367454F0053E58A /* NetworkUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
+		35BAA1822368B20F0053E58A /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
+		35BAA1842368B22C0053E58A /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
+		35BAA1882368B29A0053E58A /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
+		35BAA18A2368B2A50053E58A /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
+		35BAA18C2368B2BB0053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		35BAA18E2368B5AA0053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		35BAA1902368B5C80053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniWalletSheet.storyboard; sourceTree = "<group>"; };
 		35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewController.swift; sourceTree = "<group>"; };
 		35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletItemRow.swift; sourceTree = "<group>"; };
@@ -2924,8 +2926,6 @@
 		35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35E7C7BE21907F2E00BA13C6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35E7C7C421907F2E00BA13C6 /* PECO-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Info.plist"; sourceTree = "<group>"; };
-		35E7C7C721907F2E00BA13C6 /* Outage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Outage.storyboard; sourceTree = "<group>"; };
-		35E7C7C821907F2E00BA13C6 /* Usage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Usage.storyboard; sourceTree = "<group>"; };
 		35E7C7CA21907F2E00BA13C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35E7C7D92190802400BA13C6 /* AccountTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableRowController.swift; sourceTree = "<group>"; };
 		35E7C7DC2190802C00BA13C6 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -4997,9 +4997,9 @@
 			isa = PBXGroup;
 			children = (
 				35E7C7C921907F2E00BA13C6 /* Main.storyboard */,
-				35E7C7C721907F2E00BA13C6 /* Outage.storyboard */,
-				35E7C7C821907F2E00BA13C6 /* Usage.storyboard */,
-				3583903B234E5BDB00AB601B /* Bill.storyboard */,
+				35BAA1882368B29A0053E58A /* Outage.storyboard */,
+				35BAA18A2368B2A50053E58A /* Usage.storyboard */,
+				35BAA18C2368B2BB0053E58A /* Bill.storyboard */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -5010,7 +5010,7 @@
 				35F9DDC423340C8600AAA2B2 /* Main.storyboard */,
 				352B19F7233BBE710090B442 /* Outage.storyboard */,
 				352B19F9233BBEDD0090B442 /* Usage.storyboard */,
-				35839038234E5B8E00AB601B /* Bill.storyboard */,
+				35BAA18E2368B5AA0053E58A /* Bill.storyboard */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -5019,9 +5019,9 @@
 			isa = PBXGroup;
 			children = (
 				35F9DDF7233539E100AAA2B2 /* Main.storyboard */,
-				352B19FD233BBFA50090B442 /* Outage.storyboard */,
-				352B19FF233BBFB50090B442 /* Usage.storyboard */,
-				352B19FB233BBF120090B442 /* Bill.storyboard */,
+				35BAA1822368B20F0053E58A /* Outage.storyboard */,
+				35BAA1842368B22C0053E58A /* Usage.storyboard */,
+				35BAA1902368B5C80053E58A /* Bill.storyboard */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -6685,13 +6685,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35BAA1892368B29A0053E58A /* Outage.storyboard in Resources */,
 				35510E4A2190886E00347539 /* Main.storyboard in Resources */,
+				35BAA18B2368B2A50053E58A /* Usage.storyboard in Resources */,
 				35E7C7CC21907F2F00BA13C6 /* README.md in Resources */,
 				35F9DD6A2333C87A00AAA2B2 /* PECOAssets.xcassets in Resources */,
 				35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */,
-				35E7C7D221907F2F00BA13C6 /* Usage.storyboard in Resources */,
-				35E7C7D121907F2F00BA13C6 /* Outage.storyboard in Resources */,
-				3583903C234E5BDB00AB601B /* Bill.storyboard in Resources */,
+				35BAA18D2368B2BB0053E58A /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6712,12 +6712,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				352B19F8233BBE710090B442 /* Outage.storyboard in Resources */,
-				35839039234E5BA900AB601B /* Bill.storyboard in Resources */,
 				35F9DDC523340C9B00AAA2B2 /* Main.storyboard in Resources */,
 				352B19FA233BBEDD0090B442 /* Usage.storyboard in Resources */,
 				35F9DD672333C85B00AAA2B2 /* README.md in Resources */,
 				35F9DD5C2333C45300AAA2B2 /* BGEAssets.xcassets in Resources */,
 				35F9DD6C2333C8A000AAA2B2 /* Assets.xcassets in Resources */,
+				35BAA18F2368B5AA0053E58A /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6737,13 +6737,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				352B19FE233BBFA50090B442 /* Outage.storyboard in Resources */,
+				35BAA1832368B20F0053E58A /* Outage.storyboard in Resources */,
 				35F9DDF4233539C200AAA2B2 /* ComEdAssets.xcassets in Resources */,
-				352B1A00233BBFB50090B442 /* Usage.storyboard in Resources */,
+				35BAA1852368B22C0053E58A /* Usage.storyboard in Resources */,
 				35F9DE492335413300AAA2B2 /* Assets.xcassets in Resources */,
 				35F9DE4A2335413800AAA2B2 /* README.md in Resources */,
 				35F9DDF8233539E700AAA2B2 /* Main.storyboard in Resources */,
-				3583903A234E5BB100AB601B /* Bill.storyboard in Resources */,
+				35BAA1912368B5C80053E58A /* Bill.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

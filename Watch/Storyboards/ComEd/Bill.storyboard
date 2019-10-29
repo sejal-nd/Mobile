@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="watch44"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
     </dependencies>
@@ -10,7 +9,7 @@
         <!--Bill-->
         <scene sceneID="0SA-xD-T2x">
             <objects>
-                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="BGE_Watch_Extension">
+                <controller identifier="BillInterfaceController" title="Bill" id="IpL-1B-J0b" customClass="BillInterfaceController" customModule="ComEd_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="tax-4C-a6R">
                             <items>
@@ -230,5 +229,5 @@
         <image name="paymentConfirmation" width="48" height="48"/>
         <image name="residential_mini_white" width="20" height="20"/>
     </resources>
-    <color key="tintColor" red="0.40000000000000002" green="0.70196078431372544" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.95686274509803915" green="0.0" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
