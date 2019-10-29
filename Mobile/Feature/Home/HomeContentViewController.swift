@@ -35,15 +35,43 @@ class HomeContentViewController: UIViewController {
         
         flipping = true
         if inGame {
-            UIView.transition(from: gameContainer, to: homeContainer, duration: 1, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: { [weak self] _ in
+            let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
+            addChild(controller)
+            controller.view.translatesAutoresizingMaskIntoConstraints = false
+
+            UIView.transition(from: homeContainer, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.inGame = false
                 self?.flipping = false
+                self?.homeContainer = controller.view
             })
+            
+            NSLayoutConstraint.activate([
+                controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
+                controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            ])
+            controller.didMove(toParent: self)
+            view.sendSubviewToBack(controller.view)
         } else {
-            UIView.transition(from: homeContainer, to: gameContainer, duration: 1, options: [.transitionFlipFromRight, .showHideTransitionViews], completion: { [weak self] _ in
+            let controller = storyboard!.instantiateViewController(withIdentifier: "Game")
+            addChild(controller)
+            controller.view.translatesAutoresizingMaskIntoConstraints = false
+
+            UIView.transition(from: homeContainer, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.inGame = true
                 self?.flipping = false
+                self?.homeContainer = controller.view
             })
+            
+            NSLayoutConstraint.activate([
+                controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
+                controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+                controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+                controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            ])
+            controller.didMove(toParent: self)
+            view.sendSubviewToBack(controller.view)
         }
     }
     

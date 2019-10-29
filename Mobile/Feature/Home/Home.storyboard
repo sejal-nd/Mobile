@@ -772,7 +772,7 @@
         <!--Home Game View Controller-->
         <scene sceneID="eQl-zS-gXz">
             <objects>
-                <viewController id="MlV-Ri-7CU" customClass="HomeGameViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Game" id="MlV-Ri-7CU" customClass="HomeGameViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ReS-7q-hB2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -799,7 +799,7 @@
         <!--Home View Controller-->
         <scene sceneID="GIZ-Ee-jsd">
             <objects>
-                <viewController id="c2T-h3-4Jv" customClass="HomeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="c2T-h3-4Jv" customClass="HomeViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yS8-Uk-pA0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
