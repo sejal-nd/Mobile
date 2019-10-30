@@ -8,33 +8,6 @@
 
 import WatchKit
 
-
-// MARK: - Errors
-
-enum Errors {
-    enum Code {
-        static let passwordProtected = "09122"
-        static let noAccountsFound = "09121"
-        static let invalidInformation = "87221"
-        static let noAuthTokenFound = "981156"
-    }
-    
-    static let passwordProtected = ServiceError(serviceCode: Code.passwordProtected, serviceMessage: "Account is Password Protected, cannot show data.", cause: nil)
-    static let noAccountsFound = ServiceError(serviceCode: Code.noAccountsFound, serviceMessage: "Could not locate the current account in AccountStore.shared.getSelectedAccounts.", cause: nil)
-    static let invalidInformation = ServiceError(serviceCode: Code.invalidInformation, serviceMessage: "Invalid Info: nil data returned for expected request without throwing an error.", cause: nil)
-    static let noAuthTokenFound = ServiceError(serviceCode: Code.noAuthTokenFound, serviceMessage: "No Auth Token in Keychain.", cause: nil)
-}
-
-
-// MARK: - Keychain Keys
-
-enum keychainKeys {
-    static let authToken = "authToken"
-    static let askForUpdate = "askForUpdate"
-    static let outageReported = "outageReported"
-}
-
-
 // MARK: - Notification Names
 
 extension Notification.Name {

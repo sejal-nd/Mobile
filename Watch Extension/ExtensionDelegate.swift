@@ -13,7 +13,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         dLog("NOTICE: Apple Watch App Did Finish Launching.")
         
-        WatchSessionManager.shared.startSession()
+        WatchSessionManager.shared.start()
 
         setInitialScreen()
     }
@@ -22,7 +22,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     // MARK: - Helper
     
     private func setInitialScreen() {
-        let authToken = KeychainUtility.shared[keychainKeys.authToken]
+        let authToken = KeychainManager.shared[keychainKeys.authToken]
         
         if authToken != nil {
             WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject),

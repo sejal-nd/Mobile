@@ -33,7 +33,7 @@ class MCSApi {
     #if os(iOS)
     private let tokenKeychain = A0SimpleKeychain()
     #elseif os(watchOS)
-    private let tokenKeychain = KeychainUtility.shared
+    private let tokenKeychain = KeychainManager.shared
     #endif
     public var accessToken: String?
 
