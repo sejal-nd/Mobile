@@ -58,6 +58,9 @@
 		0D79C6D21F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D31F1FB761004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
 		0D79C6D41F1FE98A004793DD /* Maintenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C6D01F1FB761004793DD /* Maintenance.swift */; };
+		0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */; };
+		0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */; };
+		0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */; };
 		0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF09202E22CD009D1ADB /* GoogleService-Info_comed_prodbeta.plist */; };
 		0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0B202E2389009D1ADB /* GoogleService-Info_bge_prodbeta.plist */; };
 		0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5BEF0C202E2389009D1ADB /* GoogleService-Info_peco_prodbeta.plist */; };
@@ -195,6 +198,9 @@
 		35376C6820F8FFC9007E50F7 /* BillImpactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 358BD21620F8FB2D00DA2012 /* BillImpactView.xib */; };
 		35376C6920F8FFD1007E50F7 /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
 		35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358BD21820F8FDAE00DA2012 /* BillImpactView.swift */; };
+		354838B5233E84BC00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
+		354838B6233E84BD00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
+		354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35510E4A2190886E00347539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7C921907F2E00BA13C6 /* Main.storyboard */; };
 		3559C8A422F9F68300481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
 		3559C8A522F9F68400481A87 /* AppointmentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B0840721710D9300B1C632 /* AppointmentDetailViewModel.swift */; };
@@ -444,6 +450,9 @@
 		35BAA18D2368B2BB0053E58A /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18C2368B2BB0053E58A /* Bill.storyboard */; };
 		35BAA18F2368B5AA0053E58A /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA18E2368B5AA0053E58A /* Bill.storyboard */; };
 		35BAA1912368B5C80053E58A /* Bill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35BAA1902368B5C80053E58A /* Bill.storyboard */; };
+		35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
+		35C0F1D2233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
+		35C0F1D3233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */; };
 		35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
 		35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
 		35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */; };
@@ -722,54 +731,9 @@
 		54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		54EDD2E11ECE244100CAB8A6 /* MCSWalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EDD2DE1ECE244100CAB8A6 /* MCSWalletService.swift */; };
 		571794AC4A27678E71A0C5B9 /* Pods_ComEdApp_ComEdUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3D4BDE43A5A828C49ECC99 /* Pods_ComEdApp_ComEdUITests.framework */; };
-		6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD83C81C2FC97064FA20C /* otp_step4.json */; };
-		6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD7AD8F54E3629276558A /* otps2_img_1.png */; };
-		6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD938D1597E4FD73D4F70 /* otps2_img_1.png */; };
-		6A4FD129D861EF2367762387 /* TutorialModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */; };
-		6A4FD1C7B14B360F2F2C3C51 /* otps4_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDCB8E187E8835EEB534C /* otps4_img_1.png */; };
 		6A4FD21032155AD85505077D /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD80B62F03A415062F85E /* splash.json */; };
-		6A4FD21BE1692C3726A5C3FF /* otp_step3.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDE4FB49A2918375DF12B /* otp_step3.json */; };
-		6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD59A72B7C52BB420841B /* otps4_img_1.png */; };
-		6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDFE2B58E816579B4676D /* otps2_img_0.png */; };
-		6A4FD2D560C81F27B81D2748 /* otps1_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDCE79743D3CF38A989D8 /* otps1_img_0.png */; };
-		6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD2458F9E35931F17C881 /* otp_step2.json */; };
 		6A4FD31E23F701334D2D37CE /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD46F61FB1F534F49F74E /* splash.json */; };
-		6A4FD323AF99726FB2158A2E /* otps3_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD1D4AE76599E6172C2BD /* otps3_img_0.png */; };
 		6A4FD35CACD849817177444C /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6DF9787E9CA31227BD /* splash.json */; };
-		6A4FD375948286D6F4A38198 /* otps1_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD2B754F985AB27905568 /* otps1_img_1.png */; };
-		6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDAC4D1AB1C47E7D67CFD /* otps3_img_0.png */; };
-		6A4FD41C5B2744DEBEF4D69E /* otp_step1.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD1929F1F4842101B4166 /* otp_step1.json */; };
-		6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD40E3ED8DF91D9633DB1 /* otps2_img_1.png */; };
-		6A4FD451E3D8B0019DD36819 /* otp_step3.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD9AB2B7C002CD73F3147 /* otp_step3.json */; };
-		6A4FD45A4A53BE785EDA8FF4 /* TutorialModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */; };
-		6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD6E44082C2479E900018 /* otps2_img_0.png */; };
-		6A4FD4A0E10A729FE6FD4B09 /* otps1_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDFDC5B607067767A0DE4 /* otps1_img_1.png */; };
-		6A4FD4F95BC9EC785486FD59 /* otp_step4.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDA6C78F5098995DBEC42 /* otp_step4.json */; };
-		6A4FD65B35FE264A4969DE47 /* otp_step4.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDB873E37CF1CB0A4F03C /* otp_step4.json */; };
-		6A4FD6EF9B7917482EF511D8 /* otps1_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD2843587C9667D987D14 /* otps1_img_1.png */; };
-		6A4FD710BA920728F2923F06 /* otps4_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD60DDD6041BD50C937EE /* otps4_img_0.png */; };
-		6A4FD7193000B9082AA1B6E3 /* otp_step1.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD2CD49DDE4EFBA67539E /* otp_step1.json */; };
-		6A4FD7DC1371BC6129CC594F /* otps1_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD9DEDB99939189C71AAD /* otps1_img_0.png */; };
-		6A4FD8AE71A963B756050DD9 /* otp_step2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD61142816F21220B99AC /* otp_step2.json */; };
-		6A4FD8F40311B79006BEA4D7 /* otps3_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDB693D3650AC134438FE /* otps3_img_0.png */; };
-		6A4FD91EB0591B1C2C63040C /* otp_step2.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD3D3A256BB13D8C83A07 /* otp_step2.json */; };
-		6A4FD9B658A06B0878472526 /* otps1_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD4DBDAC426AF69A9F186 /* otps1_img_0.png */; };
-		6A4FDA9B436AAD428A74A239 /* otps4_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDCEF5360CEF3AD476A08 /* otps4_img_0.png */; };
-		6A4FDC511CBF8CE0C50F4E71 /* otp_step1.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDAB18E4B515B7B8B081E /* otp_step1.json */; };
-		6A4FDC6FCEC722F72EA840D3 /* TutorialModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */; };
-		6A4FDCC9FBA97FEF77672BED /* otps3_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD6DF66C665DBE50007D0 /* otps3_img_1.png */; };
-		6A4FDCF675D261AB6008C079 /* otp_step3.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD7C40F42086D316B331A /* otp_step3.json */; };
-		6A4FDD311DA8303DC8CAE88C /* otps4_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD8D975DA427384C5D874 /* otps4_img_0.png */; };
-		6A4FDD3ABED114C309AF6B3D /* TutorialModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */; };
-		6A4FDD8981BBF03EF9D907AD /* otps4_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDCADF0F74BBB48F11978 /* otps4_img_1.png */; };
-		6A4FDDD10550ECC33F36ECCD /* otps2_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FDD0E6263CEE61A02B24F /* otps2_img_0.png */; };
-		6A4FDEB37967D5B806CE00FC /* otps3_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD8BC0C4DC3A8B03B4519 /* otps3_img_1.png */; };
-		6A4FDF0D523DED06D1465E99 /* otps3_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD9CCBDC02D4AB4E199CA /* otps3_img_1.png */; };
-		6A4FDF7B7B5896327BB37392 /* TutorialModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */; };
-		6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */; };
-		820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
-		820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
-		820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */; };
 		8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
 		8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
 		8206D0151FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */; };
@@ -1063,6 +1027,12 @@
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
+		9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
+		9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
+		9C0E1C962333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
+		9C0E1C972333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
+		9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
+		9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
 		9C10B4D322DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D522DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
@@ -1201,12 +1171,6 @@
 		9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
 		9CD3532B22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
 		9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532622CABC0900165F87 /* PrepaidCardView.swift */; };
-		9CD3533022CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533122CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533222CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */; };
-		9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
-		9CD3533422CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
-		9CD3533522CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */; };
 		9CD3533622CABDB900165F87 /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
 		9CD3533722CABDB900165F87 /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
 		9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D84B62187803000F15A9F /* DisclosureCellButton.xib */; };
@@ -2525,12 +2489,6 @@
 		E8FF085A1F7EDC160030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
 		E8FF085B1F7EDC240030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
 		E8FF085C1F7EDC250030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
-		E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FF085E1F7EDD790030F1BF /* TutorialView.xib */; };
-		E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FF085E1F7EDD790030F1BF /* TutorialView.xib */; };
-		E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FF085E1F7EDD790030F1BF /* TutorialView.xib */; };
-		E8FF08631F7EDD790030F1BF /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF085F1F7EDD790030F1BF /* TutorialView.swift */; };
-		E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF085F1F7EDD790030F1BF /* TutorialView.swift */; };
-		E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF085F1F7EDD790030F1BF /* TutorialView.swift */; };
 		E8FF08661F7EDE330030F1BF /* BillingHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */; };
 		E8FF08671F7EDE360030F1BF /* BillingHistoryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F86FB781F2661D900F1A55A /* BillingHistoryDetailsViewModel.swift */; };
 		FF3E286D4C399FD036FC728E /* Pods_BGEApp_BGEUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 614D543C436421863B8BC05E /* Pods_BGEApp_BGEUITests.framework */; };
@@ -2746,6 +2704,7 @@
 		01D5F371BE1FF0F0E537749D /* Pods-PECO_WatchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.release.xcconfig"; sourceTree = "<group>"; };
 		01D6F9C6F9EBD8713EE8E020 /* Pods-PECO_WatchOS Extension.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		04C72F0649BE900892AC022D /* Pods-PECO_WatchOS.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.automation.xcconfig"; sourceTree = "<group>"; };
+		06232A7BBAF8AE8B2F8C470B /* Pods-BGEApp-BGEUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		06B48D4B3BEE84D637D373F1 /* Pods-BGEApp-BGE.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop-stage.xcconfig"; sourceTree = "<group>"; };
 		0794A4BFB41CE08D76523FFF /* Pods-BGE-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
 		07F516D6D87D5C808EAC015E /* Pods-BGE-Watch.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.staging.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.staging.xcconfig"; sourceTree = "<group>"; };
@@ -2760,6 +2719,9 @@
 		0D79C6CC1F1F971E004793DD /* MaintenanceModeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaintenanceModeViewModel.swift; sourceTree = "<group>"; };
 		0D79C6D01F1FB761004793DD /* Maintenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maintenance.swift; sourceTree = "<group>"; };
 		0DF8789921850547B0D60CB1 /* Pods-BGEApp-BGE.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop-test.xcconfig"; sourceTree = "<group>"; };
+		0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
+		0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
+		0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PECO-Environment-HOTFIX.plist"; sourceTree = "<group>"; };
 		0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
 		0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-PRODBETA.plist"; sourceTree = "<group>"; };
@@ -2775,6 +2737,7 @@
 		0EF60FB620EE78F6006ABC18 /* GSTouchesShowingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSTouchesShowingController.swift; sourceTree = "<group>"; };
 		0EF60FC920EE7916006ABC18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "UITests/GSTouchesShowingWindow-Swift/GSTouchesShowingWindow-Swift/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		0F3DFD09517D968E000AF16E /* Pods-PECOApp-PECOUITests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.testing.xcconfig"; sourceTree = "<group>"; };
+		0F7F3BEA4245C31154F9E1E0 /* Pods-ComEd-Watch.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.hotfix.xcconfig"; sourceTree = "<group>"; };
 		0FB1B3ED10A0E79A346C3B43 /* Pods-BGEApp-BGEUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.release.xcconfig"; sourceTree = "<group>"; };
 		114420E5F7652266A822200A /* Pods-PECOApp-PECOUnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		121338701F9AE20EC500B355 /* Pods-PECO-Watch.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.automation.xcconfig"; sourceTree = "<group>"; };
@@ -2904,6 +2867,7 @@
 		35BAA18C2368B2BB0053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		35BAA18E2368B5AA0053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
 		35BAA1902368B5C80053E58A /* Bill.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Bill.storyboard; sourceTree = "<group>"; };
+		35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigUtility.swift; sourceTree = "<group>"; };
 		35C9139122E9E9C1009DD71A /* MiniWalletSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MiniWalletSheet.storyboard; sourceTree = "<group>"; };
 		35C9139522E9E9D1009DD71A /* MiniWalletSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletSheetViewController.swift; sourceTree = "<group>"; };
 		35C9139A22E9EFF1009DD71A /* MiniWalletItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWalletItemRow.swift; sourceTree = "<group>"; };
@@ -2962,6 +2926,7 @@
 		384F86A11F310B8600A85557 /* TermPolicies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TermPolicies.html; sourceTree = "<group>"; };
 		389B0C5F1F17C054005DD0F9 /* UnauthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthenticatedUserViewController.swift; sourceTree = "<group>"; };
 		3D724009124CB9382D0948F8 /* Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop-stage.xcconfig"; sourceTree = "<group>"; };
+		3E68D427C353EFC6695D480D /* Pods-BGE-Watch.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.hotfix.xcconfig"; sourceTree = "<group>"; };
 		3F80457703111C29B6104071 /* Pods-BGE-Watch.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		40F855342CC5A91C701200B9 /* Pods-ComEd-Watch.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.automation.xcconfig"; sourceTree = "<group>"; };
 		427ED97F3A13152299E3D394 /* Pods-ComEdApp-ComEd.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.develop-stage.xcconfig"; sourceTree = "<group>"; };
@@ -2969,6 +2934,7 @@
 		4465DE861F1FD0090014537F /* TemplateCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
 		4465DE881F1FD07C0014537F /* TemplateCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TemplateCardView.xib; sourceTree = "<group>"; };
 		45EA6588EE1B61FEF565C8C3 /* Pods-PECO_WatchOS.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.develop.xcconfig"; sourceTree = "<group>"; };
+		48EE85F3BC572751D85A9B8C /* Pods-PECOApp-PECO.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.hotfix.xcconfig"; sourceTree = "<group>"; };
 		49D43876706AB96D1C37D83C /* Pods_PECO_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECO_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD41859FF9B42DEE20D8598 /* Pods-PECOApp-PECO.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		4B960FAF9D66026C44FB0B49 /* Pods-BGEApp-BGEUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2979,6 +2945,7 @@
 		4F95AAD3D68CA26E2D4CA81D /* Pods-PECOApp-PECOUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop.xcconfig"; sourceTree = "<group>"; };
 		4F9D22CDA7EFE9F0DF8C35D6 /* Pods-PECOApp-PECO.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.staging.xcconfig"; sourceTree = "<group>"; };
 		4FDBF2EC0B0432B373FB773D /* Pods-BGE-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		50BE0D90B7754BEFCF3E547C /* Pods-BGEApp-BGE.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.hotfix.xcconfig"; sourceTree = "<group>"; };
 		52225EDFDC70E5508B562E45 /* Pods-PECOApp-PECO.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.testing.xcconfig"; sourceTree = "<group>"; };
 		53F9C50D15A65667FCEFEEB7 /* Pods-Watch.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.staging.xcconfig"; sourceTree = "<group>"; };
 		545784B11EF9A9B800C58E63 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
@@ -3005,51 +2972,14 @@
 		55D0DC0B3609390231A8650B /* Pods-ComEdApp-ComEdUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5615370DCB46448A0C5935B5 /* Pods-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.testing.xcconfig"; sourceTree = "<group>"; };
 		56989091D306CA58F4B7F0BC /* Pods_BGE_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGE_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58CEDBA1FBE82C83732EA80C /* Pods-ComEdApp-ComEdUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		614D543C436421863B8BC05E /* Pods_BGEApp_BGEUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGEUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		638B790A0A077453811FDEC9 /* Pods-ComEd-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		64F75344AD0FA8FE270323F3 /* Pods-BGEApp-BGE.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.automation.xcconfig"; sourceTree = "<group>"; };
 		668FCA1931C2BA712403005F /* Pods-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
-		6A4FD1929F1F4842101B4166 /* otp_step1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step1.json; sourceTree = "<group>"; };
-		6A4FD1D4AE76599E6172C2BD /* otps3_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_0.png; sourceTree = "<group>"; };
-		6A4FD2458F9E35931F17C881 /* otp_step2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step2.json; sourceTree = "<group>"; };
-		6A4FD2843587C9667D987D14 /* otps1_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_1.png; sourceTree = "<group>"; };
-		6A4FD2B754F985AB27905568 /* otps1_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_1.png; sourceTree = "<group>"; };
-		6A4FD2CD49DDE4EFBA67539E /* otp_step1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step1.json; sourceTree = "<group>"; };
-		6A4FD3D3A256BB13D8C83A07 /* otp_step2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step2.json; sourceTree = "<group>"; };
-		6A4FD40E3ED8DF91D9633DB1 /* otps2_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_1.png; sourceTree = "<group>"; };
 		6A4FD46F61FB1F534F49F74E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
-		6A4FD4DBDAC426AF69A9F186 /* otps1_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_0.png; sourceTree = "<group>"; };
-		6A4FD59A72B7C52BB420841B /* otps4_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_1.png; sourceTree = "<group>"; };
-		6A4FD60DDD6041BD50C937EE /* otps4_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_0.png; sourceTree = "<group>"; };
-		6A4FD61142816F21220B99AC /* otp_step2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step2.json; sourceTree = "<group>"; };
-		6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialModal.xib; sourceTree = "<group>"; };
-		6A4FD6DF66C665DBE50007D0 /* otps3_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_1.png; sourceTree = "<group>"; };
-		6A4FD6E44082C2479E900018 /* otps2_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_0.png; sourceTree = "<group>"; };
-		6A4FD7AD8F54E3629276558A /* otps2_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_1.png; sourceTree = "<group>"; };
-		6A4FD7C40F42086D316B331A /* otp_step3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step3.json; sourceTree = "<group>"; };
 		6A4FD80B62F03A415062F85E /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
-		6A4FD83C81C2FC97064FA20C /* otp_step4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step4.json; sourceTree = "<group>"; };
-		6A4FD8BC0C4DC3A8B03B4519 /* otps3_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_1.png; sourceTree = "<group>"; };
-		6A4FD8D975DA427384C5D874 /* otps4_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_0.png; sourceTree = "<group>"; };
-		6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialModalViewController.swift; sourceTree = "<group>"; };
-		6A4FD938D1597E4FD73D4F70 /* otps2_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_1.png; sourceTree = "<group>"; };
-		6A4FD9AB2B7C002CD73F3147 /* otp_step3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step3.json; sourceTree = "<group>"; };
-		6A4FD9CCBDC02D4AB4E199CA /* otps3_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_1.png; sourceTree = "<group>"; };
-		6A4FD9DEDB99939189C71AAD /* otps1_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_0.png; sourceTree = "<group>"; };
-		6A4FDA6C78F5098995DBEC42 /* otp_step4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step4.json; sourceTree = "<group>"; };
 		6A4FDA6DF9787E9CA31227BD /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
-		6A4FDAB18E4B515B7B8B081E /* otp_step1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step1.json; sourceTree = "<group>"; };
-		6A4FDAC4D1AB1C47E7D67CFD /* otps3_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_0.png; sourceTree = "<group>"; };
-		6A4FDB693D3650AC134438FE /* otps3_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps3_img_0.png; sourceTree = "<group>"; };
-		6A4FDB873E37CF1CB0A4F03C /* otp_step4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step4.json; sourceTree = "<group>"; };
-		6A4FDCADF0F74BBB48F11978 /* otps4_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_1.png; sourceTree = "<group>"; };
-		6A4FDCB8E187E8835EEB534C /* otps4_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_1.png; sourceTree = "<group>"; };
-		6A4FDCE79743D3CF38A989D8 /* otps1_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_0.png; sourceTree = "<group>"; };
-		6A4FDCEF5360CEF3AD476A08 /* otps4_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps4_img_0.png; sourceTree = "<group>"; };
-		6A4FDD0E6263CEE61A02B24F /* otps2_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_0.png; sourceTree = "<group>"; };
-		6A4FDE4FB49A2918375DF12B /* otp_step3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = otp_step3.json; sourceTree = "<group>"; };
-		6A4FDFDC5B607067767A0DE4 /* otps1_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps1_img_1.png; sourceTree = "<group>"; };
-		6A4FDFE2B58E816579B4676D /* otps2_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otps2_img_0.png; sourceTree = "<group>"; };
 		6AD8F6DD94F8BD1A7825AD36 /* Pods-BGEApp-BGEUITests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.testing.xcconfig"; sourceTree = "<group>"; };
 		6B297E370A954A2A5E81DC21 /* Pods-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		6C3DB455AC2909C6CE9EF5C6 /* Pods-PECOApp-PECOUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
@@ -3064,7 +2994,6 @@
 		7B17D03514CE7FE1D72A4748 /* Pods-PECOApp-PECO.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop.xcconfig"; sourceTree = "<group>"; };
 		7F5A8C963FD4826B948BB035 /* Pods-ComEdApp-ComEd.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		809DDCA135F323473A708E62 /* Pods-PECOApp-PECO.develop-stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-stage.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-stage.xcconfig"; sourceTree = "<group>"; };
-		820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTouchTutorialViewController.swift; sourceTree = "<group>"; };
 		8206D0121FABB9AB0056F4CB /* PeakRewardsProgramCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeakRewardsProgramCard.swift; sourceTree = "<group>"; };
 		8206D0161FABC5350056F4CB /* SmartThermostatPeriodCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartThermostatPeriodCard.swift; sourceTree = "<group>"; };
 		8206D01A1FABCDD70056F4CB /* TemperatureScaleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureScaleStore.swift; sourceTree = "<group>"; };
@@ -3173,9 +3102,12 @@
 		8FDF8C681E550545000B7BD0 /* PecoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PecoColor.swift; sourceTree = "<group>"; };
 		8FDF8C6A1E550617000B7BD0 /* ComEdColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComEdColor.swift; sourceTree = "<group>"; };
 		8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedColor.swift; sourceTree = "<group>"; };
+		923013A83E95A122B5DB38AE /* Pods-PECO-Watch.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.hotfix.xcconfig"; sourceTree = "<group>"; };
 		93B2F085877AB30A8F88D00C /* Pods-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		99C898A9F3F572B258B68313 /* Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		9B6E69B6B5E99DA331F2FCB6 /* Pods-BGE-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.release.xcconfig"; sourceTree = "<group>"; };
+		9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultPaymentMethodTutorialViewController.swift; sourceTree = "<group>"; };
+		9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDefaultPaymentMethodTutorialViewController.xib; sourceTree = "<group>"; };
 		9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingStickyFooterViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C153DC822E8F6CE002DA062 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -3215,8 +3147,6 @@
 		9CD3531D22CABBB700165F87 /* ZeroInsetDataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroInsetDataDetectorTextView.swift; sourceTree = "<group>"; };
 		9CD3532522CABC0900165F87 /* PrepaidCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepaidCardView.xib; sourceTree = "<group>"; };
 		9CD3532622CABC0900165F87 /* PrepaidCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
-		9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclosureButtonNew.swift; sourceTree = "<group>"; };
-		9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisclosureButtonNew.xib; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
@@ -3233,6 +3163,7 @@
 		AB578E9B1169CA68E0839FD2 /* Pods-ComEd-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		AC02E0BECD80023F0A2FC593 /* Pods-BGE-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		AD0FCFB55A57BACE4C5EDDD8 /* Pods-ComEdApp-ComEdUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		AD5B28DE1D6540496A38D05E /* Pods-PECOApp-PECOUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		AF8005B3C9C6881CB9A17F2C /* Pods-BGE-Watch Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		B0030D072097BC8300327A3D /* MaintenanceModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceModeView.swift; sourceTree = "<group>"; };
 		B0030D0B2097BC9A00327A3D /* MaintenanceModeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceModeView.xib; sourceTree = "<group>"; };
@@ -3354,6 +3285,7 @@
 		B0EE78E9221353E600F53C56 /* report_outage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = report_outage.json; sourceTree = "<group>"; };
 		B0EE78F02214766600F53C56 /* appointments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appointments.json; sourceTree = "<group>"; };
 		B118428B41821733972CF125 /* Pods-PECO_WatchOS.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.testing.xcconfig"; sourceTree = "<group>"; };
+		B1790A9449F0E85CD0E0DCB1 /* Pods-PECO_WatchOS Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		B1C82778F4B29F83D5A54EE7 /* Pods-BGEApp-BGEUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
 		B3F0A0B0AA306013338624F6 /* Pods-PECO_WatchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 		B52CA0AE1F311524002B5674 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
@@ -3418,8 +3350,10 @@
 		B5D415871F3A6EE200AC32B2 /* GoogleService-Info_peco_testing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_peco_testing.plist"; sourceTree = "<group>"; };
 		B9C2CDC8EAF0A302CCFCA131 /* Pods-PECO_WatchOS Extension.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS Extension.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS Extension/Pods-PECO_WatchOS Extension.automation.xcconfig"; sourceTree = "<group>"; };
 		BBD4B69F523E3A3CC921C6A6 /* Pods-PECOApp-PECO.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECO.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECO/Pods-PECOApp-PECO.develop-test.xcconfig"; sourceTree = "<group>"; };
+		BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C33F0387916E1A4F76CD102F /* Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		C3A2BC83CF2F6412BFBEA4CC /* Pods-ComEd-Watch.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch/Pods-ComEd-Watch.testing.xcconfig"; sourceTree = "<group>"; };
+		C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		C55AF9BA52D8B1D3E432E4D2 /* Pods_PECOApp_PECOUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C577CF1D0C7BCE01659C0C25 /* Pods-ComEdApp-ComEd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.release.xcconfig"; sourceTree = "<group>"; };
 		C679892349D0C94588054423 /* Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
@@ -3429,6 +3363,7 @@
 		C828BD6C50342FEB58C68BE6 /* Pods-BGEApp-BGEUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		C878A5BEC37F80D54FE107EC /* Pods-PECO-Watch Extension.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.staging.xcconfig"; sourceTree = "<group>"; };
 		CA796E0B9C45EA88BED00557 /* Pods-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.release.xcconfig"; sourceTree = "<group>"; };
+		CA7D742948411DF8FEB81338 /* Pods-PECO_WatchOS.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.hotfix.xcconfig"; sourceTree = "<group>"; };
 		CB68675BD0EC0F038D803C46 /* Pods-PECOApp-PECOUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardViewModel.swift; sourceTree = "<group>"; };
 		CEA215201F7900CC00689422 /* HomeBillCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBillCardView.swift; sourceTree = "<group>"; };
@@ -3437,6 +3372,7 @@
 		D08DBC8EEA81485E66E6A10F /* Pods-Watch.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.automation.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.automation.xcconfig"; sourceTree = "<group>"; };
 		D1B84F8105CCB8F5D0E49941 /* Pods-ComEd-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEd-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-ComEd-Watch Extension/Pods-ComEd-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		D2C9D2D0144FD2FEF974B398 /* Pods-PECO-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		D5F6718A295F56478FAC1579 /* Pods-PECO-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		D67EC960AE7AECDBFA838CDB /* Pods-PECO_WatchOS.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO_WatchOS.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PECO_WatchOS/Pods-PECO_WatchOS.staging.xcconfig"; sourceTree = "<group>"; };
 		D729E2291886890F98B810F7 /* Pods-ComEdApp-ComEdUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		D7A8802415FF973953C36323 /* Pods_ComEd_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEd_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3607,8 +3543,6 @@
 		E8F62BE4200924410077B3DA /* ComEdUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComEdUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F62C99200924570077B3DA /* PECOUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PECOUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FF08591F7EDC160030F1BF /* BillingHistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingHistoryViewModel.swift; sourceTree = "<group>"; };
-		E8FF085E1F7EDD790030F1BF /* TutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
-		E8FF085F1F7EDD790030F1BF /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		E9B82B70DA00FA889FFB7545 /* Pods-PECO-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.release.xcconfig"; sourceTree = "<group>"; };
 		E9CD8F2D0CAF071DF53E6AAF /* Pods_PECOApp_PECOUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PECOApp_PECOUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F45C0B42C8E3C04D9A52A4 /* Pods-PECOApp-PECOUnitTests.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.testing.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.testing.xcconfig"; sourceTree = "<group>"; };
@@ -3616,13 +3550,17 @@
 		EC3D4BDE43A5A828C49ECC99 /* Pods_ComEdApp_ComEdUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComEdApp_ComEdUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBD970A701D2D9AA35AFDEC /* Pods-BGEApp-BGEUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		EF96C3B9C784991D679EADDB /* Pods-ComEdApp-ComEdUITests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.develop.xcconfig"; sourceTree = "<group>"; };
+		F23C5E96482FCD9F5217DB5A /* Pods-BGEApp-BGEUnitTests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.hotfix.xcconfig"; sourceTree = "<group>"; };
+		F63010E638A229B802A0F794 /* Pods-BGE-Watch Extension.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch Extension.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch Extension/Pods-BGE-Watch Extension.hotfix.xcconfig"; sourceTree = "<group>"; };
 		F6EED6200B63E389B2CD15F3 /* Pods-ComEdApp-ComEdUITests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUITests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUITests/Pods-ComEdApp-ComEdUITests.automation.xcconfig"; sourceTree = "<group>"; };
 		F947030DF2FBBE95B00D41C2 /* Pods-BGEApp-BGE.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.develop.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.develop.xcconfig"; sourceTree = "<group>"; };
 		FA4D67A41E2CED51184CB0FB /* Pods-PECO-Watch.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch/Pods-PECO-Watch.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		FCFF16B5FD2E374B0ED2EF3B /* Pods-BGEApp-BGEUnitTests.automation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUnitTests.automation.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUnitTests/Pods-BGEApp-BGEUnitTests.automation.xcconfig"; sourceTree = "<group>"; };
 		FDBA1E34BD6D85FF3CB35FB2 /* Pods-ComEdApp-ComEdUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		FE4040232BB894F7986808FC /* Pods-ComEdApp-ComEd.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEd.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEd/Pods-ComEdApp-ComEd.hotfix.xcconfig"; sourceTree = "<group>"; };
 		FE56567C323696DD3D7D9EA7 /* Pods-Watch.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-Watch/Pods-Watch.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		FEB1243F588C7A464BB522C2 /* Pods_BGEApp_BGE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BGEApp_BGE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEEA745A8541314D0BC8CD74 /* Pods-PECOApp-PECOUITests.hotfix.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUITests.hotfix.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUITests/Pods-PECOApp-PECOUITests.hotfix.xcconfig"; sourceTree = "<group>"; };
 		FF6BA9E711ACA021041B95F3 /* Pods-Watch Extension.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.develop.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.develop.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3922,6 +3860,23 @@
 				D1B84F8105CCB8F5D0E49941 /* Pods-ComEd-Watch Extension.testing.xcconfig */,
 				AB578E9B1169CA68E0839FD2 /* Pods-ComEd-Watch Extension.release.xcconfig */,
 				638B790A0A077453811FDEC9 /* Pods-ComEd-Watch Extension.prodbeta.xcconfig */,
+				50BE0D90B7754BEFCF3E547C /* Pods-BGEApp-BGE.hotfix.xcconfig */,
+				06232A7BBAF8AE8B2F8C470B /* Pods-BGEApp-BGEUITests.hotfix.xcconfig */,
+				F23C5E96482FCD9F5217DB5A /* Pods-BGEApp-BGEUnitTests.hotfix.xcconfig */,
+				FE4040232BB894F7986808FC /* Pods-ComEdApp-ComEd.hotfix.xcconfig */,
+				58CEDBA1FBE82C83732EA80C /* Pods-ComEdApp-ComEdUITests.hotfix.xcconfig */,
+				C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */,
+				48EE85F3BC572751D85A9B8C /* Pods-PECOApp-PECO.hotfix.xcconfig */,
+				FEEA745A8541314D0BC8CD74 /* Pods-PECOApp-PECOUITests.hotfix.xcconfig */,
+				AD5B28DE1D6540496A38D05E /* Pods-PECOApp-PECOUnitTests.hotfix.xcconfig */,
+				CA7D742948411DF8FEB81338 /* Pods-PECO_WatchOS.hotfix.xcconfig */,
+				B1790A9449F0E85CD0E0DCB1 /* Pods-PECO_WatchOS Extension.hotfix.xcconfig */,
+				3E68D427C353EFC6695D480D /* Pods-BGE-Watch.hotfix.xcconfig */,
+				F63010E638A229B802A0F794 /* Pods-BGE-Watch Extension.hotfix.xcconfig */,
+				0F7F3BEA4245C31154F9E1E0 /* Pods-ComEd-Watch.hotfix.xcconfig */,
+				BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */,
+				923013A83E95A122B5DB38AE /* Pods-PECO-Watch.hotfix.xcconfig */,
+				D5F6718A295F56478FAC1579 /* Pods-PECO-Watch Extension.hotfix.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -4147,7 +4102,6 @@
 				35CEB027230D8C1A00366440 /* No Network Connection */,
 				352B8DAC230D76CE007F8CEE /* Maintenance Mode */,
 				352B8DAB230D762B007F8CEE /* Web View Modal */,
-				352B8D9F230D74A5007F8CEE /* Tutorial Modal */,
 				352B8D9E230D7491007F8CEE /* Info Modal */,
 				35C9138F22E9E96E009DD71A /* Mini Wallet */,
 			);
@@ -4161,16 +4115,6 @@
 				E827D23B1ED491F6004DA1D6 /* InfoModalViewController.swift */,
 			);
 			path = "Info Modal";
-			sourceTree = "<group>";
-		};
-		352B8D9F230D74A5007F8CEE /* Tutorial Modal */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD68B11F80CFEF49BDA4C /* TutorialModal.xib */,
-				6A4FD90DC1399F0D3296706D /* TutorialModalViewController.swift */,
-				35CEB028230D8C4300366440 /* Views */,
-			);
-			path = "Tutorial Modal";
 			sourceTree = "<group>";
 		};
 		352B8DA0230D74DE007F8CEE /* Bill */ = {
@@ -4332,7 +4276,8 @@
 				CEA215211F7900CC00689422 /* HomeBillCardView.xib */,
 				CEA215201F7900CC00689422 /* HomeBillCardView.swift */,
 				CEA2151C1F79005600689422 /* HomeBillCardViewModel.swift */,
-				820125461F79563600FE4771 /* OneTouchTutorialViewController.swift */,
+				9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */,
+				9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */,
 			);
 			path = Bill;
 			sourceTree = "<group>";
@@ -4764,15 +4709,6 @@
 			path = "No Network Connection";
 			sourceTree = "<group>";
 		};
-		35CEB028230D8C4300366440 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E8FF085F1F7EDD790030F1BF /* TutorialView.swift */,
-				E8FF085E1F7EDD790030F1BF /* TutorialView.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		35CEB029230D8D5100366440 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -5034,255 +4970,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		6A4FD01F41569B9443AA6FFD /* step3 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDC73BB2F78EB86946488 /* images */,
-				6A4FD7C40F42086D316B331A /* otp_step3.json */,
-			);
-			path = step3;
-			sourceTree = "<group>";
-		};
-		6A4FD0C7BF6EFE898BDB9ECB /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDD0E6263CEE61A02B24F /* otps2_img_0.png */,
-				6A4FD7AD8F54E3629276558A /* otps2_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FD0EB46ACA7A6C0372D8B /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD8D975DA427384C5D874 /* otps4_img_0.png */,
-				6A4FD59A72B7C52BB420841B /* otps4_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FD1B8AAFE8B3A507A811F /* step2 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD0C7BF6EFE898BDB9ECB /* images */,
-				6A4FD2458F9E35931F17C881 /* otp_step2.json */,
-			);
-			path = step2;
-			sourceTree = "<group>";
-		};
-		6A4FD2866F24DB5BEA543950 /* tutorial_otp */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD8A66184FA68E506AF97 /* step1 */,
-				6A4FD2DEE0950A30365EA46D /* step2 */,
-				6A4FD75A11DF48D6971AD24D /* step3 */,
-				6A4FD316236C5DB5F8F3A739 /* step4 */,
-			);
-			path = tutorial_otp;
-			sourceTree = "<group>";
-		};
-		6A4FD2DEE0950A30365EA46D /* step2 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDB11FC5103134ABB892A /* images */,
-				6A4FD3D3A256BB13D8C83A07 /* otp_step2.json */,
-			);
-			path = step2;
-			sourceTree = "<group>";
-		};
-		6A4FD2EE5F5132CA9FB9410C /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD9DEDB99939189C71AAD /* otps1_img_0.png */,
-				6A4FD2B754F985AB27905568 /* otps1_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FD316236C5DB5F8F3A739 /* step4 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD0EB46ACA7A6C0372D8B /* images */,
-				6A4FD83C81C2FC97064FA20C /* otp_step4.json */,
-			);
-			path = step4;
-			sourceTree = "<group>";
-		};
-		6A4FD317CD4310FF6A47BCD6 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDCE79743D3CF38A989D8 /* otps1_img_0.png */,
-				6A4FD2843587C9667D987D14 /* otps1_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FD44861D9B901E94367F7 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD1D4AE76599E6172C2BD /* otps3_img_0.png */,
-				6A4FD9CCBDC02D4AB4E199CA /* otps3_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FD4792A6298E00665DCC5 /* step4 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD9F40C6851A1955992AC /* images */,
-				6A4FDA6C78F5098995DBEC42 /* otp_step4.json */,
-			);
-			path = step4;
-			sourceTree = "<group>";
-		};
-		6A4FD51D620A5363317A36FC /* step4 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDDF58363EF87B1B23D4B /* images */,
-				6A4FDB873E37CF1CB0A4F03C /* otp_step4.json */,
-			);
-			path = step4;
-			sourceTree = "<group>";
-		};
-		6A4FD534731BE020A84263F5 /* step2 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD6A1E53F5B6DD0DDD943 /* images */,
-				6A4FD61142816F21220B99AC /* otp_step2.json */,
-			);
-			path = step2;
-			sourceTree = "<group>";
-		};
-		6A4FD62C65A749931DB4E6F8 /* tutorial_otp */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDB3DD60D7AC1D16816DD /* step1 */,
-				6A4FD534731BE020A84263F5 /* step2 */,
-				6A4FD992E50E4CA6B489F628 /* step3 */,
-				6A4FD51D620A5363317A36FC /* step4 */,
-			);
-			path = tutorial_otp;
-			sourceTree = "<group>";
-		};
-		6A4FD6A1E53F5B6DD0DDD943 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDFE2B58E816579B4676D /* otps2_img_0.png */,
-				6A4FD938D1597E4FD73D4F70 /* otps2_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FD70300E4B36BC01D3FDF /* tutorial_otp */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD8CE27297D16E399BFF6 /* step1 */,
-				6A4FD1B8AAFE8B3A507A811F /* step2 */,
-				6A4FD01F41569B9443AA6FFD /* step3 */,
-				6A4FD4792A6298E00665DCC5 /* step4 */,
-			);
-			path = tutorial_otp;
-			sourceTree = "<group>";
-		};
-		6A4FD7298F3F4AF01E463F66 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD4DBDAC426AF69A9F186 /* otps1_img_0.png */,
-				6A4FDFDC5B607067767A0DE4 /* otps1_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FD75A11DF48D6971AD24D /* step3 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDF52923EE7A1A51FFF86 /* images */,
-				6A4FDE4FB49A2918375DF12B /* otp_step3.json */,
-			);
-			path = step3;
-			sourceTree = "<group>";
-		};
-		6A4FD8A66184FA68E506AF97 /* step1 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD2EE5F5132CA9FB9410C /* images */,
-				6A4FDAB18E4B515B7B8B081E /* otp_step1.json */,
-			);
-			path = step1;
-			sourceTree = "<group>";
-		};
-		6A4FD8CE27297D16E399BFF6 /* step1 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD317CD4310FF6A47BCD6 /* images */,
-				6A4FD1929F1F4842101B4166 /* otp_step1.json */,
-			);
-			path = step1;
-			sourceTree = "<group>";
-		};
-		6A4FD992E50E4CA6B489F628 /* step3 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD44861D9B901E94367F7 /* images */,
-				6A4FD9AB2B7C002CD73F3147 /* otp_step3.json */,
-			);
-			path = step3;
-			sourceTree = "<group>";
-		};
-		6A4FD9F40C6851A1955992AC /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDCEF5360CEF3AD476A08 /* otps4_img_0.png */,
-				6A4FDCB8E187E8835EEB534C /* otps4_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FDB11FC5103134ABB892A /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD6E44082C2479E900018 /* otps2_img_0.png */,
-				6A4FD40E3ED8DF91D9633DB1 /* otps2_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FDB3DD60D7AC1D16816DD /* step1 */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD7298F3F4AF01E463F66 /* images */,
-				6A4FD2CD49DDE4EFBA67539E /* otp_step1.json */,
-			);
-			path = step1;
-			sourceTree = "<group>";
-		};
-		6A4FDC73BB2F78EB86946488 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDAC4D1AB1C47E7D67CFD /* otps3_img_0.png */,
-				6A4FD8BC0C4DC3A8B03B4519 /* otps3_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FDDF58363EF87B1B23D4B /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FD60DDD6041BD50C937EE /* otps4_img_0.png */,
-				6A4FDCADF0F74BBB48F11978 /* otps4_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
-		6A4FDF52923EE7A1A51FFF86 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				6A4FDB693D3650AC134438FE /* otps3_img_0.png */,
-				6A4FD6DF66C665DBE50007D0 /* otps3_img_1.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
 		8246BF561FD9CA6500FF440D /* BGE */ = {
 			isa = PBXGroup;
 			children = (
@@ -5328,7 +5015,6 @@
 				9C62445922C1717E00F14DA0 /* FloatLabelTextField */,
 				E841F39C1F02F2B5007BFA82 /* UINavigationBackButton */,
 				82A18EF61EBA6A2E00BE9F21 /* DisclosureButton */,
-				9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */,
 				B05D84B121877FD900F15A9F /* DisclosureCellButton */,
 				82A18F031EBD11A000BE9F21 /* ButtonControl.swift */,
 				E841F3A61F02F316007BFA82 /* PickerView.swift */,
@@ -5618,15 +5304,6 @@
 			path = DataDetectorTextView;
 			sourceTree = "<group>";
 		};
-		9CD3532D22CABCBB00165F87 /* DisclosureButtonNew */ = {
-			isa = PBXGroup;
-			children = (
-				9CD3532E22CABCBB00165F87 /* DisclosureButtonNew.swift */,
-				9CD3532F22CABCBB00165F87 /* DisclosureButtonNew.xib */,
-			);
-			path = DisclosureButtonNew;
-			sourceTree = "<group>";
-		};
 		9CE83BAD22D93C870094C34C /* Set Default Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -5860,18 +5537,21 @@
 				9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */,
 				9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */,
 				B58B5B5D1E516C360051FD5F /* BGE-Environment-STAGING.plist */,
+				0E0276CF2347B20300671E65 /* BGE-Environment-HOTFIX.plist */,
 				0E13175E202B5B4E00865819 /* BGE-Environment-PRODBETA.plist */,
 				B58B5B5C1E516C360051FD5F /* BGE-Environment-RELEASE.plist */,
 				0EB93B6D202CA4F30049E7A2 /* ComEd-Environment-AUT.plist */,
 				9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */,
 				9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */,
 				B5AC06831E5212E300BBA4ED /* ComEd-Environment-STAGING.plist */,
+				0E0276D12347B22C00671E65 /* ComEd-Environment-HOTFIX.plist */,
 				0E131760202B5B7D00865819 /* ComEd-Environment-PRODBETA.plist */,
 				B5AC06821E5212E300BBA4ED /* ComEd-Environment-RELEASE.plist */,
 				0EB93B6F202CA5040049E7A2 /* PECO-Environment-AUT.plist */,
 				9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */,
 				9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */,
 				B5AC06881E5212E300BBA4ED /* PECO-Environment-STAGING.plist */,
+				0E0276D32347B26300671E65 /* PECO-Environment-HOTFIX.plist */,
 				0E131762202B5BA100865819 /* PECO-Environment-PRODBETA.plist */,
 				B5AC06871E5212E300BBA4ED /* PECO-Environment-RELEASE.plist */,
 				B5AC06781E51763200BBA4ED /* Environment.swift */,
@@ -5950,6 +5630,7 @@
 				356C7F7E21909976003E8A90 /* WatchSessionManager.swift */,
 				B04DDF5A21FA800C00594ACF /* Date+Now.swift */,
 				B0D7860C2285C3F4007C551F /* CommercialUsageAlertStore.swift */,
+				35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6151,7 +5832,6 @@
 				359BB27E2148517F00FBAD83 /* sm_outage_loading.json */,
 				359BB2662146F05400FBAD83 /* sm_outage.json */,
 				6A4FDA6DF9787E9CA31227BD /* splash.json */,
-				6A4FD2866F24DB5BEA543950 /* tutorial_otp */,
 			);
 			path = BGE;
 			sourceTree = "<group>";
@@ -6165,7 +5845,6 @@
 				359BB2802148518C00FBAD83 /* sm_outage_loading.json */,
 				359BB2682146F06D00FBAD83 /* sm_outage.json */,
 				6A4FD80B62F03A415062F85E /* splash.json */,
-				6A4FD62C65A749931DB4E6F8 /* tutorial_otp */,
 			);
 			path = ComEd;
 			sourceTree = "<group>";
@@ -6179,7 +5858,6 @@
 				359BB2822148519D00FBAD83 /* sm_outage_loading.json */,
 				359BB26A2146F08200FBAD83 /* sm_outage.json */,
 				6A4FD46F61FB1F534F49F74E /* splash.json */,
-				6A4FD70300E4B36BC01D3FDF /* tutorial_otp */,
 			);
 			path = PECO;
 			sourceTree = "<group>";
@@ -6805,6 +6483,7 @@
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
+				9C0E1C972333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				B089573B22175FDC00A97965 /* alert_preferences.json in Resources */,
 				35A6C6E0211CC11E00C2A58F /* Updates.storyboard in Resources */,
 				B0882CB4210B93F200EB756B /* UsageToolTopCardView.xib in Resources */,
@@ -6818,6 +6497,7 @@
 				B08957002215F6DC00A97965 /* home_profile.json in Resources */,
 				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
+				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
@@ -6831,7 +6511,6 @@
 				B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */,
 				359BB2672146F05400FBAD83 /* sm_outage.json in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
-				E8FF08601F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				4465DE891F1FD07C0014537F /* TemplateCardView.xib in Resources */,
@@ -6852,6 +6531,7 @@
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
+				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
@@ -6891,34 +6571,21 @@
 				352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				359BB27F2148517F00FBAD83 /* sm_outage_loading.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
-				6A4FD7DC1371BC6129CC594F /* otps1_img_0.png in Resources */,
 				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
-				6A4FD375948286D6F4A38198 /* otps1_img_1.png in Resources */,
-				6A4FDC511CBF8CE0C50F4E71 /* otp_step1.json in Resources */,
-				6A4FD491800F5449E3E9FE28 /* otps2_img_0.png in Resources */,
-				6A4FD42BB85151D3C5A08A7C /* otps2_img_1.png in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
-				9CD3533322CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
-				6A4FD91EB0591B1C2C63040C /* otp_step2.json in Resources */,
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
-				6A4FD8F40311B79006BEA4D7 /* otps3_img_0.png in Resources */,
 				359BDB7522D8F9B2007002B0 /* outage_off.json in Resources */,
 				B07D247720C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232D22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
-				6A4FDCC9FBA97FEF77672BED /* otps3_img_1.png in Resources */,
 				359BDB7B22D8F9B2007002B0 /* outage_on.json in Resources */,
-				6A4FD21BE1692C3726A5C3FF /* otp_step3.json in Resources */,
 				82AC2A111FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C87227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
-				6A4FDD311DA8303DC8CAE88C /* otps4_img_0.png in Resources */,
 				9C46B12B221613FB00A5D537 /* wallet.json in Resources */,
-				6A4FD285E3DA0D900FD129E2 /* otps4_img_1.png in Resources */,
-				6A4FD0682FEE15B62BF52310 /* otp_step4.json in Resources */,
-				6A4FDFD0967659A7C9E11DD6 /* TutorialModal.xib in Resources */,
+				0E0276D02347B20300671E65 /* BGE-Environment-HOTFIX.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6968,6 +6635,7 @@
 				224EFF1E216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
+				9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				B089573D22175FDC00A97965 /* alert_preferences.json in Resources */,
@@ -7000,7 +6668,6 @@
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				3559C8B82301E4FF00481A87 /* AutoPay.storyboard in Resources */,
-				E8FF08621F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
@@ -7053,35 +6720,21 @@
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
 				352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
-				6A4FD2D560C81F27B81D2748 /* otps1_img_0.png in Resources */,
-				6A4FD6EF9B7917482EF511D8 /* otps1_img_1.png in Resources */,
 				B0EE78F32214766700F53C56 /* appointments.json in Resources */,
-				6A4FD41C5B2744DEBEF4D69E /* otp_step1.json in Resources */,
-				6A4FDDD10550ECC33F36ECCD /* otps2_img_0.png in Resources */,
-				6A4FD076CD353CDDE34631AE /* otps2_img_1.png in Resources */,
 				35376C6820F8FFC9007E50F7 /* BillImpactView.xib in Resources */,
 				B08956F42215C27100A97965 /* sso_data.json in Resources */,
 				E82FF1F01F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B089573622175BFE00A97965 /* budget_billing_info.json in Resources */,
-				9CD3533522CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
-				6A4FD2E76D3407C06AB404C7 /* otp_step2.json in Resources */,
 				B07E17D92209F0C900B6E3C7 /* accounts.json in Resources */,
-				6A4FD3C6912E27F3EB5CCA96 /* otps3_img_0.png in Resources */,
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
 				359BDB7722D8F9B2007002B0 /* outage_off.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232F22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
-				6A4FDEB37967D5B806CE00FC /* otps3_img_1.png in Resources */,
 				359BDB7D22D8F9B2007002B0 /* outage_on.json in Resources */,
-				6A4FDCF675D261AB6008C079 /* otp_step3.json in Resources */,
 				82AC2A131FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C89227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
-				6A4FDA9B436AAD428A74A239 /* otps4_img_0.png in Resources */,
 				9C46B12D221613FB00A5D537 /* wallet.json in Resources */,
-				6A4FD1C7B14B360F2F2C3C51 /* otps4_img_1.png in Resources */,
-				6A4FD4F95BC9EC785486FD59 /* otp_step4.json in Resources */,
-				6A4FDF7B7B5896327BB37392 /* TutorialModal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7131,6 +6784,7 @@
 				E800432A1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
+				9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				B089573C22175FDC00A97965 /* alert_preferences.json in Resources */,
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
@@ -7164,7 +6818,6 @@
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
-				E8FF08611F7EDD790030F1BF /* TutorialView.xib in Resources */,
 				359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
@@ -7217,34 +6870,20 @@
 				352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD21032155AD85505077D /* splash.json in Resources */,
-				6A4FD9B658A06B0878472526 /* otps1_img_0.png in Resources */,
 				B0EE78F22214766700F53C56 /* appointments.json in Resources */,
-				6A4FD4A0E10A729FE6FD4B09 /* otps1_img_1.png in Resources */,
-				6A4FD7193000B9082AA1B6E3 /* otp_step1.json in Resources */,
-				6A4FD2B09E6DFABE5CAA9485 /* otps2_img_0.png in Resources */,
-				6A4FD0AC1745C8701566B7E7 /* otps2_img_1.png in Resources */,
 				B08956F32215C27100A97965 /* sso_data.json in Resources */,
 				35376C6720F8FFC8007E50F7 /* BillImpactView.xib in Resources */,
 				B089573522175BFE00A97965 /* budget_billing_info.json in Resources */,
-				9CD3533422CABCBB00165F87 /* DisclosureButtonNew.xib in Resources */,
 				E82FF1EF1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
-				6A4FD8AE71A963B756050DD9 /* otp_step2.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
-				6A4FD323AF99726FB2158A2E /* otps3_img_0.png in Resources */,
 				359BDB7622D8F9B2007002B0 /* outage_off.json in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232E22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
-				6A4FDF0D523DED06D1465E99 /* otps3_img_1.png in Resources */,
 				359BDB7C22D8F9B2007002B0 /* outage_on.json in Resources */,
-				6A4FD451E3D8B0019DD36819 /* otp_step3.json in Resources */,
 				82AC2A121FAA691000EACB3B /* PeakRewards.storyboard in Resources */,
 				B0CB1C88227CB4510081F99B /* TabCollectionViewCell.xib in Resources */,
-				6A4FD710BA920728F2923F06 /* otps4_img_0.png in Resources */,
 				9C46B12C221613FB00A5D537 /* wallet.json in Resources */,
-				6A4FDD8981BBF03EF9D907AD /* otps4_img_1.png in Resources */,
-				6A4FD65B35FE264A4969DE47 /* otp_step4.json in Resources */,
-				6A4FD129D861EF2367762387 /* TutorialModal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7411,6 +7050,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -7427,6 +7067,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -7453,6 +7094,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -7469,6 +7111,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -7517,6 +7160,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -7534,6 +7178,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -7561,6 +7206,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -7578,6 +7224,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -7865,6 +7512,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -7882,6 +7530,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -7974,6 +7623,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -7991,6 +7641,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -8040,6 +7691,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -8057,6 +7709,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -8126,6 +7779,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -8142,6 +7796,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -8168,6 +7823,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ModelMapper-iOS/Mapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PDTSimpleCalendar/PDTSimpleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -8185,6 +7841,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDTSimpleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -8459,7 +8116,6 @@
 				824004CA1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				359BDBA822E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
 				E87C413E1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
-				820125471F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				B574BACA1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,
 				E841F3AA1F02F316007BFA82 /* PickerView.swift in Sources */,
 				9CD3532122CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
@@ -8511,7 +8167,6 @@
 				82A18E981EB919B300BE9F21 /* ChangePasswordViewModel.swift in Sources */,
 				B04DDF7521FFB0A800594ACF /* MockUser.swift in Sources */,
 				E801BAD51E8C439500550F99 /* MCSAuthenticationService.swift in Sources */,
-				E8FF08631F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				E840BD3F1EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E51E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				B0CB1C1F2270DE240081F99B /* MockPeakRewardsService.swift in Sources */,
@@ -8667,6 +8322,7 @@
 				B0D7860D2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				359BDB8322DCDDCA007002B0 /* GasOnlyViewController.swift in Sources */,
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
+				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				B0B083AF216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
@@ -8719,7 +8375,6 @@
 				B0B0840821710D9300B1C632 /* AppointmentDetailViewModel.swift in Sources */,
 				B56DD49D1ED87AD800F0198B /* BankAccount.swift in Sources */,
 				B0728E46215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
-				9CD3533022CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
 				B574BAFD1E787655001E8A44 /* OutageInfo.swift in Sources */,
 				826773461FB2330400A8CFAA /* TemperatureSliderView.swift in Sources */,
 				B5AC06EA1E52755800BBA4ED /* ServiceResult.swift in Sources */,
@@ -8747,6 +8402,7 @@
 				9C62447022C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
+				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
 				B08BBFC321C8539000A899FC /* SERResult.swift in Sources */,
@@ -8809,7 +8465,6 @@
 				359BDB6222D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
 				359BDB4C22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */,
 				B039DB71225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
-				6A4FD45A4A53BE785EDA8FF4 /* TutorialModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8833,7 +8488,6 @@
 				824004CC1F25F4970012A288 /* TemplateCardViewModel.swift in Sources */,
 				B039DB73225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
 				E87C41401FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
-				820125491F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				82D599441EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF21EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				E8542FF91E7ADADA0054AC53 /* ReportOutageViewController.swift in Sources */,
@@ -8859,7 +8513,6 @@
 				35A6C7002121DAE600C2A58F /* MoreViewModel.swift in Sources */,
 				E8CFB8AC1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
-				9CD3533222CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
@@ -8877,7 +8530,6 @@
 				B094A35620D99B0E00E81303 /* HomeEditEmptyCell.swift in Sources */,
 				B0D7860F2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				B574BAED1E785A5F001E8A44 /* OutageService.swift in Sources */,
-				E8FF08651F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				E89518751F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
 				22EBDCCF1ED3FDA50038D696 /* ContactUsViewController.swift in Sources */,
 				B0DB2762215ECF5100CD703B /* AccountInfoBarCell.swift in Sources */,
@@ -9051,6 +8703,7 @@
 				82DE61071FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				E8C453251EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
 				54AE06AC1ED362B0004A1FDA /* RegistrationValidateAccountViewController.swift in Sources */,
+				9C0E1C962333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				35AFB41B20C6C4AD000312B9 /* UIViewRoundCorners.swift in Sources */,
 				35C9139D22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				E800430B1E64DEE2005CF531 /* ChangePasswordViewController.swift in Sources */,
@@ -9133,6 +8786,7 @@
 				826773331FB0C38600A8CFAA /* SelectDeviceViewController.swift in Sources */,
 				82A18F021EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
 				9C62447622C5617D00F14DA0 /* SegmentedControl.swift in Sources */,
+				35C0F1D3233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				E881B1511F5F1A1700067BA1 /* UnauthenticatedOutageValidateAccountViewController.swift in Sources */,
 				E81CFFF61EC253E5004FDA7E /* ViewBillViewModel.swift in Sources */,
 				B0EA71C12090FF7C002A2B45 /* ShortcutItem.swift in Sources */,
@@ -9183,7 +8837,6 @@
 				B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
-				6A4FDD3ABED114C309AF6B3D /* TutorialModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9206,7 +8859,6 @@
 				E857C5221F269FF6002A8E94 /* TemplateCardView.swift in Sources */,
 				359BDBA922E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
 				E87C413F1FAA6C0B00448F86 /* AlertsViewModel.swift in Sources */,
-				820125481F79563600FE4771 /* OneTouchTutorialViewController.swift in Sources */,
 				82D599431EC2374500DDB380 /* ActivityTracker.swift in Sources */,
 				E81CFFF11EC24978004FDA7E /* ViewBillViewController.swift in Sources */,
 				9CD3532222CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
@@ -9254,7 +8906,6 @@
 				9CCE3E4721B9C3AB0008E1AF /* UIAlertController+PaymentusErrors.swift in Sources */,
 				9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */,
 				B574BAEC1E785A5F001E8A44 /* OutageService.swift in Sources */,
-				E8FF08641F7EDD790030F1BF /* TutorialView.swift in Sources */,
 				9C10B4DE22E23A9B00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B04DDF7621FFB0A800594ACF /* MockUser.swift in Sources */,
 				E89518741F0A9ABE005E0E92 /* ReviewPaymentViewController.swift in Sources */,
@@ -9414,6 +9065,7 @@
 				B0D7860E2285C3F4007C551F /* CommercialUsageAlertStore.swift in Sources */,
 				54C1DF071F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				35277B02210794B400411297 /* UnavailableView.swift in Sources */,
+				35C0F1D2233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */,
@@ -9466,7 +9118,6 @@
 				B0728E47215C149A0007C608 /* AlertPreferencesTableViewCell.swift in Sources */,
 				8218988F1F2A30C00077D7A1 /* Binders.swift in Sources */,
 				E800434E1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
-				9CD3533122CABCBB00165F87 /* DisclosureButtonNew.swift in Sources */,
 				82EAB3391F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E827D23D1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				9C74CDEA21EF89EB00F599D1 /* A0SimpleKeychain.m in Sources */,
@@ -9494,6 +9145,7 @@
 				9C62447122C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
+				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
 				2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */,
@@ -9556,7 +9208,6 @@
 				359BDB6322D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
 				359BDB4D22D533C5007002B0 /* UIViewController+AddCloseButton.swift in Sources */,
 				B039DB72225BCF4A00BB5479 /* HomePrepaidCardView.swift in Sources */,
-				6A4FDC6FCEC722F72EA840D3 /* TutorialModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9644,6 +9295,7 @@
 				823AA54B20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				228877041FC611990024D7F0 /* MockAlertsService.swift in Sources */,
 				B067E0A72045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
+				354838B7233E84BE00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03D216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				82B20A35203C7BBE00F5F2C6 /* BillViewModelContentTests.swift in Sources */,
@@ -9875,6 +9527,7 @@
 				E8F62B70200924410077B3DA /* MockBillService.swift in Sources */,
 				823AA54C20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62B71200924410077B3DA /* MockAlertsService.swift in Sources */,
+				354838B5233E84BC00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03E216C5F9C00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A82045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
@@ -10060,6 +9713,7 @@
 				E8F62C25200924570077B3DA /* MockBillService.swift in Sources */,
 				823AA54D20100352009CAEF0 /* AccountDetailInitExtensions.swift in Sources */,
 				E8F62C26200924570077B3DA /* MockAlertsService.swift in Sources */,
+				354838B6233E84BD00C46135 /* RemoteConfigUtility.swift in Sources */,
 				9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */,
 				2249C03F216C5F9D00EAA44D /* URLSession+Rx.swift in Sources */,
 				B067E0A92045F8BF001C1271 /* MockPeakRewardsService.swift in Sources */,
@@ -10314,6 +9968,468 @@
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
+		};
+		0E0276D52347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXM_ENVIRONMENT = STAGING;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
+				INFOPLIST_PREFIX_HEADER = "${PROJECT_NAME}/Configuration/environment_preprocess.h";
+				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Mobile/Vendor/GoogleAnalytics";
+			};
+			name = Hotfix;
+		};
+		0E0276D62347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50BE0D90B7754BEFCF3E547C /* Pods-BGEApp-BGE.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/BGE-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COMPRESS_PNG_FILES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.bge.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/BGE-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "bc06f33e-100c-4311-838a-c74b10fe6132";
+				PROVISIONING_PROFILE_SPECIFIER = "BGE Hotfix Enterprise Dist";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276D72347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE4040232BB894F7986808FC /* Pods-ComEdApp-ComEd.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/ComEd-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.comed.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/ComEd-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0dbc7d4e-b1b0-4e69-a53b-306ca99104d2";
+				PROVISIONING_PROFILE_SPECIFIER = "ComEd Hotfix Enterprise Dist";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mobile/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276D82347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48EE85F3BC572751D85A9B8C /* Pods-PECOApp-PECO.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Entitlements/PECO-STAGE.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: EXELON BUSINESS SERVICES COMPANY, LLC (YU7Y757VB5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COMPRESS_PNG_FILES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				ENABLE_BITCODE = NO;
+				EXM_BUNDLE_ID = com.exelon.mobile.peco.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_FILE = "$(SRCROOT)/Mobile/Peco-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "${EXM_BUNDLE_ID}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "26d3c4f4-431d-4400-a26d-910b8601a452";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Enterprise Dist";
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
+				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276D92347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5;
+			};
+			name = Hotfix;
+		};
+		0E0276DA2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5;
+			};
+			name = Hotfix;
+		};
+		0E0276DB2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXM_ENVIRONMENT = HOTFIX;
+				INFOPLIST_PREPROCESS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5;
+			};
+			name = Hotfix;
+		};
+		0E0276DC2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F23C5E96482FCD9F5217DB5A /* Pods-BGEApp-BGEUnitTests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+				);
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BGE.app/BGE";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276DD2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C42405251EE637D348D4E5AC /* Pods-ComEdApp-ComEdUnitTests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ComEd.app/ComEd";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276DE2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD5B28DE1D6540496A38D05E /* Pods-PECOApp-PECOUnitTests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YU7Y757VB5;
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+				);
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PECO.app/PECO";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276DF2347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06232A7BBAF8AE8B2F8C470B /* Pods-BGEApp-BGEUITests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.BGEUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BGE;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276E02347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58CEDBA1FBE82C83732EA80C /* Pods-ComEdApp-ComEdUITests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.ComEdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ComEd;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276E12347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEEA745A8541314D0BC8CD74 /* Pods-PECOApp-PECOUITests.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				EXM_ENVIRONMENT = HOTFIX;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CardIO\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleAnalytics\"",
+				);
+				INFOPLIST_FILE = UITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.PECOUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = PECO;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Hotfix;
+		};
+		0E0276E22347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 923013A83E95A122B5DB38AE /* Pods-PECO-Watch.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_COMPANION_APP_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix;
+				EXM_ENVIRONMENT = HOTFIX;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = PECO_WatchOS_Extension;
+				INFOPLIST_FILE = PECO_WatchOS/Info.plist;
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Watchkit App Enterprise Dist";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = 4;
+				USER_HEADER_SEARCH_PATHS = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Hotfix;
+		};
+		0E0276E32347B2B600671E65 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5F6718A295F56478FAC1579 /* Pods-PECO-Watch Extension.hotfix.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Exelon Business Services Company, LLC";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 38R4RRBYR8;
+				EXM_ENVIRONMENT = HOTFIX;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.peco.hotfix.watchkitapp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ModelMapper-watchOS\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift-watchOS\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/PECO_WatchOS Extension/Configurations/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.peco.hotfix.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "PECO Hotfix Watchkit WatchkitExtension Enterprise";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+			};
+			name = Hotfix;
 		};
 		0E131751202B583000865819 /* Prodbeta */ = {
 			isa = XCBuildConfiguration;
@@ -11179,6 +11295,42 @@
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Automation;
+		};
+		355B10312369CE770038EAD3 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E68D427C353EFC6695D480D /* Pods-BGE-Watch.hotfix.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "BGE-Watch";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Hotfix;
+		};
+		355B10322369CE770038EAD3 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F63010E638A229B802A0F794 /* Pods-BGE-Watch Extension.hotfix.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "BGE-Watch Extension";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Hotfix;
+		};
+		355B10332369CE770038EAD3 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F7F3BEA4245C31154F9E1E0 /* Pods-ComEd-Watch.hotfix.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "ComEd-Watch";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Hotfix;
+		};
+		355B10342369CE770038EAD3 /* Hotfix */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBDF7EBD910C5F32550F2C50 /* Pods-ComEd-Watch Extension.hotfix.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "ComEd-Watch Extension";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Hotfix;
 		};
 		35E7C7AB21907EA400BA13C6 /* Automation */ = {
 			isa = XCBuildConfiguration;
@@ -14188,6 +14340,7 @@
 				9CEB30D922612D8500DD725C /* Develop */,
 				0EB93B68202CA3C70049E7A2 /* Automation */,
 				087630E71E72F5D000FA7020 /* Staging */,
+				0E0276DF2347B2B600671E65 /* Hotfix */,
 				9C54105D218B9D8700E03670 /* Testing */,
 				087630E91E72F5D000FA7020 /* Release */,
 				0E13175B202B583000865819 /* Prodbeta */,
@@ -14201,6 +14354,7 @@
 				9CEB30DD22612D8500DD725C /* Develop */,
 				35E7C7B121907EA400BA13C6 /* Automation */,
 				35E7C7B221907EA400BA13C6 /* Staging */,
+				0E0276E32347B2B600671E65 /* Hotfix */,
 				35E7C7B321907EA400BA13C6 /* Testing */,
 				35E7C7B421907EA400BA13C6 /* Release */,
 				35E7C7B521907EA400BA13C6 /* Prodbeta */,
@@ -14214,6 +14368,7 @@
 				9CEB30DC22612D8500DD725C /* Develop */,
 				35E7C7AB21907EA400BA13C6 /* Automation */,
 				35E7C7AC21907EA400BA13C6 /* Staging */,
+				0E0276E22347B2B600671E65 /* Hotfix */,
 				35E7C7AD21907EA400BA13C6 /* Testing */,
 				35E7C7AE21907EA400BA13C6 /* Release */,
 				35E7C7AF21907EA400BA13C6 /* Prodbeta */,
@@ -14230,6 +14385,7 @@
 				35F9DD422333C34200AAA2B2 /* Testing */,
 				35F9DD432333C34200AAA2B2 /* Release */,
 				35F9DD442333C34200AAA2B2 /* Prodbeta */,
+				355B10322369CE770038EAD3 /* Hotfix */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Develop;
@@ -14243,6 +14399,7 @@
 				35F9DD4A2333C34200AAA2B2 /* Testing */,
 				35F9DD4B2333C34200AAA2B2 /* Release */,
 				35F9DD4C2333C34200AAA2B2 /* Prodbeta */,
+				355B10312369CE770038EAD3 /* Hotfix */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Develop;
@@ -14256,6 +14413,7 @@
 				35F9DDE72335397500AAA2B2 /* Testing */,
 				35F9DDE82335397500AAA2B2 /* Release */,
 				35F9DDE92335397500AAA2B2 /* Prodbeta */,
+				355B10342369CE770038EAD3 /* Hotfix */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Develop;
@@ -14269,6 +14427,7 @@
 				35F9DDEF2335397500AAA2B2 /* Testing */,
 				35F9DDF02335397500AAA2B2 /* Release */,
 				35F9DDF12335397500AAA2B2 /* Prodbeta */,
+				355B10332369CE770038EAD3 /* Hotfix */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Develop;
@@ -14279,6 +14438,7 @@
 				9CEB30CF22612D8500DD725C /* Develop */,
 				0EB93B5E202CA3C70049E7A2 /* Automation */,
 				B58B5AF61E51497B0051FD5F /* Staging */,
+				0E0276D52347B2B600671E65 /* Hotfix */,
 				9C541053218B9D8700E03670 /* Testing */,
 				B58B5AE81E4E28740051FD5F /* Release */,
 				0E131751202B583000865819 /* Prodbeta */,
@@ -14292,6 +14452,7 @@
 				9CEB30D022612D8500DD725C /* Develop */,
 				0EB93B5F202CA3C70049E7A2 /* Automation */,
 				B58B5AF71E51497B0051FD5F /* Staging */,
+				0E0276D62347B2B600671E65 /* Hotfix */,
 				9C541054218B9D8700E03670 /* Testing */,
 				B58B5AEB1E4E28740051FD5F /* Release */,
 				0E131752202B583000865819 /* Prodbeta */,
@@ -14305,6 +14466,7 @@
 				9CEB30D222612D8500DD725C /* Develop */,
 				0EB93B61202CA3C70049E7A2 /* Automation */,
 				B58B5B1B1E515BD50051FD5F /* Staging */,
+				0E0276D82347B2B600671E65 /* Hotfix */,
 				9C541056218B9D8700E03670 /* Testing */,
 				B58B5B1D1E515BD50051FD5F /* Release */,
 				0E131754202B583000865819 /* Prodbeta */,
@@ -14318,6 +14480,7 @@
 				9CEB30D122612D8500DD725C /* Develop */,
 				0EB93B60202CA3C70049E7A2 /* Automation */,
 				B58B5B2C1E515C840051FD5F /* Staging */,
+				0E0276D72347B2B600671E65 /* Hotfix */,
 				9C541055218B9D8700E03670 /* Testing */,
 				B58B5B2E1E515C840051FD5F /* Release */,
 				0E131753202B583000865819 /* Prodbeta */,
@@ -14331,6 +14494,7 @@
 				9CEB30D322612D8500DD725C /* Develop */,
 				0EB93B62202CA3C70049E7A2 /* Automation */,
 				B58B5B641E516EEE0051FD5F /* Staging */,
+				0E0276D92347B2B600671E65 /* Hotfix */,
 				9C541057218B9D8700E03670 /* Testing */,
 				B58B5B661E516EEE0051FD5F /* Release */,
 				0E131755202B583000865819 /* Prodbeta */,
@@ -14344,6 +14508,7 @@
 				9CEB30D422612D8500DD725C /* Develop */,
 				0EB93B63202CA3C70049E7A2 /* Automation */,
 				B5AC06AE1E5216C300BBA4ED /* Staging */,
+				0E0276DA2347B2B600671E65 /* Hotfix */,
 				9C541058218B9D8700E03670 /* Testing */,
 				B5AC06B01E5216C300BBA4ED /* Release */,
 				0E131756202B583000865819 /* Prodbeta */,
@@ -14357,6 +14522,7 @@
 				9CEB30D522612D8500DD725C /* Develop */,
 				0EB93B64202CA3C70049E7A2 /* Automation */,
 				B5AC06B71E52171800BBA4ED /* Staging */,
+				0E0276DB2347B2B600671E65 /* Hotfix */,
 				9C541059218B9D8700E03670 /* Testing */,
 				B5AC06B91E52171800BBA4ED /* Release */,
 				0E131757202B583000865819 /* Prodbeta */,
@@ -14370,6 +14536,7 @@
 				9CEB30D622612D8500DD725C /* Develop */,
 				0EB93B65202CA3C70049E7A2 /* Automation */,
 				B5AC06DF1E52238900BBA4ED /* Staging */,
+				0E0276DC2347B2B600671E65 /* Hotfix */,
 				9C54105A218B9D8700E03670 /* Testing */,
 				B5AC06E11E52238900BBA4ED /* Release */,
 				0E131758202B583000865819 /* Prodbeta */,
@@ -14383,6 +14550,7 @@
 				9CEB30DA22612D8500DD725C /* Develop */,
 				0EB93B69202CA3C70049E7A2 /* Automation */,
 				E8F62B162009207C0077B3DA /* Staging */,
+				0E0276E02347B2B600671E65 /* Hotfix */,
 				9C54105E218B9D8700E03670 /* Testing */,
 				E8F62B192009207C0077B3DA /* Release */,
 				0E13175C202B583000865819 /* Prodbeta */,
@@ -14396,6 +14564,7 @@
 				9CEB30DB22612D8500DD725C /* Develop */,
 				0EB93B6A202CA3C70049E7A2 /* Automation */,
 				E8F62B27200920870077B3DA /* Staging */,
+				0E0276E12347B2B600671E65 /* Hotfix */,
 				9C54105F218B9D8700E03670 /* Testing */,
 				E8F62B2A200920870077B3DA /* Release */,
 				0E13175D202B583000865819 /* Prodbeta */,
@@ -14409,6 +14578,7 @@
 				9CEB30D722612D8500DD725C /* Develop */,
 				0EB93B66202CA3C70049E7A2 /* Automation */,
 				E8F62BE0200924410077B3DA /* Staging */,
+				0E0276DD2347B2B600671E65 /* Hotfix */,
 				9C54105B218B9D8700E03670 /* Testing */,
 				E8F62BE3200924410077B3DA /* Release */,
 				0E131759202B583000865819 /* Prodbeta */,
@@ -14422,6 +14592,7 @@
 				9CEB30D822612D8500DD725C /* Develop */,
 				0EB93B67202CA3C70049E7A2 /* Automation */,
 				E8F62C95200924570077B3DA /* Staging */,
+				0E0276DE2347B2B600671E65 /* Hotfix */,
 				9C54105C218B9D8700E03670 /* Testing */,
 				E8F62C98200924570077B3DA /* Release */,
 				0E13175A202B583000865819 /* Prodbeta */,

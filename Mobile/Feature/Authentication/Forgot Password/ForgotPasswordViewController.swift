@@ -19,7 +19,6 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var usernameTextField: FloatLabelTextField!
-    @IBOutlet weak var forgotUsernameButton: UIButton!
     @IBOutlet weak var submitButton: PrimaryButton!
     
     let viewModel = ForgotPasswordViewModel(authService: ServiceFactory.createAuthenticationService())
@@ -28,6 +27,8 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addCloseButton()
 
         title = NSLocalizedString("Forgot Password", comment: "")
 
@@ -56,9 +57,6 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
             self?.usernameTextField.setError(nil)
             self?.accessibilityErrorLabel()
         }).disposed(by: disposeBag)
-        
-        forgotUsernameButton.setTitle(NSLocalizedString("Forgot Username?", comment: ""), for: .normal)
-        forgotUsernameButton.setTitleColor(.actionBlue, for: .normal)
     }
     
     private func accessibilityErrorLabel() {
@@ -77,49 +75,33 @@ class ForgotPasswordViewController: KeyboardAvoidingStickyFooterViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    @objc func onSubmitPress() {
+    @IBAction func onSubmitPress() {
         view.endEditing(true)
-        
+
         LoadingView.show()
         viewModel.submitForgotPassword(onSuccess: { [weak self] in
             LoadingView.hide()
             guard let self = self else { return }
-            
+
             FirebaseUtility.logEvent(.forgotPassword, parameters: [EventParameter(parameterName: .action, value: .complete)])
-            
+
             self.delegate?.forgotPasswordViewControllerDidSubmit(self)
-            self.navigationController?.popViewController(animated: true)
+            self.dismissModal()
         }, onProfileNotFound: { [weak self] error in
             LoadingView.hide()
             guard let self = self else { return }
             self.usernameTextField.setError(NSLocalizedString(error, comment: ""))
             self.accessibilityErrorLabel()
-            
         }, onError: { [weak self] errorMessage in
             LoadingView.hide()
             guard let self = self else { return }
-            
+
             FirebaseUtility.logEvent(.forgotPassword, parameters: [EventParameter(parameterName: .action, value: .network_submit_error)])
-            
+
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: errorMessage, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         })
     }
-    
-    @IBAction func onForgotUsernamePress() {
-        guard let navController = navigationController else { return }
         
-        let sb = UIStoryboard(name: "Login", bundle: nil)
-        let forgotUsernameVC = sb.instantiateViewController(withIdentifier: "forgotUsername")
-        
-        // Replace ForgotPassword with ForgotUsername in the nav stack, so that popping
-        // ForgotUsername goes straight back to Login
-        var vcStack = navController.viewControllers
-        _ = vcStack.popLast()
-        vcStack.append(forgotUsernameVC)
-        
-        navController.setViewControllers(vcStack, animated: true)
-    }
-    
 }

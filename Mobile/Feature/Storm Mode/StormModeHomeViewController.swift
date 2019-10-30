@@ -220,11 +220,17 @@ class StormModeHomeViewController: AccountPickerViewController {
     
     let disposeBag = DisposeBag()
     var stormModePollingDisposable: Disposable?
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureRemoteConfig()
         
         view.backgroundColor = .stormModeBlack
         
@@ -414,6 +420,18 @@ class StormModeHomeViewController: AccountPickerViewController {
         gasOnlyPhone2Button.accessibilityLabel = gasOnlyPhone2Label.text
     }
     
+    private func configureRemoteConfig() {
+        RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
+            self?.viewModel.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+            
+            if self?.viewModel.outageMapURLString.isEmpty ?? true {
+                self?.outageMapButton.isHidden = true
+            } else {
+                self?.outageMapButton.isHidden = false
+            }
+        }
+    }
+    
     private func stormModeDidEnd() {
         let yesAction = UIAlertAction(title: NSLocalizedString("Exit Storm Mode", comment: ""), style: .default)
         { [weak self] _ in
@@ -446,6 +464,8 @@ class StormModeHomeViewController: AccountPickerViewController {
             loadingView.isHidden = false
             scrollView?.isHidden = false
             setRefreshControlEnabled(enabled: false)
+        } else {
+            RemoteConfigUtility.shared.fetchCloudValues()
         }
         
         viewModel.fetchData(onSuccess: { [weak self] in
@@ -585,22 +605,14 @@ class StormModeHomeViewController: AccountPickerViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? UpdatesDetailViewController {
-            if let stormUpdate = viewModel.stormModeUpdate.value {
-                vc.opcoUpdate = stormUpdate
-            }
-        } else if let vc = segue.destination as? ReportOutageViewController {
-            navigationController?.setNavigationBarHidden(false, animated: false) // may be able to refactor this out into the root of prep for segue
-            vc.viewModel.outageStatus = viewModel.currentOutageStatus!
-            
-            guard let phone = viewModel.currentOutageStatus!.contactHomeNumber else { return }
-            vc.viewModel.phoneNumber.value = phone
+        if let vc = segue.destination as? UpdatesDetailViewController, let stormUpdate = viewModel.stormModeUpdate.value {
+            vc.opcoUpdate = stormUpdate
+        } else if let vc = segue.destination as? ReportOutageViewController,
+            let outageStatus = viewModel.currentOutageStatus {
+            vc.viewModel.outageStatus = outageStatus
+            vc.viewModel.phoneNumber.value = outageStatus.contactHomeNumber ?? ""
         } else if let vc = segue.destination as? OutageMapViewController {
-            navigationController?.setNavigationBarHidden(false, animated: false)
             vc.hasPressedStreetlightOutageMapButton = false
-        } else if let vc = segue.destination as? MoreViewController {
-            vc.shouldHideNavigationBar = false
-            navigationController?.setNavigationBarHidden(false, animated: false)
         }
     }
     
@@ -612,14 +624,9 @@ class StormModeHomeViewController: AccountPickerViewController {
             let alertsVC = alertsStoryboard.instantiateInitialViewController()
             else { return }
         
-        moreVC.shouldHideNavigationBar = false
         navigationController?.viewControllers = [self, moreVC, alertsVC]
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+        
     func navigateToAlertPreferences() {
         let moreStoryboard = UIStoryboard(name: "More", bundle: nil)
         let alertsStoryboard = UIStoryboard(name: "Alerts", bundle: nil)
@@ -629,7 +636,6 @@ class StormModeHomeViewController: AccountPickerViewController {
             let alertsVC = alertsStoryboard.instantiateInitialViewController() as? AlertsViewController
             else { return }
         
-        moreVC.shouldHideNavigationBar = false
         alertsVC.shortcutToPrefs = true
         navCtl.viewControllers = [self, moreVC, alertsVC]
     }

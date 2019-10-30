@@ -43,12 +43,13 @@ class MoreViewController: UIViewController {
 
     let viewModel = MoreViewModel(authService: ServiceFactory.createAuthenticationService(), biometricsService: ServiceFactory.createBiometricsService(), accountService: ServiceFactory.createAccountService())
     
-    var shouldHideNavigationBar = true
-    
     private var biometricsPasswordRetryCount = 0
     
     private let disposeBag = DisposeBag()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - View Life Cycle
     
@@ -78,10 +79,8 @@ class MoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if shouldHideNavigationBar {
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-        
+        navigationController?.setNavigationBarHidden(!StormModeStatus.shared.isOn, animated: true)
+
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
         }
@@ -99,7 +98,7 @@ class MoreViewController: UIViewController {
     @objc func toggleBiometrics(_ sender: UISwitch) {
         FirebaseUtility.logEvent(.biometricsToggle, parameters: [EventParameter(parameterName: .value, value: nil, providedValue: sender.isOn.description)])
         
-        FirebaseUtility.setUserPropety(.isBiometricsEnabled, value: sender.isOn.description)
+        FirebaseUtility.setUserProperty(.isBiometricsEnabled, value: sender.isOn.description)
         
         if sender.isOn {
             presentPasswordAlert(message: viewModel.getConfirmPasswordMessage(), toggle: sender)
@@ -176,11 +175,6 @@ class MoreViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     
     // MARK: - Navigation
     
@@ -271,7 +265,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
-                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("Updates", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             default:
                 return UITableViewCell()
             }

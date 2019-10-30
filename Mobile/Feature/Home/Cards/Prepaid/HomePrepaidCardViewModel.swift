@@ -26,9 +26,10 @@ final class HomePrepaidCardViewModel {
             font = OpenSans.regular.of(textStyle: .headline)
         }
         
-        return NSAttributedString(string: text,
-                                  attributes: [.foregroundColor: UIColor.blackText,
-                                               .font: font])
+        return NSAttributedString(string: text, attributes: [
+            .foregroundColor: UIColor.blackText,
+            .font: font
+        ])
     }
     
     var detailText: String {

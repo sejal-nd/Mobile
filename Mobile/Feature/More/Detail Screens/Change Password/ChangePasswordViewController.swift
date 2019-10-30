@@ -64,6 +64,9 @@ class ChangePasswordViewController: KeyboardAvoidingStickyFooterViewController {
         return toolbar
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
     
     // MARK: - View Life Cycle
     

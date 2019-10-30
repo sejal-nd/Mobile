@@ -29,6 +29,9 @@ class BillViewController: AccountPickerViewController {
     
     @IBOutlet weak var billCardView: UIView!
     
+    @IBOutlet weak var multipremiseHeaderView: UIView!
+    @IBOutlet weak var multipremiseHeaderLabel: UILabel!
+    
     @IBOutlet weak var totalAmountView: UIView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var totalAmountDescriptionLabel: UILabel!
@@ -229,6 +232,12 @@ class BillViewController: AccountPickerViewController {
         billCardView.layer.borderColor = UIColor.accentGray.cgColor
         billCardView.layer.borderWidth = 1
         
+        multipremiseHeaderView.layer.borderColor = UIColor.accentGray.cgColor
+        multipremiseHeaderView.layer.borderWidth = 1
+        multipremiseHeaderLabel.textColor = .deepGray
+        multipremiseHeaderLabel.font = SystemFont.semibold.of(textStyle: .caption1)
+        multipremiseHeaderLabel.text = NSLocalizedString("Multi-Premise Bill", comment: "")
+        
         totalAmountLabel.textColor = .deepGray
         totalAmountLabel.font = OpenSans.semibold.of(textStyle: .largeTitle)
 
@@ -301,9 +310,7 @@ class BillViewController: AccountPickerViewController {
         
         billPaidLabel.textColor = UIColor.deepGray.withAlphaComponent(0.5)
         billPaidLabel.font = SystemFont.semibold.of(textStyle: .headline)
-        
-        makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .subheadline)
-        
+                
         billBreakdownButton.backgroundColorOnPress = .softGray
         billBreakdownLabel.textColor = .deepGray
         billBreakdownLabel.font = SystemFont.medium.of(textStyle: .callout)
@@ -530,6 +537,8 @@ class BillViewController: AccountPickerViewController {
         viewModel.showAlertBanner.filter { $0 }.mapTo(())
             .drive(alertBannerView.rx.resetAnimation)
             .disposed(by: bag)
+        
+        viewModel.showMultipremiseHeader.not().drive(multipremiseHeaderView.rx.isHidden).disposed(by: bag)
 
         totalAmountTooltipButton.isHidden = !viewModel.showAmountDueTooltip
         
@@ -595,6 +604,15 @@ class BillViewController: AccountPickerViewController {
 
         viewModel.paymentStatusText.drive(makeAPaymentStatusLabel.rx.text).disposed(by: bag)
         viewModel.paymentStatusText.drive(makeAPaymentStatusButton.rx.accessibilityLabel).disposed(by: bag)
+        viewModel.makePaymentStatusTextTapRouting.drive(onNext: { [weak self] route in
+            if route == .nowhere {
+                self?.makeAPaymentStatusLabel.textColor = .deepGray
+                self?.makeAPaymentStatusLabel.font = OpenSans.italic.of(textStyle: .caption1)
+            } else {
+                self?.makeAPaymentStatusLabel.textColor = .actionBlue
+                self?.makeAPaymentStatusLabel.font = OpenSans.semibold.of(textStyle: .caption1)
+            }
+        }).disposed(by: bag)
 
         viewModel.showPaperlessEnrolledView.not().drive(paperlessEnrolledView.rx.isHidden).disposed(by: bag)
         viewModel.showAutoPayEnrolledView.not().drive(autoPayEnrolledView.rx.isHidden).disposed(by: bag)
@@ -798,6 +816,10 @@ class BillViewController: AccountPickerViewController {
     }
 
     func configureAccessibility() {
+        pastDueView.accessibilityElements = [pastDueLabel, pastDueDateLabel, pastDueAmountLabel] as [UIView]
+        currentBillView.accessibilityElements = [currentBillLabel, currentBillDateLabel, currentBillAmountLabel] as [UIView]
+        paymentReceivedView.accessibilityElements = [paymentReceivedLabel, paymentReceivedDateLabel, paymentReceivedAmountLabel] as [UIView]
+        
         viewModel.showPaperlessEnrolledView.drive(onNext: { [weak self] show in
             self?.paperlessButton.accessibilityLabel = String.localizedStringWithFormat("Paperless e-bill. Eliminate your paper bill and receive it online.%@", show ? "Enrolled" : "")
         }).disposed(by: bag)

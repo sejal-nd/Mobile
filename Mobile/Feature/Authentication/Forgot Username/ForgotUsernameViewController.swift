@@ -34,6 +34,8 @@ class ForgotUsernameViewController: KeyboardAvoidingStickyFooterViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addCloseButton()
+        
         title = NSLocalizedString("Forgot Username", comment: "")
         
         if Environment.shared.opco == .bge {

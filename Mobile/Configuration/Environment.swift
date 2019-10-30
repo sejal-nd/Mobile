@@ -48,6 +48,7 @@ enum EnvironmentName: String {
     case stage = "STAGE"
     case prodbeta = "PRODBETA"
     case prod = "PROD"
+    case hotfix = "HOTFIX"
 }
 
 struct MCSConfig {
@@ -99,7 +100,6 @@ struct Environment {
     let mcsInstanceName: String
     let mcsConfig: MCSConfig
     let myAccountUrl: String
-    let outageMapUrl: String
     let gaTrackingId: String
     let firebaseConfigFile: String
     let opcoUpdatesHost: String
@@ -116,7 +116,6 @@ struct Environment {
         mcsInstanceName = dict["mcsInstanceName"] as! String
         mcsConfig = MCSConfig(mcsInstanceName: mcsInstanceName, opco: opco)
         myAccountUrl = dict["myAccountUrl"] as! String
-        outageMapUrl = dict["outageMapUrl"] as! String
         gaTrackingId = dict["gaTrackingId"] as! String
         firebaseConfigFile = dict["firebaseConfigFile"] as! String
         opcoUpdatesHost = dict["opcoUpdatesHost"] as! String

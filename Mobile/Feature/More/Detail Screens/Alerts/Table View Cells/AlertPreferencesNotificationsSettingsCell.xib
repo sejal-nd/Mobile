@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,20 +14,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="157"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="156.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="157"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gMZ-ZS-ueR">
-                        <rect key="frame" x="29" y="15" width="262" height="126.5"/>
+                        <rect key="frame" x="20" y="15" width="280" height="127"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Your notifications are currently disabled. Please go to your settings to allow PECO to send notifications on your device." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-hL-Vem">
-                                <rect key="frame" x="11.5" y="0.0" width="239.5" height="81.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your notifications are currently disabled. Please go to your settings to allow PECO to send notifications on your device." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-hL-Vem">
+                                <rect key="frame" x="2" y="0.0" width="276.5" height="82"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVc-rx-IYy">
-                                <rect key="frame" x="82" y="96.5" width="98" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="999" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVc-rx-IYy">
+                                <rect key="frame" x="91" y="97" width="98" height="30"/>
                                 <state key="normal" title="Go to Settings"/>
                                 <connections>
                                     <action selector="goToSettingsPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gGt-7I-zyK"/>
@@ -44,13 +42,13 @@
                 </subviews>
                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gMZ-ZS-ueR" secondAttribute="trailing" constant="29" id="0zh-DG-gAD"/>
-                    <constraint firstItem="gMZ-ZS-ueR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="29" id="E8T-ff-zBA"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gMZ-ZS-ueR" secondAttribute="trailing" constant="20" id="0zh-DG-gAD"/>
+                    <constraint firstItem="gMZ-ZS-ueR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="E8T-ff-zBA"/>
                     <constraint firstItem="gMZ-ZS-ueR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="JKd-g0-7la"/>
                     <constraint firstItem="gMZ-ZS-ueR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Mlh-Wz-epD"/>
-                    <constraint firstAttribute="trailing" secondItem="gMZ-ZS-ueR" secondAttribute="trailing" priority="999" constant="29" id="P1n-Om-RgS"/>
+                    <constraint firstAttribute="trailing" secondItem="gMZ-ZS-ueR" secondAttribute="trailing" priority="999" constant="20" id="P1n-Om-RgS"/>
                     <constraint firstAttribute="bottom" secondItem="gMZ-ZS-ueR" secondAttribute="bottom" constant="15" id="VtX-6O-mCl"/>
-                    <constraint firstItem="gMZ-ZS-ueR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" priority="999" constant="29" id="q5p-s9-Zbb"/>
+                    <constraint firstItem="gMZ-ZS-ueR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" priority="999" constant="20" id="q5p-s9-Zbb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

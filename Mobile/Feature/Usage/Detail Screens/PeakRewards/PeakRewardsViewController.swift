@@ -16,13 +16,13 @@ class PeakRewardsViewController: UIViewController {
     @IBOutlet weak var mainLoadingIndicator: LoadingIndicator!
     
     @IBOutlet weak var deviceSelectionStack: UIStackView!
-    @IBOutlet weak var deviceButton: DisclosureButtonNew!
+    @IBOutlet weak var deviceButton: DisclosureButton!
     
     @IBOutlet weak var programCardStack: UIStackView!
     @IBOutlet weak var cyclingStatusLabel: UILabel!
     
-    @IBOutlet weak var overrideButton: DisclosureButtonNew!
-    @IBOutlet weak var adjustThermostatButton: DisclosureButtonNew!
+    @IBOutlet weak var overrideButton: DisclosureButton!
+    @IBOutlet weak var adjustThermostatButton: DisclosureButton!
     
     @IBOutlet weak var adjustScaleLabel: UILabel!
     @IBOutlet weak var segmentedControl: SegmentedControl!

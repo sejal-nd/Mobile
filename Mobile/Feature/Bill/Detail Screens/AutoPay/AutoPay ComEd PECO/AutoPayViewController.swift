@@ -98,6 +98,7 @@ class AutoPayViewController: KeyboardAvoidingStickyFooterViewController {
         title = NSLocalizedString("AutoPay", comment: "")
         
         let helpButton = UIBarButtonItem(image: UIImage(named: "ic_tooltip"), style: .plain, target: self, action: #selector(onLearnMorePress))
+        helpButton.accessibilityLabel = NSLocalizedString("Tool tip", comment: "")
         navigationItem.rightBarButtonItem = helpButton
         
         viewModel.canSubmitNewAccount.drive(enrollButton.rx.isEnabled).disposed(by: bag)

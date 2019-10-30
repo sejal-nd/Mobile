@@ -12,8 +12,6 @@
 	<string>Prod-pecoMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://peco.com/MyAccount</string>
-	<key>outageMapUrl</key>
-	<string>https://s3.amazonaws.com/outagemap.peco.com/external/app.html</string>
 	<key>firebaseConfigFile</key>
 	<string>GoogleService-Info_peco</string>
 	<key>gaTrackingId</key>

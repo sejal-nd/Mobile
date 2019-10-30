@@ -56,14 +56,21 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
         }
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // Remote Config Value
+    private var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+    
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
-        tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
-
+        configureTableView()
+        
         view.backgroundColor = .primaryColor
     }
 
@@ -89,10 +96,6 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
 
         navigationController?.popViewController(animated: true)
     }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UnauthenticatedOutageValidateAccountViewController {
@@ -117,6 +120,19 @@ class UnauthenticatedUserViewController: UIViewController, UIGestureRecognizerDe
             vc.unauthenticatedExperience = true
         }
     }
+    
+    
+    // MARK: - Helper
+    
+    private func configureTableView() {
+        tableView.register(UINib(nibName: TitleTableViewHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: TitleTableViewHeaderView.className)
+        tableView.register(UINib(nibName: TitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.className)
+        
+        RemoteConfigUtility.shared.loadingDoneCallback = { [weak self] in
+            self?.outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+            self?.tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+        }
+    }
 }
 
 extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewDelegate {
@@ -130,6 +146,10 @@ extension UnauthenticatedUserViewController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0, indexPath.row == 2, outageMapURLString.isEmpty {
+            return 0
+        }
+        
         return 60
     }
     

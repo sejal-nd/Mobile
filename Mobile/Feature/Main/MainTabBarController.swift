@@ -20,6 +20,9 @@ class MainTabBarController: UITabBarController {
     let normalTitleColor = UIColor.middleGray
     let selectedTitleColor = UIColor.primaryColorADA
         
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     // MARK: - View Life Cycle
     

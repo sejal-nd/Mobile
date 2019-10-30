@@ -19,22 +19,36 @@ class OutageMapViewController: UIViewController {
     
     var hasPressedStreetlightOutageMapButton = false
     
+    private var urlString: String?
+    
+    // Remote Config
+    private var streetlightOutageMapURLString = RemoteConfigUtility.shared.string(forKey: .streetlightMapURL)
+    private var outageMapURLString = RemoteConfigUtility.shared.string(forKey: .outageMapURL)
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return StormModeStatus.shared.isOn ? .lightContent : .default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url: URL
         let a11yLabel: String
         if hasPressedStreetlightOutageMapButton {
             title = NSLocalizedString("Street Light Map", comment: "")
-            url = URL(string: "https://comed.streetlightoutages.com")!
+            urlString = streetlightOutageMapURLString
             a11yLabel = NSLocalizedString("This is an outage map showing the street lights that are currently experiencing an outage.", comment: "")
         } else {
             title = NSLocalizedString("Outage Map", comment: "")
-            url = URL(string: Environment.shared.outageMapUrl)!
+            urlString = outageMapURLString
             a11yLabel = NSLocalizedString("This is an outage map showing the areas that are currently experiencing an outage. You can check your outage status on the main Outage section of the app.", comment: "")
         }
         
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            return
+        }
+        
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.isHidden = true
         webView.load(URLRequest(url: url))
         webView.isAccessibilityElement = false
@@ -54,6 +68,14 @@ class OutageMapViewController: UIViewController {
         if unauthenticatedExperience {
             GoogleAnalytics.log(event: .viewOutageMapUnAuthOfferComplete)
         }
+        
+        if urlString?.isEmpty ?? true {
+            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("The map is currently unavailable. Please try again later.", comment: ""), preferredStyle: .alert)
+            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }))
+            present(alertVc, animated: true, completion: nil)
+        }
     }
 
 }
@@ -66,5 +88,23 @@ extension OutageMapViewController: WKNavigationDelegate {
         webView.isAccessibilityElement = true
         UIAccessibility.post(notification: .screenChanged, argument: nil)
     }
-    
+}
+
+extension OutageMapViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil,
+            let url = navigationAction.request.url,
+            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+                        
+            // force http links to load over https
+            if url.scheme == "http" {
+                urlComponents.scheme = "https"
+            }
+            
+            if let newUrl = urlComponents.url {
+                webView.load(URLRequest(url: newUrl))
+            }
+        }
+        return nil;
+    }
 }

@@ -66,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupToastStyles()
         setupAppearance()
         setupAnalytics()
+        
+        // Fetch Remote Config Values
+        let _ = RemoteConfigUtility.shared
         //printFonts()
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
@@ -259,9 +262,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseUtility.configure()
         
-        FirebaseUtility.setUserPropety(.isScreenReaderEnabled, value: UIAccessibility.isVoiceOverRunning.description)
-        FirebaseUtility.setUserPropety(.isSwitchAccessEnabled, value: UIAccessibility.isSwitchControlRunning.description)
-        FirebaseUtility.setUserPropety(.fontScale, value: UIApplication.shared.preferredContentSizeCategory.rawValue)
+        FirebaseUtility.setUserProperty(.isScreenReaderEnabled, value: UIAccessibility.isVoiceOverRunning.description)
+        FirebaseUtility.setUserProperty(.isSwitchAccessEnabled, value: UIAccessibility.isSwitchControlRunning.description)
+        FirebaseUtility.setUserProperty(.fontScale, value: UIApplication.shared.preferredContentSizeCategory.rawValue)
     }
     
     @objc func resetNavigationOnAuthTokenExpire() {
