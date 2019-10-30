@@ -66,6 +66,12 @@
             ReferencedContainer = "container:Mobile.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-shouldLogAPI"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
