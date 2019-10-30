@@ -25,7 +25,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let authToken = KeychainUtility.shared[keychainKeys.authToken]
         
         if authToken != nil {
-            print("test: \(OutageInterfaceController.className)")
             WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject),
                                                                                (name: UsageInterfaceController.className, context: [:] as AnyObject),
                                                                                (name: BillInterfaceController.className, context: [:] as AnyObject)])

@@ -27,35 +27,19 @@ class OutageInterfaceController: WKInterfaceController {
     
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
-    @IBOutlet var accountGroup: WKInterfaceGroup! {
-        didSet {
-            accountGroup.setHidden(true)
-        }
-    }
+    @IBOutlet var accountGroup: WKInterfaceGroup!
     @IBOutlet var accountImage: WKInterfaceImage!
     @IBOutlet var accountTitleLabel: WKInterfaceLabel!
     
     @IBOutlet var reportOutageTapGesture: WKTapGestureRecognizer!
-    @IBOutlet var statusGroup: WKInterfaceGroup! {
-        didSet {
-            statusGroup.setHidden(true)
-        }
-    }
+    @IBOutlet var statusGroup: WKInterfaceGroup!
     @IBOutlet var powerStatusLabel: WKInterfaceLabel!
     @IBOutlet var etrGroup: WKInterfaceGroup!
     @IBOutlet var etrTitleLabel: WKInterfaceLabel!
     @IBOutlet var etrDetailLabel: WKInterfaceLabel!
-    @IBOutlet var powerStatusImage: WKInterfaceImage! {
-        didSet {
-            powerStatusImage.setHidden(true)
-        }
-    }
+    @IBOutlet var powerStatusImage: WKInterfaceImage!
     
-    @IBOutlet var errorGroup: WKInterfaceGroup! {
-        didSet {
-            errorGroup.setHidden(true)
-        }
-    }
+    @IBOutlet var errorGroup: WKInterfaceGroup!
     @IBOutlet var errorImage: WKInterfaceImage!
     @IBOutlet var errorTitleLabel: WKInterfaceLabel!
     @IBOutlet var errorDetailLabel: WKInterfaceLabel!
@@ -207,9 +191,10 @@ class OutageInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        print("awake 1")
         
         NotificationCenter.default.addObserver(self, selector: #selector(outageReportedFromPhone), name: Notification.Name.outageReported, object: nil)
+        
+        configureInitialState()
         
         configureNetworkActions()
         
@@ -260,6 +245,13 @@ class OutageInterfaceController: WKInterfaceController {
     
     
     // MARK: - Helper
+    
+    private func configureInitialState() {
+        accountGroup.setHidden(true)
+        statusGroup.setHidden(true)
+        powerStatusImage.setHidden(true)
+        errorGroup.setHidden(true)
+    }
     
     @objc private func outageReportedFromPhone() {
         self.state = .loaded(.powerOut(nil))
@@ -382,7 +374,6 @@ extension OutageInterfaceController {
     }
     
     private func configureMaintenanceModeStatus(_ maintenanceModeStatus: MaintenanceModeStatus) {
-        print("maint mode outage: \(maintenanceModeStatus)")
         guard maintenanceModeStatus.feature == .all || maintenanceModeStatus.feature == .outage else { return }
         
         accountGroup.setHidden(false)

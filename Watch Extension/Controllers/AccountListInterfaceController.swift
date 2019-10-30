@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 
-
 class AccountListInterfaceController: WKInterfaceController {
 
     @IBOutlet weak var table: WKInterfaceTable!

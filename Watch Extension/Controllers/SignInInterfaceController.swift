@@ -10,9 +10,6 @@ import WatchKit
 
 class SignInInterfaceController: WKInterfaceController {
     
-    
-    // MARK: - Interface Life Cycle
-
     override func didAppear() {
         super.didAppear()
         

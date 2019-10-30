@@ -9,9 +9,6 @@
 import WatchKit
 
 class ReportOutageInterfaceController: WKInterfaceController {
-    
-    
-    // MARK: - Interface Life Cycle
 
     override func didAppear() {
         super.didAppear()

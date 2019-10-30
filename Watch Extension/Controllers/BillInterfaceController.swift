@@ -144,9 +144,7 @@ class BillInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        print("awake 3")
-        
+                
         configureNetworkActions()
                 
         // Clear Default Account Info

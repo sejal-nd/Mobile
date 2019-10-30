@@ -22,36 +22,20 @@ class UsageInterfaceController: WKInterfaceController {
     
     @IBOutlet var loadingImageGroup: WKInterfaceGroup!
     
-    @IBOutlet var accountGroup: WKInterfaceGroup! {
-        didSet {
-            accountGroup.setHidden(true)
-        }
-    }
+    @IBOutlet var accountGroup: WKInterfaceGroup!
     @IBOutlet var accountImage: WKInterfaceImage!
     @IBOutlet var accountTitleLabel: WKInterfaceLabel!
     
-    @IBOutlet var errorGroup: WKInterfaceGroup! {
-        didSet {
-            errorGroup.setHidden(true)
-        }
-    }
+    @IBOutlet var errorGroup: WKInterfaceGroup!
     @IBOutlet var errorImage: WKInterfaceImage!
     @IBOutlet var errorTitleLabel: WKInterfaceLabel!
     
-    @IBOutlet var nextForecastGroup: WKInterfaceGroup! {
-        didSet {
-            nextForecastGroup.setHidden(true)
-        }
-    }
+    @IBOutlet var nextForecastGroup: WKInterfaceGroup!
     @IBOutlet var nextForecastImage: WKInterfaceImage!
     @IBOutlet var nextForecastTitleLabel: WKInterfaceLabel!
     @IBOutlet var nextForecastDetailLabel: WKInterfaceLabel!
     
-    @IBOutlet var mainGroup: WKInterfaceGroup! {
-        didSet {
-            mainGroup.setHidden(true)
-        }
-    }
+    @IBOutlet var mainGroup: WKInterfaceGroup!
     @IBOutlet var mainImageGroup: WKInterfaceGroup!
     @IBOutlet var mainUnitImage: WKInterfaceImage!
     @IBOutlet var mainTitleLabel: WKInterfaceLabel!
@@ -213,9 +197,9 @@ class UsageInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+                        
+        configureInitialState()
         
-        print("awake 2")
-                
         configureNetworkActions()
         
         // Clear Default Account Info
@@ -261,6 +245,13 @@ class UsageInterfaceController: WKInterfaceController {
     
     
     // MARK: - Helper
+    
+    private func configureInitialState() {
+        accountGroup.setHidden(true)
+        errorGroup.setHidden(true)
+        nextForecastGroup.setHidden(true)
+        mainGroup.setHidden(true)
+    }
     
     private func configureNetworkActions() {
         let notificationCenter = NotificationCenter.default
