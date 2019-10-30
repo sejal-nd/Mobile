@@ -655,9 +655,9 @@
 		35F9DE4D2339152900AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE4E2339152A00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
 		35F9DE4F2339152C00AAA2B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E7C7DC2190802C00BA13C6 /* Constants.swift */; };
-		35F9DE51233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */; };
-		35F9DE52233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */; };
-		35F9DE53233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */; };
+		35F9DE51233A583700AAA2B2 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
+		35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
+		35F9DE53233A583700AAA2B2 /* AnalyticUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */; };
 		35F9DE55233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
 		35F9DE56233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
 		35F9DE57233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */; };
@@ -2929,7 +2929,7 @@
 		35F9DDF923353A0D00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		35F9DE0F23353A6C00AAA2B2 /* ComEd-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ComEd-Info.plist"; sourceTree = "<group>"; };
 		35F9DE1123353C1B00AAA2B2 /* Pods_ComEd_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ComEd_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchAnalyticUtility.swift; sourceTree = "<group>"; };
+		35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticUtility.swift; sourceTree = "<group>"; };
 		35F9DE54233A5AD300AAA2B2 /* ReportOutageInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOutageInterfaceController.swift; sourceTree = "<group>"; };
 		35FB0843210F540400DA47B4 /* DateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
 		35FB502E234D091000C50162 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -4874,7 +4874,7 @@
 		35E7C7DB2190802C00BA13C6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				35F9DE50233A583700AAA2B2 /* WatchAnalyticUtility.swift */,
+				35F9DE50233A583700AAA2B2 /* AnalyticUtility.swift */,
 				3527DB37234B86E000DA4553 /* BillUtility.swift */,
 				35BAA1782367454F0053E58A /* NetworkUtility.swift */,
 			);
@@ -7903,7 +7903,7 @@
 				356C7FA32190AC28003E8A90 /* NotificationNames.swift in Sources */,
 				356C7FA22190A50C003E8A90 /* Fillable.swift in Sources */,
 				356C7F7A21909887003E8A90 /* AccountsStore.swift in Sources */,
-				35F9DE51233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */,
+				35F9DE51233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
 				356C7F8F2190A162003E8A90 /* MinimumVersion.swift in Sources */,
 				356C7F8621909EE2003E8A90 /* WalletItem.swift in Sources */,
 				35E7C7F62190804E00BA13C6 /* AnimateWithDuration+Completion.swift in Sources */,
@@ -7974,7 +7974,7 @@
 				35F9DD9A2333D85A00AAA2B2 /* Premise.swift in Sources */,
 				35F9DDBA2333D90400AAA2B2 /* Fillable.swift in Sources */,
 				35F9DD992333D85400AAA2B2 /* WalletItem.swift in Sources */,
-				35F9DE52233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */,
+				35F9DE52233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
 				35F9DDA22333D87E00AAA2B2 /* AccountsStore.swift in Sources */,
 				35F9DDA02333D87300AAA2B2 /* Payments.swift in Sources */,
 				35F9DD742333D14D00AAA2B2 /* BillInterfaceController.swift in Sources */,
@@ -8046,7 +8046,7 @@
 				35F9DE3323353CEF00AAA2B2 /* ServiceResult.swift in Sources */,
 				35F9DE3723353D1000AAA2B2 /* StormModeStatus.swift in Sources */,
 				35F9DE3E23353D4000AAA2B2 /* Fillable.swift in Sources */,
-				35F9DE53233A583700AAA2B2 /* WatchAnalyticUtility.swift in Sources */,
+				35F9DE53233A583700AAA2B2 /* AnalyticUtility.swift in Sources */,
 				35F9DE1E23353C7200AAA2B2 /* Premise.swift in Sources */,
 				35F9DE2D23353CCE00AAA2B2 /* DateParser.swift in Sources */,
 				35F9DE2723353CAD00AAA2B2 /* MCSApi.swift in Sources */,

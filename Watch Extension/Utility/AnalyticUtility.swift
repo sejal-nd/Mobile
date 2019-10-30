@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WatchAnalyticUtility {
+struct AnalyticUtility {
     
     enum ScreenName: String {
         case sign_in_screen_view

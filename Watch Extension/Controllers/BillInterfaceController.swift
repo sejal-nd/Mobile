@@ -163,7 +163,7 @@ class BillInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        WatchAnalyticUtility.logScreenView(.bill_screen_view)
+        AnalyticUtility.logScreenView(.bill_screen_view)
     }
     
     // MARK: - Actions

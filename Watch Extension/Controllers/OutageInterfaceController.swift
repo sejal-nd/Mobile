@@ -216,7 +216,7 @@ class OutageInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        WatchAnalyticUtility.logScreenView(.account_list_screen_view)
+        AnalyticUtility.logScreenView(.account_list_screen_view)
         
         // If outage state loads without being on the outage screen
         shouldAnimateStatusImage = true
