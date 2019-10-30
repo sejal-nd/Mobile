@@ -77,8 +77,7 @@ final class NetworkUtility {
     /// Fetch all app data.  Due to all screens possibly loading at the same time we must fetch all data at once.
     /// - Parameter shouldLoadAccountList: true on fresh app launch, false if user selects a new account.
     public func fetchData(shouldLoadAccountList: Bool) {
-        
-        // Reset Maintenance Mode
+        // Reset Maintenance Mode Statuses
         maintenanceModeStatuses.removeAll()
         
         if shouldLoadAccountList {
@@ -209,6 +208,9 @@ extension NetworkUtility {
         return maintenanceModeStatuses
     }
     
+    /// Determines if a specific features maintenance mode is on given a list of current maintenance mode statuses.
+    /// - Parameter feature: Feature that we want to check if maintenance mode is on for
+    /// - Parameter currentStatuses: List of current maintenance mode statuses
     private func isMaintenanceModeOnForFeature(feature: Feature, currentStatuses: [MaintenanceModeStatus]) -> Bool {
         for status in currentStatuses {
             if feature == status.feature {
@@ -342,12 +344,14 @@ extension NetworkUtility {
         dLog("Fetching Usage Data...")
         
         guard accountDetail.isAMIAccount, let premiseNumber = accountDetail.premiseNumber else {
+            dLog("Account invalid for usage data due to non existant premise number or not being an AMI Account.")
             result(.failure(.invalidAccount))
             return
         }
         let accountNumber = accountDetail.accountNumber
         
         MCSUsageService(useCache: false).fetchBillForecast(accountNumber: accountNumber, premiseNumber: premiseNumber).subscribe(onNext: { billForecastResult in
+            dLog("Usage Data Fetched.")
             result(.success(billForecastResult))
         }, onError: { usageError in
             dLog("Failed to retrieve usage data: \(usageError.localizedDescription)")
@@ -383,14 +387,14 @@ extension NetworkUtility {
         dLog("Current Account Did Update")
         
         guard let account = notification.object as? Account else {
+            dLog("Failed to update current account, no account recieved in notification.")
             error = (.invalidAccount, .all)
             notificationCenter.post(name: .errorDidOccur, object: (NetworkError.invalidAccount, Feature.all))
             return
         }
         
-        // Reset timer
+        // Reset 15 min polling timer
         pollingTimer.invalidate()
-        // Set a 15 minute polling timer here.
         pollingTimer = Timer.scheduledTimer(timeInterval: 900, target: self, selector: #selector(reloadPollingData), userInfo: nil, repeats: true)
         
         fetchData(shouldLoadAccountList: false)

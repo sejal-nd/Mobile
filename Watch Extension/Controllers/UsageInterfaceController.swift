@@ -129,9 +129,7 @@ class UsageInterfaceController: WKInterfaceController {
                 mainGroup.setHidden(true)
                 
                 // show loading group
-                loadingImageGroup.setHidden(false)
-                
-                dLog("Loading State")
+                loadingImageGroup.setHidden(false)                
             case .maintenanceMode:
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
@@ -447,8 +445,6 @@ extension UsageInterfaceController {
         if let electric = billForecast.electric, let startDate = electric.billingStartDate {
             setElectricState(electric: electric, startDate: startDate)
         }
-
-        dLog("Usage Status Did Update: \(billForecast)")
     }
     
     private func configureMaintenanceModeStatus(_ maintenanceModeStatus: MaintenanceModeStatus) {
