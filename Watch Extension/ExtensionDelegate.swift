@@ -32,5 +32,5 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: SignInInterfaceController.className, context: [:] as AnyObject)])
         }
     }
-    
+
 }

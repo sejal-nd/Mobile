@@ -166,6 +166,11 @@ class BillInterfaceController: WKInterfaceController {
         AnalyticUtility.logScreenView(.bill_screen_view)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     // MARK: - Actions
     
     @objc private func presentAccountList() {
@@ -178,15 +183,30 @@ class BillInterfaceController: WKInterfaceController {
     private func configureNetworkActions() {
         let notificationCenter = NotificationCenter.default
 
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .maintenanceModeDidUpdate, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .errorDidOccur, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .accountListDidUpdate, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .defaultAccountDidUpdate, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .accountDetailsDidUpdate, object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(currentAccountDidUpdate(_:)),
+                                       name: .currentAccountUpdated,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .maintenanceModeDidUpdate,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .errorDidOccur,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .accountListDidUpdate,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .defaultAccountDidUpdate,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .accountDetailsDidUpdate,
+                                       object: nil)
     }
     
     private func loadData() {
@@ -325,13 +345,14 @@ extension BillInterfaceController {
         }
         
         updateAccountInterface(account, animationDuration: 1.0)
+        state = .loading
     }
     
     private func configureAccountList(_ accounts: [Account]) {
         clearAllMenuItems()
         
         guard accounts.count > 1 else { return }
-        addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
+        addMenuItem(withImageNamed: AppImage.residentialMenuItem.name, title: "Select Account", action: #selector(presentAccountList))
     }
     
     private func configureAccountDetails(_ accountDetails: AccountDetail) {

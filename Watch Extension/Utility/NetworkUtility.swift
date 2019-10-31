@@ -59,7 +59,10 @@ final class NetworkUtility {
     // MARK: - Life Cycle
     
     private init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(currentAccountDidUpdate(_:)),
+                                               name: .currentAccountUpdated,
+                                               object: nil)
         
         // Set a 15 minute polling timer here.
         pollingTimer = Timer.scheduledTimer(timeInterval: 900, target: self, selector: #selector(reloadPollingData), userInfo: nil, repeats: true)
@@ -103,6 +106,16 @@ final class NetworkUtility {
                 self.fetchFeatureData(semaphore: self.semaphore, dispatchQueue: self.dispatchQueue)
             }
         }
+    }
+    
+    public func resetInMemoryCache() {
+        accounts.removeAll()
+        defaultAccount = nil
+        outageStatus = nil
+        accountDetails = nil
+        billForecast = nil
+        maintenanceModeStatuses.removeAll()
+        error = nil
     }
     
 }

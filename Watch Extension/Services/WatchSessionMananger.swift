@@ -69,8 +69,8 @@ extension WatchSessionManager {
     }
     
     // Receiver
-    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
-        DispatchQueue.main.async {
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+                DispatchQueue.main.async {
             #if os(iOS)
             if let needsUpdate = applicationContext[keychainKeys.askForUpdate] as? Bool, needsUpdate {
                 //check for valid jwt else clear and log out
@@ -85,6 +85,8 @@ extension WatchSessionManager {
                     // Save to KeyChain
                     KeychainManager.shared[keychainKeys.authToken] = authToken
 
+                    NetworkUtility.shared.resetInMemoryCache()
+                    
                     // Reload Screens
                     WKInterfaceController.reloadRootControllers(withNamesAndContexts: [(name: OutageInterfaceController.className, context: [:] as AnyObject), (name: UsageInterfaceController.className, context: [:] as AnyObject), (name: BillInterfaceController.className, context: [:] as AnyObject)])
                 }
@@ -111,8 +113,8 @@ extension WatchSessionManager {
     }
     
     // Receiver
-    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
-        DispatchQueue.main.async {
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+                DispatchQueue.main.async {
             #if os(iOS)
             guard let screenName = userInfo["screenName"] as? String else {
                 dLog("Failed to parse user info dictionary with key: screenName")

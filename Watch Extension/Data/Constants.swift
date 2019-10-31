@@ -50,6 +50,7 @@ enum AppImage {
     case usageProgress(Int)
     case onAnimation
     case offAnimation
+    case residentialMenuItem
     case gasMenuItem
     case electricMenuItem
     
@@ -105,6 +106,8 @@ enum AppImage {
             return "On_"
         case .offAnimation:
             return "Out_"
+        case .residentialMenuItem:
+            return "residentialMenuItem"
         case .gasMenuItem:
             return "gasMenuItem"
         case .electricMenuItem:
