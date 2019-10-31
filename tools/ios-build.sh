@@ -290,23 +290,23 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	echo "   AppIconSet=$target_icon_asset"
 
 	echo "Updating plist $PROJECT_DIR/Mobile/$OPCO-Info.plist"
+    echo "Updating plist $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist"
+    echo "Updating plist $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist"
 
 	# Update Bundle ID, App Name, App Version, and Icons
 	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
 	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
 	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Mobile/$OPCO-Info.plist
 
-    if [[ $OPCO == "PECO"* ]]; then
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS/Info.plist
+    plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
+    plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
+    plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
-    
-    fi
+    plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
+    plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
+    plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
+
 	
 	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
 	echo "   CFBundleVersion=$BUILD_NUMBER"

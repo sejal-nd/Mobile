@@ -86,12 +86,36 @@ abstract_target 'PECOApp' do
     end
 end
 
-target 'PECO_WatchOS' do
+target 'PECO-Watch' do
   platform :watchos, '4.0'
   use_frameworks!
 end
 
-target 'PECO_WatchOS Extension' do
+target 'PECO-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
+target 'BGE-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'BGE-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
+target 'ComEd-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'ComEd-Watch Extension' do
   platform :watchos, '4.0'
   use_frameworks!
 
