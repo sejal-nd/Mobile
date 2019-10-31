@@ -379,6 +379,9 @@
 		359BDBB522E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB622E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
 		359BDBB722E0E6EA007002B0 /* checkmark_blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 359BDBB422E0E6EA007002B0 /* checkmark_blue.json */; };
+		35A2E1B5236B74FA0080CE96 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
+		35A2E1B6236B74FB0080CE96 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
+		35A2E1B7236B74FB0080CE96 /* KeychainKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355B10452369E54E0038EAD3 /* KeychainKeys.swift */; };
 		35A5DCBC2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		35A5DCBD2305D30800A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
 		35A5DCBE2305D30900A82AA8 /* AutoPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822BBB921EF98F52004EBBAB /* AutoPayViewModel.swift */; };
@@ -9360,6 +9363,7 @@
 				82E22B651F9FC7D8001F1A1B /* EnergyTip.swift in Sources */,
 				B56DD4A01ED87AD800F0198B /* BankAccount.swift in Sources */,
 				E800435F1E6A08D7005CF531 /* ChangePasswordViewModelTests.swift in Sources */,
+				35A2E1B5236B74FA0080CE96 /* KeychainKeys.swift in Sources */,
 				3577573A2113582700E73542 /* DateParser.swift in Sources */,
 				E840CB381F82D13A00357780 /* AutoPayViewModelTests.swift in Sources */,
 				E8F51EED1ECA51360080AB3E /* BillViewModelTests.swift in Sources */,
@@ -9593,6 +9597,7 @@
 				E8F62B91200924410077B3DA /* ProfileStatus.swift in Sources */,
 				E8F62B92200924410077B3DA /* EnergyTip.swift in Sources */,
 				E8F62B93200924410077B3DA /* BankAccount.swift in Sources */,
+				35A2E1B6236B74FB0080CE96 /* KeychainKeys.swift in Sources */,
 				E8F62B95200924410077B3DA /* ChangePasswordViewModelTests.swift in Sources */,
 				3577573B2113582700E73542 /* DateParser.swift in Sources */,
 				E8F62B97200924410077B3DA /* AutoPayViewModelTests.swift in Sources */,
@@ -9780,6 +9785,7 @@
 				E8F62C46200924570077B3DA /* ProfileStatus.swift in Sources */,
 				E8F62C47200924570077B3DA /* EnergyTip.swift in Sources */,
 				E8F62C48200924570077B3DA /* BankAccount.swift in Sources */,
+				35A2E1B7236B74FB0080CE96 /* KeychainKeys.swift in Sources */,
 				E8F62C4A200924570077B3DA /* ChangePasswordViewModelTests.swift in Sources */,
 				3577573C2113582800E73542 /* DateParser.swift in Sources */,
 				E8F62C4C200924570077B3DA /* AutoPayViewModelTests.swift in Sources */,
