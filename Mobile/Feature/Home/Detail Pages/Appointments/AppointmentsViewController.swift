@@ -72,8 +72,21 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             newCell?.label.font = OpenSans.semibold.of(textStyle: .subheadline)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        if appointments.count == 0 {
+            self.buttonBarView.isHidden = true
+            self.containerView.bounces = false
+            
+            let emptyStateViewController = EmptyStateViewController(message: "No appointments found", imageName: "ic_appt_canceled")
+            return [emptyStateViewController]
+        }
         if appointments.count == 1 {
             self.buttonBarView.isHidden = true
             self.containerView.bounces = false
