@@ -10,13 +10,16 @@ import UIKit
 
 class HomeContentViewController: UIViewController {
     
-    @IBOutlet weak var homeContainer: UIView!
-    @IBOutlet weak var gameContainer: UIView!
+    @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var fab: ButtonControl!
     
     var inGame = false
     var flipping = false
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return inGame ? .default : .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +28,29 @@ class HomeContentViewController: UIViewController {
         fab.layer.masksToBounds = false
         fab.normalBackgroundColor = .actionBlue
         fab.backgroundColorOnPress = UIColor.actionBlue.darker()
-
-        gameContainer.isHidden = true
-        // Do any additional setup after loading the view.
+        
+        var viewController: UIViewController
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome) {
+            viewController = storyboard!.instantiateViewController(withIdentifier: "Game")
+            inGame = true
+        } else {
+            viewController = storyboard!.instantiateViewController(withIdentifier: "Home")
+            inGame = false
+        }
+        addChild(viewController)
+        containerView.addSubview(viewController.view)
+        view.sendSubviewToBack(viewController.view)
+        
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
+            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            viewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+        viewController.didMove(toParent: self)
+        
+        containerView = viewController.view
     }
     
     @IBAction func onFabPress() {
@@ -35,14 +58,14 @@ class HomeContentViewController: UIViewController {
         
         flipping = true
         if inGame {
+            self.inGame = false
             let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
 
-            UIView.transition(from: homeContainer, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
-                self?.inGame = false
+            UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.flipping = false
-                self?.homeContainer = controller.view
+                self?.containerView = controller.view
             })
             
             NSLayoutConstraint.activate([
@@ -54,14 +77,14 @@ class HomeContentViewController: UIViewController {
             controller.didMove(toParent: self)
             view.sendSubviewToBack(controller.view)
         } else {
+            self.inGame = true
             let controller = storyboard!.instantiateViewController(withIdentifier: "Game")
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
 
-            UIView.transition(from: homeContainer, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
-                self?.inGame = true
+            UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.flipping = false
-                self?.homeContainer = controller.view
+                self?.containerView = controller.view
             })
             
             NSLayoutConstraint.activate([
@@ -73,6 +96,9 @@ class HomeContentViewController: UIViewController {
             controller.didMove(toParent: self)
             view.sendSubviewToBack(controller.view)
         }
+        
+        UserDefaults.standard.set(inGame, forKey: UserDefaultKeys.prefersGameHome)
+        setNeedsStatusBarAppearanceUpdate()
     }
     
 
