@@ -6,11 +6,7 @@
 
 plutil -convert json -e json Mobile/MCSConfig.plist
 
-string_of_mbes="$(perl -MJSON::PP -e "my \$data = decode_json(<STDIN>); \
-    foreach my \$key ( keys \$data -> {mobileBackends} ){ \
-        if (index(\$key, \"Prod\") == -1){ \
-            print \$key , \" \"; \
-    }}" < Mobile/MCSConfig.json)"
+string_of_mbes="$(jq -r '.mobileBackends|keys[]' < Mobile/MCSConfig.json | grep -v Prod)"
 
 stagingMBEs=($string_of_mbes)
 
@@ -26,13 +22,14 @@ Usage:
 --opco                    - BGE, PECO, or ComEd
 --build-number            - Integer, will be appended to the base version number
 
---configuration           - Testing, Staging, Prodbeta, or Release
+--configuration           - Testing, Staging, Prodbeta, Hotfix, or Release
                             
                             or
 
 --build-branch              refs/heads/test
                             refs/heads/stage
                             refs/heads/prodbeta
+                            refs/heads/hotfix
                             refs/heads/master
 
 ------ App Center Arguments -----
@@ -150,6 +147,8 @@ elif [[ "$BUILD_BRANCH" == "refs/heads/stage" ]]; then
   CONFIGURATION="Staging"
 elif [[ "$BUILD_BRANCH" == "refs/heads/prodbeta" ]]; then
   CONFIGURATION="Prodbeta"
+elif [[ "$BUILD_BRANCH" == "refs/heads/hotfix" ]]; then
+  CONFIGURATION="Hotfix"
 elif [[ "$BUILD_BRANCH" == "refs/heads/master" ]]; then
   CONFIGURATION="Release"
 fi
@@ -238,6 +237,13 @@ elif [ "$CONFIGURATION" == "Prodbeta" ]; then
     target_scheme="$OPCO-PRODBETA"
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-ProdBeta-$OPCO"
     target_version_number="$target_version_number.$BUILD_NUMBER-prodbeta"
+elif [ "$CONFIGURATION" == "Hotfix" ]; then
+    target_bundle_id="$BASE_BUNDLE_NAME.hotfix"
+    target_app_name="$OPCO Hotfix"
+    target_icon_asset="tools/$OPCO/hotfix"
+    target_scheme="$OPCO-HOTFIX"
+    target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Hotfix-$OPCO"
+    target_version_number="$target_version_number.$BUILD_NUMBER-hotfix"
 elif [ "$CONFIGURATION" == "Release" ]; then
     if [ "$OPCO_LOWERCASE" == "comed" ]; then
         # ComEd's production app bundle is different because of the previous Kony mobile app
@@ -251,7 +257,7 @@ elif [ "$CONFIGURATION" == "Release" ]; then
     target_app_center_app="Exelon-Digital-Projects/EU-Mobile-App-iOS-Prod-$OPCO"
 else
     echo "Invalid argument: configuration"
-    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", or \"Release\""
+    echo "    value must be either \"Testing\", \"Staging\", \"Prodbeta\", \"Hotfix\", or \"Release\""
     exit 1
 fi
 
@@ -284,23 +290,23 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	echo "   AppIconSet=$target_icon_asset"
 
 	echo "Updating plist $PROJECT_DIR/Mobile/$OPCO-Info.plist"
+    echo "Updating plist $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist"
+    echo "Updating plist $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist"
 
 	# Update Bundle ID, App Name, App Version, and Icons
 	plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Mobile/$OPCO-Info.plist
 	plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Mobile/$OPCO-Info.plist
 	plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Mobile/$OPCO-Info.plist
 
-    if [[ $OPCO == "PECO"* ]]; then
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS/Info.plist
+    plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
+    plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
+    plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Watch/Configuration/$OPCO-Info.plist
 
-        plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
-        plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
-        plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/PECO_WatchOS\ Extension/Configurations/Info.plist
-    
-    fi
+    plutil -replace CFBundleVersion -string $BUILD_NUMBER $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
+    plutil -replace CFBundleName -string "$target_app_name" $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
+    plutil -replace CFBundleShortVersionString -string $target_version_number $PROJECT_DIR/Watch\ Extension/Configurations/$OPCO-Info.plist
+
 	
 	echo "$PROJECT_DIR/Mobile/$OPCO-Info.plist updated:"
 	echo "   CFBundleVersion=$BUILD_NUMBER"
@@ -315,12 +321,15 @@ if [[ $target_phases = *"build"* ]] || [[ $target_phases = *"appCenterTest"* ]];
 	echo "   CFBundleShortVersionString=$target_version_number"
 	echo ""
 
-	if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ) &&  "$OVERRIDE_MBE" != "" ]]; then
+	if [[ ( "$CONFIGURATION" == "Staging"  ||  "$CONFIGURATION" == "Testing" ||  "$CONFIGURATION" == "Hotfix" ) &&  "$OVERRIDE_MBE" != "" ]]; then
         if find_in_array $OVERRIDE_MBE "${stagingMBEs[@]}"; then
 
             if [ "$CONFIGURATION" == "Staging" ]; then
                 plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist
                 echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-STAGING.plist"
+            elif [ "$CONFIGURATION" == "Hotfix" ]; then
+                plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-HOTFIX.plist
+                echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-HOTFIX.plist"
             else
                 plutil -replace mcsInstanceName -string $OVERRIDE_MBE $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist
                 echo "Updating plist $PROJECT_DIR/Mobile/Configuration/$OPCO-Environment-TESTING.plist"

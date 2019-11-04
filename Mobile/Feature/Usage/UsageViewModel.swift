@@ -182,7 +182,7 @@ class UsageViewModel {
     
     private(set) lazy var showNoUsageDataState: Driver<Void> = accountDetailEvents
         .filter { accountDetailEvent in
-            guard let accountDetail = accountDetailEvent.element, accountDetail.isResidential, accountDetail.premiseNumber != nil else { return false }
+            guard let accountDetail = accountDetailEvent.element, accountDetail.isResidential else { return false }
             return !accountDetail.isEligibleForUsageData
         }
         .mapTo(())

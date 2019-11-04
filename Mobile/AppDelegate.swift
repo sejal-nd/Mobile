@@ -208,27 +208,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: - Watch Helper
     private func setupWatchConnectivity() {
-        guard Environment.shared.opco == .peco else { return }
-        
         // Watch Connectivity
-        WatchSessionManager.shared.startSession()
-        
+        WatchSessionManager.shared.start()
+
         // Send jwt to watch if available
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
-        }
+        guard MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken else { return }
+        try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
     }
-    private func checkAndLoginOnWatch() {
-        //checks if still logged in if app just went home and reloads watch app
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken, Environment.shared.opco == .peco {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : accessToken])
-        }
-    }
-    private func logoutOfWatch() {
-        if !UserDefaults.standard.bool(forKey: UserDefaultKeys.isKeepMeSignedInChecked), Environment.shared.opco == .peco {
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
-        }
-    }
+
     // MARK: - Helper
     func setupUserDefaults() {
         let userDefaults = UserDefaults.standard
@@ -246,11 +233,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             biometricsService.disableBiometrics()
 
             MCSApi.shared.logout() // Used to be necessary with Oracle SDK - no harm leaving it here though
-            
-            if Environment.shared.opco == .peco {
-                // Clear watch jwt
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
-            }
             
             userDefaults.set(true, forKey: UserDefaultKeys.hasRunBefore)
         }
@@ -521,18 +503,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.shortcutItems = [reportOutageShortcut]
         }
         
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        checkAndLoginOnWatch()
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        logoutOfWatch()
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        logoutOfWatch()
     }
 }
 

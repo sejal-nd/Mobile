@@ -13,6 +13,8 @@ import Foundation
 struct FirebaseUtility {
     /// Name of analytic event -> Mapped directly to Firebase
     enum Event: String {
+        case watch
+        
         case errorNonFatal
         
         case login // done
@@ -145,6 +147,17 @@ struct FirebaseUtility {
         Analytics.setScreenName(name, screenClass: className)
     }
     
+}
+
+
+// MARK: - Watch Analytics
+
+extension FirebaseUtility {
+    public static func logWatchScreenView(_ screenName: String) {
+        NSLog("📊🔥⌚️ Firebase Event: \(screenName)")
+        
+        Analytics.logEvent(Event.watch.rawValue, parameters: [EventParameter.Name.action.rawValue: screenName])
+    }
 }
 
 
