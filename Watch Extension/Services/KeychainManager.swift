@@ -6,22 +6,21 @@
 //  Copyright © 2018 Exelon Corporation. All rights reserved.
 //
 
-
 import Foundation
 
-open class KeychainUtility {
+open class KeychainManager {
     
     open var loggingEnabled = false
     
     private init() {}
     
-    private static var _shared: KeychainUtility?
-    public static var shared: KeychainUtility {
+    private static var _shared: KeychainManager?
+    public static var shared: KeychainManager {
         get {
             if _shared == nil {
                 DispatchQueue.global().sync(flags: .barrier) {
                     if _shared == nil {
-                        _shared = KeychainUtility()
+                        _shared = KeychainManager()
                     }
                 }
             }

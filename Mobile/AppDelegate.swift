@@ -209,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: - Watch Helper
     private func setupWatchConnectivity() {
         // Watch Connectivity
-        WatchSessionManager.shared.startSession()
+        WatchSessionManager.shared.start()
 
         // Send jwt to watch if available
         guard MCSApi.shared.isAuthenticated(), let accessToken = MCSApi.shared.accessToken else { return }
