@@ -965,9 +965,9 @@
 		9C7774812368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
 		9C7774822368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
 		9C7774832368C630009AF0F0 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774802368C630009AF0F0 /* HomeContentViewController.swift */; };
-		9C7774852368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */; };
-		9C7774862368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */; };
-		9C7774872368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */; };
+		9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
+		9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
+		9C7774872368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
@@ -1042,6 +1042,9 @@
 		9CE700B3231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
 		9CE700B4231865B500191C05 /* SERPTSGraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B956E11F9E947800F8A852 /* SERPTSGraphViewModel.swift */; };
 		9CE83BAB22D9201C0094C34C /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CEE411923722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
+		9CEE411A23722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
+		9CEE411B23722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
 		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
@@ -2866,7 +2869,7 @@
 		9C74CDE721EF89EB00F599D1 /* A0SimpleKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A0SimpleKeychain.h; sourceTree = "<group>"; };
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7774802368C630009AF0F0 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
-		9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameViewController.swift; sourceTree = "<group>"; };
+		9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeViewController.swift; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
 		9C7FFD1922C1251800092987 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
@@ -2887,6 +2890,7 @@
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
+		9CEE411823722444005A4AD3 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		9FF2522B35DFFA1287C17144 /* Pods-BGEApp-BGEUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		A1023EE69855C3B6A4E574E5 /* Pods-BGEApp-BGE.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.prodbeta.xcconfig"; sourceTree = "<group>"; };
@@ -4886,7 +4890,8 @@
 		9CEE411723722222005A4AD3 /* Gamification */ = {
 			isa = PBXGroup;
 			children = (
-				9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */,
+				9CEE411823722444005A4AD3 /* Game.storyboard */,
+				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
 			);
 			path = Gamification;
 			sourceTree = "<group>";
@@ -5989,6 +5994,7 @@
 				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
+				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
@@ -6108,6 +6114,7 @@
 				B01748902135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				82A18EF51EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
 				8FD5AE9F1E54EAB8003F640D /* loading.json in Resources */,
+				9CEE411B23722444005A4AD3 /* Game.storyboard in Resources */,
 				E80043371E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				B07E17DD2209F0C900B6E3C7 /* maintenance.json in Resources */,
 				356C7FAC2190D940003E8A90 /* environment.plist in Resources */,
@@ -6257,6 +6264,7 @@
 				9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */,
 				B017488F2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				82A18EF41EBA686500BE9F21 /* PaperlessEBillAccountView.xib in Resources */,
+				9CEE411A23722444005A4AD3 /* Game.storyboard in Resources */,
 				8FD5AE9E1E54EAB8003F640D /* loading.json in Resources */,
 				E80043361E65FF70005CF531 /* OpenSans-Light.ttf in Resources */,
 				B07E17E42209F0CA00B6E3C7 /* maintenance.json in Resources */,
@@ -7546,7 +7554,7 @@
 				E8B674D31E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				9C62445622C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				82A18EA71EB919C200BE9F21 /* ContactUsViewModel.swift in Sources */,
-				9C7774852368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */,
+				9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				B5AC06791E51763200BBA4ED /* Environment.swift in Sources */,
 				82AEF2DF1F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
@@ -7988,7 +7996,7 @@
 				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
 				9CD3532022CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */,
-				9C7774872368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */,
+				9C7774872368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				E882B7FD1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846891E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 			);
@@ -8293,7 +8301,7 @@
 				82BE05801ED8D14D00BC06EE /* FadeSubviews.swift in Sources */,
 				9C62445722C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				224EFF21216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
-				9C7774862368DB5C009AF0F0 /* HomeGameViewController.swift in Sources */,
+				9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
 				82AEF2E01F5F50F40057E7ED /* RxNotifications.swift in Sources */,
 				B07E17D72209F0A100B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,

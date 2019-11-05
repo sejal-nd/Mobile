@@ -31,7 +31,8 @@ class HomeContentViewController: UIViewController {
         
         var viewController: UIViewController
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome) {
-            viewController = storyboard!.instantiateViewController(withIdentifier: "Game")
+            let sb = UIStoryboard(name: "Game", bundle: nil)
+            viewController = sb.instantiateViewController(withIdentifier: "GameHome")
             inGame = true
         } else {
             viewController = storyboard!.instantiateViewController(withIdentifier: "Home")

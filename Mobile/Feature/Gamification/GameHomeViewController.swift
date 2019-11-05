@@ -1,5 +1,5 @@
 //
-//  HomeGameViewController.swift
+//  GameHomeViewController.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 10/29/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeGameViewController: UIViewController {
+class GameHomeViewController: UIViewController {
         
     @IBOutlet weak var energyBuddyTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var energyBuddyImageView: UIImageView!
