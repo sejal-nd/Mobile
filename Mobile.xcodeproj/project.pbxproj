@@ -3508,6 +3508,7 @@
 				352B8D9D230D748D007F8CEE /* Shared */,
 				35CEB01D230D851800366440 /* Main */,
 				352B8D9B230D7432007F8CEE /* Authentication */,
+				9CEE411723722222005A4AD3 /* Gamification */,
 				352B8D8C230D7263007F8CEE /* Unauthenticated */,
 				352B8D84230D7214007F8CEE /* Storm Mode */,
 				3559C89722F4929500481A87 /* Home */,
@@ -3848,7 +3849,6 @@
 				9C7774802368C630009AF0F0 /* HomeContentViewController.swift */,
 				2FA5D8631F17D88500A8B16B /* HomeViewController.swift */,
 				825171B41F1D25130020A6CA /* HomeViewModel.swift */,
-				9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */,
 				3559C89822F9C51400481A87 /* Cards */,
 				3559C89922F9C51E00481A87 /* Detail Pages */,
 				35CEB023230D8B8700366440 /* Views */,
@@ -4881,6 +4881,14 @@
 				9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */,
 			);
 			path = "Set Default Account";
+			sourceTree = "<group>";
+		};
+		9CEE411723722222005A4AD3 /* Gamification */ = {
+			isa = PBXGroup;
+			children = (
+				9C7774842368DB5C009AF0F0 /* HomeGameViewController.swift */,
+			);
+			path = Gamification;
 			sourceTree = "<group>";
 		};
 		B04DDF822200D44800594ACF /* Mock JSON */ = {
