@@ -188,7 +188,7 @@ class MoreViewController: UIViewController {
             vc.delegate = self
         case let vc as AppointmentsViewController:
             vc.appointments = []
-            vc.premiseNumber = AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? "premiseNumber"
+            vc.premiseNumber = AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? ""
         default:
             break
         }
