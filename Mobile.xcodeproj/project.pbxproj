@@ -1045,6 +1045,18 @@
 		9CEE411923722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
 		9CEE411A23722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
 		9CEE411B23722444005A4AD3 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411823722444005A4AD3 /* Game.storyboard */; };
+		9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
+		9CEE411E23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
+		9CEE411F23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */; };
+		9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */; };
+		9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */; };
+		9CEE412323722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */; };
+		9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CEE412723722B8A005A4AD3 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
+		9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
+		9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
@@ -2891,6 +2903,10 @@
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E12261310000DD725C /* PECO-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEE411823722444005A4AD3 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyInsightCoinView.xib; sourceTree = "<group>"; };
+		9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyInsightCoinView.swift; sourceTree = "<group>"; };
+		9CEE412423722B8A005A4AD3 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
+		9CEE412823722CA8005A4AD3 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
 		9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		9FF2522B35DFFA1287C17144 /* Pods-BGEApp-BGEUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
 		A1023EE69855C3B6A4E574E5 /* Pods-BGEApp-BGE.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGE.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGE/Pods-BGEApp-BGE.prodbeta.xcconfig"; sourceTree = "<group>"; };
@@ -4892,6 +4908,8 @@
 			children = (
 				9CEE411823722444005A4AD3 /* Game.storyboard */,
 				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
+				9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */,
+				9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */,
 			);
 			path = Gamification;
 			sourceTree = "<group>";
@@ -5275,6 +5293,8 @@
 				B08BBFBA21C8284A00A899FC /* Payments.swift */,
 				B08BBFC221C8539000A899FC /* SERResult.swift */,
 				B07E17B22208F5C200B6E3C7 /* WeatherItem.swift */,
+				9CEE412423722B8A005A4AD3 /* Weekday.swift */,
+				9CEE412823722CA8005A4AD3 /* DailyUsage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5919,6 +5939,7 @@
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
 				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
 				359BDB6B22D8DCEC007002B0 /* OutageStatusView.xib in Resources */,
 				B5AC06C81E521B3200BBA4ED /* Assets.xcassets in Resources */,
@@ -6084,6 +6105,7 @@
 				B5AC06CE1E521B7B00BBA4ED /* PECOAssets.xcassets in Resources */,
 				B0B0840221710D1500B1C632 /* Appt_Canceled.json in Resources */,
 				B0B0840321710D1500B1C632 /* Appt_Inprogress.json in Resources */,
+				9CEE411F23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				359BB27D214834BA00FBAD83 /* outage.json in Resources */,
 				E827D23A1ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				CEA215271F7900CC00689422 /* HomeBillCardView.xib in Resources */,
@@ -6234,6 +6256,7 @@
 				B0B083EF21710C8900B1C632 /* Appt_Inprogress.json in Resources */,
 				82156F221F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				82A18EFD1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
+				9CEE411E23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				E8B4F4C01E5C9A200031D934 /* Home.storyboard in Resources */,
 				B5AC06C91E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B5AC06D01E521B8B00BBA4ED /* ComEdAssets.xcassets in Resources */,
@@ -7341,6 +7364,7 @@
 				B0882C9F210B925000EB756B /* UsageToolCardView.swift in Sources */,
 				E8C453191EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35277AFD210266BF00411297 /* UsageTool.swift in Sources */,
+				9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
@@ -7423,6 +7447,7 @@
 				E8BCB9BA1EFAE79600779588 /* BGEAutoPayViewModel.swift in Sources */,
 				822BBBA11EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				35ACCB4720EA60F50022907F /* HomeOutageCardViewModel.swift in Sources */,
+				9CEE412123722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				E827D23C1ED491F6004DA1D6 /* InfoModalViewController.swift in Sources */,
 				B05E9D13217F688A0003FAB8 /* Application.swift in Sources */,
 				E881B1531F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
@@ -7564,6 +7589,7 @@
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				2FB9B4581EFC6B38002CBD88 /* BillingHistoryItem.swift in Sources */,
+				9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				B08BBFC321C8539000A899FC /* SERResult.swift in Sources */,
 				54DF4BC81EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				82A18F001EBA6AE100BE9F21 /* AuthTokenResponse.swift in Sources */,
@@ -7665,6 +7691,7 @@
 				824A96671FB5F30D0026FA4B /* AdjustThermostatViewController.swift in Sources */,
 				9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */,
 				82A18EAF1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
+				9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				356C7F7F21909976003E8A90 /* WatchSessionManager.swift in Sources */,
 				82EAB33E1F97EFCD008B55B1 /* Top5EnergyTipsViewController.swift in Sources */,
 				82A18F061EBD11A000BE9F21 /* ButtonControl.swift in Sources */,
@@ -7970,11 +7997,13 @@
 				3559C8BC23030F9E00481A87 /* AutoPayReasonsForStoppingViewController.swift in Sources */,
 				9CD3532C22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8127B241EBB959E0083DDE9 /* LoadingView.swift in Sources */,
+				9CEE412323722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				357757572114D32B00E73542 /* SharedWebCredentialService.swift in Sources */,
 				8291DD501F44BAD20061F40E /* ObservableExtensions.swift in Sources */,
 				9C62445822C1624900F14DA0 /* SecondaryButton.swift in Sources */,
 				82E22B5A1F9FC70A001F1A1B /* EnergyTip.swift in Sources */,
 				821898941F326BAE0077D7A1 /* BillAlertBannerView.swift in Sources */,
+				9CEE412723722B8A005A4AD3 /* Weekday.swift in Sources */,
 				B596062C1F7C1F4A00515B72 /* AppRating.swift in Sources */,
 				826DCCEB1F0E7E0A0063D47E /* SetDefaultAccountViewController.swift in Sources */,
 				225FF85C1EC56B480079010C /* Date.swift in Sources */,
@@ -8088,6 +8117,7 @@
 				E840BD401EB3CAA100812DD0 /* BudgetBillingInfo.swift in Sources */,
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
+				9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
@@ -8170,6 +8200,7 @@
 				E8B674C51E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
 				E881B1541F607DD100067BA1 /* UnauthenticatedOutageViewModel.swift in Sources */,
 				CEA2151E1F79005600689422 /* HomeBillCardViewModel.swift in Sources */,
+				9CEE412223722AD9005A4AD3 /* DailyInsightCoinView.swift in Sources */,
 				54AE06B11ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				82E9B6131FA2401A00556C94 /* HomeProfile.swift in Sources */,
 				B07269362127579C009B2BFF /* HomeUpdateView.swift in Sources */,
@@ -8311,6 +8342,7 @@
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
 				E8C453281EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
+				9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */,
 				2F5A3F811EFD870200B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FD820EE8104006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F82025160F00A749A3 /* MockRegistrationService.swift in Sources */,

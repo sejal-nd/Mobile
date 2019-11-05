@@ -97,6 +97,14 @@ extension Date {
         default: return "th"
         }
     }
+    
+    @nonobjc var weekday: Weekday {
+        guard let weekdayInt = Calendar.gmt.dateComponents([.weekday], from: self).weekday,
+            let weekday = Weekday(rawValue: weekdayInt) else {
+            fatalError("Could not compute weekday from Date")
+        }
+        return weekday
+    }
 }
 
 extension DateFormatter {
