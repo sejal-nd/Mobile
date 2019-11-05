@@ -32,6 +32,17 @@ class EmptyStateViewController: UIViewController {
         
         emptyStateLabel.text = emptyStateMessage
         emptyStateImageView.image = UIImage(named: emptyStateImageName)
+        
+        styleViews()
+    }
+    
+    private func styleViews() {
+        if StormModeStatus.shared.isOn {
+            view.backgroundColor = .stormModeBlack
+        }
+        
+        emptyStateLabel.textColor = .middleGray
+        emptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
     }
 }
 

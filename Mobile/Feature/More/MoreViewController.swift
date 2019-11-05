@@ -188,7 +188,9 @@ class MoreViewController: UIViewController {
             vc.delegate = self
         case let vc as AppointmentsViewController:
             vc.appointments = []
-            vc.premiseNumber = AccountsStore.shared.currentAccount.currentPremise?.premiseNumber ?? ""
+            
+            let account = AccountsStore.shared.currentAccount
+            vc.premiseNumber = account.currentPremise?.premiseNumber ?? ""
         default:
             break
         }
@@ -270,7 +272,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
             case 2:
-                cell.configure(image: #imageLiteral(resourceName: "ic_appt_complete"), text: NSLocalizedString("Appointments", comment: ""))
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreappointments"), text: NSLocalizedString("Appointments", comment: ""))
             default:
                 return UITableViewCell()
             }

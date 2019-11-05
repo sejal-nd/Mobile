@@ -19,19 +19,39 @@ class AppointmentsViewModel {
                   initialAppointments: [Appointment],
                   appointmentService: AppointmentService) {
         
+        let accountService = ServiceFactory.createAccountService()
+        
         // Poll for appointments
         appointments = Observable<Int>
             .interval(pollInterval, scheduler: MainScheduler.instance)
+            .startWith(-1)
             .mapTo(())
             .toAsyncRequest {
-                appointmentService
-                    .fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
-                                       premiseNumber: premiseNumber)
-            }
-            .elements()
-            // Start with passed in value
+                accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+        }
+        .elements()
+        .flatMap({ accountDetail -> Observable<[Appointment]> in
+            return appointmentService
+                .fetchAppointments(accountNumber: accountDetail.accountNumber,
+                                   premiseNumber: accountDetail.premiseNumber!)
+        })
             .startWith(initialAppointments)
             .distinctUntilChanged()
             .share()
+        
+        // Poll for appointments
+//        appointments = Observable<Int>
+//            .interval(pollInterval, scheduler: MainScheduler.instance)
+//            .mapTo(())
+//            .toAsyncRequest {
+//                appointmentService
+//                    .fetchAppointments(accountNumber: AccountsStore.shared.currentAccount.accountNumber,
+//                                       premiseNumber: premiseNumber)
+//            }
+//            .elements()
+//            // Start with passed in value
+//            .startWith(initialAppointments)
+//            .distinctUntilChanged()
+//            .share()
     }
 }
