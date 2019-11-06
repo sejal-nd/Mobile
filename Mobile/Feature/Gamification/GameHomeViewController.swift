@@ -15,6 +15,15 @@ class GameHomeViewController: UIViewController {
     
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
+    
+    @IBOutlet weak var coinStack: UIStackView!
+    
+    @IBOutlet weak var bubbleView: UIView!
+    @IBOutlet weak var bubbleLabel: UILabel!
+    @IBOutlet weak var bubbleTriangleImageView: UIImageView!
+    @IBOutlet weak var bubbleTriangleCenterXConstraint: NSLayoutConstraint!
+    
+    private var coinViews = [DailyInsightCoinView]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +36,28 @@ class GameHomeViewController: UIViewController {
         dailyInsightLabel.textColor = .deepGray
         dailyInsightLabel.font = OpenSans.regular.of(textStyle: .headline)
         dailyInsightLabel.text = NSLocalizedString("Daily Insight", comment: "")
+        
+        coinStack.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
+        var viewArray = [DailyInsightCoinView]()
+        for _ in 0..<7 {
+            let view = DailyInsightCoinView(placeholderViewForDate: Date())
+            view.delegate = self
+            viewArray.append(view)
+        }
+        
+        viewArray.forEach {
+            coinViews.append($0)
+            coinStack.addArrangedSubview($0)
+        }
+        
+        bubbleView.layer.borderColor = UIColor.accentGray.cgColor
+        bubbleView.layer.borderWidth = 1
+        bubbleView.layer.cornerRadius = 10
+        bubbleLabel.textColor = .deepGray
+        bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +76,25 @@ class GameHomeViewController: UIViewController {
         }, completion: nil)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let rightMostCoinView = coinViews.last {
+            bubbleTriangleCenterXConstraint.isActive = false
+            bubbleTriangleCenterXConstraint = bubbleTriangleImageView.centerXAnchor.constraint(equalTo: rightMostCoinView.centerXAnchor)
+            bubbleTriangleCenterXConstraint.isActive = true
+        }
+    }
     
 
+}
+
+extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
+    
+    func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool) {
+        print(view.frame.origin.x)
+        bubbleTriangleCenterXConstraint.isActive = false
+        bubbleTriangleCenterXConstraint = bubbleTriangleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        bubbleTriangleCenterXConstraint.isActive = true
+    }
 }

@@ -51,4 +51,23 @@ enum Weekday: Int {
         }
     }
     
+    var abbreviationString: String {
+        switch self {
+        case .sunday:
+            return "S"
+        case .monday:
+            return "M"
+        case .tuesday:
+            return "T"
+        case .wednesday:
+            return "W"
+        case .thursday:
+            return "Th"
+        case .friday:
+            return "F"
+        case .saturday:
+            return "S"
+        }
+    }
+    
 }

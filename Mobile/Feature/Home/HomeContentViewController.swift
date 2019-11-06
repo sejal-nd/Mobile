@@ -79,7 +79,8 @@ class HomeContentViewController: UIViewController {
             view.sendSubviewToBack(controller.view)
         } else {
             self.inGame = true
-            let controller = storyboard!.instantiateViewController(withIdentifier: "Game")
+            let sb = UIStoryboard(name: "Game", bundle: nil)
+            let controller = sb.instantiateViewController(withIdentifier: "GameHome")
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
 
