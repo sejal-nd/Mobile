@@ -41,12 +41,17 @@ struct MCSAuthenticationService : AuthenticationService {
     func login(username: String, password: String, stayLoggedIn: Bool) -> Observable<ProfileStatus> {
         // 1
         return fetchAuthToken(username: username, password: password)
+            .do(onNext: { _ in
+                FirebaseUtility.logEvent(.loginTokenNetworkComplete)
+            })
             // 2
             .flatMap { tokenResponse in
                 MCSApi.shared.exchangeToken(tokenResponse.token, storeToken: stayLoggedIn)
                     .mapTo(tokenResponse.profileStatus)
             }
             .do(onNext: { _ in
+                FirebaseUtility.logEvent(.loginExchangeTokenNetworkComplete)
+                
                 UserDefaults.standard.set(stayLoggedIn, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
                 
                 // Clear quick actions on sign in, removing "Report Outage." It'll be re-added after
@@ -59,6 +64,8 @@ struct MCSAuthenticationService : AuthenticationService {
                 MCSAccountService().fetchAccounts().mapTo(profileStatus)
             }
             .do(onNext: { _ in
+                FirebaseUtility.logEvent(.loginAccountNetworkComplete)
+                
                 // Reconfigure quick actions since we now know whether or not the user is multi-account.
                 RxNotifications.shared.configureQuickActions.onNext(true)
             }, onError: { _ in
@@ -108,11 +115,6 @@ struct MCSAuthenticationService : AuthenticationService {
             switch AuthTokenParser.parseAuthTokenResponse(data: data) {
             case .success(let response):
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
-                
-                #if os(iOS)
-                FirebaseUtility.logEvent(.initialAuthenticatedScreenStart)
-                #endif
-                
                 return response
             case .failure(let error):
                 APILog(MCSAuthenticationService.self, requestId: requestId, path: path, method: method, logType: .error, message: String(data: data, encoding: .utf8))
