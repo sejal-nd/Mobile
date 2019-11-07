@@ -43,7 +43,7 @@ struct DateParser {
         if let date = DateFormatter.MMSlashyyyyFormatter.date(from: dateString) {
             return date
         }
-
+        
         throw MapperError.convertibleError(value: object, type: Date.self)
     }
     

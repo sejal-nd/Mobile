@@ -102,6 +102,10 @@ class GameHomeViewController: AccountPickerViewController {
     private func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowContent.not().drive(dailyInsightContentView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.usageData.asDriver().drive(onNext: { usageArray in
+            print(usageArray)
+        }).disposed(by: bag)
     }
     
 

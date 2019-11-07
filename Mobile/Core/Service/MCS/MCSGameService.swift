@@ -20,10 +20,28 @@ class MCSGameService: GameService {
         ]
         return MCSApi.shared.post(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/usage/query", params: params)
             .map { json in
-                guard let dict = json as? [String: Any] else {
+                guard let dict = json as? [String: Any],
+                    let usageData = dict["usageData"] as? [String: Any],
+                    let unit = usageData["unit"] as? String,
+                    let streams = usageData["streams"] as? [[String: Any]],
+                    let stream = streams.first,
+                    let intervals = stream["intervals"] as? [[String: Any]] else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
-                return []
+                
+                let array: [DailyUsage] = intervals.compactMap {
+                    var dailyUsage = DailyUsage.from($0 as NSDictionary)
+                    if unit == "KWH" {
+                        dailyUsage?.unit = "kWh"
+                    } else if unit == "THERM" {
+                        dailyUsage?.unit = "therms"
+                    } else {
+                        dailyUsage?.unit = unit
+                    }
+                    return dailyUsage
+                }
+                
+                return array
             }
     }
 }
