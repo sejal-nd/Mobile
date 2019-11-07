@@ -8,10 +8,9 @@
 
 import UIKit
 
-class GameHomeViewController: UIViewController {
-        
+class GameHomeViewController: AccountPickerViewController {
+            
     @IBOutlet weak var energyBuddyTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var energyBuddyImageView: UIImageView!
     
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
@@ -24,9 +23,15 @@ class GameHomeViewController: UIViewController {
     @IBOutlet weak var bubbleTriangleCenterXConstraint: NSLayoutConstraint!
     
     private var coinViews = [DailyInsightCoinView]()
+    
+    let viewModel = GameHomeViewModel(accountService: ServiceFactory.createAccountService(),
+                                      gameService: ServiceFactory.createGameService())
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        accountPicker.delegate = self
+        accountPicker.parentViewController = self
 
         dailyInsightCardView.layer.cornerRadius = 10
         dailyInsightCardView.layer.borderColor = UIColor.accentGray.cgColor
@@ -87,6 +92,12 @@ class GameHomeViewController: UIViewController {
     }
     
 
+}
+
+extension GameHomeViewController: AccountPickerDelegate {
+    func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
+        viewModel.fetchData()
+    }
 }
 
 extension GameHomeViewController: DailyInsightCoinViewTapDelegate {

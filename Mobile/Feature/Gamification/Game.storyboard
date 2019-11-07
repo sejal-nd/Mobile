@@ -148,6 +148,7 @@
                         <viewLayoutGuide key="safeArea" id="eJe-1t-4KF"/>
                     </view>
                     <connections>
+                        <outlet property="accountPicker" destination="dgs-Gl-hBv" id="BzV-41-uUU"/>
                         <outlet property="bubbleLabel" destination="63T-YS-TBR" id="3L1-5F-vTL"/>
                         <outlet property="bubbleTriangleCenterXConstraint" destination="uRS-3Y-Sug" id="v15-aI-yQN"/>
                         <outlet property="bubbleTriangleImageView" destination="TMx-7h-ScJ" id="lMP-Aj-xdY"/>
