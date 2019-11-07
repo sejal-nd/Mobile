@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class GameHomeViewController: AccountPickerViewController {
             
@@ -15,18 +17,22 @@ class GameHomeViewController: AccountPickerViewController {
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
     
+    @IBOutlet weak var dailyInsightContentView: UIView!
     @IBOutlet weak var coinStack: UIStackView!
-    
     @IBOutlet weak var bubbleView: UIView!
     @IBOutlet weak var bubbleLabel: UILabel!
     @IBOutlet weak var bubbleTriangleImageView: UIImageView!
     @IBOutlet weak var bubbleTriangleCenterXConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var loadingView: UIView!
     
     private var coinViews = [DailyInsightCoinView]()
     
     let viewModel = GameHomeViewModel(accountService: ServiceFactory.createAccountService(),
                                       gameService: ServiceFactory.createGameService())
 
+    let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +69,8 @@ class GameHomeViewController: AccountPickerViewController {
         bubbleView.layer.cornerRadius = 10
         bubbleLabel.textColor = .deepGray
         bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +97,11 @@ class GameHomeViewController: AccountPickerViewController {
             bubbleTriangleCenterXConstraint = bubbleTriangleImageView.centerXAnchor.constraint(equalTo: rightMostCoinView.centerXAnchor)
             bubbleTriangleCenterXConstraint.isActive = true
         }
+    }
+    
+    private func bindViewModel() {
+        viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowContent.not().drive(dailyInsightContentView.rx.isHidden).disposed(by: bag)
     }
     
 

@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class GameHomeViewModel {
     private let accountService: AccountService
@@ -15,8 +16,8 @@ class GameHomeViewModel {
     
     let bag = DisposeBag()
     
-    let loading = BehaviorRelay<Bool>(value: false)
-    let error = BehaviorRelay<Error?>(value: nil)
+    let loading = BehaviorRelay<Bool>(value: true)
+    let error = BehaviorRelay<Bool>(value: false)
     let accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
     let usageData = BehaviorRelay<[DailyUsage]?>(value: nil)
     
@@ -27,6 +28,7 @@ class GameHomeViewModel {
     
     func fetchData() {
         loading.accept(true)
+        error.accept(false)
         accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
             .subscribe(onNext: { [weak self] accountDetail in
                 guard let self = self, let premiseNumber = accountDetail.premiseNumber else { return }
@@ -39,12 +41,17 @@ class GameHomeViewModel {
                         self?.usageData.accept(usageArray)
                     }, onError: { [weak self] error in
                         self?.loading.accept(false)
-                        self?.error.accept(error)
+                        self?.error.accept(true)
                     }).disposed(by: self.bag)
             }, onError: { [weak self] error in
                 self?.loading.accept(false)
-                self?.error.accept(error)
+                self?.error.accept(true)
             }).disposed(by: bag)
     }
+    
+    private(set) lazy var shouldShowContent: Driver<Bool> =
+        Driver.combineLatest(self.loading.asDriver(), self.error.asDriver(), self.usageData.asDriver()) {
+            return !$0 && !$1 && $2 != nil
+        }
 
 }
