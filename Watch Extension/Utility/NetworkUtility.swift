@@ -59,7 +59,10 @@ final class NetworkUtility {
     // MARK: - Life Cycle
     
     private init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(currentAccountDidUpdate(_:)), name: Notification.Name.currentAccountUpdated, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(currentAccountDidUpdate(_:)),
+                                               name: .currentAccountUpdated,
+                                               object: nil)
         
         // Set a 15 minute polling timer here.
         pollingTimer = Timer.scheduledTimer(timeInterval: 900, target: self, selector: #selector(reloadPollingData), userInfo: nil, repeats: true)
@@ -105,6 +108,16 @@ final class NetworkUtility {
         }
     }
     
+    public func resetInMemoryCache() {
+        accounts.removeAll()
+        defaultAccount = nil
+        outageStatus = nil
+        accountDetails = nil
+        billForecast = nil
+        maintenanceModeStatuses.removeAll()
+        error = nil
+    }
+    
 }
 
 
@@ -118,7 +131,7 @@ extension NetworkUtility {
     private func fetchFeatureData(semaphore: DispatchSemaphore, dispatchQueue: DispatchQueue) {
         var maintenanceStatuses = [MaintenanceModeStatus]()
         
-        guard KeychainUtility.shared[keychainKeys.authToken] != nil,
+        guard KeychainManager.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
                 dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
                 self.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.missingToken, Feature.all))
@@ -231,7 +244,7 @@ extension NetworkUtility {
     /// Fetches the account list associated with a particular MyAccount.
     /// - Parameter result: Either an array of `Account` or a `NetworkError`.
     private func fetchAccountList(result: @escaping (Result<[Account], NetworkError>) -> ()) {
-        guard KeychainUtility.shared[keychainKeys.authToken] != nil else {
+        guard KeychainManager.shared[keychainKeys.authToken] != nil else {
             dLog("No Auth Token: Account list fetch termimated.")
             result(.failure(.missingToken))
             return
@@ -269,7 +282,7 @@ extension NetworkUtility {
     private func fetchAccountDetails(result: @escaping (Result<AccountDetail, NetworkError>) -> ()) {
         dLog("Fetching Account Details...")
         
-        guard KeychainUtility.shared[keychainKeys.authToken] != nil,
+        guard KeychainManager.shared[keychainKeys.authToken] != nil,
             let _ = AccountsStore.shared.currentIndex else {
                 dLog("Could not find auth token in Accounts Manager Fetch Account Details.")
                 result(.failure(.missingToken))
@@ -370,7 +383,7 @@ extension NetworkUtility {
     /// Reload Data every 15 minutes without the loading indicator if the app is reachable
     @objc private func reloadPollingData() {
         dLog("Polling new data...")
-        guard WatchSessionManager.shared.isReachable() else { return }
+        guard WatchSessionManager.shared.validSession != nil else { return }
         
         fetchData(shouldLoadAccountList: false)
     }

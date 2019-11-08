@@ -14,7 +14,7 @@ class ReportOutageInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        WatchAnalyticUtility.logScreenView(.report_outage_screen_view)
+        AnalyticUtility.logScreenView(.report_outage_screen_view)
     }
 
 }

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yv4-PS-J3u">
     <device id="watch38"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
     </dependencies>
@@ -10,7 +9,7 @@
         <!--ReportOutageInterfaceController-->
         <scene sceneID="1RF-hm-hR3">
             <objects>
-                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="SignInInterfaceController" customModule="BGE_Watch_Extension">
+                <controller identifier="ReportOutageInterfaceController" id="w17-TK-W0a" customClass="ReportOutageInterfaceController" customModule="BGE_Watch_Extension">
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="BKS-FI-22X">
                             <items>
@@ -36,7 +35,7 @@
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="sdA-I2-UIm">
                                         <items>
                                             <imageView width="24" height="1" alignment="left" image="checkmark_white" contentMode="scaleAspectFit" id="eSW-rz-UXJ"/>
-                                            <imageView width="43" height="1" alignment="left" image="residential" contentMode="scaleAspectFit" id="4fA-v9-H5C"/>
+                                            <imageView width="35" height="35" alignment="left" verticalAlignment="center" image="residential" contentMode="scaleAspectFit" id="4fA-v9-H5C"/>
                                             <group alignment="left" verticalAlignment="center" layout="vertical" id="hib-PY-eAc">
                                                 <items>
                                                     <label width="1" alignment="left" text="Labellllllll" id="ccU-dk-XKg">

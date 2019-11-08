@@ -150,7 +150,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorGroup.setHidden(false)
                 shouldAnimateStatusImage = false
                 
-                errorImage.setImageNamed(AppImage.gasOnly.name)
+                errorImage.setImageNamed(AppImage.gas.name)
                 errorTitleLabel.setText("Gas Only Account")
                 errorDetailLabel.setText("Reporting of issues for gas only accounts not allowed online.")
                 dLog("Outage Status: Gas Only")
@@ -192,7 +192,10 @@ class OutageInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(outageReportedFromPhone), name: Notification.Name.outageReported, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(outageReportedFromPhone),
+                                               name: Notification.Name.outageReported,
+                                               object: nil)
         
         configureInitialState()
         
@@ -209,14 +212,14 @@ class OutageInterfaceController: WKInterfaceController {
         // Perform Network Request
         NetworkUtility.shared.fetchData(shouldLoadAccountList: true)
         
-        loadData()
+        loadData()        
     }
     
     override func didAppear() {
         super.didAppear()
         
         // Log Analytics
-        WatchAnalyticUtility.logScreenView(.account_list_screen_view)
+        AnalyticUtility.logScreenView(.outage_screen_view)
         
         // If outage state loads without being on the outage screen
         shouldAnimateStatusImage = true
@@ -245,30 +248,46 @@ class OutageInterfaceController: WKInterfaceController {
     
     
     // MARK: - Helper
-    
+
     private func configureInitialState() {
         accountGroup.setHidden(true)
         statusGroup.setHidden(true)
         powerStatusImage.setHidden(true)
-        errorGroup.setHidden(true)
+        errorGroup.setHidden(true)        
     }
     
-    @objc private func outageReportedFromPhone() {
+    @objc
+    private func outageReportedFromPhone() {
         self.state = .loaded(.powerOut(nil))
     }
-    
+
     private func configureNetworkActions() {
         let notificationCenter = NotificationCenter.default
         
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .maintenanceModeDidUpdate, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .errorDidOccur, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .accountListDidUpdate, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .defaultAccountDidUpdate, object: nil)
-
-        notificationCenter.addObserver(self, selector: #selector(handleNotification(_:)), name: .outageStatusDidUpdate, object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(currentAccountDidUpdate(_:)),
+                                       name: .currentAccountUpdated,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .maintenanceModeDidUpdate,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .errorDidOccur,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .accountListDidUpdate,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .defaultAccountDidUpdate,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleNotification(_:)),
+                                       name: .outageStatusDidUpdate,
+                                       object: nil)
     }
     
     private func loadData() {
@@ -340,12 +359,12 @@ extension OutageInterfaceController {
     @objc
     private func currentAccountDidUpdate(_ notification: NSNotification) {
         guard let account = notification.object as? Account else {
-            
                 state = .error(.invalidAccount)
                 return
         }
         
         updateAccountInterface(account, animationDuration: 1.0)
+        state = .loading
     }
     
     private func configureAccountList(_ accounts: [Account]) {
@@ -353,7 +372,7 @@ extension OutageInterfaceController {
 
         guard accounts.count > 1 else { return }
 
-        addMenuItem(withImageNamed: AppImage.residential.name, title: "Select Account", action: #selector(presentAccountList))
+        addMenuItem(withImageNamed: AppImage.residentialMenuItem.name, title: "Select Account", action: #selector(presentAccountList))
     }
     
     private func configureOutageStatus(_ outageStatus: OutageStatus) {

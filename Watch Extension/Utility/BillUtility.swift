@@ -32,9 +32,9 @@ class BillUtility {
             
             // autopay
             (self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible) ||
-            
+
             // bill not ready
-            (billingInfo.billDate == nil && (billingInfo.netDueAmount == nil || billingInfo.netDueAmount == 0)))
+            (billingInfo.billDate != nil && (billingInfo.netDueAmount != nil || billingInfo.netDueAmount != 0)))
     }()
     
     private(set) lazy var showTotalAmountAndLedger: Bool = {
@@ -138,9 +138,11 @@ class BillUtility {
         } else if self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible {
             // autopay
             return AppImage.autoPay.image
-        } else {
+        } else if self.billingInfo.billDate == nil && (self.billingInfo.netDueAmount == nil || self.billingInfo.netDueAmount == 0) {
             // Bill Not Ready
             return AppImage.billNotReady.image
+        } else {
+            return UIImage()
         }
     }()
     
@@ -153,9 +155,11 @@ class BillUtility {
         } else if self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible {
             // autopay
             return NSLocalizedString("You are enrolled in a AutoPay", comment: "")
-        } else {
+        } else if self.billingInfo.billDate == nil && (self.billingInfo.netDueAmount == nil || self.billingInfo.netDueAmount == 0) {
             // Bill Not Ready
             return NSLocalizedString("Your bill will be available here once it is ready", comment: "")
+        } else {
+            return ""
         }
     }()
     

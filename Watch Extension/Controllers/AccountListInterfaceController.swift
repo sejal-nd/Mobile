@@ -28,7 +28,7 @@ class AccountListInterfaceController: WKInterfaceController {
         super.didAppear()
         
         // Log Analytics
-        WatchAnalyticUtility.logScreenView(.account_list_screen_view)
+        AnalyticUtility.logScreenView(.account_list_screen_view)
     }
 
     
@@ -63,7 +63,7 @@ extension AccountListInterfaceController {
         
         // Set Selected Account
         AccountsStore.shared.currentIndex = rowIndex
-        NotificationCenter.default.post(name: Notification.Name.currentAccountUpdated, object: AccountsStore.shared.currentAccount)
+        NotificationCenter.default.post(name: .currentAccountUpdated, object: AccountsStore.shared.currentAccount)
         
         dismiss()
     }
