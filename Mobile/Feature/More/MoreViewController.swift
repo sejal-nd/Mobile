@@ -186,15 +186,10 @@ class MoreViewController: UIViewController {
             vc.delegate = self
         case let vc as SetDefaultAccountViewController:
             vc.delegate = self
-        case let vc as AppointmentsViewController:
-            vc.appointments = []
-            
-            let account = AccountsStore.shared.currentAccount
         default:
             break
         }
     }
-    
 }
 
 extension MoreViewController: UITableViewDataSource, UITableViewDelegate {

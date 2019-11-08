@@ -17,7 +17,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var emptyStateView: StateView!
     @IBOutlet weak var errorStateView: StateView!
     
-    var appointments: [Appointment]!
+    var appointments: [Appointment] = [Appointment]()
     var appointmentVCs: [AppointmentDetailViewController]!
     
     let disposeBag = DisposeBag()
