@@ -190,7 +190,6 @@ class MoreViewController: UIViewController {
             vc.appointments = []
             
             let account = AccountsStore.shared.currentAccount
-            vc.premiseNumber = account.currentPremise?.premiseNumber ?? ""
         default:
             break
         }

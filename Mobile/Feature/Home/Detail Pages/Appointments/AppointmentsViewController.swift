@@ -12,20 +12,29 @@ import RxCocoa
 
 class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     
-    var premiseNumber: String!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var noNetworkView: NoNetworkConnectionView!
+    @IBOutlet weak var emptyStateView: StateView!
+    @IBOutlet weak var errorStateView: StateView!
+    
     var appointments: [Appointment]!
     var appointmentVCs: [AppointmentDetailViewController]!
     
     let disposeBag = DisposeBag()
     
-    lazy var viewModel = AppointmentsViewModel(premiseNumber: premiseNumber,
-                                               initialAppointments: appointments,
-                                               appointmentService: ServiceFactory.createAppointmentService())
+    lazy var viewModel = AppointmentsViewModel(initialAppointments: appointments,
+                                               appointmentService: ServiceFactory.createAppointmentService(),
+                                               accountService: ServiceFactory.createAccountService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Appointment Tracker", comment: "")
         
+        if StormModeStatus.shared.isOn {
+            view.backgroundColor = .stormModeBlack
+        }
+        
+        viewModel.showLoadingState.not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.appointments.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] appointments in
                 guard let self = self else { return }
@@ -45,6 +54,20 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                 UIAccessibility.post(notification: .screenChanged, argument: nil)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.showNoNetworkState.not().drive(self.noNetworkView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showErrorState.not().drive(self.errorStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showEmptyState.not().drive(self.emptyStateView.rx.isHidden).disposed(by: disposeBag)
+        
+        noNetworkView.reload
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: {
+                self.viewModel.fetchAllData()
+            }).disposed(by: disposeBag)
+        
+        self.viewModel.fetchAllData()
+        
+        initStates()
         
         buttonBarItemSpec = ButtonBarItemSpec<ButtonBarViewCell>.cellClass(width: { _ in 125 })
         buttonBarView.selectedBar.backgroundColor = .primaryColor
@@ -84,10 +107,9 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             self.buttonBarView.isHidden = true
             self.containerView.bounces = false
             
-            let emptyStateViewController = EmptyStateViewController(message: "No appointments found", imageName: "ic_appt_canceled")
-            return [emptyStateViewController]
+            return [EmptyChildViewController()]
         }
-        if appointments.count == 1 {
+        else if appointments.count == 1 {
             self.buttonBarView.isHidden = true
             self.containerView.bounces = false
         } else {
@@ -124,5 +146,12 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         }
 
         return true
+    }
+    
+    private func initStates() {
+        self.emptyStateView.stateMessage = "No Appointments Found"
+        self.emptyStateView.stateImageName = "ic_appt_canceled"
+        self.errorStateView.stateMessage = "Error getting appointments"
+        self.errorStateView.stateImageName = "ic_appt_canceled"
     }
 }
