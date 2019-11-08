@@ -71,9 +71,9 @@
                                     <variation key="device=watch42mm" height="130"/>
                                     <variation key="device=watch44mm" height="130"/>
                                 </group>
-                                <group width="1" alignment="center" layout="vertical" spacing="0.0" id="UcK-eo-7fT">
+                                <group width="1" alignment="center" layout="vertical" spacing="4" id="UcK-eo-7fT">
                                     <items>
-                                        <imageView height="60" alignment="center" verticalAlignment="center" image="outageUnavailable" contentMode="scaleAspectFit" id="8Av-tA-f0B">
+                                        <imageView width="100" height="60" alignment="center" verticalAlignment="center" image="outageUnavailable" contentMode="scaleAspectFit" id="8Av-tA-f0B">
                                             <variation key="device=watch38mm" height="60"/>
                                             <variation key="device=watch40mm" height="60"/>
                                             <variation key="device=watch42mm" height="60"/>
@@ -131,7 +131,7 @@
     <resources>
         <image name="Loading_white" width="16" height="16"/>
         <image name="On_1" width="270" height="50"/>
-        <image name="outageUnavailable" width="100" height="101"/>
+        <image name="outageUnavailable" width="49" height="49"/>
         <image name="residential_mini_white" width="20" height="20"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.63529411764705879" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

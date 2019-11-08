@@ -50,7 +50,7 @@ func APILog<T>(_ callerType: @autoclosure () -> T.Type,
                logType: @autoclosure () -> LogType,
                message: @autoclosure () -> String?) {
     
-    guard ProcessInfo.processInfo.arguments.contains("shouldLogAPI") else { return }
+    guard ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") else { return }
     
     #if DEBUG
     let callerName = "\(callerType())"

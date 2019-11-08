@@ -150,7 +150,7 @@ class OutageInterfaceController: WKInterfaceController {
                 errorGroup.setHidden(false)
                 shouldAnimateStatusImage = false
                 
-                errorImage.setImageNamed(AppImage.gasOnly.name)
+                errorImage.setImageNamed(AppImage.gas.name)
                 errorTitleLabel.setText("Gas Only Account")
                 errorDetailLabel.setText("Reporting of issues for gas only accounts not allowed online.")
                 dLog("Outage Status: Gas Only")
