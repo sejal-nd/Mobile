@@ -36,6 +36,7 @@ class AppointmentsViewModel {
     private var accountDetailEvents: Observable<Event<AccountDetail>>!
     private var events: Observable<Event<[Appointment]>>!
     private let isLoading = BehaviorRelay(value: true)
+    private var poll: Observable<Void>!
     
     private let fetchAllDataTrigger = PublishSubject<Void>()
     
@@ -43,16 +44,7 @@ class AppointmentsViewModel {
                   appointmentService: AppointmentService,
                   accountService: AccountService) {
         
-        let poll = Observable<Int>
-            .interval(self.pollInterval, scheduler: MainScheduler.instance)
-            .startWith(-1)
-            .mapTo(())
-            .do(onSubscribe: {
-                self.setLoading(loading: true)
-            })
-        
         accountDetailEvents = fetchAllDataTrigger
-            .flatMap { poll }
             .toAsyncRequest {
                 accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
         }
@@ -69,6 +61,20 @@ class AppointmentsViewModel {
             .startWith(initialAppointments)
             .distinctUntilChanged()
             .share()
+    }
+    
+    func startPolling() -> Observable<Void> {
+        return Observable<Int>
+            .interval(self.pollInterval, scheduler: MainScheduler.instance)
+            .startWith(-1)
+            .mapTo(())
+            .debug("timer")
+            .do(onNext: {
+                self.fetchAllData()
+            }, onSubscribe: {
+                self.setLoading(loading: true)
+            })
+            .mapTo(())
     }
     
     func fetchAllData() {

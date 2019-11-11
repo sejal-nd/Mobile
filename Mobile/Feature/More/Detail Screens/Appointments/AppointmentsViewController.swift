@@ -19,6 +19,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     
     var appointments: [Appointment] = [Appointment]()
     var appointmentVCs: [AppointmentDetailViewController]!
+    var pollingDisposable: Disposable?
     
     let disposeBag = DisposeBag()
     
@@ -52,8 +53,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                     self.reloadPagerTabStripView()
                 }
                 UIAccessibility.post(notification: .screenChanged, argument: nil)
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         viewModel.showNoNetworkState.not().drive(self.noNetworkView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showErrorState.not().drive(self.errorStateView.rx.isHidden).disposed(by: disposeBag)
@@ -65,7 +65,8 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                 self.viewModel.fetchAllData()
             }).disposed(by: disposeBag)
         
-        self.viewModel.fetchAllData()
+        pollingDisposable = viewModel.startPolling()
+            .subscribe()
         
         initStates()
         
@@ -100,6 +101,11 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.pollingDisposable?.dispose()
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
