@@ -3931,6 +3931,7 @@
 		352B8D72230D70BD007F8CEE /* Detail Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3559C89A22F9C54000481A87 /* Appointments */,
 				352B8D71230D70B5007F8CEE /* Alerts */,
 				35A6C6DC211CC0A300C2A58F /* Updates */,
 				9CE83BAD22D93C870094C34C /* Set Default Account */,
@@ -4081,7 +4082,6 @@
 			isa = PBXGroup;
 			children = (
 				B0CB1CB5228487020081F99B /* InfoAlertController.swift */,
-				3559C89A22F9C54000481A87 /* Appointments */,
 				82A18EB01EBA667900BE9F21 /* Controls */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				35CEB033230D904800366440 /* Prepaid Card View */,
