@@ -22,48 +22,48 @@ class BillUtility {
     // MARK: - Show/Hide
     
     // may not be correct
-    private(set) lazy var showAlertBanner: Bool = {
+    private(set) lazy var shouldShowAlertBanner: Bool = {
         return self.alertBannerText != nil
     }()
     
-    private(set) lazy var shouldHideAutoPay: Bool = {
+    private(set) lazy var shouldShowAutopay: Bool = {
         // scheduled payment
-        return ((self.billingInfo.scheduledPayment?.amount > 0) ||
+        return ((self.billingInfo.scheduledPayment?.amount > 0 && !shouldShowPaymentReceived) ||
             
             // autopay
-            (self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible) ||
+            ((self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible) && !shouldShowPaymentReceived) ||
 
             // bill not ready
-            (billingInfo.billDate != nil && (billingInfo.netDueAmount != nil || billingInfo.netDueAmount != 0)))
+            self.billingInfo.billDate == nil && !shouldShowPaymentReceived && (self.billingInfo.netDueAmount == nil || self.billingInfo.netDueAmount == 0))
     }()
     
-    private(set) lazy var showTotalAmountAndLedger: Bool = {
-        return !self.showBillNotReady && !self.showPaymentReceived
+    private(set) lazy var shouldShowTotalAmountAndLedger: Bool = {
+        return !self.shouldShowBillNotReady && !self.shouldShowPaymentReceived
     }()
     
-    private lazy var showBillNotReady: Bool = {
+    private lazy var shouldShowBillNotReady: Bool = {
         return self.billingInfo.billDate == nil && (self.billingInfo.netDueAmount == nil || self.billingInfo.netDueAmount == 0)
     }()
     
-    private(set) lazy var showPastDue: Bool = {
+    private(set) lazy var shouldShowPastDue: Bool = {
         let pastDueAmount = billingInfo.pastDueAmount
         return pastDueAmount > 0 && pastDueAmount != billingInfo.netDueAmount
     }()
     
-    private(set) lazy var showCurrentBill: Bool = {
+    private(set) lazy var shouldShowCurrentBill: Bool = {
         let currentDueAmount = billingInfo.currentDueAmount
         return currentDueAmount > 0 && currentDueAmount != billingInfo.netDueAmount
     }()
     
-    private(set) lazy var showPendingPayment: Bool = {
+    private(set) lazy var shouldShowPendingPayment: Bool = {
         return billingInfo.pendingPaymentsTotal > 0
     }()
     
-    private(set) lazy var showRemainingBalanceDue: Bool = {
+    private(set) lazy var shouldShowRemainingBalanceDue: Bool = {
         return billingInfo.pendingPaymentsTotal > 0 && billingInfo.remainingBalanceDue > 0
     }()
     
-    private(set) lazy var showPaymentReceived: Bool = {
+    private(set) lazy var shouldShowPaymentReceived: Bool = {
         return billingInfo.lastPaymentAmount > 0 && billingInfo.netDueAmount ?? 0 == 0
     }()
     
@@ -135,14 +135,12 @@ class BillUtility {
         if (self.billingInfo.scheduledPayment?.amount > 0) {
             // Scheduled Payment
             return AppImage.scheduledPayment.image
-        } else if self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible {
+        } else if self.billingInfo.netDueAmount > 0 && (self.accountDetails.isAutoPay || self.accountDetails.isBGEasy) {
             // autopay
             return AppImage.autoPay.image
-        } else if self.billingInfo.billDate == nil && (self.billingInfo.netDueAmount == nil || self.billingInfo.netDueAmount == 0) {
+        } else {
             // Bill Not Ready
             return AppImage.billNotReady.image
-        } else {
-            return UIImage()
         }
     }()
     
@@ -152,14 +150,11 @@ class BillUtility {
             scheduledPaymentAmount > 0 {
             // Scheduled Payment
             return String.localizedStringWithFormat("Thank you for scheduling your %@ payment for %@", scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString)
-        } else if self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible {
+        } else if self.billingInfo.netDueAmount > 0 && (self.accountDetails.isAutoPay || self.accountDetails.isBGEasy) {
             // autopay
             return NSLocalizedString("You are enrolled in a AutoPay", comment: "")
-        } else if self.billingInfo.billDate == nil && (self.billingInfo.netDueAmount == nil || self.billingInfo.netDueAmount == 0) {
-            // Bill Not Ready
-            return NSLocalizedString("Your bill will be available here once it is ready", comment: "")
         } else {
-            return ""
+            return NSLocalizedString("Your bill will be available here once it is ready", comment: "")
         }
     }()
     
