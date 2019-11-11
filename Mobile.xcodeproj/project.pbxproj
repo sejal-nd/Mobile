@@ -512,6 +512,8 @@
 		35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
 		35D6B62D231424E900DCD588 /* AlertRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6B62A231424E900DCD588 /* AlertRow.swift */; };
+		35E18A8F2379B95A00384614 /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
+		35E18A902379B95A00384614 /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C364A8792375DC7B00C7D51B /* StateView.xib */; };
 		35E7C79C21907EA400BA13C6 /* PECO-Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 35E7C79B21907EA300BA13C6 /* PECO-Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E7C7A921907EA400BA13C6 /* PECO-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 35E7C78F21907EA200BA13C6 /* PECO-Watch.app */; };
 		35E7C7CB21907F2F00BA13C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E7C7BD21907F2E00BA13C6 /* Assets.xcassets */; };
@@ -4079,12 +4081,14 @@
 			isa = PBXGroup;
 			children = (
 				B0CB1CB5228487020081F99B /* InfoAlertController.swift */,
+				3559C89A22F9C54000481A87 /* Appointments */,
 				82A18EB01EBA667900BE9F21 /* Controls */,
 				82A18EB21EBA668500BE9F21 /* Table View Cells */,
 				35CEB033230D904800366440 /* Prepaid Card View */,
 				351241EB22B3DB7600E8BD25 /* Account Bar + Picker */,
 				35CEB027230D8C1A00366440 /* No Network Connection */,
 				352B8DAC230D76CE007F8CEE /* Maintenance Mode */,
+				C364A8772375DC7B00C7D51B /* State View */,
 				352B8DAB230D762B007F8CEE /* Web View Modal */,
 				352B8D9E230D7491007F8CEE /* Info Modal */,
 				35C9138F22E9E96E009DD71A /* Mini Wallet */,
@@ -4237,7 +4241,6 @@
 			isa = PBXGroup;
 			children = (
 				B06B40FC20D2BBFE00F37FE8 /* HomeEditViewController.swift */,
-				3559C89A22F9C54000481A87 /* Appointments */,
 			);
 			path = "Detail Pages";
 			sourceTree = "<group>";
@@ -5488,7 +5491,6 @@
 		B58B5AC31E4E28740051FD5F /* Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				C364A8772375DC7B00C7D51B /* State View */,
 				B58B5AC41E4E28740051FD5F /* AppDelegate.swift */,
 				E8EEF7111E566D70006804D4 /* UserDefaultKeys.swift */,
 				E89496351EE9E04000B76F8C /* NotificationNames.swift */,
@@ -5692,8 +5694,7 @@
 				C364A8782375DC7B00C7D51B /* StateView.swift */,
 				C364A8792375DC7B00C7D51B /* StateView.xib */,
 			);
-			name = "State View";
-			path = "Feature/Shared/State View";
+			path = "State View";
 			sourceTree = "<group>";
 		};
 		E800431B1E65FF4D005CF531 /* Fonts */ = {
@@ -6585,6 +6586,7 @@
 				E8EEF7431E57896D006804D4 /* LaunchScreen-PECO.storyboard in Resources */,
 				358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */,
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
+				35E18A902379B95A00384614 /* StateView.xib in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -6734,6 +6736,7 @@
 				E8EEF7411E578968006804D4 /* LaunchScreen-ComEd.storyboard in Resources */,
 				358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */,
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
+				35E18A8F2379B95A00384614 /* StateView.xib in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
