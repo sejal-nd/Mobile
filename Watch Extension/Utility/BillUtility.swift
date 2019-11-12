@@ -19,6 +19,81 @@ class BillUtility {
     }
     
     
+    // MARK: - Bill State
+    
+    enum BillState {
+        case restoreService, catchUp, avoidShutoff, pastDue, finaled,
+        eligibleForCutoff, billReady, billReadyAutoPay, billPaid,
+        billPaidIntermediate, credit, paymentPending, billNotReady, paymentScheduled
+
+        var isPrecariousBillSituation: Bool {
+            switch self {
+            case .restoreService, .catchUp, .avoidShutoff, .pastDue, .finaled, .eligibleForCutoff:
+                return true
+            default:
+                return false
+            }
+        }
+    }
+    
+    private lazy var billState: BillState = {
+        let opco = Environment.shared.opco
+        // Note: Removed Bill internmediate payed as it is not needed.
+
+        if accountDetails.isFinaled && billingInfo.pastDueAmount > 0 {
+            return .finaled
+        }
+
+        if opco != .bge && billingInfo.restorationAmount > 0 && accountDetails.isCutOutNonPay {
+            return .restoreService
+        }
+
+        if billingInfo.disconnectNoticeArrears > 0 {
+            if accountDetails.isCutOutIssued {
+                return .eligibleForCutoff
+            } else {
+                return .avoidShutoff
+            }
+        }
+
+        if opco != .bge && billingInfo.amtDpaReinst > 0 {
+            return .catchUp
+        }
+
+        if billingInfo.pastDueAmount > 0 {
+            return .pastDue
+        }
+
+        if billingInfo.pendingPaymentsTotal > 0 {
+            return .paymentPending
+        }
+
+        if billingInfo.netDueAmount > 0 && (accountDetails.isAutoPay || accountDetails.isBGEasy) {
+            return .billReadyAutoPay
+        }
+
+        if billingInfo.scheduledPayment?.amount > 0 {
+            return .paymentScheduled
+        }
+
+        if opco == .bge && billingInfo.netDueAmount < 0 {
+            return .credit
+        }
+
+        if billingInfo.netDueAmount > 0 {
+            return .billReady
+        }
+
+        if let billDate = billingInfo.billDate,
+            let lastPaymentDate = billingInfo.lastPaymentDate,
+            billingInfo.lastPaymentAmount > 0,
+            billDate < lastPaymentDate {
+            return .billPaid
+        }
+
+        return .billNotReady
+    }()
+    
     // MARK: - Show/Hide
     
     // may not be correct
@@ -27,14 +102,10 @@ class BillUtility {
     }()
     
     private(set) lazy var shouldShowAutopay: Bool = {
-        // scheduled payment
-        return ((self.billingInfo.scheduledPayment?.amount > 0 && !shouldShowPaymentReceived) ||
-            
-            // autopay
-            ((self.accountDetails.isAutoPay || self.accountDetails.isBGEasy || self.accountDetails.isAutoPayEligible) && !shouldShowPaymentReceived) ||
-
-            // bill not ready
-            self.billingInfo.billDate == nil && !shouldShowPaymentReceived && (self.billingInfo.netDueAmount == nil || self.billingInfo.netDueAmount == 0))
+        guard billState == .billReadyAutoPay || billState == .paymentScheduled || billState == .billNotReady else {
+            return false
+        }
+        return true
     }()
     
     private(set) lazy var shouldShowTotalAmountAndLedger: Bool = {
@@ -196,7 +267,7 @@ class BillUtility {
         } else if self.isCreditBalance {
             string = NSLocalizedString("No Amount Due – Credit Balance", comment: "")
         } else {
-            string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
+            return (billingInfo.dueByDate?.dueBy() ?? NSAttributedString())
         }
         
         return NSAttributedString(string: string, attributes: attributes)
@@ -243,8 +314,8 @@ class BillUtility {
         return billingInfo.currentDueAmount?.currencyString ?? "--"
     }()
     
-    private(set) lazy var currentBillDateText: String = {
-        return String.localizedStringWithFormat("Due by %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
+    private(set) lazy var currentBillDateText: NSAttributedString = {
+        return (billingInfo.dueByDate?.dueBy() ?? NSAttributedString())
     }()
     
     
