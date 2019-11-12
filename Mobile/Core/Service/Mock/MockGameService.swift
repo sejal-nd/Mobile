@@ -9,6 +9,11 @@
 import RxSwift
 
 class MockGameService: GameService {
+    
+    func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
+        return .just(nil)
+    }
+    
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {
         return .just([])
     }

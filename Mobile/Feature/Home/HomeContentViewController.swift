@@ -24,6 +24,8 @@ class HomeContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fab.isHidden = true
+        
         fab.layer.cornerRadius = 25
         fab.layer.masksToBounds = false
         fab.normalBackgroundColor = .actionBlue

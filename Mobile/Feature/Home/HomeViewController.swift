@@ -32,6 +32,7 @@ class HomeViewController: AccountPickerViewController {
     
     var weatherView: HomeWeatherView!
     var importantUpdateView: HomeUpdateView?
+    var gameOnboardingCardView: HomeGameOnboardingCardView?
     var appointmentCardView: HomeAppointmentCardView?
     var prepaidPendingCardView: HomePrepaidCardView?
     var prepaidActiveCardView: HomePrepaidCardView?
@@ -56,7 +57,8 @@ class HomeViewController: AccountPickerViewController {
                                   authService: ServiceFactory.createAuthenticationService(),
                                   outageService: ServiceFactory.createOutageService(),
                                   alertsService: ServiceFactory.createAlertsService(),
-                                  appointmentService: ServiceFactory.createAppointmentService())
+                                  appointmentService: ServiceFactory.createAppointmentService(),
+                                  gameService: ServiceFactory.createGameService())
     
     override var defaultStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -188,6 +190,29 @@ class HomeViewController: AccountPickerViewController {
                 let index = self.topPersonalizeButton != nil ? 1 : 0
                 self.contentStackView.insertArrangedSubview(appointmentCardView, at: index)
                 self.appointmentCardView = appointmentCardView
+            })
+            .disposed(by: bag)
+        
+        viewModel.showGameOnboardingCard
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] showCard in
+                guard let self = self else { return }
+                
+                guard showCard else {
+                    self.gameOnboardingCardView?.removeFromSuperview()
+                    self.gameOnboardingCardView = nil
+                    return
+                }
+
+                let gameOnboardingCardView = HomeGameOnboardingCardView.create()
+                
+                gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver().drive(onNext: { _ in
+                    print("lets go pressed")
+                }).disposed(by: self.bag)
+                
+                let index = self.topPersonalizeButton != nil ? 1 : 0
+                self.contentStackView.insertArrangedSubview(gameOnboardingCardView, at: index)
+                self.gameOnboardingCardView = gameOnboardingCardView
             })
             .disposed(by: bag)
         

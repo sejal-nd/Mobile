@@ -9,6 +9,18 @@
 import RxSwift
 
 class MCSGameService: GameService {
+    
+    func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
+        return Observable.create { observer -> Disposable in
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                let testUser = GameUser(onboardingComplete: false, optedOut: false, points: 0)
+                observer.onNext(testUser)
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+    
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {
         let endDate = Date()
         let startDate = Calendar.current.date(byAdding: .month, value: -1, to: endDate)!
