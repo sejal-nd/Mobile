@@ -152,7 +152,7 @@ class BillUtility {
             return String.localizedStringWithFormat("Thank you for scheduling your %@ payment for %@", scheduledPaymentAmount.currencyString, scheduledPaymentDate.mmDdYyyyString)
         } else if self.billingInfo.netDueAmount > 0 && (self.accountDetails.isAutoPay || self.accountDetails.isBGEasy) {
             // autopay
-            return NSLocalizedString("You are enrolled in a AutoPay", comment: "")
+            return NSLocalizedString("You are enrolled in AutoPay", comment: "")
         } else {
             return NSLocalizedString("Your bill will be available here once it is ready", comment: "")
         }
