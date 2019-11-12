@@ -305,7 +305,7 @@ class BillInterfaceController: WKInterfaceController {
         pastDueDateLabel.setAttributedText(billUtility.pastDueDateText)
         
         currentBillAmountLabel.setText(billUtility.currentBillAmountText)
-        currentBillDateLabel.setAttributedText(billUtility.currentBillDateText)
+        currentBillDateLabel.setText(billUtility.currentBillDateText)
         
         pendingPaymentAmountLabel.setText(billUtility.pendingPaymentsTotalAmountText)
         pendingPaymentLabel.setText(billUtility.pendingPaymentsText)

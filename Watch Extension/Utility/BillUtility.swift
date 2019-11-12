@@ -267,7 +267,7 @@ class BillUtility {
         } else if self.isCreditBalance {
             string = NSLocalizedString("No Amount Due – Credit Balance", comment: "")
         } else {
-            return (billingInfo.dueByDate?.dueBy() ?? NSAttributedString())
+            string = String.localizedStringWithFormat("Total Amount Due By %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
         }
         
         return NSAttributedString(string: string, attributes: attributes)
@@ -314,8 +314,8 @@ class BillUtility {
         return billingInfo.currentDueAmount?.currencyString ?? "--"
     }()
     
-    private(set) lazy var currentBillDateText: NSAttributedString = {
-        return (billingInfo.dueByDate?.dueBy() ?? NSAttributedString())
+    private(set) lazy var currentBillDateText: String = {
+        return String.localizedStringWithFormat("Due by %@", billingInfo.dueByDate?.mmDdYyyyString ?? "--")
     }()
     
     
