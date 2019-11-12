@@ -7,6 +7,92 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="N9C-aT-BOg">
+            <objects>
+                <navigationController storyboardIdentifier="GameOnboarding" navigationBarHidden="YES" id="Ffe-sV-ENE" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LoO-oS-YJD">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3os-sw-E9Y" kind="relationship" relationship="rootViewController" id="lHZ-kE-LEw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xru-Vw-inK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1780" y="-3342"/>
+        </scene>
+        <!--Game Onboarding Intro View Controller-->
+        <scene sceneID="VfE-Wf-Ysh">
+            <objects>
+                <viewController id="3os-sw-E9Y" customClass="GameOnboardingIntroViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IeQ-Rb-VA1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-gT-ebb">
+                                <rect key="frame" x="20" y="52" width="24" height="24"/>
+                                <state key="normal" image="ic_close"/>
+                                <connections>
+                                    <action selector="onClosePress" destination="3os-sw-E9Y" eventType="touchUpInside" id="S6X-pp-suq"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
+                                <rect key="frame" x="97" y="109" width="220" height="200"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to personalize your experience, we’d like to ask you a few questions!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-2I-bW6">
+                                <rect key="frame" x="20" y="333" width="374" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ai2-x4-KA8" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="777" width="414" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXI-Op-KPY" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="374" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="zme-MG-5Ge"/>
+                                        </constraints>
+                                        <state key="normal" title="Got it!"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="pXI-Op-KPY" firstAttribute="leading" secondItem="Ai2-x4-KA8" secondAttribute="leading" constant="20" id="VBS-ys-sGV"/>
+                                    <constraint firstItem="pXI-Op-KPY" firstAttribute="top" secondItem="Ai2-x4-KA8" secondAttribute="top" constant="15" id="Xq0-7O-Wg5"/>
+                                    <constraint firstItem="pXI-Op-KPY" firstAttribute="bottom" secondItem="uQb-xg-HlT" secondAttribute="bottom" constant="-15" id="c61-yZ-8Of"/>
+                                    <constraint firstAttribute="trailing" secondItem="pXI-Op-KPY" secondAttribute="trailing" constant="20" id="vK7-eV-NT7"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="uQb-xg-HlT"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VC2-i6-5ar" firstAttribute="centerX" secondItem="JKo-nS-Wxg" secondAttribute="centerX" id="BSg-IK-KIY"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Ai2-x4-KA8" secondAttribute="bottom" id="Emj-6m-bhN"/>
+                            <constraint firstItem="JKo-nS-Wxg" firstAttribute="trailing" secondItem="Ai2-x4-KA8" secondAttribute="trailing" id="HYE-bZ-8aK"/>
+                            <constraint firstItem="Ai2-x4-KA8" firstAttribute="leading" secondItem="JKo-nS-Wxg" secondAttribute="leading" id="OgZ-Hi-XYX"/>
+                            <constraint firstItem="kVs-gT-ebb" firstAttribute="top" secondItem="JKo-nS-Wxg" secondAttribute="top" constant="8" id="U55-oU-0vN"/>
+                            <constraint firstItem="JKo-nS-Wxg" firstAttribute="trailing" secondItem="Cle-2I-bW6" secondAttribute="trailing" constant="20" id="YD4-nJ-pad"/>
+                            <constraint firstItem="Cle-2I-bW6" firstAttribute="top" secondItem="VC2-i6-5ar" secondAttribute="bottom" constant="24" id="aGY-JZ-FOY"/>
+                            <constraint firstItem="Cle-2I-bW6" firstAttribute="leading" secondItem="JKo-nS-Wxg" secondAttribute="leading" constant="20" id="mFy-sd-I4J"/>
+                            <constraint firstItem="VC2-i6-5ar" firstAttribute="top" secondItem="JKo-nS-Wxg" secondAttribute="top" constant="65" id="pJn-CU-hnG"/>
+                            <constraint firstItem="kVs-gT-ebb" firstAttribute="leading" secondItem="JKo-nS-Wxg" secondAttribute="leading" constant="20" id="qQW-2C-46M"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JKo-nS-Wxg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7pj-R8-zed"/>
+                    <connections>
+                        <outlet property="closeButton" destination="kVs-gT-ebb" id="6Cn-3n-Hj8"/>
+                        <outlet property="label" destination="Cle-2I-bW6" id="wex-PP-5da"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hqv-Qm-07J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2686.9565217391305" y="-3342.1875"/>
+        </scene>
         <!--Game Home View Controller-->
         <scene sceneID="JZk-LG-6h4">
             <objects>
@@ -200,9 +286,11 @@
     </scenes>
     <resources>
         <image name="bill_analysis_shadow_triangle" width="50" height="61"/>
+        <image name="ic_close" width="24" height="24"/>
         <image name="ic_tooltip" width="24" height="24"/>
         <image name="img_bg_bay_day" width="375" height="350"/>
         <image name="img_bgsky_day" width="375" height="350"/>
         <image name="img_energy_buddy" width="220" height="220"/>
+        <image name="img_onboarding" width="220" height="200"/>
     </resources>
 </document>

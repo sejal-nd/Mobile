@@ -287,7 +287,8 @@ class HomeViewModel {
         }, requestSelector: { [weak self] (accountDetail, _) -> Observable<GameUser?> in
             guard let self = self,
                 AccountsStore.shared.currentAccount.isMultipremise == false,
-                let premiseNumber = accountDetail.premiseNumber else {
+                accountDetail.premiseNumber != nil,
+                UI_USER_INTERFACE_IDIOM() != .pad else {
                     return .just(nil)
                 }
             return self.gameService.fetchGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber)

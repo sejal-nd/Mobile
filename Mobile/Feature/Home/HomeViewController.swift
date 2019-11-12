@@ -206,8 +206,11 @@ class HomeViewController: AccountPickerViewController {
 
                 let gameOnboardingCardView = HomeGameOnboardingCardView.create()
                 
-                gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver().drive(onNext: { _ in
-                    print("lets go pressed")
+                gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
+                    guard let self = self else { return }
+                    let sb = UIStoryboard(name: "Game", bundle: nil)
+                    let vc = sb.instantiateViewController(withIdentifier: "GameOnboarding")
+                    self.present(vc, animated: true, completion: nil)
                 }).disposed(by: self.bag)
                 
                 let index = self.topPersonalizeButton != nil ? 1 : 0
