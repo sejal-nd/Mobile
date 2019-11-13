@@ -1,5 +1,5 @@
 //
-//  GameOnboardingStep1ViewController.swift
+//  GameOnboardingStep2ViewController.swift
 //  Mobile
 //
 //  Created by Marc Shilling on 11/13/19.
@@ -10,17 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class GameOnboardingStep1ViewController: UIViewController {
+class GameOnboardingStep2ViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var howDoYouFeelLabel: UILabel!
+    @IBOutlet weak var rentOrOwnLabel: UILabel!
     @IBOutlet weak var button1: ButtonControl!
     @IBOutlet weak var button1Label: UILabel!
     @IBOutlet weak var button2: ButtonControl!
     @IBOutlet weak var button2Label: UILabel!
-    @IBOutlet weak var button3: ButtonControl!
-    @IBOutlet weak var button3Label: UILabel!
-    @IBOutlet weak var continueButton: PrimaryButton!
+    @IBOutlet weak var doneButton: PrimaryButton!
     
     let selectedButton = BehaviorRelay<ButtonControl?>(value: nil)
     
@@ -31,11 +29,11 @@ class GameOnboardingStep1ViewController: UIViewController {
 
         titleLabel.textColor = .deepGray
         titleLabel.font = OpenSans.semibold.of(size: 15)
-        titleLabel.text = NSLocalizedString("Step 1 of 2", comment: "")
+        titleLabel.text = NSLocalizedString("Step 2 of 2", comment: "")
         
-        howDoYouFeelLabel.textColor = .deepGray
-        howDoYouFeelLabel.font = OpenSans.semibold.of(textStyle: .title3)
-        howDoYouFeelLabel.text = NSLocalizedString("How do you feel about your energy usage?", comment: "")
+        rentOrOwnLabel.textColor = .deepGray
+        rentOrOwnLabel.font = OpenSans.semibold.of(textStyle: .title3)
+        rentOrOwnLabel.text = NSLocalizedString("Do you rent or own your home?", comment: "")
         
         button1.layer.borderWidth = 1
         button1.layer.borderColor = UIColor.accentGray.cgColor
@@ -45,23 +43,15 @@ class GameOnboardingStep1ViewController: UIViewController {
         button2.layer.borderColor = UIColor.accentGray.cgColor
         button2.layer.cornerRadius = 10
         
-        button3.layer.borderWidth = 1
-        button3.layer.borderColor = UIColor.accentGray.cgColor
-        button3.layer.cornerRadius = 10
-        
         button1Label.textColor = .deepGray
         button1Label.font = OpenSans.regular.of(textStyle: .headline)
-        button1Label.text = NSLocalizedString("I've got it under control.", comment: "")
+        button1Label.text = NSLocalizedString("I own my home.", comment: "")
         
         button2Label.textColor = .deepGray
         button2Label.font = OpenSans.regular.of(textStyle: .headline)
-        button2Label.text = NSLocalizedString("I think I can do better.", comment: "")
-        
-        button3Label.textColor = .deepGray
-        button3Label.font = OpenSans.regular.of(textStyle: .headline)
-        button3Label.text = NSLocalizedString("I really need help.", comment: "")
-        
-        selectedButton.asDriver().isNil().not().drive(continueButton.rx.isEnabled).disposed(by: bag)
+        button2Label.text = NSLocalizedString("I rent my home.", comment: "")
+
+        selectedButton.asDriver().isNil().not().drive(doneButton.rx.isEnabled).disposed(by: bag)
     }
     
     @IBAction func onBackPress() {
@@ -74,26 +64,20 @@ class GameOnboardingStep1ViewController: UIViewController {
         sender.layer.borderWidth = 2
         sender.layer.borderColor = UIColor.actionBlue.cgColor
         
-        var label: UILabel
-        if sender == button1 {
-            label = button1Label
-        } else if sender == button2 {
-            label = button2Label
-        } else {
-            label = button3Label
-        }
-        label.textColor = .actionBlue
-        label.font = OpenSans.semibold.of(textStyle: .headline)
+        let label = sender === button1 ? button1Label : button2Label
+        label?.textColor = .actionBlue
+        label?.font = OpenSans.semibold.of(textStyle: .headline)
         
         selectedButton.accept(sender)
     }
     
-    @IBAction func onContinuePress() {
+    
+    @IBAction func onDonePress() {
         // TODO: Analytics event
         // TODO: Post their selected answer to server
         
-        // push next VC
-        performSegue(withIdentifier: "goToStep2", sender: self)
+        NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
+        dismissModal()
     }
     
     private func resetAllButtons() {
@@ -101,14 +85,10 @@ class GameOnboardingStep1ViewController: UIViewController {
         button1.layer.borderColor = UIColor.accentGray.cgColor
         button2.layer.borderWidth = 1
         button2.layer.borderColor = UIColor.accentGray.cgColor
-        button3.layer.borderWidth = 1
-        button3.layer.borderColor = UIColor.accentGray.cgColor
         button1Label.textColor = .deepGray
         button1Label.font = OpenSans.regular.of(textStyle: .headline)
         button2Label.textColor = .deepGray
         button2Label.font = OpenSans.regular.of(textStyle: .headline)
-        button3Label.textColor = .deepGray
-        button3Label.font = OpenSans.regular.of(textStyle: .headline)
     }
     
     

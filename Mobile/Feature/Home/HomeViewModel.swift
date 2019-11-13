@@ -286,16 +286,21 @@ class HomeViewModel {
             }
         }, requestSelector: { [weak self] (accountDetail, _) -> Observable<GameUser?> in
             guard let self = self,
+                Environment.shared.opco == .bge,
                 AccountsStore.shared.currentAccount.isMultipremise == false,
                 accountDetail.premiseNumber != nil,
                 UI_USER_INTERFACE_IDIOM() != .pad else {
-                    return .just(nil)
-                }
+                return .just(nil)
+            }
+            
             return self.gameService.fetchGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
         })
         .share(replay: 1, scope: .forever)
     
-    private(set) lazy var showGameOnboardingCard = gameUserEvents.elements().isNil().not().asDriver(onErrorJustReturn: false)
+    private(set) lazy var showGameOnboardingCard = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { gameUser -> Bool in
+        guard let user = gameUser else { return false }
+        return !user.onboardingComplete && !user.optedOut
+    }
     
     private lazy var prepaidStatus = accountDetailEvents.elements()
         .mapAt(\.prepaidStatus)

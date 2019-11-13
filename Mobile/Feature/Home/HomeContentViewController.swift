@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeContentViewController: UIViewController {
     
@@ -16,6 +17,8 @@ class HomeContentViewController: UIViewController {
     
     var inGame = false
     var flipping = false
+    
+    let bag = DisposeBag()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return inGame ? .default : .lightContent
@@ -31,6 +34,18 @@ class HomeContentViewController: UIViewController {
         fab.normalBackgroundColor = .actionBlue
         fab.backgroundColorOnPress = UIColor.actionBlue.darker()
         
+        NotificationCenter.default.rx.notification(.gameOnboardingComplete, object: nil)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.onGameOnboardingComplete()
+            })
+            .disposed(by: bag)
+        
+        displayInitialView()
+    }
+    
+    private func displayInitialView() {
         var viewController: UIViewController
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome) {
             let sb = UIStoryboard(name: "Game", bundle: nil)
@@ -40,11 +55,12 @@ class HomeContentViewController: UIViewController {
             viewController = storyboard!.instantiateViewController(withIdentifier: "Home")
             inGame = false
         }
+        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
         addChild(viewController)
         containerView.addSubview(viewController.view)
         view.sendSubviewToBack(viewController.view)
         
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
             viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
@@ -56,6 +72,33 @@ class HomeContentViewController: UIViewController {
         containerView = viewController.view
     }
     
+    private func onGameOnboardingComplete() {
+        let sb = UIStoryboard(name: "Game", bundle: nil)
+        let controller = sb.instantiateViewController(withIdentifier: "GameHome")
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(controller)
+        
+        UIView.transition(from: containerView, to: controller.view, duration: 0, options: [], completion: { [weak self] _ in
+            self?.containerView = controller.view
+        })
+        
+        NSLayoutConstraint.activate([
+            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
+            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+        controller.didMove(toParent: self)
+        view.sendSubviewToBack(controller.view)
+        
+        inGame = true
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
+        setNeedsStatusBarAppearanceUpdate()
+        
+        fab.isHidden = false
+    }
+    
     @IBAction func onFabPress() {
         if flipping { return }
         
@@ -63,9 +106,10 @@ class HomeContentViewController: UIViewController {
         if inGame {
             self.inGame = false
             let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
-            addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
-
+            
+            addChild(controller)
+            
             UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.flipping = false
                 self?.containerView = controller.view
@@ -83,9 +127,10 @@ class HomeContentViewController: UIViewController {
             self.inGame = true
             let sb = UIStoryboard(name: "Game", bundle: nil)
             let controller = sb.instantiateViewController(withIdentifier: "GameHome")
-            addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
-
+            
+            addChild(controller)
+            
             UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.flipping = false
                 self?.containerView = controller.view
