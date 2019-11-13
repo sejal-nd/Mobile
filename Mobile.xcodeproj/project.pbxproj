@@ -1232,6 +1232,9 @@
 		9CD3533922CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533A22CABDBE00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
 		9CD3533B22CABDBF00165F87 /* DisclosureCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D84B221877FEB00F15A9F /* DisclosureCellButton.swift */; };
+		9CD742BB237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
+		9CD742BC237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
+		9CD742BD237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */; };
 		9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
 		9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
 		9CE700AB2318657300191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
@@ -3214,6 +3217,7 @@
 		9CD3531D22CABBB700165F87 /* ZeroInsetDataDetectorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroInsetDataDetectorTextView.swift; sourceTree = "<group>"; };
 		9CD3532522CABC0900165F87 /* PrepaidCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepaidCardView.xib; sourceTree = "<group>"; };
 		9CD3532622CABC0900165F87 /* PrepaidCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
+		9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOnboardingStep1ViewController.swift; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
@@ -5347,6 +5351,7 @@
 			isa = PBXGroup;
 			children = (
 				9CC99792237B6A9300C68300 /* GameOnboardingIntroViewController.swift */,
+				9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -8178,6 +8183,7 @@
 				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				B0649A5F214834380041B299 /* StormModeStatus.swift in Sources */,
 				8206D0131FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
+				9CD742BB237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				E8EDC54F1F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				82AC2A2A1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F18F1F8E9D620090C5A5 /* BillForecast.swift in Sources */,
@@ -8563,6 +8569,7 @@
 				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
 				E89C162C1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				82A18EFB1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				9CD742BD237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				82EAB3361F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				359BDB8122DCBAAF007002B0 /* OutageViewModel.swift in Sources */,
 				E8067C931EC3C257004C2724 /* SplashViewController.swift in Sources */,
@@ -8948,6 +8955,7 @@
 				82AC2A2B1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
 				E827F1901F8E9D620090C5A5 /* BillForecast.swift in Sources */,
 				B52CA0B01F311524002B5674 /* GoogleAnalytics.swift in Sources */,
+				9CD742BC237C900200915334 /* GameOnboardingStep1ViewController.swift in Sources */,
 				82A18E9F1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B271EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				9C97DB1820EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
