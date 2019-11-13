@@ -114,8 +114,15 @@ extension WatchSessionManager {
     
     // Receiver
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-                DispatchQueue.main.async {
+        DispatchQueue.main.async {
             #if os(iOS)
+
+            // Logging
+            if let value = userInfo["console"] as? String {
+                dLog("WATCH CONSOLE: \(value)")
+                return
+            }
+            
             guard let screenName = userInfo["screenName"] as? String else {
                 dLog("Failed to parse user info dictionary with key: screenName")
                 return
