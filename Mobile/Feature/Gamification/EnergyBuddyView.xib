@@ -15,11 +15,14 @@
                 <outlet property="energyBuddyFaceLottieView" destination="62N-d7-gSV" id="Kwk-yD-BKG"/>
                 <outlet property="energyBuddyParticleLottieView" destination="AGB-em-2xK" id="a81-2h-4nL"/>
                 <outlet property="skyImageView" destination="6mO-Hc-EBJ" id="jbQ-ZG-hST"/>
+                <outlet property="speechBubbleContainerView" destination="V0c-T2-dyD" id="WaT-L9-onK"/>
+                <outlet property="speechBubbleLabel" destination="wjc-DZ-xSA" id="yYY-XS-zyZ"/>
+                <outlet property="speechBubbleView" destination="bWE-Yv-bLS" id="rR2-65-iFQ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="EI1-SE-Zjf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -67,6 +70,43 @@
                         <constraint firstItem="H3T-aX-8wS" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="yGf-RO-ZLM"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0c-T2-dyD">
+                    <rect key="frame" x="12" y="12" width="299" height="52"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-Yv-bLS">
+                            <rect key="frame" x="0.0" y="0.0" width="299" height="52"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning Game Participants!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjc-DZ-xSA">
+                                    <rect key="frame" x="20" y="15.5" width="259" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="wjc-DZ-xSA" secondAttribute="trailing" constant="20" id="4XX-kb-0gj"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="6et-gz-1aW"/>
+                                <constraint firstAttribute="height" constant="52" id="Dfg-WG-30E"/>
+                                <constraint firstItem="wjc-DZ-xSA" firstAttribute="centerY" secondItem="bWE-Yv-bLS" secondAttribute="centerY" id="Sib-Ej-WYB"/>
+                                <constraint firstItem="wjc-DZ-xSA" firstAttribute="leading" secondItem="bWE-Yv-bLS" secondAttribute="leading" constant="20" id="bxb-nG-HuY"/>
+                            </constraints>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_speechbubblepoint" translatesAutoresizingMaskIntoConstraints="NO" id="j9P-Mp-25d">
+                            <rect key="frame" x="116" y="52" width="24" height="24"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="bWE-Yv-bLS" firstAttribute="top" secondItem="V0c-T2-dyD" secondAttribute="top" id="0Qz-i6-ZbD"/>
+                        <constraint firstItem="bWE-Yv-bLS" firstAttribute="centerX" secondItem="V0c-T2-dyD" secondAttribute="centerX" id="3fy-ZL-6pn"/>
+                        <constraint firstItem="j9P-Mp-25d" firstAttribute="top" secondItem="bWE-Yv-bLS" secondAttribute="bottom" id="FYW-WC-u0w"/>
+                        <constraint firstAttribute="bottom" secondItem="bWE-Yv-bLS" secondAttribute="bottom" id="SRg-OR-mKK"/>
+                        <constraint firstItem="j9P-Mp-25d" firstAttribute="leading" secondItem="V0c-T2-dyD" secondAttribute="leading" constant="116" id="Tnz-ca-XdP"/>
+                        <constraint firstAttribute="trailing" secondItem="bWE-Yv-bLS" secondAttribute="trailing" priority="999" id="kk5-k0-18Q"/>
+                        <constraint firstItem="bWE-Yv-bLS" firstAttribute="leading" secondItem="V0c-T2-dyD" secondAttribute="leading" priority="999" id="lhe-kx-kGU"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -77,7 +117,9 @@
                 <constraint firstAttribute="bottom" secondItem="6mO-Hc-EBJ" secondAttribute="bottom" id="CJZ-FR-ak1"/>
                 <constraint firstItem="npW-aj-e1E" firstAttribute="width" secondItem="6mO-Hc-EBJ" secondAttribute="width" id="HQZ-om-2dR"/>
                 <constraint firstItem="KF7-NT-Csz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JMb-Q4-MIK"/>
+                <constraint firstItem="V0c-T2-dyD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="Oou-PG-wSm"/>
                 <constraint firstAttribute="trailing" secondItem="6mO-Hc-EBJ" secondAttribute="trailing" id="QMX-1X-oLM"/>
+                <constraint firstItem="V0c-T2-dyD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="VK9-Xv-OAL"/>
                 <constraint firstItem="npW-aj-e1E" firstAttribute="height" secondItem="6mO-Hc-EBJ" secondAttribute="height" id="YCe-6b-dwg"/>
                 <constraint firstItem="6mO-Hc-EBJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rNU-5T-Hs2"/>
                 <constraint firstAttribute="trailing" secondItem="KF7-NT-Csz" secondAttribute="trailing" id="vXo-Sz-Ya9"/>
@@ -90,5 +132,6 @@
     <resources>
         <image name="img_bg_bay_day" width="375" height="350"/>
         <image name="img_bgsky_day" width="375" height="350"/>
+        <image name="img_speechbubblepoint" width="24" height="24"/>
     </resources>
 </document>

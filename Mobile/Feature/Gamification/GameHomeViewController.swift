@@ -81,8 +81,14 @@ class GameHomeViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+                
+        energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
         
         energyBuddyView.bounce()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+            self?.energyBuddyView.playHappyAnimation()
+            self?.energyBuddyView.showWelcomeMessage()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -102,6 +108,13 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.usageData.asDriver().drive(onNext: { usageArray in
             print(usageArray)
         }).disposed(by: bag)
+    }
+    
+    @objc func onBuddyTap() {
+        //energyBuddyView.playHappyAnimation()
+        //energyBuddyView.playSuperHappyAnimation()
+        energyBuddyView.playSuperHappyAnimation(withSparkles: true)
+        //energyBuddyView.playSuperHappyAnimation(withHearts: true)
     }
     
 
