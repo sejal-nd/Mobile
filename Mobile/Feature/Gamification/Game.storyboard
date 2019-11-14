@@ -32,17 +32,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-gT-ebb">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_close"/>
                                 <connections>
                                     <action selector="onClosePress" destination="3os-sw-E9Y" eventType="touchUpInside" id="S6X-pp-suq"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
-                                <rect key="frame" x="97" y="109" width="220" height="200"/>
+                                <rect key="frame" x="-13" y="109" width="440" height="400"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to personalize your experience, we’d like to ask you a few questions!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-2I-bW6">
-                                <rect key="frame" x="20" y="333" width="374" height="41"/>
+                                <rect key="frame" x="20" y="533" width="374" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azB-e9-k2m">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Nx5-gD-aKH" eventType="touchUpInside" id="XYn-Pz-Z5O"/>
@@ -119,7 +119,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qln-jV-Gh3">
-                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-L0-L8Y">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="307.5"/>
@@ -308,21 +308,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3th-xB-uV2">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="723.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bgsky_day" translatesAutoresizingMaskIntoConstraints="NO" id="geQ-8R-xrj">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-aM-5F2" customClass="EnergyBuddyView" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="350" id="8hE-Cx-1O8"/>
+                                                    <constraint firstAttribute="height" constant="350" id="CD7-jm-9Y9"/>
                                                 </constraints>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bg_bay_day" translatesAutoresizingMaskIntoConstraints="NO" id="Zsa-yd-kWs">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="350" id="fqQ-nI-5d1"/>
-                                                </constraints>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_energy_buddy" translatesAutoresizingMaskIntoConstraints="NO" id="tFj-16-caZ">
-                                                <rect key="frame" x="97" y="35" width="220" height="220"/>
-                                            </imageView>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK2-4u-l6B">
                                                 <rect key="frame" x="16" y="316" width="382" height="387.5"/>
                                                 <subviews>
@@ -423,18 +415,13 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="geQ-8R-xrj" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" id="2Fw-t6-3gK"/>
-                                            <constraint firstAttribute="trailing" secondItem="geQ-8R-xrj" secondAttribute="trailing" id="5Yw-qI-Qgq"/>
-                                            <constraint firstItem="dK2-4u-l6B" firstAttribute="top" secondItem="geQ-8R-xrj" secondAttribute="bottom" constant="-34" id="9VZ-tN-sry"/>
-                                            <constraint firstItem="tFj-16-caZ" firstAttribute="top" secondItem="3th-xB-uV2" secondAttribute="top" constant="35" id="APj-94-VBo"/>
+                                            <constraint firstItem="Byt-aM-5F2" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" id="0p7-Qz-hPr"/>
+                                            <constraint firstAttribute="trailing" secondItem="Byt-aM-5F2" secondAttribute="trailing" id="5qk-Hr-Y9m"/>
                                             <constraint firstItem="dK2-4u-l6B" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" constant="16" id="EkX-bt-KHH"/>
-                                            <constraint firstItem="Zsa-yd-kWs" firstAttribute="top" secondItem="3th-xB-uV2" secondAttribute="top" id="Hmx-Ei-AcU"/>
                                             <constraint firstAttribute="trailing" secondItem="dK2-4u-l6B" secondAttribute="trailing" constant="16" id="HyJ-jA-f5s"/>
-                                            <constraint firstItem="Zsa-yd-kWs" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" id="IVV-3N-OXA"/>
-                                            <constraint firstItem="geQ-8R-xrj" firstAttribute="top" secondItem="3th-xB-uV2" secondAttribute="top" id="apY-be-EDT"/>
-                                            <constraint firstAttribute="trailing" secondItem="Zsa-yd-kWs" secondAttribute="trailing" id="dJC-7b-Otb"/>
+                                            <constraint firstItem="Byt-aM-5F2" firstAttribute="top" secondItem="3th-xB-uV2" secondAttribute="top" id="bXm-G3-go6"/>
+                                            <constraint firstItem="dK2-4u-l6B" firstAttribute="top" secondItem="Byt-aM-5F2" secondAttribute="bottom" constant="-34" id="cu3-hB-bCP"/>
                                             <constraint firstAttribute="bottom" secondItem="dK2-4u-l6B" secondAttribute="bottom" constant="20" id="gzZ-mp-xFN"/>
-                                            <constraint firstItem="tFj-16-caZ" firstAttribute="centerX" secondItem="Zsa-yd-kWs" secondAttribute="centerX" id="hfF-Kk-ita"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -471,7 +458,7 @@
                         <outlet property="dailyInsightCardView" destination="dK2-4u-l6B" id="4DQ-MH-zBe"/>
                         <outlet property="dailyInsightContentView" destination="py0-US-tII" id="EQF-rD-Cza"/>
                         <outlet property="dailyInsightLabel" destination="1IL-gJ-F04" id="kFt-Ze-AvV"/>
-                        <outlet property="energyBuddyTopConstraint" destination="APj-94-VBo" id="DUJ-sc-RWo"/>
+                        <outlet property="energyBuddyView" destination="Byt-aM-5F2" id="xaj-dO-Gqk"/>
                         <outlet property="loadingView" destination="8oG-4f-Tdn" id="gvi-oQ-hZ5"/>
                     </connections>
                 </viewController>
@@ -488,7 +475,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctg-dp-Xx9">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Cjp-yO-sUW" eventType="touchUpInside" id="Lum-6d-lsl"/>
@@ -501,7 +488,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-EI-8GP">
-                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="De4-tq-Lwa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
@@ -650,9 +637,6 @@
         <image name="ic_back" width="24" height="24"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_tooltip" width="24" height="24"/>
-        <image name="img_bg_bay_day" width="375" height="350"/>
-        <image name="img_bgsky_day" width="375" height="350"/>
-        <image name="img_energy_buddy" width="220" height="220"/>
         <image name="img_onboarding" width="220" height="200"/>
     </resources>
 </document>

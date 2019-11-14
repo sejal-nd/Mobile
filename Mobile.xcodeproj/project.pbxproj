@@ -1055,6 +1055,30 @@
 		9C0E1C972333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
 		9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
 		9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */; };
+		9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */; };
+		9C0EA5A5237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */; };
+		9C0EA5A6237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */; };
+		9C0EA5A8237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */; };
+		9C0EA5A9237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */; };
+		9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */; };
+		9C0EA5B2237DAD2900D1E18F /* buddy_body.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AC237DAD2800D1E18F /* buddy_body.json */; };
+		9C0EA5B3237DAD2900D1E18F /* buddy_body.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AC237DAD2800D1E18F /* buddy_body.json */; };
+		9C0EA5B4237DAD2900D1E18F /* buddy_body.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AC237DAD2800D1E18F /* buddy_body.json */; };
+		9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */; };
+		9C0EA5B6237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */; };
+		9C0EA5B7237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */; };
+		9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */; };
+		9C0EA5B9237DAD2900D1E18F /* buddy_face_happy.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */; };
+		9C0EA5BA237DAD2900D1E18F /* buddy_face_happy.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */; };
+		9C0EA5BB237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
+		9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
+		9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */; };
+		9C0EA5BE237DAD2900D1E18F /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
+		9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
+		9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */; };
+		9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
+		9C0EA5C2237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
+		9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */; };
 		9C10B4D322DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D422DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
 		9C10B4D522DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */; };
@@ -3171,6 +3195,14 @@
 		9B6E69B6B5E99DA331F2FCB6 /* Pods-BGE-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.release.xcconfig"; sourceTree = "<group>"; };
 		9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultPaymentMethodTutorialViewController.swift; sourceTree = "<group>"; };
 		9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDefaultPaymentMethodTutorialViewController.xib; sourceTree = "<group>"; };
+		9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyBuddyView.xib; sourceTree = "<group>"; };
+		9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyBuddyView.swift; sourceTree = "<group>"; };
+		9C0EA5AC237DAD2800D1E18F /* buddy_body.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_body.json; sourceTree = "<group>"; };
+		9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_face_happy_bounce.json; sourceTree = "<group>"; };
+		9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_face_happy.json; sourceTree = "<group>"; };
+		9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_particles_sparkles.json; sourceTree = "<group>"; };
+		9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_face_normal.json; sourceTree = "<group>"; };
+		9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buddy_particles_hearts.json; sourceTree = "<group>"; };
 		9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingStickyFooterViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C153DC822E8F6CE002DA062 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
@@ -5168,6 +5200,7 @@
 				E8FE30AD1E7875E5009D28B7 /* BGE */,
 				E8FE30AE1E7875EA009D28B7 /* ComEd */,
 				E8FE30AF1E7875F0009D28B7 /* PECO */,
+				9C0EA5AB237DAD1200D1E18F /* Gamification */,
 				8FD5AE981E54EAB8003F640D /* checkmark.json */,
 				82D599501EC3A00900DDB380 /* alert_icon.json */,
 				8FD5AE991E54EAB8003F640D /* loading.json */,
@@ -5223,6 +5256,19 @@
 				359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C0EA5AB237DAD1200D1E18F /* Gamification */ = {
+			isa = PBXGroup;
+			children = (
+				9C0EA5AC237DAD2800D1E18F /* buddy_body.json */,
+				9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */,
+				9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */,
+				9C0EA5B0237DAD2900D1E18F /* buddy_face_normal.json */,
+				9C0EA5B1237DAD2900D1E18F /* buddy_particles_hearts.json */,
+				9C0EA5AF237DAD2800D1E18F /* buddy_particles_sparkles.json */,
+			);
+			path = Gamification;
 			sourceTree = "<group>";
 		};
 		9C10B4D622E215F800B0851B /* Forgot Password */ = {
@@ -5389,6 +5435,8 @@
 				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
 				9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */,
 				9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */,
+				9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */,
+				9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */,
 			);
 			path = Gamification;
 			sourceTree = "<group>";
@@ -6520,6 +6568,7 @@
 				0D79C6C51F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				22EF559B2170507700070C13 /* AppointmentDetailViewController.xib in Resources */,
 				B07E18042211D31700B6E3C7 /* outage_status.json in Resources */,
+				9C0EA5B5237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				2FB9B45E1EFC6CCF002CBD88 /* BillingHistoryTableViewCell.xib in Resources */,
 				358BD20F20F7A8FD00DA2012 /* Usage.storyboard in Resources */,
 				35C9139222E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
@@ -6610,6 +6659,7 @@
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
 				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
+				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
 				E827D2381ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */,
@@ -6633,6 +6683,7 @@
 				B07E17EA2209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				E8C29C781F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				E8494F3B1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
+				9C0EA5B2237DAD2900D1E18F /* buddy_body.json in Resources */,
 				0EF60FD020EE7AE7006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B31E5C99380031D934 /* Alerts.storyboard in Resources */,
 				54DF4BDE1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
@@ -6643,17 +6694,21 @@
 				B0030D0C2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				54B31A6E1EE065E20002E657 /* Bill.storyboard in Resources */,
 				0E5BEF0D202E2390009D1ADB /* GoogleService-Info_bge_prodbeta.plist in Resources */,
+				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
+				9C0EA5BB237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				359BB27F2148517F00FBAD83 /* sm_outage_loading.json in Resources */,
 				35A6C6B9211C6CCE00C2A58F /* TitleTableViewHeaderView.xib in Resources */,
+				9C0EA5BE237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				B0EE78F12214766700F53C56 /* appointments.json in Resources */,
 				B08956F22215C27100A97965 /* sso_data.json in Resources */,
 				358BD21720F8FB2D00DA2012 /* BillImpactView.xib in Resources */,
 				9CEE411923722444005A4AD3 /* Game.storyboard in Resources */,
 				B089573422175BFE00A97965 /* budget_billing_info.json in Resources */,
+				9C0EA5B8237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				E82FF1EE1F97CC7900C50F8F /* HomeUsageCardView.xib in Resources */,
 				B07E17E72209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17ED2209F0CA00B6E3C7 /* weather.json in Resources */,
@@ -6678,6 +6733,8 @@
 				358BD21420F8DECE00DA2012 /* Usage.storyboard in Resources */,
 				E800433A1E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CC9978C237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
+				9C0EA5B7237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
+				9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -6685,6 +6742,7 @@
 				B07E17DB2209F0C900B6E3C7 /* bill_comparison.json in Resources */,
 				B08957212217455200A97965 /* account_lookup.json in Resources */,
 				B0B0840521710D1500B1C632 /* Appt_Confirmed.json in Resources */,
+				9C0EA5BA237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				384F86A41F310B8600A85557 /* TermPolicies.html in Resources */,
 				B072693B212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
 				E80043281E65FF70005CF531 /* OpenSans-Bold.ttf in Resources */,
@@ -6737,6 +6795,7 @@
 				E8B4F4C11E5C9A200031D934 /* Home.storyboard in Resources */,
 				82156F231F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B07E17DE2209F0C900B6E3C7 /* payments.json in Resources */,
+				9C0EA5A6237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B5AC06CA1E521B3200BBA4ED /* Assets.xcassets in Resources */,
 				B08956FB2215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6D2211C8F0800C2A58F /* TitleTableViewCell.xib in Resources */,
@@ -6786,6 +6845,8 @@
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
+				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
+				9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B8C84A1F9E3590005828B0 /* SERPTSGraphView.xib in Resources */,
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
@@ -6811,6 +6872,7 @@
 				B07E17DF2209F0C900B6E3C7 /* weather.json in Resources */,
 				359BB2832148519D00FBAD83 /* sm_outage_loading.json in Resources */,
 				359BDB7722D8F9B2007002B0 /* outage_off.json in Resources */,
+				9C0EA5B4237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247920C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232F22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				359BDB7D22D8F9B2007002B0 /* outage_on.json in Resources */,
@@ -6830,6 +6892,8 @@
 				358BD21320F8DECD00DA2012 /* Usage.storyboard in Resources */,
 				B5D4157E1F3A6E4900AC32B2 /* GoogleService-Info_comed_staging.plist in Resources */,
 				9CC9978B237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
+				9C0EA5B6237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
+				9C0EA5C2237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -6837,6 +6901,7 @@
 				B07E17E22209F0CA00B6E3C7 /* bill_comparison.json in Resources */,
 				B08957202217455200A97965 /* account_lookup.json in Resources */,
 				B0B083F121710C8900B1C632 /* Appt_Confirmed.json in Resources */,
+				9C0EA5B9237DAD2900D1E18F /* buddy_face_happy.json in Resources */,
 				359BB27B214834A900FBAD83 /* outage.json in Resources */,
 				E8B4F4B01E5C957A0031D934 /* More.storyboard in Resources */,
 				B072693A212757AA009B2BFF /* HomeUpdateView.xib in Resources */,
@@ -6889,6 +6954,7 @@
 				0D79C6C61F1D3360004793DD /* Maintenance.storyboard in Resources */,
 				B07E17E52209F0CA00B6E3C7 /* payments.json in Resources */,
 				B08956FA2215D11B00A97965 /* energy_tips.json in Resources */,
+				9C0EA5A5237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				8FD3C2731E525CE3005FB1BB /* Main.storyboard in Resources */,
 				35A6C6D1211C8F0700C2A58F /* TitleTableViewCell.xib in Resources */,
 				B0B083EE21710C8900B1C632 /* Appt_Canceled.json in Resources */,
@@ -6938,6 +7004,8 @@
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
+				9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
+				9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				E8B8C8491F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
@@ -6963,6 +7031,7 @@
 				B07E17E02209F0CA00B6E3C7 /* accounts.json in Resources */,
 				B07E17E62209F0CA00B6E3C7 /* weather.json in Resources */,
 				359BDB7622D8F9B2007002B0 /* outage_off.json in Resources */,
+				9C0EA5B3237DAD2900D1E18F /* buddy_body.json in Resources */,
 				B07D247820C590BE00BD22EB /* HomeWeatherView.xib in Resources */,
 				3575232E22C53A1B00A0AFAC /* AccountListRow.xib in Resources */,
 				359BDB7C22D8F9B2007002B0 /* outage_on.json in Resources */,
@@ -8225,6 +8294,7 @@
 				82A18EF01EBA686500BE9F21 /* PaperlessEBillAccountView.swift in Sources */,
 				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
+				9C0EA5A8237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				B0B083AF216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */,
@@ -8612,6 +8682,7 @@
 				E82FF1F41F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
+				9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				829E058D1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				0EF60FDA20EE8105006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
@@ -8999,6 +9070,7 @@
 				35277B02210794B400411297 /* UnavailableView.swift in Sources */,
 				35C0F1D2233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
+				9C0EA5A9237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,

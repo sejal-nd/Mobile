@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnergyBuddyView" customModule="BGE" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundImageView" destination="KF7-NT-Csz" id="JRo-ay-SYS"/>
+                <outlet property="energyBuddyBodyLottieView" destination="H3T-aX-8wS" id="zwV-lo-1ub"/>
+                <outlet property="energyBuddyContainerTopConstraint" destination="wLW-XB-JqD" id="3XE-IC-0D7"/>
+                <outlet property="energyBuddyContainerView" destination="npW-aj-e1E" id="Yfp-0q-E8o"/>
+                <outlet property="energyBuddyFaceLottieView" destination="62N-d7-gSV" id="Kwk-yD-BKG"/>
+                <outlet property="energyBuddyParticleLottieView" destination="AGB-em-2xK" id="a81-2h-4nL"/>
+                <outlet property="skyImageView" destination="6mO-Hc-EBJ" id="jbQ-ZG-hST"/>
+                <outlet property="view" destination="iN0-l3-epB" id="EI1-SE-Zjf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bgsky_day" translatesAutoresizingMaskIntoConstraints="NO" id="6mO-Hc-EBJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="350" id="2Es-f9-okn"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bg_bay_day" translatesAutoresizingMaskIntoConstraints="NO" id="KF7-NT-Csz">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="350" id="N6b-ud-3AF"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npW-aj-e1E">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3T-aX-8wS">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62N-d7-gSV">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGB-em-2xK">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="H3T-aX-8wS" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="FBO-b7-5oA"/>
+                        <constraint firstAttribute="trailing" secondItem="62N-d7-gSV" secondAttribute="trailing" id="KLY-b8-ZGn"/>
+                        <constraint firstAttribute="bottom" secondItem="H3T-aX-8wS" secondAttribute="bottom" id="QOR-f8-yHe"/>
+                        <constraint firstAttribute="trailing" secondItem="AGB-em-2xK" secondAttribute="trailing" id="WlB-Rc-0c6"/>
+                        <constraint firstItem="AGB-em-2xK" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="Ze8-ad-jVU"/>
+                        <constraint firstItem="62N-d7-gSV" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="csa-mj-hqY"/>
+                        <constraint firstItem="62N-d7-gSV" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="e0l-lm-3dc"/>
+                        <constraint firstItem="AGB-em-2xK" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="lnb-3N-GUi"/>
+                        <constraint firstAttribute="bottom" secondItem="62N-d7-gSV" secondAttribute="bottom" id="qNn-gn-9tJ"/>
+                        <constraint firstAttribute="trailing" secondItem="H3T-aX-8wS" secondAttribute="trailing" id="toy-pb-KKH"/>
+                        <constraint firstAttribute="bottom" secondItem="AGB-em-2xK" secondAttribute="bottom" id="vFL-ca-fzi"/>
+                        <constraint firstItem="H3T-aX-8wS" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="yGf-RO-ZLM"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="npW-aj-e1E" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0ST-L3-rBE"/>
+                <constraint firstAttribute="bottom" secondItem="KF7-NT-Csz" secondAttribute="bottom" id="4Gt-xx-au3"/>
+                <constraint firstItem="6mO-Hc-EBJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5Wl-xf-WCm"/>
+                <constraint firstItem="KF7-NT-Csz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5kA-vT-lmq"/>
+                <constraint firstAttribute="bottom" secondItem="6mO-Hc-EBJ" secondAttribute="bottom" id="CJZ-FR-ak1"/>
+                <constraint firstItem="npW-aj-e1E" firstAttribute="width" secondItem="6mO-Hc-EBJ" secondAttribute="width" id="HQZ-om-2dR"/>
+                <constraint firstItem="KF7-NT-Csz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JMb-Q4-MIK"/>
+                <constraint firstAttribute="trailing" secondItem="6mO-Hc-EBJ" secondAttribute="trailing" id="QMX-1X-oLM"/>
+                <constraint firstItem="npW-aj-e1E" firstAttribute="height" secondItem="6mO-Hc-EBJ" secondAttribute="height" id="YCe-6b-dwg"/>
+                <constraint firstItem="6mO-Hc-EBJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rNU-5T-Hs2"/>
+                <constraint firstAttribute="trailing" secondItem="KF7-NT-Csz" secondAttribute="trailing" id="vXo-Sz-Ya9"/>
+                <constraint firstItem="npW-aj-e1E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wLW-XB-JqD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="67.391304347826093" y="-54.910714285714285"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_bg_bay_day" width="375" height="350"/>
+        <image name="img_bgsky_day" width="375" height="350"/>
+    </resources>
+</document>

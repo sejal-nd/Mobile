@@ -12,7 +12,7 @@ import RxCocoa
 
 class GameHomeViewController: AccountPickerViewController {
             
-    @IBOutlet weak var energyBuddyTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var energyBuddyView: EnergyBuddyView!
     
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
@@ -82,11 +82,7 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        view.layoutIfNeeded()
-        UIView.animate(withDuration: 1.5, delay: 0, options: [.repeat, .autoreverse], animations: {
-            self.energyBuddyTopConstraint.constant = 25
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        energyBuddyView.bounce()
     }
     
     override func viewDidLayoutSubviews() {
