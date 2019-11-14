@@ -156,7 +156,7 @@ class UsageInterfaceController: WKInterfaceController {
                 
                 // set error data
                 errorImage.setImageNamed(AppImage.passwordProtected.name)
-                errorTitleLabel.setText("Password protected accounts cannot be accessed via app.")
+                errorTitleLabel.setText("Your account cannot be accessed through this app.")
             case .unavailable:
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
