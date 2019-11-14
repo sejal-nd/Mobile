@@ -14,6 +14,7 @@ class HomeContentViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var fab: ButtonControl!
+    @IBOutlet weak var fabImageView: UIImageView!
     
     var inGame = false
     var flipping = false
@@ -29,10 +30,11 @@ class HomeContentViewController: UIViewController {
         
         //fab.isHidden = true
         
-        fab.layer.cornerRadius = 25
-        fab.layer.masksToBounds = false
-        fab.normalBackgroundColor = .actionBlue
-        fab.backgroundColorOnPress = UIColor.actionBlue.darker()
+        fab.layer.cornerRadius = 27.5
+        fab.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 5), radius: 10)
+        let fabColor = UIColor(red: 17/255, green: 57/255, blue: 112/255, alpha: 1)
+        fab.normalBackgroundColor = fabColor
+        fab.backgroundColorOnPress = fabColor.darker()
         
         NotificationCenter.default.rx.notification(.gameOnboardingComplete, object: nil)
             .asObservable()
@@ -50,9 +52,11 @@ class HomeContentViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome) {
             let sb = UIStoryboard(name: "Game", bundle: nil)
             viewController = sb.instantiateViewController(withIdentifier: "GameHome")
+            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
             inGame = true
         } else {
             viewController = storyboard!.instantiateViewController(withIdentifier: "Home")
+            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
             inGame = false
         }
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -110,6 +114,7 @@ class HomeContentViewController: UIViewController {
             
             addChild(controller)
             
+            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
             UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.flipping = false
                 self?.containerView = controller.view
@@ -131,6 +136,7 @@ class HomeContentViewController: UIViewController {
             
             addChild(controller)
             
+            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
             UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.flipping = false
                 self?.containerView = controller.view
