@@ -20,6 +20,7 @@ class GameHomeViewModel {
     let error = BehaviorRelay<Bool>(value: false)
     let accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
     let usageData = BehaviorRelay<[DailyUsage]?>(value: nil)
+    let selectedCoinView = BehaviorRelay<DailyInsightCoinView?>(value: nil)
     
     required init(accountService: AccountService, gameService: GameService) {
         self.accountService = accountService
@@ -53,5 +54,5 @@ class GameHomeViewModel {
         Driver.combineLatest(self.loading.asDriver(), self.error.asDriver(), self.usageData.asDriver()) {
             return !$0 && !$1 && $2 != nil
         }
-
+    
 }

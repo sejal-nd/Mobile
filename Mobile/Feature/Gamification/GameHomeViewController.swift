@@ -63,23 +63,7 @@ class GameHomeViewController: AccountPickerViewController {
         dailyInsightLabel.textColor = .deepGray
         dailyInsightLabel.font = OpenSans.regular.of(textStyle: .headline)
         dailyInsightLabel.text = NSLocalizedString("Daily Insight", comment: "")
-        
-        coinStack.arrangedSubviews.forEach {
-            $0.removeFromSuperview()
-        }
-        
-        var viewArray = [DailyInsightCoinView]()
-        for _ in 0..<7 {
-            let view = DailyInsightCoinView(placeholderViewForDate: Date())
-            view.delegate = self
-            viewArray.append(view)
-        }
-        
-        viewArray.forEach {
-            coinViews.append($0)
-            coinStack.addArrangedSubview($0)
-        }
-        
+                
         bubbleView.layer.borderColor = UIColor.accentGray.cgColor
         bubbleView.layer.borderWidth = 1
         bubbleView.layer.cornerRadius = 10
@@ -121,9 +105,60 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowContent.not().drive(dailyInsightContentView.rx.isHidden).disposed(by: bag)
         
-        viewModel.usageData.asDriver().drive(onNext: { usageArray in
-            print(usageArray)
+        viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
+            guard let usageArray = array, usageArray.count > 0 else { return }
+            self?.layoutCoinViews(usageArray: usageArray)
         }).disposed(by: bag)
+        
+        viewModel.selectedCoinView.asDriver().drive(onNext: { [weak self] coinView in
+            guard let self = self, let selectedCoinView = coinView else { return }
+            
+            self.bubbleTriangleCenterXConstraint.isActive = false
+            self.bubbleTriangleCenterXConstraint = self.bubbleTriangleImageView.centerXAnchor.constraint(equalTo: selectedCoinView.centerXAnchor)
+            self.bubbleTriangleCenterXConstraint.isActive = true
+        }).disposed(by: bag)
+    }
+    
+    func layoutCoinViews(usageArray: [DailyUsage]) {
+        coinStack.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
+        coinViews.removeAll()
+        
+        let dataCount = min(usageArray.count, 7)
+        for i in 0..<dataCount {
+            let data = usageArray[i]
+            var lastWeekData: DailyUsage?
+            if usageArray.count > i + 7 {
+                lastWeekData = usageArray[i + 7]
+            }
+            
+            //let canCollect = coreDataManager.getDay(accountNumber: accountNumber!, data: electricData) == nil
+            
+            let view = DailyInsightCoinView(usage: data, lastWeekUsage: lastWeekData, canCollect: true)
+            view.delegate = self
+            coinViews.append(view)
+        }
+        coinViews.reverse() // Views are now oldest to most recent
+        
+        // Fill in "placeholder" views if there are any days without data between now and the first data point
+        let mostRecentDataPoint = usageArray.first!
+        let startOfToday = Calendar.current.startOfDay(for: Date()) // Based on user's timezone so their current "today" is always displayed
+        let daysApart = abs(mostRecentDataPoint.date.interval(ofComponent: .day, fromDate: startOfToday, usingCalendar: .gmt))
+        //print("daysApart = \(daysApart)")
+        for i in 1...daysApart {
+            guard let nextDay = Calendar.gmt.date(byAdding: .day, value: i, to: mostRecentDataPoint.date) else { continue }
+            let placeholderView = DailyInsightCoinView(placeholderViewForDate: nextDay)
+            placeholderView.delegate = self
+            coinViews.append(placeholderView)
+        }
+        
+        coinViews.removeFirst(coinViews.count - 7)
+        coinViews.forEach {
+            coinStack.addArrangedSubview($0)
+        }
+        dailyInsightCoinView(coinViews.last!, wasTappedWithCoinCollected: false)
     }
     
     @objc func onBuddyTap() {
@@ -145,9 +180,6 @@ extension GameHomeViewController: AccountPickerDelegate {
 extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
     
     func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool) {
-        print(view.frame.origin.x)
-        bubbleTriangleCenterXConstraint.isActive = false
-        bubbleTriangleCenterXConstraint = bubbleTriangleImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        bubbleTriangleCenterXConstraint.isActive = true
+        viewModel.selectedCoinView.accept(view)
     }
 }

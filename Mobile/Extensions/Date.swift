@@ -81,10 +81,9 @@ extension Date {
         }
     }
     
-    func interval(ofComponent comp: Calendar.Component, fromDate date: Date) -> Int {
-        let currentCalendar = Calendar.opCo
-        guard let start = currentCalendar.ordinality(of: comp, in: .era, for: date) else { return 0 }
-        guard let end = currentCalendar.ordinality(of: comp, in: .era, for: self) else { return 0 }
+    func interval(ofComponent comp: Calendar.Component, fromDate date: Date, usingCalendar calendar: Calendar = Calendar.opCo) -> Int {
+        guard let start = calendar.ordinality(of: comp, in: .era, for: date) else { return 0 }
+        guard let end = calendar.ordinality(of: comp, in: .era, for: self) else { return 0 }
         return end - start
     }
     

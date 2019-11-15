@@ -41,7 +41,7 @@ class MCSGameService: GameService {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 
-                let array: [DailyUsage] = intervals.compactMap {
+                var array: [DailyUsage] = intervals.compactMap {
                     var dailyUsage = DailyUsage.from($0 as NSDictionary)
                     if unit == "KWH" {
                         dailyUsage?.unit = "kWh"
@@ -51,6 +51,11 @@ class MCSGameService: GameService {
                         dailyUsage?.unit = unit
                     }
                     return dailyUsage
+                }
+                
+                // Most recent first
+                array.sort { (a, b) -> Bool in
+                    a.date > b.date
                 }
                 
                 return array

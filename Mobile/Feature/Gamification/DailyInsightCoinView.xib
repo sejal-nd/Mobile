@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DailyInsightCoinView" customModule="BGE" customModuleProvider="target">
             <connections>
-                <outlet property="coinImageView" destination="Jf4-eL-bdh" id="vpK-Oe-Vfs"/>
+                <outlet property="circleBorderView" destination="R6f-yn-OeA" id="HOD-xQ-Dhd"/>
+                <outlet property="imageView" destination="Jf4-eL-bdh" id="P6l-lE-gwT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="meo-6f-gj5"/>
                 <outlet property="weekdayLabel" destination="qcn-Ys-BOI" id="0Mg-g6-Di0"/>
             </connections>
@@ -24,7 +25,15 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Jf4-eL-bdh">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6f-yn-OeA">
+                    <rect key="frame" x="0.0" y="20" width="36" height="36"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="lTq-Kp-EXH"/>
+                        <constraint firstAttribute="width" constant="36" id="mm7-M9-I3v"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Jf4-eL-bdh">
                     <rect key="frame" x="0.0" y="20" width="36" height="36"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="36" id="EEh-7w-Wxd"/>
@@ -35,11 +44,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="R6f-yn-OeA" secondAttribute="trailing" id="2b3-CE-Aci"/>
                 <constraint firstItem="Jf4-eL-bdh" firstAttribute="top" secondItem="qcn-Ys-BOI" secondAttribute="bottom" constant="3" id="FD6-Si-y8Q"/>
                 <constraint firstAttribute="trailing" secondItem="Jf4-eL-bdh" secondAttribute="trailing" id="U8c-d8-25q"/>
+                <constraint firstItem="R6f-yn-OeA" firstAttribute="top" secondItem="qcn-Ys-BOI" secondAttribute="bottom" constant="3" id="XGl-xl-bra"/>
                 <constraint firstItem="Jf4-eL-bdh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Xcs-CC-yfM"/>
                 <constraint firstAttribute="bottom" secondItem="Jf4-eL-bdh" secondAttribute="bottom" id="bhg-R1-IZq"/>
                 <constraint firstItem="qcn-Ys-BOI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="egs-qO-mFt"/>
+                <constraint firstItem="R6f-yn-OeA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="knX-62-hBO"/>
                 <constraint firstItem="qcn-Ys-BOI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="r5u-iR-497"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
