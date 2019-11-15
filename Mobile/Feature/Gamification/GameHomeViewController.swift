@@ -36,6 +36,22 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.energyBuddyView.stopAnimations()
+            })
+            .disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.energyBuddyView.updateSky()
+                self?.energyBuddyView.playDefaultAnimations()
+                self?.energyBuddyView.bounce()
+            })
+            .disposed(by: bag)
+        
         accountPicker.delegate = self
         accountPicker.parentViewController = self
 
@@ -85,7 +101,7 @@ class GameHomeViewController: AccountPickerViewController {
         energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
         
         energyBuddyView.bounce()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
             self?.energyBuddyView.playHappyAnimation()
             self?.energyBuddyView.showWelcomeMessage()
         }

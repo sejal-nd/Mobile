@@ -72,18 +72,15 @@ class EnergyBuddyView: UIView {
         speechBubbleLabel.font = OpenSans.semibold.of(textStyle: .headline)
         speechBubbleContainerView.alpha = 0
         
-        setDefaultAnimations()
-    }
-        
-    func bounce() {
-        view.layoutIfNeeded()
-        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
-            self.energyBuddyContainerTopConstraint.constant = 10
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        updateSky()
+        playDefaultAnimations()
     }
     
-    func setDefaultAnimations() {
+    func updateSky() {
+        skyImageView.image = Date().skyImageForCurrentTime
+    }
+    
+    func playDefaultAnimations() {
         bodyAnimation?.stop()
         bodyAnimation?.removeFromSuperview()
         bodyAnimation = LOTAnimationView(name: "buddy_body")
@@ -104,20 +101,21 @@ class EnergyBuddyView: UIView {
         
         particleAnimation?.stop()
         particleAnimation?.removeFromSuperview()
-//        particleAnimation = LOTAnimationView(name: "buddy_particles_sparkles")
-//        particleAnimation!.frame.size = energyBuddyParticleLottieView.frame.size
-//        particleAnimation!.loopAnimation = true
-//        particleAnimation!.contentMode = .scaleAspectFit
-//        energyBuddyParticleLottieView.addSubview(particleAnimation!)
-//        particleAnimation!.play()
     }
     
-    func reset() {
+    func stopAnimations() {
+        bodyAnimation?.stop()
         faceAnimation?.stop()
-        faceAnimation = LOTAnimationView(name: "buddy_face_normal")
-        faceAnimation!.loopAnimation = true
-        //energyBuddyFaceLottieView.addSubview(faceAnimation!)
-        faceAnimation!.play()
+        particleAnimation?.stop()
+    }
+    
+    func bounce() {
+        self.energyBuddyContainerTopConstraint.constant = 0
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
+            self.energyBuddyContainerTopConstraint.constant = 10
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     func playHappyAnimation() {
@@ -128,7 +126,7 @@ class EnergyBuddyView: UIView {
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
         faceAnimation!.play { [weak self] _ in
-            self?.setDefaultAnimations()
+            self?.playDefaultAnimations()
         }
     }
     
@@ -140,7 +138,7 @@ class EnergyBuddyView: UIView {
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
         faceAnimation!.play { [weak self] _ in
-            self?.setDefaultAnimations()
+            self?.playDefaultAnimations()
         }
         
         var particleAnimationView: LOTAnimationView?
@@ -178,4 +176,29 @@ class EnergyBuddyView: UIView {
         })
     }
 
+}
+
+extension Date {
+    @nonobjc var localizedGameGreeting: String {
+        let components = Calendar.current.dateComponents([.hour], from: self)
+        guard let hour = components.hour else { return "Greetings!" }
+        
+        if 4 ... 11 ~= hour {
+            return NSLocalizedString("Good morning!", comment: "")
+        } else if 11 ... 15 ~= hour {
+            return NSLocalizedString("Good afternoon!", comment: "")
+        } else {
+            return NSLocalizedString("Good evening!", comment: "")
+        }
+    }
+    
+    var skyImageForCurrentTime: UIImage {
+        let components = Calendar.current.dateComponents([.hour], from: self)
+        if let hour = components.hour {
+            if hour <= 6 || hour >= 19 { // Night image displays between 7pm and 6am
+                return #imageLiteral(resourceName: "img_bgsky_night.pdf")
+            }
+        }
+        return #imageLiteral(resourceName: "img_bgsky_day.pdf")
+    }
 }

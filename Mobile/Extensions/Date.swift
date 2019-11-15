@@ -72,20 +72,7 @@ extension Date {
             return NSLocalizedString("Good Evening", comment: "")
         }
     }
-    
-    @nonobjc var localizedGameGreeting: String {
-        let components = Calendar.current.dateComponents([.hour], from: self)
-        guard let hour = components.hour else { return "Greetings!" }
-        
-        if 4 ... 11 ~= hour {
-            return NSLocalizedString("Good morning!", comment: "")
-        } else if 11 ... 15 ~= hour {
-            return NSLocalizedString("Good afternoon!", comment: "")
-        } else {
-            return NSLocalizedString("Good evening!", comment: "")
-        }
-    }
-    
+            
     @nonobjc var paymentFormatString: String {
         if isInToday(calendar: .opCo) {
             return DateFormatter.apiFormatterGMT.string(from: self)
