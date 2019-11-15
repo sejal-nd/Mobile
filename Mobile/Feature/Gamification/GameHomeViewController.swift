@@ -117,6 +117,8 @@ class GameHomeViewController: AccountPickerViewController {
             self.bubbleTriangleCenterXConstraint = self.bubbleTriangleImageView.centerXAnchor.constraint(equalTo: selectedCoinView.centerXAnchor)
             self.bubbleTriangleCenterXConstraint.isActive = true
         }).disposed(by: bag)
+        
+        viewModel.bubbleLabelText.drive(bubbleLabel.rx.text).disposed(by: bag)
     }
     
     func layoutCoinViews(usageArray: [DailyUsage]) {
@@ -146,7 +148,6 @@ class GameHomeViewController: AccountPickerViewController {
         let mostRecentDataPoint = usageArray.first!
         let startOfToday = Calendar.current.startOfDay(for: Date()) // Based on user's timezone so their current "today" is always displayed
         let daysApart = abs(mostRecentDataPoint.date.interval(ofComponent: .day, fromDate: startOfToday, usingCalendar: .gmt))
-        //print("daysApart = \(daysApart)")
         for i in 1...daysApart {
             guard let nextDay = Calendar.gmt.date(byAdding: .day, value: i, to: mostRecentDataPoint.date) else { continue }
             let placeholderView = DailyInsightCoinView(placeholderViewForDate: nextDay)
@@ -154,7 +155,7 @@ class GameHomeViewController: AccountPickerViewController {
             coinViews.append(placeholderView)
         }
         
-        coinViews.removeFirst(coinViews.count - 7)
+        coinViews.removeFirst(coinViews.count - 7) // We just need the latest 7 days
         coinViews.forEach {
             coinStack.addArrangedSubview($0)
         }
