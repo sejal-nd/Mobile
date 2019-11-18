@@ -56,15 +56,7 @@ class GameHomeViewModel {
         }
     
     private(set) lazy var bubbleLabelText: Driver<String?> = self.selectedCoinView.asDriver().map {
-        if let usage = $0?.usage {
-            var string = String.localizedStringWithFormat("You used %@ %@.", usage.amount.twoDecimalString, usage.unit)
-            if let lastWeekUsage = $0?.lastWeekUsage {
-                string += String.localizedStringWithFormat(" You used %@ %@ last week.", lastWeekUsage.amount.twoDecimalString, lastWeekUsage.unit)
-            }
-            return string
-        } else {
-            return NSLocalizedString("Data not yet available. It generally takes 24 to 48 hours to appear. Check back later!", comment: "")
-        }
+        $0?.lastWeekComparisonString
     }
         
     

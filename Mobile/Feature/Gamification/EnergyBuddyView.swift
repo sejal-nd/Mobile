@@ -79,7 +79,7 @@ class EnergyBuddyView: UIView {
         skyImageView.image = Date().skyImageForCurrentTime
     }
     
-    func playDefaultAnimations() {
+    func playDefaultAnimations(resetBounce: Bool = true) {
         bodyAnimation?.stop()
         bodyAnimation?.removeFromSuperview()
         bodyAnimation = AnimationView(name: "buddy_body")
@@ -100,21 +100,21 @@ class EnergyBuddyView: UIView {
         
         particleAnimation?.stop()
         particleAnimation?.removeFromSuperview()
+        
+        if resetBounce {
+            self.energyBuddyContainerTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
+                self.energyBuddyContainerTopConstraint.constant = 10
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
     }
-    
+
     func stopAnimations() {
         bodyAnimation?.stop()
         faceAnimation?.stop()
         particleAnimation?.stop()
-    }
-    
-    func bounce() {
-        self.energyBuddyContainerTopConstraint.constant = 0
-        self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
-            self.energyBuddyContainerTopConstraint.constant = 10
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
     
     func playHappyAnimation() {
@@ -125,7 +125,7 @@ class EnergyBuddyView: UIView {
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
         faceAnimation!.play { [weak self] _ in
-            self?.playDefaultAnimations()
+            self?.playDefaultAnimations(resetBounce: false)
         }
     }
     
@@ -137,7 +137,7 @@ class EnergyBuddyView: UIView {
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
         faceAnimation!.play { [weak self] _ in
-            self?.playDefaultAnimations()
+            self?.playDefaultAnimations(resetBounce: false)
         }
         
         var particleAnimationView: AnimationView?

@@ -116,7 +116,7 @@ class DailyInsightCoinView: UIControl {
     var lastWeekComparisionImage: UIImage? {
         guard let thisWeek = usage, let lastWeek = lastWeekUsage else { return nil }
         
-        let diff = abs(thisWeek.amount - lastWeek.amount).rounded(toPlaces: 2)
+        let diff = abs(thisWeek.amount - lastWeek.amount)
         let diffThreshold = thisWeek.unit == "kWh" ? 0.5 : 0.1
         if diff <= diffThreshold {
             return #imageLiteral(resourceName: "ic_trendequal.pdf")
@@ -125,6 +125,26 @@ class DailyInsightCoinView: UIControl {
                 return #imageLiteral(resourceName: "ic_trendup.pdf")
             } else {
                 return #imageLiteral(resourceName: "ic_trenddown.pdf")
+            }
+        }
+    }
+    
+    var lastWeekComparisonString: String {
+        guard let thisWeek = usage, let lastWeek = lastWeekUsage else {
+            return NSLocalizedString("Data not yet available. It generally takes 24 to 48 hours to appear. Check back later!", comment: "")
+        }
+        
+        let diff = abs(thisWeek.amount - lastWeek.amount)
+        let diffThreshold = thisWeek.unit == "kWh" ? 0.5 : 0.1
+        if diff <= diffThreshold {
+            return String.localizedStringWithFormat("You used %@ %@ which was about the same as last week.", thisWeek.amount.twoDecimalString, thisWeek.unit)
+        } else {
+            if thisWeek.amount > lastWeek.amount {
+                return String.localizedStringWithFormat("You used %@ %@ which was %@ %@ more than last week.",
+                                                        thisWeek.amount.twoDecimalString, thisWeek.unit, diff.twoDecimalString, thisWeek.unit)
+            } else {
+                return String.localizedStringWithFormat("You used %@ %@ which was %@ %@ less than last week.",
+                    thisWeek.amount.twoDecimalString, thisWeek.unit, diff.twoDecimalString, thisWeek.unit)
             }
         }
     }

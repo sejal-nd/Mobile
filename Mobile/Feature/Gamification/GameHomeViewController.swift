@@ -33,6 +33,9 @@ class GameHomeViewController: AccountPickerViewController {
 
     let bag = DisposeBag()
     
+    var layoutSubviewsComplete = false
+    var welcomedUser = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +51,6 @@ class GameHomeViewController: AccountPickerViewController {
             .drive(onNext: { [weak self] _ in
                 self?.energyBuddyView.updateSky()
                 self?.energyBuddyView.playDefaultAnimations()
-                self?.energyBuddyView.bounce()
             })
             .disposed(by: bag)
         
@@ -70,6 +72,8 @@ class GameHomeViewController: AccountPickerViewController {
         bubbleLabel.textColor = .deepGray
         bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
+        energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
+        
         bindViewModel()
     }
     
@@ -77,29 +81,44 @@ class GameHomeViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if layoutSubviewsComplete {
+            // Resume animations that paused when switching tabs
+            energyBuddyView.playDefaultAnimations()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                 
-        energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
-        
-        energyBuddyView.bounce()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-            self?.energyBuddyView.playHappyAnimation()
-            self?.energyBuddyView.showWelcomeMessage()
+        if !welcomedUser {
+            welcomedUser = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+                self?.energyBuddyView.playHappyAnimation()
+                self?.energyBuddyView.showWelcomeMessage()
+            }
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        energyBuddyView.playDefaultAnimations()
+        if !layoutSubviewsComplete {
+            layoutSubviewsComplete = true
+            energyBuddyView.playDefaultAnimations()
+        }
+        
         if let rightMostCoinView = coinViews.last {
             bubbleTriangleCenterXConstraint.isActive = false
             bubbleTriangleCenterXConstraint = bubbleTriangleImageView.centerXAnchor.constraint(equalTo: rightMostCoinView.centerXAnchor)
             bubbleTriangleCenterXConstraint.isActive = true
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        energyBuddyView.stopAnimations()
     }
     
     private func bindViewModel() {
@@ -168,6 +187,13 @@ class GameHomeViewController: AccountPickerViewController {
         //energyBuddyView.playSuperHappyAnimation()
         energyBuddyView.playSuperHappyAnimation(withSparkles: true)
         //energyBuddyView.playSuperHappyAnimation(withHearts: true)
+    }
+    
+    @IBAction func onDailyInsightTooltipPress() {
+        let alert = InfoAlertController(title: NSLocalizedString("Daily Insight", comment: ""),
+                                        message: NSLocalizedString("Your daily usage and weather will be compared to your previous week. Points for each day will be available for up to 7 days of data. Uncollected points for the days prior will be lost, so be sure to check at least once a week!\n\nIt may take up to 24-48 hours for new data to appear.", comment: ""),
+                                        action: nil)
+        self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
 
