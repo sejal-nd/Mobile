@@ -37,7 +37,7 @@ struct MaintenanceModeStatus {
 // MARK: - Network Utility
 
 final class NetworkUtility {
-    
+
     public static let shared = NetworkUtility()
 
     private let disposeBag = DisposeBag()
@@ -83,6 +83,8 @@ final class NetworkUtility {
         // Reset Maintenance Mode Statuses
         maintenanceModeStatuses.removeAll()
         
+        var isPasswordProtected = false
+        
         if shouldLoadAccountList {
             dispatchQueue.async { [unowned self] in
                 self.fetchAccountList(result: { (result) in
@@ -92,13 +94,25 @@ final class NetworkUtility {
                         self.notificationCenter.post(name: .accountListDidUpdate, object: accounts)
                         self.semaphore.signal()
                     case .failure(let error):
-                        self.error = (error, Feature.all)
-                        self.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+                        if error == .passwordProtected {
+                            self.error = (.passwordProtected, Feature.all)
+
+                            self.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.passwordProtected, Feature.all))
+                            isPasswordProtected = true
+                        } else {
+                            self.error = (error, Feature.all)
+
+                            self.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
+                        }
+                        
                         self.semaphore.signal()
                         return
                     }
                 })
                 self.semaphore.wait()
+                
+                guard !isPasswordProtected else { return }
+                
                 self.fetchFeatureData(semaphore: self.semaphore, dispatchQueue: self.dispatchQueue)
             }
         } else {
@@ -263,17 +277,20 @@ extension NetworkUtility {
                 AccountsStore.shared.currentIndex = 0
             }
             
-            //            DispatchQueue.main.async {
             self?.defaultAccount = firstAccount
             self?.notificationCenter.post(name: .defaultAccountDidUpdate, object: firstAccount)
-            //            }
             
             dLog("Accounts Fetched.")
             
             result(.success(accounts))
             }, onError: { error in
-                dLog("Failed to retrieve account list: \(error.localizedDescription)")
-                result(.failure(.fetchError))
+                if let serviceError = error as? ServiceError, serviceError.serviceCode == ServiceErrorCode.fnAccountProtected.rawValue {
+                    dLog("Failed to retrieve account list.  Password Protected Account.")
+                    result(.failure(.passwordProtected))
+                } else {
+                    dLog("Failed to retrieve account list: \(error.localizedDescription)")
+                    result(.failure(.fetchError))
+                }
         }).disposed(by: disposeBag)
     }
     
@@ -402,6 +419,7 @@ extension NetworkUtility {
         guard let account = notification.object as? Account else {
             dLog("Failed to update current account, no account recieved in notification.")
             error = (.invalidAccount, .all)
+            
             notificationCenter.post(name: .errorDidOccur, object: (NetworkError.invalidAccount, Feature.all))
             return
         }

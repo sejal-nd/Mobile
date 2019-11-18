@@ -35,8 +35,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet private weak var contactButton: ButtonControl!
     @IBOutlet private weak var contactLabel: UILabel!
     
-    var topAnimation = LOTAnimationView()
-    var progressAnimation = LOTAnimationView(name: "appointment_tracker")
+    var topAnimation = AnimationView()
+    var progressAnimation = AnimationView(name: "appointment_tracker")
     
     var eventVC = EKEventEditViewController()
     
@@ -231,7 +231,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func frameForStatus(_ status: Appointment.Status) -> Int {
+    func frameForStatus(_ status: Appointment.Status) -> CGFloat {
         switch status {
         case .scheduled:
             return 67
@@ -253,9 +253,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         
         let stopFrame = frameForStatus(viewModel.status)
         progressAnimation.stop()
-        progressAnimation.play(fromFrame: NSNumber(integerLiteral: 0),
-                               toFrame: NSNumber(integerLiteral: stopFrame),
-                               withCompletion: nil)
+        progressAnimation.play(fromFrame: 0.0, toFrame: stopFrame, loopMode: .playOnce, completion: nil)
     }
     
     func playProgressAnimation(fromStatus: Appointment.Status) {
@@ -267,9 +265,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         let stopFrame = frameForStatus(viewModel.status)
         
         progressAnimation.stop()
-        progressAnimation.play(fromFrame: NSNumber(integerLiteral: startFrame),
-                               toFrame: NSNumber(integerLiteral: stopFrame),
-                               withCompletion: nil)
+        progressAnimation.play(fromFrame: startFrame, toFrame: stopFrame, loopMode: .playOnce, completion: nil)
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
@@ -299,8 +295,8 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
             loop = false
         }
         
-        topAnimation = LOTAnimationView(name: animationName)
-        topAnimation.loopAnimation = loop
+        topAnimation = AnimationView(name: animationName)
+        topAnimation.loopMode = loop ? .loop : .playOnce
         topAnimation.translatesAutoresizingMaskIntoConstraints = false
         topAnimation.contentMode = .scaleAspectFill
         
@@ -320,7 +316,7 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func setUpProgressAnimation() {
-        progressAnimation.loopAnimation = false
+        progressAnimation.loopMode = .playOnce
         progressAnimation.translatesAutoresizingMaskIntoConstraints = false
         progressAnimation.contentMode = .scaleAspectFill
         

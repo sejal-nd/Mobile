@@ -274,20 +274,20 @@ class BillInterfaceController: WKInterfaceController {
         // Show/Hide Views
         state = .loaded
         
-        billAlertGroup.setHidden(!billUtility.showAlertBanner)
+        billAlertGroup.setHidden(!billUtility.shouldShowAlertBanner)
         
-        totalAmountGroup.setHidden(!billUtility.showTotalAmountAndLedger)
+        totalAmountGroup.setHidden(!billUtility.shouldShowTotalAmountAndLedger)
         
-        paymentReceivedGroup.setHidden(!billUtility.showPaymentReceived)
+        paymentReceivedGroup.setHidden(!billUtility.shouldShowPaymentReceived)
         
         // auto pay & scheduled payment + bill not ready
-        autoPayScheduledPaymentGroup.setHidden(billUtility.shouldHideAutoPay)
+        autoPayScheduledPaymentGroup.setHidden(!billUtility.shouldShowAutopay)
         
-        pastDueGroup.setHidden(!billUtility.showPastDue)
+        pastDueGroup.setHidden(!billUtility.shouldShowPastDue)
         
-        currentBillGroup.setHidden(!billUtility.showCurrentBill)
-        pendingPaymentGroup.setHidden(!billUtility.showPendingPayment)
-        remainingBalanceGroup.setHidden(!billUtility.showRemainingBalanceDue)
+        currentBillGroup.setHidden(!billUtility.shouldShowCurrentBill)
+        pendingPaymentGroup.setHidden(!billUtility.shouldShowPendingPayment)
+        remainingBalanceGroup.setHidden(!billUtility.shouldShowRemainingBalanceDue)
         
         // Set values
         billAlertLabel.setText(billUtility.alertBannerText)

@@ -71,9 +71,9 @@
                                     <variation key="device=watch42mm" height="130"/>
                                     <variation key="device=watch44mm" height="130"/>
                                 </group>
-                                <group width="1" alignment="center" layout="vertical" spacing="0.0" id="UcK-eo-7fT">
+                                <group width="1" alignment="center" layout="vertical" spacing="4" id="UcK-eo-7fT">
                                     <items>
-                                        <imageView height="60" alignment="center" verticalAlignment="center" image="outageUnavailable" contentMode="scaleAspectFit" id="8Av-tA-f0B">
+                                        <imageView width="100" height="60" alignment="center" verticalAlignment="center" image="outageUnavailable" contentMode="scaleAspectFit" id="8Av-tA-f0B">
                                             <variation key="device=watch38mm" height="60"/>
                                             <variation key="device=watch40mm" height="60"/>
                                             <variation key="device=watch42mm" height="60"/>
