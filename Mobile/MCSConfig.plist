@@ -172,7 +172,7 @@
 		<key>Prod-bgeMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://mcs.mobileenv.bge.com</string>
 			<key>mobileBackendID</key>
 			<string>6681b1e8-bf86-40c2-8faf-66b140c76cea</string>
 			<key>anonymousKey</key>
@@ -187,9 +187,9 @@
 		<key>Prod-comedMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://mcs.mobileenv.comed.com</string>
 			<key>mobileBackendID</key>
-			<string>e4018111-369f-418e-9d31-e95377170d0e</string>
+			<string>01470bef-2fda-47d9-9907-201cdfe0ec40</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
@@ -202,9 +202,9 @@
 		<key>Prod-pecoMBE</key>
 		<dict>
 			<key>baseURL</key>
-			<string>https://exelonmobileapp-a453576.mobileenv.us2.oraclecloud.com:443</string>
+			<string>https://mcs.mobileenv.peco.com</string>
 			<key>mobileBackendID</key>
-			<string>b7990531-b75c-4345-91c1-1c2ff9b81612</string>
+			<string>5ccbf839-ae71-477f-a397-9f5ca1ce7572</string>
 			<key>anonymousKey</key>
 			<string>YW5vbl9wcmQ6Y0Y4UiF4MXVCb1pvbGQ0WTFEdSM=</string>
 			<key>oauthEndpoint</key>
