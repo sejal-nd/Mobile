@@ -27,9 +27,9 @@ class EnergyBuddyView: UIView {
     @IBOutlet weak var energyBuddyFaceLottieView: UIView!
     @IBOutlet weak var energyBuddyParticleLottieView: UIView!
     
-    var bodyAnimation: LOTAnimationView?
-    var faceAnimation: LOTAnimationView?
-    var particleAnimation: LOTAnimationView?
+    var bodyAnimation: AnimationView?
+    var faceAnimation: AnimationView?
+    var particleAnimation: AnimationView?
     
     var welcomeMessages = [
         NSLocalizedString("Welcome back!", comment: ""),
@@ -82,19 +82,19 @@ class EnergyBuddyView: UIView {
     func playDefaultAnimations() {
         bodyAnimation?.stop()
         bodyAnimation?.removeFromSuperview()
-        bodyAnimation = LOTAnimationView(name: "buddy_body")
+        bodyAnimation = AnimationView(name: "buddy_body")
         bodyAnimation!.frame.size = energyBuddyBodyLottieView.frame.size
         bodyAnimation!.contentMode = .scaleAspectFit
-        bodyAnimation!.loopAnimation = true
+        bodyAnimation!.loopMode = .loop
         energyBuddyBodyLottieView.addSubview(bodyAnimation!)
         bodyAnimation!.play()
         
         faceAnimation?.stop()
         faceAnimation?.removeFromSuperview()
-        faceAnimation = LOTAnimationView(name: "buddy_face_normal")
+        faceAnimation = AnimationView(name: "buddy_face_normal")
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
-        faceAnimation!.loopAnimation = true
+        faceAnimation!.loopMode = .loop
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
         faceAnimation!.play()
         
@@ -120,7 +120,7 @@ class EnergyBuddyView: UIView {
     func playHappyAnimation() {
         faceAnimation?.stop()
         faceAnimation?.removeFromSuperview()
-        faceAnimation = LOTAnimationView(name: "buddy_face_happy")
+        faceAnimation = AnimationView(name: "buddy_face_happy")
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
@@ -132,7 +132,7 @@ class EnergyBuddyView: UIView {
     func playSuperHappyAnimation(withSparkles sparkles: Bool = false, withHearts hearts: Bool = false) {
         faceAnimation?.stop()
         faceAnimation?.removeFromSuperview()
-        faceAnimation = LOTAnimationView(name: "buddy_face_happy_bounce")
+        faceAnimation = AnimationView(name: "buddy_face_happy_bounce")
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
@@ -140,11 +140,11 @@ class EnergyBuddyView: UIView {
             self?.playDefaultAnimations()
         }
         
-        var particleAnimationView: LOTAnimationView?
+        var particleAnimationView: AnimationView?
         if sparkles {
-            particleAnimationView = LOTAnimationView(name: "buddy_particles_sparkles")
+            particleAnimationView = AnimationView(name: "buddy_particles_sparkles")
         } else if hearts {
-            particleAnimationView = LOTAnimationView(name: "buddy_particles_hearts")
+            particleAnimationView = AnimationView(name: "buddy_particles_hearts")
         }
         if let av = particleAnimationView {
             particleAnimation = av
