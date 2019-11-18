@@ -29,6 +29,7 @@ class UsageInterfaceController: WKInterfaceController {
     @IBOutlet var errorGroup: WKInterfaceGroup!
     @IBOutlet var errorImage: WKInterfaceImage!
     @IBOutlet var errorTitleLabel: WKInterfaceLabel!
+    @IBOutlet var errorDetailLabel: WKInterfaceLabel!
     
     @IBOutlet var nextForecastGroup: WKInterfaceGroup!
     @IBOutlet var nextForecastImage: WKInterfaceImage!
@@ -156,7 +157,8 @@ class UsageInterfaceController: WKInterfaceController {
                 
                 // set error data
                 errorImage.setImageNamed(AppImage.passwordProtected.name)
-                errorTitleLabel.setText("Password protected accounts cannot be accessed via app.")
+                errorTitleLabel.setText("Password Protected")
+                errorDetailLabel.setText("Your account cannot be accessed through this app.")
             case .unavailable:
                 // Hide all other groups
                 loadingImageGroup.setHidden(true)
@@ -183,7 +185,8 @@ class UsageInterfaceController: WKInterfaceController {
 
                 // set error data
                 errorImage.setImageNamed(AppImage.error.name)
-                errorTitleLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
+                errorTitleLabel.setText("Error")
+                errorDetailLabel.setText("Unable to retrieve data. Please open the \(Environment.shared.opco.displayString) app on your iPhone to sync your data or try again later.")
 
                 dLog("Usage Error State: \(serviceError.localizedDescription)")
             }
