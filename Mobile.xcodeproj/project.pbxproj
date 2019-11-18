@@ -1122,6 +1122,9 @@
 		9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABB220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
 		9C472ABC220CE05D008C882B /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C472AB9220CE05D008C882B /* Payment.storyboard */; };
+		9C48830523834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
+		9C48830623834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
+		9C48830723834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
 		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
@@ -3212,6 +3215,7 @@
 		9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewModel.swift; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		9C48830423834F2700321E6B /* GameTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTipViewController.swift; sourceTree = "<group>"; };
 		9C50EBD222B971D500A89DBF /* AccountPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountPicker.xib; sourceTree = "<group>"; };
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
@@ -5437,6 +5441,7 @@
 				9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */,
 				9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */,
 				9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */,
+				9C48830423834F2700321E6B /* GameTipViewController.swift */,
 			);
 			path = Gamification;
 			sourceTree = "<group>";
@@ -8064,6 +8069,7 @@
 				8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60161FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				B068DB5A20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
+				9C48830523834F2700321E6B /* GameTipViewController.swift in Sources */,
 				8FDF8C671E550502000B7BD0 /* BGEColor.swift in Sources */,
 				54AE06941ECF7809004A1FDA /* RegistrationService.swift in Sources */,
 				82AC2A1E1FAB66D800EACB3B /* PeakRewardsSummary.swift in Sources */,
@@ -8452,6 +8458,7 @@
 				35B9609F22B7BC79003BCC97 /* PremiseListRow.swift in Sources */,
 				8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60181FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
+				9C48830723834F2700321E6B /* GameTipViewController.swift in Sources */,
 				35A6C6E9211DE8D500C2A58F /* UpdatesViewModel.swift in Sources */,
 				B068DB5C20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C691E550545000B7BD0 /* PecoColor.swift in Sources */,
@@ -8840,6 +8847,7 @@
 				8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */,
 				E8EA60171FA1141A00FCE085 /* TotalSavingsViewController.swift in Sources */,
 				35A6C6EA211DE8D600C2A58F /* UpdatesViewModel.swift in Sources */,
+				9C48830623834F2700321E6B /* GameTipViewController.swift in Sources */,
 				B068DB5B20D3076D00930589 /* HomeEditFlowLayout.swift in Sources */,
 				8FDF8C6B1E550617000B7BD0 /* ComEdColor.swift in Sources */,
 				B574BACB1E72FF73001E8A44 /* ProfileStatus.swift in Sources */,

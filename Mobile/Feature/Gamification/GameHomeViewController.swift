@@ -185,8 +185,11 @@ class GameHomeViewController: AccountPickerViewController {
     @objc func onBuddyTap() {
         //energyBuddyView.playHappyAnimation()
         //energyBuddyView.playSuperHappyAnimation()
-        energyBuddyView.playSuperHappyAnimation(withSparkles: true)
+        //energyBuddyView.playSuperHappyAnimation(withSparkles: true)
         //energyBuddyView.playSuperHappyAnimation(withHearts: true)
+        
+        let tipVc = GameTipViewController.create()
+        self.tabBarController?.present(tipVc, animated: true, completion: nil)
     }
     
     @IBAction func onDailyInsightTooltipPress() {

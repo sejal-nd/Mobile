@@ -470,6 +470,88 @@
             </objects>
             <point key="canvasLocation" x="2239.130434782609" y="-2594.1964285714284"/>
         </scene>
+        <!--Game Tip View Controller-->
+        <scene sceneID="x7s-b9-n2C">
+            <objects>
+                <viewController storyboardIdentifier="TipPopup" id="TyM-h4-aTu" customClass="GameTipViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e6d-d6-ykt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sf-vu-Dvd">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yC-u6-rEF" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v8D-vJ-C0N">
+                                                <rect key="frame" x="31" y="298" width="352" height="300"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74E-Z5-bTU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="300"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Close"/>
+                                                                <state key="normal" image="ic_close"/>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="yas-Dz-Xrq" firstAttribute="top" secondItem="74E-Z5-bTU" secondAttribute="top" constant="15" id="IT4-VB-kR3"/>
+                                                            <constraint firstAttribute="height" constant="300" id="R84-4s-XVK"/>
+                                                            <constraint firstItem="Cex-WB-RL6" firstAttribute="centerX" secondItem="74E-Z5-bTU" secondAttribute="centerX" id="ZnO-Gn-PC6"/>
+                                                            <constraint firstItem="yas-Dz-Xrq" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="15" id="i2n-5W-xG8"/>
+                                                            <constraint firstItem="Cex-WB-RL6" firstAttribute="top" secondItem="74E-Z5-bTU" secondAttribute="top" id="k7i-ny-b7M"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="v8D-vJ-C0N" firstAttribute="leading" secondItem="0yC-u6-rEF" secondAttribute="leading" constant="31" id="gOS-vv-Rdr"/>
+                                            <constraint firstAttribute="trailing" secondItem="v8D-vJ-C0N" secondAttribute="trailing" constant="31" id="jpq-Cn-fb0"/>
+                                            <constraint firstItem="v8D-vJ-C0N" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0yC-u6-rEF" secondAttribute="top" constant="70" id="vK1-iL-5Az"/>
+                                            <constraint firstItem="v8D-vJ-C0N" firstAttribute="centerY" secondItem="0yC-u6-rEF" secondAttribute="centerY" id="w0c-LT-rBq"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="v8D-vJ-C0N" secondAttribute="bottom" constant="70" id="ySJ-vQ-SE2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0yC-u6-rEF" firstAttribute="width" secondItem="4sf-vu-Dvd" secondAttribute="width" id="50e-wY-VTz"/>
+                                    <constraint firstAttribute="trailing" secondItem="0yC-u6-rEF" secondAttribute="trailing" id="8lo-gb-35P"/>
+                                    <constraint firstItem="0yC-u6-rEF" firstAttribute="top" secondItem="4sf-vu-Dvd" secondAttribute="top" id="JWZ-n9-1kQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="0yC-u6-rEF" secondAttribute="bottom" id="ZWm-wt-5Ms"/>
+                                    <constraint firstItem="0yC-u6-rEF" firstAttribute="centerX" secondItem="4sf-vu-Dvd" secondAttribute="centerX" id="ahC-hg-ef3"/>
+                                    <constraint firstItem="0yC-u6-rEF" firstAttribute="height" secondItem="4sf-vu-Dvd" secondAttribute="height" priority="250" id="jmy-a0-aDr"/>
+                                    <constraint firstItem="0yC-u6-rEF" firstAttribute="leading" secondItem="4sf-vu-Dvd" secondAttribute="leading" id="xCK-rX-DSm"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="mvB-dr-QmN"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="veS-hc-5Vq"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4sf-vu-Dvd" secondAttribute="trailing" id="F6t-cS-X0E"/>
+                            <constraint firstAttribute="bottom" secondItem="4sf-vu-Dvd" secondAttribute="bottom" id="HyH-te-kqA"/>
+                            <constraint firstItem="4sf-vu-Dvd" firstAttribute="top" secondItem="e6d-d6-ykt" secondAttribute="top" id="KoY-xi-aOc"/>
+                            <constraint firstItem="4sf-vu-Dvd" firstAttribute="leading" secondItem="e6d-d6-ykt" secondAttribute="leading" id="Xqq-kw-lrl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3DQ-FV-tN7"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="yas-Dz-Xrq" id="oPI-5V-y6l"/>
+                        <outlet property="popupView" destination="74E-Z5-bTU" id="gQZ-Qe-x9W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qWY-U0-LiK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3224.6376811594205" y="-2594.1964285714284"/>
+        </scene>
         <!--Game Onboarding Step2 View Controller-->
         <scene sceneID="mxc-SF-VFE">
             <objects>
@@ -640,6 +722,7 @@
         <image name="bill_analysis_shadow_triangle" width="50" height="61"/>
         <image name="ic_back" width="24" height="24"/>
         <image name="ic_close" width="24" height="24"/>
+        <image name="ic_energybuddy" width="110" height="110"/>
         <image name="ic_tooltip" width="24" height="24"/>
         <image name="img_onboarding" width="220" height="200"/>
     </resources>
