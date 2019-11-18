@@ -11,10 +11,6 @@ import Foundation
 
 class MCSAppointmentService: AppointmentService {
     func fetchAppointments(accountNumber: String, premiseNumber: String) -> Observable<[Appointment]> {
-        if Environment.shared.opco == .peco {
-            return .just([])
-        }
-        
         return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(accountNumber)/premises/\(premiseNumber)/service/appointments/query")
             .map { json in
                 guard let array = json as? [NSDictionary] else {
