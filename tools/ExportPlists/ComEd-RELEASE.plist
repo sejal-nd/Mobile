@@ -8,6 +8,10 @@
 	<dict>
 		<key>com.iphoneproduction.exelon</key>
 		<string>ComEd App Store</string>
+		<key>com.exelon.mobile.comed.watchkitapp</key>
+		<string>ComEd Watchkit App Store</string>
+		<key>com.exelon.mobile.comed.watchkitapp.watchkitextension</key>
+		<string>ComEd WatchkitExtension App Store</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>320b2a1634549d319c6ae8e159586d5be17b442a</string>

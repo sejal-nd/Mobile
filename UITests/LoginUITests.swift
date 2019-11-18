@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import AppCenterXCUITestExtensions
+
 
 class LoginUITests: ExelonUITestCase {
     
@@ -39,7 +39,6 @@ class LoginUITests: ExelonUITestCase {
             (.button, "Back")
         ])
 
-        ACTLabel.labelStep("App center test -- test sign in page layout")
     }
     
     func testSignIn(){
@@ -57,7 +56,6 @@ class LoginUITests: ExelonUITestCase {
         
         // Assert that the Home page loaded after a valid login
         XCTAssertTrue(app.tabBars.buttons["Home"].exists, "User was not logged in after 15 seconds or login failed.")
-        ACTLabel.labelStep("App center test -- test sign in")
     }
     
     func testNoPassword() {
@@ -71,7 +69,7 @@ class LoginUITests: ExelonUITestCase {
         tapButton(buttonText: "Sign In")
 
         checkExistenceOfElement(.alert, "Sign In Error")
-        ACTLabel.labelStep("App center test -- test no pass")
+
     }
     
     func testNoUsername() {
@@ -85,7 +83,6 @@ class LoginUITests: ExelonUITestCase {
         tapButton(buttonText: "Sign In")
         
         checkExistenceOfElement(.alert, "Sign In Error")
-        ACTLabel.labelStep("App center test -- test no username")
     }
     
     func testInvalidUsername(){
@@ -96,16 +93,14 @@ class LoginUITests: ExelonUITestCase {
         XCTAssertTrue(usernameEmailAddressTextField.waitForExistence(timeout: 5))
         usernameEmailAddressTextField.clearAndEnterText("invalid@test.com")
 
-        ACTLabel.labelStep("App center test -- invalid username -- just typed in username")
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         XCTAssertTrue(passwordSecureTextField.waitForExistence(timeout: 5))
         passwordSecureTextField.clearAndEnterText("Password1")
-        ACTLabel.labelStep("App center test -- invalid username -- just typed in pass")
 
         tapButton(buttonText: "Sign In")
 
         checkExistenceOfElement(.alert, "Sign In Error")
-        ACTLabel.labelStep("App center test -- invalid username")
+
     }
     
     func testInvalidPassword() {
@@ -124,7 +119,6 @@ class LoginUITests: ExelonUITestCase {
 
         checkExistenceOfElement(.alert, "Sign In Error")
         
-        ACTLabel.labelStep("App center test -- invalid password")
     }
     
     func testContactUsAsGuest(){

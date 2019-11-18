@@ -32,13 +32,13 @@ func dLog(_ message: @autoclosure () -> String? = nil,
           filename: String = #file,
           function: String = #function,
           line: Int = #line) {
-#if DEBUG
+    #if DEBUG
     if let message = message() {
         NSLog("[%@: %d] %@ - %@", (filename as NSString).lastPathComponent, line, function, message)
     } else {
         NSLog("[%@: %d] %@", (filename as NSString).lastPathComponent, line, function)
     }
-#endif
+    #endif
 }
 
 fileprivate let chunkSize = 800
@@ -49,7 +49,10 @@ func APILog<T>(_ callerType: @autoclosure () -> T.Type,
                method: @autoclosure () -> HttpMethod,
                logType: @autoclosure () -> LogType,
                message: @autoclosure () -> String?) {
-#if DEBUG
+    
+    guard ProcessInfo.processInfo.arguments.contains("-shouldLogAPI") else { return }
+    
+    #if DEBUG
     let callerName = "\(callerType())"
     let requestId = requestId()
     let path = path() ?? ""
@@ -70,7 +73,7 @@ func APILog<T>(_ callerType: @autoclosure () -> T.Type,
     } else {
         NSLog("%@ [%@][%@][%@] %@ %@: %@", logType.symbol, callerName, requestId, path, method, logType.rawValue, message)
     }
-#endif
+    #endif
 }
 
 extension String {

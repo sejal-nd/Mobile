@@ -25,10 +25,6 @@ def iOS_UnitTestPods
   pod 'RxTest', '4.5.0'
 end
 
-def iOS_UITestPods
-  pod 'AppCenterXCUITestExtensions', '1.0'
-end
-
 abstract_target 'BGEApp' do
     platform :ios, '11.0'
     use_frameworks!
@@ -41,10 +37,6 @@ abstract_target 'BGEApp' do
 
     target 'BGEUnitTests' do
         iOS_UnitTestPods
-    end
-
-    target 'BGEUITests' do
-        iOS_UITestPods
     end
 end
 
@@ -61,10 +53,6 @@ abstract_target 'ComEdApp' do
     target 'ComEdUnitTests' do
         iOS_UnitTestPods
     end
-
-    target 'ComEdUITests' do
-        iOS_UITestPods
-    end
 end
 
 abstract_target 'PECOApp' do
@@ -80,18 +68,38 @@ abstract_target 'PECOApp' do
     target 'PECOUnitTests' do
         iOS_UnitTestPods
     end
-
-    target 'PECOUITests' do
-        iOS_UITestPods
-    end
 end
 
-target 'PECO_WatchOS' do
+target 'PECO-Watch' do
   platform :watchos, '4.0'
   use_frameworks!
 end
 
-target 'PECO_WatchOS Extension' do
+target 'PECO-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
+target 'BGE-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'BGE-Watch Extension' do
+  platform :watchos, '4.0'
+  use_frameworks!
+
+  shared_pods
+end
+
+target 'ComEd-Watch' do
+  platform :watchos, '4.0'
+  use_frameworks!
+end
+
+target 'ComEd-Watch Extension' do
   platform :watchos, '4.0'
   use_frameworks!
 

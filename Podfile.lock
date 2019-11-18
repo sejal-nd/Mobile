@@ -7,7 +7,6 @@ PODS:
   - AppCenter/Core (1.14.0)
   - AppCenter/Crashes (1.14.0):
     - AppCenter/Core
-  - AppCenterXCUITestExtensions (1.0.0)
   - Charts (3.3.0):
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
@@ -102,7 +101,6 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter (= 1.14)
-  - AppCenterXCUITestExtensions (= 1.0)
   - Charts (= 3.3)
   - Firebase/Core (= 5.19.0)
   - Firebase/RemoteConfig
@@ -122,7 +120,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
-    - AppCenterXCUITestExtensions
     - Charts
     - Firebase
     - FirebaseABTesting
@@ -149,7 +146,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
-  AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
@@ -174,6 +170,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 06c208368eb54bdb5cee65169247dbafcfd52637
+PODFILE CHECKSUM: 71345b2479e23d0e785de0095ef7fe75b839c2bd
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
