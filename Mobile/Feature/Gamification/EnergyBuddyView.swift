@@ -73,7 +73,6 @@ class EnergyBuddyView: UIView {
         speechBubbleContainerView.alpha = 0
         
         updateSky()
-        playDefaultAnimations()
     }
     
     func updateSky() {

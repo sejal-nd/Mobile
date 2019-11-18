@@ -94,6 +94,7 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        energyBuddyView.playDefaultAnimations()
         if let rightMostCoinView = coinViews.last {
             bubbleTriangleCenterXConstraint.isActive = false
             bubbleTriangleCenterXConstraint = bubbleTriangleImageView.centerXAnchor.constraint(equalTo: rightMostCoinView.centerXAnchor)
