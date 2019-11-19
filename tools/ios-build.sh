@@ -400,7 +400,7 @@ if [[ $target_phases = *"build"* ]]; then
 
     check_errs $? "Xcode archiving exited with a non-zero status"
 
-    echo "--------------------------------- Post archiving -------------------------------"
+    echo "--------------------------------- Post exporting -------------------------------"
 
     set +o pipefail
 

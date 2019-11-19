@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15505" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="watch42"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
         <!--Usage-->
@@ -103,6 +103,9 @@
                                 <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="CjN-Hl-PL8">
                                     <items>
                                         <imageView height="60" alignment="center" verticalAlignment="center" image="error" contentMode="scaleAspectFit" id="mXk-TA-IgT"/>
+                                        <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" minimumScaleFactor="0.75" id="ks9-vO-QS5">
+                                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                        </label>
                                         <label width="1" alignment="center" verticalAlignment="center" text="Label" textAlignment="center" numberOfLines="0" id="xHW-eU-nmI">
                                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                         </label>
@@ -126,9 +129,10 @@
                         <outlet property="accountGroup" destination="ilM-0H-GIg" id="GuF-aa-c6t"/>
                         <outlet property="accountImage" destination="aag-ha-aqh" id="W2U-8P-dc2"/>
                         <outlet property="accountTitleLabel" destination="HYx-ZS-onW" id="4cw-OE-WyT"/>
+                        <outlet property="errorDetailLabel" destination="xHW-eU-nmI" id="rjd-7g-pD5"/>
                         <outlet property="errorGroup" destination="CjN-Hl-PL8" id="Jei-U3-8jj"/>
                         <outlet property="errorImage" destination="mXk-TA-IgT" id="QPs-up-r6N"/>
-                        <outlet property="errorTitleLabel" destination="xHW-eU-nmI" id="rjd-7g-pD5"/>
+                        <outlet property="errorTitleLabel" destination="ks9-vO-QS5" id="ZKK-Ob-mIY"/>
                         <outlet property="loadingImageGroup" destination="3Lz-yr-c9L" id="WXO-cq-8hT"/>
                         <outlet property="mainGroup" destination="6H4-p2-Zw3" id="bNw-9Y-lZX"/>
                         <outlet property="mainImageGroup" destination="wRs-I4-iNK" id="9sn-ij-6Xt"/>
