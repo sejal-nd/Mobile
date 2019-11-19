@@ -53,7 +53,9 @@ class AppointmentsViewModel {
             .elements()
             .toAsyncRequest {
                 appointmentService.fetchAppointments(accountNumber: $0.accountNumber, premiseNumber: $0.premiseNumber!)
-        }
+        }.do(onNext: { event in
+            self.setLoading(loading: false)
+        })
         
         // Poll for appointments
         appointments = events
