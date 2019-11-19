@@ -31,7 +31,7 @@ class HomeBillCardView: UIView {
             headerAlertAnimationContainer.accessibilityLabel = NSLocalizedString("Alert", comment: "")
         }
     }
-    private var alertAnimation = LOTAnimationView(name: "alert_icon")
+    private var alertAnimation = AnimationView(name: "alert_icon")
     
     @IBOutlet private weak var topSpacerHeight: NSLayoutConstraint!
     
@@ -129,7 +129,7 @@ class HomeBillCardView: UIView {
     
     func resetAnimation() {
         alertAnimation.removeFromSuperview()
-        alertAnimation = LOTAnimationView(name: "alert_icon")
+        alertAnimation = AnimationView(name: "alert_icon")
         alertAnimation.translatesAutoresizingMaskIntoConstraints = false
         alertAnimation.frame = headerAlertAnimationContainer.bounds
         alertAnimation.contentMode = .scaleAspectFit

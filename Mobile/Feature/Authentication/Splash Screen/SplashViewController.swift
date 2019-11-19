@@ -15,11 +15,11 @@ class SplashViewController: UIViewController{
     @IBOutlet weak var imageView: UIView!
     
     @IBOutlet weak var splashAnimationContainer: UIView!
-    var splashAnimationView: LOTAnimationView?
+    var splashAnimationView: AnimationView?
     
     @IBOutlet weak var loadingContainerView: UIView!
     @IBOutlet weak var loadingAnimationContainer: UIView!
-    var loadingAnimationView: LOTAnimationView?
+    var loadingAnimationView: AnimationView?
     @IBOutlet weak var loadingLabel: UILabel!
     
     @IBOutlet weak var errorView: UIView!
@@ -31,6 +31,7 @@ class SplashViewController: UIViewController{
     var performDeepLink = false
     var keepMeSignedIn = false
     var shortcutItem = ShortcutItem.none
+    var readyForLogin = false
     
     var loadingTimer = Timer()
     
@@ -92,21 +93,26 @@ class SplashViewController: UIViewController{
         super.viewDidLayoutSubviews()
 
         if !keepMeSignedIn && splashAnimationView == nil {
-            splashAnimationView = LOTAnimationView(name: "splash")
+            splashAnimationView = AnimationView(name: "splash")
             splashAnimationView!.frame.size = splashAnimationContainer.frame.size
-            splashAnimationView!.loopAnimation = false
+            splashAnimationView!.loopMode = .playOnce
             splashAnimationView!.contentMode = .scaleAspectFit
             splashAnimationContainer.addSubview(splashAnimationView!)
-            splashAnimationView!.play()
+            splashAnimationView!.play { [weak self] _ in
+                guard let self = self else { return }
+                if self.readyForLogin {
+                    self.navigate()
+                }
+            }
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 UIAccessibility.post(notification: .announcement, argument: Environment.shared.opco.taglineString)
             }
         }
         
         if loadingAnimationView == nil {
-            loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
+            loadingAnimationView = AnimationView(name: "full_screen_loading")
             loadingAnimationView!.frame.size = loadingAnimationContainer.frame.size
-            loadingAnimationView!.loopAnimation = true
+            loadingAnimationView!.loopMode = .loop
             loadingAnimationContainer.addSubview(loadingAnimationView!)
             loadingAnimationView!.play()
         }
@@ -114,6 +120,8 @@ class SplashViewController: UIViewController{
 
     func doLoginLogic() {
         bag = DisposeBag() // Disposes our UIApplicationDidBecomeActive subscription - important because that subscription is fired after Touch/Face ID alert prompt is dismissed
+        
+        readyForLogin = true
         
         if keepMeSignedIn {
             viewModel.checkStormMode { [weak self] isStormMode in
@@ -140,59 +148,53 @@ class SplashViewController: UIViewController{
             }
         } else {
             loadingTimer.invalidate()
-            
-            let navigate = { [weak self] in
-                guard let self = self else { return }
-                if self.performDeepLink {
-                    let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                    let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
-                    let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
-                    self.navigationController?.setViewControllers([landingVC, loginVC], animated: false)
-                    self.performDeepLink = false // Reset state
-                } else if self.shortcutItem == .reportOutage {
-                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                    let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
-                    let unauthenticatedUser = loginStoryboard.instantiateViewController(withIdentifier: "unauthenticatedUserViewController")
-                    guard let unauthenticatedOutageValidate = loginStoryboard
-                        .instantiateViewController(withIdentifier: "unauthenticatedOutageValidateAccountViewController")
-                        as? UnauthenticatedOutageValidateAccountViewController else {
-                            return
-                    }
-                    
-                    let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
-                    
-                    GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
-                    unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
-                    
-                    self.navigationController?.setViewControllers(vcArray, animated: true)
-                } else if self.shortcutItem == .alertPreferences {
-                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                    let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
-                    let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
-                    
-                    self.navigationController?.setViewControllers([landing, login], animated: false)
-                    
-                    let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences.", comment: ""),
-                                                  message: NSLocalizedString("You can turn the \"Keep me signed in\" toggle ON for your convenience.", comment: ""),
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                    landing.present(alert, animated: true, completion: nil)
-                } else {
-                    self.performSegue(withIdentifier: "landingSegue", sender: self)
-                }
-                self.checkIOSVersion()
-            }
-            
             if self.splashAnimationView == nil || !self.splashAnimationView!.isAnimationPlaying {
                 navigate()
-            } else {
-                self.splashAnimationView!.completionBlock = { _ in
-                    navigate()
-                }
             }
         }
     }
     
+    private func navigate() {
+        if performDeepLink {
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            let landingVC = storyboard.instantiateViewController(withIdentifier: "landingViewController")
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+            navigationController?.setViewControllers([landingVC, loginVC], animated: false)
+            performDeepLink = false // Reset state
+        } else if shortcutItem == .reportOutage {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+            let unauthenticatedUser = loginStoryboard.instantiateViewController(withIdentifier: "unauthenticatedUserViewController")
+            guard let unauthenticatedOutageValidate = loginStoryboard
+                .instantiateViewController(withIdentifier: "unauthenticatedOutageValidateAccountViewController")
+                as? UnauthenticatedOutageValidateAccountViewController else {
+                    return
+            }
+            
+            let vcArray = [landing, unauthenticatedUser, unauthenticatedOutageValidate]
+            
+            GoogleAnalytics.log(event: .reportAnOutageUnAuthOffer)
+            unauthenticatedOutageValidate.analyticsSource = AnalyticsOutageSource.report
+            
+            navigationController?.setViewControllers(vcArray, animated: true)
+        } else if shortcutItem == .alertPreferences {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let landing = loginStoryboard.instantiateViewController(withIdentifier: "landingViewController")
+            let login = loginStoryboard.instantiateViewController(withIdentifier: "loginViewController")
+            
+            navigationController?.setViewControllers([landing, login], animated: false)
+            
+            let alert = UIAlertController(title: NSLocalizedString("You must be signed in to adjust alert preferences.", comment: ""),
+                                          message: NSLocalizedString("You can turn the \"Keep me signed in\" toggle ON for your convenience.", comment: ""),
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+            landing.present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "landingSegue", sender: self)
+        }
+        checkIOSVersion()
+    }
+        
     func checkAppVersion(callback: @escaping() -> Void) {
         viewModel.checkAppVersion(onSuccess: { [weak self] isOutOfDate in
             if isOutOfDate {

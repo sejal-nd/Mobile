@@ -32,7 +32,7 @@ class OutageStatusView: UIView {
     
     @IBOutlet weak var button: UIButton!
     
-    private var lottieAnimationView: LOTAnimationView?
+    private var lottieAnimationView: AnimationView?
     
     private var outageStatus: OutageStatus?
     private var reportedOutage: ReportedOutageResult?
@@ -141,12 +141,12 @@ extension OutageStatusView {
         case .powerStatus(let isOn):
             lottieAnimationView?.removeFromSuperview()
             if isOn {
-                lottieAnimationView = LOTAnimationView(name: "outage_on")
+                lottieAnimationView = AnimationView(name: "outage_on")
                 titleLabel.text = NSLocalizedString("POWER IS ON", comment: "")
                 detailDescriptionLabel.isHidden = true
                 detailLabel.isHidden = true
             } else {
-                lottieAnimationView = LOTAnimationView(name: "outage_off")
+                lottieAnimationView = AnimationView(name: "outage_off")
                 titleLabel.text = NSLocalizedString("POWER IS OUT", comment: "")
                 detailDescriptionLabel.isHidden = false
                 detailLabel.isHidden = false
@@ -169,7 +169,7 @@ extension OutageStatusView {
             titleLabel.accessibilityLabel = "\(titleDescriptionLabel.text ?? "") \(titleLabel.text ?? "")"
         case .reported:
             lottieAnimationView?.removeFromSuperview()
-            lottieAnimationView = LOTAnimationView(name: "outage_reported")
+            lottieAnimationView = AnimationView(name: "outage_reported")
             statusImageView.isHidden = true
             statusHeightConstraint.constant = 107
             statusWidthConstraint.constant = 107
@@ -217,7 +217,7 @@ extension OutageStatusView {
         }
         
         lottieAnimationView?.frame = CGRect(x: 0, y: 1, width: animationContentView.frame.size.width, height: animationContentView.frame.size.height)
-        lottieAnimationView?.loopAnimation = true
+        lottieAnimationView?.loopMode = .loop
         lottieAnimationView?.contentMode = .scaleAspectFill
         
         guard let lottieAnimationView = lottieAnimationView else { return }
