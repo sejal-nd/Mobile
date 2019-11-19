@@ -13,23 +13,6 @@ protocol DailyInsightCoinViewTapDelegate: class {
     func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool)
 }
 
-enum DailyInsightTrend {
-    case less
-    case more
-    case aboutTheSame
-    
-    var image: UIImage {
-        switch self {
-        case .less:
-            return #imageLiteral(resourceName: "ic_trenddown.pdf")
-        case .more:
-            return #imageLiteral(resourceName: "ic_trendup.pdf")
-        case .aboutTheSame:
-            return #imageLiteral(resourceName: "ic_trendequal.pdf")
-        }
-    }
-}
-
 class DailyInsightCoinView: UIControl {
     
     weak var delegate: DailyInsightCoinViewTapDelegate?

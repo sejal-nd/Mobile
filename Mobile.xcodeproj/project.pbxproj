@@ -1188,6 +1188,12 @@
 		9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
+		9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
+		9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
+		9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
+		9CA411DF2384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
+		9CA411E02384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
+		9CA411E12384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
@@ -3237,6 +3243,8 @@
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
+		9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataManager.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -5367,6 +5375,15 @@
 			path = A0SimpleKeychain;
 			sourceTree = "<group>";
 		};
+		9CA411D823847FDC00C0B602 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */,
+				9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		9CB4346C230F203400094BC3 /* PeakRewards */ = {
 			isa = PBXGroup;
 			children = (
@@ -5747,6 +5764,7 @@
 		B5AC06E21E522E7A00BBA4ED /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				9CA411D823847FDC00C0B602 /* Core Data */,
 				B5AC06ED1E52766A00BBA4ED /* Model */,
 				B5AC06E41E5269D700BBA4ED /* Service */,
 				E8D340901EBA6A8700BA2D42 /* AccountsStore.swift */,
@@ -8109,6 +8127,7 @@
 				E807A9E52022475100513921 /* AccountDetailInitExtensions.swift in Sources */,
 				359BDB2822D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				35A6C6C3211C7ADE00C2A58F /* TitleTableViewCell.swift in Sources */,
+				9CA411DF2384972D00C0B602 /* GameCoreDataManager.swift in Sources */,
 				9CD3532A22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
 				E8CFB8AA1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				82A18EAD1EB919C200BE9F21 /* TermsPoliciesViewModel.swift in Sources */,
@@ -8155,6 +8174,7 @@
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
+				9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				B54846971E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35D6B62B231424E900DCD588 /* AlertRow.swift in Sources */,
 				82A18EA11EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
@@ -8498,6 +8518,7 @@
 				E8CFB8AC1F87D789003E1AB5 /* MCSUsageService.swift in Sources */,
 				54DF4BCA1EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				389B0C621F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
+				9CA411E12384972D00C0B602 /* GameCoreDataManager.swift in Sources */,
 				35A6C6F3211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1F1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
 				E8C453211EF430ED00F5C781 /* AutoPayViewController.swift in Sources */,
@@ -8544,6 +8565,7 @@
 				9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
+				9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				8FD5AE8B1E54EA49003F640D /* LoginTermsPoliciesViewController.swift in Sources */,
 				359BDB7122D8DCF6007002B0 /* OutageStatusView.swift in Sources */,
 				82A18EA31EB919B300BE9F21 /* LoginViewModel.swift in Sources */,
@@ -8887,6 +8909,7 @@
 				359BDB2922D398F0007002B0 /* UIColor+Image.swift in Sources */,
 				54DF4BC91EE63C53008CF7AD /* RegistrationSecurityQuestionsViewController.swift in Sources */,
 				9CD3532B22CABC0A00165F87 /* PrepaidCardView.swift in Sources */,
+				9CA411E02384972D00C0B602 /* GameCoreDataManager.swift in Sources */,
 				389B0C611F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				35A6C6F2211E07B800C2A58F /* UIColorDarker.swift in Sources */,
 				82156F1E1F2781E2008597BF /* NoNetworkConnectionView.swift in Sources */,
@@ -8933,6 +8956,7 @@
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
+				9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
 				E8C4531A1EF4154000F5C781 /* AccountInfoBar.swift in Sources */,
 				35D6B62C231424E900DCD588 /* AlertRow.swift in Sources */,
 				B068DB5F20D42E8100930589 /* HomeEditSectionHeaderView.swift in Sources */,
@@ -14745,6 +14769,19 @@
 			defaultConfigurationName = Develop;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */;
+			path = GameCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B58B5AB91E4E28740051FD5F /* Project object */;
 }

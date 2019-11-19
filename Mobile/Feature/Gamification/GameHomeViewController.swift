@@ -11,6 +11,8 @@ import RxSwift
 import RxCocoa
 
 class GameHomeViewController: AccountPickerViewController {
+    
+    var coreDataManager = GameCoreDataManager()
             
     @IBOutlet weak var energyBuddyView: EnergyBuddyView!
     
@@ -137,7 +139,6 @@ class GameHomeViewController: AccountPickerViewController {
         
         viewModel.selectedCoinView.asDriver().drive(onNext: { [weak self] coinView in
             guard let self = self, let selectedCoinView = coinView else { return }
-            
             self.bubbleTriangleCenterXConstraint?.isActive = false
             self.bubbleTriangleCenterXConstraint = self.bubbleTriangleImageView.centerXAnchor.constraint(equalTo: selectedCoinView.centerXAnchor)
             self.bubbleTriangleCenterXConstraint.isActive = true
@@ -161,9 +162,10 @@ class GameHomeViewController: AccountPickerViewController {
                 lastWeekData = usageArray[i + 7]
             }
             
-            //let canCollect = coreDataManager.getDay(accountNumber: accountNumber!, data: electricData) == nil
-            
-            let view = DailyInsightCoinView(usage: data, lastWeekUsage: lastWeekData, canCollect: true)
+            let accountNumber = viewModel.accountDetail.value!.accountNumber
+            let canCollect = coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: data.date, gas: viewModel.selectedSegmentIndex == 1) == nil
+
+            let view = DailyInsightCoinView(usage: data, lastWeekUsage: lastWeekData, canCollect: canCollect)
             view.delegate = self
             coinViews.append(view)
         }
@@ -221,5 +223,15 @@ extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
     
     func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool) {
         viewModel.selectedCoinView.accept(view)
+        if coinCollected {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+            
+            let accountNumber = viewModel.accountDetail.value!.accountNumber
+            _ = self.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
+        } else {
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
+        }
     }
 }
