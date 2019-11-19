@@ -306,7 +306,7 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3th-xB-uV2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="723.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="792.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-aM-5F2" customClass="EnergyBuddyView" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
@@ -316,7 +316,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK2-4u-l6B">
-                                                <rect key="frame" x="16" y="316" width="382" height="387.5"/>
+                                                <rect key="frame" x="16" y="316" width="382" height="456.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Insight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-gJ-F04">
                                                         <rect key="frame" x="144.5" y="20" width="93.5" height="20.5"/>
@@ -333,10 +333,32 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="js0-ey-UCb">
-                                                        <rect key="frame" x="10" y="76.5" width="362" height="291"/>
+                                                        <rect key="frame" x="10" y="70.5" width="362" height="366"/>
                                                         <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwp-AP-1YJ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="362" height="75"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nah-d7-pIj" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="4" y="0.0" width="354" height="45"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="nN6-dm-3fc"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <action selector="segmentValueChanged:" destination="SHv-hv-hfX" eventType="valueChanged" id="Fvs-V3-aZd"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="nah-d7-pIj" firstAttribute="top" secondItem="Xwp-AP-1YJ" secondAttribute="top" id="98b-F4-7Zh"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="nah-d7-pIj" secondAttribute="trailing" constant="4" id="UWI-uL-vL1"/>
+                                                                    <constraint firstItem="nah-d7-pIj" firstAttribute="leading" secondItem="Xwp-AP-1YJ" secondAttribute="leading" constant="4" id="bCi-OX-apo"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="nah-d7-pIj" secondAttribute="bottom" constant="30" id="kwL-vT-9q3"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="py0-US-tII">
-                                                                <rect key="frame" x="0.0" y="0.0" width="362" height="163"/>
+                                                                <rect key="frame" x="0.0" y="75" width="362" height="163"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="rkE-mK-mKb">
                                                                         <rect key="frame" x="0.0" y="0.0" width="362" height="70"/>
@@ -387,7 +409,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-4f-Tdn">
-                                                                <rect key="frame" x="0.0" y="163" width="362" height="128"/>
+                                                                <rect key="frame" x="0.0" y="238" width="362" height="128"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="80" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-OJ-CJu" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="141" y="54" width="80" height="20"/>
@@ -402,6 +424,12 @@
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="py0-US-tII" secondAttribute="trailing" id="5Qf-0o-wYC"/>
+                                                            <constraint firstAttribute="trailing" secondItem="8oG-4f-Tdn" secondAttribute="trailing" id="AUu-mS-XWr"/>
+                                                            <constraint firstItem="8oG-4f-Tdn" firstAttribute="leading" secondItem="js0-ey-UCb" secondAttribute="leading" id="Joo-J1-O0m"/>
+                                                            <constraint firstItem="py0-US-tII" firstAttribute="leading" secondItem="js0-ey-UCb" secondAttribute="leading" id="qdz-Oi-TMN"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -410,7 +438,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="js0-ey-UCb" secondAttribute="bottom" constant="20" id="7ka-fL-HYZ"/>
                                                     <constraint firstItem="1IL-gJ-F04" firstAttribute="top" secondItem="dK2-4u-l6B" secondAttribute="top" constant="20" id="CNe-aB-uWj"/>
                                                     <constraint firstItem="ez0-jX-MMj" firstAttribute="top" secondItem="dK2-4u-l6B" secondAttribute="top" constant="20" id="Fyg-C1-yh7"/>
-                                                    <constraint firstItem="js0-ey-UCb" firstAttribute="top" secondItem="1IL-gJ-F04" secondAttribute="bottom" constant="36" id="XQE-0l-eNe"/>
+                                                    <constraint firstItem="js0-ey-UCb" firstAttribute="top" secondItem="1IL-gJ-F04" secondAttribute="bottom" constant="30" id="XQE-0l-eNe"/>
                                                     <constraint firstItem="js0-ey-UCb" firstAttribute="leading" secondItem="dK2-4u-l6B" secondAttribute="leading" constant="10" id="ZME-dq-Kvs"/>
                                                     <constraint firstAttribute="trailing" secondItem="js0-ey-UCb" secondAttribute="trailing" constant="10" id="ejA-wa-4ah"/>
                                                     <constraint firstAttribute="trailing" secondItem="ez0-jX-MMj" secondAttribute="trailing" constant="20" id="sbV-sR-4H9"/>
@@ -464,6 +492,8 @@
                         <outlet property="dailyInsightLabel" destination="1IL-gJ-F04" id="kFt-Ze-AvV"/>
                         <outlet property="energyBuddyView" destination="Byt-aM-5F2" id="xaj-dO-Gqk"/>
                         <outlet property="loadingView" destination="8oG-4f-Tdn" id="gvi-oQ-hZ5"/>
+                        <outlet property="segmentedControl" destination="nah-d7-pIj" id="mqh-in-mta"/>
+                        <outlet property="segmentedControlContainer" destination="Xwp-AP-1YJ" id="pi0-jC-CNZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gq-MN-TPo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

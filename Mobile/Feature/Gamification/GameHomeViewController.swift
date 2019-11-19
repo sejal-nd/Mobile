@@ -17,6 +17,9 @@ class GameHomeViewController: AccountPickerViewController {
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
     
+    @IBOutlet weak var segmentedControlContainer: UIView!
+    @IBOutlet weak var segmentedControl: SegmentedControl!
+    
     @IBOutlet weak var dailyInsightContentView: UIView!
     @IBOutlet weak var coinStack: UIStackView!
     @IBOutlet weak var bubbleView: UIView!
@@ -61,6 +64,13 @@ class GameHomeViewController: AccountPickerViewController {
         dailyInsightCardView.layer.borderColor = UIColor.accentGray.cgColor
         dailyInsightCardView.layer.borderWidth = 1
         dailyInsightCardView.layer.masksToBounds = false
+        
+        segmentedControl.items = [
+            NSLocalizedString("Electric", comment: ""),
+            NSLocalizedString("Gas", comment: "")
+        ]
+        segmentedControl.selectedIndex.value = 0
+        segmentedControlContainer.isHidden = true
         
         dailyInsightLabel.textColor = .deepGray
         dailyInsightLabel.font = OpenSans.regular.of(textStyle: .headline)
@@ -107,12 +117,6 @@ class GameHomeViewController: AccountPickerViewController {
             layoutSubviewsComplete = true
             energyBuddyView.playDefaultAnimations()
         }
-        
-        if let rightMostCoinView = coinViews.last {
-            bubbleTriangleCenterXConstraint.isActive = false
-            bubbleTriangleCenterXConstraint = bubbleTriangleImageView.centerXAnchor.constraint(equalTo: rightMostCoinView.centerXAnchor)
-            bubbleTriangleCenterXConstraint.isActive = true
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -124,6 +128,7 @@ class GameHomeViewController: AccountPickerViewController {
     private func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowContent.not().drive(dailyInsightContentView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowSegmentedControl.not().drive(segmentedControlContainer.rx.isHidden).disposed(by: bag)
         
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
             guard let usageArray = array, usageArray.count > 0 else { return }
@@ -133,7 +138,7 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.selectedCoinView.asDriver().drive(onNext: { [weak self] coinView in
             guard let self = self, let selectedCoinView = coinView else { return }
             
-            self.bubbleTriangleCenterXConstraint.isActive = false
+            self.bubbleTriangleCenterXConstraint?.isActive = false
             self.bubbleTriangleCenterXConstraint = self.bubbleTriangleImageView.centerXAnchor.constraint(equalTo: selectedCoinView.centerXAnchor)
             self.bubbleTriangleCenterXConstraint.isActive = true
         }).disposed(by: bag)
@@ -199,6 +204,10 @@ class GameHomeViewController: AccountPickerViewController {
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
+        viewModel.selectedSegmentIndex = sender.selectedIndex.value
+        viewModel.fetchDailyUsage()
+    }
 
 }
 
