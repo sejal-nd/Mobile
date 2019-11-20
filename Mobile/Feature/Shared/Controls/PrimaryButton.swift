@@ -11,8 +11,8 @@ import Lottie
 
 class PrimaryButton: UIButton {
     
-    var loadingAnimationView = LOTAnimationView(name: "loading")
-    var checkmarkAnimationView = LOTAnimationView(name: "checkmark")
+    var loadingAnimationView = AnimationView(name: "loading")
+    var checkmarkAnimationView = AnimationView(name: "checkmark")
     var restoreTitle: String?
     
     @IBInspectable var tintWhite: Bool = false {
@@ -110,7 +110,7 @@ class PrimaryButton: UIButton {
         let animationRect = CGRect(x: (frame.size.width / 2) - (animationWidth / 2), y: 8, width: animationWidth, height: animationWidth)
         
         loadingAnimationView.frame = animationRect
-        loadingAnimationView.loopAnimation = true
+        loadingAnimationView.loopMode = .loop
         addSubview(loadingAnimationView)
         loadingAnimationView.play()
     }
