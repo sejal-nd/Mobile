@@ -16,6 +16,8 @@ class GameHomeViewController: AccountPickerViewController {
             
     @IBOutlet weak var energyBuddyView: EnergyBuddyView!
     
+    @IBOutlet weak var progressBar: GameProgressBar!
+    
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
     
@@ -61,6 +63,8 @@ class GameHomeViewController: AccountPickerViewController {
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        
+        progressBar.instantiate()
 
         dailyInsightCardView.layer.cornerRadius = 10
         dailyInsightCardView.layer.borderColor = UIColor.accentGray.cgColor

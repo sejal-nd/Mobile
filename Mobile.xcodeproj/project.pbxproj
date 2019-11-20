@@ -1194,6 +1194,9 @@
 		9CA411DF2384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
 		9CA411E02384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
 		9CA411E12384972D00C0B602 /* GameCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */; };
+		9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
+		9CA4FA612385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
+		9CA4FA622385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
@@ -3245,6 +3248,7 @@
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
 		9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataManager.swift; sourceTree = "<group>"; };
+		9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProgressBar.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -5459,6 +5463,7 @@
 				9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */,
 				9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */,
 				9C48830423834F2700321E6B /* GameTipViewController.swift */,
+				9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */,
 			);
 			path = Gamification;
 			sourceTree = "<group>";
@@ -8279,6 +8284,7 @@
 				E83F02701FB0B9E10062A348 /* AlertPreferences.swift in Sources */,
 				B5389EA31E53D9660028AF89 /* AuthTokenParser.swift in Sources */,
 				82A18E9E1EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
+				9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				E8127B261EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
 				E8C29C7C1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B52CA0AF1F311524002B5674 /* GoogleAnalytics.swift in Sources */,
@@ -8670,6 +8676,7 @@
 				B52CA0B11F311524002B5674 /* GoogleAnalytics.swift in Sources */,
 				82A18EA01EB919B300BE9F21 /* ForgotUsernameViewModel.swift in Sources */,
 				E8127B281EBBAF2A0083DDE9 /* LoadingIndicator.swift in Sources */,
+				9CA4FA622385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				9C97DB1920EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				E80043581E68CDCB005CF531 /* IndividualBorders.swift in Sources */,
 				9C7FFD1C22C1251800092987 /* PrimaryButton.swift in Sources */,
@@ -9061,6 +9068,7 @@
 				2F5A3F831EFD871500B9E49E /* BillingHistoryItem.swift in Sources */,
 				E8C29C7D1F630FD200DB73FC /* OutageStatusButton.swift in Sources */,
 				B0649A60214834380041B299 /* StormModeStatus.swift in Sources */,
+				9CA4FA612385A2B900E33E7C /* GameProgressBar.swift in Sources */,
 				E8EDC5501F35071F006DD927 /* SplashViewModel.swift in Sources */,
 				8206D0141FABB9AB0056F4CB /* PeakRewardsProgramCard.swift in Sources */,
 				82AC2A2B1FAB78E700EACB3B /* MCSPeakRewardsService.swift in Sources */,
