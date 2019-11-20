@@ -20,6 +20,8 @@ class EnergyBuddyView: UIView {
     @IBOutlet weak var speechBubbleView: UIView!
     @IBOutlet weak var speechBubbleLabel: UILabel!
     
+    @IBOutlet weak var messageImageView: UIImageView!
+    
     @IBOutlet weak var energyBuddyContainerView: UIView!
     @IBOutlet weak var energyBuddyContainerTopConstraint: NSLayoutConstraint!
     

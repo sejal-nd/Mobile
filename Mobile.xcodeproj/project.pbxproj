@@ -1197,6 +1197,12 @@
 		9CA4FA602385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
 		9CA4FA612385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
 		9CA4FA622385A2B900E33E7C /* GameProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */; };
+		9CA4FA652385BFC700E33E7C /* GiftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */; };
+		9CA4FA662385BFC700E33E7C /* GiftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */; };
+		9CA4FA672385BFC700E33E7C /* GiftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */; };
+		9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */; };
+		9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */; };
+		9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */; };
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
@@ -3249,6 +3255,8 @@
 		9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataManager.swift; sourceTree = "<group>"; };
 		9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProgressBar.swift; sourceTree = "<group>"; };
+		9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsViewController.swift; sourceTree = "<group>"; };
+		9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipsViewController.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -5388,6 +5396,18 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
+		9CA4FA632385B8AB00E33E7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */,
+				9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */,
+				9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */,
+				9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */,
+				9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9CB4346C230F203400094BC3 /* PeakRewards */ = {
 			isa = PBXGroup;
 			children = (
@@ -5454,16 +5474,14 @@
 		9CEE411723722222005A4AD3 /* Gamification */ = {
 			isa = PBXGroup;
 			children = (
-				9CC99791237B63C500C68300 /* Onboarding */,
 				9CEE411823722444005A4AD3 /* Game.storyboard */,
 				9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */,
 				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
-				9CEE411C23722A0F005A4AD3 /* DailyInsightCoinView.xib */,
-				9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */,
-				9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */,
-				9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */,
 				9C48830423834F2700321E6B /* GameTipViewController.swift */,
-				9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */,
+				9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */,
+				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
+				9CC99791237B63C500C68300 /* Onboarding */,
+				9CA4FA632385B8AB00E33E7C /* Views */,
 			);
 			path = Gamification;
 			sourceTree = "<group>";
@@ -8114,6 +8132,7 @@
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2752215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				355B10412369E4820038EAD3 /* KeychainManager.swift in Sources */,
@@ -8226,6 +8245,7 @@
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
+				9CA4FA652385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				B039DB79225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
 				E840BD3A1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
@@ -8506,6 +8526,7 @@
 				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				9C62447222C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				0EF60FD920EE8105006ABC18 /* GSTouchesShowingWindow.swift in Sources */,
@@ -8618,6 +8639,7 @@
 				35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
+				9CA4FA672385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				359BDB5222D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				54EDD2D71ECDE78800CAB8A6 /* WalletItem.swift in Sources */,
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
@@ -8898,6 +8920,7 @@
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2753215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				9CD3531F22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				355B10402369E4820038EAD3 /* KeychainManager.swift in Sources */,
@@ -9010,6 +9033,7 @@
 				22EF55992170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B039DB7A225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
+				9CA4FA662385BFC700E33E7C /* GiftsViewController.swift in Sources */,
 				2F5A3F891EFD979E00B9E49E /* BillingHistoryTableViewCell.swift in Sources */,
 				9C72424D21E5061900E5946B /* GovWeatherService.swift in Sources */,
 				B0B0839B216F970800B1C632 /* Appointment.swift in Sources */,

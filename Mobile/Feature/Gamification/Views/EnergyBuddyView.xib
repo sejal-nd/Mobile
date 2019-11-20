@@ -14,6 +14,7 @@
                 <outlet property="energyBuddyContainerView" destination="npW-aj-e1E" id="Yfp-0q-E8o"/>
                 <outlet property="energyBuddyFaceLottieView" destination="62N-d7-gSV" id="Kwk-yD-BKG"/>
                 <outlet property="energyBuddyParticleLottieView" destination="AGB-em-2xK" id="a81-2h-4nL"/>
+                <outlet property="messageImageView" destination="uHp-fR-qxb" id="LqS-aq-9eA"/>
                 <outlet property="skyImageView" destination="6mO-Hc-EBJ" id="jbQ-ZG-hST"/>
                 <outlet property="speechBubbleContainerView" destination="V0c-T2-dyD" id="WaT-L9-onK"/>
                 <outlet property="speechBubbleLabel" destination="wjc-DZ-xSA" id="yYY-XS-zyZ"/>
@@ -107,6 +108,9 @@
                         <constraint firstItem="bWE-Yv-bLS" firstAttribute="leading" secondItem="V0c-T2-dyD" secondAttribute="leading" priority="999" id="lhe-kx-kGU"/>
                     </constraints>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_buddy_message" translatesAutoresizingMaskIntoConstraints="NO" id="uHp-fR-qxb">
+                    <rect key="frame" x="266" y="60" width="106" height="86"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -120,6 +124,8 @@
                 <constraint firstItem="V0c-T2-dyD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="Oou-PG-wSm"/>
                 <constraint firstAttribute="trailing" secondItem="6mO-Hc-EBJ" secondAttribute="trailing" id="QMX-1X-oLM"/>
                 <constraint firstItem="V0c-T2-dyD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="VK9-Xv-OAL"/>
+                <constraint firstItem="uHp-fR-qxb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="Wgk-6j-GNN"/>
+                <constraint firstAttribute="trailing" secondItem="uHp-fR-qxb" secondAttribute="trailing" constant="3" id="Xg4-wK-kg1"/>
                 <constraint firstItem="npW-aj-e1E" firstAttribute="height" secondItem="6mO-Hc-EBJ" secondAttribute="height" id="YCe-6b-dwg"/>
                 <constraint firstItem="6mO-Hc-EBJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rNU-5T-Hs2"/>
                 <constraint firstAttribute="trailing" secondItem="KF7-NT-Csz" secondAttribute="trailing" id="vXo-Sz-Ya9"/>
@@ -132,6 +138,7 @@
     <resources>
         <image name="img_bg_bay_day" width="375" height="350"/>
         <image name="img_bgsky_day" width="375" height="350"/>
+        <image name="img_buddy_message" width="106" height="86"/>
         <image name="img_speechbubblepoint" width="24" height="24"/>
     </resources>
 </document>

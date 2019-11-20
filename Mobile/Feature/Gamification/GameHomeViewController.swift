@@ -214,6 +214,14 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.selectedSegmentIndex = sender.selectedIndex.value
         viewModel.fetchDailyUsage()
     }
+    
+    @IBAction func onViewedTipsPress() {
+        performSegue(withIdentifier: "viewedTipsSegue", sender: nil)
+    }
+    
+    @IBAction func onGiftsPress() {
+        performSegue(withIdentifier: "giftSegue", sender: nil)
+    }
 
 }
 
