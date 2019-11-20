@@ -32,17 +32,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-gT-ebb">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_close"/>
                                 <connections>
                                     <action selector="onClosePress" destination="3os-sw-E9Y" eventType="touchUpInside" id="S6X-pp-suq"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
-                                <rect key="frame" x="97" y="109" width="220" height="200"/>
+                                <rect key="frame" x="-13" y="109" width="440" height="400"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to personalize your experience, we’d like to ask you a few questions!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-2I-bW6">
-                                <rect key="frame" x="20" y="333" width="374" height="41"/>
+                                <rect key="frame" x="20" y="533" width="374" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azB-e9-k2m">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Nx5-gD-aKH" eventType="touchUpInside" id="XYn-Pz-Z5O"/>
@@ -119,7 +119,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qln-jV-Gh3">
-                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-L0-L8Y">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="307.5"/>
@@ -325,7 +325,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ez0-jX-MMj">
-                                                        <rect key="frame" x="338" y="20" width="24" height="24"/>
+                                                        <rect key="frame" x="314" y="20" width="48" height="48"/>
                                                         <accessibility key="accessibilityConfiguration" label="Tool tip"/>
                                                         <state key="normal" image="ic_tooltip"/>
                                                         <connections>
@@ -515,10 +515,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v8D-vJ-C0N">
-                                                <rect key="frame" x="31" y="298" width="352" height="300"/>
+                                                <rect key="frame" x="31" y="173" width="352" height="550"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74E-Z5-bTU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="300"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="550"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
                                                                 <rect key="frame" x="15" y="15" width="24" height="24"/>
@@ -528,14 +528,76 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
                                                                 <rect key="frame" x="121" y="0.0" width="110" height="110"/>
                                                             </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
+                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ht-Lj-dbk">
+                                                                <rect key="frame" x="20" y="170.5" width="312" height="243.5"/>
+                                                                <string key="text">Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.
+
+This worked for 14,985 people and can save up to $10 per year.</string>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="io0-gF-5Q5">
+                                                                <rect key="frame" x="0.0" y="449" width="352" height="101"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcW-5m-1x6">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="pbV-jc-2wD"/>
+                                                                        </constraints>
+                                                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="Set Reminder" image="ic_reminder">
+                                                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="onReminderPress" destination="TyM-h4-aTu" eventType="touchUpInside" id="gb7-b4-uVH"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5il-0X-jKZ">
+                                                                        <rect key="frame" x="0.0" y="50" width="352" height="1"/>
+                                                                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="1" id="Q5t-Rq-p0b"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ru-xr-cTE">
+                                                                        <rect key="frame" x="0.0" y="51" width="352" height="50"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="t88-Wg-ZPK"/>
+                                                                        </constraints>
+                                                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="Favorite" image="ic_favetip">
+                                                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="onFavoritePress" destination="TyM-h4-aTu" eventType="touchUpInside" id="rg9-jR-Hvu"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
+                                                            <constraint firstItem="0Ht-Lj-dbk" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="20" id="6FO-dW-bZM"/>
+                                                            <constraint firstItem="io0-gF-5Q5" firstAttribute="top" secondItem="0Ht-Lj-dbk" secondAttribute="bottom" constant="35" id="8jF-J5-XME"/>
+                                                            <constraint firstItem="io0-gF-5Q5" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" id="GYb-oV-Jpw"/>
+                                                            <constraint firstAttribute="trailing" secondItem="0Ht-Lj-dbk" secondAttribute="trailing" constant="20" id="Gkv-74-puJ"/>
                                                             <constraint firstItem="yas-Dz-Xrq" firstAttribute="top" secondItem="74E-Z5-bTU" secondAttribute="top" constant="15" id="IT4-VB-kR3"/>
-                                                            <constraint firstAttribute="height" constant="300" id="R84-4s-XVK"/>
+                                                            <constraint firstAttribute="trailing" secondItem="io0-gF-5Q5" secondAttribute="trailing" id="KCo-Gk-1U8"/>
+                                                            <constraint firstAttribute="trailing" secondItem="wMY-gj-X1f" secondAttribute="trailing" constant="20" id="Koh-ER-VT1"/>
                                                             <constraint firstItem="Cex-WB-RL6" firstAttribute="centerX" secondItem="74E-Z5-bTU" secondAttribute="centerX" id="ZnO-Gn-PC6"/>
+                                                            <constraint firstItem="wMY-gj-X1f" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="20" id="gOO-bu-Ayt"/>
                                                             <constraint firstItem="yas-Dz-Xrq" firstAttribute="leading" secondItem="74E-Z5-bTU" secondAttribute="leading" constant="15" id="i2n-5W-xG8"/>
                                                             <constraint firstItem="Cex-WB-RL6" firstAttribute="top" secondItem="74E-Z5-bTU" secondAttribute="top" id="k7i-ny-b7M"/>
+                                                            <constraint firstAttribute="bottom" secondItem="io0-gF-5Q5" secondAttribute="bottom" id="oI3-8d-Trt"/>
+                                                            <constraint firstItem="0Ht-Lj-dbk" firstAttribute="top" secondItem="wMY-gj-X1f" secondAttribute="bottom" constant="20" id="oVd-Tj-Xhz"/>
+                                                            <constraint firstItem="wMY-gj-X1f" firstAttribute="top" secondItem="Cex-WB-RL6" secondAttribute="bottom" constant="20" id="qVr-2S-nSl"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -575,7 +637,12 @@
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="yas-Dz-Xrq" id="oPI-5V-y6l"/>
+                        <outlet property="detailLabel" destination="0Ht-Lj-dbk" id="4xD-JW-uDQ"/>
+                        <outlet property="dividerLine" destination="5il-0X-jKZ" id="2rb-2G-czl"/>
+                        <outlet property="favoriteButton" destination="6ru-xr-cTE" id="EwU-AE-bel"/>
                         <outlet property="popupView" destination="74E-Z5-bTU" id="gQZ-Qe-x9W"/>
+                        <outlet property="reminderButton" destination="QcW-5m-1x6" id="mmy-NJ-d10"/>
+                        <outlet property="titleLabel" destination="wMY-gj-X1f" id="1Hi-As-XjF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qWY-U0-LiK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -591,7 +658,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctg-dp-Xx9">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Cjp-yO-sUW" eventType="touchUpInside" id="Lum-6d-lsl"/>
@@ -604,7 +671,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-EI-8GP">
-                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="De4-tq-Lwa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
@@ -753,6 +820,8 @@
         <image name="ic_back" width="24" height="24"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_energybuddy" width="110" height="110"/>
+        <image name="ic_favetip" width="25" height="24"/>
+        <image name="ic_reminder" width="25" height="24"/>
         <image name="ic_tooltip" width="24" height="24"/>
         <image name="img_onboarding" width="220" height="200"/>
     </resources>
