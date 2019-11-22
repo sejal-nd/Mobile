@@ -111,14 +111,14 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         wantNotificationsLabel.font = OpenSans.regular.of(textStyle: .headline)
         
         adjustAlertPreferencesButton.setTitleColor(.actionBlue, for: .normal)
-        adjustAlertPreferencesButton.titleLabel?.font = OpenSans.bold.of(textStyle: .title1)
+        adjustAlertPreferencesButton.titleLabel?.font = OpenSans.bold.of(textStyle: .headline)
         
         contactButton.layer.cornerRadius = 10
         contactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
         contactButton.accessibilityLabel = contactLabel.text
         
         contactLabel.textColor = .actionBlue
-        contactLabel.font = SystemFont.bold.of(textStyle: .title1)
+        contactLabel.font = SystemFont.bold.of(textStyle: .headline)
     }
     
     func bindViewModel() {
@@ -158,7 +158,9 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
                 }
                 
                 alertPrefsVC.delegate = self
-                self.navigationController?.pushViewController(alertPrefsVC, animated: true)
+                
+                let newNavController = LargeTitleNavigationController(rootViewController: alertPrefsVC)
+                self.navigationController?.present(newNavController, animated: true)
             })
             .disposed(by: disposeBag)
         
