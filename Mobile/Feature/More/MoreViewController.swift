@@ -204,7 +204,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return 2
         case 1:
-            return 5
+            return 6
         case 2:
             return 3
         default:

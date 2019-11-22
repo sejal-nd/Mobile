@@ -33,6 +33,8 @@ class EnergyBuddyView: UIView {
     var faceAnimation: AnimationView?
     var particleAnimation: AnimationView?
     
+    var isPlayingHappyAnimation = false
+    
     var welcomeMessages = [
         NSLocalizedString("Welcome back!", comment: ""),
         NSLocalizedString("It's great to see you!", comment: ""),
@@ -120,14 +122,18 @@ class EnergyBuddyView: UIView {
     }
     
     func playHappyAnimation() {
-        faceAnimation?.stop()
-        faceAnimation?.removeFromSuperview()
-        faceAnimation = AnimationView(name: "buddy_face_happy")
-        faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
-        faceAnimation!.contentMode = .scaleAspectFit
-        energyBuddyFaceLottieView.addSubview(faceAnimation!)
-        faceAnimation!.play { [weak self] _ in
-            self?.playDefaultAnimations(resetBounce: false)
+        if !isPlayingHappyAnimation {
+            isPlayingHappyAnimation = true
+            faceAnimation?.stop()
+            faceAnimation?.removeFromSuperview()
+            faceAnimation = AnimationView(name: "buddy_face_happy")
+            faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
+            faceAnimation!.contentMode = .scaleAspectFit
+            energyBuddyFaceLottieView.addSubview(faceAnimation!)
+            faceAnimation!.play { [weak self] _ in
+                self?.isPlayingHappyAnimation = false
+                self?.playDefaultAnimations(resetBounce: false)
+            }
         }
     }
     

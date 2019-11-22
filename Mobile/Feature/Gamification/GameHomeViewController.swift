@@ -42,6 +42,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     var layoutSubviewsComplete = false
     var welcomedUser = false
+    var currentPoints = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -238,6 +239,10 @@ extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
         if coinCollected {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
+            
+            currentPoints += 5
+            progressBar.setPoints(currentPoints, animated: true)
+            energyBuddyView.playHappyAnimation()
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
             _ = self.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)

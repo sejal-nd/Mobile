@@ -76,6 +76,7 @@ class GameOnboardingStep2ViewController: UIViewController {
         // TODO: Analytics event
         // TODO: Post their selected answer to server
         
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameActivated)
         NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
         dismissModal()
     }

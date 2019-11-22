@@ -28,7 +28,7 @@ class HomeContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //fab.isHidden = true
+        fab.isHidden = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameActivated) == false
         
         fab.layer.cornerRadius = 27.5
         fab.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 5), radius: 10)
@@ -100,6 +100,7 @@ class HomeContentViewController: UIViewController {
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
         setNeedsStatusBarAppearanceUpdate()
         
+        fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
         fab.isHidden = false
     }
     

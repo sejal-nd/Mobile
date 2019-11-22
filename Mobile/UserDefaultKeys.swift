@@ -48,5 +48,6 @@ struct UserDefaultKeys {
     
     // Gamification
     static let prefersGameHome = "kPrefersGameHome"
-    static let gamificationAccountNumber = "kGamificationAccountNumber"
+    static let gameAccountNumber = "kGamificationAccountNumber"
+    static let gameActivated = "kGameActivated"
 }

@@ -33,17 +33,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-gT-ebb">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_close"/>
                                 <connections>
                                     <action selector="onClosePress" destination="3os-sw-E9Y" eventType="touchUpInside" id="S6X-pp-suq"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
-                                <rect key="frame" x="-13" y="109" width="440" height="400"/>
+                                <rect key="frame" x="97" y="109" width="220" height="200"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to personalize your experience, we’d like to ask you a few questions!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-2I-bW6">
-                                <rect key="frame" x="20" y="533" width="374" height="41"/>
+                                <rect key="frame" x="20" y="333" width="374" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azB-e9-k2m">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Nx5-gD-aKH" eventType="touchUpInside" id="XYn-Pz-Z5O"/>
@@ -120,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qln-jV-Gh3">
-                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-L0-L8Y">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="307.5"/>
@@ -293,7 +293,7 @@
         <!--Large Title Navigation Controller-->
         <scene sceneID="a8s-C2-w3m">
             <objects>
-                <navigationController id="Wdr-2P-dbW" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GameHomeLargeTitleNav" id="Wdr-2P-dbW" customClass="LargeTitleNavigationController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KlC-iq-qHU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -592,7 +592,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iSy-7p-H36">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="todo" id="iSy-7p-H36">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="C6Q-x9-wHT">
@@ -836,7 +836,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctg-dp-Xx9">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Cjp-yO-sUW" eventType="touchUpInside" id="Lum-6d-lsl"/>
@@ -849,7 +849,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-EI-8GP">
-                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="De4-tq-Lwa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>

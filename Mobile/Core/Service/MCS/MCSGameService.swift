@@ -13,7 +13,8 @@ class MCSGameService: GameService {
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
         return Observable.create { observer -> Disposable in
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 0)
+                let testUser = GameUser(onboardingComplete: false, optedOut: false, points: 0)
+                UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
                 observer.onNext(testUser)
                 observer.onCompleted()
             }
