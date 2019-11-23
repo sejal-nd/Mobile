@@ -12,6 +12,8 @@ protocol GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?>
     
+    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<Void>
+    
     /// Compares how usage impacted your bill between cycles
     ///
     /// - Parameters:

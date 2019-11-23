@@ -22,6 +22,23 @@ class MCSGameService: GameService {
         }
     }
     
+    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<Void> {
+        return Observable.create { observer -> Disposable in
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: keyValues),
+                let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) else {
+                observer.onError(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
+                observer.onCompleted()
+                return Disposables.create()
+            }
+            print("updateGameUser: \(jsonString)")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+    
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {
         let endDate = Date()
         let startDate = Calendar.current.date(byAdding: .month, value: -1, to: endDate)!

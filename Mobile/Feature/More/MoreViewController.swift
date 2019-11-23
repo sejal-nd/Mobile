@@ -186,6 +186,8 @@ class MoreViewController: UIViewController {
             vc.delegate = self
         case let vc as SetDefaultAccountViewController:
             vc.delegate = self
+        case let vc as GameOptInOutViewController:
+            vc.delegate = self
         default:
             break
         }
@@ -237,6 +239,9 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 return Environment.shared.opco == .peco ? 60 : 0
             case 4:
                 return Environment.shared.opco == .bge ? 60 : 0
+            case 5:
+                let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
+                return isGameUser ? 60 : 0
             default:
                 return 60
             }
@@ -285,6 +290,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_morerelease"), text: NSLocalizedString("Release of Info", comment: ""))
             case 4:
                 cell.configure(image: #imageLiteral(resourceName: "ic_morechoiceid"), text: NSLocalizedString("Choice ID", comment: ""))
+            case 5:
+                cell.configure(image: #imageLiteral(resourceName: "ic_more_gamification"), text: NSLocalizedString("Energy Buddy", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -330,6 +337,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 performSegue(withIdentifier: "releaseOfInfoSegue", sender: nil)
             case 4:
                 performSegue(withIdentifier: "choiceIdSegue", sender: nil)
+            case 5:
+                performSegue(withIdentifier: "energyBuddySegue", sender: nil)
             default:
                 break
             }
@@ -409,12 +418,26 @@ extension MoreViewController: PECOReleaseOfInfoViewControllerDelegate {
     
 }
 
+// MARK: - Set Default Account
+
 extension MoreViewController: SetDefaultAccountViewControllerDelegate {
     
     func setDefaultAccountViewControllerDidFinish(_ setDefaultAccountViewController: SetDefaultAccountViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
             self.view.showToast(NSLocalizedString("Default account changed", comment: ""))
             FirebaseUtility.logEvent(.more, parameters: [.init(parameterName: .action, value: .set_default_account_complete)])
+        })
+    }
+}
+
+// MARK: - Game Opt In/Out
+
+extension MoreViewController: GameOptInOutViewControllerDelegate {
+    
+    func gameOptInOutViewController(_ gameOptInOutViewController: GameOptInOutViewController, didOptOut: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+            let toastString = String.localizedStringWithFormat("The feature has been turned %@", didOptOut ? "off" : "on")
+            self.view.showToast(toastString)
         })
     }
 }

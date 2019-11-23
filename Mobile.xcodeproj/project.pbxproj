@@ -1113,6 +1113,9 @@
 		9C28D39C2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
+		9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
+		9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
+		9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		9C46B12B221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12C221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12D221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
@@ -3228,6 +3231,7 @@
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
 		9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewModel.swift; sourceTree = "<group>"; };
+		9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptInOutViewController.swift; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
 		9C48830423834F2700321E6B /* GameTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTipViewController.swift; sourceTree = "<group>"; };
@@ -4055,6 +4059,7 @@
 				352B8D74230D70EF007F8CEE /* Terms And Policys */,
 				352B8D73230D70CF007F8CEE /* Contact Us */,
 				E873DA641EE8536E00020D1B /* PECOReleaseOfInfoViewController.swift */,
+				9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */,
 			);
 			path = "Detail Screens";
 			sourceTree = "<group>";
@@ -8427,6 +8432,7 @@
 				224EFF20216E4EB0008A0E40 /* HomeAppointmentCardViewModel.swift in Sources */,
 				9C62447022C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A322EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
+				9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				B07E17D82209F0A200B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				82837D141F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
@@ -8821,6 +8827,7 @@
 				35ACCB4B20EA7ABD0022907F /* HomeOutageCardView.swift in Sources */,
 				82837D161F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				E8C453291EF435E500F5C781 /* BGEAutoPaySettingsViewController.swift in Sources */,
+				9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				2F5A3F821EFD870300B9E49E /* BillingHistory.swift in Sources */,
 				0EF60FDB20EE8105006ABC18 /* GSTouchesShowingController.swift in Sources */,
 				E84705F92025160F00A749A3 /* MockRegistrationService.swift in Sources */,
@@ -9215,6 +9222,7 @@
 				35ACCB4A20EA7ABC0022907F /* HomeOutageCardView.swift in Sources */,
 				9C62447122C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				35C913A422EA203A009DD71A /* MiniWalletSheetViewModel.swift in Sources */,
+				9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */,
 				82837D151F20677700C31E1C /* RecentPaymentsStore.swift in Sources */,
 				9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */,
 				B08BBFC421C8539000A899FC /* SERResult.swift in Sources */,
