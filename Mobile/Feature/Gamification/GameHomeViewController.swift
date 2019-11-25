@@ -31,6 +31,8 @@ class GameHomeViewController: AccountPickerViewController {
     @IBOutlet weak var bubbleTriangleImageView: UIImageView!
     @IBOutlet weak var bubbleTriangleCenterXConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var weeklyInsightButton: UIButton!
+    
     @IBOutlet weak var loadingView: UIView!
     
     private var coinViews = [DailyInsightCoinView]()
@@ -88,6 +90,9 @@ class GameHomeViewController: AccountPickerViewController {
         bubbleView.layer.cornerRadius = 10
         bubbleLabel.textColor = .deepGray
         bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        weeklyInsightButton.setTitleColor(.actionBlue, for: .normal)
+        weeklyInsightButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
         energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
         

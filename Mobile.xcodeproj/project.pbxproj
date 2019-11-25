@@ -1191,6 +1191,9 @@
 		9C97DB1F20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2020EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
 		9C97DB2120EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */; };
+		9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */; };
+		9CA1381E238C2D010023248D /* WeeklyInsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */; };
+		9CA1381F238C2D010023248D /* WeeklyInsightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */; };
 		9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
 		9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
 		9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CA411D92384806800C0B602 /* GameCoreDataModel.xcdatamodeld */; };
@@ -3256,6 +3259,7 @@
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
 		9C97DB1A20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeProjectedBillCardView.xib; sourceTree = "<group>"; };
 		9C97DB1E20EFE34200FF8E20 /* HomeProjectedBillCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardViewModel.swift; sourceTree = "<group>"; };
+		9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyInsightViewController.swift; sourceTree = "<group>"; };
 		9CA411DA2384806800C0B602 /* GameCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9CA411DE2384972D00C0B602 /* GameCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoreDataManager.swift; sourceTree = "<group>"; };
 		9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProgressBar.swift; sourceTree = "<group>"; };
@@ -5485,6 +5489,7 @@
 				9C48830423834F2700321E6B /* GameTipViewController.swift */,
 				9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */,
 				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
+				9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */,
 				9CC99791237B63C500C68300 /* Onboarding */,
 				9CA4FA632385B8AB00E33E7C /* Views */,
 			);
@@ -8494,6 +8499,7 @@
 				E87C41301FAA522B00448F86 /* AlertsViewController.swift in Sources */,
 				359BDB3822D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				B0A79B0720E2BD1100E04DD8 /* Version.swift in Sources */,
+				9CA1381D238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				E882B7FB1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846871E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 				359BDB6222D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
@@ -8889,6 +8895,7 @@
 				B0E9EFFD21EE458F0086A82A /* Optional+Comparable.swift in Sources */,
 				E89496381EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0920E2BD1100E04DD8 /* Version.swift in Sources */,
+				9CA1381F238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				9CD3532022CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
 				B07E17D62209F0A000B6E3C7 /* MockAuthenticationService.swift in Sources */,
 				9C7774872368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */,
@@ -9284,6 +9291,7 @@
 				359BDB3922D4C699007002B0 /* LargeTitleNavigationController.swift in Sources */,
 				E89496371EE9E04000B76F8C /* NotificationNames.swift in Sources */,
 				B0A79B0820E2BD1100E04DD8 /* Version.swift in Sources */,
+				9CA1381E238C2D010023248D /* WeeklyInsightViewController.swift in Sources */,
 				E882B7FC1EAA92B200EA3C13 /* UIViewAddShadow.swift in Sources */,
 				B54846881E687E6F008CE1B1 /* MCSResponseParser.swift in Sources */,
 				359BDB6322D8DCC1007002B0 /* TitleSubTitleRow.swift in Sources */,
