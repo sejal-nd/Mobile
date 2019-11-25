@@ -32,8 +32,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     @IBOutlet private weak var adjustAlertPreferencesContainer: UIView!
     @IBOutlet private weak var wantNotificationsLabel: UILabel!
     @IBOutlet private weak var adjustAlertPreferencesButton: UIButton!
-    @IBOutlet private weak var contactButton: ButtonControl!
-    @IBOutlet private weak var contactLabel: UILabel!
     
     var topAnimation = AnimationView()
     var progressAnimation = AnimationView(name: "appointment_tracker")
@@ -112,13 +110,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
         
         adjustAlertPreferencesButton.setTitleColor(.actionBlue, for: .normal)
         adjustAlertPreferencesButton.titleLabel?.font = OpenSans.bold.of(textStyle: .headline)
-        
-        contactButton.layer.cornerRadius = 10
-        contactButton.addShadow(color: .black, opacity: 0.2, offset: .zero, radius: 3)
-        contactButton.accessibilityLabel = contactLabel.text
-        
-        contactLabel.textColor = .actionBlue
-        contactLabel.font = SystemFont.bold.of(textStyle: .headline)
     }
     
     func bindViewModel() {
@@ -141,13 +132,6 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
     }
     
     func bindActions() {
-        contactButton.rx.touchUpInside.asDriver()
-            .drive(onNext: { [weak self] in
-                guard let self = self else { return }
-                UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
-            })
-            .disposed(by: disposeBag)
-        
         adjustAlertPreferencesButton.rx.touchUpInside.asDriver()
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }

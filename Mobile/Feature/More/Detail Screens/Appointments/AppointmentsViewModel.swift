@@ -12,6 +12,8 @@ import RxCocoa
 class AppointmentsViewModel {
     let pollInterval = 30.0
     
+    let contactNumber = "1-800-685-0123"
+    
     var appointments: Observable<[Appointment]>!
     private (set) lazy var showLoadingState: Driver<Bool> = isLoading.asDriver()
     

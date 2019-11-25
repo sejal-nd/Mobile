@@ -16,6 +16,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var noNetworkView: NoNetworkConnectionView!
     @IBOutlet weak var emptyStateView: StateView!
     @IBOutlet weak var errorStateView: StateView!
+    @IBOutlet weak var contactUsButton: PrimaryButton!
     
     var appointments: [Appointment] = [Appointment]()
     var appointmentVCs: [AppointmentDetailViewController]!
@@ -100,6 +101,14 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             newCell?.label.textColor = .actionBlue
             newCell?.label.font = OpenSans.semibold.of(textStyle: .subheadline)
         }
+        
+        contactUsButton.rx
+            .touchUpInside
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
