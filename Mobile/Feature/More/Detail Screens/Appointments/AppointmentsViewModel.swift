@@ -12,6 +12,8 @@ import RxCocoa
 class AppointmentsViewModel {
     let pollInterval = 30.0
     
+    let contactNumber = "1-800-685-0123"
+    
     var appointments: Observable<[Appointment]>!
     private (set) lazy var showLoadingState: Driver<Bool> = isLoading.asDriver()
     
@@ -30,7 +32,6 @@ class AppointmentsViewModel {
     
     private (set) lazy var showEmptyState: Driver<Bool> = appointments
         .map { $0.isEmpty }
-        .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
     private var accountDetailEvents: Observable<Event<AccountDetail>>!
@@ -61,7 +62,6 @@ class AppointmentsViewModel {
         appointments = events
             .elements()
             .startWith(initialAppointments)
-            .distinctUntilChanged()
             .share()
     }
     

@@ -16,6 +16,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     @IBOutlet weak var noNetworkView: NoNetworkConnectionView!
     @IBOutlet weak var emptyStateView: StateView!
     @IBOutlet weak var errorStateView: StateView!
+    @IBOutlet weak var contactUsButton: PrimaryButton!
     
     var appointments: [Appointment] = [Appointment]()
     var appointmentVCs: [AppointmentDetailViewController]!
@@ -43,6 +44,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                 
                 if self.canAvoidFullReload(newAppointments: appointments) {
                     self.appointments = appointments
+                    
                     for i in 0..<appointments.count {
                         let appointment = self.appointments[i]
                         let appointmentVC = self.appointmentVCs[i]
@@ -58,6 +60,10 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         viewModel.showNoNetworkState.not().drive(self.noNetworkView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showErrorState.not().drive(self.errorStateView.rx.isHidden).disposed(by: disposeBag)
         viewModel.showEmptyState.not().drive(self.emptyStateView.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.showEmptyState.drive(onNext: { empty in
+            self.emptyStateView.isHidden = !empty
+            }).disposed(by: disposeBag)
         
         noNetworkView.reload
             .asDriver(onErrorDriveWith: .empty())
@@ -95,6 +101,14 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             newCell?.label.textColor = .actionBlue
             newCell?.label.font = OpenSans.semibold.of(textStyle: .subheadline)
         }
+        
+        contactUsButton.rx
+            .touchUpInside
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,8 +169,8 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     }
     
     private func initStates() {
-        self.emptyStateView.stateMessage = "No Appointments Found"
-        self.emptyStateView.stateImageName = "ic_appt_canceled"
+        self.emptyStateView.stateMessage = "You have no appointments scheduled."
+        self.emptyStateView.stateImageName = "img_appt_empty"
         self.errorStateView.stateMessage = "Error getting appointments"
         self.errorStateView.stateImageName = "ic_appt_canceled"
     }
