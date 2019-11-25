@@ -176,7 +176,9 @@ class AppointmentDetailViewController: UIViewController, IndicatorInfoProvider {
                 case .notDetermined:
                     EventStore.shared.requestAccess(to: .event) { [weak self] (granted, error) in
                         guard let self = self, error == nil && granted else { return }
-                        self.addCalendarEvent()
+                        DispatchQueue.main.async {
+                            self.addCalendarEvent()
+                        }
                     }
                 case .restricted: fallthrough
                 @unknown default:

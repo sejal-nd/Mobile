@@ -30,7 +30,6 @@ class AppointmentsViewModel {
     
     private (set) lazy var showEmptyState: Driver<Bool> = appointments
         .map { $0.isEmpty }
-        .startWith(false)
         .asDriver(onErrorDriveWith: .empty())
     
     private var accountDetailEvents: Observable<Event<AccountDetail>>!
@@ -61,7 +60,6 @@ class AppointmentsViewModel {
         appointments = events
             .elements()
             .startWith(initialAppointments)
-            .distinctUntilChanged()
             .share()
     }
     
