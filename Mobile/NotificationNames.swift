@@ -20,4 +20,5 @@ extension NSNotification.Name {
     static let didTapOnShortcutItem = NSNotification.Name(rawValue: "kDidTapOnShortcutItem")
     static let shouldShowIOSVersionWarning = NSNotification.Name(rawValue: "kShouldShowIOSVersionWarning")
     static let gameOnboardingComplete = NSNotification.Name("kGameOnboardingComplete")
+    static let gameSetFabHidden = NSNotification.Name("kgameSetFabHidden")
 }

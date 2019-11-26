@@ -11,32 +11,34 @@ import RxSwift
 class MCSGameService: GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
-        return Observable.create { observer -> Disposable in
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                let testUser = GameUser(onboardingComplete: false, optedOut: false, points: 0)
+        return MCSApi.shared.get(pathPrefix: .auth, path: "game/\(accountNumber)/\(AccountsStore.shared.customerIdentifier!)")
+            .map { json in
+                guard let dict = json as? NSDictionary, let gameUser = GameUser.from(dict) else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                
                 UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
-                observer.onNext(testUser)
-                observer.onCompleted()
+                return gameUser
             }
-            return Disposables.create()
-        }
     }
     
-    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<Void> {
-        return Observable.create { observer -> Disposable in
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: keyValues),
-                let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) else {
-                observer.onError(ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue))
-                observer.onCompleted()
-                return Disposables.create()
+    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<GameUser> {
+        var stringifiedDict = [String: String]()
+        keyValues.forEach { (key, value) in
+            if let valueStr = value as? String {
+                stringifiedDict[key] = valueStr
+            } else {
+                stringifiedDict[key] = String(describing: value)
             }
-            print("updateGameUser: \(jsonString)")
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                observer.onNext(())
-                observer.onCompleted()
-            }
-            return Disposables.create()
         }
+        
+        return MCSApi.shared.put(pathPrefix: .auth, path: "game/\(accountNumber)/\(AccountsStore.shared.customerIdentifier!)", params: stringifiedDict)
+            .map { json in
+                guard let dict = json as? NSDictionary, let gameUser = GameUser.from(dict) else {
+                    throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
+                }
+                return gameUser
+            }
     }
     
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {

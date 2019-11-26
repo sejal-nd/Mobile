@@ -57,7 +57,10 @@ class GameOptInOutViewController: UIViewController {
                 self.optedOut = gameUser.optedOut
                 let title = self.optedOut ? NSLocalizedString("Turn On This Feature", comment: "") :
                     NSLocalizedString("Turn Off This Feature", comment: "")
-                self.optInOutButton.setTitle(title, for: .normal)
+                UIView.performWithoutAnimation { // Prevents ugly setTitle animation
+                    self.optInOutButton.setTitle(title, for: .normal)
+                    self.optInOutButton.layoutIfNeeded()
+                }
                 
                 self.scrollView.isHidden = false
                 self.stickyFooterView.isHidden = false
@@ -83,6 +86,7 @@ class GameOptInOutViewController: UIViewController {
                     LoadingView.hide()
                     guard let self = self else { return }
                     self.delegate?.gameOptInOutViewController(self, didOptOut: !self.optedOut)
+                    RxNotifications.shared.accountDetailUpdated.onNext(()) // So that home reloads and onboarding card shows/hides
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] err in
                     LoadingView.hide()

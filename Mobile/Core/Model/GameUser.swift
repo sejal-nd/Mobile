@@ -15,9 +15,33 @@ struct GameUser: Mappable {
     var points: Int
         
     init(map: Mapper) throws {
-        onboardingComplete = map.optionalFrom("onboardingComplete") ?? false
-        optedOut = map.optionalFrom("optedOut") ?? false
-        try points = map.from("points")
+//        onboardingComplete = map.optionalFrom("onboardingComplete") ?? false
+//        optedOut = map.optionalFrom("optedOut") ?? false
+//
+//        let pointStr: String? = map.optionalFrom("points")
+//        if pointStr != nil, let pointInt = Int(pointStr!) {
+//            points = pointInt
+//        } else {
+//            points = 0
+//        }
+        
+        if let onboardingCompleteStr: String = map.optionalFrom("onboardingComplete") {
+            onboardingComplete = onboardingCompleteStr.lowercased() == "true"
+        } else {
+            onboardingComplete = false
+        }
+        
+        if let optedOutStr: String = map.optionalFrom("optedOut") {
+            optedOut = optedOutStr.lowercased() == "true"
+        } else {
+            optedOut = false
+        }
+        
+        if let pointsStr: String = map.optionalFrom("points") {
+            points = Int(pointsStr) ?? 0
+        } else {
+            points = 0
+        }
     }
     
     // For temp testing only

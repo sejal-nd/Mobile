@@ -14,8 +14,8 @@ class MockGameService: GameService {
         return .just(nil)
     }
     
-    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<Void> {
-        return .just(())
+    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<GameUser> {
+        return .just(GameUser(onboardingComplete: true, optedOut: false, points: 0))
     }
     
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {

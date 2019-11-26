@@ -44,6 +44,16 @@ class HomeContentViewController: UIViewController {
             })
             .disposed(by: bag)
         
+        NotificationCenter.default.rx.notification(.gameSetFabHidden, object: nil)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] noti in
+                if let isHidden = noti.object as? Bool {
+                    self?.fab.isHidden = isHidden
+                }
+            })
+            .disposed(by: bag)
+        
         displayInitialView()
     }
     
@@ -156,16 +166,5 @@ class HomeContentViewController: UIViewController {
         UserDefaults.standard.set(inGame, forKey: UserDefaultKeys.prefersGameHome)
         setNeedsStatusBarAppearanceUpdate()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

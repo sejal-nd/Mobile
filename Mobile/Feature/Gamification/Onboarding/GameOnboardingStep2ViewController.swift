@@ -24,6 +24,8 @@ class GameOnboardingStep2ViewController: UIViewController {
     
     let bag = DisposeBag()
     
+    let gameService = ServiceFactory.createGameService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

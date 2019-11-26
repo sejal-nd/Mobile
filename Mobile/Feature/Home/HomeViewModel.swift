@@ -288,9 +288,10 @@ class HomeViewModel {
             guard let self = self,
                 Environment.shared.opco == .bge,
                 AccountsStore.shared.currentAccount.isMultipremise == false,
-                UserDefaults.standard.bool(forKey: UserDefaultKeys.gameActivated) == false, // Likely not needed when using real services because onboardingComplete should be true
+                //UserDefaults.standard.bool(forKey: UserDefaultKeys.gameActivated) == false, // Likely not needed when using real services because onboardingComplete should be true
                 accountDetail.premiseNumber != nil,
                 UI_USER_INTERFACE_IDIOM() != .pad else {
+                NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
                 return .just(nil)
             }
             
@@ -298,9 +299,13 @@ class HomeViewModel {
         })
         .share(replay: 1, scope: .forever)
     
-    private(set) lazy var showGameOnboardingCard = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { gameUser -> Bool in
-        guard let user = gameUser else { return false }
-        return !user.onboardingComplete && !user.optedOut
+    private(set) lazy var showGameOnboardingCard = gameUserEvents.elements().asDriver(onErrorJustReturn: nil).map { user -> Bool in
+        guard let gameUser = user else { return false }
+        
+        if gameUser.onboardingComplete && !gameUser.optedOut {
+            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+        }
+        return !gameUser.onboardingComplete && !gameUser.optedOut
     }
     
     private lazy var prepaidStatus = accountDetailEvents.elements()

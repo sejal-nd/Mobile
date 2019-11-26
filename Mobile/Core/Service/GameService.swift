@@ -11,8 +11,8 @@ import RxSwift
 protocol GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?>
-    
-    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<Void>
+
+    func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<GameUser>
     
     /// Compares how usage impacted your bill between cycles
     ///
