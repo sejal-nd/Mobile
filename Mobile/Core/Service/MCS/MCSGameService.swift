@@ -17,8 +17,12 @@ class MCSGameService: GameService {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 
-                UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
-                return gameUser
+                if gameUser.pilotGroup?.lowercased() == "experimental" {
+                    UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
+                    return gameUser
+                } else {
+                    return nil
+                }
             }
     }
     

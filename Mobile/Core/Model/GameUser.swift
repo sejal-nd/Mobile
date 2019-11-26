@@ -13,6 +13,7 @@ struct GameUser: Mappable {
     var onboardingComplete: Bool
     var optedOut: Bool
     var points: Int
+    let pilotGroup: String?
         
     init(map: Mapper) throws {
 //        onboardingComplete = map.optionalFrom("onboardingComplete") ?? false
@@ -42,6 +43,8 @@ struct GameUser: Mappable {
         } else {
             points = 0
         }
+        
+        pilotGroup = map.optionalFrom("pilotGroup")
     }
     
     // For temp testing only

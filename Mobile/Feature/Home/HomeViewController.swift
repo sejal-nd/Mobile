@@ -768,7 +768,6 @@ extension HomeViewController: AccountPickerDelegate {
         } else {
             NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
         }
-        
     }
 }
 
