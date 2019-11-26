@@ -760,7 +760,15 @@ extension HomeViewController: AccountPickerDelegate {
         setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(.switchAccount)
 
-        NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
+        let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
+        let prefersGameHome = UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome)
+        if prefersGameHome && AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber {
+            NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)
+            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
+        } else {
+            NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
+        }
+        
     }
 }
 

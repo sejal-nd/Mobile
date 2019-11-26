@@ -233,7 +233,12 @@ class GameHomeViewController: AccountPickerViewController {
 
 extension GameHomeViewController: AccountPickerDelegate {
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
-        viewModel.fetchData()
+        let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
+        if AccountsStore.shared.currentAccount.accountNumber != gameAccountNumber {
+            NotificationCenter.default.post(name: .gameSwitchToHomeView, object: nil)
+        } else {
+            viewModel.fetchData()
+        }
     }
 }
 

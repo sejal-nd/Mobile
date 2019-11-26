@@ -52,6 +52,24 @@ class HomeContentViewController: UIViewController {
             })
             .disposed(by: bag)
         
+        NotificationCenter.default.rx.notification(.gameSwitchToGameView, object: nil)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.inGame = false
+                self?.switchViews(animated: false, onCompletion: nil)
+            })
+            .disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(.gameSwitchToHomeView, object: nil)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.inGame = true
+                self?.switchViews(animated: false, onCompletion: nil)
+            })
+            .disposed(by: bag)
+        
         NotificationCenter.default.rx.notification(.gameSetFabHidden, object: nil)
             .asObservable()
             .subscribeOn(MainScheduler.instance)
@@ -63,7 +81,7 @@ class HomeContentViewController: UIViewController {
             .disposed(by: bag)
         
         // TODO: Final solution...thinking we can't preferGameHome because of multi accounts...what if game account is not first?
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
+        //UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
         displayInitialView()
     }
     
@@ -98,65 +116,32 @@ class HomeContentViewController: UIViewController {
     
     // Upon onboarding complete, switches to the game view without animation, and shows the FAB
     private func onGameOnboardingComplete() {
-        let sb = UIStoryboard(name: "Game", bundle: nil)
-        let controller = sb.instantiateViewController(withIdentifier: "GameHome")
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        addChild(controller)
-        
-        UIView.transition(from: containerView, to: controller.view, duration: 0, options: [], completion: { [weak self] _ in
-            self?.containerView = controller.view
-        })
-        
-        NSLayoutConstraint.activate([
-            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
-            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        ])
-        controller.didMove(toParent: self)
-        view.sendSubviewToBack(controller.view)
-        
-        inGame = true
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
-        setNeedsStatusBarAppearanceUpdate()
-        
-        fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
+        switchViews(animated: false, onCompletion: nil)
         fab.isHidden = false
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
     }
     
     // Upon opt out, switches to the normal home view without animation, and hides the FAB
     private func onGameOptOut() {
-        let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
-        controller.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        addChild(controller)
-        
-        UIView.transition(from: containerView, to: controller.view, duration: 0, options: [], completion: { [weak self] _ in
-            self?.containerView = controller.view
-        })
-        
-        NSLayoutConstraint.activate([
-            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
-            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        ])
-        controller.didMove(toParent: self)
-        view.sendSubviewToBack(controller.view)
-        
-        inGame = false
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
-        setNeedsStatusBarAppearanceUpdate()
-        
-        fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
+        inGame = true // Ensure that switchViews will change to home screen
+        switchViews(animated: false, onCompletion: nil)
         fab.isHidden = true
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
     }
     
     @IBAction func onFabPress() {
         if flipping { return }
         
         flipping = true
+        switchViews(animated: true) { [weak self] in
+            guard let self = self else { return }
+            self.flipping = false
+            UserDefaults.standard.set(self.inGame, forKey: UserDefaultKeys.prefersGameHome)
+        }
+    }
+    
+    func switchViews(animated: Bool, onCompletion: (() -> Void)?) {
+        let duration = animated ? 1.0 : 0.0
         if inGame {
             self.inGame = false
             let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
@@ -165,9 +150,9 @@ class HomeContentViewController: UIViewController {
             addChild(controller)
             
             fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
-            UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
-                self?.flipping = false
+            UIView.transition(from: containerView, to: controller.view, duration: duration, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.containerView = controller.view
+                onCompletion?()
             })
             
             NSLayoutConstraint.activate([
@@ -187,9 +172,9 @@ class HomeContentViewController: UIViewController {
             addChild(controller)
             
             fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
-            UIView.transition(from: containerView, to: controller.view, duration: 1, options: [.transitionFlipFromRight], completion: { [weak self] _ in
-                self?.flipping = false
+            UIView.transition(from: containerView, to: controller.view, duration: duration, options: [.transitionFlipFromRight], completion: { [weak self] _ in
                 self?.containerView = controller.view
+                onCompletion?()
             })
             
             NSLayoutConstraint.activate([
@@ -202,7 +187,6 @@ class HomeContentViewController: UIViewController {
             view.sendSubviewToBack(controller.view)
         }
         
-        UserDefaults.standard.set(inGame, forKey: UserDefaultKeys.prefersGameHome)
         setNeedsStatusBarAppearanceUpdate()
     }
 
