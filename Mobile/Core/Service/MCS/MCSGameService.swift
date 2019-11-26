@@ -19,6 +19,8 @@ class MCSGameService: GameService {
                 
                 if gameUser.pilotGroup?.lowercased() == "experimental" {
                     UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
+                    UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
+                    UserDefaults.standard.set(gameUser.optedOut, forKey: UserDefaultKeys.gameOptedOutLocal)
                     return gameUser
                 } else {
                     return nil
@@ -41,6 +43,8 @@ class MCSGameService: GameService {
                 guard let dict = json as? NSDictionary, let gameUser = GameUser.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
+                UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
+                UserDefaults.standard.set(gameUser.optedOut, forKey: UserDefaultKeys.gameOptedOutLocal)
                 return gameUser
             }
     }

@@ -84,6 +84,10 @@ class MoreViewController: UIViewController {
         if AccountsStore.shared.accounts == nil {
             fetchAccounts()
         }
+        
+        // Edge case: if user navigates to More before game data loads, we want the
+        // Energy Buddy row to appear the next time they come back
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -173,7 +177,6 @@ class MoreViewController: UIViewController {
         
         RxNotifications.shared.configureQuickActions.onNext(false)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
-        UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
     

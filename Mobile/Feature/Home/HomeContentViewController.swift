@@ -117,17 +117,17 @@ class HomeContentViewController: UIViewController {
     
     // Upon onboarding complete, switches to the game view without animation, and shows the FAB
     private func onGameOnboardingComplete() {
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
         switchViews(animated: false, onCompletion: nil)
         fab.isHidden = false
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome)
     }
     
     // Upon opt out, switches to the normal home view without animation, and hides the FAB
     private func onGameOptOut() {
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
         inGame = true // Ensure that switchViews will change to home screen
         switchViews(animated: false, onCompletion: nil)
         fab.isHidden = true
-        UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
     }
     
     @IBAction func onFabPress() {

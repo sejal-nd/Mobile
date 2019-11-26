@@ -49,4 +49,6 @@ struct UserDefaultKeys {
     // Gamification
     static let prefersGameHome = "kPrefersGameHome"
     static let gameAccountNumber = "kGamificationAccountNumber"
+    static let gameOptedOutLocal = "kGameOptedOutLocal"
+    static let gameOnboardingCompleteLocal = "kGameOnboardingCompleteLocal"
 }
