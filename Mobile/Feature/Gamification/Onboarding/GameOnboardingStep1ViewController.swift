@@ -89,10 +89,6 @@ class GameOnboardingStep1ViewController: UIViewController {
     }
     
     @IBAction func onContinuePress() {
-        // TODO: Analytics event
-        // TODO: Post their selected answer to server
-        
-        // push next VC
         performSegue(withIdentifier: "goToStep2", sender: self)
     }
     
@@ -109,6 +105,21 @@ class GameOnboardingStep1ViewController: UIViewController {
         button2Label.font = OpenSans.regular.of(textStyle: .headline)
         button3Label.textColor = .deepGray
         button3Label.font = OpenSans.regular.of(textStyle: .headline)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let step2 = segue.destination as? GameOnboardingStep2ViewController {
+            var selectedResponse: String?
+            switch selectedButton.value {
+            case button1:
+                selectedResponse = button1Label.text
+            case button2:
+                selectedResponse = button2Label.text
+            default:
+                selectedResponse = button3Label.text
+            }
+            step2.step1Response = selectedResponse!
+        }
     }
     
     

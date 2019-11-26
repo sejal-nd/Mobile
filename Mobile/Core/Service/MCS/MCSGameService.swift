@@ -11,7 +11,7 @@ import RxSwift
 class MCSGameService: GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
-        return MCSApi.shared.get(pathPrefix: .auth, path: "game/\(accountNumber)/\(AccountsStore.shared.customerIdentifier!)")
+        return MCSApi.shared.get(pathPrefix: .auth, path: "game/\(accountNumber)")
             .map { json in
                 guard let dict = json as? NSDictionary, let gameUser = GameUser.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
@@ -32,7 +32,7 @@ class MCSGameService: GameService {
             }
         }
         
-        return MCSApi.shared.put(pathPrefix: .auth, path: "game/\(accountNumber)/\(AccountsStore.shared.customerIdentifier!)", params: stringifiedDict)
+        return MCSApi.shared.put(pathPrefix: .auth, path: "game/\(accountNumber)", params: stringifiedDict)
             .map { json in
                 guard let dict = json as? NSDictionary, let gameUser = GameUser.from(dict) else {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)

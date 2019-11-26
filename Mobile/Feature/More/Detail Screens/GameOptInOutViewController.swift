@@ -82,11 +82,17 @@ class GameOptInOutViewController: UIViewController {
             let optObject = ["optedOut": !self.optedOut]
             self.gameService.updateGameUser(accountNumber: self.gameAccountNumber, keyValues: optObject)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] _ in
+                .subscribe(onNext: { [weak self] gameUser in
                     LoadingView.hide()
                     guard let self = self else { return }
-                    self.delegate?.gameOptInOutViewController(self, didOptOut: !self.optedOut)
-                    RxNotifications.shared.accountDetailUpdated.onNext(()) // So that home reloads and onboarding card shows/hides
+                    
+                    if gameUser.optedOut {
+                        NotificationCenter.default.post(name: .gameDidOptOut, object: nil)
+                    } else {
+                        RxNotifications.shared.accountDetailUpdated.onNext(()) // So that home reloads and onboarding card shows/hides
+                    }
+                    
+                    self.delegate?.gameOptInOutViewController(self, didOptOut: gameUser.optedOut)
                     self.navigationController?.popViewController(animated: true)
                 }, onError: { [weak self] err in
                     LoadingView.hide()

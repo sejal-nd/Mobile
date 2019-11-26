@@ -26,6 +26,8 @@ class GameOnboardingStep2ViewController: UIViewController {
     
     let gameService = ServiceFactory.createGameService()
     
+    var step1Response: String! // Passed from Step1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -75,12 +77,31 @@ class GameOnboardingStep2ViewController: UIViewController {
     
     
     @IBAction func onDonePress() {
-        // TODO: Analytics event
-        // TODO: Post their selected answer to server
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true // Prevent swipe dismiss while loading
+        }
         
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameActivated)
-        NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
-        dismissModal()
+        LoadingView.show()
+        let own = selectedButton.value == button1
+        let params: [String: Any] = [
+            "onboardingHowDoYouFeelAnswer": step1Response!,
+            "onboardingRentOrOwnAnswer": own ? "OWN" : "RENT",
+            "onboardingComplete": true
+        ]
+        gameService.updateGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber, keyValues: params)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] gameUser in
+                LoadingView.hide()
+                NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
+                self?.dismissModal()
+            }, onError: { [weak self] err in
+                LoadingView.hide()
+                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                              message: err.localizedDescription,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }).disposed(by: bag)
     }
     
     private func resetAllButtons() {

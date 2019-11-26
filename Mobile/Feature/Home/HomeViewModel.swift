@@ -288,10 +288,8 @@ class HomeViewModel {
             guard let self = self,
                 Environment.shared.opco == .bge,
                 AccountsStore.shared.currentAccount.isMultipremise == false,
-                //UserDefaults.standard.bool(forKey: UserDefaultKeys.gameActivated) == false, // Likely not needed when using real services because onboardingComplete should be true
                 accountDetail.premiseNumber != nil,
                 UI_USER_INTERFACE_IDIOM() != .pad else {
-                NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
                 return .just(nil)
             }
             

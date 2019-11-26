@@ -173,6 +173,7 @@ class MoreViewController: UIViewController {
         
         RxNotifications.shared.configureQuickActions.onNext(false)
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isKeepMeSignedInChecked)
+        UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameAccountNumber)
         (UIApplication.shared.delegate as? AppDelegate)?.resetNavigation()
     }
     

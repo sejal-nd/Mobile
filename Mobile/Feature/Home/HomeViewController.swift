@@ -759,6 +759,8 @@ extension HomeViewController: AccountPickerDelegate {
         // enable refresh control once accounts list loads
         setRefreshControlEnabled(enabled: true)
         viewModel.fetchData.onNext(.switchAccount)
+
+        NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: true))
     }
 }
 

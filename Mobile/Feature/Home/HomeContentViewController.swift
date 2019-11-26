@@ -28,7 +28,7 @@ class HomeContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fab.isHidden = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameActivated) == false
+        fab.isHidden = true
         
         fab.layer.cornerRadius = 27.5
         fab.addShadow(color: .black, opacity: 0.2, offset: CGSize(width: 0, height: 5), radius: 10)
@@ -44,6 +44,14 @@ class HomeContentViewController: UIViewController {
             })
             .disposed(by: bag)
         
+        NotificationCenter.default.rx.notification(.gameDidOptOut, object: nil)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.onGameOptOut()
+            })
+            .disposed(by: bag)
+        
         NotificationCenter.default.rx.notification(.gameSetFabHidden, object: nil)
             .asObservable()
             .subscribeOn(MainScheduler.instance)
@@ -54,6 +62,8 @@ class HomeContentViewController: UIViewController {
             })
             .disposed(by: bag)
         
+        // TODO: Final solution...thinking we can't preferGameHome because of multi accounts...what if game account is not first?
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
         displayInitialView()
     }
     
@@ -86,6 +96,7 @@ class HomeContentViewController: UIViewController {
         containerView = viewController.view
     }
     
+    // Upon onboarding complete, switches to the game view without animation, and shows the FAB
     private func onGameOnboardingComplete() {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let controller = sb.instantiateViewController(withIdentifier: "GameHome")
@@ -112,6 +123,34 @@ class HomeContentViewController: UIViewController {
         
         fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
         fab.isHidden = false
+    }
+    
+    // Upon opt out, switches to the normal home view without animation, and hides the FAB
+    private func onGameOptOut() {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(controller)
+        
+        UIView.transition(from: containerView, to: controller.view, duration: 0, options: [], completion: { [weak self] _ in
+            self?.containerView = controller.view
+        })
+        
+        NSLayoutConstraint.activate([
+            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
+            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            controller.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+        controller.didMove(toParent: self)
+        view.sendSubviewToBack(controller.view)
+        
+        inGame = false
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
+        setNeedsStatusBarAppearanceUpdate()
+        
+        fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
+        fab.isHidden = true
     }
     
     @IBAction func onFabPress() {
