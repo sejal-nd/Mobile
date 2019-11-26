@@ -41,14 +41,14 @@ struct Appointment: Mappable, Equatable {
     
     let id: String
     let date: Date
-    let stopDate: Date
+    let stopDate: Date?
     let status: Status
     private let timeslotString: String?
 
     init(map: Mapper) throws {
         id = try map.from("id")
         date = try map.from("startDate", transformation: DateParser().extractDate)
-        stopDate = try map.from("stopDate", transformation: DateParser().extractDate)
+        stopDate = map.optionalFrom("stopDate", transformation: DateParser().extractDate)
         timeslotString = map.optionalFrom("timeSlot")
         status = try map.from("status") { object in
             guard let string = object as? String, let status = Status(rawValue: string) else {
