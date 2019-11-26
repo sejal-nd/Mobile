@@ -36,6 +36,40 @@ class HomeContentViewController: UIViewController {
         fab.normalBackgroundColor = fabColor
         fab.backgroundColorOnPress = fabColor.darker()
         
+        setupNotifications()
+        //displayInitialView()
+    }
+    
+//    private func displayInitialView() {
+//        var viewController: UIViewController
+//        if UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome) {
+//            let sb = UIStoryboard(name: "Game", bundle: nil)
+//            viewController = sb.instantiateViewController(withIdentifier: "GameHome")
+//            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
+//            inGame = true
+//        } else {
+//            viewController = storyboard!.instantiateViewController(withIdentifier: "Home")
+//            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
+//            inGame = false
+//        }
+//        viewController.view.translatesAutoresizingMaskIntoConstraints = false
+//
+//        addChild(viewController)
+//        containerView.addSubview(viewController.view)
+//        view.sendSubviewToBack(viewController.view)
+//
+//        NSLayoutConstraint.activate([
+//            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
+//            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+//            viewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+//            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+//        ])
+//        viewController.didMove(toParent: self)
+//
+//        containerView = viewController.view
+//    }
+    
+    private func setupNotifications() {
         NotificationCenter.default.rx.notification(.gameOnboardingComplete, object: nil)
             .asObservable()
             .subscribeOn(MainScheduler.instance)
@@ -79,39 +113,6 @@ class HomeContentViewController: UIViewController {
                 }
             })
             .disposed(by: bag)
-        
-        // TODO: Final solution...thinking we can't preferGameHome because of multi accounts...what if game account is not first?
-        //UserDefaults.standard.set(false, forKey: UserDefaultKeys.prefersGameHome)
-        displayInitialView()
-    }
-    
-    private func displayInitialView() {
-        var viewController: UIViewController
-        if UserDefaults.standard.bool(forKey: UserDefaultKeys.prefersGameHome) {
-            let sb = UIStoryboard(name: "Game", bundle: nil)
-            viewController = sb.instantiateViewController(withIdentifier: "GameHome")
-            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_game")
-            inGame = true
-        } else {
-            viewController = storyboard!.instantiateViewController(withIdentifier: "Home")
-            fabImageView.image = #imageLiteral(resourceName: "ic_fab_on_home")
-            inGame = false
-        }
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        addChild(viewController)
-        containerView.addSubview(viewController.view)
-        view.sendSubviewToBack(viewController.view)
-        
-        NSLayoutConstraint.activate([
-            viewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0),
-            viewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            viewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            viewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        ])
-        viewController.didMove(toParent: self)
-        
-        containerView = viewController.view
     }
     
     // Upon onboarding complete, switches to the game view without animation, and shows the FAB
@@ -132,11 +133,12 @@ class HomeContentViewController: UIViewController {
     @IBAction func onFabPress() {
         if flipping { return }
         
+        UserDefaults.standard.set(!self.inGame, forKey: UserDefaultKeys.prefersGameHome)
+        
         flipping = true
         switchViews(animated: true) { [weak self] in
             guard let self = self else { return }
             self.flipping = false
-            UserDefaults.standard.set(self.inGame, forKey: UserDefaultKeys.prefersGameHome)
         }
     }
     

@@ -20,11 +20,11 @@
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="jop-CG-TUs" customClass="HomeEditViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ru0-ER-Lgv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SaA-dQ-kuY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qE7-g0-s29">
                                     <size key="itemSize" width="375" height="60"/>
@@ -76,7 +76,7 @@
                                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="jmE-d9-Mi9">
                                                                     <rect key="frame" x="48" y="9.5" width="280" height="41.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-p9-MP6">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-p9-MP6">
                                                                             <rect key="frame" x="0.0" y="0.0" width="38" height="25"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -85,7 +85,7 @@
                                                                             <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="May not be available for all accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2T-Jz-ytA">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May not be available for all accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2T-Jz-ytA">
                                                                             <rect key="frame" x="0.0" y="25" width="203.5" height="16.5"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
@@ -281,7 +281,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ONv-RL-qH5" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="119"/>
+                                <rect key="frame" x="0.0" y="723" width="414" height="119"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-sw-7Fq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
@@ -323,31 +323,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HyB-6K-vcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1441" y="-669"/>
+            <point key="canvasLocation" x="-209" y="-698"/>
         </scene>
         <!--UpdatesDetailViewController-->
         <scene sceneID="g5d-Cq-yGf">
             <objects>
-                <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="UpdatesDetailViewController" id="8XL-jd-5lL" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="UpdatesDetailViewController" id="8XL-jd-5lL" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="fN2-XW-ilz"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0N-Jo-QyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="-1529"/>
+            <point key="canvasLocation" x="570" y="-2278"/>
         </scene>
         <!--ReportOutageViewController-->
         <scene sceneID="Hv2-cW-QlF">
             <objects>
-                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="ho2-TI-3tb" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="ReportOutageViewController" id="ho2-TI-3tb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="tMZ-K6-65Y"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeT-AG-oJw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2151" y="-1464"/>
+            <point key="canvasLocation" x="570" y="-2219"/>
         </scene>
         <!--OutageMapViewController-->
         <scene sceneID="5Lv-X1-muK">
             <objects>
-                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="9AE-d3-QcS" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Outage" referencedIdentifier="OutageMapViewController" id="9AE-d3-QcS" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="etK-MA-Cuk"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oie-4h-IwV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2139" y="-1403"/>
+            <point key="canvasLocation" x="558" y="-2157"/>
         </scene>
         <!--Home Content View Controller-->
         <scene sceneID="cod-qW-QjA">
@@ -359,6 +365,9 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2z-qx-fNE">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="c2T-h3-4Jv" kind="embed" id="lkE-SL-30l"/>
+                                </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zwa-mm-vVg" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                                 <rect key="frame" x="343" y="791" width="55" height="55"/>
@@ -398,28 +407,22 @@
                         <outlet property="containerView" destination="f2z-qx-fNE" id="cvc-pT-kUB"/>
                         <outlet property="fab" destination="Zwa-mm-vVg" id="v6Q-G7-b9Q"/>
                         <outlet property="fabImageView" destination="QiT-2A-8Tz" id="xxb-L3-ljl"/>
-                        <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="Gdb-8Z-K6i"/>
-                        <segue destination="ho2-TI-3tb" kind="show" identifier="reportOutageSegue" id="P2D-Ry-Yj3"/>
-                        <segue destination="9AE-d3-QcS" kind="show" identifier="outageMapSegue" id="PBt-yQ-MvG"/>
-                        <segue destination="8XL-jd-5lL" kind="show" identifier="UpdatesDetailSegue" id="8bf-8e-LkE"/>
-                        <segue destination="WSt-KO-Xq2" kind="show" identifier="appointmentDetailSegue" id="fxD-dY-2s2"/>
-                        <segue destination="jop-CG-TUs" kind="show" identifier="editHomeSegue" id="Sgl-vw-lAY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="URM-gv-xjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1440.8" y="-1465.8170914542729"/>
+            <point key="canvasLocation" x="-1096" y="-1464"/>
         </scene>
         <!--Total Savings-->
         <scene sceneID="0Cd-Yk-FKK">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="sRC-YE-f9Y" customClass="TotalSavingsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MzG-Xm-OsS">
-                        <rect key="frame" x="0.0" y="0.0" width="581" height="579"/>
+                        <rect key="frame" x="0.0" y="0.0" width="581" height="557"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9t-IF-uZb">
-                                <rect key="frame" x="263" y="32" width="55.5" height="21"/>
+                                <rect key="frame" x="262.5" y="32" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -460,13 +463,13 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHb-sT-z0N">
-                                <rect key="frame" x="0.0" y="103" width="581" height="442"/>
+                                <rect key="frame" x="0.0" y="103" width="581" height="454"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JE0-1x-WxG">
-                                        <rect key="frame" x="0.0" y="0.0" width="581" height="442"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="581" height="454"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fWK-Vp-ecc">
-                                                <rect key="frame" x="0.0" y="0.0" width="581" height="442"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="581" height="454"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="581" id="ch8-Rz-3i0"/>
@@ -704,18 +707,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDg-zb-1M2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2841" y="-970"/>
+            <point key="canvasLocation" x="841" y="-1125"/>
         </scene>
         <!--Appointments View Controller-->
         <scene sceneID="4NA-aG-10r">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="WSt-KO-Xq2" customClass="AppointmentsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bB9-IB-WIF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wrg-RC-Urp">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-GB-YL7" customClass="ButtonBarView" customModule="XLPagerTabStrip">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
@@ -739,7 +742,7 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTr-Pe-azx">
-                                        <rect key="frame" x="0.0" y="49" width="414" height="803"/>
+                                        <rect key="frame" x="0.0" y="49" width="414" height="793"/>
                                     </scrollView>
                                 </subviews>
                             </stackView>
@@ -754,6 +757,7 @@
                         <viewLayoutGuide key="safeArea" id="q7A-6F-Ya3"/>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="pQJ-lg-avn"/>
                     <connections>
                         <outlet property="buttonBarView" destination="dSq-GB-YL7" id="AAv-AC-uyX"/>
                         <outlet property="containerView" destination="mTr-Pe-azx" id="Xmd-cp-qML"/>
@@ -761,7 +765,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xH0-tF-N6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2839" y="-1996"/>
+            <point key="canvasLocation" x="720" y="-1729"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="GIZ-Ee-jsd">
@@ -961,11 +965,17 @@
                         <outlet property="noNetworkConnectionView" destination="GJI-lc-AQv" id="6ha-EO-03T"/>
                         <outlet property="personalizeButton" destination="csJ-YN-Yl6" id="Rxy-W7-RDD"/>
                         <outlet property="scrollView" destination="YFa-0s-0sf" id="My0-Yi-Nc5"/>
+                        <segue destination="sRC-YE-f9Y" kind="show" identifier="totalSavingsSegue" id="wsZ-FF-AGN"/>
+                        <segue destination="jop-CG-TUs" kind="show" identifier="editHomeSegue" id="gnZ-bQ-rAb"/>
+                        <segue destination="WSt-KO-Xq2" kind="show" identifier="appointmentDetailSegue" id="Y7R-Hd-d60"/>
+                        <segue destination="9AE-d3-QcS" kind="show" identifier="outageMapSegue" id="h5F-aX-a1n"/>
+                        <segue destination="ho2-TI-3tb" kind="show" identifier="reportOutageSegue" id="Lop-PA-Q6Y"/>
+                        <segue destination="8XL-jd-5lL" kind="show" identifier="UpdatesDetailSegue" id="ayy-wa-ekS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arn-JF-3F9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1441" y="-2202"/>
+            <point key="canvasLocation" x="-207" y="-1465"/>
         </scene>
     </scenes>
     <resources>
