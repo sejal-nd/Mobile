@@ -113,6 +113,12 @@ class DailyInsightCoinView: UIControl {
     }
     
     var lastWeekComparisonString: String {
+        // Have this week's data, but no data for last week
+        if let thisWeek = usage, lastWeekUsage == nil {
+            return String.localizedStringWithFormat("You used %@ %@.", thisWeek.amount.twoDecimalString, thisWeek.unit)
+        }
+        
+        // No data - placeholder view
         guard let thisWeek = usage, let lastWeek = lastWeekUsage else {
             return NSLocalizedString("Data not yet available. It generally takes 24 to 48 hours to appear. Check back later!", comment: "")
         }

@@ -161,38 +161,29 @@ class GameHomeViewController: AccountPickerViewController {
         coinStack.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
-        
         coinViews.removeAll()
         
-        let dataCount = min(usageArray.count, 7)
-        for i in 0..<dataCount {
-            let data = usageArray[i]
-            var lastWeekData: DailyUsage?
-            if usageArray.count > i + 7 {
-                lastWeekData = usageArray[i + 7]
-            }
-            
-            let accountNumber = viewModel.accountDetail.value!.accountNumber
-            let canCollect = coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: data.date, gas: viewModel.selectedSegmentIndex == 1) == nil
+        var date = Calendar.current.startOfDay(for: Date()) // Based on user's timezone so their current "today" is always displayed
+        while coinViews.count < 7 {
+            if let match = usageArray.fislter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
+                let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: date)!
+                let lastWeekMatch = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: lastWeek) }).first
 
-            let view = DailyInsightCoinView(usage: data, lastWeekUsage: lastWeekData, canCollect: canCollect)
-            view.delegate = self
-            coinViews.append(view)
+                let accountNumber = viewModel.accountDetail.value!.accountNumber
+                let canCollect = coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: match.date, gas: viewModel.selectedSegmentIndex == 1) == nil
+
+                let view = DailyInsightCoinView(usage: match, lastWeekUsage: lastWeekMatch, canCollect: canCollect)
+                view.delegate = self
+                coinViews.append(view)
+            } else {
+                let placeholderView = DailyInsightCoinView(placeholderViewForDate: date)
+                placeholderView.delegate = self
+                coinViews.append(placeholderView)
+            }
+            date = Calendar.current.date(byAdding: .day, value: -1, to: date)!
         }
         coinViews.reverse() // Views are now oldest to most recent
-        
-        // Fill in "placeholder" views if there are any days without data between now and the first data point
-        let mostRecentDataPoint = usageArray.first!
-        let startOfToday = Calendar.current.startOfDay(for: Date()) // Based on user's timezone so their current "today" is always displayed
-        let daysApart = abs(mostRecentDataPoint.date.interval(ofComponent: .day, fromDate: startOfToday, usingCalendar: .gmt))
-        for i in 1...daysApart {
-            guard let nextDay = Calendar.gmt.date(byAdding: .day, value: i, to: mostRecentDataPoint.date) else { continue }
-            let placeholderView = DailyInsightCoinView(placeholderViewForDate: nextDay)
-            placeholderView.delegate = self
-            coinViews.append(placeholderView)
-        }
-        
-        coinViews.removeFirst(coinViews.count - 7) // We just need the latest 7 days
+
         coinViews.forEach {
             coinStack.addArrangedSubview($0)
         }
