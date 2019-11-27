@@ -97,6 +97,12 @@ class DailyInsightCoinView: UIControl {
     }
     
     var lastWeekComparisionImage: UIImage? {
+        // Have this week's data, but no data for last week
+        if usage != nil && lastWeekUsage == nil {
+            return #imageLiteral(resourceName: "ic_trendcheck.pdf")
+        }
+        
+        // No data - placeholder view
         guard let thisWeek = usage, let lastWeek = lastWeekUsage else { return nil }
         
         let diff = abs(thisWeek.amount - lastWeek.amount)

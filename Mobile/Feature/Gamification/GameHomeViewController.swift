@@ -35,6 +35,9 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var loadingView: UIView!
     
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     private var coinViews = [DailyInsightCoinView]()
     
     let viewModel = GameHomeViewModel(accountService: ServiceFactory.createAccountService(),
@@ -44,7 +47,15 @@ class GameHomeViewController: AccountPickerViewController {
     
     var layoutSubviewsComplete = false
     var welcomedUser = false
-    var currentPoints = 0
+    
+    var points: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: UserDefaultKeys.gamePointsLocal)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.gamePointsLocal)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +105,10 @@ class GameHomeViewController: AccountPickerViewController {
         weeklyInsightButton.setTitleColor(.actionBlue, for: .normal)
         weeklyInsightButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         
+        errorLabel.textColor = .deepGray
+        errorLabel.font = SystemFont.regular.of(textStyle: .headline)
+        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+    
         energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
         
         bindViewModel()
@@ -120,6 +135,8 @@ class GameHomeViewController: AccountPickerViewController {
                 self?.energyBuddyView.showWelcomeMessage()
             }
         }
+        
+        progressBar.setPoints(points, animated: false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -139,6 +156,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     private func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        viewModel.shouldShowError.not().drive(errorView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowContent.not().drive(dailyInsightContentView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowSegmentedControl.not().drive(segmentedControlContainer.rx.isHidden).disposed(by: bag)
         
@@ -165,7 +183,7 @@ class GameHomeViewController: AccountPickerViewController {
         
         var date = Calendar.current.startOfDay(for: Date()) // Based on user's timezone so their current "today" is always displayed
         while coinViews.count < 7 {
-            if let match = usageArray.fislter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
+            if let match = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
                 let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: date)!
                 let lastWeekMatch = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: lastWeek) }).first
 
@@ -241,8 +259,8 @@ extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
-            currentPoints += 5
-            progressBar.setPoints(currentPoints, animated: true)
+            points += 1
+            progressBar.setPoints(points, animated: true)
             energyBuddyView.playHappyAnimation()
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber

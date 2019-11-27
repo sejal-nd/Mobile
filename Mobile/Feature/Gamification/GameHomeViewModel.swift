@@ -65,6 +65,11 @@ class GameHomeViewModel {
             return !$0 && !$1 && $2 != nil
         }
     
+    private(set) lazy var shouldShowError: Driver<Bool> =
+        Driver.combineLatest(self.loading.asDriver(), self.error.asDriver()) {
+            return !$0 && $1
+        }
+    
     private(set) lazy var shouldShowSegmentedControl: Driver<Bool> = self.accountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
         return accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC"

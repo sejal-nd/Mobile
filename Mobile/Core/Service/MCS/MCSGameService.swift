@@ -21,6 +21,7 @@ class MCSGameService: GameService {
                     UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
                     UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
                     UserDefaults.standard.set(gameUser.optedOut, forKey: UserDefaultKeys.gameOptedOutLocal)
+                    UserDefaults.standard.set(gameUser.points, forKey: UserDefaultKeys.gamePointsLocal)
                     return gameUser
                 } else {
                     return nil
@@ -45,6 +46,7 @@ class MCSGameService: GameService {
                 }
                 UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
                 UserDefaults.standard.set(gameUser.optedOut, forKey: UserDefaultKeys.gameOptedOutLocal)
+                //UserDefaults.standard.set(gameUser.points, forKey: UserDefaultKeys.gamePointsLocal)
                 return gameUser
             }
     }

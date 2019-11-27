@@ -51,4 +51,5 @@ struct UserDefaultKeys {
     static let gameAccountNumber = "kGamificationAccountNumber"
     static let gameOptedOutLocal = "kGameOptedOutLocal"
     static let gameOnboardingCompleteLocal = "kGameOnboardingCompleteLocal"
+    static let gamePointsLocal = "kGamePointsLocal"
 }
