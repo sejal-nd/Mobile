@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 protocol DailyInsightCoinViewTapDelegate: class {
-    func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool)
+    func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool, decreasedUsage: Bool)
 }
 
 class DailyInsightCoinView: UIControl {
@@ -89,10 +89,11 @@ class DailyInsightCoinView: UIControl {
     @objc func onTap() {
         if canCollect {
             canCollect = false
-            imageView.image = lastWeekComparisionImage
-            delegate?.dailyInsightCoinView(self, wasTappedWithCoinCollected: true)
+            let image = lastWeekComparisionImage
+            imageView.image = image
+            delegate?.dailyInsightCoinView(self, wasTappedWithCoinCollected: true, decreasedUsage: image == #imageLiteral(resourceName: "ic_trenddown.pdf"))
         } else {
-            delegate?.dailyInsightCoinView(self, wasTappedWithCoinCollected: false)
+            delegate?.dailyInsightCoinView(self, wasTappedWithCoinCollected: false, decreasedUsage: false)
         }
     }
     

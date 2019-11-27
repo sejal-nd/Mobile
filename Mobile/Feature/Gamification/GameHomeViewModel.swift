@@ -19,14 +19,25 @@ class GameHomeViewModel {
     let loading = BehaviorRelay<Bool>(value: true)
     let error = BehaviorRelay<Bool>(value: false)
     let accountDetail = BehaviorRelay<AccountDetail?>(value: nil)
+    let gameUser = BehaviorRelay<GameUser?>(value: nil)
     let usageData = BehaviorRelay<[DailyUsage]?>(value: nil)
     
     var selectedSegmentIndex = 0
     let selectedCoinView = BehaviorRelay<DailyInsightCoinView?>(value: nil)
     
+    let debouncedPoints = BehaviorRelay<Int?>(value: nil)
+    
     required init(accountService: AccountService, gameService: GameService) {
         self.accountService = accountService
         self.gameService = gameService
+        
+        debouncedPoints.asObservable()
+            .filter { $0 != nil } // Ignore initial
+            .debounce(3, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] points in
+                self?.updateGameUserPoints(points!)
+            })
+            .disposed(by: bag)
     }
     
     func fetchData() {
@@ -37,11 +48,21 @@ class GameHomeViewModel {
                 guard let self = self else { return }
                 
                 self.accountDetail.accept(accountDetail)
+                self.fetchGameUser()
                 self.fetchDailyUsage()
             }, onError: { [weak self] error in
                 self?.loading.accept(false)
                 self?.error.accept(true)
             }).disposed(by: bag)
+    }
+    
+    func fetchGameUser() {
+        guard let accountDetail = accountDetail.value else { return }
+        self.gameService.fetchGameUser(accountNumber: accountDetail.accountNumber)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] gameUser in
+                self?.gameUser.accept(gameUser)
+            }).disposed(by: self.bag)
     }
     
     func fetchDailyUsage() {
@@ -57,6 +78,16 @@ class GameHomeViewModel {
             }, onError: { [weak self] error in
                 self?.loading.accept(false)
                 self?.error.accept(true)
+            }).disposed(by: self.bag)
+    }
+    
+    func updateGameUserPoints(_ points: Int) {
+        guard let accountDetail = accountDetail.value else { return }
+        let params = ["points": points]
+        self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] gameUser in
+                self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)
     }
         

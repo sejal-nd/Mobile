@@ -136,7 +136,7 @@ class GameHomeViewController: AccountPickerViewController {
             }
         }
         
-        progressBar.setPoints(points, animated: false)
+        _ = progressBar.setPoints(points, animated: false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -159,6 +159,14 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.shouldShowError.not().drive(errorView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowContent.not().drive(dailyInsightContentView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowSegmentedControl.not().drive(segmentedControlContainer.rx.isHidden).disposed(by: bag)
+        
+        viewModel.gameUser.asDriver().drive(onNext: { [weak self] user in
+            guard let self = self, let gameUser = user else { return }
+            if self.points != gameUser.points {
+                self.points = gameUser.points
+                _ = self.progressBar.setPoints(self.points, animated: false)
+            }
+        }).disposed(by: bag)
         
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
             guard let usageArray = array, usageArray.count > 0 else { return }
@@ -205,7 +213,7 @@ class GameHomeViewController: AccountPickerViewController {
         coinViews.forEach {
             coinStack.addArrangedSubview($0)
         }
-        dailyInsightCoinView(coinViews.last!, wasTappedWithCoinCollected: false)
+        dailyInsightCoinView(coinViews.last!, wasTappedWithCoinCollected: false, decreasedUsage: false)
     }
     
     @objc func onBuddyTap() {
@@ -253,15 +261,27 @@ extension GameHomeViewController: AccountPickerDelegate {
 
 extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
     
-    func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool) {
+    func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool, decreasedUsage: Bool) {
         viewModel.selectedCoinView.accept(view)
         if coinCollected {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
-            points += 1
-            progressBar.setPoints(points, animated: true)
-            energyBuddyView.playHappyAnimation()
+            points += decreasedUsage ? 2 : 1
+                
+            if let result = progressBar.setPoints(points) {
+                if result == .halfWay {
+                    energyBuddyView.playSuperHappyAnimation()
+                    energyBuddyView.showHalfWayMessage()
+                } else if result == .levelUp {
+                    energyBuddyView.playSuperHappyAnimation(withSparkles: true)
+                    energyBuddyView.showLevelUpMessage()
+                }
+            } else {
+                energyBuddyView.playHappyAnimation()
+            }
+            
+            viewModel.debouncedPoints.accept(points)
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
             _ = self.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)

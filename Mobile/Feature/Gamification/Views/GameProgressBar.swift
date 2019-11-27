@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum SetPointsResult {
+    case halfWay, levelUp
+}
+
 class GameProgressBar: UIView {
     
     @IBOutlet weak var innerBackgroundView: UIView!
@@ -15,6 +19,7 @@ class GameProgressBar: UIView {
     @IBOutlet weak var progressWidthConstraint: NSLayoutConstraint!
     
     private var pointsPerLevel = 16
+    private var currentPoints = 0
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -36,39 +41,42 @@ class GameProgressBar: UIView {
         progressWidthConstraint.constant = 0
     }
     
-    func setPoints(_ points: Int, animated: Bool) {
-        var levelProgress: Int
-        if points == pointsPerLevel {
-            levelProgress = pointsPerLevel // Level up
-        } else {
-            levelProgress = points % pointsPerLevel
-        }
-        
-        let totalBarWidth = innerBackgroundView.frame.size.width
-        let progressWidth = (CGFloat(levelProgress) / CGFloat(pointsPerLevel)) * totalBarWidth
-        
-
-        
-        let animateToFinalPosition = {
+    private func setProgressWidth(_ progressWidth: CGFloat, animated: Bool, onComplete: ((Bool) -> Void)?) {
+        let duration  = animated ? 1.0 : 0.0
+        self.layoutIfNeeded()
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
+            self.progressWidthConstraint.constant = progressWidth
             self.layoutIfNeeded()
-            UIView.animate(withDuration: animated ? 1 : 0, delay: 0, options: [.curveEaseOut], animations: {
-                self.progressWidthConstraint.constant = progressWidth
-                self.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: onComplete)
+    }
+    
+    
+    func setPoints(_ points: Int, animated: Bool = true) -> SetPointsResult? {
+        let levelProgress = points % pointsPerLevel
+        let totalBarWidth = innerBackgroundView.frame.size.width
+        let currentProgressWidth = progressView.frame.size.width
+        let desiredProgressWidth = (CGFloat(levelProgress) / CGFloat(pointsPerLevel)) * totalBarWidth
+        
+        var toReturn: SetPointsResult?
+        if points > currentPoints && points - currentPoints <= pointsPerLevel{
+            if desiredProgressWidth <= currentProgressWidth {
+                toReturn = .levelUp
+                setProgressWidth(totalBarWidth, animated: animated) { [weak self] _ in
+                    self?.progressWidthConstraint.constant = 0
+                    self?.setProgressWidth(desiredProgressWidth, animated: animated, onComplete: nil)
+                }
+            } else {
+                if currentProgressWidth < totalBarWidth / 2 && desiredProgressWidth >= totalBarWidth / 2 {
+                    toReturn = .halfWay
+                }
+                setProgressWidth(desiredProgressWidth, animated: animated, onComplete: nil)
+            }
+        } else {
+            setProgressWidth(desiredProgressWidth, animated: false, onComplete: nil)
         }
         
-        if progressWidth < progressView.frame.size.width {
-            UIView.animate(withDuration: animated ? 1 : 0, delay: 0, options: [.curveEaseOut], animations: {
-                self.progressWidthConstraint.constant = totalBarWidth
-                self.layoutIfNeeded()
-            }, completion: { _ in
-                self.progressWidthConstraint.constant = 0
-                animateToFinalPosition()
-            })
-        } else {
-            animateToFinalPosition()
-        }
-
+        currentPoints = points
+        return toReturn
     }
     
 }

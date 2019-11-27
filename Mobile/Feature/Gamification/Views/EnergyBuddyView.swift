@@ -33,14 +33,13 @@ class EnergyBuddyView: UIView {
     var faceAnimation: AnimationView?
     var particleAnimation: AnimationView?
     
-    var isPlayingHappyAnimation = false
-    
+    var speechBubbleAnimator: UIViewPropertyAnimator?
     var welcomeMessages = [
         NSLocalizedString("Welcome back!", comment: ""),
         NSLocalizedString("It's great to see you!", comment: ""),
         NSLocalizedString("Hello!", comment: "")
     ]
-    let fiftyPercentMessages = [
+    let halfWayMessages = [
         NSLocalizedString("Almost there!", comment: ""),
         NSLocalizedString("Nice job!", comment: "")
     ]
@@ -122,16 +121,14 @@ class EnergyBuddyView: UIView {
     }
     
     func playHappyAnimation() {
-        if !isPlayingHappyAnimation {
-            isPlayingHappyAnimation = true
-            faceAnimation?.stop()
-            faceAnimation?.removeFromSuperview()
-            faceAnimation = AnimationView(name: "buddy_face_happy")
-            faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
-            faceAnimation!.contentMode = .scaleAspectFit
-            energyBuddyFaceLottieView.addSubview(faceAnimation!)
-            faceAnimation!.play { [weak self] _ in
-                self?.isPlayingHappyAnimation = false
+        faceAnimation?.stop()
+        faceAnimation?.removeFromSuperview()
+        faceAnimation = AnimationView(name: "buddy_face_happy")
+        faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
+        faceAnimation!.contentMode = .scaleAspectFit
+        energyBuddyFaceLottieView.addSubview(faceAnimation!)
+        faceAnimation!.play { [weak self] finished in
+            if finished {
                 self?.playDefaultAnimations(resetBounce: false)
             }
         }
@@ -144,8 +141,10 @@ class EnergyBuddyView: UIView {
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
-        faceAnimation!.play { [weak self] _ in
-            self?.playDefaultAnimations(resetBounce: false)
+        faceAnimation!.play { [weak self] finished in
+            if finished {
+                self?.playDefaultAnimations(resetBounce: false)
+            }
         }
         
         var particleAnimationView: AnimationView?
@@ -163,24 +162,45 @@ class EnergyBuddyView: UIView {
         }
     }
     
-    func showWelcomeMessage() {
-        let randomInt = Int.random(in: 0..<welcomeMessages.count)
+    private func animateSpeechBubble() {
+        speechBubbleAnimator?.stopAnimation(true)
+        speechBubbleContainerView.alpha = 0
         
-        var greeting: String
+        speechBubbleAnimator = UIViewPropertyAnimator(duration: 0.33, curve: .linear, animations: {
+            self.speechBubbleContainerView.alpha = 1
+        })
+        speechBubbleAnimator?.addCompletion({ _ in
+            self.speechBubbleAnimator = UIViewPropertyAnimator(duration: 0.33, curve: .linear, animations: {
+                self.speechBubbleContainerView.alpha = 0
+            })
+            self.speechBubbleAnimator?.startAnimation(afterDelay: 3)
+        })
+        speechBubbleAnimator?.startAnimation()
+    }
+    
+    func showWelcomeMessage() {
+        let randomInt = Int.random(in: 0...welcomeMessages.count)
         if randomInt < welcomeMessages.count {
-            greeting = welcomeMessages[randomInt]
+            speechBubbleLabel.text = welcomeMessages[randomInt]
         } else {
-            greeting = Date().localizedGameGreeting
+            speechBubbleLabel.text = Date().localizedGameGreeting
         }
         
-        speechBubbleLabel.text = greeting
-        UIView.animate(withDuration: 0.33, animations: {
-            self.speechBubbleContainerView.alpha = 1
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.33, delay: 3, options: [], animations: {
-                self.speechBubbleContainerView.alpha = 0
-            }, completion: nil)
-        })
+        animateSpeechBubble()
+    }
+    
+    func showHalfWayMessage() {
+        let randomInt = Int.random(in: 0..<halfWayMessages.count)
+        speechBubbleLabel.text = halfWayMessages[randomInt]
+        
+        animateSpeechBubble()
+    }
+    
+    func showLevelUpMessage() {
+        let randomInt = Int.random(in: 0..<levelUpMessages.count)
+        speechBubbleLabel.text = levelUpMessages[randomInt]
+        
+        animateSpeechBubble()
     }
 
 }
