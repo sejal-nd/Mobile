@@ -57,9 +57,9 @@ struct GameUser: Mappable {
     // For temp testing only
     init(onboardingComplete: Bool, optedOut: Bool, points: Int) {
         var map = [String: Any]()
-        map["onboardingComplete"] = onboardingComplete
-        map["optedOut"] = optedOut
-        map["points"] = points
+        map["onboardingComplete"] = onboardingComplete ? "true" : "false"
+        map["optedOut"] = optedOut ? "true" : "false"
+        map["points"] = String(points)
         self = GameUser.from(map as NSDictionary)!
     }
 

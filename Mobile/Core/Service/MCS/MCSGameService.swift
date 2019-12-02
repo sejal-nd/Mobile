@@ -11,6 +11,12 @@ import RxSwift
 class MCSGameService: GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
+//        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 12)
+//        UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
+//        UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
+//        UserDefaults.standard.set(false, forKey: UserDefaultKeys.gameOptedOutLocal)
+//        return Observable.just(testUser)
+        
         return MCSApi.shared.get(pathPrefix: .auth, path: "game/\(accountNumber)")
             .map { json in
                 guard let dict = json as? NSDictionary, let gameUser = GameUser.from(dict) else {

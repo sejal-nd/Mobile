@@ -765,7 +765,8 @@ extension HomeViewController: AccountPickerDelegate {
         let onboardingCompleteLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
         let optedOutLocal = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameOptedOutLocal)
         
-        if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber && !optedOutLocal && onboardingCompleteLocal {
+        if AccountsStore.shared.currentAccount.accountNumber == gameAccountNumber &&
+            !optedOutLocal && onboardingCompleteLocal && UI_USER_INTERFACE_IDIOM() != .pad {
             NotificationCenter.default.post(name: .gameSetFabHidden, object: NSNumber(value: false))
             if prefersGameHome {
                 NotificationCenter.default.post(name: .gameSwitchToGameView, object: nil)

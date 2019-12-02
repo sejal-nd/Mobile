@@ -745,10 +745,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v8D-vJ-C0N">
-                                                <rect key="frame" x="31" y="173" width="352" height="550"/>
+                                                <rect key="frame" x="31" y="118" width="352" height="660"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74E-Z5-bTU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="550"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
                                                                 <rect key="frame" x="15" y="15" width="24" height="24"/>
@@ -756,16 +756,16 @@
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
-                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="220"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
-                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
+                                                                <rect key="frame" x="20" y="240" width="312" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ht-Lj-dbk">
-                                                                <rect key="frame" x="20" y="170.5" width="312" height="243.5"/>
+                                                                <rect key="frame" x="20" y="280.5" width="312" height="243.5"/>
                                                                 <string key="text">Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.
 
 This worked for 14,985 people and can save up to $10 per year.</string>
@@ -774,7 +774,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="io0-gF-5Q5">
-                                                                <rect key="frame" x="0.0" y="449" width="352" height="101"/>
+                                                                <rect key="frame" x="0.0" y="559" width="352" height="101"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcW-5m-1x6">
                                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
@@ -1044,21 +1044,212 @@ This worked for 14,985 people and can save up to $10 per year.</string>
             </objects>
             <point key="canvasLocation" x="4470" y="-3342"/>
         </scene>
-        <!--Weekly Insight View Controller-->
+        <!--Weekly Insight-->
         <scene sceneID="OKd-WU-v8v">
             <objects>
-                <viewController id="wo1-Rx-2vT" customClass="WeeklyInsightViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="wo1-Rx-2vT" customClass="WeeklyInsightViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xzW-ua-tpi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdv-bd-s7f">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="u6d-Q1-k5r">
+                                        <rect key="frame" x="0.0" y="20" width="414" height="679"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uu8-3e-X5s">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vA8-wu-pf9" customClass="SegmentedControl" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="32" y="0.0" width="350" height="45"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="ML4-VD-OBN"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="vA8-wu-pf9" firstAttribute="top" secondItem="uu8-3e-X5s" secondAttribute="top" id="99X-Uu-Rqf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vA8-wu-pf9" secondAttribute="trailing" constant="32" id="ayf-HN-OkJ"/>
+                                                    <constraint firstItem="vA8-wu-pf9" firstAttribute="leading" secondItem="uu8-3e-X5s" secondAttribute="leading" constant="32" id="fW5-Z2-ZYP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vA8-wu-pf9" secondAttribute="bottom" id="qLA-Ev-fRG"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbe-kB-l0h">
+                                                <rect key="frame" x="0.0" y="75" width="414" height="604"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUe-f4-seL">
+                                                        <rect key="frame" x="20" y="0.0" width="374" height="523"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/22 - 9/28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xl-BX-FgK">
+                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-WY-Yu9">
+                                                                <rect key="frame" x="0.0" y="25.5" width="100" height="15"/>
+                                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="15" id="2x1-Bt-jyw"/>
+                                                                    <constraint firstAttribute="width" constant="100" id="Aat-Zz-Rbs"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/15 - 9/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-gr-5fv">
+                                                                <rect key="frame" x="0.0" y="55.5" width="83" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZo-Mm-s3z">
+                                                                <rect key="frame" x="0.0" y="81" width="100" height="15"/>
+                                                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="15" id="lVI-Xg-4nt"/>
+                                                                    <constraint firstAttribute="width" constant="100" id="slh-x9-7ia"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used 30% more energy than the previous week." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6R-D2-xeN">
+                                                                <rect key="frame" x="0.0" y="116" width="374" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightup" translatesAutoresizingMaskIntoConstraints="NO" id="9EJ-4o-IXp">
+                                                                <rect key="frame" x="0.0" y="187" width="36" height="36"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the most energy on Saturday, September 28th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4J-Gq-FMO">
+                                                                <rect key="frame" x="0.0" y="228" width="374" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightdown" translatesAutoresizingMaskIntoConstraints="NO" id="Nff-Qf-ySe">
+                                                                <rect key="frame" x="0.0" y="299" width="36" height="36"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the least energy on Wednesday, September 25th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbO-P6-4Gk">
+                                                                <rect key="frame" x="0.0" y="340" width="374" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightbill" translatesAutoresizingMaskIntoConstraints="NO" id="zOk-na-zDA">
+                                                                <rect key="frame" x="0.0" y="411" width="36" height="36"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill is projected to be $72. You've spent about $59 so far this bill period." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAF-IP-htO">
+                                                                <rect key="frame" x="0.0" y="452" width="374" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="iam-WY-Yu9" firstAttribute="top" secondItem="7Xl-BX-FgK" secondAttribute="bottom" constant="5" id="035-PO-QbD"/>
+                                                            <constraint firstItem="m6R-D2-xeN" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="3f6-QB-P0K"/>
+                                                            <constraint firstItem="WrO-gr-5fv" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="5JR-Qc-gG1"/>
+                                                            <constraint firstAttribute="bottom" secondItem="VAF-IP-htO" secondAttribute="bottom" constant="30" id="5uR-xO-9pM"/>
+                                                            <constraint firstItem="VZo-Mm-s3z" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="7Gs-Fs-SkI"/>
+                                                            <constraint firstItem="7Xl-BX-FgK" firstAttribute="top" secondItem="MUe-f4-seL" secondAttribute="top" id="8We-nk-Jis"/>
+                                                            <constraint firstItem="CbO-P6-4Gk" firstAttribute="top" secondItem="Nff-Qf-ySe" secondAttribute="bottom" constant="5" id="9Dq-dV-Zhz"/>
+                                                            <constraint firstItem="m6R-D2-xeN" firstAttribute="top" secondItem="VZo-Mm-s3z" secondAttribute="bottom" constant="20" id="Ct0-1R-5Da"/>
+                                                            <constraint firstAttribute="trailing" secondItem="VAF-IP-htO" secondAttribute="trailing" id="FkU-gT-hSG"/>
+                                                            <constraint firstItem="VZo-Mm-s3z" firstAttribute="top" secondItem="WrO-gr-5fv" secondAttribute="bottom" constant="5" id="Hii-R7-PtZ"/>
+                                                            <constraint firstItem="zOk-na-zDA" firstAttribute="top" secondItem="CbO-P6-4Gk" secondAttribute="bottom" constant="30" id="JAF-Sd-jRK"/>
+                                                            <constraint firstItem="7Xl-BX-FgK" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="R0U-bT-0rl"/>
+                                                            <constraint firstItem="CbO-P6-4Gk" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="Um0-Cx-DkI"/>
+                                                            <constraint firstAttribute="trailing" secondItem="U4J-Gq-FMO" secondAttribute="trailing" id="YIe-1w-FMt"/>
+                                                            <constraint firstItem="U4J-Gq-FMO" firstAttribute="top" secondItem="9EJ-4o-IXp" secondAttribute="bottom" constant="5" id="bAp-5a-BAS"/>
+                                                            <constraint firstItem="Nff-Qf-ySe" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="c1h-aW-gfz"/>
+                                                            <constraint firstAttribute="trailing" secondItem="CbO-P6-4Gk" secondAttribute="trailing" id="cXq-1h-kGh"/>
+                                                            <constraint firstItem="Nff-Qf-ySe" firstAttribute="top" secondItem="U4J-Gq-FMO" secondAttribute="bottom" constant="30" id="ck6-4p-6U2"/>
+                                                            <constraint firstItem="WrO-gr-5fv" firstAttribute="top" secondItem="iam-WY-Yu9" secondAttribute="bottom" constant="15" id="eHc-GQ-qhd"/>
+                                                            <constraint firstItem="iam-WY-Yu9" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="iAi-5v-DhG"/>
+                                                            <constraint firstAttribute="trailing" secondItem="m6R-D2-xeN" secondAttribute="trailing" id="jrS-zH-SAW"/>
+                                                            <constraint firstItem="zOk-na-zDA" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="pt9-7d-dVR"/>
+                                                            <constraint firstItem="U4J-Gq-FMO" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="qTM-ae-5oO"/>
+                                                            <constraint firstItem="VAF-IP-htO" firstAttribute="top" secondItem="zOk-na-zDA" secondAttribute="bottom" constant="5" id="rwH-cB-0tG"/>
+                                                            <constraint firstItem="9EJ-4o-IXp" firstAttribute="top" secondItem="m6R-D2-xeN" secondAttribute="bottom" constant="30" id="tpN-6Z-OXB"/>
+                                                            <constraint firstItem="9EJ-4o-IXp" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="vlI-DE-tk6"/>
+                                                            <constraint firstItem="VAF-IP-htO" firstAttribute="leading" secondItem="MUe-f4-seL" secondAttribute="leading" id="wGr-cM-vYe"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-Vj-dT6" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="523" width="414" height="81"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is an estimate and the actual amount may vary based on your energy use, taxes, and fees." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gka-ua-AFU">
+                                                                <rect key="frame" x="20" y="20" width="374" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="gka-ua-AFU" firstAttribute="top" secondItem="KT6-Vj-dT6" secondAttribute="top" constant="20" id="UVx-ct-Ztm"/>
+                                                            <constraint firstAttribute="bottom" secondItem="gka-ua-AFU" secondAttribute="bottom" constant="20" id="ZVj-ax-pPL"/>
+                                                            <constraint firstAttribute="trailing" secondItem="gka-ua-AFU" secondAttribute="trailing" constant="20" id="Zjs-ci-ScR"/>
+                                                            <constraint firstItem="gka-ua-AFU" firstAttribute="leading" secondItem="KT6-Vj-dT6" secondAttribute="leading" constant="20" id="nRq-zf-9ul"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="KT6-Vj-dT6" secondAttribute="trailing" id="W5i-UV-e6x"/>
+                                                    <constraint firstItem="KT6-Vj-dT6" firstAttribute="top" secondItem="MUe-f4-seL" secondAttribute="bottom" id="WoG-oW-x9k"/>
+                                                    <constraint firstItem="MUe-f4-seL" firstAttribute="top" secondItem="Sbe-kB-l0h" secondAttribute="top" id="Ykp-d4-hMi"/>
+                                                    <constraint firstItem="KT6-Vj-dT6" firstAttribute="leading" secondItem="Sbe-kB-l0h" secondAttribute="leading" id="a7b-3c-6YO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MUe-f4-seL" secondAttribute="trailing" constant="20" id="bml-jY-kEa"/>
+                                                    <constraint firstItem="MUe-f4-seL" firstAttribute="leading" secondItem="Sbe-kB-l0h" secondAttribute="leading" constant="20" id="oxm-UM-zQk"/>
+                                                    <constraint firstAttribute="bottom" secondItem="KT6-Vj-dT6" secondAttribute="bottom" id="yTv-OQ-h5C"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="u6d-Q1-k5r" firstAttribute="centerX" secondItem="vdv-bd-s7f" secondAttribute="centerX" id="7DF-Ye-3s9"/>
+                                    <constraint firstAttribute="trailing" secondItem="u6d-Q1-k5r" secondAttribute="trailing" id="V6U-jR-idC"/>
+                                    <constraint firstAttribute="bottom" secondItem="u6d-Q1-k5r" secondAttribute="bottom" id="dKU-PQ-zDN"/>
+                                    <constraint firstItem="u6d-Q1-k5r" firstAttribute="leading" secondItem="vdv-bd-s7f" secondAttribute="leading" id="kcQ-V7-a5u"/>
+                                    <constraint firstItem="u6d-Q1-k5r" firstAttribute="top" secondItem="vdv-bd-s7f" secondAttribute="top" constant="20" id="qgz-Gf-rrQ"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="XeF-4x-CMv"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="9GH-x0-QVv"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rfB-sW-JMv" firstAttribute="trailing" secondItem="vdv-bd-s7f" secondAttribute="trailing" id="DeJ-hy-bR3"/>
+                            <constraint firstItem="vdv-bd-s7f" firstAttribute="leading" secondItem="rfB-sW-JMv" secondAttribute="leading" id="Vcq-hy-avU"/>
+                            <constraint firstAttribute="bottom" secondItem="vdv-bd-s7f" secondAttribute="bottom" id="XR8-uw-y7O"/>
+                            <constraint firstAttribute="top" secondItem="vdv-bd-s7f" secondAttribute="top" id="klI-cl-QNS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rfB-sW-JMv"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KxE-9B-kvI"/>
+                    <navigationItem key="navigationItem" title="Weekly Insight" id="KxE-9B-kvI"/>
+                    <connections>
+                        <outlet property="billProjectionLabel" destination="VAF-IP-htO" id="TzA-GF-Mo8"/>
+                        <outlet property="comparisonLabel" destination="m6R-D2-xeN" id="FJt-wI-NnO"/>
+                        <outlet property="contentContainer" destination="Sbe-kB-l0h" id="NUF-pu-oA6"/>
+                        <outlet property="lastWeekBarView" destination="VZo-Mm-s3z" id="5nW-Qf-Ko6"/>
+                        <outlet property="lastWeekBarWidthConstraint" destination="slh-x9-7ia" id="D0T-Rb-uLC"/>
+                        <outlet property="lastWeekDateLabel" destination="WrO-gr-5fv" id="3Cw-Cx-FKc"/>
+                        <outlet property="leastEnergyLabel" destination="CbO-P6-4Gk" id="poj-Bi-LPx"/>
+                        <outlet property="mostEnergyLabel" destination="U4J-Gq-FMO" id="Axu-mZ-qOg"/>
+                        <outlet property="segmentedControl" destination="vA8-wu-pf9" id="Hde-di-TZR"/>
+                        <outlet property="segmentedControlContainer" destination="uu8-3e-X5s" id="dAV-Th-JQ6"/>
+                        <outlet property="stickyFooterLabel" destination="gka-ua-AFU" id="9S2-RU-gIl"/>
+                        <outlet property="thisWeekBarView" destination="iam-WY-Yu9" id="0wH-6o-4S4"/>
+                        <outlet property="thisWeekBarWidthConstraint" destination="Aat-Zz-Rbs" id="UC0-gj-aRY"/>
+                        <outlet property="thisWeekDateLabel" destination="7Xl-BX-FgK" id="8kE-2y-gAS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G2m-fq-IbG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4030" y="-2594"/>
+            <point key="canvasLocation" x="4028.985507246377" y="-2594.1964285714284"/>
         </scene>
     </scenes>
     <resources>
@@ -1069,6 +1260,9 @@ This worked for 14,985 people and can save up to $10 per year.</string>
         <image name="ic_favetip" width="25" height="24"/>
         <image name="ic_gifts" width="48" height="54"/>
         <image name="ic_history" width="48" height="54"/>
+        <image name="ic_insightbill" width="36" height="36"/>
+        <image name="ic_insightdown" width="36" height="36"/>
+        <image name="ic_insightup" width="36" height="36"/>
         <image name="ic_reminder" width="25" height="24"/>
         <image name="ic_tips_emptystate" width="100" height="100"/>
         <image name="ic_tooltip" width="24" height="24"/>
