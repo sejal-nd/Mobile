@@ -245,6 +245,13 @@ class GameHomeViewController: AccountPickerViewController {
     @IBAction func onGiftsPress() {
         performSegue(withIdentifier: "giftSegue", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nav = segue.destination as? LargeTitleNavigationController,
+            let vc = nav.viewControllers.first as? WeeklyInsightViewController {
+            vc.viewModel.accountDetail = viewModel.accountDetail.value!
+        }
+    }
 
 }
 

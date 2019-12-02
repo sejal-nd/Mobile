@@ -69,7 +69,7 @@ class GameHomeViewModel {
         guard let accountDetail = accountDetail.value, let premiseNumber = accountDetail.premiseNumber else { return }
         loading.accept(true)
         error.accept(false)
-        let fetchGas = selectedSegmentIndex == 1
+        let fetchGas = accountDetail.serviceType?.uppercased() == "GAS" || selectedSegmentIndex == 1
         self.gameService.fetchDailyUsage(accountNumber: accountDetail.accountNumber, premiseNumber: premiseNumber, gas: fetchGas)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] usageArray in

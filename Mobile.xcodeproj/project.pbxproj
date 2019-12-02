@@ -1212,6 +1212,9 @@
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
+		9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
+		9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
+		9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB16EF8219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
 		9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */; };
@@ -3266,6 +3269,7 @@
 		9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsViewController.swift; sourceTree = "<group>"; };
 		9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipsViewController.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
+		9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyInsightViewModel.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		9CBE9E292374988100E14222 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
@@ -5489,6 +5493,7 @@
 				9C48830423834F2700321E6B /* GameTipViewController.swift */,
 				9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */,
 				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
+				9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */,
 				9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */,
 				9CC99791237B63C500C68300 /* Onboarding */,
 				9CA4FA632385B8AB00E33E7C /* Views */,
@@ -8328,6 +8333,7 @@
 				822BBB931EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				82A18EF91EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				9CBE9E362374AC5100E14222 /* MockGameService.swift in Sources */,
+				9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
@@ -8724,6 +8730,7 @@
 				35C9139822E9E9D1009DD71A /* MiniWalletSheetViewController.swift in Sources */,
 				9C28D38A227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */,
+				9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -9120,6 +9127,7 @@
 				B0D84D4322023FD800C70A6F /* MockJSONManager.swift in Sources */,
 				E89C162B1F87D6AE0023DC02 /* UsageService.swift in Sources */,
 				9CBE9E372374AC5100E14222 /* MockGameService.swift in Sources */,
+				9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
 				82EAB3351F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
