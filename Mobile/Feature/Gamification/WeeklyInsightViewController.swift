@@ -46,7 +46,6 @@ class WeeklyInsightViewController: UIViewController {
             NSLocalizedString("Electric", comment: ""),
             NSLocalizedString("Gas", comment: "")
         ]
-        segmentedControl.selectedIndex.value = 0
         segmentedControlContainer.isHidden = !viewModel.shouldShowSegmentedControl
                 
         thisWeekDateLabel.textColor = .deepGray
@@ -92,11 +91,19 @@ class WeeklyInsightViewController: UIViewController {
         viewModel.shouldShowContent.not().drive(contentContainer.rx.isHidden).disposed(by: bag)
         
         viewModel.thisWeekDateLabelText.drive(thisWeekDateLabel.rx.text).disposed(by: bag)
+        viewModel.thisWeekBarWidth.drive(thisWeekBarWidthConstraint.rx.constant).disposed(by: bag)
+        
         viewModel.lastWeekDateLabelText.drive(lastWeekDateLabel.rx.text).disposed(by: bag)
+        viewModel.lastWeekBarWidth.drive(lastWeekBarWidthConstraint.rx.constant).disposed(by: bag)
+        
+        viewModel.comparisonLabelText.drive(comparisonLabel.rx.text).disposed(by: bag)
+        viewModel.mostEnergyLabelText.drive(mostEnergyLabel.rx.text).disposed(by: bag)
+        viewModel.leastEnergyLabelText.drive(leastEnergyLabel.rx.text).disposed(by: bag)
+        viewModel.billProjectionLabelText.drive(billProjectionLabel.rx.text).disposed(by: bag)
     }
     
     @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
-        viewModel.selectedSegmentIndex = sender.selectedIndex.value
+        viewModel.selectedSegmentIndex.accept(sender.selectedIndex.value)
         viewModel.fetchData()
     }
 

@@ -89,7 +89,6 @@ class GameHomeViewController: AccountPickerViewController {
             NSLocalizedString("Electric", comment: ""),
             NSLocalizedString("Gas", comment: "")
         ]
-        segmentedControl.selectedIndex.value = 0
         segmentedControlContainer.isHidden = true
         
         dailyInsightLabel.textColor = .deepGray
@@ -112,6 +111,8 @@ class GameHomeViewController: AccountPickerViewController {
         energyBuddyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBuddyTap)))
         
         bindViewModel()
+        
+        viewModel.fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -260,8 +261,6 @@ extension GameHomeViewController: AccountPickerDelegate {
         let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
         if AccountsStore.shared.currentAccount.accountNumber != gameAccountNumber {
             NotificationCenter.default.post(name: .gameSwitchToHomeView, object: nil)
-        } else {
-            viewModel.fetchData()
         }
     }
 }
