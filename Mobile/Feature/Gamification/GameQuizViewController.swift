@@ -16,7 +16,7 @@ class GameQuizViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
-    
+    @IBOutlet weak var answerStackView: UIStackView!
     @IBOutlet weak var answerDescriptionLabel: UILabel!
     @IBOutlet weak var viewTipButton: PrimaryButton!
             
@@ -55,6 +55,11 @@ class GameQuizViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))
         tap.delegate = self
         contentView.addGestureRecognizer(tap)
+        
+        for i in 1...3 {
+            let answerView = QuizAnswerView(answer: "Answer \(i)")
+            answerStackView.addArrangedSubview(answerView)
+        }
     }
         
     @objc private func dismiss(_ sender: Any) {

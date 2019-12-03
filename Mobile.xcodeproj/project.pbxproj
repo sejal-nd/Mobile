@@ -1215,6 +1215,12 @@
 		9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
 		9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
 		9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
+		9CABF6B9239719CE00B07B01 /* QuizAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */; };
+		9CABF6BA239719CE00B07B01 /* QuizAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */; };
+		9CABF6BB239719CE00B07B01 /* QuizAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */; };
+		9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */; };
+		9CABF6BE239719DB00B07B01 /* QuizAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */; };
+		9CABF6BF239719DB00B07B01 /* QuizAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */; };
 		9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
@@ -3273,6 +3279,8 @@
 		9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipsViewController.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
 		9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuizViewController.swift; sourceTree = "<group>"; };
+		9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerView.swift; sourceTree = "<group>"; };
+		9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizAnswerView.xib; sourceTree = "<group>"; };
 		9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyInsightViewModel.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -5421,6 +5429,8 @@
 				9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */,
 				9C0EA5A7237DA46A00D1E18F /* EnergyBuddyView.swift */,
 				9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */,
+				9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */,
+				9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -6681,6 +6691,7 @@
 				B574BACF1E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				B5D415761F3A6C3000AC32B2 /* GoogleService-Info_bge_staging.plist in Resources */,
 				9C97DB1B20EFE2E100FF8E20 /* HomeProjectedBillCardView.xib in Resources */,
+				9CABF6BD239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				359BDBB122E0E6E3007002B0 /* smallcircleload_blue.json in Resources */,
 				359BB2792148349200FBAD83 /* outage.json in Resources */,
 				E8B4F4B71E5C99A00031D934 /* Outage.storyboard in Resources */,
@@ -6879,6 +6890,7 @@
 				359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
 				359BDB6822D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
+				9CABF6BF239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				E87926D81F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
 				82E22B631F9FC7CE001F1A1B /* EnergyTipTableViewCell.xib in Resources */,
 				35A5DCC52305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
@@ -7038,6 +7050,7 @@
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,
 				E87926D71F85580300794CA9 /* BillBreakdownViewController.xib in Resources */,
+				9CABF6BE239719DB00B07B01 /* QuizAnswerView.xib in Resources */,
 				B08957272217496D00A97965 /* bill_pdf.json in Resources */,
 				9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */,
 				35A5DCC42305D70400A82AA8 /* AutoPayBGE.storyboard in Resources */,
@@ -8252,6 +8265,7 @@
 				35C9139B22E9EFF1009DD71A /* MiniWalletItemRow.swift in Sources */,
 				9C28D39C2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				9CBE9E322374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
+				9CABF6B9239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
 				82A18F081EBD12D600BE9F21 /* Control.swift in Sources */,
 				9CB16EF7219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
 				224EFF18216E4E67008A0E40 /* HomeAppointmentCardView.swift in Sources */,
@@ -8650,6 +8664,7 @@
 				22EF559A2170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B691F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				9CBE9E342374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
+				9CABF6BB239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
 				9C7774832368C630009AF0F0 /* HomeContentViewController.swift in Sources */,
 				B54846851E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
 				9C9204CC2310327400B0B89F /* SmartThermostatPeriodCard.swift in Sources */,
@@ -9048,6 +9063,7 @@
 				822BBB941EF98F52004EBBAB /* AutoPayViewModel.swift in Sources */,
 				9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				9CBE9E332374A25E00E14222 /* GameHomeViewModel.swift in Sources */,
+				9CABF6BA239719CE00B07B01 /* QuizAnswerView.swift in Sources */,
 				E835D1CF1FB63288008CE250 /* PushNotification.swift in Sources */,
 				E8D340971EBB6BE100BA2D42 /* AccountPickerViewController.swift in Sources */,
 				2F4AFE5A1F068FE800603B0E /* Premise.swift in Sources */,

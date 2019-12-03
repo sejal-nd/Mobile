@@ -1331,7 +1331,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-Sp-nH1">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-Sp-nH1">
                                                                 <rect key="frame" x="16" y="458" width="320" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="qdd-MB-YIG"/>
@@ -1415,6 +1415,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                     </view>
                     <connections>
                         <outlet property="answerDescriptionLabel" destination="s70-2G-Cwp" id="wuv-I4-vdu"/>
+                        <outlet property="answerStackView" destination="GaO-Sp-nH1" id="CGL-ur-foe"/>
                         <outlet property="closeButton" destination="Aat-r5-6jU" id="7sR-Tc-Z5c"/>
                         <outlet property="contentView" destination="cCz-5d-scG" id="MMN-67-lEj"/>
                         <outlet property="popupView" destination="HnS-PT-pzb" id="09F-Ko-9Th"/>
