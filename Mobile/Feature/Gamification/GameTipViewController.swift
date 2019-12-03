@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Combine
 
 class GameTipViewController: UIViewController {
+    
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var closeButton: UIButton!
@@ -58,7 +59,7 @@ class GameTipViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))
         tap.delegate = self
-        view.addGestureRecognizer(tap)
+        contentView.addGestureRecognizer(tap)
     }
     
     @objc private func dismiss(_ sender: Any) {

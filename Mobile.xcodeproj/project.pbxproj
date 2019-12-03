@@ -1212,6 +1212,9 @@
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
+		9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
+		9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
+		9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
 		9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
 		9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */; };
@@ -3269,6 +3272,7 @@
 		9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsViewController.swift; sourceTree = "<group>"; };
 		9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipsViewController.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
+		9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuizViewController.swift; sourceTree = "<group>"; };
 		9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyInsightViewModel.swift; sourceTree = "<group>"; };
 		9CB16EF6219DD4A4008C4871 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -5491,6 +5495,7 @@
 				9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */,
 				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
 				9C48830423834F2700321E6B /* GameTipViewController.swift */,
+				9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */,
 				9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */,
 				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
 				9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */,
@@ -8211,6 +8216,7 @@
 				35277AFD210266BF00411297 /* UsageTool.swift in Sources */,
 				9CEE412523722B8A005A4AD3 /* Weekday.swift in Sources */,
 				E89D07A11E609DC900F87F87 /* MainTabBarController.swift in Sources */,
+				9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				358DE0A521021471002C544E /* UsageViewModel.swift in Sources */,
 				351241F222B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				9CA411DB2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
@@ -8608,6 +8614,7 @@
 				B0728E42215AD18C0007C608 /* AlertPreferencesViewController.swift in Sources */,
 				826773371FB0C42F00A8CFAA /* UIViewUsingAutoLayout.swift in Sources */,
 				9CB16EF9219DD4A4008C4871 /* WalletTableViewCell.swift in Sources */,
+				9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				B54846991E6F5996008CE1B1 /* AuthenticationService.swift in Sources */,
 				35ACCB4920EA76E10022907F /* HomeOutageCardViewModel.swift in Sources */,
 				9CA411DD2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,
@@ -9005,6 +9012,7 @@
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
 				9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
+				9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
 				351241F322B3DB8700E8BD25 /* AccountSheetViewController.swift in Sources */,
 				9CA411DC2384806800C0B602 /* GameCoreDataModel.xcdatamodeld in Sources */,

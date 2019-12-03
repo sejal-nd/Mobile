@@ -751,12 +751,12 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
-                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
-                                                                <rect key="frame" x="66" y="0.0" width="220" height="220"/>
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="220"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
                                                                 <rect key="frame" x="20" y="240" width="312" height="20.5"/>
@@ -867,6 +867,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="yas-Dz-Xrq" id="oPI-5V-y6l"/>
+                        <outlet property="contentView" destination="0yC-u6-rEF" id="hmp-IJ-fje"/>
                         <outlet property="detailLabel" destination="0Ht-Lj-dbk" id="4xD-JW-uDQ"/>
                         <outlet property="dividerLine" destination="5il-0X-jKZ" id="2rb-2G-czl"/>
                         <outlet property="favoriteButton" destination="6ru-xr-cTE" id="EwU-AE-bel"/>
@@ -1087,13 +1088,13 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         <rect key="frame" x="20" y="0.0" width="374" height="631"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/22 - 9/28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xl-BX-FgK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="128.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-WY-Yu9">
-                                                                <rect key="frame" x="0.0" y="133.5" width="100" height="15"/>
+                                                                <rect key="frame" x="0.0" y="25.5" width="100" height="15"/>
                                                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="2x1-Bt-jyw"/>
@@ -1101,13 +1102,13 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/15 - 9/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-gr-5fv">
-                                                                <rect key="frame" x="0.0" y="163.5" width="83" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="55.5" width="83" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZo-Mm-s3z">
-                                                                <rect key="frame" x="0.0" y="189" width="100" height="15"/>
+                                                                <rect key="frame" x="0.0" y="81" width="100" height="15"/>
                                                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="lVI-Xg-4nt"/>
@@ -1115,31 +1116,31 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used 30% more energy than the previous week." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6R-D2-xeN">
-                                                                <rect key="frame" x="0.0" y="224" width="374" height="41"/>
+                                                                <rect key="frame" x="0.0" y="116" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightup" translatesAutoresizingMaskIntoConstraints="NO" id="9EJ-4o-IXp">
-                                                                <rect key="frame" x="0.0" y="295" width="36" height="36"/>
+                                                                <rect key="frame" x="0.0" y="187" width="72" height="72"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the most energy on Saturday, September 28th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4J-Gq-FMO">
-                                                                <rect key="frame" x="0.0" y="336" width="374" height="41"/>
+                                                                <rect key="frame" x="0.0" y="264" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightdown" translatesAutoresizingMaskIntoConstraints="NO" id="Nff-Qf-ySe">
-                                                                <rect key="frame" x="0.0" y="407" width="36" height="36"/>
+                                                                <rect key="frame" x="0.0" y="335" width="72" height="72"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the least energy on Wednesday, September 25th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbO-P6-4Gk">
-                                                                <rect key="frame" x="0.0" y="448" width="374" height="41"/>
+                                                                <rect key="frame" x="0.0" y="412" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightbill" translatesAutoresizingMaskIntoConstraints="NO" id="zOk-na-zDA">
-                                                                <rect key="frame" x="0.0" y="519" width="36" height="36"/>
+                                                                <rect key="frame" x="0.0" y="483" width="72" height="72"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill is projected to be $72. You've spent about $59 so far this bill period." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAF-IP-htO">
                                                                 <rect key="frame" x="0.0" y="560" width="374" height="41"/>
@@ -1289,6 +1290,142 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G2m-fq-IbG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4028.985507246377" y="-2594.1964285714284"/>
+        </scene>
+        <!--Game Quiz View Controller-->
+        <scene sceneID="mVE-fB-gWq">
+            <objects>
+                <viewController storyboardIdentifier="QuizPopup" id="cSK-Qr-bX7" customClass="GameQuizViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vSe-uq-sDy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gp7-a8-hCN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-5d-scG" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VcX-Cq-kN9">
+                                                <rect key="frame" x="31" y="118" width="352" height="660"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HnS-PT-pzb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aat-r5-6jU">
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Close"/>
+                                                                <state key="normal" image="ic_close"/>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-Pj-QqI">
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="306"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I learned something cool, let’s see if you know it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxz-OG-aSI">
+                                                                <rect key="frame" x="20" y="326" width="312" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which appliance do you think uses the most energy?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7M-7D-Ydl">
+                                                                <rect key="frame" x="20" y="397" width="312" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-Sp-nH1">
+                                                                <rect key="frame" x="16" y="458" width="320" height="56"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="56" id="qdd-MB-YIG"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7VM-8Y-KiR">
+                                                                <rect key="frame" x="0.0" y="534" width="352" height="106"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Clothes dryers use more energy than any other appliance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s70-2G-Cwp">
+                                                                        <rect key="frame" x="17" y="0.0" width="318.5" height="41"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z04-pf-0Az" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="68.5" y="61" width="215" height="45"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="CoE-9a-mYS"/>
+                                                                            <constraint firstAttribute="width" constant="215" id="jfc-zz-VOh"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="View Tip"/>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="GaO-Sp-nH1" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="16" id="1JR-Me-Otd"/>
+                                                            <constraint firstAttribute="trailing" secondItem="GaO-Sp-nH1" secondAttribute="trailing" constant="16" id="55H-Vs-u7L"/>
+                                                            <constraint firstItem="jxz-OG-aSI" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="20" id="8n9-e5-Mh1"/>
+                                                            <constraint firstItem="L7M-7D-Ydl" firstAttribute="top" secondItem="jxz-OG-aSI" secondAttribute="bottom" constant="30" id="9DW-wp-hB5"/>
+                                                            <constraint firstAttribute="trailing" secondItem="7VM-8Y-KiR" secondAttribute="trailing" id="COq-Bo-WVQ"/>
+                                                            <constraint firstItem="jxz-OG-aSI" firstAttribute="top" secondItem="Wrx-Pj-QqI" secondAttribute="bottom" constant="20" id="Ifh-Z1-toT"/>
+                                                            <constraint firstAttribute="trailing" secondItem="jxz-OG-aSI" secondAttribute="trailing" constant="20" id="KZk-ce-uTv"/>
+                                                            <constraint firstItem="Aat-r5-6jU" firstAttribute="top" secondItem="HnS-PT-pzb" secondAttribute="top" constant="15" id="OWq-Ta-V5o"/>
+                                                            <constraint firstAttribute="bottom" secondItem="7VM-8Y-KiR" secondAttribute="bottom" constant="20" id="Og6-eV-NK5"/>
+                                                            <constraint firstItem="L7M-7D-Ydl" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="20" id="UwP-xd-dvH"/>
+                                                            <constraint firstItem="7VM-8Y-KiR" firstAttribute="top" secondItem="GaO-Sp-nH1" secondAttribute="bottom" constant="20" id="Ysc-3Z-i96"/>
+                                                            <constraint firstItem="Aat-r5-6jU" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="15" id="cFb-eP-3BV"/>
+                                                            <constraint firstItem="Wrx-Pj-QqI" firstAttribute="centerX" secondItem="HnS-PT-pzb" secondAttribute="centerX" id="eO9-fW-jRO"/>
+                                                            <constraint firstItem="Wrx-Pj-QqI" firstAttribute="top" secondItem="HnS-PT-pzb" secondAttribute="top" id="kAL-FH-gfG"/>
+                                                            <constraint firstItem="7VM-8Y-KiR" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" id="puQ-gG-3oV"/>
+                                                            <constraint firstItem="GaO-Sp-nH1" firstAttribute="top" secondItem="L7M-7D-Ydl" secondAttribute="bottom" constant="20" id="tiI-2i-Jg5"/>
+                                                            <constraint firstAttribute="trailing" secondItem="L7M-7D-Ydl" secondAttribute="trailing" constant="20" id="vRy-p8-vNS"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="VcX-Cq-kN9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cCz-5d-scG" secondAttribute="top" constant="70" id="GyZ-Sq-44x"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VcX-Cq-kN9" secondAttribute="bottom" constant="70" id="I6r-55-qs0"/>
+                                            <constraint firstItem="VcX-Cq-kN9" firstAttribute="leading" secondItem="cCz-5d-scG" secondAttribute="leading" constant="31" id="O5Q-KW-LsD"/>
+                                            <constraint firstAttribute="trailing" secondItem="VcX-Cq-kN9" secondAttribute="trailing" constant="31" id="eh8-K2-Li3"/>
+                                            <constraint firstItem="VcX-Cq-kN9" firstAttribute="centerY" secondItem="cCz-5d-scG" secondAttribute="centerY" id="n7P-DJ-aqK"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cCz-5d-scG" firstAttribute="width" secondItem="Gp7-a8-hCN" secondAttribute="width" id="8oS-0E-wWG"/>
+                                    <constraint firstItem="cCz-5d-scG" firstAttribute="centerX" secondItem="Gp7-a8-hCN" secondAttribute="centerX" id="JBI-Ru-hNr"/>
+                                    <constraint firstAttribute="bottom" secondItem="cCz-5d-scG" secondAttribute="bottom" id="Kxy-hY-y0l"/>
+                                    <constraint firstItem="cCz-5d-scG" firstAttribute="height" secondItem="Gp7-a8-hCN" secondAttribute="height" priority="250" id="VQV-9n-Kpc"/>
+                                    <constraint firstItem="cCz-5d-scG" firstAttribute="top" secondItem="Gp7-a8-hCN" secondAttribute="top" id="cyW-xQ-e4p"/>
+                                    <constraint firstAttribute="trailing" secondItem="cCz-5d-scG" secondAttribute="trailing" id="en2-VB-4Gz"/>
+                                    <constraint firstItem="cCz-5d-scG" firstAttribute="leading" secondItem="Gp7-a8-hCN" secondAttribute="leading" id="ggG-6c-yjt"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="LqQ-oR-KWe"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="f9t-TB-DXk"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Gp7-a8-hCN" firstAttribute="leading" secondItem="vSe-uq-sDy" secondAttribute="leading" id="CmZ-m5-1gI"/>
+                            <constraint firstAttribute="bottom" secondItem="Gp7-a8-hCN" secondAttribute="bottom" id="KcX-qo-x7W"/>
+                            <constraint firstAttribute="trailing" secondItem="Gp7-a8-hCN" secondAttribute="trailing" id="ZcZ-0n-zeb"/>
+                            <constraint firstItem="Gp7-a8-hCN" firstAttribute="top" secondItem="vSe-uq-sDy" secondAttribute="top" id="xwn-gl-dSl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CzV-Ep-x0P"/>
+                    </view>
+                    <connections>
+                        <outlet property="answerDescriptionLabel" destination="s70-2G-Cwp" id="wuv-I4-vdu"/>
+                        <outlet property="closeButton" destination="Aat-r5-6jU" id="7sR-Tc-Z5c"/>
+                        <outlet property="contentView" destination="cCz-5d-scG" id="MMN-67-lEj"/>
+                        <outlet property="popupView" destination="HnS-PT-pzb" id="09F-Ko-9Th"/>
+                        <outlet property="questionLabel" destination="L7M-7D-Ydl" id="Yma-SM-y8I"/>
+                        <outlet property="titleLabel" destination="jxz-OG-aSI" id="5u0-Vt-aRm"/>
+                        <outlet property="viewTipButton" destination="z04-pf-0Az" id="1rE-kK-jg0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RcV-Lk-CLu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5888" y="-2602"/>
         </scene>
     </scenes>
     <resources>
