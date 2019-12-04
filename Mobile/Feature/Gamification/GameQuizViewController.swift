@@ -19,13 +19,17 @@ class GameQuizViewController: UIViewController {
     @IBOutlet weak var answerStackView: UIStackView!
     @IBOutlet weak var answerDescriptionLabel: UILabel!
     @IBOutlet weak var viewTipButton: PrimaryButton!
-            
-    // TODO: Pass in the quiz
-    static func create() -> GameQuizViewController {
+    
+    private var answerViews = [QuizAnswerView]()
+    
+    var quiz: GameQuiz! // Passed into create() function
+    
+    static func create(withQuiz quiz: GameQuiz) -> GameQuizViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "QuizPopup") as! GameQuizViewController
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
+        vc.quiz = quiz
         return vc
     }
     
@@ -56,14 +60,39 @@ class GameQuizViewController: UIViewController {
         tap.delegate = self
         contentView.addGestureRecognizer(tap)
         
-        for i in 1...3 {
-            let answerView = QuizAnswerView(answer: "Answer \(i)")
+        // Populate quiz data
+        questionLabel.text = quiz.question
+        for answer in quiz.answers {
+            let answerView = QuizAnswerView(withAnswerTuple: answer)
+            answerView.delegate = self
+            answerViews.append(answerView)
             answerStackView.addArrangedSubview(answerView)
         }
+        answerDescriptionLabel.text = quiz.answerDescription
     }
         
     @objc private func dismiss(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension GameQuizViewController: QuizAnswerViewTapDelegate {
+    func quizAnswerViewWasTapped(_ view: QuizAnswerView) {
+        answerStackView.isUserInteractionEnabled = false
+
+        // If answered incorrectly, mark the correct answer
+        if !view.correct {
+            for answerView in answerViews {
+                if answerView.correct {
+                    answerView.setCorrectState()
+                }
+            }
+        }
+        
+        answerDescriptionLabel.isHidden = false
+        viewTipButton.isHidden = quiz.tipId != nil
+
+        // Report view.correct back to GameHome, or handle it here
     }
 }
 

@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol QuizAnswerViewTapDelegate: class {
+    func quizAnswerViewWasTapped(_ view: QuizAnswerView)
+}
+
 class QuizAnswerView: UIView {
+    
+    weak var delegate: QuizAnswerViewTapDelegate?
 
     @IBOutlet weak private var view: UIView!
     @IBOutlet weak var correctIndicatorImageView: UIImageView!
     @IBOutlet weak var answerButton: ButtonControl!
     @IBOutlet weak var answerLabel: UILabel!
+    
+    var correct = false
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -25,12 +33,13 @@ class QuizAnswerView: UIView {
         commonInit()
     }
     
-    init(answer: String) {
+    init(withAnswerTuple answerTuple: (String, Bool)) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 56))
                 
         commonInit()
         
-        answerLabel.text = answer
+        answerLabel.text = answerTuple.0
+        correct = answerTuple.1
     }
     
     func commonInit() {
@@ -42,11 +51,24 @@ class QuizAnswerView: UIView {
         correctIndicatorImageView.isHidden = true
         
         answerButton.layer.cornerRadius = 17.5
-        answerButton.layer.borderColor = UIColor.accentGray.cgColor
         answerButton.layer.borderWidth = 1
-        answerButton.backgroundColorOnPress = UIColor.accentGray
+        answerButton.layer.borderColor = UIColor.accentGray.cgColor
+        answerButton.backgroundColorOnPress = .softGray
         
         answerLabel.textColor = .actionBlue
         answerLabel.font = OpenSans.semibold.of(size: 12)
     }
+    
+    @IBAction func onAnswerPress(_ sender: Any) {
+        setCorrectState()
+        delegate?.quizAnswerViewWasTapped(self)
+    }
+    
+    func setCorrectState() {
+        correctIndicatorImageView.image = correct ? #imageLiteral(resourceName: "ic_trendcheck.pdf") : #imageLiteral(resourceName: "ic_remove.pdf")
+        correctIndicatorImageView.isHidden = false
+        answerButton.layer.borderWidth = 2
+        answerButton.layer.borderColor = correct ? UIColor.successGreenText.cgColor : UIColor.errorRed.cgColor
+    }
+
 }

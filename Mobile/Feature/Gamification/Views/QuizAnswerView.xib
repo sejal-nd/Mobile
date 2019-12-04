@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_trendcheck" translatesAutoresizingMaskIntoConstraints="NO" id="lwc-mo-vAU">
-                    <rect key="frame" x="37" y="0.0" width="14" height="10"/>
+                    <rect key="frame" x="30" y="0.0" width="28" height="20"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pwc-IJ-lWU" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="21" width="88" height="35"/>
@@ -39,6 +39,9 @@
                         <constraint firstAttribute="height" constant="35" id="SAf-hY-W5A"/>
                         <constraint firstItem="Afx-II-DH0" firstAttribute="centerY" secondItem="Pwc-IJ-lWU" secondAttribute="centerY" id="WiD-Dj-0Hb"/>
                     </constraints>
+                    <connections>
+                        <action selector="onAnswerPress:" destination="-1" eventType="touchUpInside" id="0dG-Ik-Om8"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

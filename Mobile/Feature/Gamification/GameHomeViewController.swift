@@ -226,7 +226,16 @@ class GameHomeViewController: AccountPickerViewController {
         //let tipVc = GameTipViewController.create()
         //self.tabBarController?.present(tipVc, animated: true, completion: nil)
         
-        let quizVc = GameQuizViewController.create()
+        let quiz = GameQuiz(
+            question: "Which appliance do you think uses the most energy?",
+            answers: [
+                ["answer": "TV", "correct": false],
+                ["answer": "Dishwasher", "correct": false],
+                ["answer": "Dryer", "correct": true]
+            ],
+            answerDescription: "Clothes dryers use more energy than any other appliance."
+        )
+        let quizVc = GameQuizViewController.create(withQuiz: quiz)
         self.tabBarController?.present(quizVc, animated: true, completion: nil)
     }
     
