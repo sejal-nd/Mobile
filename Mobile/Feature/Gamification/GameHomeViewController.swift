@@ -218,6 +218,8 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @objc func onBuddyTap() {
+//        showEnergyBuddyTooltip()
+        
 //        energyBuddyView.playHappyAnimation()
 //        energyBuddyView.playSuperHappyAnimation()
 //        energyBuddyView.playSuperHappyAnimation(withSparkles: true)
@@ -258,6 +260,13 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBAction func onGiftsPress() {
         performSegue(withIdentifier: "giftSegue", sender: nil)
+    }
+    
+    private func showEnergyBuddyTooltip() {
+        let alert = InfoAlertController(title: NSLocalizedString("Energy Buddy", comment: ""),
+                                        message: NSLocalizedString("Your Energy Buddy will teach you how to make small changes that lead to big impacts.\n\nNew backgrounds or accessories for the Energy Buddy may be earned by collecting your daily insight points, viewing weekly insights, and viewing tips.", comment: ""),
+                                        action: nil)
+        self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
