@@ -9,13 +9,13 @@
 import UIKit
 import Foundation
 
-protocol DailyInsightCoinViewTapDelegate: class {
+protocol DailyInsightCoinViewDelegate: class {
     func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool, decreasedUsage: Bool)
 }
 
 class DailyInsightCoinView: UIControl {
     
-    weak var delegate: DailyInsightCoinViewTapDelegate?
+    weak var delegate: DailyInsightCoinViewDelegate?
     
     @IBOutlet weak private var view: UIView!
     @IBOutlet weak var weekdayLabel: UILabel!

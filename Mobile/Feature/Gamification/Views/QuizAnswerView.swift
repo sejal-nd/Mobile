@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol QuizAnswerViewTapDelegate: class {
+protocol QuizAnswerViewDelegate: class {
     func quizAnswerViewWasTapped(_ view: QuizAnswerView)
 }
 
 class QuizAnswerView: UIView {
     
-    weak var delegate: QuizAnswerViewTapDelegate?
+    weak var delegate: QuizAnswerViewDelegate?
 
     @IBOutlet weak private var view: UIView!
     @IBOutlet weak var correctIndicatorImageView: UIImageView!

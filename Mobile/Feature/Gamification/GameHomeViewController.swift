@@ -218,13 +218,13 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @objc func onBuddyTap() {
-        //energyBuddyView.playHappyAnimation()
-        //energyBuddyView.playSuperHappyAnimation()
-        //energyBuddyView.playSuperHappyAnimation(withSparkles: true)
-        //energyBuddyView.playSuperHappyAnimation(withHearts: true)
+//        energyBuddyView.playHappyAnimation()
+//        energyBuddyView.playSuperHappyAnimation()
+//        energyBuddyView.playSuperHappyAnimation(withSparkles: true)
+//        energyBuddyView.playSuperHappyAnimation(withHearts: true)
         
-        //let tipVc = GameTipViewController.create()
-        //self.tabBarController?.present(tipVc, animated: true, completion: nil)
+//        let tipVc = GameTipViewController.create()
+//        self.tabBarController?.present(tipVc, animated: true, completion: nil)
         
         let quiz = GameQuiz(
             question: "Which appliance do you think uses the most energy?",
@@ -236,6 +236,7 @@ class GameHomeViewController: AccountPickerViewController {
             answerDescription: "Clothes dryers use more energy than any other appliance."
         )
         let quizVc = GameQuizViewController.create(withQuiz: quiz)
+        quizVc.delegate = self
         self.tabBarController?.present(quizVc, animated: true, completion: nil)
     }
     
@@ -277,7 +278,7 @@ extension GameHomeViewController: AccountPickerDelegate {
     }
 }
 
-extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
+extension GameHomeViewController: DailyInsightCoinViewDelegate {
     
     func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool, decreasedUsage: Bool) {
         viewModel.selectedCoinView.accept(view)
@@ -306,6 +307,17 @@ extension GameHomeViewController: DailyInsightCoinViewTapDelegate {
         } else {
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
+        }
+    }
+}
+
+extension GameHomeViewController: GameQuizViewControllerDelegate {
+    
+    func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String) {
+        tabBarController?.dismiss(animated: true) {
+            // TODO: Present the real tip
+            let tipVc = GameTipViewController.create()
+            self.tabBarController?.present(tipVc, animated: true, completion: nil)
         }
     }
 }

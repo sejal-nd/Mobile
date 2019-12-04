@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol GameQuizViewControllerDelegate: class {
+    func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String)
+}
+
 class GameQuizViewController: UIViewController {
+    
+    weak var delegate: GameQuizViewControllerDelegate?
     
     @IBOutlet weak var contentView: UIView!
     
@@ -70,13 +76,19 @@ class GameQuizViewController: UIViewController {
         }
         answerDescriptionLabel.text = quiz.answerDescription
     }
+    
+    @IBAction func onViewTipPress() {
+        // Force unwrap safe because View Tip button only visible when not nil
+        delegate?.gameQuizViewController(self, wantsToViewTipWithId: quiz.tipId!)
+    }
         
     @objc private func dismiss(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
 }
 
-extension GameQuizViewController: QuizAnswerViewTapDelegate {
+extension GameQuizViewController: QuizAnswerViewDelegate {
     func quizAnswerViewWasTapped(_ view: QuizAnswerView) {
         answerStackView.isUserInteractionEnabled = false
 
@@ -90,7 +102,7 @@ extension GameQuizViewController: QuizAnswerViewTapDelegate {
         }
         
         answerDescriptionLabel.isHidden = false
-        viewTipButton.isHidden = quiz.tipId != nil
+        viewTipButton.isHidden = quiz.tipId == nil
 
         // Report view.correct back to GameHome, or handle it here
     }

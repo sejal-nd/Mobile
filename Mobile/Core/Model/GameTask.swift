@@ -124,6 +124,7 @@ struct GameQuiz: Mappable {
         map["answerDescription"] = answerDescription
         map["serviceType"] = "GAS/ELECTRIC"
         map["rentOrOwn"] = "RENT"
+        map["tipId"] = "123"
         self = GameQuiz.from(map as NSDictionary)!
     }
 }

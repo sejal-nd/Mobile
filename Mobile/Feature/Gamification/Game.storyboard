@@ -751,12 +751,12 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
-                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
-                                                                <rect key="frame" x="121" y="0.0" width="110" height="220"/>
+                                                                <rect key="frame" x="66" y="0.0" width="220" height="220"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
                                                                 <rect key="frame" x="20" y="240" width="312" height="20.5"/>
@@ -1312,12 +1312,12 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aat-r5-6jU">
-                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-Pj-QqI">
-                                                                <rect key="frame" x="121" y="0.0" width="110" height="306"/>
+                                                                <rect key="frame" x="66" y="0.0" width="220" height="306"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I learned something cool, let’s see if you know it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxz-OG-aSI">
                                                                 <rect key="frame" x="20" y="326" width="312" height="41"/>
@@ -1353,6 +1353,9 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                             <constraint firstAttribute="width" constant="215" id="jfc-zz-VOh"/>
                                                                         </constraints>
                                                                         <state key="normal" title="View Tip"/>
+                                                                        <connections>
+                                                                            <action selector="onViewTipPress" destination="cSK-Qr-bX7" eventType="touchUpInside" id="BjT-zV-zkM"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
