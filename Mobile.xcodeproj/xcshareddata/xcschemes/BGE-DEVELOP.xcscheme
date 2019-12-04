@@ -72,7 +72,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "shouldLogAPI"
+            argument = "-shouldLogAPI"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
