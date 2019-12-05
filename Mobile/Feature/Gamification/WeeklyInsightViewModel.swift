@@ -43,10 +43,10 @@ class WeeklyInsightViewModel {
             observables.append(fetchBillForecast())
         }
         
-        fetchDisposable?.dispose()
-        
         loading.accept(true)
         error.accept(false)
+        
+        fetchDisposable?.dispose()
         fetchDisposable = Observable.zip(observables)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in

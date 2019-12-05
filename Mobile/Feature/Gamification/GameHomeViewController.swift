@@ -13,7 +13,7 @@ import RxCocoa
 class GameHomeViewController: AccountPickerViewController {
     
     var coreDataManager = GameCoreDataManager()
-            
+                
     @IBOutlet weak var energyBuddyView: EnergyBuddyView!
     
     @IBOutlet weak var progressBar: GameProgressBar!
@@ -39,6 +39,8 @@ class GameHomeViewController: AccountPickerViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     private var coinViews = [DailyInsightCoinView]()
+    
+    private var refreshControl: UIRefreshControl?
     
     let viewModel = GameHomeViewModel(accountService: ServiceFactory.createAccountService(),
                                       gameService: ServiceFactory.createGameService())
@@ -77,6 +79,8 @@ class GameHomeViewController: AccountPickerViewController {
         
         accountPicker.delegate = self
         accountPicker.parentViewController = self
+        
+        scrollView!.alwaysBounceVertical = false
         
         progressBar.instantiate()
 
@@ -156,7 +160,22 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func bindViewModel() {
-        viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
+        viewModel.loading.asDriver().drive(onNext: { [weak self] loading in
+            guard let self = self else { return }
+            self.loadingView.isHidden = !loading
+            if !loading {
+                guard self.refreshControl == nil else { return }
+                self.refreshControl = UIRefreshControl()
+                self.refreshControl!.addTarget(self, action: #selector(self.onPullToRefresh), for: .valueChanged)
+                self.scrollView!.insertSubview(self.refreshControl!, at: 0)
+                self.scrollView!.alwaysBounceVertical = true
+            }
+        }).disposed(by: bag)
+        viewModel.refreshing.asDriver().drive(onNext: { [weak self] refreshing in
+            if !refreshing {
+                self?.refreshControl?.endRefreshing()
+            }
+        }).disposed(by: bag)
         viewModel.shouldShowError.not().drive(errorView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowContent.not().drive(dailyInsightContentView.rx.isHidden).disposed(by: bag)
         viewModel.shouldShowSegmentedControl.not().drive(segmentedControlContainer.rx.isHidden).disposed(by: bag)
@@ -215,6 +234,10 @@ class GameHomeViewController: AccountPickerViewController {
             coinStack.addArrangedSubview($0)
         }
         dailyInsightCoinView(coinViews.last!, wasTappedWithCoinCollected: false, decreasedUsage: false)
+    }
+    
+    @objc func onPullToRefresh() {
+        viewModel.fetchData(pullToRefresh: true)
     }
     
     @objc func onBuddyTap() {
