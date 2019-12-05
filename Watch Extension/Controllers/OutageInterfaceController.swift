@@ -138,8 +138,7 @@ class OutageInterfaceController: WKInterfaceController {
                 
                 powerStatusLabel.setText("POWER IS OUT")
                 guard let etr = outageStatus?.etr else {
-                    etrTitleLabel.setHidden(true)
-                    etrDetailLabel.setHidden(true)
+                    etrDetailLabel.setText("Assessing Damage")
                     return
                 }
                 etrDetailLabel.setText(DateFormatter.outageOpcoDateFormatter.string(from: etr))
@@ -386,7 +385,7 @@ extension OutageInterfaceController {
         if outageStatus.activeOutage {
             state = .loaded(.powerOut(outageStatus))
         } else if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
-            state = .loaded(.unavilable)
+            state = .loaded(.unavilable) // todo: this is not getting triggered?
         } else {
             state = .loaded(.powerOn)
         }
@@ -400,6 +399,7 @@ extension OutageInterfaceController {
         state = .maintenanceMode
     }
     
+    // supposed to handle cut for non pay as not avail for this accocunt?
     private func configureError(_ error: NetworkError, feature: Feature) {
         guard feature == .all || feature == .outage else { return }
         
