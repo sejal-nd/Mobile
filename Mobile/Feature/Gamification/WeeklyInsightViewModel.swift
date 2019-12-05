@@ -25,10 +25,16 @@ class WeeklyInsightViewModel {
     let billForecast = BehaviorRelay<BillForecastResult?>(value: nil)
     
     let selectedSegmentIndex = BehaviorRelay<Int>(value: 0)
+    
+    var fetchDisposable: Disposable?
         
     required init(gameService: GameService, usageService: UsageService) {
         self.gameService = gameService
         self.usageService = usageService
+    }
+    
+    deinit {
+        fetchDisposable?.dispose()
     }
     
     func fetchData() {
@@ -37,9 +43,11 @@ class WeeklyInsightViewModel {
             observables.append(fetchBillForecast())
         }
         
+        fetchDisposable?.dispose()
+        
         loading.accept(true)
         error.accept(false)
-        Observable.zip(observables)
+        fetchDisposable = Observable.zip(observables)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -50,7 +58,6 @@ class WeeklyInsightViewModel {
                 self.loading.accept(false)
                 self.error.accept(true)
             })
-            .disposed(by: bag)
     }
     
     func fetchDailyUsageData() -> Observable<Void> {
@@ -86,9 +93,9 @@ class WeeklyInsightViewModel {
         
         if endDate == nil { return nil }
         
-        if let start = Calendar.opCo.date(byAdding: .day, value: -6, to: endDate!) {
+        if let startDate = Calendar.opCo.date(byAdding: .day, value: -6, to: endDate!) {
             var filtered = usageData.filter {
-                $0.date >= start && $0.date <= endDate!
+                $0.date >= startDate && $0.date <= endDate!
             }
             filtered.reverse() // Oldest to most recent
             return filtered
@@ -136,12 +143,11 @@ class WeeklyInsightViewModel {
         return total
     }
     
-    private lazy var usageDataIsValid: Driver<Bool> = self.usageData.asDriver().map {
-        guard let usageData = $0 else { return false }
-        
-        
-        return true
-    }
+    private lazy var usageDataIsValid: Driver<Bool> =
+        Driver.combineLatest(self.thisWeekData, self.lastWeekData).map {
+            guard let thisWeek = $0, let lastWeek = $1 else { return false }
+            return !thisWeek.isEmpty && !lastWeek.isEmpty
+        }
     
     var shouldShowSegmentedControl: Bool {
         return accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC"
@@ -150,6 +156,16 @@ class WeeklyInsightViewModel {
     private(set) lazy var shouldShowContent: Driver<Bool> =
         Driver.combineLatest(self.loading.asDriver(), self.error.asDriver(), self.usageDataIsValid)
             .map { !$0 && !$1 && $2}
+    
+    private(set) lazy var errorText: Driver<String?> =
+        Driver.combineLatest(self.error.asDriver(), self.usageData.asDriver(), self.usageDataIsValid).map {
+            if $0 { // Error from services
+                return NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
+            } else if $1 != nil && !$2 { // Got usage data but it's invalid
+                return NSLocalizedString("Your Weekly Insight will be available once we have enough data. Check back later!", comment: "")
+            }
+            return nil
+        }
     
     private(set) lazy var thisWeekDateLabelText: Driver<String?> = self.thisWeekData.map {
         guard let data = $0 else { return nil }

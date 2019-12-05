@@ -78,7 +78,6 @@ class WeeklyInsightViewController: UIViewController {
         
         errorLabel.textColor = .deepGray
         errorLabel.font = SystemFont.regular.of(textStyle: .headline)
-        errorLabel.text = NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
     
         bindViewModel()
         
@@ -87,7 +86,10 @@ class WeeklyInsightViewController: UIViewController {
     
     func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
-        viewModel.error.asDriver().not().drive(errorView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.errorText.isNil().drive(errorView.rx.isHidden).disposed(by: bag)
+        viewModel.errorText.drive(errorLabel.rx.text).disposed(by: bag)
+        
         viewModel.shouldShowContent.not().drive(contentContainer.rx.isHidden).disposed(by: bag)
         
         viewModel.thisWeekDateLabelText.drive(thisWeekDateLabel.rx.text).disposed(by: bag)
