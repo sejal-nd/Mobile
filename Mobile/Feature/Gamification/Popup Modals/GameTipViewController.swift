@@ -37,7 +37,7 @@ class GameTipViewController: UIViewController {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     
         popupView.layer.cornerRadius = 10
-        popupView.layer.masksToBounds = false
+        popupView.layer.masksToBounds = true
         
         closeButton.tintColor = .actionBlue
         closeButton.addTarget(self, action: #selector(dismiss(_:)), for: .touchUpInside)

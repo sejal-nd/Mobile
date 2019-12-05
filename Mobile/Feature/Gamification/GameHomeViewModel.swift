@@ -52,8 +52,8 @@ class GameHomeViewModel {
             refreshing.accept(true)
         } else {
             loading.accept(true)
+            error.accept(false)
         }
-        error.accept(false)
         
         accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
             .subscribe(onNext: { [weak self] accountDetail in
@@ -83,8 +83,8 @@ class GameHomeViewModel {
         
         if !pullToRefresh {
             loading.accept(true)
+            error.accept(false)
         }
-        error.accept(false)
         
         let fetchGas = accountDetail.serviceType?.uppercased() == "GAS" || selectedSegmentIndex == 1
         
@@ -94,6 +94,7 @@ class GameHomeViewModel {
             .subscribe(onNext: { [weak self] usageArray in
                 self?.loading.accept(false)
                 self?.refreshing.accept(false)
+                self?.error.accept(false)
                 self?.usageData.accept(usageArray)
             }, onError: { [weak self] error in
                 self?.loading.accept(false)

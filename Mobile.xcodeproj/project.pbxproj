@@ -1301,8 +1301,14 @@
 		9CD742BF237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */; };
 		9CD742C0237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */; };
 		9CD742C1237CA94700915334 /* GameOnboardingStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */; };
+		9CDB5E782399AE1300976BB2 /* GiftInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB5E772399AE1300976BB2 /* GiftInventory.swift */; };
+		9CDB5E792399AE1300976BB2 /* GiftInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB5E772399AE1300976BB2 /* GiftInventory.swift */; };
+		9CDB5E7A2399AE1300976BB2 /* GiftInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB5E772399AE1300976BB2 /* GiftInventory.swift */; };
 		9CE2276722DE1D7C003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
 		9CE2276822DE1D7E003602A0 /* SetDefaultAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */; };
+		9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE549702399941300025BD5 /* GameRewardViewController.swift */; };
+		9CE549722399941300025BD5 /* GameRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE549702399941300025BD5 /* GameRewardViewController.swift */; };
+		9CE549732399941300025BD5 /* GameRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE549702399941300025BD5 /* GameRewardViewController.swift */; };
 		9CE700AB2318657300191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
 		9CE700AD2318657400191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
 		9CE700AE2318657400191C05 /* SERPTSViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8286F19F2044649700EB4D61 /* SERPTSViewModelTests.swift */; };
@@ -3306,6 +3312,8 @@
 		9CD3532622CABC0900165F87 /* PrepaidCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepaidCardView.swift; sourceTree = "<group>"; };
 		9CD742BA237C900200915334 /* GameOnboardingStep1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOnboardingStep1ViewController.swift; sourceTree = "<group>"; };
 		9CD742BE237CA94600915334 /* GameOnboardingStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOnboardingStep2ViewController.swift; sourceTree = "<group>"; };
+		9CDB5E772399AE1300976BB2 /* GiftInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftInventory.swift; sourceTree = "<group>"; };
+		9CE549702399941300025BD5 /* GameRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRewardViewController.swift; sourceTree = "<group>"; };
 		9CE83BA922D9201B0094C34C /* SetDefaultAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultAccountTableViewCell.swift; sourceTree = "<group>"; };
 		9CEB30DE2261305F00DD725C /* BGE-Environment-DEVELOP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BGE-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
 		9CEB30E0226130E000DD725C /* ComEd-Environment-DEVELOP.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-DEVELOP.plist"; sourceTree = "<group>"; };
@@ -5492,6 +5500,16 @@
 			path = DataDetectorTextView;
 			sourceTree = "<group>";
 		};
+		9CE549742399942200025BD5 /* Popup Modals */ = {
+			isa = PBXGroup;
+			children = (
+				9C48830423834F2700321E6B /* GameTipViewController.swift */,
+				9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */,
+				9CE549702399941300025BD5 /* GameRewardViewController.swift */,
+			);
+			path = "Popup Modals";
+			sourceTree = "<group>";
+		};
 		9CE83BAD22D93C870094C34C /* Set Default Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -5508,13 +5526,13 @@
 				9CEE411823722444005A4AD3 /* Game.storyboard */,
 				9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */,
 				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
-				9C48830423834F2700321E6B /* GameTipViewController.swift */,
-				9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */,
 				9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */,
 				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
 				9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */,
 				9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */,
+				9CDB5E772399AE1300976BB2 /* GiftInventory.swift */,
 				9CC99791237B63C500C68300 /* Onboarding */,
+				9CE549742399942200025BD5 /* Popup Modals */,
 				9CA4FA632385B8AB00E33E7C /* Views */,
 			);
 			path = Gamification;
@@ -8291,6 +8309,7 @@
 				82E9B60E1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
 				22EF55982170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B671F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
+				9CDB5E782399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				9C72424C21E5061800E5946B /* GovWeatherService.swift in Sources */,
 				E8C453151EF3293600F5C781 /* ToastView.swift in Sources */,
 				B0B0839A216F970800B1C632 /* Appointment.swift in Sources */,
@@ -8307,6 +8326,7 @@
 				B04DDF5B21FA800C00594ACF /* Date+Now.swift in Sources */,
 				54C1DEF21F01A1A000290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				54DF4BDA1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
+				9CE549712399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				E83F02751FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				E8039FF11EFB0405004DB789 /* PaymentService.swift in Sources */,
@@ -8691,6 +8711,7 @@
 				82A18E571EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				82A18E641EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
 				E83F02771FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
+				9CDB5E7A2399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				B0CB1C212270DE250081F99B /* MockPeakRewardsService.swift in Sources */,
 				E840BD3C1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				B07E17C02208F6F100B6E3C7 /* MockWeatherService.swift in Sources */,
@@ -8707,6 +8728,7 @@
 				54C1DEFA1F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				35277B072109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
 				9C62446522C28A4600F14DA0 /* InsetTextField.swift in Sources */,
+				9CE549732399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994D1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
@@ -9091,6 +9113,7 @@
 				B0B0839B216F970800B1C632 /* Appointment.swift in Sources */,
 				824A966A1FB5F3480026FA4B /* AdjustThermostatViewModel.swift in Sources */,
 				B54846841E687CEB008CE1B1 /* HttpMethod.swift in Sources */,
+				9CDB5E792399AE1300976BB2 /* GiftInventory.swift in Sources */,
 				5492E0201EECC3C60088A725 /* RegistrationConfirmationViewController.swift in Sources */,
 				82A18F091EBD12D600BE9F21 /* Control.swift in Sources */,
 				2F51B4961F26E20000550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
@@ -9107,6 +9130,7 @@
 				E840BD3B1EB3C91D00812DD0 /* BillService.swift in Sources */,
 				B0DB2758215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				35277AFE2102686100411297 /* UsageTool.swift in Sources */,
+				9CE549722399941300025BD5 /* GameRewardViewController.swift in Sources */,
 				54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E8039FF61EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,

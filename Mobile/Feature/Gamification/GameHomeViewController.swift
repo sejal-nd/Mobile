@@ -87,7 +87,7 @@ class GameHomeViewController: AccountPickerViewController {
         dailyInsightCardView.layer.cornerRadius = 10
         dailyInsightCardView.layer.borderColor = UIColor.accentGray.cgColor
         dailyInsightCardView.layer.borderWidth = 1
-        dailyInsightCardView.layer.masksToBounds = false
+        dailyInsightCardView.layer.masksToBounds = true
         
         segmentedControl.items = [
             NSLocalizedString("Electric", comment: ""),
@@ -183,6 +183,9 @@ class GameHomeViewController: AccountPickerViewController {
         viewModel.gameUser.asDriver().drive(onNext: { [weak self] user in
             guard let self = self, let gameUser = user else { return }
             if self.points != gameUser.points {
+                if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: self.points, pointsAfter: gameUser.points) {
+                    self.presentGift(unlockedGift)
+                }
                 self.points = gameUser.points
                 _ = self.progressBar.setPoints(self.points, animated: false)
             }
@@ -263,6 +266,8 @@ class GameHomeViewController: AccountPickerViewController {
         let quizVc = GameQuizViewController.create(withQuiz: quiz)
         quizVc.delegate = self
         self.tabBarController?.present(quizVc, animated: true, completion: nil)
+        
+
     }
     
     @IBAction func onDailyInsightTooltipPress() {
@@ -292,6 +297,14 @@ class GameHomeViewController: AccountPickerViewController {
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
+    private func presentGift(_ gift: Gift) {
+        let rewardVc = GameRewardViewController.create(withGift: gift)
+        rewardVc.setItemCallback = {
+            self.tabBarController?.dismiss(animated: true, completion: nil)
+        }
+        self.tabBarController?.present(rewardVc, animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? LargeTitleNavigationController,
             let vc = nav.viewControllers.first as? WeeklyInsightViewController {
@@ -318,9 +331,9 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
-            points += decreasedUsage ? 2 : 1
+            let newPoints = points + (decreasedUsage ? 2 : 1)
                 
-            if let result = progressBar.setPoints(points) {
+            if let result = progressBar.setPoints(newPoints) {
                 if result == .halfWay {
                     energyBuddyView.playSuperHappyAnimation()
                     energyBuddyView.showHalfWayMessage()
@@ -332,7 +345,7 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
                 energyBuddyView.playHappyAnimation()
             }
             
-            viewModel.debouncedPoints.accept(points)
+            viewModel.debouncedPoints.accept(newPoints)
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
             _ = self.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
