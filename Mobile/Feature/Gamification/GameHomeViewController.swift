@@ -274,7 +274,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBAction func onDailyInsightTooltipPress() {
         let alert = InfoAlertController(title: NSLocalizedString("Daily Insight", comment: ""),
-                                        message: NSLocalizedString("Your daily usage and weather will be compared to your previous week. Points for each day will be available for up to 7 days of data. Uncollected points for the days prior will be lost, so be sure to check at least once a week!\n\nIt may take up to 24-48 hours for new data to appear.", comment: ""),
+                                        message: NSLocalizedString("Your daily usage will be compared to your previous week. Points for each day will be available for up to 7 days of data. Uncollected points for the days prior will be lost, so be sure to check at least once a week!\n\nSmart meter data is typically available within 24-48 hours of your usage.", comment: ""),
                                         action: nil)
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }

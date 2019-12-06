@@ -127,7 +127,7 @@ class DailyInsightCoinView: UIControl {
         
         // No data - placeholder view
         guard let thisWeek = usage, let lastWeek = lastWeekUsage else {
-            return NSLocalizedString("Data not yet available. It generally takes 24 to 48 hours to appear. Check back later!", comment: "")
+            return NSLocalizedString("Smart meter data is typically available within 24-48 hours of your usage. Check back later!", comment: "")
         }
         
         let diff = abs(thisWeek.amount - lastWeek.amount)
