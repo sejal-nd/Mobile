@@ -104,6 +104,11 @@ class WeeklyInsightViewModel {
         return nil
     }
     
+    private(set) lazy var thisWeekEndDate: Driver<Date?> = self.thisWeekData.map {
+        guard let data = $0 else { return nil }
+        return data.last?.date
+    }
+    
     private lazy var thisWeekUsageTotal: Driver<Double?> = self.thisWeekData.map {
         guard let thisWeekData = $0 else { return nil }
         let total = thisWeekData.reduce(0) { $0 + $1.amount }
@@ -143,7 +148,7 @@ class WeeklyInsightViewModel {
         return total
     }
     
-    private lazy var usageDataIsValid: Driver<Bool> =
+    private(set) lazy var usageDataIsValid: Driver<Bool> =
         Driver.combineLatest(self.thisWeekData, self.lastWeekData).map {
             guard let thisWeek = $0, let lastWeek = $1 else { return false }
             return !thisWeek.isEmpty && !lastWeek.isEmpty
@@ -162,7 +167,7 @@ class WeeklyInsightViewModel {
             if $0 { // Error from services
                 return NSLocalizedString("Unable to retrieve data at this time. Please try again later.", comment: "")
             } else if $1 != nil && !$2 { // Got usage data but it's invalid
-                return NSLocalizedString("Your Weekly Insight will be available once we have enough data. Check back later!", comment: "")
+                return NSLocalizedString("Your Weekly Insight will be available once we have at least 2 weeks of data.", comment: "")
             }
             return nil
         }

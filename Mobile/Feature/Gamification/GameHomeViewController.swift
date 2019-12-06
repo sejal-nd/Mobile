@@ -11,9 +11,7 @@ import RxSwift
 import RxCocoa
 
 class GameHomeViewController: AccountPickerViewController {
-    
-    var coreDataManager = GameCoreDataManager()
-                
+                    
     @IBOutlet weak var energyBuddyView: EnergyBuddyView!
     
     @IBOutlet weak var progressBar: GameProgressBar!
@@ -31,6 +29,7 @@ class GameHomeViewController: AccountPickerViewController {
     @IBOutlet weak var bubbleTriangleImageView: UIImageView!
     @IBOutlet weak var bubbleTriangleCenterXConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var weeklyInsightUnreadIndicator: UIView!
     @IBOutlet weak var weeklyInsightButton: UIButton!
     
     @IBOutlet weak var loadingView: UIView!
@@ -104,6 +103,9 @@ class GameHomeViewController: AccountPickerViewController {
         bubbleView.layer.cornerRadius = 10
         bubbleLabel.textColor = .deepGray
         bubbleLabel.font = SystemFont.regular.of(textStyle: .footnote)
+        
+        weeklyInsightUnreadIndicator.layer.cornerRadius = 6
+        weeklyInsightUnreadIndicator.backgroundColor = .successGreen
         
         weeklyInsightButton.setTitleColor(.actionBlue, for: .normal)
         weeklyInsightButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
@@ -204,6 +206,8 @@ class GameHomeViewController: AccountPickerViewController {
         }).disposed(by: bag)
         
         viewModel.bubbleLabelText.drive(bubbleLabel.rx.text).disposed(by: bag)
+        
+        viewModel.shouldShowWeeklyInsightUnreadIndicator.not().drive(weeklyInsightUnreadIndicator.rx.isHidden).disposed(by: bag)
     }
     
     func layoutCoinViews(usageArray: [DailyUsage]) {
@@ -219,7 +223,7 @@ class GameHomeViewController: AccountPickerViewController {
                 let lastWeekMatch = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: lastWeek) }).first
 
                 let accountNumber = viewModel.accountDetail.value!.accountNumber
-                let canCollect = coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: match.date, gas: viewModel.selectedSegmentIndex == 1) == nil
+                let canCollect = viewModel.coreDataManager.getCollectedCoin(accountNumber: accountNumber, date: match.date, gas: viewModel.selectedSegmentIndex == 1) == nil
 
                 let view = DailyInsightCoinView(usage: match, lastWeekUsage: lastWeekMatch, canCollect: canCollect)
                 view.delegate = self
@@ -266,8 +270,6 @@ class GameHomeViewController: AccountPickerViewController {
         let quizVc = GameQuizViewController.create(withQuiz: quiz)
         quizVc.delegate = self
         self.tabBarController?.present(quizVc, animated: true, completion: nil)
-        
-
     }
     
     @IBAction func onDailyInsightTooltipPress() {
@@ -309,6 +311,7 @@ class GameHomeViewController: AccountPickerViewController {
         if let nav = segue.destination as? LargeTitleNavigationController,
             let vc = nav.viewControllers.first as? WeeklyInsightViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail.value!
+            vc.updateUnreadIndicator = viewModel.weeklyInsightPublishSubject
         }
     }
 
@@ -348,7 +351,7 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
             viewModel.debouncedPoints.accept(newPoints)
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
-            _ = self.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
+            self.viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
         } else {
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()

@@ -7,8 +7,11 @@
 //
 
 import RxSwift
+import RxCocoa
 
 class WeeklyInsightViewController: UIViewController {
+    
+    let coreDataManager = GameCoreDataManager()
     
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
@@ -34,6 +37,8 @@ class WeeklyInsightViewController: UIViewController {
     let viewModel = WeeklyInsightViewModel(gameService: ServiceFactory.createGameService(), usageService: ServiceFactory.createUsageService(useCache: false))
     
     let bag = DisposeBag()
+    
+    var updateUnreadIndicator: PublishSubject<Void>! // Passed from GameHomeViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +97,18 @@ class WeeklyInsightViewController: UIViewController {
         
         viewModel.shouldShowContent.not().drive(contentContainer.rx.isHidden).disposed(by: bag)
         
+        // When data loads (shouldShowContent), add this weekly insight to Core Data
+        viewModel.shouldShowContent
+            .filter { $0 }
+            .withLatestFrom(viewModel.thisWeekEndDate)
+            .asObservable()
+            .take(1)
+            .subscribe(onNext: { [weak self] date in
+                guard let self = self, let endDate = date else { return }
+                self.coreDataManager.addWeeklyInsight(accountNumber: self.viewModel.accountDetail.accountNumber, endDate: endDate)
+                self.updateUnreadIndicator.onNext(())
+            }).disposed(by: bag)
+        
         viewModel.thisWeekDateLabelText.drive(thisWeekDateLabel.rx.text).disposed(by: bag)
         viewModel.thisWeekBarWidth.drive(thisWeekBarWidthConstraint.rx.constant).disposed(by: bag)
         
@@ -108,7 +125,5 @@ class WeeklyInsightViewController: UIViewController {
         viewModel.selectedSegmentIndex.accept(sender.selectedIndex.value)
         viewModel.fetchData()
     }
-
-
 
 }

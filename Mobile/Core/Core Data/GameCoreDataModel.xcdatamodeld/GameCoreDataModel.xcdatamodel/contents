@@ -5,7 +5,12 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="gas" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="ViewedWeeklyInsight" representedClassName="ViewedWeeklyInsight" syncable="YES" codeGenerationType="class">
+        <attribute name="accountNumber" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <elements>
         <element name="CollectedCoin" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="ViewedWeeklyInsight" positionX="-63" positionY="9" width="128" height="73"/>
     </elements>
 </model>

@@ -13,6 +13,7 @@ import RxSwiftExt
 class GameHomeViewModel {
     private let accountService: AccountService
     private let gameService: GameService
+    let coreDataManager = GameCoreDataManager()
     
     let bag = DisposeBag()
     
@@ -30,6 +31,10 @@ class GameHomeViewModel {
     
     var fetchDisposable: Disposable?
     
+    let weeklyInsightViewModel = WeeklyInsightViewModel(gameService: ServiceFactory.createGameService(), usageService: ServiceFactory.createUsageService(useCache: false))
+    let weeklyInsightEndDate = BehaviorRelay<Date?>(value: nil)
+    let weeklyInsightPublishSubject = PublishSubject<Void>()
+    
     required init(accountService: AccountService, gameService: GameService) {
         self.accountService = accountService
         self.gameService = gameService
@@ -41,6 +46,9 @@ class GameHomeViewModel {
                 self?.updateGameUserPoints(points!)
             })
             .disposed(by: bag)
+        
+        self.usageData.bind(to: weeklyInsightViewModel.usageData).disposed(by: bag)
+        weeklyInsightViewModel.thisWeekEndDate.drive(self.weeklyInsightEndDate).disposed(by: bag)
     }
     
     deinit {
@@ -131,6 +139,16 @@ class GameHomeViewModel {
     private(set) lazy var bubbleLabelText: Driver<String?> = self.selectedCoinView.asDriver().map {
         $0?.lastWeekComparisonString
     }
-        
     
+    private(set) lazy var shouldShowWeeklyInsightUnreadIndicator: Driver<Bool> =
+        Driver.combineLatest(self.weeklyInsightViewModel.usageDataIsValid,
+                             self.weeklyInsightEndDate.asDriver(),
+                             self.weeklyInsightPublishSubject.asDriver(onErrorJustReturn: ()))
+            .map { [weak self] valid, date, _ in
+                guard let self = self,
+                    let accountNumber = self.accountDetail.value?.accountNumber,
+                    valid,
+                    let endDate = date else { return false }
+                return self.coreDataManager.getWeeklyInsight(accountNumber: accountNumber, endDate: endDate) == nil
+            }
 }
