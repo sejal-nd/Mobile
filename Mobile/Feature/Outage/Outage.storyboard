@@ -257,7 +257,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-R8-PEk">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="1267"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="1237"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="i9X-bI-z1O">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="220.5"/>
@@ -352,17 +352,21 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdA-Bd-NCe">
-                                                <rect key="frame" x="0.0" y="220.5" width="375" height="125.5"/>
+                                                <rect key="frame" x="0.0" y="220.5" width="375" height="95.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="2Zw-HR-TXz" customClass="Checkbox" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="0.0" width="44" height="44"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="44" id="acz-xk-OAK"/>
+                                                            <constraint firstAttribute="height" constant="44" id="yFY-Ud-Q4I"/>
+                                                        </constraints>
                                                         <connections>
                                                             <action selector="checkboxToggled" destination="ZQH-GI-7Fc" eventType="touchUpInside" id="OQt-CQ-wjB"/>
                                                         </connections>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have checked my circuit breakers or fuse box and I would still like to report an outage." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsO-JP-Q4X">
-                                                        <rect key="frame" x="76" y="0.0" width="279" height="95.5"/>
+                                                        <rect key="frame" x="72" y="0.0" width="283" height="65.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -371,24 +375,24 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="2Zw-HR-TXz" firstAttribute="leading" secondItem="JdA-Bd-NCe" secondAttribute="leading" constant="20" id="53J-cl-5sF"/>
-                                                    <constraint firstItem="MsO-JP-Q4X" firstAttribute="leading" secondItem="2Zw-HR-TXz" secondAttribute="trailing" constant="12" id="8nm-Rx-4aZ"/>
                                                     <constraint firstItem="MsO-JP-Q4X" firstAttribute="top" secondItem="JdA-Bd-NCe" secondAttribute="top" id="A88-PD-jLC"/>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="CPG-Yh-Tz7"/>
+                                                    <constraint firstItem="MsO-JP-Q4X" firstAttribute="leading" secondItem="2Zw-HR-TXz" secondAttribute="trailing" constant="8" id="S2h-Ln-xUC"/>
                                                     <constraint firstItem="2Zw-HR-TXz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="JdA-Bd-NCe" secondAttribute="top" id="TNc-tF-Fv7"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MsO-JP-Q4X" secondAttribute="bottom" constant="30" id="f2l-T4-crE"/>
                                                     <constraint firstAttribute="trailing" secondItem="MsO-JP-Q4X" secondAttribute="trailing" constant="20" id="lyU-wG-c9c"/>
                                                     <constraint firstItem="2Zw-HR-TXz" firstAttribute="top" secondItem="MsO-JP-Q4X" secondAttribute="top" id="xIA-pA-lWg"/>
-                                                    <constraint firstAttribute="bottom" secondItem="MsO-JP-Q4X" secondAttribute="bottom" constant="30" id="zs1-pp-Xfg"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObA-LE-TRT">
-                                                <rect key="frame" x="0.0" y="346" width="375" height="1"/>
+                                                <rect key="frame" x="0.0" y="316" width="375" height="1"/>
                                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="LoO-vF-50b"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5lr-vG-MUZ">
-                                                <rect key="frame" x="0.0" y="347" width="375" height="614"/>
+                                                <rect key="frame" x="0.0" y="317" width="375" height="614"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4L-Ty-VsC" userLabel="Spacer View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -513,7 +517,7 @@
                                                 </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-NZ-rW4" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="961" width="375" height="306"/>
+                                                <rect key="frame" x="0.0" y="931" width="375" height="306"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doS-PF-4Ay" customClass="DataDetectorTextView" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="20" width="335" height="253"/>
@@ -635,7 +639,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vjy-S2-E4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4558" y="1111"/>
+            <point key="canvasLocation" x="4557.2463768115949" y="1110.9375"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Vq1-IQ-0FZ">
