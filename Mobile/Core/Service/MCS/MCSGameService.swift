@@ -11,7 +11,7 @@ import RxSwift
 class MCSGameService: GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
-//        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 12)
+//        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 15)
 //        UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
 //        UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
 //        UserDefaults.standard.set(false, forKey: UserDefaultKeys.gameOptedOutLocal)
@@ -35,6 +35,9 @@ class MCSGameService: GameService {
     }
     
     func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<GameUser> {
+//        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 16)
+//        return Observable.just(testUser)
+        
         var stringifiedDict = [String: String]()
         keyValues.forEach { (key, value) in
             if let valueStr = value as? String {
