@@ -184,13 +184,12 @@ class GameHomeViewController: AccountPickerViewController {
         
         viewModel.gameUser.asDriver().drive(onNext: { [weak self] user in
             guard let self = self, let gameUser = user else { return }
-            if self.points != gameUser.points {
-                if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: self.points, pointsAfter: gameUser.points) {
-                    self.presentGift(unlockedGift)
-                }
-                self.points = gameUser.points
-                _ = self.progressBar.setPoints(self.points, animated: false)
+   
+            if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: self.points, pointsAfter: gameUser.points) {
+                self.presentGift(unlockedGift)
             }
+            self.points = gameUser.points
+            _ = self.progressBar.setPoints(self.points, animated: false)
         }).disposed(by: bag)
         
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
@@ -349,6 +348,7 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
             }
             
             viewModel.debouncedPoints.accept(newPoints)
+            self.points = newPoints
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
             self.viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
