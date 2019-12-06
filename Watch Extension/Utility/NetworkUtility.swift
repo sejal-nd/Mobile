@@ -17,6 +17,7 @@ enum NetworkError: Error {
     case missingToken
     case passwordProtected
     case invalidAccount
+    case featureUnavailable
     case fetchError
 }
 
@@ -373,8 +374,14 @@ extension NetworkUtility {
     private func fetchUsageData(accountDetail: AccountDetail, result: @escaping (Result<BillForecastResult, NetworkError>) -> ()) {
         dLog("Fetching Usage Data...")
         
-        guard accountDetail.isAMIAccount, let premiseNumber = accountDetail.premiseNumber else {
-            dLog("Account invalid for usage data due to non existant premise number or not being an AMI Account.")
+        guard accountDetail.isAMIAccount else {
+            dLog("Account invalid for usage data due to not being an AMI Account.")
+            result(.failure(.featureUnavailable))
+            return
+        }
+        
+        guard let premiseNumber = accountDetail.premiseNumber else {
+            dLog("Account invalid for usage data due to non existant premise number.")
             result(.failure(.invalidAccount))
             return
         }
