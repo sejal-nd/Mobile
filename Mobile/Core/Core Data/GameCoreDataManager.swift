@@ -50,6 +50,91 @@ struct GameCoreDataManager {
         }
     }
     
+    // MARK: - Track Viewed Tips
+    
+    func addViewedTip(accountNumber: String, tipId: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "ViewedTip", in: managedContext)!
+        let viewedTip = NSManagedObject(entity: entity, insertInto: managedContext)
+        viewedTip.setValue(accountNumber, forKey: "accountNumber")
+        viewedTip.setValue(tipId, forKey: "tipId")
+        
+        do {
+            try managedContext.save()
+            dLog("Added viewed tip with ID \(tipId) to Core Data")
+        } catch let error as NSError {
+            dLog("Could not save viewed tip. \(error), \(error.userInfo)")
+        }
+    }
+    
+    // Returns an array of tuples (tipId, isFavorited)
+    func getViewedTips(accountNumber: String) -> [(String, Bool)] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ViewedTip")
+        fetchRequest.predicate = NSPredicate(format: "accountNumber = %@", accountNumber)
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            var tupleArray = [(String, Bool)]()
+            for obj in result {
+                if let managedObj = obj as? NSManagedObject,
+                    let tipId = managedObj.value(forKey: "tipId") as? String,
+                    let favorite = managedObj.value(forKey: "favorite") as? Bool {
+                    tupleArray.append((tipId, favorite))
+                }
+            }
+            return tupleArray
+        } catch let error as NSError {
+            dLog("Could not get viewed tip. \(error), \(error.userInfo)")
+            return []
+        }
+    }
+    
+    func isTipFavorited(accountNumber: String, tipId: String) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ViewedTip")
+        fetchRequest.predicate = NSPredicate(format: "accountNumber = %@ AND tipId = %@", accountNumber, tipId)
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            if let tip = result.first as? NSManagedObject {
+                return tip.value(forKey: "favorite") as? Bool ?? false
+            }
+        } catch let error as NSError {
+            dLog("Could not get viewed tip. \(error), \(error.userInfo)")
+        }
+        return false
+    }
+    
+    func updateViewedTip(accountNumber: String, tipId: String, isFavorite: Bool) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ViewedTip")
+        fetchRequest.predicate = NSPredicate(format: "accountNumber = %@ AND tipId = %@", accountNumber, tipId)
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            if let viewedTip = result.first as? NSManagedObject {
+                viewedTip.setValue(isFavorite, forKey: "favorite")
+                do {
+                    try managedContext.save()
+                    dLog("Updated tip with ID \(tipId) in Core Data")
+                } catch let error as NSError {
+                    dLog("Could not update viewed tip. \(error), \(error.userInfo)")
+                }
+            }
+        } catch let error as NSError {
+            dLog("Could not get viewed tip. \(error), \(error.userInfo)")
+        }
+    }
+    
     // MARK: - Track Viewed Weekly Insights
     
     // Note: the date we store is the end date for the most recent week, so if the insight is

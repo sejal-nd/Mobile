@@ -13,9 +13,9 @@ import Mapper
 
  [
     {
-        "id": "1234",
         "type": "tip",
         "tip": {
+            "id": "1234",
             "title": "Clear Around Vents",
             "description": "Tip description goes here",
             "numPeople": 14985,
@@ -69,6 +69,7 @@ struct GameTask: Mappable {
 
 struct GameTip: Mappable {
     
+    let id: String
     let title: String
     let description: String
     let numPeople: Int
@@ -77,12 +78,26 @@ struct GameTip: Mappable {
     let rentOrOwn: String
     
     init(map: Mapper) throws {
+        id = try map.from("id")
         title = try map.from("title")
         description = try map.from("description")
         numPeople = try map.from("numPeople")
         savingsPerYear = try map.from("savingsPerYear")
         serviceType = try map.from("serviceType")
         rentOrOwn = try map.from("rentOrOwn")
+    }
+    
+    // For temp testing only
+    init(title: String, description: String) {
+        var map = [String: Any]()
+        map["id"] = "1234"
+        map["title"] = title
+        map["description"] = description
+        map["numPeople"] = 1000
+        map["savingsPerYear"] = 30
+        map["serviceType"] = "GAS/ELECTRIC"
+        map["rentOrOwn"] = "RENT"
+        self = GameTip.from(map as NSDictionary)!
     }
 }
 
@@ -124,7 +139,7 @@ struct GameQuiz: Mappable {
         map["answerDescription"] = answerDescription
         map["serviceType"] = "GAS/ELECTRIC"
         map["rentOrOwn"] = "RENT"
-        map["tipId"] = "123"
+        map["tipId"] = "1234"
         self = GameQuiz.from(map as NSDictionary)!
     }
 }

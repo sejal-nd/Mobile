@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol GameTipViewControllerDelegate: class {
+    func gameTipViewController(_ viewController: GameTipViewController, wantsToSetReminderForTip tip: GameTip)
+}
+
 class GameTipViewController: UIViewController {
+    
+    weak var delegate: GameTipViewControllerDelegate?
+    
+    let coreDataManager = GameCoreDataManager()
     
     @IBOutlet weak var contentView: UIView!
     
@@ -20,14 +28,19 @@ class GameTipViewController: UIViewController {
     @IBOutlet weak var dividerLine: UIView!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    var isFavorited = false
+    let accountNumber = AccountsStore.shared.currentAccount.accountNumber
+    
+    var tip: GameTip! // Passed into create() function
+    
+    var isFavorite = false
         
     // TODO: Pass in the tip
-    static func create() -> GameTipViewController {
+    static func create(withTip tip: GameTip) -> GameTipViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "TipPopup") as! GameTipViewController
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
+        vc.tip = tip
         return vc
     }
     
@@ -60,6 +73,24 @@ class GameTipViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))
         tap.delegate = self
         contentView.addGestureRecognizer(tap)
+        
+        populateTipData()
+        
+        coreDataManager.addViewedTip(accountNumber: accountNumber, tipId: tip.id)
+    }
+    
+    private func populateTipData() {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+
+        var detailText = tip.description
+        if let numPeopleStr = numberFormatter.string(for: tip.numPeople) {
+            detailText += "\n\nThis worked for \(numPeopleStr) and can save up to $\(tip.savingsPerYear) per year."
+        }
+        detailLabel.text = detailText
+        
+        isFavorite = coreDataManager.isTipFavorited(accountNumber: accountNumber, tipId: tip.id)
+        updateFavoriteButton()
     }
     
     @objc private func dismiss(_ sender: Any) {
@@ -71,11 +102,14 @@ class GameTipViewController: UIViewController {
     }
     
     @IBAction func onFavoritePress() {
-        // TODO: Persist the favorited tip
-        
-        isFavorited = !isFavorited
+        isFavorite = !isFavorite
+        updateFavoriteButton()
+        coreDataManager.updateViewedTip(accountNumber: accountNumber, tipId: tip.id, isFavorite: isFavorite)
+    }
+    
+    private func updateFavoriteButton() {
         UIView.performWithoutAnimation { // Prevents ugly setTitle animation
-            if isFavorited {
+            if isFavorite {
                 favoriteButton.setImage(#imageLiteral(resourceName: "ic_favetip_remove.pdf"), for: .normal)
                 favoriteButton.setTitle(NSLocalizedString("Remove Favorite", comment: ""), for: .normal)
             } else {
@@ -86,7 +120,6 @@ class GameTipViewController: UIViewController {
         }
     }
     
-
 }
 
 extension GameTipViewController: UIGestureRecognizerDelegate {
