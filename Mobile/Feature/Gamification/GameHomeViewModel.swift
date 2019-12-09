@@ -103,6 +103,7 @@ class GameHomeViewModel {
                 self?.loading.accept(false)
                 self?.refreshing.accept(false)
                 self?.error.accept(false)
+                self?.weeklyInsightPublishSubject.onNext(()) // So that the combineLatest fires initially
                 self?.usageData.accept(usageArray)
             }, onError: { [weak self] error in
                 self?.loading.accept(false)
