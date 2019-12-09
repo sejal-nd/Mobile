@@ -48,6 +48,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     var layoutSubviewsComplete = false
     var welcomedUser = false
+    var reconciledPointsOnLoad = false
     
     var points: Int {
         get {
@@ -142,8 +143,6 @@ class GameHomeViewController: AccountPickerViewController {
                 self?.energyBuddyView.showWelcomeMessage()
             }
         }
-        
-        _ = progressBar.setPoints(points, animated: false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -152,6 +151,7 @@ class GameHomeViewController: AccountPickerViewController {
         if !layoutSubviewsComplete {
             layoutSubviewsComplete = true
             energyBuddyView.playDefaultAnimations()
+            _ = progressBar.setPoints(points, animated: false)
         }
     }
     
@@ -184,12 +184,13 @@ class GameHomeViewController: AccountPickerViewController {
         
         viewModel.gameUser.asDriver().drive(onNext: { [weak self] user in
             guard let self = self, let gameUser = user else { return }
-   
-            if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: self.points, pointsAfter: gameUser.points) {
-                self.presentGift(unlockedGift)
+            // We never want points to be lost, so only reconcile with the server on first load,
+            // or if the server says the user has more points than we've tracked locally
+            if !self.reconciledPointsOnLoad || gameUser.points > self.points {
+                _ = self.progressBar.setPoints(gameUser.points, animated: false)
+                self.points = gameUser.points
+                self.reconciledPointsOnLoad = true
             }
-            self.points = gameUser.points
-            _ = self.progressBar.setPoints(self.points, animated: false)
         }).disposed(by: bag)
         
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
@@ -298,6 +299,32 @@ class GameHomeViewController: AccountPickerViewController {
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
+    private func awardPoints(_ points: Int) {
+        let pointsBefore = self.points
+        let pointsAfter = pointsBefore + points
+        
+        if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: pointsBefore, pointsAfter: pointsAfter) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                self.presentGift(unlockedGift)
+            }
+        }
+        
+        if let result = progressBar.setPoints(pointsAfter) {
+            if result == .halfWay {
+                energyBuddyView.playSuperHappyAnimation()
+                energyBuddyView.showHalfWayMessage()
+            } else if result == .levelUp {
+                energyBuddyView.playSuperHappyAnimation(withSparkles: true)
+                energyBuddyView.showLevelUpMessage()
+            }
+        } else {
+            energyBuddyView.playHappyAnimation()
+        }
+        
+        viewModel.debouncedPoints.accept(pointsAfter)
+        self.points = pointsAfter
+    }
+    
     private func presentGift(_ gift: Gift) {
         let rewardVc = GameRewardViewController.create(withGift: gift)
         rewardVc.setItemCallback = {
@@ -333,22 +360,7 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
-            let newPoints = points + (decreasedUsage ? 2 : 1)
-                
-            if let result = progressBar.setPoints(newPoints) {
-                if result == .halfWay {
-                    energyBuddyView.playSuperHappyAnimation()
-                    energyBuddyView.showHalfWayMessage()
-                } else if result == .levelUp {
-                    energyBuddyView.playSuperHappyAnimation(withSparkles: true)
-                    energyBuddyView.showLevelUpMessage()
-                }
-            } else {
-                energyBuddyView.playHappyAnimation()
-            }
-            
-            viewModel.debouncedPoints.accept(newPoints)
-            self.points = newPoints
+            awardPoints(decreasedUsage ? 2 : 1)
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
             self.viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
