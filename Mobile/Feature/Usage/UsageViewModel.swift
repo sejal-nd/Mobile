@@ -411,7 +411,7 @@ class UsageViewModel {
     
     private(set) lazy var projectedBarSoFarHeightConstraintValue: Driver<CGFloat> =
         Driver.combineLatest(projectedBarHeightConstraintValue, projectedCost, projectedCostSoFar) { heightConstraint, projectedCost, projectedCostSoFar in
-            guard let projectedCost = projectedCost, let projectedCostSoFar = projectedCostSoFar else { return 0 }
+            guard let projectedCost = projectedCost, projectedCost > 0, let projectedCostSoFar = projectedCostSoFar else { return 0 }  // 340398 fix for crash with constraint being set to infinite number when dividing by 0
             let fraction = heightConstraint * CGFloat(projectedCostSoFar / projectedCost)
             return fraction > 3 ? fraction : 0
         }
