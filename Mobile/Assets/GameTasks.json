@@ -1,0 +1,29 @@
+[
+    {
+        "type": "tip",
+        "tip": {
+            "id": "1234",
+            "title": "Clear Around Vents",
+            "description": "Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.",
+            "numPeople": 14985,
+            "savingsPerYear": 10,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Which appliance do you think uses the most energy?",
+            "answers": [
+                { "answer": "TV", "correct": false },
+                { "answer": "Dishwasher", "correct": false },
+                { "answer": "Dryer", "correct": true }
+            ],
+            "answerDescription": "Clothes dryers use more energy than any other appliance.",
+            "tipId": null,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    }
+]

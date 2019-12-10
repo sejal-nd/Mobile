@@ -365,14 +365,14 @@
                                                 </connections>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzy-Cz-66l" userLabel="Viewed Tips Button">
-                                                <rect key="frame" x="350" y="178" width="48" height="54"/>
+                                                <rect key="frame" x="302" y="97" width="96" height="108"/>
                                                 <state key="normal" image="ic_history"/>
                                                 <connections>
                                                     <action selector="onViewedTipsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="K5q-v3-jfd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-ij-bxm" userLabel="Gift Button">
-                                                <rect key="frame" x="350" y="236" width="48" height="54"/>
+                                                <rect key="frame" x="302" y="209" width="96" height="108"/>
                                                 <state key="normal" image="ic_gifts"/>
                                                 <connections>
                                                     <action selector="onGiftsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="uPm-so-XcS"/>
@@ -388,7 +388,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ez0-jX-MMj">
-                                                        <rect key="frame" x="338" y="20" width="24" height="24"/>
+                                                        <rect key="frame" x="314" y="20" width="48" height="48"/>
                                                         <accessibility key="accessibilityConfiguration" label="Tool tip"/>
                                                         <state key="normal" image="ic_tooltip"/>
                                                         <connections>
@@ -676,18 +676,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nrX-l3-uiM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nrX-l3-uiM">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ViewedTipCell" rowHeight="60" id="dEC-pu-gP7" customClass="ViewedTipTableViewCell" customModule="BGE" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dEC-pu-gP7" id="nyn-2B-uvh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-di-eeU">
+                                                    <rect key="frame" x="20" y="4" width="278" height="52"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="cx1-gC-cWW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="BcQ-qK-BHN">
+                                                    <rect key="frame" x="318" y="0.0" width="76" height="60"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_viewedtip_reminder" translatesAutoresizingMaskIntoConstraints="NO" id="KEP-SD-5WW">
+                                                            <rect key="frame" x="0.0" y="18" width="25" height="24"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_viewedtip_favorite" translatesAutoresizingMaskIntoConstraints="NO" id="Un2-eV-eRH">
+                                                            <rect key="frame" x="34" y="18" width="25" height="24"/>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="C9h-sP-l9r">
+                                                            <rect key="frame" x="68" y="23.5" width="8" height="13"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="BcQ-qK-BHN" secondAttribute="bottom" id="6Xc-os-8yh"/>
+                                                <constraint firstItem="a7Z-di-eeU" firstAttribute="leading" secondItem="nyn-2B-uvh" secondAttribute="leading" constant="20" id="JXU-sN-JDk"/>
+                                                <constraint firstItem="BcQ-qK-BHN" firstAttribute="top" secondItem="nyn-2B-uvh" secondAttribute="top" id="Ngl-mk-v53"/>
+                                                <constraint firstItem="a7Z-di-eeU" firstAttribute="top" secondItem="nyn-2B-uvh" secondAttribute="top" constant="4" id="PgT-sU-b76"/>
+                                                <constraint firstItem="BcQ-qK-BHN" firstAttribute="leading" secondItem="a7Z-di-eeU" secondAttribute="trailing" constant="20" id="RKO-Qf-quv"/>
+                                                <constraint firstAttribute="trailing" secondItem="BcQ-qK-BHN" secondAttribute="trailing" constant="20" id="aJH-UU-gne"/>
+                                                <constraint firstAttribute="bottom" secondItem="a7Z-di-eeU" secondAttribute="bottom" constant="4" id="hbX-PZ-rHq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="favoriteImageView" destination="Un2-eV-eRH" id="s2O-Aw-PnT"/>
+                                            <outlet property="reminderImageView" destination="KEP-SD-5WW" id="Zhy-qx-NLl"/>
+                                            <outlet property="titleLabel" destination="a7Z-di-eeU" id="3Xd-iw-SO8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Khv-gx-ANe" id="DxB-5d-DgG"/>
+                                    <outlet property="delegate" destination="Khv-gx-ANe" id="Pg4-uh-YlY"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-Bj-z2G">
-                                <rect key="frame" x="85.5" y="384" width="243.5" height="238.5"/>
+                                <rect key="frame" x="85.5" y="384" width="243.5" height="138.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tips_emptystate" translatesAutoresizingMaskIntoConstraints="NO" id="dff-pR-REM">
-                                        <rect key="frame" x="21.5" y="0.0" width="200" height="200"/>
+                                        <rect key="frame" x="71.5" y="0.0" width="100" height="100"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't viewed any tips yet." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lw3-aU-Lcs">
-                                        <rect key="frame" x="0.0" y="218" width="243.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="118" width="243.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1576,6 +1630,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
     <resources>
         <image name="bill_analysis_shadow_triangle" width="50" height="61"/>
         <image name="ic_back" width="24" height="24"/>
+        <image name="ic_caret" width="8" height="13"/>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_energybuddy" width="110" height="110"/>
         <image name="ic_favetip" width="25" height="24"/>
@@ -1587,6 +1642,8 @@ This worked for 14,985 people and can save up to $10 per year.</string>
         <image name="ic_reminder" width="25" height="24"/>
         <image name="ic_tips_emptystate" width="100" height="100"/>
         <image name="ic_tooltip" width="24" height="24"/>
+        <image name="ic_viewedtip_favorite" width="25" height="24"/>
+        <image name="ic_viewedtip_reminder" width="25" height="24"/>
         <image name="img_gift" width="150" height="146"/>
         <image name="img_onboarding" width="220" height="200"/>
     </resources>

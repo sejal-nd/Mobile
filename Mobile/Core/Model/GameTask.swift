@@ -9,42 +9,6 @@
 import Foundation
 import Mapper
 
-/*
-
- [
-    {
-        "type": "tip",
-        "tip": {
-            "id": "1234",
-            "title": "Clear Around Vents",
-            "description": "Tip description goes here",
-            "numPeople": 14985,
-            "savingsPerYear": 10,
-            "serviceType": "GAS/ELECTRIC"
-            "rentOrOwn": "RENT/OWN"
-        }
-    },
-    {
-        "type": "quiz",
-        "quiz": {
-            "question": "Which appliance do you think uses the most energy?",
-            "answers": [
-                { "answer": "TV", "correct": false },
-                { "answer": "Dishwasher", "correct": false },
-                { "answer": "Dryer", "correct": true }
-            ],
-            "answerDescription": "Clothes dryers use more energy than any other appliance.",
-            "tipId": "1234",
-            "serviceType": "GAS/ELECTRIC"
-            "rentOrOwn": "RENT/OWN"
-        }
-    }
- ]
- 
- 
- 
-*/
-
 enum GameTaskType: String {
     case tip = "tip"
     case quiz = "quiz"
@@ -87,18 +51,18 @@ struct GameTip: Mappable {
         rentOrOwn = try map.from("rentOrOwn")
     }
     
-    // For temp testing only
-    init(title: String, description: String) {
-        var map = [String: Any]()
-        map["id"] = "1234"
-        map["title"] = title
-        map["description"] = description
-        map["numPeople"] = 1000
-        map["savingsPerYear"] = 30
-        map["serviceType"] = "GAS/ELECTRIC"
-        map["rentOrOwn"] = "RENT"
-        self = GameTip.from(map as NSDictionary)!
-    }
+//    // For temp testing only
+//    init(title: String, description: String) {
+//        var map = [String: Any]()
+//        map["id"] = "1234"
+//        map["title"] = title
+//        map["description"] = description
+//        map["numPeople"] = 1000
+//        map["savingsPerYear"] = 30
+//        map["serviceType"] = "GAS/ELECTRIC"
+//        map["rentOrOwn"] = "RENT"
+//        self = GameTip.from(map as NSDictionary)!
+//    }
 }
 
 struct GameQuiz: Mappable {
@@ -131,15 +95,15 @@ struct GameQuiz: Mappable {
         tipId = map.optionalFrom("tipId")
     }
     
-    // For temp testing only
-    init(question: String, answers: [[String: Any]], answerDescription: String) {
-        var map = [String: Any]()
-        map["question"] = question
-        map["answers"] = answers
-        map["answerDescription"] = answerDescription
-        map["serviceType"] = "GAS/ELECTRIC"
-        map["rentOrOwn"] = "RENT"
-        map["tipId"] = "1234"
-        self = GameQuiz.from(map as NSDictionary)!
-    }
+//    // For temp testing only
+//    init(question: String, answers: [[String: Any]], answerDescription: String) {
+//        var map = [String: Any]()
+//        map["question"] = question
+//        map["answers"] = answers
+//        map["answerDescription"] = answerDescription
+//        map["serviceType"] = "GAS/ELECTRIC"
+//        map["rentOrOwn"] = "RENT"
+//        map["tipId"] = "1234"
+//        self = GameQuiz.from(map as NSDictionary)!
+//    }
 }

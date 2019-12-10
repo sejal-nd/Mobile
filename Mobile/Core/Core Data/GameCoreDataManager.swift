@@ -56,16 +56,23 @@ struct GameCoreDataManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "ViewedTip", in: managedContext)!
-        let viewedTip = NSManagedObject(entity: entity, insertInto: managedContext)
-        viewedTip.setValue(accountNumber, forKey: "accountNumber")
-        viewedTip.setValue(tipId, forKey: "tipId")
-        
-        do {
-            try managedContext.save()
-            dLog("Added viewed tip with ID \(tipId) to Core Data")
-        } catch let error as NSError {
-            dLog("Could not save viewed tip. \(error), \(error.userInfo)")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ViewedTip")
+        fetchRequest.predicate = NSPredicate(format: "accountNumber = %@ AND tipId = %@", accountNumber, tipId)
+        let result = try! managedContext.fetch(fetchRequest)
+        if result.count == 0 {
+            let entity = NSEntityDescription.entity(forEntityName: "ViewedTip", in: managedContext)!
+            let viewedTip = NSManagedObject(entity: entity, insertInto: managedContext)
+            viewedTip.setValue(accountNumber, forKey: "accountNumber")
+            viewedTip.setValue(tipId, forKey: "tipId")
+            
+            do {
+                try managedContext.save()
+                dLog("Added viewed tip with ID \(tipId) to Core Data")
+            } catch let error as NSError {
+                dLog("Could not save viewed tip. \(error), \(error.userInfo)")
+            }
+        } else {
+            dLog("Not saving tip because it already exists in Core Data.")
         }
     }
     

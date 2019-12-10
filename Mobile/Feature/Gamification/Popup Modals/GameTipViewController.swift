@@ -33,6 +33,8 @@ class GameTipViewController: UIViewController {
     var tip: GameTip! // Passed into create() function
     
     var isFavorite = false
+    
+    var onUpdateBlock: (() -> Void)?
         
     // TODO: Pass in the tip
     static func create(withTip tip: GameTip) -> GameTipViewController {
@@ -85,7 +87,7 @@ class GameTipViewController: UIViewController {
 
         var detailText = tip.description
         if let numPeopleStr = numberFormatter.string(for: tip.numPeople) {
-            detailText += "\n\nThis worked for \(numPeopleStr) and can save up to $\(tip.savingsPerYear) per year."
+            detailText += "\n\nThis worked for \(numPeopleStr) people and can save up to $\(tip.savingsPerYear) per year."
         }
         detailLabel.text = detailText
         
@@ -105,6 +107,7 @@ class GameTipViewController: UIViewController {
         isFavorite = !isFavorite
         updateFavoriteButton()
         coreDataManager.updateViewedTip(accountNumber: accountNumber, tipId: tip.id, isFavorite: isFavorite)
+        onUpdateBlock?()
     }
     
     private func updateFavoriteButton() {

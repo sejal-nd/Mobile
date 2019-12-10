@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //printFonts()
         
         _ = AlertsStore.shared.alerts // Triggers the loading of alerts from disk
+        _ = GameTaskStore.shared.tasks // Triggers the loading of GameTasks.json into memory
         
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnAuthTokenExpire), name: .didReceiveInvalidAuthToken, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resetNavigationOnFailedAccountsFetch), name: .didReceiveAccountListError, object: nil)

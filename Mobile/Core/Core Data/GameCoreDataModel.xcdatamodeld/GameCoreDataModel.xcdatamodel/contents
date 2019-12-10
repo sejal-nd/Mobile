@@ -9,12 +9,6 @@
         <attribute name="accountNumber" attributeType="String"/>
         <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="tipId" attributeType="String"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="accountNumber"/>
-                <constraint value="tipId"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="ViewedWeeklyInsight" representedClassName="ViewedWeeklyInsight" syncable="YES" codeGenerationType="class">
         <attribute name="accountNumber" attributeType="String"/>

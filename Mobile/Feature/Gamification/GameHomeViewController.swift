@@ -255,22 +255,16 @@ class GameHomeViewController: AccountPickerViewController {
 //        energyBuddyView.playSuperHappyAnimation(withSparkles: true)
 //        energyBuddyView.playSuperHappyAnimation(withHearts: true)
         
-        let tip = GameTip(title: "Clear Around Vents", description: "Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.")
-        let tipVc = GameTipViewController.create(withTip: tip)
-        self.tabBarController?.present(tipVc, animated: true, completion: nil)
+        if let tip = GameTaskStore.shared.tasks.first(where: { $0.type == .tip })?.tip {
+            let tipVc = GameTipViewController.create(withTip: tip)
+            self.tabBarController?.present(tipVc, animated: true, completion: nil)
+        }
         
-//        let quiz = GameQuiz(
-//            question: "Which appliance do you think uses the most energy?",
-//            answers: [
-//                ["answer": "TV", "correct": false],
-//                ["answer": "Dishwasher", "correct": false],
-//                ["answer": "Dryer", "correct": true]
-//            ],
-//            answerDescription: "Clothes dryers use more energy than any other appliance."
-//        )
-//        let quizVc = GameQuizViewController.create(withQuiz: quiz)
-//        quizVc.delegate = self
-//        self.tabBarController?.present(quizVc, animated: true, completion: nil)
+//        if let quiz = GameTaskStore.shared.tasks.first(where: { $0.type == .quiz })?.quiz {
+//            let quizVc = GameQuizViewController.create(withQuiz: quiz)
+//            quizVc.delegate = self
+//            self.tabBarController?.present(quizVc, animated: true, completion: nil)
+//        }
     }
     
     @IBAction func onDailyInsightTooltipPress() {
@@ -376,8 +370,7 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
     
     func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String) {
         tabBarController?.dismiss(animated: true) {
-            // TODO: Present the real tip
-            let tip = GameTip(title: "Clear Around Vents", description: "Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.")
+            let tip = GameTaskStore.shared.tipWithId(tipId)
             let tipVc = GameTipViewController.create(withTip: tip)
             self.tabBarController?.present(tipVc, animated: true, completion: nil)
         }

@@ -1113,6 +1113,13 @@
 		9C28D39C2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
+		9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C34D745239EE92400DF7FE2 /* GameTasks.json */; };
+		9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
+		9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
+		9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
+		9C34D74C239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
+		9C34D74D239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
+		9C34D74E239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
 		9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
@@ -3255,6 +3262,9 @@
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
 		9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewModel.swift; sourceTree = "<group>"; };
+		9C34D745239EE92400DF7FE2 /* GameTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameTasks.json; sourceTree = "<group>"; };
+		9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTaskStore.swift; sourceTree = "<group>"; };
+		9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipTableViewCell.swift; sourceTree = "<group>"; };
 		9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptInOutViewController.swift; sourceTree = "<group>"; };
 		9C46B12A221613FB00A5D537 /* wallet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wallet.json; sourceTree = "<group>"; };
 		9C472AB9220CE05D008C882B /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
@@ -5443,6 +5453,7 @@
 				9CA4FA5F2385A2B900E33E7C /* GameProgressBar.swift */,
 				9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */,
 				9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */,
+				9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5798,6 +5809,7 @@
 				B574BACE1E7360F4001E8A44 /* ErrorMessages.strings */,
 				384F86A11F310B8600A85557 /* TermPolicies.html */,
 				9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */,
+				9C34D745239EE92400DF7FE2 /* GameTasks.json */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -5856,6 +5868,7 @@
 				B04DDF5A21FA800C00594ACF /* Date+Now.swift */,
 				B0D7860C2285C3F4007C551F /* CommercialUsageAlertStore.swift */,
 				35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */,
+				9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6704,6 +6717,7 @@
 				B0EE78EA221353E700F53C56 /* report_outage.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
 				8FD3C2691E5250AF005FB1BB /* Main.storyboard in Resources */,
 				358DE0A821021B64002C544E /* UnavailableView.xib in Resources */,
@@ -8423,6 +8437,7 @@
 				9CC99785237B43E800C68300 /* GameUser.swift in Sources */,
 				E82FF1F21F97CD0B00C50F8F /* HomeUsageCardViewModel.swift in Sources */,
 				358BD21920F8FDAE00DA2012 /* BillImpactView.swift in Sources */,
+				9C34D74C239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				9C28D388227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8039FF51EFB0416004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				829E058B1FA7928E00697633 /* Fillable.swift in Sources */,
@@ -8446,6 +8461,7 @@
 				E8790BE71F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				54C1DEF31F01A1A000290FE5 /* BillingHistoryViewController.swift in Sources */,
 				E8B956E21F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
+				9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E82FF1EA1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E802AB3F1E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E11E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
@@ -8825,6 +8841,7 @@
 				9CC99787237B43E800C68300 /* GameUser.swift in Sources */,
 				9CD3532322CABBB800165F87 /* ZeroInsetDataDetectorTextView.swift in Sources */,
 				E8D340931EBA6A8700BA2D42 /* AccountsStore.swift in Sources */,
+				9C34D74E239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				826773431FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */,
 				8267733F1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
@@ -8848,6 +8865,7 @@
 				82A18E611EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
 				E802AB411E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				E8CA07E31E9C28AC00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
+				9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				8FD5AE881E54EA49003F640D /* LandingViewController.swift in Sources */,
 				9C62446122C171C900F14DA0 /* FloatLabelTextField.swift in Sources */,
 				E83F02811FB247B30062A348 /* UpdatesDetailViewController.swift in Sources */,
@@ -9227,6 +9245,7 @@
 				9CC99786237B43E800C68300 /* GameUser.swift in Sources */,
 				0EF60FD720EE8104006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
 				E840BD451EB3D4B300812DD0 /* MCSBillService.swift in Sources */,
+				9C34D74D239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */,
 				82DE61061FB9F34A00DC25C1 /* OverrideViewModel.swift in Sources */,
 				9C28D389227B975A00DBFE51 /* BGEChoiceIDViewController.swift in Sources */,
 				E8C453241EF4310800F5C781 /* BGEAutoPayViewController.swift in Sources */,
@@ -9250,6 +9269,7 @@
 				E82FF1EB1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				E8B8C84D1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
 				82A18E601EB918C900BE9F21 /* BudgetBillingViewModel.swift in Sources */,
+				9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */,
 				E802AB401E85936700981D18 /* LineHeightLabel.swift in Sources */,
 				B0D5792E219DD4CE00FAAE96 /* PaymentusFormViewController.swift in Sources */,
 				E8CA07E21E9C28AB00A1D431 /* ForgotUsernameResultViewController.swift in Sources */,
