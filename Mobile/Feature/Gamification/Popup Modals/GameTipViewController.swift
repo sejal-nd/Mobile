@@ -8,13 +8,7 @@
 
 import UIKit
 
-protocol GameTipViewControllerDelegate: class {
-    func gameTipViewController(_ viewController: GameTipViewController, wantsToSetReminderForTip tip: GameTip)
-}
-
 class GameTipViewController: UIViewController {
-    
-    weak var delegate: GameTipViewControllerDelegate?
     
     let coreDataManager = GameCoreDataManager()
     
@@ -32,9 +26,10 @@ class GameTipViewController: UIViewController {
     
     var tip: GameTip! // Passed into create() function
     
+    var isReminder = false
     var isFavorite = false
     
-    var onUpdateBlock: (() -> Void)?
+    var onUpdate: (() -> Void)?
         
     // TODO: Pass in the tip
     static func create(withTip tip: GameTip) -> GameTipViewController {
@@ -67,6 +62,7 @@ class GameTipViewController: UIViewController {
         reminderButton.setTitleColor(.actionBlue, for: .normal)
         reminderButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
         reminderButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        
         favoriteButton.tintColor = .actionBlue
         favoriteButton.setTitleColor(.actionBlue, for: .normal)
         favoriteButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
@@ -91,6 +87,8 @@ class GameTipViewController: UIViewController {
         }
         detailLabel.text = detailText
         
+        updateReminderButton()
+        
         isFavorite = coreDataManager.isTipFavorited(accountNumber: accountNumber, tipId: tip.id)
         updateFavoriteButton()
     }
@@ -99,15 +97,51 @@ class GameTipViewController: UIViewController {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navController = segue.destination as? LargeTitleNavigationController,
+            let vc = navController.viewControllers.first as? SetReminderViewController {
+            vc.tip = tip
+            vc.onReminderSet = { [weak self] in
+                self?.updateReminderButton()
+            }
+        }
+    }
+    
     @IBAction func onReminderPress() {
-        print("set reminder")
+        if isReminder { // Cancel reminder
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [tip.id])
+            isReminder = false
+            updateReminderButton()
+        } else {
+            performSegue(withIdentifier: "reminderSegue", sender: nil)
+        }
     }
     
     @IBAction func onFavoritePress() {
         isFavorite = !isFavorite
         updateFavoriteButton()
         coreDataManager.updateViewedTip(accountNumber: accountNumber, tipId: tip.id, isFavorite: isFavorite)
-        onUpdateBlock?()
+        onUpdate?()
+    }
+    
+    private func updateReminderButton() {
+        GameTaskStore.shared.fetchTipIdsForPendingReminders() { [weak self] tipIds in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.isReminder = tipIds.contains(self.tip.id)
+                UIView.performWithoutAnimation { // Prevents ugly setTitle animation
+                    if self.isReminder {
+                        self.reminderButton.setImage(#imageLiteral(resourceName: "ic_reminder_cancel.pdf"), for: .normal)
+                        self.reminderButton.setTitle(NSLocalizedString("Cancel Reminder", comment: ""), for: .normal)
+                    } else {
+                        self.reminderButton.setImage(#imageLiteral(resourceName: "ic_reminder.pdf"), for: .normal)
+                        self.reminderButton.setTitle(NSLocalizedString("Reminder", comment: ""), for: .normal)
+                    }
+                    self.reminderButton.layoutIfNeeded()
+                }
+                self.onUpdate?()
+            }
+        }
     }
     
     private func updateFavoriteButton() {

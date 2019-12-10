@@ -59,7 +59,7 @@ class MCSGameService: GameService {
     }
     
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {
-        let endDate = Date()
+        let endDate = Date.now
         let startDate = Calendar.current.date(byAdding: .month, value: -1, to: endDate)!
         let params: [String: Any] = [
             "start_date": startDate.yyyyMMddString,

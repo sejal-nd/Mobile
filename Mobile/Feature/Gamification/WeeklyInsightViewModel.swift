@@ -81,7 +81,7 @@ class WeeklyInsightViewModel {
     private lazy var thisWeekData: Driver<[DailyUsage]?> = self.usageData.asDriver().map { [weak self] in
         guard let self = self, let usageData = $0, let mostRecentDataDate = usageData.first?.date else { return nil }
         
-        let now = Calendar.opCo.startOfDay(for: Date())
+        let now = Calendar.opCo.startOfDay(for: Date.now)
         let mostRecentSaturday = now.previousSaturday()
         
         var endDate: Date?
@@ -118,7 +118,7 @@ class WeeklyInsightViewModel {
     private lazy var lastWeekData: Driver<[DailyUsage]?> = self.usageData.asDriver().map { [weak self] in
         guard let self = self, let usageData = $0, let mostRecentDataDate = usageData.first?.date else { return nil }
         
-        let now = Calendar.opCo.startOfDay(for: Date())
+        let now = Calendar.opCo.startOfDay(for: Date.now)
         let mostRecentSaturday = now.previousSaturday()
         
         var currentWeekEndDate: Date?

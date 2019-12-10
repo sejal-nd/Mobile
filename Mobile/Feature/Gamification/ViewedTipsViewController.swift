@@ -16,6 +16,7 @@ class ViewedTipsViewController: UIViewController {
     @IBOutlet weak var emptyStateView: UIView!
     @IBOutlet weak var emptyStateLabel: UILabel!
     
+    var reminderTipIds = [String]()
     var viewedTipTuples: [(String, Bool)]!
     var viewedTips: [GameTip]!
     
@@ -28,14 +29,7 @@ class ViewedTipsViewController: UIViewController {
         emptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
         emptyStateLabel.text = NSLocalizedString("You haven't viewed any tips yet.", comment: "")
         
-        viewedTipTuples = coreDataManager.getViewedTips(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-        viewedTips = viewedTipTuples.map({ GameTaskStore.shared.tipWithId($0.0) })
-        
-        if viewedTips.isEmpty {
-            tableView.isHidden = true
-        } else {
-            emptyStateView.isHidden = true
-        }
+        reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +40,19 @@ class ViewedTipsViewController: UIViewController {
     
     private func reloadData() {
         viewedTipTuples = coreDataManager.getViewedTips(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-        tableView.reloadData()
+        viewedTips = viewedTipTuples.map({ GameTaskStore.shared.tipWithId($0.0) })
+        if viewedTips.isEmpty {
+            tableView.isHidden = true
+        } else {
+            emptyStateView.isHidden = true
+        }
+        
+        GameTaskStore.shared.fetchTipIdsForPendingReminders { [weak self] tipIds in
+            self?.reminderTipIds = tipIds
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
 }
@@ -68,15 +74,13 @@ extension ViewedTipsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ViewedTipCell", for: indexPath) as! ViewedTipTableViewCell
         
         let tip = viewedTips[indexPath.row]
-        cell.titleLabel.text = tip.title
         
+        cell.titleLabel.text = tip.title
+        cell.reminderImageView.isHidden = !reminderTipIds.contains(tip.id)
         if let tipTuple = viewedTipTuples.first(where: { tip.id == $0.0 }), tipTuple.1 {
             cell.favoriteImageView.isHidden = false
         }
-        // TODO: Show/hide reminder
-        
-        cell.titleLabel.setNeedsLayout()
-        cell.titleLabel.layoutIfNeeded()
+
         return cell
     }
     
@@ -85,7 +89,7 @@ extension ViewedTipsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let tip = viewedTips[indexPath.row]
         let tipVc = GameTipViewController.create(withTip: tip)
-        tipVc.onUpdateBlock = { [weak self] in
+        tipVc.onUpdate = { [weak self] in
             self?.reloadData()
         }
         present(tipVc, animated: true, completion: nil)

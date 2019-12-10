@@ -216,7 +216,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
         coinViews.removeAll()
         
-        var date = Calendar.current.startOfDay(for: Date()) // Based on user's timezone so their current "today" is always displayed
+        var date = Calendar.current.startOfDay(for: Date.now) // Based on user's timezone so their current "today" is always displayed
         while coinViews.count < 7 {
             if let match = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
                 let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: date)!

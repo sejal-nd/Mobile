@@ -79,7 +79,7 @@ class EnergyBuddyView: UIView {
     }
     
     func updateSky() {
-        skyImageView.image = Date().skyImageForCurrentTime
+        skyImageView.image = Date.now.skyImageForCurrentTime
     }
     
     func playDefaultAnimations(resetBounce: Bool = true) {
@@ -183,7 +183,7 @@ class EnergyBuddyView: UIView {
         if randomInt < welcomeMessages.count {
             speechBubbleLabel.text = welcomeMessages[randomInt]
         } else {
-            speechBubbleLabel.text = Date().localizedGameGreeting
+            speechBubbleLabel.text = Date.now.localizedGameGreeting
         }
         
         animateSpeechBubble()

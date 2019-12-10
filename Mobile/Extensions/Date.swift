@@ -69,6 +69,10 @@ extension Date {
             ordinal(forCalendar: DateFormatter.gameLongDateFormatter.calendar)
     }
     
+    @nonobjc var gameReminderString: String {
+        return DateFormatter.gameReminderDateFormatter.string(from: self)
+    }
+    
     @nonobjc var localizedGreeting: String {
         let components = Calendar.current.dateComponents([.hour], from: self)
         guard let hour = components.hour else { return "Greetings" }
@@ -315,6 +319,12 @@ extension DateFormatter {
         dateFormatter.calendar = .gmt
         dateFormatter.timeZone = .gmt
         dateFormatter.dateFormat = "EEEE, MMMM d"
+        return dateFormatter
+    }()
+    
+    @nonobjc static let gameReminderDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy h:mm a"
         return dateFormatter
     }()
     

@@ -37,7 +37,7 @@ struct GameTip: Mappable {
     let title: String
     let description: String
     let numPeople: Int
-    let savingsPerYear: Double
+    let savingsPerYear: Int
     let serviceType: String
     let rentOrOwn: String
     

@@ -1219,6 +1219,9 @@
 		9CA542A02188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A12188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
 		9CA542A22188D455001C18B2 /* AppointmentDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */; };
+		9CAA4D58239FEDCC00283095 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
+		9CAA4D59239FEDCC00283095 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
+		9CAA4D5A239FEDCC00283095 /* SetReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */; };
 		9CABF6B52397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
 		9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
 		9CABF6B72397032B00B07B01 /* GameQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */; };
@@ -3297,6 +3300,7 @@
 		9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsViewController.swift; sourceTree = "<group>"; };
 		9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipsViewController.swift; sourceTree = "<group>"; };
 		9CA5429F2188D455001C18B2 /* AppointmentDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewModelTests.swift; sourceTree = "<group>"; };
+		9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReminderViewController.swift; sourceTree = "<group>"; };
 		9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuizViewController.swift; sourceTree = "<group>"; };
 		9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAnswerView.swift; sourceTree = "<group>"; };
 		9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizAnswerView.xib; sourceTree = "<group>"; };
@@ -5541,7 +5545,7 @@
 				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
 				9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */,
 				9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */,
-				9CDB5E772399AE1300976BB2 /* GiftInventory.swift */,
+				9CAA4D57239FEDCC00283095 /* SetReminderViewController.swift */,
 				9CC99791237B63C500C68300 /* Onboarding */,
 				9CE549742399942200025BD5 /* Popup Modals */,
 				9CA4FA632385B8AB00E33E7C /* Views */,
@@ -5869,6 +5873,7 @@
 				B0D7860C2285C3F4007C551F /* CommercialUsageAlertStore.swift */,
 				35C0F1D0233E58F500EA5DE9 /* RemoteConfigUtility.swift */,
 				9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */,
+				9CDB5E772399AE1300976BB2 /* GiftInventory.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -8395,6 +8400,7 @@
 				9CBE9E362374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5952239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				E8DB7CBD1EF82A10008188A5 /* IntrinsicHeightTableView.swift in Sources */,
+				9CAA4D58239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				E8067C911EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C97DB1720EFE2D100FF8E20 /* HomeProjectedBillCardView.swift in Sources */,
 				B0D84D4422023FD900C70A6F /* MockJSONManager.swift in Sources */,
@@ -8799,6 +8805,7 @@
 				9CBE9E382374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5954239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				54B31A721EE0B8670002E657 /* RegistrationBGEAccountNumberViewController.swift in Sources */,
+				9CAA4D5A239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				82A18ED91EBA684F00BE9F21 /* AccountLookupToolResultCell.swift in Sources */,
 				E80D2E2E1E72FEC5002626C9 /* Account.swift in Sources */,
 				82A18E6D1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
@@ -9203,6 +9210,7 @@
 				9CBE9E372374AC5100E14222 /* MockGameService.swift in Sources */,
 				9CAC5953239582E700B2D6BA /* WeeklyInsightViewModel.swift in Sources */,
 				82A18EFA1EBA6A4100BE9F21 /* DisclosureButton.swift in Sources */,
+				9CAA4D59239FEDCC00283095 /* SetReminderViewController.swift in Sources */,
 				82EAB3351F97E078008B55B1 /* SERPTSViewModel.swift in Sources */,
 				E8067C921EC3C257004C2724 /* SplashViewController.swift in Sources */,
 				9C119F6521FFBAFF001577F1 /* MultipleStringRanges.swift in Sources */,
