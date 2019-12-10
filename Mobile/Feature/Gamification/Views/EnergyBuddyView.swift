@@ -105,7 +105,6 @@ class EnergyBuddyView: UIView {
         particleAnimation?.removeFromSuperview()
         
         if resetBounce {
-            self.energyBuddyContainerTopConstraint.constant = 0
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
                 self.energyBuddyContainerTopConstraint.constant = 10
@@ -118,6 +117,7 @@ class EnergyBuddyView: UIView {
         bodyAnimation?.stop()
         faceAnimation?.stop()
         particleAnimation?.stop()
+        energyBuddyContainerTopConstraint.constant = 0
     }
     
     func playHappyAnimation() {

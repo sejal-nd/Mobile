@@ -46,7 +46,6 @@ class GameHomeViewController: AccountPickerViewController {
 
     let bag = DisposeBag()
     
-    var layoutSubviewsComplete = false
     var welcomedUser = false
     var reconciledPointsOnLoad = false
     
@@ -126,16 +125,13 @@ class GameHomeViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        if layoutSubviewsComplete {
-            // Resume animations that paused when switching tabs
-            energyBuddyView.playDefaultAnimations()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                 
+        energyBuddyView.playDefaultAnimations()
+        
         if !welcomedUser {
             welcomedUser = true
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
@@ -148,11 +144,9 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if !layoutSubviewsComplete {
-            layoutSubviewsComplete = true
-            energyBuddyView.playDefaultAnimations()
-            _ = progressBar.setPoints(points, animated: false)
-        }
+        // Must do this here for proper bar width calculation (and so that it appears filled
+        // right away... if done in viewDidAppear user would see it jump)
+        _ = progressBar.setPoints(points, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
