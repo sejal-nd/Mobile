@@ -127,20 +127,19 @@ class GameTipViewController: UIViewController {
     private func updateReminderButton() {
         GameTaskStore.shared.fetchTipIdsForPendingReminders() { [weak self] tipIds in
             guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.isReminder = tipIds.contains(self.tip.id)
-                UIView.performWithoutAnimation { // Prevents ugly setTitle animation
-                    if self.isReminder {
-                        self.reminderButton.setImage(#imageLiteral(resourceName: "ic_reminder_cancel.pdf"), for: .normal)
-                        self.reminderButton.setTitle(NSLocalizedString("Cancel Reminder", comment: ""), for: .normal)
-                    } else {
-                        self.reminderButton.setImage(#imageLiteral(resourceName: "ic_reminder.pdf"), for: .normal)
-                        self.reminderButton.setTitle(NSLocalizedString("Reminder", comment: ""), for: .normal)
-                    }
-                    self.reminderButton.layoutIfNeeded()
+
+            self.isReminder = tipIds.contains(self.tip.id)
+            UIView.performWithoutAnimation { // Prevents ugly setTitle animation
+                if self.isReminder {
+                    self.reminderButton.setImage(#imageLiteral(resourceName: "ic_reminder_cancel.pdf"), for: .normal)
+                    self.reminderButton.setTitle(NSLocalizedString("Cancel Reminder", comment: ""), for: .normal)
+                } else {
+                    self.reminderButton.setImage(#imageLiteral(resourceName: "ic_reminder.pdf"), for: .normal)
+                    self.reminderButton.setTitle(NSLocalizedString("Reminder", comment: ""), for: .normal)
                 }
-                self.onUpdate?()
+                self.reminderButton.layoutIfNeeded()
             }
+            self.onUpdate?()
         }
     }
     

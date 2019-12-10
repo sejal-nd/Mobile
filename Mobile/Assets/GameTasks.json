@@ -12,6 +12,42 @@
         }
     },
     {
+        "type": "tip",
+        "tip": {
+            "id": "1235",
+            "title": "Clean Lint",
+            "description": "Tip description goes here.",
+            "numPeople": 14985,
+            "savingsPerYear": 10,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "1236",
+            "title": "Set Thermosat to 78",
+            "description": "Tip description goes here.",
+            "numPeople": 14985,
+            "savingsPerYear": 10,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "1237",
+            "title": "Close Shades",
+            "description": "Tip description goes here.",
+            "numPeople": 14985,
+            "savingsPerYear": 10,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
         "type": "quiz",
         "quiz": {
             "question": "Which appliance do you think uses the most energy?",

@@ -39,7 +39,9 @@ final class GameTaskStore {
 
     func fetchTipIdsForPendingReminders(completion: @escaping ([String]) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            completion(requests.map({ $0.identifier }))
+            DispatchQueue.main.async {
+                completion(requests.map({ $0.identifier }))
+            }
         }
     }
 }

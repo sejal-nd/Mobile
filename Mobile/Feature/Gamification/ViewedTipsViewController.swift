@@ -18,7 +18,7 @@ class ViewedTipsViewController: UIViewController {
     
     var reminderTipIds = [String]()
     var viewedTipTuples: [(String, Bool)]!
-    var viewedTips: [GameTip]!
+    var viewedTips = [GameTip]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,19 +39,30 @@ class ViewedTipsViewController: UIViewController {
     }
     
     private func reloadData() {
-        viewedTipTuples = coreDataManager.getViewedTips(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-        viewedTips = viewedTipTuples.map({ GameTaskStore.shared.tipWithId($0.0) })
-        if viewedTips.isEmpty {
-            tableView.isHidden = true
-        } else {
-            emptyStateView.isHidden = true
-        }
-        
         GameTaskStore.shared.fetchTipIdsForPendingReminders { [weak self] tipIds in
-            self?.reminderTipIds = tipIds
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
+            guard let self = self else { return }
+
+            self.reminderTipIds = tipIds
+            self.viewedTipTuples = self.coreDataManager.getViewedTips(accountNumber: AccountsStore.shared.currentAccount.accountNumber).sorted(by: { (a, b) -> Bool in
+                let aIsReminder = tipIds.contains(a.0)
+                let aIsFavorite = a.1
+                let bIsReminder = tipIds.contains(b.0)
+                let bIsFavorite = b.1
+                
+                if (aIsFavorite && aIsReminder) && (!bIsFavorite || !bIsReminder) { return true }
+                if aIsFavorite && !bIsFavorite { return true }
+                if aIsReminder && !bIsReminder { return true }
+                
+                return false
+            })
+            self.viewedTips = self.viewedTipTuples.map({ GameTaskStore.shared.tipWithId($0.0) })
+            
+            if self.viewedTips.isEmpty {
+                self.tableView.isHidden = true
+            } else {
+                self.emptyStateView.isHidden = true
             }
+            self.tableView.reloadData()
         }
     }
     
