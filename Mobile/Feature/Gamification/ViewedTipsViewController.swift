@@ -55,7 +55,7 @@ class ViewedTipsViewController: UIViewController {
                 
                 return false
             })
-            self.viewedTips = self.viewedTipTuples.map({ GameTaskStore.shared.tipWithId($0.0) })
+            self.viewedTips = self.viewedTipTuples.compactMap({ GameTaskStore.shared.tipWithId($0.0) })
             
             if self.viewedTips.isEmpty {
                 self.tableView.isHidden = true

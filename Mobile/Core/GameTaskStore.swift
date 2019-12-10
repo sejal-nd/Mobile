@@ -30,11 +30,8 @@ final class GameTaskStore {
         }
     }
     
-    func tipWithId(_ id: String) -> GameTip {
-        guard let tip = tasks.first(where: { id == $0.tip?.id })?.tip else {
-            fatalError("Requested tip with id \(id) which does not exist in GameTasks.json")
-        }
-        return tip
+    func tipWithId(_ id: String) -> GameTip? {
+        return tasks.first(where: { id == $0.tip?.id })?.tip
     }
 
     func fetchTipIdsForPendingReminders(completion: @escaping ([String]) -> Void) {

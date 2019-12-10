@@ -88,6 +88,7 @@ class GameOptInOutViewController: UIViewController {
                     
                     if gameUser.optedOut {
                         NotificationCenter.default.post(name: .gameDidOptOut, object: nil)
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests() // Ditch all reminder notifications
                     } else {
                         RxNotifications.shared.accountDetailUpdated.onNext(()) // So that home reloads and onboarding card shows/hides
                     }

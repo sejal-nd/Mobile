@@ -35,6 +35,8 @@ class EnergyBuddyView: UIView {
     var particleAnimation: AnimationView?
     var taskIndicatorAnimation: AnimationView?
     
+    private var currentTask: GameTaskType?
+    
     var speechBubbleAnimator: UIViewPropertyAnimator?
     var welcomeMessages = [
         NSLocalizedString("Welcome back!", comment: ""),
@@ -108,6 +110,8 @@ class EnergyBuddyView: UIView {
         particleAnimation?.stop()
         particleAnimation?.removeFromSuperview()
         
+        setTaskIndicator(currentTask)
+        
         if resetBounce {
             self.view.layoutIfNeeded()
             UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse], animations: {
@@ -121,6 +125,7 @@ class EnergyBuddyView: UIView {
         bodyAnimation?.stop()
         faceAnimation?.stop()
         particleAnimation?.stop()
+        taskIndicatorAnimation?.stop()
         energyBuddyContainerTopConstraint.constant = 0
     }
     
@@ -209,6 +214,8 @@ class EnergyBuddyView: UIView {
     
     // Pass `nil` to hide indicator
     func setTaskIndicator(_ type: GameTaskType?) {
+        currentTask = type
+        
         taskIndicatorAnimation?.stop()
         taskIndicatorAnimation?.removeFromSuperview()
         

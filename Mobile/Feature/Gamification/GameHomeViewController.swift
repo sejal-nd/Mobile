@@ -46,6 +46,7 @@ class GameHomeViewController: AccountPickerViewController {
 
     let bag = DisposeBag()
     
+    var layoutSubviewsComplete = false
     var welcomedUser = false
     var reconciledPointsOnLoad = false
     var isVisible = false
@@ -66,8 +67,7 @@ class GameHomeViewController: AccountPickerViewController {
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 self?.energyBuddyView.stopAnimations()
-            })
-            .disposed(by: bag)
+            }).disposed(by: bag)
         
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
             .asDriver(onErrorDriveWith: .empty())
@@ -79,9 +79,8 @@ class GameHomeViewController: AccountPickerViewController {
                     self.energyBuddyView.updateSky()
                     self.energyBuddyView.playDefaultAnimations()
                 }
-            })
-            .disposed(by: bag)
-        
+            }).disposed(by: bag)
+                
         accountPicker.delegate = self
         accountPicker.parentViewController = self
         
@@ -150,14 +149,25 @@ class GameHomeViewController: AccountPickerViewController {
                 self?.energyBuddyView.setTaskIndicator(.tip)
             }
         }
+        
+        _ = progressBar.setPoints(points, animated: false)
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let tipId = appDelegate.tipIdWaitingToBeShown,
+            let tip = GameTaskStore.shared.tipWithId(tipId) {
+                let tipVc = GameTipViewController.create(withTip: tip)
+                self.tabBarController?.present(tipVc, animated: true, completion: nil)
+                appDelegate.tipIdWaitingToBeShown = nil
+            }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // Must do this here for proper bar width calculation (and so that it appears filled
-        // right away... if done in viewDidAppear user would see it jump)
-        _ = progressBar.setPoints(points, animated: false)
+        if !layoutSubviewsComplete {
+            layoutSubviewsComplete = true
+            energyBuddyView.playDefaultAnimations()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -377,9 +387,10 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
     
     func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String) {
         tabBarController?.dismiss(animated: true) {
-            let tip = GameTaskStore.shared.tipWithId(tipId)
-            let tipVc = GameTipViewController.create(withTip: tip)
-            self.tabBarController?.present(tipVc, animated: true, completion: nil)
+            if let tip = GameTaskStore.shared.tipWithId(tipId) {
+                let tipVc = GameTipViewController.create(withTip: tip)
+                self.tabBarController?.present(tipVc, animated: true, completion: nil)
+            }
         }
     }
 }

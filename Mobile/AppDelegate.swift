@@ -109,6 +109,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    // MARK: - Push Notifications
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         dLog("*-*-*-*-* APNS Device Token: \(token)")
@@ -170,6 +172,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    // MARK: - Local Notifications
+    
+    /* Gamification reminder notifications. When tapped, store the tip ID in memory (tipIdWaitingToBeShown).
+     * If app already alive in background with user logged in, resets the root view controller to Home.
+     * Then (plus in all other scenarios), when GameHomeViewController loads, tipIdWaitingToBeShown != nil
+     * indicates to present the tip. */
+    
+    var tipIdWaitingToBeShown: String? = nil
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        tipIdWaitingToBeShown = response.notification.request.identifier
+        
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.prefersGameHome) // So app launches into Game experience
+        
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.inMainApp) {
+            guard let window = window else { return }
+            if let root = window.rootViewController, let _ = root.presentedViewController {
+                root.dismiss(animated: false) { [weak window] in
+                    guard let window = window else { return }
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                    window.rootViewController = newTabBarController
+                }
+            } else {
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newTabBarController = mainStoryboard.instantiateInitialViewController()
+                window.rootViewController = newTabBarController
+            }
+        }
+    }
+    
+    // MARK: - Deep Links
+    
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL else {
             return false
@@ -205,8 +240,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return nil
     }
-    
-    
     
     //MARK: - Watch Helper
     private func setupWatchConnectivity() {
