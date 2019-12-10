@@ -148,6 +148,7 @@ class OutageInterfaceController: WKInterfaceController {
                 powerStatusImage.setHidden(true)
                 errorGroup.setHidden(false)
                 shouldAnimateStatusImage = false
+                reportOutageTapGesture.isEnabled = false
                 
                 errorImage.setImageNamed(AppImage.gas.name)
                 errorTitleLabel.setText("Gas Only Account")
@@ -158,6 +159,7 @@ class OutageInterfaceController: WKInterfaceController {
                 powerStatusImage.setHidden(true)
                 errorGroup.setHidden(false)
                 shouldAnimateStatusImage = false
+                reportOutageTapGesture.isEnabled = false
                 
                 errorImage.setImageNamed(AppImage.outageUnavailable.name)
                 errorTitleLabel.setText("Outage Unavailable")
@@ -385,7 +387,8 @@ extension OutageInterfaceController {
         if outageStatus.activeOutage {
             state = .loaded(.powerOut(outageStatus))
         } else if outageStatus.flagNoPay || outageStatus.flagFinaled || outageStatus.flagNonService {
-            state = .loaded(.unavilable) // todo: this is not getting triggered?
+            // note this should be handled in the outage error section of network utility.
+            state = .loaded(.unavilable) // todo: this is not getting triggered? Ticket/Bug: https://exelontfs.visualstudio.com/EU-mobile/_workitems/edit/336004
         } else {
             state = .loaded(.powerOn)
         }
