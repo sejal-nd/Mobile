@@ -147,6 +147,7 @@ class GameHomeViewController: AccountPickerViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
                 self?.energyBuddyView.playHappyAnimation()
                 self?.energyBuddyView.showWelcomeMessage()
+                self?.energyBuddyView.setTaskIndicator(.tip)
             }
         }
     }

@@ -20,7 +20,8 @@ class EnergyBuddyView: UIView {
     @IBOutlet weak var speechBubbleView: UIView!
     @IBOutlet weak var speechBubbleLabel: UILabel!
     
-    @IBOutlet weak var messageImageView: UIImageView!
+    @IBOutlet weak var taskIndicatorView: UIView!
+    @IBOutlet weak var taskIndicatorLottieView: UIView!
     
     @IBOutlet weak var energyBuddyContainerView: UIView!
     @IBOutlet weak var energyBuddyContainerTopConstraint: NSLayoutConstraint!
@@ -32,6 +33,7 @@ class EnergyBuddyView: UIView {
     var bodyAnimation: AnimationView?
     var faceAnimation: AnimationView?
     var particleAnimation: AnimationView?
+    var taskIndicatorAnimation: AnimationView?
     
     var speechBubbleAnimator: UIViewPropertyAnimator?
     var welcomeMessages = [
@@ -74,6 +76,8 @@ class EnergyBuddyView: UIView {
         speechBubbleLabel.textColor = .deepGray
         speechBubbleLabel.font = OpenSans.semibold.of(textStyle: .headline)
         speechBubbleContainerView.alpha = 0
+        
+        taskIndicatorView.isHidden = true
         
         updateSky()
     }
@@ -201,6 +205,36 @@ class EnergyBuddyView: UIView {
         speechBubbleLabel.text = levelUpMessages[randomInt]
         
         animateSpeechBubble()
+    }
+    
+    // Pass `nil` to hide indicator
+    func setTaskIndicator(_ type: GameTaskType?) {
+        taskIndicatorAnimation?.stop()
+        taskIndicatorAnimation?.removeFromSuperview()
+        
+        guard let taskType = type else {
+            taskIndicatorView.isHidden = true
+            return
+        }
+        
+        var lottieFileName: String
+        switch taskType {
+        case .tip:
+            lottieFileName = "message_bubble_tip"
+        case .quiz:
+            lottieFileName = "message_bubble_quiz"
+        default:
+            lottieFileName = "message_bubble_unique"
+        }
+        
+        taskIndicatorAnimation = AnimationView(name: lottieFileName)
+        taskIndicatorAnimation!.frame.size = taskIndicatorLottieView.frame.size
+        taskIndicatorAnimation!.contentMode = .scaleAspectFit
+        taskIndicatorAnimation!.loopMode = .loop
+        taskIndicatorLottieView.addSubview(taskIndicatorAnimation!)
+        taskIndicatorAnimation!.play()
+        
+        taskIndicatorView.isHidden = false
     }
 
 }

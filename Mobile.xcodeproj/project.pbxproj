@@ -1049,6 +1049,15 @@
 		8FDF8C6E1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C6F1E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
 		8FDF8C701E550669000B7BD0 /* SharedColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDF8C6D1E550669000B7BD0 /* SharedColor.swift */; };
+		9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
+		9C0A2C3723A042DC002C4B8E /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
+		9C0A2C3823A042DC002C4B8E /* message_bubble_quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */; };
+		9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
+		9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
+		9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */; };
+		9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */; };
+		9C0A2C3D23A042DC002C4B8E /* message_bubble_unique.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */; };
+		9C0A2C3E23A042DC002C4B8E /* message_bubble_unique.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */; };
 		9C0E1C942333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		9C0E1C952333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
 		9C0E1C962333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */; };
@@ -3248,6 +3257,9 @@
 		93B2F085877AB30A8F88D00C /* Pods-Watch Extension.testing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.testing.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.testing.xcconfig"; sourceTree = "<group>"; };
 		99C898A9F3F572B258B68313 /* Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-ComEdApp-ComEdUnitTests/Pods-ComEdApp-ComEdUnitTests.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		9B6E69B6B5E99DA331F2FCB6 /* Pods-BGE-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGE-Watch.release.xcconfig"; path = "Pods/Target Support Files/Pods-BGE-Watch/Pods-BGE-Watch.release.xcconfig"; sourceTree = "<group>"; };
+		9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_quiz.json; sourceTree = "<group>"; };
+		9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_tip.json; sourceTree = "<group>"; };
+		9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message_bubble_unique.json; sourceTree = "<group>"; };
 		9C0E1C922333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultPaymentMethodTutorialViewController.swift; sourceTree = "<group>"; };
 		9C0E1C932333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDefaultPaymentMethodTutorialViewController.xib; sourceTree = "<group>"; };
 		9C0EA5A3237DA45A00D1E18F /* EnergyBuddyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyBuddyView.xib; sourceTree = "<group>"; };
@@ -5336,6 +5348,9 @@
 		9C0EA5AB237DAD1200D1E18F /* Gamification */ = {
 			isa = PBXGroup;
 			children = (
+				9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */,
+				9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */,
+				9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */,
 				9C0EA5AC237DAD2800D1E18F /* buddy_body.json */,
 				9C0EA5AD237DAD2800D1E18F /* buddy_face_happy_bounce.json */,
 				9C0EA5AE237DAD2800D1E18F /* buddy_face_happy.json */,
@@ -6777,6 +6792,7 @@
 				B066281A2252953B0060A89F /* ser_results.json in Resources */,
 				35B9609922B7BC61003BCC97 /* PremiseListRow.xib in Resources */,
 				B08957072215FE7900A97965 /* recover_username.json in Resources */,
+				9C0A2C3923A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				0E0276D42347B26300671E65 /* PECO-Environment-HOTFIX.plist in Resources */,
 				9C0EA5C1237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
 				E8EEF7381E57895F006804D4 /* LaunchScreen-BGE.storyboard in Resources */,
@@ -6785,6 +6801,7 @@
 				8FD5AE9A1E54EAB8003F640D /* checkmark.json in Resources */,
 				E800433E1E65FF70005CF531 /* OpenSans-Semibold.ttf in Resources */,
 				9C8775B622A082CE0087F0BA /* FirstFuelWidget.html in Resources */,
+				9C0A2C3C23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				B017488E2135D19B0039D0C6 /* Storm.storyboard in Resources */,
 				9C472ABA220CE05D008C882B /* Payment.storyboard in Resources */,
 				E8494F3F1EBBCB3A0047D6BE /* outage_loading.json in Resources */,
@@ -6816,6 +6833,7 @@
 				9C0EA5A4237DA45A00D1E18F /* EnergyBuddyView.xib in Resources */,
 				B07E17E82209F0CA00B6E3C7 /* account_details.json in Resources */,
 				35AE569D214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
+				9C0A2C3623A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				6A4FD35CACD849817177444C /* splash.json in Resources */,
 				9C0EA5BB237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
 				352B8D98230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
@@ -6854,6 +6872,7 @@
 				9CC9978C237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
 				9C0EA5B7237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				9C0EA5C3237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
+				9C0A2C3B23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				35C9139422E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E8B4F4B11E5C957A0031D934 /* More.storyboard in Resources */,
 				9CD3532922CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -6970,6 +6989,7 @@
 				E8494F3D1EBBCB2B0047D6BE /* ellipses_loading.json in Resources */,
 				E8B8C84A1F9E3590005828B0 /* SERPTSGraphView.xib in Resources */,
 				82AEF2E61F618F560057E7ED /* Settings.bundle in Resources */,
+				9C0A2C3823A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				0EF60FD120EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				E8B4F4B51E5C99380031D934 /* Alerts.storyboard in Resources */,
 				B0DB2750215EAA2500CD703B /* AlertPreferencesNotificationsSettingsCell.xib in Resources */,
@@ -6980,6 +7000,7 @@
 				E8499CB41EE5CD900062F619 /* Bill.storyboard in Resources */,
 				B07E17DA2209F0C900B6E3C7 /* account_details.json in Resources */,
 				35AE569F214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
+				9C0A2C3E23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				6A4FD31E23F701334D2D37CE /* splash.json in Resources */,
 				352B8D9A230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				9C28D39A2281FD9100DBFE51 /* FirstFuelWidget.html in Resources */,
@@ -7014,6 +7035,7 @@
 				9CC9978B237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
 				9C0EA5B6237DAD2900D1E18F /* buddy_face_happy_bounce.json in Resources */,
 				9C0EA5C2237DAD2900D1E18F /* buddy_particles_hearts.json in Resources */,
+				9C0A2C3A23A042DC002C4B8E /* message_bubble_tip.json in Resources */,
 				35C9139322E9E9C1009DD71A /* MiniWalletSheet.storyboard in Resources */,
 				E80043391E65FF70005CF531 /* OpenSans-LightItalic.ttf in Resources */,
 				9CD3532822CABC0A00165F87 /* PrepaidCardView.xib in Resources */,
@@ -7130,6 +7152,7 @@
 				B07E17E32209F0CA00B6E3C7 /* bill_forecast.json in Resources */,
 				54DF4BDF1EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
 				E8B8C8491F9E358F005828B0 /* SERPTSGraphView.xib in Resources */,
+				9C0A2C3723A042DC002C4B8E /* message_bubble_quiz.json in Resources */,
 				82AEF2E51F618F560057E7ED /* Settings.bundle in Resources */,
 				0EF60FD220EE7AE8006ABC18 /* Assets.xcassets in Resources */,
 				359BB2692146F06D00FBAD83 /* sm_outage.json in Resources */,
@@ -7140,6 +7163,7 @@
 				35ACCB4C20EA7ABF0022907F /* HomeOutageCardView.xib in Resources */,
 				B0030D0D2097BC9A00327A3D /* MaintenanceModeView.xib in Resources */,
 				E8499CB31EE5CD8F0062F619 /* Bill.storyboard in Resources */,
+				9C0A2C3D23A042DC002C4B8E /* message_bubble_unique.json in Resources */,
 				B07E17E12209F0CA00B6E3C7 /* account_details.json in Resources */,
 				352B8D99230D72E5007F8CEE /* Unauthenticated.storyboard in Resources */,
 				35AE569E214AD98500F633D0 /* ellipses_loading_white.json in Resources */,
