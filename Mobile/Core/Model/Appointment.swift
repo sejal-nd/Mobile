@@ -13,7 +13,7 @@ struct Appointment: Mappable, Equatable {
     
     enum Status: String {
         case scheduled = "Confirmed"
-        case enRoute = "En Route"
+        case enRoute = "On Our Way" // TODO PECO_MERGE when peco is merged back in, this needs to be updated to handle "En Route"
         case inProgress = "In Progress"
         case complete = "Complete"
         case canceled = "Cancelled"
