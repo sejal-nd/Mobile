@@ -48,6 +48,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     var welcomedUser = false
     var reconciledPointsOnLoad = false
+    var isVisible = false
     
     var points: Int {
         get {
@@ -71,8 +72,13 @@ class GameHomeViewController: AccountPickerViewController {
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
-                self?.energyBuddyView.updateSky()
-                self?.energyBuddyView.playDefaultAnimations()
+                guard let self = self else { return }
+                // If the app is foregrounded when on a different screen (i.e. Gifts), this would
+                // still fire and the buddy bounce animation would freeze
+                if self.isVisible {
+                    self.energyBuddyView.updateSky()
+                    self.energyBuddyView.playDefaultAnimations()
+                }
             })
             .disposed(by: bag)
         
@@ -125,6 +131,10 @@ class GameHomeViewController: AccountPickerViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        energyBuddyView.updateSky()
+        
+        isVisible = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -153,6 +163,8 @@ class GameHomeViewController: AccountPickerViewController {
         super.viewWillDisappear(animated)
         
         energyBuddyView.stopAnimations()
+        
+        isVisible = false
     }
     
     private func bindViewModel() {
