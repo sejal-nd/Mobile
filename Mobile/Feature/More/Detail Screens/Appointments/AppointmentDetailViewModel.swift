@@ -63,35 +63,7 @@ class AppointmentDetailViewModel {
         
         switch appointment.status {
         case .scheduled:
-            let regularText: String
-            let boldText: String
-            if appointment.date.isInToday(calendar: .opCo) {
-                regularText = NSLocalizedString("Your appointment is ", comment: "")
-                boldText = String.localizedStringWithFormat("today between %@.", appointment.timeslot.displayString)
-            } else if appointment.date.isInTomorrow(calendar: .opCo) {
-                regularText = NSLocalizedString("Your appointment is ", comment: "")
-                boldText = String.localizedStringWithFormat("tomorrow between %@.", appointment.timeslot.displayString)
-            } else {
-                regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
-                boldText = String.localizedStringWithFormat("%@ between %@.", appointment.date.dayMonthDayString, appointment.timeslot.displayString)
-            }
-            
-            let attributedText = NSMutableAttributedString(string: regularText + boldText)
-            attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
-                                        range: NSMakeRange(0, regularText.count))
-            attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline),
-                                        range: NSMakeRange(regularText.count, boldText.count))
-            attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline),
-                                        range: NSMakeRange(regularText.count, boldText.count))
-            attributedText.addAttribute(.foregroundColor, value: UIColor.blackText,
-                                        range: NSMakeRange(0, attributedText.string.count))
-            
-            let style = NSMutableParagraphStyle()
-            style.alignment = .center
-            attributedText.addAttribute(.paragraphStyle, value: style,
-                                        range: NSMakeRange(0, attributedText.string.count))
-            
-            return attributedText
+            return scheduledApptDescription
         case .enRoute:
             return NSLocalizedString("Your technician is on their way for your appointment today.", comment: "")
                 .attributedString(textAlignment: .center,
@@ -127,6 +99,61 @@ class AppointmentDetailViewModel {
             attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline), range: (regularText as NSString).range(of: boldText))
             return attributedText
         }
+    }
+    
+    var scheduledApptDescription: NSMutableAttributedString {
+        let regularText: String
+        let boldText: String
+        if appointment.date.isInToday(calendar: .opCo) {
+            regularText = NSLocalizedString("Your appointment is ", comment: "")
+        } else if appointment.date.isInTomorrow(calendar: .opCo) {
+            regularText = NSLocalizedString("Your appointment is ", comment: "")
+        } else {
+            regularText = NSLocalizedString("Your appointment is scheduled for ", comment: "")
+        }
+        
+        if Environment.shared.opco == .peco || appointment.stopDate == nil {
+            if appointment.date.isInToday(calendar: .opCo) {
+                boldText = String.localizedStringWithFormat("today between %@.", appointment.timeslot.displayString)
+            } else if appointment.date.isInTomorrow(calendar: .opCo) {
+                boldText = String.localizedStringWithFormat("tomorrow between %@.", appointment.timeslot.displayString)
+            } else {
+                boldText = String.localizedStringWithFormat("%@ between %@.", appointment.date.dayMonthDayString, appointment.timeslot.displayString)
+            }
+        }
+        else {
+            if appointment.date.isInToday(calendar: .opCo) {
+                boldText = String.localizedStringWithFormat("today between %@ - %@.",
+                                                            appointment.date.hourAmPmString,
+                                                            appointment.stopDate!.hourAmPmString)
+            } else if appointment.date.isInTomorrow(calendar: .opCo) {
+                boldText = String.localizedStringWithFormat("tomorrow between %@ - %@.",
+                                                            appointment.date.hourAmPmString,
+                                                            appointment.stopDate!.hourAmPmString)
+            } else {
+                boldText = String.localizedStringWithFormat("%@ between %@ - %@.",
+                                                            appointment.date.dayMonthDayString,
+                                                            appointment.date.hourAmPmString,
+                                                            appointment.stopDate!.hourAmPmString)
+            }
+        }
+        
+        let attributedText = NSMutableAttributedString(string: regularText + boldText)
+        attributedText.addAttribute(.font, value: OpenSans.regular.of(textStyle: .headline),
+                                    range: NSMakeRange(0, regularText.count))
+        attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline),
+                                    range: NSMakeRange(regularText.count, boldText.count))
+        attributedText.addAttribute(.font, value: OpenSans.bold.of(textStyle: .headline),
+                                    range: NSMakeRange(regularText.count, boldText.count))
+        attributedText.addAttribute(.foregroundColor, value: UIColor.blackText,
+                                    range: NSMakeRange(0, attributedText.string.count))
+        
+        let style = NSMutableParagraphStyle()
+        style.alignment = .center
+        attributedText.addAttribute(.paragraphStyle, value: style,
+                                    range: NSMakeRange(0, attributedText.string.count))
+        
+        return attributedText
     }
     
     var calendarEvent: EKEvent {

@@ -17,6 +17,7 @@ enum NetworkError: Error {
     case missingToken
     case passwordProtected
     case invalidAccount
+    case featureUnavailable
     case fetchError
 }
 
@@ -37,9 +38,9 @@ struct MaintenanceModeStatus {
 // MARK: - Network Utility
 
 final class NetworkUtility {
-
+    
     public static let shared = NetworkUtility()
-
+    
     private let disposeBag = DisposeBag()
     private let notificationCenter = NotificationCenter.default
     private let dispatchQueue = DispatchQueue.global(qos: .background)
@@ -96,12 +97,12 @@ final class NetworkUtility {
                     case .failure(let error):
                         if error == .passwordProtected {
                             self.error = (.passwordProtected, Feature.all)
-
+                            
                             self.notificationCenter.post(name: .errorDidOccur, object: (NetworkError.passwordProtected, Feature.all))
                             isPasswordProtected = true
                         } else {
                             self.error = (error, Feature.all)
-
+                            
                             self.notificationCenter.post(name: .errorDidOccur, object: (error, Feature.all))
                         }
                         
@@ -202,7 +203,7 @@ extension NetworkUtility {
                 }
             }
         }
-
+        
         if !self.isMaintenanceModeOnForFeature(feature: .usage, currentStatuses: maintenanceStatuses) {
             self.fetchUsageData(accountDetail: accountDetails) { (result) in
                 switch result {
@@ -216,7 +217,7 @@ extension NetworkUtility {
             }
         }
     }
-
+    
     /// Sends notification to IC, and returns a list containing the current maintenance mode status for each feature
     /// - Parameter maintenance: object returned from serivces of type `Maintenance`.
     private func processMaintenanceMode(_ maintenance: Maintenance) -> [MaintenanceModeStatus] {
@@ -249,7 +250,7 @@ extension NetworkUtility {
     }
     
 }
- 
+
 
 // MARK: - Base Network Requests
 
@@ -353,7 +354,7 @@ extension NetworkUtility {
             result(.failure(.missingToken))
             return
         }
-        
+
         let outageService = MCSOutageService()
         
         outageService.fetchOutageStatus(account: AccountsStore.shared.currentAccount).subscribe(onNext: { outageStatus in
@@ -362,20 +363,34 @@ extension NetworkUtility {
         }, onError: { error in
             // handle error
             dLog("Failed to retrieve outage status: \(error.localizedDescription)")
+            
+            //todo we need to have finaled nonpay, ect..... this will return as an error here
+            // reference outageViewModel on mobile app.
+            
             result(.failure(.fetchError))
         })
             .disposed(by: disposeBag)
     }
-
+    
     /// Fetches projected usage data (striped bar graph on mobile app)
     /// - Parameter accountDetail: contains specific info about a users selected account.
     /// - Parameter result: Either `BillForecastResult` or `NetworkError`.
     private func fetchUsageData(accountDetail: AccountDetail, result: @escaping (Result<BillForecastResult, NetworkError>) -> ()) {
         dLog("Fetching Usage Data...")
         
-        guard accountDetail.isAMIAccount, let premiseNumber = accountDetail.premiseNumber else {
-            dLog("Account invalid for usage data due to non existant premise number or not being an AMI Account.")
+        guard accountDetail.isAMIAccount else {
+            dLog("Account invalid for usage data due to not being an AMI Account.")
+            result(.failure(.featureUnavailable))
+            return
+        }
+        guard let premiseNumber = accountDetail.premiseNumber else {
+            dLog("Account invalid for usage data due to non existant premise number.")
             result(.failure(.invalidAccount))
+            return
+        }
+        guard !accountDetail.isFinaled else {
+            dLog("Account isFinaled Usage Data Unavailable.")
+            result(.failure(.featureUnavailable))
             return
         }
         let accountNumber = accountDetail.accountNumber

@@ -13,7 +13,7 @@ struct Appointment: Mappable, Equatable {
     
     enum Status: String {
         case scheduled = "Confirmed"
-        case enRoute = "En Route"
+        case enRoute = "On Our Way" // TODO PECO_MERGE when peco is merged back in, this needs to be updated to handle "En Route"
         case inProgress = "In Progress"
         case complete = "Complete"
         case canceled = "Cancelled"
@@ -41,12 +41,14 @@ struct Appointment: Mappable, Equatable {
     
     let id: String
     let date: Date
+    let stopDate: Date?
     let status: Status
     private let timeslotString: String?
 
     init(map: Mapper) throws {
         id = try map.from("id")
         date = try map.from("startDate", transformation: DateParser().extractDate)
+        stopDate = map.optionalFrom("stopDate", transformation: DateParser().extractDate)
         timeslotString = map.optionalFrom("timeSlot")
         status = try map.from("status") { object in
             guard let string = object as? String, let status = Status(rawValue: string) else {
