@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,16 +15,11 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-V5-tbA">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1B-dA-opR">
-                            <rect key="frame" x="79.5" y="20" width="255" height="62"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="255" id="IrJ-m4-E5i"/>
-                                <constraint firstAttribute="height" constant="62" id="w3c-X7-WAx"/>
-                            </constraints>
-                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_card_coin" translatesAutoresizingMaskIntoConstraints="NO" id="Z9Q-rK-EYk">
+                            <rect key="frame" x="79.5" y="20" width="255" height="79"/>
+                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" verticalCompressionResistancePriority="999" text="Unlock data and insights to help you save money and the environment at the same time!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LE5-ao-dmz">
-                            <rect key="frame" x="15" y="102" width="384" height="58"/>
+                            <rect key="frame" x="15" y="119" width="384" height="41"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -41,14 +36,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="LE5-ao-dmz" firstAttribute="top" secondItem="w1B-dA-opR" secondAttribute="bottom" constant="20" id="AyH-js-ydh"/>
+                        <constraint firstItem="LE5-ao-dmz" firstAttribute="top" secondItem="Z9Q-rK-EYk" secondAttribute="bottom" constant="20" id="2Ui-5f-Lab"/>
                         <constraint firstAttribute="trailing" secondItem="LE5-ao-dmz" secondAttribute="trailing" constant="15" id="Gh6-oj-fbC"/>
                         <constraint firstAttribute="bottom" secondItem="8si-QM-sBm" secondAttribute="bottom" id="YVf-3N-82n"/>
-                        <constraint firstItem="w1B-dA-opR" firstAttribute="top" secondItem="s2b-V5-tbA" secondAttribute="top" constant="20" id="aGR-Jn-qSD"/>
+                        <constraint firstItem="Z9Q-rK-EYk" firstAttribute="centerX" secondItem="s2b-V5-tbA" secondAttribute="centerX" id="car-LT-K2t"/>
                         <constraint firstItem="LE5-ao-dmz" firstAttribute="leading" secondItem="s2b-V5-tbA" secondAttribute="leading" constant="15" id="ijd-F3-KXF"/>
                         <constraint firstItem="8si-QM-sBm" firstAttribute="top" secondItem="LE5-ao-dmz" secondAttribute="bottom" constant="10" id="lop-8h-EBq"/>
                         <constraint firstItem="8si-QM-sBm" firstAttribute="centerX" secondItem="s2b-V5-tbA" secondAttribute="centerX" id="szJ-7a-oT5"/>
-                        <constraint firstItem="w1B-dA-opR" firstAttribute="centerX" secondItem="s2b-V5-tbA" secondAttribute="centerX" id="wZi-gz-B8W"/>
+                        <constraint firstItem="Z9Q-rK-EYk" firstAttribute="top" secondItem="s2b-V5-tbA" secondAttribute="top" constant="20" id="wnZ-Ab-edr"/>
                     </constraints>
                 </view>
             </subviews>
@@ -62,11 +57,14 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="clippingView" destination="s2b-V5-tbA" id="ikz-MR-XE1"/>
+                <outlet property="imageView" destination="Z9Q-rK-EYk" id="Inr-j3-f9p"/>
                 <outlet property="label" destination="LE5-ao-dmz" id="Vef-u7-bTU"/>
                 <outlet property="letsGoButton" destination="8si-QM-sBm" id="8YW-0s-AnQ"/>
-                <outlet property="lottieView" destination="w1B-dA-opR" id="gjE-q1-h5r"/>
             </connections>
             <point key="canvasLocation" x="147.82608695652175" y="-78.348214285714278"/>
         </view>
     </objects>
+    <resources>
+        <image name="onboarding_card_coin" width="255" height="62"/>
+    </resources>
 </document>
