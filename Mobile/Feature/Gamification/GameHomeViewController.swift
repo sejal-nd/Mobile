@@ -271,17 +271,16 @@ class GameHomeViewController: AccountPickerViewController {
 //        energyBuddyView.playSuperHappyAnimation()
 //        energyBuddyView.playSuperHappyAnimation(withSparkles: true)
 //        energyBuddyView.playSuperHappyAnimation(withHearts: true)
-        
-        if let tip = GameTaskStore.shared.tasks.first(where: { $0.type == .tip })?.tip {
+
+        let randomTask = GameTaskStore.shared.tasks.randomElement()
+        if let tip = randomTask?.tip {
             let tipVc = GameTipViewController.create(withTip: tip)
             self.tabBarController?.present(tipVc, animated: true, completion: nil)
+        } else if let quiz = randomTask?.quiz {
+            let quizVc = GameQuizViewController.create(withQuiz: quiz)
+            quizVc.delegate = self
+            self.tabBarController?.present(quizVc, animated: true, completion: nil)
         }
-        
-//        if let quiz = GameTaskStore.shared.tasks.first(where: { $0.type == .quiz })?.quiz {
-//            let quizVc = GameQuizViewController.create(withQuiz: quiz)
-//            quizVc.delegate = self
-//            self.tabBarController?.present(quizVc, animated: true, completion: nil)
-//        }
     }
     
     @IBAction func onDailyInsightTooltipPress() {

@@ -13,7 +13,7 @@ import Lottie
 class HomeGameOnboardingCardView: UIView {
     
     @IBOutlet private weak var clippingView: UIView!
-    @IBOutlet private weak var lottieView: UIView!
+    @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var label: UILabel!
     @IBOutlet weak var letsGoButton: UIButton!
     
@@ -38,19 +38,17 @@ class HomeGameOnboardingCardView: UIView {
         letsGoButton.tintColor = .actionBlue
         letsGoButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
         letsGoButton.titleLabel?.text = NSLocalizedString("Let's Go!", comment: "")
+        
+        loopImageTransition()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        lottieAnimation?.stop()
-        lottieAnimation?.removeFromSuperview()
-        
-        lottieAnimation = AnimationView(name: "home_onboarding_card")
-        lottieAnimation!.frame = CGRect(x: 0, y: 0, width: lottieView.frame.size.width, height: lottieView.frame.size.height)
-        lottieAnimation!.loopMode = .loop
-        lottieAnimation!.contentMode = .scaleAspectFit
-        lottieView.addSubview(lottieAnimation!)
-        lottieAnimation!.play()
+    func loopImageTransition() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            self.imageView.image = #imageLiteral(resourceName: "onboarding_card_coin_reveal.pdf")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+                self.imageView.image = #imageLiteral(resourceName: "onboarding_card_coin.pdf")
+                self.loopImageTransition()
+            }
+        }
     }
 }

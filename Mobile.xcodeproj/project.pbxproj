@@ -1271,15 +1271,6 @@
 		9CC48011220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48012220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48013220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
-		9CC71EB223A1422B00985345 /* home_onboarding_card.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EB123A1422B00985345 /* home_onboarding_card.json */; };
-		9CC71EB323A1422B00985345 /* home_onboarding_card.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EB123A1422B00985345 /* home_onboarding_card.json */; };
-		9CC71EB423A1422B00985345 /* home_onboarding_card.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EB123A1422B00985345 /* home_onboarding_card.json */; };
-		9CC71EC923A16D1800985345 /* home_onboarding_card_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EC723A16D1700985345 /* home_onboarding_card_img_0.png */; };
-		9CC71ECA23A16D1800985345 /* home_onboarding_card_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EC723A16D1700985345 /* home_onboarding_card_img_0.png */; };
-		9CC71ECB23A16D1800985345 /* home_onboarding_card_img_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EC723A16D1700985345 /* home_onboarding_card_img_0.png */; };
-		9CC71ECC23A16D1800985345 /* home_onboarding_card_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EC823A16D1800985345 /* home_onboarding_card_img_1.png */; };
-		9CC71ECD23A16D1800985345 /* home_onboarding_card_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EC823A16D1800985345 /* home_onboarding_card_img_1.png */; };
-		9CC71ECE23A16D1800985345 /* home_onboarding_card_img_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC71EC823A16D1800985345 /* home_onboarding_card_img_1.png */; };
 		9CC99785237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		9CC99786237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		9CC99787237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
@@ -3338,9 +3329,6 @@
 		9CBE9E352374AC5100E14222 /* MockGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGameService.swift; sourceTree = "<group>"; };
 		9CC48010220A142900393CC7 /* outage_status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_status.json; sourceTree = "<group>"; };
 		9CC48017220A442900393CC7 /* meter_ping_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = meter_ping_info.json; sourceTree = "<group>"; };
-		9CC71EB123A1422B00985345 /* home_onboarding_card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = home_onboarding_card.json; sourceTree = "<group>"; };
-		9CC71EC723A16D1700985345 /* home_onboarding_card_img_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_onboarding_card_img_0.png; sourceTree = "<group>"; };
-		9CC71EC823A16D1800985345 /* home_onboarding_card_img_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_onboarding_card_img_1.png; sourceTree = "<group>"; };
 		9CC99784237B43E800C68300 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameOnboardingCardView.xib; sourceTree = "<group>"; };
 		9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameOnboardingCardView.swift; sourceTree = "<group>"; };
@@ -5364,9 +5352,6 @@
 		9C0EA5AB237DAD1200D1E18F /* Gamification */ = {
 			isa = PBXGroup;
 			children = (
-				9CC71EC723A16D1700985345 /* home_onboarding_card_img_0.png */,
-				9CC71EC823A16D1800985345 /* home_onboarding_card_img_1.png */,
-				9CC71EB123A1422B00985345 /* home_onboarding_card.json */,
 				9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */,
 				9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */,
 				9C0A2C3523A042DC002C4B8E /* message_bubble_unique.json */,
@@ -6756,7 +6741,6 @@
 				B0B083FC21710CDB00B1C632 /* Appt_Complete.json in Resources */,
 				B0EE78EA221353E700F53C56 /* report_outage.json in Resources */,
 				224EFF1C216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,
-				9CC71EB223A1422B00985345 /* home_onboarding_card.json in Resources */,
 				E800432F1E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */,
 				B5D415721F3A6AD000AC32B2 /* GoogleService-Info_bge_testing.plist in Resources */,
@@ -6778,7 +6762,6 @@
 				B0B083FA21710CDB00B1C632 /* Appt_otw.json in Resources */,
 				9C62445C22C171C900F14DA0 /* FloatLabelTextField.xib in Resources */,
 				0E0276D22347B22C00671E65 /* ComEd-Environment-HOTFIX.plist in Resources */,
-				9CC71EC923A16D1800985345 /* home_onboarding_card_img_0.png in Resources */,
 				E80043411E65FF70005CF531 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				9CEE411D23722A0F005A4AD3 /* DailyInsightCoinView.xib in Resources */,
 				9CD3533822CABDBA00165F87 /* DisclosureCellButton.xib in Resources */,
@@ -6793,7 +6776,6 @@
 				B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */,
 				359BB2672146F05400FBAD83 /* sm_outage.json in Resources */,
 				E841F39F1F02F30E007BFA82 /* UINavigationBackButton.xib in Resources */,
-				9CC71ECC23A16D1800985345 /* home_onboarding_card_img_1.png in Resources */,
 				B07E17EF220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				B0B125FB221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				9CC9978A237B49F500C68300 /* HomeGameOnboardingCardView.xib in Resources */,
@@ -6935,7 +6917,6 @@
 				8FD5AE921E54EA53003F640D /* Login.storyboard in Resources */,
 				44A373481F213CA0005E227B /* TemplateCardView.xib in Resources */,
 				9C0E1C992333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
-				9CC71ECE23A16D1800985345 /* home_onboarding_card_img_1.png in Resources */,
 				35277B01210794B100411297 /* UnavailableView.xib in Resources */,
 				B574BAD11E7360F4001E8A44 /* ErrorMessages.strings in Resources */,
 				B089573D22175FDC00A97965 /* alert_preferences.json in Resources */,
@@ -7005,10 +6986,8 @@
 				E873DA7A1EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				E8494F3A1EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				35C913A122E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
-				9CC71ECB23A16D1800985345 /* home_onboarding_card_img_0.png in Resources */,
 				0E5BEF0E202E2393009D1ADB /* GoogleService-Info_peco_prodbeta.plist in Resources */,
 				54DF4BE01EE9CBCA008CF7AD /* AccountDetailsView.xib in Resources */,
-				9CC71EB423A1422B00985345 /* home_onboarding_card.json in Resources */,
 				B07E17DC2209F0C900B6E3C7 /* bill_forecast.json in Resources */,
 				9C0EA5C0237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BD237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
@@ -7101,7 +7080,6 @@
 				E80043301E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B5D4157A1F3A6DFE00AC32B2 /* GoogleService-Info_comed.plist in Resources */,
 				9C0E1C982333F624005C4B1A /* SetDefaultPaymentMethodTutorialViewController.xib in Resources */,
-				9CC71ECD23A16D1800985345 /* home_onboarding_card_img_1.png in Resources */,
 				8FD5AE911E54EA53003F640D /* Login.storyboard in Resources */,
 				B089573C22175FDC00A97965 /* alert_preferences.json in Resources */,
 				35277B00210794B000411297 /* UnavailableView.xib in Resources */,
@@ -7171,10 +7149,8 @@
 				E800433C1E65FF70005CF531 /* OpenSans-Regular.ttf in Resources */,
 				E873DA791EE8699600020D1B /* RadioSelectionTableViewCell.xib in Resources */,
 				35C913A022E9EFFB009DD71A /* MiniWalletItemRow.xib in Resources */,
-				9CC71ECA23A16D1800985345 /* home_onboarding_card_img_0.png in Resources */,
 				0E5BEF0A202E22DE009D1ADB /* GoogleService-Info_comed_prodbeta.plist in Resources */,
 				CEA215261F7900CC00689422 /* HomeBillCardView.xib in Resources */,
-				9CC71EB323A1422B00985345 /* home_onboarding_card.json in Resources */,
 				E8494F391EBBCB2B0047D6BE /* full_screen_loading.json in Resources */,
 				9C0EA5BF237DAD2900D1E18F /* buddy_face_normal.json in Resources */,
 				9C0EA5BC237DAD2900D1E18F /* buddy_particles_sparkles.json in Resources */,
