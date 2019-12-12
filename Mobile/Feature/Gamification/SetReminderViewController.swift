@@ -29,6 +29,7 @@ class SetReminderViewController: KeyboardAvoidingStickyFooterViewController {
 
         addCloseButton()
 
+        reminderNameTextField.setEnabled(false)
         reminderNameTextField.placeholder = NSLocalizedString("Reminder Name", comment: "")
         reminderNameTextField.textField.text = tip.title
         reminderNameTextField.textField.rx.text.orEmpty.bind(to: reminderName).disposed(by: bag)
