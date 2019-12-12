@@ -150,8 +150,6 @@ class GameHomeViewController: AccountPickerViewController {
             }
         }
         
-        _ = progressBar.setPoints(points, animated: false)
-        
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
             let tipId = appDelegate.tipIdWaitingToBeShown,
             let tip = GameTaskStore.shared.tipWithId(tipId) {
@@ -166,7 +164,12 @@ class GameHomeViewController: AccountPickerViewController {
         
         if !layoutSubviewsComplete {
             layoutSubviewsComplete = true
+            
+            energyBuddyView.layoutIfNeeded()
             energyBuddyView.playDefaultAnimations()
+            
+            progressBar.layoutIfNeeded()
+            _ = progressBar.setPoints(points, animated: false)
         }
     }
     
