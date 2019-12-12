@@ -33,17 +33,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-gT-ebb">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_close"/>
                                 <connections>
                                     <action selector="onClosePress" destination="3os-sw-E9Y" eventType="touchUpInside" id="S6X-pp-suq"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
-                                <rect key="frame" x="-13" y="109" width="440" height="400"/>
+                                <rect key="frame" x="97" y="109" width="220" height="200"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to personalize your experience, we’d like to ask you a few questions!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-2I-bW6">
-                                <rect key="frame" x="20" y="533" width="374" height="41"/>
+                                <rect key="frame" x="20" y="333" width="374" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azB-e9-k2m">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Nx5-gD-aKH" eventType="touchUpInside" id="XYn-Pz-Z5O"/>
@@ -120,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qln-jV-Gh3">
-                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-L0-L8Y">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="307.5"/>
@@ -632,41 +632,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XFg-xJ-0Gs">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aYu-hQ-fvw">
-                                    <size key="itemSize" width="50" height="50"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ale-G3-1ss" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="88" width="414" height="48"/>
+                                <color key="backgroundColor" red="0.027450980390000001" green="0.72549019609999998" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="nW4-Ps-0Lk"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Tyw-ld-dj1">
+                                    <size key="itemSize" width="65" height="48"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="55" minY="0.0" maxX="55" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="todo" id="iSy-7p-H36">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="C6Q-x9-wHT">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-GD-G96">
+                                <rect key="frame" x="0.0" y="136" width="414" height="1"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="yya-LX-Fjl"/>
+                                </constraints>
+                            </view>
+                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Fv-hy-hVn">
+                                <rect key="frame" x="0.0" y="136" width="414" height="760"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Dul-9l-83G"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="vC9-wq-1bO"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="XFg-xJ-0Gs" firstAttribute="top" secondItem="A7X-tF-4z1" secondAttribute="top" id="2Rq-Bs-nL1"/>
-                            <constraint firstAttribute="bottom" secondItem="XFg-xJ-0Gs" secondAttribute="bottom" id="PDD-hz-8nN"/>
-                            <constraint firstItem="X9b-tH-Zas" firstAttribute="trailing" secondItem="XFg-xJ-0Gs" secondAttribute="trailing" id="lSY-XV-lLh"/>
-                            <constraint firstItem="XFg-xJ-0Gs" firstAttribute="leading" secondItem="X9b-tH-Zas" secondAttribute="leading" id="z06-pK-Lr6"/>
+                            <constraint firstItem="5Fv-hy-hVn" firstAttribute="top" secondItem="cdk-GD-G96" secondAttribute="bottom" id="0nY-dN-5q1"/>
+                            <constraint firstItem="5Fv-hy-hVn" firstAttribute="leading" secondItem="X9b-tH-Zas" secondAttribute="leading" id="4M6-m3-Nfw"/>
+                            <constraint firstItem="cdk-GD-G96" firstAttribute="top" secondItem="Ale-G3-1ss" secondAttribute="bottom" id="4ct-ee-1z1"/>
+                            <constraint firstAttribute="bottom" secondItem="5Fv-hy-hVn" secondAttribute="bottom" id="ETb-CA-pZ3"/>
+                            <constraint firstItem="Ale-G3-1ss" firstAttribute="top" secondItem="X9b-tH-Zas" secondAttribute="top" id="PwY-KY-hq3"/>
+                            <constraint firstItem="X9b-tH-Zas" firstAttribute="trailing" secondItem="Ale-G3-1ss" secondAttribute="trailing" id="TxV-ea-ZUC"/>
+                            <constraint firstItem="X9b-tH-Zas" firstAttribute="trailing" secondItem="5Fv-hy-hVn" secondAttribute="trailing" id="ado-1g-ZLm"/>
+                            <constraint firstItem="Ale-G3-1ss" firstAttribute="leading" secondItem="X9b-tH-Zas" secondAttribute="leading" id="o41-OW-0xa"/>
+                            <constraint firstItem="cdk-GD-G96" firstAttribute="leading" secondItem="X9b-tH-Zas" secondAttribute="leading" id="pDG-6C-GCr"/>
+                            <constraint firstItem="X9b-tH-Zas" firstAttribute="trailing" secondItem="cdk-GD-G96" secondAttribute="trailing" id="y3s-U5-Cdm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X9b-tH-Zas"/>
                     </view>
                     <navigationItem key="navigationItem" id="tug-gS-MEk"/>
+                    <connections>
+                        <outlet property="buttonBarView" destination="Ale-G3-1ss" id="6QO-wv-5GR"/>
+                        <outlet property="containerView" destination="5Fv-hy-hVn" id="cer-j6-p4B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGo-db-VxN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1713.0434782608697" y="-1866.2946428571427"/>
+        </scene>
+        <!--Gift Collection View Controller-->
+        <scene sceneID="oyf-X5-cdt">
+            <objects>
+                <collectionViewController storyboardIdentifier="GiftCollection" id="14G-Iy-xRg" customClass="GiftCollectionViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="45F-Yh-gN6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vBs-LY-x0f">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4OO-py-pYP">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FUa-U7-KLY">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="14G-Iy-xRg" id="eML-Wh-O8w"/>
+                            <outlet property="delegate" destination="14G-Iy-xRg" id="xPD-Ib-Ahd"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfM-kZ-iuW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1713" y="-1167"/>
         </scene>
         <!--Viewed Tips View Controller-->
         <scene sceneID="L8i-th-fAz">
@@ -689,7 +739,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-di-eeU">
-                                                    <rect key="frame" x="20" y="8" width="220" height="44"/>
+                                                    <rect key="frame" x="20" y="8" width="278" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="cx1-gC-cWW"/>
                                                     </constraints>
@@ -698,16 +748,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="BcQ-qK-BHN">
-                                                    <rect key="frame" x="260" y="0.0" width="134" height="60"/>
+                                                    <rect key="frame" x="318" y="0.0" width="76" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_viewedtip_reminder" translatesAutoresizingMaskIntoConstraints="NO" id="KEP-SD-5WW">
-                                                            <rect key="frame" x="0.0" y="6" width="50" height="48"/>
+                                                            <rect key="frame" x="0.0" y="18" width="25" height="24"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_viewedtip_favorite" translatesAutoresizingMaskIntoConstraints="NO" id="Un2-eV-eRH">
-                                                            <rect key="frame" x="59" y="6" width="50" height="48"/>
+                                                            <rect key="frame" x="34" y="18" width="25" height="24"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="C9h-sP-l9r">
-                                                            <rect key="frame" x="118" y="17" width="16" height="26"/>
+                                                            <rect key="frame" x="68" y="23.5" width="8" height="13"/>
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
@@ -735,13 +785,13 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-Bj-z2G">
-                                <rect key="frame" x="85.5" y="384" width="243.5" height="238.5"/>
+                                <rect key="frame" x="85.5" y="384" width="243.5" height="138.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tips_emptystate" translatesAutoresizingMaskIntoConstraints="NO" id="dff-pR-REM">
-                                        <rect key="frame" x="21.5" y="0.0" width="200" height="200"/>
+                                        <rect key="frame" x="71.5" y="0.0" width="100" height="100"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't viewed any tips yet." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lw3-aU-Lcs">
-                                        <rect key="frame" x="0.0" y="218" width="243.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="118" width="243.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -820,12 +870,12 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
-                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
-                                                                <rect key="frame" x="66" y="0.0" width="220" height="220"/>
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="220"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
                                                                 <rect key="frame" x="20" y="240" width="312" height="20.5"/>
@@ -961,7 +1011,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctg-dp-Xx9">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Cjp-yO-sUW" eventType="touchUpInside" id="Lum-6d-lsl"/>
@@ -974,7 +1024,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-EI-8GP">
-                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="De4-tq-Lwa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
@@ -1160,13 +1210,13 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         <rect key="frame" x="20" y="0.0" width="374" height="631"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/22 - 9/28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xl-BX-FgK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="128.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iam-WY-Yu9">
-                                                                <rect key="frame" x="0.0" y="25.5" width="100" height="15"/>
+                                                                <rect key="frame" x="0.0" y="133.5" width="100" height="15"/>
                                                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="2x1-Bt-jyw"/>
@@ -1174,13 +1224,13 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/15 - 9/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-gr-5fv">
-                                                                <rect key="frame" x="0.0" y="55.5" width="83" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="163.5" width="83" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VZo-Mm-s3z">
-                                                                <rect key="frame" x="0.0" y="81" width="100" height="15"/>
+                                                                <rect key="frame" x="0.0" y="189" width="100" height="15"/>
                                                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="lVI-Xg-4nt"/>
@@ -1188,31 +1238,31 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used 30% more energy than the previous week." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6R-D2-xeN">
-                                                                <rect key="frame" x="0.0" y="116" width="374" height="41"/>
+                                                                <rect key="frame" x="0.0" y="224" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightup" translatesAutoresizingMaskIntoConstraints="NO" id="9EJ-4o-IXp">
-                                                                <rect key="frame" x="0.0" y="187" width="72" height="72"/>
+                                                                <rect key="frame" x="0.0" y="295" width="36" height="36"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the most energy on Saturday, September 28th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4J-Gq-FMO">
-                                                                <rect key="frame" x="0.0" y="264" width="374" height="41"/>
+                                                                <rect key="frame" x="0.0" y="336" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightdown" translatesAutoresizingMaskIntoConstraints="NO" id="Nff-Qf-ySe">
-                                                                <rect key="frame" x="0.0" y="335" width="72" height="72"/>
+                                                                <rect key="frame" x="0.0" y="407" width="36" height="36"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the least energy on Wednesday, September 25th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbO-P6-4Gk">
-                                                                <rect key="frame" x="0.0" y="412" width="374" height="41"/>
+                                                                <rect key="frame" x="0.0" y="448" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightbill" translatesAutoresizingMaskIntoConstraints="NO" id="zOk-na-zDA">
-                                                                <rect key="frame" x="0.0" y="483" width="72" height="72"/>
+                                                                <rect key="frame" x="0.0" y="519" width="36" height="36"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill is projected to be $72. You've spent about $59 so far this bill period." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAF-IP-htO">
                                                                 <rect key="frame" x="0.0" y="560" width="374" height="41"/>
@@ -1384,12 +1434,12 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aat-r5-6jU">
-                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-Pj-QqI">
-                                                                <rect key="frame" x="66" y="0.0" width="220" height="306"/>
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="306"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I learned something cool, let’s see if you know it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxz-OG-aSI">
                                                                 <rect key="frame" x="20" y="326" width="312" height="41"/>
@@ -1528,18 +1578,18 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <rect key="frame" x="0.0" y="0.0" width="352" height="496.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rM2-EW-T2P">
-                                                                        <rect key="frame" x="15" y="15" width="48" height="48"/>
+                                                                        <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                         <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                         <state key="normal" image="ic_close"/>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here’s a gift for your hard work!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-VE-Jqn">
-                                                                        <rect key="frame" x="20" y="30" width="312" height="20.5"/>
+                                                                        <rect key="frame" x="20" y="30" width="312" height="166.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_gift" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-Mc-CSK">
-                                                                        <rect key="frame" x="26" y="94.5" width="300" height="292"/>
+                                                                        <rect key="frame" x="101" y="240.5" width="150" height="146"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-7N-Ekq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="68.5" y="411.5" width="215" height="45"/>

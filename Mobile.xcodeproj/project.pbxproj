@@ -1362,6 +1362,9 @@
 		9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
+		9CF5369E23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
+		9CF5369F23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
+		9CF536A023A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
 		9CFC82DE221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82DF221C78C500B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
 		9CFC82E0221C78C600B23D1F /* meter_ping_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48017220A442900393CC7 /* meter_ping_info.json */; };
@@ -3361,6 +3364,7 @@
 		9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyInsightCoinView.swift; sourceTree = "<group>"; };
 		9CEE412423722B8A005A4AD3 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		9CEE412823722CA8005A4AD3 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
+		9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewController.swift; sourceTree = "<group>"; };
 		9E85585C63DC708EE8610105 /* Pods-PECO-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
 		9FF2522B35DFFA1287C17144 /* Pods-BGEApp-BGEUITests.develop-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BGEApp-BGEUITests.develop-test.xcconfig"; path = "Pods/Target Support Files/Pods-BGEApp-BGEUITests/Pods-BGEApp-BGEUITests.develop-test.xcconfig"; sourceTree = "<group>"; };
@@ -5572,6 +5576,7 @@
 				9CBE9E312374A25E00E14222 /* GameHomeViewModel.swift */,
 				9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */,
 				9CA4FA642385BFC700E33E7C /* GiftsViewController.swift */,
+				9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */,
 				9CA4FA682385D00100E33E7C /* ViewedTipsViewController.swift */,
 				9CAC5951239582E700B2D6BA /* WeeklyInsightViewModel.swift */,
 				9CA1381C238C2D010023248D /* WeeklyInsightViewController.swift */,
@@ -8503,6 +8508,7 @@
 				35AFB41920C6C3A1000312B9 /* UIViewRoundCorners.swift in Sources */,
 				54AE06B01ED4B06B004A1FDA /* RegistrationViewModel.swift in Sources */,
 				2249C037216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
+				9CF5369E23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
 				826773411FB2302700A8CFAA /* SmartThermostatScheduleViewModel.swift in Sources */,
 				8267733D1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				E89983E11F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
@@ -8908,6 +8914,7 @@
 				B068DB5820D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34F20D9442400E81303 /* HomeCard.swift in Sources */,
 				E8790BE91F8C18C20067BE85 /* BillComparison.swift in Sources */,
+				9CF536A023A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
 				E867A9011F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DB1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
@@ -9313,6 +9320,7 @@
 				8267733E1FB2286200A8CFAA /* SmartThermostatScheduleViewController.swift in Sources */,
 				2249C038216C44C800EAA44D /* URLSession+Rx.swift in Sources */,
 				54EDD2E01ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
+				9CF5369F23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */,
 				E835D1CA1FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027B1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
