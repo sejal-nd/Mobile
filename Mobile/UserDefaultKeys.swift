@@ -52,4 +52,7 @@ struct UserDefaultKeys {
     static let gameOptedOutLocal = "kGameOptedOutLocal"
     static let gameOnboardingCompleteLocal = "kGameOnboardingCompleteLocal"
     static let gamePointsLocal = "kGamePointsLocal"
+    static let gameSelectedBackground = "kGameSelectedBackground"
+    static let gameSelectedHat = "kGameSelectedHat"
+    static let gameSelectedAccessory = "kGameSelectedAccessory"
 }

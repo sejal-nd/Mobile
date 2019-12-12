@@ -1271,6 +1271,9 @@
 		9CC48011220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48012220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
 		9CC48013220A142900393CC7 /* outage_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CC48010220A142900393CC7 /* outage_status.json */; };
+		9CC87B1B23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
+		9CC87B1C23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
+		9CC87B1D23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */; };
 		9CC99785237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		9CC99786237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
 		9CC99787237B43E800C68300 /* GameUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC99784237B43E800C68300 /* GameUser.swift */; };
@@ -3329,6 +3332,7 @@
 		9CBE9E352374AC5100E14222 /* MockGameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGameService.swift; sourceTree = "<group>"; };
 		9CC48010220A142900393CC7 /* outage_status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = outage_status.json; sourceTree = "<group>"; };
 		9CC48017220A442900393CC7 /* meter_ping_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = meter_ping_info.json; sourceTree = "<group>"; };
+		9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewCell.swift; sourceTree = "<group>"; };
 		9CC99784237B43E800C68300 /* GameUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUser.swift; sourceTree = "<group>"; };
 		9CC99789237B49F500C68300 /* HomeGameOnboardingCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeGameOnboardingCardView.xib; sourceTree = "<group>"; };
 		9CC9978D237B4A0200C68300 /* HomeGameOnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGameOnboardingCardView.swift; sourceTree = "<group>"; };
@@ -5477,6 +5481,7 @@
 				9CABF6BC239719DB00B07B01 /* QuizAnswerView.xib */,
 				9CABF6B8239719CE00B07B01 /* QuizAnswerView.swift */,
 				9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */,
+				9CC87B1A23A2DC90004FB5F8 /* GiftCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -8490,6 +8495,7 @@
 				E89983E11F61F4B0001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				E835D1C91FB631AA008CE250 /* AlertsStore.swift in Sources */,
 				E83F027A1FB21B7B0062A348 /* OpcoUpdate.swift in Sources */,
+				9CC87B1B23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */,
 				82D551D91EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,
 				B068DB5620D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34D20D9442400E81303 /* HomeCard.swift in Sources */,
@@ -8896,6 +8902,7 @@
 				B04DDF7721FFB0A800594ACF /* MockUser.swift in Sources */,
 				359BDB4222D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				E8B956E41F9E947800F8A852 /* SERPTSGraphViewModel.swift in Sources */,
+				9CC87B1D23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */,
 				E82FF1EC1F97CC6A00C50F8F /* HomeUsageCardView.swift in Sources */,
 				35C913AF22EB6AA3009DD71A /* ButtonRow.swift in Sources */,
 				E8B8C84E1F9E35A2005828B0 /* SERPTSGraphView.swift in Sources */,
@@ -9302,6 +9309,7 @@
 				E89983E21F61F4CD001E2870 /* UnauthenticatedOutageValidateAccountResultViewController.swift in Sources */,
 				B068DB5720D2E99300930589 /* HomeEditCardCell.swift in Sources */,
 				B094A34E20D9442400E81303 /* HomeCard.swift in Sources */,
+				9CC87B1C23A2DC90004FB5F8 /* GiftCollectionViewCell.swift in Sources */,
 				E8790BE81F8C18C20067BE85 /* BillComparison.swift in Sources */,
 				E867A9001F054BC6007F4FD9 /* MakePaymentViewController.swift in Sources */,
 				82D551DA1EAA9779001B1796 /* PaperlessEBillViewController.swift in Sources */,

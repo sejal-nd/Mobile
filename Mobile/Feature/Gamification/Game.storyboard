@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,17 +33,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-gT-ebb">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_close"/>
                                 <connections>
                                     <action selector="onClosePress" destination="3os-sw-E9Y" eventType="touchUpInside" id="S6X-pp-suq"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
-                                <rect key="frame" x="97" y="109" width="220" height="200"/>
+                                <rect key="frame" x="-13" y="109" width="440" height="400"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to personalize your experience, we’d like to ask you a few questions!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-2I-bW6">
-                                <rect key="frame" x="20" y="333" width="374" height="41"/>
+                                <rect key="frame" x="20" y="533" width="374" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azB-e9-k2m">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Nx5-gD-aKH" eventType="touchUpInside" id="XYn-Pz-Z5O"/>
@@ -120,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qln-jV-Gh3">
-                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-L0-L8Y">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="307.5"/>
@@ -365,14 +365,14 @@
                                                 </connections>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzy-Cz-66l" userLabel="Viewed Tips Button">
-                                                <rect key="frame" x="350" y="178" width="48" height="54"/>
+                                                <rect key="frame" x="302" y="97" width="96" height="108"/>
                                                 <state key="normal" image="ic_history"/>
                                                 <connections>
                                                     <action selector="onViewedTipsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="K5q-v3-jfd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-ij-bxm" userLabel="Gift Button">
-                                                <rect key="frame" x="350" y="236" width="48" height="54"/>
+                                                <rect key="frame" x="302" y="209" width="96" height="108"/>
                                                 <state key="normal" image="ic_gifts"/>
                                                 <connections>
                                                     <action selector="onGiftsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="uPm-so-XcS"/>
@@ -388,7 +388,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ez0-jX-MMj">
-                                                        <rect key="frame" x="338" y="20" width="24" height="24"/>
+                                                        <rect key="frame" x="314" y="20" width="48" height="48"/>
                                                         <accessibility key="accessibilityConfiguration" label="Tool tip"/>
                                                         <state key="normal" image="ic_tooltip"/>
                                                         <connections>
@@ -692,20 +692,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vBs-LY-x0f">
-                            <size key="itemSize" width="50" height="50"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="vBs-LY-x0f">
+                            <size key="itemSize" width="0.0" height="0.0"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4OO-py-pYP">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GiftCell" id="4OO-py-pYP" customClass="GiftCollectionViewCell" customModule="BGE" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="105" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FUa-U7-KLY">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="105" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_gift_locked" translatesAutoresizingMaskIntoConstraints="NO" id="fhh-At-9s3">
+                                            <rect key="frame" x="9" y="9" width="87" height="87"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-Ap-xui">
+                                            <rect key="frame" x="9" y="9" width="87" height="87"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_giftselected" translatesAutoresizingMaskIntoConstraints="NO" id="ekQ-2K-zvk">
+                                            <rect key="frame" x="66" y="65" width="35" height="35"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="ekQ-2K-zvk" secondAttribute="bottom" constant="8" id="FEh-uI-PpL"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZvD-Ap-xui" secondAttribute="bottom" constant="12" id="GCV-37-jdk"/>
+                                        <constraint firstAttribute="trailing" secondItem="ekQ-2K-zvk" secondAttribute="trailing" constant="4" id="HVz-2b-U4e"/>
+                                        <constraint firstItem="ZvD-Ap-xui" firstAttribute="top" secondItem="FUa-U7-KLY" secondAttribute="top" constant="9" id="NGh-m0-KzO"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZvD-Ap-xui" secondAttribute="trailing" constant="9" id="PIq-bG-E24"/>
+                                        <constraint firstItem="ZvD-Ap-xui" firstAttribute="leading" secondItem="FUa-U7-KLY" secondAttribute="leading" constant="9" id="Toy-6G-VVm"/>
+                                        <constraint firstAttribute="trailing" secondItem="fhh-At-9s3" secondAttribute="trailing" constant="9" id="UXu-wH-Fw2"/>
+                                        <constraint firstItem="fhh-At-9s3" firstAttribute="top" secondItem="FUa-U7-KLY" secondAttribute="top" constant="9" id="e6R-1L-Df3"/>
+                                        <constraint firstItem="fhh-At-9s3" firstAttribute="leading" secondItem="FUa-U7-KLY" secondAttribute="leading" constant="9" id="peJ-Ua-4Ut"/>
+                                        <constraint firstAttribute="bottom" secondItem="fhh-At-9s3" secondAttribute="bottom" constant="12" id="xpH-kB-z6t"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
+                                <size key="customSize" width="105" height="108"/>
+                                <connections>
+                                    <outlet property="selectedImageView" destination="ekQ-2K-zvk" id="Ydy-Bx-ugW"/>
+                                    <outlet property="thumbImageView" destination="ZvD-Ap-xui" id="Ygv-Qu-nk4"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -716,7 +745,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfM-kZ-iuW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1713" y="-1167"/>
+            <point key="canvasLocation" x="1711.5942028985507" y="-1167.1875"/>
         </scene>
         <!--Viewed Tips View Controller-->
         <scene sceneID="L8i-th-fAz">
@@ -870,12 +899,12 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
-                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
-                                                                <rect key="frame" x="121" y="0.0" width="110" height="220"/>
+                                                                <rect key="frame" x="66" y="0.0" width="220" height="220"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
                                                                 <rect key="frame" x="20" y="240" width="312" height="20.5"/>
@@ -1011,7 +1040,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctg-dp-Xx9">
-                                <rect key="frame" x="20" y="57" width="24" height="24"/>
+                                <rect key="frame" x="20" y="57" width="48" height="48"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Cjp-yO-sUW" eventType="touchUpInside" id="Lum-6d-lsl"/>
@@ -1024,7 +1053,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-EI-8GP">
-                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="De4-tq-Lwa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
@@ -1434,12 +1463,12 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aat-r5-6jU">
-                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-Pj-QqI">
-                                                                <rect key="frame" x="121" y="0.0" width="110" height="306"/>
+                                                                <rect key="frame" x="66" y="0.0" width="220" height="306"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I learned something cool, let’s see if you know it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxz-OG-aSI">
                                                                 <rect key="frame" x="20" y="326" width="312" height="41"/>
@@ -1578,18 +1607,18 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <rect key="frame" x="0.0" y="0.0" width="352" height="496.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rM2-EW-T2P">
-                                                                        <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                        <rect key="frame" x="15" y="15" width="48" height="48"/>
                                                                         <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                         <state key="normal" image="ic_close"/>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here’s a gift for your hard work!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-VE-Jqn">
-                                                                        <rect key="frame" x="20" y="30" width="312" height="166.5"/>
+                                                                        <rect key="frame" x="20" y="30" width="312" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_gift" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-Mc-CSK">
-                                                                        <rect key="frame" x="101" y="240.5" width="150" height="146"/>
+                                                                        <rect key="frame" x="26" y="94.5" width="300" height="292"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-7N-Ekq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                                                         <rect key="frame" x="68.5" y="411.5" width="215" height="45"/>
@@ -1806,7 +1835,9 @@ This worked for 14,985 people and can save up to $10 per year.</string>
         <image name="ic_close" width="24" height="24"/>
         <image name="ic_energybuddy" width="110" height="110"/>
         <image name="ic_favetip" width="25" height="24"/>
+        <image name="ic_gift_locked" width="84" height="84"/>
         <image name="ic_gifts" width="48" height="54"/>
+        <image name="ic_giftselected" width="35" height="35"/>
         <image name="ic_history" width="48" height="54"/>
         <image name="ic_insightbill" width="36" height="36"/>
         <image name="ic_insightdown" width="36" height="36"/>

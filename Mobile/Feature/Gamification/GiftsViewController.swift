@@ -13,7 +13,9 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.largeTitleDisplayMode = .never
+        
         title = NSLocalizedString("Gifts", comment: "")
         
         buttonBarItemSpec = ButtonBarItemSpec<ButtonBarViewCell>.cellClass(width: { _ in 125 })
@@ -50,11 +52,10 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let backgrounds = GiftCollectionViewController.create(withTitle: "Backgrounds")
-        let hats = GiftCollectionViewController.create(withTitle: "Hats")
-        let accessories = GiftCollectionViewController.create(withTitle: "Accessories")
+        let backgrounds = GiftCollectionViewController.create(withType: .background, index: 1)
+        let hats = GiftCollectionViewController.create(withType: .hat, index: 2)
+        let accessories = GiftCollectionViewController.create(withType: .accessory, index: 3)
         return [backgrounds, hats, accessories]
     }
     
-
 }

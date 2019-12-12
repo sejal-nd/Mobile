@@ -69,7 +69,7 @@ class GameRewardViewController: UIViewController {
                 // TODO: Set appropriate image based on the gift
                 
                 let giftTypeString = self.gift.type.rawValue as String
-                self.titleLabel.text = NSLocalizedString("You received a new \(giftTypeString) for your Energy Buddy!", comment: "")
+                self.titleLabel.text = String.localizedStringWithFormat("You received a new %@ for your Energy Buddy!", giftTypeString)
                 UIView.performWithoutAnimation { // Prevents ugly setTitle animation
                     self.button.setTitle(NSLocalizedString("Set as \(giftTypeString.capitalized)", comment: ""), for: .normal)
                     self.button.layoutIfNeeded()

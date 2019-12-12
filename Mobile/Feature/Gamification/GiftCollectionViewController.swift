@@ -9,27 +9,102 @@
 import UIKit
 import XLPagerTabStrip
 
-class GiftCollectionViewController: UICollectionViewController, IndicatorInfoProvider {
+class GiftCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, IndicatorInfoProvider {
     
-    static func create(withTitle title: String) -> GiftCollectionViewController {
+    // Passed into create()
+    var giftType: GiftType!
+    var index: Int!
+    
+    var gifts = [Gift]()
+    
+    let currPoints = UserDefaults.standard.integer(forKey: UserDefaultKeys.gamePointsLocal)
+
+    static func create(withType type: GiftType, index: Int) -> GiftCollectionViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "GiftCollection") as! GiftCollectionViewController
-        vc.title = title
+        vc.giftType = type
+        vc.index = index
         return vc
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        title = giftType.inventoryTitle
+        
+        gifts = GiftInventory.shared.gifts(ofType: giftType)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let selectedId: String?
+        switch giftType {
+        case .background:
+            selectedId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground)
+        case .hat:
+            selectedId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat)
+        case .accessory:
+            selectedId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory)
+        case .none:
+            selectedId = nil
+        }
+        
+        if let index = gifts.firstIndex(where: { $0.id == selectedId }) {
+            let indexPath = IndexPath(row: index, section: 0)
+            self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+        }
     }
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        var indicator = IndicatorInfo(title: title)
+        var indicator = IndicatorInfo(title: giftType.inventoryTitle)
+        indicator.accessibilityLabel = String.localizedStringWithFormat("%@, %d of 3", giftType.inventoryTitle, index)
         return indicator
     }
     
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return gifts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.frame.size.width - 60 // 20 leading/trailing + 10 between items
+        if availableWidth < 315 { // Default cell width (105) * 3
+            let width = availableWidth / 3
+            let height = width * 1.0285714286
+            return CGSize(width: width, height: height)
+        }
+        return CGSize(width: 105, height: 108)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GiftCell", for: indexPath) as! GiftCollectionViewCell
+        
+        let gift = gifts[indexPath.row]
+                
+        if gift.requiredPoints > currPoints {
+            cell.thumbImageView.isHidden = true
+            cell.isUserInteractionEnabled = false
+        } else {
+            cell.thumbImageView.image = gift.thumbImage
+            cell.thumbImageView.isHidden = false
+            cell.isUserInteractionEnabled = true
+        }
+        
+        return cell
+    }
+        
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let gift = gifts[indexPath.row]
+        
+        switch gift.type {
+        case .background:
+            UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedBackground)
+        case .hat:
+            UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedHat)
+        case .accessory:
+            UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedAccessory)
+        }
+    }
 
-
-
+    
 }
