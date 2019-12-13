@@ -60,5 +60,9 @@ class GiftInventory {
     func gifts(ofType type: GiftType) -> [Gift] {
         return inventory.filter { $0.type == type }
     }
+    
+    func gift(withId id: String) -> Gift? {
+        return inventory.first { $0.id == id }
+    }
 
 }

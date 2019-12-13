@@ -11,11 +11,16 @@ import RxSwift
 class MockGameService: GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
-        return .just(nil)
+        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 50)
+        UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
+        UserDefaults.standard.set(false, forKey: UserDefaultKeys.gameOptedOutLocal)
+        return Observable.just(testUser)
     }
     
     func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<GameUser> {
-        return .just(GameUser(onboardingComplete: true, optedOut: false, points: 0))
+        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 65)
+        return .just(testUser)
     }
     
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {

@@ -1132,6 +1132,8 @@
 		9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		9C37BA932388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
+		9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C34D745239EE92400DF7FE2 /* GameTasks.json */; };
+		9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C34D745239EE92400DF7FE2 /* GameTasks.json */; };
 		9C46B12B221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12C221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
 		9C46B12D221613FB00A5D537 /* wallet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B12A221613FB00A5D537 /* wallet.json */; };
@@ -6914,6 +6916,7 @@
 				E8C29C7A1F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B01FF0B1221DFC77008CA222 /* autopay_info.json in Resources */,
 				E800432B1E65FF70005CF531 /* OpenSans-BoldItalic.ttf in Resources */,
+				9C3DD83923A4105900AF75B6 /* GameTasks.json in Resources */,
 				B0882CA8210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				E80043311E65FF70005CF531 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				B0EE78EC221353E700F53C56 /* report_outage.json in Resources */,
@@ -7077,6 +7080,7 @@
 				E8C29C791F630FC100DB73FC /* OutageStatusButton.xib in Resources */,
 				B0882CA7210B926B00EB756B /* UsageToolCardView.xib in Resources */,
 				822BBBA51EFC1A01004EBBAB /* WebViewController.xib in Resources */,
+				9C3DD83823A4105800AF75B6 /* GameTasks.json in Resources */,
 				B0EE78EB221353E700F53C56 /* report_outage.json in Resources */,
 				B0B083F221710C8900B1C632 /* Appt_Complete.json in Resources */,
 				224EFF1D216E4E76008A0E40 /* HomeAppointmentCardView.xib in Resources */,

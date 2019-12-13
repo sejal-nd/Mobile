@@ -76,7 +76,7 @@ class GameHomeViewController: AccountPickerViewController {
                 // If the app is foregrounded when on a different screen (i.e. Gifts), this would
                 // still fire and the buddy bounce animation would freeze
                 if self.isVisible {
-                    self.energyBuddyView.updateSky()
+                    self.energyBuddyView.updateBuddy()
                     self.energyBuddyView.playDefaultAnimations()
                 }
             }).disposed(by: bag)
@@ -131,7 +131,7 @@ class GameHomeViewController: AccountPickerViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
-        energyBuddyView.updateSky()
+        energyBuddyView.updateBuddy()
         
         isVisible = true
     }
@@ -342,6 +342,7 @@ class GameHomeViewController: AccountPickerViewController {
     private func presentGift(_ gift: Gift) {
         let rewardVc = GameRewardViewController.create(withGift: gift)
         rewardVc.setItemCallback = {
+            self.energyBuddyView.updateBuddy()
             self.tabBarController?.dismiss(animated: true, completion: nil)
         }
         self.tabBarController?.present(rewardVc, animated: true, completion: nil)

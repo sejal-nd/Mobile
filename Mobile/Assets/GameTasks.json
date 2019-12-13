@@ -15,9 +15,9 @@
         "type": "tip",
         "tip": {
             "id": "1235",
-            "title": "Clean Lint",
-            "description": "Tip description goes here.",
-            "numPeople": 14985,
+            "title": "Let Your Heaters Breathe",
+            "description": "Don't smother your heaters. Make sure the warm air they produce can circulate around the room by moving any furniture or objects that are in the way. Otherwise, you'll end up paying more for energy while still feeling chilly.",
+            "numPeople": 813,
             "savingsPerYear": 10,
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
@@ -27,10 +27,10 @@
         "type": "tip",
         "tip": {
             "id": "1236",
-            "title": "Set Thermosat to 78",
-            "description": "Tip description goes here.",
-            "numPeople": 14985,
-            "savingsPerYear": 10,
+            "title": "New Year, New You",
+            "description": "Start the new year off right by talking with your friends and families about energy savings! Whether it's hitting the gym or weatherizing your windows, accountability makes all the difference. Plus - you'll learn from each others' trials and triumphs.",
+            "numPeople": 11013,
+            "savingsPerYear": 0,
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -39,10 +39,10 @@
         "type": "tip",
         "tip": {
             "id": "1237",
-            "title": "Close Shades",
-            "description": "Tip description goes here.",
-            "numPeople": 14985,
-            "savingsPerYear": 10,
+            "title": "Catch Some Rays",
+            "description": "Yes, you can bask in the sunlight even when it's cold outside. Warm your home with sunny rays by opening your blinds during winter days. You'll save energy - and money!",
+            "numPeople": 24000,
+            "savingsPerYear": 30,
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }

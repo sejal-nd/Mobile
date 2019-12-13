@@ -81,11 +81,34 @@ class EnergyBuddyView: UIView {
         
         taskIndicatorView.isHidden = true
         
-        updateSky()
+        updateBuddy()
     }
     
-    func updateSky() {
-        skyImageView.image = Date.now.skyImageForCurrentTime
+    func updateBuddy() {
+        let isNighttime = Date.now.isNighttime
+        
+        skyImageView.image = isNighttime ? #imageLiteral(resourceName: "img_bgsky_night.pdf") : #imageLiteral(resourceName: "img_bgsky_day.pdf")
+        
+        if let selectedBgId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground),
+            let selectedBg = GiftInventory.shared.gift(withId: selectedBgId) {
+            backgroundImageView.image = isNighttime ? selectedBg.nightImage : selectedBg.dayImage
+        } else {
+            backgroundImageView.image = nil
+        }
+        
+        if let selectedHatId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat),
+            let selectedHat = GiftInventory.shared.gift(withId: selectedHatId) {
+            
+        } else {
+            
+        }
+        
+        if let selectedAccessoryId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory),
+            let selectedAccessory = GiftInventory.shared.gift(withId: selectedAccessoryId) {
+            
+        } else {
+            
+        }        
     }
     
     func playDefaultAnimations(resetBounce: Bool = true) {
@@ -260,13 +283,14 @@ extension Date {
         }
     }
     
-    var skyImageForCurrentTime: UIImage {
+    var isNighttime: Bool {
         let components = Calendar.current.dateComponents([.hour], from: self)
         if let hour = components.hour {
-            if hour <= 6 || hour >= 19 { // Night image displays between 7pm and 6am
-                return #imageLiteral(resourceName: "img_bgsky_night.pdf")
+            if hour <= 6 || hour >= 18 { // Night image displays between 6pm and 6am
+                return true
             }
         }
-        return #imageLiteral(resourceName: "img_bgsky_day.pdf")
+        return false
     }
+    
 }

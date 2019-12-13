@@ -57,6 +57,14 @@ class GameRewardViewController: UIViewController {
         if animating { return }
         
         if rewardRevealed {
+            switch gift.type {
+            case .background:
+                UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedBackground)
+            case .hat:
+                UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedHat)
+            case .accessory:
+                UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedAccessory)
+            }
             if let callback = setItemCallback {
                 callback()
             }
@@ -66,7 +74,7 @@ class GameRewardViewController: UIViewController {
                 self.fadeView.alpha = 0
             }, completion: { _ in
                 self.closeButton.isHidden = false
-                // TODO: Set appropriate image based on the gift
+                self.imageView.image = self.gift.thumbImage
                 
                 let giftTypeString = self.gift.type.rawValue as String
                 self.titleLabel.text = String.localizedStringWithFormat("You received a new %@ for your Energy Buddy!", giftTypeString)
