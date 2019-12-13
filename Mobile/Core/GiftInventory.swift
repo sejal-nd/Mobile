@@ -46,7 +46,6 @@ class GiftInventory {
         Gift(id: "bg_skipjack", type: .background, requiredPoints: 80, thumbImage: UIImage(named: "skipjack_thumb")!, dayImage: UIImage(named: "skipjack_bg_day")!, nightImage: UIImage(named: "skipjack_bg_night")!, image: nil),
         Gift(id: "bg_snow", type: .background, requiredPoints: 96, thumbImage: UIImage(named: "snow_thumb")!, dayImage: UIImage(named: "snow_bg_day")!, nightImage: UIImage(named: "snow_bg_night")!, image: nil),
         Gift(id: "bg_susans", type: .background, requiredPoints: 112, thumbImage: UIImage(named: "susans_thumb")!, dayImage: UIImage(named: "susans_bg_day")!, nightImage: UIImage(named: "susans_bg_night")!, image: nil),
-        Gift(id: "hat_test", type: .hat, requiredPoints: 50, thumbImage: UIImage(named: "susans_thumb")!, dayImage: nil, nightImage: nil, image: nil)
     ]
     
     func giftUnlockedWhen(pointsBefore: Int, pointsAfter: Int) -> Gift? {

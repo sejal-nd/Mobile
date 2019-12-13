@@ -18,6 +18,29 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
     var gifts = [Gift]()
     
     let currPoints = UserDefaults.standard.integer(forKey: UserDefaultKeys.gamePointsLocal)
+    
+    var selectedGiftId: String? {
+        get {
+            switch giftType! {
+            case .background:
+                return UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground)
+            case .hat:
+                return UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat)
+            case .accessory:
+                return UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory)
+            }
+        }
+        set {
+            switch giftType! {
+            case .background:
+                UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.gameSelectedBackground)
+            case .hat:
+                UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.gameSelectedHat)
+            case .accessory:
+                UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.gameSelectedAccessory)
+            }
+        }
+    }
 
     static func create(withType type: GiftType, index: Int) -> GiftCollectionViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
@@ -35,24 +58,15 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
         gifts = GiftInventory.shared.gifts(ofType: giftType)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let selectedId: String?
-        switch giftType {
-        case .background:
-            selectedId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground)
-        case .hat:
-            selectedId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat)
-        case .accessory:
-            selectedId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory)
-        case .none:
-            selectedId = nil
-        }
-        
-        if let index = gifts.firstIndex(where: { $0.id == selectedId }) {
-            let indexPath = IndexPath(row: index, section: 0)
-            self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // `performBatchUpdates` ensures data is loaded before selection
+        collectionView.performBatchUpdates(nil) { _ in
+            if let index = self.gifts.firstIndex(where: { $0.id == self.selectedGiftId }) {
+                let indexPath = IndexPath(row: index, section: 0)
+                self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            }
         }
     }
     
@@ -78,9 +92,9 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GiftCell", for: indexPath) as! GiftCollectionViewCell
-        
+
         let gift = gifts[indexPath.row]
-                
+        
         if gift.requiredPoints > currPoints {
             cell.thumbImageView.isHidden = true
             cell.isUserInteractionEnabled = false
@@ -92,19 +106,16 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
         
         return cell
     }
-        
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let gift = gifts[indexPath.row]
         
-        switch gift.type {
-        case .background:
-            UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedBackground)
-        case .hat:
-            UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedHat)
-        case .accessory:
-            UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedAccessory)
+        if gift.id == selectedGiftId { // Deselect
+            selectedGiftId = nil
+            collectionView.deselectItem(at: indexPath, animated: false)
+        } else {
+            selectedGiftId = gift.id
         }
     }
 
-    
 }
