@@ -63,7 +63,7 @@ class SetReminderViewController: KeyboardAvoidingStickyFooterViewController {
     @IBAction func onSavePress() {
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
-        content.body = reminderName.value
+        content.body = "I have a reminder for you: \(reminderName.value)"
         content.sound = .default
         
         let dateComps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: datePicker.date)
