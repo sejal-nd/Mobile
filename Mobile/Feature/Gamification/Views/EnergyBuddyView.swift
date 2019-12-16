@@ -52,7 +52,7 @@ class EnergyBuddyView: UIView {
         NSLocalizedString("Great job!", comment: ""),
         NSLocalizedString("Congrats!", comment: "")
     ]
-    let newItemMessages = [
+    let newGiftAppliedMessages = [
         NSLocalizedString("Thanks!", comment: ""),
         NSLocalizedString("Wow, this is great!", comment: ""),
         NSLocalizedString("Wow!", comment: "")
@@ -231,6 +231,13 @@ class EnergyBuddyView: UIView {
     func showLevelUpMessage() {
         let randomInt = Int.random(in: 0..<levelUpMessages.count)
         speechBubbleLabel.text = levelUpMessages[randomInt]
+        
+        animateSpeechBubble()
+    }
+    
+    func showNewGiftAppliedMessage() {
+        let randomInt = Int.random(in: 0..<newGiftAppliedMessages.count)
+        speechBubbleLabel.text = newGiftAppliedMessages[randomInt]
         
         animateSpeechBubble()
     }

@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol GameRewardViewControllerDelegate: class {
+    func gameRewardViewControllerDidSetGift(_ gameRewardViewController: GameRewardViewController)
+}
+
 class GameRewardViewController: UIViewController {
+    
+    weak var delegate: GameRewardViewControllerDelegate?
     
     @IBOutlet weak var contentView: UIView!
     
@@ -24,7 +30,6 @@ class GameRewardViewController: UIViewController {
     var rewardRevealed = false
     var animating = false
     
-    var setItemCallback: (() -> Void)? // Should be set by presenter
     var gift: Gift! // Passed into create() function
         
     static func create(withGift gift: Gift) -> GameRewardViewController {
@@ -65,9 +70,7 @@ class GameRewardViewController: UIViewController {
             case .accessory:
                 UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedAccessory)
             }
-            if let callback = setItemCallback {
-                callback()
-            }
+            delegate?.gameRewardViewControllerDidSetGift(self)
         } else { // Transition to the revealed state
             animating = true
             UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {

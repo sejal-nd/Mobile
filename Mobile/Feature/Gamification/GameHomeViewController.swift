@@ -341,10 +341,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     private func presentGift(_ gift: Gift) {
         let rewardVc = GameRewardViewController.create(withGift: gift)
-        rewardVc.setItemCallback = {
-            self.energyBuddyView.updateBuddy()
-            self.tabBarController?.dismiss(animated: true, completion: nil)
-        }
+        rewardVc.delegate = self
         self.tabBarController?.present(rewardVc, animated: true, completion: nil)
     }
     
@@ -395,5 +392,16 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
                 self.tabBarController?.present(tipVc, animated: true, completion: nil)
             }
         }
+    }
+}
+
+extension GameHomeViewController: GameRewardViewControllerDelegate {
+    
+    func gameRewardViewControllerDidSetGift(_ gameRewardViewController: GameRewardViewController) {
+        self.energyBuddyView.updateBuddy()
+        self.tabBarController?.dismiss(animated: true, completion: {
+            self.energyBuddyView.playSuperHappyAnimation(withSparkles: false, withHearts: true)
+            self.energyBuddyView.showNewGiftAppliedMessage()
+        })
     }
 }
