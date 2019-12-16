@@ -13,6 +13,7 @@ struct GameUser: Mappable {
     var onboardingComplete: Bool
     var optedOut: Bool
     var points: Int
+    var taskIndex: Int
     var isClusterTwo: Bool
     let pilotGroup: String?
         
@@ -43,6 +44,12 @@ struct GameUser: Mappable {
             points = Int(pointsStr) ?? 0
         } else {
             points = 0
+        }
+        
+        if let taskIndexStr: String = map.optionalFrom("taskIndex") {
+            taskIndex = Int(taskIndexStr) ?? 0
+        } else {
+            taskIndex = 0
         }
         
         if let isClusterTwoStr: String = map.optionalFrom("isClusterTwo") {

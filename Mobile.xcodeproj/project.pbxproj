@@ -1149,6 +1149,9 @@
 		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
+		9C5F096B23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
+		9C5F096C23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
+		9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
 		9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
 		9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
 		9C5F786522F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
@@ -3296,6 +3299,7 @@
 		9C541060218BA12400E03670 /* PECO-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PECO-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
+		9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+OptionalLookup.swift"; sourceTree = "<group>"; };
 		9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingReasonForStoppingViewController.swift; sourceTree = "<group>"; };
 		9C62445522C1624900F14DA0 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		9C62445A22C171C800F14DA0 /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextField.xib; sourceTree = "<group>"; };
@@ -5351,6 +5355,7 @@
 				351DE2F8221EF87400580E20 /* UITableView+ResizableHeaderFooter.swift */,
 				359BDB2722D398F0007002B0 /* UIColor+Image.swift */,
 				359BDB4B22D533C5007002B0 /* UIViewController+AddCloseButton.swift */,
+				9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -8467,6 +8472,7 @@
 				35C0F1D1233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				0D79C6CD1F1F971E004793DD /* MaintenanceModeViewModel.swift in Sources */,
 				9C0EA5A8237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
+				9C5F096B23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				B0B083AF216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E87C32011E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5022D77073007002B0 /* FirebaseUtility.swift in Sources */,
@@ -8874,6 +8880,7 @@
 				0D79C6CB1F1D3CD7004793DD /* MaintenanceModeViewController.swift in Sources */,
 				54EDD2DC1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				9C0EA5AA237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
+				9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				829E058D1FA7928E00697633 /* Fillable.swift in Sources */,
 				E8CA07DF1E9BD10100A1D431 /* ForgotUsernameBGEAccountNumberViewController.swift in Sources */,
 				0EF60FDA20EE8105006ABC18 /* GSTouchesShowingGestureRecognizer.swift in Sources */,
@@ -9281,6 +9288,7 @@
 				35C0F1D2233E58F500EA5DE9 /* RemoteConfigUtility.swift in Sources */,
 				54AE069A1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				9C0EA5A9237DA46A00D1E18F /* EnergyBuddyView.swift in Sources */,
+				9C5F096C23A801E100B73049 /* Array+OptionalLookup.swift in Sources */,
 				E87C32021E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				359BDB5122D77073007002B0 /* FirebaseUtility.swift in Sources */,
 				54DF4BD61EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,

@@ -121,6 +121,17 @@ class GameHomeViewModel {
                 self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)
     }
+    
+    func updateGameUserTaskIndex(_ index: Int) {
+        guard let accountDetail = accountDetail.value else { return }
+        let params = ["taskIndex": index]
+        self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] gameUser in
+                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameLastTaskDate)
+                self?.gameUser.accept(gameUser)
+            }).disposed(by: self.bag)
+    }
         
     private(set) lazy var shouldShowContent: Driver<Bool> =
         Driver.combineLatest(self.loading.asDriver(), self.error.asDriver(), self.usageData.asDriver()) {

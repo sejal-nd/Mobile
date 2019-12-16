@@ -55,4 +55,5 @@ struct UserDefaultKeys {
     static let gameSelectedBackground = "kGameSelectedBackground"
     static let gameSelectedHat = "kGameSelectedHat"
     static let gameSelectedAccessory = "kGameSelectedAccessory"
+    static let gameLastTaskDate = "kGameLastTaskDate"
 }

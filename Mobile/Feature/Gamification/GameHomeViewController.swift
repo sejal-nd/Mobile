@@ -60,6 +60,9 @@ class GameHomeViewController: AccountPickerViewController {
         }
     }
     
+    var currentTask: GameTask?
+    var currentTaskIndex = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -146,7 +149,6 @@ class GameHomeViewController: AccountPickerViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
                 self?.energyBuddyView.playHappyAnimation()
                 self?.energyBuddyView.showWelcomeMessage()
-                self?.energyBuddyView.setTaskIndicator(.tip)
             }
         }
         
@@ -211,6 +213,8 @@ class GameHomeViewController: AccountPickerViewController {
                 self.points = gameUser.points
                 self.reconciledPointsOnLoad = true
             }
+            
+            self.checkForAvailableTask()
         }).disposed(by: bag)
         
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
@@ -268,18 +272,21 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @objc func onBuddyTap() {
-//        showEnergyBuddyTooltip()
+        guard let task = currentTask else {
+            showEnergyBuddyTooltip()
+            return
+        }
         
-//        energyBuddyView.playHappyAnimation()
-//        energyBuddyView.playSuperHappyAnimation()
-//        energyBuddyView.playSuperHappyAnimation(withSparkles: true)
-//        energyBuddyView.playSuperHappyAnimation(withHearts: true)
-
-        let randomTask = GameTaskStore.shared.tasks.randomElement()
-        if let tip = randomTask?.tip {
+        if task.type == .fab {
+            
+        } else if task.type == .eBill {
+            
+        } else if task.type == .homeProfile {
+            
+        } else if let tip = task.tip {
             let tipVc = GameTipViewController.create(withTip: tip)
             self.tabBarController?.present(tipVc, animated: true, completion: nil)
-        } else if let quiz = randomTask?.quiz {
+        } else if let quiz = task.quiz {
             let quizVc = GameQuizViewController.create(withQuiz: quiz)
             quizVc.delegate = self
             self.tabBarController?.present(quizVc, animated: true, completion: nil)
@@ -304,6 +311,33 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBAction func onGiftsPress() {
         performSegue(withIdentifier: "giftSegue", sender: nil)
+    }
+    
+    private func checkForAvailableTask() {
+        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
+            let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
+            if daysSinceLastTask < 4 {
+                currentTask = nil
+                return
+            }
+        }
+        if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
+            currentTaskIndex = gameUser.taskIndex
+            while true {
+                if let task = GameTaskStore.shared.tasks.get(at: currentTaskIndex) {
+                    if false { // TODO: Ensure the task meets all filtering requirements. If not, advance the index and try again
+                        currentTaskIndex += 1
+                    } else {
+                        currentTask = task
+                        energyBuddyView.setTaskIndicator(task.type)
+                        break
+                    }
+                } else {
+                    break
+                }
+            }
+
+        }
     }
     
     private func showEnergyBuddyTooltip() {
