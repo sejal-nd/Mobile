@@ -64,5 +64,30 @@ class GiftInventory {
     func gift(withId id: String) -> Gift? {
         return inventory.first { $0.id == id }
     }
+    
+    /* Audits the selected gifts in UserDefaults and ensures they should be unlocked for the passed
+     * in point value. In the real world, this is likely unnecessary. If point total is manually
+     * adjusted by dev/QA, or if the user logs into multiple gamification accounts, it resolves the
+     * issue of a locked item being selected.
+     */
+    func auditUserDefaults(userPoints: Int) {
+        if let selectedBgId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground),
+            let selectedBg = GiftInventory.shared.gift(withId: selectedBgId),
+            selectedBg.requiredPoints > userPoints {
+            UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameSelectedBackground)
+        }
+        
+        if let selectedHatId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat),
+            let selectedHat = GiftInventory.shared.gift(withId: selectedHatId),
+            selectedHat.requiredPoints > userPoints {
+            UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameSelectedHat)
+        }
+        
+        if let selectedAccessoryId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory),
+            let selectedAccessory = GiftInventory.shared.gift(withId: selectedAccessoryId),
+            selectedAccessory.requiredPoints > userPoints {
+            UserDefaults.standard.set(nil, forKey: UserDefaultKeys.gameSelectedAccessory)
+        }
+    }
 
 }

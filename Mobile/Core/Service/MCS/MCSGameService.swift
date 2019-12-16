@@ -23,6 +23,8 @@ class MCSGameService: GameService {
                     throw ServiceError(serviceCode: ServiceErrorCode.parsing.rawValue)
                 }
                 
+                GiftInventory.shared.auditUserDefaults(userPoints: gameUser.points)
+                
                 if gameUser.pilotGroup?.lowercased() == "experimental" {
                     UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
                     UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
