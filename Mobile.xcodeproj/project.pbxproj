@@ -12228,14 +12228,14 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 20180250;
 				DEVELOPMENT_TEAM = YU7Y757VB5;
-				EXM_WATCHKIT_PRODUCT_BUNDLE = com.exelon.mobile.comed.watchkitapp;
+				EXM_WATCHKIT_PRODUCT_BUNDLE = com.iphoneproduction.exelon.watchkitapp;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "Watch Extension/Configurations/ComEd-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iphoneproduction.exelon.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Watchkit Extension App Store";
 				SDKROOT = watchos;
@@ -12478,7 +12478,7 @@
 				INFOPLIST_FILE = "Watch/Configuration/ComEd-Info.plist";
 				MARKETING_VERSION = 9.8.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.exelon.mobile.comed.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iphoneproduction.exelon.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "ComEd Watchkit App Store";
 				SDKROOT = watchos;
