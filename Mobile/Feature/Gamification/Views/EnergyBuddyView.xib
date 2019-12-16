@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -41,7 +41,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npW-aj-e1E">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                    <rect key="frame" x="0.0" y="-10" width="375" height="350"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3T-aX-8wS">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
@@ -152,7 +152,7 @@
                 <constraint firstItem="npW-aj-e1E" firstAttribute="height" secondItem="6mO-Hc-EBJ" secondAttribute="height" id="YCe-6b-dwg"/>
                 <constraint firstItem="6mO-Hc-EBJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rNU-5T-Hs2"/>
                 <constraint firstAttribute="trailing" secondItem="KF7-NT-Csz" secondAttribute="trailing" id="vXo-Sz-Ya9"/>
-                <constraint firstItem="npW-aj-e1E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wLW-XB-JqD"/>
+                <constraint firstItem="npW-aj-e1E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-10" id="wLW-XB-JqD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="67.391304347826093" y="-54.910714285714285"/>
