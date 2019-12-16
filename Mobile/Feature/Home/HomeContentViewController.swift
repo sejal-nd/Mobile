@@ -133,6 +133,13 @@ class HomeContentViewController: UIViewController {
     @IBAction func onFabPress() {
         if flipping { return }
         
+        // Tracking for the 'Try the FAB' task
+        if inGame && GameTaskStore.shared.tryFabActivated {
+            GameTaskStore.shared.tryFabWentHome = true
+        } else if !inGame && GameTaskStore.shared.tryFabActivated && GameTaskStore.shared.tryFabWentHome {
+            GameTaskStore.shared.tryFabWentBackToGame = true
+        }
+        
         UserDefaults.standard.set(!self.inGame, forKey: UserDefaultKeys.prefersGameHome)
         
         flipping = true
@@ -145,7 +152,7 @@ class HomeContentViewController: UIViewController {
     func switchViews(animated: Bool, onCompletion: (() -> Void)?) {
         let duration = animated ? 1.0 : 0.0
         if inGame {
-            self.inGame = false
+            inGame = false
             let controller = storyboard!.instantiateViewController(withIdentifier: "Home")
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             
@@ -166,7 +173,7 @@ class HomeContentViewController: UIViewController {
             controller.didMove(toParent: self)
             view.sendSubviewToBack(controller.view)
         } else {
-            self.inGame = true
+            inGame = true
             let sb = UIStoryboard(name: "Game", bundle: nil)
             let controller = sb.instantiateViewController(withIdentifier: "GameHome")
             controller.view.translatesAutoresizingMaskIntoConstraints = false

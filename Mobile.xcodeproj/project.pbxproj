@@ -1152,6 +1152,9 @@
 		9C5F096B23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
 		9C5F096C23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
 		9C5F096D23A801E100B73049 /* Array+OptionalLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */; };
+		9C5F096F23A8339F00B73049 /* GameTryFabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */; };
+		9C5F097023A8339F00B73049 /* GameTryFabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */; };
+		9C5F097123A8339F00B73049 /* GameTryFabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */; };
 		9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
 		9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
 		9C5F786522F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */; };
@@ -3300,6 +3303,7 @@
 		9C541061218BA12500E03670 /* BGE-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BGE-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C541062218BA12500E03670 /* ComEd-Environment-TESTING.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ComEd-Environment-TESTING.plist"; sourceTree = "<group>"; };
 		9C5F096A23A801E100B73049 /* Array+OptionalLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+OptionalLookup.swift"; sourceTree = "<group>"; };
+		9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTryFabViewController.swift; sourceTree = "<group>"; };
 		9C5F786222F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetBillingReasonForStoppingViewController.swift; sourceTree = "<group>"; };
 		9C62445522C1624900F14DA0 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		9C62445A22C171C800F14DA0 /* FloatLabelTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloatLabelTextField.xib; sourceTree = "<group>"; };
@@ -5552,6 +5556,7 @@
 				9C48830423834F2700321E6B /* GameTipViewController.swift */,
 				9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */,
 				9CE549702399941300025BD5 /* GameRewardViewController.swift */,
+				9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */,
 			);
 			path = "Popup Modals";
 			sourceTree = "<group>";
@@ -8392,6 +8397,7 @@
 				E83F02751FB0BFD20062A348 /* MCSAlertsService.swift in Sources */,
 				82D5994B1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				E8039FF11EFB0405004DB789 /* PaymentService.swift in Sources */,
+				9C5F096F23A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				B0DB2757215EBEE600CD703B /* AlertPreferencesLanguageCell.swift in Sources */,
 				54EDD2DF1ECE244100CAB8A6 /* MCSWalletService.swift in Sources */,
 				54AE06991ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
@@ -8800,6 +8806,7 @@
 				E8CA07F61E9D7E1300A1D431 /* DismissableFormSheetViewController.swift in Sources */,
 				82D5994D1EC36B5500DDB380 /* NumberFormatter.swift in Sources */,
 				E8B674C61E96AD0E00BB0788 /* ForgotPasswordViewController.swift in Sources */,
+				9C5F097123A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				B05E9D15217F688A0003FAB8 /* Application.swift in Sources */,
 				B0B083B8216FCDCF00B1C632 /* ShortUUIDGenerator.swift in Sources */,
 				B039DB7B225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,
@@ -9208,6 +9215,7 @@
 				54DF4BCD1EE84D32008CF7AD /* ForgotUsernameSecurityQuestionViewController.swift in Sources */,
 				E8039FF61EFB041C004DB789 /* BGEAutoPayInfo.swift in Sources */,
 				E8039FF91EFB0420004DB789 /* PaymentService.swift in Sources */,
+				9C5F097023A8339F00B73049 /* GameTryFabViewController.swift in Sources */,
 				54C1DEF91F02A29C00290FE5 /* BillingHistoryDetailsViewController.swift in Sources */,
 				35277B062109FC1000411297 /* ViewControllerAlertable.swift in Sources */,
 				B54F0FF71E9EC8BB00A9B72B /* MCSApi.swift in Sources */,

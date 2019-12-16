@@ -12,6 +12,18 @@ final class GameTaskStore {
     static let shared = GameTaskStore()
 
     var tasks =  [GameTask]()
+    
+    // Tracking for the 'Try the FAB' task
+    var tryFabActivated = false {
+        didSet {
+            if !tryFabActivated {
+                tryFabWentHome = false
+                tryFabWentBackToGame = false
+            }
+        }
+    }
+    var tryFabWentHome = false
+    var tryFabWentBackToGame = false
 
     // Private init protects against another instance being accidentally instantiated
     private init() {

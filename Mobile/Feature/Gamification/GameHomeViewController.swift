@@ -146,9 +146,18 @@ class GameHomeViewController: AccountPickerViewController {
         
         if !welcomedUser {
             welcomedUser = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-                self?.energyBuddyView.playHappyAnimation()
-                self?.energyBuddyView.showWelcomeMessage()
+            if GameTaskStore.shared.tryFabWentBackToGame { // Welcome message after completing 'Try the FAB' task
+                GameTaskStore.shared.tryFabActivated = false
+                currentTask = nil
+                // TODO: Advance task index
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+                    self?.awardPoints(16) // TODO: Final point value
+                }
+            } else { // Normal welcome message
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+                    self?.energyBuddyView.playHappyAnimation()
+                    self?.energyBuddyView.showWelcomeMessage()
+                }
             }
         }
         
@@ -278,7 +287,8 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         if task.type == .fab {
-            
+            let fabVc = GameTryFabViewController.create()
+            self.tabBarController?.present(fabVc, animated: true, completion: nil)
         } else if task.type == .eBill {
             
         } else if task.type == .homeProfile {
