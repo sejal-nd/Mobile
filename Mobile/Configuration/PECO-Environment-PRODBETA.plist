@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>watchGaTrackingId</key>
-	<string>UA-130226978-1</string>
 	<key>environment</key>
 	<string>PRODBETA</string>
 	<key>opco</key>

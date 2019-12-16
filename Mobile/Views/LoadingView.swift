@@ -13,7 +13,7 @@ class LoadingView: UIView {
     
     static let shared = LoadingView(frame: .zero)
     
-    private var loadingAnimationView = LOTAnimationView(name: "full_screen_loading")
+    private var loadingAnimationView = AnimationView(name: "full_screen_loading")
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,7 +21,7 @@ class LoadingView: UIView {
         backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
         loadingAnimationView.frame.size = CGSize(width: 72, height: 72)
-        loadingAnimationView.loopAnimation = true
+        loadingAnimationView.loopMode = .loop
         loadingAnimationView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(loadingAnimationView)

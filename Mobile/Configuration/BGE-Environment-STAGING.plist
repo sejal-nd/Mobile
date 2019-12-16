@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>watchGaTrackingId</key>
-	<string></string>
 	<key>environment</key>
 	<string>STAGE</string>
 	<key>opco</key>
@@ -11,7 +9,7 @@
 	<key>appName</key>
 	<string>BGE_STAGE</string>
 	<key>mcsInstanceName</key>
-	<string>Stage</string>
+	<string>Stage-bgeMBE</string>
 	<key>myAccountUrl</key>
 	<string>https://azstg.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>

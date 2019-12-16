@@ -211,7 +211,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         }
     }
     
-    private var loadingLottieAnimation = LOTAnimationView(name: "sm_outage_loading")
+    private var loadingLottieAnimation = AnimationView(name: "sm_outage_loading")
     private var refreshControl: UIRefreshControl?
     
     let viewModel = StormModeHomeViewModel(authService: ServiceFactory.createAuthenticationService(),
@@ -255,7 +255,7 @@ class StormModeHomeViewController: AccountPickerViewController {
         outageStatusButton.delegate = self
         
         loadingLottieAnimation.frame = CGRect(x: 0, y: 0, width: loadingAnimationView.frame.size.width, height: loadingAnimationView.frame.size.height)
-        loadingLottieAnimation.loopAnimation = true
+        loadingLottieAnimation.loopMode = .loop
         loadingLottieAnimation.contentMode = .scaleAspectFill
         loadingAnimationView.addSubview(loadingLottieAnimation)
         loadingLottieAnimation.play()
@@ -550,7 +550,7 @@ class StormModeHomeViewController: AccountPickerViewController {
             footerStackView.isHidden = false
             outageSectionContainer.isHidden = false
             loadingContentView.isHidden = false
-            outageStatusButton.onLottieAnimation?.animationProgress = 0.0
+            outageStatusButton.onLottieAnimation?.currentProgress = 0.0
             outageStatusButton.onLottieAnimation?.play()
             outageStatusButton.isHidden = false
         }

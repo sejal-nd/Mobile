@@ -101,7 +101,7 @@ class ReportOutageViewModel {
             .asObservable()
             .subscribe(onNext: { _ in
                 onSuccess()
-                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["outageReported" : true])
+                try? WatchSessionManager.shared.updateApplicationContext(applicationContext: [keychainKeys.outageReported : true])
             }, onError: { error in
                 onError(error.localizedDescription)
             })

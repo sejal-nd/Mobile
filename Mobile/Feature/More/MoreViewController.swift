@@ -166,11 +166,6 @@ class MoreViewController: UIViewController {
     }
     
     private func logout(action: UIAlertAction) {
-        if Environment.shared.opco == .peco {
-            // Sign out of Apple Watch App
-            try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["clearAuthToken" : true])
-        }
-        
         FirebaseUtility.logEvent(.more, parameters: [EventParameter(parameterName: .action, value: .sign_out)])
             
         let authService = ServiceFactory.createAuthenticationService()
