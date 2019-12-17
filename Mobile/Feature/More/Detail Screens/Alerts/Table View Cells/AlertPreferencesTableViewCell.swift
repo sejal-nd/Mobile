@@ -20,7 +20,8 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     @IBOutlet private weak var separatorView: UIView!
     
     @IBOutlet weak var checkbox: Checkbox!
-
+    @IBOutlet weak var textField: FloatLabelTextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         nameLabel.isAccessibilityElement = false
@@ -35,6 +36,7 @@ class AlertPreferencesTableViewCell: UITableViewCell {
     
     func configure(withPreferenceOption option: AlertPreferencesViewModel.AlertPreferencesOptions,
                    pickerButtonText: Driver<String>? = nil,
+                   textFieldOptions: AlertPreferencesViewModel.AlertPrefTextFieldOptions? = nil,
                    isLastItem: Bool) {
         nameLabel.text = option.titleText
         detailLabel.text = option.detailText
@@ -49,9 +51,18 @@ class AlertPreferencesTableViewCell: UITableViewCell {
             })
             .disposed(by: disposeBag)
         
-        
         pickerButton.isHidden = pickerButtonText == nil
         separatorView.isHidden = isLastItem
+        textField.isHidden = textFieldOptions == nil
+        
+        if let textFieldOptions = textFieldOptions {
+            textFieldOptions.text?.bind(to: textField.textField.rx.text).disposed(by: disposeBag)
+            textField.placeholder = textFieldOptions.placeholder
+            textField.accessibilityLabel = textFieldOptions.placeholder
+            if textFieldOptions.isNumeric {
+                textField.textField.keyboardType = .numberPad
+            }
+        }
     }
     
     override func prepareForReuse() {

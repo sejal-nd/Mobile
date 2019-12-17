@@ -296,7 +296,12 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         
         var toggleVariable: Variable<Bool>?
         var pickerButtonText: Driver<String>?
+        var textFieldOptions: AlertPreferencesViewModel.AlertPrefTextFieldOptions?
+        
         switch option {
+        case .highUsage:
+            toggleVariable = viewModel.highUsage
+            textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: viewModel.billThreshold, placeHolder: viewModel.billThresholdPlacheHolder.value, isNumeric: true)
         case .outage:
             toggleVariable = viewModel.outage
         case .scheduledMaintenanceOutage:
@@ -356,6 +361,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         
         cell.configure(withPreferenceOption: option,
                        pickerButtonText: pickerButtonText,
+                       textFieldOptions: textFieldOptions,
                        isLastItem: options.count - 1 == indexPath.row)
     }
     

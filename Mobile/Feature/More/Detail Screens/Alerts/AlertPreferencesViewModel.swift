@@ -23,6 +23,9 @@ class AlertPreferencesViewModel {
     var shownSections = Set<Int>() // Set of section numbers that should be expanded
     
     // Notification Preferences
+    let highUsage = Variable(false)
+    let billThreshold = BehaviorRelay(value: "")
+    let billThresholdPlacheHolder = BehaviorRelay(value: "Bill Threshold (Optional)")
     let outage = Variable(false)
     let scheduledMaint = Variable(false)
     let severeWeather = Variable(false)
@@ -83,6 +86,8 @@ class AlertPreferencesViewModel {
                 switch Environment.shared.opco {
                 case .bge:
                     self.sections = [
+                        (NSLocalizedString("Usage", comment: ""),
+                        [.highUsage]),
                         (NSLocalizedString("Outage", comment: ""),
                          [.outage, .scheduledMaintenanceOutage, .severeWeather]),
                         (NSLocalizedString("Billing", comment: ""),
@@ -289,6 +294,8 @@ class AlertPreferencesViewModel {
     }
     
     enum AlertPreferencesOptions {
+        // Usage
+        case highUsage
         // Outage
         case outage, scheduledMaintenanceOutage, severeWeather
         // Billing
@@ -302,6 +309,8 @@ class AlertPreferencesViewModel {
         
         var titleText: String {
             switch self {
+            case .highUsage:
+                return NSLocalizedString("High Usage", comment: "")
             case .outage:
                 return NSLocalizedString("Outage", comment: "")
             case .scheduledMaintenanceOutage:
@@ -328,6 +337,12 @@ class AlertPreferencesViewModel {
         var detailText: String {
             switch (self, Environment.shared.opco) {
                 
+                // Usage
+            case (.highUsage, .bge): fallthrough
+            case (.highUsage, .comEd):
+                return NSLocalizedString("Receive an alert if you are headed towards a bill that is higher than usual. This alert gives you time to reduce your usage before your next bill and helps to prevent billing surprises. You can optionally set a bill threshold to alert you when your bill is projected to be higher than a specific amount each month.", comment: "")
+            case(.highUsage, .peco):
+                return ""
             // Outage
             case (.outage, .bge):
                 return NSLocalizedString("Receive updates on unplanned outages due to storms.", comment: "")
@@ -393,6 +408,18 @@ class AlertPreferencesViewModel {
             case (.forYourInformation, .peco):
                 return NSLocalizedString("Occasionally, PECO may contact you with general information such as tips for saving energy or company-sponsored events occurring in your neighborhood.", comment: "")
             }
+        }
+    }
+    
+    struct AlertPrefTextFieldOptions {
+        var text: BehaviorRelay<String>?
+        var placeholder: String?
+        var isNumeric: Bool
+        
+        init(text: BehaviorRelay<String>? = nil, placeHolder: String? = nil, isNumeric: Bool = false) {
+            self.text = text
+            self.placeholder = placeHolder
+            self.isNumeric = isNumeric
         }
     }
 }
