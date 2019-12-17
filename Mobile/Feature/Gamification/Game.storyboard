@@ -618,6 +618,8 @@
                         <outlet property="weeklyInsightUnreadIndicator" destination="BmY-iO-8Gx" id="aP8-hC-aXk"/>
                         <segue destination="UFp-Nz-kjp" kind="show" identifier="giftSegue" id="DyQ-kU-OFA"/>
                         <segue destination="Khv-gx-ANe" kind="show" identifier="viewedTipsSegue" id="Apc-U9-O80"/>
+                        <segue destination="Ueo-kC-myr" kind="show" identifier="eBillSegue" id="xs3-kL-TR4"/>
+                        <segue destination="YTb-BZ-fHL" kind="show" identifier="homeProfileSegue" id="R98-dN-C8n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gq-MN-TPo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -682,7 +684,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGo-db-VxN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1713.0434782608697" y="-1866.2946428571427"/>
+            <point key="canvasLocation" x="1333" y="-1866"/>
         </scene>
         <!--Gift Collection View Controller-->
         <scene sceneID="oyf-X5-cdt">
@@ -745,7 +747,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfM-kZ-iuW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1711.5942028985507" y="-1167.1875"/>
+            <point key="canvasLocation" x="1332" y="-1167"/>
         </scene>
         <!--Viewed Tips View Controller-->
         <scene sceneID="L8i-th-fAz">
@@ -859,7 +861,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9n6-ql-jdW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2713.04347826087" y="-1866.2946428571427"/>
+            <point key="canvasLocation" x="2239" y="-1866"/>
+        </scene>
+        <!--PaperlessEBill-->
+        <scene sceneID="yfL-Fs-LWP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Bill" referencedIdentifier="PaperlessEBill" id="Ueo-kC-myr" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TJX-2y-1dM"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOH-OA-Feu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2770" y="-2178"/>
+        </scene>
+        <!--HomeProfile-->
+        <scene sceneID="8Hc-1B-gwJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Usage" referencedIdentifier="HomeProfile" id="YTb-BZ-fHL" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Uov-TJ-YeY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dVI-Gb-chc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3025" y="-2178"/>
         </scene>
         <!--Large Title Navigation Controller-->
         <scene sceneID="4YD-Ik-gqV">
@@ -1731,7 +1753,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12O-gd-LdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7581" y="-2594"/>
+            <point key="canvasLocation" x="7591" y="-2602"/>
         </scene>
         <!--Game Reward View Controller-->
         <scene sceneID="YEe-Nu-3Ej">
@@ -1975,6 +1997,134 @@ To see your old home screen, use the button at the bottom of the previous screen
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQJ-bh-JNc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5103" y="-1167"/>
+        </scene>
+        <!--Game Enrollment View Controller-->
+        <scene sceneID="bYz-e0-n1k">
+            <objects>
+                <viewController storyboardIdentifier="EnrollmentPopup" id="Kep-wm-vDP" customClass="GameEnrollmentViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xZp-qR-5fv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18I-KU-CWe">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jFS-iD-eeo" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="O0x-6U-GXF">
+                                                <rect key="frame" x="31" y="262.5" width="352" height="371.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTK-wt-7eV">
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="371.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zca-8B-HwZ">
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Close"/>
+                                                                <state key="normal" image="ic_close"/>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="yIC-Cz-ptU">
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Try this out!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFw-EP-XRr">
+                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Text about either paperless eBill enrollment or home profile updating." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuJ-q8-Irb">
+                                                                <rect key="frame" x="20" y="180.5" width="312" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS7-Cl-ghm" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
+                                                                <rect key="frame" x="68.5" y="241.5" width="215" height="45"/>
+                                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Try it now"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="215" id="3my-yX-QbM"/>
+                                                                    <constraint firstAttribute="height" constant="45" id="P80-6T-iNf"/>
+                                                                </constraints>
+                                                                <connections>
+                                                                    <action selector="onCTAPress" destination="Kep-wm-vDP" eventType="touchUpInside" id="uXZ-Y9-KKO"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CL-vK-yHE">
+                                                                <rect key="frame" x="114.5" y="309.5" width="123" height="30"/>
+                                                                <state key="normal" title="I'm Not Interested"/>
+                                                                <connections>
+                                                                    <action selector="onNotInterestedPress" destination="Kep-wm-vDP" eventType="touchUpInside" id="vQM-oG-7hc"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="SFw-EP-XRr" secondAttribute="trailing" constant="20" id="11D-h8-eeC"/>
+                                                            <constraint firstAttribute="trailing" secondItem="zuJ-q8-Irb" secondAttribute="trailing" constant="20" id="3XU-nn-ypi"/>
+                                                            <constraint firstItem="yIC-Cz-ptU" firstAttribute="top" secondItem="rTK-wt-7eV" secondAttribute="top" id="Fd7-t5-h6y"/>
+                                                            <constraint firstItem="aS7-Cl-ghm" firstAttribute="centerX" secondItem="rTK-wt-7eV" secondAttribute="centerX" id="G6d-Fq-S6p"/>
+                                                            <constraint firstItem="yIC-Cz-ptU" firstAttribute="centerX" secondItem="rTK-wt-7eV" secondAttribute="centerX" id="IMk-29-iO0"/>
+                                                            <constraint firstItem="4CL-vK-yHE" firstAttribute="top" secondItem="aS7-Cl-ghm" secondAttribute="bottom" constant="23" id="PIV-k0-wqT"/>
+                                                            <constraint firstItem="zuJ-q8-Irb" firstAttribute="leading" secondItem="rTK-wt-7eV" secondAttribute="leading" constant="20" id="YwV-Bz-eVu"/>
+                                                            <constraint firstItem="4CL-vK-yHE" firstAttribute="centerX" secondItem="rTK-wt-7eV" secondAttribute="centerX" id="aYm-0G-U4W"/>
+                                                            <constraint firstItem="SFw-EP-XRr" firstAttribute="leading" secondItem="rTK-wt-7eV" secondAttribute="leading" constant="20" id="atZ-6P-HKg"/>
+                                                            <constraint firstItem="Zca-8B-HwZ" firstAttribute="top" secondItem="rTK-wt-7eV" secondAttribute="top" constant="15" id="cPx-jZ-5Op"/>
+                                                            <constraint firstItem="Zca-8B-HwZ" firstAttribute="leading" secondItem="rTK-wt-7eV" secondAttribute="leading" constant="15" id="hNc-Ra-gog"/>
+                                                            <constraint firstItem="aS7-Cl-ghm" firstAttribute="top" secondItem="zuJ-q8-Irb" secondAttribute="bottom" constant="20" id="j4s-xh-LbB"/>
+                                                            <constraint firstItem="zuJ-q8-Irb" firstAttribute="top" secondItem="SFw-EP-XRr" secondAttribute="bottom" constant="30" id="mio-Wm-0GO"/>
+                                                            <constraint firstAttribute="bottom" secondItem="4CL-vK-yHE" secondAttribute="bottom" constant="32" id="pDd-cS-UDO"/>
+                                                            <constraint firstItem="SFw-EP-XRr" firstAttribute="top" secondItem="yIC-Cz-ptU" secondAttribute="bottom" constant="20" id="qqX-rD-wbl"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="O0x-6U-GXF" firstAttribute="centerY" secondItem="jFS-iD-eeo" secondAttribute="centerY" id="4Ir-8V-VBC"/>
+                                            <constraint firstItem="O0x-6U-GXF" firstAttribute="leading" secondItem="jFS-iD-eeo" secondAttribute="leading" constant="31" id="T97-2A-ABV"/>
+                                            <constraint firstAttribute="trailing" secondItem="O0x-6U-GXF" secondAttribute="trailing" constant="31" id="Toc-wO-fXh"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="O0x-6U-GXF" secondAttribute="bottom" constant="70" id="ic2-OC-52d"/>
+                                            <constraint firstItem="O0x-6U-GXF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jFS-iD-eeo" secondAttribute="top" constant="70" id="u1T-ZH-MRR"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jFS-iD-eeo" firstAttribute="height" secondItem="18I-KU-CWe" secondAttribute="height" priority="250" id="2bh-4P-Mhz"/>
+                                    <constraint firstItem="jFS-iD-eeo" firstAttribute="width" secondItem="18I-KU-CWe" secondAttribute="width" id="NRY-Em-wQh"/>
+                                    <constraint firstItem="jFS-iD-eeo" firstAttribute="leading" secondItem="18I-KU-CWe" secondAttribute="leading" id="UdM-6R-f1N"/>
+                                    <constraint firstItem="jFS-iD-eeo" firstAttribute="centerX" secondItem="18I-KU-CWe" secondAttribute="centerX" id="WHB-5O-qy9"/>
+                                    <constraint firstItem="jFS-iD-eeo" firstAttribute="top" secondItem="18I-KU-CWe" secondAttribute="top" id="bcb-TQ-L4Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="jFS-iD-eeo" secondAttribute="trailing" id="i2a-ya-2HG"/>
+                                    <constraint firstAttribute="bottom" secondItem="jFS-iD-eeo" secondAttribute="bottom" id="yll-te-6HP"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="qnc-nu-feh"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="B3y-ia-ATT"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="18I-KU-CWe" firstAttribute="leading" secondItem="xZp-qR-5fv" secondAttribute="leading" id="2TY-fV-q5W"/>
+                            <constraint firstItem="18I-KU-CWe" firstAttribute="top" secondItem="xZp-qR-5fv" secondAttribute="top" id="BrO-tL-Hds"/>
+                            <constraint firstAttribute="trailing" secondItem="18I-KU-CWe" secondAttribute="trailing" id="QUT-gK-guW"/>
+                            <constraint firstAttribute="bottom" secondItem="18I-KU-CWe" secondAttribute="bottom" id="pkf-C5-Ljn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qfJ-Bm-gw3"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="Zca-8B-HwZ" id="FT3-HF-5b0"/>
+                        <outlet property="contentView" destination="jFS-iD-eeo" id="UOk-3d-xOd"/>
+                        <outlet property="ctaButton" destination="aS7-Cl-ghm" id="bl9-ha-x3v"/>
+                        <outlet property="detailLabel" destination="zuJ-q8-Irb" id="AAR-WX-kK5"/>
+                        <outlet property="notInterestedButton" destination="4CL-vK-yHE" id="C72-St-gxE"/>
+                        <outlet property="popupView" destination="rTK-wt-7eV" id="8g1-BU-dBM"/>
+                        <outlet property="titleLabel" destination="SFw-EP-XRr" id="Rxp-vp-Lnt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nz1-5W-hHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8455.072463768116" y="-2602.2321428571427"/>
         </scene>
     </scenes>
     <resources>

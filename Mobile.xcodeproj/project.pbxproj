@@ -1112,6 +1112,9 @@
 		9C153DC922E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
 		9C153DCA22E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
 		9C153DCB22E8F6CE002DA062 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C153DC822E8F6CE002DA062 /* Checkbox.swift */; };
+		9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
+		9C19983623A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
+		9C19983723A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
@@ -3287,6 +3290,7 @@
 		9C10B4D222DF9C7400B0851B /* KeyboardAvoidingStickyFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAvoidingStickyFooterViewController.swift; sourceTree = "<group>"; };
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C153DC822E8F6CE002DA062 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		9C19983423A9614900250417 /* GameEnrollmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnrollmentViewController.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
@@ -5557,6 +5561,7 @@
 				9CABF6B42397032B00B07B01 /* GameQuizViewController.swift */,
 				9CE549702399941300025BD5 /* GameRewardViewController.swift */,
 				9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */,
+				9C19983423A9614900250417 /* GameEnrollmentViewController.swift */,
 			);
 			path = "Popup Modals";
 			sourceTree = "<group>";
@@ -8367,6 +8372,7 @@
 				82A18E551EB8CE8100BE9F21 /* PaperlessEBillCommercialViewController.swift in Sources */,
 				E893993D1F86AF1600B9184C /* UIViewDashedBorders.swift in Sources */,
 				E87C41471FAB72E700448F86 /* UpdatesTableViewCell.swift in Sources */,
+				9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35ACCB4520EA5ECE0022907F /* HomeOutageCardView.swift in Sources */,
 				54EDD2DA1ECE236000CAB8A6 /* WalletService.swift in Sources */,
 				82A18E621EB918C900BE9F21 /* PaperlessEBillViewModel.swift in Sources */,
@@ -8776,6 +8782,7 @@
 				E80D2E291E72FC2C002626C9 /* AccountPicker.swift in Sources */,
 				2F51B4971F26E20100550C64 /* BillingHistoryDetailsViewModel.swift in Sources */,
 				359BDBAA22E09D80007002B0 /* AccountInfoBarNew.swift in Sources */,
+				9C19983723A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				35376C6A20F8FFD1007E50F7 /* BillImpactView.swift in Sources */,
 				E87C32111E9ECF0400E5F6FD /* AccountLookupToolResultViewController.swift in Sources */,
 				82AC2A1C1FAB667700EACB3B /* PeakRewardsService.swift in Sources */,
@@ -9185,6 +9192,7 @@
 				E841F3A31F02F30E007BFA82 /* UINavigationBackButton.swift in Sources */,
 				822BBBA21EFC1A01004EBBAB /* WebViewController.swift in Sources */,
 				82E9B60F1FA22FA000556C94 /* MyHomeProfileViewModel.swift in Sources */,
+				9C19983623A9614900250417 /* GameEnrollmentViewController.swift in Sources */,
 				22EF55992170507700070C13 /* AppointmentDetailViewController.swift in Sources */,
 				82E22B681F9FCECE001F1A1B /* Top5EnergyTipsViewModel.swift in Sources */,
 				B039DB7A225BD32D00BB5479 /* HomePrepaidCardViewModel.swift in Sources */,

@@ -289,10 +289,10 @@ class GameHomeViewController: AccountPickerViewController {
         if task.type == .fab {
             let fabVc = GameTryFabViewController.create()
             self.tabBarController?.present(fabVc, animated: true, completion: nil)
-        } else if task.type == .eBill {
-            
-        } else if task.type == .homeProfile {
-            
+        } else if task.type == .eBill || task.type == .homeProfile {
+            let enrollVc = GameEnrollmentViewController.create(withTaskType: task.type)
+            enrollVc.delegate = self
+            self.tabBarController?.present(enrollVc, animated: true, completion: nil)
         } else if let tip = task.tip {
             let tipVc = GameTipViewController.create(withTip: tip)
             self.tabBarController?.present(tipVc, animated: true, completion: nil)
@@ -331,11 +331,14 @@ class GameHomeViewController: AccountPickerViewController {
                 return
             }
         }
+        
         if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
             currentTaskIndex = gameUser.taskIndex
             while true {
                 if let task = GameTaskStore.shared.tasks.get(at: currentTaskIndex) {
-                    if false { // TODO: Ensure the task meets all filtering requirements. If not, advance the index and try again
+                    if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
+                        currentTaskIndex += 1
+                    } else if false { // TODO: Other filtering
                         currentTaskIndex += 1
                     } else {
                         currentTask = task
@@ -394,6 +397,9 @@ class GameHomeViewController: AccountPickerViewController {
             let vc = nav.viewControllers.first as? WeeklyInsightViewController {
             vc.viewModel.accountDetail = viewModel.accountDetail.value!
             vc.updateUnreadIndicator = viewModel.weeklyInsightPublishSubject
+        } else if let vc = segue.destination as? PaperlessEBillViewController {
+            vc.delegate = self
+            vc.accountDetail = viewModel.accountDetail.value!
         }
     }
 
@@ -419,7 +425,7 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
             awardPoints(decreasedUsage ? 2 : 1)
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
-            self.viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
+            viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
         } else {
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
@@ -442,10 +448,47 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
 extension GameHomeViewController: GameRewardViewControllerDelegate {
     
     func gameRewardViewControllerDidSetGift(_ gameRewardViewController: GameRewardViewController) {
-        self.energyBuddyView.updateBuddy()
-        self.tabBarController?.dismiss(animated: true, completion: {
+        energyBuddyView.updateBuddy()
+        tabBarController?.dismiss(animated: true, completion: {
             self.energyBuddyView.playSuperHappyAnimation(withSparkles: false, withHearts: true)
             self.energyBuddyView.showNewGiftAppliedMessage()
         })
+    }
+}
+
+extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
+    
+    func gameEnrollmentViewControllerDidPressCTA(_ gameEnrollmentViewController: GameEnrollmentViewController) {
+        tabBarController?.dismiss(animated: true) {
+            if gameEnrollmentViewController.taskType == .eBill {
+                self.performSegue(withIdentifier: "eBillSegue", sender: nil)
+            } else { // Home Profile
+                self.performSegue(withIdentifier: "homeProfileSegue", sender: nil)
+            }
+        }
+    }
+    
+    func gameEnrollmentViewControllerDidPressNotInterested(_ gameEnrollmentViewController: GameEnrollmentViewController) {
+        tabBarController?.dismiss(animated: true, completion: nil)
+        
+        energyBuddyView.setTaskIndicator(nil)
+        currentTask = nil
+        
+        currentTaskIndex += 1
+        viewModel.updateGameUserTaskIndex(currentTaskIndex)
+    }
+}
+
+extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
+    func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
+        if didChangeStatus == .enroll {
+            energyBuddyView.setTaskIndicator(nil)
+            currentTask = nil
+            
+            awardPoints(5) // TODO: Final point value
+            
+            currentTaskIndex += 1
+            viewModel.updateGameUserTaskIndex(currentTaskIndex)
+        }
     }
 }
