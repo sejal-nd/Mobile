@@ -1,5 +1,11 @@
 [
     {
+        "type": "ebill"
+    },
+    {
+        "type": "homeprofile"
+    },
+    {
         "type": "fab"
     },
     {

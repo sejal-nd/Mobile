@@ -33,17 +33,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-gT-ebb">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_close"/>
                                 <connections>
                                     <action selector="onClosePress" destination="3os-sw-E9Y" eventType="touchUpInside" id="S6X-pp-suq"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
-                                <rect key="frame" x="-13" y="109" width="440" height="400"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="img_onboarding" translatesAutoresizingMaskIntoConstraints="NO" id="VC2-i6-5ar">
+                                <rect key="frame" x="97" y="109" width="220" height="200"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to personalize your experience, we’d like to ask you a few questions!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cle-2I-bW6">
-                                <rect key="frame" x="20" y="533" width="374" height="41"/>
+                                <rect key="frame" x="20" y="333" width="374" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -323,7 +323,7 @@
                                 <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3th-xB-uV2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1048.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="973"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Byt-aM-5F2" customClass="EnergyBuddyView" customModule="BGE" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
@@ -364,14 +364,14 @@
                                                     <outlet property="progressWidthConstraint" destination="vnK-SO-0AG" id="qsE-uJ-OBA"/>
                                                 </connections>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzy-Cz-66l" userLabel="Viewed Tips Button">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzy-Cz-66l" userLabel="Viewed Tips Button">
                                                 <rect key="frame" x="350" y="178" width="48" height="54"/>
                                                 <state key="normal" image="ic_history"/>
                                                 <connections>
                                                     <action selector="onViewedTipsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="K5q-v3-jfd"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-ij-bxm" userLabel="Gift Button">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-ij-bxm" userLabel="Gift Button">
                                                 <rect key="frame" x="350" y="236" width="48" height="54"/>
                                                 <state key="normal" image="ic_gifts"/>
                                                 <connections>
@@ -379,7 +379,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK2-4u-l6B">
-                                                <rect key="frame" x="16" y="316" width="382" height="712.5"/>
+                                                <rect key="frame" x="16" y="316" width="382" height="637"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Insight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-gJ-F04">
                                                         <rect key="frame" x="144.5" y="20" width="93.5" height="20.5"/>
@@ -396,7 +396,7 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="js0-ey-UCb">
-                                                        <rect key="frame" x="10" y="70.5" width="362" height="642"/>
+                                                        <rect key="frame" x="10" y="70.5" width="362" height="566.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xwp-AP-1YJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="362" height="75"/>
@@ -512,10 +512,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gky-iO-N7T">
-                                                                <rect key="frame" x="0.0" y="514" width="362" height="128"/>
+                                                                <rect key="frame" x="0.0" y="514" width="362" height="52.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiR-Ts-noa">
-                                                                        <rect key="frame" x="10" y="16" width="342" height="96"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiR-Ts-noa">
+                                                                        <rect key="frame" x="10" y="16" width="342" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -712,8 +712,8 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-Ap-xui">
                                             <rect key="frame" x="9" y="9" width="87" height="87"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_giftselected" translatesAutoresizingMaskIntoConstraints="NO" id="ekQ-2K-zvk">
-                                            <rect key="frame" x="31" y="30" width="70" height="70"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_giftselected" translatesAutoresizingMaskIntoConstraints="NO" id="ekQ-2K-zvk">
+                                            <rect key="frame" x="66" y="65" width="35" height="35"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -768,7 +768,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-di-eeU">
-                                                    <rect key="frame" x="20" y="8" width="220" height="44"/>
+                                                    <rect key="frame" x="20" y="8" width="278" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="cx1-gC-cWW"/>
                                                     </constraints>
@@ -777,16 +777,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="BcQ-qK-BHN">
-                                                    <rect key="frame" x="260" y="0.0" width="134" height="60"/>
+                                                    <rect key="frame" x="318" y="0.0" width="76" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_viewedtip_reminder" translatesAutoresizingMaskIntoConstraints="NO" id="KEP-SD-5WW">
-                                                            <rect key="frame" x="0.0" y="6" width="50" height="48"/>
+                                                            <rect key="frame" x="0.0" y="18" width="25" height="24"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_viewedtip_favorite" translatesAutoresizingMaskIntoConstraints="NO" id="Un2-eV-eRH">
-                                                            <rect key="frame" x="59" y="6" width="50" height="48"/>
+                                                            <rect key="frame" x="34" y="18" width="25" height="24"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="ic_caret" translatesAutoresizingMaskIntoConstraints="NO" id="C9h-sP-l9r">
-                                                            <rect key="frame" x="118" y="17" width="16" height="26"/>
+                                                            <rect key="frame" x="68" y="23.5" width="8" height="13"/>
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
@@ -814,13 +814,13 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-Bj-z2G">
-                                <rect key="frame" x="85.5" y="384" width="243.5" height="238.5"/>
+                                <rect key="frame" x="85.5" y="384" width="243.5" height="138.5"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tips_emptystate" translatesAutoresizingMaskIntoConstraints="NO" id="dff-pR-REM">
-                                        <rect key="frame" x="21.5" y="0.0" width="200" height="200"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_tips_emptystate" translatesAutoresizingMaskIntoConstraints="NO" id="dff-pR-REM">
+                                        <rect key="frame" x="71.5" y="0.0" width="100" height="100"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You haven't viewed any tips yet." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lw3-aU-Lcs">
-                                        <rect key="frame" x="0.0" y="218" width="243.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="118" width="243.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -893,27 +893,27 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v8D-vJ-C0N">
-                                                <rect key="frame" x="31" y="118" width="352" height="660"/>
+                                                <rect key="frame" x="31" y="173" width="352" height="550"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74E-Z5-bTU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="550"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yas-Dz-Xrq">
-                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
-                                                                <rect key="frame" x="66" y="0.0" width="220" height="220"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-WB-RL6">
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
-                                                                <rect key="frame" x="20" y="240" width="312" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="I have a tip for you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-gj-X1f">
+                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ht-Lj-dbk">
-                                                                <rect key="frame" x="20" y="280.5" width="312" height="243.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ht-Lj-dbk">
+                                                                <rect key="frame" x="20" y="170.5" width="312" height="243.5"/>
                                                                 <string key="text">Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.
 
 This worked for 14,985 people and can save up to $10 per year.</string>
@@ -922,7 +922,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="io0-gF-5Q5">
-                                                                <rect key="frame" x="0.0" y="559" width="352" height="101"/>
+                                                                <rect key="frame" x="0.0" y="449" width="352" height="101"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcW-5m-1x6">
                                                                         <rect key="frame" x="0.0" y="0.0" width="352" height="50"/>
@@ -1208,7 +1208,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="u6d-Q1-k5r">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="1447"/>
+                                        <rect key="frame" x="0.0" y="20" width="414" height="1339"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uu8-3e-X5s">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
@@ -1233,12 +1233,12 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbe-kB-l0h">
-                                                <rect key="frame" x="0.0" y="75" width="414" height="712"/>
+                                                <rect key="frame" x="0.0" y="75" width="414" height="604"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUe-f4-seL">
-                                                        <rect key="frame" x="20" y="0.0" width="374" height="631"/>
+                                                        <rect key="frame" x="20" y="0.0" width="374" height="523"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/22 - 9/28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xl-BX-FgK">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="9/22 - 9/28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xl-BX-FgK">
                                                                 <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -1252,7 +1252,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                     <constraint firstAttribute="width" constant="100" id="Aat-Zz-Rbs"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9/15 - 9/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-gr-5fv">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="9/15 - 9/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrO-gr-5fv">
                                                                 <rect key="frame" x="0.0" y="55.5" width="83" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -1266,35 +1266,35 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                     <constraint firstAttribute="width" constant="100" id="slh-x9-7ia"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used 30% more energy than the previous week." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6R-D2-xeN">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="You used 30% more energy than the previous week." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6R-D2-xeN">
                                                                 <rect key="frame" x="0.0" y="116" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightup" translatesAutoresizingMaskIntoConstraints="NO" id="9EJ-4o-IXp">
-                                                                <rect key="frame" x="0.0" y="187" width="72" height="72"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_insightup" translatesAutoresizingMaskIntoConstraints="NO" id="9EJ-4o-IXp">
+                                                                <rect key="frame" x="0.0" y="187" width="36" height="36"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the most energy on Saturday, September 28th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4J-Gq-FMO">
-                                                                <rect key="frame" x="0.0" y="264" width="374" height="41"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="You used the most energy on Saturday, September 28th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4J-Gq-FMO">
+                                                                <rect key="frame" x="0.0" y="228" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightdown" translatesAutoresizingMaskIntoConstraints="NO" id="Nff-Qf-ySe">
-                                                                <rect key="frame" x="0.0" y="335" width="72" height="72"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_insightdown" translatesAutoresizingMaskIntoConstraints="NO" id="Nff-Qf-ySe">
+                                                                <rect key="frame" x="0.0" y="299" width="36" height="36"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You used the least energy on Wednesday, September 25th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbO-P6-4Gk">
-                                                                <rect key="frame" x="0.0" y="412" width="374" height="41"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="You used the least energy on Wednesday, September 25th." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbO-P6-4Gk">
+                                                                <rect key="frame" x="0.0" y="340" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insightbill" translatesAutoresizingMaskIntoConstraints="NO" id="zOk-na-zDA">
-                                                                <rect key="frame" x="0.0" y="483" width="72" height="72"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_insightbill" translatesAutoresizingMaskIntoConstraints="NO" id="zOk-na-zDA">
+                                                                <rect key="frame" x="0.0" y="411" width="36" height="36"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill is projected to be $72. You've spent about $59 so far this bill period." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAF-IP-htO">
-                                                                <rect key="frame" x="0.0" y="560" width="374" height="41"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Your bill is projected to be $72. You've spent about $59 so far this bill period." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAF-IP-htO">
+                                                                <rect key="frame" x="0.0" y="452" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1332,9 +1332,9 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-Vj-dT6" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="631" width="414" height="81"/>
+                                                        <rect key="frame" x="0.0" y="523" width="414" height="81"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is an estimate and the actual amount may vary based on your energy use, taxes, and fees." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gka-ua-AFU">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="This is an estimate and the actual amount may vary based on your energy use, taxes, and fees." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gka-ua-AFU">
                                                                 <rect key="frame" x="20" y="20" width="374" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -1362,7 +1362,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Qn-wN-89A">
-                                                <rect key="frame" x="0.0" y="817" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="709" width="414" height="300"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="NTU-8g-kfH" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
                                                         <rect key="frame" x="177" y="140" width="60" height="20"/>
@@ -1377,7 +1377,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZ2-mi-hbA">
-                                                <rect key="frame" x="0.0" y="1147" width="414" height="300"/>
+                                                <rect key="frame" x="0.0" y="1039" width="414" height="300"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhG-qC-aOt">
                                                         <rect key="frame" x="20" y="140" width="374" height="20.5"/>
@@ -1457,39 +1457,39 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VcX-Cq-kN9">
-                                                <rect key="frame" x="31" y="118" width="352" height="660"/>
+                                                <rect key="frame" x="31" y="216" width="352" height="464"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HnS-PT-pzb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="464"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aat-r5-6jU">
-                                                                <rect key="frame" x="15" y="15" width="48" height="48"/>
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-Pj-QqI">
-                                                                <rect key="frame" x="66" y="0.0" width="220" height="306"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="Wrx-Pj-QqI">
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I learned something cool, let’s see if you know it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxz-OG-aSI">
-                                                                <rect key="frame" x="20" y="326" width="312" height="41"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="I learned something cool, let’s see if you know it!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxz-OG-aSI">
+                                                                <rect key="frame" x="20" y="130" width="312" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which appliance do you think uses the most energy?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7M-7D-Ydl">
-                                                                <rect key="frame" x="20" y="397" width="312" height="41"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Which appliance do you think uses the most energy?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7M-7D-Ydl">
+                                                                <rect key="frame" x="20" y="201" width="312" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-Sp-nH1">
-                                                                <rect key="frame" x="16" y="458" width="320" height="56"/>
+                                                                <rect key="frame" x="16" y="262" width="320" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="qdd-MB-YIG"/>
                                                                 </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7VM-8Y-KiR">
-                                                                <rect key="frame" x="0.0" y="534" width="352" height="106"/>
+                                                                <rect key="frame" x="0.0" y="338" width="352" height="106"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Clothes dryers use more energy than any other appliance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s70-2G-Cwp">
                                                                         <rect key="frame" x="17" y="0.0" width="318.5" height="41"/>
@@ -1598,27 +1598,27 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="84Y-gl-1ge">
-                                                <rect key="frame" x="31" y="118" width="352" height="660"/>
+                                                <rect key="frame" x="31" y="119.5" width="352" height="657"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RTV-AV-Dkq">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="660"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="657"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaE-ig-ky9">
                                                                 <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                 <state key="normal" image="ic_close"/>
                                                             </button>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="rH9-yA-f7J">
-                                                                <rect key="frame" x="121" y="0.0" width="110" height="113"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="rH9-yA-f7J">
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-68-VRU">
-                                                                <rect key="frame" x="20" y="133" width="312" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Hello!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-68-VRU">
+                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55P-6l-iMG">
-                                                                <rect key="frame" x="20" y="183.5" width="312" height="223.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55P-6l-iMG">
+                                                                <rect key="frame" x="20" y="180.5" width="312" height="223.5"/>
                                                                 <string key="text">I’m your Energy Buddy!
 
 I’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.
@@ -1629,9 +1629,9 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifa-Gi-eda">
-                                                                <rect key="frame" x="148.5" y="419" width="55" height="55"/>
+                                                                <rect key="frame" x="148.5" y="416" width="55" height="55"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_fab_on_game" translatesAutoresizingMaskIntoConstraints="NO" id="eG4-nk-7bI">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_fab_on_game" translatesAutoresizingMaskIntoConstraints="NO" id="eG4-nk-7bI">
                                                                         <rect key="frame" x="11.5" y="11.5" width="32" height="32"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -1644,13 +1644,13 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Return to the home screen and try tapping it to receive points toward your first gift!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orM-OU-bAb">
-                                                                <rect key="frame" x="16" y="494" width="316" height="61"/>
+                                                                <rect key="frame" x="16" y="491" width="316" height="61"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xc-tl-eb0" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
-                                                                <rect key="frame" x="68.5" y="575" width="215" height="45"/>
+                                                                <rect key="frame" x="68.5" y="572" width="215" height="45"/>
                                                                 <accessibility key="accessibilityConfiguration" label="Try it now"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="215" id="8TM-5m-cyk"/>
@@ -1748,30 +1748,30 @@ To see your old home screen, use the button at the bottom of the previous screen
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HhH-NV-ZC6">
-                                                <rect key="frame" x="31" y="200" width="352" height="496.5"/>
+                                                <rect key="frame" x="31" y="273" width="352" height="350.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-5g-qVH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="496.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="350.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L64-RD-uob">
-                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="496.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="350.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rM2-EW-T2P">
-                                                                        <rect key="frame" x="15" y="15" width="48" height="48"/>
+                                                                        <rect key="frame" x="15" y="15" width="24" height="24"/>
                                                                         <accessibility key="accessibilityConfiguration" label="Close"/>
                                                                         <state key="normal" image="ic_close"/>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here’s a gift for your hard work!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-VE-Jqn">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Here’s a gift for your hard work!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-VE-Jqn">
                                                                         <rect key="frame" x="20" y="30" width="312" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_gift" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-Mc-CSK">
-                                                                        <rect key="frame" x="26" y="94.5" width="300" height="292"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="img_gift" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-Mc-CSK">
+                                                                        <rect key="frame" x="101" y="94.5" width="150" height="146"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-7N-Ekq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="68.5" y="411.5" width="215" height="45"/>
+                                                                        <rect key="frame" x="68.5" y="265.5" width="215" height="45"/>
                                                                         <accessibility key="accessibilityConfiguration" label="Open gift"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="215" id="80U-fp-kWh"/>
