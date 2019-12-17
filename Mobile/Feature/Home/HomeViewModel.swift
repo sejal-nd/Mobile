@@ -289,6 +289,7 @@ class HomeViewModel {
                 Environment.shared.opco == .bge,
                 AccountsStore.shared.currentAccount.isMultipremise == false,
                 accountDetail.premiseNumber != nil,
+                accountDetail.isAMIAccount,
                 UI_USER_INTERFACE_IDIOM() != .pad else {
                 return .just(nil)
             }
