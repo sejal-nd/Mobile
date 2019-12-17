@@ -400,6 +400,14 @@ class GameHomeViewController: AccountPickerViewController {
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.delegate = self
             vc.accountDetail = viewModel.accountDetail.value!
+        } else if let vc = segue.destination as? MyHomeProfileViewController {
+            vc.accountDetail = viewModel.accountDetail.value!
+//            vc.didSaveHomeProfile
+//                .delay(0.5)
+//                .drive(onNext: { [weak self] in
+//                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+//                })
+//                .disposed(by: vc.disposeBag)
         }
     }
 

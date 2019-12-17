@@ -1,9 +1,9 @@
 [
     {
-        "type": "ebill"
+        "type": "homeprofile"
     },
     {
-        "type": "homeprofile"
+        "type": "ebill"
     },
     {
         "type": "fab"
