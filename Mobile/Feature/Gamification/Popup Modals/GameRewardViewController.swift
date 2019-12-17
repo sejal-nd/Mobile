@@ -20,7 +20,6 @@ class GameRewardViewController: UIViewController {
     
     @IBOutlet weak var popupView: UIView!
     
-    @IBOutlet weak var fadeView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint!
@@ -74,10 +73,12 @@ class GameRewardViewController: UIViewController {
         } else { // Transition to the revealed state
             animating = true
             UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
-                self.fadeView.alpha = 0
+                self.popupView.alpha = 0
             }, completion: { _ in
                 self.closeButton.isHidden = false
                 self.imageView.image = self.gift.thumbImage
+                
+                self.titleLabelTopConstraint.constant = 51
                 
                 let giftTypeString = self.gift.type.rawValue as String
                 self.titleLabel.text = String.localizedStringWithFormat("You received a new %@ for your Energy Buddy!", giftTypeString)
@@ -88,9 +89,7 @@ class GameRewardViewController: UIViewController {
                 
                 self.view.layoutIfNeeded()
                 UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
-                    self.fadeView.alpha = 1
-                    self.titleLabelTopConstraint.constant = 51
-                    self.view.layoutIfNeeded()
+                    self.popupView.alpha = 1
                 }, completion: { _ in
                     self.animating = false
                     self.rewardRevealed = true

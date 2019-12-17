@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azB-e9-k2m">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Nx5-gD-aKH" eventType="touchUpInside" id="XYn-Pz-Z5O"/>
@@ -120,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qln-jV-Gh3">
-                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFG-L0-L8Y">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="307.5"/>
@@ -1040,7 +1040,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctg-dp-Xx9">
-                                <rect key="frame" x="20" y="57" width="48" height="48"/>
+                                <rect key="frame" x="20" y="57" width="24" height="24"/>
                                 <state key="normal" image="ic_back"/>
                                 <connections>
                                     <action selector="onBackPress" destination="Cjp-yO-sUW" eventType="touchUpInside" id="Lum-6d-lsl"/>
@@ -1053,7 +1053,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iya-EI-8GP">
-                                <rect key="frame" x="0.0" y="118" width="414" height="659"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="683"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="De4-tq-Lwa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
@@ -1748,13 +1748,13 @@ To see your old home screen, use the button at the bottom of the previous screen
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HhH-NV-ZC6">
-                                                <rect key="frame" x="31" y="273" width="352" height="350.5"/>
+                                                <rect key="frame" x="31" y="285" width="352" height="326.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUc-5g-qVH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="350.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="326.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L64-RD-uob">
-                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="350.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="352" height="326.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rM2-EW-T2P">
                                                                         <rect key="frame" x="15" y="15" width="24" height="24"/>
@@ -1768,10 +1768,10 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="img_gift" translatesAutoresizingMaskIntoConstraints="NO" id="Ejg-Mc-CSK">
-                                                                        <rect key="frame" x="101" y="94.5" width="150" height="146"/>
+                                                                        <rect key="frame" x="101" y="70.5" width="150" height="146"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vir-7N-Ekq" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="68.5" y="265.5" width="215" height="45"/>
+                                                                        <rect key="frame" x="68.5" y="241.5" width="215" height="45"/>
                                                                         <accessibility key="accessibilityConfiguration" label="Open gift"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="215" id="80U-fp-kWh"/>
@@ -1793,7 +1793,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                                                                     <constraint firstItem="Ejg-Mc-CSK" firstAttribute="centerX" secondItem="L64-RD-uob" secondAttribute="centerX" id="Ssv-0m-Pxl"/>
                                                                     <constraint firstItem="Vir-7N-Ekq" firstAttribute="top" secondItem="Ejg-Mc-CSK" secondAttribute="bottom" constant="25" id="cEA-gn-KPH"/>
                                                                     <constraint firstAttribute="trailing" secondItem="wPO-VE-Jqn" secondAttribute="trailing" constant="20" id="csi-oN-afZ"/>
-                                                                    <constraint firstItem="Ejg-Mc-CSK" firstAttribute="top" secondItem="wPO-VE-Jqn" secondAttribute="bottom" constant="44" id="i9U-SZ-fdD"/>
+                                                                    <constraint firstItem="Ejg-Mc-CSK" firstAttribute="top" secondItem="wPO-VE-Jqn" secondAttribute="bottom" constant="20" id="i9U-SZ-fdD"/>
                                                                     <constraint firstItem="rM2-EW-T2P" firstAttribute="top" secondItem="L64-RD-uob" secondAttribute="top" constant="15" id="qZ7-OZ-wlO"/>
                                                                 </constraints>
                                                             </view>
@@ -1845,7 +1845,6 @@ To see your old home screen, use the button at the bottom of the previous screen
                         <outlet property="button" destination="Vir-7N-Ekq" id="KJ8-sI-d6M"/>
                         <outlet property="closeButton" destination="rM2-EW-T2P" id="8rO-qh-ZQB"/>
                         <outlet property="contentView" destination="nmo-JP-Nv5" id="7as-sN-e1d"/>
-                        <outlet property="fadeView" destination="L64-RD-uob" id="3eQ-93-wXp"/>
                         <outlet property="imageView" destination="Ejg-Mc-CSK" id="dbG-kX-ED3"/>
                         <outlet property="popupView" destination="dUc-5g-qVH" id="eB9-NS-Vg3"/>
                         <outlet property="titleLabel" destination="wPO-VE-Jqn" id="Ghy-Wz-qOh"/>
