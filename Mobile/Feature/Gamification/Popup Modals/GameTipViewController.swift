@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GameTipViewControllerDelegate: class {
-    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController)
+    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Int)
 }
 
 class GameTipViewController: UIViewController {
@@ -30,7 +30,9 @@ class GameTipViewController: UIViewController {
     
     let accountNumber = AccountsStore.shared.currentAccount.accountNumber
     
-    var tip: GameTip! // Passed into create() function
+    // Passed into create() function
+    var tip: GameTip!
+    var quizPoints: Int!
     
     var isReminder = false
     var isFavorite = false
@@ -38,12 +40,13 @@ class GameTipViewController: UIViewController {
     var onUpdate: (() -> Void)?
         
     // TODO: Pass in the tip
-    static func create(withTip tip: GameTip) -> GameTipViewController {
+    static func create(withTip tip: GameTip, quizPoints: Int = 0) -> GameTipViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "TipPopup") as! GameTipViewController
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.tip = tip
+        vc.quizPoints = quizPoints
         return vc
     }
     
@@ -101,7 +104,7 @@ class GameTipViewController: UIViewController {
     
     @objc private func dismiss(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: {
-            self.delegate?.gameTipViewControllerWasDismissed(self)
+            self.delegate?.gameTipViewControllerWasDismissed(self, withQuizPoints: self.quizPoints)
         })
     }
     

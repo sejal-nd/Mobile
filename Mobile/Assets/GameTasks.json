@@ -1,5 +1,8 @@
 [
     {
+        "type": "fab"
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "1234",
@@ -12,13 +15,22 @@
         }
     },
     {
-        "type": "homeprofile"
-    },
-    {
         "type": "ebill"
     },
     {
-        "type": "fab"
+        "type": "quiz",
+        "quiz": {
+            "question": "Which appliance do you think uses the most energy?",
+            "answers": [
+                { "answer": "TV", "correct": false },
+                { "answer": "Dishwasher", "correct": false },
+                { "answer": "Dryer", "correct": true }
+            ],
+            "answerDescription": "Clothes dryers use more energy than any other appliance.",
+            "tipId": "1234",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
     },
     {
         "type": "tip",
@@ -31,6 +43,9 @@
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
+    },
+    {
+        "type": "homeprofile"
     },
     {
         "type": "tip",
@@ -52,21 +67,6 @@
             "description": "Yes, you can bask in the sunlight even when it's cold outside. Warm your home with sunny rays by opening your blinds during winter days. You'll save energy - and money!",
             "numPeople": 24000,
             "savingsPerYear": 30,
-            "serviceType": "GAS/ELECTRIC",
-            "rentOrOwn": "RENT/OWN"
-        }
-    },
-    {
-        "type": "quiz",
-        "quiz": {
-            "question": "Which appliance do you think uses the most energy?",
-            "answers": [
-                { "answer": "TV", "correct": false },
-                { "answer": "Dishwasher", "correct": false },
-                { "answer": "Dryer", "correct": true }
-            ],
-            "answerDescription": "Clothes dryers use more energy than any other appliance.",
-            "tipId": null,
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }

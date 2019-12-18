@@ -11,7 +11,7 @@ import UIKit
 protocol GameQuizViewControllerDelegate: class {
     /// Only fired if the user selects a quiz answer first
     func gameQuizViewController(_ viewController: GameQuizViewController, wasDismissedWithCorrectAnswer correct: Bool)
-    func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String)
+    func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String, withCorrectAnswer correct: Bool)
 }
 
 class GameQuizViewController: UIViewController {
@@ -83,7 +83,7 @@ class GameQuizViewController: UIViewController {
     
     @IBAction func onViewTipPress() {
         // Force unwrap safe because View Tip button only visible when not nil
-        delegate?.gameQuizViewController(self, wantsToViewTipWithId: quiz.tipId!)
+        delegate?.gameQuizViewController(self, wantsToViewTipWithId: quiz.tipId!, withCorrectAnswer: selectedAnswerView!.correct)
     }
         
     @objc private func dismiss(_ sender: Any) {

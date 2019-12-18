@@ -456,8 +456,8 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
 }
 
 extension GameHomeViewController: GameTipViewControllerDelegate {
-    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController) {
-        awardPoints(1, andAdvanceTaskIndex: true) // TODO: Final point value
+    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Int) {
+        awardPoints(1 + quizPoints, andAdvanceTaskIndex: true) // TODO: Final point value
     }
 }
 
@@ -467,11 +467,10 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
         awardPoints(correct ? 2 : 1, andAdvanceTaskIndex: true) // TODO: Final point value
     }
     
-    func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String) {
-        // TODO: When are points awarded in the View Tip scenario?
+    func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String, withCorrectAnswer correct: Bool) {
         tabBarController?.dismiss(animated: true) {
             if let tip = GameTaskStore.shared.tipWithId(tipId) {
-                let tipVc = GameTipViewController.create(withTip: tip)
+                let tipVc = GameTipViewController.create(withTip: tip, quizPoints: correct ? 2 : 1) // TODO: Final point value
                 self.tabBarController?.present(tipVc, animated: true, completion: nil)
             }
         }
