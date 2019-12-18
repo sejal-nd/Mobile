@@ -135,6 +135,8 @@ class GameHomeViewController: AccountPickerViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
+        scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        
         energyBuddyView.updateBuddy()
         
         isVisible = true
@@ -408,8 +410,8 @@ class GameHomeViewController: AccountPickerViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? LargeTitleNavigationController,
             let vc = nav.viewControllers.first as? WeeklyInsightViewController {
+            vc.delegate = self
             vc.viewModel.accountDetail = viewModel.accountDetail.value!
-            vc.updateUnreadIndicator = viewModel.weeklyInsightPublishSubject
         } else if let vc = segue.destination as? PaperlessEBillViewController {
             vc.delegate = self
             vc.accountDetail = viewModel.accountDetail.value!
@@ -427,7 +429,9 @@ class GameHomeViewController: AccountPickerViewController {
 
 }
 
+// MARK: - AccountPickerDelegate
 extension GameHomeViewController: AccountPickerDelegate {
+    
     func accountPickerDidChangeAccount(_ accountPicker: AccountPicker) {
         let gameAccountNumber = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber)
         if AccountsStore.shared.currentAccount.accountNumber != gameAccountNumber {
@@ -436,6 +440,7 @@ extension GameHomeViewController: AccountPickerDelegate {
     }
 }
 
+// MARK: - DailyInsightCoinViewDelegate
 extension GameHomeViewController: DailyInsightCoinViewDelegate {
     
     func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool, decreasedUsage: Bool) {
@@ -455,12 +460,15 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
     }
 }
 
+// MARK: - GameTipViewControllerDelegate
 extension GameHomeViewController: GameTipViewControllerDelegate {
+    
     func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Int) {
         awardPoints(1 + quizPoints, andAdvanceTaskIndex: true) // TODO: Final point value
     }
 }
 
+// MARK: - GameQuizViewControllerDelegate
 extension GameHomeViewController: GameQuizViewControllerDelegate {
     
     func gameQuizViewController(_ viewController: GameQuizViewController, wasDismissedWithCorrectAnswer correct: Bool) {
@@ -477,6 +485,7 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
     }
 }
 
+// MARK: - GameRewardViewControllerDelegate
 extension GameHomeViewController: GameRewardViewControllerDelegate {
     
     func gameRewardViewControllerDidSetGift(_ gameRewardViewController: GameRewardViewController) {
@@ -488,6 +497,7 @@ extension GameHomeViewController: GameRewardViewControllerDelegate {
     }
 }
 
+// MARK: - GameEnrollmentViewControllerDelegate
 extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
     
     func gameEnrollmentViewControllerDidPressCTA(_ gameEnrollmentViewController: GameEnrollmentViewController) {
@@ -507,7 +517,9 @@ extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
     }
 }
 
+// MARK: - PaperlessEBillViewControllerDelegate
 extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
+    
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         if didChangeStatus == .enroll {
             awardPoints(5, andAdvanceTaskIndex: true) // TODO: Final point value
@@ -515,6 +527,21 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
             })
+        }
+    }
+}
+
+// MARK - WeeklyInsightViewControllerDelegate
+extension GameHomeViewController: WeeklyInsightViewControllerDelegate {
+    
+    func weeklyInsightViewControllerWillDisappear(_ weeklyInsightViewController: WeeklyInsightViewController) {
+        scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+    }
+    
+    func weeklyInsightViewController(_ weeklyInsightViewController: WeeklyInsightViewController, wasDismissedAfterViewingUnread viewedUnread: Bool) {
+        if viewedUnread {
+            viewModel.weeklyInsightPublishSubject.onNext(())
+            awardPoints(3) // TODO: Final point value
         }
     }
 }

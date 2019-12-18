@@ -146,20 +146,31 @@ struct GameCoreDataManager {
     
     // Note: the date we store is the end date for the most recent week, so if the insight is
     // comparing the week of 11/24 - 11/30 to the week of 11/17 - 11/12, we store 11/30.
-    func addWeeklyInsight(accountNumber: String, endDate: Date) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    // Returns false if attempting to add an entry that already exists, true otherwise
+    func addWeeklyInsight(accountNumber: String, endDate: Date) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "ViewedWeeklyInsight", in: managedContext)!
-        let viewedWeeklyInsight = NSManagedObject(entity: entity, insertInto: managedContext)
-        viewedWeeklyInsight.setValue(accountNumber, forKey: "accountNumber")
-        viewedWeeklyInsight.setValue(endDate, forKey: "endDate")
-        
-        do {
-            try managedContext.save()
-            dLog("Added weekly insight for \(endDate) to Core Data")
-        } catch let error as NSError {
-            dLog("Could not save weekly insight. \(error), \(error.userInfo)")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ViewedWeeklyInsight")
+        fetchRequest.predicate = NSPredicate(format: "accountNumber = %@ AND endDate = %@", accountNumber, endDate as NSDate)
+        let result = try! managedContext.fetch(fetchRequest)
+        if result.count == 0 {
+            let entity = NSEntityDescription.entity(forEntityName: "ViewedWeeklyInsight", in: managedContext)!
+            let viewedWeeklyInsight = NSManagedObject(entity: entity, insertInto: managedContext)
+            viewedWeeklyInsight.setValue(accountNumber, forKey: "accountNumber")
+            viewedWeeklyInsight.setValue(endDate, forKey: "endDate")
+            
+            do {
+                try managedContext.save()
+                dLog("Added weekly insight for \(endDate) to Core Data")
+                return true
+            } catch let error as NSError {
+                dLog("Could not save weekly insight. \(error), \(error.userInfo)")
+                return false
+            }
+        } else {
+            dLog("Not saving weekly insight because it already exists in Core Data.")
+            return false
         }
     }
     

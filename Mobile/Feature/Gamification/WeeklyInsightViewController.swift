@@ -9,8 +9,15 @@
 import RxSwift
 import RxCocoa
 
+protocol WeeklyInsightViewControllerDelegate: class {
+    func weeklyInsightViewControllerWillDisappear(_ weeklyInsightViewController: WeeklyInsightViewController)
+    func weeklyInsightViewController(_ weeklyInsightViewController: WeeklyInsightViewController, wasDismissedAfterViewingUnread viewedUnread: Bool)
+}
+
 class WeeklyInsightViewController: UIViewController {
     
+    weak var delegate: WeeklyInsightViewControllerDelegate?
+     
     let coreDataManager = GameCoreDataManager()
     
     @IBOutlet weak var segmentedControlContainer: UIView!
@@ -38,7 +45,7 @@ class WeeklyInsightViewController: UIViewController {
     
     let bag = DisposeBag()
     
-    var updateUnreadIndicator: PublishSubject<Void>! // Passed from GameHomeViewController
+    var viewedUnread = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +96,18 @@ class WeeklyInsightViewController: UIViewController {
         viewModel.fetchData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        delegate?.weeklyInsightViewControllerWillDisappear(self)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        delegate?.weeklyInsightViewController(self, wasDismissedAfterViewingUnread: viewedUnread)
+    }
+    
     func bindViewModel() {
         viewModel.loading.asDriver().not().drive(loadingView.rx.isHidden).disposed(by: bag)
         
@@ -105,8 +124,7 @@ class WeeklyInsightViewController: UIViewController {
             .take(1)
             .subscribe(onNext: { [weak self] date in
                 guard let self = self, let endDate = date else { return }
-                self.coreDataManager.addWeeklyInsight(accountNumber: self.viewModel.accountDetail.accountNumber, endDate: endDate)
-                self.updateUnreadIndicator.onNext(())
+                self.viewedUnread = self.coreDataManager.addWeeklyInsight(accountNumber: self.viewModel.accountDetail.accountNumber, endDate: endDate)
             }).disposed(by: bag)
         
         viewModel.thisWeekDateLabelText.drive(thisWeekDateLabel.rx.text).disposed(by: bag)
