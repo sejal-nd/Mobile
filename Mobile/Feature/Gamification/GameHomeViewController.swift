@@ -50,6 +50,7 @@ class GameHomeViewController: AccountPickerViewController {
     var welcomedUser = false
     var reconciledPointsOnLoad = false
     var isVisible = false
+    var didGoToHomeProfile = false
     
     var points: Int {
         get {
@@ -159,6 +160,18 @@ class GameHomeViewController: AccountPickerViewController {
                     self?.energyBuddyView.showWelcomeMessage()
                 }
             }
+        }
+        
+        if didGoToHomeProfile {
+            energyBuddyView.setTaskIndicator(nil)
+            currentTask = nil
+            
+            awardPoints(5) // TODO: Final point value
+            
+            currentTaskIndex += 1
+            viewModel.updateGameUserTaskIndex(currentTaskIndex)
+            
+            didGoToHomeProfile = false
         }
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
@@ -402,12 +415,13 @@ class GameHomeViewController: AccountPickerViewController {
             vc.accountDetail = viewModel.accountDetail.value!
         } else if let vc = segue.destination as? MyHomeProfileViewController {
             vc.accountDetail = viewModel.accountDetail.value!
-//            vc.didSaveHomeProfile
-//                .delay(0.5)
-//                .drive(onNext: { [weak self] in
-//                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
-//                })
-//                .disposed(by: vc.disposeBag)
+            vc.didSaveHomeProfile
+                .delay(0.5)
+                .drive(onNext: { [weak self] in
+                    self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+                })
+                .disposed(by: vc.disposeBag)
+            didGoToHomeProfile = true
         }
     }
 
@@ -497,6 +511,10 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
             
             currentTaskIndex += 1
             viewModel.updateGameUserTaskIndex(currentTaskIndex)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
+            })
         }
     }
 }

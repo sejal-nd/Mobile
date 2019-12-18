@@ -41,7 +41,7 @@ class GameHomeViewModel {
         
         debouncedPoints.asObservable()
             .filter { $0 != nil } // Ignore initial
-            .debounce(3, scheduler: MainScheduler.instance)
+            .debounce(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] points in
                 self?.updateGameUserPoints(points!)
             })
