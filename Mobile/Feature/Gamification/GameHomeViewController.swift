@@ -127,6 +127,8 @@ class GameHomeViewController: AccountPickerViewController {
         
         bindViewModel()
         
+        enrollInWeeklyPushNotification()
+        
         viewModel.fetchData()
     }
     
@@ -278,6 +280,25 @@ class GameHomeViewController: AccountPickerViewController {
             coinStack.addArrangedSubview($0)
         }
         dailyInsightCoinView(coinViews.last!, wasTappedWithCoinCollected: false, decreasedUsage: false)
+    }
+    
+    private func enrollInWeeklyPushNotification() {
+        let content = UNMutableNotificationContent()
+        content.body = "Your Energy Buddy has new information for you!"
+        content.sound = UNNotificationSound.default
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.weekday = 4 // Wednesday
+        dateComponents.hour = 19 // 7pm
+        dateComponents.minute = 0
+           
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: "game_weekly_reminder", content: content, trigger: trigger)
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
+        notificationCenter.add(request)
     }
     
     @objc func onPullToRefresh() {
