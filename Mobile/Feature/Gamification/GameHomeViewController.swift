@@ -149,11 +149,7 @@ class GameHomeViewController: AccountPickerViewController {
             welcomedUser = true
             if GameTaskStore.shared.tryFabWentBackToGame { // Welcome message after completing 'Try the FAB' task
                 GameTaskStore.shared.tryFabActivated = false
-                currentTask = nil
-                // TODO: Advance task index
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-                    self?.awardPoints(16) // TODO: Final point value
-                }
+                awardPoints(16, andAdvanceTaskIndex: true) // TODO: Final point value
             } else { // Normal welcome message
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
                     self?.energyBuddyView.playHappyAnimation()
@@ -163,14 +159,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         if didGoToHomeProfile {
-            energyBuddyView.setTaskIndicator(nil)
-            currentTask = nil
-            
-            awardPoints(5) // TODO: Final point value
-            
-            currentTaskIndex += 1
-            viewModel.updateGameUserTaskIndex(currentTaskIndex)
-            
+            awardPoints(5, andAdvanceTaskIndex: true) // TODO: Final point value
             didGoToHomeProfile = false
         }
         
@@ -308,6 +297,7 @@ class GameHomeViewController: AccountPickerViewController {
             self.tabBarController?.present(enrollVc, animated: true, completion: nil)
         } else if let tip = task.tip {
             let tipVc = GameTipViewController.create(withTip: tip)
+            tipVc.delegate = self
             self.tabBarController?.present(tipVc, animated: true, completion: nil)
         } else if let quiz = task.quiz {
             let quizVc = GameQuizViewController.create(withQuiz: quiz)
@@ -373,30 +363,40 @@ class GameHomeViewController: AccountPickerViewController {
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
-    private func awardPoints(_ points: Int) {
+    private func awardPoints(_ points: Int, andAdvanceTaskIndex advanceIndex: Bool = false) {
         let pointsBefore = self.points
         let pointsAfter = pointsBefore + points
         
-        if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: pointsBefore, pointsAfter: pointsAfter) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-                self.presentGift(unlockedGift)
+        if pointsAfter > pointsBefore { // So that this function can be used just to advance the task index
+            if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: pointsBefore, pointsAfter: pointsAfter) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                    self.presentGift(unlockedGift)
+                }
             }
+            
+            if let result = progressBar.setPoints(pointsAfter) {
+                if result == .halfWay {
+                    energyBuddyView.playSuperHappyAnimation()
+                    energyBuddyView.showHalfWayMessage()
+                } else if result == .levelUp {
+                    energyBuddyView.playSuperHappyAnimation(withSparkles: true)
+                    energyBuddyView.showLevelUpMessage()
+                }
+            } else {
+                energyBuddyView.playHappyAnimation()
+            }
+            
+            viewModel.debouncedPoints.accept(pointsAfter)
+            self.points = pointsAfter
         }
         
-        if let result = progressBar.setPoints(pointsAfter) {
-            if result == .halfWay {
-                energyBuddyView.playSuperHappyAnimation()
-                energyBuddyView.showHalfWayMessage()
-            } else if result == .levelUp {
-                energyBuddyView.playSuperHappyAnimation(withSparkles: true)
-                energyBuddyView.showLevelUpMessage()
-            }
-        } else {
-            energyBuddyView.playHappyAnimation()
+        if advanceIndex {
+            energyBuddyView.setTaskIndicator(nil)
+            currentTask = nil
+            
+            currentTaskIndex += 1
+            viewModel.updateGameUserTaskIndex(currentTaskIndex)
         }
-        
-        viewModel.debouncedPoints.accept(pointsAfter)
-        self.points = pointsAfter
     }
     
     private func presentGift(_ gift: Gift) {
@@ -455,9 +455,20 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
     }
 }
 
+extension GameHomeViewController: GameTipViewControllerDelegate {
+    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController) {
+        awardPoints(1, andAdvanceTaskIndex: true) // TODO: Final point value
+    }
+}
+
 extension GameHomeViewController: GameQuizViewControllerDelegate {
     
+    func gameQuizViewController(_ viewController: GameQuizViewController, wasDismissedWithCorrectAnswer correct: Bool) {
+        awardPoints(correct ? 2 : 1, andAdvanceTaskIndex: true) // TODO: Final point value
+    }
+    
     func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String) {
+        // TODO: When are points awarded in the View Tip scenario?
         tabBarController?.dismiss(animated: true) {
             if let tip = GameTaskStore.shared.tipWithId(tipId) {
                 let tipVc = GameTipViewController.create(withTip: tip)
@@ -493,24 +504,14 @@ extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
     func gameEnrollmentViewControllerDidPressNotInterested(_ gameEnrollmentViewController: GameEnrollmentViewController) {
         tabBarController?.dismiss(animated: true, completion: nil)
         
-        energyBuddyView.setTaskIndicator(nil)
-        currentTask = nil
-        
-        currentTaskIndex += 1
-        viewModel.updateGameUserTaskIndex(currentTaskIndex)
+        awardPoints(0, andAdvanceTaskIndex: true)
     }
 }
 
 extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         if didChangeStatus == .enroll {
-            energyBuddyView.setTaskIndicator(nil)
-            currentTask = nil
-            
-            awardPoints(5) // TODO: Final point value
-            
-            currentTaskIndex += 1
-            viewModel.updateGameUserTaskIndex(currentTaskIndex)
+            awardPoints(5, andAdvanceTaskIndex: true) // TODO: Final point value
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))

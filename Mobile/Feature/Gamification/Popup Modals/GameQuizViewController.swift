@@ -9,6 +9,8 @@
 import UIKit
 
 protocol GameQuizViewControllerDelegate: class {
+    /// Only fired if the user selects a quiz answer first
+    func gameQuizViewController(_ viewController: GameQuizViewController, wasDismissedWithCorrectAnswer correct: Bool)
     func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String)
 }
 
@@ -29,6 +31,8 @@ class GameQuizViewController: UIViewController {
     private var answerViews = [QuizAnswerView]()
     
     var quiz: GameQuiz! // Passed into create() function
+    
+    var selectedAnswerView: QuizAnswerView?
     
     static func create(withQuiz quiz: GameQuiz) -> GameQuizViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
@@ -83,7 +87,11 @@ class GameQuizViewController: UIViewController {
     }
         
     @objc private func dismiss(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: {
+            if let selectedAnswerView = self.selectedAnswerView {
+                self.delegate?.gameQuizViewController(self, wasDismissedWithCorrectAnswer: selectedAnswerView.correct)
+            }
+        })
     }
     
 }
@@ -91,6 +99,8 @@ class GameQuizViewController: UIViewController {
 extension GameQuizViewController: QuizAnswerViewDelegate {
     func quizAnswerViewWasTapped(_ view: QuizAnswerView) {
         answerStackView.isUserInteractionEnabled = false
+        
+        selectedAnswerView = view
 
         // If answered incorrectly, mark the correct answer
         if !view.correct {

@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol GameTipViewControllerDelegate: class {
+    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController)
+}
+
 class GameTipViewController: UIViewController {
+    
+    weak var delegate: GameTipViewControllerDelegate?
     
     let coreDataManager = GameCoreDataManager()
     
@@ -94,7 +100,9 @@ class GameTipViewController: UIViewController {
     }
     
     @objc private func dismiss(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: {
+            self.delegate?.gameTipViewControllerWasDismissed(self)
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

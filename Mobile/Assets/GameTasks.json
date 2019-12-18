@@ -1,14 +1,5 @@
 [
     {
-        "type": "homeprofile"
-    },
-    {
-        "type": "ebill"
-    },
-    {
-        "type": "fab"
-    },
-    {
         "type": "tip",
         "tip": {
             "id": "1234",
@@ -19,6 +10,15 @@
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
+    },
+    {
+        "type": "homeprofile"
+    },
+    {
+        "type": "ebill"
+    },
+    {
+        "type": "fab"
     },
     {
         "type": "tip",
