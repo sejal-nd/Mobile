@@ -300,22 +300,23 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func enrollInWeeklyPushNotification() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
+        
         let content = UNMutableNotificationContent()
         content.body = "Your Energy Buddy has new information for you!"
         content.sound = UNNotificationSound.default
         
-        var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
-        dateComponents.weekday = 4 // Wednesday
-        dateComponents.hour = 19 // 7pm
-        dateComponents.minute = 0
-           
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let request = UNNotificationRequest(identifier: "game_weekly_reminder", content: content, trigger: trigger)
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
-        notificationCenter.add(request)
+        if let weekFromNow = Calendar.current.date(byAdding: .day, value: 7, to: Date.now) {
+            var comps = Calendar.current.dateComponents([.year, .month, .day], from: weekFromNow)
+            comps.hour = 19 // 7pm
+            comps.minute = 0
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)
+            let request = UNNotificationRequest(identifier: "game_weekly_reminder", content: content, trigger: trigger)
+            notificationCenter.add(request)
+        }
+
     }
     
     @objc func onPullToRefresh() {
