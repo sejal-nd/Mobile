@@ -63,6 +63,7 @@ class GameTipViewController: UIViewController {
         
         titleLabel.textColor = .deepGray
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
+        titleLabel.text = NSLocalizedString("I have a tip for you!", comment: "")
         
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
@@ -90,9 +91,13 @@ class GameTipViewController: UIViewController {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
 
-        var detailText = tip.description
-        if let numPeopleStr = numberFormatter.string(for: tip.numPeople) {
-            detailText += "\n\nThis worked for \(numPeopleStr) people and can save up to $\(tip.savingsPerYear) per year."
+        var detailText = tip.title + "\n\n" + tip.description
+        if let numPeopleStr = numberFormatter.string(for: tip.numPeople), let savings = tip.savingsPerYear {
+            detailText += "\n\nThis worked for \(numPeopleStr) people and can save up to $\(savings) per year."
+        } else if let numPeopleStr = numberFormatter.string(for: tip.numPeople) {
+            detailText += "\n\nThis worked for \(numPeopleStr) people."
+        } else if let savings = tip.savingsPerYear {
+            detailText += "\n\nThis can save up to $\(savings) per year."
         }
         detailLabel.text = detailText
         

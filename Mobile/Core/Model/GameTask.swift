@@ -36,8 +36,8 @@ struct GameTip: Mappable {
     let id: String
     let title: String
     let description: String
-    let numPeople: Int
-    let savingsPerYear: Int
+    let numPeople: Int?
+    let savingsPerYear: Int?
     let serviceType: String
     let rentOrOwn: String
     
@@ -45,8 +45,8 @@ struct GameTip: Mappable {
         id = try map.from("id")
         title = try map.from("title")
         description = try map.from("description")
-        numPeople = try map.from("numPeople")
-        savingsPerYear = try map.from("savingsPerYear")
+        numPeople = map.optionalFrom("numPeople")
+        savingsPerYear = map.optionalFrom("savingsPerYear")
         serviceType = try map.from("serviceType")
         rentOrOwn = try map.from("rentOrOwn")
     }
