@@ -17,7 +17,7 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
     
     var gifts = [Gift]()
     
-    let currPoints = UserDefaults.standard.integer(forKey: UserDefaultKeys.gamePointsLocal)
+    let currPoints = UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal)
     
     var selectedGiftId: String? {
         get {

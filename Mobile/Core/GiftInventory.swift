@@ -26,7 +26,7 @@ enum GiftType: String {
 struct Gift {
     let id: String
     let type: GiftType
-    let requiredPoints: Int
+    let requiredPoints: Double
     let thumbImage: UIImage
     let dayImage: UIImage?
     let nightImage: UIImage?
@@ -48,7 +48,7 @@ class GiftInventory {
         Gift(id: "bg_susans", type: .background, requiredPoints: 112, thumbImage: UIImage(named: "bg_susans_thumb")!, dayImage: UIImage(named: "bg_susans_day")!, nightImage: UIImage(named: "bg_susans_night")!, image: nil),
     ]
     
-    func giftUnlockedWhen(pointsBefore: Int, pointsAfter: Int) -> Gift? {
+    func giftUnlockedWhen(pointsBefore: Double, pointsAfter: Double) -> Gift? {
         let giftsUnlockedBefore = inventory.filter { pointsBefore >= $0.requiredPoints }
         let giftsUnlockedAfter = inventory.filter { pointsAfter >= $0.requiredPoints }
         if giftsUnlockedAfter.count > giftsUnlockedBefore.count {
@@ -70,7 +70,7 @@ class GiftInventory {
      * adjusted by dev/QA, or if the user logs into multiple gamification accounts, it resolves the
      * issue of a locked item being selected.
      */
-    func auditUserDefaults(userPoints: Int) {
+    func auditUserDefaults(userPoints: Double) {
         if let selectedBgId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground),
             let selectedBg = GiftInventory.shared.gift(withId: selectedBgId),
             selectedBg.requiredPoints > userPoints {

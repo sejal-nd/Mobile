@@ -12,22 +12,12 @@ import Mapper
 struct GameUser: Mappable {
     var onboardingComplete: Bool
     var optedOut: Bool
-    var points: Int
+    var points: Double
     var taskIndex: Int
     var isClusterTwo: Bool
     let pilotGroup: String?
         
     init(map: Mapper) throws {
-//        onboardingComplete = map.optionalFrom("onboardingComplete") ?? false
-//        optedOut = map.optionalFrom("optedOut") ?? false
-//
-//        let pointStr: String? = map.optionalFrom("points")
-//        if pointStr != nil, let pointInt = Int(pointStr!) {
-//            points = pointInt
-//        } else {
-//            points = 0
-//        }
-        
         if let onboardingCompleteStr: String = map.optionalFrom("onboardingComplete") {
             onboardingComplete = onboardingCompleteStr.lowercased() == "true"
         } else {
@@ -41,7 +31,7 @@ struct GameUser: Mappable {
         }
         
         if let pointsStr: String = map.optionalFrom("points") {
-            points = Int(pointsStr) ?? 0
+            points = Double(pointsStr) ?? 0
         } else {
             points = 0
         }
@@ -61,8 +51,11 @@ struct GameUser: Mappable {
         pilotGroup = map.optionalFrom("pilotGroup")
     }
     
-    // For temp testing only
-    init(onboardingComplete: Bool, optedOut: Bool, points: Int) {
+    init(onboardingComplete: Bool, optedOut: Bool, points: Double) {
+        if Environment.shared.environmentName != .aut {
+            fatalError("init only available for tests")
+        }
+        
         var map = [String: Any]()
         map["onboardingComplete"] = onboardingComplete ? "true" : "false"
         map["optedOut"] = optedOut ? "true" : "false"

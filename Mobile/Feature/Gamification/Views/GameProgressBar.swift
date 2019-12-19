@@ -18,8 +18,8 @@ class GameProgressBar: UIView {
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var progressWidthConstraint: NSLayoutConstraint!
     
-    private var pointsPerLevel = 16
-    private var currentPoints = 0
+    private var pointsPerLevel: Double = 16
+    private var currentPoints: Double = 0
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -51,10 +51,10 @@ class GameProgressBar: UIView {
     }
     
     
-    func setPoints(_ points: Int, animated: Bool = true) -> SetPointsResult? {
+    func setPoints(_ points: Double, animated: Bool = true) -> SetPointsResult? {
         let totalBarWidth = innerBackgroundView.frame.size.width
-        let currentLevelProgress = currentPoints % pointsPerLevel
-        let desiredLevelProgress = points % pointsPerLevel
+        let currentLevelProgress = currentPoints.truncatingRemainder(dividingBy: pointsPerLevel)
+        let desiredLevelProgress = points.truncatingRemainder(dividingBy: pointsPerLevel)
         let currentProgressWidth = (CGFloat(currentLevelProgress) / CGFloat(pointsPerLevel)) * totalBarWidth
         let desiredProgressWidth = (CGFloat(desiredLevelProgress) / CGFloat(pointsPerLevel)) * totalBarWidth
         

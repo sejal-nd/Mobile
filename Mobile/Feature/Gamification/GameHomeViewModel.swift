@@ -27,7 +27,7 @@ class GameHomeViewModel {
     var selectedSegmentIndex = 0
     let selectedCoinView = BehaviorRelay<DailyInsightCoinView?>(value: nil)
     
-    let debouncedPoints = BehaviorRelay<Int?>(value: nil)
+    let debouncedPoints = BehaviorRelay<Double?>(value: nil)
     
     var fetchDisposable: Disposable?
     
@@ -112,7 +112,7 @@ class GameHomeViewModel {
             })
     }
     
-    func updateGameUserPoints(_ points: Int) {
+    func updateGameUserPoints(_ points: Double) {
         guard let accountDetail = accountDetail.value else { return }
         let params = ["points": points]
         self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)

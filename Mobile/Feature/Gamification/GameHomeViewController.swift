@@ -53,9 +53,9 @@ class GameHomeViewController: AccountPickerViewController {
     var didGoToHomeProfile = false
     var viewDidAppear = false
     
-    var points: Int {
+    var points: Double {
         get {
-            return UserDefaults.standard.integer(forKey: UserDefaultKeys.gamePointsLocal)
+            return UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.gamePointsLocal)
@@ -156,7 +156,7 @@ class GameHomeViewController: AccountPickerViewController {
             if GameTaskStore.shared.tryFabWentBackToGame {
                 if loadedInitialGameUser {
                     GameTaskStore.shared.tryFabActivated = false
-                    awardPoints(16, andAdvanceTaskIndex: true) // TODO: Final point value
+                    awardPoints(16, andAdvanceTaskIndex: true)
                 }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
@@ -167,7 +167,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         if didGoToHomeProfile {
-            awardPoints(5, andAdvanceTaskIndex: true) // TODO: Final point value
+            awardPoints(8, andAdvanceTaskIndex: true)
             didGoToHomeProfile = false
         }
         
@@ -408,7 +408,7 @@ class GameHomeViewController: AccountPickerViewController {
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
-    private func awardPoints(_ points: Int, andAdvanceTaskIndex advanceIndex: Bool = false) {
+    private func awardPoints(_ points: Double, andAdvanceTaskIndex advanceIndex: Bool = false) {
         let pointsBefore = self.points
         let pointsAfter = pointsBefore + points
         
@@ -492,7 +492,12 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
             
-            awardPoints(decreasedUsage ? 2 : 1)
+            // Dual fuel customers get half the points here because they have twice as many coins!
+            if viewModel.accountDetail.value!.serviceType?.uppercased() == "GAS/ELECTRIC" {
+                awardPoints(decreasedUsage ? 1 : 0.5)
+            } else {
+                awardPoints(decreasedUsage ? 2 : 1)
+            }
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
             viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
@@ -506,8 +511,8 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
 // MARK: - GameTipViewControllerDelegate
 extension GameHomeViewController: GameTipViewControllerDelegate {
     
-    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Int) {
-        awardPoints(1 + quizPoints, andAdvanceTaskIndex: true) // TODO: Final point value
+    func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Double) {
+        awardPoints(3 + quizPoints, andAdvanceTaskIndex: true)
     }
 }
 
@@ -515,13 +520,13 @@ extension GameHomeViewController: GameTipViewControllerDelegate {
 extension GameHomeViewController: GameQuizViewControllerDelegate {
     
     func gameQuizViewController(_ viewController: GameQuizViewController, wasDismissedWithCorrectAnswer correct: Bool) {
-        awardPoints(correct ? 2 : 1, andAdvanceTaskIndex: true) // TODO: Final point value
+        awardPoints(correct ? 4 : 3, andAdvanceTaskIndex: true)
     }
     
     func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String, withCorrectAnswer correct: Bool) {
         tabBarController?.dismiss(animated: true) {
             if let tip = GameTaskStore.shared.tipWithId(tipId) {
-                let tipVc = GameTipViewController.create(withTip: tip, quizPoints: correct ? 2 : 1) // TODO: Final point value
+                let tipVc = GameTipViewController.create(withTip: tip, quizPoints: correct ? 4 : 3)
                 self.tabBarController?.present(tipVc, animated: true, completion: nil)
             }
         }
@@ -565,7 +570,7 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         if didChangeStatus == .enroll {
-            awardPoints(5, andAdvanceTaskIndex: true) // TODO: Final point value
+            awardPoints(8, andAdvanceTaskIndex: true)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
@@ -584,7 +589,7 @@ extension GameHomeViewController: WeeklyInsightViewControllerDelegate {
     func weeklyInsightViewController(_ weeklyInsightViewController: WeeklyInsightViewController, wasDismissedAfterViewingUnread viewedUnread: Bool) {
         if viewedUnread {
             viewModel.weeklyInsightPublishSubject.onNext(())
-            awardPoints(3) // TODO: Final point value
+            awardPoints(3)
         }
     }
 }
