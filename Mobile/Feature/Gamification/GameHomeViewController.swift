@@ -373,6 +373,12 @@ class GameHomeViewController: AccountPickerViewController {
                 currentTask = nil
                 return
             }
+            
+//            let secondsSinceLastTask = abs(lastTaskDate.interval(ofComponent: .second, fromDate: Date.now, usingCalendar: Calendar.current))
+//            if secondsSinceLastTask < 10 {
+//                currentTask = nil
+//                return
+//            }
         }
         
         if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
