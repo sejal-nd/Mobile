@@ -9,10 +9,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnergyBuddyView" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundImageView" destination="KF7-NT-Csz" id="JRo-ay-SYS"/>
+                <outlet property="energyBuddyAccessoryImageView" destination="22H-Am-WyA" id="YkH-8v-VIt"/>
                 <outlet property="energyBuddyBodyLottieView" destination="H3T-aX-8wS" id="zwV-lo-1ub"/>
                 <outlet property="energyBuddyContainerTopConstraint" destination="wLW-XB-JqD" id="3XE-IC-0D7"/>
                 <outlet property="energyBuddyContainerView" destination="npW-aj-e1E" id="Yfp-0q-E8o"/>
                 <outlet property="energyBuddyFaceLottieView" destination="62N-d7-gSV" id="Kwk-yD-BKG"/>
+                <outlet property="energyBuddyHatImageView" destination="8sp-m8-26W" id="na7-LI-rtL"/>
                 <outlet property="energyBuddyParticleLottieView" destination="AGB-em-2xK" id="a81-2h-4nL"/>
                 <outlet property="skyImageView" destination="6mO-Hc-EBJ" id="jbQ-ZG-hST"/>
                 <outlet property="speechBubbleContainerView" destination="V0c-T2-dyD" id="WaT-L9-onK"/>
@@ -51,6 +53,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8sp-m8-26W">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="22H-Am-WyA">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                        </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGB-em-2xK">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,18 +66,26 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="8sp-m8-26W" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="1aX-uS-uCm"/>
+                        <constraint firstItem="22H-Am-WyA" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="5Q3-1l-XHy"/>
+                        <constraint firstAttribute="trailing" secondItem="8sp-m8-26W" secondAttribute="trailing" id="7xO-Mr-bPi"/>
                         <constraint firstItem="H3T-aX-8wS" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="FBO-b7-5oA"/>
                         <constraint firstAttribute="trailing" secondItem="62N-d7-gSV" secondAttribute="trailing" id="KLY-b8-ZGn"/>
                         <constraint firstAttribute="bottom" secondItem="H3T-aX-8wS" secondAttribute="bottom" id="QOR-f8-yHe"/>
+                        <constraint firstItem="22H-Am-WyA" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="TVy-i5-MdH"/>
                         <constraint firstAttribute="trailing" secondItem="AGB-em-2xK" secondAttribute="trailing" id="WlB-Rc-0c6"/>
                         <constraint firstItem="AGB-em-2xK" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="Ze8-ad-jVU"/>
+                        <constraint firstAttribute="bottom" secondItem="8sp-m8-26W" secondAttribute="bottom" id="aXB-y0-xkr"/>
                         <constraint firstItem="62N-d7-gSV" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="csa-mj-hqY"/>
                         <constraint firstItem="62N-d7-gSV" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="e0l-lm-3dc"/>
+                        <constraint firstItem="8sp-m8-26W" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="jtd-Vb-Xda"/>
                         <constraint firstItem="AGB-em-2xK" firstAttribute="top" secondItem="npW-aj-e1E" secondAttribute="top" id="lnb-3N-GUi"/>
                         <constraint firstAttribute="bottom" secondItem="62N-d7-gSV" secondAttribute="bottom" id="qNn-gn-9tJ"/>
                         <constraint firstAttribute="trailing" secondItem="H3T-aX-8wS" secondAttribute="trailing" id="toy-pb-KKH"/>
                         <constraint firstAttribute="bottom" secondItem="AGB-em-2xK" secondAttribute="bottom" id="vFL-ca-fzi"/>
+                        <constraint firstAttribute="trailing" secondItem="22H-Am-WyA" secondAttribute="trailing" id="y6B-AL-xb3"/>
                         <constraint firstItem="H3T-aX-8wS" firstAttribute="leading" secondItem="npW-aj-e1E" secondAttribute="leading" id="yGf-RO-ZLM"/>
+                        <constraint firstAttribute="bottom" secondItem="22H-Am-WyA" secondAttribute="bottom" id="zzP-29-otq"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0c-T2-dyD">

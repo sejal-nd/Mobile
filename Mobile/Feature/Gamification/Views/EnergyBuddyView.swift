@@ -28,6 +28,8 @@ class EnergyBuddyView: UIView {
     
     @IBOutlet weak var energyBuddyBodyLottieView: UIView!
     @IBOutlet weak var energyBuddyFaceLottieView: UIView!
+    @IBOutlet weak var energyBuddyHatImageView: UIImageView!
+    @IBOutlet weak var energyBuddyAccessoryImageView: UIImageView!
     @IBOutlet weak var energyBuddyParticleLottieView: UIView!
     
     var bodyAnimation: AnimationView?
@@ -96,16 +98,16 @@ class EnergyBuddyView: UIView {
         
         if let selectedHatId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat),
             let selectedHat = GiftInventory.shared.gift(withId: selectedHatId) {
-            
+            energyBuddyHatImageView.image = selectedHat.image
         } else {
-            
+            energyBuddyHatImageView.image = nil
         }
         
         if let selectedAccessoryId = UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory),
             let selectedAccessory = GiftInventory.shared.gift(withId: selectedAccessoryId) {
-            
+            energyBuddyAccessoryImageView.image = selectedAccessory.image
         } else {
-            
+            energyBuddyAccessoryImageView.image = nil
         }        
     }
     

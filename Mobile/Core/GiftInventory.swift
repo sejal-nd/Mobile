@@ -38,6 +38,10 @@ class GiftInventory {
     static let shared = GiftInventory()
 
     private let inventory: [Gift] = [
+        Gift(id: "hat_bgehardhat", type: .hat, requiredPoints: 0, thumbImage: UIImage(named: "hat_bgehardhat_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "hat_bgehardhat")!),
+        Gift(id: "hat_maryland", type: .hat, requiredPoints: 0, thumbImage: UIImage(named: "hat_maryland_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "hat_maryland")!),
+        Gift(id: "acc_glasses", type: .accessory, requiredPoints: 0, thumbImage: UIImage(named: "acc_glasses_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "acc_glasses")!),
+        Gift(id: "acc_safetyglasses", type: .accessory, requiredPoints: 0, thumbImage: UIImage(named: "acc_safetyglasses_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "acc_safetyglasses")!),
         Gift(id: "bg_bay", type: .background, requiredPoints: 0, thumbImage: UIImage(named: "bg_bay_thumb")!, dayImage: UIImage(named: "bg_bay_day")!, nightImage: UIImage(named: "bg_bay_night")!, image: nil),
         Gift(id: "bg_falltrees", type: .background, requiredPoints: 16, thumbImage: UIImage(named: "bg_falltrees_thumb")!, dayImage: UIImage(named: "bg_falltrees_day")!, nightImage: UIImage(named: "bg_falltrees_night")!, image: nil),
         Gift(id: "bg_farm", type: .background, requiredPoints: 32, thumbImage: UIImage(named: "bg_farm_thumb")!, dayImage: UIImage(named: "bg_farm_day")!, nightImage: UIImage(named: "bg_farm_night")!, image: nil),
