@@ -33,6 +33,9 @@
         }
     },
     {
+        "type": "homeprofile"
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "1235",
@@ -43,9 +46,6 @@
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
-    },
-    {
-        "type": "homeprofile"
     },
     {
         "type": "tip",
