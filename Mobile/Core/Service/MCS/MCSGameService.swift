@@ -59,6 +59,9 @@ class MCSGameService: GameService {
                 }
                 UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
                 UserDefaults.standard.set(gameUser.optedOut, forKey: UserDefaultKeys.gameOptedOutLocal)
+                if gameUser.optedOut {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
+                }
                 return gameUser
             }
     }

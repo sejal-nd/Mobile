@@ -56,4 +56,5 @@ struct UserDefaultKeys {
     static let gameSelectedHat = "kGameSelectedHat"
     static let gameSelectedAccessory = "kGameSelectedAccessory"
     static let gameLastTaskDate = "kGameLastTaskDate"
+    static let gameEnergyBuddyUpdatesAlertPreference = "kGameEnergyBuddyUpdatesAlertPref"
 }
