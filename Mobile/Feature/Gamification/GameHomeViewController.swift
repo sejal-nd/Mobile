@@ -537,11 +537,11 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
 // MARK: - GameRewardViewControllerDelegate
 extension GameHomeViewController: GameRewardViewControllerDelegate {
     
-    func gameRewardViewControllerDidSetGift(_ gameRewardViewController: GameRewardViewController) {
+    func gameRewardViewController(_ gameRewardViewController: GameRewardViewController, didSetGift gift: Gift) {
         energyBuddyView.updateBuddy()
         tabBarController?.dismiss(animated: true, completion: {
             self.energyBuddyView.playSuperHappyAnimation(withSparkles: false, withHearts: true)
-            self.energyBuddyView.showNewGiftAppliedMessage()
+            self.energyBuddyView.showNewGiftAppliedMessage(forGift: gift)
         })
     }
 }

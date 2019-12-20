@@ -27,10 +27,34 @@ struct Gift {
     let id: String
     let type: GiftType
     let requiredPoints: Double
-    let thumbImage: UIImage
-    let dayImage: UIImage?
-    let nightImage: UIImage?
-    let image: UIImage?
+    let customMessage: String?
+    
+    init(id: String, type: GiftType, requiredPoints: Double, customMessage: String? = nil) {
+        self.id = id
+        self.type = type
+        self.requiredPoints = requiredPoints
+        self.customMessage = customMessage
+    }
+    
+    // All gifts should have a thumbImage
+    var thumbImage: UIImage? {
+        UIImage(named: "\(id)_thumb")
+    }
+    
+    // Backgrounds only
+    var dayImage: UIImage? {
+        UIImage(named: "\(id)_day")
+    }
+    
+    // Backgrounds only
+    var nightImage: UIImage? {
+        UIImage(named: "\(id)_night")
+    }
+    
+    // Hats + Accessories only
+    var image: UIImage? {
+        UIImage(named: id)
+    }
 }
 
 class GiftInventory {
@@ -38,18 +62,61 @@ class GiftInventory {
     static let shared = GiftInventory()
 
     private let inventory: [Gift] = [
-        Gift(id: "hat_bgehardhat", type: .hat, requiredPoints: 0, thumbImage: UIImage(named: "hat_bgehardhat_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "hat_bgehardhat")!),
-        Gift(id: "hat_maryland", type: .hat, requiredPoints: 0, thumbImage: UIImage(named: "hat_maryland_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "hat_maryland")!),
-        Gift(id: "acc_glasses", type: .accessory, requiredPoints: 0, thumbImage: UIImage(named: "acc_glasses_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "acc_glasses")!),
-        Gift(id: "acc_safetyglasses", type: .accessory, requiredPoints: 0, thumbImage: UIImage(named: "acc_safetyglasses_thumb")!, dayImage: nil, nightImage: nil, image: UIImage(named: "acc_safetyglasses")!),
-        Gift(id: "bg_bay", type: .background, requiredPoints: 0, thumbImage: UIImage(named: "bg_bay_thumb")!, dayImage: UIImage(named: "bg_bay_day")!, nightImage: UIImage(named: "bg_bay_night")!, image: nil),
-        Gift(id: "bg_falltrees", type: .background, requiredPoints: 16, thumbImage: UIImage(named: "bg_falltrees_thumb")!, dayImage: UIImage(named: "bg_falltrees_day")!, nightImage: UIImage(named: "bg_falltrees_night")!, image: nil),
-        Gift(id: "bg_farm", type: .background, requiredPoints: 32, thumbImage: UIImage(named: "bg_farm_thumb")!, dayImage: UIImage(named: "bg_farm_day")!, nightImage: UIImage(named: "bg_farm_night")!, image: nil),
-        Gift(id: "bg_forest", type: .background, requiredPoints: 48, thumbImage: UIImage(named: "bg_forest_thumb")!, dayImage: UIImage(named: "bg_forest_day")!, nightImage: UIImage(named: "bg_forest_night")!, image: nil),
-        Gift(id: "bg_mdresidential", type: .background, requiredPoints: 64, thumbImage: UIImage(named: "bg_mdresidential_thumb")!, dayImage: UIImage(named: "bg_mdresidential_day")!, nightImage: UIImage(named: "bg_mdresidential_night")!, image: nil),
-        Gift(id: "bg_skipjack", type: .background, requiredPoints: 80, thumbImage: UIImage(named: "bg_skipjack_thumb")!, dayImage: UIImage(named: "bg_skipjack_day")!, nightImage: UIImage(named: "bg_skipjack_night")!, image: nil),
-        Gift(id: "bg_snow", type: .background, requiredPoints: 96, thumbImage: UIImage(named: "bg_snow_thumb")!, dayImage: UIImage(named: "bg_snow_day")!, nightImage: UIImage(named: "bg_snow_night")!, image: nil),
-        Gift(id: "bg_susans", type: .background, requiredPoints: 112, thumbImage: UIImage(named: "bg_susans_thumb")!, dayImage: UIImage(named: "bg_susans_day")!, nightImage: UIImage(named: "bg_susans_night")!, image: nil),
+        Gift(id: "bg_bay", type: .background, requiredPoints: 16),
+        Gift(id: "hat_maryland", type: .hat, requiredPoints: 32),
+        Gift(id: "bg_snow", type: .background, requiredPoints: 48),
+        Gift(id: "hat_antlers", type: .hat, requiredPoints: 64),
+        Gift(id: "hat_beaniegreen", type: .hat, requiredPoints: 80),
+        Gift(id: "acc_hornrimmed", type: .accessory, requiredPoints: 96),
+        Gift(id: "bg_mdresidential", type: .background, requiredPoints: 112),
+        Gift(id: "hat_antlers", type: .hat, requiredPoints: 128),
+        Gift(id: "bg_mdresidential", type: .background, requiredPoints: 144),
+        Gift(id: "hat_antlers", type: .hat, requiredPoints: 160),
+        Gift(id: "hat_bgehardhat", type: .hat, requiredPoints: 176, customMessage: "Safety first!"),
+        Gift(id: "acc_safetyglasses", type: .accessory, requiredPoints: 192),
+        Gift(id: "hat_antlers", type: .hat, requiredPoints: 208),
+        // Cherry blossoms BG - 224
+        Gift(id: "hat_sprout", type: .hat, requiredPoints: 240),
+        Gift(id: "hat_flowercrown", type: .hat, requiredPoints: 256),
+        Gift(id: "acc_cateye", type: .accessory, requiredPoints: 272),
+        Gift(id: "hat_antlers", type: .hat, requiredPoints: 288),
+        Gift(id: "bg_skipjack", type: .background, requiredPoints: 304),
+        Gift(id: "hat_antlers", type: .hat, requiredPoints: 320),
+        Gift(id: "hat_crab", type: .hat, requiredPoints: 336),
+        Gift(id: "acc_sunglasses", type: .accessory, requiredPoints: 352),
+        Gift(id: "hat_sailor", type: .hat, requiredPoints: 368),
+        Gift(id: "bg_susans", type: .background, requiredPoints: 384),
+        Gift(id: "hat_sunhat", type: .hat, requiredPoints: 400),
+        Gift(id: "hat_fancy", type: .hat, requiredPoints: 416),
+        Gift(id: "hat_beretred", type: .hat, requiredPoints: 432),
+        Gift(id: "acc_glasses", type: .accessory, requiredPoints: 448),
+        Gift(id: "bg_forest", type: .background, requiredPoints: 464),
+        Gift(id: "hat_oriole", type: .hat, requiredPoints: 480),
+        Gift(id: "hat_dog", type: .hat, requiredPoints: 496, customMessage: "Woof!"),
+        Gift(id: "hat_cat", type: .hat, requiredPoints: 512, customMessage: "Meow!"),
+        Gift(id: "bg_farm", type: .background, requiredPoints: 528),
+        Gift(id: "hat_strawhat", type: .hat, requiredPoints: 544),
+        Gift(id: "hat_horse", type: .hat, requiredPoints: 560, customMessage: "Neigh!"),
+        Gift(id: "hat_rodent", type: .hat, requiredPoints: 576),
+        Gift(id: "hat_rabbit", type: .hat, requiredPoints: 592),
+        // Baltimore Harbor BG - 608
+        Gift(id: "hat_beaniefootball", type: .hat, requiredPoints: 624),
+        Gift(id: "hat_capbaseball", type: .hat, requiredPoints: 640, customMessage: "Play ball!"),
+        // Annapolis BG - 656
+        Gift(id: "hat_tophat", type: .hat, requiredPoints: 672),
+        Gift(id: "acc_monocle", type: .accessory, requiredPoints: 688),
+        Gift(id: "hat_bow", type: .hat, requiredPoints: 704),
+        // Elicott City BG - 720
+        Gift(id: "hat_capgreen", type: .hat, requiredPoints: 736),
+        // Striped Bow Hat - 752
+        // Historic MD BG - 768
+        Gift(id: "hat_colonial", type: .hat, requiredPoints: 784, customMessage: "How do you do?"),
+        Gift(id: "hat_cowboy", type: .hat, requiredPoints: 800, customMessage: "Howdy!"),
+        Gift(id: "bg_falltrees", type: .background, requiredPoints: 816),
+        Gift(id: "hat_beretblack", type: .hat, requiredPoints: 832),
+        Gift(id: "hat_paper", type: .hat, requiredPoints: 848),
+        // Space BG - 864
+        // Eco Crown Hat - 880
     ]
     
     func giftUnlockedWhen(pointsBefore: Double, pointsAfter: Double) -> Gift? {

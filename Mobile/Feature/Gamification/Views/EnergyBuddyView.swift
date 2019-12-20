@@ -233,9 +233,13 @@ class EnergyBuddyView: UIView {
         animateSpeechBubble()
     }
     
-    func showNewGiftAppliedMessage() {
-        let randomInt = Int.random(in: 0..<newGiftAppliedMessages.count)
-        speechBubbleLabel.text = newGiftAppliedMessages[randomInt]
+    func showNewGiftAppliedMessage(forGift gift: Gift) {
+        if let customMessage = gift.customMessage {
+            speechBubbleLabel.text = customMessage
+        } else {
+            let randomInt = Int.random(in: 0..<newGiftAppliedMessages.count)
+            speechBubbleLabel.text = newGiftAppliedMessages[randomInt]
+        }
         
         animateSpeechBubble()
     }
