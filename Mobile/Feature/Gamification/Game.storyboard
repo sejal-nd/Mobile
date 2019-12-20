@@ -333,10 +333,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FM4-m6-wid" customClass="GameProgressBar" customModule="BGE" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="253" width="368" height="20"/>
+                                                <rect key="frame" x="16" y="253" width="348" height="20"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2k-WS-7yM">
-                                                        <rect key="frame" x="4" y="4" width="360" height="12"/>
+                                                        <rect key="frame" x="4" y="4" width="340" height="12"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHC-fP-56e">
@@ -558,7 +558,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Uzy-Cz-66l" secondAttribute="trailing" constant="16" id="8ke-rP-5Rf"/>
                                             <constraint firstItem="dK2-4u-l6B" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" constant="16" id="EkX-bt-KHH"/>
                                             <constraint firstAttribute="trailing" secondItem="dK2-4u-l6B" secondAttribute="trailing" constant="16" id="HyJ-jA-f5s"/>
-                                            <constraint firstAttribute="trailing" secondItem="FM4-m6-wid" secondAttribute="trailing" constant="30" id="JW2-tt-3gw"/>
+                                            <constraint firstAttribute="trailing" secondItem="FM4-m6-wid" secondAttribute="trailing" constant="50" id="JW2-tt-3gw"/>
                                             <constraint firstItem="dK2-4u-l6B" firstAttribute="top" secondItem="FM4-m6-wid" secondAttribute="bottom" constant="43" id="SSM-4P-Nsu"/>
                                             <constraint firstItem="FM4-m6-wid" firstAttribute="leading" secondItem="3th-xB-uV2" secondAttribute="leading" constant="16" id="Vxx-Az-0d3"/>
                                             <constraint firstItem="ud1-ij-bxm" firstAttribute="top" secondItem="Uzy-Cz-66l" secondAttribute="bottom" constant="4" id="WTo-Z2-Fb0"/>
