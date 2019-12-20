@@ -25,6 +25,9 @@ class MCSGameService: GameService {
                 
                 GiftInventory.shared.auditUserDefaults(userPoints: gameUser.points)
                 
+                _ = self.updateGameUser(accountNumber: accountNumber, keyValues: ["lastLogin": Date.now.apiFormatString])
+                    .subscribe()
+                
                 if gameUser.pilotGroup?.lowercased() == "experimental" {
                     UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
                     UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
