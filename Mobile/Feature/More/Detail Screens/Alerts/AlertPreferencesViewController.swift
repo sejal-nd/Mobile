@@ -301,7 +301,7 @@ extension AlertPreferencesViewController: UITableViewDataSource {
         switch option {
         case .highUsage:
             toggleVariable = viewModel.highUsage
-            textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: viewModel.billThreshold, placeHolder: viewModel.billThresholdPlacheHolder.value, isNumeric: true)
+            textFieldOptions = AlertPreferencesViewModel.AlertPrefTextFieldOptions(text: viewModel.billThreshold, placeHolder: viewModel.billThresholdPlacheHolder.value, textFieldType: .currency)
         case .outage:
             toggleVariable = viewModel.outage
         case .scheduledMaintenanceOutage:

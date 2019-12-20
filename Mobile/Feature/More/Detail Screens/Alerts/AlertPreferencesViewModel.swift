@@ -414,12 +414,19 @@ class AlertPreferencesViewModel {
     struct AlertPrefTextFieldOptions {
         var text: BehaviorRelay<String>?
         var placeholder: String?
-        var isNumeric: Bool
+        var textFieldType: TextFieldType
         
-        init(text: BehaviorRelay<String>? = nil, placeHolder: String? = nil, isNumeric: Bool = false) {
+        enum TextFieldType {
+            case string
+            case number
+            case decimal
+            case currency
+        }
+        
+        init(text: BehaviorRelay<String>? = nil, placeHolder: String? = nil, textFieldType: TextFieldType = .string) {
             self.text = text
             self.placeholder = placeHolder
-            self.isNumeric = isNumeric
+            self.textFieldType = textFieldType
         }
     }
 }

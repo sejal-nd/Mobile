@@ -59,8 +59,33 @@ class AlertPreferencesTableViewCell: UITableViewCell {
             textFieldOptions.text?.bind(to: textField.textField.rx.text).disposed(by: disposeBag)
             textField.placeholder = textFieldOptions.placeholder
             textField.accessibilityLabel = textFieldOptions.placeholder
-            if textFieldOptions.isNumeric {
+            
+            switch textFieldOptions.textFieldType {
+            case .string:
+                textField.textField.keyboardType = .default
+            case .number:
                 textField.textField.keyboardType = .numberPad
+            case .decimal:
+                textField.textField.keyboardType = .decimalPad
+            case .currency:
+                textField.textField.keyboardType = .decimalPad
+                textField.textField.rx.text.orEmpty.asObservable()
+                    .skip(1)
+                    .subscribe(onNext: { [weak self] entry in
+                        guard let self = self else { return }
+                        
+                        let amount: Double
+                        let textStr = String(entry.filter { "0123456789".contains($0) })
+                        if let intVal = Double(textStr) {
+                            amount = intVal / 100
+                        } else {
+                            amount = 0
+                        }
+                        
+                        self.textField.textField.text = amount.currencyString
+                        //                        self.viewModel.paymentAmount.value = amount
+                    })
+                    .disposed(by: disposeBag)
             }
         }
     }
