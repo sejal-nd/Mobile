@@ -122,13 +122,15 @@ class GameHomeViewModel {
             }).disposed(by: self.bag)
     }
     
-    func updateGameUserTaskIndex(_ index: Int) {
+    func updateGameUserTaskIndex(_ index: Int, advanceTaskTimer: Bool) {
         guard let accountDetail = accountDetail.value else { return }
         let params = ["taskIndex": index]
         self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] gameUser in
-                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameLastTaskDate)
+                if advanceTaskTimer {
+                    UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameLastTaskDate)
+                }
                 self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)
     }

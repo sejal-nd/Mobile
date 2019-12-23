@@ -67,15 +67,10 @@ class GiftInventory {
         "hat_flowercrown", "acc_cateye", "bg_skipjack", "hat_crab", "acc_sunglasses", "hat_sailor",
         "bg_susans", "bg_susans", "hat_fancy", "hat_beretred", "acc_glasses", "bg_forest",
         "hat_oriole", "hat_dog", "hat_cat", "bg_farm", "hat_strawhat", "hat_horse", "hat_rodent",
-        "hat_rabbit",
-        // Baltimore Harbor
-        "hat_beaniefootball", "hat_capbaseball",
-        // Annapolis BG
-        "hat_tophat", "acc_monocle", "hat_bow",
-        // Elicott City BG
+        "hat_rabbit", /* Baltimore Harbor */ "hat_beaniefootball", "hat_capbaseball",
+        /* Annapolis BG */ "hat_tophat", "acc_monocle", "hat_bow", /* Elicott City BG */
         "hat_capgreen", "hat_colonial", "hat_cowboy", "bg_falltrees", "hat_beretblack", "hat_paper"
-        // Space BG
-        // Eco Crown Hat
+        /* Space BG */ /* Eco Crown Hat */
     ]
     
     private let customMessages = [

@@ -156,7 +156,7 @@ class GameHomeViewController: AccountPickerViewController {
             if GameTaskStore.shared.tryFabWentBackToGame {
                 if loadedInitialGameUser {
                     GameTaskStore.shared.tryFabActivated = false
-                    awardPoints(16, andAdvanceTaskIndex: true)
+                    awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
                 }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
@@ -167,7 +167,7 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         if didGoToHomeProfile {
-            awardPoints(8, andAdvanceTaskIndex: true)
+            awardPoints(8, advanceTaskIndex: true)
             didGoToHomeProfile = false
         }
         
@@ -240,7 +240,7 @@ class GameHomeViewController: AccountPickerViewController {
             if GameTaskStore.shared.tryFabWentBackToGame {
                 if self.viewDidAppear {
                     GameTaskStore.shared.tryFabActivated = false
-                    self.awardPoints(16, andAdvanceTaskIndex: true)
+                    self.awardPoints(16, advanceTaskIndex: true)
                 }
             } else {
                 self.checkForAvailableTask()
@@ -409,7 +409,7 @@ class GameHomeViewController: AccountPickerViewController {
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
     
-    private func awardPoints(_ points: Double, andAdvanceTaskIndex advanceIndex: Bool = false) {
+    private func awardPoints(_ points: Double, advanceTaskIndex: Bool = false, advanceTaskTimer: Bool = true) {
         let pointsBefore = self.points
         let pointsAfter = pointsBefore + points
         
@@ -436,12 +436,12 @@ class GameHomeViewController: AccountPickerViewController {
             self.points = pointsAfter
         }
         
-        if advanceIndex {
+        if advanceTaskIndex {
             energyBuddyView.setTaskIndicator(nil)
             currentTask = nil
             
             currentTaskIndex += 1
-            viewModel.updateGameUserTaskIndex(currentTaskIndex)
+            viewModel.updateGameUserTaskIndex(currentTaskIndex, advanceTaskTimer: advanceTaskTimer)
         }
     }
     
@@ -513,7 +513,7 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
 extension GameHomeViewController: GameTipViewControllerDelegate {
     
     func gameTipViewControllerWasDismissed(_ gameTipViewController: GameTipViewController, withQuizPoints quizPoints: Double) {
-        awardPoints(3 + quizPoints, andAdvanceTaskIndex: true)
+        awardPoints(3 + quizPoints, advanceTaskIndex: true)
     }
 }
 
@@ -521,7 +521,7 @@ extension GameHomeViewController: GameTipViewControllerDelegate {
 extension GameHomeViewController: GameQuizViewControllerDelegate {
     
     func gameQuizViewController(_ viewController: GameQuizViewController, wasDismissedWithCorrectAnswer correct: Bool) {
-        awardPoints(correct ? 4 : 3, andAdvanceTaskIndex: true)
+        awardPoints(correct ? 4 : 3, advanceTaskIndex: true)
     }
     
     func gameQuizViewController(_ viewController: GameQuizViewController, wantsToViewTipWithId tipId: String, withCorrectAnswer correct: Bool) {
@@ -562,7 +562,7 @@ extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
     func gameEnrollmentViewControllerDidPressNotInterested(_ gameEnrollmentViewController: GameEnrollmentViewController) {
         tabBarController?.dismiss(animated: true, completion: nil)
         
-        awardPoints(0, andAdvanceTaskIndex: true)
+        awardPoints(0, advanceTaskIndex: true)
     }
 }
 
@@ -571,7 +571,7 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         if didChangeStatus == .enroll {
-            awardPoints(8, andAdvanceTaskIndex: true)
+            awardPoints(8, advanceTaskIndex: true)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
