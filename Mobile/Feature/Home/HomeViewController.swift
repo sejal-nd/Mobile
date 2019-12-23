@@ -612,7 +612,7 @@ class HomeViewController: AccountPickerViewController {
         
         projectedBillCardView.infoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] in
             let alertViewController = InfoAlertController(title: NSLocalizedString("Estimated Amount", comment: ""),
-            message: NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: ""))
+                                                          message: NSLocalizedString("This is an estimate and the actual amount may vary based on your energy use, taxes, and fees.", comment: ""))
             self?.present(alertViewController, animated: true, completion: nil)
         }).disposed(by: projectedBillCardView.disposeBag)
     }
