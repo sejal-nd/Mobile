@@ -65,7 +65,7 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
         collectionView.performBatchUpdates(nil) { _ in
             if let index = self.gifts.firstIndex(where: { $0.id == self.selectedGiftId }) {
                 let indexPath = IndexPath(row: index, section: 0)
-                self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+                self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
             }
         }
     }
