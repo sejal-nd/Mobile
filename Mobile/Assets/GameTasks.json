@@ -11,7 +11,8 @@
             "numPeople": 14985,
             "savingsPerYear": 10,
             "serviceType": "GAS/ELECTRIC",
-            "rentOrOwn": "RENT/OWN"
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
         }
     },
     {

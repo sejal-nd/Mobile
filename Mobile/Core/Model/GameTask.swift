@@ -38,8 +38,9 @@ struct GameTip: Mappable {
     let description: String
     let numPeople: Int?
     let savingsPerYear: Int?
-    let serviceType: String
+    let serviceType: String // Not used for pilot
     let rentOrOwn: String
+    let season: String?
     
     init(map: Mapper) throws {
         id = try map.from("id")
@@ -49,6 +50,7 @@ struct GameTip: Mappable {
         savingsPerYear = map.optionalFrom("savingsPerYear")
         serviceType = try map.from("serviceType")
         rentOrOwn = try map.from("rentOrOwn")
+        season = map.optionalFrom("season")
     }
     
 }
@@ -58,7 +60,7 @@ struct GameQuiz: Mappable {
     let question: String
     let answers: [(String, Bool)]
     let answerDescription: String
-    let serviceType: String
+    let serviceType: String // Not used for pilot
     let rentOrOwn: String
     let tipId: String?
     

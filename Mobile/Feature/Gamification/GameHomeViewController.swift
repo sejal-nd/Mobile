@@ -386,9 +386,7 @@ class GameHomeViewController: AccountPickerViewController {
         if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
             while true {
                 if let task = GameTaskStore.shared.tasks.get(at: currentTaskIndex) {
-                    if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
-                        currentTaskIndex += 1
-                    } else if false { // TODO: Other filtering
+                    if shouldFilterOutTask(task: task, gameUser: gameUser, accountDetail: accountDetail) {
                         currentTaskIndex += 1
                     } else {
                         currentTask = task
@@ -401,6 +399,37 @@ class GameHomeViewController: AccountPickerViewController {
             }
 
         }
+    }
+    
+    private func shouldFilterOutTask(task: GameTask, gameUser: GameUser, accountDetail: AccountDetail) -> Bool {
+        // eBill Enroll Task: Should filter out if already enrolled, or ineligible for enrollment
+        if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
+            return true
+        }
+        
+        // Tip/Quiz will either be "RENT", "OWN" or "RENT/OWN". If user's rent/own onboarding response
+        // is not contained in that string, task should be filtered out
+        if let gameUserRentOrOwn = gameUser.onboardingRentOrOwnAnswer?.uppercased() {
+            if let tip = task.tip, !tip.rentOrOwn.uppercased().contains(gameUserRentOrOwn) {
+                return true
+            }
+            if let quiz = task.quiz, !quiz.rentOrOwn.uppercased().contains(gameUserRentOrOwn) {
+                return true
+            }
+        }
+
+        // Tip season will either be "WINTER", "SUMMER", or nil. Winter tips should only be displayed
+        // in Feb/March, while Summer tips should only be displayed in June/July
+        if let tip = task.tip, let tipSeason = tip.season?.uppercased(), let month = Calendar.current.dateComponents([.month], from: Date.now).month {
+            if tipSeason == "SUMMER" && month != 6 && month != 7 {
+                return true
+            }
+            if tipSeason == "WINTER" && month != 2 && month != 3 {
+                return true
+            }
+        }
+        
+        return false
     }
     
     private func showEnergyBuddyTooltip() {
