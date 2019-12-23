@@ -121,14 +121,7 @@ class EnergyBuddyView: UIView {
         energyBuddyBodyLottieView.addSubview(bodyAnimation!)
         bodyAnimation!.play()
         
-        faceAnimation?.stop()
-        faceAnimation?.removeFromSuperview()
-        faceAnimation = AnimationView(name: "buddy_face_normal")
-        faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
-        faceAnimation!.contentMode = .scaleAspectFit
-        faceAnimation!.loopMode = .loop
-        energyBuddyFaceLottieView.addSubview(faceAnimation!)
-        faceAnimation!.play()
+        playDefaultFaceAnimation()
         
         particleAnimation?.stop()
         particleAnimation?.removeFromSuperview()
@@ -140,6 +133,17 @@ class EnergyBuddyView: UIView {
                 self.view.layoutIfNeeded()
             }, completion: nil)
         }
+    }
+    
+    private func playDefaultFaceAnimation() {
+        faceAnimation?.stop()
+        faceAnimation?.removeFromSuperview()
+        faceAnimation = AnimationView(name: "buddy_face_normal")
+        faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
+        faceAnimation!.contentMode = .scaleAspectFit
+        faceAnimation!.loopMode = .loop
+        energyBuddyFaceLottieView.addSubview(faceAnimation!)
+        faceAnimation!.play()
     }
 
     func stopAnimations() {
@@ -157,9 +161,9 @@ class EnergyBuddyView: UIView {
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
-        faceAnimation!.play { [weak self] finished in
+        faceAnimation!.play { finished in
             if finished {
-                self?.playDefaultAnimations(resetBounce: false)
+                self.playDefaultFaceAnimation()
             }
         }
     }
@@ -171,9 +175,9 @@ class EnergyBuddyView: UIView {
         faceAnimation!.frame.size = energyBuddyFaceLottieView.frame.size
         faceAnimation!.contentMode = .scaleAspectFit
         energyBuddyFaceLottieView.addSubview(faceAnimation!)
-        faceAnimation!.play { [weak self] finished in
+        faceAnimation!.play { finished in
             if finished {
-                self?.playDefaultAnimations(resetBounce: false)
+                self.playDefaultFaceAnimation()
             }
         }
         

@@ -148,7 +148,9 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
                 
-        energyBuddyView.playDefaultAnimations()
+        if viewDidAppear { // Only do this on repeat `viewDidAppear`s. The initial play is done in `viewDidLayoutSubviews`
+            energyBuddyView.playDefaultAnimations()
+        }
         
         if !welcomedUser {
             welcomedUser = true
