@@ -52,13 +52,14 @@ class GameProgressBar: UIView {
     
     
     func setPoints(_ points: Int, animated: Bool = true) -> SetPointsResult? {
-        let levelProgress = points % pointsPerLevel
         let totalBarWidth = innerBackgroundView.frame.size.width
-        let currentProgressWidth = progressView.frame.size.width
-        let desiredProgressWidth = (CGFloat(levelProgress) / CGFloat(pointsPerLevel)) * totalBarWidth
+        let currentLevelProgress = currentPoints % pointsPerLevel
+        let desiredLevelProgress = points % pointsPerLevel
+        let currentProgressWidth = (CGFloat(currentLevelProgress) / CGFloat(pointsPerLevel)) * totalBarWidth
+        let desiredProgressWidth = (CGFloat(desiredLevelProgress) / CGFloat(pointsPerLevel)) * totalBarWidth
         
         var toReturn: SetPointsResult?
-        if points > currentPoints && points - currentPoints <= pointsPerLevel{
+        if points > currentPoints && points - currentPoints <= pointsPerLevel {
             if desiredProgressWidth <= currentProgressWidth {
                 toReturn = .levelUp
                 setProgressWidth(totalBarWidth, animated: animated) { [weak self] _ in

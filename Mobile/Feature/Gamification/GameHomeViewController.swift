@@ -48,9 +48,10 @@ class GameHomeViewController: AccountPickerViewController {
     
     var layoutSubviewsComplete = false
     var welcomedUser = false
-    var reconciledPointsOnLoad = false
+    var loadedInitialGameUser = false
     var isVisible = false
     var didGoToHomeProfile = false
+    var viewDidAppear = false
     
     var points: Int {
         get {
@@ -151,10 +152,13 @@ class GameHomeViewController: AccountPickerViewController {
         
         if !welcomedUser {
             welcomedUser = true
-            if GameTaskStore.shared.tryFabWentBackToGame { // Welcome message after completing 'Try the FAB' task
-                GameTaskStore.shared.tryFabActivated = false
-                awardPoints(16, andAdvanceTaskIndex: true) // TODO: Final point value
-            } else { // Normal welcome message
+            
+            if GameTaskStore.shared.tryFabWentBackToGame {
+                if loadedInitialGameUser {
+                    GameTaskStore.shared.tryFabActivated = false
+                    awardPoints(16, andAdvanceTaskIndex: true) // TODO: Final point value
+                }
+            } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
                     self?.energyBuddyView.playHappyAnimation()
                     self?.energyBuddyView.showWelcomeMessage()
@@ -174,6 +178,8 @@ class GameHomeViewController: AccountPickerViewController {
                 self.tabBarController?.present(tipVc, animated: true, completion: nil)
                 appDelegate.tipIdWaitingToBeShown = nil
             }
+        
+        viewDidAppear = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -221,15 +227,26 @@ class GameHomeViewController: AccountPickerViewController {
         
         viewModel.gameUser.asDriver().drive(onNext: { [weak self] user in
             guard let self = self, let gameUser = user else { return }
+
+            self.currentTaskIndex = gameUser.taskIndex
+            
             // We never want points to be lost, so only reconcile with the server on first load,
             // or if the server says the user has more points than we've tracked locally
-            if !self.reconciledPointsOnLoad || gameUser.points > self.points {
+            if !self.loadedInitialGameUser || gameUser.points > self.points {
                 _ = self.progressBar.setPoints(gameUser.points, animated: false)
                 self.points = gameUser.points
-                self.reconciledPointsOnLoad = true
             }
             
-            self.checkForAvailableTask()
+            if GameTaskStore.shared.tryFabWentBackToGame {
+                if self.viewDidAppear {
+                    GameTaskStore.shared.tryFabActivated = false
+                    self.awardPoints(16, andAdvanceTaskIndex: true)
+                }
+            } else {
+                self.checkForAvailableTask()
+            }
+            
+            self.loadedInitialGameUser = true
         }).disposed(by: bag)
         
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
@@ -359,7 +376,6 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
-            currentTaskIndex = gameUser.taskIndex
             while true {
                 if let task = GameTaskStore.shared.tasks.get(at: currentTaskIndex) {
                     if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
