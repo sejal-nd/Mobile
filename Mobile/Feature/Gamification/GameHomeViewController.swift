@@ -68,6 +68,8 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FirebaseUtility.trackScreenWithName(self.className, className: self.className)
+        
         NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in

@@ -67,6 +67,8 @@ class HomeViewController: AccountPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        FirebaseUtility.trackScreenWithName(self.className, className: self.className)
+        
         colorBackgroundHeightConstraint.constant = colorBackgroundViewHeight
         
         accountPicker.delegate = self
