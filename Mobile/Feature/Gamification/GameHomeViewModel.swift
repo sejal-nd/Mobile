@@ -134,6 +134,13 @@ class GameHomeViewModel {
                 self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)
     }
+    
+    func updateGameUserAnalytic(forKey key: String) {
+        guard let accountDetail = accountDetail.value else { return }
+        let params = [key: true]
+        _ = self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+            .subscribe()
+    }
         
     private(set) lazy var shouldShowContent: Driver<Bool> =
         Driver.combineLatest(self.loading.asDriver(), self.error.asDriver(), self.usageData.asDriver()) {

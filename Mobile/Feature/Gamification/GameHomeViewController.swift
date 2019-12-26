@@ -497,6 +497,7 @@ class GameHomeViewController: AccountPickerViewController {
                 .delay(0.5)
                 .drive(onNext: { [weak self] in
                     self?.view.showToast(NSLocalizedString("Home profile updated", comment: ""))
+                    self?.viewModel.updateGameUserAnalytic(forKey: "pilotHomeProfileCompletion")
                 })
                 .disposed(by: vc.disposeBag)
             didGoToHomeProfile = true
@@ -604,6 +605,8 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         if didChangeStatus == .enroll {
             awardPoints(8, advanceTaskIndex: true)
+
+            viewModel.updateGameUserAnalytic(forKey: "pilotEBillEnrollment")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
