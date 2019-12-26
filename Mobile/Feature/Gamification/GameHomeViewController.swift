@@ -343,6 +343,9 @@ class GameHomeViewController: AccountPickerViewController {
             let enrollVc = GameEnrollmentViewController.create(withTaskType: task.type)
             enrollVc.delegate = self
             self.tabBarController?.present(enrollVc, animated: true, completion: nil)
+        } else if task.type == .survey {
+            let surveyVc = GameSurveyViewController.create()
+            self.tabBarController?.present(surveyVc, animated: true, completion: nil)
         } else if let tip = task.tip {
             let tipVc = GameTipViewController.create(withTip: tip)
             tipVc.delegate = self

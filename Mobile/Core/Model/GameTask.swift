@@ -15,6 +15,7 @@ enum GameTaskType: String {
     case fab = "fab"
     case eBill = "ebill"
     case homeProfile = "homeprofile"
+    case survey = "survey"
 }
 
 struct GameTask: Mappable {

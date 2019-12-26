@@ -71,5 +71,8 @@
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
+    },
+    {
+        "type": "survey"
     }
 ]

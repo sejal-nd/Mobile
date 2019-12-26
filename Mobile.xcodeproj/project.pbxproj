@@ -1200,6 +1200,9 @@
 		9C7774852368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
 		9C7774862368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
 		9C7774872368DB5C009AF0F0 /* GameHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */; };
+		9C7C902723B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
+		9C7C902823B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
+		9C7C902923B55F3100E40D1E /* GameSurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */; };
 		9C7DC70620378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70720378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
 		9C7DC70820378CBE006EBEEA /* PaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */; };
@@ -3320,6 +3323,7 @@
 		9C74CDE821EF89EB00F599D1 /* A0SimpleKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A0SimpleKeychain.m; sourceTree = "<group>"; };
 		9C7774802368C630009AF0F0 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		9C7774842368DB5C009AF0F0 /* GameHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeViewController.swift; sourceTree = "<group>"; };
+		9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSurveyViewController.swift; sourceTree = "<group>"; };
 		9C7DC70520378CBE006EBEEA /* PaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUITests.swift; sourceTree = "<group>"; };
 		9C7FFD1922C1251800092987 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		9C97DB1620EFE2D100FF8E20 /* HomeProjectedBillCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProjectedBillCardView.swift; sourceTree = "<group>"; };
@@ -5562,6 +5566,7 @@
 				9CE549702399941300025BD5 /* GameRewardViewController.swift */,
 				9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */,
 				9C19983423A9614900250417 /* GameEnrollmentViewController.swift */,
+				9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */,
 			);
 			path = "Popup Modals";
 			sourceTree = "<group>";
@@ -8550,6 +8555,7 @@
 				82EAB3381F97E186008B55B1 /* UsageWebViewController.swift in Sources */,
 				E800434D1E671FD6005CF531 /* PasswordStrengthMeterView.swift in Sources */,
 				E8EEF7161E566FD8006804D4 /* BiometricsService.swift in Sources */,
+				9C7C902723B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				82A18E5C1EB918C900BE9F21 /* BillViewModel.swift in Sources */,
 				389B0C601F17C054005DD0F9 /* UnauthenticatedUserViewController.swift in Sources */,
 				2F036CF01F1EA7D5000DECBE /* WeatherService.swift in Sources */,
@@ -8960,6 +8966,7 @@
 				B0CB1C8D227CDCEE0081F99B /* CommercialUsageViewModel.swift in Sources */,
 				B07D247D20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				B0D84D4222023FD800C70A6F /* MockJSONManager.swift in Sources */,
+				9C7C902923B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2F036CF21F1EA7D5000DECBE /* WeatherService.swift in Sources */,
 				E8EEF7471E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
 				2FA7B9FC1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
@@ -9370,6 +9377,7 @@
 				2F036CF11F1EA7D5000DECBE /* WeatherService.swift in Sources */,
 				B07D247C20C5B48B00BD22EB /* HomeWeatherViewModel.swift in Sources */,
 				E8EEF7461E578BCC006804D4 /* TermsPoliciesViewController.swift in Sources */,
+				9C7C902823B55F3100E40D1E /* GameSurveyViewController.swift in Sources */,
 				2FA7B9FB1F0548F000D660B8 /* OutageMapViewController.swift in Sources */,
 				E8B674D41E96EB0C00BB0788 /* ForgotUsernameViewController.swift in Sources */,
 				B0A8308A2146F12F00EC3F21 /* StormModeBillViewController.swift in Sources */,

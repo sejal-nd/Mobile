@@ -60,13 +60,16 @@ class GameEnrollmentViewController: UIViewController {
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
         
+        var buttonTitle: String
         if taskType == .eBill {
             detailLabel.text = NSLocalizedString("As we work together to reduce your home’s energy usage, enrolling in Paperless eBill is an easy way to make an immediate positive impact on the environment by eliminating your paper bill.\n\nYour online bill is identical to your current paper bill and is available to view, download, or print at any time. You will receive bill ready email notifications regardless of preference. Your preference will be updated with your next month’s bill.", comment: "")
-            ctaButton.setTitle(NSLocalizedString("Enroll Now", comment: ""), for: .normal)
+            buttonTitle = NSLocalizedString("Enroll Now", comment: "")
         } else { // Home Profile
             detailLabel.text = NSLocalizedString("Update your home’s profile and get more powerful and personalized insights into your energy use.", comment: "")
-            ctaButton.setTitle(NSLocalizedString("Update Home Profile", comment: ""), for: .normal)
+            buttonTitle = NSLocalizedString("Update Home Profile", comment: "")
         }
+        ctaButton.setTitle(buttonTitle, for: .normal)
+        ctaButton.accessibilityLabel = buttonTitle
         
         notInterestedButton.setTitleColor(.actionBlue, for: .normal)
         notInterestedButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)

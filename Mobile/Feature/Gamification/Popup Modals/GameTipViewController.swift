@@ -41,7 +41,6 @@ class GameTipViewController: UIViewController {
     
     var onUpdate: (() -> Void)?
         
-    // TODO: Pass in the tip
     static func create(withTip tip: GameTip, quizPoints: Double = 0) -> GameTipViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "TipPopup") as! GameTipViewController
