@@ -44,7 +44,7 @@ class AlertPreferencesViewModel {
     
     var initialBillReadyValue = false
     var initialEnglishValue = true
-    var initialEnergyBuddyUpdatesValue = false
+    var initialEnergyBuddyUpdatesValue = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
     
     var shouldEnrollPaperlessEBill: Bool {
         if Environment.shared.opco == .bge { return false }
@@ -98,7 +98,6 @@ class AlertPreferencesViewModel {
                     ]
                     let isGameUser = UserDefaults.standard.string(forKey: UserDefaultKeys.gameAccountNumber) != nil
                     if isGameUser {
-                        self.initialEnergyBuddyUpdatesValue = UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference)
                         self.sections.append((NSLocalizedString("Energy Buddy", comment: ""), [.energyBuddyUpdates]))
                     }
                 case .comEd, .peco:
@@ -415,7 +414,7 @@ class AlertPreferencesViewModel {
                 
             // Energy Buddy
             case (.energyBuddyUpdates, _):
-                return NSLocalizedString("Get reminders when your Energy Buddy has new information available for you.", comment: "")
+                return NSLocalizedString("Receive a notification when your Energy Buddy has new data, tips, and insights to help you save energy and money.", comment: "")
             }
         }
     }
