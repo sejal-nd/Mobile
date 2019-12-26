@@ -28,6 +28,8 @@ class GameTipViewController: UIViewController {
     @IBOutlet weak var dividerLine: UIView!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    private let datePicker = UIDatePicker()
+    
     let accountNumber = AccountsStore.shared.currentAccount.accountNumber
     
     // Passed into create() function
@@ -77,6 +79,13 @@ class GameTipViewController: UIViewController {
         favoriteButton.setTitleColor(.actionBlue, for: .normal)
         favoriteButton.setTitleColor(UIColor.actionBlue.darker(), for: .highlighted)
         favoriteButton.titleLabel?.font = SystemFont.semibold.of(textStyle: .headline)
+        
+        let hourFromNow = Calendar.current.date(byAdding: .hour, value: 1, to: Date.now)!
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date.now)!
+        
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.date = tomorrow
+        datePicker.minimumDate = hourFromNow
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss(_:)))
         tap.delegate = self
@@ -129,7 +138,39 @@ class GameTipViewController: UIViewController {
             isReminder = false
             updateReminderButton()
         } else {
-            performSegue(withIdentifier: "reminderSegue", sender: nil)
+            //performSegue(withIdentifier: "reminderSegue", sender: nil)
+            
+            let dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            dateAlert.view.addSubview(datePicker)
+            dateAlert.addAction(UIAlertAction(title: "Set Reminder", style: .cancel, handler: { [weak self] _ in
+                guard let self = self else { return }
+                
+                let content = UNMutableNotificationContent()
+                content.title = "Your Energy Buddy Has a Reminder for You!"
+                content.body = self.tip.title
+                content.sound = .default
+                
+                let dateComps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self.datePicker.date)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComps, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: self.tip.id, content: content, trigger: trigger)
+        
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: { [weak self] error in
+                    DispatchQueue.main.async {
+                        if error != nil {
+                            let alertVc = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                            message: NSLocalizedString("Could not set reminder. Try again.", comment: ""),
+                                                            preferredStyle: .alert)
+                            alertVc.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                            self?.present(alertVc, animated: true, completion: nil)
+                        } else {
+                            self?.updateReminderButton()
+                        }
+                    }
+                })
+            }))
+            dateAlert.view.heightAnchor.constraint(equalToConstant: 276).isActive = true
+            self.present(dateAlert, animated: true, completion: nil)
         }
     }
     

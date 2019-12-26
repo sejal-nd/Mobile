@@ -6,6 +6,14 @@
 //  Copyright © 2019 Exelon Corporation. All rights reserved.
 //
 
+/*
+ *
+ *  NOTE: This ViewController is not used in the initial pilot version. We've opted instead to simply
+ *  display the date picker popup directly from the tip. Keeping the file around in case we ever want
+ *  to go back to the standalone Set Reminder screen.
+ *
+ */
+
 import RxSwift
 import RxCocoa
 
