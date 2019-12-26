@@ -276,9 +276,12 @@ class GameHomeViewController: AccountPickerViewController {
         }
         coinViews.removeAll()
         
+        var matchFound = false // If we've already found a data point, that means any subsequent placeholder view is a missing data point
         var date = Calendar.current.startOfDay(for: Date.now) // Based on user's timezone so their current "today" is always displayed
         while coinViews.count < 7 {
             if let match = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: date) }).first {
+                matchFound = true
+                
                 let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: date)!
                 let lastWeekMatch = usageArray.filter({ Calendar.gmt.isDate($0.date, inSameDayAs: lastWeek) }).first
 
@@ -289,7 +292,7 @@ class GameHomeViewController: AccountPickerViewController {
                 view.delegate = self
                 coinViews.append(view)
             } else {
-                let placeholderView = DailyInsightCoinView(placeholderViewForDate: date)
+                let placeholderView = DailyInsightCoinView(placeholderViewForDate: date, isMissedDay: matchFound)
                 placeholderView.delegate = self
                 coinViews.append(placeholderView)
             }

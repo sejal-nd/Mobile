@@ -27,6 +27,7 @@ class DailyInsightCoinView: UIControl {
     var usage: DailyUsage?
     var lastWeekUsage: DailyUsage?
     var placeholderDate: Date?
+    var isMissedDay = false
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 36, height: 56)
@@ -60,14 +61,16 @@ class DailyInsightCoinView: UIControl {
         }
     }
     
-    init(placeholderViewForDate date: Date) {
+    init(placeholderViewForDate date: Date, isMissedDay: Bool) {
         super.init(frame: CGRect(x: 0, y: 0, width: 36, height: 56))
         
-        placeholderDate = date
+        self.placeholderDate = date
+        self.isMissedDay = isMissedDay
+        
         commonInit()
         
         weekdayLabel.text = date.weekday.abbreviationString
-        imageView.image = nil
+        imageView.image = isMissedDay ? #imageLiteral(resourceName: "ic_nodata.pdf") : nil
         
         canCollect = false
     }
@@ -127,7 +130,9 @@ class DailyInsightCoinView: UIControl {
         
         // No data - placeholder view
         guard let thisWeek = usage, let lastWeek = lastWeekUsage else {
-            return NSLocalizedString("Smart meter data is typically available within 24-48 hours of your usage. Check back later!", comment: "")
+            return isMissedDay ?
+                NSLocalizedString("Unable to retrieve data for this day. Check out the Usage section for more data about your energy consumption.", comment: "") :
+                NSLocalizedString("Smart meter data is typically available within 24-48 hours of your usage. Check back later!", comment: "")
         }
         
         let diff = abs(thisWeek.amount - lastWeek.amount)
