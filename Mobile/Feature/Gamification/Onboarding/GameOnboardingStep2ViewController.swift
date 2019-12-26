@@ -25,8 +25,11 @@ class GameOnboardingStep2ViewController: UIViewController {
     let bag = DisposeBag()
     
     let gameService = ServiceFactory.createGameService()
+    let usageService = ServiceFactory.createUsageService(useCache: false)
     
-    var step1Response: String! // Passed from Step1
+    // Passed from Step1
+    var step1Response: String!
+    var accountDetail: AccountDetail!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,27 +83,40 @@ class GameOnboardingStep2ViewController: UIViewController {
         if #available(iOS 13.0, *) {
             isModalInPresentation = true // Prevent swipe dismiss while loading
         }
+    
+        let updateGameUser = { [weak self] (initialHomeProfile: String) in
+            guard let self = self else { return }
+            let own = self.selectedButton.value == self.button1
+            let params: [String: Any] = [
+                "onboardingHowDoYouFeelAnswer": self.step1Response!,
+                "onboardingRentOrOwnAnswer": own ? "OWN" : "RENT",
+                "onboardingComplete": true,
+                "initialEBillEnrollment": self.accountDetail.isEBillEnrollment ? "ENROLLED" : "NOT ENROLLED",
+                "initialHomeProfile": initialHomeProfile
+            ]
+            self.gameService.updateGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber, keyValues: params)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [weak self] gameUser in
+                    LoadingView.hide()
+                    NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
+                    self?.dismissModal()
+                }, onError: { [weak self] err in
+                    LoadingView.hide()
+                    let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+                                                  message: err.localizedDescription,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                    self?.present(alert, animated: true, completion: nil)
+                }).disposed(by: self.bag)
+        }
         
         LoadingView.show()
-        let own = selectedButton.value == button1
-        let params: [String: Any] = [
-            "onboardingHowDoYouFeelAnswer": step1Response!,
-            "onboardingRentOrOwnAnswer": own ? "OWN" : "RENT",
-            "onboardingComplete": true
-        ]
-        gameService.updateGameUser(accountNumber: AccountsStore.shared.currentAccount.accountNumber, keyValues: params)
+        usageService.fetchHomeProfile(accountNumber: accountDetail.accountNumber, premiseNumber: accountDetail.premiseNumber!)
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] gameUser in
-                LoadingView.hide()
-                NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
-                self?.dismissModal()
-            }, onError: { [weak self] err in
-                LoadingView.hide()
-                let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                              message: err.localizedDescription,
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
+            .subscribe(onNext: { homeProfile in
+                updateGameUser(homeProfile.isFilled ? "COMPLETE" : "NOT COMPLETE")
+            }, onError: { _ in
+                updateGameUser("UNKNOWN")
             }).disposed(by: bag)
     }
     

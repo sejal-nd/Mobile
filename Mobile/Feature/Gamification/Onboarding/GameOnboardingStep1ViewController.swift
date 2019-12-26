@@ -26,6 +26,8 @@ class GameOnboardingStep1ViewController: UIViewController {
     
     let bag = DisposeBag()
     
+    var accountDetail: AccountDetail! // Passed from GameOnboardingIntroViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -119,6 +121,7 @@ class GameOnboardingStep1ViewController: UIViewController {
                 selectedResponse = button3Label.text
             }
             step2.step1Response = selectedResponse!
+            step2.accountDetail = accountDetail
         }
     }
     

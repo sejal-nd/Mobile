@@ -13,6 +13,8 @@ class GameOnboardingIntroViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var label: UILabel!
     
+    var accountDetail: AccountDetail! // Passed from HomeViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +28,12 @@ class GameOnboardingIntroViewController: UIViewController {
     
     @IBAction func onClosePress() {
         dismissModal()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? GameOnboardingStep1ViewController {
+            vc.accountDetail = accountDetail
+        }
     }
     
 }

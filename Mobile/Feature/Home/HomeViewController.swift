@@ -208,12 +208,17 @@ class HomeViewController: AccountPickerViewController {
 
                 let gameOnboardingCardView = HomeGameOnboardingCardView.create()
                 
-                gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver().drive(onNext: { [weak self] _ in
-                    guard let self = self else { return }
-                    let sb = UIStoryboard(name: "Game", bundle: nil)
-                    let vc = sb.instantiateViewController(withIdentifier: "GameOnboarding")
-                    self.present(vc, animated: true, completion: nil)
-                }).disposed(by: self.bag)
+                gameOnboardingCardView.letsGoButton.rx.touchUpInside.asDriver()
+                    .withLatestFrom(self.viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
+                    .drive(onNext: { [weak self] in
+                        guard let self = self else { return }
+                        let sb = UIStoryboard(name: "Game", bundle: nil)
+                        if let navController = sb.instantiateViewController(withIdentifier: "GameOnboarding") as? UINavigationController,
+                            let vc = navController.viewControllers.first as? GameOnboardingIntroViewController {
+                            vc.accountDetail = $0
+                            self.present(navController, animated: true, completion: nil)
+                        }
+                    }).disposed(by: self.bag)
                 
                 let index = self.topPersonalizeButton != nil ? 1 : 0
                 self.contentStackView.insertArrangedSubview(gameOnboardingCardView, at: index)
@@ -557,8 +562,7 @@ class HomeViewController: AccountPickerViewController {
         
         Driver.merge(usageCardView.viewUsageButton.rx.touchUpInside.asDriver(),
                      usageCardView.viewCommercialUsageButton.rx.touchUpInside.asDriver())
-            .withLatestFrom(viewModel.accountDetailEvents.elements()
-                .asDriver(onErrorDriveWith: .empty()))
+            .withLatestFrom(viewModel.accountDetailEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 let residentialAMIString = String(format: "%@%@", $0.isResidential ? "Residential/" : "Commercial/", $0.isAMIAccount ? "AMI" : "Non-AMI")
                 
@@ -573,8 +577,7 @@ class HomeViewController: AccountPickerViewController {
             .disposed(by: usageCardView.disposeBag)
         
         usageCardView.viewAllSavingsButton.rx.touchUpInside.asDriver()
-            .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements()
-                .asDriver(onErrorDriveWith: .empty()))
+            .withLatestFrom(viewModel.usageCardViewModel.serResultEvents.elements().asDriver(onErrorDriveWith: .empty()))
             .drive(onNext: { [weak self] in
                 GoogleAnalytics.log(event: .allSavingsSmartEnergy)
                 self?.performSegue(withIdentifier: "totalSavingsSegue", sender: $0)
