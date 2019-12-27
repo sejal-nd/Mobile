@@ -414,7 +414,7 @@ class GameHomeViewController: AccountPickerViewController {
         if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
             return true
         }
-        
+                
         // Tip/Quiz will either be "RENT", "OWN" or "RENT/OWN". If user's rent/own onboarding response
         // is not contained in that string, task should be filtered out
         if let gameUserRentOrOwn = gameUser.onboardingRentOrOwnAnswer?.uppercased() {
@@ -425,14 +425,20 @@ class GameHomeViewController: AccountPickerViewController {
                 return true
             }
         }
-
-        // Tip season will either be "WINTER", "SUMMER", or nil. Winter tips should only be displayed
+        
+        // Season will either be "WINTER", "SUMMER", or nil. Winter tips should only be displayed
         // in Feb/March, while Summer tips should only be displayed in June/July
-        if let tip = task.tip, let tipSeason = tip.season?.uppercased(), let month = Calendar.current.dateComponents([.month], from: Date.now).month {
-            if tipSeason == "SUMMER" && month != 6 && month != 7 {
+        var taskSeason: String?
+        if let tip = task.tip, let tipSeason = tip.season?.uppercased() {
+            taskSeason = tipSeason
+        } else if let quiz = task.quiz, let quizSeason = quiz.season?.uppercased() {
+            taskSeason = quizSeason
+        }
+        if let season = taskSeason, let month = Calendar.current.dateComponents([.month], from: Date.now).month {
+            if season == "SUMMER" && month != 6 && month != 7 {
                 return true
             }
-            if tipSeason == "WINTER" && month != 2 && month != 3 {
+            if season == "WINTER" && month != 2 && month != 3 {
                 return true
             }
         }

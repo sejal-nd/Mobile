@@ -5,10 +5,59 @@
     {
         "type": "tip",
         "tip": {
-            "id": "1234",
-            "title": "Clear Around Vents",
-            "description": "Furniture, carpets and other objects can block vents and prevent heated or cooled air from traveling. This blockage makes your heating or cooling system work harder and prevents rooms from warming up or cooling down quickly. If you have forced air in your home, check to see that your air vents have sufficient room to breathe.",
-            "numPeople": 14985,
+            "id": "tip080_set_thermostat_wisely_winter",
+            "title": "Don't Hate on 68 (In the Winter)",
+            "description": "This winter, you can stay toasty while keeping your costs low. To maximize your savings while staying comfortable, set your thermostat to 68°F when you're home. Save even more by lowering the temperature by 10°F when you're away and before bed.",
+            "numPeople": 11780,
+            "savingsPerYear": 165,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Set your thermostat to this temperature during the winter to maximize your heating savings?",
+            "answers": [
+                { "answer": "75°", "correct": false },
+                { "answer": "72°", "correct": false },
+                { "answer": "68°", "correct": true }
+            ],
+            "answerDescription": "Set your thermostat to 68° and save this winter. Don't let the cold take over your energy bill.",
+            "tipId": "tip080_set_thermostat_wisely_winter",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip107_new_years_resolutions_for_savings",
+            "title": "New Year, New You",
+            "description": "Start the new year off right by talking with your friends and families about energy savings! Whether it's hitting the gym or weatherizing your windows, accountability makes all the difference. Plus - you'll learn from each others' trials and triumphs.",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "survey",
+        "survey": {
+            "surveyNumber": 1,
+            "attempt": 1
+        }
+    },
+    {
+        "type": "ebill"
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip043_improve_baseboard_efficiency",
+            "title": "Let Your Heaters Breathe",
+            "description": "Don't smother your heaters. Make sure the warm air they produce can circulate around the room by moving any furniture or objects that are in the way. Otherwise, you'll end up paying more for energy while still feeling chilly.",
             "savingsPerYear": 10,
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN",
@@ -16,63 +65,273 @@
         }
     },
     {
-        "type": "ebill"
+        "type": "quiz",
+        "quiz": {
+            "question": "Block your heaters to save more energy!",
+            "answers": [
+                { "answer": "TRUE", "correct": false },
+                { "answer": "FALSE", "correct": true }
+            ],
+            "answerDescription": "FALSE! Do not block your heaters. Move furniture and other objects in the way of heaters to save you money and enhance comfort.",
+            "tipId": "tip043_improve_baseboard_efficiency",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "survey",
+        "survey": {
+            "surveyNumber": 1,
+            "attempt": 2
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip141_ceiling_fan_winter",
+            "title": "Chill Out This Winter",
+            "description": "Ceiling fans can help you save in the summer and winter. You can save on heating cost by up to 15% during the winter when you let your fan spin clockwise to circulate cool air up. Just flip the switch at the base of your fan to keep the chill out and the warmth in!",
+            "numPeople": 9530,
+            "savingsPerYear": 10,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
     },
     {
         "type": "quiz",
         "quiz": {
-            "question": "Which appliance do you think uses the most energy?",
+            "question": "Spinning your fan this way in the winter can save you up to 15% on heating costs.",
             "answers": [
-                { "answer": "TV", "correct": false },
-                { "answer": "Dishwasher", "correct": false },
-                { "answer": "Dryer", "correct": true }
+                { "answer": "Clockwise", "correct": true },
+                { "answer": "Counterclockwise", "correct": false }
             ],
-            "answerDescription": "Clothes dryers use more energy than any other appliance.",
-            "tipId": "1234",
+            "answerDescription": "Spin your fans clockwise in the winter to save on your heating costs. Show your fan some love in every season!",
+            "tipId": "tip141_ceiling_fan_winter",
             "serviceType": "GAS/ELECTRIC",
-            "rentOrOwn": "RENT/OWN"
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
         }
     },
     {
         "type": "homeprofile"
     },
     {
-        "type": "tip",
-        "tip": {
-            "id": "1235",
-            "title": "Let Your Heaters Breathe",
-            "description": "Don't smother your heaters. Make sure the warm air they produce can circulate around the room by moving any furniture or objects that are in the way. Otherwise, you'll end up paying more for energy while still feeling chilly.",
-            "numPeople": 813,
-            "savingsPerYear": 10,
-            "serviceType": "GAS/ELECTRIC",
-            "rentOrOwn": "RENT/OWN"
+        "type": "survey",
+        "survey": {
+            "surveyNumber": 1,
+            "attempt": 3
         }
     },
     {
         "type": "tip",
         "tip": {
-            "id": "1236",
-            "title": "New Year, New You",
-            "description": "Start the new year off right by talking with your friends and families about energy savings! Whether it's hitting the gym or weatherizing your windows, accountability makes all the difference. Plus - you'll learn from each others' trials and triumphs.",
-            "numPeople": 11013,
-            "savingsPerYear": 0,
-            "serviceType": "GAS/ELECTRIC",
-            "rentOrOwn": "RENT/OWN"
-        }
-    },
-    {
-        "type": "tip",
-        "tip": {
-            "id": "1237",
+            "id": "tip046_let_in_sun_for_warmth",
             "title": "Catch Some Rays",
             "description": "Yes, you can bask in the sunlight even when it's cold outside. Warm your home with sunny rays by opening your blinds during winter days. You'll save energy - and money!",
-            "numPeople": 24000,
+            "numPeople": 17570,
+            "savingsPerYear": 10,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "To save more energy, you should do this to your blinds or drapes during winter days?",
+            "answers": [
+                { "answer": "Open", "correct": true },
+                { "answer": "Close", "correct": false }
+            ],
+            "answerDescription": "Open your blinds and let the sun shine! Use natural light and capture free heat.",
+            "tipId": "tip046_let_in_sun_for_warmth",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip031_add_storm_windows",
+            "title": "Cut Down on Drafts",
+            "description": "Doors and windows can get drafty fast but replacing them outright is not always affordable. For a more cost-effective way to keep your warm and cool air where you want it, try installing storm doors and windows. Your energy savings will be similar, but the upfront cost is much less!",
+            "numPeople": 1121,
+            "savingsPerYear": 75,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "You have to completely replace your windows and doors to save energy.",
+            "answers": [
+                { "answer": "TRUE", "correct": false },
+                { "answer": "FALSE", "correct": true }
+            ],
+            "answerDescription": "FALSE! You do not have to replace doors and windows to save energy. Installing storm doors and windows is an effective way to cut costs and save energy.",
+            "tipId": "tip031_add_storm_windows",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip012_save_on_washing_clothes",
+            "title": "Laundry: Clean and Cold",
+            "description": "Still washing your clothes in warm water? About 90% of the energy is used just to heat the water. To save on water heating costs, wash your clothes in cold water.",
+            "numPeople": 50804,
+            "savingsPerYear": 45,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "What temperature should you wash your clothes in to save more energy?",
+            "answers": [
+                { "answer": "Hot", "correct": false },
+                { "answer": "Warm", "correct": false },
+                { "answer": "Cold", "correct": true }
+            ],
+            "answerDescription": "Go cold! Washing clothes in cooler water saves you energy.",
+            "tipId": "tip012_save_on_washing_clothes",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "WINTER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip013_save_on_washing_dishes",
+            "title": "Your Dishwasher: Load It Right",
+            "description": "Little changes add up to big savings. Add to your overall energy efficiency by running your dishwasher only when it's full and skipping the \"heated dry\" function.",
+            "numPeople": 18148,
             "savingsPerYear": 30,
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
     },
     {
-        "type": "survey"
-    }
+        "type": "quiz",
+        "quiz": {
+            "question": "To cut down on energy, run smaller loads in your dishwasher.",
+            "answers": [
+                { "answer": "TRUE", "correct": false },
+                { "answer": "FALSE", "correct": true }
+            ],
+            "answerDescription": "FALSE! To get the most bang for your buck, fill that dishwasher all the way up!",
+            "tipId": "tip013_save_on_washing_dishes",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "survey",
+        "survey": {
+            "surveyNumber": 2,
+            "attempt": 1
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip052_turn_off_lights",
+            "title": "Go Dark!",
+            "description": "Turning lights off when you leave the room is one of the easiest ways to save energy. Feeling forgetful? Leave reminders by light switches and doorways.",
+            "numPeople": 56176,
+            "savingsPerYear": 30,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "When you leave a room don't forget to do this quick trick to all lights?",
+            "answers": [
+                { "answer": "Turn the lights off", "correct": true },
+                { "answer": "Turn the lights on", "correct": false }
+            ],
+            "answerDescription": "It's too easy to be true, turn the lights off and save!",
+            "tipId": "tip052_turn_off_lights",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip070_reduce_water_heater_temperature",
+            "title": "Get Cooler with Your Water Heater",
+            "description": "Nothing feels as good as a hot shower to start your day. Except maybe saving up to 22% on your water heating costs! Simply lower the temperature on your water heater to 120°F. Your wallet, the planet, and your skin will thank you.",
+            "numPeople": 8213,
+            "savingsPerYear": 40,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "survey",
+        "survey": {
+            "surveyNumber": 2,
+            "attempt": 2
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Set your water heater to this temperature",
+            "answers": [
+                { "answer": "120°F", "correct": true },
+                { "answer": "125°F", "correct": false },
+                { "answer": "128°F", "correct": false }
+            ],
+            "answerDescription": "Setting your water heater to 120°F can save you up to 22% on your water heater costs, leaving you clean and refreshed.",
+            "tipId": "tip070_reduce_water_heater_temperature",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip077b_use_a_clothes_dryer_efficiently",
+            "title": "How Dry Are Your Clothes?",
+            "description": "Just because the amount of laundry you have seems to multiply doesn't mean your energy bill has to! Lint lengthens the drying time, costing you more money. Remember to remove the lint from your dryer filters before every load.",
+            "numPeople": 15946,
+            "savingsPerYear": 20,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "What should you empty before drying clothes that will save you energy?",
+            "answers": [
+                { "answer": "Your Pockets", "correct": false },
+                { "answer": "Lint Filters", "correct": true }
+            ],
+            "answerDescription": "Emptying lint filters before every load will cut down your drying cycle time and save you energy.",
+            "tipId": "tip077b_use_a_clothes_dryer_efficiently",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "survey",
+        "survey": {
+            "surveyNumber": 2,
+            "attempt": 3
+        }
+    },
 ]

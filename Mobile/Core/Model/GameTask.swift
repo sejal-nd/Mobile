@@ -23,11 +23,13 @@ struct GameTask: Mappable {
     let type: GameTaskType
     let tip: GameTip?
     let quiz: GameQuiz?
+    let survey: GameSurvey?
 
     init(map: Mapper) throws {
         type = try map.from("type")
         tip = map.optionalFrom("tip")
         quiz = map.optionalFrom("quiz")
+        survey = map.optionalFrom("survey")
     }
     
 }
@@ -63,6 +65,7 @@ struct GameQuiz: Mappable {
     let answerDescription: String
     let serviceType: String // Not used for pilot
     let rentOrOwn: String
+    let season: String?
     let tipId: String?
     
     init(map: Mapper) throws {
@@ -83,7 +86,22 @@ struct GameQuiz: Mappable {
         answerDescription = try map.from("answerDescription")
         serviceType = try map.from("serviceType")
         rentOrOwn = try map.from("rentOrOwn")
+        season = map.optionalFrom("season")
         tipId = map.optionalFrom("tipId")
+    }
+    
+}
+
+// For the pilot, we have two different surveys and we space them out in the task list,
+// prompting users who select "Remind Me Later" up to 3 times.
+struct GameSurvey: Mappable {
+    
+    let surveyNumber: Int
+    let attempt: Int
+
+    init(map: Mapper) throws {
+        surveyNumber = try map.from("surveyNumber")
+        attempt = try map.from("attempt")
     }
     
 }
