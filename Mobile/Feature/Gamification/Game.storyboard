@@ -1502,23 +1502,20 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-Sp-nH1">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="56" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-Sp-nH1">
                                                                 <rect key="frame" x="16" y="262" width="320" height="56"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="56" id="qdd-MB-YIG"/>
-                                                                </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7VM-8Y-KiR">
-                                                                <rect key="frame" x="0.0" y="338" width="352" height="106"/>
+                                                                <rect key="frame" x="20" y="338" width="312" height="106"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Clothes dryers use more energy than any other appliance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s70-2G-Cwp">
-                                                                        <rect key="frame" x="17" y="0.0" width="318.5" height="41"/>
+                                                                        <rect key="frame" x="12.5" y="0.0" width="287" height="41"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z04-pf-0Az" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
-                                                                        <rect key="frame" x="68.5" y="61" width="215" height="45"/>
+                                                                        <rect key="frame" x="48.5" y="61" width="215" height="45"/>
                                                                         <accessibility key="accessibilityConfiguration" label="View tip"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="45" id="CoE-9a-mYS"/>
@@ -1538,7 +1535,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <constraint firstAttribute="trailing" secondItem="GaO-Sp-nH1" secondAttribute="trailing" constant="16" id="55H-Vs-u7L"/>
                                                             <constraint firstItem="jxz-OG-aSI" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="20" id="8n9-e5-Mh1"/>
                                                             <constraint firstItem="L7M-7D-Ydl" firstAttribute="top" secondItem="jxz-OG-aSI" secondAttribute="bottom" constant="30" id="9DW-wp-hB5"/>
-                                                            <constraint firstAttribute="trailing" secondItem="7VM-8Y-KiR" secondAttribute="trailing" id="COq-Bo-WVQ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="7VM-8Y-KiR" secondAttribute="trailing" constant="20" id="COq-Bo-WVQ"/>
                                                             <constraint firstItem="jxz-OG-aSI" firstAttribute="top" secondItem="Wrx-Pj-QqI" secondAttribute="bottom" constant="20" id="Ifh-Z1-toT"/>
                                                             <constraint firstAttribute="trailing" secondItem="jxz-OG-aSI" secondAttribute="trailing" constant="20" id="KZk-ce-uTv"/>
                                                             <constraint firstItem="Aat-r5-6jU" firstAttribute="top" secondItem="HnS-PT-pzb" secondAttribute="top" constant="15" id="OWq-Ta-V5o"/>
@@ -1548,7 +1545,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                                                             <constraint firstItem="Aat-r5-6jU" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="15" id="cFb-eP-3BV"/>
                                                             <constraint firstItem="Wrx-Pj-QqI" firstAttribute="centerX" secondItem="HnS-PT-pzb" secondAttribute="centerX" id="eO9-fW-jRO"/>
                                                             <constraint firstItem="Wrx-Pj-QqI" firstAttribute="top" secondItem="HnS-PT-pzb" secondAttribute="top" id="kAL-FH-gfG"/>
-                                                            <constraint firstItem="7VM-8Y-KiR" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" id="puQ-gG-3oV"/>
+                                                            <constraint firstItem="7VM-8Y-KiR" firstAttribute="leading" secondItem="HnS-PT-pzb" secondAttribute="leading" constant="20" id="puQ-gG-3oV"/>
                                                             <constraint firstItem="GaO-Sp-nH1" firstAttribute="top" secondItem="L7M-7D-Ydl" secondAttribute="bottom" constant="20" id="tiI-2i-Jg5"/>
                                                             <constraint firstAttribute="trailing" secondItem="L7M-7D-Ydl" secondAttribute="trailing" constant="20" id="vRy-p8-vNS"/>
                                                         </constraints>

@@ -204,8 +204,7 @@
             "answerDescription": "Go cold! Washing clothes in cooler water saves you energy.",
             "tipId": "tip012_save_on_washing_clothes",
             "serviceType": "GAS/ELECTRIC",
-            "rentOrOwn": "RENT/OWN",
-            "season": "WINTER"
+            "rentOrOwn": "RENT/OWN"
         }
     },
     {
@@ -332,6 +331,526 @@
         "survey": {
             "surveyNumber": 2,
             "attempt": 3
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip129_reduce_shower_time",
+            "title": "Shave a Minute Off Shower Time",
+            "description": "The average American spends about 8 minutes a day in the shower. But you're not just average, right? So, shave a minute or two off your daily rinse and save money on water heating costs.",
+            "numPeople": 13005,
+            "savingsPerYear": 15,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "The average American spends around how many minutes a day in the shower?",
+            "answers": [
+                { "answer": "5 Minutes", "correct": false },
+                { "answer": "8 Minutes", "correct": true },
+                { "answer": "11 Minutes", "correct": false }
+            ],
+            "answerDescription": "The average American spends about 8 minutes a day in the shower. Don't be average, decrease your shower time to increase energy savings.",
+            "tipId": "tip129_reduce_shower_time",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip163_smart_outlets",
+            "title": "How Smart Are Your Outlets?",
+            "description": "Energy made easy! Smart outlets enable you to remotely control your lighting, appliances, and electronics with your smartphone so you save both energy and money on the go.",
+            "numPeople": 671,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip102_cook_efficiently",
+            "title": "Cooking Up Big Batches",
+            "description": "Did you know cooking accounts for around 5% of your home's energy use? Whether you're cooking dinner for one or a feast for ten, cooking food in large batches can help you save energy. Freeze the leftovers in individual or family portion sizes to cut down on reheating time.",
+            "numPeople": 19783,
+            "savingsPerYear": 25,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Cooking accounts for around 5% of your home's energy use.",
+            "answers": [
+                { "answer": "TRUE", "correct": true },
+                { "answer": "FALSE", "correct": false }
+            ],
+            "answerDescription": "TRUE! Cooking accounts for around 5% of your home's energy.",
+            "tipId": "tip102_cook_efficiently",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip071_turn_off_water_heater_when_away",
+            "title": "Give Your Heater a Vacay Too",
+            "description": "You don't like to work when you're out of town - and neither does your water heater. Save energy by turning your water heater down to its lowest setting when you're away. As soon as you return home rested and refreshed, you can reset its thermostat to a comfortable 120°F.",
+            "numPeople": 7809,
+            "savingsPerYear": 25,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip049_indoor_light_timers_sensors",
+            "title": "Use Light Sensors and Timers",
+            "description": "It's hard to remember to turn off lights and other devices when they're not in use. Timers and occupancy sensors work automatically so you can see maximum savings on your utility bill without extra effort.",
+            "numPeople": 1149,
+            "savingsPerYear": 30,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Timers and occupancy sensors work automatically so you can see maximum savings.",
+            "answers": [
+                { "answer": "TRUE", "correct": true },
+                { "answer": "FALSE", "correct": false }
+            ],
+            "answerDescription": "TRUE! Installing timers and occupancy sensors automatically work to save you money and time!",
+            "tipId": "tip049_indoor_light_timers_sensors",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip063_adjust_tv_display_setting",
+            "title": "Viewing with Shades?",
+            "description": "Your TV should be a source of entertainment, not light. Turning down your TV's brightness can reduce its power use without compromising image quality.",
+            "numPeople": 9864,
+            "savingsPerYear": 40,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Turning this down on your TV can reduce power use without compromising your favorite shows?",
+            "answers": [
+                { "answer": "Volume", "correct": false },
+                { "answer": "Brightness", "correct": true }
+            ],
+            "answerDescription": "Turning down the brightness settings of your TV will reduce energy.",
+            "tipId": "tip063_adjust_tv_display_setting",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip048_light_only_needed_areas",
+            "title": "Spotlight Your Work Spaces",
+            "description": "When you're home, you're the star. So take center stage by spotlighting your spaces. Rather than lighting an entire room with overhead bulbs, save up to $40 annually by using lamps and counter lights.",
+            "numPeople": 9708,
+            "savingsPerYear": 40,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Spotlighting your workspaces instead of using overhead bulbs can save you money.",
+            "answers": [
+                { "answer": "TRUE", "correct": true },
+                { "answer": "FALSE", "correct": false }
+            ],
+            "answerDescription": "TRUE! Avoid lighting an entire room, spotlight your home spaces to save up to $40 annually.",
+            "tipId": "tip048_light_only_needed_areas",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip075_care_for_your_refrigerator",
+            "title": "Clean Those Coils",
+            "description": "Dirty or dusty refrigerator coils cause your fridge to work harder and use more energy. Vacuum the coils once a year and leave three inches of space between your fridge and the wall to allow heat to escape. Set this tip as a reminder for your spring cleaning!",
+            "numPeople": 10095,
+            "savingsPerYear": 10,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "What can you clean in your fridge to save money and energy?",
+            "answers": [
+                { "answer": "Shelves", "correct": false },
+                { "answer": "Coils", "correct": true },
+                { "answer": "Spills", "correct": false }
+            ],
+            "answerDescription": "Cleaning your fridge's coils once a year can reduce the energy it produces, saving you money. Stop making your fridge work harder than it needs to.",
+            "tipId": "tip075_care_for_your_refrigerator",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "How many inches between your fridge and the wall is recommended for sufficient heat to escape?",
+            "answers": [
+                { "answer": "0.5\"", "correct": false },
+                { "answer": "1.5\"", "correct": false },
+                { "answer": "3\"", "correct": true }
+            ],
+            "answerDescription": "Every inch counts! Be sure to allow at least 3 inches of space between your fridge and the wall to allow heat to escape.",
+            "tipId": "tip075_care_for_your_refrigerator",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip069_install_efficient_showerheads",
+            "title": "Save in the Shower",
+            "description": "Showering can account for 40% of your hot water use, so don't waste a drop. Go with the flow while saving money and install energy-efficient showerheads.",
+            "numPeople": 156198,
+            "savingsPerYear": 65,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "What in your home can account for up to 40% of your hot water use?",
+            "answers": [
+                { "answer": "Shower", "correct": true },
+                { "answer": "Washing Machine", "correct": false },
+                { "answer": "Dishwasher", "correct": false }
+            ],
+            "answerDescription": "Showering can account for up to 40% of your hot water. Don't waste a drop!",
+            "tipId": "tip069_install_efficient_showerheads",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip060_unplug_devices",
+            "title": "Fight Energy Vampires!",
+            "description": "Slay energy vampires! Idle devices could account for up to 10% of your monthly electricity use. Cable boxes, game consoles, coffee makers, phone chargers, and computers can drain power even while you're sleeping. Unplug these devices or use a power strip to turn them off!",
+            "numPeople": 36979,
+            "savingsPerYear": 85,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip331_use_natural_light_tou",
+            "title": "Soak Up the Sunrays",
+            "description": "Turn off the lights and let the sunrays in. By opening shutters and blinds, you can naturally light your home to reduce lighting costs throughout the day.",
+            "numPeople": 13005,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip007_set_refrigerator_temperature",
+            "title": "Portion Control, Plain and Simple",
+            "description": "We all eat a bit too much from time to time, and that's okay. What's not okay is your refrigerator gobbling up more energy than it needs. Help your fridge stay on track by setting its temperature to a safe and chilly 38°F.",
+            "numPeople": 12222,
+            "savingsPerYear": 15,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Maximize you fridge's energy costs by setting its temperature to a safe and chilly 38°F.",
+            "answers": [
+                { "answer": "TRUE", "correct": true },
+                { "answer": "FALSE", "correct": false }
+            ],
+            "answerDescription": "The fridge can consume the most energy of all your kitchen appliances. Why wait? Set the temperature to 38°F.",
+            "tipId": "tip007_set_refrigerator_temperature",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip010_hang_dry_laundry",
+            "title": "Hang Out With Your Wardrobe",
+            "description": "Hanging clothes to dry doesn't need to be a thing of the past. A typical clothes dryer uses quite a bit of energy, while hang-drying uses NONE. Reduce wear and tear on your clothes, save money, and reduce your energy consumption with this time-honored tradition.",
+            "numPeople": 9908,
+            "savingsPerYear": 150,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Hanging your clothes to dry uses how much energy?",
+            "answers": [
+                { "answer": "None", "correct": true },
+                { "answer": "2%", "correct": false },
+                { "answer": "5%", "correct": false }
+            ],
+            "answerDescription": "NONE! Hanging your clothes to dry saves you money and energy, while preventing wear and tear on your wardrobe.",
+            "tipId": "tip010_hang_dry_laundry",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip050_outdoor_motion_detectors",
+            "title": "Dancing in the Moonlight",
+            "description": "You're not up all night, why should your lights be? Let the moon light the outdoors and save energy by putting your outdoor lights or fixtures on motion sensors. You'll reduce your costs without compromising security or style.",
+            "numPeople": 1450,
+            "savingsPerYear": 35,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Install these on outdoor lights or fixtures to reduce energy.",
+            "answers": [
+                { "answer": "Covers", "correct": false },
+                { "answer": "Motion Sensors", "correct": true }
+            ],
+            "answerDescription": "Motion sensors allow you to reduce energy and not your security! Give your lights a break and save.",
+            "tipId": "tip050_outdoor_motion_detectors",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip051_install_dimmers",
+            "title": "Dim and Dimmer",
+            "description": "A standard light switch gives you two options: full brightness or none at all. By installing dimmers and using only the light you need, you can save significantly on lighting costs and extend the life of your bulbs.",
+            "numPeople": 1570,
+            "savingsPerYear": 30,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "You can extend the life of your lights by installing these.",
+            "answers": [
+                { "answer": "Fluorescent Lamps", "correct": false },
+                { "answer": "Lamp Shades", "correct": false },
+                { "answer": "Dimmers", "correct": true }
+            ],
+            "answerDescription": "Why should on and off be your only options? Install dimmers and start saving now.",
+            "tipId": "tip051_install_dimmers",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip306_use_microwave_tou",
+            "title": "No Oven? No Problem!",
+            "description": "Heat your leftovers, not your whole house! When reheating food, a microwave can use as much as 80% less energy than an oven!",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "When reheating, a microwave can use how much less energy than an oven?",
+            "answers": [
+                { "answer": "70%", "correct": false },
+                { "answer": "75%", "correct": false },
+                { "answer": "80%", "correct": true }
+            ],
+            "answerDescription": "A microwave can use as much as 80% less energy than an oven.",
+            "tipId": "tip306_use_microwave_tou",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip077a_use_a_clothes_dryer_efficiently",
+            "title": "Drying a Heavy Load",
+            "description": "Still drying T-Shirts with towels? See small savings add up when you separate heavy items from lighter-weight laundry during your drying cycle.",
+            "numPeople": 15946,
+            "savingsPerYear": 20,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "To save money while cleaning your clothes, you should start separating your laundry by?",
+            "answers": [
+                { "answer": "Color", "correct": false },
+                { "answer": "Weight", "correct": true },
+                { "answer": "Level of Dirtiness", "correct": false }
+            ],
+            "answerDescription": "Separating your laundry by weight can save you money which is always \"loads\" of fun!",
+            "tipId": "tip077a_use_a_clothes_dryer_efficiently",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip009_choose_efficient_dehumidifier",
+            "title": "Your Dehumidifier: \"Give Me Space\"",
+            "description": "Everyone needs their space - and your dehumidifier is no different. Be sure to keep your dehumidifier away from walls and furniture, so that air can circulate freely.",
+            "savingsPerYear": 35,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Keep your dehumidifier close to walls and furniture to better extract moisture from the air and save the most energy.",
+            "answers": [
+                { "answer": "TRUE", "correct": false },
+                { "answer": "FALSE", "correct": true }
+            ],
+            "answerDescription": "FALSE! Make sure to give your dehumidifier space, keeping it away from walls and furniture.",
+            "tipId": "tip009_choose_efficient_dehumidifier",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip026_clean_air_filters",
+            "title": "Forget Filthy Filters",
+            "description": "Breathe cleaner and save by replacing your air filters regularly. Heating and cooling accounts for 50% of typical home energy use. Keeping those filters clean can save you up to 15% on your heating and cooling.",
+            "numPeople": 10854,
+            "savingsPerYear": 85,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Heating and cooling can account for how much of typical home energy use?",
+            "answers": [
+                { "answer": "15%", "correct": false },
+                { "answer": "25%", "correct": false },
+                { "answer": "50%", "correct": true }
+            ],
+            "answerDescription": "Heating and cooling account for up to 50% of typical home energy use. Don't forget to clean your filters and save!",
+            "tipId": "tip026_clean_air_filters",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip160_ee_for_kids",
+            "title": "Kids Can Save, Too",
+            "description": "Energy saving can be fun for the whole family. Teach good energy saving habits early. Families with children tend to use more energy than those without and energy use increases as children grow up due to increased use of electronics. Challenge your kids with fun energy saving activities they can do around the house.",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip077c_use_a_clothes_dryer_efficiently",
+            "title": "It's Time to Vent",
+            "description": "Your clothes aren't the only thing you should be cleaning while doing laundry! Make sure to clean the vents outside of your home annually. This will reduce your energy and the risk of fire. Safety and savings made easy!",
+            "numPeople": 15946,
+            "savingsPerYear": 20,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "How often should you clean your outside vents to reduce energy and the risk of fire?",
+            "answers": [
+                { "answer": "Once a year", "correct": true },
+                { "answer": "Once every 5 years", "correct": false },
+                { "answer": "Once a decade", "correct": false }
+            ],
+            "answerDescription": "Cleaning your outside vents once every year can reduce your energy and the risk of fire.",
+            "tipId": "tip026_clean_air_filters",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip006_tighten_refrigerator_seal",
+            "title": "Refrigerator Seal: Keep It Right, Keep It Tight",
+            "description": "Are you keeping your eggs cool or are you cooling your whole kitchen? No need to buy a new refrigerator- make a quick fix for under $100 by replacing your leaky refrigerator door seal.",
+            "numPeople": 4530,
+            "savingsPerYear": 15,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "What quick fix to your fridge can save you money?",
+            "answers": [
+                { "answer": "Adding magnets", "correct": false },
+                { "answer": "Categorizing your food", "correct": false },
+                { "answer": "Replacing the seal", "correct": true }
+            ],
+            "answerDescription": "Keep that fridge seal tight to save money on your energy bill.",
+            "tipId": "tip006_tighten_refrigerator_seal",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
         }
     },
 ]

@@ -410,6 +410,11 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func shouldFilterOutTask(task: GameTask, gameUser: GameUser, accountDetail: AccountDetail) -> Bool {
+        // TODO: Filter if users already completed or selected "I'm Not Interested"
+        if task.type == .survey {
+            return true
+        }
+        
         // eBill Enroll Task: Should filter out if already enrolled, or ineligible for enrollment
         if task.type == .eBill && (accountDetail.isEBillEnrollment || accountDetail.eBillEnrollStatus != .canEnroll) {
             return true
@@ -573,6 +578,7 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
         tabBarController?.dismiss(animated: true) {
             if let tip = GameTaskStore.shared.tipWithId(tipId) {
                 let tipVc = GameTipViewController.create(withTip: tip, quizPoints: correct ? 4 : 3)
+                tipVc.delegate = self
                 self.tabBarController?.present(tipVc, animated: true, completion: nil)
             }
         }

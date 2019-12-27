@@ -16,17 +16,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="88" height="56"/>
+            <rect key="frame" x="0.0" y="0.0" width="88" height="57"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_trendcheck" translatesAutoresizingMaskIntoConstraints="NO" id="lwc-mo-vAU">
                     <rect key="frame" x="37" y="0.0" width="14" height="10"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pwc-IJ-lWU" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="21" width="88" height="35"/>
+                    <rect key="frame" x="0.0" y="21" width="88" height="36"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afx-II-DH0">
-                            <rect key="frame" x="4" y="7" width="80" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afx-II-DH0">
+                            <rect key="frame" x="9" y="9" width="70" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -34,9 +34,10 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Afx-II-DH0" secondAttribute="trailing" constant="4" id="EoJ-PZ-4iH"/>
-                        <constraint firstItem="Afx-II-DH0" firstAttribute="leading" secondItem="Pwc-IJ-lWU" secondAttribute="leading" constant="4" id="Ljv-aU-3Ov"/>
-                        <constraint firstAttribute="height" constant="35" id="SAf-hY-W5A"/>
+                        <constraint firstAttribute="trailing" secondItem="Afx-II-DH0" secondAttribute="trailing" constant="9" id="EoJ-PZ-4iH"/>
+                        <constraint firstAttribute="bottom" secondItem="Afx-II-DH0" secondAttribute="bottom" constant="9" id="GfW-Dc-KV1"/>
+                        <constraint firstItem="Afx-II-DH0" firstAttribute="leading" secondItem="Pwc-IJ-lWU" secondAttribute="leading" constant="9" id="Ljv-aU-3Ov"/>
+                        <constraint firstItem="Afx-II-DH0" firstAttribute="top" secondItem="Pwc-IJ-lWU" secondAttribute="top" constant="9" id="Q9K-Dn-IGB"/>
                         <constraint firstItem="Afx-II-DH0" firstAttribute="centerY" secondItem="Pwc-IJ-lWU" secondAttribute="centerY" id="WiD-Dj-0Hb"/>
                     </constraints>
                     <connections>
@@ -47,9 +48,10 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Pwc-IJ-lWU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3Fy-px-qeq"/>
+                <constraint firstItem="Pwc-IJ-lWU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="21" id="9Km-p3-gaf"/>
                 <constraint firstAttribute="trailing" secondItem="Pwc-IJ-lWU" secondAttribute="trailing" id="B5G-iC-pcb"/>
                 <constraint firstItem="lwc-mo-vAU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="R5M-p0-pay"/>
-                <constraint firstItem="lwc-mo-vAU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XuS-2A-qEw"/>
+                <constraint firstItem="lwc-mo-vAU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nAo-Hf-f20"/>
                 <constraint firstAttribute="bottom" secondItem="Pwc-IJ-lWU" secondAttribute="bottom" id="qR0-Fn-Ex4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
