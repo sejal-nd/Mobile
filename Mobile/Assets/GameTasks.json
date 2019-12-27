@@ -821,7 +821,7 @@
                 { "answer": "Once a decade", "correct": false }
             ],
             "answerDescription": "Cleaning your outside vents once every year can reduce your energy and the risk of fire.",
-            "tipId": "tip026_clean_air_filters",
+            "tipId": "tip077c_use_a_clothes_dryer_efficiently",
             "serviceType": "ELECTRIC",
             "rentOrOwn": "OWN"
         }
@@ -853,4 +853,219 @@
             "rentOrOwn": "OWN"
         }
     },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip029_insulate_outlets_light_switches",
+            "title": "Insulate Outlets and Light Switches",
+            "description": "Outlets and light switches in the walls that separate your home from the outdoors are often overlooked sources of heating or cooling loss. Insulating these areas can reduce drafts and keep your home more comfortable.",
+            "numPeople": 3206,
+            "savingsPerYear": 95,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Outdoor outlets and light switches can be the cause of heating and cooling loss in your home.",
+            "answers": [
+                { "answer": "TRUE", "correct": true },
+                { "answer": "FALSE", "correct": false }
+            ],
+            "answerDescription": "TRUE! Outdoor outlets and light switches can cause heating and cooling loss. Be sure to insulate these areas with care to avoid an energy nightmare!",
+            "tipId": "tip029_insulate_outlets_light_switches",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip033_clear_around_vents",
+            "title": "Vents: Let's Make It Clear",
+            "description": "Make a clear path for the flow of air from your heating and cooling vents. Furniture, carpets and other objects can block vents and prevent air from traveling. Push that sofa to the side and let it flow!",
+            "numPeople": 14985,
+            "savingsPerYear": 10,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip022_improve_insulation",
+            "title": "Insulation Upgrade",
+            "description": "Save the draft for game night! Sealing leaks in your home and adding insulation to your attic are effective ways to save energy. Start now to save up to 15%.",
+            "numPeople": 19783,
+            "savingsPerYear": 165,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "You can save energy by sealing leaks and adding insulation to what in your home?",
+            "answers": [
+                { "answer": "Sofa", "correct": false },
+                { "answer": "Attic", "correct": true },
+                { "answer": "Shower", "correct": false }
+            ],
+            "answerDescription": "Adding insulation to your attic can stop the dreaded draft from running up your bill!",
+            "tipId": "tip022_improve_insulation",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip125_efficient_water_heater",
+            "title": "Retire that Water Heater",
+            "description": "Your water heater has done a good job keeping your showers hot and your dishes clean. But if it's more than 10 years old, it might be time to retire ol' faithful in favor of an efficient new model. Heat pump, tankless, and solar water heaters are all great options to save!",
+            "numPeople": 3133,
+            "savingsPerYear": 160,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip092_set_thermostat_wisely_summer",
+            "title": "Don't Hate On 78 (In the Summer)",
+            "description": "Beat the heat without breaking the bank by keeping your thermostat at a comfy 78°F when you're home. Save even more by raising the temperature by 10°F when you're away and 4°F before bed.",
+            "numPeople": 12477,
+            "savingsPerYear": 380,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip020_keep_out_solar_heat",
+            "title": "Get Shady this Summer",
+            "description": "Summer sun can be downright brutal. Protect your home from its overheating rays by keeping your drapes closed on sunny days. Keep your AC unit's cool air in and the heat out!",
+            "numPeople": 26228,
+            "savingsPerYear": 30,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "To save more energy, you should do this to your blinds or drapes during summer days?",
+            "answers": [
+                { "answer": "Open", "correct": false },
+                { "answer": "Close", "correct": true }
+            ],
+            "answerDescription": "Clothes your blinds or drapes during summer days to preserve the air from your AC. Heat, stay away!",
+            "tipId": "tip020_keep_out_solar_heat",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip178_leave_home_peak",
+            "title": "Go Out, Stay Cool",
+            "description": "Feeling cooped up? One of the easiest and most effective ways to reduce your home's electricity is to get out of the house! Before you leave, raise your AC temperature by 10°F.",
+            "numPeople": 35,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip019_seal_window_ac",
+            "title": "Hold Your Cool Air Close",
+            "description": "Your air conditioner works hard to keep your home cool all summer long. So don't let a single breeze go to waste. Check your window AC unit's seal annually to make sure no cool air is escaping.",
+            "savingsPerYear": 40,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "To prevent air loss, what on a window AC unit should be annually checked?",
+            "answers": [
+                { "answer": "The Sticker", "correct": false },
+                { "answer": "The Thermostat", "correct": false },
+                { "answer": "The Seal", "correct": true }
+            ],
+            "answerDescription": "Check the seal of a a window AC unit annually to prevent air loss. Over time moisture can damage the seal allowing air to escape. Hold on tight to the air and never let it go!",
+            "tipId": "tip019_seal_window_ac",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip176_activities_without_electricity_peak",
+            "title": "Unplug to Unwind",
+            "description": "Let the sun set before you connect! During this summer's Energy Savings Days, limit the use of household appliances and electronics between the hours of 1 PM – 7 PM",
+            "numPeople": 48,
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "On BGE Energy Savings Days, you should limit the use of electric during these hours to save money?",
+            "answers": [
+                { "answer": "1 PM – 6 PM", "correct": false },
+                { "answer": "12 PM – 6 PM", "correct": false },
+                { "answer": "1 PM – 7 PM", "correct": true }
+            ],
+            "answerDescription": "Conserve energy between the hours of 1 PM – 7 PM during Energy Savings Days to save!",
+            "tipId": "tip176_activities_without_electricity_peak",
+            "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip084_use_fans_for_cooling",
+            "title": "Your Greatest Fan",
+            "description": "Don't you deserve a little personalized comfort? Get it on a budget by using a fan to keep you cool this summer. Save up to $85 per year by raising your thermostat at least 4°F and cooling yourself, not the whole room.",
+            "numPeople": 5220,
+            "savingsPerYear": 85,
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "You can beat the heat by raising your thermostat 4°F and turning on what household device?",
+            "answers": [
+                { "answer": "Sump Pump", "correct": false },
+                { "answer": "Fan", "correct": true },
+                { "answer": "Air Conditioner", "correct": false }
+            ],
+            "answerDescription": "Don't let your electric costs ruin your summer fun. Raise your thermostat 4°F and turn on a fan to stay cool.",
+            "tipId": "tip084_use_fans_for_cooling",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN",
+            "season": "SUMMER"
+        }
+    }
 ]
