@@ -35,6 +35,10 @@ func dLog(_ message: @autoclosure () -> String? = nil,
     #if DEBUG
     if let message = message() {
         NSLog("[%@: %d] %@ - %@", (filename as NSString).lastPathComponent, line, function, message)
+        #if os(watchOS)
+        // Show log messages for watch in iOS console
+        WatchSessionManager.shared.transferUserInfo(userInfo: ["console": message])
+        #endif
     } else {
         NSLog("[%@: %d] %@", (filename as NSString).lastPathComponent, line, function)
     }

@@ -485,13 +485,15 @@ extension UsageInterfaceController {
         accountGroup.setHidden(false)
         
         hasError = true
-        clearAllMenuItems() // todo double check this
+        clearAllMenuItems()
         
-        guard error == .passwordProtected else {
+        if error == .passwordProtected {
+            state = .passwordProtected
+        } else if error == .featureUnavailable {
+            state = .unavailable
+        } else {
             state = .error(error)
-            return
         }
-        state = .passwordProtected
     }
     
 }
