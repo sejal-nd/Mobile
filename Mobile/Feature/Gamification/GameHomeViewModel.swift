@@ -121,10 +121,13 @@ class GameHomeViewModel {
                 self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)
     }
-    
-    func updateGameUserTaskIndex(_ index: Int, advanceTaskTimer: Bool) {
+        
+    func updateGameUser(taskIndex: Int, advanceTaskTimer: Bool, points: Double? = nil) {
         guard let accountDetail = accountDetail.value else { return }
-        let params = ["taskIndex": index]
+        var params: [String: Any] = ["taskIndex": taskIndex]
+        if let p = points {
+            params["points"] = p
+        }
         self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] gameUser in
@@ -134,7 +137,7 @@ class GameHomeViewModel {
                 self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)
     }
-    
+        
     func updateGameUserAnalytic(forKey key: String) {
         guard let accountDetail = accountDetail.value else { return }
         let params = [key: true]

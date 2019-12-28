@@ -462,36 +462,35 @@ class GameHomeViewController: AccountPickerViewController {
         let pointsBefore = self.points
         let pointsAfter = pointsBefore + points
         
-        if pointsAfter > pointsBefore { // So that this function can be used just to advance the task index
-            if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: pointsBefore, pointsAfter: pointsAfter) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-                    self.presentGift(unlockedGift)
-                }
+        if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: pointsBefore, pointsAfter: pointsAfter) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                self.presentGift(unlockedGift)
             }
-            
-            if let result = progressBar.setPoints(pointsAfter) {
-                if result == .halfWay {
-                    energyBuddyView.playSuperHappyAnimation()
-                    energyBuddyView.showHalfWayMessage()
-                } else if result == .levelUp {
-                    energyBuddyView.playSuperHappyAnimation(withSparkles: true)
-                    energyBuddyView.showLevelUpMessage()
-                }
-            } else {
-                energyBuddyView.playHappyAnimation()
-            }
-            
-            viewModel.debouncedPoints.accept(pointsAfter)
-            self.points = pointsAfter
         }
         
-        if advanceTaskIndex {
+        if let result = progressBar.setPoints(pointsAfter) {
+            if result == .halfWay {
+                energyBuddyView.playSuperHappyAnimation()
+                energyBuddyView.showHalfWayMessage()
+            } else if result == .levelUp {
+                energyBuddyView.playSuperHappyAnimation(withSparkles: true)
+                energyBuddyView.showLevelUpMessage()
+            }
+        } else {
+            energyBuddyView.playHappyAnimation()
+        }
+        
+        if advanceTaskIndex { // If advancing index, update index + points in the same request
             energyBuddyView.setTaskIndicator(nil)
             currentTask = nil
             
             currentTaskIndex += 1
-            viewModel.updateGameUserTaskIndex(currentTaskIndex, advanceTaskTimer: advanceTaskTimer)
+            viewModel.updateGameUser(taskIndex: currentTaskIndex, advanceTaskTimer: advanceTaskTimer, points: pointsAfter)
+        } else { // If just points, use the debounced point update
+            viewModel.debouncedPoints.accept(pointsAfter)
         }
+        
+        self.points = pointsAfter
     }
     
     private func presentGift(_ gift: Gift) {
@@ -613,7 +612,11 @@ extension GameHomeViewController: GameEnrollmentViewControllerDelegate {
     func gameEnrollmentViewControllerDidPressNotInterested(_ gameEnrollmentViewController: GameEnrollmentViewController) {
         tabBarController?.dismiss(animated: true, completion: nil)
         
-        awardPoints(0, advanceTaskIndex: true)
+        energyBuddyView.setTaskIndicator(nil)
+        currentTask = nil
+        
+        currentTaskIndex += 1
+        viewModel.updateGameUser(taskIndex: currentTaskIndex, advanceTaskTimer: true)
     }
 }
 
@@ -622,12 +625,11 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
     
     func paperlessEBillViewController(_ paperlessEBillViewController: PaperlessEBillViewController, didChangeStatus: PaperlessEBillChangedStatus) {
         if didChangeStatus == .enroll {
-            awardPoints(8, advanceTaskIndex: true)
-
             viewModel.updateGameUserAnalytic(forKey: "pilotEBillEnrollment")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
+                self.awardPoints(8, advanceTaskIndex: true)
             })
         }
     }
