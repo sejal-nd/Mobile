@@ -440,10 +440,10 @@ class GameHomeViewController: AccountPickerViewController {
             taskSeason = quizSeason
         }
         if let season = taskSeason, let month = Calendar.current.dateComponents([.month], from: Date.now).month {
-            if season == "SUMMER" && month != 6 && month != 7 {
+            if season == "SUMMER" && month >= 10 && month <= 3 { // October - March, filter out summer tips
                 return true
             }
-            if season == "WINTER" && month != 2 && month != 3 {
+            if season == "WINTER" && month >= 4 && month <= 9 { // April - September, filter out winter tips
                 return true
             }
         }
