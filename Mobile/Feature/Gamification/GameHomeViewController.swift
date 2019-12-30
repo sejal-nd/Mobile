@@ -343,8 +343,9 @@ class GameHomeViewController: AccountPickerViewController {
             let enrollVc = GameEnrollmentViewController.create(withTaskType: task.type)
             enrollVc.delegate = self
             self.tabBarController?.present(enrollVc, animated: true, completion: nil)
-        } else if task.type == .survey {
-            let surveyVc = GameSurveyViewController.create()
+        } else if let survey = task.survey {
+            let surveyVc = GameSurveyViewController.create(withSurvey: survey)
+            surveyVc.delegate = self
             self.tabBarController?.present(surveyVc, animated: true, completion: nil)
         } else if let tip = task.tip {
             let tipVc = GameTipViewController.create(withTip: tip)
@@ -383,12 +384,6 @@ class GameHomeViewController: AccountPickerViewController {
                 currentTask = nil
                 return
             }
-            
-//            let secondsSinceLastTask = abs(lastTaskDate.interval(ofComponent: .second, fromDate: Date.now, usingCalendar: Calendar.current))
-//            if secondsSinceLastTask < 10 {
-//                currentTask = nil
-//                return
-//            }
         }
         
         if let gameUser = viewModel.gameUser.value, let accountDetail = viewModel.accountDetail.value {
@@ -410,9 +405,13 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func shouldFilterOutTask(task: GameTask, gameUser: GameUser, accountDetail: AccountDetail) -> Bool {
-        // TODO: Filter if users already completed or selected "I'm Not Interested"
-        if task.type == .survey {
-            return true
+        if let survey = task.survey {
+            if survey.surveyNumber == 1 && UserDefaults.standard.bool(forKey: UserDefaultKeys.gameSurvey1Complete) {
+                return true
+            }
+            if survey.surveyNumber == 2 && UserDefaults.standard.bool(forKey: UserDefaultKeys.gameSurvey2Complete) {
+                return true
+            }
         }
         
         // eBill Enroll Task: Should filter out if already enrolled, or ineligible for enrollment
@@ -631,6 +630,24 @@ extension GameHomeViewController: PaperlessEBillViewControllerDelegate {
                 self.view.showToast(NSLocalizedString("Enrolled in Paperless eBill", comment: ""))
                 self.awardPoints(8, advanceTaskIndex: true)
             })
+        }
+    }
+}
+
+// MARK - GameSurveyViewControllerDelegate
+extension GameHomeViewController: GameSurveyViewControllerDelegate {
+    
+    func gameSurveyViewControllerDidFinish(_ viewController: GameSurveyViewController, surveyComplete: Bool) {
+        if surveyComplete {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
+                self.awardPoints(8, advanceTaskIndex: true, advanceTaskTimer: false)
+            })
+        } else {
+            energyBuddyView.setTaskIndicator(nil)
+            currentTask = nil
+            
+            currentTaskIndex += 1
+            viewModel.updateGameUser(taskIndex: currentTaskIndex, advanceTaskTimer: false)
         }
     }
 }
