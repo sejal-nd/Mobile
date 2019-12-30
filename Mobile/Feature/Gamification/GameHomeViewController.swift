@@ -640,7 +640,7 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
     func gameSurveyViewControllerDidFinish(_ viewController: GameSurveyViewController, surveyComplete: Bool) {
         if surveyComplete {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
-                self.awardPoints(8, advanceTaskIndex: true, advanceTaskTimer: false)
+                self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
             })
         } else {
             energyBuddyView.setTaskIndicator(nil)

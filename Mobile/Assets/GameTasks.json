@@ -594,7 +594,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "Maximize you fridge's energy costs by setting its temperature to a safe and chilly 38°F.",
+            "question": "Maximize your fridge's energy costs by setting its temperature to a safe and chilly 38°F.",
             "answers": [
                 { "answer": "TRUE", "correct": true },
                 { "answer": "FALSE", "correct": false }
