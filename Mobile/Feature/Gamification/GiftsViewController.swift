@@ -11,6 +11,8 @@ import XLPagerTabStrip
 
 class GiftsViewController: ButtonBarPagerTabStripViewController {
     
+    let gameService = ServiceFactory.createGameService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +51,13 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        _ = self.gameService.updateGameUserGiftSelections(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+            .subscribe()
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {

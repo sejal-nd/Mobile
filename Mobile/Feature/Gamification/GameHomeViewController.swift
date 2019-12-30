@@ -588,6 +588,7 @@ extension GameHomeViewController: GameRewardViewControllerDelegate {
     
     func gameRewardViewController(_ gameRewardViewController: GameRewardViewController, didSetGift gift: Gift) {
         energyBuddyView.updateBuddy()
+        viewModel.updateGiftSelections()
         tabBarController?.dismiss(animated: true, completion: {
             self.energyBuddyView.playSuperHappyAnimation(withSparkles: false, withHearts: true)
             self.energyBuddyView.showNewGiftAppliedMessage(forGift: gift)

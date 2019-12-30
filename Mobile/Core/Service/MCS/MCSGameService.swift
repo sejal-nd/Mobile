@@ -11,12 +11,6 @@ import RxSwift
 class MCSGameService: GameService {
     
     func fetchGameUser(accountNumber: String) -> Observable<GameUser?> {
-//        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 15)
-//        UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
-//        UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
-//        UserDefaults.standard.set(false, forKey: UserDefaultKeys.gameOptedOutLocal)
-//        return Observable.just(testUser)
-        
         return MCSApi.shared.get(pathPrefix: .auth, path: "game/\(accountNumber)")
             .map { json in
                 guard let dict = json as? NSDictionary, let gameUser = GameUser.from(dict) else {
@@ -40,9 +34,6 @@ class MCSGameService: GameService {
     }
     
     func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<GameUser> {
-//        let testUser = GameUser(onboardingComplete: true, optedOut: false, points: 16)
-//        return Observable.just(testUser)
-        
         var stringifiedDict = [String: String]()
         keyValues.forEach { (key, value) in
             if let valueStr = value as? String {
@@ -66,6 +57,14 @@ class MCSGameService: GameService {
             }
     }
     
+    func updateGameUserGiftSelections(accountNumber: String) -> Observable<Void> {
+        return self.updateGameUser(accountNumber: accountNumber, keyValues: [
+            "selectedBackground": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none",
+            "selectedHat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
+            "selectedAccessory": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
+        ]).mapTo(())
+    }
+        
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {
         let endDate = Date.now
         let startDate = Calendar.current.date(byAdding: .month, value: -1, to: endDate)!

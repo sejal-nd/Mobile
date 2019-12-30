@@ -145,7 +145,13 @@ class GameHomeViewModel {
     func updateGameUserAnalytic(forKey key: String) {
         guard let accountDetail = accountDetail.value else { return }
         let params = [key: true]
-        _ = self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+        _ = gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+            .subscribe()
+    }
+    
+    func updateGiftSelections() {
+        guard let accountDetail = accountDetail.value else { return }
+        _ = self.gameService.updateGameUserGiftSelections(accountNumber: accountDetail.accountNumber)
             .subscribe()
     }
         

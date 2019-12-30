@@ -14,6 +14,8 @@ protocol GameService {
 
     func updateGameUser(accountNumber: String, keyValues: [String: Any]) -> Observable<GameUser>
     
+    func updateGameUserGiftSelections(accountNumber: String) -> Observable<Void>
+    
     /// Compares how usage impacted your bill between cycles
     ///
     /// - Parameters:

@@ -23,6 +23,10 @@ class MockGameService: GameService {
         return .just(testUser)
     }
     
+    func updateGameUserGiftSelections(accountNumber: String) -> Observable<Void> {
+        return .just(())
+    }
+    
     func fetchDailyUsage(accountNumber: String, premiseNumber: String, gas: Bool) -> Observable<[DailyUsage]> {
         return .just([])
     }
