@@ -255,7 +255,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "When you leave a room don't forget to do this quick trick to all lights?",
+            "question": "When you leave a room don't forget to do this quick trick to all lights.",
             "answers": [
                 { "answer": "Turn the lights off", "correct": true },
                 { "answer": "Turn the lights on", "correct": false }
