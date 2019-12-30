@@ -378,6 +378,14 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func checkForAvailableTask() {
+        if currentTaskIndex >= GameTaskStore.shared.tasks.count {
+            // TODO: Play confetti animation
+            if !UserDefaults.standard.bool(forKey: UserDefaultKeys.gameHasSeenCompletionPopup) {
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameHasSeenCompletionPopup)
+                showGameCompletionPopup()
+            }
+        }
+        
         if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
             let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
             if daysSinceLastTask < 4 {
@@ -453,6 +461,13 @@ class GameHomeViewController: AccountPickerViewController {
     private func showEnergyBuddyTooltip() {
         let alert = InfoAlertController(title: NSLocalizedString("Hello!", comment: ""),
                                         message: NSLocalizedString("I’m your Energy Buddy!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.\n\nCheck back soon for your next challenge!", comment: ""),
+                                        icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))
+        self.tabBarController?.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showGameCompletionPopup() {
+        let alert = InfoAlertController(title: NSLocalizedString("You did it!", comment: ""),
+                                        message: NSLocalizedString("Congratulations! You’ve reached the end for now, but updates will be made in the future!", comment: ""),
                                         icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
