@@ -24,6 +24,8 @@ class GameSurveyViewController: UIViewController {
     @IBOutlet weak var notInterestedButton: UIButton!
 
     let accountNumber = AccountsStore.shared.currentAccount.accountNumber
+    
+    private let surveyManager = SurveyMonkeyManager()
             
     static func create() -> GameSurveyViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
@@ -69,6 +71,12 @@ class GameSurveyViewController: UIViewController {
         
     @objc private func dismiss(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+        
+    @IBAction func onTakeSurveyPress() {
+        surveyManager.presentSurvey(withHash: "NYLFJP3", from: self) {
+            print("survey completion")
+        }
     }
         
     @IBAction func onRemindMeLaterPress() {

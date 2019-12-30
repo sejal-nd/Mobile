@@ -1370,6 +1370,9 @@
 		9CEE412923722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		9CEE412A23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
 		9CEE412B23722CA8005A4AD3 /* DailyUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412823722CA8005A4AD3 /* DailyUsage.swift */; };
+		9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
+		9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
+		9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */; };
 		9CF5369E23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
 		9CF5369F23A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
 		9CF536A023A1A4C60006576E /* GiftCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */; };
@@ -3374,6 +3377,8 @@
 		9CEE412023722AD9005A4AD3 /* DailyInsightCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyInsightCoinView.swift; sourceTree = "<group>"; };
 		9CEE412423722B8A005A4AD3 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		9CEE412823722CA8005A4AD3 /* DailyUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsage.swift; sourceTree = "<group>"; };
+		9CF0E06623BA650100C151F5 /* SurveyMonkeyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurveyMonkeyManager.h; sourceTree = "<group>"; };
+		9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurveyMonkeyManager.m; sourceTree = "<group>"; };
 		9CF5369D23A1A4C60006576E /* GiftCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCollectionViewController.swift; sourceTree = "<group>"; };
 		9E85585C63DC708EE8610105 /* Pods-PECO-Watch Extension.prodbeta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECO-Watch Extension.prodbeta.xcconfig"; path = "Pods/Target Support Files/Pods-PECO-Watch Extension/Pods-PECO-Watch Extension.prodbeta.xcconfig"; sourceTree = "<group>"; };
 		9F3ABBB099DD192791B67AE3 /* Pods-PECOApp-PECOUnitTests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PECOApp-PECOUnitTests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PECOApp-PECOUnitTests/Pods-PECOApp-PECOUnitTests.develop.xcconfig"; sourceTree = "<group>"; };
@@ -6095,6 +6100,8 @@
 			children = (
 				9C74CDE621EF89EB00F599D1 /* A0SimpleKeychain */,
 				82D599411EC2374500DDB380 /* ActivityTracker.swift */,
+				9CF0E06623BA650100C151F5 /* SurveyMonkeyManager.h */,
+				9CF0E06723BA650100C151F5 /* SurveyMonkeyManager.m */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -8265,6 +8272,7 @@
 				82EAB3401F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2752215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44320FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CF0E06823BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA692385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E8C4532F1EF44AE000F5C781 /* AutoPayChangeBankViewController.swift in Sources */,
 				9CD3531E22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
@@ -8676,6 +8684,7 @@
 				9C10B4DD22E23A9A00B0851B /* ForgotPasswordViewModel.swift in Sources */,
 				B0DB2754215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44520FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CF0E06A23BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA6B2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				9C62447222C42B4900F14DA0 /* FloatLabelTextView.swift in Sources */,
 				E88ECFF31E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
@@ -9087,6 +9096,7 @@
 				82EAB3411F97EFF8008B55B1 /* HourlyPricingViewController.swift in Sources */,
 				B0DB2753215EAF9C00CD703B /* AlertPreferencesSectionHeaderView.swift in Sources */,
 				B085C44420FD2C5500CE0893 /* ConversationalButton.swift in Sources */,
+				9CF0E06923BA650100C151F5 /* SurveyMonkeyManager.m in Sources */,
 				9CA4FA6A2385D00100E33E7C /* ViewedTipsViewController.swift in Sources */,
 				E88ECFF21E8D8BA600A570D0 /* MCSOutageService.swift in Sources */,
 				9CD3531F22CABBB800165F87 /* DataDetectorTextView.swift in Sources */,
