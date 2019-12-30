@@ -63,18 +63,22 @@ class GameHomeViewModel {
             error.accept(false)
         }
         
-        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-            .subscribe(onNext: { [weak self] accountDetail in
-                guard let self = self else { return }
-                
-                self.accountDetail.accept(accountDetail)
-                self.fetchGameUser()
-                self.fetchDailyUsage(pullToRefresh)
-            }, onError: { [weak self] error in
-                self?.loading.accept(false)
-                self?.refreshing.accept(false)
-                self?.error.accept(true)
-            }).disposed(by: bag)
+        if accountDetail.value == nil {
+            accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+                .subscribe(onNext: { [weak self] accountDetail in
+                    guard let self = self else { return }
+                    self.accountDetail.accept(accountDetail)
+                    self.fetchGameUser()
+                    self.fetchDailyUsage(pullToRefresh)
+                }, onError: { [weak self] error in
+                    self?.loading.accept(false)
+                    self?.refreshing.accept(false)
+                    self?.error.accept(true)
+                }).disposed(by: bag)
+        } else {
+            self.fetchGameUser()
+            self.fetchDailyUsage(pullToRefresh)
+        }
     }
     
     func fetchGameUser() {
