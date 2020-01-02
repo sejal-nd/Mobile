@@ -91,6 +91,7 @@ class GameOnboardingStep1ViewController: UIViewController {
     }
     
     @IBAction func onContinuePress() {
+        FirebaseUtility.logEvent(.gameOnboardStep1Complete)
         performSegue(withIdentifier: "goToStep2", sender: self)
     }
     

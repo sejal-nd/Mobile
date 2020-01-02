@@ -149,6 +149,13 @@ class GameHomeViewController: AccountPickerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        FirebaseUtility.logEvent(.gameExperienceAccessed, customParameters: [
+            "currentPointTotal": UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal),
+            "selectedBackground": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none",
+            "selectedHat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
+            "selectedAccessory": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
+        ])
                 
         if viewDidAppear { // Only do this on repeat `viewDidAppear`s. The initial play is done in `viewDidLayoutSubviews`
             energyBuddyView.playDefaultAnimations()
@@ -408,7 +415,6 @@ class GameHomeViewController: AccountPickerViewController {
                     break
                 }
             }
-
         }
     }
     

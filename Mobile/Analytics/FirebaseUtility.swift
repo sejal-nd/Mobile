@@ -76,6 +76,14 @@ struct FirebaseUtility {
         case releaseOfInfoNetworkComplete
         case personalizeHomeStart
         case personalizeHomeComplete
+        
+        // Gamification
+        case gameOnboardStart
+        case gameOnboardStep1Complete
+        case gameOnboardStep2Complete
+        case gameOptOut
+        case gameOptIn
+        case gameExperienceAccessed
     }
     
     /// Name of user property -> Mapped directly to Firebase
@@ -90,6 +98,12 @@ struct FirebaseUtility {
         case isScreenReaderEnabled
         case isSwitchAccessEnabled
         case fontScale
+        
+        // Gamification
+        case gamificationGroup
+        case gamificationIsOptedOut
+        case gamificationIsOnboarded
+        case gamificationIsClusterTwo
     }
     
     /// This method should only be called once from App Delegate: Configures Firebase
@@ -128,6 +142,14 @@ struct FirebaseUtility {
         }
 
         Analytics.logEvent(event.rawValue, parameters: parametersDict)
+    }
+    
+    public static func logEvent(_ event: Event, customParameters: [String : Any]) {
+        #if DEBUG
+        NSLog("📊🔥 Firebase Event: \(event.rawValue)")
+        #endif
+
+        Analytics.logEvent(event.rawValue, parameters: customParameters)
     }
     
     /// Sets a User Property on the current user, all future events are auto tagged with User Properties
