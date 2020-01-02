@@ -61,7 +61,18 @@ class GameSurveyViewController: UIViewController {
         
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
-        detailLabel.text = NSLocalizedString("We appreciate your time, so we’ll keep it short!", comment: "")
+        let detailText = survey.surveyNumber == 1 ?
+            NSLocalizedString("We appreciate your time, so we’ll keep it short!", comment: "") :
+            NSLocalizedString("Thank you for participating in the experience! Now that it’s been a while, we’d love to hear more from you.", comment: "")
+        detailLabel.text = detailText
+        
+        let takeSurveyButtonTitle = survey.surveyNumber == 1 ?
+            NSLocalizedString("Take Survey", comment: "") :
+            NSLocalizedString("Take Survey #2", comment: "")
+        UIView.performWithoutAnimation { // Prevents ugly setTitle animation
+            takeSurveyButton.setTitle(takeSurveyButtonTitle, for: .normal)
+            takeSurveyButton.layoutIfNeeded()
+        }
         
         remindMeLaterButton.tintColor = .actionBlue
         remindMeLaterButton.setTitleColor(.actionBlue, for: .normal)

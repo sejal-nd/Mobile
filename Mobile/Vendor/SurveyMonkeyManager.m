@@ -26,7 +26,11 @@
 }
 
 - (void)respondentDidEndSurvey:(SMRespondent *)respondent error:(NSError *) error {
-    if (error != nil && _surveyEndCallback) {
+    if (error.code == 1) { // The user canceled out of the survey
+        return;
+    }
+    
+    if (_surveyEndCallback) {
         _surveyEndCallback();
     }
 }
