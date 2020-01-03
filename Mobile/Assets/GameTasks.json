@@ -18,7 +18,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "Set your thermostat to this temperature during the winter to maximize your heating savings?",
+            "question": "Set your thermostat to this temperature during the winter to maximize your heating savings.",
             "answers": [
                 { "answer": "75°", "correct": false },
                 { "answer": "72°", "correct": false },
@@ -140,7 +140,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "To save more energy, you should do this to your blinds or drapes during winter days?",
+            "question": "To save more energy, you should do what to your blinds or drapes during winter days?",
             "answers": [
                 { "answer": "Open", "correct": true },
                 { "answer": "Close", "correct": false }
@@ -288,7 +288,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "Set your water heater to this temperature",
+            "question": "Set your water heater to this temperature.",
             "answers": [
                 { "answer": "120°F", "correct": true },
                 { "answer": "125°F", "correct": false },
@@ -450,7 +450,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "Turning this down on your TV can reduce power use without compromising your favorite shows?",
+            "question": "Turning this down on your TV can reduce power use without compromising your favorite shows.",
             "answers": [
                 { "answer": "Volume", "correct": false },
                 { "answer": "Brightness", "correct": true }
@@ -571,10 +571,23 @@
     {
         "type": "tip",
         "tip": {
-            "id": "tip331_use_natural_light_tou",
-            "title": "Soak Up the Sunrays",
-            "description": "Turn off the lights and let the sunrays in. By opening shutters and blinds, you can naturally light your home to reduce lighting costs throughout the day.",
-            "numPeople": 13005,
+            "id": "tip_streaming",
+            "title": "Stream Smarter",
+            "description": "Don’t let gaming systems play you! Did you know that streaming your favorite shows and movies from a game console can cost you up to 30 times more energy than streaming from a smart TV? Start streaming smarter and save.",
+            "serviceType": "GAS/ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "quiz",
+        "quiz": {
+            "question": "Streaming from a game console costs you less energy than streaming from a smart TV.",
+            "answers": [
+                { "answer": "TRUE", "correct": false },
+                { "answer": "FALSE", "correct": true }
+            ],
+            "answerDescription": "FALSE! Remember to stream smarter and save with a smart TV. Don’t get played.",
+            "tipId": "tip_streaming",
             "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
@@ -641,6 +654,17 @@
             "numPeople": 1450,
             "savingsPerYear": 35,
             "serviceType": "ELECTRIC",
+            "rentOrOwn": "RENT/OWN"
+        }
+    },
+    {
+        "type": "tip",
+        "tip": {
+            "id": "tip331_use_natural_light_tou",
+            "title": "Soak Up the Sunrays",
+            "description": "Turn off the lights and let the sunrays in. By opening shutters and blinds, you can naturally light your home to reduce lighting costs throughout the day.",
+            "numPeople": 13005,
+            "serviceType": "GAS/ELECTRIC",
             "rentOrOwn": "RENT/OWN"
         }
     },
@@ -725,7 +749,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "To save money while cleaning your clothes, you should start separating your laundry by?",
+            "question": "To save money while cleaning your clothes, how should you start separating your laundry?",
             "answers": [
                 { "answer": "Color", "correct": false },
                 { "answer": "Weight", "correct": true },
@@ -884,7 +908,7 @@
         "tip": {
             "id": "tip033_clear_around_vents",
             "title": "Vents: Let's Make It Clear",
-            "description": "Make a clear path for the flow of air from your heating and cooling vents. Furniture, carpets and other objects can block vents and prevent air from traveling. Push that sofa to the side and let it flow!",
+            "description": "Make a clear path for the flow of air from your heating and cooling vents. Furniture, carpets, and other objects can block vents and prevent air from traveling. Push that sofa to the side and let it flow!",
             "numPeople": 14985,
             "savingsPerYear": 10,
             "serviceType": "GAS/ELECTRIC",
@@ -1016,7 +1040,7 @@
         "tip": {
             "id": "tip176_activities_without_electricity_peak",
             "title": "Unplug to Unwind",
-            "description": "Let the sun set before you connect! During this summer's Energy Savings Days, limit the use of household appliances and electronics between the hours of 1 PM – 7 PM",
+            "description": "Let the sun set before you connect! During this summer's Energy Savings Days, limit the use of household appliances and electronics between the hours of 1 PM – 7 PM.",
             "numPeople": 48,
             "serviceType": "ELECTRIC",
             "rentOrOwn": "RENT/OWN",
@@ -1026,7 +1050,7 @@
     {
         "type": "quiz",
         "quiz": {
-            "question": "On BGE Energy Savings Days, you should limit the use of electric during these hours to save money?",
+            "question": "On BGE Energy Savings Days, you should limit the use of electricity during these hours to save money.",
             "answers": [
                 { "answer": "1 PM – 6 PM", "correct": false },
                 { "answer": "12 PM – 6 PM", "correct": false },
