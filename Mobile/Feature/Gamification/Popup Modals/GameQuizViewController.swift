@@ -101,9 +101,12 @@ extension GameQuizViewController: QuizAnswerViewDelegate {
         answerStackView.isUserInteractionEnabled = false
         
         selectedAnswerView = view
-
-        // If answered incorrectly, mark the correct answer
-        if !view.correct {
+        
+        let generator = UINotificationFeedbackGenerator()
+        if view.correct {
+            generator.notificationOccurred(.success)
+        } else {
+            generator.notificationOccurred(.error)
             for answerView in answerViews {
                 if answerView.correct {
                     answerView.setCorrectState()
@@ -113,8 +116,6 @@ extension GameQuizViewController: QuizAnswerViewDelegate {
         
         answerDescriptionLabel.isHidden = false
         viewTipButton.isHidden = quiz.tipId == nil
-
-        // Report view.correct back to GameHome, or handle it here
     }
 }
 

@@ -114,6 +114,8 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
             selectedGiftId = nil
             collectionView.deselectItem(at: indexPath, animated: false)
         } else {
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
             selectedGiftId = gift.id
         }
     }

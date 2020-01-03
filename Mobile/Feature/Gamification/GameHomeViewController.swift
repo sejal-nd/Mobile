@@ -612,6 +612,8 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
 extension GameHomeViewController: GameRewardViewControllerDelegate {
     
     func gameRewardViewController(_ gameRewardViewController: GameRewardViewController, didSetGift gift: Gift) {
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
         energyBuddyView.updateBuddy()
         viewModel.updateGiftSelections()
         tabBarController?.dismiss(animated: true, completion: {
