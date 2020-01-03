@@ -27,6 +27,7 @@ class GameHomeViewModel {
     var selectedSegmentIndex = 0
     let selectedCoinView = BehaviorRelay<DailyInsightCoinView?>(value: nil)
     
+    var debouncedCoinQueue = [(Date, Bool)]()
     let debouncedPoints = BehaviorRelay<Double?>(value: nil)
     
     var fetchDisposable: Disposable?
@@ -43,7 +44,22 @@ class GameHomeViewModel {
             .filter { $0 != nil } // Ignore initial
             .debounce(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] points in
-                self?.updateGameUserPoints(points!)
+                guard let self = self, let accountDetail = self.accountDetail.value else { return }
+
+                let params = ["points": points!]
+                self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { [weak self] gameUser in
+                        self?.debouncedCoinQueue.removeAll()
+                        self?.gameUser.accept(gameUser)
+                    }, onError: { [weak self] _ in
+                        guard let self = self else { return }
+                        for tuple in self.debouncedCoinQueue {
+                            self.coreDataManager.removeCollectedCoin(accountNumber: accountDetail.accountNumber, date: tuple.0, gas: tuple.1)
+                        }
+                        self.debouncedCoinQueue.removeAll()
+                        self.usageData.accept(self.usageData.value) // To trigger `layoutCoinViews`
+                    }).disposed(by: self.bag)
             })
             .disposed(by: bag)
         
@@ -116,15 +132,15 @@ class GameHomeViewModel {
             })
     }
     
-    func updateGameUserPoints(_ points: Double) {
-        guard let accountDetail = accountDetail.value else { return }
-        let params = ["points": points]
-        self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] gameUser in
-                self?.gameUser.accept(gameUser)
-            }).disposed(by: self.bag)
-    }
+//    func updateGameUserPoints(_ points: Double) {
+//        guard let accountDetail = accountDetail.value else { return }
+//        let params = ["points": points]
+//        self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+//            .observeOn(MainScheduler.instance)
+//            .subscribe(onNext: { [weak self] gameUser in
+//                self?.gameUser.accept(gameUser)
+//            }).disposed(by: self.bag)
+//    }
         
     func updateGameUser(taskIndex: Int, advanceTaskTimer: Bool, points: Double? = nil) {
         guard let accountDetail = accountDetail.value else { return }

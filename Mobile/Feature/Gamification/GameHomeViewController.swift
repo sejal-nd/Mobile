@@ -506,7 +506,7 @@ class GameHomeViewController: AccountPickerViewController {
             
             currentTaskIndex += 1
             viewModel.updateGameUser(taskIndex: currentTaskIndex, advanceTaskTimer: advanceTaskTimer, points: pointsAfter)
-        } else { // If just points, use the debounced point update
+        } else { // If just points (collected coins), use the debounced point update
             viewModel.debouncedPoints.accept(pointsAfter)
         }
         
@@ -570,7 +570,11 @@ extension GameHomeViewController: DailyInsightCoinViewDelegate {
             }
             
             let accountNumber = viewModel.accountDetail.value!.accountNumber
-            viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: view.usage!.date, gas: viewModel.selectedSegmentIndex == 1)
+            let date = view.usage!.date
+            let gas = viewModel.selectedSegmentIndex == 1
+            
+            viewModel.debouncedCoinQueue.append((date, gas))
+            viewModel.coreDataManager.addCollectedCoin(accountNumber: accountNumber, date: date, gas: gas)
         } else {
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()

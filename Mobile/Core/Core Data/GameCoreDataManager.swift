@@ -30,6 +30,26 @@ struct GameCoreDataManager {
         }
     }
     
+    func removeCollectedCoin(accountNumber: String, date: Date, gas: Bool) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CollectedCoin")
+        fetchRequest.predicate = NSPredicate(format: "accountNumber = %@ AND date = %@ AND gas = %@", accountNumber, date as NSDate, gas as NSNumber)
+        
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            if let collectedCoin = result.first as? NSManagedObject {
+                managedContext.delete(collectedCoin)
+                try managedContext.save()
+            } else {
+                dLog("Collected coin for \(date) does not exist in Core Data, so it can't be deleted")
+            }
+        } catch let error as NSError {
+            dLog("Could not delete collected coin for \(date). \(error), \(error.userInfo)")
+        }
+    }
+    
     func getCollectedCoin(accountNumber: String, date: Date, gas: Bool) -> NSManagedObject? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         let managedContext = appDelegate.persistentContainer.viewContext
