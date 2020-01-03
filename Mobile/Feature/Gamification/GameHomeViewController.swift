@@ -70,13 +70,13 @@ class GameHomeViewController: AccountPickerViewController {
         
         FirebaseUtility.trackScreenWithName(self.className, className: self.className)
         
-        NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
+        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 self?.energyBuddyView.stopAnimations()
             }).disposed(by: bag)
         
-        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
             .asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] _ in
                 guard let self = self else { return }

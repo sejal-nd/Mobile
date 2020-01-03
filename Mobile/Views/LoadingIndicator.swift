@@ -11,29 +11,13 @@ import Lottie
 class LoadingIndicator: UIView {
     
     private var lottieAnimationView: AnimationView?
+    
+    let bag = DisposeBag()
 
     @IBInspectable
     public var isStormMode: Bool = false {
         didSet {
-            lottieAnimationView?.removeFromSuperview()
-            
-            if isStormMode {
-                lottieAnimationView = AnimationView(name: "ellipses_loading_white")
-            } else {
-                lottieAnimationView = AnimationView(name: "ellipses_loading")
-            }
-            guard let lottieAnimationView = lottieAnimationView else { return }
-            
-            lottieAnimationView.frame.size = CGSize(width: 60, height: 12)
-            lottieAnimationView.loopMode = .loop
-            lottieAnimationView.play()
-            
-            addSubview(lottieAnimationView)
-            
-            //make accessibility label for loading animation - and make it the only thing tappable
-            lottieAnimationView.isAccessibilityElement = true
-            lottieAnimationView.accessibilityLabel = NSLocalizedString("Loading", comment: "")
-            lottieAnimationView.accessibilityViewIsModal = true
+            playAnimation()
         }
     }
     
@@ -61,6 +45,18 @@ class LoadingIndicator: UIView {
         
         // Triggers Initial DidSet
         isStormMode = false
+                
+        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.lottieAnimationView?.stop()
+            }).disposed(by: bag)
+        
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] _ in
+                self?.playAnimation()
+            }).disposed(by: bag)
     }
     
     override var intrinsicContentSize: CGSize {
@@ -79,6 +75,27 @@ class LoadingIndicator: UIView {
                 lottieAnimationView?.play()
             }
         }
+    }
+    
+    private func playAnimation() {
+        lottieAnimationView?.removeFromSuperview()
+        
+        if isStormMode {
+            lottieAnimationView = AnimationView(name: "ellipses_loading_white")
+        } else {
+            lottieAnimationView = AnimationView(name: "ellipses_loading")
+        }
+
+        lottieAnimationView!.frame.size = CGSize(width: 60, height: 12)
+        lottieAnimationView!.loopMode = .loop
+        lottieAnimationView!.play()
+        
+        addSubview(lottieAnimationView!)
+        
+        // make accessibility label for loading animation - and make it the only thing tappable
+        lottieAnimationView!.isAccessibilityElement = true
+        lottieAnimationView!.accessibilityLabel = NSLocalizedString("Loading", comment: "")
+        lottieAnimationView!.accessibilityViewIsModal = true
     }
 }
 
