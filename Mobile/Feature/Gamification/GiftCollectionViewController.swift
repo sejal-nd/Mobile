@@ -56,6 +56,11 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
         title = giftType.inventoryTitle
         
         gifts = GiftInventory.shared.gifts(ofType: giftType)
+        
+        // The scroll indicator was extending past the bottom safe area. I figured setting this with bottom = safe area (34)
+        // would do the trick, but that made it stop 34 points above the safe area. bottom = 0 produced the same result
+        // as the original problem. This works, but I have no idea why. I'd imagine XLPagerTabStrip is messing with things out of our control.
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: CGFloat.leastNonzeroMagnitude, right: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
