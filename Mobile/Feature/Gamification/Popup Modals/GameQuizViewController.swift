@@ -98,16 +98,20 @@ class GameQuizViewController: UIViewController {
 
 extension GameQuizViewController: QuizAnswerViewDelegate {
     func quizAnswerViewWasTapped(_ view: QuizAnswerView) {
-        answerStackView.isUserInteractionEnabled = false
-        
+        guard selectedAnswerView == nil else { return } // Prevent double selection
+
         selectedAnswerView = view
         
+        answerStackView.isUserInteractionEnabled = false
+        
+        view.setCorrectState() // Check or X on the tapped view
+
         let generator = UINotificationFeedbackGenerator()
         if view.correct {
             generator.notificationOccurred(.success)
         } else {
             generator.notificationOccurred(.error)
-            for answerView in answerViews {
+            for answerView in answerViews { // If answered incorrectly, find the correct view and show the check
                 if answerView.correct {
                     answerView.setCorrectState()
                 }

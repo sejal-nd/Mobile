@@ -60,7 +60,6 @@ class QuizAnswerView: UIView {
     }
     
     @IBAction func onAnswerPress(_ sender: Any) {
-        setCorrectState()
         delegate?.quizAnswerViewWasTapped(self)
     }
     
