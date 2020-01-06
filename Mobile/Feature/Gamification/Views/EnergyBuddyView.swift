@@ -16,12 +16,7 @@ class EnergyBuddyView: UIView {
     @IBOutlet weak var skyImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
-    @IBOutlet weak var speechBubbleContainerView: UIView!
-    @IBOutlet weak var speechBubbleView: UIView!
-    @IBOutlet weak var speechBubbleLabel: UILabel!
-    
-    @IBOutlet weak var taskIndicatorView: UIView!
-    @IBOutlet weak var taskIndicatorLottieView: UIView!
+    @IBOutlet weak var confettiLottieView: UIView!
     
     @IBOutlet weak var energyBuddyContainerView: UIView!
     @IBOutlet weak var energyBuddyContainerTopConstraint: NSLayoutConstraint!
@@ -32,6 +27,14 @@ class EnergyBuddyView: UIView {
     @IBOutlet weak var energyBuddyAccessoryImageView: UIImageView!
     @IBOutlet weak var energyBuddyParticleLottieView: UIView!
     
+    @IBOutlet weak var speechBubbleContainerView: UIView!
+    @IBOutlet weak var speechBubbleView: UIView!
+    @IBOutlet weak var speechBubbleLabel: UILabel!
+    
+    @IBOutlet weak var taskIndicatorView: UIView!
+    @IBOutlet weak var taskIndicatorLottieView: UIView!
+    
+    var confettiAnimation: AnimationView?
     var bodyAnimation: AnimationView?
     var faceAnimation: AnimationView?
     var particleAnimation: AnimationView?
@@ -57,6 +60,8 @@ class EnergyBuddyView: UIView {
         NSLocalizedString("Wow, this is great!", comment: ""),
         NSLocalizedString("Wow!", comment: "")
     ]
+    
+    var confettiEnabled = false
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -111,6 +116,28 @@ class EnergyBuddyView: UIView {
         }        
     }
     
+    func stopAnimations() {
+        confettiAnimation?.stop()
+        bodyAnimation?.stop()
+        faceAnimation?.stop()
+        particleAnimation?.stop()
+        taskIndicatorAnimation?.stop()
+        energyBuddyContainerTopConstraint.constant = -10
+    }
+    
+    func playConfettiAnimation() {
+        confettiEnabled = true
+        
+        confettiAnimation?.stop()
+        confettiAnimation?.removeFromSuperview()
+        confettiAnimation = AnimationView(name: "confetti")
+        confettiAnimation!.frame.size = confettiLottieView.frame.size
+        confettiAnimation!.contentMode = .scaleAspectFit
+        confettiAnimation!.loopMode = .loop
+        confettiLottieView.addSubview(confettiAnimation!)
+        confettiAnimation!.play()
+    }
+    
     func playDefaultAnimations(resetBounce: Bool = true) {
         bodyAnimation?.stop()
         bodyAnimation?.removeFromSuperview()
@@ -125,6 +152,10 @@ class EnergyBuddyView: UIView {
         
         particleAnimation?.stop()
         particleAnimation?.removeFromSuperview()
+        
+        if confettiEnabled {
+            playConfettiAnimation()
+        }
         
         if resetBounce {
             self.view.layoutIfNeeded()
@@ -146,14 +177,6 @@ class EnergyBuddyView: UIView {
         faceAnimation!.play()
     }
 
-    func stopAnimations() {
-        bodyAnimation?.stop()
-        faceAnimation?.stop()
-        particleAnimation?.stop()
-        taskIndicatorAnimation?.stop()
-        energyBuddyContainerTopConstraint.constant = -10
-    }
-    
     func playHappyAnimation() {
         faceAnimation?.stop()
         faceAnimation?.removeFromSuperview()

@@ -386,7 +386,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     private func checkForAvailableTask() {
         if currentTaskIndex >= GameTaskStore.shared.tasks.count {
-            // TODO: Play confetti animation
+            energyBuddyView.playConfettiAnimation()
             if !UserDefaults.standard.bool(forKey: UserDefaultKeys.gameHasSeenCompletionPopup) {
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameHasSeenCompletionPopup)
                 showGameCompletionPopup()

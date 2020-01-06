@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnergyBuddyView" customModule="BGE" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundImageView" destination="KF7-NT-Csz" id="JRo-ay-SYS"/>
+                <outlet property="confettiLottieView" destination="cg4-G0-bXN" id="BEH-8R-2UF"/>
                 <outlet property="energyBuddyAccessoryImageView" destination="22H-Am-WyA" id="YkH-8v-VIt"/>
                 <outlet property="energyBuddyBodyLottieView" destination="H3T-aX-8wS" id="zwV-lo-1ub"/>
                 <outlet property="energyBuddyContainerTopConstraint" destination="wLW-XB-JqD" id="3XE-IC-0D7"/>
@@ -42,6 +43,10 @@
                         <constraint firstAttribute="height" constant="350" id="N6b-ud-3AF"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-G0-bXN">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npW-aj-e1E">
                     <rect key="frame" x="0.0" y="-10" width="375" height="350"/>
                     <subviews>
@@ -159,6 +164,7 @@
                 <constraint firstItem="KF7-NT-Csz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5kA-vT-lmq"/>
                 <constraint firstItem="Y0K-a2-kFJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="7Uw-H2-6kH"/>
                 <constraint firstAttribute="bottom" secondItem="6mO-Hc-EBJ" secondAttribute="bottom" id="CJZ-FR-ak1"/>
+                <constraint firstAttribute="trailing" secondItem="cg4-G0-bXN" secondAttribute="trailing" id="Diz-7A-kH7"/>
                 <constraint firstAttribute="trailing" secondItem="Y0K-a2-kFJ" secondAttribute="trailing" constant="3" id="FrS-2D-pja"/>
                 <constraint firstItem="npW-aj-e1E" firstAttribute="width" secondItem="6mO-Hc-EBJ" secondAttribute="width" id="HQZ-om-2dR"/>
                 <constraint firstItem="KF7-NT-Csz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JMb-Q4-MIK"/>
@@ -166,9 +172,12 @@
                 <constraint firstAttribute="trailing" secondItem="6mO-Hc-EBJ" secondAttribute="trailing" id="QMX-1X-oLM"/>
                 <constraint firstItem="V0c-T2-dyD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="VK9-Xv-OAL"/>
                 <constraint firstItem="npW-aj-e1E" firstAttribute="height" secondItem="6mO-Hc-EBJ" secondAttribute="height" id="YCe-6b-dwg"/>
+                <constraint firstItem="cg4-G0-bXN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="adb-lU-AP6"/>
+                <constraint firstAttribute="bottom" secondItem="cg4-G0-bXN" secondAttribute="bottom" id="fQz-FB-QB1"/>
                 <constraint firstItem="6mO-Hc-EBJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rNU-5T-Hs2"/>
                 <constraint firstAttribute="trailing" secondItem="KF7-NT-Csz" secondAttribute="trailing" id="vXo-Sz-Ya9"/>
                 <constraint firstItem="npW-aj-e1E" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-10" id="wLW-XB-JqD"/>
+                <constraint firstItem="cg4-G0-bXN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yCQ-ce-Wv7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="67.391304347826093" y="-54.910714285714285"/>
