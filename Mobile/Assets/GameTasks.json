@@ -868,7 +868,7 @@
             "question": "What quick fix to your fridge can save you money?",
             "answers": [
                 { "answer": "Adding magnets", "correct": false },
-                { "answer": "Categorizing your food", "correct": false },
+                { "answer": "Categor-izing your food", "correct": false },
                 { "answer": "Replacing the seal", "correct": true }
             ],
             "answerDescription": "Keep that fridge seal tight to save money on your energy bill.",
