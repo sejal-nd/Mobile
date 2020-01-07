@@ -548,7 +548,7 @@
             "answers": [
                 { "answer": "Shower", "correct": true },
                 { "answer": "Washing Machine", "correct": false },
-                { "answer": "Dishwasher", "correct": false }
+                { "answer": "Dish-washer", "correct": false }
             ],
             "answerDescription": "Showering can account for up to 40% of your hot water. Don't waste a drop!",
             "tipId": "tip069_install_efficient_showerheads",

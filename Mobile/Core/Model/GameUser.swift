@@ -53,7 +53,7 @@ struct GameUser: Mappable {
         onboardingRentOrOwnAnswer = map.optionalFrom("onboardingRentOrOwnAnswer")
     }
     
-    init(onboardingComplete: Bool, optedOut: Bool, points: Double) {
+    init(onboardingComplete: Bool, optedOut: Bool, points: Double, taskIndex: Int) {
         if Environment.shared.environmentName != .aut {
             fatalError("init only available for tests")
         }
@@ -62,6 +62,7 @@ struct GameUser: Mappable {
         map["onboardingComplete"] = onboardingComplete ? "true" : "false"
         map["optedOut"] = optedOut ? "true" : "false"
         map["points"] = String(points)
+        map["taskIndex"] = taskIndex
         self = GameUser.from(map as NSDictionary)!
     }
 
