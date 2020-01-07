@@ -68,8 +68,9 @@ class GiftInventory {
         "bg_susans", "hat_sunhat", "hat_fancy", "hat_beretred", "acc_glasses", "bg_forest",
         "hat_oriole", "hat_dog", "hat_cat", "bg_farm", "hat_strawhat", "hat_horse", "hat_rodent",
         "hat_rabbit", "bg_baltimoreharbor", "hat_beaniefootball", "hat_capbaseball", "bg_ellicottcity",
-        "hat_tophat", "acc_monocle", "hat_bow", "hat_capgreen", /* Striped Bow */ "bg_colonialmd",
-        "hat_colonial", "hat_cowboy", "bg_falltrees", "hat_beretblack", "hat_paper", "bg_space" /* Eco Crown Hat */
+        "hat_tophat", "acc_monocle", "hat_bow", "hat_capgreen", "hat_stripedbow", "bg_colonialmd",
+        "hat_colonial", "hat_cowboy", "bg_falltrees", "hat_ghost", "hat_beretblack", "hat_paper",
+        "bg_space", "hat_ecocrown"
     ]
     
     private let customMessages = [
@@ -79,7 +80,8 @@ class GiftInventory {
         "hat_horse": "Neigh!",
         "hat_capbaseball": "Play ball!",
         "hat_colonial": "How do you do?",
-        "hat_cowboy": "Howdy!"
+        "hat_cowboy": "Howdy!",
+        "hat_ghost": "Boo!"
     ]
     
     private let inventory: [Gift]!
