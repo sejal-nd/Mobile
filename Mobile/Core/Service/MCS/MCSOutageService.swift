@@ -24,11 +24,14 @@ class MCSOutageService: OutageService {
     private var outageMap = [String: ReportedOutageResult]()
     
     func pingMeter(account: Account) -> Observable<MeterPingInfo> {
-        
+        return pingMeter(account: account, premiseNumber: nil)
+    }
+    
+    func pingMeter(account: Account, premiseNumber: String? = nil) -> Observable<MeterPingInfo> {
         var path = "accounts/\(account.accountNumber)/"
         
-        if Environment.shared.opco == .bge,
-            let premiseId = account.currentPremise?.premiseNumber {
+        if Environment.shared.opco == .bge || Environment.shared.opco == .peco,
+            let premiseId = premiseNumber {
             path.append("premises/\(premiseId)/")
         }
         path.append("outage/ping")
