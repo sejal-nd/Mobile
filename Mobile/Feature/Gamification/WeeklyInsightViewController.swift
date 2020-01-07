@@ -63,7 +63,6 @@ class WeeklyInsightViewController: UIViewController {
         thisWeekDateLabel.textColor = .deepGray
         thisWeekDateLabel.font = SystemFont.semibold.of(textStyle: .footnote)
         
-        thisWeekBarView.backgroundColor = .primaryColor
         thisWeekBarView.layer.cornerRadius = 7.5
         
         lastWeekDateLabel.textColor = .deepGray
@@ -127,6 +126,7 @@ class WeeklyInsightViewController: UIViewController {
                 self.viewedUnread = self.coreDataManager.addWeeklyInsight(accountNumber: self.viewModel.accountDetail.accountNumber, endDate: endDate)
             }).disposed(by: bag)
         
+        viewModel.thisWeekBarColor.drive(thisWeekBarView.rx.backgroundColor).disposed(by: bag)
         viewModel.thisWeekDateLabelText.drive(thisWeekDateLabel.rx.text).disposed(by: bag)
         viewModel.thisWeekBarWidth.drive(thisWeekBarWidthConstraint.rx.constant).disposed(by: bag)
         

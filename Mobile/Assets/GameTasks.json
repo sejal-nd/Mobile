@@ -105,7 +105,7 @@
             "question": "Spinning your fan this way in the winter can save you up to 15% on heating costs.",
             "answers": [
                 { "answer": "Clockwise", "correct": true },
-                { "answer": "Counterclockwise", "correct": false }
+                { "answer": "Counter-clockwise", "correct": false }
             ],
             "answerDescription": "Spin your fans clockwise in the winter to save on your heating costs. Show your fan some love in every season!",
             "tipId": "tip141_ceiling_fan_winter",

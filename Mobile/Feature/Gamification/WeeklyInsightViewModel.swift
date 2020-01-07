@@ -77,6 +77,19 @@ class WeeklyInsightViewModel {
             .mapTo(())
             .catchErrorJustReturn(())
     }
+    
+    private func getPercentageChange(thisWeek: Double, lastWeek: Double) -> Int {
+        let decreaseValue = thisWeek - lastWeek
+        if thisWeek == 0 && lastWeek == 0 {
+            return 0
+        } else if thisWeek == 0 {
+            return -100
+        } else if lastWeek == 0 {
+            return 100
+        } else {
+            return Int((decreaseValue / thisWeek) * 100)
+        }
+    }
         
     private lazy var thisWeekData: Driver<[DailyUsage]?> = self.usageData.asDriver().map { [weak self] in
         guard let self = self, let usageData = $0, let mostRecentDataDate = usageData.first?.date else { return nil }
@@ -172,10 +185,21 @@ class WeeklyInsightViewModel {
             return nil
         }
     
+    private(set) lazy var thisWeekBarColor: Driver<UIColor> =
+        Driver.combineLatest(self.thisWeekUsageTotal, self.lastWeekUsageTotal).map { [weak self] in
+            if let self = self, let thisWeek = $0, let lastWeek = $1 {
+                let percentChange = self.getPercentageChange(thisWeek: thisWeek, lastWeek: lastWeek)
+                if percentChange > 0 {
+                    return .attentionOrange
+                }
+            }
+            return .primaryColor
+        }
+    
     private(set) lazy var thisWeekDateLabelText: Driver<String?> = self.thisWeekData.map {
         guard let data = $0 else { return nil }
         if let start = data.first?.date, let end = data.last?.date {
-            return "\(start.gameShortString) - \(end.gameShortString)"
+            return "This Week: \(start.gameShortString) - \(end.gameShortString)"
         }
         return nil
     }
@@ -194,7 +218,7 @@ class WeeklyInsightViewModel {
     private(set) lazy var lastWeekDateLabelText: Driver<String?> = self.lastWeekData.map { [weak self] in
         guard let self = self, let data = $0 else { return nil }
         if let start = data.first?.date, let end = data.last?.date {
-            return "\(start.gameShortString) - \(end.gameShortString)"
+            return "Last Week: \(start.gameShortString) - \(end.gameShortString)"
         }
         return nil
     }
@@ -211,21 +235,10 @@ class WeeklyInsightViewModel {
         }
     
     private(set) lazy var comparisonLabelText: Driver<String?> =
-        Driver.combineLatest(self.thisWeekUsageTotal, self.lastWeekUsageTotal).map {
-            guard let thisWeek = $0, let lastWeek = $1 else { return nil }
+        Driver.combineLatest(self.thisWeekUsageTotal, self.lastWeekUsageTotal).map { [weak self] in
+            guard let self = self, let thisWeek = $0, let lastWeek = $1 else { return nil }
             
-            let decreaseValue = thisWeek - lastWeek
-            var percentChange: Int
-            if thisWeek == 0 && lastWeek == 0 {
-                percentChange = 0
-            } else if thisWeek == 0 {
-                percentChange = -100
-            } else if lastWeek == 0 {
-                percentChange = 100
-            } else {
-                percentChange = Int((decreaseValue / thisWeek) * 100)
-            }
-            
+            let percentChange = self.getPercentageChange(thisWeek: thisWeek, lastWeek: lastWeek)
             if percentChange == 0 {
                 return NSLocalizedString("You used about the same amount of energy as the previous week.", comment: "")
             } else if percentChange < 0 {
