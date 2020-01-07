@@ -62,7 +62,7 @@ struct GameUser: Mappable {
         map["onboardingComplete"] = onboardingComplete ? "true" : "false"
         map["optedOut"] = optedOut ? "true" : "false"
         map["points"] = String(points)
-        map["taskIndex"] = taskIndex
+        map["taskIndex"] = String(taskIndex)
         self = GameUser.from(map as NSDictionary)!
     }
 

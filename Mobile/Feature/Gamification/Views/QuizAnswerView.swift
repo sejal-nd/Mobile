@@ -38,7 +38,14 @@ class QuizAnswerView: UIView {
                 
         commonInit()
         
-        answerLabel.text = answerTuple.0
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.hyphenationFactor = 1
+        let attribString = NSAttributedString(string: answerTuple.0, attributes: [
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
+        ])
+        
+        answerLabel.attributedText = attribString
         correct = answerTuple.1
     }
     

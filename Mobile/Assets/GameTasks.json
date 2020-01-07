@@ -105,7 +105,7 @@
             "question": "Spinning your fan this way in the winter can save you up to 15% on heating costs.",
             "answers": [
                 { "answer": "Clockwise", "correct": true },
-                { "answer": "Counter-clockwise", "correct": false }
+                { "answer": "Counterclockwise", "correct": false }
             ],
             "answerDescription": "Spin your fans clockwise in the winter to save on your heating costs. Show your fan some love in every season!",
             "tipId": "tip141_ceiling_fan_winter",
@@ -548,7 +548,7 @@
             "answers": [
                 { "answer": "Shower", "correct": true },
                 { "answer": "Washing Machine", "correct": false },
-                { "answer": "Dish-washer", "correct": false }
+                { "answer": "Dishwasher", "correct": false }
             ],
             "answerDescription": "Showering can account for up to 40% of your hot water. Don't waste a drop!",
             "tipId": "tip069_install_efficient_showerheads",
@@ -868,7 +868,7 @@
             "question": "What quick fix to your fridge can save you money?",
             "answers": [
                 { "answer": "Adding magnets", "correct": false },
-                { "answer": "Categor-izing your food", "correct": false },
+                { "answer": "Categorizing your food", "correct": false },
                 { "answer": "Replacing the seal", "correct": true }
             ],
             "answerDescription": "Keep that fridge seal tight to save money on your energy bill.",
