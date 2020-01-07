@@ -814,7 +814,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-Bj-z2G">
-                                <rect key="frame" x="85.5" y="384" width="243.5" height="138.5"/>
+                                <rect key="frame" x="85.5" y="406" width="243.5" height="138.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_tips_emptystate" translatesAutoresizingMaskIntoConstraints="NO" id="dff-pR-REM">
                                         <rect key="frame" x="71.5" y="0.0" width="100" height="100"/>
@@ -839,11 +839,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Azb-Bj-z2G" firstAttribute="top" secondItem="nrX-l3-uiM" secondAttribute="bottom" constant="-512" id="5Jw-Y4-PvG"/>
                             <constraint firstItem="q3q-Fb-82u" firstAttribute="trailing" secondItem="nrX-l3-uiM" secondAttribute="trailing" id="IPM-or-bjc"/>
+                            <constraint firstItem="Azb-Bj-z2G" firstAttribute="centerY" secondItem="q3q-Fb-82u" secondAttribute="centerY" id="LxX-MA-Cza"/>
                             <constraint firstItem="q3q-Fb-82u" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Azb-Bj-z2G" secondAttribute="trailing" constant="16" id="S18-Tt-CyZ"/>
                             <constraint firstAttribute="bottom" secondItem="nrX-l3-uiM" secondAttribute="bottom" id="gYF-aM-yuO"/>
-                            <constraint firstItem="Azb-Bj-z2G" firstAttribute="centerX" secondItem="nrX-l3-uiM" secondAttribute="centerX" id="pW8-Ei-8Zj"/>
+                            <constraint firstItem="Azb-Bj-z2G" firstAttribute="centerX" secondItem="q3q-Fb-82u" secondAttribute="centerX" id="kIC-SY-8aM"/>
                             <constraint firstAttribute="top" secondItem="nrX-l3-uiM" secondAttribute="top" id="uoI-Cx-l3U"/>
                             <constraint firstItem="Azb-Bj-z2G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="q3q-Fb-82u" secondAttribute="leading" constant="16" id="vdL-0A-Imd"/>
                             <constraint firstItem="nrX-l3-uiM" firstAttribute="leading" secondItem="q3q-Fb-82u" secondAttribute="leading" id="zi8-j8-Ese"/>
