@@ -465,8 +465,38 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func showEnergyBuddyTooltip() {
+        var checkBackString: String?
+        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
+            let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
+            let interval = nextTaskDate.timeIntervalSinceNow
+            let hours = Int(interval / 3600)
+            let minutes = Int((interval / 60).truncatingRemainder(dividingBy: 60))
+            
+            //print("\(hours) hours and \(minutes) minutes from now")
+            
+            if hours >= 24 {
+                let days = hours / 24
+                if days == 1 {
+                    checkBackString = NSLocalizedString("\n\nCheck back in 1 day for your next challenge!", comment: "")
+                } else {
+                    checkBackString = String.localizedStringWithFormat("\n\nCheck back in %d days for your next challenge!", days)
+                }
+            } else {
+                checkBackString = String.localizedStringWithFormat("\n\nCheck back in %d hours and %d minutes for your next challenge!", hours, minutes)
+            }
+        }
+        
+        let message = NSMutableAttributedString(string: NSLocalizedString("I’m your Energy Buddy!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.", comment: ""))
+        if let checkBack = checkBackString {
+            let checkBackAttribString = NSMutableAttributedString(string: checkBack, attributes: [
+                .foregroundColor: UIColor.primaryColor,
+                .font: SystemFont.semibold.of(textStyle: .subheadline)
+            ])
+            message.append(checkBackAttribString)
+        }
+        
         let alert = InfoAlertController(title: NSLocalizedString("Hello!", comment: ""),
-                                        message: NSLocalizedString("I’m your Energy Buddy!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.\n\nCheck back soon for your next challenge!", comment: ""),
+                                        attributedMessage: message,
                                         icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
