@@ -140,8 +140,11 @@ class GameTipViewController: UIViewController {
             //performSegue(withIdentifier: "reminderSegue", sender: nil)
             
             let dateAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
             dateAlert.view.addSubview(datePicker)
-            dateAlert.addAction(UIAlertAction(title: "Set Reminder", style: .cancel, handler: { [weak self] _ in
+            dateAlert.view.heightAnchor.constraint(equalToConstant: 336).isActive = true
+            
+            let setReminderAction = UIAlertAction(title: "Set Reminder", style: .default, handler: { [weak self] action in
                 guard let self = self else { return }
                 
                 let content = UNMutableNotificationContent()
@@ -167,8 +170,10 @@ class GameTipViewController: UIViewController {
                         }
                     }
                 })
-            }))
-            dateAlert.view.heightAnchor.constraint(equalToConstant: 276).isActive = true
+            })
+            dateAlert.addAction(setReminderAction)
+            dateAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
             self.present(dateAlert, animated: true, completion: nil)
         }
     }
