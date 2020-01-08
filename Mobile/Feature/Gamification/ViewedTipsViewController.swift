@@ -29,6 +29,8 @@ class ViewedTipsViewController: UIViewController {
         emptyStateLabel.font = OpenSans.regular.of(textStyle: .headline)
         emptyStateLabel.text = NSLocalizedString("You haven't viewed any tips yet.", comment: "")
         
+        tableView.tableFooterView = UIView() // To hide empty row separators
+        
         reloadData()
     }
     
