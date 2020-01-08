@@ -251,7 +251,7 @@ class GameHomeViewController: AccountPickerViewController {
             if GameTaskStore.shared.tryFabWentBackToGame {
                 if self.viewDidAppear {
                     GameTaskStore.shared.tryFabActivated = false
-                    self.awardPoints(16, advanceTaskIndex: true)
+                    self.awardPoints(16, advanceTaskIndex: true, advanceTaskTimer: false)
                 }
             } else {
                 self.checkForAvailableTask()
