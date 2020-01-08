@@ -79,22 +79,18 @@ class GameHomeViewModel {
             error.accept(false)
         }
         
-        if accountDetail.value == nil {
-            accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
-                .subscribe(onNext: { [weak self] accountDetail in
-                    guard let self = self else { return }
-                    self.accountDetail.accept(accountDetail)
-                    self.fetchGameUser()
-                    self.fetchDailyUsage(pullToRefresh)
-                }, onError: { [weak self] error in
-                    self?.loading.accept(false)
-                    self?.refreshing.accept(false)
-                    self?.error.accept(true)
-                }).disposed(by: bag)
-        } else {
-            self.fetchGameUser()
-            self.fetchDailyUsage(pullToRefresh)
-        }
+        accountService.fetchAccountDetail(account: AccountsStore.shared.currentAccount)
+            .subscribe(onNext: { [weak self] accountDetail in
+                guard let self = self else { return }
+                self.refreshing.accept(false)
+                self.accountDetail.accept(accountDetail)
+                self.fetchGameUser()
+                self.fetchDailyUsage()
+            }, onError: { [weak self] error in
+                self?.loading.accept(false)
+                self?.refreshing.accept(false)
+                self?.error.accept(true)
+            }).disposed(by: bag)
     }
     
     func fetchGameUser() {
@@ -106,13 +102,11 @@ class GameHomeViewModel {
             }).disposed(by: self.bag)
     }
     
-    func fetchDailyUsage(_ pullToRefresh: Bool = false) {
+    func fetchDailyUsage() {
         guard let accountDetail = accountDetail.value, let premiseNumber = accountDetail.premiseNumber else { return }
         
-        if !pullToRefresh {
-            loading.accept(true)
-            error.accept(false)
-        }
+        loading.accept(true)
+        error.accept(false)
         
         let fetchGas = accountDetail.serviceType?.uppercased() == "GAS" || selectedSegmentIndex == 1
         
