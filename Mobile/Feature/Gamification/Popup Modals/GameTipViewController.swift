@@ -179,6 +179,9 @@ class GameTipViewController: UIViewController {
     }
     
     @IBAction func onFavoritePress() {
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        
         isFavorite = !isFavorite
         updateFavoriteButton()
         coreDataManager.updateViewedTip(accountNumber: accountNumber, tipId: tip.id, isFavorite: isFavorite)
