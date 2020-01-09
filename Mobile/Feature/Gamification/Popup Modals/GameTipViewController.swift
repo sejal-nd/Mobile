@@ -101,11 +101,11 @@ class GameTipViewController: UIViewController {
 
         var detailText = tip.title + "\n\n" + tip.description
         if let numPeople = tip.numPeople, let numPeopleStr = numberFormatter.string(for: numPeople), let savings = tip.savingsPerYear {
-            detailText += "\n\nThis worked for \(numPeopleStr) people and can save up to $\(savings) per year."
+            detailText += "\n\nThis tip worked for \(numPeopleStr) people and can save you up to $\(savings) per year."
         } else if let numPeople = tip.numPeople, let numPeopleStr = numberFormatter.string(for: numPeople) {
-            detailText += "\n\nThis worked for \(numPeopleStr) people."
+            detailText += "\n\nThis tip worked for \(numPeopleStr) people."
         } else if let savings = tip.savingsPerYear {
-            detailText += "\n\nThis can save up to $\(savings) per year."
+            detailText += "\n\nThis tip can save you up to $\(savings) per year."
         }
         detailLabel.text = detailText
         
