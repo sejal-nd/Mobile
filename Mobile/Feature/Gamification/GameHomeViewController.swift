@@ -350,6 +350,10 @@ class GameHomeViewController: AccountPickerViewController {
             let quizVc = GameQuizViewController.create(withQuiz: quiz)
             quizVc.delegate = self
             self.tabBarController?.present(quizVc, animated: true, completion: nil)
+        } else if task.type == .checkIn {
+            let checkInVc = GameCheckInViewController.create()
+            checkInVc.delegate = self
+            self.tabBarController?.present(checkInVc, animated: true, completion: nil)
         }
     }
     
@@ -674,6 +678,26 @@ extension GameHomeViewController: GameSurveyViewControllerDelegate {
             viewModel.currentTaskIndex += 1
             viewModel.updateGameUser(taskIndex: viewModel.currentTaskIndex, advanceTaskTimer: false)
         }
+    }
+}
+
+// MARK - GameCheckInViewControllerDelegate
+extension GameHomeViewController: GameCheckInViewControllerDelegate {
+    
+    func gameCheckInViewController(_ gameCheckInViewController: GameCheckInViewController, selectedResponse: String) {
+        energyBuddyView.setTaskIndicator(nil)
+        viewModel.currentTask = nil
+        
+        viewModel.currentTaskIndex += 1
+        viewModel.updateGameUserCheckInResponse(response: selectedResponse, taskIndex: viewModel.currentTaskIndex)
+    }
+    
+    func gameCheckInViewControllerSelectedNotInterested(_ gameCheckInViewController: GameCheckInViewController) {
+        energyBuddyView.setTaskIndicator(nil)
+        viewModel.currentTask = nil
+        
+        viewModel.currentTaskIndex += 1
+        viewModel.updateGameUser(taskIndex: viewModel.currentTaskIndex, advanceTaskTimer: false)
     }
 }
 

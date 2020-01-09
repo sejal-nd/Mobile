@@ -593,6 +593,9 @@
         }
     },
     {
+        "type": "checkin"
+    },
+    {
         "type": "tip",
         "tip": {
             "id": "tip007_set_refrigerator_temperature",

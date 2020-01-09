@@ -1115,6 +1115,9 @@
 		9C19983523A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
 		9C19983623A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
 		9C19983723A9614900250417 /* GameEnrollmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C19983423A9614900250417 /* GameEnrollmentViewController.swift */; };
+		9C2876AD23C7C97700A334DA /* GameCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */; };
+		9C2876AE23C7C97700A334DA /* GameCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */; };
+		9C2876AF23C7C97700A334DA /* GameCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */; };
 		9C287E1E2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E1F2034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
 		9C287E202034BFED00D0D029 /* BillUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C287E1D2034BFED00D0D029 /* BillUITests.swift */; };
@@ -3300,6 +3303,7 @@
 		9C119F6321FFBAFF001577F1 /* MultipleStringRanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStringRanges.swift; sourceTree = "<group>"; };
 		9C153DC822E8F6CE002DA062 /* Checkbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		9C19983423A9614900250417 /* GameEnrollmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEnrollmentViewController.swift; sourceTree = "<group>"; };
+		9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCheckInViewController.swift; sourceTree = "<group>"; };
 		9C287E1D2034BFED00D0D029 /* BillUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillUITests.swift; sourceTree = "<group>"; };
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
@@ -5577,6 +5581,7 @@
 				9C5F096E23A8339F00B73049 /* GameTryFabViewController.swift */,
 				9C19983423A9614900250417 /* GameEnrollmentViewController.swift */,
 				9C7C902623B55F3100E40D1E /* GameSurveyViewController.swift */,
+				9C2876AC23C7C97700A334DA /* GameCheckInViewController.swift */,
 			);
 			path = "Popup Modals";
 			sourceTree = "<group>";
@@ -8494,6 +8499,7 @@
 				82A18E6B1EB9191E00BE9F21 /* ReportOutageViewModel.swift in Sources */,
 				35A6C6FC2121D64C00C2A58F /* ToggleTableViewCell.swift in Sources */,
 				9C5F786322F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
+				9C2876AD23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				359BDB4022D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				B0B083A1216F9D5C00B1C632 /* AppointmentService.swift in Sources */,
 				35A6C6FE2121D9D600C2A58F /* MoreViewModel.swift in Sources */,
@@ -8906,6 +8912,7 @@
 				54C1DF081F02EF5D00290FE5 /* SeparatorSpaceView.swift in Sources */,
 				B0CB1C80227CAF340081F99B /* CommercialUsageViewController.swift in Sources */,
 				35277B03210794B400411297 /* UnavailableView.swift in Sources */,
+				9C2876AF23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				54AE069B1ECF8E14004A1FDA /* MCSRegistrationService.swift in Sources */,
 				E87C32031E9EB0D200E5F6FD /* AccountLookupToolViewController.swift in Sources */,
 				54DF4BD71EE895CF008CF7AD /* RegistrationSecurityQuestionListViewController.swift in Sources */,
@@ -9318,6 +9325,7 @@
 				359BDB4122D50F97007002B0 /* StickyFooterView.swift in Sources */,
 				54DF4BDB1EE9CBAB008CF7AD /* AccountDetailsView.swift in Sources */,
 				9C5F786422F4ADCF00D5C395 /* BudgetBillingReasonForStoppingViewController.swift in Sources */,
+				9C2876AE23C7C97700A334DA /* GameCheckInViewController.swift in Sources */,
 				B0B083B0216FA79100B1C632 /* AppointmentsViewController.swift in Sources */,
 				E8F51EE71EC9F8560080AB3E /* MockBillService.swift in Sources */,
 				823694321FA8CB0E0037BD9F /* SafariViewController.swift in Sources */,

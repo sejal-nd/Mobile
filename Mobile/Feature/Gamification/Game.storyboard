@@ -1598,7 +1598,7 @@ This worked for 14,985 people and can save up to $10 per year.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RcV-Lk-CLu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5935" y="-2602"/>
+            <point key="canvasLocation" x="6016" y="-2602"/>
         </scene>
         <!--Game Try Fab View Controller-->
         <scene sceneID="rBK-7o-RRF">
@@ -1748,7 +1748,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12O-gd-LdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7591" y="-2602"/>
+            <point key="canvasLocation" x="7733" y="-2602"/>
         </scene>
         <!--Game Reward View Controller-->
         <scene sceneID="YEe-Nu-3Ej">
@@ -1870,7 +1870,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NtC-2c-UHg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6751" y="-2602"/>
+            <point key="canvasLocation" x="6872" y="-2602"/>
         </scene>
         <!--Large Title Navigation Controller-->
         <scene sceneID="PTk-eC-45u">
@@ -2119,7 +2119,7 @@ To see your old home screen, use the button at the bottom of the previous screen
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nz1-5W-hHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8455.072463768116" y="-2602.2321428571427"/>
+            <point key="canvasLocation" x="6016" y="-3346"/>
         </scene>
         <!--Game Survey View Controller-->
         <scene sceneID="y3H-dv-qKi">
@@ -2284,7 +2284,177 @@ To see your old home screen, use the button at the bottom of the previous screen
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0KU-Xr-x5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9339" y="-2594"/>
+            <point key="canvasLocation" x="6871" y="-3346"/>
+        </scene>
+        <!--Game Check In View Controller-->
+        <scene sceneID="UGW-q1-QX7">
+            <objects>
+                <viewController storyboardIdentifier="CheckInPopup" id="sgN-Yr-Br3" customClass="GameCheckInViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nbt-uD-0HZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIX-MH-fcz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n6n-d1-tvK" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ANX-t5-KE9">
+                                                <rect key="frame" x="31" y="207.5" width="352" height="481.5"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-WJ-zj0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="352" height="481.5"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrz-QR-SHN">
+                                                                <rect key="frame" x="15" y="15" width="24" height="24"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Close"/>
+                                                                <state key="normal" image="ic_close"/>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" image="ic_energybuddy" translatesAutoresizingMaskIntoConstraints="NO" id="jxh-GB-ZZM">
+                                                                <rect key="frame" x="121" y="0.0" width="110" height="110"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Just Checking In!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmL-rB-95A">
+                                                                <rect key="frame" x="20" y="130" width="312" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="How do you feel about your energy usage?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vb-Ro-zZL">
+                                                                <rect key="frame" x="20" y="170.5" width="312" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iy2-ae-oa6">
+                                                                <rect key="frame" x="18" y="251.5" width="316" height="210"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4E-bP-hQq" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="316" height="45"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="ldP-C7-18f"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="I feel more in control"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
+                                                                                <integer key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="onButtonPress:" destination="sgN-Yr-Br3" eventType="touchUpInside" id="qjz-u4-6w7"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joe-oy-Rwb" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="55" width="316" height="45"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="QOb-sK-kqN"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="I think I can still do better"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
+                                                                                <integer key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="onButtonPress:" destination="sgN-Yr-Br3" eventType="touchUpInside" id="FDS-hc-Wt7"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amn-A9-MLJ" customClass="SecondaryButton" customModule="BGE" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="110" width="316" height="45"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="oMD-DH-mNR"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="I still need help"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="condensationValue">
+                                                                                <integer key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="onButtonPress:" destination="sgN-Yr-Br3" eventType="touchUpInside" id="Pye-yC-zYo"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWF-Bb-1Di">
+                                                                        <rect key="frame" x="0.0" y="165" width="316" height="45"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="oPy-5p-Z8K"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="I'm Not Interested"/>
+                                                                        <connections>
+                                                                            <action selector="onButtonPress:" destination="sgN-Yr-Br3" eventType="touchUpInside" id="Inq-NP-Oq4"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="EmL-rB-95A" firstAttribute="leading" secondItem="RMy-WJ-zj0" secondAttribute="leading" constant="20" id="DT5-zh-Cby"/>
+                                                            <constraint firstItem="5vb-Ro-zZL" firstAttribute="top" secondItem="EmL-rB-95A" secondAttribute="bottom" constant="20" id="FwG-zk-fgF"/>
+                                                            <constraint firstItem="lrz-QR-SHN" firstAttribute="leading" secondItem="RMy-WJ-zj0" secondAttribute="leading" constant="15" id="JCa-cp-ibf"/>
+                                                            <constraint firstItem="EmL-rB-95A" firstAttribute="top" secondItem="jxh-GB-ZZM" secondAttribute="bottom" constant="20" id="Ri5-DW-Jm2"/>
+                                                            <constraint firstAttribute="bottom" secondItem="iy2-ae-oa6" secondAttribute="bottom" constant="20" id="YW9-Gh-Y3v"/>
+                                                            <constraint firstItem="5vb-Ro-zZL" firstAttribute="leading" secondItem="RMy-WJ-zj0" secondAttribute="leading" constant="20" id="fr7-YA-yeC"/>
+                                                            <constraint firstItem="iy2-ae-oa6" firstAttribute="leading" secondItem="RMy-WJ-zj0" secondAttribute="leading" constant="18" id="grP-hM-FeF"/>
+                                                            <constraint firstItem="lrz-QR-SHN" firstAttribute="top" secondItem="RMy-WJ-zj0" secondAttribute="top" constant="15" id="lce-yI-kcl"/>
+                                                            <constraint firstAttribute="trailing" secondItem="EmL-rB-95A" secondAttribute="trailing" constant="20" id="n01-Qe-jeX"/>
+                                                            <constraint firstItem="jxh-GB-ZZM" firstAttribute="top" secondItem="RMy-WJ-zj0" secondAttribute="top" id="sKB-wm-3Zj"/>
+                                                            <constraint firstItem="iy2-ae-oa6" firstAttribute="top" secondItem="5vb-Ro-zZL" secondAttribute="bottom" constant="40" id="vA7-8O-UwO"/>
+                                                            <constraint firstAttribute="trailing" secondItem="5vb-Ro-zZL" secondAttribute="trailing" constant="20" id="xS1-0Z-g5c"/>
+                                                            <constraint firstItem="jxh-GB-ZZM" firstAttribute="centerX" secondItem="RMy-WJ-zj0" secondAttribute="centerX" id="xo7-i5-DUw"/>
+                                                            <constraint firstAttribute="trailing" secondItem="iy2-ae-oa6" secondAttribute="trailing" constant="18" id="yQc-VR-MPa"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ANX-t5-KE9" secondAttribute="trailing" constant="31" id="3CG-wO-dt2"/>
+                                            <constraint firstItem="ANX-t5-KE9" firstAttribute="centerY" secondItem="n6n-d1-tvK" secondAttribute="centerY" id="Jid-hX-ck8"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ANX-t5-KE9" secondAttribute="bottom" constant="70" id="jBy-SZ-sHS"/>
+                                            <constraint firstItem="ANX-t5-KE9" firstAttribute="leading" secondItem="n6n-d1-tvK" secondAttribute="leading" constant="31" id="mLp-1q-fqx"/>
+                                            <constraint firstItem="ANX-t5-KE9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="n6n-d1-tvK" secondAttribute="top" constant="70" id="nl6-JH-hhV"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="n6n-d1-tvK" firstAttribute="leading" secondItem="LIX-MH-fcz" secondAttribute="leading" id="08o-li-zDy"/>
+                                    <constraint firstAttribute="trailing" secondItem="n6n-d1-tvK" secondAttribute="trailing" id="5NI-xJ-6eJ"/>
+                                    <constraint firstItem="n6n-d1-tvK" firstAttribute="centerX" secondItem="LIX-MH-fcz" secondAttribute="centerX" id="RyO-7r-yEX"/>
+                                    <constraint firstItem="n6n-d1-tvK" firstAttribute="height" secondItem="LIX-MH-fcz" secondAttribute="height" priority="250" id="SKP-cY-ehE"/>
+                                    <constraint firstItem="n6n-d1-tvK" firstAttribute="width" secondItem="LIX-MH-fcz" secondAttribute="width" id="Zga-TE-Csz"/>
+                                    <constraint firstAttribute="bottom" secondItem="n6n-d1-tvK" secondAttribute="bottom" id="d54-uH-jQf"/>
+                                    <constraint firstItem="n6n-d1-tvK" firstAttribute="top" secondItem="LIX-MH-fcz" secondAttribute="top" id="iVu-YS-jVQ"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Ene-Zg-Gsr"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="sqa-rk-DjS"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LIX-MH-fcz" firstAttribute="leading" secondItem="nbt-uD-0HZ" secondAttribute="leading" id="VQk-wW-veJ"/>
+                            <constraint firstAttribute="trailing" secondItem="LIX-MH-fcz" secondAttribute="trailing" id="bRl-Xx-g3V"/>
+                            <constraint firstItem="LIX-MH-fcz" firstAttribute="top" secondItem="nbt-uD-0HZ" secondAttribute="top" id="oEa-CM-Fhb"/>
+                            <constraint firstAttribute="bottom" secondItem="LIX-MH-fcz" secondAttribute="bottom" id="xoR-R5-0ZO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="suW-NJ-IJW"/>
+                    </view>
+                    <connections>
+                        <outlet property="button1" destination="v4E-bP-hQq" id="YLY-Vq-oph"/>
+                        <outlet property="button2" destination="joe-oy-Rwb" id="qp4-WP-XGI"/>
+                        <outlet property="button3" destination="amn-A9-MLJ" id="tLV-nU-kXI"/>
+                        <outlet property="closeButton" destination="lrz-QR-SHN" id="5js-Qj-5Ut"/>
+                        <outlet property="contentView" destination="n6n-d1-tvK" id="nMK-6O-3W5"/>
+                        <outlet property="detailLabel" destination="5vb-Ro-zZL" id="cM7-kV-X0c"/>
+                        <outlet property="notInterestedButton" destination="gWF-Bb-1Di" id="vzP-aA-TlJ"/>
+                        <outlet property="popupView" destination="RMy-WJ-zj0" id="x9C-DQ-kSV"/>
+                        <outlet property="titleLabel" destination="EmL-rB-95A" id="yv4-hU-IWW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZC0-by-rY9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7732" y="-3346"/>
         </scene>
     </scenes>
     <resources>

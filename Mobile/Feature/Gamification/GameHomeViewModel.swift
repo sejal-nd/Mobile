@@ -171,6 +171,19 @@ class GameHomeViewModel {
             .subscribe()
     }
     
+    func updateGameUserCheckInResponse(response: String, taskIndex: Int) {
+        guard let accountDetail = accountDetail.value else { return }
+        let params: [String: Any] = [
+            "checkInHowDoYouFeelAnswer": response,
+            "taskIndex": taskIndex
+        ]
+        gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] gameUser in
+                self?.gameUser.accept(gameUser)
+            }).disposed(by: self.bag)
+    }
+    
     func updateGiftSelections() {
         guard let accountDetail = accountDetail.value else { return }
         _ = self.gameService.updateGameUserGiftSelections(accountNumber: accountDetail.accountNumber)
