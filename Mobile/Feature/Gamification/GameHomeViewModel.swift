@@ -204,18 +204,27 @@ class GameHomeViewModel {
             let hours = (interval % 86400) / 3600
             let minutes = ((interval % 86400) % 3600) / 60
             
-            print("\(days) days and \(hours) hours and \(minutes) minutes from now")
-            
-            if hours >= 24 {
-                let days = hours / 24
-                if days == 1 {
-                    return NSLocalizedString("\n\nCheck back in 1 day for your next challenge!", comment: "")
-                } else {
-                    return String.localizedStringWithFormat("\n\nCheck back in %d days for your next challenge!", days)
+            var timeString = ""
+            if days > 0 {
+                timeString += "\(days) \(days == 1 ? "day" : "days")"
+                if hours > 0 {
+                    timeString += " and \(hours) \(hours == 1 ? "hour" : "hours")"
                 }
-            } else {
-                return String.localizedStringWithFormat("\n\nCheck back in %d hours and %d minutes for your next challenge!", hours, minutes)
+                return "Check back in \(timeString) for your next challenge!"
             }
+            if hours > 0 {
+                timeString += "\(hours) \(hours == 1 ? "hour" : "hours")"
+                if minutes > 0 {
+                    timeString += " and \(minutes) \(minutes == 1 ? "minute" : "minutes")"
+                }
+                return "Check back in \(timeString) for your next challenge!"
+            }
+            if minutes > 0 {
+                timeString += "\(minutes) \(minutes == 1 ? "minute" : "minutes")"
+                return "Check back in \(timeString) for your next challenge!"
+            }
+            
+            return "Check back soon for your next challenge!"
         }
         
         return nil
