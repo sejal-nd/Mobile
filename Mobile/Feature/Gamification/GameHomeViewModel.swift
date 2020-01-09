@@ -36,6 +36,18 @@ class GameHomeViewModel {
     let weeklyInsightEndDate = BehaviorRelay<Date?>(value: nil)
     let weeklyInsightPublishSubject = PublishSubject<Void>()
     
+    var points: Double {
+        get {
+            return UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.gamePointsLocal)
+        }
+    }
+    
+    var currentTask: GameTask?
+    var currentTaskIndex = -1
+    
     required init(accountService: AccountService, gameService: GameService) {
         self.accountService = accountService
         self.gameService = gameService
@@ -178,6 +190,35 @@ class GameHomeViewModel {
     private(set) lazy var shouldShowSegmentedControl: Driver<Bool> = self.accountDetail.asDriver().map {
         guard let accountDetail = $0 else { return false }
         return accountDetail.serviceType?.uppercased() == "GAS/ELECTRIC"
+    }
+    
+    var nextAvaiableTaskTimeString: String? {
+        if currentTaskIndex >= GameTaskStore.shared.tasks.count {
+            return nil
+        }
+        
+        if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date,
+            let nextTaskDate = Calendar.current.date(byAdding: .day, value: 4, to: lastTaskDate) {
+            let interval = Int(nextTaskDate.timeIntervalSinceNow)
+            let days = interval / 86400
+            let hours = (interval % 86400) / 3600
+            let minutes = ((interval % 86400) % 3600) / 60
+            
+            print("\(days) days and \(hours) hours and \(minutes) minutes from now")
+            
+            if hours >= 24 {
+                let days = hours / 24
+                if days == 1 {
+                    return NSLocalizedString("\n\nCheck back in 1 day for your next challenge!", comment: "")
+                } else {
+                    return String.localizedStringWithFormat("\n\nCheck back in %d days for your next challenge!", days)
+                }
+            } else {
+                return String.localizedStringWithFormat("\n\nCheck back in %d hours and %d minutes for your next challenge!", hours, minutes)
+            }
+        }
+        
+        return nil
     }
     
     private(set) lazy var bubbleLabelText: Driver<String?> = self.selectedCoinView.asDriver().map {
