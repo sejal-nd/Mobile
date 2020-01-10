@@ -40,6 +40,13 @@ class GameTipViewController: UIViewController {
     var isFavorite = false
     
     var onUpdate: (() -> Void)?
+    
+    let reminderPushNotificationTitles = [
+        "Don't Forget:", "Energy Savings Reminder", "A friendly reminder from BGE", "Hey there, it's time:",
+        "Hey there, don't procrastinate:", "The time has arrived:", "Today you will accomplish something great:",
+        "You can do this:", "Ready to rule the day?", "Today's the day:", "Save the day:", "Take charge:",
+        "You got this:", "Level up:"
+    ]
         
     static func create(withTip tip: GameTip, quizPoints: Double = 0) -> GameTipViewController {
         let sb = UIStoryboard(name: "Game", bundle: nil)
@@ -148,7 +155,7 @@ class GameTipViewController: UIViewController {
                 guard let self = self else { return }
                 
                 let content = UNMutableNotificationContent()
-                content.title = "Your Energy Buddy Has a Reminder for You!"
+                content.title = self.reminderPushNotificationTitles[Int.random(in: 0..<self.reminderPushNotificationTitles.count)]
                 content.body = self.tip.title
                 content.sound = .default
                 

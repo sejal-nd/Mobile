@@ -313,7 +313,8 @@ class GameHomeViewController: AccountPickerViewController {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
         
         let content = UNMutableNotificationContent()
-        content.body = "Your Energy Buddy has new information for you!"
+        content.title = "Pip Misses You!"
+        content.body = "Check out new data, tips, and insights to help you save energy and money."
         content.sound = UNNotificationSound.default
         
         if let weekFromNow = Calendar.current.date(byAdding: .day, value: 7, to: Date.now) {
