@@ -378,6 +378,24 @@
                                                     <action selector="onGiftsPress" destination="SHv-hv-hfX" eventType="touchUpInside" id="uPm-so-XcS"/>
                                                 </connections>
                                             </button>
+                                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHj-MC-jbY">
+                                                <rect key="frame" x="350" y="236" width="48" height="48"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVZ-z3-SyK">
+                                                        <rect key="frame" x="4" y="16" width="40" height="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="iVZ-z3-SyK" firstAttribute="leading" secondItem="DHj-MC-jbY" secondAttribute="leading" constant="4" id="9DM-kP-ru0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iVZ-z3-SyK" secondAttribute="trailing" constant="4" id="DAJ-7O-dKq"/>
+                                                    <constraint firstAttribute="height" constant="48" id="Q93-ho-rdQ"/>
+                                                    <constraint firstItem="iVZ-z3-SyK" firstAttribute="centerY" secondItem="DHj-MC-jbY" secondAttribute="centerY" id="ah0-hl-qDw"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK2-4u-l6B">
                                                 <rect key="frame" x="16" y="316" width="382" height="651"/>
                                                 <subviews>
@@ -564,9 +582,12 @@
                                             <constraint firstItem="ud1-ij-bxm" firstAttribute="top" secondItem="Uzy-Cz-66l" secondAttribute="bottom" constant="4" id="WTo-Z2-Fb0"/>
                                             <constraint firstItem="Byt-aM-5F2" firstAttribute="top" secondItem="3th-xB-uV2" secondAttribute="top" id="bXm-G3-go6"/>
                                             <constraint firstItem="dK2-4u-l6B" firstAttribute="top" secondItem="Byt-aM-5F2" secondAttribute="bottom" constant="-34" id="cu3-hB-bCP"/>
+                                            <constraint firstItem="DHj-MC-jbY" firstAttribute="width" secondItem="ud1-ij-bxm" secondAttribute="width" id="f63-9W-FVR"/>
                                             <constraint firstAttribute="bottom" secondItem="dK2-4u-l6B" secondAttribute="bottom" constant="20" id="gzZ-mp-xFN"/>
+                                            <constraint firstItem="DHj-MC-jbY" firstAttribute="centerX" secondItem="ud1-ij-bxm" secondAttribute="centerX" id="vEp-tM-IPJ"/>
                                             <constraint firstAttribute="trailing" secondItem="ud1-ij-bxm" secondAttribute="trailing" constant="16" id="vXj-2D-fmn"/>
                                             <constraint firstItem="ud1-ij-bxm" firstAttribute="centerY" secondItem="FM4-m6-wid" secondAttribute="centerY" id="ve6-6N-6hb"/>
+                                            <constraint firstItem="DHj-MC-jbY" firstAttribute="top" secondItem="ud1-ij-bxm" secondAttribute="top" id="ytO-Bd-gFd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -608,6 +629,8 @@
                         <outlet property="errorLabel" destination="jiR-Ts-noa" id="TVK-aM-Bso"/>
                         <outlet property="errorView" destination="gky-iO-N7T" id="sMD-wd-TVk"/>
                         <outlet property="loadingView" destination="8oG-4f-Tdn" id="gvi-oQ-hZ5"/>
+                        <outlet property="pointEarnLabel" destination="iVZ-z3-SyK" id="Vsa-PS-3sG"/>
+                        <outlet property="pointEarnView" destination="DHj-MC-jbY" id="4jW-6R-Iwc"/>
                         <outlet property="progressBar" destination="FM4-m6-wid" id="Ls8-Ak-8NL"/>
                         <outlet property="scrollView" destination="LnJ-gS-54q" id="WA6-Qn-KAW"/>
                         <outlet property="segmentedControl" destination="nah-d7-pIj" id="mqh-in-mta"/>

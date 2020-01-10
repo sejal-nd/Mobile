@@ -16,6 +16,9 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var progressBar: GameProgressBar!
     
+    @IBOutlet weak var pointEarnView: UIView!
+    @IBOutlet weak var pointEarnLabel: UILabel!
+    
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
     
@@ -82,6 +85,10 @@ class GameHomeViewController: AccountPickerViewController {
         scrollView!.alwaysBounceVertical = false
         
         progressBar.instantiate()
+        
+        pointEarnView.layer.cornerRadius = 24
+        pointEarnLabel.textColor = .successGreenText
+        pointEarnLabel.font = SystemFont.semibold.of(size: 12)
 
         dailyInsightCardView.layer.cornerRadius = 10
         dailyInsightCardView.layer.borderColor = UIColor.accentGray.cgColor
@@ -484,11 +491,12 @@ class GameHomeViewController: AccountPickerViewController {
         let pointsAfter = pointsBefore + points
         
         if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: pointsBefore, pointsAfter: pointsAfter) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
                 self.presentGift(unlockedGift)
             }
         }
         
+        // Animate the progress bar, making the buddy speak when it becomes half/full
         if let result = progressBar.setPoints(pointsAfter) {
             if result == .halfWay {
                 energyBuddyView.playSuperHappyAnimation()
@@ -500,6 +508,16 @@ class GameHomeViewController: AccountPickerViewController {
         } else {
             energyBuddyView.playHappyAnimation()
         }
+        
+        // Flash the points earned over the gift button
+        self.pointEarnLabel.text = "+ \(NSNumber(value: points).stringValue)"
+        UIView.animate(withDuration: 0.33, animations: {
+            self.pointEarnView.alpha = 1
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.33, delay: 3, options: [], animations: {
+                self.pointEarnView.alpha = 0
+            })
+        })
         
         if advanceTaskIndex { // If advancing index, update index + points in the same request
             energyBuddyView.setTaskIndicator(nil)
