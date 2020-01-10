@@ -57,6 +57,12 @@ struct Gift {
     }
 }
 
+extension Gift: Equatable {
+    static func == (lhs: Gift, rhs: Gift) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 class GiftInventory {
 
     static let shared = GiftInventory()
@@ -126,6 +132,13 @@ class GiftInventory {
     
     func gift(withId id: String) -> Gift? {
         return inventory.first { $0.id == id }
+    }
+    
+    func isFinalGift(gift: Gift) -> Bool {
+        if let lastGift = inventory.last, lastGift == gift {
+            return true
+        }
+        return false
     }
     
     /* Audits the selected gifts in UserDefaults and ensures they should be unlocked for the passed

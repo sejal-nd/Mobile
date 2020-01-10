@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GameRewardViewControllerDelegate: class {
-    func gameRewardViewController(_ gameRewardViewController: GameRewardViewController, didSetGift gift: Gift)
+    func gameRewardViewControllerShouldDismiss(_ gameRewardViewController: GameRewardViewController, didSetGift: Bool)
 }
 
 class GameRewardViewController: UIViewController {
@@ -69,7 +69,7 @@ class GameRewardViewController: UIViewController {
             case .accessory:
                 UserDefaults.standard.set(gift.id, forKey: UserDefaultKeys.gameSelectedAccessory)
             }
-            delegate?.gameRewardViewController(self, didSetGift: gift)
+            delegate?.gameRewardViewControllerShouldDismiss(self, didSetGift: true)
         } else { // Transition to the revealed state
             animating = true
             UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
@@ -104,7 +104,7 @@ class GameRewardViewController: UIViewController {
     }
         
     @objc private func dismiss(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        delegate?.gameRewardViewControllerShouldDismiss(self, didSetGift: false)
     }
 
 }

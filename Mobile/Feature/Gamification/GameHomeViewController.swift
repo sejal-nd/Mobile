@@ -384,14 +384,6 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func checkForAvailableTask() {
-        if viewModel.currentTaskIndex >= GameTaskStore.shared.tasks.count {
-            if !UserDefaults.standard.bool(forKey: UserDefaultKeys.gameHasSeenCompletionPopup) {
-                UserDefaults.standard.set(true, forKey: UserDefaultKeys.gameHasSeenCompletionPopup)
-                energyBuddyView.playConfettiAnimation()
-                showGameCompletionPopup()
-            }
-        }
-        
         if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {
             let daysSinceLastTask = abs(lastTaskDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current))
             if daysSinceLastTask < 4 {
@@ -481,7 +473,7 @@ class GameHomeViewController: AccountPickerViewController {
     
     private func showGameCompletionPopup() {
         let alert = InfoAlertController(title: NSLocalizedString("You did it!", comment: ""),
-                                        message: NSLocalizedString("Congratulations! You’ve reached the end for now, but updates will be made in the future!", comment: ""),
+                                        message: NSLocalizedString("Congratulations! You’ve unlocked all the gifts! Although you’ve reached the end for now, you can still earn points and complete any remaining tasks.", comment: ""),
                                         icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))
         self.tabBarController?.present(alert, animated: true, completion: nil)
     }
@@ -630,15 +622,27 @@ extension GameHomeViewController: GameQuizViewControllerDelegate {
 // MARK: - GameRewardViewControllerDelegate
 extension GameHomeViewController: GameRewardViewControllerDelegate {
     
-    func gameRewardViewController(_ gameRewardViewController: GameRewardViewController, didSetGift gift: Gift) {
-        let generator = UISelectionFeedbackGenerator()
-        generator.selectionChanged()
-        energyBuddyView.updateBuddy()
-        viewModel.updateGiftSelections()
-        tabBarController?.dismiss(animated: true, completion: {
-            self.energyBuddyView.playSuperHappyAnimation(withSparkles: false, withHearts: true)
-            self.energyBuddyView.showNewGiftAppliedMessage(forGift: gift)
-        })
+    func gameRewardViewControllerShouldDismiss(_ gameRewardViewController: GameRewardViewController, didSetGift: Bool) {
+        let gift = gameRewardViewController.gift!
+        if didSetGift {
+            let generator = UISelectionFeedbackGenerator()
+            generator.selectionChanged()
+            energyBuddyView.updateBuddy()
+            viewModel.updateGiftSelections()
+        }
+        tabBarController?.dismiss(animated: true) {
+            if didSetGift {
+                self.energyBuddyView.playSuperHappyAnimation(withSparkles: false, withHearts: true)
+                self.energyBuddyView.showNewGiftAppliedMessage(forGift: gift)
+            }
+            
+            if GiftInventory.shared.isFinalGift(gift: gift) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                    self.energyBuddyView.playConfettiAnimation()
+                    self.showGameCompletionPopup()
+                }
+            }
+        }
     }
 }
 
