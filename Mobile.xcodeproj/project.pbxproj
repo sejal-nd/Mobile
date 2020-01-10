@@ -1128,6 +1128,9 @@
 		9C28D39C2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39D2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
 		9C28D39E2283382E00DBFE51 /* BGEChoiceIDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */; };
+		9C2C600F23C91E3D0033785E /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
+		9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
+		9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2C600E23C91E3D0033785E /* coin_bonus_point.json */; };
 		9C34D746239EE92400DF7FE2 /* GameTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C34D745239EE92400DF7FE2 /* GameTasks.json */; };
 		9C34D748239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
 		9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
@@ -3308,6 +3311,7 @@
 		9C28D387227B975A00DBFE51 /* BGEChoiceIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewController.swift; sourceTree = "<group>"; };
 		9C28D3992281FD9100DBFE51 /* FirstFuelWidget.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FirstFuelWidget.html; sourceTree = "<group>"; };
 		9C28D39B2283382E00DBFE51 /* BGEChoiceIDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGEChoiceIDViewModel.swift; sourceTree = "<group>"; };
+		9C2C600E23C91E3D0033785E /* coin_bonus_point.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coin_bonus_point.json; sourceTree = "<group>"; };
 		9C34D745239EE92400DF7FE2 /* GameTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameTasks.json; sourceTree = "<group>"; };
 		9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTaskStore.swift; sourceTree = "<group>"; };
 		9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedTipTableViewCell.swift; sourceTree = "<group>"; };
@@ -5388,6 +5392,7 @@
 		9C0EA5AB237DAD1200D1E18F /* Gamification */ = {
 			isa = PBXGroup;
 			children = (
+				9C2C600E23C91E3D0033785E /* coin_bonus_point.json */,
 				9C88942123C39F2B002E46A7 /* confetti.json */,
 				9C0A2C3323A042DC002C4B8E /* message_bubble_quiz.json */,
 				9C0A2C3423A042DC002C4B8E /* message_bubble_tip.json */,
@@ -6815,6 +6820,7 @@
 				82A18EFC1EBA6A4100BE9F21 /* DisclosureButton.xib in Resources */,
 				B08956F92215D11B00A97965 /* energy_tips.json in Resources */,
 				35A6C6C1211C7AD200C2A58F /* TitleTableViewCell.xib in Resources */,
+				9C2C600F23C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				82156F211F2781FC008597BF /* NoNetworkConnectionView.xib in Resources */,
 				B0B083F821710CDB00B1C632 /* Appt_Canceled.json in Resources */,
 				B0B083F921710CDB00B1C632 /* Appt_Inprogress.json in Resources */,
@@ -6998,6 +7004,7 @@
 				E867A8FC1F053B00007F4FD9 /* Wallet.storyboard in Resources */,
 				3559C8B82301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B07E17F1220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
+				9C2C601123C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				B0B125FD221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
 				359BDBAE22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				B5D415841F3A6EAF00AC32B2 /* GoogleService-Info_peco_develop.plist in Resources */,
@@ -7163,6 +7170,7 @@
 				B07E17F0220A2EAF00B6E3C7 /* opco_updates.json in Resources */,
 				3559C8B72301E4FF00481A87 /* AutoPay.storyboard in Resources */,
 				B0B125FC221B080400AF4DC4 /* peak_rewards_summary.json in Resources */,
+				9C2C601023C91E3D0033785E /* coin_bonus_point.json in Resources */,
 				359BDBAD22E09D93007002B0 /* AccountInfoBarNew.xib in Resources */,
 				E827D2391ED490A0004DA1D6 /* InfoModal.xib in Resources */,
 				359BDB6722D8DCD1007002B0 /* TitleSubTitleRow.xib in Resources */,

@@ -55,6 +55,8 @@ class GameHomeViewController: AccountPickerViewController {
     var isVisible = false
     var didGoToHomeProfile = false
     var viewDidAppear = false
+    
+    var pointEarnAnimator: UIViewPropertyAnimator?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -503,15 +505,31 @@ class GameHomeViewController: AccountPickerViewController {
         }
         
         // Flash the points earned over the gift button
-        self.pointEarnLabel.text = "+ \(NSNumber(value: points).stringValue)"
-        UIView.animate(withDuration: 0.33, animations: {
-            self.pointEarnView.alpha = 1
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.33, delay: 3, options: [], animations: {
+        let fadeOutAfter2Seconds = {
+            self.pointEarnAnimator = UIViewPropertyAnimator(duration: 0.33, curve: .linear, animations: {
                 self.pointEarnView.alpha = 0
             })
-        })
+            self.pointEarnAnimator?.startAnimation(afterDelay: 2)
+        }
         
+        self.pointEarnLabel.text = "+ \(NSNumber(value: points).stringValue)"
+        
+        // If already playing (i.e. when collecting coins quickly), just keep delaying the fade out
+        if pointEarnAnimator?.isRunning ?? false || pointEarnView.alpha > 0 {
+            pointEarnAnimator?.stopAnimation(true)
+            pointEarnView.alpha = 1
+            fadeOutAfter2Seconds()
+        } else {
+            pointEarnAnimator?.stopAnimation(true)
+            pointEarnAnimator = UIViewPropertyAnimator(duration: 0.33, curve: .linear, animations: {
+                self.pointEarnView.alpha = 1
+            })
+            pointEarnAnimator?.addCompletion({ _ in
+                fadeOutAfter2Seconds()
+            })
+            self.pointEarnAnimator?.startAnimation()
+        }
+
         if advanceTaskIndex { // If advancing index, update index + points in the same request
             energyBuddyView.setTaskIndicator(nil)
             viewModel.currentTask = nil

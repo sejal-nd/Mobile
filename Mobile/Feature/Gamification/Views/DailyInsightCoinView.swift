@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Foundation
+import Lottie
 
 protocol DailyInsightCoinViewDelegate: class {
     func dailyInsightCoinView(_ view: DailyInsightCoinView, wasTappedWithCoinCollected coinCollected: Bool, decreasedUsage: Bool)
@@ -21,6 +21,7 @@ class DailyInsightCoinView: UIControl {
     @IBOutlet weak var weekdayLabel: UILabel!
     @IBOutlet weak var circleBorderView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var lottieView: UIView!
     
     private var canCollect = true
     
@@ -92,9 +93,18 @@ class DailyInsightCoinView: UIControl {
     @objc func onTap() {
         if canCollect {
             canCollect = false
-            let image = lastWeekComparisionImage
-            imageView.image = image
-            delegate?.dailyInsightCoinView(self, wasTappedWithCoinCollected: true, decreasedUsage: image == #imageLiteral(resourceName: "ic_trenddown.pdf"))
+            imageView.image = lastWeekComparisionImage
+            
+            let decreasedUsage = lastWeekComparisionImage == #imageLiteral(resourceName: "ic_trenddown.pdf")
+            if decreasedUsage {
+                let coinAnimation = AnimationView(name: "coin_bonus_point")
+                coinAnimation.frame.size = lottieView.frame.size
+                coinAnimation.contentMode = .scaleAspectFit
+                lottieView.addSubview(coinAnimation)
+                coinAnimation.play()
+            }
+            
+            delegate?.dailyInsightCoinView(self, wasTappedWithCoinCollected: true, decreasedUsage: decreasedUsage)
         } else {
             delegate?.dailyInsightCoinView(self, wasTappedWithCoinCollected: false, decreasedUsage: false)
         }
