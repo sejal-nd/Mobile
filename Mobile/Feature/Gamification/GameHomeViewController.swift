@@ -148,7 +148,7 @@ class GameHomeViewController: AccountPickerViewController {
         super.viewDidAppear(animated)
         
         FirebaseUtility.logEvent(.gameExperienceAccessed, customParameters: [
-            "currentPointTotal": UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal),
+            "currentPointTotal": viewModel.points,
             "selectedBackground": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none",
             "selectedHat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
             "selectedAccessory": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
@@ -168,8 +168,9 @@ class GameHomeViewController: AccountPickerViewController {
                 }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
-                    self?.energyBuddyView.playHappyAnimation()
-                    self?.energyBuddyView.showWelcomeMessage()
+                    guard let self = self else { return }
+                    self.energyBuddyView.playHappyAnimation()
+                    self.energyBuddyView.showWelcomeMessage(isFirstTimeSeeingBuddy: self.viewModel.points == 0)
                 }
             }
         }

@@ -235,12 +235,16 @@ class EnergyBuddyView: UIView {
         speechBubbleAnimator?.startAnimation()
     }
     
-    func showWelcomeMessage() {
-        let randomInt = Int.random(in: 0...welcomeMessages.count)
-        if randomInt < welcomeMessages.count {
-            speechBubbleLabel.text = welcomeMessages[randomInt]
+    func showWelcomeMessage(isFirstTimeSeeingBuddy: Bool = false) {
+        if isFirstTimeSeeingBuddy { // Ensure he doesn't say "Welcome Back!"
+            speechBubbleLabel.text = NSLocalizedString("Hello!", comment: "")
         } else {
-            speechBubbleLabel.text = Date.now.localizedGameGreeting
+            let randomInt = Int.random(in: 0...welcomeMessages.count)
+            if randomInt < welcomeMessages.count {
+                speechBubbleLabel.text = welcomeMessages[randomInt]
+            } else {
+                speechBubbleLabel.text = Date.now.localizedGameGreeting
+            }
         }
         
         animateSpeechBubble()
