@@ -238,12 +238,9 @@ class GameHomeViewController: AccountPickerViewController {
 
             self.viewModel.currentTaskIndex = gameUser.taskIndex
             
-            // We never want points to be lost, so only reconcile with the server on first load,
-            // or if the server says the user has more points than we've tracked locally
-            if !self.loadedInitialGameUser || gameUser.points > self.viewModel.points {
-                _ = self.progressBar.setPoints(gameUser.points, animated: false)
-                self.viewModel.points = gameUser.points
-            }
+            // Reconcile points with what's on the server
+            _ = self.progressBar.setPoints(gameUser.points, animated: false)
+            self.viewModel.points = gameUser.points
             
             if GameTaskStore.shared.tryFabWentBackToGame {
                 if self.viewDidAppear {

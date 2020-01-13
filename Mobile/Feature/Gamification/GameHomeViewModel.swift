@@ -70,6 +70,7 @@ class GameHomeViewModel {
                             self.coreDataManager.removeCollectedCoin(accountNumber: accountDetail.accountNumber, date: tuple.0, gas: tuple.1)
                         }
                         self.debouncedCoinQueue.removeAll()
+                        self.gameUser.accept(self.gameUser.value) // To trigger point reconciliation
                         self.usageData.accept(self.usageData.value) // To trigger `layoutCoinViews`
                     }).disposed(by: self.bag)
             })
@@ -137,17 +138,7 @@ class GameHomeViewModel {
                 self?.error.accept(true)
             })
     }
-    
-//    func updateGameUserPoints(_ points: Double) {
-//        guard let accountDetail = accountDetail.value else { return }
-//        let params = ["points": points]
-//        self.gameService.updateGameUser(accountNumber: accountDetail.accountNumber, keyValues: params)
-//            .observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { [weak self] gameUser in
-//                self?.gameUser.accept(gameUser)
-//            }).disposed(by: self.bag)
-//    }
-        
+            
     func updateGameUser(taskIndex: Int, advanceTaskTimer: Bool, points: Double? = nil) {
         guard let accountDetail = accountDetail.value else { return }
         var params: [String: Any] = ["taskIndex": taskIndex]
@@ -161,6 +152,9 @@ class GameHomeViewModel {
                     UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameLastTaskDate)
                 }
                 self?.gameUser.accept(gameUser)
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                self.gameUser.accept(self.gameUser.value) // To trigger point reconciliation
             }).disposed(by: self.bag)
     }
         
