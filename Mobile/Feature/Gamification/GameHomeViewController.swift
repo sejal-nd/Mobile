@@ -21,6 +21,8 @@ class GameHomeViewController: AccountPickerViewController {
     
     @IBOutlet weak var dailyInsightCardView: UIView!
     @IBOutlet weak var dailyInsightLabel: UILabel!
+    @IBOutlet weak var streakButton: ButtonControl!
+    @IBOutlet weak var streakLabel: UILabel!
     
     @IBOutlet weak var segmentedControlContainer: UIView!
     @IBOutlet weak var segmentedControl: SegmentedControl!
@@ -106,6 +108,9 @@ class GameHomeViewController: AccountPickerViewController {
         dailyInsightLabel.textColor = .deepGray
         dailyInsightLabel.font = OpenSans.regular.of(textStyle: .headline)
         dailyInsightLabel.text = NSLocalizedString("Daily Insight", comment: "")
+        
+        streakLabel.textColor = .actionBlue
+        streakLabel.font = SystemFont.semibold.of(size: 13)
                 
         bubbleView.layer.borderColor = UIColor.accentGray.cgColor
         bubbleView.layer.borderWidth = 1
@@ -149,6 +154,7 @@ class GameHomeViewController: AccountPickerViewController {
         
         FirebaseUtility.logEvent(.gamificationExperienceAccessed, customParameters: [
             "current_point_total": viewModel.points,
+            "curr_streak": UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount),
             "selected_bg": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none",
             "selected_hat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
             "selected_acc": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
@@ -255,6 +261,25 @@ class GameHomeViewController: AccountPickerViewController {
             self.loadedInitialGameUser = true
         }).disposed(by: bag)
         
+        viewModel.streakCount.asDriver().drive(onNext: { [weak self] count in
+            if count == 7 { // Award 3 points, show the modal, and reset streak back to 1
+                FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .seven_day_streak)])
+                self?.awardPoints(3, advanceTaskIndex: false, advanceTaskTimer: false)
+                self?.viewModel.streakCount.accept(1)
+                UserDefaults.standard.set(1, forKey: UserDefaultKeys.gameStreakCount)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                    let alert = InfoAlertController(title: NSLocalizedString("Keep it up!", comment: ""),
+                                    message: NSLocalizedString("You’ve been more energy conscious by checking the app for 7 days in a row! You’ve received extra points as a reward!", comment: ""),
+                                    icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))
+                    self?.tabBarController?.present(alert, animated: true, completion: nil)
+                }
+
+            } else {
+                self?.streakButton.isHidden = count == 1
+                self?.streakLabel.text = "\(count)"
+            }
+        }).disposed(by: bag)
+        
         viewModel.usageData.asDriver().drive(onNext: { [weak self] array in
             guard let usageArray = array, usageArray.count > 0 else { return }
             self?.layoutCoinViews(usageArray: usageArray)
@@ -329,6 +354,8 @@ class GameHomeViewController: AccountPickerViewController {
 
     }
     
+    // MARK: - IBActions
+    
     @objc func onPullToRefresh() {
         viewModel.fetchData(pullToRefresh: true)
     }
@@ -365,6 +392,13 @@ class GameHomeViewController: AccountPickerViewController {
         }
     }
     
+    @IBAction func onStreakButtonPress() {
+        let alert = InfoAlertController(title: NSLocalizedString("Daily Streak Challenge!", comment: ""),
+                                        message: NSLocalizedString("You can begin a streak by checking the app daily. Doing so will help you stay mindful of your daily usage. Every 7 days of maintaining the streak, you’ll receive extra points!", comment: ""),
+                                        icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))
+        self.tabBarController?.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func onDailyInsightTooltipPress() {
         let alert = InfoAlertController(title: NSLocalizedString("Daily Insight", comment: ""),
                                         message: NSLocalizedString("Your daily usage will be compared to your previous week. Points for each day will be available for up to 7 days of data. Uncollected points for the days prior will be lost, so be sure to check at least once a week!\n\nSmart meter data is typically available within 24-48 hours of your usage.", comment: ""))
@@ -384,6 +418,8 @@ class GameHomeViewController: AccountPickerViewController {
     @IBAction func onGiftsPress() {
         performSegue(withIdentifier: "giftSegue", sender: nil)
     }
+    
+    // MARK:-
     
     private func checkForAvailableTask() {
         if let lastTaskDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameLastTaskDate) as? Date {

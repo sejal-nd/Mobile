@@ -258,7 +258,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaultKeys.shouldPromptToEnableBiometrics: true,
             UserDefaultKeys.paymentDetailsDictionary: [String: NSDictionary](),
             UserDefaultKeys.usernamesRegisteredForPushNotifications: [String](),
-            UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference: true
+            UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference: true,
+            UserDefaultKeys.gameStreakCount: 1
         ])
         
         userDefaults.set(false, forKey: UserDefaultKeys.inMainApp)

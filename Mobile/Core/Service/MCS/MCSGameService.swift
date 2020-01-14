@@ -24,6 +24,17 @@ class MCSGameService: GameService {
                 
                 GiftInventory.shared.auditUserDefaults(userPoints: gameUser.points)
                 
+                if let streakDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameStreakDateTracker) as? Date {
+                    if Calendar.current.isDateInYesterday(streakDate) {
+                        let streakCount = UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount)
+                        UserDefaults.standard.set(streakCount + 1, forKey: UserDefaultKeys.gameStreakCount)
+                        UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameStreakDateTracker)
+                    } else if abs(streakDate.interval(ofComponent: .day, fromDate: Date.now, usingCalendar: Calendar.current)) >= 2 {
+                        UserDefaults.standard.set(1, forKey: UserDefaultKeys.gameStreakCount)
+                    }
+                }
+                UserDefaults.standard.set(Date.now, forKey: UserDefaultKeys.gameStreakDateTracker)
+                
                 _ = self.updateGameUser(accountNumber: accountNumber, keyValues: ["lastLogin": Date.now.apiFormatString])
                     .subscribe()
                 

@@ -36,6 +36,8 @@ class GameHomeViewModel {
     let weeklyInsightEndDate = BehaviorRelay<Date?>(value: nil)
     let weeklyInsightPublishSubject = PublishSubject<Void>()
     
+    let streakCount = BehaviorRelay<Int>(value: 1)
+    
     var points: Double {
         get {
             return UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal)
@@ -111,6 +113,7 @@ class GameHomeViewModel {
         self.gameService.fetchGameUser(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] gameUser in
+                self?.streakCount.accept(UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount))
                 self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)
     }
