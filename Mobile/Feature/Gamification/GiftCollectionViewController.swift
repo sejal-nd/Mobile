@@ -9,7 +9,13 @@
 import UIKit
 import XLPagerTabStrip
 
+protocol GiftCollectionViewControllerDelegate: class {
+    func giftCollectionViewControllerDidChangeGift(_ giftCollectionViewController: GiftCollectionViewController)
+}
+
 class GiftCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, IndicatorInfoProvider {
+    
+    weak var delegate: GiftCollectionViewControllerDelegate?
     
     // Passed into create()
     var giftType: GiftType!
@@ -122,6 +128,7 @@ class GiftCollectionViewController: UICollectionViewController, UICollectionView
             let generator = UISelectionFeedbackGenerator()
             generator.selectionChanged()
             selectedGiftId = gift.id
+            delegate?.giftCollectionViewControllerDidChangeGift(self)
         }
     }
 

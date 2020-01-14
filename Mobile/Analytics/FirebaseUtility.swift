@@ -17,8 +17,8 @@ struct FirebaseUtility {
         
         case errorNonFatal
         
-        case login // done
-        case keepMeSignedIn // done
+        case login
+        case keepMeSignedIn
         
         case autoPay
         case budgetBill
@@ -29,8 +29,8 @@ struct FirebaseUtility {
         case bill
         case payment
         case wallet
-        case authOutage // done
-        case unauthOutage // done
+        case authOutage
+        case unauthOutage
         case usage
         case more
         case biometricsToggle
@@ -40,21 +40,19 @@ struct FirebaseUtility {
         case accountPicker
         case alerts
         
-        
-        
-        case loginPageStart // done
+        case loginPageStart
         case loginTokenNetworkComplete
-        case loginExchangeTokenNetworkComplete // done
-        case loginAccountNetworkComplete // done
-        case initialAuthenticatedScreenStart // done
+        case loginExchangeTokenNetworkComplete
+        case loginAccountNetworkComplete
+        case initialAuthenticatedScreenStart
         
-        case changePasswordStart // done
-        case changePasswordSubmit // done
-        case changePasswordNetworkComplete // done
+        case changePasswordStart
+        case changePasswordSubmit
+        case changePasswordNetworkComplete
         
-        case reportOutageStart // done
-        case reportOutageSubmit // done
-        case reportOutageNetworkComplete // done
+        case reportOutageStart
+        case reportOutageSubmit
+        case reportOutageNetworkComplete
         case makePaymentStart
         case makePaymentNext
         case reviewPaymentSubmit
@@ -78,12 +76,9 @@ struct FirebaseUtility {
         case personalizeHomeComplete
         
         // Gamification
-        case gameOnboardStart
-        case gameOnboardStep1Complete
-        case gameOnboardStep2Complete
-        case gameOptOut
-        case gameOptIn
-        case gameExperienceAccessed
+        case gamification
+        case gamificationOptOut
+        case gamificationExperienceAccessed
     }
     
     /// Name of user property -> Mapped directly to Firebase
@@ -319,6 +314,22 @@ struct EventParameter {
         case forgot_username_press
         case forgot_password_press
         case biometrics_press
+        
+        // Gamification
+        case onboard_start
+        case onboard_step1_complete
+        case onboard_step2_complete
+        case opt_in
+        case push_opt_out
+        case reminder_set
+        case tip_favorited
+        case coin_tapped
+        case gifts_changed
+        case toggled_gas_elec
+        case viewed_task_empty_state
+        case tapped_fab
+        case final_gift_unlocked
+        case seven_day_streak
     }
     
     let parameterName: Name

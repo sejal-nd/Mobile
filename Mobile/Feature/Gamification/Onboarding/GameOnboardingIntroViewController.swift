@@ -25,7 +25,7 @@ class GameOnboardingIntroViewController: UIViewController {
         label.font = OpenSans.semibold.of(textStyle: .title3)
         label.text = NSLocalizedString("In order to personalize your experience, we’d like to ask you a few questions!", comment: "")
         
-        FirebaseUtility.logEvent(.gameOnboardStart)
+        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .onboard_start)])
     }
     
     @IBAction func onClosePress() {

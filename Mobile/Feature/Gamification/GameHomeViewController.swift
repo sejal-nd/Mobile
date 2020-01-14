@@ -147,11 +147,11 @@ class GameHomeViewController: AccountPickerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        FirebaseUtility.logEvent(.gameExperienceAccessed, customParameters: [
-            "currentPointTotal": viewModel.points,
-            "selectedBackground": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none",
-            "selectedHat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
-            "selectedAccessory": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
+        FirebaseUtility.logEvent(.gamificationExperienceAccessed, customParameters: [
+            "current_point_total": viewModel.points,
+            "selected_bg": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedBackground) ?? "none",
+            "selected_hat": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedHat) ?? "none",
+            "selected_acc": UserDefaults.standard.string(forKey: UserDefaultKeys.gameSelectedAccessory) ?? "none"
         ])
                 
         if viewDidAppear { // Only do this on repeat `viewDidAppear`s. The initial play is done in `viewDidLayoutSubviews`
@@ -372,6 +372,7 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     @IBAction func segmentValueChanged(_ sender: SegmentedControl) {
+        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .toggled_gas_elec)])
         viewModel.selectedSegmentIndex = sender.selectedIndex.value
         viewModel.fetchDailyUsage()
     }
@@ -457,6 +458,8 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func showEnergyBuddyTooltip() {
+        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .viewed_task_empty_state)])
+        
         let message = NSMutableAttributedString(string: NSLocalizedString("I’m your Energy Buddy!\n\nI’m here to help you make small changes that lead to big impacts by giving you tips, challenges, and insights to help you lower your energy use.\n\nAlong the way, you’ll be awarded with points for checking your daily and weekly insights as well as any tips, quizzes, or other challenges I might have for you! With those points, you can unlock backgrounds, hats, and accessories.", comment: ""))
         if let taskTimeStr = viewModel.nextAvaiableTaskTimeString {
             let attrString = NSMutableAttributedString(string: "\n\n\(taskTimeStr)", attributes: [
@@ -473,6 +476,7 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func showGameCompletionPopup() {
+        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .final_gift_unlocked)])
         let alert = InfoAlertController(title: NSLocalizedString("You did it!", comment: ""),
                                         message: NSLocalizedString("Congratulations! You’ve unlocked all the gifts! Although you’ve reached the end for now, you can still earn points and complete any remaining tasks.", comment: ""),
                                         icon: #imageLiteral(resourceName: "ic_energybuddy.pdf"))

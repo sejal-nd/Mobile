@@ -87,13 +87,13 @@ class GameOptInOutViewController: UIViewController {
                     guard let self = self else { return }
                     
                     if gameUser.optedOut {
-                        FirebaseUtility.logEvent(.gameOptOut, customParameters: [
-                            "currentPointTotal": UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal)
+                        FirebaseUtility.logEvent(.gamificationOptOut, customParameters: [
+                            "current_point_total": UserDefaults.standard.double(forKey: UserDefaultKeys.gamePointsLocal)
                         ])
                         NotificationCenter.default.post(name: .gameDidOptOut, object: nil)
                         UNUserNotificationCenter.current().removeAllPendingNotificationRequests() // Ditch all reminder notifications
                     } else {
-                        FirebaseUtility.logEvent(.gameOptIn)
+                        FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .opt_in)])
                         RxNotifications.shared.accountDetailUpdated.onNext(()) // So that home reloads and onboarding card shows/hides
                     }
                     

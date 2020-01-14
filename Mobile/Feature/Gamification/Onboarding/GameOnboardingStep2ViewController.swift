@@ -99,7 +99,7 @@ class GameOnboardingStep2ViewController: UIViewController {
                 .subscribe(onNext: { [weak self] gameUser in
                     LoadingView.hide()
                     NotificationCenter.default.post(name: .gameOnboardingComplete, object: nil)
-                    FirebaseUtility.logEvent(.gameOnboardStep2Complete)
+                    FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .onboard_step2_complete)])
                     self?.dismissModal()
                 }, onError: { [weak self] err in
                     LoadingView.hide()

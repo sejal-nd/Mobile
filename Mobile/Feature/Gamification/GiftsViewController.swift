@@ -13,6 +13,8 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
     
     let gameService = ServiceFactory.createGameService()
     
+    var giftSelectionsChanged = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,15 +58,28 @@ class GiftsViewController: ButtonBarPagerTabStripViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        _ = self.gameService.updateGameUserGiftSelections(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
-            .subscribe()
+        if giftSelectionsChanged {
+            FirebaseUtility.logEvent(.gamification, parameters: [EventParameter(parameterName: .action, value: .gifts_changed)])
+            _ = self.gameService.updateGameUserGiftSelections(accountNumber: AccountsStore.shared.currentAccount.accountNumber)
+                .subscribe()
+        }
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let backgrounds = GiftCollectionViewController.create(withType: .background, index: 1)
+        backgrounds.delegate = self
         let hats = GiftCollectionViewController.create(withType: .hat, index: 2)
+        hats.delegate = self
         let accessories = GiftCollectionViewController.create(withType: .accessory, index: 3)
+        accessories.delegate = self
         return [backgrounds, hats, accessories]
     }
     
+}
+
+extension GiftsViewController: GiftCollectionViewControllerDelegate {
+    
+    func giftCollectionViewControllerDidChangeGift(_ giftCollectionViewController: GiftCollectionViewController) {
+        giftSelectionsChanged = true
+    }
 }
