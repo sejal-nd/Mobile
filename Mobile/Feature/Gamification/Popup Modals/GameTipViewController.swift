@@ -71,7 +71,7 @@ class GameTipViewController: UIViewController {
         
         titleLabel.textColor = .deepGray
         titleLabel.font = SystemFont.regular.of(textStyle: .headline)
-        titleLabel.text = NSLocalizedString("I have a tip for you!", comment: "")
+        titleLabel.text = tip.title
         
         detailLabel.textColor = .deepGray
         detailLabel.font = SystemFont.regular.of(textStyle: .footnote)
