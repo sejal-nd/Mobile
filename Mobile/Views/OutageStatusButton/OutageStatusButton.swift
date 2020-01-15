@@ -88,7 +88,7 @@ class OutageStatusButton: UIView {
         return isStormMode ? .clear : UIColor.primaryColor.withAlphaComponent(0.6)
     }
 
-    var onLottieAnimation: LOTAnimationView?
+    var onLottieAnimation: AnimationView?
     
     @IBInspectable
     public var isStormMode: Bool = false {
@@ -96,7 +96,7 @@ class OutageStatusButton: UIView {
             onLottieAnimation?.removeFromSuperview()
             
             if isStormMode {
-                onLottieAnimation = LOTAnimationView(name: "sm_outage")
+                onLottieAnimation = AnimationView(name: "sm_outage")
                 
                 outerCircleView.isHidden = true
                 
@@ -108,7 +108,7 @@ class OutageStatusButton: UIView {
                 reportedETRTitleLabel.textColor = .white
                 reportedETRLabel.textColor = .white
             } else {
-                onLottieAnimation = LOTAnimationView(name: "outage")
+                onLottieAnimation = AnimationView(name: "outage")
                 
                 outerCircleView.isHidden = false
                 
@@ -122,7 +122,7 @@ class OutageStatusButton: UIView {
             }
             
             onLottieAnimation?.frame = CGRect(x: 0, y: 1, width: animationView.frame.size.width, height: animationView.frame.size.height)
-            onLottieAnimation?.loopAnimation = true
+            onLottieAnimation?.loopMode = .loop
             onLottieAnimation?.contentMode = .scaleAspectFill
             
             guard let onLottieAnimation = onLottieAnimation else { return }

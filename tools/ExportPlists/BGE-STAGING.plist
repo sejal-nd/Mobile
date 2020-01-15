@@ -10,6 +10,10 @@
 	<dict>
 		<key>com.exelon.mobile.bge.staging</key>
 		<string>BGE Staging Enterprise Dist</string>
+		<key>com.exelon.mobile.bge.staging.watchkitapp</key>
+		<string>BGE Staging Watchkit App Enterprise Dist</string>
+		<key>com.exelon.mobile.bge.staging.watchkitapp.watchkitextension</key>
+		<string>BGE Staging Watchkit WatchkitExtension Enterprise</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>0419AB3ACD211F967494C6396DC6FCFA7C60C475</string>

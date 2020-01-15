@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import AppCenterXCUITestExtensions
 import LocalAuthentication
 
 class MoreUITests: ExelonUITestCase {
@@ -17,7 +16,7 @@ class MoreUITests: ExelonUITestCase {
         launchApp()
         doLogin(username: "screenshots")
         selectTab(tabName: "More")
-        
+
         continueAfterFailure = false
     }
     

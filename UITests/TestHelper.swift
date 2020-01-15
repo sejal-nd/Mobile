@@ -7,18 +7,20 @@
 //
 
 import Foundation
-import AppCenterXCUITestExtensions
 import XCTest
-
-enum OpCo: String {
-    case bge = "BGEUITests-Runner"
-    case comEd = "ComEdUITests-Runner"
-    case peco = "PECOUITests-Runner"
-}
 
 let appOpCo: OpCo = {
     let appName = Bundle.main.infoDictionary?["CFBundleName"] as! String
-    return OpCo(rawValue: appName)!
+    let bundleId = Bundle.main.infoDictionary?["CFBundleName"] as! String
+    var opCoName = ""
+    if bundleId == "ComEdUITests-Runner" {
+        opCoName = "ComEd"
+    } else if bundleId == "BGEUITests-Runner" {
+        opCoName = "BGE"
+    } else if bundleId == "PECOUITests-Runner" {
+        opCoName = "PECO"
+    }
+    return OpCo(rawValue: opCoName)!
 }()
 
 class ExelonUITestCase: XCTestCase {
@@ -36,38 +38,56 @@ class ExelonUITestCase: XCTestCase {
     }
     
     override func tearDown() {
-        ACTLabel.labelStep("Tearing down")
-
         super.tearDown()
     }
     
     func launchApp() {
-        ACTLaunch.launch(app)
+        app.launch()
+        sleep(20)
+//        ACTLaunch.launch(app)
     }
     
     func handleTermsFirstLaunch() {
-        let continueButton = buttonElement(withText: "Continue", timeout: 5)
+        
+        let continueButton = app.buttons["Continue"]
+        continueButton.waitForExistence(timeout: 10)
         XCTAssertTrue(continueButton.exists)
         // Assert button is disabled when the switch is not enabled
         XCTAssertFalse(continueButton.isEnabled)
-        let continueSwitch = app.switches.element(boundBy: 0)
-        continueSwitch.tap()
+        
+//        let continueSwitch = app.switches.element(boundBy: 0)
+        
+//        let continueSwitch = app.otherElements.children(matching: Checkbox)
+//        continueSwitch.tap()
         
         var i = 0
         while !continueButton.isEnabled {
             // seems the app sometimes has trouble starting up quickly enough for the button to react?
             usleep(50000)
-            continueSwitch.tap()
+            
+            var checkboxText = ""
+            let bundleId = Bundle.main.infoDictionary?["CFBundleName"] as! String
+            if bundleId == "ComEdUITests-Runner" {
+                checkboxText = "ComEd"
+            } else if bundleId == "BGEUITests-Runner" {
+                checkboxText = "BGE"
+            } else if bundleId == "PECOUITests-Runner" {
+                checkboxText = "PECO"
+            }
+            
+                
+            XCUIApplication().otherElements[String(format: NSLocalizedString("I agree to %@'s Privacy Policy and Terms of Use., Checkbox, Unchecked", comment: ""), checkboxText)].tap()
+            
             i += 1
             if i > 10 {
                 break
             }
         }
-        ACTLabel.labelStep("Continue switch tapped")
+       
         continueButton.tap()
-        ACTLabel.labelStep("Continue button tapped")
+       
         XCTAssertTrue(buttonElement(withText: "Sign In", timeout: 5).exists)
-        ACTLabel.labelStep("Sign in ready")
+       
     }
     
     func doLogin(username: String) {
@@ -85,7 +105,7 @@ class ExelonUITestCase: XCTestCase {
         
         let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
         passwordSecureTextField.clearAndEnterText("Password1")
-        ACTLabel.labelStep("Signing in...")
+        
         tapButton(buttonText: "Sign In")
     
         if app.launchArguments.contains("stormMode") {
@@ -94,7 +114,7 @@ class ExelonUITestCase: XCTestCase {
             XCTAssertTrue(tabButtonElement(withText: "Home").exists)
         }
         
-        ACTLabel.labelStep("Signed in")
+        
     }
 }
 
@@ -102,19 +122,15 @@ class ExelonUITestCase: XCTestCase {
 extension ExelonUITestCase {
 
     func selectTab(tabName: String) {
-        ACTLabel.labelStep("Pre-select tab \(tabName)")
         let tab = tabButtonElement(withText: tabName, timeout: 20)
         XCTAssertTrue(tab.exists)
         tab.tap()
-        ACTLabel.labelStep("Post-select tab \(tabName)")
     }
     
     func tapButton(buttonText: String) {
-        ACTLabel.labelStep("Pre-tap button \(buttonText)")
         let button = buttonElement(withText: buttonText)
         XCTAssertTrue(button.exists)
         button.tap()
-        ACTLabel.labelStep("Post-tap button \(buttonText)")
     }
 
     func scrollToBottomOfTable() {

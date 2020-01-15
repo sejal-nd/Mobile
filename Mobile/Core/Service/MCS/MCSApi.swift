@@ -33,7 +33,7 @@ class MCSApi {
     #if os(iOS)
     private let tokenKeychain = A0SimpleKeychain()
     #elseif os(watchOS)
-    private let tokenKeychain = KeychainUtility.shared
+    private let tokenKeychain = KeychainManager.shared
     #endif
     public var accessToken: String?
 
@@ -142,11 +142,7 @@ class MCSApi {
                     }
                     
                     APILog(MCSApi.self, requestId: requestId, path: path, method: method, logType: .response, message: String(data: data, encoding: .utf8))
-                    
-                    #if os(iOS)
-                    FirebaseUtility.logEvent(.loginExchangeTokenNetworkComplete)
-                    #endif
-                    
+
                     return token
                 }
                 .do(onNext: { [weak self] token in
@@ -154,7 +150,7 @@ class MCSApi {
                     self.accessToken = token
                     
                     #if os(iOS)
-                    if let token = self.accessToken, Environment.shared.opco == .peco {
+                    if let token = self.accessToken {
                         try? WatchSessionManager.shared.updateApplicationContext(applicationContext: ["authToken" : token])
                     }
                     #endif

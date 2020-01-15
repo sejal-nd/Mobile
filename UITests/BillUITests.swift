@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import AppCenterXCUITestExtensions
+
 class BillUITests: ExelonUITestCase {
     
     override func setUp() {

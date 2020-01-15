@@ -7,7 +7,6 @@ PODS:
   - AppCenter/Core (1.14.0)
   - AppCenter/Crashes (1.14.0):
     - AppCenter/Core
-  - AppCenterXCUITestExtensions (1.0.0)
   - Charts (3.3.0):
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
@@ -71,7 +70,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.5.0):
     - GoogleUtilities/Logger
-  - lottie-ios (2.5.3)
+  - lottie-ios (3.1.5)
   - ModelMapper (10.0.0):
     - ModelMapper/Core (= 10.0.0)
   - ModelMapper/Core (10.0.0)
@@ -102,12 +101,11 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter (= 1.14)
-  - AppCenterXCUITestExtensions (= 1.0)
   - Charts (= 3.3)
   - Firebase/Core (= 5.19.0)
   - Firebase/RemoteConfig
   - GoogleAnalytics (= 3.17.0)
-  - lottie-ios (= 2.5.3)
+  - lottie-ios (= 3.1.5)
   - ModelMapper (= 10.0.0)
   - PDTSimpleCalendar (= 0.9.1)
   - ReachabilitySwift (= 4.3.1)
@@ -122,7 +120,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AppCenter
-    - AppCenterXCUITestExtensions
     - Charts
     - Firebase
     - FirebaseABTesting
@@ -133,7 +130,6 @@ SPEC REPOS:
     - GoogleAnalytics
     - GoogleAppMeasurement
     - GoogleUtilities
-    - lottie-ios
     - ModelMapper
     - nanopb
     - PDTSimpleCalendar
@@ -146,10 +142,11 @@ SPEC REPOS:
     - Toast-Swift
     - XLPagerTabStrip
     - zxcvbn-ios
+  trunk:
+    - lottie-ios
 
 SPEC CHECKSUMS:
   AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
-  AppCenterXCUITestExtensions: 8825ed941664fa21d6740a5ed6928a84c06623ac
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   Firebase: c60d49e9c2630875a96207d15e2affb8364996d1
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
@@ -160,7 +157,7 @@ SPEC CHECKSUMS:
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleAppMeasurement: 1624046ab1bcc5e170061a56ef5679000b079c8e
   GoogleUtilities: 6481e6318c5fcabaaa8513ef8120f329055d7c10
-  lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
+  lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
   ModelMapper: a8dbf2a2003bf626627b9fe7c9a22b3405a30404
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
@@ -174,6 +171,6 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 06c208368eb54bdb5cee65169247dbafcfd52637
+PODFILE CHECKSUM: 432bd5abb6201706de432577965af44e7f257243
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

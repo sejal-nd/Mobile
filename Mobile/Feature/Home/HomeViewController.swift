@@ -46,7 +46,7 @@ class HomeViewController: AccountPickerViewController {
     var refreshDisposable: Disposable?
     var refreshControl: UIRefreshControl?
     
-    var alertLottieAnimation = LOTAnimationView(name: "alert_icon")
+    var alertLottieAnimation = AnimationView(name: "alert_icon")
     
     let viewModel = HomeViewModel(accountService: ServiceFactory.createAccountService(),
                                   weatherService: ServiceFactory.createWeatherService(),

@@ -14,7 +14,7 @@ class BillAlertBannerView: UIView {
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var label: UILabel!
     
-    var alertLottieAnimation = LOTAnimationView(name: "alert_icon")
+    var alertLottieAnimation = AnimationView(name: "alert_icon")
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +35,7 @@ class BillAlertBannerView: UIView {
     
     func resetAnimation() {
         alertLottieAnimation.removeFromSuperview()
-        alertLottieAnimation = LOTAnimationView(name: "alert_icon")
+        alertLottieAnimation = AnimationView(name: "alert_icon")
         alertLottieAnimation.frame = CGRect(x: 0, y: 0, width: animationView.frame.width, height: animationView.frame.height)
         alertLottieAnimation.contentMode = .scaleAspectFill
         animationView.addSubview(self.alertLottieAnimation)
