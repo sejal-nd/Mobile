@@ -255,7 +255,7 @@ class GameHomeViewController: AccountPickerViewController {
             if numGiftsUnlocked > self.viewModel.numGiftsUnlocked {
                 self.viewModel.numGiftsUnlocked = numGiftsUnlocked
                 if let unlockedGift = GiftInventory.shared.lastUnlockedGift(forPointValue: gameUser.points) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
                         self.presentGift(unlockedGift)
                     }
                 }
