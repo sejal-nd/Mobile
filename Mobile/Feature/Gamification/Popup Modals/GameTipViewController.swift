@@ -106,7 +106,7 @@ class GameTipViewController: UIViewController {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
 
-        var detailText = tip.title + "\n\n" + tip.description
+        var detailText = tip.description
         if let numPeople = tip.numPeople, let numPeopleStr = numberFormatter.string(for: numPeople), let savings = tip.savingsPerYear {
             detailText += "\n\nThis tip worked for \(numPeopleStr) people and can save you up to $\(savings) per year."
         } else if let numPeople = tip.numPeople, let numPeopleStr = numberFormatter.string(for: numPeople) {
