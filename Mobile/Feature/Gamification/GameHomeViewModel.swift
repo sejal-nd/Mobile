@@ -50,7 +50,10 @@ class GameHomeViewModel {
     var currentTask: GameTask?
     var currentTaskIndex = -1
     
-    var numGiftsUnlocked = -1
+    /// Used to track when to present the gift unlock popup. Value is initially set in the fetchGameUser response. Upon earning points,
+    /// gameUser will be updated and trigger an onNext in the view controller observer, which will compare the user's new number of
+    /// gifts to the value being tracked here, and present the popup accordingly.
+    var numGiftsUnlocked: Int?
     
     required init(accountService: AccountService, gameService: GameService) {
         self.accountService = accountService
@@ -82,8 +85,6 @@ class GameHomeViewModel {
         
         self.usageData.bind(to: weeklyInsightViewModel.usageData).disposed(by: bag)
         weeklyInsightViewModel.thisWeekEndDate.drive(self.weeklyInsightEndDate).disposed(by: bag)
-        
-        numGiftsUnlocked = GiftInventory.shared.numGiftsUnlocked(forPointValue: points)
     }
     
     deinit {
@@ -117,6 +118,9 @@ class GameHomeViewModel {
         self.gameService.fetchGameUser(accountNumber: accountDetail.accountNumber)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] gameUser in
+                if let points = gameUser?.points {
+                    self?.numGiftsUnlocked = GiftInventory.shared.numGiftsUnlocked(forPointValue: points)
+                }
                 self?.streakCount.accept(UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount))
                 self?.gameUser.accept(gameUser)
             }).disposed(by: self.bag)

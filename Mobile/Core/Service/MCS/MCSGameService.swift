@@ -24,6 +24,7 @@ class MCSGameService: GameService {
                 
                 GiftInventory.shared.auditUserDefaults(userPoints: gameUser.points)
                 
+                // Streak calculation
                 if let streakDate = UserDefaults.standard.object(forKey: UserDefaultKeys.gameStreakDateTracker) as? Date {
                     if Calendar.current.isDateInYesterday(streakDate) {
                         let streakCount = UserDefaults.standard.integer(forKey: UserDefaultKeys.gameStreakCount)
