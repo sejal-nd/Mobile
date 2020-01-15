@@ -246,8 +246,20 @@ class GameHomeViewController: AccountPickerViewController {
             self.viewModel.currentTaskIndex = gameUser.taskIndex
             
             // Reconcile points with what's on the server
-            _ = self.progressBar.setPoints(gameUser.points, animated: false)
-            self.viewModel.points = gameUser.points
+            if self.viewModel.points != gameUser.points {
+                _ = self.progressBar.setPoints(gameUser.points, animated: false)
+                self.viewModel.points = gameUser.points
+            }
+            
+            let numGiftsUnlocked = GiftInventory.shared.numGiftsUnlocked(forPointValue: gameUser.points)
+            if numGiftsUnlocked > self.viewModel.numGiftsUnlocked {
+                self.viewModel.numGiftsUnlocked = numGiftsUnlocked
+                if let unlockedGift = GiftInventory.shared.lastUnlockedGift(forPointValue: gameUser.points) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                        self.presentGift(unlockedGift)
+                    }
+                }
+            }
             
             if GameTaskStore.shared.tryFabWentBackToGame {
                 if self.viewDidAppear {
@@ -520,15 +532,8 @@ class GameHomeViewController: AccountPickerViewController {
     }
     
     private func awardPoints(_ points: Double, advanceTaskIndex: Bool = false, advanceTaskTimer: Bool = true) {
-        let pointsBefore = self.viewModel.points
-        let pointsAfter = pointsBefore + points
-        
-        if let unlockedGift = GiftInventory.shared.giftUnlockedWhen(pointsBefore: pointsBefore, pointsAfter: pointsAfter) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-                self.presentGift(unlockedGift)
-            }
-        }
-        
+        let pointsAfter = self.viewModel.points + points
+                
         // Animate the progress bar, making the buddy speak when it becomes half/full
         if let result = progressBar.setPoints(pointsAfter) {
             if result == .halfWay {

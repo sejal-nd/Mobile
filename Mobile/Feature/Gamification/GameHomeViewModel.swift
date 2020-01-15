@@ -50,6 +50,8 @@ class GameHomeViewModel {
     var currentTask: GameTask?
     var currentTaskIndex = -1
     
+    var numGiftsUnlocked = -1
+    
     required init(accountService: AccountService, gameService: GameService) {
         self.accountService = accountService
         self.gameService = gameService
@@ -80,6 +82,8 @@ class GameHomeViewModel {
         
         self.usageData.bind(to: weeklyInsightViewModel.usageData).disposed(by: bag)
         weeklyInsightViewModel.thisWeekEndDate.drive(self.weeklyInsightEndDate).disposed(by: bag)
+        
+        numGiftsUnlocked = GiftInventory.shared.numGiftsUnlocked(forPointValue: points)
     }
     
     deinit {

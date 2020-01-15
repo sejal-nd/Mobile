@@ -117,13 +117,13 @@ class GiftInventory {
         self.inventory = inventory
     }
     
-    func giftUnlockedWhen(pointsBefore: Double, pointsAfter: Double) -> Gift? {
-        let giftsUnlockedBefore = inventory.filter { pointsBefore >= $0.requiredPoints }
-        let giftsUnlockedAfter = inventory.filter { pointsAfter >= $0.requiredPoints }
-        if giftsUnlockedAfter.count > giftsUnlockedBefore.count {
-            return giftsUnlockedAfter.last
-        }
-        return nil
+    func numGiftsUnlocked(forPointValue points: Double) -> Int {
+        return inventory.filter { points >= $0.requiredPoints }.count
+    }
+    
+    func lastUnlockedGift(forPointValue points: Double) -> Gift? {
+        let unlockedGifts = inventory.filter { points >= $0.requiredPoints }
+        return unlockedGifts.last
     }
     
     func gifts(ofType type: GiftType) -> [Gift] {
