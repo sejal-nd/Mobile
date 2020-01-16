@@ -15,7 +15,7 @@ class ReportOutageViewModelTests: XCTestCase {
     let disposeBag = DisposeBag()
     
     override func setUp() {
-        viewModel = ReportOutageViewModel(outageService: MockOutageService())
+        viewModel = ReportOutageViewModel(outageService: MockOutageService(), accountService: MockAccountService())
     }
     
     func testSubmitButtonEnabled() {

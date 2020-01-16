@@ -24,7 +24,19 @@ class MCSOutageService: OutageService {
     private var outageMap = [String: ReportedOutageResult]()
     
     func pingMeter(account: Account) -> Observable<MeterPingInfo> {
-        return MCSApi.shared.get(pathPrefix: .auth, path: "accounts/\(account.accountNumber)/outage/ping")
+        return pingMeter(account: account, premiseNumber: nil)
+    }
+    
+    func pingMeter(account: Account, premiseNumber: String? = nil) -> Observable<MeterPingInfo> {
+        var path = "accounts/\(account.accountNumber)/"
+        
+        if Environment.shared.opco == .bge || Environment.shared.opco == .peco,
+            let premiseId = premiseNumber {
+            path.append("premises/\(premiseId)/")
+        }
+        path.append("outage/ping")
+        
+        return MCSApi.shared.get(pathPrefix: .auth, path: path)
             .map { json in
                 guard let dict = json as? NSDictionary,
                     let meterPingDict = dict["meterInfo"] as? NSDictionary,
