@@ -79,7 +79,7 @@ class ReportOutageViewModel {
     lazy var shouldPingMeter: Bool = {
         return (Environment.shared.opco == .comEd &&
             outageStatus.activeOutage == false &&
-            outageStatus.smartMeterStatus == true) || Environment.shared.opco == .bge
+            outageStatus.smartMeterStatus == true) || Environment.shared.opco == .bge || Environment.shared.opco == .peco
     }()
     
     func reportOutage(onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
