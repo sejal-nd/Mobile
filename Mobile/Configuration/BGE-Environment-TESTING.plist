@@ -9,7 +9,7 @@
 	<key>appName</key>
 	<string>BGE_TEST</string>
 	<key>mcsInstanceName</key>
-	<string>Test2Integration</string>
+	<string>Test1UAT</string>
 	<key>myAccountUrl</key>
 	<string>https://aztst.bge.com/MyAccount</string>
 	<key>firebaseConfigFile</key>
