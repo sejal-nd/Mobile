@@ -267,11 +267,18 @@ class HomeViewModel {
     
     private(set) lazy var appointments = Observable.merge(appointmentEvents.elements(), appointmentsUpdates)
     
-    private(set) lazy var showAppointmentCard = Observable
-        .merge(appointmentEvents.map { !($0.element?.isEmpty ?? true) },
-               appointmentsUpdates.map { !$0.isEmpty },
-               appointmentTracker.asObservable().filter { $0 }.not())
-        .asDriver(onErrorDriveWith: .empty())
+    private(set) lazy var showAppointmentCard = Observable.just(Environment.shared.opco == .peco)
+        .flatMap { shouldShow -> Observable<Bool> in
+            if shouldShow {
+                return Observable
+                    .merge(self.appointmentEvents.map { !($0.element?.isEmpty ?? true) },
+                           self.appointmentsUpdates.map { !$0.isEmpty },
+                           self.appointmentTracker.asObservable().filter { $0 }.not())
+            }
+            else {
+                return Observable.just(false)
+            }
+    }.asDriver(onErrorDriveWith: .empty())
     
     private lazy var gameUserEvents = accountDetailEvents
         .elements()

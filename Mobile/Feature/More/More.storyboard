@@ -99,12 +99,13 @@
                         <segue destination="9Ug-ji-Hni" kind="show" identifier="changePasswordSegue" id="jX5-Az-Mpb"/>
                         <segue destination="Bcx-aT-Yfi" kind="show" identifier="defaultAccountSegue" id="ldD-yZ-ohQ"/>
                         <segue destination="zgJ-nf-2W6" kind="show" identifier="choiceIdSegue" id="N1v-ad-1hm"/>
+                        <segue destination="Z3X-lP-vFg" kind="show" identifier="appointmentsSegue" id="0RI-Jn-6zB"/>
                         <segue destination="UIb-7z-3ok" kind="show" identifier="energyBuddySegue" id="Vcb-HZ-KXB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fO-a1-RXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2368.8000000000002" y="1404.6476761619192"/>
+            <point key="canvasLocation" x="2271" y="1418"/>
         </scene>
         <!--Contact Us-->
         <scene sceneID="yYj-Mn-8mS">
@@ -1750,6 +1751,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFB-5r-VF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3297" y="645"/>
+        </scene>
+        <!--AppointmetsView-->
+        <scene sceneID="GiT-ph-Khc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="AppointmetsView" id="Z3X-lP-vFg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="o4w-iA-io7"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XnW-k1-vX2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3366" y="1197"/>
         </scene>
     </scenes>
     <resources>

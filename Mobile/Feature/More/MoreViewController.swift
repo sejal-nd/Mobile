@@ -196,7 +196,6 @@ class MoreViewController: UIViewController {
             break
         }
     }
-    
 }
 
 extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
@@ -208,7 +207,7 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 2
+            return 3
         case 1:
             return 6
         case 2:
@@ -275,6 +274,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.configure(image: #imageLiteral(resourceName: "ic_morealerts"), text: NSLocalizedString("My Alerts", comment: ""))
             case 1:
                 cell.configure(image: #imageLiteral(resourceName: "ic_moreupdates"), text: NSLocalizedString("News and Updates", comment: ""))
+            case 2:
+                cell.configure(image: #imageLiteral(resourceName: "ic_moreappointments"), text: NSLocalizedString("Appointments", comment: ""))
             default:
                 return UITableViewCell()
             }
@@ -328,6 +329,8 @@ extension MoreViewController: UITableViewDataSource, UITableViewDelegate {
                 performSegue(withIdentifier: "alertsSegue", sender: nil)
             case 1:
                 performSegue(withIdentifier: "updatesSegue", sender: nil)
+            case 2:
+                performSegue(withIdentifier: "appointmentsSegue", sender: nil)
             default:
                 break
             }
