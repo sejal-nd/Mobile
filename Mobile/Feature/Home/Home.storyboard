@@ -712,7 +712,7 @@
         <!--Appointments View Controller-->
         <scene sceneID="4NA-aG-10r">
             <objects>
-                <viewController storyboardIdentifier="AppointmetsView" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="WSt-KO-Xq2" customClass="AppointmentsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AppointmentsView" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="WSt-KO-Xq2" customClass="AppointmentsViewController" customModule="BGE" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pa1-8u-pKd"/>
                         <viewControllerLayoutGuide type="bottom" id="Dqq-1a-lJA"/>
@@ -722,7 +722,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wrg-RC-Urp">
-                                <rect key="frame" x="0.0" y="44" width="414" height="733"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="723"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-GB-YL7" customClass="ButtonBarView" customModule="XLPagerTabStrip">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
@@ -746,18 +746,18 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTr-Pe-azx">
-                                        <rect key="frame" x="0.0" y="49" width="414" height="684"/>
+                                        <rect key="frame" x="0.0" y="49" width="414" height="674"/>
                                     </scrollView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nzs-yn-phX" customClass="NoNetworkConnectionView" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="414" height="684"/>
+                                        <rect key="frame" x="0.0" y="49" width="414" height="674"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epj-nW-btH" customClass="StateView" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49" width="414" height="684"/>
+                                        <rect key="frame" x="0.0" y="49" width="414" height="674"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCZ-fZ-pSB" customClass="StateView" customModule="BGE" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="733" width="414" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="723" width="414" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -777,11 +777,11 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="60" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Sx1-DX-5IR" customClass="LoadingIndicator" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="177" y="442" width="60" height="12"/>
+                                <rect key="frame" x="177" y="415" width="60" height="12"/>
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YwV-bN-j38" customClass="StickyFooterView" customModule="BGE" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="777" width="414" height="85"/>
+                                <rect key="frame" x="0.0" y="723" width="414" height="85"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVL-zv-6aa" customClass="PrimaryButton" customModule="BGE" customModuleProvider="target">
                                         <rect key="frame" x="28" y="15" width="358" height="55"/>
