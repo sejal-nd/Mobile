@@ -1138,7 +1138,6 @@
 		9C34D749239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
 		9C34D74A239EE9FE00DF7FE2 /* GameTaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D747239EE9FE00DF7FE2 /* GameTaskStore.swift */; };
 		9C34D74C239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
-		9C34D74D239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
 		9C34D74E239EF56500DF7FE2 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
 		9C37BA912388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
 		9C37BA922388586E0098BCF3 /* GameOptInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C37BA902388586E0098BCF3 /* GameOptInOutViewController.swift */; };
@@ -1157,6 +1156,9 @@
 		9C48830523834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
 		9C48830623834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
 		9C48830723834F2700321E6B /* GameTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48830423834F2700321E6B /* GameTipViewController.swift */; };
+		9C48856323D2671F00E107C6 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9C48856423D2671F00E107C6 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
+		9C48856523D2672000E107C6 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9C50EBD322B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD422B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
 		9C50EBD522B971D500A89DBF /* AccountPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EBD222B971D500A89DBF /* AccountPicker.xib */; };
@@ -9545,6 +9547,7 @@
 				E8CBA5651E81CA6D005569D8 /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE6203F57D800A56FEE /* MyHomeProfileTests.swift in Sources */,
 				E8F51EF01ECA5AFE0080AB3E /* SharedColor.swift in Sources */,
+				9C48856323D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BA2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8CA07E81E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				E80D2E2F1E72FEC5002626C9 /* Account.swift in Sources */,
@@ -9785,6 +9788,7 @@
 				E8F62B38200924410077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62B39200924410077B3DA /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE3203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
+				9C48856423D2671F00E107C6 /* Weekday.swift in Sources */,
 				B07E17BB2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62B3B200924410077B3DA /* SharedColor.swift in Sources */,
 				E8F62B3E200924410077B3DA /* ForgotUsername.swift in Sources */,
@@ -9973,6 +9977,7 @@
 				E8F62BED200924570077B3DA /* RegistrationViewModel.swift in Sources */,
 				E8F62BEE200924570077B3DA /* ReportOutageViewModelTests.swift in Sources */,
 				82119FE4203F4BE500A56FEE /* MyHomeProfileTests.swift in Sources */,
+				9C48856523D2672000E107C6 /* Weekday.swift in Sources */,
 				B07E17BC2208F63700B6E3C7 /* WeatherItem.swift in Sources */,
 				E8F62BF0200924570077B3DA /* SharedColor.swift in Sources */,
 				E8F62BF3200924570077B3DA /* ForgotUsername.swift in Sources */,
