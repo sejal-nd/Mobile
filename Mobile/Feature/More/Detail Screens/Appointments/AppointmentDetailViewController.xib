@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,8 +21,6 @@
                 <outlet property="appointmentDescriptionTextView" destination="kam-QL-xdf" id="geO-Ee-I7v"/>
                 <outlet property="completeLabel" destination="x3W-6X-QX2" id="9K3-tI-Lbd"/>
                 <outlet property="confirmedLabel" destination="lfd-yt-t1e" id="dOt-KQ-c1e"/>
-                <outlet property="contactButton" destination="KjE-Tl-VL3" id="DPJ-J0-QdY"/>
-                <outlet property="contactLabel" destination="t3l-be-zbw" id="rfQ-Dn-w23"/>
                 <outlet property="inProgressLabel" destination="0sk-sc-RcZ" id="po4-x1-W2B"/>
                 <outlet property="onOurWayLabel" destination="5bL-u5-cNe" id="E2O-eW-cXl"/>
                 <outlet property="progressAnimationContainer" destination="vga-2w-IuK" id="EaI-mD-rLQ"/>
@@ -42,16 +37,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPo-FU-W3e">
-                    <rect key="frame" x="0.0" y="20" width="375" height="1000"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1020"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aei-GL-xqQ">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="709.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="649.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7w6-3Q-TtB">
-                                    <rect key="frame" x="0.0" y="30" width="375" height="679.5"/>
+                                    <rect key="frame" x="0.0" y="30" width="375" height="619.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0CE-lk-J22">
-                                            <rect key="frame" x="29" y="0.0" width="317" height="679.5"/>
+                                            <rect key="frame" x="29" y="0.0" width="317" height="619.5"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="110" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="7Ix-pD-T2B">
                                                     <rect key="frame" x="103.5" y="0.0" width="110" height="100"/>
@@ -193,34 +188,8 @@
                                                         <constraint firstAttribute="bottom" secondItem="1vr-rl-FVQ" secondAttribute="bottom" constant="25" id="bdc-bA-mhV"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KjE-Tl-VL3" customClass="ButtonControl" customModule="BGE" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="589.5" width="317" height="60"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3l-be-zbw">
-                                                            <rect key="frame" x="110.5" y="19.5" width="96.5" height="21.5"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                            <color key="textColor" red="0.0" green="0.34901960784313724" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="t3l-be-zbw" firstAttribute="centerX" secondItem="KjE-Tl-VL3" secondAttribute="centerX" id="Hlb-qI-NMp"/>
-                                                        <constraint firstAttribute="height" constant="60" id="W7z-qX-Y2x"/>
-                                                        <constraint firstItem="t3l-be-zbw" firstAttribute="centerY" secondItem="KjE-Tl-VL3" secondAttribute="centerY" id="kor-xx-3Ay"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldFadeSubviewsOnPress" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorOnPress">
-                                                            <color key="value" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fP2-S7-yKu" userLabel="Bottom Space">
-                                                    <rect key="frame" x="158.5" y="649.5" width="0.0" height="30"/>
+                                                    <rect key="frame" x="158.5" y="589.5" width="0.0" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" id="RPc-b1-2i6"/>
@@ -231,8 +200,6 @@
                                             <constraints>
                                                 <constraint firstItem="Dgj-gS-USw" firstAttribute="leading" secondItem="0CE-lk-J22" secondAttribute="leading" id="3aA-qq-Iso"/>
                                                 <constraint firstAttribute="width" priority="999" constant="460" id="5oh-AI-69V"/>
-                                                <constraint firstItem="KjE-Tl-VL3" firstAttribute="leading" secondItem="0CE-lk-J22" secondAttribute="leading" id="QYI-dc-VOD"/>
-                                                <constraint firstAttribute="trailing" secondItem="KjE-Tl-VL3" secondAttribute="trailing" id="Qi3-RX-fOO"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dgj-gS-USw" secondAttribute="trailing" id="aE1-eK-gwq"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="460" id="ykL-58-bDg"/>
                                             </constraints>

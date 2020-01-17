@@ -179,7 +179,7 @@ class HomeViewController: AccountPickerViewController {
                         switch status {
                         case .scheduled, .inProgress, .enRoute:
                             self.performSegue(withIdentifier: "appointmentDetailSegue",
-                                              sender: (appointments, accountDetail.premiseNumber!))
+                                              sender: (appointments))
                         case .canceled, .complete:
                             UIApplication.shared.openPhoneNumberIfCan(self.viewModel.appointmentCardViewModel.contactNumber)
                         }
@@ -692,9 +692,8 @@ class HomeViewController: AccountPickerViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch (segue.destination, sender) {
-        case let (vc as AppointmentsViewController, (appointments, premiseNumber) as ([Appointment], String)):
+        case let (vc as AppointmentsViewController, (appointments) as ([Appointment])):
             vc.appointments = appointments
-            vc.premiseNumber = premiseNumber
             vc.viewModel.appointments
                 .skip(1) // First element just repeats the one passed in from this screen.
                 .bind(to: viewModel.appointmentsUpdates)

@@ -12,20 +12,31 @@ import RxCocoa
 
 class AppointmentsViewController: ButtonBarPagerTabStripViewController {
     
-    var premiseNumber: String!
-    var appointments: [Appointment]!
+    @IBOutlet weak var loadingIndicator: LoadingIndicator!
+    @IBOutlet weak var noNetworkView: NoNetworkConnectionView!
+    @IBOutlet weak var emptyStateView: StateView!
+    @IBOutlet weak var errorStateView: StateView!
+    @IBOutlet weak var contactUsButton: PrimaryButton!
+    
+    var appointments: [Appointment] = [Appointment]()
     var appointmentVCs: [AppointmentDetailViewController]!
+    var pollingDisposable: Disposable?
     
     let disposeBag = DisposeBag()
     
-    lazy var viewModel = AppointmentsViewModel(premiseNumber: premiseNumber,
-                                               initialAppointments: appointments,
-                                               appointmentService: ServiceFactory.createAppointmentService())
+    lazy var viewModel = AppointmentsViewModel(initialAppointments: appointments,
+                                               appointmentService: ServiceFactory.createAppointmentService(),
+                                               accountService: ServiceFactory.createAccountService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Appointment Tracker", comment: "")
         
+        if StormModeStatus.shared.isOn {
+            view.backgroundColor = .stormModeBlack
+        }
+        
+        viewModel.showLoadingState.not().drive(loadingIndicator.rx.isHidden).disposed(by: disposeBag)
         viewModel.appointments.asDriver(onErrorDriveWith: .empty())
             .drive(onNext: { [weak self] appointments in
                 guard let self = self else { return }
@@ -33,6 +44,7 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                 
                 if self.canAvoidFullReload(newAppointments: appointments) {
                     self.appointments = appointments
+                    
                     for i in 0..<appointments.count {
                         let appointment = self.appointments[i]
                         let appointmentVC = self.appointmentVCs[i]
@@ -43,8 +55,26 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
                     self.reloadPagerTabStripView()
                 }
                 UIAccessibility.post(notification: .screenChanged, argument: nil)
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
+        
+        viewModel.showNoNetworkState.not().drive(self.noNetworkView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showErrorState.not().drive(self.errorStateView.rx.isHidden).disposed(by: disposeBag)
+        viewModel.showEmptyState.not().drive(self.emptyStateView.rx.isHidden).disposed(by: disposeBag)
+        
+        viewModel.showEmptyState.drive(onNext: { empty in
+            self.emptyStateView.isHidden = !empty
+            }).disposed(by: disposeBag)
+        
+        noNetworkView.reload
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: {
+                self.viewModel.fetchAllData()
+            }).disposed(by: disposeBag)
+        
+        pollingDisposable = viewModel.startPolling()
+            .subscribe()
+        
+        initStates()
         
         buttonBarItemSpec = ButtonBarItemSpec<ButtonBarViewCell>.cellClass(width: { _ in 125 })
         buttonBarView.selectedBar.backgroundColor = .primaryColor
@@ -71,10 +101,35 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
             newCell?.label.textColor = .actionBlue
             newCell?.label.font = OpenSans.semibold.of(textStyle: .subheadline)
         }
+        
+        contactUsButton.rx
+            .touchUpInside
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                UIApplication.shared.openPhoneNumberIfCan(self.viewModel.contactNumber)
+            }).disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.pollingDisposable?.dispose()
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        if appointments.count == 1 {
+        if appointments.count == 0 {
+            self.buttonBarView.isHidden = true
+            self.containerView.bounces = false
+            
+            return [EmptyChildViewController()]
+        }
+        else if appointments.count == 1 {
             self.buttonBarView.isHidden = true
             self.containerView.bounces = false
         } else {
@@ -111,5 +166,12 @@ class AppointmentsViewController: ButtonBarPagerTabStripViewController {
         }
 
         return true
+    }
+    
+    private func initStates() {
+        self.emptyStateView.stateMessage = "You have no appointments scheduled."
+        self.emptyStateView.stateImageName = "img_appt_empty"
+        self.errorStateView.stateMessage = "Error getting appointments"
+        self.errorStateView.stateImageName = "ic_appt_canceled"
     }
 }
