@@ -39,7 +39,8 @@ class MCSGameService: GameService {
                 _ = self.updateGameUser(accountNumber: accountNumber, keyValues: ["lastLogin": Date.now.apiFormatString])
                     .subscribe()
                 
-                if gameUser.pilotGroup?.lowercased() == "experimental" {
+                let pilotGroupLower = gameUser.pilotGroup?.lowercased()
+                if pilotGroupLower == "experimental" || pilotGroupLower == "test" || pilotGroupLower == "internal" {
                     UserDefaults.standard.set(accountNumber, forKey: UserDefaultKeys.gameAccountNumber)
                     UserDefaults.standard.set(gameUser.onboardingComplete, forKey: UserDefaultKeys.gameOnboardingCompleteLocal)
                     UserDefaults.standard.set(gameUser.optedOut, forKey: UserDefaultKeys.gameOptedOutLocal)
