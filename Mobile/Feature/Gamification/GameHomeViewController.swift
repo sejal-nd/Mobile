@@ -132,7 +132,9 @@ class GameHomeViewController: AccountPickerViewController {
         
         bindViewModel()
         
-        enrollInWeeklyPushNotification()
+        if UserDefaults.standard.bool(forKey: UserDefaultKeys.gameEnergyBuddyUpdatesAlertPreference) {
+            enrollInWeeklyPushNotification()
+        }
         
         viewModel.fetchData()
     }
@@ -350,7 +352,7 @@ class GameHomeViewController: AccountPickerViewController {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: ["game_weekly_reminder"])
         
         let content = UNMutableNotificationContent()
-        content.title = "Pip Misses You!"
+        content.title = "Energy Buddy Misses You!"
         content.body = "Check out new data, tips, and insights to help you save energy and money."
         content.sound = UNNotificationSound.default
         
