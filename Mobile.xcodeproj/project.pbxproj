@@ -1280,6 +1280,7 @@
 		9CB8A5EE21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CB8A5EF21DEBF3D00880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
 		9CB8A5F121DEC22200880DE9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB8A5EC21DEBF3D00880DE9 /* Logger.swift */; };
+		9CBCE75723D5EEF400DA4BF8 /* ViewedTipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C34D74B239EF56500DF7FE2 /* ViewedTipTableViewCell.swift */; };
 		9CBE9E26237473C200E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9CBE9E27237473C400E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
 		9CBE9E28237473C400E14222 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEE412423722B8A005A4AD3 /* Weekday.swift */; };
@@ -9216,6 +9217,7 @@
 				E8CA07E61E9D391400A1D431 /* ForgotUsername.swift in Sources */,
 				35277AFA2102325000411297 /* UsageViewModel.swift in Sources */,
 				9CEE412623722B8A005A4AD3 /* Weekday.swift in Sources */,
+				9CBCE75723D5EEF400DA4BF8 /* ViewedTipTableViewCell.swift in Sources */,
 				8FD5AE8D1E54EA49003F640D /* LoginViewController.swift in Sources */,
 				9CABF6B62397032B00B07B01 /* GameQuizViewController.swift in Sources */,
 				E89D07A21E609DC900F87F87 /* MainTabBarController.swift in Sources */,
